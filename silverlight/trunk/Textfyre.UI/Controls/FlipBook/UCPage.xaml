@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="Textfyre.UI.Controls.FlipBook.UCPage"
+    xmlns="http://schemas.microsoft.com/client/2007" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Loaded="OnLoaded" MouseLeftButtonDown="OnMouseDown" MouseLeftButtonUp="OnMouseUp"
+    MouseMove="OnMouseMove" MouseLeave="OnMouseLeave"   >
+	<Grid x:Name="mainGrid">
+		<!--Page 2 begin-->
+		<ContentControl x:Name="page2" />
+		<!--Page 2 end-->
+		<Canvas Opacity="1" x:Name="nextPageShadowCanvas" Visibility="Collapsed">
+			<Canvas.Background>
+				<LinearGradientBrush x:Name="nextPageShadow" StartPoint="0 0" EndPoint="0 0">
+					<GradientStop Color="Transparent" Offset="0" />
+					<GradientStop x:Name="nextPageShadowCanvasOffset1" Color="#80000000" Offset="0" />
+					<GradientStop x:Name="nextPageShadowCanvasOffset2" Color="Transparent" Offset="1" />
+					<GradientStop Color="Transparent" Offset="1" />
+				</LinearGradientBrush>
+			</Canvas.Background>
+		</Canvas>
+		<Grid x:Name="gridPage0">
+			<!--<Grid.Clip>
+				<CombinedGeometry x:Name="clippingPage0" GeometryCombineMode="Exclude">
+					<CombinedGeometry.Geometry1>
+						<RectangleGeometry />
+					</CombinedGeometry.Geometry1>
+					<CombinedGeometry.Geometry2>
+						<PathGeometry>
+							<PathFigure IsClosed="True" />
+						</PathGeometry>
+					</CombinedGeometry.Geometry2>
+				</CombinedGeometry>
+			</Grid.Clip>-->
+			<!--Page 0 begin-->
+			<ContentControl x:Name="page0" />
+			<!--Page 0 end-->
+		</Grid>
+		<Canvas Opacity="1" x:Name="gridShadow" Visibility="Collapsed">
+			<Canvas.Background>
+				<LinearGradientBrush x:Name="pageShadow" StartPoint="0 0" EndPoint="0 0">
+					<GradientStop Color="Transparent" Offset="0" />
+					<GradientStop Color="#80000000" Offset="0" />
+					<GradientStop Color="Transparent" Offset="1" />
+				</LinearGradientBrush>
+			</Canvas.Background>
+		</Canvas>
+		<Grid x:Name="rectangleVisible">
+			<Grid.RenderTransform>
+				<TransformGroup>
+					<TranslateTransform x:Name="rectangleTranslate" />
+					<RotateTransform x:Name="rectangleRotate" />
+				</TransformGroup>
+			</Grid.RenderTransform>
+			<Grid.Clip>
+				<PathGeometry x:Name="clippingFigure">
+					<PathFigure IsClosed="True" />
+				</PathGeometry>
+			</Grid.Clip>
+			<!--Page 1 begin-->
+			<ContentControl x:Name="page1" />
+			<!--Page 1 end-->
+			<Canvas Opacity="0.7" x:Name="canvasReflection" Visibility="Collapsed">
+				<Canvas.Background>
+					<LinearGradientBrush x:Name="pageReflection" StartPoint="0 0" EndPoint="0 0">
+						<GradientStop Color="#40000000" Offset="0" />
+						<GradientStop Color="#40FFFFFF" Offset="0.35" />
+						<GradientStop Color="Transparent" Offset="1" />
+					</LinearGradientBrush>
+				</Canvas.Background>
+			</Canvas>
+		</Grid>
+	</Grid>
+</UserControl>

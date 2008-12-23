@@ -1,0 +1,631 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<WordDefs>
+  <WordDef>
+    <Words>
+      <Word>skulk</Word>
+      <Word>skulks</Word>
+    </Words>
+    <Description>To move around sneakily, as if you're up to something.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>you</Word>
+    </Words>
+    <Description>You're Jack Toresal, an orphan in the Kingdom of Jais Del Brin in the land of Miradan.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>Chapter</Word>
+    </Words>
+    <Description>Our story is divided into chapters just like any other storybook. In each chapter, there will be many places to explore and people to talk to. The chapter heading will switch whenever something momentous happens to you and moves the plot forward.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>Grubber's Market</Word>
+    </Words>
+    <Description>Grubber's Market is the large outdoor marketplace where tourists and regular townsfolk come every day to browse and shop.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>storehouse</Word>
+      <Word>warehouse</Word>
+    </Words>
+    <Description>A storage place for merchants to keep their products when not displaying them for sale.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>alley</Word>
+    </Words>
+    <Description>It serves primarily as somewhere out-of-the-way for stallkeepers to sweep their garbage, so it's not exactly the most pleasant-smelling place in all of Miradan.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>Commerce Street</Word>
+    </Words>
+    <Description>Commerce Street is to the east of Grubber's Market, and is home to a slightly more upscale class of merchant, who have permanent shops rather than stalls and tents. </Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>Stall</Word>
+      <Word>stalls</Word>
+      <Word>Fruit Stall</Word>
+      <Word>Grocery Stall</Word>
+      <Word>Hat Stall</Word>
+      <Word>Gem Stall</Word>
+      <Word>Candle Stall</Word>
+      <Word>Rope Stall</Word>
+      <Word>Pottery Stall</Word>
+      <Word>Herb Stall</Word>
+      <Word>Weapon Stall</Word>
+      <Word>Leather Stall</Word>
+    </Words>
+    <Description>All of the marketplace merchants own a stall or a tent where they display what they have for sale every day.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>Silk Tent</Word>
+    </Words>
+    <Description>Teisha's tent is one of the places you feel most comfortable going to outside of the orphanage, and the items she has for sale are luxurious to browse through.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>marketgoer</Word>
+      <Word>marketgoers</Word>
+      <Word>townsfolk</Word>
+      <Word>marketfolk</Word>
+    </Words>
+    <Description>The ordinary people who crowd into the market area every day to go shopping.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>merchants</Word>
+      <Word>merchant</Word>
+      <Word>stallkeeper</Word>
+      <Word>stallkeepers</Word>
+    </Words>
+    <Description>People whose business it is to sell you stuff.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>merchandise</Word>
+      <Word>goods</Word>
+      <Word>wares</Word>
+    </Words>
+    <Description>Items for sale.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>mercenary</Word>
+      <Word>mercenaries</Word>
+      <Word>soldier</Word>
+      <Word>soldiers</Word>
+      <Word>thug</Word>
+      <Word>thugs</Word>
+      <Word>bravo</Word>
+      <Word>bravos</Word>
+    </Words>
+    <Description>Professional soldiers who work for pay, owing no allegiance to a country or kingdom.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>wider berth</Word>
+      <Word>wide berth</Word>
+      <Word>berth</Word>
+    </Words>
+    <Description>Personal space, room to move around.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>moneypurses</Word>
+      <Word>moneypurse</Word>
+    </Words>
+    <Description>A small pouch or bag in which to carry coins and other valuables.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>urchin</Word>
+    </Words>
+    <Description>A somewhat insulting term for an orphan such as yourself, especially one that specializes in getting into trouble.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>bumpkin</Word>
+      <Word>bumpkins</Word>
+    </Words>
+    <Description>The country farmers and other folk who come from out of town and don't have the same manners as city dwellers.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>matron</Word>
+      <Word>matrons</Word>
+    </Words>
+    <Description>A polite way of calling someone a bossy old lady.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>gangly</Word>
+    </Words>
+    <Description>Skinny and loose-limbed.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>pock-marked</Word>
+    </Words>
+    <Description>Having a spotty complexion.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>piebald</Word>
+    </Words>
+    <Description>Having spotty coloring or blotches.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>gawking</Word>
+    </Words>
+    <Description>Staring at something in amazement, maybe rudely or with your mouth hanging open.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>bloodthirsty</Word>
+    </Words>
+    <Description>Wanting to kill and draw blood.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>hooligans</Word>
+      <Word>hooligan</Word>
+    </Words>
+    <Description>Bad guys, ones who are generally up to no good.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>penny-grubbing</Word>
+    </Words>
+    <Description>Greedy and miserly, wanting every last penny.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>trinket</Word>
+      <Word>trinkets</Word>
+    </Words>
+    <Description>Handmade jewelry and other items, usually of cheap quality.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>awnings</Word>
+      <Word>awning</Word>
+    </Words>
+    <Description>The canvas that stretches out over the market, providing shade for the merchants and customers below.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>exasperated</Word>
+    </Words>
+    <Description>Frustrated, at the end of one's patience, to where you're almost at a loss for words.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>sticky fingers</Word>
+    </Words>
+    <Description>Showing a tendency to steal and pocket little items as you pass by them.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>preoccupied</Word>
+    </Words>
+    <Description>A state where you have something else on your mind, making you unable to pay full attention to your current situation.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>embroidery</Word>
+    </Words>
+    <Description>Decorative sewing with fine or colorful threads and beads.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>ascension</Word>
+    </Words>
+    <Description>An ascension is a moving upwards to a higher place. In the Kingdom of Jais Del Brin, it refers to someone of lower station being raised up and crowned the new King.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>wiles</Word>
+    </Words>
+    <Description>Street smarts and quick thinking that let you stay a little ahead of other people, with a little attitude to boot.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>sobriquet</Word>
+    </Words>
+    <Description>A fancy word for "name" or "title."</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>constellation</Word>
+      <Word>constellations</Word>
+    </Words>
+    <Description>Arrangements of stars in the night sky.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>maiden</Word>
+      <Word>maidens</Word>
+    </Words>
+    <Description>Young, unmarried women.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>commotion</Word>
+      <Word>commotions</Word>
+    </Words>
+    <Description>A noisy disruption, with a lot of people moving and talking in alarm all at once.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>Miradan</Word>
+      <Word>Miradania</Word>
+    </Words>
+    <Description>This continent where Jack lives is known as Miradan, and is loosely ruled by the Kingdom of Jais Del Brin.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>grizzled</Word>
+    </Words>
+    <Description>Literally, dark hair streaked with gray; often used to express the idea of old age or experience.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>loitering</Word>
+    </Words>
+    <Description>Hanging around with nothing better to do. This can make some people nervous.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>fragrance</Word>
+    </Words>
+    <Description>Pleasant aroma.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>brambleberries</Word>
+      <Word>brambleberry</Word>
+      <Word>cluster</Word>
+    </Words>
+    <Description>A tart, juicy, bluish-black wild berry that is picked in small clusters from bramble bushes.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>kello fruit</Word>
+    </Words>
+    <Description>A seasonal fruit that's delicious when ripe.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>berate</Word>
+      <Word>berating</Word>
+    </Words>
+    <Description>Yell at, take to task.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>bristle</Word>
+      <Word>bristling</Word>
+    </Words>
+    <Description>Sticking out at all angles, like hairs.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>parchment</Word>
+    </Words>
+    <Description>A high quality paper, often made from calfskin or sheepskin.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>monkey</Word>
+    </Words>
+    <Description>A long-tailed primate, adept at climbing and mischief.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>antics</Word>
+    </Words>
+    <Description>Clowning around, wacky behavior, usually a little energetic.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>precarious</Word>
+    </Words>
+    <Description>On the edge, dangerous, unstable or liable to fall.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>Westlands</Word>
+    </Words>
+    <Description>A region on the western coast of Miradan.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>marsh</Word>
+      <Word>marshes</Word>
+    </Words>
+    <Description>Swamps and wetlands.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>rush</Word>
+      <Word>rushes</Word>
+    </Words>
+    <Description>Flowering plants that grow in the marshes.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>shimmer</Word>
+      <Word>shimmering</Word>
+    </Words>
+    <Description>Rippling with reflected light, glowing, sparkling.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>voluminous</Word>
+    </Words>
+    <Description>Holding a lot, big, spacious.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>tirade</Word>
+    </Words>
+    <Description>Yelling at someone at length, chewing them out.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>abrupt</Word>
+      <Word>abruptly</Word>
+    </Words>
+    <Description>All of a sudden.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>amidst</Word>
+    </Words>
+    <Description>In the middle of.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>lurch</Word>
+    </Words>
+    <Description>To swing or stagger heavily from one side to another, or to move or lunge suddenly.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>pinwheel</Word>
+    </Words>
+    <Description>To spin around in a circle.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>babble</Word>
+    </Words>
+    <Description>Yak yak yak, blah blah blah.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>span</Word>
+    </Words>
+    <Description>A unit of measurement, roughly the size of an adult's hand.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>Lord's Keep</Word>
+    </Words>
+    <Description>The central tower or stronghold of a castle.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>cloying</Word>
+    </Words>
+    <Description>Sickeningly sweet.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>reek</Word>
+    </Words>
+    <Description> P.U., stink-o.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>northern counties</Word>
+    </Words>
+    <Description>A region in the continent of Miradan.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>Kozar Delta</Word>
+    </Words>
+    <Description>A region where the rivers meet the eastern seaboard in the southern the continent of Miradan.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>satchel</Word>
+    </Words>
+    <Description>A carrying bag, usually made of leather, that can be worn over a shoulder.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>jerky</Word>
+      <Word>salt-beef</Word>
+    </Words>
+    <Description>A twisted, shriveled strip of dried salt-beef.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>score</Word>
+      <Word>scores</Word>
+    </Words>
+    <Description>A counting measurement equal to twenty. Four score = eighty.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>traveling hat</Word>
+      <Word>traveling hats</Word>
+    </Words>
+    <Description>A type of hat with a big, floppy brim to keep the sun out of your eyes while on the road.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>workman's cap</Word>
+      <Word>workman's caps</Word>
+    </Words>
+    <Description>These leather caps are small and functional, more to protect your head from things falling on it than anything else.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>sappan</Word>
+      <Word>sappans</Word>
+    </Words>
+    <Description>A wide, round hat made of woven straw, and pointy at the top. They're popular in the southern regions.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>bonnet</Word>
+      <Word>bonnets</Word>
+    </Words>
+    <Description>The bonnets are just ordinary peasant wear, little white caps that tie under the chin.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>harness</Word>
+    </Words>
+    <Description>A complicated contraption of touch leather straps and buckles, for hitching horses to wagons.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>scabbard</Word>
+      <Word>sheath</Word>
+    </Words>
+    <Description>A flattened tube of plain, unadorned leather, for holding a sword or knife.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>saddle</Word>
+    </Words>
+    <Description>It's the curved leather seat you sit on when you ride a horse.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>dagger</Word>
+      <Word>daggers</Word>
+    </Words>
+    <Description>A long-bladed knife, used as a weapon rather than as a tool.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>indigo</Word>
+    </Words>
+    <Description>A deep, dark blue color.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>wrought</Word>
+    </Words>
+    <Description>Hand-made, crafted.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>pungent</Word>
+    </Words>
+    <Description>Strong-smelling, though not necessarily a bad smell.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>shawl</Word>
+      <Word>shawls</Word>
+    </Words>
+    <Description>Simple wraps of brightly colored silk, worn around your arms and shoulders.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>tallow</Word>
+    </Words>
+    <Description>Tallow is a waxy yellow stuff rendered from the fat of farm animals, useful for making candles and soap.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>herb</Word>
+      <Word>herbs</Word>
+    </Words>
+    <Description>Plants used for medicinal purposes as well as for seasoning in cooking.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>rein</Word>
+      <Word>reins</Word>
+    </Words>
+    <Description>The leather straps used for steering horses.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>stirrup</Word>
+      <Word>stirrups</Word>
+    </Words>
+    <Description>It's what you step your foot into for getting up on a horse.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>cauldron</Word>
+      <Word>cauldrons</Word>
+    </Words>
+    <Description>Small, stout cooking pots used for boiling soups, goops, and potions.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>anchor cable</Word>
+      <Word>anchor cables</Word>
+    </Words>
+    <Description>Thick, strong metal wires that are fastened between a tall pole and the ground, to help keep it balanced upright and steady.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>Junction</Word>
+    </Words>
+    <Description>Where two things meet.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>urn</Word>
+      <Word>urns</Word>
+    </Words>
+    <Description>A jug-like container or pitcher, often made of clay.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>glazes</Word>
+    </Words>
+    <Description>A thin layer of coloring or paint used to decorate pottery.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>cloak</Word>
+      <Word>cloaks</Word>
+    </Words>
+    <Description>A long and voluminous hooded garment, worn like a cape but long enough to reach down to your ankles.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>measuring cord</Word>
+    </Words>
+    <Description>A piece of string or rope used by a tailor or clothing designer to take your size measurements.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>Teisha</Word>
+    </Words>
+    <Description>Teisha is a short, busty woman with a smile as warm as her tumbling red curls. She likes you, and she knows knows your big secret, which is a little bit scary and a little bit of a relief.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>Maiden House</Word>
+    </Words>
+    <Description>The name of the orphanage where you've been raised since your mother died giving birth to you.</Description>
+  </WordDef>
+</WordDefs>

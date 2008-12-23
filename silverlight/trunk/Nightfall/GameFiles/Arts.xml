@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Arts>
+  <Art ID="Book" Path="Images/Book/NewBook.png" Width="820" Height="650" />
+  <Art ID="BookCover" Path="Images/Title.png" Width="403" Height="581" />
+  <Art ID="BookPage1" Path="Images/Book/NewBookPage1.png" Width="350" Height="550" />
+  <Art ID="BookPage2" Path="Images/Book/NewBookPage2.png" Width="350" Height="550" />
+  <Art ID="TitlePage" Path="Images/Title.png" Width="280" Height="442" />
+  <Art ID="TOCArt" Path="Images/TOCArt.jpg" Width="252" Height="73" Margin="5,40,0,0" />
+
+  <Art ID="BookmarkTOC" Path="Images/BookmarkTOC.xaml" Margin="13,50,0,0" />
+  
+  <Art ID="tracks" Path="Images/PageArts/nightfall-tracks.jpg" Width="280" Height="440" />
+  <Art ID="moonlit street" Path="Images/PageArts/nightfall-moonlit-street.jpg" Width="280" Height="440" />
+  <Art ID="moonlit city" Path="Images/PageArts/nightfall-moonlit-city.jpg" Width="280" Height="440" />
+  <Art ID="silhouetted woman" Path="Images/PageArts/nightfall-silhouetted-woman.jpg" Width="280" Height="440" />
+  <Art ID="nuclear explosion" Path="Images/PageArts/nightfall-nuclear-explosion.jpg" Width="280" Height="440" />
+  <Art ID="gravestone" Path="Images/PageArts/nightfall-gravestone.jpg" Width="280" Height="440" />
+  <Art ID="full woman" Path="Images/PageArts/nightfall-full-woman.jpg" Width="280" Height="440" />
+  <Art ID="full moon" Path="Images/PageArts/nightfall-full-moon.jpg" Width="280" Height="440" />
+  <Art ID="police car" Path="Images/PageArts/nightfall-police-car.jpg" Width="280" Height="440" />
+  <Art ID="church" Path="Images/PageArts/nightfall-church.jpg" Width="280" Height="440" />
+  <Art ID="churchyard" Path="Images/PageArts/nightfall-churchyard.jpg" Width="280" Height="440" />
+
+</Arts>

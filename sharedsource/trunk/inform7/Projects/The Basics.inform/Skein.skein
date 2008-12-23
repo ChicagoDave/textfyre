@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Skein rootNode="node-0x02094358" xmlns="http://www.logicalshift.org.uk/IF/Skein">
+  <generator>Inform 7 for Windows</generator>
+  <activeNode nodeId="node-0x02095898"/>
+  <item nodeId="node-0x02094358">
+    <command xml:space="preserve">- start -</command>
+    <result xml:space="preserve">This sample FyreVM game is a straight-forward Inform 7 game. We did not explicitly implement any FyreVM Channel I/O features, but we are using the implicit features. This includes the main, location, score, time, and prompt channels. As you can see in Fyre Sampler, these elements are displayed in their appropriate locations on the Windows Form.&#x000A;&#x000A;The Basics&#x000A;An Interactive Fiction by Textfyre, Inc&#x000A;Release 1 / Serial number 081214 / Inform 7 build 5U92 (I6/v6.31 lib 6/12N) SD&#x000A;&#x000A;Backyard&#x000A;The backyard is east of a small white house. This side of the house has a single, boarded-up window. The yard itself is covered in a thick layer of leaves, probably blown in from the forest, which can be seen in all directions.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">NO</temporary>
+    <children>
+      <child nodeId="node-0x020946C8"/>
+      <child nodeId="node-0x02094B00"/>
+      <child nodeId="node-0x02094D30"/>
+      <child nodeId="node-0x02094F78"/>
+      <child nodeId="node-0x020951B8"/>
+      <child nodeId="node-0x02095588"/>
+    </children>
+  </item>
+  <item nodeId="node-0x020946C8">
+    <command xml:space="preserve">open window</command>
+    <result xml:space="preserve">You try to pry it open, but someone seems to have used Frobozz Magic VLN's (Very Large Nails). Without magic, there's no hope of opening this window.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x02094888"/>
+      <child nodeId="node-0x02094958"/>
+      <child nodeId="node-0x02095898"/>
+    </children>
+  </item>
+  <item nodeId="node-0x02094888">
+    <command xml:space="preserve">x window</command>
+    <result xml:space="preserve">You can't see any such thing.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+  </item>
+  <item nodeId="node-0x02094958">
+    <command xml:space="preserve">x me</command>
+    <result xml:space="preserve">As good-looking as ever.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x02094A18"/>
+    </children>
+  </item>
+  <item nodeId="node-0x02094A18">
+    <command xml:space="preserve">x window</command>
+    <result xml:space="preserve">The window seems to be recently nailed shut.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+  </item>
+  <item nodeId="node-0x02095898">
+    <command xml:space="preserve">smell house</command>
+    <result xml:space="preserve">You try to get a whiff of what's inside the house and you draw back from the distinct smell of a pepper sandwich. Your stomach rumbles in response.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+  </item>
+  <item nodeId="node-0x02094B00">
+    <command xml:space="preserve">x leaves</command>
+    <result xml:space="preserve">They're just leaves.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x02094B70"/>
+    </children>
+  </item>
+  <item nodeId="node-0x02094B70">
+    <command xml:space="preserve">x window</command>
+    <result xml:space="preserve">The window seems to be recently nailed shut.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x02094C58"/>
+    </children>
+  </item>
+  <item nodeId="node-0x02094C58">
+    <command xml:space="preserve">open it</command>
+    <result xml:space="preserve">That's not something you can open.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+  </item>
+  <item nodeId="node-0x02094D30">
+    <command xml:space="preserve">smell window</command>
+    <result xml:space="preserve">You try to get a whiff of what's inside the house and you draw back from the distinct smell of a pepper sandwich.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x02094EA8"/>
+    </children>
+  </item>
+  <item nodeId="node-0x02094EA8">
+    <command xml:space="preserve">smell</command>
+    <result xml:space="preserve">You smell nothing unexpected.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+  </item>
+  <item nodeId="node-0x02094F78">
+    <command xml:space="preserve">x debris</command>
+    <result xml:space="preserve">They're just leaves.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x02094FE8"/>
+    </children>
+  </item>
+  <item nodeId="node-0x02094FE8">
+    <command xml:space="preserve">smell</command>
+    <result xml:space="preserve">The forest debris overwhelms even your sensitive nose.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x020950E8"/>
+    </children>
+  </item>
+  <item nodeId="node-0x020950E8">
+    <command xml:space="preserve">smell house</command>
+    <result xml:space="preserve">You can't see any such thing.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+  </item>
+  <item nodeId="node-0x020951B8">
+    <command xml:space="preserve">smell house</command>
+    <result xml:space="preserve">You try to get a whiff of what's inside the house and you draw back from the distinct smell of a pepper sandwich.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x02095330"/>
+    </children>
+  </item>
+  <item nodeId="node-0x02095330">
+    <command xml:space="preserve">smell the house</command>
+    <result xml:space="preserve">You can't see any such thing.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x02095400"/>
+    </children>
+  </item>
+  <item nodeId="node-0x02095400">
+    <command xml:space="preserve">smell window</command>
+    <result xml:space="preserve">The forest debris overwhelms even your sensitive nose.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x02095518"/>
+    </children>
+  </item>
+  <item nodeId="node-0x02095518">
+    <command xml:space="preserve">smell</command>
+    <result xml:space="preserve">The forest debris overwhelms even your sensitive nose.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+  </item>
+  <item nodeId="node-0x02095588">
+    <command xml:space="preserve">smell</command>
+    <result xml:space="preserve">The forest debris overwhelms even your sensitive nose.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x020955F8"/>
+      <child nodeId="node-0x02095748"/>
+    </children>
+  </item>
+  <item nodeId="node-0x020955F8">
+    <command xml:space="preserve">smell window</command>
+    <result xml:space="preserve">You try to get a whiff of what's inside the house and you draw back from the distinct smell of a pepper sandwich.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x02095668"/>
+    </children>
+  </item>
+  <item nodeId="node-0x02095668">
+    <command xml:space="preserve">smell house</command>
+    <result xml:space="preserve">You can't see any such thing.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x020956D8"/>
+    </children>
+  </item>
+  <item nodeId="node-0x020956D8">
+    <command xml:space="preserve">smell the house</command>
+    <result xml:space="preserve">You can't see any such thing.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+  </item>
+  <item nodeId="node-0x02095748">
+    <command xml:space="preserve">smell me</command>
+    <result xml:space="preserve">You smell nothing unexpected.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x020957B8"/>
+    </children>
+  </item>
+  <item nodeId="node-0x020957B8">
+    <command xml:space="preserve">smell house</command>
+    <result xml:space="preserve">You can't see any such thing.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x02095828"/>
+    </children>
+  </item>
+  <item nodeId="node-0x02095828">
+    <command xml:space="preserve">smell window</command>
+    <result xml:space="preserve">*** Run-time problem P7: Too many rulebooks in simultaneous use.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+  </item>
+</Skein>

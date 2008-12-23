@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Arts>
+  <Art ID="Book" Path="Images/Book.png" Width="800" Height="601" />
+  <Art ID="BookCover" Path="Images/BookCover.png" Width="403" Height="581" />
+  <Art ID="BookPage1" Path="Images/BookPage1.png" Width="353" Height="557" />
+  <Art ID="BookPage2" Path="Images/BookPage2.png" Width="353" Height="557" />
+  <Art ID="TitlePage" Path="Images/Frontpage.png" Width="280" Height="442" />
+  <Art ID="TOCArt" Path="" />
+
+  <Art ID="BookmarkTOC" Path="Images/BookmarkTOC.xaml" Margin="2,50,0,0" />
+</Arts>

@@ -1,0 +1,9 @@
+! Blurb file created by NI build 5T18
+variable [RELEASE] = "1"
+storyfile "C:\Documents and Settings\Administrator\My Documents\Inform\Projects\The Shadow In The Cathedral.inform\Build\output.ulx" include
+metadata "C:\Documents and Settings\Administrator\My Documents\Inform\Projects\The Shadow In The Cathedral.inform\Metadata.iFiction" include
+variable [YEAR] = "2008"
+variable [TITLE] = "The Shadow In The Cathedral"
+variable [AUTHOR] = "Textfyre Inc"
+variable [BLURB] = "A work of interactive fiction."
+variable [IFID] = "E413E011-60CF-48F6-8620-A8A55467AE0D"

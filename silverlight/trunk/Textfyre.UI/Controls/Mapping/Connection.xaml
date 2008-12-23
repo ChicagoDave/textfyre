@@ -1,0 +1,8 @@
+﻿<UserControl x:Class="Textfyre.UI.Controls.Mapping.Connection"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    >
+    <Grid x:Name="LayoutRoot">
+        <Line x:Name="ConnectionLine" />
+    </Grid>
+</UserControl>
