@@ -1,0 +1,9 @@
+! Blurb file created by NI build 5U92
+variable [RELEASE] = "1"
+storyfile "C:\Users\David\Documents\Inform\Projects\The Basics.inform\Build\output.ulx" include
+metadata "C:\Users\David\Documents\Inform\Projects\The Basics.inform\Metadata.iFiction" include
+variable [YEAR] = "2008"
+variable [TITLE] = "The Basics"
+variable [AUTHOR] = "Textfyre, Inc"
+variable [BLURB] = "A work of interactive fiction."
+variable [IFID] = "1A718470-3A7E-429A-8FAD-DADC49CA00CB"

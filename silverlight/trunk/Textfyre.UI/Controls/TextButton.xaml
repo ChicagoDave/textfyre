@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="Textfyre.UI.Controls.TextButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    >
+    <UserControl.Resources>
+        <Storyboard x:Name="Normal">
+            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ButtonText" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                <SplineColorKeyFrame x:Name="NormalColor" KeyTime="00:00:00.1" Value="#FF000000"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="MouseOver">
+            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ButtonText" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                <SplineColorKeyFrame KeyTime="00:00:00.1" Value="#FF917549"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="Pressed">
+            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ButtonText" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                <SplineColorKeyFrame KeyTime="00:00:00.1" Value="#FFFF7549"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot">
+        <TextBlock x:Name="ButtonText" Cursor="Hand" TextAlignment="Center" TextWrapping="Wrap" Foreground="#FF000000" />
+    </Grid>
+</UserControl>

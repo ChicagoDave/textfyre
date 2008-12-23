@@ -1,0 +1,9 @@
+! Blurb file created by NI build 5U92
+variable [RELEASE] = "1"
+storyfile "C:\Documents and Settings\Administrator\My Documents\Inform\Projects\The Secret Letter.inform\Build\output.ulx" include
+metadata "C:\Documents and Settings\Administrator\My Documents\Inform\Projects\The Secret Letter.inform\Metadata.iFiction" include
+variable [YEAR] = "2008"
+variable [TITLE] = "Jack Toresal and The Secret Letter"
+variable [AUTHOR] = "Textfyre, Inc"
+variable [BLURB] = "A work of interactive fiction."
+variable [IFID] = "1E802B58-F1C0-465D-8597-27451EC837E6"

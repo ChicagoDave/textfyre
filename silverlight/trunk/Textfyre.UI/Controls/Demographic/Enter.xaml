@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="Textfyre.UI.Controls.Demographic.Enter"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    >
+    <Grid x:Name="LayoutRoot" Width="170" Background="#66FFFFFF">
+        <Border BorderBrush="Black" BorderThickness="1">
+            <StackPanel Margin="5,10,10,0" Width="150">
+            <TextBlock Text="Demographic Survey" FontFamily="Arial" FontSize="16" Margin="0,0,0,5" />
+            <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" FontFamily="Verdana" FontSize="11">
+                Please fill out the form before playing the game:
+            </TextBlock>
+            <TextBlock x:Name="TxtMessage" Text="" FontFamily="Verdana" FontSize="12" Margin="0,0,0,5" Foreground="Red" />
+            <TextBlock Text="Gender:" FontFamily="Verdana" FontSize="11" />
+            <StackPanel Orientation="Horizontal">
+                <RadioButton x:Name="GndrFemale" GroupName="Gender" Content="Female   " />
+                <RadioButton x:Name="GndrMale" GroupName="Gender" Content="Male   " />
+            </StackPanel>
+            <TextBlock Margin="0,0,0,2" Text="Age:  " FontFamily="Verdana" FontSize="11" />
+            <TextBox x:Name="TxtAge" FontFamily="Verdana" FontSize="11" Width="30" HorizontalAlignment="Left" />
+            <TextBlock Margin="0,0,0,2" Text="School:" FontFamily="Verdana" FontSize="11" />
+            <TextBox x:Name="TxtSchool" FontFamily="Verdana" FontSize="11" Width="150" HorizontalAlignment="Left" />
+            <TextBlock Margin="0,0,0,2" Text="City:" FontFamily="Verdana" FontSize="11" />
+            <TextBox x:Name="TxtCity" FontFamily="Verdana" FontSize="11" Width="150" HorizontalAlignment="Left" />
+            <TextBlock Margin="0,0,0,2" Text="State:" FontFamily="Verdana" FontSize="11" />
+            <TextBox FontFamily="Verdana" FontSize="11" x:Name="TxtState" Width="150" HorizontalAlignment="Left" />
+            <Button Click="BtnSubmit_Click" Margin="0,10,0,10" x:Name="BtnSubmit" FontFamily="Verdana" FontSize="11" Width="100" HorizontalAlignment="Right" Content="Start Game" Style="{StaticResource DialogButtonStyle}" />
+        </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

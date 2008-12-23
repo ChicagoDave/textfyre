@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Textfyre.UI.Controls.TableOfContent"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ctrl="clr-namespace:Textfyre.UI.Controls"
+    Width="325" Height="500">
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <ctrl:Art ID="TOCArt" VerticalAlignment="Top" />
+        <StackPanel x:Name="ContentList" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock x:Name="TitleText" Text="- Table of Contents -" Height="30" HorizontalAlignment="Center" />
+            <TextBlock Width="10" Height="20" Text=" " />
+            <ctrl:TextButton x:Name="BtnIntroduction" Click="BtnIntroduction_Click" Enabled="True" Text="Introduction" Margin="0,0,0,10" />
+            <ctrl:TextButton x:Name="BtnStartNewGame" Text="Start a New Game" Margin="0,0,0,10" Click="BtnStartNewGame_Click" />
+            <ctrl:TextButton x:Name="BtnMap" Click="BtnMap_Click" Enabled="False" Text="Review The Game Map" Margin="0,0,0,10" />
+            <ctrl:TextButton x:Name="BtnRestoreGame" Click="BtnRestoreGame_Click" Enabled="False" Text="Load A Saved Game" Margin="0,0,0,10" />
+            <ctrl:TextButton x:Name="BtnSaveGame" Click="BtnSaveGame_Click" Enabled="False" Text="Save The Current Game" Margin="0,0,0,10" />
+            <ctrl:TextButton x:Name="BtnHints" Click="BtnHints_Click" Enabled="False" Text="Get Hints" Margin="0,0,0,10" />
+            <ctrl:TextButton x:Name="BtnHelp" Enabled="False" Text="Get Help" Margin="0,0,0,10" />
+            <ctrl:TextButton x:Name="BtnTranscript" Click="BtnTranscript_Click"  Enabled="False" Text="Transcript" Margin="0,0,0,10" />
+            <ctrl:TextButton x:Name="BtnCredits" Enabled="False" Text="Credits" Margin="0,0,0,10" />
+            <ctrl:TextButton x:Name="BtnContinueGame" Enabled="False" Text="Continue Game" Click="BtnContinueGame_Click" Margin="0,0,0,10" />
+            <ctrl:TextButton x:Name="BtnQuit" Click="BtnQuit_Click" Enabled="True" Text="Quit" Margin="0,0,0,10" />
+        </StackPanel>
+    </Grid>
+</UserControl>

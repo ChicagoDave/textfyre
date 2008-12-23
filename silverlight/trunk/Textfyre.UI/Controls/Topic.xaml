@@ -1,0 +1,14 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	x:Class="Textfyre.UI.Controls.Topic"
+	>
+
+	<Grid Width="280" x:Name="LayoutRoot">
+        <StackPanel x:Name="TopicList" HorizontalAlignment="Center" VerticalAlignment="Center">
+			<Button Style="{StaticResource TopicButtonStyle}" Margin="0,0,0,10" Height="46" Width="280" Content="Now that you mention it, a bunch of mercenaries have been chasing me all over Grubber's Market!"  DataContext="1"/>
+			<Button Margin="0,0,0,10" Height="34" Width="280" Content="I need a disguise." DataContext="2"  />
+	    </StackPanel>
+    </Grid>
+</UserControl>

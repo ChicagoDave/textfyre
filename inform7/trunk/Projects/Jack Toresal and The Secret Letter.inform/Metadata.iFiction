@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ifindex version="1.0" xmlns="http://babel.ifarchive.org/protocol/iFiction/">
+    <story>
+        <identification>
+            <ifid>1E802B58-F1C0-465D-8597-27451EC837E6</ifid>
+            <format>glulx</format>
+        </identification>
+        <bibliographic>
+            <title>Jack Toresal and The Secret Letter</title>
+            <author>Textfyre, Inc</author>
+            <headline>An Interactive Fiction</headline>
+            <genre>Fiction</genre>
+            <firstpublished>2008</firstpublished>
+            <language>en</language>
+            <group>Inform</group>
+        </bibliographic>
+        <releases>
+            <attached>
+                <release>
+                    <releasedate>2008-12-12</releasedate>
+                    <version>1</version>
+                    <compiler>Inform 7</compiler>
+                    <compilerversion>5U92</compilerversion>
+                </release>
+            </attached>
+        </releases>
+        <colophon>
+            <generator>Inform 7</generator>
+            <generatorversion>5U92</generatorversion>
+            <originated>2008-12-12</originated>
+        </colophon>
+        <glulx>
+            <serial>081212</serial>
+            <release>1</release>
+            <compiler>Inform 7 build 5U92</compiler>
+        </glulx>
+    </story>
+</ifindex>

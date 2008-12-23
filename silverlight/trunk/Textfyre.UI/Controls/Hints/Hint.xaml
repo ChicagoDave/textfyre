@@ -1,0 +1,201 @@
+﻿<UserControl x:Class="Textfyre.UI.Controls.Hints.Hint"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    >
+    <UserControl.Resources>
+        <Storyboard x:Name="RevealStoryboard">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="2"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt2" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="2"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt3" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="2"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt4" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="2"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt4" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="2"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt5" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="2"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt5" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="2"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="2"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt2" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="2"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt3" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="2"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt1" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                <SplineColorKeyFrame KeyTime="00:00:00.5000000" Value="#FF000000"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt2" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                <SplineColorKeyFrame KeyTime="00:00:00.5000000" Value="#00000000"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt3" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                <SplineColorKeyFrame KeyTime="00:00:00.5000000" Value="#00000000"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt4" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                <SplineColorKeyFrame KeyTime="00:00:00.5000000" Value="#00000000"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt5" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                <SplineColorKeyFrame KeyTime="00:00:00.5000000" Value="#00000000"/>
+            </ColorAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt6" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt6" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt6" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                <SplineColorKeyFrame KeyTime="00:00:00.5000000" Value="#00000000"/>
+            </ColorAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt2" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt2" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt3" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt3" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt4" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt4" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt5" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt5" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt6" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt6" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="EnableStoryboard">
+            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt6" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                <SplineColorKeyFrame KeyTime="00:00:00.5000000" Value="#E5D7AF83"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt5" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                <SplineColorKeyFrame KeyTime="00:00:00.5000000" Value="#E5D0A674"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt4" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                <SplineColorKeyFrame KeyTime="00:00:00.5000000" Value="#E5D5AE7E"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt3" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                <SplineColorKeyFrame KeyTime="00:00:00.5000000" Value="#E5E1BE94"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt2" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                <SplineColorKeyFrame KeyTime="00:00:00.5000000" Value="#E5C49362"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt1" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                <SplineColorKeyFrame KeyTime="00:00:00.5000000" Value="#E5DBB58E"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="DisableStoryboard">
+            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt6" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                <SplineColorKeyFrame KeyTime="00:00:00.5000000" Value="#E5D0D0D0"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt5" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                <SplineColorKeyFrame KeyTime="00:00:00.5000000" Value="#E5D0D0D0"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt4" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                <SplineColorKeyFrame KeyTime="00:00:00.5000000" Value="#E5D0D0D0"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt3" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                <SplineColorKeyFrame KeyTime="00:00:00.5000000" Value="#E5D0D0D0"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt2" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                <SplineColorKeyFrame KeyTime="00:00:00.5000000" Value="#E5D0D0D0"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="HintTxt1" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                <SplineColorKeyFrame KeyTime="00:00:00.5000000" Value="#E5D0D0D0"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot" Width="280">
+        <TextBlock TextAlignment="Center" Margin="0,0,0,4" Text="This is a description to one of the hints." TextWrapping="Wrap" Foreground="#E5DBB58E" x:Name="HintTxt1" RenderTransformOrigin="0.5,0.5" FontSize="12">
+				<TextBlock.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform ScaleX="1.05" ScaleY="1.05"/>
+						<SkewTransform/>
+						<RotateTransform/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock TextAlignment="Center" Margin="0,0,0,4" Text="This is a description to one of the hints." TextWrapping="Wrap" Foreground="#E5C49362" x:Name="HintTxt2" RenderTransformOrigin="0.5,0.5" FontSize="12">
+				<TextBlock.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform ScaleX="1.05" ScaleY="1.05"/>
+						<SkewTransform/>
+						<RotateTransform/>
+						<TranslateTransform Y="2"/>
+					</TransformGroup>
+				</TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock TextAlignment="Center" Margin="0,0,0,4" Text="This is a description to one of the hints." TextWrapping="Wrap" Foreground="#E5E1BE94" x:Name="HintTxt3" RenderTransformOrigin="0.5,0.5" FontSize="12">
+				<TextBlock.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform ScaleX="1.05" ScaleY="1.05"/>
+						<SkewTransform/>
+						<RotateTransform/>
+						<TranslateTransform X="2"/>
+					</TransformGroup>
+				</TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock TextAlignment="Center" Margin="0,0,0,4" Text="This is a description to one of the hints." TextWrapping="Wrap" Foreground="#E5D5AE7E" x:Name="HintTxt4" RenderTransformOrigin="0.5,0.5" FontSize="12">
+				<TextBlock.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform ScaleX="1.05" ScaleY="1.05"/>
+						<SkewTransform/>
+						<RotateTransform/>
+						<TranslateTransform X="5" Y="2"/>
+					</TransformGroup>
+				</TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock TextAlignment="Center" Margin="0,0,0,4" Text="This is a description to one of the hints." TextWrapping="Wrap" Foreground="#E5D0A674" x:Name="HintTxt5" RenderTransformOrigin="0.5,0.5" FontSize="12">
+				<TextBlock.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform ScaleX="1.05" ScaleY="1.05"/>
+						<SkewTransform/>
+						<RotateTransform/>
+						<TranslateTransform X="6" Y="3"/>
+					</TransformGroup>
+				</TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock TextAlignment="Center" Margin="0,0,0,4" Text="This is a description to one of the hints." TextWrapping="Wrap" Foreground="#E5D7AF83" x:Name="HintTxt6" RenderTransformOrigin="0.5,0.5" FontSize="12">
+				<TextBlock.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform ScaleX="1.05" ScaleY="1.05"/>
+						<SkewTransform/>
+						<RotateTransform/>
+						<TranslateTransform X="-1" Y="1"/>
+					</TransformGroup>
+				</TextBlock.RenderTransform>
+        </TextBlock>
+    </Grid>
+</UserControl>

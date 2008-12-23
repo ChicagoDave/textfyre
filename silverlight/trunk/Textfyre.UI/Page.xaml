@@ -1,0 +1,10 @@
+﻿<UserControl x:Class="Textfyre.UI.Page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:pg="clr-namespace:Textfyre.UI"
+              Background="#FFF9EAD6"
+             >
+    <Grid x:Name="LayoutRoot" Background="#FFF9EAD6" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <pg:Master x:Name="MasterPage" HorizontalAlignment="Left" VerticalAlignment="Top" />
+    </Grid>
+</UserControl>

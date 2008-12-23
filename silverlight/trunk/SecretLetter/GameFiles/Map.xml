@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Map>
+  <Locations>
+    <Location Name="OuterMarketRoof" LocationName="Outer Market Roof"
+						Map.Top="0" Map.Left="0"/>
+    <Location Name="Alley" LocationName="Alley" Visibility="Visible"
+						Map.Top="100" Map.Left="0"/>
+    <Location Name="GrubbersMarketNorthwestJunction" LocationName="Northwest Junction"
+						Map.Top="200" Map.Left="100"/>
+    <Location Name="HerbStall" LocationName="Herb Stall"
+						Map.Top="350" Map.Left="100"/>
+    <Location Name="ExoticGemsStall" LocationName="Exotic Gems Stall"
+						Map.Top="500" Map.Left="100"/>
+    <Location Name="RopeDealer" LocationName="Rope Dealer"
+						Map.Top="350" Map.Left="200"/>
+    <Location Name="WeaponsmithsStall" LocationName="Weapon Stall"
+						Map.Top="600" Map.Left="200"/>
+    <Location Name="GroceryStall" LocationName="Grocery Stall"
+						Map.Top="100" Map.Left="300"/>
+    <Location Name="CandlemakersStall" LocationName="Candle Stall"
+						Map.Top="200" Map.Left="300"/>
+    <Location Height="53" Name="TopofthePost" LocationName="Top of the Post"
+						Map.Top="300" Map.Left="300"/>
+    <Location Height="53" Name="BehindtheSilkTent" LocationName="Behind the Silk Tent"
+						Map.Top="365" Map.Left="300"/>
+    <Location Height="53" Name="InsidetheSilkTent" LocationName="Inside the Silk Tent"
+						Map.Top="430" Map.Left="300"/>
+    <Location Name="OutsidetheSilkTent" LocationName="Outside the Silk Tent"
+						Map.Top="500" Map.Left="300"/>
+    <Location Name="PotteryStall" LocationName="Pottery Stall"
+						Map.Top="350" Map.Left="400"/>
+    <Location Name="LeatherStall" LocationName="Leather Stall"
+						Map.Top="600" Map.Left="400"/>
+    <Location Name="FruitStall" LocationName="Fruit Stall"
+						Map.Top="200" Map.Left="500"/>
+    <Location Name="EasternJunction" LocationName="Eastern Junction"
+						Map.Top="350" Map.Left="500"/>
+    <Location Name="HatStall" LocationName="Hat Stall"
+						Map.Top="500" Map.Left="500"/>
+    <Location Name="CommerceStreet" LocationName="Commerce Street"
+						Map.Top="350" Map.Left="600"/>
+    <Location Name="LordsKeep" LocationName="Lord's Keep"
+						Map.Top="100" Map.Left="100"/>
+  </Locations>
+  <Connections>
+    <Connection Name="C000" Start="OuterMarketRoof" End="Alley"
+						Forwards="down" Backwards="up" Type="UpDown"
+						Map.Top="74" Map.Left="39" DeltaX="0" DeltaY="30"/>
+    <Connection Name="C001" Start="Alley" End="GrubbersMarketNorthwestJunction"
+						Forwards="southeast" Backwards="northwest"
+						Map.Top="174" Map.Left="74" DeltaX="30" DeltaY="30"/>
+    <Connection Name="C002" Start="GrubbersMarketNorthwestJunction" End="HerbStall"
+						Forwards="south" Backwards="north"
+						Map.Top="274" Map.Left="139" DeltaX="0" DeltaY="80"/>
+    <Connection Name="C003" Start="HerbStall" End="ExoticGemsStall"
+						Forwards="south" Backwards="north"
+						Map.Top="424" Map.Left="139" DeltaX="0" DeltaY="80"/>
+    <Connection Name="C004" Start="ExoticGemsStall" End="WeaponsmithsStall"
+						Forwards="southeast" Backwards="northwest"
+						Map.Top="574" Map.Left="174" DeltaX="30" DeltaY="30"/>
+    <Connection Name="C005" Start="WeaponsmithsStall" End="OutsidetheSilkTent"
+						Forwards="northeast" Backwards="southwest"
+						Map.Top="604" Map.Left="274" DeltaX="30" DeltaY="-30"/>
+    <Connection Name="C006" Start="ExoticGemsStall" End="OutsidetheSilkTent"
+						Forwards="east" Backwards="west"
+						Map.Top="539" Map.Left="174" DeltaX="130" DeltaY="0"/>
+    <Connection Name="C007" Start="OutsidetheSilkTent" End="InsidetheSilkTent"
+						Forwards="north" Backwards="south" Type="InOut"
+						Map.Top="504" Map.Left="339" DeltaX="0" DeltaY="-25"/>
+    <Connection Name="C008" Start="InsidetheSilkTent" End="BehindtheSilkTent"
+						Forwards="north" Backwards="south" Type="InOut"
+						Map.Top="434" Map.Left="339" DeltaX="0" DeltaY="-25"/>
+    <Connection Name="C009" Start="BehindtheSilkTent" End="TopofthePost"
+						Forwards="up" Backwards="down" Type="UpDown"
+						Map.Top="369" Map.Left="339" DeltaX="0" DeltaY="-25"/>
+    <Connection Name="C010" Start="RopeDealer" End="HerbStall"
+						Forwards="west" Backwards="east"
+						Map.Top="389" Map.Left="204" DeltaX="-30" DeltaY="0"/>
+    <Connection Name="C011" Start="RopeDealer" End="ExoticGemsStall"
+						Forwards="southwest" Backwards="northeast"
+						Map.Top="418" Map.Left="208" DeltaX="-38" DeltaY="92"/>
+    <Connection Name="C012" Start="RopeDealer" End="OutsidetheSilkTent"
+						Forwards="southeast" Backwards="northwest"
+						Map.Top="418" Map.Left="270" DeltaX="38" DeltaY="92"/>
+    <Connection Name="C013" Start="RopeDealer" End="GrubbersMarketNorthwestJunction"
+						Forwards="northwest" Backwards="southeast"
+						Map.Top="360" Map.Left="208" DeltaX="-38" DeltaY="-92"/>
+    <Connection Name="C014" Start="RopeDealer" End="CandlemakersStall"
+						Forwards="northeast" Backwards="southwest"
+						Map.Top="360" Map.Left="270" DeltaX="38" DeltaY="-92"/>
+    <Connection Name="C015" Start="PotteryStall" End="EasternJunction"
+						Forwards="east" Backwards="west"
+						Map.Top="389" Map.Left="474" DeltaX="30" DeltaY="0"/>
+    <Connection Name="C016" Start="PotteryStall" End="OutsidetheSilkTent"
+						Forwards="southwest" Backwards="northeast"
+						Map.Top="418" Map.Left="408" DeltaX="-38" DeltaY="92"/>
+    <Connection Name="C017" Start="PotteryStall" End="HatStall"
+						Forwards="southeast" Backwards="northwest"
+						Map.Top="418" Map.Left="470" DeltaX="38" DeltaY="92"/>
+    <Connection Name="C018" Start="PotteryStall" End="CandlemakersStall"
+						Forwards="northwest" Backwards="southeast"
+						Map.Top="360" Map.Left="408" DeltaX="-38" DeltaY="-92"/>
+    <Connection Name="C019" Start="PotteryStall" End="FruitStall"
+						Forwards="northeast" Backwards="southwest"
+						Map.Top="360" Map.Left="470" DeltaX="38" DeltaY="-92"/>
+    <Connection Name="C020" Start="LeatherStall" End="HatStall"
+						Forwards="northeast" Backwards="southwest"
+						Map.Top="604" Map.Left="474" DeltaX="30" DeltaY="-30"/>
+    <Connection Name="C021" Start="LeatherStall" End="OutsidetheSilkTent"
+						Forwards="northwest" Backwards="southeast"
+						Map.Top="604" Map.Left="404" DeltaX="-30" DeltaY="-30"/>
+    <Connection Name="C022" Start="CandlemakersStall" End="GrubbersMarketNorthwestJunction"
+						Forwards="west" Backwards="east"
+						Map.Top="239" Map.Left="304" DeltaX="-130" DeltaY="0"/>
+    <Connection Name="C023" Start="CandlemakersStall" End="FruitStall"
+						Forwards="east" Backwards="west"
+						Map.Top="239" Map.Left="374" DeltaX="130" DeltaY="0"/>
+    <Connection Name="C024" Start="CandlemakersStall" End="GroceryStall"
+						Forwards="north" Backwards="south"
+						Map.Top="204" Map.Left="339" DeltaX="0" DeltaY="-30"/>
+    <Connection Name="C025" Start="HatStall" End="OutsidetheSilkTent"
+						Forwards="west" Backwards="east"
+						Map.Top="539" Map.Left="504" DeltaX="-130" DeltaY="0"/>
+    <Connection Name="C026" Start="HatStall" End="EasternJunction"
+						Forwards="north" Backwards="south"
+						Map.Top="504" Map.Left="539" DeltaX="0" DeltaY="-80"/>
+    <Connection Name="C027" Start="EasternJunction" End="FruitStall"
+						Forwards="north" Backwards="south"
+						Map.Top="354" Map.Left="539" DeltaX="0" DeltaY="-80"/>
+    <Connection Name="C028" Start="EasternJunction" End="CommerceStreet"
+						Forwards="east" Backwards="west"
+						Map.Top="389" Map.Left="574" DeltaX="30" DeltaY="0"/>
+    <Connection Name="C029" Start="GrubbersMarketNorthwestJunction" End="GroceryStall"
+						Forwards="northeast" Backwards="southwest"
+						Map.Top="205" Map.Left="170" DeltaX="142" DeltaY="-33"/>
+    <Connection Name="C030" Start="FruitStall" End="GroceryStall"
+						Forwards="northwest" Backwards="southeast"
+						Map.Top="205" Map.Left="508" DeltaX="-142" DeltaY="-33"/>
+    <Connection Name="C031" Start="TopofthePost" End="GrubbersMarketNorthwestJunction"
+						Forwards="northwest" OneWay="True"
+						Map.Top="305" Map.Left="310" DeltaX="-171" DeltaY="-41"/>
+    <Connection Name="C032" Start="TopofthePost" End="FruitStall"
+						Forwards="northeast" OneWay="True"
+						Map.Top="310" Map.Left="343" DeltaX="196" DeltaY="-46"/>
+    <Connection Name="C033" Start="TopofthePost" End="HatStall"
+						Forwards="southeast" OneWay="True"
+						Map.Top="318" Map.Left="343" DeltaX="190" DeltaY="227"/>
+    <Connection Name="C034" Start="TopofthePost" End="ExoticGemsStall"
+						Forwards="southwest" OneWay="True"
+						Map.Top="343" Map.Left="310" DeltaX="-159" DeltaY="194"/>
+    <Connection Name="C035" Start="GrubbersMarketNorthwestJunction" End="LordsKeep"
+						Forwards="north" Backwards="south"
+						Map.Top="204" Map.Left="139" DeltaX="0" DeltaY="-30"/>
+  </Connections>
+</Map>

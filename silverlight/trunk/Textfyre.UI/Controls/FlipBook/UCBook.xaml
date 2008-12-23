@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="Textfyre.UI.Controls.FlipBook.UCBook"
+    xmlns="http://schemas.microsoft.com/client/2007" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:local="clr-namespace:Textfyre.UI.Controls.FlipBook" Loaded="UserControl_Loaded">
+    <Grid x:Name="LayoutRoot">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="50*" />
+			<ColumnDefinition Width="50*" />
+		</Grid.ColumnDefinitions>
+		<local:UCPage x:Name="leftPage" Grid.Column="0" MouseLeftButtonDown="leftPage_MouseLeftButtonDown"
+			PageTurned="leftPage_PageTurned"
+			IsTopLeftCornerEnabled="True" IsBottomLeftCornerEnabled="True" />
+		<local:UCPage x:Name="rightPage" Grid.Column="1" MouseLeftButtonDown="rightPage_MouseLeftButtonDown"
+		    PageTurned="rightPage_PageTurned" 
+			IsTopRightCornerEnabled="True" IsBottomRightCornerEnabled="True" />
+	</Grid>
+</UserControl>

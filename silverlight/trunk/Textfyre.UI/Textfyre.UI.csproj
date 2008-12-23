@@ -1,0 +1,392 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EA5BC7E5-76BC-40D2-8133-7A6BADFD57FE}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Textfyre.UI</RootNamespace>
+    <AssemblyName>Textfyre.UI</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>false</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows" />
+    <Reference Include="mscorlib" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Browser" />
+    <Reference Include="System.Xml.Linq, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\Art.xaml.cs">
+      <DependentUpon>Art.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BookCover.xaml.cs">
+      <DependentUpon>BookCover.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Bookmark.xaml.cs">
+      <DependentUpon>Bookmark.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Demographic\Enter.xaml.cs">
+      <DependentUpon>Enter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FlipBook\CornerOrigin.cs" />
+    <Compile Include="Controls\FlipBook\LinearGradientHelper.cs" />
+    <Compile Include="Controls\FlipBook\PageParameters.cs" />
+    <Compile Include="Controls\FlipBook\PageStatus.cs" />
+    <Compile Include="Controls\FlipBook\UCBook.xaml.cs">
+      <DependentUpon>UCBook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FlipBook\UCPage.Compute.cs" />
+    <Compile Include="Controls\FlipBook\UCPage.xaml.cs">
+      <DependentUpon>UCPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FlipButton.xaml.cs">
+      <DependentUpon>FlipButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FyreDocument.xaml.cs">
+      <DependentUpon>FyreDocument.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Hints\Hint.xaml.cs">
+      <DependentUpon>Hint.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Hints\HintGroup.xaml.cs">
+      <DependentUpon>HintGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Hints\HintPage.xaml.cs">
+      <DependentUpon>HintPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Input.xaml.cs">
+      <DependentUpon>Input.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\IODialog\Confirm.xaml.cs">
+      <DependentUpon>Confirm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\IODialog\File.xaml.cs">
+      <DependentUpon>File.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\IODialog\Notes.xaml.cs">
+      <DependentUpon>Notes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\IODialog\Restore.xaml.cs">
+      <DependentUpon>Restore.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\IODialog\Save.xaml.cs">
+      <DependentUpon>Save.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\IODialog\Transcript.xaml.cs">
+      <DependentUpon>Transcript.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Manual\ManualControl.xaml.cs">
+      <DependentUpon>ManualControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Mapping\Connection.xaml.cs">
+      <DependentUpon>Connection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Mapping\DragHand.xaml.cs">
+      <DependentUpon>DragHand.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Mapping\Location.xaml.cs">
+      <DependentUpon>Location.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Mapping\Map.xaml.cs">
+      <DependentUpon>Map.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\More.xaml.cs">
+      <DependentUpon>More.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SpeechBubble\Bubble.xaml.cs">
+      <DependentUpon>Bubble.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SpeechBubble\Direction.cs" />
+    <Compile Include="Controls\StoryAid.xaml.cs">
+      <DependentUpon>StoryAid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TableOfContent.xaml.cs">
+      <DependentUpon>TableOfContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TextButton.xaml.cs">
+      <DependentUpon>TextButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TextfyreBook.xaml.cs">
+      <DependentUpon>TextfyreBook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TextfyreBookPage.xaml.cs">
+      <DependentUpon>TextfyreBookPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Topic.xaml.cs">
+      <DependentUpon>Topic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Current\Application.cs" />
+    <Compile Include="Current\Font.cs" />
+    <Compile Include="Current\Game.cs" />
+    <Compile Include="Current\User.cs" />
+    <Compile Include="Entities\ColumnElement.cs" />
+    <Compile Include="Entities\ColumnElementCollection.cs" />
+    <Compile Include="Entities\Document.cs" />
+    <Compile Include="Entities\DocumentColumn.cs" />
+    <Compile Include="Entities\DocumentColumnBehaviour.cs" />
+    <Compile Include="Entities\DocumentColumnCollection.cs" />
+    <Compile Include="Entities\DocumentTextBlock.cs" />
+    <Compile Include="Entities\MapConnection.cs" />
+    <Compile Include="Entities\MapConnectionCollection.cs" />
+    <Compile Include="Entities\MapConnectionCorner.cs" />
+    <Compile Include="Entities\MapConnectionType.cs" />
+    <Compile Include="Entities\MapLocation.cs" />
+    <Compile Include="Entities\MapLocationCollection.cs" />
+    <Compile Include="Entities\OpCode.cs" />
+    <Compile Include="Entities\SaveFile.cs" />
+    <Compile Include="Entities\TextfyreTagList.cs" />
+    <Compile Include="Entities\Topic.cs" />
+    <Compile Include="Entities\TopicListColumnElement.cs" />
+    <Compile Include="Entities\WordDef.cs" />
+    <Compile Include="GameModes.cs" />
+    <Compile Include="Helpers\Color.cs" />
+    <Compile Include="Helpers\MouseClickManager.cs" />
+    <Compile Include="Keyboard.cs" />
+    <Compile Include="Master.xaml.cs">
+      <DependentUpon>Master.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page.xaml.cs">
+      <DependentUpon>Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Story.xaml.cs">
+      <DependentUpon>Story.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\FyreService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="Storage\Settings.cs" />
+    <Compile Include="Storage\StorageHandler.cs" />
+    <Compile Include="StoryHandle.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\Art.xaml">
+      <SubType>Page</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </Page>
+    <Page Include="Controls\BookCover.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Bookmark.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Demographic\Enter.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\FlipBook\UCBook.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\FlipBook\UCPage.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\FlipButton.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\FyreDocument.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Hints\Hint.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Hints\HintGroup.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Hints\HintPage.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Input.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\IODialog\Confirm.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\IODialog\File.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\IODialog\Notes.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\IODialog\Restore.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\IODialog\Save.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\IODialog\Transcript.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Manual\ManualControl.xaml">
+      <SubType>Page</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </Page>
+    <Page Include="Controls\Mapping\Connection.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Mapping\DragHand.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Mapping\Location.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Mapping\Map.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\More.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SpeechBubble\Bubble.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\StoryAid.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\TableOfContent.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\TextButton.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\TextfyreBook.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\TextfyreBookPage.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Topic.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Master.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Page.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Story.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Textfyre.UI.Transcript.Lib\Textfyre.UI.Transcript.Lib.csproj">
+      <Project>{C4B24EAD-D843-4802-BEAE-6BDD0705AABF}</Project>
+      <Name>Textfyre.UI.Transcript.Lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Textfyre.VM\Textfyre.VM.csproj">
+      <Project>{77B7C61A-8DD3-4E8A-A3FD-B90D1AE47C41}</Project>
+      <Name>Textfyre.VM</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ServiceReferences.ClientConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\FyreService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FyreService\FyreService.disco" />
+    <None Include="Service References\FyreService\FyreService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FyreService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FyreService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FyreService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\FyreService\Textfyre.UI.FyreService.LogCommandResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FyreService\Textfyre.UI.FyreService.LogNotesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight\v2.0\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

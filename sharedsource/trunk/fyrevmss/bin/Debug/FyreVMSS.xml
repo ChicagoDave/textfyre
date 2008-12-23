@@ -1,0 +1,1539 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FyreVMSS</name>
+    </assembly>
+    <members>
+        <member name="T:Textfyre.VM.OpcodeHandler">
+            <summary>
+            A delegate type for methods that implement Glulx opcodes.
+            </summary>
+            <param name="operands">The array of operand values, passed in and out of
+            the method.</param>
+            <remarks><para>Elements of the <paramref name="operands"/> array that correspond to
+            load operands will be filled with the loaded values before the method is called.
+            Elements corresponding to store operands must be filled in by the method;
+            after the method returns, those values will be read from the array and stored
+            in their destinations.</para>
+            <para>Note that "delayed store" operands take up two entries in the array.</para></remarks>
+        </member>
+        <member name="T:Textfyre.VM.OpcodeRule">
+            <summary>
+            Describes exceptions to the typical operand order and meaning
+            for certain opcodes that don't fit the pattern.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OpcodeRule.None">
+            <summary>
+            No special treatment.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OpcodeRule.Indirect8Bit">
+            <summary>
+            Indirect operands work with single bytes.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OpcodeRule.Indirect16Bit">
+            <summary>
+            Indirect operands work with 16-bit words.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OpcodeRule.DelayedStore">
+            <summary>
+            Has an additional operand that resembles a store, but which
+            is not actually passed out by the opcode handler. Instead, the
+            handler receives two values, DestType and DestAddr, which may
+            be written into a call stub so the result can be stored later.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OpcodeRule.Catch">
+            <summary>
+            Special case for op_catch. This opcode has a load operand 
+            (the branch offset) and a delayed store, but the store comes first.
+            args[0] and [1] are the delayed store, and args[2] is the load.
+            </summary>
+        </member>
+        <member name="M:Textfyre.VM.Opcode.MakeHandler(Textfyre.VM.Engine,Textfyre.VM.OpcodeAttribute,System.Reflection.MethodInfo)">
+            <summary>
+            Generates a dynamic method that loads the operands for a particular
+            opcode, calls the opcode implementation, and stores the results.
+            </summary>
+            <param name="engine">The <see cref="T:Textfyre.VM.Engine"/> to associate with the method.</param>
+            <param name="attr">The attribute describing the opcode's behavior.</param>
+            <param name="method">The method containing the opcode's implementation.</param>
+            <returns>A delegate for the generated method.</returns>
+        </member>
+        <member name="T:Textfyre.VM.OpcodeAttribute">
+            <summary>
+            Describes a method that implements a Glulx opcode. The method must
+            fit the pattern of the <see cref="T:Textfyre.VM.OpcodeHandler"/> delegate.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.OpcodeAttribute.Number">
+            <summary>
+            Gets the opcode number.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.OpcodeAttribute.Name">
+            <summary>
+            Gets the opcode's mnemonic name.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.OpcodeAttribute.LoadArgs">
+            <summary>
+            Gets the number of load operands, which appear before any store operands.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.OpcodeAttribute.StoreArgs">
+            <summary>
+            Gets the number of store operands, which appear after the load operands.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.OpcodeAttribute.Rule">
+            <summary>
+            Gets a value describing anything exceptional about this opcode.
+            </summary>
+        </member>
+        <member name="T:Textfyre.VM.Engine">
+            <summary>
+            The main FyreVM class, which implements a modified Glulx interpreter.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HDR_SIZE">
+            <summary>
+            Header size.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HDR_MAGIC_OFFSET">
+            <summary>
+            Magic offset.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HDR_VERSION_OFFSET">
+            <summary>
+            Version offset.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HDR_RAMSTART_OFFSET">
+            <summary>
+            RAM Start offset.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HDR_EXTSTART_OFFSET">
+            <summary>
+            EXT Start offset.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HDR_ENDMEM_OFFSET">
+            <summary>
+            End memory offset.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HDR_STACKSIZE_OFFSET">
+            <summary>
+            Stack size offset.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HDR_STARTFUNC_OFFSET">
+            <summary>
+            Starting function offset.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HDR_DECODINGTBL_OFFSET">
+            <summary>
+            Decoding table offset.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HDR_CHECKSUM_OFFSET">
+            <summary>
+            Checksum offset.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_STUB_STORE_NULL">
+            <summary>
+            Storage destination: null.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_STUB_STORE_MEM">
+            <summary>
+            Storage destination: memory.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_STUB_STORE_LOCAL">
+            <summary>
+            Storage destination: local.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_STUB_STORE_STACK">
+            <summary>
+            Storage destination: stack.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_STUB_RESUME_HUFFSTR">
+            <summary>
+            Glulx type - Huffman string-compression.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_STUB_RESUME_FUNC">
+            <summary>
+            Glulx type - Function.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_STUB_RESUME_NUMBER">
+            <summary>
+            Glulx type - Number.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_STUB_RESUME_CSTR">
+            <summary>
+            Glulx type - CSTR.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_STUB_RESUME_UNISTR">
+            <summary>
+            Glulx type - UNISTR.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.FYREVM_STUB_RESUME_NATIVE">
+            <summary>
+            Glulx type - Nested calls.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HUFF_TABLESIZE_OFFSET">
+            <summary>
+            Table size offset.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HUFF_NODECOUNT_OFFSET">
+            <summary>
+            Node count offset.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HUFF_ROOTNODE_OFFSET">
+            <summary>
+            Root node offset.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HUFF_NODE_BRANCH">
+            <summary>
+            Node Type - Branch.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HUFF_NODE_END">
+            <summary>
+            Node Type - End.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HUFF_NODE_CHAR">
+            <summary>
+            Node Type - CHAR.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HUFF_NODE_CSTR">
+            <summary>
+            Node Type - CSTR.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HUFF_NODE_UNICHAR">
+            <summary>
+            Node Type - UNICHAR.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HUFF_NODE_UNISTR">
+            <summary>
+            Node Type - UNISTR.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HUFF_NODE_INDIRECT">
+            <summary>
+            Node Type - INDIRECT.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HUFF_NODE_DBLINDIRECT">
+            <summary>
+            Node Type - DBLINDIRECT.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HUFF_NODE_INDIRECT_ARGS">
+            <summary>
+            Node Type - INDIRECT_ARGS.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.GLULX_HUFF_NODE_DBLINDIRECT_ARGS">
+            <summary>
+            Node Type - DBLINDIRECT_ARGS.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.LATIN1_CODEPAGE">
+            <summary>
+            Latin 1 code page.
+            </summary>
+        </member>
+        <member name="M:Textfyre.VM.Engine.PerformCall(System.UInt32,System.UInt32[],System.UInt32,System.UInt32,System.UInt32,System.Boolean)">
+            <summary>
+            Enters a function, pushing a call stub first if necessary.
+            </summary>
+            <param name="address">The address of the function to call.</param>
+            <param name="args">The function's arguments, or <b>null</b> to call without arguments.</param>
+            <param name="destType">The DestType for the call stub. Ignored for tail calls.</param>
+            <param name="destAddr">The DestAddr for the call stub. Ignored for tail calls.</param>
+            <param name="stubPC">The PC value for the call stub. Ignored for tail calls.</param>
+            <param name="tailCall"><b>true</b> to perform a tail call, reusing the current call stub
+            and frame instead of pushing a new stub and creating a new frame.</param>
+        </member>
+        <member name="M:Textfyre.VM.Engine.#ctor(System.IO.Stream)">
+            <summary>
+            Initializes a new instance of the VM from a game file.
+            </summary>
+            <param name="gameFile">A stream containing the ROM and
+            initial RAM.</param>
+        </member>
+        <member name="M:Textfyre.VM.Engine.#ctor(System.IO.Stream,System.IO.Stream)">
+            <summary>
+            Initializes a new instance of the VM from a saved state and the
+            associated game file.
+            </summary>
+            <param name="gameFile">A stream containing the ROM and
+            initial RAM.</param>
+            <param name="saveFile">A stream containing a <see cref="T:Textfyre.VM.Quetzal"/>
+            state that was saved by the specified game file.</param>
+        </member>
+        <member name="M:Textfyre.VM.Engine.Bootstrap">
+            <summary>
+            Clears the stack and initializes VM registers from values found in RAM.
+            </summary>
+        </member>
+        <member name="M:Textfyre.VM.Engine.Run">
+            <summary>
+            Starts the interpreter.
+            </summary>
+            <remarks>
+            This method does not return until the game finishes, either by
+            returning from the main function or with the quit opcode.
+            </remarks>
+        </member>
+        <member name="M:Textfyre.VM.Engine.NestedCall(System.UInt32,System.UInt32[])">
+            <summary>
+            Executes a Glulx function and returns its result.
+            </summary>
+            <param name="address">The address of the function.</param>
+            <param name="args">The list of arguments, or <see langword="null"/>
+            if no arguments need to be passed in.</param>
+            <returns>The function's return value.</returns>
+        </member>
+        <member name="M:Textfyre.VM.Engine.InterpreterLoop">
+            <summary>
+            Runs the main interpreter loop.
+            </summary>
+        </member>
+        <member name="M:Textfyre.VM.Engine.EnterFunction(System.UInt32)">
+            <summary>
+            Pushes a frame for a function call, updating FP, SP, and PC.
+            (A call stub should have already been pushed.)
+            </summary>
+            <param name="address">The address of the function being called.</param>
+        </member>
+        <member name="M:Textfyre.VM.Engine.EnterFunction(System.UInt32,System.UInt32[])">
+            <summary>
+            Pushes a frame for a function call, updating FP, SP, and PC.
+            (A call stub should have already been pushed.)
+            </summary>
+            <param name="address">The address of the function being called.</param>
+            <param name="args">The argument values to load into local storage,
+            or <see langword="null"/> if local storage should all be zeroed.</param>
+        </member>
+        <member name="M:Textfyre.VM.Engine.Restart">
+            <summary>
+            Reloads the initial contents of memory (except the protected area)
+            and starts the game over from the top of the main function.
+            </summary>
+        </member>
+        <member name="M:Textfyre.VM.Engine.Stop">
+            <summary>
+            Terminates the interpreter loop, causing the <see cref="M:Textfyre.VM.Engine.Run"/>
+            method to return.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.ProfilingEnabled">
+            <summary>
+            Enable profiling.
+            </summary>
+        </member>
+        <member name="M:Textfyre.VM.Engine.SendCharToOutput(System.UInt32)">
+            <summary>
+            Sends a single character to the output system (other than
+            <see cref="F:Textfyre.VM.Engine.IOSystem.Filter"/>.
+            </summary>
+            <param name="ch">The character to send.</param>
+        </member>
+        <member name="M:Textfyre.VM.Engine.SendStringToOutput(System.String)">
+            <summary>
+            Sends a string to the output system (other than
+            <see cref="F:Textfyre.VM.Engine.IOSystem.Filter"/>.
+            </summary>
+            <param name="str">The string to send.</param>
+        </member>
+        <member name="M:Textfyre.VM.Engine.DeliverOutput">
+            <summary>
+            Sends the queued output to the <see cref="E:Textfyre.VM.Engine.OutputReady"/> event handler.
+            </summary>
+        </member>
+        <member name="M:Textfyre.VM.Engine.CacheDecodingTable">
+            <summary>
+            Builds a native version of the string decoding table if the table
+            is entirely in ROM, or verifies the table's current state if the
+            table is in RAM.
+            </summary>
+        </member>
+        <member name="M:Textfyre.VM.Engine.VerifyDecodingTable">
+            <summary>
+            Checks that the string decoding table is well-formed, i.e., that it
+            contains at least one branch, one end marker, and no unrecognized
+            node types.
+            </summary>
+            <exception cref="T:Textfyre.VM.VMException">
+            The string decoding table is malformed.
+            </exception>
+        </member>
+        <member name="M:Textfyre.VM.Engine.NextCompressedChar">
+            <summary>
+            Prints the next character of a compressed string, consuming one or
+            more bits.
+            </summary>
+            <remarks>This is only used when the string decoding table is in RAM.</remarks>
+        </member>
+        <member name="M:Textfyre.VM.Engine.PrintIndirect(System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Prints a string, or calls a routine, when an indirect node is
+            encountered in a compressed string.
+            </summary>
+            <param name="address">The address of the string or routine.</param>
+            <param name="argCount">The number of arguments passed in.</param>
+            <param name="argsAt">The address where the argument array is stored.</param>
+        </member>
+        <member name="E:Textfyre.VM.Engine.LineWanted">
+            <summary>
+            Raised when the VM wants to read a line of input. The handler may
+            return a string or indicate that input was canceled.
+            </summary>
+        </member>
+        <member name="E:Textfyre.VM.Engine.KeyWanted">
+            <summary>
+            Raised when the VM wants to read a single character of input.
+            The handler may return a character or indicate that input was
+            canceled.
+            </summary>
+        </member>
+        <member name="E:Textfyre.VM.Engine.OutputReady">
+            <summary>
+            Raised when queued output is being delivered, i.e. before
+            requesting input or terminating.
+            </summary>
+        </member>
+        <member name="E:Textfyre.VM.Engine.SaveRequested">
+            <summary>
+            Raised when the VM needs a stream to use for saving the current
+            state.
+            </summary>
+        </member>
+        <member name="E:Textfyre.VM.Engine.LoadRequested">
+            <summary>
+            Raised when the VM needs a stream to use for restoring a previous
+            state.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.Engine.OutputFilterEnabled">
+            <summary>
+            Gets or sets a value indicating whether the main output channel
+            is subject to filtering, which separates the output into paragraphs
+            and applies text styles using a configurable set of tags.
+            </summary>
+            <seealso cref="P:Textfyre.VM.Engine.OutputFilterTags"/>
+        </member>
+        <member name="P:Textfyre.VM.Engine.OutputFilterTags">
+            <summary>
+            Gets an object controlling the set of tags that are used for
+            output filtering.
+            </summary>
+            <seealso cref="P:Textfyre.VM.Engine.OutputFilterEnabled"/>
+        </member>
+        <member name="P:Textfyre.VM.Engine.MaxHeapSize">
+            <summary>
+            Gets or sets a value limiting the maximum size of the Glulx heap,
+            in bytes, or zero to indicate an unlimited heap size.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.Engine.Profiler">
+            <summary>
+            Profiler property.
+            </summary>
+        </member>
+        <member name="T:Textfyre.VM.Engine.FyreCall">
+            <summary>
+            Selects a function for the FyreVM system call opcode.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.FyreCall.ReadLine">
+            <summary>
+            Reads a line from the user: args[1] = buffer, args[2] = buffer size.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.FyreCall.SetStyle">
+            <summary>
+            Selects a text style: args[1] = an OutputStyle value (see OutputBuffer.cs).
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.FyreCall.ToLower">
+            <summary>
+            Converts a character to lowercase: args[1] = the character,
+            result = the lowercased character.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.FyreCall.ToUpper">
+            <summary>
+            Converts a character to uppercase: args[1] = the character,
+            result = the uppercased character.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.FyreCall.Channel">
+            <summary>
+            Selects an output channel: args[1] = an OutputChannel value (see Output.cs).
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.FyreCall.EnableFilter">
+            <summary>
+            Turns the main channel's output filtering on or off: args[1] = nonzero to
+            turn it on.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.FyreCall.ReadKey">
+            <summary>
+            Reads a character from the user: result = the 16-bit Unicode value.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.FyreCall.SetVeneer">
+            <summary>
+            Registers a veneer function address or constant value: args[1] = a
+            VeneerSlot value (see Veneer.cs), args[2] = the function address or
+            constant value, result = nonzero if the value was accepted.
+            </summary>
+        </member>
+        <member name="T:Textfyre.VM.Engine.ExecutionMode">
+            <summary>
+            Describes the task that the interpreter is currently performing.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.ExecutionMode.Code">
+            <summary>
+            We are running function code. PC points to the next instruction.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.ExecutionMode.CString">
+            <summary>
+            We are printing a null-terminated string (E0). PC points to the
+            next character.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.ExecutionMode.CompressedString">
+            <summary>
+            We are printing a compressed string (E1). PC points to the next
+            compressed byte, and printingDigit is the bit position (0-7).
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.ExecutionMode.UnicodeString">
+            <summary>
+            We are printing a Unicode string (E2). PC points to the next
+            character.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.ExecutionMode.Number">
+            <summary>
+            We are printing a decimal number. PC contains the number, and
+            printingDigit is the next digit, starting at 0 (for the first
+            digit or minus sign).
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.ExecutionMode.Return">
+            <summary>
+            We are returning control to <see cref="M:Textfyre.VM.Engine.NestedCall(System.UInt32)"/>
+            after engine code has called a Glulx function.
+            </summary>
+        </member>
+        <member name="T:Textfyre.VM.Engine.CallStub">
+            <summary>
+            Represents a Glulx call stub, which describes the VM's state at
+            the time of a function call or string printing task.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.CallStub.DestType">
+            <summary>
+            The type of storage location (for function calls) or the
+            previous task (for string printing).
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.CallStub.DestAddr">
+            <summary>
+            The storage address (for function calls) or the digit
+            being examined (for string printing).
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.CallStub.PC">
+            <summary>
+            The address of the opcode or character at which to resume.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.CallStub.FramePtr">
+            <summary>
+            The stack frame in which the function call or string printing
+            was performed.
+            </summary>
+        </member>
+        <member name="M:Textfyre.VM.Engine.CallStub.#ctor(System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Initializes a new call stub.
+            </summary>
+            <param name="destType">The stub type.</param>
+            <param name="destAddr">The storage address or printing digit.</param>
+            <param name="pc">The address of the opcode or character at which to resume.</param>
+            <param name="framePtr">The stack frame pointer.</param>
+        </member>
+        <member name="T:Textfyre.VM.Engine.IOSystem">
+            <summary>
+            Identifies an output system for use with @setiosys.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.IOSystem.Null">
+            <summary>
+            Output is discarded.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.IOSystem.Filter">
+            <summary>
+            Output is filtered through a Glulx function.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.Engine.IOSystem.Channels">
+            <summary>
+            Output is sent through FyreVM's channel system.
+            </summary>
+        </member>
+        <member name="M:Textfyre.VM.Engine.StrNode.HandleNextChar(Textfyre.VM.Engine)">
+            <summary>
+            Performs the action associated with this string node: printing
+            a character or string, terminating output, or reading a bit and
+            delegating to another node.
+            </summary>
+            <param name="e">The <see cref="T:Textfyre.VM.Engine"/> that is printing.</param>
+            <remarks>When called on a branch node, this will consume one or
+            more compressed string bits.</remarks>
+        </member>
+        <member name="M:Textfyre.VM.Engine.StrNode.GetHandlingNode(Textfyre.VM.Engine)">
+            <summary>
+            Returns the non-branch node that will handle the next string action.
+            </summary>
+            <param name="e">The <see cref="T:Textfyre.VM.Engine"/> that is printing.</param>
+            <returns>A non-branch string node.</returns>
+            <remarks>When called on a branch node, this will consume one or
+            more compressed string bits.</remarks>
+        </member>
+        <member name="P:Textfyre.VM.Engine.StrNode.NeedsCallStub">
+            <summary>
+            Gets a value indicating whether this node requires a call stub to be
+            pushed.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.Engine.StrNode.IsTerminator">
+            <summary>
+            Gets a value indicating whether this node terminates the string.
+            </summary>
+        </member>
+        <member name="T:Textfyre.VM.Engine.VeneerSlot">
+            <summary>
+            Identifies a veneer routine that is intercepted, or a constant that
+            the replacement routine needs to use.
+            </summary>
+        </member>
+        <member name="T:Textfyre.VM.Engine.Veneer">
+            <summary>
+            Provides hardcoded versions of some commonly used veneer routines (low-level
+            functions that are automatically compiled into every Inform game).
+            </summary>
+            <remarks>
+            Inform games rely heavily on these routines, and substituting our C# versions
+            for the Glulx versions in the story file can increase performance significantly.
+            </remarks>
+        </member>
+        <member name="M:Textfyre.VM.Engine.Veneer.SetSlot(System.UInt32,System.UInt32)">
+            <summary>
+            Registers a routine address or constant value.
+            </summary>
+            <param name="slot">Identifies the address or constant being registered.</param>
+            <param name="value">The address of the routine or value of the constant.</param>
+            <returns><see langword="true"/> if registration was successful.</returns>
+        </member>
+        <member name="M:Textfyre.VM.Engine.Veneer.InterceptCall(Textfyre.VM.Engine,System.UInt32,System.UInt32[],System.UInt32@)">
+            <summary>
+            Intercepts a routine call if its address has previously been registered.
+            </summary>
+            <param name="e">The <see cref="T:Textfyre.VM.Engine"/> attempting to call the routine.</param>
+            <param name="address">The address of the routine.</param>
+            <param name="args">The routine's arguments.</param>
+            <param name="result"></param>
+            <returns></returns>
+            <exception cref="T:System.IndexOutOfRangeException">
+            <paramref name="address"/> matches a registered veneer routine, but
+            <paramref name="args"/> is too short for that routine.
+            </exception>
+        </member>
+        <member name="T:Textfyre.VM.LineWantedEventArgs">
+            <summary>
+            Provides data for an input line request event.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.LineWantedEventArgs.Line">
+            <summary>
+            Gets or sets the line of input that was read, or <b>null</b> to cancel.
+            </summary>
+        </member>
+        <member name="T:Textfyre.VM.LineWantedEventHandler">
+            <summary>
+            A delegate that handles the <see cref="E:Textfyre.VM.Engine.LineWanted"/> event.
+            </summary>
+            <param name="sender">The <see cref="T:Textfyre.VM.Engine"/> raising the event.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="T:Textfyre.VM.KeyWantedEventArgs">
+            <summary>
+            Provides data for an input character request event.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.KeyWantedEventArgs.Char">
+            <summary>
+            Gets or sets the character that was read, or '\0' to cancel.
+            </summary>
+        </member>
+        <member name="T:Textfyre.VM.KeyWantedEventHandler">
+            <summary>
+            A delegate that handles the <see cref="E:Textfyre.VM.Engine.KeyWanted"/> event.
+            </summary>
+            <param name="sender">The <see cref="T:Textfyre.VM.Engine"/> raising the event.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="T:Textfyre.VM.OutputReadyEventArgs">
+            <summary>
+            Provides data for an output event.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.OutputReadyEventArgs.Package">
+            <summary>
+            Gets or sets a dictionary containing the text that has been
+            captured on each output channel since the last output delivery.
+            </summary>
+        </member>
+        <member name="T:Textfyre.VM.OutputReadyEventHandler">
+            <summary>
+            A delegate that handles the <see cref="E:Textfyre.VM.Engine.OutputReady"/> event.
+            </summary>
+            <param name="sender">The <see cref="T:Textfyre.VM.Engine"/> raising the event.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="T:Textfyre.VM.SaveRestoreEventArgs">
+            <summary>
+            Provides data for a save or restore event.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.SaveRestoreEventArgs.Stream">
+            <summary>
+            Gets or sets the stream to use for saving or restoring the game
+            state. This stream will be closed by the interpreter after the
+            save or load process finishes. (A value of <see langword="null"/>
+            indicates that the save/load process was aborted.)
+            </summary>
+        </member>
+        <member name="T:Textfyre.VM.SaveRestoreEventHandler">
+            <summary>
+            A delegate that handles the <see cref="E:Textfyre.VM.Engine.SaveRequested"/> or
+            <see cref="E:Textfyre.VM.Engine.LoadRequested"/> event.
+            </summary>
+            <param name="sender">The <see cref="T:Textfyre.VM.Engine"/> raising the event.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="T:Textfyre.VM.OutputChannel">
+            <summary>
+            Indicates the channel a piece of output is being sent on.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OutputChannel.Main">
+            <summary>
+            The regular game output channel.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OutputChannel.Location">
+            <summary>
+            The name of the current area.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OutputChannel.Score">
+            <summary>
+            The player's score.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OutputChannel.Time">
+            <summary>
+            The time of day or turn count.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OutputChannel.Hints">
+            <summary>
+            Spoilery hint data for the player's current situation.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OutputChannel.Help">
+            <summary>
+            Help data for the player's current situation.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OutputChannel.Map">
+            <summary>
+            Data about visited areas, map connections, etc.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OutputChannel.Progress">
+            <summary>
+            A structured description of the player's progress in the story.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OutputChannel.Theme">
+            <summary>
+            A control channel for the interpreter's visual appearance.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OutputChannel.Prompt">
+            <summary>
+            A prompt to use for the next input request, such as "> ".
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OutputChannel.Conversation">
+            <summary>
+            A list of topics the player can select that auto-inputs the proper command.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OutputChannel.Sound">
+            <summary>
+            A command to play sound in the user interface.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OutputChannel.Prologue">
+            <summary>
+            A channel containing the prologue text.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OutputChannel.Title">
+            <summary>
+            A channel containing the title of the game.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OutputChannel.Credits">
+            <summary>
+            A channel containing the credits for the game.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OutputChannel.Chapter">
+            <summary>
+            A channel containing the current chapter name within the game.
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OutputChannel.Death">
+            <summary>
+            A channel to handle end of game scenarios (incomplete).
+            </summary>
+        </member>
+        <member name="F:Textfyre.VM.OutputChannel._LAST">
+            <summary>
+            End pointer of all channels.
+            </summary>
+        </member>
+        <member name="T:Textfyre.VM.UlxImage">
+            <summary>
+            Represents the ROM and RAM of a Glulx game image.
+            </summary>
+        </member>
+        <member name="M:Textfyre.VM.UlxImage.#ctor(System.IO.Stream)">
+            <summary>
+            Initializes a new instance from the specified stream.
+            </summary>
+            <param name="stream">A stream containing the Glulx image.</param>
+        </member>
+        <member name="M:Textfyre.VM.UlxImage.ReadByte(System.UInt32)">
+            <summary>
+            Reads a single byte from memory.
+            </summary>
+            <param name="offset">The address to read from.</param>
+            <returns>The byte at the specified address.</returns>
+        </member>
+        <member name="M:Textfyre.VM.UlxImage.ReadInt16(System.UInt32)">
+            <summary>
+            Reads a big-endian word from memory.
+            </summary>
+            <param name="offset">The address to read from</param>
+            <returns>The word at the specified address.</returns>
+        </member>
+        <member name="M:Textfyre.VM.UlxImage.ReadInt32(System.UInt32)">
+            <summary>
+            Reads a big-endian double word from memory.
+            </summary>
+            <param name="offset">The address to read from.</param>
+            <returns>The 32-bit value at the specified address.</returns>
+        </member>
+        <member name="M:Textfyre.VM.UlxImage.WriteByte(System.UInt32,System.Byte)">
+            <summary>
+            Writes a single byte into memory.
+            </summary>
+            <param name="offset">The address to write to.</param>
+            <param name="value">The value to write.</param>
+            <exception cref="T:Textfyre.VM.VMException">The address is below RamStart.</exception>
+        </member>
+        <member name="M:Textfyre.VM.UlxImage.WriteInt16(System.UInt32,System.UInt16)">
+            <summary>
+            Writes a big-endian 16-bit word into memory.
+            </summary>
+            <param name="offset">The address to write to.</param>
+            <param name="value">The value to write.</param>
+            <exception cref="T:Textfyre.VM.VMException">The address is below RamStart.</exception>
+        </member>
+        <member name="M:Textfyre.VM.UlxImage.WriteInt32(System.UInt32,System.UInt32)">
+            <summary>
+            Writes a big-endian 32-bit word into memory.
+            </summary>
+            <param name="offset">The address to write to.</param>
+            <param name="value">The value to write.</param>
+            <exception cref="T:Textfyre.VM.VMException">The address is below RamStart.</exception>
+        </member>
+        <member name="M:Textfyre.VM.UlxImage.CalculateChecksum">
+            <summary>
+            Calculates the checksum of the image.
+            </summary>
+            <returns>The sum of the entire image, taken as an array of
+            32-bit words.</returns>
+        </member>
+        <member name="M:Textfyre.VM.UlxImage.GetMemory">
+            <summary>
+            Gets the entire contents of memory.
+            </summary>
+            <returns>An array containing all VM memory, ROM and RAM.</returns>
+        </member>
+        <member name="M:Textfyre.VM.UlxImage.SetRAM(System.Byte[],System.Boolean)">
+            <summary>
+            Sets the entire contents of RAM, changing the size if necessary.
+            </summary>
+            <param name="newBlock">The new contents of RAM.</param>
+            <param name="embeddedLength">If true, indicates that <paramref name="newBlock"/>
+            is prefixed with a 32-bit word giving the new size of RAM, which may be
+            more than the number of bytes actually contained in the rest of the array.</param>
+        </member>
+        <member name="M:Textfyre.VM.UlxImage.GetOriginalRAM">
+            <summary>
+            Obtains the initial contents of RAM from the game file.
+            </summary>
+            <returns>The initial contents of RAM.</returns>
+        </member>
+        <member name="M:Textfyre.VM.UlxImage.GetOriginalIFHD">
+            <summary>
+            Obtains the header from the game file.
+            </summary>
+            <returns>The first 128 bytes of the game file.</returns>
+        </member>
+        <member name="M:Textfyre.VM.UlxImage.ReadRAM(System.UInt32,System.UInt32,System.Byte[])">
+            <summary>
+            Copies a block of data out of RAM.
+            </summary>
+            <param name="address">The address, based at <see cref="P:Textfyre.VM.UlxImage.RamStart"/>,
+            at which to start copying.</param>
+            <param name="length">The number of bytes to copy.</param>
+            <param name="dest">The destination array.</param>
+        </member>
+        <member name="M:Textfyre.VM.UlxImage.WriteRAM(System.UInt32,System.Byte[])">
+            <summary>
+            Copies a block of data into RAM, expanding the memory map if needed.
+            </summary>
+            <param name="address">The address, based at <see cref="P:Textfyre.VM.UlxImage.RamStart"/>,
+            at which to start copying.</param>
+            <param name="src">The source array.</param>
+        </member>
+        <member name="M:Textfyre.VM.UlxImage.Revert">
+            <summary>
+            Reloads the game file, discarding all changes that have been made
+            to RAM and restoring the memory map to its original size.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.UlxImage.RamStart">
+            <summary>
+            Gets the address at which RAM begins.
+            </summary>
+            <remarks>
+            The region of memory below RamStart is considered ROM. Addresses
+            below RamStart are readable but unwritable.
+            </remarks>
+        </member>
+        <member name="P:Textfyre.VM.UlxImage.EndMem">
+            <summary>
+            Gets or sets the address at which memory ends.
+            </summary>
+            <remarks>
+            This can be changed by the game with @setmemsize (or managed
+            automatically by the heap allocator). Addresses above EndMem are
+            neither readable nor writable.
+            </remarks>
+        </member>
+        <member name="T:Textfyre.VM.Quetzal">
+            <summary>
+            Implements the Quetzal saved-game file specification by holding a list of
+            typed data chunks which can be read from or written to streams.
+            </summary>
+            <remarks>
+            http://www.ifarchive.org/if-archive/infocom/interpreters/specification/savefile_14.txt
+            </remarks>
+        </member>
+        <member name="M:Textfyre.VM.Quetzal.#ctor">
+            <summary>
+            Initializes a new chunk collection.
+            </summary>
+        </member>
+        <member name="M:Textfyre.VM.Quetzal.FromStream(System.IO.Stream)">
+            <summary>
+            Loads a collection of chunks from a Quetzal file.
+            </summary>
+            <param name="stream">The stream to read from.</param>
+            <returns>A new <see cref="T:Textfyre.VM.Quetzal"/> instance initialized
+            from the stream.</returns>
+            <remarks>
+            Duplicate chunks are not supported by this class. Only the last
+            chunk of a given type will be available.
+            </remarks>
+        </member>
+        <member name="M:Textfyre.VM.Quetzal.Contains(System.String)">
+            <summary>
+            Checks whether the Quetzal file contains a given chunk type.
+            </summary>
+            <param name="type">The 4-character type identifier.</param>
+            <returns><see langword="true"/> if the chunk is present.</returns>
+        </member>
+        <member name="M:Textfyre.VM.Quetzal.WriteToStream(System.IO.Stream)">
+            <summary>
+            Writes the chunks to a Quetzal file.
+            </summary>
+            <param name="stream">The stream to write to.</param>
+        </member>
+        <member name="M:Textfyre.VM.Quetzal.CompressMemory(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Compresses a block of memory by comparing it with the original
+            version from the game file.
+            </summary>
+            <param name="original">An array containing the original block of memory.</param>
+            <param name="origStart">The offset within the array where the original block
+            starts.</param>
+            <param name="origLength">The length of the original block, in bytes.</param>
+            <param name="changed">An array containing the changed block to be compressed.</param>
+            <param name="changedStart">The offset within the array where the changed
+            block starts.</param>
+            <param name="changedLength">The length of the changed block. This may be
+            greater than <paramref name="origLength"/>, but may not be less.</param>
+            <returns>The RLE-compressed set of differences between the old and new
+            blocks, prefixed with a 4-byte length.</returns>
+        </member>
+        <member name="M:Textfyre.VM.Quetzal.DecompressMemory(System.Byte[],System.Byte[])">
+            <summary>
+            Reconstitutes a changed block of memory by applying a compressed
+            set of differences to the original block from the game file.
+            </summary>
+            <param name="original">The original block of memory.</param>
+            <param name="delta">The RLE-compressed set of differences,
+            prefixed with a 4-byte length. This length may be larger than
+            the original block, but not smaller.</param>
+            <returns>The changed block of memory. The length of this array is
+            specified at the beginning of <paramref name="delta"/>.</returns>
+        </member>
+        <member name="P:Textfyre.VM.Quetzal.Item(System.String)">
+            <summary>
+            Gets or sets typed data chunks.
+            </summary>
+            <param name="type">The 4-character type identifier.</param>
+            <returns>The contents of the chunk.</returns>
+        </member>
+        <member name="T:Textfyre.VM.OutputStyle">
+            <summary>
+            Indicates a text style that may be selected.
+            </summary>
+            <remarks>
+            Selecting the Roman style turns off Bold and Italic.
+            Selecting the Fixed style turns off Variable, and vice versa.
+            </remarks>
+        </member>
+        <member name="T:Textfyre.VM.OutputFilterTags">
+            <summary>
+            Controls the tags for output filtering.
+            </summary>
+            <remarks>
+            The default set of tags is suitable for XAML.
+            </remarks>
+        </member>
+        <member name="P:Textfyre.VM.OutputFilterTags.StartParagraph">
+            <summary>
+            Gets or sets the string that begins a paragraph.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.OutputFilterTags.EndParagraph">
+            <summary>
+            Gets or sets the string that ends a paragraph.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.OutputFilterTags.LineBreak">
+            <summary>
+            Gets or sets the string that introduces a line break.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.OutputFilterTags.LeftAngleBracket">
+            <summary>
+            Gets or sets the string that encodes a left angle bracket (less-than sign).
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.OutputFilterTags.RightAngleBracket">
+            <summary>
+            Gets or sets the string that encodes a right angle bracket (greater-than sign).
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.OutputFilterTags.Ampersand">
+            <summary>
+            Gets or sets the string that encodes an ampersand.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.OutputFilterTags.LeftDoubleQuote">
+            <summary>
+            Gets or sets the string that encodes an opening double-quote mark.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.OutputFilterTags.RightDoubleQuote">
+            <summary>
+            Gets or sets the string that encodes a closing double-quote mark.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.OutputFilterTags.LeftSingleQuote">
+            <summary>
+            Gets or sets the string that encodes an opening single-quote mark.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.OutputFilterTags.RightSingleQuote">
+            <summary>
+            Gets or sets the string that encodes a closing single-quote mark (apostrophe).
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.OutputFilterTags.StartFixedPitch">
+            <summary>
+            Gets or sets the string that begins fixed-pitch type.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.OutputFilterTags.EndFixedPitch">
+            <summary>
+            Gets or sets the string that ends fixed-pitch type.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.OutputFilterTags.StartItalicType">
+            <summary>
+            Gets or sets the string that begins italic type.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.OutputFilterTags.EndItalicType">
+            <summary>
+            Gets or sets the string that ends italic type.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.OutputFilterTags.StartBoldType">
+            <summary>
+            Gets or sets the string that begins bold type.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.OutputFilterTags.EndBoldType">
+            <summary>
+            Gets or sets the string that ends bold type.
+            </summary>
+        </member>
+        <member name="T:Textfyre.VM.OutputBuffer">
+            <summary>
+            Collects output from the game file, on various output channels, to be
+            delivered all at once.
+            </summary>
+        </member>
+        <member name="M:Textfyre.VM.OutputBuffer.#ctor">
+            <summary>
+            Initializes a new output buffer.
+            </summary>
+        </member>
+        <member name="M:Textfyre.VM.OutputBuffer.Write(System.String)">
+            <summary>
+            Writes a string to the buffer for the currently selected
+            output channel.
+            </summary>
+            <param name="s">The string to write.</param>
+        </member>
+        <member name="M:Textfyre.VM.OutputBuffer.Write(System.Char)">
+            <summary>
+            Writes a single character to the buffer for the currently selected
+            output channel.
+            </summary>
+            <param name="c">The character to write.</param>
+        </member>
+        <member name="M:Textfyre.VM.OutputBuffer.SetStyle(Textfyre.VM.OutputStyle)">
+            <summary>
+            Sets the current output style.
+            </summary>
+            <param name="style">The style to set.</param>
+            <remarks>
+            This method has no effect unless the main channel is selected and
+            <see cref="P:Textfyre.VM.OutputBuffer.FilterEnabled"/> is <see langword="true"/>.
+            </remarks>
+        </member>
+        <member name="M:Textfyre.VM.OutputBuffer.Flush">
+            <summary>
+            Packages all the output that has been stored so far, returns it,
+            and empties the buffer.
+            </summary>
+            <returns>A dictionary mapping each active output channel to the
+            string of text that has been sent to it since the last flush.</returns>
+        </member>
+        <member name="P:Textfyre.VM.OutputBuffer.Channel">
+            <summary>
+            Gets or sets the current output channel.
+            </summary>
+            <remarks>
+            If the output channel is changed to any channel other than
+            <see cref="F:Textfyre.VM.OutputChannel.Main"/>, the channel's contents will be
+            cleared first.
+            </remarks>
+        </member>
+        <member name="P:Textfyre.VM.OutputBuffer.FilterEnabled">
+            <summary>
+            Gets or sets a value indicating whether the <see cref="F:Textfyre.VM.OutputChannel.Main"/>
+            output channel's text should be filtered to change line breaks, styles,
+            and special characters to a configurable set of tags and entities.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.OutputBuffer.FilterTags">
+            <summary>
+            Gets the object controlling the set of strings that are used when output
+            output filtering is enabled.
+            </summary>
+        </member>
+        <member name="T:Textfyre.VM.HeapAllocator">
+            <summary>
+            Manages the heap size and block allocation for the malloc/mfree opcodes.
+            </summary>
+            <remarks>
+            If Inform ever starts using the malloc opcode directly, instead of
+            its own heap allocator, this should be made a little smarter.
+            Currently we make no attempt to avoid heap fragmentation.
+            </remarks>
+        </member>
+        <member name="M:Textfyre.VM.HeapAllocator.#ctor(System.UInt32,Textfyre.VM.MemoryRequester)">
+            <summary>
+            Initializes a new allocator with an empty heap.
+            </summary>
+            <param name="heapAddress">The address where the heap will start.</param>
+            <param name="requester">A delegate to request more memory.</param>
+        </member>
+        <member name="M:Textfyre.VM.HeapAllocator.#ctor(System.Byte[],Textfyre.VM.MemoryRequester)">
+            <summary>
+            Initializes a new allocator from a previous saved heap state.
+            </summary>
+            <param name="savedHeap">A byte array describing the heap state,
+            as returned by the <see cref="M:Textfyre.VM.HeapAllocator.Save"/> method.</param>
+            <param name="requester">A delegate to request more memory.</param>
+        </member>
+        <member name="M:Textfyre.VM.HeapAllocator.Save">
+            <summary>
+            Saves the heap state to a byte array.
+            </summary>
+            <returns>A byte array describing the current heap state.</returns>
+        </member>
+        <member name="M:Textfyre.VM.HeapAllocator.Alloc(System.UInt32)">
+            <summary>
+            Allocates a new block on the heap.
+            </summary>
+            <param name="size">The size of the new block, in bytes.</param>
+            <returns>The address of the new block, or 0 if allocation failed.</returns>
+        </member>
+        <member name="M:Textfyre.VM.HeapAllocator.Free(System.UInt32)">
+            <summary>
+            Deallocates a previously allocated block.
+            </summary>
+            <param name="address">The address of the block to deallocate.</param>
+        </member>
+        <member name="P:Textfyre.VM.HeapAllocator.Address">
+            <summary>
+            Gets the address where the heap starts.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.HeapAllocator.Size">
+            <summary>
+            Gets the size of the heap, in bytes.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.HeapAllocator.MaxSize">
+            <summary>
+            Gets or sets the maximum allowed size of the heap, in bytes, or 0 to
+            allow an unlimited heap.
+            </summary>
+            <remarks>
+            When a maximum size is set, memory allocations will be refused if they
+            would cause the heap to grow past the maximum size. Setting the maximum
+            size to less than the current <see cref="P:Textfyre.VM.HeapAllocator.Size"/> is allowed, but such a
+            value will have no effect until deallocations cause the heap to shrink
+            below the new maximum size.
+            </remarks>
+        </member>
+        <member name="P:Textfyre.VM.HeapAllocator.BlockCount">
+            <summary>
+            Gets the number of blocks that the allocator is managing.
+            </summary>
+        </member>
+        <member name="T:Textfyre.VM.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:Textfyre.VM.VMException">
+            <summary>
+            An exception that is thrown by FyreVM when the game misbehaves.
+            </summary>
+        </member>
+        <member name="M:Textfyre.VM.VMException.#ctor(System.String)">
+            <summary>
+            Constructor with message.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Textfyre.VM.VMException.#ctor(System.String,System.Exception)">
+            <summary>
+            Constructor with message and inner exception.
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="T:Textfyre.VM.Profiling.ProfiledRoutine">
+            <summary>
+            Describes a routine and collects performance statistics about it.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.Profiling.ProfiledRoutine.Address">
+            <summary>
+            Gets the routine's address.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.Profiling.ProfiledRoutine.Name">
+            <summary>
+            Gets the routine's name, or <b>null</b> if the name is unknown.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.Profiling.ProfiledRoutine.Source">
+            <summary>
+            Gets the source code reference where the routine was defined, or
+            <b>null</b> if the definition point is unknown.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.Profiling.ProfiledRoutine.Description">
+            <summary>
+            Gets a human-readable description for the routine, or <b>null</b>
+            if no description is available.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.Profiling.ProfiledRoutine.Cycles">
+            <summary>
+            Gets the number of opcodes that have been executed for this routine.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.Profiling.ProfiledRoutine.Time">
+            <summary>
+            Gets the length of time that has been spent executing this routine.
+            </summary>
+        </member>
+        <member name="P:Textfyre.VM.Profiling.ProfiledRoutine.HitCount">
+            <summary>
+            Gets the number of times this routine has been called.
+            </summary>
+        </member>
+        <member name="T:Textfyre.VM.Profiling.Profiler">
+            <summary>
+            Tracks and analyzes a game's performance.
+            </summary>
+        </member>
+        <member name="M:Textfyre.VM.Profiling.Profiler.#ctor">
+            <summary>
+            Empty constructor.
+            </summary>
+        </member>
+        <member name="M:Textfyre.VM.Profiling.Profiler.ResetStats">
+            <summary>
+            Clears the performance information that has been collected so far.
+            </summary>
+        </member>
+        <member name="M:Textfyre.VM.Profiling.Profiler.Enter(System.UInt32,System.Int64)">
+            <summary>
+            Records that the VM is entering a routine.
+            </summary>
+            <param name="address">The address of the routine.</param>
+            <param name="cycles">The current cycle count.</param>
+        </member>
+        <member name="M:Textfyre.VM.Profiling.Profiler.Leave(System.Int64)">
+            <summary>
+            Records that the VM is leaving the most recently entered routine.
+            </summary>
+            <param name="cycles">The current cycle count.</param>
+        </member>
+        <member name="M:Textfyre.VM.Profiling.Profiler.ReadDebugSymbols(System.IO.Stream,System.IO.Stream)">
+            <summary>
+            Reads function names and addresses from a game debugging file.
+            </summary>
+            <param name="gameFile">The game being profiled.</param>
+            <param name="debugFile">The Inform debugging file (gameinfo.dbg).</param>
+        </member>
+        <member name="M:Textfyre.VM.Profiling.Profiler.ReadDescriptions(System.String)">
+            <summary>
+            Reads routine descriptions and definition points from a source file
+            generated by Inform 7 (auto.inf).
+            </summary>
+            <param name="autoInfFile"></param>
+            <remarks>This will probably break when the layout of auto.inf changes.</remarks>
+        </member>
+        <member name="M:Textfyre.VM.Profiling.Profiler.SetDefaultDescriptions">
+            <summary>
+            Naively assigns descriptions to routines based on their names.
+            </summary>
+        </member>
+        <member name="M:Textfyre.VM.Profiling.Profiler.ReadSourceSymbols(System.String)">
+            <summary>
+            Loads routine names and definition points from an Inform source
+            file that wasn't generated by Inform 7 (for example, the .i6 template layer).
+            </summary>
+            <param name="sourceFile"></param>
+        </member>
+        <member name="M:Textfyre.VM.Profiling.Profiler.GetResults">
+            <summary>
+            Gets the current set of profiler results.
+            </summary>
+            <returns>An array of <see cref="T:Textfyre.VM.Profiling.ProfiledRoutine"/> records.</returns>
+        </member>
+        <member name="P:Textfyre.VM.Profiling.Profiler.MeterRunning">
+            <summary>
+            Gets or sets a value indicating whether performance is currently
+            being tracked.
+            </summary>
+        </member>
+        <member name="T:Textfyre.VM.BigEndian">
+            <summary>
+            Provides utility functions for working with big-endian numbers.
+            </summary>
+        </member>
+        <member name="M:Textfyre.VM.BigEndian.ReadInt16(System.Byte[],System.UInt32)">
+            <summary>
+            Reads an unsigned, big-endian, 16-bit number from a byte array.
+            </summary>
+            <param name="array">The array to read from.</param>
+            <param name="offset">The index within the array where the number starts.</param>
+            <returns>The number read.</returns>
+        </member>
+        <member name="M:Textfyre.VM.BigEndian.ReadInt16(System.Byte[],System.Int32)">
+            <summary>
+            Reads an unsigned, big-endian, 16-bit number from a byte array.
+            </summary>
+            <param name="array">The array to read from.</param>
+            <param name="offset">The index within the array where the number starts.</param>
+            <returns>The number read.</returns>
+        </member>
+        <member name="M:Textfyre.VM.BigEndian.ReadInt32(System.Byte[],System.UInt32)">
+            <summary>
+            Reads an unsigned, big-endian, 32-bit number from a byte array.
+            </summary>
+            <param name="array">The array to read from.</param>
+            <param name="offset">The index within the array where the number starts.</param>
+            <returns>The number read.</returns>
+        </member>
+        <member name="M:Textfyre.VM.BigEndian.ReadInt32(System.Byte[],System.Int32)">
+            <summary>
+            Reads an unsigned, big-endian, 32-bit number from a byte array.
+            </summary>
+            <param name="array">The array to read from.</param>
+            <param name="offset">The index within the array where the number starts.</param>
+            <returns>The number read.</returns>
+        </member>
+        <member name="M:Textfyre.VM.BigEndian.WriteInt16(System.Byte[],System.UInt32,System.UInt16)">
+            <summary>
+            Writes an unsigned, big-endian, 16-bit number into a byte array.
+            </summary>
+            <param name="array">The array to write into.</param>
+            <param name="offset">The index within the array where the number will start.</param>
+            <param name="value">The number to write.</param>
+        </member>
+        <member name="M:Textfyre.VM.BigEndian.WriteInt16(System.Byte[],System.Int32,System.UInt16)">
+            <summary>
+            Writes an unsigned, big-endian, 16-bit number into a byte array.
+            </summary>
+            <param name="array">The array to write into.</param>
+            <param name="offset">The index within the array where the number will start.</param>
+            <param name="value">The number to write.</param>
+        </member>
+        <member name="M:Textfyre.VM.BigEndian.WriteInt32(System.Byte[],System.UInt32,System.UInt32)">
+            <summary>
+            Writes an unsigned, big-endian, 32-bit number into a byte array.
+            </summary>
+            <param name="array">The array to write into.</param>
+            <param name="offset">The index within the array where the number will start.</param>
+            <param name="value">The number to write.</param>
+        </member>
+        <member name="M:Textfyre.VM.BigEndian.WriteInt32(System.Byte[],System.Int32,System.UInt32)">
+            <summary>
+            Writes an unsigned, big-endian, 32-bit number into a byte array.
+            </summary>
+            <param name="array">The array to write into.</param>
+            <param name="offset">The index within the array where the number will start.</param>
+            <param name="value">The number to write.</param>
+        </member>
+        <member name="M:Textfyre.VM.BigEndian.WriteInt16(System.IO.Stream,System.UInt16)">
+            <summary>
+            Writes an unsigned, big-endian, 16-bit number to a stream.
+            </summary>
+            <param name="stream">The stream to write to.</param>
+            <param name="value">The number to write.</param>
+        </member>
+        <member name="M:Textfyre.VM.BigEndian.ReadInt16(System.IO.Stream)">
+            <summary>
+            Reads an unsigned, big-endian, 16-bit number from a stream.
+            </summary>
+            <param name="stream">The stream to read from.</param>
+            <returns>The number read.</returns>
+        </member>
+        <member name="M:Textfyre.VM.BigEndian.WriteInt32(System.IO.Stream,System.UInt32)">
+            <summary>
+            Writes an unsigned, big-endian, 32-bit number to a stream.
+            </summary>
+            <param name="stream">The stream to write to.</param>
+            <param name="value">The number to write.</param>
+        </member>
+        <member name="M:Textfyre.VM.BigEndian.ReadInt32(System.IO.Stream)">
+            <summary>
+            Reads an unsigned, big-endian, 32-bit number from a stream.
+            </summary>
+            <param name="stream">The stream to read from.</param>
+            <returns>The number read.</returns>
+        </member>
+    </members>
+</doc>

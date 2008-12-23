@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Skein rootNode="node-0x01BFB200" xmlns="http://www.logicalshift.org.uk/IF/Skein">
+  <generator>Inform 7 for Windows</generator>
+  <activeNode nodeId="node-0x050704F8"/>
+  <item nodeId="node-0x01BFB200">
+    <command xml:space="preserve">- start -</command>
+    <result xml:space="preserve">In "Using Controls" we set out to begin using explicit control over the output from our game. The text you're reading right now is a part of the "prologue" and in Fyre Sampler will be displayed as a pop-up window. As you progress further into the game, other controls will be enabled including: menus, an inventory window, and sound.&#x000A;&#x000A;Using Controls&#x000A;An Interactive Fiction by Textfyre, Inc&#x000A;Release 1 / Serial number 081214 / Inform 7 build 5U92 (I6/v6.31 lib 6/12N) SD&#x000A;&#x000A;Hilltop&#x000A;You are standing atop a small hill that clears the local forest ceiling. Off to the east you see the mist of a great river. Closer to you, there is a clearing with what appears a small white house. To the south you can see a series of buildings sticking up through the forest.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">NO</temporary>
+    <children>
+      <child nodeId="node-0x01F91BC0"/>
+      <child nodeId="node-0x01F91DF0"/>
+    </children>
+  </item>
+  <item nodeId="node-0x01F91BC0">
+    <command xml:space="preserve">s</command>
+    <result xml:space="preserve">Magesterial Oaks&#x000A;You are standing before a perimeter of magesterial oka trees, clearly guarding a series of buildings beyond. A rusty gate blocks your path to the south and extending southeast and southwest from the gate is an iron wall.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x01F92100"/>
+      <child nodeId="node-0x01F92250"/>
+      <child nodeId="node-0x01F924F0"/>
+      <child nodeId="node-0x01F926B0"/>
+    </children>
+  </item>
+  <item nodeId="node-0x01F92100">
+    <command xml:space="preserve">x gate</command>
+    <result xml:space="preserve">The gate is a tall, narrow portion of a great iron wall that stretches around the buildings spotted through openings in the forest to the south.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x01F92170"/>
+      <child nodeId="node-0x05070028"/>
+    </children>
+  </item>
+  <item nodeId="node-0x01F92170">
+    <command xml:space="preserve">s wall</command>
+    <result xml:space="preserve">I only understood you as far as wanting to s.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+  </item>
+  <item nodeId="node-0x05070028">
+    <command xml:space="preserve">s</command>
+    <result xml:space="preserve">You can't, since the Rusty Gate is in the way.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x05070098"/>
+    </children>
+  </item>
+  <item nodeId="node-0x05070098">
+    <command xml:space="preserve">open gate</command>
+    <result xml:space="preserve">You open the Rusty Gate.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x05070108"/>
+    </children>
+  </item>
+  <item nodeId="node-0x05070108">
+    <command xml:space="preserve">s</command>
+    <result xml:space="preserve">The Broken Fountain&#x000A;This is a clearing at the entry to the forest buildings. In the center of clearing is a broken and unused water fountain. You can't even make out what centerpiece once resided within the fountain.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x05070178"/>
+    </children>
+  </item>
+  <item nodeId="node-0x05070178">
+    <command xml:space="preserve">n</command>
+    <result xml:space="preserve">Magesterial Oaks&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+  </item>
+  <item nodeId="node-0x01F92250">
+    <command xml:space="preserve">touch wall</command>
+    <result xml:space="preserve">As your hand nears the wall you see blue sparks raise up to greet your fingers. Before realizing your mistake, your hand connects and closes the now obvious electrical circuit. In the millisecond before your death you see many piles of black dust at the foot of the wall and realize you're about to join them.&#x000A;&#x000A;&#x000A;&#x000A;    *** You have died ***&#x000A;&#x000A;&#x000A;In that game you scored 0 out of a possible 0, in 2 turns.&#x000A;&#x000A;&#x000A;Would you like to RESTART, RESTORE a saved game or QUIT?&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+  </item>
+  <item nodeId="node-0x01F924F0">
+    <command xml:space="preserve">open gate</command>
+    <result xml:space="preserve">You open the Rusty Gate.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x01F92560"/>
+    </children>
+  </item>
+  <item nodeId="node-0x01F92560">
+    <command xml:space="preserve">s</command>
+    <result xml:space="preserve">The Compass Rose Clearing&#x000A;This is a clearing at the entry to the forest buildings. In the center of clearing is a broken and unused water fountain and extending out from the fountain are star points aimed in all eight cardinal directions.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x050704F8"/>
+    </children>
+  </item>
+  <item nodeId="node-0x050704F8">
+    <command xml:space="preserve">x fountain</command>
+    <result xml:space="preserve">A shambles really. It's almost as if someone was very cross with the fountain and punched it.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+  </item>
+  <item nodeId="node-0x01F926B0">
+    <command xml:space="preserve">s</command>
+    <result xml:space="preserve">You can't go that way.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x01F92720"/>
+    </children>
+  </item>
+  <item nodeId="node-0x01F92720">
+    <command xml:space="preserve">open gate</command>
+    <result xml:space="preserve">That's already open.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x01F92790"/>
+    </children>
+  </item>
+  <item nodeId="node-0x01F92790">
+    <command xml:space="preserve">s</command>
+    <result xml:space="preserve">You can't go that way.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x01F92800"/>
+    </children>
+  </item>
+  <item nodeId="node-0x01F92800">
+    <command xml:space="preserve">l</command>
+    <result xml:space="preserve">Rusty Gate&#x000A;A Rusty Gate guards the southern portion of the forest while a narrow path leads up a small hill.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+  </item>
+  <item nodeId="node-0x01F91DF0">
+    <command xml:space="preserve">e</command>
+    <result xml:space="preserve">The forest offers no path in that direction.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x01F91E60"/>
+    </children>
+  </item>
+  <item nodeId="node-0x01F91E60">
+    <command xml:space="preserve">s</command>
+    <result xml:space="preserve">Rusty Gate&#x000A;A Rusty Gate guards the southern portion of the forest while a narrow path leads up a small hill.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x01F91ED0"/>
+    </children>
+  </item>
+  <item nodeId="node-0x01F91ED0">
+    <command xml:space="preserve">x gate</command>
+    <result xml:space="preserve">You can't see any such thing.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-0x01F91F40"/>
+    </children>
+  </item>
+  <item nodeId="node-0x01F91F40">
+    <command xml:space="preserve">x rusty gate</command>
+    <result xml:space="preserve">You can't see any such thing.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+  </item>
+</Skein>

@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Textfyre.UI.Controls.TextfyreBook"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Textfyre.UI.Controls.FlipBook"
+    xmlns:ctrls="clr-namespace:Textfyre.UI.Controls"
+    xmlns:demogp="clr-namespace:Textfyre.UI.Controls.Demographic"
+             xmlns:dialog="clr-namespace:Textfyre.UI.Controls.IODialog"
+             xmlns:worddef="clr-namespace:Textfyre.UI.Controls.SpeechBubble"
+             xmlns:mapping="clr-namespace:Textfyre.UI.Controls.Mapping"
+             xmlns:manual="clr-namespace:Textfyre.UI.Controls.Manual"
+    Width="800" Height="600">
+    <Grid x:Name="LayoutRoot" Width="800" Height="600">
+        <ctrls:Art ID="Book" />
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="BookPagesGrid" Width="706" Height="557" Margin="42,19,0,0">
+            
+            <demogp:Enter x:Name="DemoGPEnter" Height="300" Margin="80,60,0,10" VerticalAlignment="Top" HorizontalAlignment="Left" />
+            <local:UCBook x:Name="FlipBook" />
+        </Grid>
+        <worddef:Bubble x:Name="WordDefBubble" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <ctrls:Bookmark x:Name="BookmarkTOC" ArtID="BookmarkTOC" Click="BookmarkTOC_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Collapsed" />
+        <ctrls:Bookmark x:Name="BookmarkLoad" Click="BookmarkLoad_Click" Margin="1,105,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Collapsed" />
+        <ctrls:Bookmark x:Name="BookmarkSave" Click="BookmarkSave_Click" Margin="2,160,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Collapsed" />
+        <ctrls:BookCover x:Name="BookCover" />
+        <mapping:Map x:Name="Map" Visibility="Collapsed" Margin="0,0,65,0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <manual:ManualControl x:Name="Manual" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <dialog:Transcript x:Name="TranscriptDialog" Visibility="Collapsed" />
+        <dialog:Save x:Name="SaveGameDialog" Visibility="Collapsed" />
+        <dialog:Restore x:Name="RestoreGameDialog" Visibility="Collapsed" />
+        <dialog:Confirm x:Name="ConfirmQuitDialog" Title="Quit?" Message="Are you sure you want to quit?" CancelText="Cancel" OKText="Quit" Visibility="Collapsed" />
+        <dialog:Confirm x:Name="ConfirmSaveBeforeRestartDialog" Title="Save Game?" Message="Do you want to save the current game before restarting?" CancelText="No" OKText="Yes" Visibility="Collapsed" />
+        <dialog:Confirm x:Name="ConfirmDeleteFileDialog" Title="Delete File?" Message="" CancelText="No" OKText="Yes" Visibility="Collapsed" />
+        <dialog:Notes x:Name="NotesDialog" Visibility="Collapsed" />
+        <dialog:Confirm x:Name="ConfirmNotesProvideName" Title="Enter a name" Message="Please enter your name." CancelText="" OKText="OK" Visibility="Collapsed" />
+    </Grid>
+</UserControl>

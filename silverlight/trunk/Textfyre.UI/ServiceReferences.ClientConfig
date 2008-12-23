@@ -1,0 +1,16 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="FyreServiceSoap" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://www.textfyre.com/TFServices/FyreService.asmx"
+                binding="basicHttpBinding" bindingConfiguration="FyreServiceSoap"
+                contract="FyreService.FyreServiceSoap" name="FyreServiceSoap" />
+        </client>
+    </system.serviceModel>
+</configuration>
