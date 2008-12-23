@@ -1,5 +1,0 @@
-D:\Subversion\TextFyre\TFDev\silverlight\trunk\Textfyre.VM\Bin\Debug\Textfyre.VM.dll
-D:\Subversion\TextFyre\TFDev\silverlight\trunk\Textfyre.VM\Bin\Debug\Textfyre.VM.pdb
-D:\Subversion\TextFyre\TFDev\silverlight\trunk\Textfyre.VM\obj\Debug\ResolveAssemblyReference.cache
-D:\Subversion\TextFyre\TFDev\silverlight\trunk\Textfyre.VM\obj\Debug\Textfyre.VM.dll
-D:\Subversion\TextFyre\TFDev\silverlight\trunk\Textfyre.VM\obj\Debug\Textfyre.VM.pdb
