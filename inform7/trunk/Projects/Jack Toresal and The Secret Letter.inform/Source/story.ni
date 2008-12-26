@@ -10250,11 +10250,13 @@ test walkthrough with "test walk1 / test walk2 / test walk3"
 
 test toball with "test walk1 / test redgate/test sandler/test moneylender/test clothier/test armory/test ballgoing"
 
-Test walk1 with "test intro/test market/test meeting/test adventure/test jail/test sewers/test rooftops/test blackgate/test hanging/test maidens"
+Test walk1 with "test intro/test market/test meeting/test adventure/test jail"
 
-Test walk2 with "test redgate/test sandler/test moneylender/test clothier/test armory/test ballgoing/test socializing" 
+Test walk2 with "test rooftops/test blackgate/test hanging/test maidens"
 
-Test walk3 with "test prince / test warroom"
+Test walk3 with "test redgate/test sandler/test moneylender/test clothier/test armory/test ballgoing/test socializing" 
+
+Test walk4 with "test prince / test warroom"
 
 Test Intro with "u/z/z/z/z/d/se"
 
@@ -10266,7 +10268,7 @@ Test adventure with "n/e/n/xyzzy/n/unxyzzy/n/d/n/n/sw/u/n/listen at slit/listen 
 
 Test jail with "z/z/1/1/1/z/3/z/z/z/3/1/unlock door with wire/n/get wire/unlock north door with wire/sw/lift grate"
 
-Test sewers with "xyzzy/down/s/x symbols/s/x symbols/e/x symbols/w/u/unxyzzy"
+Test sewers with "xyzzy/down/s/u/unxyzzy"
 
 Test rooftops with "n / 1 / 1 / 1 / 2 / climb gutter / e / e / se / n"
 
