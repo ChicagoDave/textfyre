@@ -84,6 +84,8 @@ namespace Textfyre.UI.Entities
             KeyPress
         }
 
+        //private DocumentColumnCollection _backPages = new DocumentColumnCollection();
+
         public Document()
         {
             _input = new Controls.Input();
@@ -752,14 +754,21 @@ namespace Textfyre.UI.Entities
 
         private void DoTextMode(string text)
         {
+            double wantedHeight = 0;
 
-            // Previous: double maxheight = _docColumns.ActiveDocumentColumn.Height - 10;
-            // Previous: double height = _docColumns.ActiveDocumentColumn.ContentHeightExcludeLast;
-            // Previous: double preheight = _docColumns.ActiveDocumentColumn.PageHeightTotal;
+            if (Settings.PagingMechanism == Settings.PagingMechanismType.StaticPageCreateBackPages)
+            {
+                wantedHeight = _docColumns.ActiveDocumentColumn.Height - _docColumns.ActiveDocumentColumn.PageHeightSinceLastInput;
+            }
+            else if (Settings.PagingMechanism == Settings.PagingMechanismType.CreateNewPages)
+            {
+                double maxheight = _docColumns.ActiveDocumentColumn.Height - 10;
+                double height = _docColumns.ActiveDocumentColumn.ContentHeightExcludeLast;
+                double preheight = _docColumns.ActiveDocumentColumn.PageHeightTotal;
+                wantedHeight = maxheight - height;
+            }
 
-            // Previous: //if (AddWordsUntilCertainHeightReached(text, _docColumns.ActiveDocumentColumn.Height - _docColumns.ActiveDocumentColumn.PageHeightTotal))
-            // Previous: if (AddWordsUntilCertainHeightReached(text, maxheight - height))
-            if (AddWordsUntilCertainHeightReached(text, _docColumns.ActiveDocumentColumn.Height - _docColumns.ActiveDocumentColumn.PageHeightSinceLastInput))
+            if (AddWordsUntilCertainHeightReached(text, wantedHeight))
             {
                 PageHeightReached();
                 CreateTextBlock(_docColumns.ActiveDocumentColumn.Width);

@@ -27,4 +27,5 @@
   <Setting Key="PageGripSize" Value="40" />
   <Setting Key="TOCs" Value="Introduction#Transcript" />
   <Setting Key="PrologueNewLines" Value="47" />
+  <Setting Key="PagingMechanism" Value="StaticPageCreateBackPages" />
 </Settings>

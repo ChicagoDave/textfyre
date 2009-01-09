@@ -20,7 +20,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TextfyreSLAppWeb", "Textfyr
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "58063"
+		VWDPort = "56444"
 		DefaultWebSiteLanguage = "Visual C#"
 		ProjOutputReferences = "{444B9AB7-A9D6-4BDD-B0DF-DA026FC91CBA}|ClientBin|false;{3DB16B04-A6E1-416F-BBB4-31AE53011AC2}|ClientBin|false;{FA452815-E2FB-400F-9144-A8D98C9DA2AF}|ClientBin|false;{D16CF5BA-ED72-4B76-AD74-98C7D8808974}|ClientBin|false;"
 	EndProjectSection
