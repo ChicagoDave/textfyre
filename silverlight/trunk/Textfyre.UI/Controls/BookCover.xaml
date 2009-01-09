@@ -79,7 +79,7 @@
     </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot" Width="800" Height="600" Background="Transparent">
-        <Image Height="576" Margin="402,11,363,13" x:Name="PageSide" Width="70" Visibility="Visible" RenderTransformOrigin="0.5,0.5" Stretch="Fill" d:LayoutOverrides="HorizontalAlignment" Opacity="1">
+        <Image Height="576" Margin="402,11,363,13" x:Name="PageSide" Width="70" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5" Stretch="Fill" d:LayoutOverrides="HorizontalAlignment" Opacity="1">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -89,7 +89,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <ctrl:Art ID="BookCover" HorizontalAlignment="Right" Margin="0,8,2,0" x:Name="BookCoverImage" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+        <ctrl:Art ID="BookCover" HorizontalAlignment="Left" x:Name="BookCoverImage" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
             <ctrl:Art.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

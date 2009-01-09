@@ -20,8 +20,12 @@ namespace Textfyre.UI.Controls
         {
             InitializeComponent();
 
-
+            this.Width = Settings.BookWidth;
+            LayoutRoot.Width = Settings.BookWidth;
+            HideBook.Width = Settings.BookPageWidth + Settings.BookPageOffsetLeft;
             HideBook.Fill = Helpers.Color.SolidColorBrush(Settings.BackgroundColor);
+            this.LoadingText.Width = Settings.BookPageWidth + Settings.BookPageOffsetLeft;
+            this.LoadingText.Margin = new Thickness(Settings.BookPageWidth + Settings.BookPageOffsetLeft, 370, 0, 0);
 
             this.FlipCoverStoryboard.Completed += new EventHandler(FlipCoverStoryboard_Completed);
             Current.Game.StoryReady += new EventHandler(Application_StoryReady);
@@ -52,6 +56,11 @@ namespace Textfyre.UI.Controls
 
         private void FlipCoverStoryboard_Completed(object sender, EventArgs e)
         {
+            FlipCoverCompleted();
+        }
+
+        private void FlipCoverCompleted()
+        {
             this.Visibility = Visibility.Collapsed;
             if (BookOpen != null)
             {
@@ -67,9 +76,10 @@ namespace Textfyre.UI.Controls
         private void OpenBook()
         {
             LoadingText.Visibility = Visibility.Collapsed;
+            FlipCoverCompleted();
 
-            if (this.FlipCoverStoryboard.GetCurrentState() != ClockState.Active)
-                this.FlipCoverStoryboard.Begin();
+            //if (this.FlipCoverStoryboard.GetCurrentState() != ClockState.Active)
+            //    this.FlipCoverStoryboard.Begin();
 
         }
 
