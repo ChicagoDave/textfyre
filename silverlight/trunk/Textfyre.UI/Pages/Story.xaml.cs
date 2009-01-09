@@ -256,8 +256,10 @@ namespace Textfyre.UI.Pages
                         i--;
                     }
 
-                    prologue = "<PrologueMode/>" + leadingNewlines.ToString() + prologue + "<StoryMode/><FullPageBreak/><ColumnScroll/><AddImagePage/>";
-                    //prologue = "<PrologueMode/>" + prologue + "<StoryMode/>";
+                    if( Settings.PagingMechanism == Settings.PagingMechanismType.StaticPageCreateBackPages )
+                        prologue = "<PrologueMode/>" + leadingNewlines.ToString() + prologue + "<StoryMode/><FullPageBreak/><ColumnScroll/><AddImagePage/>";
+                    else if ( Settings.PagingMechanism == Settings.PagingMechanismType.CreateNewPages )
+                        prologue = "<PrologueMode/>" + prologue + "<StoryMode/>";
 
                     TextfyreBook.TextfyreDocument.AddStml(prologue);
                 }
@@ -325,8 +327,11 @@ namespace Textfyre.UI.Pages
             if (AnyOutput(output, OutputChannel.Theme))
             {
                 string themeID = output[OutputChannel.Theme];
-                //Current.Game.TextfyreBook.AddPageArtPage(themeID);
-                Current.Game.TextfyreBook.TextfyreDocument.StoryAid.PageArtID = themeID;
+
+                if (Settings.PagingMechanism == Settings.PagingMechanismType.StaticPageCreateBackPages)
+                    Current.Game.TextfyreBook.TextfyreDocument.StoryAid.PageArtID = themeID;
+                else if (Settings.PagingMechanism == Settings.PagingMechanismType.CreateNewPages)
+                    Current.Game.TextfyreBook.AddPageArtPage(themeID);
             }
             #endregion
 

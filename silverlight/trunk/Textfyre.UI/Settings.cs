@@ -37,6 +37,13 @@ namespace Textfyre.UI
         public static string TOCs = String.Empty;
         public static bool ResizingEnabled = true;
         public static int PrologueNewLines = 0;
+        public static PagingMechanismType PagingMechanism = PagingMechanismType.StaticPageCreateBackPages;
+
+        public enum PagingMechanismType
+        {
+            StaticPageCreateBackPages,
+            CreateNewPages
+        }
 
         public static void Init()
         {
@@ -70,6 +77,11 @@ namespace Textfyre.UI
                 {
                     Settings set = new Settings();
                     fi.SetValue(set, value);
+                }
+                else if (fi.FieldType == typeof(PagingMechanismType))
+                {
+                    Settings set = new Settings();
+                    fi.SetValue( set, Enum.Parse( typeof(PagingMechanismType), value, true ) );
                 }
 
             }
