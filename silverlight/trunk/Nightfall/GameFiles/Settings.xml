@@ -1,17 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Settings>
+  <!--Setting Key="BookPageWidth" Value="350" />
+  <Setting Key="BookPageHeight" Value="550" />
+  <Setting Key="BookPageOffsetLeft" Value="55" />
+  <Setting Key="BookPageOffsetTop" Value="22" /-->
+
+
   <Setting Key="BackgroundColor" Value="#FFFFFFFF" />
-  <Setting Key="BookPageWidth" Value="350" />
+  <Setting Key="ResizingEnabled" Value="True" />
+  <Setting Key="BookWidth" Value="920" />
+  <Setting Key="BookPageWidth" Value="400" />
   <Setting Key="BookPageHeight" Value="550" />
   <Setting Key="BookPageOffsetLeft" Value="55" />
   <Setting Key="BookPageOffsetTop" Value="22" />
-  <Setting Key="VersionText" Value="21-Dec-2008-r10" />
+  <Setting Key="BookPageInnerContentWidth" Value="380" />
+  <Setting Key="BookPageInnerContentHeight" Value="470" />
+  <Setting Key="BookPageInnerContentOffsetLeft" Value="20" />
+  <Setting Key="BookPageInnerContentOffsetTop" Value="0" />
+  <Setting Key="VersionText" Value="19-Dec-2008-r8" />
   <Setting Key="StoryID" Value="3" />
   <Setting Key="LogEnabled" Value="False" />
   <Setting Key="UseIndents" Value="True" />
   <Setting Key="UseNewLineAfterParagraph" Value="False" />
   <Setting Key="ScrollSpeed" Value="50" />
-  <Setting Key="AutoOpenBookCover" Value="False" />
+  <Setting Key="AutoOpenBookCover" Value="True" />
   <Setting Key="PageGripSize" Value="40" />
-  <Setting Key="TOCs" Value="Introduction" />
+  <Setting Key="TOCs" Value="Introduction#Transcript" />
 </Settings>

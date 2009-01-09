@@ -90,7 +90,7 @@ namespace Textfyre.UI.Controls.FlipBook
             }
         }
 
-        private void RefreshSheetsContent()
+        public void RefreshSheetsContent()
         {
             if (dataProvider == null)
                 return;

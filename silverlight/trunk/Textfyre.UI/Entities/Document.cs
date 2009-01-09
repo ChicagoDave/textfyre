@@ -174,7 +174,7 @@ namespace Textfyre.UI.Entities
             }
 
             Current.Game.IsStoryChanged = true;
-            
+
             if (addNotesText)
             {
                 if (text.Length == 0)
@@ -198,7 +198,7 @@ namespace Textfyre.UI.Entities
             {
                 _input._tbInput.Text = String.Empty;
                 this.AddStml("<Italic>&gt;" + transcriptText + "</Italic><LineBreak/>");
-                return;                
+                return;
             }
 
             RemoveInput();
@@ -285,7 +285,7 @@ namespace Textfyre.UI.Entities
         /// </summary>
         /// <param name="stml"></param>
         public void AddStml(string stml)
-        {            
+        {
             _elements = new ColumnElementCollection(stml, _elements);
             DisplayElements();
         }
@@ -329,12 +329,18 @@ namespace Textfyre.UI.Entities
                     _input.SetModeNormal();
                 }
 
+                _docColumns.ActiveDocumentColumn.PageHeightInc(_txtBlk.Height);
+                //_docColumns.ActiveDocumentColumn.PageHeightInc(40);
                 _input.AddInputToColumn(_docColumns.ActiveDocumentColumn);
                 IsInputEnable = IsInputVisible;
                 _input.SetFocus();
             }
         }
 
+        public void AddPageArt(string artID)
+        {
+
+        }
 
         #region :: Elements ::
         private bool IsPageHeightReached(double elementHeight)
@@ -347,7 +353,7 @@ namespace Textfyre.UI.Entities
             Entities.DocumentColumnBehaviour columnBehavior
                 = _docColumns.ActiveDocumentColumn.ColumnBehaviour;
 
-            if ( columnBehavior == DocumentColumnBehaviour.Flip)
+            if (columnBehavior == DocumentColumnBehaviour.Flip)
             {
                 _docColumns.ActiveDocumentColumn.PageHeightInc(_txtBlk.Height);
                 _txtBlk.Clear();
@@ -360,9 +366,10 @@ namespace Textfyre.UI.Entities
                 }
 
                 _docColumns.NextColumn();
+                Current.Game.TextfyreBook.FlipBook.RefreshSheetsContent();
 
             }
-            else if ( columnBehavior == DocumentColumnBehaviour.Scroll )
+            else if (columnBehavior == DocumentColumnBehaviour.Scroll)
             {
                 _docColumns.ActiveDocumentColumn.TextfyreBookPage.ctrlMore.Show();
                 _processElements = false;
@@ -426,7 +433,7 @@ namespace Textfyre.UI.Entities
                         AddInput();
                         AddInputHandler();
                         break;
-                    
+
                     case OpCode.HeaderBegin:
                         _txtBlk.FontType = Textfyre.UI.Current.Font.FontType.Headline;
                         CreateTextBlock(_docColumns.ActiveDocumentColumn.Width);
@@ -442,7 +449,7 @@ namespace Textfyre.UI.Entities
                         _docColumns.ActiveDocumentColumn.Add(_txtBlk.TextBlock);
                         _txtBlk.ClearRun();
                         break;
-                    
+
                     case OpCode.ParagraphBegin:
                         _isParagraphBegin = true;
                         break;
@@ -589,7 +596,7 @@ namespace Textfyre.UI.Entities
 
             //if (_processElements)
             //{
-                //AddInputHandler();
+            //AddInputHandler();
             //}
 
         }
@@ -615,8 +622,6 @@ namespace Textfyre.UI.Entities
             _txtBlk.Create(width);
 
         }
-
-
 
         private void AddText(string text)
         {
@@ -669,7 +674,7 @@ namespace Textfyre.UI.Entities
                             {   // If we are wrapping around an image, make
                                 // sure we are free by more than one line.
                                 maxHeight = _txtBlk.Height;
-                            }   
+                            }
                         }
 
                         if (_txtBlk.Height > maxHeight && _curImageExceedMaxHeight)
@@ -684,7 +689,7 @@ namespace Textfyre.UI.Entities
                             _txtBlk.AddWordCommit();
                         }
 
-                        
+
                     }
                     else
                     {
@@ -696,14 +701,14 @@ namespace Textfyre.UI.Entities
                 }
                 else
                 {   // One word
-                    
+
                     word = text.Substring(pointer);
                     _txtBlk.AddWordBegin(word);
                     _txtBlk.AddWordCommit();
                     cont = false;
                 }
-            
-           
+
+
                 //    _txtBlk.Text += word;
 
                 //    if (_txtBlk.Height > maxHeight && _curImageExceedMaxHeight == false)
@@ -747,6 +752,13 @@ namespace Textfyre.UI.Entities
 
         private void DoTextMode(string text)
         {
+
+            // Previous: double maxheight = _docColumns.ActiveDocumentColumn.Height - 10;
+            // Previous: double height = _docColumns.ActiveDocumentColumn.ContentHeightExcludeLast;
+            // Previous: double preheight = _docColumns.ActiveDocumentColumn.PageHeightTotal;
+
+            // Previous: //if (AddWordsUntilCertainHeightReached(text, _docColumns.ActiveDocumentColumn.Height - _docColumns.ActiveDocumentColumn.PageHeightTotal))
+            // Previous: if (AddWordsUntilCertainHeightReached(text, maxheight - height))
             if (AddWordsUntilCertainHeightReached(text, _docColumns.ActiveDocumentColumn.Height - _docColumns.ActiveDocumentColumn.PageHeightSinceLastInput))
             {
                 PageHeightReached();

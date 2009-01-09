@@ -24,6 +24,7 @@ namespace Textfyre.UI
             LayoutRoot.Background = Helpers.Color.SolidColorBrush(Settings.BackgroundColor);
             Application.Current.Host.Content.Resized += new EventHandler(Content_Resized);
             Resize();
+
         }
 
         void Content_Resized(object sender, EventArgs e)
@@ -41,6 +42,7 @@ namespace Textfyre.UI
             LayoutRoot.Width = currentWidth;
             LayoutRoot.Height = currentHeight;
 
+            MasterPage.SetSize();
             MasterPage.Resize();
 
         }

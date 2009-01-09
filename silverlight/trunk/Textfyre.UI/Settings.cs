@@ -17,10 +17,15 @@ namespace Textfyre.UI
     public class Settings
     {
         public static string BackgroundColor = String.Empty;
+        public static double BookWidth = 0;
         public static double BookPageWidth = 0;
         public static double BookPageHeight = 0;
         public static double BookPageOffsetLeft = 0;
         public static double BookPageOffsetTop = 0;
+        public static double BookPageInnerContentWidth = 0;
+        public static double BookPageInnerContentHeight = 0;
+        public static double BookPageInnerContentOffsetLeft = 0;
+        public static double BookPageInnerContentOffsetTop = 0;
         public static string VersionText = "10-Dec-2008";
         public static bool LogEnabled = true;
         public static int StoryID = 1;
@@ -30,6 +35,7 @@ namespace Textfyre.UI
         public static bool AutoOpenBookCover = true;
         public static double PageGripSize = 40d;
         public static string TOCs = String.Empty;
+        public static bool ResizingEnabled = true;
 
         public static void Init()
         {

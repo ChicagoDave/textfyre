@@ -5,7 +5,7 @@
              
     >
     <Grid x:Name="LayoutRoot" Background="#FFF9EAD6" HorizontalAlignment="Left">
-        <Grid Width="800" Height="600">
+        <Grid x:Name="BookGrid" Width="920" Height="600">
             <ctrls:TextfyreBook x:Name="TextfyreBook" />            
         </Grid>        
         <TextBlock x:Name="_tbVersion" FontFamily="Verdana" FontSize="10" VerticalAlignment="Bottom" HorizontalAlignment="Right" />

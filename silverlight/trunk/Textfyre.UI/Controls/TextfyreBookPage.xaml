@@ -2,8 +2,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
              xmlns:ctrls="clr-namespace:Textfyre.UI.Controls"
-    Width="353" Height="557">
-    <Grid x:Name="LayoutRoot" Width="353" Height="557">
+    >
+    <Grid x:Name="LayoutRoot">
         <ctrls:Art x:Name="BookPage1" ID="BookPage1" />
         <ctrls:Art x:Name="BookPage2" ID="BookPage2" Visibility="Collapsed" />
         <TextBlock Margin="-10,10,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="" TextWrapping="Wrap" x:Name="LocationChannel" TextAlignment="Center" Height="57"/>

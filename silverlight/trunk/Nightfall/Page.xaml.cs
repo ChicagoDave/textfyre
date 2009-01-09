@@ -54,7 +54,7 @@ new Textfyre.UI.Current.Font.FontDefinition(
     "GOUDRI.TTF|GoudyRetrospectiveSSK|18");
             Textfyre.UI.Current.Font.Input = inputfd;
 
-            StoryPage.LoadStory(GameFiles.GameFile.Nightfall_r10, "Nightfall_r10", new StoryHandle());
+            StoryPage.LoadStory(GameFiles.GameFile.Nightfall_r8, "Nightfall_r8", new StoryHandle());
             
         }
 
