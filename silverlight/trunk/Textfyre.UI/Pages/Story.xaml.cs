@@ -248,7 +248,15 @@ namespace Textfyre.UI.Pages
                         prologue = "<Paragraph>" + prologue + "</Paragraph>";
                     }
 
-                    prologue = "<PrologueMode/>" + prologue + "<StoryMode/><FullPageBreak/><ColumnScroll/><AddImagePage/>";
+                    System.Text.StringBuilder leadingNewlines = new StringBuilder("");
+                    int i = Settings.PrologueNewLines;
+                    while(i > 0 )
+                    {
+                        leadingNewlines.Append(" " + System.Environment.NewLine);
+                        i--;
+                    }
+
+                    prologue = "<PrologueMode/>" + leadingNewlines.ToString() + prologue + "<StoryMode/><FullPageBreak/><ColumnScroll/><AddImagePage/>";
                     //prologue = "<PrologueMode/>" + prologue + "<StoryMode/>";
 
                     TextfyreBook.TextfyreDocument.AddStml(prologue);
