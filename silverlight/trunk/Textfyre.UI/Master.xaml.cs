@@ -20,10 +20,16 @@ namespace Textfyre.UI
         public Master()
         {
             InitializeComponent();
-            _originalWidth = LayoutRoot.Width;
-            _originalHeight = LayoutRoot.Height;
-
             this.Loaded += new RoutedEventHandler(Page_Loaded);
+        }
+
+        public void SetSize()
+        {
+            this.Width = Settings.BookWidth;
+            LayoutRoot.Width = Settings.BookWidth;
+
+            _originalWidth = Settings.BookWidth;
+            _originalHeight = LayoutRoot.Height;
         }
 
         private TextBlock _debugText;
@@ -84,6 +90,9 @@ namespace Textfyre.UI
 
         public void Resize()
         {
+            if (Settings.ResizingEnabled == false)
+                return;
+            
             double currentWidth = Application.Current.Host.Content.ActualWidth;
             double currentHeight = Application.Current.Host.Content.ActualHeight;
 

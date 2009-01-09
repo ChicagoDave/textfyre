@@ -32,6 +32,8 @@ namespace Textfyre.UI.Pages
         {
             InitializeComponent();
 
+            BookGrid.Width = Settings.BookWidth;
+
             LayoutRoot.Background = Helpers.Color.SolidColorBrush(Settings.BackgroundColor);
 
             this.Loaded += new RoutedEventHandler(Story_Loaded);
@@ -247,6 +249,7 @@ namespace Textfyre.UI.Pages
                     }
 
                     prologue = "<PrologueMode/>" + prologue + "<StoryMode/><FullPageBreak/><ColumnScroll/><AddImagePage/>";
+                    //prologue = "<PrologueMode/>" + prologue + "<StoryMode/>";
 
                     TextfyreBook.TextfyreDocument.AddStml(prologue);
                 }
@@ -314,6 +317,7 @@ namespace Textfyre.UI.Pages
             if (AnyOutput(output, OutputChannel.Theme))
             {
                 string themeID = output[OutputChannel.Theme];
+                //Current.Game.TextfyreBook.AddPageArtPage(themeID);
                 Current.Game.TextfyreBook.TextfyreDocument.StoryAid.PageArtID = themeID;
             }
             #endregion

@@ -26,6 +26,10 @@ namespace Textfyre.UI.Controls
 
             InitializeComponent();
 
+            PageScrollViewer.Width = Settings.BookPageInnerContentWidth;
+            PageScrollViewer.Height = Settings.BookPageInnerContentHeight;
+            PageScrollViewer.Margin = new Thickness(Settings.BookPageInnerContentOffsetLeft, Settings.BookPageInnerContentOffsetTop, 0, 0);
+
             Current.Font.ApplyFont(Textfyre.UI.Current.Font.FontType.Header,
                 this.LocationChannel);
 

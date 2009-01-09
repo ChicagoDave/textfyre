@@ -8,11 +8,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.Collections.Generic;
 
 namespace Textfyre.UI.Entities
 {
     public class DocumentColumn
-    {
+    {        
         private Controls.TextfyreBookPage _page;
         public Controls.TextfyreBookPage TextfyreBookPage
         {
@@ -43,8 +44,10 @@ namespace Textfyre.UI.Entities
             _columnBehaviour = columnBehaviour;
             
             _scrollViewer = page.PageScrollViewer;
-            _width = _scrollViewer.Width - 35d;
-            _height = _scrollViewer.Height - 18d;
+            _scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+
+            _width = _scrollViewer.Width - 35d; 
+            _height = _scrollViewer.Height - 35d; // 18d;
 
             _stackPanel = new StackPanel();
             _stackPanel.HorizontalAlignment = HorizontalAlignment.Left;
@@ -54,6 +57,46 @@ namespace Textfyre.UI.Entities
 
         }
         #endregion
+
+        public double ContentHeight
+        {
+            get
+            {
+                double height = 0;
+                foreach (UIElement uie in _stackPanel.Children)
+                {
+                    if (uie is TextBlock)
+                    {
+                        height += (uie as TextBlock).ActualHeight;
+                    }
+
+                }
+
+                return height;
+            }
+        }
+
+        public double ContentHeightExcludeLast
+        {
+            get
+            {
+                double height = 0;
+                double lastheight = 0;
+                foreach (UIElement uie in _stackPanel.Children)
+                {
+                    if (uie is TextBlock)
+                    {
+                        double actheight = (uie as TextBlock).ActualHeight;
+                        height += actheight;
+                        lastheight = actheight;
+                    }
+
+                }
+
+                return height- lastheight;
+            }
+        }
+
 
         #region :: IsEmpty ::
         public bool IsEmpty

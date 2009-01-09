@@ -118,10 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Nightfall_r10" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Nightfall-r10.ulx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Nightfall_r3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>nightfall-r3.ulx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Nightfall_r9" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Nightfall-r9.ulx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Nightfall_r6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Nightfall-r6.ulx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Nightfall_r7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Nightfall-r7.ulx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Nightfall_r8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Nightfall-r8.ulx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

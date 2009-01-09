@@ -60,16 +60,30 @@ namespace Nightfall.GameFiles {
             }
         }
         
-        public static byte[] Nightfall_r10 {
+        public static byte[] Nightfall_r3 {
             get {
-                object obj = ResourceManager.GetObject("Nightfall_r10", resourceCulture);
+                object obj = ResourceManager.GetObject("Nightfall_r3", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        public static byte[] Nightfall_r9 {
+        public static byte[] Nightfall_r6 {
             get {
-                object obj = ResourceManager.GetObject("Nightfall_r9", resourceCulture);
+                object obj = ResourceManager.GetObject("Nightfall_r6", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        public static byte[] Nightfall_r7 {
+            get {
+                object obj = ResourceManager.GetObject("Nightfall_r7", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        public static byte[] Nightfall_r8 {
+            get {
+                object obj = ResourceManager.GetObject("Nightfall_r8", resourceCulture);
                 return ((byte[])(obj));
             }
         }

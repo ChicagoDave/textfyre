@@ -116,7 +116,6 @@ namespace Textfyre.UI.Entities
         private void InitTextBlock(ref TextBlock tb)
         {
             _textBlockCount++;
-            Textfyre.UI.Master.DebugText = ("TextBlock count: " + _textBlockCount.ToString());
             
             tb = new TextBlock();
             tb.Text = String.Empty;
