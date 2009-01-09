@@ -36,6 +36,7 @@ namespace Textfyre.UI
         public static double PageGripSize = 40d;
         public static string TOCs = String.Empty;
         public static bool ResizingEnabled = true;
+        public static int PrologueNewLines = 0;
 
         public static void Init()
         {
