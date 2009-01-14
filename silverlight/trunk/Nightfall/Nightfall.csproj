@@ -92,10 +92,7 @@
       <LastGenOutput>GameFile.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="GameFiles\Nightfall-r3.ulx" />
-    <None Include="GameFiles\Nightfall-r6.ulx" />
-    <None Include="GameFiles\Nightfall-r7.ulx" />
-    <None Include="GameFiles\Nightfall-r8.ulx" />
+    <None Include="GameFiles\Nightfall-r10.ulx" />
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
