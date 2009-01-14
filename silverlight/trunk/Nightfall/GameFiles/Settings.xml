@@ -17,7 +17,7 @@
   <Setting Key="BookPageInnerContentHeight" Value="470" />
   <Setting Key="BookPageInnerContentOffsetLeft" Value="20" />
   <Setting Key="BookPageInnerContentOffsetTop" Value="0" />
-  <Setting Key="VersionText" Value="19-Dec-2008-r8" />
+  <Setting Key="VersionText" Value="12-Jan-2009-r10" />
   <Setting Key="StoryID" Value="3" />
   <Setting Key="LogEnabled" Value="False" />
   <Setting Key="UseIndents" Value="True" />
