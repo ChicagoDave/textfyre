@@ -58,6 +58,34 @@ namespace Textfyre.UI.Entities
         }
         #endregion
 
+        private void RemovePastTextBlocks()
+        {
+            double contentHeight = ContentHeight;
+            TextBlock prevTextBlock = null;
+            double height = 0;
+            List<UIElement> uieToRemove = new List<UIElement>();
+            foreach (UIElement uie in _stackPanel.Children)
+            {
+                if ( prevTextBlock != null && (contentHeight - height) > (Settings.BookPageInnerContentHeight * 2))
+                {
+                    uieToRemove.Add(prevTextBlock);
+                    break;
+                }
+
+                if (uie is TextBlock)
+                {
+                    prevTextBlock = uie as TextBlock;
+                    height += (uie as TextBlock).ActualHeight;
+                }
+            }
+
+            foreach (UIElement uie in uieToRemove)
+            {
+                _stackPanel.Children.Remove(uie);
+            }
+        }
+
+
         public double ContentHeight
         {
             get
@@ -147,6 +175,8 @@ namespace Textfyre.UI.Entities
                 //ScrollViewer.ScrollToVerticalOffset(_wantedVerticalScrollOffset);
                 AnimateScroll();
             }
+
+            RemovePastTextBlocks();
         }
         private double _wantedVerticalScrollOffset = 0;
         private Storyboard _scrollStoryboard;
