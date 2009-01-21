@@ -2,9 +2,15 @@
 
 [  Change Log
 When		Who		What
-03-Dec-2008	D. Cornelson	Fixed hints XML.
+21-Jan-2009	G. Jefferis	Implemented changes from JA_notes_02_response
+20-Jan-2009	G. Jefferis	Implemented changes from JA_notes_02_response
+19-Jan-2009	G.Jefferis	Implemented changes from JA_notes_01_response
+16-Jan-2009	G. Jefferis	Fixing bugs from Transcript EE01
+15-Jan-2009	G. Jefferis	Fixing bugs from Transcript EE01
+14-Jan-2009	G. Jefferis	Fixing bugs from Transcript EE01
 06-Dec-2008	G. Jefferis	Fixing bugs from Transcript Dec 3 08 (J.A.L.)
 05-Dec-2008	G. Jefferis	Fixing bugs from Transcript Dec 3 08 (J.A.L.)
+03-Dec-2008	D. Cornelson	Fixed hints XML.
 29-Nov-2008	D. Cornelson	Added hints for grubbers.
 20-Nov-2008	D. Cornelson	Added death channel.
 06-Nov-2008	D. Cornelson	Fixed channel stuff and added chapter channel.
@@ -144,9 +150,10 @@ Include Conversation Topics by Textfyre.
 
 Include Secret Letter Hints by Textfyre.
 
+Include Test Suite by Textfyre.
 Include Xml Output Toggling by Textfyre.
 Use no scoring, American dialect and full-length room descriptions.
-The story creation year is 2008.
+The story creation year is 2009.
 
 Rule for printing the banner text:
 	select the title channel;
@@ -327,8 +334,8 @@ Chapter 2 - Listening while having a conversation
 
 [This allows you to e.g. "LISTEN TO BOBBY" as a way to reiterate the conversation menu.]
 
-Instead of listening to a person while the noun is the current conversationalist, try talking to the noun.
-
+Instead of listening to a person while the noun is the current conversationalist:
+	display the menu;
 
 Chapter 3 - Error Message for Ask/Tell
 
@@ -346,7 +353,6 @@ Before asking someone to try doing something:
 
 To say just talk:
 	say "To talk to a person, simply type TALK TO (whomever)".
-
 
 Part 9 - Spooling through dialogue
 
@@ -434,11 +440,13 @@ Part 16 - Attacking
 
 [Not sure why attacking and kicking were set up as activities rather than simply actions. It's causing a compile problem, so I'm commenting out the troublesome lines until I can determine if it's safe to just delete them. --MSG]
 
+[Fair play, though it caused a bug. I can see what I was *trying* to do - differentiate the actions by context rather than create a separate kicking action - but this doesn't seem like the best approach. Of course, what constitutes "best practices" for I7 is as-yet undiscovered. ]
+
 Chapter 1 - Attacking
 
 [Attacking something is an activity.]
 
-The block attacking rule is not listed in any rulebook.
+[The block attacking rule is not listed in any rulebook.]
 
 [Check attacking:
 	carry out the attacking activity with the noun instead;]
@@ -668,6 +676,8 @@ Part 34 - Limited powers of "Get All"
 
 Rule for deciding whether all includes scenery: it does not. 
 
+Rule for deciding whether all includes something enclosed by the satchel while taking: it does not. 
+
 Part 35 - Limbo for Incorporation Relation
 
 [ As of 5T18, we can't say "now the secret door is part of nothing". So instead we use "now the secret door is part of Limbo", etc. ]
@@ -716,7 +726,7 @@ Part 39 - Cleaning Up Punctuation
 
 However, it does mean that possessive words must always be written WITHOUT an apostrophe when used as an object name in code (such as Grubber's), so that the name can be recognized by the parser. Even though it's always WITH an apostrophe in printed text. This is a small pain but, I think, a reasonable payoff.
 
-GJ: Annoyingly, pieces of text separated by apostrophes aren't glued back together after being removed: so "examine grubber's market" translates to "examine grubber s market", which is bound to fail. The Punctuation Removal extension does this work by rewriting bytes in the input bufer, which is obviously fast, but we can't do it the same way if we want to take out the apostrophe altogether. Hence, a regular expression does the job.
+GJ: Annoyingly, pieces of text separated by apostrophes aren't glued back together after being removed: so "examine grubber's market" translates to "examine grubber s market", which is bound to fail. The Punctuation Removal extension does this work by rewriting bytes in the input buffer, which is obviously fast, but we can't do it the same way if we want to take out the apostrophe altogether. Hence, a regular expression to do this job.
 ]
 
 After reading a command:
@@ -769,7 +779,14 @@ Part 44 - Following
 
 Following is an action applying to one visible thing.
 
+Understand "follow" as following. [Otherwise we get nonsensical defaults, usually "the group of mercenaries" or somesuch]
 Understand "follow [any person]" as following.
+
+Rule for supplying a missing noun while following:
+	say "No-one is leading the way.";
+
+Rule for supplying a missing noun while following during Bobby's Adventure:
+	change the noun to Bobby;
 
 Check following (this is the can't follow someone who's not here rule):
 	if the noun is not in the location, say "You don't see [the noun] here." instead.
@@ -778,11 +795,13 @@ Check following (this is the can't follow someone who's not going anywhere rule)
 	say "[The noun] isn't going anywhere." instead.
 
 Instead of following Bobby during Bobby's adventure:
+	if Bobby is in the location,
+		say "But Bobby's right here!" instead;
 	say "[conditional paragraph break]";
-	if Bobby is on-stage, let the destination be the location of Bobby;
-	otherwise let the destination be the Clearing;
-	if Bobby is in the Clearing and the player is in the Woods, let Bobby's wake be the way of the split sapling;
-	otherwise let Bobby's wake be the best route from the location to the destination, using doors;
+	if the location is the Woods:
+		let Bobby's wake be the way of the split sapling;
+	otherwise:
+		let Bobby's wake be entry 1 of Bobby's trail;
 	try going Bobby's wake.
 
 Part 45 - Praying
@@ -806,8 +825,6 @@ Understand "hide under/underneath/behind [something]" as a mistake ("There's not
 Understand "hide [other things] in/inside/down/under/behind [something]" as inserting it into.
 
 Understand "hide" as a mistake ("There's nowhere for you to hide here.").
-
-
 
 Book 1 - Prologue
 
@@ -859,7 +876,7 @@ Instead of taking off the baggy clothes:
 
 Section 2 - A gray cloth cloak
 
-The player wears a gray cloak. The description of the cloak is "Your cloak is made of undyed wool, stained and patched in several places. You wear it in the masculine style, fastened on the side and thrown back over your right shoulder." Understand "grey", "gray", "old", "masculine", "wool", "undyed", "stained", "patched", "patchy", "patch", "patches", "stain", "stains", "my" as the cloak. The printed name of the cloak is "old gray cloak". 
+The player wears a gray cloak. The description of the cloak is "Your cloak is made of undyed wool, stained and patched in several places. You wear it in the masculine style, fastened on the side and thrown back over your right shoulder." Understand "grey", "gray", "old", "masculine", "wool/woolen/woollen", "undyed", "stained", "patched", "patchy", "patch", "patches", "stain", "stains", "my" as the cloak. The printed name of the cloak is "old gray cloak". 
 
 The indefinite article of the gray cloak is "your".
 
@@ -869,7 +886,19 @@ The player carries a cloth satchel. The satchel is a player's holdall. The descr
 
 The indefinite article of the satchel is "your".
 
-The satchel is open and not openable. The satchel is not wearable.
+The satchel is open, openable, transparent. The satchel is not wearable.
+
+Last before inserting something into the closed satchel:
+	say "(opening the satchel first)[command clarification break]";
+	try silently opening the satchel;
+
+Last before removing something from the closed satchel:
+	say "(opening the satchel first)[command clarification break]";
+	try silently opening the satchel;
+
+Before searching the closed satchel:
+	say "(opening it first)[command clarification break]";
+	try silently opening the satchel;
 
 After inserting something into the satchel: say "You stuff [the noun] into your satchel.";
 
@@ -933,7 +962,7 @@ Part 2 - Alleyway Introduction
 When play begins:
 	Send the Chapter I Hints;
 	select the prologue channel;
-	say "Mid-morning always sees the Grubber's Market at its most crowded. Servants from the aristocratic districts and villagers from outside Toresal crush themselves into the maze of stalls and stretched canvas, hoping to beat the noontime heat and get the farmers[apostrophe] produce while it's still fresh. The press of bodies, the din of haggling and bargains struck — it all makes getting around unnoticed easier, although not necessarily more pleasant. No fewer than half a dozen stall-gazing bumpkins have trod on your feet already this morning. You've kept your mouth shut, though. People remember an urchin who gives lip.[paragraph break]'See anything you like?' asks the silk seller, with a teasing smile. You smile back. You couldn't afford the cheapest of her cloaks if you nicked ten purses in a morning, as Teisha well knows.[paragraph break]'Oh, these are [i]much[r] too plain,' you scoff, even as you gaze wistfully at the bright colors, the beautiful embroidery. Time for a bit of breakfast, you decide, and anyway if you linger too long, people will wonder what a boy is doing shopping for women's cloaks. 'Perhaps I'll come back this afternoon, when you've put out your better wares.'[paragraph break]Teisha laughs. 'Don't be a stranger, Jack.'[paragraph break]You make your way through the market, nicking an apple from the fruit stall while its owner argues with a fat Easterner over local politics. Everyone seems to be talking politics these days, you've noticed. Everywhere people are heatedly discussing Baron Fossville's tax policies or something called the 'Ascension' — whatever that is. Boring stuff, really. Finally you reach a quiet alley where you can catch a breath from the crowds and enjoy your apple in peace.[paragraph break]You settle yourself on a crate and take a bite of your apple. Suddenly, from the alley's entrance, you hear voices.";
+	say "Mid-morning always sees the Grubber's Market at its most crowded. Servants from the aristocratic districts and villagers from outside Toresal crush themselves into the maze of stalls and stretched canvas, hoping to beat the noontime heat and get the farmers[apostrophe] produce while it's still fresh. The press of bodies, the din of haggling and bargains struck — it all makes getting around unnoticed easier, although not necessarily more pleasant. No fewer than half a dozen stall-gazing bumpkins have trod on your feet already this morning. You've kept your mouth shut, though. People remember an urchin who gives lip.[paragraph break]'See anything you like?' asks the silk seller, with a teasing smile. You smile back. You couldn’t afford one of her cloaks without nicking a fat purse first, and Teisha doesn’t approve of you stealing from people, even when they’re not her customers.[paragraph break]'Oh, these are [i]much[r] too plain,' you scoff, even as you gaze wistfully at the bright colors, the beautiful embroidery. Time for a bit of breakfast, you decide, and anyway if you linger too long, people will wonder what a boy is doing shopping for women's cloaks. 'Perhaps I'll come back this afternoon, when you've put out your better wares.'[paragraph break]Teisha laughs. 'Don't be a stranger, Jack.'[paragraph break]You make your way through the market, nicking an apple from the fruit stall while its owner argues with a fat Easterner over local politics. Everyone seems to be talking politics these days, you've noticed. Everywhere people are heatedly discussing Baron Fossville's tax policies or something called the 'Ascension' — whatever that is. Boring stuff, really. Finally you reach a quiet alley where you can catch a breath from the crowds and enjoy your apple in peace.[paragraph break]You settle yourself on a crate and take a bite of your apple. Suddenly, from the alley's entrance, you hear voices.";
 	select the chapter channel;
 	say "Chapter 1 - Grubber's Market";
 	select the main channel.
@@ -1179,6 +1208,7 @@ After going down from Outer Market Roof for the first time:
 	say "As you climb back down the crates, one of them wobbles and your foot slips. You tumble loudly to the cobblestones. 'Stupid! Clumsy!' you mutter, scrambling to your feet.[paragraph break]From the street, you hear, 'What was that? Check the alley!'[paragraph break]Two mercenaries rush in and spot you immediately. They approach warily, their arms spread wide.[paragraph break]You're in trouble now...";
 	move the wandering mercenaries to the location;
 	now the wandering mercenaries are approaching;
+	update the character list;
 
 After going down from Outer Market Roof [subsequent times]:
 	say "Carefully, you descend the stack of crates.";
@@ -1199,6 +1229,7 @@ When Eavesdropping on Soldiers ends:
 	remove the group of mercenaries from play;
 	remove the mercenary mob from play;
 	remove the mercenary captain from play;
+	update the character list;
 	now the market gates are closed; now the market gates are locked;
 
 Avoiding Soldiers is a scene. Avoiding Soldiers begins when Eavesdropping on Soldiers ends. Avoiding Soldiers ends when Final Chase begins.
@@ -1240,6 +1271,7 @@ Every turn when the player is in the Outer Market Roof during Eavesdropping on S
 		if the table of overheard mercenary utterances is [now] empty begin;
 			remove the group of mercenaries from play; 
 			remove the conversation from play;
+			update the character list;
 		end if;
 	end if;
 
@@ -1251,7 +1283,7 @@ Table of overheard mercenary utterances
 text
 "'...we know he skulks Grubber's most mornings, so spread out quick, cover all streets from the square,' growls one of them, evidently the group's leader."
 [row marker]
-"The leader spits on the dusty ground. 'Keep your eyes open and don't take guff. But for the love of Brigid, keep your tempers and your swords covered unless you really need [']em. Ain't bein['] paid to toss the locals.'"
+"The leader spits on the dusty ground. 'Keep your eyes open and don't take guff. But for the love of Brigid, keep your tempers and your swords sheathed unless you really need [']em. Ain't bein['] paid to toss the locals.'"
 [row marker]
 "'And keep sharp!' the leader snaps. 'Remember this is a kid we're lookin['] for. Kids move fast, stay out of sight, slip through crowds easy. I find out later he got away under your nose, I'll have it off!'[paragraph break]Suddenly, that bit of apple you swallowed a minute ago turns into a cold, hard chunk in your belly."
 [row marker]
@@ -1271,7 +1303,7 @@ Things can be merchandise.
 
 Section 2 - Shopping places
 
-A shop is a kind of room. A shop has a person called the proprietor.
+A shop is a kind of room. 
 A market stall is a kind of shop. A market stall can be blocked or unblocked. A market stall is usually unblocked.
 
 After going to a blocked room:
@@ -1294,34 +1326,38 @@ A stallkeeper is a kind of person. A stallkeeper is usually scenery. The descrip
 
 [Stallkeepers can be described by their wares -- e.g., a "fruit merchant" or a "weapon seller". However, we don't want that to clash with simply referring to "fruit" or "rope", so we'll use a disambiguation rule.]
 
+Rule for printing the name of a stallkeeper:
+	say "stallkeeper";
+
 Does the player mean doing something with a stallkeeper: it is unlikely.
 
-Understand "stallkeeper", "shopkeeper", "merchant", "seller", "stall/shop keeper", "merchant", "person", "vendor" as a stallkeeper.
+Understand "stallkeeper", "shopkeeper", "merchant", "seller", "stall/shop keeper", "merchant", "person", "vendor", "man", "salesman", "sales man"  as a stallkeeper.
 
-Understand "man", "salesman", "sales man" as a stallkeeper when the item described is grumpy. [ An interesting correlation between mood and gender. Possibly. ]
-
-Instead of smelling a grumpy stallkeeper:
+Instead of smelling a stallkeeper:
 	say "The stallkeepers are faring slightly better than the shoppers in the body odor department, if only because they can sit behind their stalls and don't have to press up with the crowds quite so much.";
 
-Instead of listening to a grumpy stallkeeper:
+Instead of listening to a stallkeeper:
 	say "The stallkeeper is alternating between hawking his wares, haggling with customers, and muttering about the general stinginess of the crowds.";
 
 Instead of kissing a stallkeeper, say "You're pretty sure the stallkeeper wouldn't appreciate that."
 
-Definition: a stallkeeper is grumpy:
-	if it is Teisha, no;
-	if it is the monkey, no;
-	otherwise yes.
+Every turn when the player can see a stallkeeper and a random chance of 1 in 2 succeeds:
+	if a plural-named stall display is in the location:
+		let X be a random plural-named stall display in the location;
+		say "[one of]'[sales pitch for X]!' calls the stallkeeper.[or]The stallkeeper haggles with a customer over the price of [X].[or]The stallkeeper carefully straightens his display of [X].[at random]";
+
+To say sales pitch for (X - a stall display):
+	say "[one of]I have [X] for sale[or]Get your [X] right here[or]Fine quality [X][or]Fine quality [X] for sale[or]You'll not find better [X] in all of Toresal[at random]";
 
 Section 2 - Generic Stallkeeper Conversations
 
-Instead of talking to a grumpy stallkeeper in the presence of oblivious wandering mercenaries:
+Instead of talking to a stallkeeper in the presence of oblivious wandering mercenaries:
 	say "Better find somewhere else to chat; if you start making conversation, the mercenaries might take notice.";
 
-Instead of talking to a grumpy stallkeeper in the presence of [approaching or grabbing] wandering mercenaries:
+Instead of talking to a stallkeeper in the presence of [approaching or grabbing] wandering mercenaries:
 	say "No time to chat now; you've got to run!";
 
-Rule for initiating conversation with a grumpy stallkeeper:
+Rule for initiating conversation with a stallkeeper:
 	change the chosen opening gambit to ST1;
 
 ST1 is a quip. The display text is "'What do you want?' snaps the stallkeeper." 
@@ -1374,19 +1410,19 @@ Stallkeeper patience count is a number that varies.
 Every turn when the player is on the move in a shop:
 	change the stallkeeper patience count to 0.
 
-Before talking to a grumpy stallkeeper:
+Before talking to a stallkeeper:
 	increment the stallkeeper patience count by 1;
 	continue the action;
 
-After talking to a grumpy stallkeeper when the stallkeeper patience count is 2:
+After talking to a stallkeeper when the stallkeeper patience count is 2:
 	say "The stallkeeper suddenly looks exasperated. 'Didn't I tell you to take it somewhere else?'";
 
-After talking to a grumpy stallkeeper when the stallkeeper patience count > 2:
+After talking to a stallkeeper when the stallkeeper patience count > 2:
 	say "'I said, [one of]beat it[or]scram[or]get out of here[at random]!' the stallkeeper yells."
 
 Section 4 - Unshopperly behavior
 
-Instead of doing something other than stealing when the noun is a stall display and a grumpy stallkeeper is nearby:
+Instead of doing something other than stealing when the noun is a stall display and a stallkeeper is nearby:
 	if the action requires a touchable noun begin;
 		say "'Hey!' the stallkeeper glares at you. 'Keep your sticky fingers away from the goods.'" instead;
 	end if;
@@ -1551,8 +1587,15 @@ Every turn when in the Open-Air Market [region] during Avoiding Soldiers :
 	if the waiting count is at least the timeout of the wandering mercenaries and the wandering mercenaries are not in the location begin;
 		move the wandering mercenaries to the location;
 		say "You notice a couple of the mercenaries pushing through the crowd, heading your way. [if the mercenaries will not recognise us]One of them looks right at you, but with your hat off and your hair down they don't recognize you[first time]. You're safe for the time being[only][otherwise]They haven't seen you yet, but they're getting close[end if].";
+		The mercenary warns the player in two turns from now;
 		The mercenary spots the player in three turns from now;
 	end if.
+
+At the time when the mercenary warns the player:
+	if the wandering mercenaries have been nearby for two turns:
+		if the mercenaries will not recognise us:
+			rule fails;
+		say "Those mercenaries are getting uncomfortably close. You'd better get going before they notice you!";
 
 At the time when the mercenary spots the player:
 	if the wandering mercenaries have been nearby for three turns begin;
@@ -1608,15 +1651,11 @@ Before attacking the wandering mercenaries:
 	now the wandering mercenaries are approaching;
 	change the grabbing countdown to 2;
 
-[Rule for attacking the wandering mercenaries while kicking:]
-Carry out kicking the wandering mercenaries:
-	instead say "Thinking quickly, you kick the mercenary in the shin.";
-
-[Rule for attacking the wandering mercenaries:]
-Carry out attacking the wandering mercenaries:
-	instead say "Thinking quickly, you [narrow escape].";
-
-After attacking or kicking the wandering mercenaries:
+Instead of kicking or attacking the wandering mercenaries:
+	if we are kicking the wandering mercenaries:
+		say "Thinking quickly, you kick the mercenary in the shin.[paragraph break]";
+	otherwise:
+		say "Thinking quickly, you [narrow escape].[paragraph break]";
 	say "'Argh! Oh, you miserable runt—' [if the wandering mercenaries were grabbing]the mercenary's grip on your arm loosens, and you twist away. You're free![otherwise]He stumbles backwards into his companion. Now they're both distracted; now's your chance to run![end if]";
 
 To say narrow escape:
@@ -1630,7 +1669,7 @@ Part 3 - Northwest Junction
 
 Chapter 1 - Description
 
-Grubbers Market Northwest Junction is a room. The description is "This is the northwest corner of Grubber's Market. You can skirt around the edge of the market to the northeast or south, or head into the thick of it to the east or southeast. A wide, paved road leads north. You can also duck back into the alley to the northwest." The printed name is "Grubber's Market, Northwest Junction". The distant description of Grubbers Market Northwest Junction is "The junction is a relatively open space at the market's northwest corner." The dead-end description of Grubbers Market Northwest Junction is "There's nothing in that direction except the wall that surrounds the market square."
+Grubbers Market Northwest Junction is a room. The description is "This is the northwest corner of Grubber's Market. You can skirt around the edge of the market to the northeast or south, or head into the thick of it to the east or southeast. A wide, paved road leads north. You can also duck back into the alley to the northwest." The printed name is "Northwest Junction". The distant description of Grubbers Market Northwest Junction is "The junction is a relatively open space at the market's northwest corner." The dead-end description of Grubbers Market Northwest Junction is "There's nothing in that direction except the wall that surrounds the market square."
 
 Northwest of Grubbers Market Northwest Junction is the Alley.
  
@@ -1731,7 +1770,7 @@ After eating or tasting delicatessenery:
 
 Chapter 5 - Contents (Stallkeeper)
 
-The grocer is a stallkeeper in the Grocery Stall. The proprietor of the Grocery Stall is the grocer. The printed name is "stallkeeper".
+The grocer is a stallkeeper in the Grocery Stall. 
 
 Part 5 - Fruit Stall
 
@@ -1835,7 +1874,7 @@ A banana is fruit. The description of the banana is "The banana is plump, bright
 
 The player carries an apple. The apple is fruit. The description is "The apple is round, firm, green at the bottom shading up to red near the stem." Understand "round", "firm", "green", "red", "stem" as the apple.
 
-Before eating the apple when Avoiding Soldiers is happening or Eavesdropping on Soldiers is happening:
+Before eating or tasting the apple when Avoiding Soldiers is happening or Eavesdropping on Soldiers is happening:
 	say "No time for breakfast right now!" instead;
 
 After eating the apple:
@@ -1851,7 +1890,7 @@ A lime is fruit. The description of the lime is "The dark green lime looks refre
 
 Chapter 6 - Contents (Stallkeeper)
 
-The fruit stallkeeper is a stallkeeper in the Fruit Stall. The proprietor of the Fruit Stall is the fruit stallkeeper. The printed name of the fruit stallkeeper is "stallkeeper". The description of the fruit stallkeeper is "[if Grubbers Market Fruit Stall is orderly]The stallkeeper looks nervous and irritable. Armed thugs stomping around the Grubber's Market is not good for business.[otherwise]The stallkeeper is frantically trying to put his wares back into some semblance of order.[end if]"
+The fruit stallkeeper is a stallkeeper in the Fruit Stall. The description of the fruit stallkeeper is "[if Grubbers Market Fruit Stall is orderly]The stallkeeper looks nervous and irritable. Armed thugs stomping around the Grubber's Market is not good for business.[otherwise]The stallkeeper is frantically trying to put his wares back into some semblance of order.[end if]"
 
 Instead of doing something other than examining to the fruit stallkeeper when the Fruit Stall is chaotic:
 	say "The stallkeeper is far too busy trying to clean up all the spilled fruit to deal with you.";
@@ -1859,7 +1898,7 @@ Instead of doing something other than examining to the fruit stallkeeper when th
 Chapter 7 - Fruit Theft
 
 After stealing fruit in the orderly Grubbers Market Fruit Stall:
-	say "[if the player was a mere urchin]Ah, [i]this[r] is something you know how to do, at least. You sidle up casually to the stall, wait until the stallkeeper seems preoccupied, then reach out and pluck [the noun] from the shelf.[paragraph break]Suddenly the stallkeeper jabs his finger at you and screams, [i]'Stop, thief!'[no line break][r][paragraph break][otherwise]With the stallkeepers all on edge about the mercenaries, it's not likely you'll be able to nick anything without someone noticing. Still, nothing ventured...[paragraph break][i]'Thief!'[no line break][r][paragraph break][end if]One of the mercenaries happens to be wandering by at that moment. He hears the stallkeeper's shouts and comes running straight for you![paragraph break]Then there is a loud screech, and something brown and hairy scampers out from under the mercenary's feet. He stumbles, trips, and pitches headlong into the fruit stall. Fruit flies everywhere. The stallkeeper is wailing and berating the mercenary, who is covered with juice and slimy pulp.[paragraph break]In the general chaos, you slip away easily, stuffing [the noun] into your satchel. Fortunately, no one managed to get a very good look at you, and the stallkeeper will be too busy cleaning up his wares to keep an eye out for you. You shouldn't have any trouble coming back here if you need to.";
+	say "[if the player was a mere urchin]Ah, [i]this[r] is something you know how to do, at least. You sidle up casually to the stall, wait until the stallkeeper seems preoccupied, then reach out and pluck [the noun] from the shelf.[paragraph break]Suddenly the stallkeeper jabs his finger at you and screams, [i]'Stop, thief!'[no line break][r][paragraph break][otherwise]With the stallkeepers all on edge about the mercenaries, it's not likely you'll be able to nick anything without someone noticing. Still, nothing ventured...[paragraph break][i]'Thief!'[no line break][r][paragraph break][end if]One of the mercenaries happens to be wandering by at that moment. He hears the stallkeeper's shouts and comes running straight for you![paragraph break]Then there is a loud screech, and something gray and hairy scampers out from under the mercenary's feet. He stumbles, trips, and pitches headlong into the fruit stall. Fruit flies everywhere. The stallkeeper is wailing and berating the mercenary, who is covered with juice and slimy pulp.[paragraph break]In the general chaos, you slip away easily, stuffing [the noun] into your satchel. Fortunately, no one managed to get a very good look at you, and the stallkeeper will be too busy cleaning up his wares to keep an eye out for you. You shouldn't have any trouble coming back here if you need to.";
 	now the location is unblocked;
 	now the location is chaotic;
 	move the player to a random adjacent unblocked room;
@@ -1961,7 +2000,7 @@ Some fancy hats are a hatstand, scenery, in the Hat Stall. The description is "A
 
 Some bonnets are a hatstand, scenery, in the Hat Stall. The description is "The bonnets are just ordinary peasant wear, little white caps that tie under the chin." Understand "bonnet", "white", "ordinary", "peasant", "wear", "tie", "ties" as the bonnets.
 
-The hat stallkeeper is a stallkeeper, in the Hat Stall. The proprietor of the Hat Stall is the hat stallkeeper. The printed name is "stallkeeper". Understand "milliner", "hatter" as hat stallkeeper.
+The hat stallkeeper is a stallkeeper, in the Hat Stall. Understand "milliner", "hatter" as hat stallkeeper.
 
 Part 8 - Leather Stall
 
@@ -2028,7 +2067,7 @@ A belt is wearable, leatherware. The description of the belt is "Now, a good bel
 
 Chapter 5 - Contents (Stallkeeper)
 
-The leather stallkeeper is a stallkeeper and in the Leather Shop. The proprietor of the Leather Shop is the leather stallkeeper. The printed name is "stallkeeper". 
+The leather stallkeeper is a stallkeeper and in the Leather Shop. 
 
 Part 9 - Weapons Stall
 
@@ -2064,7 +2103,7 @@ The knife is a weapon. The description is "The knife is short and wicked sharp."
 
 Chapter 3 - Contents (Stallkeeper)
 
-The weaponsmith is a stallkeeper, in the Weapons Stall. The proprietor of the Weapons Stall is the weaponsmith. Understand "smith", "armorer", "amourer" as the weaponsmith.
+The weaponsmith is a stallkeeper, in the Weapons Stall. Understand "smith", "armorer", "amourer" as the weaponsmith.
 
 Part 10 - Exotic Gems Stall
 
@@ -2096,7 +2135,7 @@ Instead of stealing or taking a gem display:
 
 Chapter 3 - Contents (Stallkeeper)
 
-The gems stallkeeper is a stallkeeper, here. The proprietor of the Exotic Gems stall is the gems stallkeeper. The printed name of the gems stallkeeper is "stallkeeper". Understand "gem", "jewel", "jewelry", "jeweler" as the gems stallkeeper.
+The gems stallkeeper is a stallkeeper, in the Exotic Gems stall. Understand "gem", "jewel", "jewelry", "jeweler" as the gems stallkeeper.
 
 [ Instead of buying a gem display, say "These may not be the most expensive gems in the city, but they're still too expensive for what you're offering." ]
 
@@ -2129,14 +2168,17 @@ Instead of facing southeast in Grubbers Market Herb Stall:
 
 Chapter 2 - Contents (Herbs)
 
-Some herbwares are wares, in the Herb Stall. The description is "The dozens of tiny jars are filled with dried and crushed bits of leaves, roots, berries, petals, moss, bark — basically, if it's from a plant, and it smells bad, you can find some shriveled piece of it here." Understand "display", "displays", "fare" as the herbwares.
+Some herbwares are wares, in the Herb Stall. The description is "The dozens of tiny jars are filled with dried and crushed bits of leaves, roots, berries, petals, moss, bark — basically, if it's from a plant, and it smells bad, you can find some shriveled piece of it here." Understand "display", "displays", "fare", "jars", "herb jars/display/displays/wares", "of" as the herbwares.
+
+Rule for printing the name of the herbwares:
+	say "jars of herbs";
 
 Instead of smelling the herbwares, say "Phew, strong stuff.";
 
 Instead of taking or stealing the herbwares:
 	try stealing the collective herbs;
 
-Some collective herbs are scenery, a stall display, in the Herb Stall. The description is "All of this herb stuff looks pretty much the same to you." The printed name is "herbs". Understand "jar", "jars", "herb", "stuff", "crushed", "bits", "pieces", "piece", "leaves", "leaf", "roots", "root", "berries", "berry", "petals", "petal", "moss", "mosses", "bark", "barks", "shriveled", "shrivelled" as the collective herbs. The corresponding item of the collective herbs is the herb jar. 
+Some collective herbs are scenery, a stall display, in the Herb Stall. The description is "All of this herb stuff looks pretty much the same to you." The printed name is "herbs". Understand "jar", "herb", "stuff", "crushed", "bits", "pieces", "piece", "leaves", "leaf", "roots", "root", "berries", "berry", "petals", "petal", "moss", "mosses", "bark", "barks", "shriveled", "shrivelled" as the collective herbs. The corresponding item of the collective herbs is the herb jar. 
 
 Before smelling the collective herbs,
 	try smelling the herbwares instead;
@@ -2166,7 +2208,7 @@ Instead of smelling the weeds:
 
 Chapter 3 - Contents (Stallkeeper)
 
-The herbalist is a stallkeeper, in the Herb Stall. The proprietor of the Herb Stall is the herbalist. Understand "herb", "herbs" as the herbalist.
+The herbalist is a stallkeeper, in the Herb Stall. Understand "herb", "herbs" as the herbalist.
 
 Part 12 - Rope Dealer
 
@@ -2184,15 +2226,15 @@ A length of rope is merchandise. The description is "The piece of rope is about 
 
 Chapter 3 - Contents (Stallkeeper)
 
-The rope dealer is a stallkeeper, in Grubbers Market Rope Dealer. The proprietor of the Grubbers Market Rope Dealer is the rope dealer.
+The rope dealer is a stallkeeper, in Grubbers Market Rope Dealer. 
 
 Part 13 - Candle Stall
 
 Chapter 1 - Description
 
-Grubbers Market Candle Maker Stall is a market stall and northeast of Grubbers Market Rope Dealer, east of Grubbers Market Northwest Junction, south of Grubbers Market Grocery Stall, west of Grubbers Market Fruit Stall. "The heat and fumes from the candlemaker's tallow pots make this stall an unpleasant place to loiter. Still, people need candles, and customers seem to be buying them as fast as the stall keeper can dip them. Most of the candles are tallow, fast-burning and cheap, but there are also a number of premade wax candles in different colors. Other stalls are to the north, east, west, southeast, and southwest." The printed name is "Candlemaker's Stall". The distant description of the Candle Stall is "[one of]There's a candle stall[or]There's candles for sale[or]Looks like they're selling candles[at random] to the [best route from the location to the noun][if the noun is blocked]. The stallkeeper looks like he's still keeping a sharp eye out for you[end if]." The dead-end description of the Candle Stall is "The stalls are too close together in that direction; you can't squeeze through."
+Grubbers Market Candle Maker Stall is a market stall, privately-named, northeast of Grubbers Market Rope Dealer, east of Grubbers Market Northwest Junction, south of Grubbers Market Grocery Stall, west of Grubbers Market Fruit Stall. "The heat and fumes from the candlemaker's tallow pots make this stall an unpleasant place to loiter. Still, people need candles, and customers seem to be buying them as fast as the stall keeper can dip them. Most of the candles are tallow, fast-burning and cheap, but there are also a number of premade wax candles in different colors. Other stalls are to the north, east, west, southeast, and southwest." The printed name is "Candlemaker's Stall". The distant description of the Candle Stall is "[one of]There's a candle stall[or]There's candles for sale[or]Looks like they're selling candles[at random] to the [best route from the location to the noun][if the noun is blocked]. The stallkeeper looks like he's still keeping a sharp eye out for you[end if]." The dead-end description of the Candle Stall is "The stalls are too close together in that direction; you can't squeeze through."
 
-Understand "candles", "makers", "candlemakers" as the Candle Maker Stall. 
+Understand "candles", "makers", "candlemakers", "stall", "market stall" as the Candle Maker Stall. 
 
 Instead of smelling the Candle Maker Stall:
 	say "The fumes from the boiling tallow make your eyes water.";
@@ -2201,7 +2243,7 @@ Chapter 2 - Concerning wax
 
 Wax is a kind of value. The waxes are red wax, green wax, blue wax and white wax.
 
-To say (w - a wax):
+To say (w - a wax) wax:
 	if w is red wax begin;
 		say "red";
 	otherwise if w is green wax;
@@ -2246,13 +2288,17 @@ Some wax candles are a candle display, in the Candle Maker Stall. "The wax candl
 Before stealing or taking the wax candles:
 	try stealing a random nearby waxy display instead;
 
-The wax candle is merchandise. The description is "The wax candle is smooth and straight, and colored bright [wax color]." The printed name is "candle". The wax candle has a wax called the wax color. Understand "smooth", "straight", "colored", "coloured", "wax", "premade", "color", "colors", "colour", "colours" as the wax candle. 
+The wax candle is merchandise. The description is "The wax candle is smooth and straight, and colored bright [wax color wax]." The printed name is "candle". The wax candle has a wax called the wax color. Understand "smooth", "straight", "colored", "coloured", "wax", "premade", "color", "colors", "colour", "colours" as the wax candle. 
 
 Chapter 4 - Stealing particularly colored wax candles 
 
 [Grotesquely inelegant, but typing "steal red candle" and ending up with a green one wasn't very satisfying.]
 
-A waxy display is a kind of stall display. The description of a waxy display is usually "The wax candles are smooth and straight, and come in several colors, including [waxy color]." The printed name of a waxy display is usually "[waxy color] wax candles". A waxy display has a wax called the waxy color. 
+A waxy display is a kind of stall display. The description of a waxy display is usually "The wax candles are smooth and straight, and come in several colors, including [waxy color wax]."
+A waxy display has a wax called the waxy color.
+
+Rule for printing the name of a waxy display:
+	say "[waxy color wax] wax candles";
 
 The corresponding item of a waxy display is the wax candle.
 
@@ -2295,9 +2341,9 @@ Instead of doing something other than smelling the fumes, say "They're just insu
 
 Chapter 5 - Candle Stallkeeper
 
-The candle-maker is a stallkeeper and in the Candle Maker Stall. The proprietor of the Candle Maker Stall is the candle-maker. The printed name of the candle-maker is "stallkeeper". 
+The candlemaker is a stallkeeper and in the Candle Maker Stall. The printed name of the candlemaker is "stallkeeper". 
 
-Understand "candle", "candlemaker", "maker" as the candle-maker. 
+Understand "candlemaker", "candle maker/merchant/seller/stallkeeper", "candle stall keeper" as the candlemaker. 
 
 Part 14 - Pottery Stall
 
@@ -2344,7 +2390,7 @@ The clay bowl is Ceramics. The description is "It's a small, shallow bowl, ideal
 
 Chapter 3 - Pottery Stallkeeper
 
-The pottery stallkeeper is a stallkeeper and in the Pottery Stall. The proprietor of the Pottery Stall is the pottery stallkeeper. The printed name is "stallkeeper". Understand "pot", "potter" as the pottery stallkeeper.
+The pottery stallkeeper is a stallkeeper and in the Pottery Stall. The printed name is "stallkeeper". Understand "pot", "potter" as the pottery stallkeeper.
 
 Part 15 - Some wooden posts
 
@@ -2357,7 +2403,7 @@ To say tent or stall:
 
 The inaccessible center post is a backdrop. It is not scenery. The printed name is "center post".
 
-The description is "This is the central post that holds up the system of canvas awnings stretched over the market square. It rises up from the midst of a cluster of stalls in the middle of the market, to a height of about fifty feet. Thick, taut support wires stretch from the top of the post to the four cardinal directions."
+The description is "This is the central post that holds up the system of canvas awnings stretched over the market square. It rises up from the midst of a cluster of stalls in the middle of the market, to a height of about fifty feet. Thick, taut support wires stretch from the top of the post in four directions: northwest, northeast, southwest, and southeast."
 
 The initial appearance is "[one of]Rising up behind the [tent or stall] is a tall wooden post[or]You see a tall wooden post rising up behind the [tent or stall][or]A tall wooden post is visible behind the [tent or stall][or]Behind the [tent or stall] is a tall wooden post[at random]."
 
@@ -2488,15 +2534,11 @@ Before taking off the silk cloak during Final Chase:
 Instead of giving or showing the silk cloak to someone during Avoiding Soldiers:
 	say "You need this cloak to get past the mercenaries. Better hold on to it for now.";
 
-Before wearing the silk cloak:
-	if the player is wearing the gray cloak begin;
-		say "You can't wear more than one cloak!" instead;
-	end if;
+Instead of wearing the silk cloak when the player wears the gray cloak:
+	say "You can't wear more than one cloak!" instead;
 
-Before wearing the gray cloak:
-	if the player wears the silk cloak begin;
-		say "You can't wear more than one cloak!" instead;
-	end if;
+Instead of wearing the gray cloak when the player wears the silk cloak:
+	say "You can't wear more than one cloak!" instead;
 
 After wearing the silk cloak:
 	say "You slip the cloak around your shoulders, fastening it just under your neck in the feminine style and drawing the edges together to hide your clothes. [if the player wears the hat]If you took your cap off, you'd[otherwise]With your cap off, you[end if] look just like a young girl, albeit one with a very uneven haircut.[paragraph break]";
@@ -2509,12 +2551,14 @@ Chapter 4 - Teisha
 
 Section 1 - Description
 
-Teisha is a stallkeeper, in Grubbers Market Teishas Tent. The proprietor of Teishas Tent is Teisha. The initial appearance of Teisha is "Teisha sits on a stool in back, smiling distractedly." Teisha is female. The description of Teisha is "Teisha is a short, busty woman with a smile as warm as her tumbling red curls. She likes you, and she knows that you'd never nick from her stall, so she lets you hang around the stall and look through the merchandise. She also knows your big secret (guessed it the very first time she caught you loitering at the tent flap), which is a little bit scary and a little bit of a relief — it's nice to be able to let your guard down and talk to someone outside Maiden House." Understand "woman", "merchant", "saleswoman", "seller", "vendor", "clothier", "short", "busty", "warm", "smile", "tumbling", "red", "curls", "hair", "Teishas" as Teisha.
+Teisha is a woman, in Grubbers Market Teishas Tent. The initial appearance of Teisha is "Teisha sits on a stool in back, smiling distractedly." Teisha is female. The description of Teisha is "Teisha is a short, busty woman with a smile as warm as her tumbling red curls. She likes you, and she knows that you'd never nick from her stall, so she lets you hang around the stall and look through the merchandise. She also knows your big secret (guessed it the very first time she caught you loitering at the tent flap), which is a little bit scary and a little bit of a relief — it's nice to be able to let your guard down and talk to someone outside Maiden House." Understand "woman", "merchant", "saleswoman", "seller", "vendor", "clothier", "short", "busty", "warm", "smile", "tumbling", "red", "curls", "hair", "Teishas" as Teisha.
 
 A measuring cord is carried by Teisha. The description is "It's a five-foot-long length of cord, marked off in ten segments, used to take a customer's measurements." Understand "Teishas" as the measuring cord.
 
 Instead of kissing Teisha, say "You throw your arms around Teisha's neck and give her a kiss on the cheek. She laughs and looks at you strangely. 'What's got into you, Jack?'"
 
+Rule for printing the name of Teisha:
+	say "Teisha"; [rather than just "stallkeeper"]
 
 Section 2 - Actions
 
@@ -2889,7 +2933,7 @@ Before examining the generic stall:
 		try examining a random nearby stall display instead;
 	end if;
 
-Instead of entering the generic stall in the presence of a grumpy stallkeeper:
+Instead of entering the generic stall in the presence of a stallkeeper:
 	say "The stallkeeper shoos you away. 'Customers on the outside!' he shouts."
 
 Section 2 - Various synonyms
@@ -2906,7 +2950,7 @@ Understand "weapon", "weapons", "weaponry", "weaponsmiths stall" as the generic 
 Understand "leather", "goods", "leatherware" as the generic stall when the location is Grubbers Market Leather Shop.
 Understand "herb", "herbs", "herbalists stall" as the generic stall when the location is Grubbers Market Herb Stall.
 Understand "rope" as the generic stall when the location is Grubbers Market Rope Dealer.
-Understand "candle", "candles", "makers", "candlemakers stall" as the generic stall when the location is Grubbers Market Candle Maker Stall.
+Understand "candles", "candle makers stall", "candlemakers stall" as the generic stall when the location is Grubbers Market Candle Maker Stall.
 Understand "pottery", "pot", "pots", "potters" as the generic stall when the location is Grubbers Market Pottery Stall.
 
 Does the player mean examining the generic stall: it is likely.
@@ -3071,9 +3115,9 @@ Before facing a planar direction in Grubbers Market Top of Center Post:
 Instead of smelling Grubbers Market Top of Center Post, say "The air is fresh up here, although the scents of the market drift up faintly from below."
 Instead of listening to Grubbers Market Top of Center Post, say "It is relatively quiet and peaceful up here, although the sounds of the market drift up faintly from below."
 
-The farmland-view is scenery, in Top of Center Post. The description is "The view is spectacular, but you don't have time to waste gawking."
+The farmland-view is scenery, in Top of Center Post. The printed name is "view". The description is "The view is spectacular, but you don't have time to waste gawking."
 
-Understand "road", "keep", "city", "market", "square", "meadows", "meadow", "farmlands", "farmland", "farms", "farm", "stall", "stalls", "lords road/keep", "Commerce", "street", "Grubbers", "Miradan", "Miradania", "rolling", "pastures", "pasture" as the farmland-view.
+Understand "road", "keep", "city", "meadows", "meadow", "farmlands", "farmland", "farms", "farm", "lords road/keep", "Commerce", "street", "Miradan", "Miradania", "rolling", "pastures", "pasture" as the farmland-view.
 
 Instead of doing something other than examining to the farmland-view, say "It's all too far away for you to do more than look at it."
 
@@ -3101,15 +3145,19 @@ Check hanging it on (this is the block hanging rule):
 
 Chapter 4 - Contents (cables)
 
+Section 1 - Pointiness
+
 A pointy thing is a kind of thing. A pointy thing has a direction called the way.
 
-A cable is a kind of pointy thing. A cable is usually scenery. The northwest cable, the southwest cable, the northeast cable and the southeast cable are cables and here. Understand "anchor", "braided", "wire", "thick", "cables", "wires" as cable.
+A cable is a kind of pointy thing. A cable is usually scenery. The northwest cable, the southwest cable, the northeast cable and the southeast cable are cables and here. Understand "anchor", "braided", "wire", "thick", "rough" as cable.
 
 A cable has a direction called the way. The way of the northwest cable is northwest. The way of the southeast cable is southeast. The way of the southwest cable is southwest. The way of the northeast cable is northeast.
 
 Pointing relates a pointy thing (called the indicator) to a direction (called D) when the way of the indicator is D. The verb to point (it points, they point, it pointed) implies the pointing relation.
 
-The description of a cable is "[cable description of the item described][paragraph break]".
+Section 2 - Cable
+
+The description of a cable is "[cable description of the item described]".
 
 To say cable description of (c - a cable):
 	let dest be the destination corresponding to a cable of c in the Table of landing locations;
@@ -3135,6 +3183,15 @@ Instead of sliding down a cable barehanded, say "The cable is too steep for you 
 
 Before putting something on a cable:
 	try hanging the noun on the second noun instead;
+
+Section 2 - Collected cables
+
+Some collective cables are scenery, in Top of Center Post. The printed name of the collective cables is "cables". The description of the collective cables is "There are four cables, each made of thick, braided wire. They stretch southwest, southeast, northeast, and northwest to the four corners of the market."
+
+Understand "anchor", "braided", "wires", "wire cables", "thick", "rough" as the collective cables.
+
+Before doing something other than examining with the collective cables:
+	change the noun to a random cable.
 
 Chapter 5 - Aerial Runway
 
@@ -3209,6 +3266,7 @@ Instead of giving or showing the necklace to someone when the second noun is not
 To say monkey escape:
 	remove the monkey from play;
 	say "You reach for the necklace, and the monkey backs away, screeching angrily.[paragraph break]Then, suddenly, it turns, crouches, and lets go of the wire. As it falls, it swings the necklace over the wire and grabs the other end with its free hand. Hanging onto the thin gold chain, the monkey slides away to the [one of]northeast[or]northwest[or]southeast[or]southwest[purely at random], to the stalls far below, hooting with glee all the way down.";
+	update the character list;
 
 Every turn during monkey business:
 	if the monkey is off-stage and the location is not Grubbers Market Top of Center Post begin;
@@ -3345,6 +3403,11 @@ When Final Chase begins:
 	silence Teisha;
 	say "Suddenly you hear someone shouting just outside: [i]'Hey, any of you dims check inside this tent yet?'[no line break][r][paragraph break]Teisha's face turns white. 'Hurry, Jack!' she hisses, 'Out the back way!'";
 
+Instead of wearing the green silk cloak when the player wears the gray cloak during Final Chase:
+	say "You slip out of your old gray cloak and wrap the green cloak around you.";
+	now the gray cloak is carried by the player;
+	now the green silk cloak is worn by the player.
+
 Tent Escape is a scene. Tent Escape begins when TE20 is fired. Tent Escape ends disastrously when the time since Tent Escape began is 2 minutes and the location is not Grubbers Market Center Post. Tent Escape ends safely when the time since Tent Escape began is 2 minute and the location is Grubbers Market Center Post.
 
 Before going south in Teishas Tent during Tent Escape:
@@ -3460,6 +3523,7 @@ Market Escape ends in capture when the table of Chasing Mercenary descriptions i
 After going to a market stall during Market Escape:
 	say "You [one of]sprint[or]dive[or]weave[or]dodge[or]race[at random] through the crowd.";
 	try looking;
+	update the character list;
 
 After going to Grubbers Market Outside Silk Stall during Market Escape:
 	say "You dash for Teisha's tent, but it's no good — the mercenaries have planted themselves outside it and are scanning the crowd. You backpedal quickly before they can spot you.";
@@ -3487,7 +3551,7 @@ text
 [row marker]
 "The shouts are getting closer.[line break]" 
 [row marker]
-"You hear curses and yells of pain as the mercenaries shove their way through the crowds of shoppers. They're closing in![paragraph break]"
+"You hear curses and yells of pain as the mercenaries shove their way through the crowds of shoppers. They're closing in![line break]"
 [row marker]
 "Someone yells, [i]'There! I see him!'[r][line break]"
 [row marker]
@@ -3537,11 +3601,11 @@ Inside from Commerce Street is nowhere. Instead of going Inside from Commerce St
 
 Section 2 - Scenery (Sidewalks)
 
-The sidewalk is scenery, here. The description is "The sidewalks are made of flagstones laid over the cobbles of the street." Understand "sidewalks", "flagstone", "flagstones" as the sidewalk.
+The sidewalk is scenery, in Commerce Street. The description is "The sidewalks are made of flagstones laid over the cobbles of the street." Understand "sidewalks", "flagstone", "flagstones" as the sidewalk.
 
-Some cobblestones are scenery, here. The description is "The cobblestones are slick with mud." Understand "cobbles", "cobble", "cobblestone", "street", "stone", "stones" as the cobblestones. The printed name is "cobbles".
+Some cobblestones are scenery, in Commerce Street. The description is "The cobblestones are slick with mud." Understand "cobbles", "cobble", "cobblestone", "street", "stone", "stones" as the cobblestones. The printed name is "cobbles".
 
-Some mud is scenery, here. The description is "This sort of filth accumulates in most of the streets in Toresal, except for the richer districts." Understand "dung", "filth" as the mud.
+Some mud is scenery, in Commerce Street. The description is "This sort of filth accumulates in most of the streets in Toresal, except for the richer districts." Understand "dung", "filth" as the mud.
 
 Chapter 1 - Stores and Storefronts
 
@@ -3625,16 +3689,16 @@ Instead of smelling the Bakers Shop, say "The store is filled with the smell of 
 
 Chapter 2 - Contents - Scenery
 
-A counter is scenery and here. Some baked-goods are scenery. The baked-goods are on the counter. "It looks and smells delicious, but right now you need answers more than you need a snack." Understand "bread", "loaves", "baguettes", "rolls", "loaf", "baguette", "roll" as the baked-goods. The printed name of the baked-goods is "bread".
+A counter is scenery and here. Some baked-goods are scenery. The baked-goods are on the counter. "All the bread looks and smells delicious, but right now you need answers more than you need a snack." Understand "bread", "loaves", "baguettes", "rolls", "loaf", "baguette", "roll" as the baked-goods. The printed name of the baked-goods is "bread".
 
 Instead of doing something other than examining to the baked-goods, try examining the baked-goods. 
 
-Some flour is scenery. The flour is on the counter. "Germaise likes to throw around great handfuls of flour whenever he's making something, and he and everything else in the bakery is covered with the white, powdery stuff." Understand "white", "powder", "powdery", "film" as the flour.
+Some flour is scenery. The flour is on the counter. "Germaise likes to throw around great handfuls of flour whenever he's making something, and he and everything else in the bakery is covered with the white, powdery stuff." Understand "white", "powder", "powdery", "stuff", "film", "dust", "dusty", "floury", "thin film", "film of", "thin film of" as the flour.
 
 Instead of doing something other than examining to the flour:
 	say "It's just a thin film of flour — you can't really do anything with it.";
 
-An oven is scenery and here. "Most of the shop's back wall is actually the front of Germaise's huge brick oven. A warm, orange glow and the delicious smells of baking bread drift from its wide opening." Understand "huge", "brick" as the oven.
+An oven is scenery and here. "Most of the shop's back wall is actually the front of Germaise's huge brick oven. A warm, orange glow and the delicious smells of baking bread drift from its wide opening." Understand "huge", "brick", "warm", "orange", "glow", "hot", "kiln", "furnace", "back wall" as the oven.
 
 Instead of doing something other than examining the oven, say "It's behind the counter, and Germaise wouldn't want you messing with it in any case.".
 
@@ -3642,6 +3706,7 @@ Chapter 3 - Event on entry
 
 After going to the Bakers shop for the first time:
 	try looking;
+	update the character list;
 	if the location has not been the sewer begin;
 		say "The man behind the counter nods at you amiably as you enter the shop.";
 	otherwise;
@@ -3650,14 +3715,16 @@ After going to the Bakers shop for the first time:
 
 After going to the Bakers shop:
 	try looking;
+	update the character list;
 	if the player has been in the sewer and GE16 is unfired begin;
 		start conversation with Germaise the Baker on GE16;
 	end if;
 
 Chapter 4 - Leaving
 
-Before going from the Bakers Shop:
-	if the player has not been in the sewer, say "'Later, Germaise,' you call out as you leave.[paragraph break]'Eh,' grunts Germaise, flapping a flour-dusted hand at you."
+After going from the Bakers Shop:
+	if the player has not been in the sewer, say "'Later, Germaise,' you call out as you leave.[paragraph break]'Eh,' grunts Germaise, flapping a flour-dusted hand at you.";
+	continue the action;
 
 Chapter 5 - Germaise the Baker
 
@@ -3799,8 +3866,8 @@ The response of GE17 is { GE18 }.
 The response of GE18 is { GE17 }.
 
 After populating a quip that is clustered with GE16:
-	if GE17 is fired, remove GE17 from the current conversation;
-	if GE18 is fired, remove GE18 from the current conversation;
+	if GE17 is fired, remove GE17 from the current conversation, if present;
+	if GE18 is fired, remove GE18 from the current conversation, if present;
 
 Part 3 - In Old Man Holstenoffer's Butcher's Shop
 
@@ -3815,16 +3882,25 @@ The dead-end description of the Butchers Shop is "You can see no other exits bes
 
 Instead of smelling the Butchers Shop, say "The store is filled with the thick, bloody smell of raw meat."
 
-A counter 2 is scenery. The counter 2 is in the Butchers Shop. The printed name is "counter". Some trays are scenery and merchandise and on counter 2. The description is "The sausage looks tasty enough, and the hanging meat cuts would probably look good once they're cooked. The rest of it just makes you sort of ill." Understand "tray", "meat", "sausage", "sausages", "carcass", "carcasses", "bits", "tray of", "bargain bits", "bargains" as the trays. The printed name is "trays of meat".
+A counter 2 is privately-named, scenery. The counter 2 is in the Butchers Shop. The printed name is "counter".
+
+Some trays are scenery and merchandise and on counter 2. The description is "The sausage looks tasty enough, and the hanging meat cuts would probably look good once they're cooked. The rest of it just makes you sort of ill."
+
+Understand "tray", "meat", "sausage", "sausages", "carcass", "carcasses", "bits", "tray of", "bargain bits", "bargains", "counter", "gristle", "label", "labeled/labelled", "hanging", "hung", "cut/cuts", "chop/chops", "joint/joints", "raw" as the trays. The printed name is "trays of meat".
 
 Instead of eating, tasting or smelling the trays:
 	say "For some reason, this place just kills your appetite."
 
-Some hooks are scenery, here. The description is "Dozens of thick, brutal hooks hang from the ceiling."
+Instead of searching the trays:
+	try examining the trays;
+
+Some hooks are scenery, in the Butchers Shop. The description is "Dozens of thick, brutal hooks hang from the ceiling."
 
 Instead of doing something other than examining to the hooks: say "The hooks are out of your reach.";
 
-A chopping block is scenery, here. The description is "Holstenoffer's chopping block is cut from a single, gigantic piece of unstained oak. Its surface is stained black with blood, soaked three inches down into the wood's grain."
+Understand "thick", "brutal", "hook" as the hooks.
+
+A chopping block is scenery, in the Butchers Shop. The description is "Holstenoffer's chopping block is cut from a single, gigantic piece of unstained oak. Its surface is stained black with blood, soaked three inches down into the wood's grain."
 
 Understand "stain", "stains", "stained", "oak", "oaken", "wood", "wooden", "gigantic", "unstained", "black", "grain", "board", "cutting", "butcher block/board", "butchers block/board" as the chopping block.
 
@@ -3848,6 +3924,7 @@ Chapter 3 - Event on entry
 
 After going to the Butchers shop for the first time:
 	try looking;
+	update the character list;
 	if the player has been in the sewer begin;
 		start conversation with Holstenoffer on HO18;
 	otherwise;
@@ -3856,14 +3933,16 @@ After going to the Butchers shop for the first time:
 
 After going to the Butchers shop [subsequent times]:
 	try looking;
+	update the character list;
 	if the player has been in the sewer begin;
 		start conversation with Holstenoffer on HO18;
 	end if;
 
 Chapter 4 - Leaving
 
-Before going from the Butchers Shop:
-	say "Holstenoffer waves his bloody cleaver at you as you leave. 'Take care of yourself, Jack.'"
+After going from the Butchers Shop:
+	say "Holstenoffer waves his bloody cleaver at you as you leave. 'Take care of yourself, Jack.'";
+	continue the action;
 
 Chapter 5 - Conversation
 
@@ -4039,8 +4118,9 @@ Before buying anything when the location is the armory shop and the player does 
 
 Section 3 - Leaving
 
-Before going from the Armory Shop:
-	say "You leave the weapons shop with a sense of relief."
+After going from the Armory Shop:
+	say "You leave the weapons shop with a sense of relief.";
+	continue the action;
 
 Section 4 - Conversation
 
@@ -4087,7 +4167,7 @@ After populating a quip (called q) when Olgan Minor is the current conversationa
 		remove OM4 from the current conversation, if present;
 	end if;
 	if the location has not been the sewers begin;
-		remove OL9 from the current conversation, if present;
+		remove OM9 from the current conversation, if present;
 	end if;
 
 Rule for firing a fired quip that is clustered with OM2:
@@ -4102,7 +4182,7 @@ After firing OM8:
 
 To decide whether the player is scared of Olgan Minor:
 	[...whereupon we'll be wary of going back in there.]
-	if the bodyguard scene is happening, no; [ ok with backup ]
+	if the bodyguard scene is happening, no; [ ok with Pieter as backup ]
 	if OM8 is fired, yes; [ not ok if we've been thrown out]
 	no; [ ok if we know no better ]
 
@@ -4116,6 +4196,7 @@ Understand "upper", "class", "residential", "neighborhood" as East Commerce Stre
 
 After going south to East Commerce Street when the player is clean:
 	try looking;
+	update the character list;
 	say "[first time]'I suppose we should go see Mrs. Sandler now,' Shannon says.[only]";
 
 The distant description of East Commerce Street is "East Commerce Street lies just [if location is Commerce Street]east[otherwise if location is Lords Market]west[otherwise]south[end if] of here."
@@ -4165,7 +4246,7 @@ Instead of opening, knocking on, or entering Jacobs Family Mansion, say "You don
 
 Section 4 - City Park
 
-City Park is scenery, here. The description is "The park is a couple of acres of open meadow and sparse woods in the middle of the city, set aside by the previous Lord to promote health and relaxation among Toresal's citizens. It still sees strollers and the occasional picnicker by day, although it's become infamous as a haunt for cutpurses by night. The park is surrounded by a high stone wall, with a gate on the north side." The printed name is "park". Understand "meadow", "woods", "wood" as City Park.
+City Park is scenery, in East Commerce Street. The description is "The park is a couple of acres of open meadow and sparse woods in the middle of the city, set aside by the previous Lord to promote health and relaxation among Toresal's citizens. It still sees strollers and the occasional picnicker by day, although it's become infamous as a haunt for cutpurses by night. The park is surrounded by a high stone wall, with a gate on the north side." The printed name is "park". Understand "meadow", "woods", "wood" as City Park.
 
 Instead of going south in East Commerce Street, try entering City Park.
 Instead of entering City Park, say "[one of]You hesitate. Several street kids have congregated in the middle of the park, chasing each other and playing at knights and villains in the late afternoon warmth. Some of them know you from Maiden House, and know that you're really a girl. That could lead to an awkward situation if one of them called you out in front of someone who only knows you as a boy. [i]Especially[r] if that someone was Bobby[or]No, too risky. Better visit the park another day[stopping]."
@@ -4175,7 +4256,7 @@ Instead of entering City Park when it is night,
 
 Section 5 - Iron Fence
 
-The iron fence is scenery, here. The description is "The fence is too high to climb, and topped with sharp iron spikes to boot." Understand "spike", "spikes", "spiked" as the fence.
+The iron fence is scenery, in East Commerce Street. The description is "The fence is too high to climb, and topped with sharp iron spikes to boot." Understand "spike", "spikes", "spiked" as the fence.
 
 Instead of climbing the fence:
 	try examining the fence;
@@ -4252,12 +4333,13 @@ After assembling when in Lords Market:
 
 Section 2 - Lamps
 
-Some lanterns are scenery, here. The description is "[if it is night]The lampposts cast circles of warm yellow light around the perimeter of the market square[otherwise]The lampposts are unlit during the day[end if]." Understand "lamp", "lamps", "lantern", "lanterns", "post", "posts", "lamppost", "lampposts" as the lanterns.
+Some lanterns are scenery, in Lords Market. The description is "[if it is night]The lampposts cast circles of warm yellow light around the perimeter of the market square[otherwise]The lampposts are unlit during the day[end if]." Understand "lamp", "lamps", "lantern", "lanterns", "post", "posts", "lamppost", "lampposts" as the lanterns.
 
 Chapter 4 - Event on entry
 
 After going to Lords Market for the first time:
 	try looking;
+	update the character list;
 	say "As you are standing there getting your bearings, the door to the moneylender's shop suddenly slams open. A tall, dark-cloaked figure storms out, shouting over his shoulder, '...regret refusing my business! I know import—[i]OOF!'[no line break][r] —and before you have a chance to react, he crashes into you. You both hit the cobbles in a tangle of limbs.[paragraph break]Muttering apologies, you try to disentangle yourself, but the man is on his feet in an instant, dragging you up by your elbow. 'Why you insolent little cutpurse—'[paragraph break]A woman standing next to him places her hand on his shoulder. 'Calm yourself, Fossville,' she says. Only her chin is visible beneath the shadow of her hood, but the woman's voice is cool and commanding. 'It's only a foolish street boy. You've already terrified him.'[paragraph break]The man — you realize now that he must be Baron Fossville, Lord of the city since the old Duke died, and one of the most powerful nobles in Toresal — eyes you suspiciously. Even flustered, his sharp features are intense, handsome, and dangerously intelligent. His lips twitch slightly beneath his trim moustache. Finally, he releases you.[paragraph break]'Off with you then, urchin,' he growls, flicking his fingers as though he had just touched something filthy. 'Take your begging elsewhere, and learn to stay out from under the feet of your betters.'[paragraph break]Fossville strides off towards Commerce Street, followed closely by his hooded companion. As she brushes past you, you can hear her talking in a low voice, '...have the money you need, but we must be subtle about it. The Queen can not appear to play favorites...'[paragraph break]And then they are gone.";
 
 Part 2 - Clothier's (Royal Tunic)
@@ -4273,13 +4355,13 @@ Outside from the clothiers shop is Lords Market.
 Instead of facing outside while in the Clothiers Shop, try facing west.
 The dead-end description of the Clothiers Shop is "You don't see any other exits besides the door to the west, to Lords Market."
 
-Some clothiers curtains are scenery, here. The printed name is "curtains". Understand "curtain" as the clothiers curtains. The clothiers carpet is scenery, here. The printed name is "carpet".
+Some clothiers curtains are scenery, in the Clothiers Shop. The printed name is "curtains". Understand "curtain" as the clothiers curtains. The clothiers carpet is scenery, in the Clothiers Shop. The printed name is "carpet".
 
-Some dummies are scenery, here. The description is "Armless, headless torsos carved from wood, stuck atop iron tripods, and dressed in fancy clothes. They're actually a bit ghoulish, now that you really look at them." Understand "dummy", "torsos", "torsoes", "torso", "tripod", "tripods", "clothiers" as the dummies.
+Some dummies are scenery, in the Clothiers Shop. The description is "Armless, headless torsos carved from wood, stuck atop iron tripods, and dressed in fancy clothes. They're actually a bit ghoulish, now that you really look at them." Understand "dummy", "torsos", "torsoes", "torso", "tripod", "tripods", "clothiers" as the dummies.
 
 Chapter 2 - More scenery (Clothes)
 
-The lovely clothes are scenery, here. The description is "The clothes here are lovely — rich velvets and flowing silks, dyed with brilliant colors and embroidered with lace and gems. [first time]These are the sorts of costumes that you imagine while lying on your straw mattress back at Maiden House, dreaming about dazzling the Prince at the Royal Ball. Stupid fantasies, you know, but oh — if you could only wear something as beautiful as these, just for one evening...[only][if the player is still dirty][paragraph break]Suddenly, you remember that you're supposed to be looking at the [i]men's[r] clothing. You glance nervously at the shopkeeper, but he doesn't seem to find your intense interest in ladies['] formal wear strange in the slightest.[end if]".  Understand "velvet", "velvets", "silk", "silks", "costume", "costumes", "dresses", "gowns", "ballgowns", "ball gowns" as the lovely clothes. Understand "dress", "gown", "ballgown", "ball gown" as the lovely clothes when the location does not enclose the ball gown. 
+The lovely clothes are scenery, in the Clothiers Shop. The description is "The clothes here are lovely — rich velvets and flowing silks, dyed with brilliant colors and embroidered with lace and gems. [first time]These are the sorts of costumes that you imagine while lying on your straw mattress back at Maiden House, dreaming about dazzling the Prince at the Royal Ball. Stupid fantasies, you know, but oh — if you could only wear something as beautiful as these, just for one evening...[only][if the player is still dirty][paragraph break]Suddenly, you remember that you're supposed to be looking at the [i]men's[r] clothing. You glance nervously at the shopkeeper, but he doesn't seem to find your intense interest in ladies['] formal wear strange in the slightest.[end if]".  Understand "velvet", "velvets", "silk", "silks", "costume", "costumes", "dresses", "gowns", "ballgowns", "ball gowns" as the lovely clothes. Understand "dress", "gown", "ballgown", "ball gown" as the lovely clothes when the location does not enclose the ball gown. 
 
 Yourself can be clean or still dirty. Yourself is still dirty.
 
@@ -4295,8 +4377,9 @@ After going to the clothiers shop when the player is clean:
 
 Section 1 - Leaving
 
-Before going from the Clothiers Shop:
-	say "'Come back soon, sweetie,' calls the clothier as you leave."
+After going from the Clothiers Shop:
+	say "'Come back soon, sweetie,' calls the clothier as you leave.";
+	continue the action;
 
 Chapter 4 - The Clothier
 
@@ -4323,7 +4406,8 @@ After buying the lovely clothes when the player has the bag of coins and the pla
 	remove the daydress from play;
 	now the player carries the ball gown;
 	now the player wears the ball gown;
-	say "After several agonizing minutes of indecision, you point to the dress you want.[paragraph break]The clothier flutters his hands and practically giggles, 'Oh, a [i]splendid[r] choice! You'll look like a princess!' He dances around you, taking measurements with his cord and muttering numbers to himself as he goes. Then he takes the dress off its dummy and retreats with it into the back of his shop. 'This will be [i]just[r] a moment,' he calls over his shoulder.[paragraph break]You look at Pieter and shrug.[paragraph break]'Er, I'll wait outside,' he says.[paragraph break]And afterwards, as you look at yourself in the full-length mirror while the clothier kneels at your feet, tugging, plucking, pinning, making adjustments, you realize that he was right — you [i]do[r] look like a princess."
+	say "After several agonizing minutes of indecision, you point to the dress you want.[paragraph break]The clothier flutters his hands and practically giggles, 'Oh, a [i]splendid[r] choice! You'll look like a princess!' He dances around you, taking measurements with his cord and muttering numbers to himself as he goes. Then he takes the dress off its dummy and retreats with it into the back of his shop. 'This will be [i]just[r] a moment,' he calls over his shoulder.[paragraph break]You look at Pieter and shrug.[paragraph break]'Er, I'll wait outside,' he says.[paragraph break]And afterwards, as you look at yourself in the full-length mirror while the clothier kneels at your feet, tugging, plucking, pinning, making adjustments, you realize that he was right — you [i]do[r] look like a princess.";
+	update the character list;
 
 Chapter 6 - Conversation
 
@@ -4377,6 +4461,7 @@ Getting changed is a scene. Getting changed begins when the player wears the bal
 
 When getting changed begins:
 	remove Pieter from play;
+	update the character list;
 
 When getting changed ends:
 	say "Pieter blinks and does a double take as you step out onto the sidewalk in your new finery. '[i]Wow[r],' he stammers. 'You look... different. I mean, you looked good before, er, with the other dress, I mean, but this is... [i]wow[r].' He blushes, then grins, then shakes his head. 'Come on, Lady Toresal. We still have much to do.'";
@@ -4409,7 +4494,7 @@ Understand "ring" as the valuable jewelry when the location does not enclose the
 
 Chapter 2 - Pieter
 
-Pieter is a man, here. The description is "[if Pieter has not been caught]Pieter is loyal to Dame Sandler and tirelessly vigilant. You've traded friendly words with him in the past, but most of the time he stays quiet to preserve a sense of professionalism. He gives you a slight smile and nod when you catch his eye.[otherwise]It looks as though they worked him over pretty hard before tying him up. His wrists and ankles are all bound together behind his back, the ropes digging cruelly into his skin.[end if]". Understand "guard", "man" as Pieter.
+Pieter is a man, in the Jewelers Shop. The description is "[if Pieter has not been caught]Pieter is loyal to Dame Sandler and tirelessly vigilant. You've traded friendly words with him in the past, but most of the time he stays quiet to preserve a sense of professionalism. He gives you a slight smile and nod when you catch his eye.[otherwise]It looks as though they worked him over pretty hard before tying him up. His wrists and ankles are all bound together behind his back, the ropes digging cruelly into his skin.[end if]". Understand "guard", "man" as Pieter.
 
 The initial appearance of Pieter is "[if caught]Pieter is lying on the floor in front of the fire place, trussed up and gagged.[otherwise if the Bodyguard Scene has not happened]Pieter stands discreetly near the back of the room.[otherwise]Pieter is here, [one of]looking around warily[or]fingering his sword hilt[or]muttering to himself[or]shifting his feet impatiently[or]keeping a close eye on you[at random][end if]";
 
@@ -4435,6 +4520,7 @@ Chapter 4 - Events on entry and exit
 
 After going to the jewelers for the first time:
 	try looking;
+	update the character list;
 	if the player is still dirty:
 		now Dame Sandler is not scenery;
 		if A New Morning has happened, start conversation with Dame Sandler on DS24;
@@ -4445,6 +4531,7 @@ After going to the jewelers for the first time:
 
 After going to the jewelers when A New Morning has happened and the player is dirty and DS24 is unfired:
 	try looking;
+	update the character list;
 	start conversation with Dame Sandler on DS24;
 
 Instead of going from the jewelers for the first time:
@@ -4618,14 +4705,14 @@ Outside from the moneylenders shop is Lords Market.
 Instead of facing outside while in the Moneylenders Shop, try facing west.
 The dead-end description of the Moneylenders Shop is "You don't see any other exits besides the door to the west, to Lords Market."
 
-Some armchairs are a supporter, and scenery, here. The description is "The armchairs are overstuffed, upholstered in rich, dark leather." Understand "armchair", "chair", "chairs", "leather", "dark", "rich", "overstuffed" as the armchairs. The printed name is "chairs".
+Some armchairs are a supporter, and scenery, in the Moneylenders Shop. The description is "The armchairs are overstuffed, upholstered in rich, dark leather." Understand "armchair", "chair", "chairs", "leather", "dark", "rich", "overstuffed" as the armchairs. The printed name is "chairs".
 
 Instead of entering the armchairs:
 	say "They look very comfortable, but it would feel awkward sitting in the chair and yelling across the room at the counter.";
 
-The moneylenders carpet is scenery, here. The printed name is "carpet". Understand "carpeting" as the carpet.
+The moneylenders carpet is scenery, in the Moneylenders Shop. The printed name is "carpet". Understand "carpeting" as the carpet.
 
-The tellers window is scenery, here. The description of the tellers window is "The window forms a sort of counter, with an ornately scrolled, brass grating that opens to the inside, allowing customers to speak with the proprietors on the other side. In fact, it appears that the only way to get service here is by standing up at the counter, so it's not exactly clear what the fancy chairs are for." Understand "counter", "wall", "scrolled", "brass", "grate", "grating" as the tellers window. The printed name of the tellers window is "window".
+The tellers window is scenery, in the Moneylenders Shop. The description of the tellers window is "The window forms a sort of counter, with an ornately scrolled, brass grating that opens to the inside, allowing customers to speak with the proprietors on the other side. In fact, it appears that the only way to get service here is by standing up at the counter, so it's not exactly clear what the fancy chairs are for." Understand "counter", "wall", "scrolled", "brass", "grate", "grating" as the tellers window. The printed name of the tellers window is "window".
 
 Chapter 2 - Event on entering
 
@@ -4638,12 +4725,14 @@ After going to the moneylenders shop:
 		try looking;
 		now Chorus Brothers are not scenery;
 		start conversation with the Chorus Brothers on CB1;
+		update the character list;
 	end if;
 
 Section 1 - Leaving
 
-Before going from the Moneylenders Shop when the Chorus Brothers are respectful:
-	say "'Come back soon,' intones one of the brothers as you leave. 'Your business is...'[paragraph break]'...always welcome,' finishes the other."
+After going from the Moneylenders Shop when the Chorus Brothers are respectful:
+	say "'Come back soon,' intones one of the brothers as you leave. 'Your business is...'[paragraph break]'...always welcome,' finishes the other.";
+	continue the action;
 
 Chapter 3 - Chorus Brothers
 
@@ -4784,6 +4873,7 @@ After going to the Back Alley for the first time:
 	try looking;
 	now Bobby is not scenery;
 	say "At the end of the alley, a group of young urchins — none older than their eighth year — are clustered around something. As you draw closer, you see Bobby crouched in the midst of them. He's holding his arm out, his fist loosely clenched in front of a dirty-cheeked child of six.[paragraph break]'Go on,' says Bobby. 'Go on, take a look.'[paragraph break]The little boy, his eyes wide and solid, reaches out and pries Bobby's fingers open. His hand is empty. The little boy looks dismayed.[paragraph break]'Ah, but what's this?' asks Bobby. And he reaches forward and draws a copper coin from behind the boy's grimy ear. A collective gasp, then squeals of delight from the rest of the children, and the little boy's eyes look ready to fall out of his head.[paragraph break]Bobby presses the coin into the little boy's hand, then passes out more coins to the others. 'Here,' he says, 'keep it safe in your pocket. Spend it on bread, not candy.' The children take their prizes and scatter.[paragraph break]";
+	update the character list;
 	start conversation with Bobby on BO1;
 
 Chapter 2 - Bobby
@@ -4816,17 +4906,16 @@ Section 2 - Initial appearance, in various circumstances
 The initial appearance of Bobby is "[Bobby initial appearance]"
 
 To say Bobby initial appearance:
-	if the player is in the back alley begin;
+	if the player is in the back alley:
 		say "Bobby leans carelessly against the alley wall, watching you with a slight, wry smile. ";
-	else if the player is in Market Square:;
+	otherwise if the player is in Market Square:
 		say "Bobby is standing in the middle of Grubber's Market, under the shadow of the center post. ";
-	else if creeping to Lord's Keep is happening;
+	otherwise if creeping to Lord's Keep is happening:
 		say "Bobby is here, waiting for you. ";
-	else if the Skirmish is happening;
+	otherwise if the Skirmish is happening:
 		say "Bobby and Baron Fossville are surrounded by a whirl of flashing steel as they slash and hack at each other. ";
-	else if it is night;
+	otherwise if it is night:
 		say "Bobby is here, waiting for you. ";
-	end if;
 
 Section 3 - Meeting Bobby, and Bobby's plan
 
@@ -4892,6 +4981,7 @@ The response of BO10 is {  }
 
 After firing BO10:
 	remove Bobby from play;
+	update the character list;
 
 The response of BO11 is { BO6, BO12, BO14, BO15 }
 
@@ -4916,7 +5006,7 @@ After inspecting the Hallway while in Entrance to Maiden House, say "You'll have
 
 The dead-end description of Entrance to Maiden House is "[description of run-down buildings]".
 
-Some run-down buildings are scenery, here. The description is "The buildings in this part of town have seen better days." Understand "old", "run down", "tenements" as the run-down buildings.
+Some run-down buildings are scenery, in Entrance to Maiden House. The description is "The buildings in this part of town have seen better days." Understand "old", "run down", "tenements" as the run-down buildings.
 
 Entrance to Maiden House overlooks Hallway.
 
@@ -5030,6 +5120,7 @@ After going to the Hallway for the first time:
 	set the scene for night;
 	say "You slip quietly through the front door, into the familiar smells of cooking grease and laundry soap; the familiar sight of shabby, warped floorboards lit by dim, flickering tallow lamps. It's nothing fancy, but it's home, and you're familiar enough with the plight of most of Toresal's orphans to know that you're lucky to have it.";
 	try looking;
+	update the character list;
 	now the wooden door is closed;
 	now the wooden door is locked;
 	now Widow Theresa is not scenery;
@@ -5081,23 +5172,23 @@ The Kitchen is northeast of the Hallway. "A low-ceilinged room with a fire pit a
 
 Understand "doorway", "kitchens" as the kitchen. The distant description of the kitchen is "The kitchen is northeast of here."
 
-The table is a supporter, and scenery, here. The description of the table is "The table seats about twenty hungry orphans, with room at the end for two or three scowling widows to enforce discipline. You rarely eat here, yourself. Older kids are encouraged to scrounge around the city for their meals rather than rely on the kitchen, but the Maidens make sure that no one goes hungry."
+The table is a supporter, and scenery, in the Kitchen. The description of the table is "The table seats about twenty hungry orphans, with room at the end for two or three scowling widows to enforce discipline. You rarely eat here, yourself. Older kids are encouraged to scrounge around the city for their meals rather than rely on the kitchen, but the Maidens make sure that no one goes hungry."
 
 [ "The pots and pans are scenery, here" annoyingly gives us a pots object and a pans object.
 ]
-Some pans are scenery, here. The description of the pans is "Dozens of them, and you are familiar with each and every one. Scullery duty is not exactly your favorite day of the week." The printed name is "pots and pans". Understand "pots" as the pans.
+Some pans are scenery, in the Kitchen. The description of the pans is "Dozens of them, and you are familiar with each and every one. Scullery duty is not exactly your favorite day of the week." The printed name is "pots and pans". Understand "pots" as the pans.
 
-The fire pit is scenery, here. The description of the fire pit is "The logs are down to glowing embers now." Understand "fireplace", "log", "logs", "ember", "embers" as the fire pit.
+The fire pit is scenery, in the Kitchen. The description of the fire pit is "The logs are down to glowing embers now." Understand "fireplace", "log", "logs", "ember", "embers" as the fire pit.
 
 Section 1 - Basin and plates
 
-The basin is a container and scenery, here. The description is "The basin is filled with grayish, greasy water. It's not clear whether it's making the dishes more or less dirty."
+The basin is a container and scenery, in the Kitchen. The description is "The basin is filled with grayish, greasy water. It's not clear whether it's making the dishes more or less dirty."
 
 In the basin is some dishwater. It is fixed in place. Instead of examining the dishwater, try examining the basin instead. Understand "water" as the dishwater.
 
 Before drinking, taking, touching, or tasting the dishwater, say "No thanks; that stuff looks nasty." instead.
 
-Some dishes are scenery, here. The description is "The kids did a number on them tonight. Fiona is about halfway through the stack." Understand "plate", "plates", "stack" and "stack of dishes/plates" as the dishes.
+Some dishes are scenery, in the Kitchen. The description is "The kids did a number on them tonight. Fiona is about halfway through the stack." Understand "plate", "plates", "stack" and "stack of dishes/plates" as the dishes.
 
 The dishes can be clean or dirty. The dishes are dirty.
 
@@ -5155,6 +5246,7 @@ Every turn when Widow Fiona is nearby and the location is the Kitchen and the pl
 
 After going to the Kitchen for the first time:
 	try looking;
+	update the character list;
 	start conversation with Widow Fiona on FI1;
 
 Definition: Widow Fiona is concerned for our safety:
@@ -5168,8 +5260,9 @@ Definition: Widow Fiona is at the sink:
 Instead of going from the Kitchen when Widow Fiona is concerned for our safety:
 	say "Fiona holds your arm gently but firmly. 'You're not going anywhere, young lady, until we're done talking about these people who attacked you.'";
 
-Before going from the Kitchen when Widow Fiona is in the Kitchen and Widow Fiona is not concerned for our safety:
-	say "'Good night, Widow Fiona,' you say as you leave.[paragraph break]'Good night, Jacqueline,' she says."
+After going from the Kitchen when Widow Fiona is in the Kitchen and Widow Fiona is not concerned for our safety:
+	say "'Good night, Widow Fiona,' you say as you leave.[paragraph break]'Good night, Jacqueline,' she says.";
+	continue the action;
 
 Section 2 - Conversation
 
@@ -5343,18 +5436,18 @@ Understand "washing", "wash" as the laundry.
 
 The distant description of the Laundry is "[if the location is the Hallway]The laundry lies southeast of here[otherwise]The laundry is just outside[end if]."
 
-
-
 Instead of smelling the laundry, say "The harsh soap the widows like to use has a strong smell that burns your nostrils."
 
 After going to the Laundry for the first time:
 	try looking;
+	update the character list;
 	start conversation with Widow Shannon on SH1;
 
-Before going from the Laundry when Widow Shannon is in the Laundry and Raid on Maiden House has not happened:
-	say "'See you later, Widow Shannon,' you say as you leave.[paragraph break]Widow Shannon smiles at you over her shoulder. 'Take care, Jacqueline.'"
+After going from the Laundry when Widow Shannon is in the Laundry and Raid on Maiden House has not happened:
+	say "'See you later, Widow Shannon,' you say as you leave.[paragraph break]Widow Shannon smiles at you over her shoulder. 'Take care, Jacqueline.'";
+	continue the action;
 
-A huge wooden washtub is a container, scenery, here. The description is "The wooden tub is huge enough to bathe in (and it has been used for that purpose on occasion). It's slopping over with soap-clouded water, pouring steam into the humid air." Understand "wooden", "wood", "tub", "water", "laundry" as the washtub.
+A huge wooden washtub is a container, scenery, in the Laundry. The description is "The wooden tub is huge enough to bathe in (and it has been used for that purpose on occasion). It's slopping over with soap-clouded water, pouring steam into the humid air." Understand "wooden", "wood", "tub", "water", "laundry" as the washtub.
 
 Instead of entering the washtub, say "You don't need a bath right now. And you [i]definitely[r] don't need a bath in [i]that[r]."
 
@@ -5373,7 +5466,7 @@ Chapter 2 - Widow Shannon
 
 Section 1 - Description
 
-Widow Shannon is a woman, here. The initial appearance is "[if Raid on Maiden House is happening]Widow Shannon is here, looking scared but determined.[otherwise if the location of Widow Shannon is the Laundry]Widow Shannon is bent over the big washtub in the corner, scrubbing out the toddlers['] nappies.[otherwise]Widow Shannon stands nearby.[end if]".
+Widow Shannon is a woman, in the Laundry. The initial appearance is "[if Raid on Maiden House is happening]Widow Shannon is here, looking scared but determined.[otherwise if the location of Widow Shannon is the Laundry]Widow Shannon is bent over the big washtub in the corner, scrubbing out the toddlers['] nappies.[otherwise]Widow Shannon stands nearby.[end if]".
 
 The description is "[if Raid on Maiden House is happening]Although Shannon's face is pale, there is a look of resolve in her features that you have never seen there before. This is her protective side: she will not let anyone — not Fossville, not his armed thugs — harm one of [i]her[r] children.[otherwise if Shannon's Company is happening]Shannon is the youngest of the widows in Maiden House. She is plain-looking, and you've always thought of her as not particularly bright… but she is resourceful and devoted, and your respect for her has grown. She seems energetic and happy to be on this adventure with you.[otherwise]Shannon is the youngest of the widows in Maiden House. She is plain-looking, and none too bright, and, to all appearances, utterly uninterested in ever remarrying, which is perhaps just as well. She devotes herself to the children, particularly the toddlers, and does most of the cleaning and cooking for Maiden House.[end if]"
 
@@ -5459,7 +5552,7 @@ The mortar wall is a backdrop. The mortar wall is in East Commerce Street and Be
 The printed name is "stone wall". Understand "flagstone", "flagstones", "stone", "high" as the mortar wall.
 
 Instead of climbing the mortar wall:
-	say "It's too high, and the stones are too smooth to get a fingerhold on.";
+	say "The wall is too high, and the stones are too smooth to get a fingerhold on.";
 
 Instead of going up in Behind Maiden House, try climbing the mortar wall. Instead of going north in Behind Maiden House, try climbing the mortar wall.
 
@@ -5500,10 +5593,8 @@ Before going east from Market Square during Bobby's Adventure:
 Chapter 3 - Events on exit
 
 After going north from Market Square when BO26 is unfired:
-	update the character list;
 	say "You're too filled with nervous excitement to chit-chat; you want to get on with the adventure! With a grin, you walk right past Bobby without answering towards the gate out of town.[paragraph break]Bobby cocks an eyebrow at you 'Well, okay then,' he mutters, and hurries to catch up.";
 	now BO26 is fired;
-	move Bobby to the Clearing;
 	continue the action;
 
 Chapter 4 - Further Conversations with Bobby (Adventure with Bobby)
@@ -5546,7 +5637,7 @@ After populating a quip clustered with BO28:
 	if BO30 is fired, remove BO30 from the current conversation, if present;
 
 After firing BO26:
-	move Bobby to Lord's Road [originally we just moved him to the Clearing, but since we've implemented a following action, we need to move him to each stage of the journey to Lord's Keep so that he can serve as a target for the player];
+	move Bobby to Lords Road [originally we just moved him to the Clearing, but since we've implemented a following action, we need to move him to each stage of the journey to Lord's Keep so that he can serve as a target for the player];
 	update the character list;
 
 Part 2 - Bobby's Adventure (Creeping to Lord's Keep)
@@ -5559,6 +5650,21 @@ When Bobby's Adventure begins:
 	start conversation with Bobby on BO23;
 
 Creeping to Lord's Keep is a scene. Creeping to Lord's Keep begins when the location is Market Square. Creeping to Lord's Keep ends when the location is the Guardhouse. 
+
+Bobby's route is a list of objects [rooms] that varies. [It's defined at the bottom of the source, though, because room names have to be defined before they're used.]
+
+Bobby's trail is a list of objects [directions] that varies. 
+
+Bobby's trail is { [from market] north, [from Lord's Road] east, [from pasture] north, [from stream crossing] north, [from the woods] south [except this is a placeholder: the split sapling points the real way], [then from the clearing] down, [from the tunnel] north, [from the secret wall] north, [from the chapel] southwest, [from the lower bailey] up, [and finally from the upper bailey] north };
+
+First after going during Creeping to Lord's Keep:
+	let the proper way be entry 1 of Bobby's route;
+	if the room gone to is the proper way:
+		remove entry 1 from Bobby's route, if present;
+		remove entry 1 from Bobby's trail, if present;
+	if the current conversationalist is Bobby:
+		carry out the terminating conversation with activity with Bobby;
+	continue the action;
 
 Part 3 - Lord's Road
 
@@ -5575,10 +5681,10 @@ Instead of facing west in Lords Road, say "There's nothing in that direction but
 Instead of facing northwest in Lords Road, say "There's nothing in that direction but rocks and the occasional thornbush."
 
 After going north to Lords Road for the first time:
+	move Bobby to Pasture;
 	try looking;
 	say "Bobby jerks his thumb down the road, to the north. 'This road leads straight to the front gate of Lord's Keep; we want to stay away from there. I know a better way,' he says with a knowing smile, and strikes off towards the open field to the east.";
-	move Bobby to Pasture;
-	update the character list.
+	update the character list;
 
 Instead of going south in Lords Road during Bobby's Adventure:
 	say "You can't back out now; you'd be mortified if Bobby thought you'd lost your nerve."
@@ -5595,11 +5701,11 @@ Instead of going west in Lords Road, try facing west.
 
 Chapter 1 - Scenery
 
-The broken ground is a backdrop, in Lord's Road. The description is "The land to the west of Lord's Road is rocky and dry, no good for growing much of anything other than thornbushes." Understand "land" or "rocks", "rock", "rocky", "dry", "fallow", "scrub", "bushes", "bush", "thorn", "thorns", "thornbush", "thornbushes", "painful" as the broken ground. The broken ground is in Lord's Road and Southern Gate.
+The broken ground is a backdrop, in Lords Road. The description is "The land to the west of Lord's Road is rocky and dry, no good for growing much of anything other than thornbushes." Understand "land" or "rocks", "rock", "rocky", "dry", "fallow", "scrub", "bushes", "bush", "thorn", "thorns", "thornbush", "thornbushes", "painful" as the broken ground. The broken ground is in Lords Road and Southern Gate.
 
 Instead of taking, pulling, searching, or touching the broken ground, say "A hand full of painful thorns is not what you need right now."
 
-The city wall is a backdrop, in Lord's Road and the Pasture. The description is "The outer walls of Toresal are built of heavy, white stone." Understand "Toresal", "walls", "heavy", "white", "stone", "stones", "outer", "white" as the city wall.
+The city wall is a backdrop, in Lords Road and the Pasture. The description is "The outer walls of Toresal are built of heavy, white stone." Understand "Toresal", "walls", "heavy", "white", "stone", "stones", "outer", "white" as the city wall.
 
 Instead of climbing the city wall, say "The city walls are far too high for you to climb."
 
@@ -5624,7 +5730,6 @@ Instead of going southwest in the Pasture, try facing southwest.
 Instead of going west in the Pasture during Bobby's Adventure:
 	say "You can't back out now; you'd be mortified if Bobby thought you'd lost your nerve."
 
-
 Chapter 2 - Cow Pies
 
 Some cow pies are a backdrop. They are in Pasture and in Crossing. The description is "Last time you checked, cow pies pretty much all looked the same."
@@ -5639,10 +5744,10 @@ Instead of smelling in the presence of cow pies,
 Chapter 3 - Event on entering
 
 After going to the Pasture for the first time:
+	move Bobby to Crossing;
 	try looking;
 	say "You feel nervous and exposed out here in all this empty space; you're more used to the narrow alleys and enclosing walls of the city. The urge to hunch over and make yourself small is near-irresistible.[paragraph break]Bobby, meanwhile, strides out into the middle of the moonlit field, standing straight and swinging his arms wide. 'Fresh air, Jack!' he calls out, laughing. 'Enjoy it! Take a deep breath!' He heads north, still laughing.";
-	move Bobby to Crossing;
-	update the character list.
+	update the character list;
 
 Chapter 4 - Taking breaths, taking deep breaths, and breathing
 
@@ -5678,17 +5783,16 @@ Instead of going east in the Crossing, try facing east.
 Instead of going southeast in the Crossing, try facing southeast.
 
 After going to Crossing for the first time:
+	move Bobby to Woods;
 	try looking;
 	say "Bobby hops nimbly across, bouncing from rock to rock as though he were playing a game of Circles-and-Stones in the park. He doesn't get so much as the hem of his cloak damp. When he gets to the opposite bank, he turns and beckons you to follow before disappearing into the shadowy woods.";
-	move Bobby to Woods;
-	update the character list.
+	update the character list;
 
 Instead of going south in the Crossing during Bobby's Adventure:
 	say "You can't back out now; you'd be mortified if Bobby thought you'd lost your nerve."
 
 Instead of going southwest in the Crossing during Bobby's Adventure:
 	say "You can't back out now; you'd be mortified if Bobby thought you'd lost your nerve."
-
 
 Chapter 1 - Scenery and Stream
 
@@ -5756,14 +5860,15 @@ Instead of facing a planar direction in the Woods, say "The trees are dark and t
 After going to the Woods for the first time:
 	change the way of the split sapling to south;
 	while the way of the split sapling is south repeatedly change the way of the split sapling to a random orthogonal direction;
+	remove Bobby from play;
 	try looking;
 	say "Bobby motions you over to where he's standing, pushing back the underbrush. 'Look here, Jack,' he says. 'These trails go every which way, and it's easy to get lost. But if you keep an eye out for this one sapling,' —he points to a small tree split halfway down its length— '...you'll find the right trail.' He heads off through the trees to the [way of the split sapling].";
-	move Bobby to the Clearing;
-	update the character list.
+	update the character list;
 
 After going to the Woods in the presence of Pieter:
 	remove the split sapling from play;
 	try looking;
+	update the character list;
 	say "The game trails criss-cross through the woods in every direction, and they all look the same. When you were here the night before, Bobby quickly found a shortcut to the clearing. Where was it?";
 
 Section 1 - Scenery (Trees)
@@ -5776,7 +5881,6 @@ Instead of going nowhere when in the Woods:
 	if the noun is not up and the noun is not down begin;
 		say "The trees are too thick in that direction.";
 	end if;
-
 
 Section 2 - Scenery (Game Trails)
 
@@ -5852,7 +5956,7 @@ The fountain is in the Clearing. "In the center of the clearing stands a crumbli
 
 Section 3 - Ruined pavilion
 
-The ruined pavilion is scenery, here. Understand "ruin", "ruins", "old", "pale", "pavestone", "pavestones", "stone", "stones", "rubble", "clearing", "grass", "bone", "bones" as the pavilion. The description is "Whatever once stood here was probably very beautiful. Now it's just rubble in the grass." 
+The ruined pavilion is scenery, in the Clearing. Understand "ruin", "ruins", "old", "pale", "pavestone", "pavestones", "stone", "stones", "rubble", "clearing", "grass", "bone", "bones" as the pavilion. The description is "Whatever once stood here was probably very beautiful. Now it's just rubble in the grass." 
 
 Section 2 - Statue and urn
 
@@ -5884,7 +5988,7 @@ After pushing the metal bolt in the presence of Pieter:
 
 Section 3 - Secret entrance
 
-The secret entrance is a thing. Understand "door", "plinth", "base", "opening", "tunnel", "dark", "darkness", "narrow", "rectangle", "stone", "rectangular", "space", "black", "cold", "draft", "air", "damp", "damp smelling" as the secret entrance. The description is "The tunnel leads down into darkness."
+The secret entrance is a thing. Understand "door", "plinth", "base", "opening", "hole", "tunnel", "dark", "darkness", "narrow", "rectangle", "stone", "rectangular", "space", "black", "cold", "draft", "air", "damp", "damp smelling" as the secret entrance. The description is "The tunnel leads down into darkness."
 
 The initial appearance of the secret entrance is "One side of the stone plinth supporting the statue is open, revealing a narrow tunnel leading down into darkness."
 
@@ -5913,7 +6017,9 @@ Section 1 - On the way there
 
 After looking in the Clearing for the first time during Creeping to Lord's Keep:
 	open the secret entrance;
-	say "'Here we are.' Bobby jumps up into the bowl of the fountain, dried leaves crackling beneath his boots. Then he reaches around the statue of Brigid as though trying to embrace her. His hands fumble at something on the underside of the urn.[paragraph break]Suddenly there is a deep, solid [i]thunk[r] and a scraping sound, and part of the base of the statue moves.[paragraph break]Bobby hops down and pushes against the statue's base. A rectangle of stone about two feet square swings inward. The space behind it is utterly black, and a cold draft of damp-smelling air rises out of it.[paragraph break]'It runs all the way to Lord's Keep,' says Bobby as he brushes off his hands. 'I don't think anyone knows about it. Maybe Lord Toresal did, but now that he's dead it's basically unknown. It's not been used for decades, I'd guess. Well anyway, until now.'[paragraph break]He holds out his hand. His lop-sided smile is absolutely charming. 'After you, kind sir.'"
+	say "'Here we are.' Bobby jumps up into the bowl of the fountain, dried leaves crackling beneath his boots. Then he reaches around the statue of Brigid as though trying to embrace her. His hands fumble at something on the underside of the urn.[paragraph break]Suddenly there is a deep, solid [i]thunk[r] and a scraping sound, and part of the base of the statue moves.[paragraph break]Bobby hops down and pushes against the statue's base. A rectangle of stone about two feet square swings inward. The space behind it is utterly black, and a cold draft of damp-smelling air rises out of it.[paragraph break]'It runs all the way to Lord's Keep,' says Bobby as he brushes off his hands. 'I don't think anyone knows about it. Maybe Lord Toresal did, but now that he's dead it's basically unknown. It's not been used for decades, I'd guess. Well anyway, until now.'[paragraph break]He holds out his hand. His lop-sided smile is absolutely charming. 'After you, kind sir.'";
+	move Bobby to the location;
+	update the character list;
 
 Section 2 - On the way back
 
@@ -5922,11 +6028,11 @@ After going to the Clearing during Returning From Lord's Keep:
 Finally, you get to your feet and look around.[paragraph break]Bobby is lying face-down in the grass, just a few yards away. One of the mercenaries from Grubber's Market is kneeling with his knee in the small of Bobby's back, binding his wrists together with twine. Standing around the outside of the fountain are several more mercenaries, looking relaxed and smug. Some of them are chuckling to themselves.[paragraph break]A gaunt man wearing red robes walks up to you. His mouth is half-hidden by long, drooping, black moustaches, but underneath them he is smiling like a snake. 'Well now, young...sir? Or is it [']miss[']? So much confusion, all to catch one little mouse. You led us a merry chase this morning, little mouse, but I think you will not scurry away from us again.'[paragraph break]Leaves crunch behind you. You jump for it, but too slow — rough hands haul you back, and a sack of coarse, black cloth is pulled over your head.[paragraph break]'Good night, little mouse.'[paragraph break]Something hard and heavy strikes the back of your head, and the night turns black as pitch.[line break]";
 	close the secret entrance; 
 	pause the game;
-	move the player to Jail-Cell;
-	update the character list;
 	select the chapter channel;
 	say "Chapter 3 - Jail";
 	select the main channel;
+	move the player to Jail-Cell;
+	update the character list;
 
 Chapter 3 - Restrained exits
 
@@ -5978,8 +6084,9 @@ The torch is a thing. The description is "The torch's flame throws weird, shiver
 After going down to underneath the fountain [from the Clearing] for the first time:
 	say "You grope your way down into the tunnel, carefully sliding your feet over steps you cannot see. Echoes fill the darkness: the scrape of your shoes on stone, the drip of water, your own loud breathing.[paragraph break]Behind you, you hear Bobby fumbling with something under his cloak; the [i]click[r] of stone on metal; and then a sickly orange glow spreads across the walls of the tunnel. Your own shadow wobbles hugely in front of you.[paragraph break]You turn around and see Bobby holding a torch. He grins at you. 'Tricky, isn't it?'";
 	now Bobby carries the torch;
-	move Bobby to the location;
 	try looking;
+	move Bobby to the location;
+	update the character list;
 
 After going south to underneath the fountain when Bobby is on-stage during Returning From Lord's Keep:
 	say "Stealthily, you creep back up the long tunnel to the stone steps under the fountain. 'I'll go up first,' whispers Bobby, 'to make sure the coast is clear.' He dunks his torch in a puddle of mud and bounds lightly up the steps. For a moment you can see him silhouetted against the starlight; then he moves away from the opening and disappears from view.[paragraph break]You wait for ten heartbeats. Behind you, you hear the distant [i]plip[r] of dripping moisture, far back in the dark tunnel. Above you, you can hear crickets chirping in the nearby forest.[paragraph break]Ten more heartbeats. 'Bobby?' you call out in a hoarse whisper. Maybe he can't hear you, but you're too nervous to raise your voice. 'Bobby? Are you up there?'[paragraph break]There is no answer.";
@@ -5996,7 +6103,6 @@ Before going north from Underneath the Fountain:
 	silence Bobby;
 	say "Ducking your head to avoid the low ceiling, you follow the tunnel for some distance.";
 
-
 Part 8 - Secret Passage
 
 Chapter 1 - Description
@@ -6011,7 +6117,7 @@ After inspecting the Secret Passage in Underneath the Fountain, say "The tunnel 
 
 Section 1 - Scenery (Empty metal bracket)
 
-The metal bracket is a container, scenery, here. The description is "It's a small metal bracket for holding a torch, bolted into the wall of the tunnel." Understand "rust", "rusted", "rusty", "small", "bolt", "bolts", "bolted" as the metal bracket.
+The metal bracket is a container, scenery, in the Secret Passage. The description is "It's a small metal bracket for holding a torch, bolted into the wall of the tunnel." Understand "rust", "rusted", "rusty", "small", "bolt", "bolts", "bolted" as the metal bracket.
 
 Chapter 2 - Events on entering
 
@@ -6021,7 +6127,8 @@ After going to the secret passage for the first time:
 	try looking;
 	now the blank stone wall is open;
 	move Bobby to the location;
-	say "Bobby steps past you and brushes his fingertips across the stonework, holding the torch close. Eventually he finds a loose brick and pulls it free, revealing a rough, rectangular hole.[paragraph break]You wonder how many times Bobby has been down here. He exudes such easy confidence as he reaches into the hole, as though he has done this many times before.[paragraph break]There is a [i]click[r]. Bobby looks over his shoulder at you and winks. And then the wall swings away, revealing shadowed spaces beyond.";
+	update the character list;
+	say "Bobby steps past you and brushes his fingertips across the stonework, holding the torch close. Eventually he finds a loose brick and pulls it free, revealing a rough, rectangular hole.[paragraph break]You wonder how many times Bobby has been down here. He exudes such easy confidence as he reaches into the hole, as though he has done this many times before.[paragraph break]There is a [i]click[r]. Bobby looks over his shoulder at you and winks. And then the north wall swings away, revealing shadowed spaces beyond.";
 
 Instead of going south from the secret passage during Creeping to Lord's Keep:
  	say "You [i]definitely[r] can't chicken out now, not while Bobby is right here.";
@@ -6031,6 +6138,8 @@ Section 2 - On the way back
 After going south to the secret passage when Bobby is on-stage during Returning from Lord's Keep:
 	silence Bobby;
 	try looking;
+	move Bobby to the location;
+	update the character list;
 	now the blank stone wall is closed;
 	say "Bobby reaches back and pulls the secret door shut, carefully easing it the last few inches so that it doesn't slam. He puts the loose brick back in its place, just as before, and tugs his torch free of the bracket where he'd left it.[paragraph break][i]We're out[r], you realize with a sense of overwhelming relief. [i]We made it. It's like we were never here.[no line break][r][paragraph break]'Some adventure, eh, Jack?' laughs Bobby. His voice is disturbingly loud after the long minutes of terrified silence in the keep. 'Eavesdropping on the Lord's own guardsmen! That's a story that'll have the little ones wide-eyed at the Maiden House, eh?' He claps you on the back, and you manage a smile. It was fun, and you want Bobby to think you had fun, but it will be a while before you feel up to something that dangerous again."
 
@@ -6041,7 +6150,9 @@ After going south from the secret passage when Bobby is off-stage during Returni
 
 Chapter 3 - Secret door
 
-The blank stone wall is a door, scenery, north of secret passage, and south of the Chapel. Understand "passage" as the blank stone wall when the blank stone wall is open. Understand "secret", "entrance", "door", "stonework" as the blank stone wall.
+The blank stone wall is a door, scenery, north of secret passage, and south of the Chapel. Understand "passage" as the blank stone wall when the blank stone wall is open. Understand "secret", "entrance", "door", "stonework", "bricks", "brickwork" as the blank stone wall.
+
+Understand "brick" as the blank stone wall when the brick is off-stage. 
 
 Instead of searching the blank stone wall, try touching the blank stone wall.
 
@@ -6068,7 +6179,6 @@ Before going north in the secret passage during Returning from Lord's Keep:
 Before opening the closed blank stone wall during Bobby's Adventure:
 	say "You're more than ready to go home now, and you're not sure you could find the loose brick again in any case." instead;
 
-[TRAC: Had to specify here]
 Instead of touching the closed blank stone wall when Bobby is nearby during Bobby's Adventure:
 	say "'Leave that for now,' whispers Bobby. 'We need to get going.'"
 
@@ -6166,6 +6276,8 @@ After going to the Chapel for the first time:
 	move the torch to the metal bracket;
 	say "Bobby jams his torch into a rusted bracket on the tunnel wall and steps through the secret door, gesturing you to follow. A prickle runs down your back as you step through after him. Are you really sneaking into the [i]Lord's Keep?[no line break] [r]You're not even sure what the punishment for that is... something a lot worse than a few days in jail, certainly.";
 	try looking;
+	move Bobby to the Chapel;
+	update the character list;
 
 Chapter 3 - Exiting
 
@@ -6189,30 +6301,26 @@ After inspecting the Lower Bailey in the Upper Bailey, say "The lower bailey is 
 
 The dead-end description of the Lower Bailey is "The thick stone walls of the keep surround you on all sides."
 
-
-
-
-
-Some gravel is scenery, here. Understand "mud", "puddle", "puddles" as the gravel. Before doing something to the gravel, change the noun to the ground.
+Understand "mud", "puddle", "puddles" as the backdrop-floor when the location is the Lower Bailey.
 
 Some stone steps are a backdrop. The initial appearance is "Steep stone steps climb up to the top of the wall[if Creeping To Lord's Keep is happening]. You could make a dash up them, if you timed it right[end if]." The description is "Steep stone steps climb up to the top of the wall." Understand "steep", "stone", "step", "stairs", "staircase" as the stone steps.
 
 The stone steps are in the Upper Bailey and the Lower Bailey.
 
-Instead of climbing the steps:
+Instead of climbing the stone steps:
 	if the location is the Upper Bailey, try going down;
 	otherwise try going up.
 
 Chapter 2 - Guards, Guards!
 
-Some patrolling Lords Guards are people, scenery, here. The description of the patrolling Lords Guards is "The Lord's Guards are dressed in polished mail and tabards emblazoned with the Toresal coat of arms, and each one wears a hefty sword at his hip. Fortunately, they haven't noticed you. Yet." The printed name is "Lord's Guards".
+Some patrolling Lords Guards are people, scenery, in the Lower Bailey. The description of the patrolling Lords Guards is "The Lord's Guards are dressed in polished mail and tabards emblazoned with the Toresal coat of arms, and each one wears a hefty sword at his hip. Fortunately, they haven't noticed you. Yet." The printed name is "Lord's Guards".
 
 Instead of doing something other than examining to the patrolling Lords Guards:
 	say "There must be less painful, though probably few quicker, ways of getting yourself killed.";
 
-Some guards things are held by the patrolling Lords Guards. Understand "mail", "tabard", "tabards", "sword", "swords", "coat of arms" as the guards things.
+Some polished mail are held by the patrolling Lords Guards. Understand "things", "tabard", "tabards", "sword", "swords", "coat of arms" as the polished mail. The printed name of the polished mail is "guards things".
 
-Instead of doing something to the guards things:
+Instead of doing something to the polished mail:
 	say "You can't get near enough to do that without attracting the attention of the guards.";
 
 Chapter 3 - Event on entry
@@ -6221,13 +6329,14 @@ After going to the Lower Bailey for the first time:
 	try looking;
 	say "Bobby moves up quietly behind you. He puts his mouth very, very close to your ear and whispers, 'Up there,' pointing to the steps leading up to the top of the wall.";
 	move Bobby to the location;
+	update the character list;
 
 Chapter 4 - Event on exiting
 
 After going up from the Lower Bailey:
 	silence Bobby;
 	say "You wait, watching the nearest guard until he turns and begins walking away, then sprint lightly up the steps.";
-	try looking;
+	continue the action;
 
 Instead of going northeast from the Lower Bailey during Creeping To Lord's Keep:
 	say "Bobby tugs your sleeve and shakes his head. Again, he points up the stairs.";
@@ -6264,6 +6373,7 @@ After going to the Upper Bailey for the first time:
 	try looking;
 	say "Bobby comes up the steps right behind you and crouches against the wall. After a quick look around to make sure the coast is clear, he nods towards the archway to the north.";
 	move Bobby to the location;
+	update the character list;
 
 Chapter 2 - Event on exit
 
@@ -6275,9 +6385,9 @@ Instead of going north from Upper Bailey during Returning From Lord's Keep:
 
 Chapter 3 - Scenery
 
-Some torches are scenery, here. Instead of doing something to the torches, say "If you get anywhere near those torches, you'll be spotted in no time. Best to stay low and in the shadows." Understand "torch", "fire", "flames", "flame" as the torches.
+Some torches are scenery, in the Upper Bailey. Instead of doing something to the torches, say "If you get anywhere near those torches, you'll be spotted in no time. Best to stay low and in the shadows." Understand "torch", "fire", "flames", "flame" as the torches.
 
-The view of Toresal is scenery, here. The description is "[first time]The city is a pile of shadows in the distance, lit here and there with pinpricks of light: a guardsman carrying a torch, perhaps, or some night-owl sitting by the window with a lantern. Seeing it makes you realize just how absurd is your current predicament: you would be [i]safe[r] back in the city, snug in your bunk in Maiden House, or even skulking around the alleyways you know so well. Instead, you're breaking into Lord's Keep, sneaking along its walls, one slip-up away from getting yourself arrested or worse.[subsequently]It's an impressive view, no doubt, but you really don't have time to admire it right now.[only]". 
+The view of Toresal is scenery, in the Upper Bailey. The description is "[first time]The city is a pile of shadows in the distance, lit here and there with pinpricks of light: a guardsman carrying a torch, perhaps, or some night-owl sitting by the window with a lantern. Seeing it makes you realize just how absurd is your current predicament: you would be [i]safe[r] back in the city, snug in your bunk in Maiden House, or even skulking around the alleyways you know so well. Instead, you're breaking into Lord's Keep, sneaking along its walls, one slip-up away from getting yourself arrested or worse.[subsequently]It's an impressive view, no doubt, but you really don't have time to admire it right now.[only]". 
 
 Understand "city", "skyline", "of", "shadow", "shadows", "distance", "pinprick", "pinpricks", "light", "town" as the view of Toresal.
 
@@ -6305,7 +6415,7 @@ The dead-end description of the guardhouse is "The antechamber is enclosed on al
 
 Instead of facing north while in the Guardhouse, try examining the guardhouse door.
 
-Instead of listening to the guardhouse:
+Instead of listening to the Guardhouse:
 	try listening to the arrow slit instead;
 
 Chapter 2 - Event on entry
@@ -6313,6 +6423,8 @@ Chapter 2 - Event on entry
 After going north to the Guardhouse for the first time:
 	try looking;
 	say "Bobby creeps forward and presses himself against the wall next to one of the arrow slits. He hunches closer, peering around the slit's edge. Then he looks up at you and smiles. He points at you, points at the arrow slit, then taps his ear. [i]Listen[r], he's telling you.";
+	move Bobby to the location;
+	update the character list;
 
 Chapter 3 - Keeping Bobby quiet
 
@@ -6406,14 +6518,13 @@ After inspecting the Jailhouse in the Drain Room:
 When escaping jail begins:
 	Bobby wakes up in two turns from now;
 	repeat with contraband running through things held by the player:
-		if the contraband is not the baggy threadbare clothes, remove the contraband from play.
-	
+		if the contraband is not the baggy threadbare clothes, remove the contraband from play;
 
 Section 1 - Scenery
 
-The jailhouse-table is a supporter, scenery, here. Understand "wood", "wooden", "furniture", "rough", "crude", "crudely", "carved", "table" as the jailhouse-table. The description of the jailhouse-table is "The furniture is rough and crudely carved."
+The jailhouse-table is a supporter, scenery, in the Jailhouse. Understand "wood", "wooden", "furniture", "rough", "crude", "crudely", "carved", "table" as the jailhouse-table. The description of the jailhouse-table is "The furniture is rough and crudely carved."
 
-A jailhouse-bench is a supporter, scenery, enterable, here. The printed name of the jailhouse-bench is "bench". Understand "wood", "wooden", "furniture", "rough", "crude", "crudely", "carved", "bench" as the jailhouse-bench. The description of the jailhouse-bench is "The furniture is rough and crudely carved."
+A jailhouse-bench is a supporter, scenery, enterable, in the Jailhouse. The printed name of the jailhouse-bench is "bench". Understand "wood", "wooden", "furniture", "rough", "crude", "crudely", "carved", "bench" as the jailhouse-bench. The description of the jailhouse-bench is "The furniture is rough and crudely carved."
 
 Instead of entering the jailhouse-bench:
 	say "You don't have time to rest — you need to get out of here!";
@@ -6435,12 +6546,14 @@ Section 1 - Description
 A holding cell is a kind of room. The description of a holding cell is "[cell description]". The printed name of a holding cell is "Holding Cell".
 
 To say cell description:
-	let d be the best route from the location to the jailhouse, using even locked doors;
+	let d be north;
+	if the location is Jail-Cell-2:
+		let d be south;
+	if the location is Jail-Cell-3:
+		let d be east;
 	say "A dank, cramped, foul-smelling cell. A pair of ragged burlap blankets and a few lumps of filthy straw litter the floor. The door is to the [d]. ";
 
 Understand "dank", "small", "cramped", "foul", "foul smelling", "dirty", "filthy", "cell", "jail", "prison", "gaol" as a holding cell.
-
-
 
 Section 2 - Restrained Exit
 
@@ -6527,17 +6640,17 @@ Section 4 - Reaching through windows
 
 Understand "reach" as a mistake ("[reach message]").
 Understand "reach [something]" as a mistake ("[reach message]").
-Understand "reach in/through/into/between [something]" as a mistake ("[reach message]").
+Understand "reach in/through/into/between/for [something]" as a mistake ("[reach message]").
 Understand "reach arm/hand in/through/into/between [something]" as a mistake ("[reach message]").
 Understand "reach in/through/into/between [viewing window]" as a mistake ("[lockpicking message]").
 Understand "reach arm/hand in/through/into/between [viewing window]" as a mistake ("[lockpicking message]").
 Understand "put arm/hand in/through/into/between [viewing window]" as a mistake ("[lockpicking message]").
 
 To say reach message:
-	say "You don't need to 'reach' anything in this game. If you want to get something, just type GET (whatever)."
+	say "You don't need to 'reach' anything in this game. If you want to get something, just type GET (whatever). ";
 
 To say lockpicking message:
-	say "If you want to try to unlock the door, just type UNLOCK DOOR."
+	say "If you want to try to unlock the door, just type UNLOCK DOOR. ";
 
 Chapter 3 - Construction of the Jail Cells
 
@@ -6612,7 +6725,7 @@ Chapter 2 - Event on entering
 
 Before looking in Jail-Cell for the first time:
 	repeat with x running through things carried by the player begin;
-		remove x from play;
+		[ remove x from play; ] [TESTME - is the 'contraband' loop above good?]
 	end repeat;
 	say "Slowly the world comes back to you. You feel something cold and hard against your cheek; something gritty and scratchy under your hand. You hear footsteps on stone, muttering voices that fade in and out. Someone laughs, a raw, cruel sound. A loud squeak, and an echoing, metallic crash. The footsteps fade away.[paragraph break]You open your eyes. It's still dark.[paragraph break]No, it's just [i]dim[r]. Dim light trickles in from somewhere above you.[paragraph break]You sit up, and a tender spot on the back of your head throbs. Red and purple splotches bloom in front of your eyes, then fade away. After a moment or two, your head clears, and you can see where you are.";
 
@@ -6705,7 +6818,11 @@ Section 1 - Description
 
 The prisoner is an improper-named man in the Jail-Cell. The initial appearance of the prisoner is "[initial appearance of Jacobs]"
 
-The printed name of the prisoner is "[if proper-named]Jacobs[otherwise]hulking shape[end if]";
+Rule for printing the name of the prisoner:
+	if the prisoner is proper-named:
+		say "Jacobs";
+	otherwise:
+		say "hulking shape";
 
 The description of the prisoner is "[The item described] is a huge brute, with a face that looks young, but already grizzled and rough beyond his years. His wide, watery eyes jitter constantly. His lip is curled in a constant half-sneer, as though his confinement in jail is merely a passing diversion for him. His clothes, though stained and rumpled, seem too rich to belong to a common thug."
 
@@ -6719,7 +6836,7 @@ Instead of kissing the prisoner, say "Somehow that doesn't seem very prudent."
 Section 2 - Initial appearance, at various moments
 
 To say initial appearance of Jacobs:
-	if the location is Jail-Cell begin;
+	if the location is Jail-Cell and cell-door-1 is locked begin;
 		if JA13 is fired begin;
 			say "Jacobs is holding you up against the door, waiting for you to unlock it. ";
 		otherwise if JA11 is fired;
@@ -6740,7 +6857,7 @@ Instead of doing something other than examining or talking to the prisoner:
 
 Section 3 - Jacobs's Conversation 
 
-JA1 is a quip. The display text is "He doesn't answer you at all; he just keep staring with those creepy, bloodshot eyes."
+JA1 is a quip. The display text is "He doesn't answer you at all; he just keeps staring with those creepy, bloodshot eyes."
 
 JA2 is a quip. The display text is "Suddenly the shadowy man in the corner puts his huge, thick-fingered hands on his knees and pushes himself up. 'Well,' he grunts in a thick, rough voice, 'now that the guards are busy takin care of [i]him[r]...' the man stretches, glances at you, and smiles. It is not a friendly smile.[paragraph break]'Hi, kid. Name's Jacobs.'"
 
@@ -6834,7 +6951,7 @@ At the time when Jacobs starts talking:
 
 [And here's a rule in case the player starts talking to Jacobs before he starts talking:]
 
-Instead of talking to the prisoner when Bobby is off-stage and JA2 is unfired:
+Instead of talking to the prisoner when BO22 is fired and JA2 is unfired:
 	start conversation with the prisoner on JA2;
 
 After firing JA2:
@@ -6909,6 +7026,7 @@ At the time when Jacobs withdraws his offer of support:
 After firing JA21:
 	carry out the terminating conversation with activity with the prisoner;
 	remove the prisoner from play;
+	update the character list;
 
 After firing JA21 when we are not unlocking:
 	if OL1 is unfired begin;
@@ -6939,6 +7057,8 @@ The piece of wire is a thing.  Understand "lockpick", "lock pick", "pick", "bit"
 
 A procedural rule during Picking a Lock:
 	ignore the can't take people's possessions rule; [ because we have to take the wire off of Jacobs ]
+
+Understand "unlock [something]" as unlocking it with;
 
 Rule for supplying a missing second noun while unlocking something with when the player can see the piece of wire:
 	say "(with [the piece of wire])[command clarification break]";
@@ -7096,7 +7216,10 @@ After unlocking cell-door-2 with the piece of wire:
 	move the bald headed man to the Drain Room;
 	move the skinny man to the Drain Room;
 	update the character list;
-	say "Picking a lock is [i]much[r] easier when you're standing on the ground and can see what you're doing. Twenty seconds, and you have the cell door open.[paragraph break]'Oh, thank you, miss, thank you kindly. Goddesses' blessings upon you.[no line break][if OL5 is fired]'[otherwise] Allow me to make introductions,' the man wheezes. 'I am called Olmer, and this is my associate, Darrens.' The skinny man standing behind him smiles and nods enthusiastically.[no line break][end if][paragraph break]'Now,' says Olmer, 'if you will follow us, we will make our escape.'[paragraph break]Olmer and Darrens go southwest.";
+	say "Picking a lock is [i]much[r] easier when you're standing on the ground and can see what you're doing. Twenty seconds, and you have the cell door open.[paragraph break]'Oh, thank you, miss, thank you kindly. Goddesses['] blessings upon you.[no line break][if OL5 is fired]'[otherwise] Allow me to make introductions,' the man wheezes. 'I am called Olmer, and this is my associate, Darrens.' The skinny man standing behind him smiles and nods enthusiastically.[no line break][end if][paragraph break]'Now,' says Olmer, 'if you will follow us, we will make our escape.'[paragraph break]Olmer and Darrens go southwest.";
+
+Does the player mean lockpicking cell-door-2:
+	it is very likely;
 
 Part 3 - Drain Room
 
@@ -7106,7 +7229,7 @@ The Drain Room is southwest of the Jailhouse. "This tiny alcove reeks worse than
 
 Understand "tiny", "alcove", "reeking", "foul" as the Drain Room.
 
-Instead of smelling in the Drain Room:
+Instead of smelling the Drain Room:
 	say "The smell in [if Drain Room is not the location]t[end if]here is overpoweringly foul.";
 
 Instead of listening to the Drain Room:
@@ -7124,8 +7247,8 @@ Instead of facing down in the Drain Room, try examining the drain hole.
 After going to the Jailhouse from the Drain Room when the bald headed man is in Jail-Cell-2:
 	say "[conditional paragraph break]";
 	try looking;
+	update the character list;
 	start conversation with bald headed man on OL2, even if not present;
-
 
 Chapter 2 - Contents - Grate
 
@@ -7185,9 +7308,7 @@ After looking in the Drain Room when the prisoner is on-stage:
 Discussion of Drainage is a scene. Discussion of Drainage begins when the player is in the drain room and the bald headed man is in the drain room. Discussion of Drainage ends when the location is the Sewer.
 
 When Discussion of Drainage begins:
-	say "'The guards use this place to relieve themselves,' Olmer explains, 'and sometimes for beatin['] prisoners when they don't feel like moppin['] the cells after. [if the metal grate has been moved]I see you've already made some progress,' Olmer adds, noting the moved grate. 'All's left is to reap the fruits of your generous labor.'
-He smiles and gestures towards the foul-smelling hole. 'After you,' he wheezes.
-[otherwise]My back's not much for physical labor, but a spry one like yourself should have little trouble.' He motions for you to lift up the grate.[end if]";
+	say "'The guards use this place to relieve themselves,' Olmer explains, 'and sometimes for beatin['] prisoners when they don't feel like moppin['] the cells after. [if the metal grate has been moved]I see you've already made some progress,' Olmer adds, noting the moved grate. 'All's left is to reap the fruits of your generous labor.'[paragraph break]He smiles and gestures towards the foul-smelling hole. 'After you,' he wheezes.[otherwise]My back's not much for physical labor, but a spry one like yourself should have little trouble.' He motions for you to lift up the grate.[end if]";
 
 Book 7 - The Sewers
 
@@ -7578,7 +7699,7 @@ Roof of Black Gate Estate is east of Rooftop Edge. "You're standing on a balcony
 
 Understand "balcony", "edge", "ornate", "ornately", "decorated", "decorative" as the Roof of Black Gate Estate.
 
-A railing is scenery, here. The description is "The curved, elegant railing is made of white marble and gilt iron." Understand "rail", "curved", "elegant", "ornate", "ornately", "decorated", "decorative", "white", "marble", "gilt", "gold", "golden", "gilded", "iron", "railings" as the railing.
+A railing is scenery, in the Roof of Black Gate Estate. The description is "The curved, elegant railing is made of white marble and gilt iron." Understand "rail", "curved", "elegant", "ornate", "ornately", "decorated", "decorative", "white", "marble", "gilt", "gold", "golden", "gilded", "iron", "railings" as the railing.
 
 Instead of going west in Roof of Black Gate Estate, say "If at all possible, you'd much rather find an escape route that doesn't involve death-defying leaps over fifty-foot drops. Besides, you can't leave until you find the letter Bobby was talking about."
 
@@ -7647,7 +7768,7 @@ Some flight of steps are scenery in the rooftop garden. "The stairs lead down to
 
 After going down from Rooftop Garden for the first time during the Search:
 	say "Holding your breath, you tiptoe quietly down the stairs. A prickle runs up your spine; you are now an intruder. If the Baron catches you here, he'll have you tossed back into a jail cell — and that's the [i]best[r] case scenario. If what Bobby told you is true, and Fossville knows secrets about you that he's trying to hide, it's more likely he'll just slit your throat.[paragraph break]Have to move quickly, then — search the house, find this letter, and get out.";
-	try looking;
+	continue the action; [TESTME]
 
 Part 8 - Third Floor Landing
 
@@ -7737,7 +7858,7 @@ Instead of searching the glass-paneled doors:
 	if the location is the Audience Area, say "There is a balcony on the other side of the doors.";
 	otherwise say "You can make out a room with some benches inside."
 
-Some auditorium benches are an enterable supporter, scenery, here. The printed name is "benches". Understand "furniture", "row", "rows", "of", "bench", "chair", "chairs" as the auditorium benches. 
+Some auditorium benches are an enterable supporter, scenery, in the Audience Area. The printed name is "benches". Understand "furniture", "row", "rows", "of", "bench", "chair", "chairs" as the auditorium benches. 
 
 Instead of entering the benches:
 	say "You don't have time to rest now.";
@@ -7752,7 +7873,7 @@ The Third Floor Balcony is a room. "The balcony looks out over East Commerce Str
 
 The Third Floor Balcony overlooks the Audience Area. The distant description of the Third Floor Balcony is "A balcony lies beyond the doors to the south." 
 
-The park view is scenery, here. The description is "It's a lovely view, but you don't have time to enjoy it right now." Understand "east", "commerce", "street" as the park view. The printed name is "view".
+The park view is scenery, in the Third Floor Balcony. The description is "It's a lovely view, but you don't have time to enjoy it right now." Understand "east", "commerce", "street" as the park view. The printed name is "view".
 
 Instead of doing something other than examining to the park view, say "It's too far away."
 
@@ -7770,7 +7891,8 @@ Section 2 - Event on entering
 
 After going down to the Second Floor Landing for the first time:
 	try looking;
-	say "You hear a door slam open somewhere on the floor below.[paragraph break]'Blast it all!' someone yells. You recognize Baron Fossville's voice from running into him yesterday. '[i]Servants![no line break][r] Bring me spiced wine — hot — and something to eat. No, you dim fool, down here — I'll be leaving again within an hour. Bring it [i]now[r], unless you'd rather be whipped!'[paragraph break]The sounds of sudden, frantic activity drift up the stairs: footsteps, chairs scraping on wooden floors, glasses and dishes clinking."
+	say "You hear a door slam open somewhere on the floor below.[paragraph break]'Blast it all!' someone yells. You recognize Baron Fossville's voice from running into him yesterday. '[i]Servants![no line break][r] Bring me spiced wine — hot — and something to eat. No, you dim fool, down here — I'll be leaving again within an hour. Bring it [i]now[r], unless you'd rather be whipped!'[paragraph break]The sounds of sudden, frantic activity drift up the stairs: footsteps, chairs scraping on wooden floors, glasses and dishes clinking.";
+	update the character list;
 
 Section 3 - Constrained exits
 
@@ -7861,7 +7983,8 @@ Outside from the Library is the Master Bedroom.
 
 The distant description of the Library is "A library is south of here."
 
-Before going from the Library when the secret letter is on-stage and the player does not carry the letter: say "Don't forget the letter!" instead;
+Before going from the Library when the secret letter is on-stage and the player does not carry the letter:
+	say "Don't forget the letter!" instead;
 
 Chapter 2 - Scenery (Desk)
 
@@ -7942,7 +8065,7 @@ The printed name of the letter is "[if we have examined the letter]letter[otherw
 
 After taking the letter when we have not examined the letter:
 	say "Taken.[paragraph break]";
-	try examining the letter.
+	try examining the letter;
 
 Part 16 - The Butler
 
@@ -8038,6 +8161,7 @@ When Bobby's Hanging begins:
 	move the gallows to Lords Market;
 	move the crowd of spectators to the occasionally crowded place;
 	remove the servants from play; [ the everyday shoppers in Lords Market ]
+	update the character list;
 	select the chapter channel;
 	say "Chapter 6 - Gallows";
 	select the main channel;
@@ -8056,7 +8180,7 @@ After going to Lords Market during Bobby's Hanging:
 
 Section 2 - New Scenery (Gallows)
 
-The gallows is a supporter. "[first time]There is some sort of wooden structure[subsequently]A gallows has been[only] erected in the center of the square". [Note no full stop in initial description!] Understand "structure", "wooden structure" as the gallows. The printed name of the gallows is "sort of wooden structure".
+The gallows is a supporter. Understand "structure", "wooden structure" as the gallows. The printed name of the gallows is "sort of wooden structure".
 
 Instead of examining the gallows for the first time:
 	change the printed name of the gallows to "gallows";
@@ -8073,17 +8197,8 @@ Instead of doing something other than examining to the gallows [at any other tim
 Instead of doing something other than examining to something supported by the gallows during Bobby's Hanging:
 	say "You can't reach him. There are too many people in the way.";
 
-[ Inform would by default list the people standing on the gallows: "Bobby, Baron Fossville and Hester Rudup are on the gallows." We can suppress this by "writing a paragraph about the gallows" ourselves, but we have to make Inform print the paragraph break automatically (as it does when the text ends with a full stop.)
-
-So,
-	say "[initial appearance][paragraph break]";
-does not work.
-
-The upshot of all this is that the initial appearance of the gallows, defined above, does not have a full stop, and that this apparent triviality is in fact crucial. :-(
-]
-
 Rule for writing a paragraph about the gallows:
-	say "[initial appearance].";
+	say "[first time]There is some sort of wooden structure[subsequently]A gallows has been[only] erected in the center of the square.";
 
 Section 3 - Scenery (Crowd)
 
@@ -8247,6 +8362,7 @@ When Raid on Maiden House begins:
 
 After going to the Hallway when Widow Fiona is in the Dormitory during Raid On Maiden House:
 	try looking;
+	update the character list;
 	try Widow Fiona going southeast;
 
 Instead of opening or unlocking something with when the noun is the wooden door during the Raid on Maiden House:
@@ -8264,7 +8380,7 @@ Before going from the Hallway during The Banging:
 	end if;
 
 Instead of talking to Widow Fiona during The Banging:
-	say "'There's no time for that now,' she cries, 'just [i]go![r]'"
+	say "'There's no time for that now,' she cries, 'just [i]go![no line break][r]'";
 
 Instead of showing the Secret Letter to Widow Fiona during The Banging:
 	try talking to Widow Fiona instead;
@@ -8290,6 +8406,7 @@ After going southeast to the Laundry [in Maiden House] during Raid on Maiden Hou
 	now the secret closet door is open;
 	now the secret closet door is not scenery;
 	say "As you enter the room, Widow Shannon rushes over and pushes against one of the boards in the northern wall. It moves aside, revealing a narrow, dark opening.[paragraph break]'Quick, Jacqueline,' she whispers, 'in here!'";
+	update the character list;
 
 Chapter 1 - Description
 
@@ -8311,7 +8428,7 @@ After going north to the Secret Closet during Raid on Maiden House:
 	now the secret closet door is scenery;
 	now the secret closet door is closed;
 	say "You squeeze in, and Shannon pulls the board back into place, shutting you into darkness.";
-	try looking;
+	continue the action;
 
 Instead of opening the secret closet door when The Banging is happening or Hidden In The Closet is happening:
 	say "The Baron's men would catch you the instant you left this hiding place.";
@@ -8342,8 +8459,12 @@ Hidden in the closet is a scene. Hidden in the closet begins when the Banging en
 Every turn during Hidden in the Closet:
 	spool through dialogue in the table of maidens meeting mercenaries.
 
+When Hidden in the Closet begins:
+	now the secret closet door is scenery;
+
 When Hidden in the Closet ends:
 	now the secret closet door is open;
+	now the secret closet door is not scenery;
 	now the wooden door [of Maiden House] is open;
 	move the player to the Laundry;
 	update the character list;
@@ -8383,6 +8504,7 @@ After going to the Hallway during Leaving Maiden House:
 	try looking;
 	now Widow Fiona is not scenery;
 	say "Widow Fiona and Widow Theresa are standing in the middle of the hallway, staring each other down. Theresa looks sullen but defiant; Fiona is livid with rage.[paragraph break]They are silent for a long, tense moment. Then Widow Theresa looks away.[paragraph break]'Get out,' chokes Fiona. Her arm is extended, one pale finger pointing at the front door. 'Get out and never set foot in this orphanage again. Perhaps when the nights grow cold you may rely on the charity of your precious Baron.'[paragraph break]Theresa looks at you once — a bitter, helpless glare — and then turns on her heel and walks out, slamming the door behind her.[paragraph break]";
+	update the character list;
 	now the wooden door [of Maiden House] is closed;
 	start conversation with Widow Fiona on FI26;
 
@@ -8441,7 +8563,8 @@ Instead of going West from East Commerce Street during Shannon's Company:
 
 When Shannon's Company ends:
 	remove Widow Shannon from play;
-	say "'Well,' says Shannon, 'I've seen you safely to Dame Sandler. I'd better get back to Maiden House; the Baron's men might get suspicious if I'm gone too long. Take care, Jacqueline.' She hugs you tightly, sniffling a little, and then hurries off to the south."
+	say "'Well,' says Shannon, 'I've seen you safely to Dame Sandler. I'd better get back to Maiden House; the Baron's men might get suspicious if I'm gone too long. Take care, Jacqueline.' She hugs you tightly, sniffling a little, and then hurries off to the south.";
+	update the character list;
 
  Chapter 6 - Red Gate Estate, as a region
 
@@ -8523,7 +8646,8 @@ Chapter 2 - Event on entry
 
 After going north to the dining room for the first time during Shannon's company:
 	try looking;
-	say "'Lord Toresal was known for his hospitality,' remarks Shannon. 'He entertained guests here at his estate as often as he did at Lord's Keep. It's said he paid for his dinner parties from his own purse, rather than tax the city.' She runs her hand along the sheet-draped dining table. 'Your father was a good man, Jacqueline, and well loved by his subjects.'"
+	say "'Lord Toresal was known for his hospitality,' remarks Shannon. 'He entertained guests here at his estate as often as he did at Lord's Keep. It's said he paid for his dinner parties from his own purse, rather than tax the city.' She runs her hand along the sheet-draped dining table. 'Your father was a good man, Jacqueline, and well loved by his subjects.'";
+	update the character list;
 
 Part 4 - Kitchen
 
@@ -8585,6 +8709,7 @@ Chapter 4 - Event on entry
 After going south to the office for the first time during Shannon's company:
 	try looking;
 	say "Shannon sighs as she looks at the barren shelves. 'Your father had a great love of learning,' she says, 'and was as well-read as any scholar in the kingdom. That was one reason why he was so loved — he was wise, and his subjects knew it. He would be so sad to see all his books lost like this.'";
+	update the character list;
 
 Part 7 - Third Floor Landing
 
@@ -8698,6 +8823,7 @@ After going to the jewelers shop when the player is clean and DS31 is unfired:
 	select the chapter channel;
 	say "Chapter 9 - Preparations";
 	select the main channel;
+	update the character list;
 	start conversation with Dame Sandler on DS31;
 
 After talking to Dame Sandler when DS49 is fired:
@@ -9008,6 +9134,7 @@ After going to the armory shop during the Bodyguard scene:
 	now Olgan Minor is not scenery;
 	now Pieter is not scenery;
 	say "[first time]The proprietor makes a face as you walk into his shop, but when he sees Pieter behind you he quickly finds something else to look at.[only]";
+	update the character list;
 
 Instead of talking to Olgan Minor during the Bodyguard scene:
 	say "'Don't waste your breath making conversation, Jacqueline,' Pieter says. 'Just pick something and buy it and let's move on.' [first time]You get the impression that Pieter [i]really[r] doesn't like Olgan Minor, and that maybe there's a history between the two.[only]";
@@ -9054,7 +9181,7 @@ Instead of going to Southern Gate during Bobby's Adventure:
 
 Chapter 1 - The Gatehouse
 
-The Gatehouse is scenery, here. The description is "The portcullis — a massive gate of thick, iron bars — is raised in its archway under the gatehouse." The printed name is "portcullis". Understand "portcullis", "gate", "archway", "house", "massive", "thick", "iron", "metal", "bar", "bars" as the gatehouse.
+The Gatehouse is scenery, in the Southern Gate. The description is "The portcullis — a massive gate of thick, iron bars — is raised in its archway under the gatehouse." The printed name is "portcullis". Understand "portcullis", "gate", "archway", "house", "massive", "thick", "iron", "metal", "bar", "bars" as the gatehouse.
 
 Instead of doing something other than examining to the Gatehouse:
 	say "You can't get near the portcullis without attracting the attention of the guards.";
@@ -9076,7 +9203,7 @@ Instead of going northeast in Southern Gate, try facing northeast.
 
 Chapter 2 - The Guards Checking Invites
 
-Some Lords Guards checking invites are people, scenery, here. The description is "The guards are wearing polished mail underneath tabards decorated with the Toresal coat of arms, and carrying long spears. They look alert and ready for trouble." The printed name is "guards". Understand "guard", "man", "men" as the Lords Guards checking invites.
+Some Lords Guards checking invites are people, scenery, in the Southern Gate. The description is "The guards are wearing polished mail underneath tabards decorated with the Toresal coat of arms, and carrying long spears. They look alert and ready for trouble." The printed name is "guards". Understand "guard", "man", "men" as the Lords Guards checking invites.
 
 Some tabards are carried by the Lords Guards checking invites. The description of the tabards is "You can't get close enough to do that without attracting the guards['] attention." Understand "polished", "mail", "tabard", "armor", "long", "spear", "spears", "coat of arms", "arms", "weapon", "weapons" as the tabards. The printed name is "guards['] things".
 
@@ -9180,6 +9307,7 @@ Section 6 - Scenery (Pieter in absentia)
 
 Before doing anything when (the noun is Pieter or the second noun is Pieter) and the location is the Ballroom:
 	remove Pieter from play;
+	update the character list;
 	say "You can't see Pieter anywhere; he must have gotten separated from you in the press of guests. For the time being at least, you're on your own." instead;
 
 Part 6 - Social airs
@@ -9453,6 +9581,7 @@ PR15 is clustered with PR16.
 
 After firing a quip that is clustered with PR15:
 	remove the Princess from play;
+	update the character list;
 
 Chapter 4 - The Duke and Duchess of Inhyron
 
@@ -10019,7 +10148,8 @@ After firing FOSS6:
 	move Bobby to the War Room;
 	now the heavy iron reinforced door is unlocked;
 	now the heavy iron reinforced door is open;
-	move the fighting to the War Room
+	move the fighting to the War Room;
+	update the character list;
 
 
 Chapter 3 - Bobby in shining armour / The Skirmish
@@ -10096,6 +10226,7 @@ Instead of freeing a caught Pieter during the Skirmish:
 	remove Bobby from play;
 	remove Baron Fossville from play;
 	say "Working quickly, you saw through the ropes holding Pieter. 'Thank you,' he gasps, rubbing feeling back into his wrists. Then he grabs up the sword of a fallen mercenary and rushes to Bobby's aid.[paragraph break]Bobby and Pieter fight side by side, attacking one after the other so that the Baron has no chance to counter. He falls back before their onslaught, stumbles... and then he turns and runs out the door, calling for his mercenaries to defend him.[paragraph break]With a shout, Pieter gives chase. Bobby turns to you, grinning. 'Wait for me here, Jack,' he says. 'We'll catch that villain quick enough, and then I'll explain everything.' And then with a bound, he is gone.";
+	update the character list;
 
 Some knotted ropes are scenery in the War Room. The printed name is "ropes". The description is "[if Pieter is caught]The ropes are knotted tight, cutting deeply into Pieter's skin.[otherwise]The ropes are frayed where you cut through them.[end if]". Understand "bonds", "rope", "tight", "cords", "cord", "bond", "binding", "bindings", "bondage", "gag" as the knotted ropes. Understand "frayed", "fraying" as the knotted ropes when Pieter is not caught.
 
@@ -10112,6 +10243,10 @@ When the skirmish ends:
 Book W - Bits and pieces
 
 [Things end up here when they cause too much conflict otherwise by being defined early. This makes me sad. ]
+
+Part 0 - Bobby's Route
+
+Bobby's route is {Lords Road, Pasture, Crossing, Woods, Clearing, Underneath the Fountain, the Secret Passage, Chapel, Lower Bailey, Upper Bailey, Guardhouse}.
 
 Part 1 - Global backdrops
 
@@ -10166,6 +10301,7 @@ Definition: a room is interior:
 	if it is Outer Market Roof, no;
 	if it is Top of Center Post, no;
 	if it is a shop, yes;
+	if it is a store, yes;
 	if it is in Maiden House, yes;
 	if it is in the Prison Region, yes; 
 	if it is in the Sewers Region, yes;
@@ -10318,8 +10454,6 @@ Book JAL - Jacqueline's Section - Not for release
 
 [JACQNOTE: SLIDE DOWN THE WIRE PUZZLE: 
 	Please also implement 'wrap' and consider 'cover' in addition to 'loop' for 'hang.'  Also, when the interactor has both a silk and a wool cloak and tries to merely 'put cloak on northwest wire,' consider having the game autodisambiguate for the sturdier wool cloak.]
-
-
 
 [***** GRUBBERS TESTING *****]
 
