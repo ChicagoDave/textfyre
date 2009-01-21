@@ -138,6 +138,8 @@ Does the player mean eating something inedible:
 
 Part 3 - Doors and boxes
 
+Chapter 1 - Opening and Closing
+
 [This is not quite right in the way the rules interact.]
 
 Does the player mean opening or closing something openable:
@@ -299,5 +301,5 @@ Textfyre Standard Rules ends here.
 
 ---- DOCUMENTATION ----
 
-This extension is in no way meant as a replacement for the Standard Rules, but really just a collection of tweaks, refinements and best practices that can eventually be shared across Textfyre games to allow a degree of uniformity and robustness. At the moment, though, it's incomplete, and laughably trivial.
+This extension is in no way meant as a replacement for the Standard Rules, but really just as a collection of tweaks, refinements and best practices that can eventually be shared across Textfyre games to allow a degree of uniformity and robustness. At the moment, though, it's incomplete, incorrect, and laughably trivial.
 
