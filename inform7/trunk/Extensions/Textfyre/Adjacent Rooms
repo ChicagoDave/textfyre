@@ -4,6 +4,10 @@ Adjacent Rooms by Textfyre begins here.
 
 Include Pronouns by Textfyre.
 
+[
+When		Who		What
+]
+
 Line-of-sight relates various rooms to various rooms. The verb to overlook (he overlooks, they overlook, he overlooked, it is overlooked, he is overlooking) implies the line-of-sight relation.
 
 Proximity relates a room (called yonder) to a room (called hither) when yonder is adjacent to hither or hither overlooks yonder. The verb to be proximate to implies the proximity relation.
@@ -162,33 +166,49 @@ Rule for supplying a missing noun while departing:
 Section 2 - Action on current location
 
 Check departing:
-	if the noun is not a room begin;
-		if the noun supports the player or the noun contains the player,
+	if the noun is not a room:
+		if the noun supports the player or the noun contains the player:
 			try exiting instead;
-	otherwise;
-		continue the action;
-	end if;
+	continue the action;
+
+Check departing:
+	if the room outside from the location is not nothing:
+		try going outside instead;
+	continue the action;
 
 Carry out departing:
-	if the room outside from the location is not nothing begin;
-		try going outside instead;
-	else;
-		carry out the listing available exits activity with the location;
-	end if;
+	try listing exits instead; [action out of world]
 
 Listing available exits of something is an activity.
 
-Rule for listing available exits of room (called someplace):
-	let the viable directions be {north, northeast, east, southeast, south, southwest, west, northwest, up, down, inside, outside};
-	repeat with i running from 1 to 12 begin;
+The listing available exits activity has a list of objects called the viable directions.
+
+First before listing available exits of a room (called someplace):
+	change the viable directions to {north, northeast, east, southeast, south, southwest, west, northwest, up, down, inside, outside};
+	repeat with i running from 1 to 12:
 		let d be entry 1 of the viable directions;
-		if the room d from someplace is nothing begin;
+		if the room d from someplace is nothing:
 			remove entry 1 from the viable directions;
-		otherwise;
+		otherwise:
 			rotate the viable directions backwards;
-		end if;
-	end repeat;
-	say "You can go [viable directions] from here.";
+
+Last after listing available exits of a room:
+	if the viable directions is not empty:
+		if the number of entries in the viable directions is 1:
+			say "There is an exit [viable directions] from here.";
+		otherwise:
+			say "There are exits [viable directions] from here.";
+	otherwise:
+		say "There are no obvious exits from this place.";
+
+Section 3 - EXITS command
+
+Listing exits is an action out of world applying to nothing.
+
+Understand "exits" as listing exits.
+
+Report listing exits:
+	carry out the listing available exits activity with the location;
 
 Chapter 3 - INSERT INTO
 
@@ -217,17 +237,19 @@ Chapter 4 - REMOVE FROM
 
 Section 1 - Grammar
 
-Understand "take [things] from [any playerful room]" as pseudotaking.
-Understand "get [things] from [any playerful room]" as pseudotaking.
-Understand "remove [things] from [any playerful room]" as pseudotaking.
+Understand "take [something] from [any playerful room]" as pseudotaking.
+Understand "get [something] from [any playerful room]" as pseudotaking.
+Understand "remove [something] from [any playerful room]" as pseudotaking.
 
-Understand "take [things] from [any proximate room]" as a mistake ("You will have to go there, first.").
-Understand "get [things] from [any proximate room]" as a mistake ("You will have to go there, first.").
-Understand "remove [things] from [any proximate room]" as a mistake ("You will have to go there, first.").
+Understand "take [something] from [text]" as a mistake ("You can't see any such thing.").
+Understand "get [something] from [text]" as a mistake ("You can't see any such thing.").
+Understand "remove [something] from [text]" as a mistake ("You can't see any such thing.").
 
-Understand "take [things] from [text]" as a mistake ("You can't see any such thing.").
-Understand "get [things] from [text]" as a mistake ("You can't see any such thing.").
-Understand "remove [things] from [text]" as a mistake ("You can't see any such thing.").
+[Rule for printing a parser error when parser error is noun did not make sense in that context: 
+	[we can make a guess at what's been tried:]
+	if the player's command includes "from":
+		if the player's command includes "take" or the player's command includes "get" or the player's command includes "remove": 
+			say "There are none at all available!";]
 
 Section 2 - Action on current location
 
@@ -249,8 +271,6 @@ Understand "close up [text]" as a mistake ("You can't see any such thing.").
 Chapter 6 - Remaining actions that aren't covered by the Standard Rules
 
 Understand "lock [any playerful room] with [something preferably held]" as locking it with.
-Understand "lock [something] with [any playerful room]" as a mistake ("Strange concept.").
-Understand "lock [any playerful room] with [any playerful room]" as a mistake ("Strange concept.").
 Understand "lock [text] with [something preferably held]" as a mistake ("You can't see any such thing.").
 Understand "lock [text] with [text]" as a mistake ("You can't see any such thing.").
 
@@ -259,13 +279,9 @@ Check locking a room with:
 	say "[X].";
 
 Understand "unlock [any playerful room] with [something preferably held]" as unlocking it with.
-Understand "unlock [something] with [any playerful room]" as a mistake ("Strange concept.").
-Understand "unlock [any playerful room] with [any playerful room]" as a mistake ("Strange concept.").
 Understand "unlock [text] with [something preferably held]" as a mistake ("You can't see any such thing.").
 Understand "unlock [text] with [text]" as a mistake ("You can't see any such thing.").
 Understand "open [any playerful room] with [something preferably held]" as unlocking it with.
-Understand "open [something] with [any playerful room]" as a mistake ("Strange concept.").
-Understand "open [any playerful room] with [any playerful room]" as a mistake ("Strange concept.").
 Understand "open [text] with [something preferably held]" as a mistake ("You can't see any such thing.").
 Understand "open [text] with [text]" as a mistake ("You can't see any such thing.").
 
@@ -277,7 +293,7 @@ Understand "smell [any playerful room]" as smelling.
 Understand "smell [any proximate room]" as a mistake ("You will have to go there, first.").
 Understand "smell [text]" as a mistake ("You can't see any such thing.").
 
-Chapter 7 - Looking in directions
+Chapter 7 - Looking directions
 
 [Adapted from manual example #66, "A View of Green Hills".]
 

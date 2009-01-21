@@ -65,9 +65,10 @@ Rule for terminating conversation with a thing:
 	now the current conversationalist is the player.
 
 Last after terminating conversation with:
-	select the conversation channel;
-	say "<TopicList />";
-	select the main channel;
+	if the current conversationalist is the player: [it may well not be! the conversation may yet continue if the game has intervened.]
+		select the conversation channel;
+		say "<TopicList />";
+		select the main channel;
 
 Part 2 - Verbs
 
@@ -79,6 +80,8 @@ Check talking to the player:
 	say "Second sign of madness." instead;
 
 Check talking to the current conversationalist:
+	if the number of entries in the current conversation is 1:
+		try selecting menu option 1 instead;
 	say "You are already talking to [the noun]." instead.
 
 Carry out talking to someone:

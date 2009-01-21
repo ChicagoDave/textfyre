@@ -1,4 +1,4 @@
-Version 25/080420 of Custom Library Messages by David Fisher begins here.
+Version 26/080829 of Custom Library Messages by David Fisher begins here.
 
 "Enables the standard messages printed by the Inform library
 to be replaced with custom messages, including changes to
@@ -2297,20 +2297,20 @@ Go:
        6: id = (+LibMsg <nothing through door>+);
        7: id = (+LibMsg <block vaguely going>+);
        8: id = (+LibMsg <say npc goes>+);
-          (+main object+) = u_obj;
+          (+main object+) = (+ up +);
        9: id = (+LibMsg <say npc goes>+);
-          (+main object+) = d_obj;
+          (+main object+) = (+ down +);
        10: id = (+LibMsg <say npc goes>+);
        11: id = (+LibMsg <say npc arrives>+);
-          (+main object+) = u_obj;
+          (+main object+) = (+ up +);
        12:  id = (+LibMsg <say npc arrives>+);
-          (+main object+) = d_obj;
+          (+main object+) = (+ down +);
        13:  id = (+LibMsg <say npc arrives>+);
        14: id = (+LibMsg <say npc arrives from unknown direction>+);
        15: id = (+LibMsg <say npc arrives at>+);
-          (+secondary object+) = u_obj;
+          (+secondary object+) = (+ up +);
        16: id = (+LibMsg <say npc arrives at>+);
-          (+secondary object+) = d_obj;
+          (+secondary object+) = (+ down +);
        17: id = (+LibMsg <say npc arrives at>+);
           ! secondary object already defined
        18: id = (+LibMsg <say npc goes through>+);
@@ -2763,10 +2763,11 @@ To display_part_1 for (id_ - a library message id):
    follow the print library message rule.
 
 To display_part_2:
-	set_to_nothing main object;
-	if libmsg-was-empty is 0:
-		if library-message-id is not LibMsg <reveal any newly visible exterior initial text>:
-			say "[if there are not multiple objects][/n]".
+   set_to_nothing main object;
+   if libmsg-was-empty is 0 begin;
+      if library-message-id is not LibMsg <reveal any newly visible exterior initial text>,
+         say "[if there are not multiple objects][/n]";
+   end if.
 
 To set_to_nothing (x_ - an object):
    (- {x_} = nothing; -).
@@ -2798,21 +2799,71 @@ Rule for supplying a missing noun while going:
    display LibMsg <block vaguely going>;
    say " ".		[ if this isn't here, it says "You must supply a noun" ! ]
 
+Section 5.3 - Locale description - unindexed
+
+[ The following code was supplied by Emily Short ]
+
+The you can see more rule is listed instead of the you-can-also-see 
+rule in the for printing the locale description rules. 
+
+
+For printing the locale description (this is the you can see more 
+rule): 
+	let the domain be the parameter-object; 
+	let the mentionable count be 0; 
+	repeat with item running through things: 
+		now the item is not marked for listing; 
+	repeat through the Table of Locale Priorities: 
+		[say "[notable-object entry] - [locale description priority 
+entry].";] 
+		if the locale description priority entry is greater than 0, 
+			now the notable-object entry is marked for listing; 
+		increase the mentionable count by 1; 
+	if the mentionable count is greater than 0: 
+		repeat with item running through things: 
+			if the item is mentioned: 
+				now the item is not marked for listing; 
+		begin the listing nondescript items activity; 
+		if the number of marked for listing things is 0: 
+			abandon the listing nondescript items activity; 
+		otherwise: 
+			if handling the listing nondescript items activity: 
+				if the domain is a room: 
+					if the domain is the location, say "[You] "; 
+					otherwise say "In [the domain] [you] "; 
+				otherwise if the domain is a supporter: 
+					say "On [the domain] [you] "; 
+				otherwise: 
+					say "In [the domain] [you] "; 
+				say "[can] [if the locale paragraph count is greater than 0]also [end if]see "; 
+				let the common holder be nothing; 
+				let contents form of list be true; 
+				repeat with list item running through marked for listing things: 
+					if the holder of the list item is not the common holder: 
+						if the common holder is nothing, 
+							now the common holder is the holder of the list item; 
+						otherwise now contents form of list is false; 
+					if the list item is mentioned, now the list item is not marked for listing; 
+				filter list recursion to unmentioned things; 
+				if contents form of list is true and the common holder is not nothing, 
+					list the contents of the common holder, as a sentence, including contents, giving brief inventory information, tersely, not listing concealed items, listing marked items only; 
+				otherwise say "[a list of marked for listing things including contents]"; 
+				if the domain is the location, say " here"; 
+				say ".[paragraph break]"; 
+				unfilter list recursion; 
+			end the listing nondescript items activity; 
+	continue the activity. 
+
+
 Custom Library Messages ends here.
 
 ---- DOCUMENTATION ----
 
 Chapter: How To Use This Extension
 
-Section: Important - Compatibility Note
+Section: New Messages In Version 25
 
-The current version of this extension is not backwards compatible with previous versions due to major changes in Inform 7.
-
-It will replaced by an extension called "English" in the core library in an upcoming release of Inform 7, after which time CLM will no longer be supported.
-
-Section: New Messages In This Version
-
-The following new messages have been added in this version of Custom Library Messages:
+The following new messages were added in the previous version of Custom Library Messages (v25, April 2008):
 
 	LibMsg <cannot drop if this exceeds carrying capacity>
 	LibMsg <cannot exit thing not within>
@@ -2848,12 +2899,12 @@ The following new messages have been added in this version of Custom Library Mes
 	LibMsg <say npc taking player along>
 	LibMsg <say npc vehicle>
 
-In addition, LibMsg <report npc giving> has been split into:
+In addition, LibMsg <report npc giving> was split into:
 
 	LibMsg <report npc giving to npc>
 	LibMsg <report npc giving to player>
 
-And the "report npc opening/closing" messages have been split into:
+And the "report npc opening/closing" messages were split into:
 
 	LibMsg <report npc opening>
 	LibMsg <report unseen npc opening>
@@ -3417,7 +3468,10 @@ Version 25 (April 20th, 2008)
 	* Removed "^" from upper case "to say" rules (eg. "[The %]" instead of "[^The %]").
 	* Added new messages (see New Messages In This Version, above).
 	* Removed references to I6 actions which do not exist in I7: Order, FullScore, Places, Objects, EmptyT, VagueGo, JumpOver, Swim, Blow, Dig, Fill, Set and Pray.
-	* This is intended to be the last version of this extension. It will be replaced with an extension called "English" in the core I7 library.
+	* Updated the "block pushing in directions" message to match the new standard message.
+
+Version 26 (August 29th, 2008)
+	* Added section 5.3 (Locale description), containing code by Emily Short to make the standard "you can see" message call this extension.
 
 Section: Important Kinds and Values
 
@@ -4066,7 +4120,7 @@ Section: Push, Pull, Turn
 	LibMsg <report npc pulling>			"[The actor] pull[-s] [the % dobj]."
 	LibMsg <report player turning>			"[nothing obvious happens]"
 	LibMsg <report npc turning>			"[The actor] turn[-s] [the % dobj]."
-	LibMsg <block pushing in directions>		"Is that the best you can think of?"
+	LibMsg <block pushing in directions>		"[The %] [if lm_past]could not[otherwise]cannot[end if] be pushed from place to place."
 	LibMsg <not pushed in a direction>		"That's not a direction."
 	LibMsg <pushed in illegal direction>		"Not that way [you] [=> present tense][can't]."
 	LibMsg <cannot push something fixed in place>	"[It is fixed in place]"

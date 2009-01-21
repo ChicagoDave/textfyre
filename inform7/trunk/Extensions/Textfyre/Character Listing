@@ -28,7 +28,7 @@ To update the character list:
 		carry out the character-listing activity;
 	end if;
 
-The first after rule when an actor going somewhere:
+The last after rule when an actor going somewhere:
 	update the character list;
 	continue the action;
 
