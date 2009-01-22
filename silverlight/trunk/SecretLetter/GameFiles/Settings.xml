@@ -20,6 +20,6 @@
   <Setting Key="BookPageInnerContentHeight" Value="470" />
   <Setting Key="BookPageInnerContentOffsetLeft" Value="20" />
   <Setting Key="BookPageInnerContentOffsetTop" Value="0" />
-  <Setting Key="PrologueNewLines" Value="47" />
+  <Setting Key="PrologueNewLines" Value="0" />
   <Setting Key="PagingMechanism" Value="StaticPageCreateBackPages" />
 </Settings>
