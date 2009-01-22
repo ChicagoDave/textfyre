@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Settings>
   <Setting Key="BackgroundColor" Value="#FFF9EAD6" />
-  <Setting Key="BookPageWidth" Value="353" />
-  <Setting Key="BookPageHeight" Value="557" />
-  <Setting Key="BookPageOffsetLeft" Value="42" />
-  <Setting Key="BookPageOffsetTop" Value="19" />
+  <Setting Key="BookWidth" Value="920" />
+  <Setting Key="BookPageWidth" Value="395" />
+  <Setting Key="BookPageHeight" Value="572" />
+  <Setting Key="BookPageOffsetLeft" Value="66" />
+  <Setting Key="BookPageOffsetTop" Value="0" />
   <Setting Key="VersionText" Value="12-Dec-2008" />
   <Setting Key="StoryID" Value="1" />
   <Setting Key="LogEnabled" Value="True" />
@@ -14,4 +15,11 @@
   <Setting Key="AutoOpenBookCover" Value="True" />
   <Setting Key="PageGripSize" Value="40" />
   <Setting Key="TOCs" Value="Introduction|Map|Hints|Help|Transcript|Credits|Quit" />
+  <Setting Key="ResizingEnabled" Value="True" />
+  <Setting Key="BookPageInnerContentWidth" Value="380" />
+  <Setting Key="BookPageInnerContentHeight" Value="470" />
+  <Setting Key="BookPageInnerContentOffsetLeft" Value="20" />
+  <Setting Key="BookPageInnerContentOffsetTop" Value="0" />
+  <Setting Key="PrologueNewLines" Value="47" />
+  <Setting Key="PagingMechanism" Value="StaticPageCreateBackPages" />
 </Settings>
