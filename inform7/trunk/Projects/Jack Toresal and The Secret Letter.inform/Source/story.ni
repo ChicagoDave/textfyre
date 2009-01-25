@@ -172,6 +172,15 @@ Section - Randomizer - Not For Release
 
 When play begins, seed the random-number generator with 1234.
 
+After reading a command: 
+	let T be indexed text; 
+	let T be the player's command;
+	if T matches the regular expression "^\*":
+		say "Noted.";
+		reject the player's command; 
+	otherwise:
+		continue the action. 
+
 Book 0 - Worldly affairs
 
 Part 1 - Beating memory constraints
@@ -960,7 +969,7 @@ Instead of waving the player:
 Part 2 - Alleyway Introduction
 
 When play begins:
-	Send the Chapter I Hints;
+	[Send the Chapter I Hints; - commented out for play-testing]
 	select the prologue channel;
 	say "Mid-morning always sees the Grubber's Market at its most crowded. Servants from the aristocratic districts and villagers from outside Toresal crush themselves into the maze of stalls and stretched canvas, hoping to beat the noontime heat and get the farmers[apostrophe] produce while it's still fresh. The press of bodies, the din of haggling and bargains struck — it all makes getting around unnoticed easier, although not necessarily more pleasant. No fewer than half a dozen stall-gazing bumpkins have trod on your feet already this morning. You've kept your mouth shut, though. People remember an urchin who gives lip.[paragraph break]'See anything you like?' asks the silk seller, with a teasing smile. You smile back. You couldn’t afford one of her cloaks without nicking a fat purse first, and Teisha doesn’t approve of you stealing from people, even when they’re not her customers.[paragraph break]'Oh, these are [i]much[r] too plain,' you scoff, even as you gaze wistfully at the bright colors, the beautiful embroidery. Time for a bit of breakfast, you decide, and anyway if you linger too long, people will wonder what a boy is doing shopping for women's cloaks. 'Perhaps I'll come back this afternoon, when you've put out your better wares.'[paragraph break]Teisha laughs. 'Don't be a stranger, Jack.'[paragraph break]You make your way through the market, nicking an apple from the fruit stall while its owner argues with a fat Easterner over local politics. Everyone seems to be talking politics these days, you've noticed. Everywhere people are heatedly discussing Baron Fossville's tax policies or something called the 'Ascension' — whatever that is. Boring stuff, really. Finally you reach a quiet alley where you can catch a breath from the crowds and enjoy your apple in peace.[paragraph break]You settle yourself on a crate and take a bite of your apple. Suddenly, from the alley's entrance, you hear voices.";
 	select the chapter channel;
@@ -1220,8 +1229,10 @@ Section 1 - Beginning and ending
 
 Trouble in Grubbers is a scene. Trouble in Grubbers begins when play begins. Trouble in Grubbers ends when Final Chase ends.
 
+[ Commented out for play-testing
 Every turn during Trouble in Grubbers:
 	Send the Chapter I Hints.
+]
 
 Eavesdropping on Soldiers is a scene. Eavesdropping on Soldiers begins when play begins. Eavesdropping on soldiers ends when the wandering mercenaries are in the alley or the table of overheard mercenary utterances is empty.
 
