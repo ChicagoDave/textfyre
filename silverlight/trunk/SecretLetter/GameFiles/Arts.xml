@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Arts>
   <!--Art ID="Book" Path="Images/finalBookBase.png" Width="1475" Height="976" /-->
+  <!--Art ID="BookCover" Path="Images/BookCover.png" Width="403" Height="581"  Margin="460,0,0,0" /-->
   <Art ID="Book" Path="Images/finalBookBase.png" Width="900" Height="600" />
-  <Art ID="BookCover" Path="Images/BookCover.png" Width="403" Height="581" />
+  <Art ID="BookCover" Path="Images/BookCover.png" Width="450" Height="600"  Margin="460,0,0,0" />
   <Art ID="BookPage1" Path="Images/finalbook_leftpage.png" Width="400" Height="580" />
   <Art ID="BookPage2" Path="Images/finalBookRightPage.png" Width="400" Height="580" />
   <Art ID="TitlePage" Path="Images/Frontpage.png" Width="280" Height="442" />
