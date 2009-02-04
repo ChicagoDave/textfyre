@@ -2,6 +2,7 @@
 
 [  Change Log
 When		Who		What
+03-Feb-2009	D. Cornelson	Implementing changes from EE_notes_01.
 21-Jan-2009	G. Jefferis	Implemented changes from JA_notes_02_response
 20-Jan-2009	G. Jefferis	Implemented changes from JA_notes_02_response
 19-Jan-2009	G.Jefferis	Implemented changes from JA_notes_01_response
@@ -164,7 +165,9 @@ Rule for printing the banner text:
 	say "Designed by David Cornelson and Michael Gentry[line break]";
 	say "Written by Michael Gentry[line break]";
 	say "Programmed by Graeme Jefferis[line break]";
-	say "Testing by Jacqueline A. Lott[line break]";
+	say "Testing by Jacqueline Ashwell, Peter Berman, Eric Eve, Jim Aikin, and Paul O'Brian[line break]";
+	say "Original art by Goni Montes[line break]";
+	say "Art Direction by William Capellaro[line break]";
 	say "All rights reserved[line break]";
 	select the main channel;
 
@@ -1883,10 +1886,13 @@ A kello fruit is fruit. The description is "It's a little bit too green, but pro
 
 A banana is fruit. The description of the banana is "The banana is plump, bright yellow with just a sprinkling of brown freckles." Understand "perfect", "plump", "bright", "yellow", "brown", "freckles", "freckle", "kozarian", "from", "from the", "kozar", "delta" as the banana.
 
-The player carries an apple. The apple is fruit. The description is "The apple is round, firm, green at the bottom shading up to red near the stem." Understand "round", "firm", "green", "red", "stem" as the apple.
+The player carries an apple. The apple is fruit. The description is "The apple is round, firm, green at the bottom shading up to red near the stem[if Eavesdropping on Soldiers is happening or Avoiding Soldiers is happening]. There is a big bite taken out of one side[end if]." Understand "round", "firm", "green", "red", "stem" as the apple.
 
 Before eating or tasting the apple when Avoiding Soldiers is happening or Eavesdropping on Soldiers is happening:
 	say "No time for breakfast right now!" instead;
+
+Before tasting something:
+	say "You shouldn't go around putting your tongue on strange objects." instead;
 
 After eating the apple:
 	say "Crisp and delicious!";
@@ -3086,6 +3092,8 @@ Chapter 2 - Contents (Center Post)
 
 The bottom of the center post is in Grubbers Market Center Post. It is scenery and fixed in place. The initial appearance is "The big support post rises up in the midst of the gloom, towering over the empty stalls." The description is "It's huge, almost too big to put your arms around. Way up at the top, you can see wires stretching out in each of the cardinal directions." The printed name is "center post".  Understand "central", "support", "wood", "wooden", "pole", "tall" as the bottom of the center post.
 
+Instead of taking, pushing, pulling, or turning the bottom of the center post, say "The enormous post does not budge."
+
 Instead of climbing the bottom of the center post, try going up instead.
 
 Instead of descending the bottom of the center post, try going down instead.
@@ -3154,6 +3162,8 @@ Understand the command "loop" as "hang".
 Check hanging it on (this is the block hanging rule):
 	say "You can't see any way to hang [the noun] on that."
 
+Instead of cutting the cable, say "The cables are far too thick and tough for you to cut."
+
 Chapter 4 - Contents (cables)
 
 Section 1 - Pointiness
@@ -3172,9 +3182,14 @@ The description of a cable is "[cable description of the item described]".
 
 To say cable description of (c - a cable):
 	let dest be the destination corresponding to a cable of c in the Table of landing locations;
-	say "The cable is made of thick, braided wire. One end is attached to the top of the pole that you are currently balancing on; the other end is attached to the ground at [if dest is visited]the [dest][otherwise]the [way of c] corner of the market[end if], far below. ";
+	say "The cable is made of thick, braided wire. One end is attached to the top of the pole that you are currently balancing on; the other end is attached to the ground at [if dest is visited]the [dest][otherwise]the [way of c] corner of the market[end if], far below[if the monkey is in Grubbers Market Top of Center Post and the dest is Hat Stall]. The monkey balances easily on the cable, about 3 feet out from the top of the post[end if].[run paragraph on]"
 
-Understand "nw" as the northwest cable. Understand "sw" as the southwest cable. Understand "ne" as the northeast cable. Understand "se" as the southeast cable. 
+Understand "nw" as the northwest cable. Understand "sw" as the southwest cable. Understand "ne" as the northeast cable. Understand "se" as the southeast cable.
+
+Shaking is an action applying to one visible thing requiring light. Understand "shake [something]" as shaking.
+
+Instead of shaking something, say "You stop yourself and think, 'Jack, get a grip.'"
+Instead of shaking the cable, say "The cables are so thick and so taut, they don't even budge[if the monkey is in Grubbers Market Top of Center Post]. The monkey chatters happily at your fruitless efforts to dislodge it[end if]."
 
 Does the player mean doing something with the southeast cable: it is likely. 
 Does the player mean hanging something on the southeast cable: it is likely.
@@ -3230,7 +3245,7 @@ Before sliding down a cable with something not good for sliding with:
 Instead of sliding down a cable with something:
 	let the room where the player ends up be the short name corresponding to a cable of the noun in the table of landing locations;
 	let the landing place be the destination corresponding to a cable of the noun in the table of landing locations;
-	say "You wrap one end of [the second noun] around your hand, then squat down and sling the other end around the anchor cable. You give [it or them for the second noun] a good, hard yank to test your grip. [first time]You take a deep breath. You try to convince your heartbeat to slow down, or at least continue its dreadful hammering in some part of your body other than your throat. You fail. [only]Then[first time], finally,[only] you swing down under the wire and kick off into space.[paragraph break]The wind is exhilarating as you zip down the line. The ground rushes up at you with terrifying speed. [The second noun] whizz[if the second noun is not plural-named]es[end if] hotly against the rough wire, and you vaguely smell smoke, but your impromptu harness holds. [if final chase is happening]Shouts ring out and fingers point as the mercenaries spot you and race to where they think you will land. [end if]Suddenly your feet hit dirt. You let go of [the second noun] and tumble to the hard ground, knocking over a couple of shoppers before you roll to a stop. The next moment you are back on your feet, bruised and breathless.";
+	say "You wrap one end of [the second noun] around your hand, then squat down and sling the other end around the anchor cable. You give [it or them for the second noun] a good, hard yank to test your grip. [first time]You take a deep breath. You try to convince your heartbeat to slow down, or at least continue its dreadful hammering in some part of your body other than your throat. You fail. [only]Then[first time], finally,[only] you swing down under the wire and kick off into space.[paragraph break][if the landing place is Hat Stall]The monkey sees you coming and leaps over you, landing deftly on the top of the post. Its angry shrieks fade quickly as you pick up speed.[paragraph break][end if]The wind is exhilarating as you zip down the line. The ground rushes up at you with terrifying speed. [The second noun] whizz[if the second noun is not plural-named]es[end if] hotly against the rough wire, and you vaguely smell smoke, but your impromptu harness holds. [if final chase is happening]Shouts ring out and fingers point as the mercenaries spot you and race to where they think you will land. [end if]Suddenly your feet hit dirt. You let go of [the second noun] and tumble to the hard ground, knocking over a couple of shoppers before you roll to a stop. The next moment you are back on your feet, bruised and breathless.";
 	move the second noun to the landing place;
 	move the player to the landing place;
 	update the character list;
@@ -3249,11 +3264,13 @@ When Monkey Business begins:
 
 Section 6.1 - Description (Monkey & Necklace)
 
-The monkey is an animal. The initial appearance of the monkey is "Balancing on one of the wires is that monkey[if the player holds a banana]. The monkey sniffs the air excitedly as you come closer, and emits a hopeful chirp[end if]." Understand "animal"  or "silver", "silvery", "fur", "black", "mask", "marking", "markings", "like", "face", "monkeys", "chest", "hand", "hands" as the monkey.
+The monkey is an animal. The initial appearance of the monkey is "Balancing on the southeast cable is that monkey[if the player holds a banana]. The monkey sniffs the air excitedly as you come closer, and emits a hopeful chirp[end if]." Understand "animal"  or "silver", "silvery", "fur", "black", "mask", "marking", "markings", "like", "face", "monkeys", "chest", "hand", "hands" as the monkey.
 
 Instead of kissing the monkey, say "Are you crazy? You don't know where that monkey's been."
 
-The description of the monkey is "The monkey has silvery fur and black mask-like markings on its startlingly human face. It seems to regard you with a mixture of curiosity and amusement — as though you were some strange little animal whose antics it found entertaining[if the monkey carries the necklace]. It grips the necklace protectively, tight against its tiny chest[end if]."
+Instead of throwing something at the monkey, say "That monkey is way too fast. You'd never hit it."
+
+The description of the monkey is "The monkey has silvery fur and black mask-like markings on its startlingly human face. It seems to regard you with a mixture of curiosity and amusement — as though you were some strange little animal whose antics it found entertaining[if the monkey carries the necklace]. It grips the necklace protectively, tight against its tiny chest[end if][if the monkey is in Grubbers Market Top of Center Post]. The monkey is standing on the southeast cable[end if].[run paragraph on]"
 
 Instead of listening to the monkey, say "The monkey chatters and hoots to itself constantly."
 Instead of smelling the monkey, say "It won't let you close enough to smell it, but hey, it's a monkey — it probably doesn't smell like roses."
