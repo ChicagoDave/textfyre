@@ -4,9 +4,7 @@ Adjacent Rooms by Textfyre begins here.
 
 Include Pronouns by Textfyre.
 
-[
-When		Who		What
-]
+The viable directions is a list of objects [directions] that varies.
 
 Line-of-sight relates various rooms to various rooms. The verb to overlook (he overlooks, they overlook, he overlooked, it is overlooked, he is overlooking) implies the line-of-sight relation.
 
@@ -79,9 +77,9 @@ Understand "go [any proximate room]" as Pseudogoing.
 Understand "go [text]" as a mistake ("You can't see any such thing.").
 
 [ Understand "go to/into/in/inside/through [any playerful room]" as a mistake ("But you are already here."). ]
-Understand "go to/into/in/inside/through [any proximate room]" as Pseudogoing.
-Understand "go to/into/in/inside/through [something]" as a mistake ("It's right here, you don't have to go anywhere to do something with it.").
-Understand "go to/into/in/inside/through [text]" as a mistake ("You can't see any such thing.").
+Understand "go to [any proximate room]" as Pseudogoing.
+Understand "go to [something]" as a mistake ("It's right here, you don't have to go anywhere to do something with it.").
+Understand "go to [text]" as a mistake ("You can't see any such thing.").
 
 Section 2 - Action on current location
 
@@ -90,16 +88,14 @@ The pseudogoing action has a direction called the chosen direction.
 
 Rule for setting action variables for pseudogoing:
 	now the chosen direction is nothing;
-	let the viable directions be {north, northeast, east, southeast, south, southwest, west, northwest, up, down, inside, outside};
+	let the possible directions be {north, northeast, east, southeast, south, southwest, west, northwest, up, down, inside, outside};
 	let i be 1;
-	while the chosen direction is nothing and i <= 12 begin;
-		let d be entry 1 of the viable directions;
-		if the room d from the location is the noun begin;
+	while the chosen direction is nothing and i <= 12:
+		let d be entry 1 of the possible directions;
+		if the room d from the location is the noun:
 			now the chosen direction is d;
-		end if;
-		rotate the viable directions backwards;
+		rotate the possible directions backwards;
 		increment i by 1;
-	end while;
 
 Check pseudogoing:
 	if the chosen direction is nothing begin;
@@ -177,13 +173,13 @@ Check departing:
 	continue the action;
 
 Carry out departing:
-	try listing exits instead; [action out of world]
+	try listing exits instead; [converting to an action out of world - which is appropriate.]
+
+Assembling available exits of something is an activity.
 
 Listing available exits of something is an activity.
 
-The listing available exits activity has a list of objects called the viable directions.
-
-First before listing available exits of a room (called someplace):
+Rule for assembling available exits of a room (called someplace):
 	change the viable directions to {north, northeast, east, southeast, south, southwest, west, northwest, up, down, inside, outside};
 	repeat with i running from 1 to 12:
 		let d be entry 1 of the viable directions;
@@ -192,7 +188,8 @@ First before listing available exits of a room (called someplace):
 		otherwise:
 			rotate the viable directions backwards;
 
-Last after listing available exits of a room:
+Rule for listing available exits of a room (called someplace):
+	carry out the assembling available exits activity with someplace;
 	if the viable directions is not empty:
 		if the number of entries in the viable directions is 1:
 			say "There is an exit [viable directions] from here.";
@@ -239,16 +236,16 @@ Section 1 - Grammar
 
 Understand "take [something] from [any playerful room]" as pseudotaking.
 Understand "get [something] from [any playerful room]" as pseudotaking.
-Understand "remove [something] from [any playerful room]" as pseudotaking.
+ [ Understand "remove [something] from [any playerful room]" as pseudotaking. ]
 
 Understand "take [something] from [text]" as a mistake ("You can't see any such thing.").
 Understand "get [something] from [text]" as a mistake ("You can't see any such thing.").
-Understand "remove [something] from [text]" as a mistake ("You can't see any such thing.").
+[ Understand "remove [something] from [text]" as a mistake ("You can't see any such thing."). ]
 
 [Rule for printing a parser error when parser error is noun did not make sense in that context: 
 	[we can make a guess at what's been tried:]
 	if the player's command includes "from":
-		if the player's command includes "take" or the player's command includes "get" or the player's command includes "remove": 
+		if the player's command includes "take " or the player's command includes "get ": 
 			say "There are none at all available!";]
 
 Section 2 - Action on current location
@@ -311,21 +308,9 @@ Check facing towards a room:
 	try inspecting the viewed item instead;
 
 Check facing towards an open door:
-	let the distant room be the other side of the noun;
+	let the distant room be the other side of the viewed item;
 	if the distant room is a room,
 		try inspecting the distant room instead;
-
-Check facing up:
-	if the location is interior begin;
-		try examining the backdrop-ceiling instead;
-	otherwise;
-		try examining the backdrop-sky instead;
-	end if;
-
-Check facing down:
-	if the location is grounded begin;
-		try examining the backdrop-floor instead;
-	end if;
 
 Check facing:
  	if the viewed item is not a door and the viewed item is not a room begin;

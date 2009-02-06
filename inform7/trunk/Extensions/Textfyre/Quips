@@ -5,6 +5,8 @@ Version 2 of Quips by Textfyre begins here.
 Use authorial modesty.
 
 Include Triggers by Textfyre.
+Include FyreVM Support by Textfyre.
+Include XML Output Toggling by Textfyre.
 
 Part 1 - Definitions
 
@@ -61,13 +63,15 @@ Chapter 5 - Conversation termination
 
 Terminating conversation with something is an activity.
 
-Rule for terminating conversation with a thing:
-	now the current conversationalist is the player.
+Rule for terminating conversation with a thing (called the former party):
+	if the current conversationalist is the former party: [it may well not be!]
+		now the current conversationalist is the player;
 
 Last after terminating conversation with:
 	if the current conversationalist is the player: [it may well not be! the conversation may yet continue if the game has intervened.]
 		select the conversation channel;
-		say "<TopicList />";
+		if XML is in use:
+			say "<TopicList />";
 		select the main channel;
 
 Part 2 - Verbs
@@ -82,16 +86,20 @@ Check talking to the player:
 Check talking to the current conversationalist:
 	if the number of entries in the current conversation is 1:
 		try selecting menu option 1 instead;
-	say "You are already talking to [the noun]." instead.
+	do nothing instead; [in fact we will display the menu, but that is done by an Every Turn rule] 
+	[ say "You are already talking to [the noun]." instead. ]
 
 Carry out talking to someone:
 	carry out the initiating conversation with activity with the noun;
 
 Report talking to someone:
-	if the chosen opening gambit is nothing,
+	if the chosen opening gambit is nothing:
 		say "There is no reply." instead;
-	start conversation with the noun on the chosen opening gambit, even if not present;
-	
+	carry out the firing activity with the chosen opening gambit;
+	carry out the populating activity with the chosen opening gambit;
+	if the number of entries in the current conversation is 0:
+		carry out the terminating conversation with activity with the current conversationalist;
+
 Part 3 - Menu options
 
 Chapter 1 - Menu selection
@@ -121,14 +129,17 @@ Report selecting menu option:
 	let n be the number understood;
 	let q be entry n of the current conversation;
 	carry out the firing activity with q;
-	if the current conversationalist is not the player [e.g. because firing the quip has ended conversation] begin;
+	unless the current conversationalist is the player:
 		carry out the populating activity with q;
-		if the number of entries in the current conversation is greater than 0 begin;
+
+Last every turn rule when we are selecting menu option or we are talking to someone:
+	unless the current conversationalist is the player:
+		if the number of entries in the current conversation is greater than 0:
+			if we are talking to someone and the noun is not the current conversationalist:
+				do nothing instead;
 			display the menu;
-		otherwise;
+		otherwise:
 			carry out the terminating conversation with activity with the current conversationalist;
-		end if;
-	end if;
 
 Populating something is an activity.
 
@@ -171,7 +182,7 @@ Section 2 - Menu display loop
 First before displaying the menu rule:
 	select the conversation channel;
 
-Before displaying the menu:
+Before displaying the menu when XML is in use:
 	say "<TopicList Character='[The Current Conversationalist]'>[line break]";
 
 Rule for displaying the menu:
@@ -181,7 +192,7 @@ Rule for displaying the menu:
 		increment the menu option currently being displayed by 1;
 	end repeat;
 
-After displaying the menu:
+After displaying the menu when XML is in use:
 	say "</TopicList>";
 
 The last after displaying the menu rule:
@@ -189,7 +200,7 @@ The last after displaying the menu rule:
 
 Section 3 - Menu option display
 
-Before printing the menu text of a quip:
+First before printing the menu text of a quip when XML is in use:
 	say "<Topic ID='[the menu option currently being displayed]'>";
 
 Before printing the menu text of a quip:
@@ -198,10 +209,10 @@ Before printing the menu text of a quip:
 Rule for printing the menu text of a quip (called q):
 	say menu text of q;
 
-After printing the menu text of a quip:
+After printing the menu text of a quip when XML is in use:
 	say "</Topic>";
 
-After printing the menu text of a quip:
+Last after printing the menu text of a quip:
 	say line break;
 
 Part 4 - Starting conversations pre-emptively
@@ -221,9 +232,8 @@ To start conversation with (the certain someone - a person) on (q - a thing), ev
 Part 5 - Terminating conversations automatically 
 
 Every turn (this is the terminating conversations with absent people rule):
-	if the current conversationalist is not in the location begin;
+	if the current conversationalist is not in the location:
 		carry out the terminating conversation with activity with the current conversationalist;
-	end if;
 
 Part 6 - Fixing misleading parser errors
 
@@ -283,13 +293,6 @@ When the player types "talk to Bobby" then - assuming no before rules, instead r
 
 	Rule for initiating conversation with Bobby:
 		change the chosen opening gambit to EG1.
-
-Although this:
-
-	After talking to Bobby:
-		start conversation with Bobby on EG1;
-
-...works just as well. "Start conversation with someone on some quip" is a convenience phrase which sets the current conversationalist and runs through the firing, populating, and menu viewing activities. It has a phrase option, "even if not present", which bypasses a check for conversationalists being in the same location, and is intended for times when changes to scope have brought distant characters into earshot. 
 
 Technically, this "initiating" activity is called "initiating conversation with" - and unlike "of" which is automatically stripped from activity names, "with" is not a recognised I7 preposition. It is only important to know this when carrying out the activity manually:
 
