@@ -2,7 +2,11 @@
 
 [  Change Log
 When		Who		What
+04-Feb-2009	G. Jefferis	Implemented changes from EE01_response
 03-Feb-2009	D. Cornelson	Implementing changes from EE_notes_01.
+03-Feb-2009	G. Jefferis	Implemented changes from EE01_response
+02-Feb-2009	G. Jefferis	Implemented changes from EE01_response
+29-Jan-2009	G. Jefferis	Implemented changes from EE01_response
 21-Jan-2009	G. Jefferis	Implemented changes from JA_notes_02_response
 20-Jan-2009	G. Jefferis	Implemented changes from JA_notes_02_response
 19-Jan-2009	G.Jefferis	Implemented changes from JA_notes_01_response
@@ -137,6 +141,7 @@ When		Who		What
 2 Aug 2007	G. Jefferis	Most of Grubber's Market
 ]
 
+
 Include FyreVM Support by Textfyre.
 Include Basic Screen Effects by Emily Short.
 Include Punctuation Removal by Emily Short.
@@ -147,12 +152,13 @@ Include Adjacent Rooms by Textfyre.
 Include Quips by Textfyre.
 Include Scripted Events by Textfyre.
 Include Character Listing by Textfyre.
+Include Dramatic Priority by Textfyre.
 Include Conversation Topics by Textfyre.
 
 Include Secret Letter Hints by Textfyre.
-
 Include Test Suite by Textfyre.
 Include Xml Output Toggling by Textfyre.
+
 Use no scoring, American dialect and full-length room descriptions.
 The story creation year is 2009.
 
@@ -280,7 +286,6 @@ Index map with Behind Maiden House mapped west of Privy.
 
 [Can't seem to get the map to draw Maiden House correctly, no matter how I arrange it. Oh well.]
 
-
 Part 3 - Properties of Tables
 
 To say random entry of (t - a table-name):
@@ -306,6 +311,12 @@ Before going through a closed door (called the obstacle):
 Rule for implicitly opening something (called the unopened item):
 	say "(first opening [the unopened item])[command clarification break]";
 	try silently opening the unopened item; 
+
+Chapter 3 - Landings
+
+A Landing is a kind of room.
+Understand "main", "hall", "hallway" as a Landing.
+Understand "stairs", "steps", "step", "stairway", "staircase" as a Landing when the location is not the item described.
 
 Part 5 - Loitering and waiting around
 
@@ -365,6 +376,16 @@ Before asking someone to try doing something:
 
 To say just talk:
 	say "To talk to a person, simply type TALK TO (whomever)".
+
+Chapter 4 - No unnecessary interruptions
+
+[Although other things might well be going on in the Market whilst we're talking to people, it's likely that they unnecessarily distract one from the content of the conversation. However, Jack would still have an eye out to catch important events: such as the arrival of mercenaries.]
+
+Before choosing a dramatic possibility when we are talking to someone:
+	ratchet the current tension to important;
+
+Before choosing a dramatic possibility when we are selecting menu option:
+	ratchet the current tension to important;
 
 Part 9 - Spooling through dialogue
 
@@ -480,6 +501,13 @@ Carry out kicking something:
 	try attacking the noun;
 [	end the kicking activity;]
 
+Chapter 3 - Biting
+
+Understand the command "bite" as something new.
+
+Understand "bite [person]" as attacking.
+Understand "bite [something preferably held]" as eating.
+
 Part 19 - Raising and lowering
 
 [These are mainly here to deal with technicalities involving hoods, as on cloaks.]
@@ -509,6 +537,7 @@ Part 20 - Picking locks
 Lockpicking is an action applying to one thing.
 
 Understand "pick [something]" as lockpicking.
+Understand "pick [something] with [something]" as unlocking it with.
 
 Check lockpicking (this is the block lockpicking without the lockpick rule):
 	if the player does not hold the piece of wire:
@@ -516,6 +545,7 @@ Check lockpicking (this is the block lockpicking without the lockpick rule):
 			say "(first taking the lockpick)";
 			try silently taking the piece of wire;
 			if the player does not hold the piece of wire, stop;
+			if the player is caught, stop;
 		otherwise:
 			say "You would need a lockpick for that." instead;
 
@@ -547,8 +577,11 @@ Clustering relates quips to each other in groups. The verb to be clustered with 
 
 Part 25 - Holding out, teasing and taunting
 
-Understand "hold out [something]" as waving. 
-Understand "hold out [something] to/for [someone]" as giving it to. 
+Understand the command "hold" as something new.
+
+Understand "hold [things]" as taking.
+Understand "hold out [something preferably held]" as waving. 
+Understand "hold out [something preferably held] to/for [someone]" as giving it to. 
 
 Understand "tease [animal] with [something]" as showing it to (with nouns reversed). 
 Understand "taunt [animal] with [something]" as showing it to (with nouns reversed). 
@@ -583,17 +616,27 @@ Printing the description of something is an activity.
 This is the examining activity rule: 
 	carry out the printing the description activity with the noun;
 
-Rule for printing the description of something (called item):
-	say "[description of item] [run paragraph on]";
+The examine undescribed containers rule is not listed in any rulebook.
+The examine undescribed devices rule is not listed in any rulebook.
+The examine undescribed things rule is not listed in any rulebook.
 
-Last after printing the description of something: 
-	say paragraph break;
+Rule for printing the description of something (called item):
+	unless the item goes undescribed by source text:
+		say "[description of item] [run paragraph on]";
+	otherwise:
+		abide by the examine undescribed containers rule;
+		abide by the examine undescribed devices rule;
+		abide by the examine undescribed things rule;
+
+Last after printing the description of something (called the item): 
+	unless the item goes undescribed by source text:
+		say paragraph break;
 
 Part 29 - Cutting things with tools
 
 A thing can be sharp or blunt. A thing is usually blunt.
 
-Cutting it with is an action applying to one visible thing and one carried thing.
+Cutting it with is an action with past participle cut, applying to one visible thing and one carried thing.
 
 Understand "cut [something] with [something]" as cutting it with.
 Understand "cut through [something]" as cutting.
@@ -726,7 +769,11 @@ The new block giving rule is listed instead of the block giving rule in the chec
 Part 37 - Squeezing and crawling
 
 Understand the command "squeeze" as something new.
-Understand the commands "squeeze" and "crawl" as "go".
+Understand the command "crawl" as "go".
+
+Understand "squeeze [direction]" as going.
+Understand "squeeze [something]" as squeezing.
+Understand "squeeze through [something]" as going.
 
 Part 38 - Examining Everything
 
@@ -806,16 +853,6 @@ Check following (this is the can't follow someone who's not here rule):
 Check following (this is the can't follow someone who's not going anywhere rule):
 	say "[The noun] isn't going anywhere." instead.
 
-Instead of following Bobby during Bobby's adventure:
-	if Bobby is in the location,
-		say "But Bobby's right here!" instead;
-	say "[conditional paragraph break]";
-	if the location is the Woods:
-		let Bobby's wake be the way of the split sapling;
-	otherwise:
-		let Bobby's wake be entry 1 of Bobby's trail;
-	try going Bobby's wake.
-
 Part 45 - Praying
 
 Praying is an action applying to one topic.
@@ -837,6 +874,40 @@ Understand "hide under/underneath/behind [something]" as a mistake ("There's not
 Understand "hide [other things] in/inside/down/under/behind [something]" as inserting it into.
 
 Understand "hide" as a mistake ("There's nowhere for you to hide here.").
+
+Part 47 - Drinking, Tasting
+
+The new block tasting rule is listed instead of the block tasting rule in the Check Tasting rulebook.
+
+This is the new block tasting rule:
+	say "You shouldn't go around putting your tongue on strange objects." instead;
+
+The new block drinking rule is listed instead of the block drinking rule in the Check Drinking rulebook.
+
+This is the new block drinking rule:
+	say "You can't drink that!" instead;
+
+Part 48 - Shaking
+
+Shaking is an action with past participle shaken, applying to one thing.
+
+Understand "shake [something]" as shaking.
+
+Check shaking a person:
+	say "That would be less than courteous." instead;
+
+Check shaking something fixed in place:
+	say "[That or those for the noun] [if the noun is not plural-named]is[otherwise]are[end if] fixed in place." in sentence case instead;
+
+Check shaking scenery:
+	say "[That or those for the noun] [if the noun is not plural-named]is[otherwise]are[end if] fixed in place." in sentence case instead;
+
+Report shaking:
+	say "Nothing obvious happens.";
+
+Part 49 - Interfering with
+
+Shaking something is interfering. Pulling something is interfering. Pushing something is interfering. Turning something is interfering. 
 
 Book 1 - Prologue
 
@@ -975,9 +1046,7 @@ When play begins:
 	[Send the Chapter I Hints; - commented out for play-testing]
 	select the prologue channel;
 	say "Mid-morning always sees the Grubber's Market at its most crowded. Servants from the aristocratic districts and villagers from outside Toresal crush themselves into the maze of stalls and stretched canvas, hoping to beat the noontime heat and get the farmers[apostrophe] produce while it's still fresh. The press of bodies, the din of haggling and bargains struck — it all makes getting around unnoticed easier, although not necessarily more pleasant. No fewer than half a dozen stall-gazing bumpkins have trod on your feet already this morning. You've kept your mouth shut, though. People remember an urchin who gives lip.[paragraph break]'See anything you like?' asks the silk seller, with a teasing smile. You smile back. You couldn’t afford one of her cloaks without nicking a fat purse first, and Teisha doesn’t approve of you stealing from people, even when they’re not her customers.[paragraph break]'Oh, these are [i]much[r] too plain,' you scoff, even as you gaze wistfully at the bright colors, the beautiful embroidery. Time for a bit of breakfast, you decide, and anyway if you linger too long, people will wonder what a boy is doing shopping for women's cloaks. 'Perhaps I'll come back this afternoon, when you've put out your better wares.'[paragraph break]Teisha laughs. 'Don't be a stranger, Jack.'[paragraph break]You make your way through the market, nicking an apple from the fruit stall while its owner argues with a fat Easterner over local politics. Everyone seems to be talking politics these days, you've noticed. Everywhere people are heatedly discussing Baron Fossville's tax policies or something called the 'Ascension' — whatever that is. Boring stuff, really. Finally you reach a quiet alley where you can catch a breath from the crowds and enjoy your apple in peace.[paragraph break]You settle yourself on a crate and take a bite of your apple. Suddenly, from the alley's entrance, you hear voices.";
-	select the chapter channel;
-	say "Chapter 1 - Grubber's Market";
-	select the main channel.
+	output chapter heading "Chapter 1 - Grubber's Market";
 
 Chapter 1 - The Alley
 
@@ -1355,7 +1424,12 @@ Instead of listening to a stallkeeper:
 
 Instead of kissing a stallkeeper, say "You're pretty sure the stallkeeper wouldn't appreciate that."
 
-Every turn when the player can see a stallkeeper and a random chance of 1 in 2 succeeds:
+Every turn when the player can see a stallkeeper and a random chance of 1 in 2 succeeds and Final Chase is not happening:
+	add ATMOS_sales_pitch to the dramatic possibilities, if absent;
+
+ATMOS_sales_pitch is a dramatic event.
+
+For firing ATMOS_sales_pitch:
 	if a plural-named stall display is in the location:
 		let X be a random plural-named stall display in the location;
 		say "[one of]'[sales pitch for X]!' calls the stallkeeper.[or]The stallkeeper haggles with a customer over the price of [X].[or]The stallkeeper carefully straightens his display of [X].[at random]";
@@ -1399,23 +1473,18 @@ The response of ST3 is { ST2, ST4, ST9 }.
 The response of ST5 is { ST6, ST7, ST8 }.
 
 After populating ST1:
-	if ST2 is fired begin;
+	if ST2 is fired:
 		remove ST2 from the current conversation, if present;
-	end if;
-	if ST3 is fired begin;
+	if ST3 is fired:
 		remove ST3 from the current conversation, if present;
-	end if;
-	if ST4 is fired begin;
+	if ST4 is fired:
 		remove ST4 from the current conversation, if present;
-	end if;
 
 After populating ST3:
-	if ST2 is fired begin;
+	if ST2 is fired:
 		remove ST2 from the current conversation, if present;
-	end if;
-	if ST4 is fired begin;
+	if ST4 is fired:
 		remove ST4 from the current conversation, if present;
-	end if;
 
 Section 3 - Impatient stallkeepers
 
@@ -1479,11 +1548,13 @@ Carry out stealing:
 	now the location is blocked;
 
 After stealing something when the player was a mere urchin:
+	ratchet the current tension to important;
 	say "Ah, [i]this[r] is something you know how to do, at least. You sidle up casually to the stall, wait until the stallkeeper seems preoccupied, then reach out and pluck [the noun] from [its or their for the noun] shelf.[paragraph break]Suddenly the stallkeeper jabs his finger at you and screams, [i]'Stop, thief!'[no line break][r][paragraph break]Apparently, he wasn't quite as preoccupied as you thought.[paragraph break]You sprint through the crowd, stuffing [the noun] into your satchel. This stallkeeper will be on the lookout for you now; probably best to stay away from this part of Grubber's for a while.";
 	move the player to a random adjacent unblocked room;
 	update the character list;
 
 After stealing something when the player was a successful thief:
+	ratchet the current tension to important;
 	say "With the stallkeepers all on edge about the mercenaries, it's not likely you'll be able to nick anything without someone noticing. Still, nothing ventured...[paragraph break][i]'Thief!'[no line break][paragraph break][r]Here you go again.[paragraph break]You sprint through the crowd, stuffing [the noun] into your satchel. This stallkeeper will be on the lookout for you now; probably best to stay away from this part of Grubber's for a while.";
 	move the player to a random adjacent unblocked room;
 	update the character list;
@@ -1500,12 +1571,6 @@ Rule for printing the name of wares:
 Section 3 - Stall displays
 
 A stall display is a kind of thing. A stall display is usually scenery. A stall display has a thing called the corresponding item.
-
-Representation relates a stall display (called the display) to a thing (called the representative item) when the representative item is the corresponding item of the display. The verb to represent (it represents, they represent, it represented, it is represented, it is representing) implies the representation relation.
-
-[ [This was a nice idea, but too slow in places with lots of displays, i.e. fruit stall]
-Understand "[something related by representation]" as a stall display when the corresponding item of the item described is not enclosed by the location. [Condition attached, because e.g. when we are holding an apple and say > EXAMINE APPLE, we don't ideally want to be sidetracked looking at the fruit bins. ]
-]
 
 Does the player mean stealing a stall display:
 	it is very likely.
@@ -1564,14 +1629,19 @@ To say initial mercenary appearance:
 Section 3 - Actions and interactions
 
 [ > prod mercenary with pointy stick ]
-Instead of doing something other than examining to the oblivious wandering mercenaries: say "You resist the foolish impulse, reminding yourself that what you want is for them to [i]not[r] catch you."
+Instead of doing something other than examining to the oblivious wandering mercenaries:
+	say "You resist the foolish impulse, reminding yourself that what you want is for them to [i]not[r] catch you.";
 
 Instead of doing something other than examining to the sword: say "You resist the foolish impulse, reminding yourself that what you want is for them to [i]not[r] catch you."
 
 Every turn when oblivious wandering mercenaries are nearby:
-	if the player is not on the move and a random chance of 1 in 5 succeeds begin;
-		say "[one of]The mercenaries peer around aimlessly. They still haven't spotted you, but it's only a matter of time.[or]The mercenaries look bored.[or]One of the mercenaries spits on the ground.[or]One of the mercenaries scratches his head and scowls.[or]The mercenaries glare at a passing shopper.[or]One of the mercenaries bumps into a passing shopper, and angrily shoves him out of his way.[or]One of the mercenaries mutters something to his companion; the other [uncouth mercenary response].[at random]";
-	end if;
+	if the player is not on the move and a random chance of 1 in 5 succeeds:
+		add ATMOS_mercenaries to the dramatic possibilities;
+
+ATMOS_mercenaries is a dramatic event. The priority is interesting.
+
+Rule for firing ATMOS_mercenaries:
+	say "[one of]The mercenaries peer around aimlessly. They still haven't spotted you, but it's only a matter of time.[or]The mercenaries look bored.[or]One of the mercenaries spits on the ground.[or]One of the mercenaries scratches his head and scowls.[or]The mercenaries glare at a passing shopper.[or]One of the mercenaries bumps into a passing shopper, and angrily shoves him out of his way.[or]One of the mercenaries mutters something to his companion; the other [uncouth mercenary response].[at random]";
 
 To say uncouth mercenary response:
 	say "[one of]laughs bawdily[or]scowls[or]nods[or]snarls something back[at random]";
@@ -1598,29 +1668,36 @@ To decide if the mercenaries will not recognise us:
 	[otherwise] decide yes. [i.e. they will not recognise us]
 
 Every turn when in the Open-Air Market [region] during Avoiding Soldiers :
-	if the waiting count is at least the timeout of the wandering mercenaries and the wandering mercenaries are not in the location begin;
-		move the wandering mercenaries to the location;
-		say "You notice a couple of the mercenaries pushing through the crowd, heading your way. [if the mercenaries will not recognise us]One of them looks right at you, but with your hat off and your hair down they don't recognize you[first time]. You're safe for the time being[only][otherwise]They haven't seen you yet, but they're getting close[end if].";
-		The mercenary warns the player in two turns from now;
-		The mercenary spots the player in three turns from now;
-	end if.
+	if the waiting count is at least the timeout of the wandering mercenaries and the wandering mercenaries are not in the location:
+		add EVENT_mercenary_arrival to the dramatic possibilities;
+	otherwise if the oblivious wandering mercenaries have been in the location for three turns:
+		add EVENT_mercenary_approach to the dramatic possibilities;
+	otherwise if the oblivious wandering mercenaries have been in the location for two turns:
+		add EVENT_mercenary_warning to the dramatic possibilities;
 
-At the time when the mercenary warns the player:
+EVENT_mercenary_arrival is an dramatic event. The priority is essential.
+
+For firing EVENT_mercenary_arrival:
+	move the wandering mercenaries to the location;
+	say "You notice a couple of the mercenaries pushing through the crowd, heading your way. [if the mercenaries will not recognise us]One of them looks right at you, but with your hat off and your hair down they don't recognize you[first time]. You're safe for the time being[only][otherwise]They haven't seen you yet, but they're getting close[end if].";
+
+EVENT_mercenary_warning is a dramatic event. The priority is important.
+
+For firing EVENT_mercenary_warning:
+	if the mercenaries will not recognise us:
+		rule fails;
 	if the wandering mercenaries have been nearby for two turns:
-		if the mercenaries will not recognise us:
-			rule fails;
 		say "Those mercenaries are getting uncomfortably close. You'd better get going before they notice you!";
 
-At the time when the mercenary spots the player:
-	if the wandering mercenaries have been nearby for three turns begin;
-		if the mercenaries will not recognise us begin;
-			the mercenary spots the player in one turn from now;
+EVENT_mercenary_approach is a dramatic event. The priority is essential.
+
+For firing EVENT_mercenary_approach:
+	if the wandering mercenaries have been nearby for three turns:
+		if the mercenaries will not recognise us:
 			rule fails;
-		end if;
 		now the wandering mercenaries are approaching;
 		change the grabbing countdown to 1;
 		say "Suddenly one of the mercenaries does a double-take and sees you. 'There he is!' he yells, pointing, and both of them start shoving through the crowd towards you.";
-	end if.
 
 Chapter 2 - Captured
 
@@ -1629,15 +1706,17 @@ Section 1 - Only a matter of time 'til you're caught
 The grabbing countdown is a number that varies. The grabbing countdown is [initially] 2 [* but it needs to be reset, each time the mercenaries notice us].
 
 Every turn when approaching wandering mercenaries are nearby:
-	[if the wandering mercenaries were not approaching [at the beginning of this turn] and the grabbing countdown is less than 1 begin;
-		change the grabbing countdown to 1 [give the player a chance];
-	end if;]
-	if the grabbing countdown is 0 begin;
+	if the grabbing countdown is at most 0:
+		add EVENT_mercenary_grab to the dramatic possibilities;
+	change the grabbing countdown to the grabbing countdown - 1.
+
+EVENT_mercenary_grab is a dramatic event. The priority is essential.
+
+For firing EVENT_mercenary_grab:
+	if the grabbing countdown is at most 0:
 		say "A rock-hard fist closes around your upper arm. 'Gotcha!' the mercenary yells. The other one starts hollering for his companions.";
 		now the mercenaries are grabbing;
 		the leader arrives in two turns from now;
-	end if;
-	change the grabbing countdown to the grabbing countdown - 1.
 
 Section 2 - Gotcha!
 
@@ -1655,17 +1734,16 @@ Instead of talking to the wandering mercenaries when the wandering mercenaries a
 	say "The mercenaries both ignore your pleas.";
 
 After going to somewhere (called the destination) when the wandering mercenaries are approaching:
+	ratchet the current tension to important;
 	say "You dash away into the crowd, weaving between customers and pushing your way through the thickest knots of people. The mercenaries pound after you, yelling and shoving people out of their way, but they're too big and too slow, and you quickly manage to lose them.";
 	continue the action;
 
 Instead of pushing the wandering mercenaries:
 	try attacking the wandering mercenaries;
 
-Before attacking the wandering mercenaries:
+Instead of kicking or attacking the wandering mercenaries when the wandering mercenaries are not oblivious:
 	now the wandering mercenaries are approaching;
 	change the grabbing countdown to 2;
-
-Instead of kicking or attacking the wandering mercenaries:
 	if we are kicking the wandering mercenaries:
 		say "Thinking quickly, you kick the mercenary in the shin.[paragraph break]";
 	otherwise:
@@ -1678,6 +1756,11 @@ To say narrow escape:
 To say another narrow escape:
 	[This is a recursion tactic; direct recursion is rightly disallowed, but this variant is ok. In fact, because '[one of]...[at random]' never selects the same option twice in succession, this is guaranteed to terminate after exactly one recursion. ]
 	say narrow escape;
+
+Before choosing a dramatic possibility in the presence of wandering mercenaries:
+	[if they are approaching or grabbing, then we would be focussed on them:]
+	unless the wandering mercenaries are oblivious:
+		ratchet the current tension to important;
 
 Part 3 - Northwest Junction
 
@@ -1740,11 +1823,11 @@ Some baskets are wares, in the Grocery Stall. "There are baskets bristling with 
 
 A food stall display is a kind of stall display. Understand "kinds", "kind", "of", "grocery", "groceries", "food" as a food stall display.
 
-The display of loaves is a food stall display, in the Grocery Stall. The description is "The loaves are dark and grainy and look rock-hard." The printed name of the display of loaves is "bread". The corresponding item of the display of loaves is the loaf. 
+The display of loaves is a food stall display, plural-named, in the Grocery Stall. The description is "The loaves are dark and grainy and look rock-hard." The printed name of the display of loaves is "bread". The corresponding item of the display of loaves is the loaf. 
 
-The pyramid display is a food stall display, in the Grocery Stall. The description is "The cheese is a rich, milky-yellow color, with a thick, brown rind." The printed name of the pyramid display is "cheese". The corresponding item of the pyramid display is the cheese.
+The pyramid display is a food stall display, plural-named, in the Grocery Stall. The description is "The cheese is a rich, milky-yellow color, with a thick, brown rind." The printed name of the pyramid display is "cheese". The corresponding item of the pyramid display is the cheese.
 
-The strips display is a food stall display, in the Grocery Stall. The description is "The jerky hangs in dried, shriveled strips, and looks just slightly more appetizing than eating your own belt." The printed name of the strips display is "jerky". The corresponding item of the strips display is the strip of beef jerky.
+The strips display is a food stall display, plural-named, in the Grocery Stall. The description is "The jerky hangs in dried, shriveled strips, and looks just slightly more appetizing than eating your own belt." The printed name of the strips display is "jerky". The corresponding item of the strips display is the strip of beef jerky.
 
 Understand "loaf", "bread", "breads", "dark", "grainy", "hard", "rock" as the display of loaves.
 Understand "cheese", "cheeses", "pyramids", "of", "rich", "milky", "yellow", "thick", "brown", "rind" as the pyramid display.
@@ -1802,9 +1885,7 @@ Chapter 2 - Description
 
 Grubbers Market Fruit Stall is a market stall and southeast of Grubbers Market Grocery Stall. "[if Grubbers Market Fruit Stall is orderly]Bins heaped high with brightly colored fruit lend a pleasant fragrance to this end of the market (though by afternoon it will have become a cloying reek that attracts more flies than customers). They have apples and pears from the city orchards, and brambleberries from the northern counties. Oranges, limes, kello fruit — even a bushel of bananas from the Kozar Delta. Aisles between the stalls lead northwest, west, southwest, and south.[otherwise]The fruit stall is still a complete mess, with most of the merchandise scattered all over the ground. The stallkeeper is practically tearing his beard out with frustration.[end if]". The printed name is "Fruit Stall". The distant description of the Fruit Stall is "[one of]There's a fruit stall[or]There's fruit for sale[or]Looks like they're selling fruit[at random] to [the best route from the location to the noun][if the Fruit Stall is chaotic]. The stallkeeper looks like he's still busy cleaning up the mess from when the mercenary crashed into his merchandise[end if]." The dead-end description of the Fruit Stall is "There's nothing in that direction except the wall that surrounds the market square."
 
-
 Grubbers Market Fruit Stall can be orderly or chaotic. Grubbers Market Fruit Stall is orderly.
-
 
 After inspecting Grubbers Market Fruit Stall while in Grubbers Market Top of Center Post:
 	say "It's too far to make out any details from here.";
@@ -1874,11 +1955,14 @@ Understand "orange", "pale", "small", "disappointing", "disappointingly" as the 
 Understand "lime", "dark", "green", "refreshing" as the display of limes.
 Understand "banana", "perfect", "plump", "bright", "yellow", "brown", "freckles", "freckle", "bushel", "bushels", "bushel of", "bushels of", "kozarian", "from", "from the", "kozar", "delta" as the display of bananas.
 
-Rule for clarifying the parser's choice of a stall display:
-	do nothing;
+Rule for clarifying the parser's choice of a stall display (called sd):
+	let x be the corresponding item of sd;
+	if the player can see x,
+		do nothing;
 
 Rule for clarifying the parser's choice of food:
-	do nothing;
+	if the player can see a stall display,
+		do nothing;
 
 Chapter 5 - Contents (Individual fruits)
 
@@ -1899,7 +1983,7 @@ After eating the apple:
 
 A pear is fruit. The description is "The pear is yellowish green with a bit of light brown on the bottom." Understand "yellow", "green", "yellowish", "greenish", "light", "brown", "thick", "twisty", "twisted", "stem" as the pear.
 
-Some brambleberries are fruit. The description is "The thumb-sized cluster is shiny and bluish-black." Understand "cluster", "berry", "bramble", "thumb", "sized", "shiny", "blue", "black", "bluish", "tart", "from", "from the", "the north/northern", "counties", "north/northern counties" as the brambleberries.
+A cluster of brambleberries is fruit. The description is "The thumb-sized cluster is shiny and bluish-black." Understand "cluster", "berry", "bramble", "thumb", "sized", "shiny", "blue", "black", "bluish", "tart", "from", "from the", "the north/northern", "counties", "north/northern counties" as the brambleberries.
 
 An orange is fruit. The description is "The orange is pale and disappointingly small." Understand "pale", "small", "disappointing", "disappointingly" as the orange.
 
@@ -1957,6 +2041,7 @@ Understand "relatively", "open", "space", "edge" as Grubbers Market Eastern Junc
 Chapter 2 - Exits
 
 Instead of going east from Grubbers Market Eastern Junction when the player wears the hat and Market Escape is not happening for the first time:
+	ratchet the current tension to important;
 	say "Just as you reach the edge of the market square, you notice the mercenary captain standing watch at the entrance to Commerce Street. His eyes fall on you before you can duck out of the way, and the next moment you are sprinting back into the market with the captain hot on your heels. You manage to lose him in the crowd... barely.";
 	move the player to a random adjacent unblocked market stall;
 	update the character list;
@@ -1964,7 +2049,8 @@ Instead of going east from Grubbers Market Eastern Junction when the player wear
 Instead of going east from Grubbers Market Eastern Junction when the player wears the hat and Market Escape is not happening:
 	say "The mercenary captain is too sharp; you'll need a disguise if you're to have any chance of sneaking past him.";
 
-Instead of going east from Grubbers Market Eastern Junction when the player does not wear the hat and Market Escape is not happening :
+Instead of going east from Grubbers Market Eastern Junction when the player does not wear the hat and Market Escape is not happening:
+	ratchet the current tension to important;
 	if the mercenary captain is not wise to our tricks begin;
 		say "As you reach the edge of the market square, you see the mercenary captain scanning the crowd. He looks at you, and his eyes narrow. He pulls a piece of parchment from his belt and stares at it, then stares hard at you...[paragraph break]And the next moment he is pounding after you, yelling for his men. [i]He knows what I look like[r], you realize, [i]and now he knows I'm not what I appear to be[r]. Just before you dive into the crowd, you glance back over your shoulder, and see the captain talking to his men, showing them the drawing.[paragraph break]Now the mercenaries know they're looking for a girl. You won't be able to fool them just by taking your hat off.";
 		now the mercenary captain is wise to our tricks;
@@ -2165,7 +2251,13 @@ Monkey business is a scene. Monkey business begins when the player is in the Exo
 Monkey business ends when the player has the necklace.
 
 When Monkey business begins:
-	say "Suddenly you hear a commotion from the back of the stall: the crash of a display case hitting the ground; shouts and curses from the stall keeper; and a horrific, gibbering shriek.[paragraph break]'Come back here, you flea-bitten thief!' yells the stallkeeper, and for a panicked moment you think he means [i]you[r]. Then you see something small and gray dart up to the roof of the stall... it's just a forest monkey, probably someone's pet running loose. And it's clutching one of the stall keeper's necklaces in its tiny black fist.[paragraph break]The monkey turns and screeches back at the stall keeper, dodges a clumsily thrown dirt clod, and scampers away."
+	add EVENT_monkey to the dramatic possibilities;
+
+EVENT_monkey is a dramatic event. The priority is essential.
+
+For firing EVENT_monkey:
+	say "Suddenly you hear a commotion from the back of the stall: the crash of a display case hitting the ground; shouts and curses from the stall keeper; and a horrific, gibbering shriek.[paragraph break]'Come back here, you flea-bitten thief!' yells the stallkeeper, and for a panicked moment you think he means [i]you[r]. Then you see something small and gray dart up to the roof of the stall... it's just a forest monkey, probably someone's pet running loose. And it's clutching one of the stall keeper's necklaces in its tiny black fist.[paragraph break]The monkey turns and screeches back at the stall keeper, dodges a clumsily thrown dirt clod, and scampers away.";
+	move the monkey to Grubbers Market Top of Center Post;
 
 [ See Top Of Center Post for more Monkey business ]
 
@@ -2559,10 +2651,8 @@ Instead of wearing the gray cloak when the player wears the silk cloak:
 
 After wearing the silk cloak:
 	say "You slip the cloak around your shoulders, fastening it just under your neck in the feminine style and drawing the edges together to hide your clothes. [if the player wears the hat]If you took your cap off, you'd[otherwise]With your cap off, you[end if] look just like a young girl, albeit one with a very uneven haircut.[paragraph break]";
-	if Teisha is nearby begin;
-		silence Teisha;
+	if Teisha is nearby:
 		say "Teisha leans over and adjusts the fit, plucking at the fabric where it hangs from your shoulders. 'I was right,' she says. 'It brings out your eyes. You look... almost [i]royal[r].'";
-	end if.
 
 Chapter 4 - Teisha
 
@@ -2579,7 +2669,7 @@ Rule for printing the name of Teisha:
 
 Section 2 - Actions
 
-A person can be vocal or silenced. A person is usually vocal.
+[ A person can be vocal or silenced. A person is usually vocal. ]
 
 [ We silence Teisha from performing her idle action, every time we talk to her. This is to prevent excess verbiage of the following sort:
 
@@ -2592,36 +2682,28 @@ Teisha toys with her measuring cord, spinning it idly.
 
 ]
 
-Every turn when Teisha is nearby and the player is not on the move and Teisha is not silenced:
-	if a random chance of 1 in 5 succeeds begin;
-		say "[one of]Teisha hums quietly to herself[or]Teisha smiles at you warmly[or]Teisha brushes a loose thread from the sleeve of one of her gowns[or]Teisha toys with her measuring cord, spinning it idly[at random].";
-	end if;
+Every turn when Teisha is nearby and the player is not on the move:
+	if a random chance of 1 in 5 succeeds:
+		add ATMOS_Teisha to the dramatic possibilities;
 
-After firing a quip when the current conversationalist is Teisha:
-	silence Teisha;
+ATMOS_Teisha is a dramatic event.
 
-The last every turn rule when Teisha is silenced:
-	now Teisha is not silenced.
-
-To silence (the certain somebody - a person):
-	now the certain somebody is silenced.
+For firing ATMOS_Teisha:
+	say "[one of]Teisha hums quietly to herself[or]Teisha smiles at you warmly[or]Teisha brushes a loose thread from the sleeve of one of her gowns[or]Teisha toys with her measuring cord, spinning it idly[at random].";
 
 Section 3 - Reactions
 
 Chatting to Teisha is a recurring scene. Chatting to Teisha begins when the player is in Teishas Tent. Chatting to Teisha ends when the player is not in Teishas Tent.
 
 When Chatting to Teisha begins:
-	if the player is in Grubbers Market Teishas Tent for the first time begin;
+	if the player is in Grubbers Market Teishas Tent for the first time:
 		start conversation with Teisha on TE1;
-	otherwise;
-		if the last room was Outside Silk Stall begin;
-			if TE2 is unfired and TE6 is unfired and TE5 is unfired begin;
+	otherwise:
+		if the last room was Outside Silk Stall:
+			if TE2 is unfired and TE6 is unfired and TE5 is unfired:
 				start conversation with Teisha on TE5;
-			otherwise;
+			otherwise:
 				start conversation with Teisha on TE9;
-			end if;
-		end if;
-	end if.
 
 Rule for initiating conversation with Teisha:
 	change the chosen opening gambit to TE10.
@@ -2870,6 +2952,11 @@ Every turn when the conspicuous shopper is on-stage (this is the conspicuous sho
 	remove the conspicuous shopper from play.
 
 Every turn in the Open-Air Market when the shoppers are nearby and the wandering mercenaries are oblivious and a random chance of 1 in 10 succeeds (this is the conspicuous shopper appears rule):
+	Add ATMOS_shopper to the dramatic possibilities;
+
+ATMOS_Shopper is a dramatic event.
+
+For firing ATMOS_Shopper:
 	move the conspicuous shopper to the location;
 	change the peasant adjective of the conspicuous shopper to a random peasant adjective;
 	change the peasant variety of the conspicuous shopper to a random peasant variety;
@@ -3098,6 +3185,9 @@ Instead of climbing the bottom of the center post, try going up instead.
 
 Instead of descending the bottom of the center post, try going down instead.
 
+Instead of taking, pushing, pulling, turning, or attacking the bottom of the center post:
+	say "The enormous post does not budge.";
+
 Before going up from Grubbers Market Center Post:
 	if Pole Escape is happening begin;
 		say "With speed borne of panic, you scamper up the wooden post.";
@@ -3182,19 +3272,21 @@ The description of a cable is "[cable description of the item described]".
 
 To say cable description of (c - a cable):
 	let dest be the destination corresponding to a cable of c in the Table of landing locations;
-	say "The cable is made of thick, braided wire. One end is attached to the top of the pole that you are currently balancing on; the other end is attached to the ground at [if dest is visited]the [dest][otherwise]the [way of c] corner of the market[end if], far below[if the monkey is in Grubbers Market Top of Center Post and the dest is Hat Stall]. The monkey balances easily on the cable, about 3 feet out from the top of the post[end if].[run paragraph on]"
+	say "The cable is made of thick, braided wire. One end is attached to the top of the pole that you are currently balancing on; the other end is attached to the ground at [if dest is visited]the [dest][otherwise]the [way of c] corner of the market[end if], far below. ";
 
-Understand "nw" as the northwest cable. Understand "sw" as the southwest cable. Understand "ne" as the northeast cable. Understand "se" as the southeast cable.
 
-Shaking is an action applying to one visible thing requiring light. Understand "shake [something]" as shaking.
+After printing the description of the southeast cable when the player can see the monkey:
+	say "The monkey balances easily on the cable, about 3 feet out from the top of the post. [run paragraph on]"
 
-Instead of shaking something, say "You stop yourself and think, 'Jack, get a grip.'"
-Instead of shaking the cable, say "The cables are so thick and so taut, they don't even budge[if the monkey is in Grubbers Market Top of Center Post]. The monkey chatters happily at your fruitless efforts to dislodge it[end if]."
+Understand "nw" as the northwest cable. Understand "sw" as the southwest cable. Understand "ne" as the northeast cable. Understand "se" as the southeast cable. 
 
-Does the player mean doing something with the southeast cable: it is likely. 
 Does the player mean hanging something on the southeast cable: it is likely.
 Does the player mean sliding down the southeast cable with something: it is likely.
 [ This is to go easy on people who try to slide down a cable without specifying direction -- the game automatically selects southeast, which is the closest to where you want to go. ]
+
+Does the player mean doing something with the southeast cable:
+	if the player can see the monkey:
+		it is very likely;
 
 Before going a direction in Top of Center Post:
 	let c be a random cable that points noun;
@@ -3209,6 +3301,18 @@ Instead of sliding down a cable barehanded, say "The cable is too steep for you 
 
 Before putting something on a cable:
 	try hanging the noun on the second noun instead;
+
+Instead of cutting a cable:
+	say "The cables are far too thick and tough for you to cut.";
+
+Instead of cutting a cable with something:
+	say "The cables are far too thick and tough for you to cut.";
+
+Instead of interfering when the noun is a cable:
+	say "The cables are so thick and so taut, they don't even budge. ";
+	if the noun is the southeast cable and the player can see the monkey:
+		say "The monkey chatters happily at your fruitless efforts to dislodge it. ";
+	say paragraph break;
 
 Section 2 - Collected cables
 
@@ -3245,7 +3349,7 @@ Before sliding down a cable with something not good for sliding with:
 Instead of sliding down a cable with something:
 	let the room where the player ends up be the short name corresponding to a cable of the noun in the table of landing locations;
 	let the landing place be the destination corresponding to a cable of the noun in the table of landing locations;
-	say "You wrap one end of [the second noun] around your hand, then squat down and sling the other end around the anchor cable. You give [it or them for the second noun] a good, hard yank to test your grip. [first time]You take a deep breath. You try to convince your heartbeat to slow down, or at least continue its dreadful hammering in some part of your body other than your throat. You fail. [only]Then[first time], finally,[only] you swing down under the wire and kick off into space.[paragraph break][if the landing place is Hat Stall]The monkey sees you coming and leaps over you, landing deftly on the top of the post. Its angry shrieks fade quickly as you pick up speed.[paragraph break][end if]The wind is exhilarating as you zip down the line. The ground rushes up at you with terrifying speed. [The second noun] whizz[if the second noun is not plural-named]es[end if] hotly against the rough wire, and you vaguely smell smoke, but your impromptu harness holds. [if final chase is happening]Shouts ring out and fingers point as the mercenaries spot you and race to where they think you will land. [end if]Suddenly your feet hit dirt. You let go of [the second noun] and tumble to the hard ground, knocking over a couple of shoppers before you roll to a stop. The next moment you are back on your feet, bruised and breathless.";
+	say "You wrap one end of [the second noun] around your hand, then squat down and sling the other end around the anchor cable. You give [it or them for the second noun] a good, hard yank to test your grip. [first time]You take a deep breath. You try to convince your heartbeat to slow down, or at least continue its dreadful hammering in some part of your body other than your throat. You fail. [only]Then[first time], finally,[only] you swing down under the wire and kick off into space.[paragraph break][if the noun is the southeast cable and the monkey is on-stage]The monkey sees you coming and leaps over you, landing deftly on the top of the post. Its angry shrieks fade quickly as you pick up speed.[paragraph break][end if]The wind is exhilarating as you zip down the line. The ground rushes up at you with terrifying speed. [The second noun] whizz[if the second noun is not plural-named]es[end if] hotly against the rough wire, and you vaguely smell smoke, but your impromptu harness holds. [if final chase is happening]Shouts ring out and fingers point as the mercenaries spot you and race to where they think you will land. [end if]Suddenly your feet hit dirt. You let go of [the second noun] and tumble to the hard ground, knocking over a couple of shoppers before you roll to a stop. The next moment you are back on your feet, bruised and breathless.";
 	move the second noun to the landing place;
 	move the player to the landing place;
 	update the character list;
@@ -3259,18 +3363,13 @@ northwest cable	Grubbers Market Northwest Junction	"the Northwest Junction"
 
 Chapter 6 - More Monkey Business
 
-When Monkey Business begins:
-	move the monkey to Grubbers Market Top of Center Post.
-
 Section 6.1 - Description (Monkey & Necklace)
 
-The monkey is an animal. The initial appearance of the monkey is "Balancing on the southeast cable is that monkey[if the player holds a banana]. The monkey sniffs the air excitedly as you come closer, and emits a hopeful chirp[end if]." Understand "animal"  or "silver", "silvery", "fur", "black", "mask", "marking", "markings", "like", "face", "monkeys", "chest", "hand", "hands" as the monkey.
+The monkey is an animal. The initial appearance of the monkey is "Balancing on the southeast cable is that monkey[if the player holds a banana][first time]. The monkey sniffs the air excitedly as you come closer, and emits a hopeful chirp[only][end if]." Understand "animal"  or "silver", "silvery", "fur", "black", "mask", "marking", "markings", "like", "face", "monkeys", "chest", "hand", "hands" as the monkey.
 
 Instead of kissing the monkey, say "Are you crazy? You don't know where that monkey's been."
 
-Instead of throwing something at the monkey, say "That monkey is way too fast. You'd never hit it."
-
-The description of the monkey is "The monkey has silvery fur and black mask-like markings on its startlingly human face. It seems to regard you with a mixture of curiosity and amusement — as though you were some strange little animal whose antics it found entertaining[if the monkey carries the necklace]. It grips the necklace protectively, tight against its tiny chest[end if][if the monkey is in Grubbers Market Top of Center Post]. The monkey is standing on the southeast cable[end if].[run paragraph on]"
+The description of the monkey is "The monkey has silvery fur and black mask-like markings on its startlingly human face. It seems to regard you with a mixture of curiosity and amusement — as though you were some strange little animal whose antics it found entertaining[if the monkey carries the necklace]. It grips the necklace protectively, tight against its tiny chest[end if]. The monkey is standing on the southeast cable."
 
 Instead of listening to the monkey, say "The monkey chatters and hoots to itself constantly."
 Instead of smelling the monkey, say "It won't let you close enough to smell it, but hey, it's a monkey — it probably doesn't smell like roses."
@@ -3293,18 +3392,20 @@ Instead of giving or showing the necklace to someone when the second noun is not
 
 To say monkey escape:
 	remove the monkey from play;
-	say "You reach for the necklace, and the monkey backs away, screeching angrily.[paragraph break]Then, suddenly, it turns, crouches, and lets go of the wire. As it falls, it swings the necklace over the wire and grabs the other end with its free hand. Hanging onto the thin gold chain, the monkey slides away to the [one of]northeast[or]northwest[or]southeast[or]southwest[purely at random], to the stalls far below, hooting with glee all the way down.";
+	say "You reach for the necklace, and the monkey backs away, screeching angrily.[paragraph break]Then, suddenly, it turns, crouches, and lets go of the wire. As it falls, it swings the necklace over the wire and grabs the other end with its free hand. Hanging onto the thin gold chain, the monkey slides away to the southeast, to the stalls far below, hooting with glee all the way down.";
 	update the character list;
 
 Every turn during monkey business:
-	if the monkey is off-stage and the location is not Grubbers Market Top of Center Post begin;
+	if the monkey is off-stage and the location is not Grubbers Market Top of Center Post:
 		move the monkey to Grubbers Market Top of Center Post;
-	end if;
 
 Section 6.2 - Monkey actions / reactions
 
-Instead of taking or attacking the monkey:
+Instead of taking, attacking, pushing, pulling, turning or shaking the monkey:
 	say "The monkey screams and jumps away from you, chattering with rage and shaking its tiny fist."
+
+Instead of throwing something at the monkey:
+	say "That monkey is way too fast. You'd never hit it.";
 
 Instead of taking the necklace when the monkey carries the necklace:
 	say "[one of]The monkey screeches at you and backs away[or]The monkey jumps back, chattering angrily and holding the necklace out of reach[or]The monkey scampers back, clutching the necklace to its chest[or]The monkey hops back a few feet on the wire and blows a raspberry at you, as though daring you to come after it[at random]."
@@ -3428,7 +3529,6 @@ Section 1 - Chase out of Tent
 Final chase is a scene. Final chase begins when TE20 is fired. Final Chase ends when the location is Commerce Street.
 
 When Final Chase begins:
-	silence Teisha;
 	say "Suddenly you hear someone shouting just outside: [i]'Hey, any of you dims check inside this tent yet?'[no line break][r][paragraph break]Teisha's face turns white. 'Hurry, Jack!' she hisses, 'Out the back way!'";
 
 Instead of wearing the green silk cloak when the player wears the gray cloak during Final Chase:
@@ -3597,9 +3697,7 @@ Instead of going east from Grubbers Market Eastern Junction when the green silk 
 After going east from Grubbers Market Eastern Junction during Market Escape:
 	say "You reach the edge of the market just ahead of your pursuers and see the mercenary captain standing there. He hasn't seen the commotion yet; he's still casually scanning faces.[paragraph break]You skid to a halt. Everything depends on you looking like you're not in a hurry.[paragraph break]You force yourself to walk slow. Underneath the hood, sweat is pouring down your cheeks, and you can barely control your breathing. The shouts behind you are getting nearer. The captain is not looking at you, he's looking at the mercenaries pounding up behind you. Does he understand what they're shouting? Just a few more steps...[paragraph break]A bead of sweat rolls off the tip of your nose and drops to the ground, leaving a little dark spot in the dust. Did the captain notice?[paragraph break]Five steps... four steps... three steps...[paragraph break]You hear a confused babble of voices behind you as the captain orders his men to halt and explain what's going on.[paragraph break]You slip through the crowds into Commerce Street...";
 	pause the game;
-	select the chapter channel;
-	say "Chapter 2 - Bobby";
-	select the main channel;
+	output chapter heading "Chapter 2 - Bobby";
 	continue the action;
 
 Book 3 - Commerce Street
@@ -3639,15 +3737,21 @@ Chapter 1 - Stores and Storefronts
 
 Section 1 - Storefronts
 
-A storefront is a kind of thing. Understand "storesfront", "shopfront", "shop", "store", "sign", "building", "buildings", "door" as a storefront.
+A storefront is a kind of thing. Understand "storefront", "store front", "shopfront", "shop front", "shop", "store", "sign", "building", "door" as a storefront.
 
 The bakery storefront is a storefront, scenery and here. "A hanging sign above the door depicts a loaf of bread[if it is day], and the warm smell of fried dough wafts out from the open door, making your stomach rumble[end if]." Understand "baker", "bakers" as the bakery. Instead of entering the bakery: try going northwest instead.
 
 The butchers storefront is a storefront, scenery and here. "A brightly painted pig decorates the sign over this shop[if it is day]. The smell of burned sausage masks the darker odor of butchered animals[end if]." Understand "pig", "butcher", "butchery" as the butchers storefront. Instead of entering the butchers: try going north instead.
 
-The armory storefront is a storefront, scenery and here. The description of the armory storefront is "The walls over this shop are built of heavy, blackened bricks — a grim exterior to house grim business. The sign over the door is painted with an axe and shield." Understand "axe", "shield", "armorers" as the armory storefront. Instead of entering the armory storefront: try going northeast instead.
+The printed name of the butchers storefront is "butcher's storefront".
+
+The armory storefront is a storefront, scenery and here. The description of the armory storefront is "The walls of this shop are built of heavy, blackened bricks — a grim exterior to house grim business. The sign over the door is painted with an axe and shield." Understand "axe", "shield", "armorers" as the armory storefront. Instead of entering the armory storefront: try going northeast instead.
 
 Instead of examining a storefront when it is night, say "All of the shops are shuttered and locked up for the night."
+
+Some shopfronts are scenery, in Commerce Street. "Storefronts for a bakery, a butcher's shop, and an armory line the north side of  the street from west to east."
+
+Understand "shops", "stores", "shopfronts", "storefronts", "shop/store fronts", "signs", "shop/store signs", "doors", "shop/store doors", "buildings", "shop/store buildings" as the shopfronts.
 
 Section 2 - Stores
 
@@ -3675,31 +3779,11 @@ Before going west in Commerce Street:
 	end if.
 
 Before going from Commerce Street:
-	if the player is disguised as a girl and the player is still dirty and Escape Through the Sewer has not happened,
+	if the player is disguised as a girl and the player is still dirty and Escape Through the Sewer has not happened:
 		say "You'd better put your hat on — most of the merchants on this street know you as Jack. Keeping your hair stuffed up and hidden helps the disguise." instead;
 
 Instead of going to the armory shop when the player is scared of Olgan Minor:
 	say "The way your last conversation went, you're not sure you're ready to face Olgan Minor again.";
-
-Section 1 - Removing a disguise
-
-[ [A nice idea, maybe, but problematical: the player is disguised from the very beginning!]
-Removing disguise is an action applying to nothing.
-Understand "remove disguise", "remove my disguise" as removing disguise.
-Understand "take off disguise", "take off my disguise" as removing disguise.
-
-Check removing disguise: say "But you are not wearing a disguise."
-
-Instead of removing disguise when the player is disguised as a girl:
-	say "(taking off the silk cloak";
-	if the player carries the gray cloak,
-		say ", and wearing the gray one";
-	say ")[command clarification break]";
-	try taking off the silk cloak;
-	if the player carries the gray cloak,
-		try wearing the gray cloak;
-	if the player carries the hat,
-		try wearing the hat; ]
 
 Part 2 - In Germaise's Bakery
 
@@ -3717,7 +3801,7 @@ Instead of smelling the Bakers Shop, say "The store is filled with the smell of 
 
 Chapter 2 - Contents - Scenery
 
-A counter is scenery and here. Some baked-goods are scenery. The baked-goods are on the counter. "All the bread looks and smells delicious, but right now you need answers more than you need a snack." Understand "bread", "loaves", "baguettes", "rolls", "loaf", "baguette", "roll" as the baked-goods. The printed name of the baked-goods is "bread".
+A counter is scenery and here. Some baked-goods are scenery. The baked-goods are on the counter. "The bread looks and smells delicious, but right now you need answers more than you need a snack." Understand "bread", "loaves", "baguettes", "rolls", "loaf", "baguette", "roll" as the baked-goods. The printed name of the baked-goods is "bread".
 
 Instead of doing something other than examining to the baked-goods, try examining the baked-goods. 
 
@@ -3733,6 +3817,7 @@ Instead of doing something other than examining the oven, say "It's behind the c
 Chapter 3 - Event on entry
 
 After going to the Bakers shop for the first time:
+	say "[command clarification break]";
 	try looking;
 	update the character list;
 	if the location has not been the sewer begin;
@@ -3742,6 +3827,7 @@ After going to the Bakers shop for the first time:
 	end if;
 
 After going to the Bakers shop:
+	say "[command clarification break]";
 	try looking;
 	update the character list;
 	if the player has been in the sewer and GE16 is unfired begin;
@@ -3903,6 +3989,9 @@ Chapter 1 - Description and scenery
 
 The Butchers Shop is a store, north of Commerce Street. "Chains of linked sausages and thick, red cuts of meat dangle from hooks in the ceiling, and trays of less identifiable bits sit out on the counters. It's better than some butcheries you've seen, but it's still not your favorite place in the city. You can leave to the south."
 
+Rule for printing the name of the Butchers Shop:
+	say "Butcher's Shop";
+
 Outside from the butchers shop is Commerce Street.
 
 Instead of facing outside while in the Butchers Shop, try facing south.
@@ -3946,25 +4035,28 @@ Old Man Holstenoffer carries a cleaver. The description of the cleaver is "Holst
 Some tattoos are part of Old Man Holstenoffer. The description is "Holstenoffer's tattoos are a solid blue tangle of swirling designs, covering his arms from his wrists all the way up to his rolled-up sleeves."  Understand "tattoo", "solid", "blue", "tangle", "design", "designs", "swirling", "arm", "arms", "sailors" as the tattoos.
 
 Every turn when the player is not on the move and Holstenoffer is nearby and a random chance of 1 in 5 succeeds:
-	say "[one of]Holstenoffer's cleaver cuts through a particularly tough joint with a gristly, crunching sound.[or]Holstenoffer chops deftly at the raw meat on his block, cutting into narrow strips.[or]Holstenoffer stops to wipe his hands on his blood-smeared apron.[or]Holstenoffer stops suddenly and holds up a slippery-looking chunk of red gristle. 'Huh,' he mutters, 'never seen one of [i]those[r] before.' With a shrug, he tosses it into a tray labeled 'Bargain Bits.'[at random]"
+	unless the player has been in the sewer:
+		add ATMOS_Holstenoffer to the dramatic possibilities;
+
+ATMOS_Holstenoffer is a dramatic event. The display text is "[one of]Holstenoffer's cleaver cuts through a particularly tough joint with a gristly, crunching sound.[or]Holstenoffer chops deftly at the raw meat on his block, cutting into narrow strips.[or]Holstenoffer stops to wipe his hands on his blood-smeared apron.[or]Holstenoffer stops suddenly and holds up a slippery-looking chunk of red gristle. 'Huh,' he mutters, 'never seen one of [i]those[r] before.' With a shrug, he tosses it into a tray labeled 'Bargain Bits.'[at random]".
 
 Chapter 3 - Event on entry
 
 After going to the Butchers shop for the first time:
+	say "[command clarification break]";
 	try looking;
 	update the character list;
-	if the player has been in the sewer begin;
-		start conversation with Holstenoffer on HO18;
-	otherwise;
+	unless the player has been in the sewer:
 		start conversation with Holstenoffer on HO1;
-	end if;
+	otherwise:
+		start conversation with Holstenoffer on HO18;
 
 After going to the Butchers shop [subsequent times]:
+	say "[command clarification break]";
 	try looking;
 	update the character list;
-	if the player has been in the sewer begin;
+	if the player has been in the sewer:
 		start conversation with Holstenoffer on HO18;
-	end if;
 
 Chapter 4 - Leaving
 
@@ -3987,7 +4079,7 @@ HO3 is a quip. The menu text is "'Heard any gossip?'". The display text is "[fir
 
 HO4 is a quip. The menu text is "'What do you know about the mercenaries in Grubber's?'". The display text is "[first time]'Have you heard about the mercenaries in Grubber's Market this morning?' you ask.[paragraph break]Holstenoffer's eyes narrow. 'All I know about mercs is, they're filthy scavengers to a man, with empty purses where their sense of honor oughtta be. Let [']em try coming up Commerce Street,' he growls, tightening his grip on his cleaver, 'They'll find more than some timid stallkeeper here!'[subsequently][rp] 'all I know is they'd better not come into my shop.'[only]"
 
-HO5 is a quip. The menu text is "'What do you think about Baron Fossville?'". The display text is "[first time]'So tell us what you [i]really[r] think of Baron Fossville,' you say, smiling at Hostenoffer's earlier impression.[paragraph break]The butcher's face suddenly grows dark, and his cleaver [i]thwacks[r] into the wooden block. 'Tell yeh the truth Jack, I laugh about it when I can, but the Baron's a rat and I'm not afraid to say it. He don't care about this city, he don't care for anything but his own purse and his own power, and he ain't half the lord the old Duke was. He and the old Duke were always at odds, yeh know. But Fossville won that quarrel, and not by playing fair, I'd wager.' Holstenoffer shakes his cleaver menacingly. 'It makes a man so angry, he's liable to cut his own hand off if he's not careful.'[subsequently][rp] 'Fossville's a rat and everyone knows it.'[only]"
+HO5 is a quip. The menu text is "'What do you think about Baron Fossville?'". The display text is "[first time]'So what do you think of Baron Fossville?' you ask.[paragraph break]The butcher's face suddenly grows dark, and his cleaver [i]thwacks[r] into the wooden block. 'Tell yeh the truth Jack, I laugh about it when I can, but the Baron's a rat and I'm not afraid to say it. He don't care about this city, he don't care for anything but his own purse and his own power, and he ain't half the lord the old Duke was. He and the old Duke were always at odds, yeh know. But Fossville won that quarrel, and not by playing fair, I'd wager.' Holstenoffer shakes his cleaver menacingly. 'It makes a man so angry, he's liable to cut his own hand off if he's not careful.'[subsequently][rp] 'Fossville's a rat and everyone knows it.'[only]"
 
 HO6 is a quip. The menu text is "'What do you think of the Queen?'". The display text is "[first time]'What do you think of the Queen?' you ask.[paragraph break]'Bah,' spits Holstenoffer, 'that old bat couldn't rule so much as her own temper. This whole kingdom went to pot when she took the throne, and we'll be even worse off if she gets to decide who takes the throne after her.'[subsequently][rp] 'her Royal Highness is an idiot. She'll run this kingdom into the ground before she's through.'[only]"
 
@@ -4114,7 +4206,7 @@ The dagger display is scenery and here. The description is "Over a dozen gleamin
 
 Some blades are part of the dagger display. The description is "The blades are all beautiful, polished to a deadly gleam." Understand "blade", "stiletto", "stilettos", "sticker", "stickers", "cleaver", "cleavers" as the blades.
 
-Some interesting weapons are scenery and here. The description is "The sheer variety of ways to grievously injure someone with a sharp, metal instrument leaves you both impressed and vaguely disturbed." Understand "big", "axe", "axes", "flail", "flails", "racks", "rack", "gauntlet", "gauntlets", "spiked gauntlets/gauntlet" as the interesting weapons. The printed name of the interesting weapons is "big weapons".
+Some big weapons are scenery and here. The description is "The sheer variety of ways to grievously injure someone with a sharp, metal instrument leaves you both impressed and vaguely disturbed." Understand "big", "axe", "axes", "flail", "flails", "racks", "rack", "gauntlet", "gauntlets", "spiked gauntlets/gauntlet", "more interesting", "interesting" as the big weapons. The printed name of the big weapons is "big weapons".
 
 Instead of smelling the armory shop:
 	say "The tangy smell of oiled steel is nearly overpowering.";
@@ -4191,12 +4283,10 @@ OM2 is clustered with OM3, OM4, OM5, and OM6.
 
 After populating a quip (called q) when Olgan Minor is the current conversationalist:
 	remove q from the current conversation, if present;
-	if HO1 is unfired begin;
+	if HO1 is unfired:
 		remove OM4 from the current conversation, if present;
-	end if;
-	if the location has not been the sewers begin;
+	if the location has not been the sewers:
 		remove OM9 from the current conversation, if present;
-	end if;
 
 Rule for firing a fired quip that is clustered with OM2:
 	carry out the firing activity with OM8 instead;
@@ -4223,6 +4313,7 @@ East Commerce Street is east of Commerce Street. "The east end of Commerce Stree
 Understand "upper", "class", "residential", "neighborhood" as East Commerce Street.
 
 After going south to East Commerce Street when the player is clean:
+	say "[command clarification break]";
 	try looking;
 	update the character list;
 	say "[first time]'I suppose we should go see Mrs. Sandler now,' Shannon says.[only]";
@@ -4245,22 +4336,43 @@ Instead of opening, knocking on, or entering Black Gate Estate, say "The servant
 
 Section 2 - Red Gate Estate
 
-Red Gate Estate is an estatefront, openable, north of East Commerce Street. The description is "This is where the Duke and former Lord of Toresal lived, until his death several years ago. Now it stands empty, slowly crumbling. No one has ever made an attempt to claim the property, and the Baron seems content to let it remain vacant." Understand "gates" as Red Gate Estate.
-
-Instead of going north in East Commerce Street, try entering Red Gate Estate.
-
-Before opening, or entering Red Gate Estate:
-	if Red Gate Estate is locked:
-		if the player is not carrying the large brass key, say "The front gates are securely locked." instead;
-		otherwise try unlocking Red Gate Estate with the large brass key.
+Red Gate Estate is an estatefront, openable, north of East Commerce Street. The description is "This is where the Duke and former Lord of Toresal lived, until his death several years ago. Now it stands empty, slowly crumbling. No one has ever made an attempt to claim the property, and the Baron seems content to let it remain vacant." Understand "front", "gates" as Red Gate Estate.
 
 The matching key of Red Gate Estate is the large brass key.
+
+Rule for printing the name of Red Gate Estate while implicitly opening:
+	say "the front gates";
+
+After printing the description of Red Gate Estate:
+	if Red Gate Estate is locked:
+		say "The front gates are securely locked. ";
+	otherwise if Red Gate Estate is closed:
+		say "The front gates are closed. ";
+	otherwise:
+		say "The front gates are open. "
+
+Instead of opening locked Red Gate Estate when the player encloses the large brass key:
+	now the player carries the large brass key; [i.e. get it out of satchel]
+	try unlocking Red Gate Estate with the large brass key;
+
+Instead of opening locked Red Gate Estate:
+	say "The front gates are securely locked." instead;
+
+Rule for supplying a missing second noun when unlocking Red Gate Estate with:
+	if the player encloses the large brass key:
+		change the second noun to the large brass key;
+	
+Rule for supplying a missing second noun when locking Red Gate Estate with:
+	if the player encloses the large brass key:
+		change the second noun to the large brass key;
 
 Instead of knocking on Red Gate Estate, say "No one answers."
 
 After unlocking Red Gate Estate with the brass key for the first time:
 	now Red Gate Estate is open;
 	say "The lock is rusty and stiff from long disuse, but the key turns... and the door unlocks with a grinding [i]clunk[r].";
+	unless currently running the implicitly opening activity:
+		try entering Red Gate Estate instead;
 
 Section 3 - Jacobs Family Mansion
 
@@ -4366,6 +4478,7 @@ Some lanterns are scenery, in Lords Market. The description is "[if it is night]
 Chapter 4 - Event on entry
 
 After going to Lords Market for the first time:
+	say "[command clarification break]";
 	try looking;
 	update the character list;
 	say "As you are standing there getting your bearings, the door to the moneylender's shop suddenly slams open. A tall, dark-cloaked figure storms out, shouting over his shoulder, '...regret refusing my business! I know import—[i]OOF!'[no line break][r] —and before you have a chance to react, he crashes into you. You both hit the cobbles in a tangle of limbs.[paragraph break]Muttering apologies, you try to disentangle yourself, but the man is on his feet in an instant, dragging you up by your elbow. 'Why you insolent little cutpurse—'[paragraph break]A woman standing next to him places her hand on his shoulder. 'Calm yourself, Fossville,' she says. Only her chin is visible beneath the shadow of her hood, but the woman's voice is cool and commanding. 'It's only a foolish street boy. You've already terrified him.'[paragraph break]The man — you realize now that he must be Baron Fossville, Lord of the city since the old Duke died, and one of the most powerful nobles in Toresal — eyes you suspiciously. Even flustered, his sharp features are intense, handsome, and dangerously intelligent. His lips twitch slightly beneath his trim moustache. Finally, he releases you.[paragraph break]'Off with you then, urchin,' he growls, flicking his fingers as though he had just touched something filthy. 'Take your begging elsewhere, and learn to stay out from under the feet of your betters.'[paragraph break]Fossville strides off towards Commerce Street, followed closely by his hooded companion. As she brushes past you, you can hear her talking in a low voice, '...have the money you need, but we must be subtle about it. The Queen can not appear to play favorites...'[paragraph break]And then they are gone.";
@@ -4413,7 +4526,7 @@ Chapter 4 - The Clothier
 
 The clothier is a man, in the clothiers shop. The initial appearance of the clothier is "[if the player is still dirty]The clothier stands nearby, eyeing you with some distaste[otherwise]The clothier hovers nearby, waiting to serve[end if]." The description of the clothier is "Tall, thin, and impeccably dressed, although his fashion sense seems a bit...decorative, compared to the more austere look preferred by men of Toresal's upper class. His hairline is receding, and what hair he has left is plastered back onto his scalp with fragrant oil. He look as though he'd secretly prefer to wipe things down with a scented handkerchief before touching them; somehow, through good breeding and intestinal fortitude, he manages to soldier on despite not doing so." Understand "proprietor", "shopkeeper", "shop keeper", "merchant", "man" as the clothier.
 
-Every turn when the vocal clothier is nearby and a random chance of 1 in 5 succeeds:
+Every turn when the clothier is nearby and a random chance of 1 in 5 succeeds:
 	say "[one of]The clothier absentmindedly flicks a bit of lint off of his sleeve[or]The clothier wanders over to one of the dresses on display and fusses with the [one of]sleeve[or]hem[or]neckline[at random][or]The clothier inspects his fingernails[or]The clothier purses his lips and hums something indecipherable[or]The clothier slowly looks you up and down. You get the distinct and not-exactly comfortable feeling that he's 'dressing' you with his eyes[at random].";
 
 Chapter 5 - Actions and interactions
@@ -4547,6 +4660,7 @@ Instead of kissing Dame Sandler, say "Although you're pretty sure that Dame Sand
 Chapter 4 - Events on entry and exit
 
 After going to the jewelers for the first time:
+	say "[command clarification break]";
 	try looking;
 	update the character list;
 	if the player is still dirty:
@@ -4558,6 +4672,7 @@ After going to the jewelers for the first time:
 		continue the action;
 
 After going to the jewelers when A New Morning has happened and the player is dirty and DS24 is unfired:
+	say "[command clarification break]";
 	try looking;
 	update the character list;
 	start conversation with Dame Sandler on DS24;
@@ -4750,6 +4865,7 @@ After going to the moneylenders shop:
 		continue the action;
 	otherwise;
 		now Chorus Brothers are scenery;
+		say "[command clarification break]";
 		try looking;
 		now Chorus Brothers are not scenery;
 		start conversation with the Chorus Brothers on CB1;
@@ -4893,14 +5009,13 @@ The distant description of the Back Alley is "The back alley threads its way bet
 
 The dead-end description of the Back Alley is "Tall buildings surround you in every direction except north and southwest."
 
-
-
 Section 1 - Event on Entry
 
 After going to the Back Alley for the first time:
+	say "[command clarification break]";
 	try looking;
 	now Bobby is not scenery;
-	say "At the end of the alley, a group of young urchins — none older than their eighth year — are clustered around something. As you draw closer, you see Bobby crouched in the midst of them. He's holding his arm out, his fist loosely clenched in front of a dirty-cheeked child of six.[paragraph break]'Go on,' says Bobby. 'Go on, take a look.'[paragraph break]The little boy, his eyes wide and solid, reaches out and pries Bobby's fingers open. His hand is empty. The little boy looks dismayed.[paragraph break]'Ah, but what's this?' asks Bobby. And he reaches forward and draws a copper coin from behind the boy's grimy ear. A collective gasp, then squeals of delight from the rest of the children, and the little boy's eyes look ready to fall out of his head.[paragraph break]Bobby presses the coin into the little boy's hand, then passes out more coins to the others. 'Here,' he says, 'keep it safe in your pocket. Spend it on bread, not candy.' The children take their prizes and scatter.[paragraph break]";
+	say "At the end of the alley, a group of young urchins — none older than their eighth year — are clustered around something. As you draw closer, you see Bobby crouched in the midst of them. He's holding his arm out, his fist loosely clenched in front of a dirty-cheeked child of six.[paragraph break]'Go on,' says Bobby. 'Go on, take a look.'[paragraph break]The little boy, his eyes wide and solemn, reaches out and pries Bobby's fingers open. His hand is empty. The little boy looks dismayed.[paragraph break]'Ah, but what's this?' asks Bobby. And he reaches forward and draws a copper coin from behind the boy's grimy ear. A collective gasp, then squeals of delight from the rest of the children, and the little boy's eyes look ready to fall out of his head.[paragraph break]Bobby presses the coin into the little boy's hand, then passes out more coins to the others. 'Here,' he says, 'keep it safe in your pocket. Spend it on bread, not candy.' The children take their prizes and scatter.[paragraph break]";
 	update the character list;
 	start conversation with Bobby on BO1;
 
@@ -4928,6 +5043,9 @@ To say bobby's description:
 Instead of kissing Bobby:
 	if the location is the War Room, say "Bobby is a little busy right now!";
 	otherwise say "You've thought about it. You've even dreamed about it. But the thought of actually doing it makes you go all wobbly-kneed."
+
+Instead of attacking or kicking Bobby:
+	say "You'd never dream of hurting Bobby!";
 
 Section 2 - Initial appearance, in various circumstances
 
@@ -4981,7 +5099,7 @@ BO8 is a quip. The display text is "He makes a show of looking carefully over on
 
 BO9 is a quip. The menu text is "'Where is this place?'". The display text is "'I don't know,' you say. 'Where is this place?'[paragraph break]Bobby rolls his eyes. 'Well, that's kind of the point, if I told you, it would ruin the secret. C'mon, Jack, are you in or out?'"
 
-BO10 is a quip. The menu text is "'I'm in.'". The display text is "Could you [i]even[r] consider saying no? 'Okay, let's do it,' you say, your heart thumping hard. 'I'm in.'[paragraph break]'You're a good bloke, Jack,' says Bobby. 'Now, you don't want the Maidens worrying about you, so head on home for now. Once it gets dark, sneak back out and meet me in the Grubber's Market. Right? Good. See you later, Jack.' He claps his hand on your shoulder, then turns and strides, all grace and overconfidence, out of the alley."
+BO10 is a quip. The menu text is "'I'm in.'". The display text is "Could you [i]even[r] consider saying no? 'Okay, let's do it,' you say, your heart thumping hard. 'I'm in.'[paragraph break]'You're a good bloke, Jack,' says Bobby. 'Now, you don't want the Widows worrying about you, so head on home for now. Once it gets dark, sneak back out and meet me in the Grubber's Market. Right? Good. See you later, Jack.' He claps his hand on your shoulder, then turns and strides, all grace and overconfidence, out of the alley."
 
 BO11 is a quip. The menu text is "'Can I ask you a question?'". The display text is "'Hey, Bobby, you mind if I ask you a question?' you ask.[paragraph break]'Sure,' says Bobby."
 
@@ -5023,7 +5141,7 @@ Part 3 - Entrance to Maiden House
 
 Chapter 1 - Description 
 
-Entrance to Maiden House is southwest of the back alley. The description is "The alley dead-ends in a small courtyard surrounded by old, run-down buildings."
+Entrance to Maiden House is southwest of the back alley. The description is "The alley dead-ends in a small courtyard surrounded by old, run-down buildings. You can return to the main part of the city to the northeast."
 
 Understand "narrow", "street", "dead end", "cul de sac", "courtyard", "small", "outside" as Entrance to Maiden House.
 
@@ -5051,7 +5169,7 @@ Rule for writing a paragraph about the wooden door:
 The description of the wooden door is "There's nothing on the outside to distinguish Maiden House from any of the other run-down tenements in this neighborhood, but you recognize it well. You grew up in this place, and it is filled with memories both good and bad. Well, okay, mostly bad. But you make do with what you have."
 
 Instead of examining the wooden door when the location is the Hallway:
-	if Raid on Maiden House has not happened, say "The front door is closed and locked — and it will stay locked until sunup. The Maidens give you a good bit of latitude generally, but curfew is one of the few rules they never, ever bend.";
+	if Raid on Maiden House has not happened, say "The front door is closed and locked — and it will stay locked until sunup. The Widows give you a good bit of latitude generally, but curfew is one of the few rules they never, ever bend.";
 	otherwise say "The front door is closed and locked."
 
 
@@ -5061,7 +5179,7 @@ Part 1 - Hallway
 
 Chapter 1 - Description
 
-The Hallway is a room. The description is "The main hallway runs north-south through the center of Maiden House, with several doorways leading to rooms on either side. To the southeast and southwest are the laundry and privy, respectively; to the northeast lies the kitchen; and to the northwest is the dormitory where you and the other orphans sleep."
+The Hallway is a room. The description is "The main hallway runs through the center of Maiden House, with several doorways leading to rooms on either side. To the southeast and southwest are the laundry and privy, respectively; to the northeast lies the kitchen; and to the northwest is the dormitory where you and the other orphans sleep."
 
 Understand "main", "center", "Maiden", "House", "hall", "corridor", "passage", "passageway" as the Hallway.
 
@@ -5077,7 +5195,9 @@ Chapter 2 - Widow Theresa
 
 Section 1 - Description
 
-Widow Theresa is a woman, scenery, in the Hallway. The description is "Widow Theresa is a harsh, sour-faced woman, with suspicious eyes and a mannish, angular jaw that she thrusts out when she is angry, which is nearly always. You gather that she was very poor before coming to Maiden House, and she harbors a bitter dislike for anyone whom she perceives as unjustly privileged. For reasons that persistently escape you, that includes you. Staying out of her way is generally the best tactic."
+Widow Theresa is a woman, scenery, portable, in the Hallway. The description is "Widow Theresa is a harsh, sour-faced woman, with suspicious eyes and a mannish, angular jaw that she thrusts out when she is angry, which is nearly always. You gather that she was very poor before coming to Maiden House, and she harbors a bitter dislike for anyone whom she perceives as unjustly privileged. For reasons that persistently escape you, that includes you. Staying out of her way is generally the best tactic." The initial appearance of Widow Theresa is "Widow Theresa stalks the hallway, her eye out for trouble."
+
+Understand "maiden" as Widow Theresa.
 
 The long brass key is held by Widow Theresa. The description is "That's the key to the front door. Widow Theresa keeps it on a ribbon around her neck constantly." The printed name is "brass key". Understand "front door key" as the long brass key.
 
@@ -5086,7 +5206,11 @@ The ribbon is held by Widow Theresa. The description is "It's just a long piece 
 Instead of doing something other than examining when the noun is the long brass key or the noun is the ribbon:
 	say "Widow Theresa has her eye on you constantly, and she won't let you get near [the noun].";
 
-Instead of kissing Widow Theresa, say "That would surely be about as pleasant as hugging a cactus."
+Instead of kissing Widow Theresa:
+	say "That would surely be about as pleasant as hugging a cactus.";
+
+Instead of attacking or kicking Widow Theresa:
+	say "As much as you'd love to, that would only compound your problems.";
 
 Section 2 - Conversation
 
@@ -5104,7 +5228,7 @@ TH6 is a quip. The menu text is "'Let me ask you something.'". The display text 
 
 TH7 is a quip. The menu text is "'What do you think of Widow Fiona?'". The display text is "[first time]'What do you think of Widow Fiona?' you ask.[paragraph break]Theresa looks at you for a long time before answering. 'I think,' she says, finally, 'that playing favorites does an injustice to the other children here, but in your case it's even worse because of how little you deserve it. Fiona thinks you're something special. But I think you're just a spoiled brat who thinks she can get away with whatever she likes. And I think that one day, you're going to be caught with your fingers in the wrong pocket, and then you will be very, very sorry.' She sneers and adds in a low voice, 'And I think I'm looking forward to that day.'[subsequently][rp] 'she treats you far better than you deserve.'[only]"
 
-TH8 is a quip. The menu text is "'What do you think of Widow Shannon?'". The display text is "[first time]'What do you think of Widow Shannon?' you ask.[paragraph break]'Shannon?' laughs Theresa. 'I'd say she's too dim to catch a husband, but I'm not sure she even wants one. Don't worry, she'll still be here long after you're dead in a gutter somewhere.'[subsequently][rp] 'she's too dim to be anything but happy here.'[only]"
+TH8 is a quip. The menu text is "'What do you think of Widow Shannon?'". The display text is "[first time]'What do you think of Widow Shannon?' you ask.[paragraph break]'Shannon?' laughs Theresa. 'I'd say she's too dim to catch another husband, but I'm not sure she even wants one. Don't worry, she'll still be here long after you're dead in a gutter somewhere.'[subsequently][rp] 'she's too dim to be anything but happy here.'[only]"
 
 TH9 is a quip. The menu text is "'What do you think of Baron Fossville?'". The display text is "[first time]'What do you think of Baron Fossville?' you ask.[paragraph break]Widow Theresa gets a wistful look in her eye. 'Baron Fossville is a great man. A great and... handsome man.' Her look hardens. 'It pains me to hear his name coming from your dirty little liar's mouth.'[subsequently][rp] 'I don't want to talk about him with you.'[only]"
 
@@ -5181,16 +5305,50 @@ Chapter 1 - Description
 
 The Dormitory is northwest of the Hallway. "A long room lined with rough bunks, where the children sleep and, if they are too young to run about the city on their own, play. The main hallway lies southeast."
 
-Understand "dorm", "dormitories", "dorms", "doorway" as the dormitory. The distant description of the dormitory is "The dormitory is northwest of here."
+Understand "dorm", "dormitories", "dorms" as the dormitory. The distant description of the dormitory is "The dormitory is northwest of here."
+
+Before going when in the dormitory:
+	if the noun is east or the noun is outside:
+		try going southeast instead;
+
+Before exiting when in the dormitory:
+	try going southeast instead;
 
 Chapter 2 - Bunk bed
 
 A bunk bed is a supporter, scenery, in the dormitory. The printed name is "bunk". The description is "The bunks are spare and functional, straw mattresses on wooden frames. It's clean straw, but that's about all that can be said for them."
 
-Before sleeping in the presence of the bunk bed:
-	try entering the bunk bed instead;
+Instead of sleeping in the presence of the bunk bed:
+	try entering the bunk bed;
 
 Instead of entering the bunk bed: say "You're not even [i]close[r] to being tired. You couldn't possibly go to sleep until you've seen what Bobby wanted to show you."
+
+Understand "your", "my", "rough", "straw", "mattress", "wood", "wooden", "frame", "spare", "functional" as the bunk bed. Does the player mean doing something to the bunk bed: it is likely.
+
+Chapter 3 - Other bunks
+
+Some other bunks are scenery, in the dormitory. Understand "beds", "bunk beds", "straw", "mattresses", "wood", "wooden", "frames", "rough", "spare", "functional" as the other bunks.
+
+The description of the other bunks is "The bunks are spare and functional, straw mattresses on wooden frames. It's clean straw, but that's about all that can be said for them."
+
+Instead of entering the other bunks:
+	try entering the bunk bed;
+
+Chapter 4 - Other orphans
+
+Some orphans are a person in the Dormitory. The orphans can be asleep or awake. The orphans are awake. Understand "orphan", "child", "children", "childish", "kids", "kid", "urchins", "urchin", "young", "younger", "boys", "girls", "boy", "girl" as the orphans. The description of the orphans is "The kids are mostly younger than you. Some of them you saw earlier with Bobby. They sit up in their beds, whispering secrets to each other, showing off the childish treasures they found during the day: pebbles, pennies, bits of string. It almost makes you wish you could be that young again. Your life was so much less complicated then." The initial appearance of the orphans is "Most of the other orphans are in here, playing and talking before bedtime."
+
+Instead of talking to the awake orphans:
+	say "You're not really in the mood for a chat. As you've gotten older, you find you have less in common with the other kids than you once did.";
+
+Instead of talking to the asleep orphans:
+	try waking the orphans;
+
+Rule for writing a paragraph about the asleep orphans:
+	say "The other children are all sound asleep in their bunks.";
+
+Instead of waking the asleep orphans:
+	say "You don't want to wake them. They'll just cause a commotion, and then you'll never be able to sneak out.";
 
 Part 5 - Kitchens
 
@@ -5198,15 +5356,30 @@ Chapter 1 - Description and scenery
 
 The Kitchen is northeast of the Hallway. "A low-ceilinged room with a fire pit at one end for cooking, a basin at the other end for washing, and rows upon rows of pots and pans hanging from the rafters. The long table at the side of the room is where the children take their meals. You can leave to the west."
 
-Understand "doorway", "kitchens" as the kitchen. The distant description of the kitchen is "The kitchen is northeast of here."
+Before going when in the kitchen:
+	if the noun is west or the noun is outside:
+		try going southwest instead;
 
-The table is a supporter, and scenery, in the Kitchen. The description of the table is "The table seats about twenty hungry orphans, with room at the end for two or three scowling widows to enforce discipline. You rarely eat here, yourself. Older kids are encouraged to scrounge around the city for their meals rather than rely on the kitchen, but the Maidens make sure that no one goes hungry."
+Before exiting when in the kitchen:
+	try going southwest instead;
+
+Understand "kitchens" as the kitchen. The distant description of the kitchen is "The kitchen is northeast of here."
+
+The table is a supporter, and scenery, in the Kitchen. The description of the table is "The table seats about twenty hungry orphans, with room at the end for two or three scowling widows to enforce discipline. You rarely eat here, yourself. Older kids are encouraged to scrounge around the city for their meals rather than rely on the kitchen, but the Widows make sure that no one goes hungry."
 
 [ "The pots and pans are scenery, here" annoyingly gives us a pots object and a pans object.
 ]
 Some pans are scenery, in the Kitchen. The description of the pans is "Dozens of them, and you are familiar with each and every one. Scullery duty is not exactly your favorite day of the week." The printed name is "pots and pans". Understand "pots" as the pans.
 
 The fire pit is scenery, in the Kitchen. The description of the fire pit is "The logs are down to glowing embers now." Understand "fireplace", "log", "logs", "ember", "embers" as the fire pit.
+
+Understand "rafter", "rafters", "low", "ceiling", "ceilinged", "dark", "rough", "wood", "wooden" as the backdrop-ceiling when the location is the Kitchen.
+
+Rule for printing the description of the backdrop-ceiling when in the Kitchen:
+	say "The rafters are made of dark, rough wood.";
+
+Instead of doing something other than examining the backdrop-ceiling when in the Kitchen:
+	say "The ceiling is low, but it's still higher than you can reach.";
 
 Section 1 - Basin and plates
 
@@ -5261,6 +5434,8 @@ Section 1 - Description
 
 Widow Fiona is a woman, in the Maiden House kitchen. "[if the location is Kitchen]Widow Fiona is here, washing the last of the dinner dishes[otherwise]Widow Fiona hovers nearby, looking concerned[end if]."
 
+Understand "maiden" as Widow Fiona.
+
 The description is "[if the location is Kitchen]Fiona is a plump and genial woman, always quick with a smile or a bit of advice. The strange thing is, her advice always seems to make good sense, though sometimes you are loathe to admit it. She likes you and occasionally does you a good turn when you're in trouble with Widow Theresa.[otherwise]Widow Fiona's eyes are red and swollen, as if she's been weeping, and a heavy sadness weighs on her usually cheerful features.[end if]"
 
 Instead of kissing Widow Fiona:
@@ -5273,6 +5448,7 @@ Every turn when Widow Fiona is nearby and the location is the Kitchen and the pl
 	end if;
 
 After going to the Kitchen for the first time:
+	say "[command clarification break]";
 	try looking;
 	update the character list;
 	start conversation with Widow Fiona on FI1;
@@ -5391,7 +5567,14 @@ Chapter 1 - Description
 
 The Privy is southwest of the Hallway. "Not much more than a narrow closet, with a hole in the floor and a bench over it. At least it's more private than an alley."
 
-Understand "narrow", "closet", "doorway", "bathroom", "water closet", "privies", "restroom", "toilet" as the privy. 
+Before going when in the privy:
+	if the noun is outside:
+		try entering the privy window instead;
+
+Before exiting when in the privy:
+	try entering the privy window instead;
+
+Understand "narrow", "closet", "bathroom", "water closet", "privies", "restroom", "toilet" as the privy. 
 
 The privy overlooks Behind Maiden House.
 
@@ -5417,7 +5600,7 @@ Before entering the hole, say "It's way too small for you to fit into. Thank the
 The bench is an enterable supporter, scenery, in the privy. The description is "The bench allows you to use the privy without a lot of ungainly squatting."
 
 Instead of sitting on the bench,
-	say "You don't feel the urge right now."; [TRAC: but what about standing on it?]
+	say "You don't feel the urge right now.";
 
 Chapter 3 - Window
 
@@ -5460,6 +5643,13 @@ Chapter 1 - Description and scenery
 
 The Laundry is southeast of the Hallway. "The air in here is filled with steam and the sharp stink of lye soap. Moisture trickles down the walls, and puddles of water splash underfoot. The main hallway lies northwest."
 
+Before going when in the laundry:
+	if the noun is outside:
+		try going northwest instead;
+
+Before exiting when in the laundry:
+	try going northwest instead;
+
 Understand "washing", "wash" as the laundry.
 
 The distant description of the Laundry is "[if the location is the Hallway]The laundry lies southeast of here[otherwise]The laundry is just outside[end if]."
@@ -5467,6 +5657,7 @@ The distant description of the Laundry is "[if the location is the Hallway]The l
 Instead of smelling the laundry, say "The harsh soap the widows like to use has a strong smell that burns your nostrils."
 
 After going to the Laundry for the first time:
+	say "[command clarification break]";
 	try looking;
 	update the character list;
 	start conversation with Widow Shannon on SH1;
@@ -5475,26 +5666,40 @@ After going from the Laundry when Widow Shannon is in the Laundry and Raid on Ma
 	say "'See you later, Widow Shannon,' you say as you leave.[paragraph break]Widow Shannon smiles at you over her shoulder. 'Take care, Jacqueline.'";
 	continue the action;
 
-A huge wooden washtub is a container, scenery, in the Laundry. The description is "The wooden tub is huge enough to bathe in (and it has been used for that purpose on occasion). It's slopping over with soap-clouded water, pouring steam into the humid air." Understand "wooden", "wood", "tub", "water", "laundry" as the washtub.
+Chapter 2 - Scenery
+
+Section 1 - Washtub and contents
+
+A huge wooden washtub is a container, scenery, in the Laundry. The description is "The wooden tub is huge enough to bathe in (and it has been used for that purpose on occasion). It's slopping over with soap-clouded water, pouring steam into the humid air." Understand "wooden", "wood", "tub", "laundry" as the washtub.
 
 Instead of entering the washtub, say "You don't need a bath right now. And you [i]definitely[r] don't need a bath in [i]that[r]."
 
-Instead of washing the player in the presence of the washtub, try entering the washtub.
+Instead of washing the player in the presence of the washtub:
+	try entering the washtub.
 
 Some washing water is inside the washtub. It is fixed in place. The description of the water is "The water is gray and coated with greasy-looking suds." The printed name is "water".
 
-Before taking, drinking or tasting the washing water, say "The grimy underpants of two dozen hygiene-challenged urchins have been steeping in that water all day."
+Instead of taking, drinking or tasting the washing water:
+	say "The grimy underpants of two dozen hygiene-challenged urchins have been steeping in that water all day.";
 
-Some dirty underpants are inside the washtub. The description is "The clothes look as gray as the water they're floating in. It's hard to see how they ever actually get clean." The printed name of the underpants is "clothes". Understand "clothes", "laundry" as the underpants.
+Some dirty underpants are inside the washtub. The description is "The clothes look as gray as the water they're floating in. It's hard to see how they ever actually get clean." The printed name of the underpants is "clothes". Understand "clothes", "laundry", "gray", "nappies" as the underpants.
 
 Instead of doing something other than examining the underpants:
 	say "Better leave the clothes alone. They're in that tub for a reason.";
+
+Section 2 - Moisture
+
+Some moisture is scenery, in the Laundry. Understand "puddle", "puddles", "steam", "damp", "humid", "air" as the moisture. The description of the moisture is "The constant steam makes everything in this room damp."
+
+Instead of smelling the moisture, try smelling the location.
 
 Chapter 2 - Widow Shannon
 
 Section 1 - Description
 
 Widow Shannon is a woman, in the Laundry. The initial appearance is "[if Raid on Maiden House is happening]Widow Shannon is here, looking scared but determined.[otherwise if the location of Widow Shannon is the Laundry]Widow Shannon is bent over the big washtub in the corner, scrubbing out the toddlers['] nappies.[otherwise]Widow Shannon stands nearby.[end if]".
+
+Understand "maiden" as Widow Shannon.
 
 The description is "[if Raid on Maiden House is happening]Although Shannon's face is pale, there is a look of resolve in her features that you have never seen there before. This is her protective side: she will not let anyone — not Fossville, not his armed thugs — harm one of [i]her[r] children.[otherwise if Shannon's Company is happening]Shannon is the youngest of the widows in Maiden House. She is plain-looking, and you've always thought of her as not particularly bright… but she is resourceful and devoted, and your respect for her has grown. She seems energetic and happy to be on this adventure with you.[otherwise]Shannon is the youngest of the widows in Maiden House. She is plain-looking, and none too bright, and, to all appearances, utterly uninterested in ever remarrying, which is perhaps just as well. She devotes herself to the children, particularly the toddlers, and does most of the cleaning and cooking for Maiden House.[end if]"
 
@@ -5529,7 +5734,7 @@ SH8 is a quip. The menu text is "'What do you think of Widow Theresa?'". The dis
 
 SH9 is a quip. The menu text is "'What do you think of Widow Fiona?'". The display text is "[first time]'What do you think of Widow Fiona?' you ask.[paragraph break]'Oh, Miss Fiona is [i]terribly[r] smart,' Shannon says, with a touch of awe in her voice. 'You mind her and listen to what she says, Jacqueline. She knows what's best.'[subsequently][rp] 'she's the smartest person I know.'[only]"
 
-SH10 is a quip. The menu text is "'What do you think of Baron Fossville?'". The display text is "[first time]'What do you think of Baron Fossville?' you ask.[paragraph break]'Fossville?' Shannon replies, somewhat confused, 'Why, he's the new lord of the Toresal, since the old Duke died. I thought everyone knew that.'[subsequently][rp] 'he's the Lord of the city.'[only]"
+SH10 is a quip. The menu text is "'What do you think of Baron Fossville?'". The display text is "[first time]'What do you think of Baron Fossville?' you ask.[paragraph break]'Fossville?' Shannon replies, somewhat confused, 'Why, he's the new Lord of Toresal, since the old Duke died. I thought everyone knew that.'[subsequently][rp] 'he's the Lord of the city.'[only]"
 
 SH11 is a quip. The menu text is "'What do you know about the Ascension?'". The display text is "[first time]'What do you know about the Ascension?' you ask.[paragraph break]'The [i]Ascension?[r]' Shannon laughs. 'Goddesses, Miss Jacqueline, where's your head been today? That Royal politics is far above the likes of me. I keep my feet on the ground, and my hands in the washing, where they belong.'[subsequently][rp] 'I don't pay attention to that high-faluting stuff.'[only]"
 
@@ -5563,6 +5768,12 @@ SH2 is clustered with SH3, SH7, SH8, SH9, SH10, SH11 and SH12.
 
 After populating a quip (called q) that is clustered with SH2:
 	if SH4 is fired or the location is not the Laundry [if the raid on Maiden House has happened, we don't need to ask her to open the door], remove SH4 from the current conversation, if present;
+
+Section 3 - Stick and Soap
+
+The wooden stirring stick is carried by Widow Shannon. Understand "thick", "wood" as the wooden stirring stick. The description of the stirring stick is "Widow Shannon always uses that stick to stir the laundry." The printed name of the stirring stick is "stick".
+
+The cake of lye soap is carried by Widow Shannon. Understand "cake", "harsh", "stink", "sharp", "burning", "strong" as the lye soap.  The description of the lye soap is "Shannon is using a big cake of lye soap to scrub the laundry." Instead of smelling the lye soap, try smelling the location. The printed name of the cake of lye soap is "lye soap".
 
 Part 8 - Behind Maiden House
 
@@ -5627,7 +5838,7 @@ After going north from Market Square when BO26 is unfired:
 
 Chapter 4 - Further Conversations with Bobby (Adventure with Bobby)
 
-BO23 is a quip. The display text is "When you get closer, he walks over and claps you on the shoulder. 'Had a spot of trouble getting away from the Maidens, eh, Jack?' he whispers."
+BO23 is a quip. The display text is "When you get closer, he walks over and claps you on the shoulder. 'Had a spot of trouble getting away from the Widows, eh, Jack?' he whispers."
 
 BO24 is a transitional quip. The menu text is "'Not really.'". The display text is "You shrug and say, 'Not really.'[paragraph break]Bobby raises his eyebrows. 'All right, then.'[paragraph break]You find yourself wishing you had made up some story about a daring, sneaky escape, so that Bobby would be more impressed."
 The following quip is BO26.
@@ -5685,6 +5896,16 @@ Bobby's trail is a list of objects [directions] that varies.
 
 Bobby's trail is { [from market] north, [from Lord's Road] east, [from pasture] north, [from stream crossing] north, [from the woods] south [except this is a placeholder: the split sapling points the real way], [then from the clearing] down, [from the tunnel] north, [from the secret wall] north, [from the chapel] southwest, [from the lower bailey] up, [and finally from the upper bailey] north };
 
+Instead of following Bobby during Bobby's adventure:
+	if Bobby is in the location,
+		say "But Bobby's right here!" instead;
+	say "[conditional paragraph break]";
+	if the location is the Woods:
+		let Bobby's wake be the way of the split sapling;
+	otherwise:
+		let Bobby's wake be entry 1 of Bobby's trail;
+	try going Bobby's wake.
+
 First after going during Creeping to Lord's Keep:
 	let the proper way be entry 1 of Bobby's route;
 	if the room gone to is the proper way:
@@ -5710,6 +5931,7 @@ Instead of facing northwest in Lords Road, say "There's nothing in that directio
 
 After going north to Lords Road for the first time:
 	move Bobby to Pasture;
+	say "[command clarification break]";
 	try looking;
 	say "Bobby jerks his thumb down the road, to the north. 'This road leads straight to the front gate of Lord's Keep; we want to stay away from there. I know a better way,' he says with a knowing smile, and strikes off towards the open field to the east.";
 	update the character list;
@@ -5731,7 +5953,7 @@ Chapter 1 - Scenery
 
 The broken ground is a backdrop, in Lords Road. The description is "The land to the west of Lord's Road is rocky and dry, no good for growing much of anything other than thornbushes." Understand "land" or "rocks", "rock", "rocky", "dry", "fallow", "scrub", "bushes", "bush", "thorn", "thorns", "thornbush", "thornbushes", "painful" as the broken ground. The broken ground is in Lords Road and Southern Gate.
 
-Instead of taking, pulling, searching, or touching the broken ground, say "A hand full of painful thorns is not what you need right now."
+Instead of taking, pulling, pushing, squeezing, rubbing, turning, searching, or touching the broken ground, say "A hand full of painful thorns is not what you need right now."
 
 The city wall is a backdrop, in Lords Road and the Pasture. The description is "The outer walls of Toresal are built of heavy, white stone." Understand "Toresal", "walls", "heavy", "white", "stone", "stones", "outer", "white" as the city wall.
 
@@ -5773,6 +5995,7 @@ Chapter 3 - Event on entering
 
 After going to the Pasture for the first time:
 	move Bobby to Crossing;
+	say "[command clarification break]";
 	try looking;
 	say "You feel nervous and exposed out here in all this empty space; you're more used to the narrow alleys and enclosing walls of the city. The urge to hunch over and make yourself small is near-irresistible.[paragraph break]Bobby, meanwhile, strides out into the middle of the moonlit field, standing straight and swinging his arms wide. 'Fresh air, Jack!' he calls out, laughing. 'Enjoy it! Take a deep breath!' He heads north, still laughing.";
 	update the character list;
@@ -5812,6 +6035,7 @@ Instead of going southeast in the Crossing, try facing southeast.
 
 After going to Crossing for the first time:
 	move Bobby to Woods;
+	say "[command clarification break]";
 	try looking;
 	say "Bobby hops nimbly across, bouncing from rock to rock as though he were playing a game of Circles-and-Stones in the park. He doesn't get so much as the hem of his cloak damp. When he gets to the opposite bank, he turns and beckons you to follow before disappearing into the shadowy woods.";
 	update the character list;
@@ -5832,7 +6056,6 @@ Before entering the stream:
 	try going north instead.
 
 Before going north from Crossing for the first time:
-	now Bobby is silenced;
 	say "The first couple of rocks are easy enough, but the third one wobbles when you put your weight on it. You end up pinwheeling your arms desperately, contorting yourself in every direction to avoid a tumble and a thorough soaking. Finally, with arms outstretched and lower lip clamped between your teeth, you pick your way across the remainder of the stream with all the grace of a drunkard on a greased tightrope.[paragraph break]At the edge of the woods, Bobby is nearly doubled over with silent laughter. He claps you on the back. 'You're a good sport, Jack,' he says. 'C'mon, we're nearly there.'";
 
 Before going north from Crossing in the presence of Pieter:
@@ -5889,12 +6112,14 @@ After going to the Woods for the first time:
 	change the way of the split sapling to south;
 	while the way of the split sapling is south repeatedly change the way of the split sapling to a random orthogonal direction;
 	remove Bobby from play;
+	say "[command clarification break]";
 	try looking;
 	say "Bobby motions you over to where he's standing, pushing back the underbrush. 'Look here, Jack,' he says. 'These trails go every which way, and it's easy to get lost. But if you keep an eye out for this one sapling,' —he points to a small tree split halfway down its length— '...you'll find the right trail.' He heads off through the trees to the [way of the split sapling].";
 	update the character list;
 
 After going to the Woods in the presence of Pieter:
 	remove the split sapling from play;
+	say "[command clarification break]";
 	try looking;
 	update the character list;
 	say "The game trails criss-cross through the woods in every direction, and they all look the same. When you were here the night before, Bobby quickly found a shortcut to the clearing. Where was it?";
@@ -5980,7 +6205,7 @@ Instead of going a planar direction in the Clearing during the Bodyguard scene:
 
 Section 1 - Fountain
 
-The fountain is in the Clearing. "In the center of the clearing stands a crumbling fountain, topped by a cracked statue of the Goddess Brigid.[if the secret entrance is part of the fountain] One side of the stone plinth supporting the statue has opened up, revealing a narrow opening into darkness.[end if]". The description of the fountain is "The fountain is shaped like a large bowl, topped with a classical-style statue of Brigid pouring water from an urn. Of course, the fountain is dry now, its stone cracked, the bowl filled with bird droppings and dead leaves. But at one time it must have been very beautiful[if the secret entrance is part of the fountain].[paragraph break]One side of the stone plinth supporting the statue has opened up, revealing a narrow opening into darkness[end if]." Understand "stone", "bowl", "crumbling", "crumbled", "cracked", "cracks", "crack", "dry", "old", "ruined" as the fountain.
+The fountain is in the Clearing. "In the center of the clearing stands a crumbling fountain, topped by a cracked statue of the Goddess Brigid.[if the secret entrance is part of the statue] One side of the stone plinth supporting the statue has opened up, revealing a narrow opening into darkness.[end if]". The description of the fountain is "The fountain is shaped like a large bowl, topped with a classical-style statue of Brigid pouring water from an urn. Of course, the fountain is dry now, its stone cracked, the bowl filled with bird droppings and dead leaves. But at one time it must have been very beautiful[if the secret entrance is part of the statue].[paragraph break]One side of the stone plinth supporting the statue has opened up, revealing a narrow opening into darkness[end if]." Understand "stone", "bowl", "crumbling", "crumbled", "cracked", "cracks", "crack", "dry", "old", "ruined" as the fountain.
 
 Section 3 - Ruined pavilion
 
@@ -5988,9 +6213,11 @@ The ruined pavilion is scenery, in the Clearing. Understand "ruin", "ruins", "ol
 
 Section 2 - Statue and urn
 
-The statue is part of the fountain. The description is "The statue's features are worn away and obscured by moss, but you've seen enough statues of Brigid to know that she's almost always depicted carrying water. She cradles her urn like a child, tipping it gently over the bowl of the fountain." Understand "Brigid", "classic", "classical", "cracked", "stone", "cracks", "crack", "style", "old", "sculpture", "feature", "features", "statues", "worn", "obscure", "obscured", "moss" as the statue.
+The statue is part of the fountain. The description is "The statue's features are worn away and obscured by moss, but you've seen enough statues of Brigid to know that she's almost always depicted carrying water. She cradles her urn like a child, tipping it gently over the bowl of the fountain[if the secret entrance is part of the statue]. One side of the stone plinth supporting the statue is open, revealing a narrow tunnel leading down into darkness[end if]." 
 
-Understand "plinth", "base" as the statue when the secret entrance is not part of the fountain.
+Understand "Brigid", "classic", "classical", "cracked", "stone", "cracks", "crack", "style", "old", "sculpture", "feature", "features", "statues", "worn", "obscure", "obscured", "moss" as the statue.
+
+Understand "plinth", "base" as the statue when the secret entrance is not part of the statue.
 
 Some dried leaves are scenery, in the fountain. Understand "dry", "leaf", "detritus", "droppings", "bird droppings", "bird dropping", "dropping" as the dried leaves.
 
@@ -6056,9 +6283,7 @@ After going to the Clearing during Returning From Lord's Keep:
 Finally, you get to your feet and look around.[paragraph break]Bobby is lying face-down in the grass, just a few yards away. One of the mercenaries from Grubber's Market is kneeling with his knee in the small of Bobby's back, binding his wrists together with twine. Standing around the outside of the fountain are several more mercenaries, looking relaxed and smug. Some of them are chuckling to themselves.[paragraph break]A gaunt man wearing red robes walks up to you. His mouth is half-hidden by long, drooping, black moustaches, but underneath them he is smiling like a snake. 'Well now, young...sir? Or is it [']miss[']? So much confusion, all to catch one little mouse. You led us a merry chase this morning, little mouse, but I think you will not scurry away from us again.'[paragraph break]Leaves crunch behind you. You jump for it, but too slow — rough hands haul you back, and a sack of coarse, black cloth is pulled over your head.[paragraph break]'Good night, little mouse.'[paragraph break]Something hard and heavy strikes the back of your head, and the night turns black as pitch.[line break]";
 	close the secret entrance; 
 	pause the game;
-	select the chapter channel;
-	say "Chapter 3 - Jail";
-	select the main channel;
+	output chapter heading "Chapter 3 - Jail";
 	move the player to Jail-Cell;
 	update the character list;
 
@@ -6089,7 +6314,7 @@ Instead of listening to Underneath the Fountain:
 	say "You hear the slow, faint dripping of water coming from somewhere."
 
 Instead of talking to Bobby in the Tunnels:
-	say "Bobby raises his head wordlessly, as if to say, [i]not now[r].";
+	say "Bobby raises his hand wordlessly, as if to say, [i]not now[r].";
 
 Instead of talking to Bobby in Lord's Keep:
 	say "Bobby shakes his head and puts his finger to his lips."; 
@@ -6118,7 +6343,6 @@ After going down to underneath the fountain [from the Clearing] for the first ti
 
 After going south to underneath the fountain when Bobby is on-stage during Returning From Lord's Keep:
 	say "Stealthily, you creep back up the long tunnel to the stone steps under the fountain. 'I'll go up first,' whispers Bobby, 'to make sure the coast is clear.' He dunks his torch in a puddle of mud and bounds lightly up the steps. For a moment you can see him silhouetted against the starlight; then he moves away from the opening and disappears from view.[paragraph break]You wait for ten heartbeats. Behind you, you hear the distant [i]plip[r] of dripping moisture, far back in the dark tunnel. Above you, you can hear crickets chirping in the nearby forest.[paragraph break]Ten more heartbeats. 'Bobby?' you call out in a hoarse whisper. Maybe he can't hear you, but you're too nervous to raise your voice. 'Bobby? Are you up there?'[paragraph break]There is no answer.";
-	silence Bobby;
 	remove Bobby from play;
 	update the character list;
 
@@ -6128,7 +6352,6 @@ Instead of going up from Underneath the Fountain during Creeping to Lord's Keep,
  	say "You [i]definitely[r] can't chicken out now, not while Bobby is right here.";
 
 Before going north from Underneath the Fountain:
-	silence Bobby;
 	say "Ducking your head to avoid the low ceiling, you follow the tunnel for some distance.";
 
 Part 8 - Secret Passage
@@ -6152,6 +6375,7 @@ Chapter 2 - Events on entering
 Section 1 - On the way there
 
 After going to the secret passage for the first time:
+	say "[command clarification break]";
 	try looking;
 	now the blank stone wall is open;
 	move Bobby to the location;
@@ -6164,7 +6388,7 @@ Instead of going south from the secret passage during Creeping to Lord's Keep:
 Section 2 - On the way back
 
 After going south to the secret passage when Bobby is on-stage during Returning from Lord's Keep:
-	silence Bobby;
+	say "[command clarification break]";
 	try looking;
 	move Bobby to the location;
 	update the character list;
@@ -6172,7 +6396,6 @@ After going south to the secret passage when Bobby is on-stage during Returning 
 	say "Bobby reaches back and pulls the secret door shut, carefully easing it the last few inches so that it doesn't slam. He puts the loose brick back in its place, just as before, and tugs his torch free of the bracket where he'd left it.[paragraph break][i]We're out[r], you realize with a sense of overwhelming relief. [i]We made it. It's like we were never here.[no line break][r][paragraph break]'Some adventure, eh, Jack?' laughs Bobby. His voice is disturbingly loud after the long minutes of terrified silence in the keep. 'Eavesdropping on the Lord's own guardsmen! That's a story that'll have the little ones wide-eyed at the Maiden House, eh?' He claps you on the back, and you manage a smile. It was fun, and you want Bobby to think you had fun, but it will be a while before you feel up to something that dangerous again."
 
 After going south from the secret passage when Bobby is off-stage during Returning From Lord's Keep:
-	silence Bobby;
 	say "Stealthily, you creep back up the long tunnel.";
 	continue the action;
 
@@ -6331,13 +6554,11 @@ The dead-end description of the Lower Bailey is "The thick stone walls of the ke
 
 Understand "mud", "puddle", "puddles" as the backdrop-floor when the location is the Lower Bailey.
 
-Some stone steps are a backdrop. The initial appearance is "Steep stone steps climb up to the top of the wall[if Creeping To Lord's Keep is happening]. You could make a dash up them, if you timed it right[end if]." The description is "Steep stone steps climb up to the top of the wall." Understand "steep", "stone", "step", "stairs", "staircase" as the stone steps.
+Some stone steps are a staircase. The initial appearance is "Steep stone steps climb up to the top of the wall[if Creeping To Lord's Keep is happening]. You could make a dash up them, if you timed it right[end if]." The description is "Steep stone steps climb up to the top of the wall." Understand "steep", "stone", "step", "stairs", "staircase" as the stone steps.
 
 The stone steps are in the Upper Bailey and the Lower Bailey.
-
-Instead of climbing the stone steps:
-	if the location is the Upper Bailey, try going down;
-	otherwise try going up.
+The head of the stone steps is the Upper Bailey.
+The foot of the stone steps is the Lower Bailey.
 
 Chapter 2 - Guards, Guards!
 
@@ -6354,6 +6575,7 @@ Instead of doing something to the polished mail:
 Chapter 3 - Event on entry
 
 After going to the Lower Bailey for the first time:
+	say "[command clarification break]";
 	try looking;
 	say "Bobby moves up quietly behind you. He puts his mouth very, very close to your ear and whispers, 'Up there,' pointing to the steps leading up to the top of the wall.";
 	move Bobby to the location;
@@ -6362,7 +6584,6 @@ After going to the Lower Bailey for the first time:
 Chapter 4 - Event on exiting
 
 After going up from the Lower Bailey:
-	silence Bobby;
 	say "You wait, watching the nearest guard until he turns and begins walking away, then sprint lightly up the steps.";
 	continue the action;
 
@@ -6398,6 +6619,7 @@ The dead-end description of the Upper Bailey is "It's a rather narrow walkway, a
 Chapter 1 - Event on Entry
 
 After going to the Upper Bailey for the first time:
+	say "[command clarification break]";
 	try looking;
 	say "Bobby comes up the steps right behind you and crouches against the wall. After a quick look around to make sure the coast is clear, he nods towards the archway to the north.";
 	move Bobby to the location;
@@ -6449,6 +6671,7 @@ Instead of listening to the Guardhouse:
 Chapter 2 - Event on entry
 
 After going north to the Guardhouse for the first time:
+	say "[command clarification break]";
 	try looking;
 	say "Bobby creeps forward and presses himself against the wall next to one of the arrow slits. He hunches closer, peering around the slit's edge. Then he looks up at you and smiles. He points at you, points at the arrow slit, then taps his ear. [i]Listen[r], he's telling you.";
 	move Bobby to the location;
@@ -6457,7 +6680,8 @@ After going north to the Guardhouse for the first time:
 Chapter 3 - Keeping Bobby quiet
 
 Every turn when in the Guardhouse:
-	now Bobby is silenced.
+	do nothing;
+	[ now Bobby is silenced. ]
 
 Chapter 4 - Scenery (Guardhouse Door)
 
@@ -6488,6 +6712,9 @@ Instead of listening to the arrow slit for the first time:
 
 Instead of listening to the arrow slit for the second time:
 	spool through dialogue in the table of overheard guardhouse conversation;
+
+Instead of listening to the arrow slit:
+	say "The guards' conversation has moved on to other things, and Bobby is motioning that you should leave.";
 
 Table of overheard guardhouse conversation
 text
@@ -6522,8 +6749,6 @@ After assembling during Returning From Lord's Keep:
 Every turn during Returning From Lord's Keep:
 	if Bobby is on-stage,
 		move Bobby to the location;
-	if Bobby is silenced,
-		now Bobby is not silenced;
 	continue the action;
 
 Book 6 - Jail
@@ -6800,7 +7025,7 @@ The response of BO20 is { BO21 }.
 Section 3 - Structure of conversation
 
 After firing BO16:
-	Bobby nudges conversation on in one turn from now;
+	Bobby nudges conversation on in 0 turns from now;
 
 At the time when Bobby nudges conversation on:
 	if BO18 is unfired begin;
@@ -6808,7 +7033,7 @@ At the time when Bobby nudges conversation on:
 	end if;
 	
 After firing BO18:
-	Bobby nudges conversation on again in one turn from now;
+	Bobby nudges conversation on again in 0 turns from now;
 
 At the time when Bobby nudges conversation on again:
 	if BO20 is unfired begin;
@@ -6816,7 +7041,7 @@ At the time when Bobby nudges conversation on again:
 	end if;	
 
 After firing BO20:
-	Bobby nudges conversation on yet again in one turn from now;
+	Bobby nudges conversation on yet again in 0 turns from now;
 
 At the time when Bobby nudges conversation on yet again:
 	if BO22 is unfired begin;
@@ -6887,7 +7112,7 @@ Section 3 - Jacobs's Conversation
 
 JA1 is a quip. The display text is "He doesn't answer you at all; he just keeps staring with those creepy, bloodshot eyes."
 
-JA2 is a quip. The display text is "Suddenly the shadowy man in the corner puts his huge, thick-fingered hands on his knees and pushes himself up. 'Well,' he grunts in a thick, rough voice, 'now that the guards are busy takin care of [i]him[r]...' the man stretches, glances at you, and smiles. It is not a friendly smile.[paragraph break]'Hi, kid. Name's Jacobs.'"
+JA2 is a quip. The display text is "Suddenly the shadowy man in the corner puts his huge, thick-fingered hands on his knees and pushes himself up. 'Well,' he grunts in a thick, rough voice, 'now that the guards are busy takin['] care of [i]him[r]...' the man stretches, glances at you, and smiles. It is not a friendly smile.[paragraph break]'Hi, kid. Name's Jacobs.'"
 
 JA3 is a transitional quip. The menu text is "'My name's Jack.'". The display text is "'Um... hi,' you manage to say. 'My name's, uh… Jack.'"
 The following quip is JA5.
@@ -7003,7 +7228,7 @@ Instead of talking to the prisoner when JA8 is fired and JA14 is unfired and JA1
 	say "Jacob grunts. 'Take the lockpick, runt. Ain't got all day.'";
 
 At the time when Jacobs seemingly gives up on us:
-	if JA13 is unfired begin;
+	if JA11 is unfired and JA13 is unfired begin;
 		carry out the firing activity with JA11;
 		now the current conversation is {  };
 		carry out the terminating conversation with activity with the prisoner;
@@ -7024,10 +7249,10 @@ After taking the piece of wire when in the Jail-Cell for the first time:
 After firing JA13:
 	now the player is caught;
 
-Instead of talking to the prisoner when the door is locked and (JA14 is fired or JA15 is fired):
+Instead of talking to the prisoner when cell-door-1 is locked and (JA14 is fired or JA15 is fired):
 	say "Jacobs pointedly ignores you.";
 
-Every turn when in the Jailhouse and Jacobs is nearby and JA16 is unfired: 
+Last every turn when in the Jailhouse and Jacobs is nearby and JA16 is unfired: 
 	start conversation with the prisoner on JA16;
 
 After firing JA16:
@@ -7038,11 +7263,11 @@ At the time when Jacobs offers his support:
 		start conversation with the prisoner on JA19;
 
 After firing JA19:
-	Olmer pleads for freedom in one turn from now;
-	Jacobs withdraws his offer of support in three turns from now;
+	Olmer pleads for freedom in zero turns from now;
+	Jacobs withdraws his offer of support in two turns from now;
 
 At the time when Olmer pleads for freedom:
-	if OL1 is unfired begin;
+	if OL1 is unfired and the bald headed man is in a holding cell begin;
 		start conversation with the bald headed man on OL1, even if not present;
 	end if;
 
@@ -7056,8 +7281,8 @@ After firing JA21:
 	remove the prisoner from play;
 	update the character list;
 
-After firing JA21 when we are not unlocking:
-	if OL1 is unfired begin;
+After firing JA21:
+	if OL1 is unfired and the bald headed man is in a holding cell begin;
 		start conversation with the bald headed man on OL1, even if not present;
 	end if;
 
@@ -7095,7 +7320,9 @@ Rule for supplying a missing second noun while unlocking something with when the
 Section 7 - Successful lock-picking
 
 Instead of doing something other than taking inventory, selecting menu option, lockpicking, examining, unlocking, looking or listening when the player is caught during Picking a Lock:
-	say "You can't, not while Jacobs has you firmly in his grip.";
+	unless we are taking inventory:
+		say "You can't, not while Jacobs has you firmly in his grip." instead;
+	continue the action;
 
 Instead of unlocking cell-door-1 with the piece of wire when JA14 is unfired and JA15 is unfired and the location is the Jail-Cell:
 	say "You can't reach the door from here."; 
@@ -7196,22 +7423,19 @@ OL5 is clustered with OL6, OL7, OL8, OL9, OL10, OL11.
 
 After populating a quip that is clustered with OL5:
 	if the bald headed man is not in Jail-Cell-2:
-		[remove OL3 from the current conversation, if present;]
+		remove OL3 from the current conversation, if present;
 		remove OL4 from the current conversation, if present;
 	if the drain room is not visited:
 		remove OL11 from the current conversation, if present;
 	if JA19 is unfired:
 		remove OL8 from the current conversation, if present.
 
-
 After populating OL9:
-	if OL5 is unfired begin;
+	if OL5 is unfired:
 		remove OL6 from the current conversation, if present;
 		remove OL7 from the current conversation, if present;
 		remove OL8 from the current conversation, if present;
 		remove OL11 from the current conversation, if present;
-	end if;
-
 
 Rule for terminating conversation with the bald headed man when the bald headed man is in Jail-Cell-2:
 	if the current conversation is { } begin;
@@ -7244,7 +7468,7 @@ After unlocking cell-door-2 with the piece of wire:
 	move the bald headed man to the Drain Room;
 	move the skinny man to the Drain Room;
 	update the character list;
-	say "Picking a lock is [i]much[r] easier when you're standing on the ground and can see what you're doing. Twenty seconds, and you have the cell door open.[paragraph break]'Oh, thank you, miss, thank you kindly. Goddesses['] blessings upon you.[no line break][if OL5 is fired]'[otherwise] Allow me to make introductions,' the man wheezes. 'I am called Olmer, and this is my associate, Darrens.' The skinny man standing behind him smiles and nods enthusiastically.[no line break][end if][paragraph break]'Now,' says Olmer, 'if you will follow us, we will make our escape.'[paragraph break]Olmer and Darrens go southwest.";
+	say "Picking a lock is [i]much[r] easier when you're standing on the ground and can see what you're doing. Twenty seconds, and you have the cell door open.[paragraph break]'Oh, thank you, miss, thank you kindly. Goddesses['] blessings upon you.[no line break][if OL5 is fired] [otherwise] Allow me to make introductions,' the man wheezes. 'I am called Olmer, and this is my associate, Darrens.' The skinny man standing behind him smiles and nods enthusiastically.[paragraph break][quotation mark][end if]Now,' says Olmer, 'if you will follow us, we will make our escape.'[paragraph break]Olmer and Darrens go southwest.";
 
 Does the player mean lockpicking cell-door-2:
 	it is very likely;
@@ -7260,6 +7484,9 @@ Understand "tiny", "alcove", "reeking", "foul" as the Drain Room.
 Instead of smelling the Drain Room:
 	say "The smell in [if Drain Room is not the location]t[end if]here is overpoweringly foul.";
 
+Instead of smelling in the Drain Room:
+	say "The smell in here is overpoweringly foul.";
+
 Instead of listening to the Drain Room:
 	try listening to the drain hole instead;
 
@@ -7273,14 +7500,14 @@ The dead-end description of the Drain Room is "There's nowhere to go in here exc
 Instead of facing down in the Drain Room, try examining the drain hole.
 
 After going to the Jailhouse from the Drain Room when the bald headed man is in Jail-Cell-2:
-	say "[conditional paragraph break]";
+	say "[command clarification break]";
 	try looking;
 	update the character list;
 	start conversation with bald headed man on OL2, even if not present;
 
 Chapter 2 - Contents - Grate
 
-A metal grate is in the Drain Room. The metal grate can be moved or unmoved. "[if unmoved]Set into the stone floor is a metal grate[otherwise]The metal grate is lying off to one side.[end if]." The description is "The thick bars of metal cover a rectangular hole that drops down into darkness. Around the edges of the grate, the stonework is loose and crumbling." Understand "thick", "bar", "bars", "of", "metal", "cover" as the metal grate.
+A metal grate is in the Drain Room. The metal grate can be moved or unmoved. "[if unmoved]Set into the stone floor is a metal grate[otherwise]The metal grate is lying off to one side[end if]." The description is "[if unmoved]The thick bars of metal cover a rectangular hole that drops down into darkness. Around the edges of the grate, the stonework is loose and crumbling[otherwise]The metal grate is lying off to one side[end if]." Understand "thick", "bar", "bars", "of", "metal", "cover" as the metal grate.
 
 Instead of raising the unmoved metal grate:
 	now the grate is moved;
@@ -7321,11 +7548,9 @@ Instead of listening to the drain hole:
 
 Instead of entering the drain hole:
 	say "[i]Well, it can't be that much worse than rotting in prison,[r] you think. You sit down and dangle your feet over the edge of the hole. You can hear the sound of running water, and smell the sharp stink of sewage. You offer a quick prayer to Brigid — [i]Please give me a chance to clean up before seeing Bobby again[r] — take a deep breath, and drop down into darkness.";
+	output chapter heading "Chapter 4 - Sewer";
 	move the player to the sewer;
 	update the character list;
-	select the chapter channel;
-	say "Chapter 4 - Sewer";
-	select the main channel;
 
 Chapter 4 - Event on entering
 
@@ -7413,7 +7638,7 @@ Instead of following a glyph: try going the way of the noun.
 
 Section 3 - Collective Glyphs
 
-Some painted symbols are in the Sewer. "Painted on the walls are a number of odd symbols." The description is "The symbols are a number of crude shapes, no bigger than your hand. Each one is painted on the wall next to one of the side tunnels, as if to mark the way. [Glyph report]". Understand "paint", "shapes", "glyphs" as the painted symbols.
+Some painted symbols are in the Sewer. "Painted on the walls are a number of odd symbols." The description is "The symbols are a number of crude shapes, no bigger than your hand. Each one is painted on the wall next to one of the side tunnels, as if to mark the way. [Glyph report]". Understand "odd", "strange", "paint", "shapes", "glyphs" as the painted symbols.
 
 Listing the names of glyphs is an activity.
 
@@ -7476,11 +7701,10 @@ Before going in the Sewer:
 			increment the sewer safety count by 1;
 		if the sewer move count is 2:
 			if the sewer safety count is 2:
-[				update glyphs;
-				transport glyphs;]
 				move the player to the Access Tunnel instead;
 			otherwise:
 				run the sewer death ending;
+				stop;
 		update glyphs;
 		move the player to the Sewer instead;
 
@@ -7491,12 +7715,6 @@ The Access Tunnel is a room. "The tunnels down here are made of ancient, unmorta
 Understand "sewer", "sewers", "tunnel", "tunnels", "side", "dark", "darkness" as the Access Tunnel.
 
 Instead of facing up in the Access Tunnel, try examining the hatch.
-
-[We don't need glyphs in the Access Tunnel, and in fact it's confusing to the player, since it might imply that they should continue following the 'magic' glyph. So we're commenting out the transport glyphs routine, here and in the before going rule above.]
-
-[To transport glyphs:
-	now every glyph is in the Access Tunnel;
-	now the painted symbols are in the Access Tunnel; ]
 
 The hatch is scenery in the Access Tunnel. "That hatch probably leads back to the streets above." Understand "trap", "door", "trapdoor", "ceiling" as the hatch.
 
@@ -7509,11 +7727,9 @@ A ladder is in the Access Tunnel. "A ladder is bolted to the wall here." The des
 
 Instead of climbing the ladder:
 	say "You eagerly pull yourself up the rungs and shove open the hatch. [i]Daylight![no line break][r] You've never been so glad to see it. [paragraph break]From the look of the sky, it's early morning. You're standing in an empty alleyway, pretty close to Maiden House if you have your landmarks right. After a couple of turns, you figure out where you are, and soon find yourself back in familiar environs.";
+	output chapter heading "Chapter 5 - Black Gate Estate";
 	move the player to Commerce Street;
 	update the character list;
-	select the chapter channel;
-	say "Chapter 5 - Black Gate Estate";
-	select the main channel;
 
 Instead of going up in the Access Tunnel:
 	try climbing the ladder;
@@ -7529,8 +7745,6 @@ To run the sewer death ending:
 	say "Suddenly you find yourself in a tunnel where there are no symbols painted anywhere. You try to retrace your steps, but you must have taken a wrong turn somewhere, because now you can't find any symbols anywhere. All of the tunnels look alike; you are completely turned around and don't even know which direction you are stumbling in.[paragraph break]The next tunnel you take leads you to an area with no vents — it is pitch black. You slip as you turn around and fall into the water. Something slick and wriggly brushes past your face, and you thrash to your feet.[paragraph break]You can't see any light, anywhere. You don't know what direction you just came from. Cold, smelly water numbs your feet. Despair and paralyzing panic close in on you as you realize that you have no means of finding your way through this labyrinth.[paragraph break]You are stuck down here, blind in the stinking blackness, forever.";
 	end the game in death;
 
-
-
 Book 8 - Black Gate Estate
 
 Part 1 - A New Morning
@@ -7540,6 +7754,9 @@ A New Morning is a scene. A New Morning begins when Escape Through The Sewer End
 When New Morning begins:
 	now the wooden door [to Maiden House] is open;
 	now the wooden door is unlocked;
+	remove the cake of lye soap from play;
+	remove the wooden stirring stick from play; [Shannon has finished the Laundry.]
+	remove the orphans from play;
 	set the scene for day; [remapping Grubber's Market, etc.]
 
 Before going west from Commerce Street when the location has been the sewer:
@@ -7690,24 +7907,29 @@ The chimneys are a backdrop, in main rooftop and rooftop edge. The description i
 Instead of ascending the chimneys, try going up instead.
 
 Instead of entering or climbing the chimneys:
-	say "The chimneys are all too narrow for you to climb down."
+	say "The chimneys are all too narrow for you to climb down.";
 
 Instead of smelling the chimneys:
-	say "Smells like coal-smoke: grimy and bitter."
+	say "Smells like coal-smoke: grimy and bitter.";
+
+Instead of smelling the location in the presence of the chimneys:
+	try smelling the chimneys;
 
 Instead of inserting something into the chimneys:
-	say "You'd just lose your [noun], and rouse the suspicions of whomever lives below to boot."
+	say "You'd just lose your [noun], and rouse the suspicions of whomever lives below to boot.";
 
 Instead of searching the chimneys:
-	say "You can't see anything in there, and get a faceful of soot for your trouble."
+	say "You can't see anything in there, and get a faceful of soot for your trouble.";
 
-The smoke is a backdrop, in main rooftop and rooftop edge. The description is "It's the black coal-smoke that hangs over most districts in Toresal."
+The smoke is a backdrop, in main rooftop and rooftop edge. The description is "It's the black coal-smoke that hangs over most districts in Toresal.";
+
+Understand "coal", "black", "cheery", "grimy", "bitter" as the smoke.
 
 Instead of smelling the smoke:
 	try smelling the chimneys;
 
 Instead of doing something other than examining or smelling to the smoke:
-	say "It's just insubstantial smoke."
+	say "It's just insubstantial smoke.";
 
 Section 3 - Scenery (Street and crowds, far below)
 
@@ -7767,7 +7989,7 @@ Instead of listening to the ornamental fountain, say "It's nice, but you don't h
 
 Instead of listening to the Patio, try listening to the ornamental fountain.
 
-Instead of drinking or tasting the fountain, say "It's not for drinking, and besides, you don't have time to linger here."
+Instead of drinking or tasting the ornamental fountain, say "It's not for drinking, and besides, you don't have time to linger here."
 
 Part 6 - Rooftop Garden
 
@@ -7785,6 +8007,8 @@ Section 2 - Scenery
 
 Some flowers are scenery in the rooftop garden. The description is "The flowers are beautiful, but you don't have time to admire them right now." Understand "greenery", "flower", "autumn", "rose", "roses", "hanging", "lily", "lilies" as the flowers.
 
+Understand "pick [flowers]" as taking.
+
 Instead of smelling the flowers, say "Sadly, there is no time to stop and smell the flowers right now."
 Instead of smelling the Rooftop Garden, try smelling the flowers.
 
@@ -7792,7 +8016,14 @@ A lattice is scenery in the rooftop garden. "It's a decorative wooden lattice, f
 
 Instead of climbing the lattice, say "The lattice doesn't lead anywhere, and isn't strong enough to hold your weight anyway."
 
-Some flight of steps are scenery in the rooftop garden. "The stairs lead down to the lower floors of the house." Understand "step", "stairs", "staircase", "stairway" as the flight of steps.
+Some flight of steps is a staircase, in the Rooftop Garden, Third Floor Landing, Second Floor Landing. Understand "step", "stairs", "staircase", "stairway", "stair way", "stair case", "stair" as the flight of steps.
+
+Rule for printing the description of the flight of steps:
+	if the location is:
+	-- the Rooftop Garden: say "The stairs lead down to the lower floors of the house. ";
+	-- otherwise: say "The stairs go up and down from here. ";
+
+The head of the flight of steps is the Rooftop Garden.
 
 After going down from Rooftop Garden for the first time during the Search:
 	say "Holding your breath, you tiptoe quietly down the stairs. A prickle runs up your spine; you are now an intruder. If the Baron catches you here, he'll have you tossed back into a jail cell — and that's the [i]best[r] case scenario. If what Bobby told you is true, and Fossville knows secrets about you that he's trying to hide, it's more likely he'll just slit your throat.[paragraph break]Have to move quickly, then — search the house, find this letter, and get out.";
@@ -7802,9 +8033,7 @@ Part 8 - Third Floor Landing
 
 Chapter 1 - Description
 
-The Third Floor Landing is down from the Rooftop Garden. The description is "This is the main stairway that winds up and down the back of Black Gate Estate. A hallway leads south." Inside from the Rooftop Garden is the Third Floor Landing.
-
-Understand "stairs", "steps", "step", "stairway", "staircase", "main", "hall", "hallway" as the Third Floor Landing.
+The Third Floor Landing is a Landing, down from the Rooftop Garden. The description is "This is the main stairway that winds up and down the back of Black Gate Estate. A hallway leads south." Inside from the Rooftop Garden is the Third Floor Landing.
 
 After inspecting the Third Floor Landing in the Music Room, say "You can see the main stairway to the north."
 After inspecting the Third Floor Landing in the Rooftop Garden, say "The stairs lead down."
@@ -7814,9 +8043,11 @@ Part 9 - Music Room
 
 Chapter 1 - Description
 
-The Music Room is south of the Third Floor Landing. "The walls of this room are painted with the Fossville coat of arms, intertwined in a pattern of gilded vines. Your footsteps are muffled by a deep blue carpet. The room continues south, and stairs lie to the north." Understand "hall", "hallway" as the Music Room when the location is the Third Floor Landing.
+The Music Room is a room. "The walls of this room are painted with the Fossville coat of arms, intertwined in a pattern of gilded vines. Your footsteps are muffled by a deep blue carpet. The room continues south, and stairs lie to the north." Understand "hall", "hallway" as the Music Room when the location is the Third Floor Landing.
 
 The distant description of the Music Room is "The music room lies [best route from location to the Music Room]." 
+
+bg_musicroom_door is a doorway, south of the Third Floor Landing, north of the Music Room.
 
 Chapter 2 - Scenery (Harp)
 
@@ -7850,10 +8081,16 @@ Instead of taking the harp:
 	say "The harp is much too heavy for you to drag around.";
 
 Before pushing the harp to something:
-	try taking the harp instead.
+	try taking the harp instead;
 
 Instead of listening to the harp:
-	say "The harps's strings are still."
+	say "The harps's strings are still.";
+
+Instead of pushing, pulling, or turning the harp:
+	say "The harp is too heavy to move.";
+
+Instead of attacking the harp:
+	say "That would make too much noise.";
 
 Section 4 - Harp platform
 
@@ -7866,7 +8103,9 @@ Rule for writing a paragraph about the small wooden platform:
 
 Chapter 3 - Coat of Arms
 
-The coat of arms is scenery, in the Music Room. The description is "The coat of arms is the same one you've often seen on banners hanging all over the city, since Fossville became Lord of Toresal. It looks a bit ostentatious, painted on the walls of his own house." Understand "wall", "walls", "paint", "painted", "Fossville", "pattern", "gilded", "vine", "vines", "ostentatious" as the coat of arms.
+The coat of arms is scenery, in the Music Room. The description is "Fossville's crest depicts a slender, rodent-like animal, maybe a stoat or a ferret, standing on its hind legs against a field of yellow. It carries a milkweed flower clamped in its jaws. You're not sure what it's supposed to symbolize, but it looks a bit ostentatious, painted on the walls of his own house." 
+
+Understand "wall", "walls", "paint", "painted", "Fossville", "pattern", "gilded", "vine", "vines", "ostentatious", "crest", "slender", "rodent", "animal", "rampart", "rampant", "stoat", "ferret", "field", "yellow", "hind", "legs", "milkweed", "flower", "jaws", "symbols", "symbol", "ostentatious", "or" as the coat of arms.
 
 Chapter 4 - Carpet
 
@@ -7874,26 +8113,27 @@ The blue carpet is scenery, in the Music Room. The description is "The deep, sof
 
 Part 10 - Audience Area
 
-The Audience Area is south of the Music Room. "Several rows of benches are set up on this end of the room, so that guests may sit and enjoy a recital. The room continues to the north, and glass-paneled doors to the south lead out to a balcony."
+The Audience Area is a room. "Several rows of benches are set up on this end of the room, so that guests may sit and enjoy a recital. The room continues to the north, and glass-paneled doors to the south lead out to a balcony."
 
 The distant description of the Audience Area is "The audience area lies [best route from location to Audience Area] from here."
 
 The Audience Area overlooks the Third Floor Balcony.
 
-Some glass-paneled doors are a closed door, south of the Audience Area, north of the Third Floor Balcony. "The doors are [if open]open[otherwise]closed[end if]." The description is "The doors are fitted with panes of beautiful, etched glass." Understand "door", "glass", "panel", "paneled", "pane", "panes", "etched" as the glass-paneled doors.
+Some glass-paneled doors are a closed door, south of the Audience Area, north of the Third Floor Balcony. "The doors are [if open]open[otherwise]closed[end if]." The description is "The doors are fitted with panes of beautiful, etched glass." Understand "door", "glass", "panel", "paneled", "pane", "panes", "etched", "beautiful" as the glass-paneled doors.
 
 Instead of searching the glass-paneled doors:
 	if the location is the Audience Area, say "There is a balcony on the other side of the doors.";
 	otherwise say "You can make out a room with some benches inside."
 
-Some auditorium benches are an enterable supporter, scenery, in the Audience Area. The printed name is "benches". Understand "furniture", "row", "rows", "of", "bench", "chair", "chairs" as the auditorium benches. 
+Instead of attacking the glass-paneled doors:
+	say "That would make too much noise.";
 
-Instead of entering the benches:
+Some auditorium benches are an enterable supporter, scenery, in the Audience Area. "The benches are for audience members to sit and appreciate the music during recitals." The printed name is "benches". Understand "furniture", "row", "rows", "of", "bench", "chair", "chairs" as the auditorium benches. 
+
+Instead of entering or sitting on the auditorium benches:
 	say "You don't have time to rest now.";
 
 After deciding the scope of the player while in the Audience Area: place the harp in scope. Instead of doing something other than examining or listening to the harp when the location is not the Music Room, say "You cannot reach the harp from here." Instead of doing something when the second noun is the harp and the location is not the Music Room, say "You cannot reach the harp from here." 
-
-
 
 Part 11 - Balcony
 
@@ -7909,7 +8149,7 @@ Part 12 - Second Floor Landing
 
 Section 1 - Description
 
-The Second Floor Landing is down from the Third Floor Landing. "This is the main stairway that winds up and down the back of Black Gate Estate. A hallway leads south.[paragraph break]You can hear people moving around below." Understand "stairs", "stairway", "staircase", "steps", "step", "main", "hall", "hallway" as the Second Floor Landing.
+The Second Floor Landing is a Landing, down from the Third Floor Landing. "This is the main stairway that winds up and down the back of Black Gate Estate. A hallway leads south.[paragraph break]You can hear people moving around below." 
 
 Instead of facing down in the Second Floor Landing, say "The stairs lead down."
 Instead of inspecting the Second Floor Landing in the Third Floor Landing, say "The stairs lead down." 
@@ -7918,6 +8158,7 @@ Instead of inspecting the Second Floor Landing in the Living Room, say "You can 
 Section 2 - Event on entering
 
 After going down to the Second Floor Landing for the first time:
+	say "[command clarification break]";
 	try looking;
 	say "You hear a door slam open somewhere on the floor below.[paragraph break]'Blast it all!' someone yells. You recognize Baron Fossville's voice from running into him yesterday. '[i]Servants![no line break][r] Bring me spiced wine — hot — and something to eat. No, you dim fool, down here — I'll be leaving again within an hour. Bring it [i]now[r], unless you'd rather be whipped!'[paragraph break]The sounds of sudden, frantic activity drift up the stairs: footsteps, chairs scraping on wooden floors, glasses and dishes clinking.";
 	update the character list;
@@ -7941,7 +8182,9 @@ Part 13 - Living Room
 
 Chapter 1 - Description
 
-The Living Room is south of Second Floor Landing. "This is a wealthy bachelor's parlor, furnished with comfortable chairs and portraits of Fossville's illustrious ancestors hanging from the walls. A hallway leads north, and sliding doors lead south."
+The Living Room is a room. "This is a wealthy bachelor's parlor, furnished with comfortable chairs and portraits of Fossville's illustrious ancestors hanging from the walls. A hallway leads north, and sliding doors lead south."
+
+bg_livingroom_door is a doorway, south of the Second Floor Landing, north of the Living Room.
 
 Understand "wealthy", "bachelor", "bachelors", "parlor", "parlour" as the Living Room. Understand "hall", "hallway" as the Living Room when the location is the Second Floor Landing.
 
@@ -7949,9 +8192,10 @@ The distant description of the Living Room is "The living room lies [best route 
 
 Chapter 2 - Scenery (chairs)
 
-Some chairs are scenery, in the Living Room. The description is "A quick search reveals that the letter isn't hidden under the cushions." Understand "furniture", "furnishings", "furnishing", "chair", "cushion", "cushions" as the chairs.
+Some chairs are scenery, in the Living Room. The description is "A quick search reveals that the letter isn't hidden under the cushions." Understand "furniture", "furnishings", "furnishing", "chair", "cushion", "cushions", "comfortable" as the chairs.
 
-Instead of searching the chairs, try examining the chairs. Instead of looking under the chairs, try examining the chairs.
+Instead of searching the chairs, try examining the chairs.
+Instead of looking under the chairs, try examining the chairs.
 
 Chapter 3 - Scenery (portraits)
 
@@ -7967,7 +8211,7 @@ Understand "look behind [something]" as looking behind.
 Report looking behind:
 	say "You find nothing of interest.";
 
-Instead of searching or looking behind the portraits:
+Instead of searching or looking behind the portraits when the player does not have the secret letter:
 	say "You check behind each of the paintings in turn, but find no letters glued to the backs of frames."
 
 Chapter 4 - Scenery (sliding doors)
@@ -8005,9 +8249,12 @@ Part 15 - Library
 
 Chapter 1 - Description
 
-The Library is south of the Master Bedroom. "Tall bookshelves line all four walls, and a stately writing desk sits like an altar in the center of the dimly lit room. A doorway leads north to the bedroom."
+The Library is a room. "Tall bookshelves line all four walls, and a stately writing desk sits like an altar in the center of the dimly lit room. A doorway leads north to the bedroom."
 
-Outside from the Library is the Master Bedroom.
+bg_library_door is a doorway, south of the Master Bedroom, north of the Library.
+
+Instead of going outside in the Library:
+	try entering bg_library_door instead;
 
 The distant description of the Library is "A library is south of here."
 
@@ -8020,9 +8267,9 @@ The writing desk is a supporter, scenery, in the Library. "The writing surface i
 
 Instead of searching the desk: try searching the papers.
 
-Some papers are scenery, on the desk. Understand "paper", "document", "documents", "ledger", "ledgers", "letter", "letters", "half finished", "business", "accounts" as the papers.
+Some papers are scenery, on the desk. Understand "paper", "document", "documents", "ledger", "ledgers", "letters", "half finished", "business", "accounts" as the papers.
 
-Instead of examining the papers: try searching the papers.
+Instead of examining or taking the papers: try searching the papers.
 
 Instead of searching the papers:
 	say "Shuffling through the papers, you find much about Fossville's various holdings and business accounts, but nothing incriminating, and nothing that looks like it would be the letter Bobby told you about."
@@ -8060,7 +8307,9 @@ Instead of searching or taking the newer books:
 	move the Dynastic Lineages in Miradania to the player;
 	say "On a sudden impulse, you go to the shelf of newer books and pull out a volume on dynastic lineages in Miradania.[paragraph break]A folded sheet of parchment slips out from the pages and see-saws to the floor."
 
-Does the player mean doing something with the Dynastic Lineages: it is likely.
+Does the player mean doing something with the Dynastic Lineages: it is very likely.
+
+Does the player mean doing something with the newer books: it is likely.
 
 Before doing something to the bookshelves when the secret letter is on-stage:
 	say "No need to rummage around anymore — you have the letter. It's time to get out of here!" instead;
@@ -8099,7 +8348,7 @@ Part 16 - The Butler
 
 Chapter 1 - Description
 
-The Butler is a man. The description is "The butler is tall and somewhat gaunt, with a heavy brow and a sour, twisted cast to his mouth. He looks like he doesn't like kids very much, [i]especially[r] when they're somewhere they shouldn't be." Understand "man", "servant", "old", "older" as the Butler.
+The Butler is a man. The initial appearance is "[if the location is Master Bedroom]A butler is standing here, eyeing you suspiciously[otherwise]The butler grips your arm firmly[end if].". The description is "The butler is tall and somewhat gaunt, with a heavy brow and a sour, twisted cast to his mouth. He looks like he doesn't like kids very much, [i]especially[r] when they're somewhere they shouldn't be." Understand "man", "servant", "tall", "gaunt", "sour", "twisted", "heavy", "brow", "old", "older" as the Butler.
 
 Chapter 2 - Caught by the butler
 
@@ -8161,7 +8410,7 @@ Table of Butler's dialogue
 text
 "The butler drags you into the stairwell, then stops, his thin, bald head cocked, listening. From downstairs you hear more voices.[paragraph break]'...difficult [i]is[r] it to keep one half-witted street urchin locked in a cage for a single night?' That's the Baron again, you realize. 'Because it is evidently far more difficult than I imagined. Perhaps I am not paying you enough for your heroic efforts so far?'[paragraph break]You hear a low, mumbled response.[paragraph break]'No, I daresay you don't,' snaps the Baron, his voice acid with sarcasm. 'I cannot express how galling it is that I still require your services; were it otherwise, I would sooner turn you all over to the Lord's Guards and let them deal with you like the useless curs you are.'[paragraph break]The butler glances at you, one bushy eyebrow raised. You're beginning to suspect that Baron Fossville is not particularly well liked by his servants.[conditional paragraph break]"
 [row marker]
-"'Gather your men at Lord's Market,' says Fossville. 'We'll deal with the spy first. Once that business is finished, we pay a visit to the Maidens. Though I suppose I should warn you — you may encounter several unarmed, elderly women there. Let us hope they pose no greater challenge to your mercenaries than a fourteen-year-old girl.'[paragraph break]The second voice mumbles another response.[paragraph break]'See that you do. I will be there shortly.'[paragraph break]You hear footsteps, and then a heavy door slamming.[paragraph break]The butler holds his hand up, palm out. [i]Wait.[r][conditional paragraph break]"
+"'Gather your men at Lord's Market,' says Fossville. 'We'll deal with the spy first. Once that business is finished, we pay a visit to the Widows. Though I suppose I should warn you — you may encounter several unarmed, elderly women there. Let us hope they pose no greater challenge to your mercenaries than a fourteen-year-old girl.'[paragraph break]The second voice mumbles another response.[paragraph break]'See that you do. I will be there shortly.'[paragraph break]You hear footsteps, and then a heavy door slamming.[paragraph break]The butler holds his hand up, palm out. [i]Wait.[r][conditional paragraph break]"
 [row marker]
 "Several agonizing minutes later, you hear the door slam a second time. The butler waits a few minutes more, then drags you downstairs. He takes you through the kitchens to a side door, and shoves you unceremoniously out onto the street.[paragraph break]'Go now, and don't come back,' he says. 'Next time, it won't be me that catches you. And if it is me, it'll go that much worse for you. A bit of advice, girl,' he adds, just before turning away. 'Keep yourself out of the Baron's way. He's not one to let a trifling of blood get in between him and his ambitions.'[paragraph break]He slams the door.[conditional paragraph break]"
 
@@ -8190,9 +8439,7 @@ When Bobby's Hanging begins:
 	move the crowd of spectators to the occasionally crowded place;
 	remove the servants from play; [ the everyday shoppers in Lords Market ]
 	update the character list;
-	select the chapter channel;
-	say "Chapter 6 - Gallows";
-	select the main channel;
+	output chapter heading "Chapter 6 - Gallows";
 
 Instead of going west from East Commerce Street during Bobby's Hanging:
 	say "The crowd is too thick in that direction; everyone is heading east, towards Lord's Market.";
@@ -8283,9 +8530,7 @@ When Bobby's Hanging ends:
 	pause the game;
 	move the player to the Dormitory, without printing a room description;
 	update the character list;
-	select the chapter channel;
-	say "Chapter 7 - Mercenaries";
-	select the main channel;
+	output chapter heading "Chapter 7 - Mercenaries";
 
 Book 10 - Raid on Maiden House
 
@@ -8329,7 +8574,7 @@ FI28 is a quip. The menu text is "'Tell me about my father.'". The display text 
 
 FI29 is a quip. The menu text is "'What will happen to Widow Theresa?'". The display text is "'What will happen to Widow Theresa?' you ask. You're actually surprised to discover that you even care. But you've never seen Widow Fiona that angry at anyone before, and it was a little frightening.[paragraph break]Her face hardens. 'She won't have much trouble being hired on as a servant or nanny,' she says. 'But I'll not waste precious time worrying about the fate of a woman who'd turn a child over to armed mercenaries.'"
 
-FI30 is a quip. The menu text is "'What do I do now?'". The display text is "You take a deep breath. 'What am I supposed to do now?' you ask.[paragraph break]'First, you must leave this place. The Baron's men will be back, and they won't be fooled so easily again. You'll need to go quickly, out the privy window.' Although her manner is urgent, Fiona smiles a bit at that. 'It's a route you're accustomed to, to be sure.'[paragraph break]She takes a large brass key from her pocket and presses it into your hand. 'It's time you learned something of your past, Jacqueline. This is yours by right. It is the key to Red Gate Manor, and it opens the way to your history. Once you are away and safe, go there and find the answers that I can't give you now.[paragraph break]'Finally, when all that is done, go and speak to Dame Sandler in Lord's Market. She is a friend, and more importantly her allegiances are not known to Baron Fossville. She will set you on the road to reclaiming your birthright.'[paragraph break]Fiona pulls you close and hugs you tight. 'Oh child,' she whispers, 'I have loved you like a daughter for so long. Go now, and quickly. Be safe.'"
+FI30 is a quip. The menu text is "'What do I do now?'". The display text is "You take a deep breath. 'What am I supposed to do now?' you ask.[paragraph break]'First, you must leave this place. The Baron's men will be back, and they won't be fooled so easily again. You'll need to go quickly, out the privy window.' Although her manner is urgent, Fiona smiles a bit at that. 'It's a route you're accustomed to, to be sure.'[paragraph break]She takes a large brass key from her pocket and presses it into your hand. 'It's time you learned something of your past, Jacqueline. This is yours by right. It is the key to Red Gate Manor, and it opens the way to your history. Once you are away and safe, go there and find the answers that I can't give you now.'[paragraph break]'Finally, when all that is done, go and speak to Dame Sandler in Lord's Market. She is a friend, and more importantly her allegiances are not known to Baron Fossville. She will set you on the road to reclaiming your birthright.'[paragraph break]Fiona pulls you close and hugs you tight. 'Oh child,' she whispers, 'I have loved you like a daughter for so long. Go now, and quickly. Be safe.'"
 
 The response of FI21 is { FI22, FI23, FI24 }.
 
@@ -8389,6 +8634,7 @@ When Raid on Maiden House begins:
 	say "Suddenly, someone pounds on the front door. The sobs freeze in your throat as a voice outside shouts, 'Open in the name of Baron Fossville!'[paragraph break]Fiona looks horrified. 'It's the Baron!' she whispers. 'I didn't think he'd come here so soon... quick, Jacqueline! Go to the laundry room!'"
 
 After going to the Hallway when Widow Fiona is in the Dormitory during Raid On Maiden House:
+	say "[command clarification break]";
 	try looking;
 	update the character list;
 	try Widow Fiona going southeast;
@@ -8464,7 +8710,8 @@ Instead of opening the secret closet door when The Banging is happening or Hidde
 Before going south in the Secret Closet when the secret closet door is closed:
 	try opening the secret closet door instead;
 
-Instead of listening to the Secret Closet, say "The sound of your own harsh breathing fills the tiny alcove. If they weren't shouting so much, you're sure the mercenaries outside would be able to hear you."
+Instead of listening to the Secret Closet during Hidden in the Closet:
+	say "The sound of your own harsh breathing fills the tiny alcove[first time]. If they weren't shouting so much, you're sure the mercenaries outside would be able to hear you[only].";
 
 Section 2 - Making the secret closet secret 
 
@@ -8482,10 +8729,10 @@ Before doing something when the second noun is the secret closet door and the se
 
 Chapter 2 - Eavesdropping on Mercenaries (the Raid overheard)
 
-Hidden in the closet is a scene. Hidden in the closet begins when the Banging ends. Hidden in the closet ends when the table of maidens meeting mercenaries is empty.
+Hidden in the closet is a scene. Hidden in the closet begins when the Banging ends. Hidden in the closet ends when the table of widows meeting mercenaries is empty.
 
 Every turn during Hidden in the Closet:
-	spool through dialogue in the table of maidens meeting mercenaries.
+	spool through dialogue in the table of widows meeting mercenaries.
 
 When Hidden in the Closet begins:
 	now the secret closet door is scenery;
@@ -8497,7 +8744,7 @@ When Hidden in the Closet ends:
 	move the player to the Laundry;
 	update the character list;
 
-Table of maidens meeting mercenaries
+Table of widows meeting mercenaries
 text
 "The pounding suddenly stops. Heavy footsteps tromp into the building, making the floorboards shudder beneath your feet.[paragraph break]'Where is she?' growls a rough voice. It's hard to tell from two rooms away, but it sounds very similar to the mercenary captain you heard yesterday morning, at the Grubber's Market.[conditional paragraph break]"
 [row marker]
@@ -8529,6 +8776,7 @@ Instead of going through the secret closet door during Leaving Maiden House:
 
 After going to the Hallway during Leaving Maiden House:
 	now Widow Fiona is scenery;
+	say "[command clarification break]";
 	try looking;
 	now Widow Fiona is not scenery;
 	say "Widow Fiona and Widow Theresa are standing in the middle of the hallway, staring each other down. Theresa looks sullen but defiant; Fiona is livid with rage.[paragraph break]They are silent for a long, tense moment. Then Widow Theresa looks away.[paragraph break]'Get out,' chokes Fiona. Her arm is extended, one pale finger pointing at the front door. 'Get out and never set foot in this orphanage again. Perhaps when the nights grow cold you may rely on the charity of your precious Baron.'[paragraph break]Theresa looks at you once — a bitter, helpless glare — and then turns on her heel and walks out, slamming the door behind her.[paragraph break]";
@@ -8545,20 +8793,22 @@ Chapter 1 - Shannon's entry
 Shannon's company is a scene. Shannon's company begins when leaving Maiden House ends. Shannon's Company ends when the location is Lords Market and the player is clean.
 
 When Leaving Maiden House ends:
-	select the chapter channel;
-	say "Chapter 8 - Red Gate Estate";
-	select the main channel;
-	move Widow Shannon to the Entrance to Maiden House;
+	move Widow Shannon to Behind Maiden House;
 	update the character list;
+
+After going through the privy window during Leaving Maiden House:
+	say "[command clarification break]";
+	output chapter heading "Chapter 8 - Red Gate Estate";
 	say "You pull yourself through the window and once again clamber up into the alley. You can hear a commotion from the direction of Lord's Market; it looks as though the Baron's mercenaries are still out searching the streets for you, but they'll double back and put a watch on Maiden House soon enough.[paragraph break]There is a scrabbling, grunting sound behind you, and you turn to see Shannon trying to push her way through the window. Confused but not wanting to just stand there and watch her struggle, you give her a hand up.[paragraph break]'Fiona thought I should maybe come with you,' she says, after she's finished smoothing her skirts and catching her breath. 'In case you needed any help.'";
+	continue the action; [TESTME ]
 
 Chapter 2 - Making Shannon follow the player
 
 Every turn during Shannon's company:
 	if Widow Shannon is on-stage,
 		move Widow Shannon to the location;
-	if Widow Shannon is silenced,
-		now Widow Shannon is not silenced.
+	[ if Widow Shannon is silenced,
+		now Widow Shannon is not silenced. ]
 
 After assembling during Shannon's Company:
 	if Widow Shannon is on-stage,
@@ -8566,9 +8816,12 @@ After assembling during Shannon's Company:
 
 Chapter 3 - Reporting Shannon's progress
 
-After going to somewhere when Widow Shannon is on-stage and Widow Shannon is not silenced during Shannon's company:
-	say "Shannon follows [one of]silently[or]close by[purely at random].";
+After going to somewhere when Widow Shannon is on-stage [and Widow Shannon is not silenced] during Shannon's company:
+	add ATMOS_Shannon to the dramatic possibilities;
 	continue the action;
+
+ATMOS_Shannon is a dramatic event.
+The display text is "Shannon follows [one of]silently[or]close by[purely at random]."
 
 Chapter 4 - Cutting through the park
 
@@ -8613,7 +8866,7 @@ Chapter 1 - Description
 
 The Foyer [of Red Gate Estate] is north of Red Gate Estate. "The entrance hall is large, high-ceilinged, and empty. Your footsteps echo on the marble floor. A doorway leads north to further rooms, and the street lies south." The printed name is "Entrance Hall".
 
-Understand "entrance", "hall", "large", "high", "ceiling", "ceilinged", "empty", "echoing", "marble", "doorway", "shadow", "shadows", "shadowed", "interior" as the Foyer.
+Understand "entrance", "hall", "large", "high", "ceiling", "ceilinged", "empty", "echoing", "marble", "shadow", "shadows", "shadowed", "interior" as the Foyer.
 
 The distant description of the Foyer is "The foyer lies [best route from location to Foyer] from here."
 
@@ -8632,8 +8885,9 @@ Instead of talking to Widow Shannon in the Red Gate Estate region:
 
 Chapter 2 - Events on entry and exit
 
-Before going through Red Gate Estate when Red Gate Estate is unlocked for the first time:
-	say "You pause for one last glance over your shoulder at the streets of Toresal, so familiar from your years of skulking, scrounging, and sometimes even sleeping on them. Then you pass over the threshold, into Red Gate Estate.";
+After going through Red Gate Estate:
+	say "[first time]You pause for one last glance over your shoulder at the streets of Toresal, so familiar from your years of skulking, scrounging, and sometimes even sleeping on them. Then you pass over the threshold, into Red Gate Estate.[only]";
+	continue the action;
 
 Every turn when the location is the Foyer for the first time:
 	if the player is on the move,
@@ -8646,7 +8900,9 @@ Part 3 - Dining Room
 
 Chapter 1 - Description
 
-The Dining Room is north of the Foyer. "The long table in the center of the hall is covered in sheets, as are the rows of chairs to either side. Doorways lead north and south." The printed name is "Dining Hall". Understand "hall", "doorway" as the Dining Room.
+The Dining Room is a room. "The long table in the center of the hall is covered in sheets, as are the rows of chairs to either side. Doorways lead north and south." The printed name is "Dining Hall". Understand "hall" as the Dining Room.
+
+The dining_room_door is a doorway, north of the Foyer, south of the Dining Room. 
 
 The distant description of the Dining Room is "A dining room lies to the [best route from location to Dining Room]."
 
@@ -8657,7 +8913,6 @@ Understand "dining", "long", "rows", "row", "rows of", "row of" as the old furni
 Some dustsheets are a backdrop. The description is "The sheets are fine linen, smudged gray with dust." Understand "shroud", "shrouds", "white", "sheets", "sheet", "linen", "linens", "dusty" as the dustsheets. The printed name of the dustsheets is "sheets". The dustsheets are in Foyer, Dining Room, Red Gate Kitchen, Office, Red Gate Master Bedroom.
 
 Does the player mean doing something other than reading the dustsheets: it is likely.
-
 
 Instead of looking under the dustsheets, try examining the furniture.
 
@@ -8673,6 +8928,7 @@ Understand "wipe [something]" as rubbing.
 Chapter 2 - Event on entry
 
 After going north to the dining room for the first time during Shannon's company:
+	say "[command clarification break]";
 	try looking;
 	say "'Lord Toresal was known for his hospitality,' remarks Shannon. 'He entertained guests here at his estate as often as he did at Lord's Keep. It's said he paid for his dinner parties from his own purse, rather than tax the city.' She runs her hand along the sheet-draped dining table. 'Your father was a good man, Jacqueline, and well loved by his subjects.'";
 	update the character list;
@@ -8681,7 +8937,9 @@ Part 4 - Kitchen
 
 Chapter 1 - Description
 
-The Red Gate Kitchen is north of the Dining Room. "The kitchen seems particularly barren, empty of its usual clutter of pots and pans and utensils. The firepit in the southwestern corner is cold and dark. The dining room lies south, and a wide staircase in the back of the room leads up to the second floor." The printed name is "Kitchen". Understand "barren", "empty" as the Red Gate Kitchen.
+The Red Gate Kitchen is a room. "The kitchen seems particularly barren, empty of its usual clutter of pots and pans and utensils. The firepit in the southwestern corner is cold and dark. The dining room lies south, and a wide staircase in the back of the room leads up to the second floor." The printed name is "Kitchen". Understand "barren", "empty" as the Red Gate Kitchen.
+
+The rg_kitchen_door is a doorway, north of the Dining Room, south of the Red Gate Kitchen. 
 
 The firepit is scenery in the Red Gate Kitchen. Understand "fireplace", "fire", "pit", "ash", "ashes", "cold", "dark" as the firepit. "Nothing but ashes there now." Instead of searching the firepit, try examining the firepit instead.
 
@@ -8692,7 +8950,9 @@ Part 5 - Second Floor Landing
 
 Chapter 1 - Description
 
-The Red Gate Estate Second Floor Landing is up from the Red Gate Kitchen. "The shadowed stairway leads up and down. A doorway leads south." The printed name is "Second Floor Landing". Understand "staircase", "stairway", "stairs", "steps", "step", "shadows", "shadow", "shadowed", "doorway" as the Red Gate Estate Second Floor Landing.
+The Red Gate Estate Second Floor Landing is a Landing, up from the Red Gate Kitchen. "The shadowed stairway leads up and down. A doorway leads south." The printed name is "Second Floor Landing". 
+
+Understand "shadowed", "shadowy", "shadow", "shaded", "shady" as a Landing when the location is in Red Gate Estate and the location is not the item described.
 
 After inspecting the Red Gate Estate Second Floor Landing:
 	if the location is:
@@ -8704,13 +8964,15 @@ Part 6 - Office
 
 Chapter 1 - Description
 
-The Office is south of the Red Gate Estate Second Floor Landing. "A sheet-enshrouded desk sits in the center of the room like a dusty altar. Empty bookshelves surround you on all sides except north, where a doorway leads back to the stairs." Understand "doorway" as the Office.
+The Office is a room. "A sheet-enshrouded desk sits in the center of the room. Empty bookshelves surround you on all sides except north, where a doorway leads back to the stairs." 
 
 The distant description of the Office is "An office lies south of here."
 
+rg_office_door is a doorway, south of the Red Gate Estate Second Floor Landing, north of the Office.
+
 Chapter 2 - Scenery (Shelves and desk)
 
-Some dusty bookshelves are scenery in the Office. The description is "The shelves are all empty, although there are markings in the dust, suggesting that there were books here recently." The printed name is "bookshelves". Understand "shelves", "shelf", "bookshelf" as the dusty bookshelves.
+Some dusty bookshelves are scenery in the Office. The description is "The shelves are all empty, although there are markings in the dust, suggesting that there were books here recently." The printed name is "bookshelves". Understand "shelves", "shelf", "bookshelf", "barren", "marking", "markings", "in the dust", "in dust" as the dusty bookshelves.
 
 Understand "desk" as the old furniture when the location is the Office.
 
@@ -8726,6 +8988,12 @@ The wooden box is a closed openable container. The description is "The box is ab
 After opening the wooden box for the first time:
 	say "Nestled in the box's velvet-lined interior are bundles of papers — letters and documents of the old Duke."
 
+Instead of showing the wooden box to Shannon:
+	say "'The Duke's old correspondences,' breathes Shannon. 'What a treasure, Jacqueline!'";
+
+Instead of giving the wooden box to Shannon:
+	say "'No, you should keep those, Jacqueline,' says Shannon firmly.";
+
 Some collected letters are in the wooden box. Understand "papers", "letter", "letters", "document", "documents", "paper", "bundled", "bundle", "bundles", "bundle", "bundles", "Dukes", "old", "legal", "financial", "records", "record", "details", "detail", "parchment", "worn", "penmanship", "mothers", "secret", "of" as the collected letters. 
 
 Does the player mean doing something with the collected letters: it is unlikely. [ This disambiguates it from THE secret letter. ]
@@ -8735,13 +9003,14 @@ The description of the collected letters is "Some of them are legal documents in
 Chapter 4 - Event on entry
 
 After going south to the office for the first time during Shannon's company:
+	say "[command clarification break]";
 	try looking;
 	say "Shannon sighs as she looks at the barren shelves. 'Your father had a great love of learning,' she says, 'and was as well-read as any scholar in the kingdom. That was one reason why he was so loved — he was wise, and his subjects knew it. He would be so sad to see all his books lost like this.'";
 	update the character list;
 
 Part 7 - Third Floor Landing
 
-The Red Gate Estate Third Floor Landing is up from the Red Gate Estate Second Floor Landing. "The stairs end here at the third floor. A doorway leads south." The printed name is "Third Floor Landing". Understand "doorway", "stairs", "staircase", "stairway", "steps", "step" as the Red Gate Estate Third Floor Landing.
+The Red Gate Estate Third Floor Landing is a Landing, up from the Red Gate Estate Second Floor Landing. "The stairs end here at the third floor. A doorway leads south." The printed name is "Third Floor Landing". 
 
 After inspecting the Red Gate Estate Third Floor Landing:
 	if the location is Red  Gate Master Bedroom, say "You can see stairs to the north.";
@@ -8751,9 +9020,9 @@ Part 8 - Red Gate Master Bedroom
 
 Chapter 1 - Description
 
-The Red Gate Master Bedroom is south of the Red Gate Third Floor Landing. "Most of the furniture from this room has been carted off. Only the bed remains, just a bare mattress covered with yet another plain, dusty sheet. Doorways lead north and south." The printed name is "Master Bedroom".
+The Red Gate Master Bedroom is a room. "Most of the furniture from this room has been carted off. Only the bed remains, just a bare mattress covered with yet another plain, dusty sheet. Doorways lead north and south." The printed name is "Master Bedroom".
 
-Understand "doorway" as the Red Gate Master Bedroom.
+rg_bedroom_door is a doorway, south of the Red Gate Estate Third Floor Landing, north of the Red Gate Master Bedroom.
 
 The distant description of the Red Gate Master Bedroom is "A bedroom lies [best route from location to Red Gate Master Bedroom] of here."
 
@@ -8769,9 +9038,11 @@ Part 9 - Bathroom
 
 Chapter 1 - Description
 
-The Bathroom is south of the Red Gate Master Bedroom. "The walls of this small room are cold, bare marble. The only exit is to the north." The distant description of the Bathroom is "A bathroom lies to the south."
+The Bathroom is a room. "The walls of this small room are cold, bare marble. The only exit is to the north." The distant description of the Bathroom is "A bathroom lies to the south."
 
-Understand "small", "cold", "bare", "marble", "wall", "walls", "doorway" as the Red Gate Master Bedroom.
+rg_bathroom_door is a doorway, south of the Red Gate Master Bedroom, north of the Bathroom.
+
+Understand "small", "cold", "bare", "marble", "wall", "walls" as the Bathroom.
 
 Chapter 2 - Bathtub
 
@@ -8791,19 +9062,31 @@ Instead of turning the faucets:
 
 Chapter 4 - Taking a bath
 
-Bathing is an action applying to nothing.
+Bathing is an action applying to one thing.
 Understand "bathe" as bathing.
-Understand "bathe self" as bathing.
+Understand "bathe [yourself]" as bathing.
+Understand "wash" as bathing.
+Understand "wash [yourself]" as bathing.
+Understand "get washed" as bathing.
+Understand "get bathed" as bathing.
+Understand "take a [bathtub]" as bathing.
 Understand "take bath" as bathing.
 Understand "take a bath" as bathing.
-Understand "have bath" as bathing.
-Understand "have a bath" as bathing.
+Understand "have [bathtub]" as bathing.
+Understand "have bath/wash" as bathing.
+Understand "have a bath/wash" as bathing.
 
 Carry out bathing:
-	try washing the player instead;
+	try washing the noun instead;
+
+Rule for supplying a missing noun when bathing:
+	change the noun to the player;
+
+Instead of bathing the bathtub:
+	try washing the player;
 
 Instead of washing the player in the presence of the bathtub:
-	try entering the bathtub.
+	try entering the bathtub;
 
 Instead of entering the bathtub for the first time:
 	repeat with garment running through wearable things had by the player begin;
@@ -8848,9 +9131,7 @@ Part 1 - Events at Dame Sandlers
 Chapter 1 - Actions and Reactions
 
 After going to the jewelers shop when the player is clean and DS31 is unfired:
-	select the chapter channel;
-	say "Chapter 9 - Preparations";
-	select the main channel;
+	output chapter heading "Chapter 9 - Preparations";
 	update the character list;
 	start conversation with Dame Sandler on DS31;
 
@@ -9158,6 +9439,7 @@ Chapter 4 - In Olgan Minor's Shop
 After going to the armory shop during the Bodyguard scene:
 	now Olgan Minor is scenery;
 	now Pieter is scenery;
+	say "[command clarification break]";
 	try looking;
 	now Olgan Minor is not scenery;
 	now Pieter is not scenery;
@@ -9167,7 +9449,7 @@ After going to the armory shop during the Bodyguard scene:
 Instead of talking to Olgan Minor during the Bodyguard scene:
 	say "'Don't waste your breath making conversation, Jacqueline,' Pieter says. 'Just pick something and buy it and let's move on.' [first time]You get the impression that Pieter [i]really[r] doesn't like Olgan Minor, and that maybe there's a history between the two.[only]";
 
-Instead of buying the interesting weapons during the Bodyguard scene:
+Instead of buying the big weapons during the Bodyguard scene:
 	say "Pieter shakes his head. 'Those sorts of weapons are too big to wear discreetly,' he tells you, 'and most are too heavy for you to lift in any case.'"
 
 The plain dagger is a weapon. The description is "It's a plain-looking blade about six inches long, easily concealed beneath your gown." Understand "knife", "blade" as the plain dagger. The printed name is "dagger".
@@ -9262,9 +9544,7 @@ After going north to the Entrance Hall for the first time:
 
 Instead of going south from the Entrance Hall during Journey To The Ball:
 	say "Pieter puts his hand on your back, gently but firmly. 'Don't lose your nerve now,' he says. 'You'll be fine; I'll be right behind you the whole time.'";
-	select the chapter channel;
-	say "Chapter 10 - The Ball";
-	select the main channel;
+	output chapter heading "Chapter 10 - The Ball";
 
 Part 5 - Ballroom
 
@@ -9970,7 +10250,7 @@ After talking to a ballgoer when every ballgoer in the Ballroom is spoken to:
 
 When Brief Encounter begins:
 	move the Prince of Gravesal to the ballroom;
-	move the several mercenaries to the location;
+	move the several mercenaries to the ballroom;
 	now the current conversationalist is the Prince of Gravesal;
 	update the character list;
 	start conversation with the Prince of Gravesal on GR1;
@@ -10053,11 +10333,10 @@ Book 13 - The Baron
 Confronting the Baron is a scene. Confronting the Baron begins when High Society ends. Confronting the Baron ends when the skirmish begins.
 
 When Confronting the Baron begins:
-	select the chapter channel;
-	say "Chapter 11 - Baron Fossville";
-	select the main channel;
+	output chapter heading "Chapter 11 - Baron Fossville";
 	say "The mercenaries march you out of the ballroom, through the foyer, and into the inner reaches of the keep. At every doorway you pass a pair of Lord's Guards standing at attention; some of them glare at the ill-kempt and ill-disciplined mercenaries, but no one makes a move to stop them or help you. You are keenly aware of the dagger strapped to your leg under your dress, but there seems to be no opportunity to use it. Not that you'd last very long against a half-dozen armed men anyway.[paragraph break]The last door is not guarded. The mercenaries push you through into a room filled with dim, flickering light.";
 	move the several mercenaries to the War Room;
+	now the several mercenaries are scenery;
 	move Pieter to the War Room;
 	now Pieter is caught;
 	now the knotted ropes are part of Pieter;
@@ -10266,7 +10545,7 @@ Instead of cutting the knotted ropes with the dagger:
 
 When the skirmish ends:
 	say "At that moment, there is a sudden [i]crack[r] and a rumbling, and a cold draft rushes into the room, tugging at the flames in the fireplace and throwing the room into wildly pitching shadow.[paragraph break]Behind you, the map wall has opened to reveal a dark, cavernous passageway, and [i]more[r] men are rushing out — men dressed all in black, with dark hoods and scarves hiding their faces.[paragraph break]'That's her! Get her!' cries a voice. A young woman's voice. A voice you've heard before.[paragraph break]It happens so fast. Hands are on you, lifting you off your feet, wresting the dagger from your grasp, pulling you back into that dark, dark tunnel. The firelight falls away, shrinks down to a flickering, orange rectangle. The rumbling starts again, and the rectangle grows narrower, narrower...[paragraph break]'Don't worry,' says the voice. 'We're not going to, like, [i]hurt[r] you.'[paragraph break]And then everything is black.";
-	End the game saying "The End".
+	end the game saying "To be continued";
 
 Book W - Bits and pieces
 
@@ -10400,6 +10679,20 @@ The description of the backdrop-moon is "The moon is full and pale tonight."
 Instead of doing something other than examining the backdrop-moon:
 	say "The moon is far, far above you."
 
+Chapter 4 - Looking high, looking low
+
+Check facing up:
+	if the location is interior begin;
+		try examining the backdrop-ceiling instead;
+	otherwise;
+		try examining the backdrop-sky instead;
+	end if;
+
+Check facing down:
+	if the location is grounded begin;
+		try examining the backdrop-floor instead;
+	end if;
+
 Part 2 - Rooms generally
 
 Understand "area", "surroundings", "place", "vicinity", "location" as a room.
@@ -10408,23 +10701,26 @@ Understand "room" as a room when the location is interior.
 Does the player mean doing something with a room:
 	it is very unlikely;
 
+Check examining a doorway:
+	let x be the other side of the noun;
+	if x is a room:
+		try inspecting x instead;
+
 Book X - Walkthrough - Not for release
 
 test walkthrough with "test walk1 / test walk2 / test walk3"
 
 test toball with "test walk1 / test redgate/test sandler/test moneylender/test clothier/test armory/test ballgoing"
 
-Test walk1 with "test intro/test market/test meeting/test adventure/test jail"
+Test walk1 with "test intro/test market/test meeting/test adventure/test jail/test sewers"
 
 Test walk2 with "test rooftops/test blackgate/test hanging/test maidens"
 
-Test walk3 with "test redgate/test sandler/test moneylender/test clothier/test armory/test ballgoing/test socializing" 
+Test walk3 with "test redgate/test sandler/test moneylender/test clothier/test armory/test ballgoing/test socializing/test warroom" 
 
-Test walk4 with "test prince / test warroom"
+Test Intro with "u/z/z/z/z/d/se/s/s/ne/ne"
 
-Test Intro with "u/z/z/z/z/d/se"
-
-Test Market with "xyzzy/e/e/steal banana/unxyzzy/s/w/w/e/n/n/u/give banana to monkey/d/s/give necklace to teisha/n/u/slide down northeast cable with gray cloak/get cloak/wear silk cloak/s/e"
+Test Market with "xyzzy/e/steal banana/unxyzzy/sw/se/n/n/u/give banana to monkey/d/s/give necklace to teisha/n/u/slide down northeast cable with gray cloak/get cloak/wear silk cloak/s/e"
 
 Test meeting with "e/e/s/1/1/2/sw/s/sw/climb through window/ne/ne/n/w/w/w"
 
@@ -10432,7 +10728,7 @@ Test adventure with "n/e/n/xyzzy/n/unxyzzy/n/d/n/n/sw/u/n/listen at slit/listen 
 
 Test jail with "z/z/1/1/1/z/3/z/z/z/3/1/unlock door with wire/n/get wire/unlock north door with wire/sw/lift grate"
 
-Test sewers with "xyzzy/down/s/u/unxyzzy"
+Test sewers with "xyzzy/down/s/s/u/unxyzzy"
 
 Test rooftops with "n / 1 / 1 / 1 / 2 / climb gutter / e / e / se / n"
 
