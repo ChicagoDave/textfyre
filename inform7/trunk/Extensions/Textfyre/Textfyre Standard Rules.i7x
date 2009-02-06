@@ -4,6 +4,8 @@ Version 1 of Textfyre Standard Rules by Textfyre begins here.
 
 Use authorial modesty.
 
+Volume 1 - For universal use
+
 Book 1 - Definitions
 
 Part 1 - Involvement & Redirection
@@ -112,7 +114,14 @@ To decide if (that way - a direction) is due (bearing - a direction):
 	if that way is anticlockwise of the bearing, yes;
 	no;
 
-Book 2 - Disambiguations
+Part 3 - Activity bug fix
+
+[A bug in 5U92 seems to necessitate this]
+
+To decide whether currently running (A - activity) activity:
+	(- (TestActivity({A})) -).
+
+Book 2 - Disambiguations and (Mis)-understandings
 
 Part 1 - Clothing
 
@@ -160,7 +169,15 @@ Does the player mean opening something open:
 Does the player mean opening or closing something unopenable:
 	it is very unlikely;
 
-Book 3 - Verbs
+Book 3 - Rulebooks
+
+Part 1 - People vs scenery
+
+The can't turn people rule is listed before the can't turn what's fixed in place rule in the check turning rulebook.
+The can't push people rule is listed before the can't push what's fixed in place rule in the check pushing rulebook.
+The can't pull people rule is listed before the can't pull what's fixed in place rule in the check pulling rulebook.
+
+Book 4 - Verbs
 
 Part 1 - Enterables
 
@@ -289,6 +306,70 @@ Part 3 - Eating
 Understand the command "bite" as "eat".
 Understand the command "lick" as "taste".
 
+Book 5 - Kinds
+
+Part 1 - Doorways
+
+A doorway is a kind of door. A doorway is usually open, not openable, unlocked, not lockable, privately-named, scenery.
+
+Before printing the name of a doorway (called the portal):
+	let d be the direction of the portal from the location;
+	unless d is nothing:
+		say "[d] ";
+
+Rule for printing the name of a doorway:
+	say "doorway";
+
+Understand "n/north/northern" as a doorway when the direction of the item described from the location is north.
+Understand "s/south/southern" as a doorway when the direction of the item described from the location is south.
+Understand "e/east/eastern" as a doorway when the direction of the item described from the location is east.
+Understand "w/west/western" as a doorway when the direction of the item described from the location is west.
+
+Understand "nw/northwest" as a doorway when the direction of the item described from the location is northwest.
+Understand "sw/southwest" as a doorway when the direction of the item described from the location is southwest.
+Understand "ne/northeast" as a doorway when the direction of the item described from the location is northeast.
+Understand "se/southeast" as a doorway when the direction of the item described from the location is southeast.
+
+Understand "doorway" as a doorway.
+Understand "doorways" as the plural of doorways.
+Understand "exits" as the plural of doorways.
+
+Part 2 - Staircases
+
+A staircase is a kind of backdrop. The specification of a staircase is "A flight of stairs that runs continuously between several rooms, that tries to make sense of attempts to CLIMB it."
+
+A staircase has a room called the head. A staircase has a room called the foot.
+
+The block climbing rule is not listed in any rulebook;
+
+Check climbing (this is the slightly more lenient block climbing rule):
+	if the noun is not a staircase:
+		abide by the block climbing rule;
+
+Check climbing a staircase (this is the clarify ambiguity of staircases rule):
+	unless the location is the head of the noun or the location is the foot of the noun:
+		say "[The noun] run[s] up and down from here. [first time]Which way do you want to go? [only][paragraph break]" instead;
+
+Carry out climbing a staircase:
+	if the location is the head of the noun:
+		try going down instead;
+	otherwise if the location is the foot of the noun:
+		try going up instead;
+
+Check ascending a staircase:
+	if the location is the head of the noun:
+		say "[The noun] only run[s] down from here." instead;
+
+Carry out ascending a staircase:
+	try going up instead;
+
+Check descending a staircase:
+	if the location is the foot of the noun:
+		say "[The noun] only run[s] up from here." instead;
+
+Carry out descending a staircase:
+	try going down instead;
+
 Volume 2A (for use without Custom Library Messages by David Fisher)
 
 [This space reserved for changes to standard library messages]
@@ -296,6 +377,21 @@ Volume 2A (for use without Custom Library Messages by David Fisher)
 Volume 2B (for use with Custom Library Messages by David Fisher)
 
 [This space also reserved for changes to standard library messages; it would need to be done differently.]
+
+Volume 3A (for use without FyreVM Support by Textfyre)
+
+To output chapter heading (header - text):
+	say "[bold type][header] [roman type][paragraph break]";
+
+Volume 3B (for use with FyreVM Support by Textfyre)
+
+To output chapter heading (header - text):
+	if FyreVM is present:
+		select the chapter channel;
+		say header;
+		select the main channel;
+	otherwise:
+		say "[bold type][header] [roman type][paragraph break]";
 
 Textfyre Standard Rules ends here.
 
