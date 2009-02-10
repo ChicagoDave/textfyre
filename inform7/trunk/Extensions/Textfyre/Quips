@@ -85,9 +85,8 @@ Check talking to the player:
 
 Check talking to the current conversationalist:
 	if the number of entries in the current conversation is 1:
-		try selecting menu option 1 instead;
-	do nothing instead; [in fact we will display the menu, but that is done by an Every Turn rule] 
-	[ say "You are already talking to [the noun]." instead. ]
+		try selecting menu option 1 instead; 
+	say "You are already talking to [the noun]." instead. [and then display the menu, but that is done by an Every Turn rule]
 
 Carry out talking to someone:
 	carry out the initiating conversation with activity with the noun;
