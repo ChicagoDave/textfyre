@@ -2,6 +2,7 @@
 
 [  Change Log
 When		Who		What
+09-Feb-2009	G. Jefferis	Implemented changes from EE02_response
 04-Feb-2009	G. Jefferis	Implemented changes from EE01_response
 03-Feb-2009	D. Cornelson	Implementing changes from EE_notes_01.
 03-Feb-2009	G. Jefferis	Implemented changes from EE01_response
@@ -1054,6 +1055,12 @@ The Alley is a room. "This narrow alley is tucked away between a storehouse on o
 
 Instead of facing outside in the Alley:
 	try facing southeast instead;
+
+Instead of exiting in the Alley:
+	try going southeast instead;
+
+Instead of going outside in the Alley:
+	try going southeast instead;
 
 After looking in the Alley for the first time, say "A group of people have gathered just outside the alley. You can't quite hear what they're saying from here, but there is a grim, ugly tone to them that speaks of dangerous doings.";
 
@@ -3007,7 +3014,7 @@ Chapter 5 - Generic Market Stalls
 
 Section 1 - Description
 
-The generic stall is a backdrop. It is in Grubbers Market Fruit Stall, Grubbers Market Grocery Stall, Grubbers Market Eastern Junction, Grubbers Market Northwest Junction, Grubbers Market Hat Stall, Grubbers Market Exotic Gems Stall, Grubbers Market Weapons Stall, Grubbers Market Leather Shop, Grubbers Market Herb Stall, Grubbers Market Rope Dealer, Grubbers Market Candle Stall, Grubbers Market Pottery Stall,  Grubbers Market Outside Silk Stall, the Market Square, the Alley, the Outer Market Roof, Grubbers Market Teishas Tent, Grubbers Market Center Post, Grubbers Market Top of Center Post.
+The generic stall is a backdrop. It is in Grubbers Market Fruit Stall, Grubbers Market Grocery Stall, Grubbers Market Eastern Junction, Grubbers Market Northwest Junction, Grubbers Market Hat Stall, Grubbers Market Exotic Gems Stall, Grubbers Market Weapons Stall, Grubbers Market Leather Shop, Grubbers Market Herb Stall, Grubbers Market Rope Dealer, Grubbers Market Candle Stall, Grubbers Market Pottery Stall,  Grubbers Market Outside Silk Stall, the Alley, the Outer Market Roof, Grubbers Market Teishas Tent, Grubbers Market Center Post, Grubbers Market Top of Center Post.
 
 Rule for printing the description of the generic stall when the location is Grubbers Market Top of Center Post or the location is Outer Market Roof:
 	say "The stalls are spread throughout the market below. ";
@@ -3644,6 +3651,7 @@ When Market Escape begins:
 	now every market stall is unblocked.
 
 Every turn during Market Escape:
+	ratchet the current tension to important;
 	spool through dialogue in the table of Chasing Mercenary descriptions.
 
 Market Escape ends in capture when the table of Chasing Mercenary descriptions is empty.
@@ -3745,7 +3753,7 @@ The butchers storefront is a storefront, scenery and here. "A brightly painted p
 
 The printed name of the butchers storefront is "butcher's storefront".
 
-The armory storefront is a storefront, scenery and here. The description of the armory storefront is "The walls of this shop are built of heavy, blackened bricks — a grim exterior to house grim business. The sign over the door is painted with an axe and shield." Understand "axe", "shield", "armorers" as the armory storefront. Instead of entering the armory storefront: try going northeast instead.
+The armory storefront is a storefront, scenery and here. The description of the armory storefront is "The walls of this shop are built of heavy, blackened bricks — a grim exterior to house grim business. The sign over the door is painted with an axe and shield." Understand "axe", "shield", "armorers", "armoury", "armourers", "armourer" as the armory storefront. Instead of entering the armory storefront: try going northeast instead.
 
 Instead of examining a storefront when it is night, say "All of the shops are shuttered and locked up for the night."
 
@@ -4220,7 +4228,7 @@ Chapter 2 - Olgan Minor
 
 Section 1 - Description of Olgan
 
-Olgan Minor is a man and here. "Olgan Minor, the proprietor, leans against the counter, watching you intently." The description is "Olgan Minor is short but muscular, with a lined face and graying, military-cut hair. He says nothing as you browse his wares, but his eyes seem to bore right into you.[first time] You are suddenly certain that he knows you're not really a boy — that he knew it the instant you walked into his shop.[only]"
+Olgan Minor is a man and here. "Olgan Minor, the proprietor, leans against the counter, watching you intently." The description is "Olgan Minor is short but muscular, with a lined face and graying, military-cut hair. He says nothing as you browse his wares, but his eyes seem to bore right into you.[first time][if the player is still dirty] You are suddenly certain that he knows you're not really a boy — that he knew it the instant you walked into his shop.[end if][only]"
 
 Understand "proprietor", "shopkeeper", "shop keeper", "merchant", "man" as Olgan Minor.
 
@@ -4233,7 +4241,7 @@ Every turn when the player is not on the move and a random chance of 1 in 5 succ
 
 Section 2 - Actions and reactions
 
-Before buying anything when the location is the armory shop and the player does not have the bag of coins:
+Before buying anything when the location is the armory shop and the player does not have the purse:
 	say "Minor barks an unpleasant laugh. 'Run along, [i]girl,[r] before you cut yourself.'" instead.
 
 Section 3 - Leaving
@@ -4496,13 +4504,21 @@ Outside from the clothiers shop is Lords Market.
 Instead of facing outside while in the Clothiers Shop, try facing west.
 The dead-end description of the Clothiers Shop is "You don't see any other exits besides the door to the west, to Lords Market."
 
-Some clothiers curtains are scenery, in the Clothiers Shop. The printed name is "curtains". Understand "curtain" as the clothiers curtains. The clothiers carpet is scenery, in the Clothiers Shop. The printed name is "carpet".
+Some clothiers curtains are scenery, in the Clothiers Shop. "The curtains are made of thick, purple velvet.". The printed name is "curtains". Understand "curtain", "thick", "velvet", "purple" as the clothiers curtains.
+
+The clothiers carpet is scenery, in the Clothiers Shop. The printed name is "carpet".
+
+The description of the clothiers carpet is "The carpet is deep, plush, and colored a rich, vibrant... pink[first time]. Definitely not something you see every day[only]." Understand "deep", "soft", "plush", "rug", "rich", "vibrant", "pink" as the clothiers carpet.
 
 Some dummies are scenery, in the Clothiers Shop. The description is "Armless, headless torsos carved from wood, stuck atop iron tripods, and dressed in fancy clothes. They're actually a bit ghoulish, now that you really look at them." Understand "dummy", "torsos", "torsoes", "torso", "tripod", "tripods", "clothiers" as the dummies.
 
+A floor-length mirror is scenery, in the Clothiers Shop. The description is "In the clothier's tall, floor-length mirror, you can see yourself from head to toe." After examining the floor-length mirror, try examining yourself. Instead of searching the floor-length mirror, try examining the floor-length mirror. Understand "floor length" and "tall" as the floor-length mirror.
+
+Understand "reflection", "my reflection", "reflection of" as yourself when the player can see the floor-length mirror.
+
 Chapter 2 - More scenery (Clothes)
 
-The lovely clothes are scenery, in the Clothiers Shop. The description is "The clothes here are lovely — rich velvets and flowing silks, dyed with brilliant colors and embroidered with lace and gems. [first time]These are the sorts of costumes that you imagine while lying on your straw mattress back at Maiden House, dreaming about dazzling the Prince at the Royal Ball. Stupid fantasies, you know, but oh — if you could only wear something as beautiful as these, just for one evening...[only][if the player is still dirty][paragraph break]Suddenly, you remember that you're supposed to be looking at the [i]men's[r] clothing. You glance nervously at the shopkeeper, but he doesn't seem to find your intense interest in ladies['] formal wear strange in the slightest.[end if]".  Understand "velvet", "velvets", "silk", "silks", "costume", "costumes", "dresses", "gowns", "ballgowns", "ball gowns" as the lovely clothes. Understand "dress", "gown", "ballgown", "ball gown" as the lovely clothes when the location does not enclose the ball gown. 
+The lovely clothes are scenery, in the Clothiers Shop. The description is "The clothes here are lovely — rich velvets and flowing silks, dyed with brilliant colors and embroidered with lace and gems. [first time]These are the sorts of costumes that you imagine while lying on your straw mattress back at Maiden House, dreaming about dazzling the Prince at the Royal Ball. Stupid fantasies, you know, but oh — if you could only wear something as beautiful as these, just for one evening...[only][if the player is still dirty][paragraph break]Suddenly, you remember that you're supposed to be looking at the [i]men's[r] clothing. You glance nervously at the shopkeeper, but he doesn't seem to find your intense interest in ladies['] formal wear strange in the slightest.[end if]".  Understand "velvet", "velvets", "silk", "silks", "costume", "costumes", "dresses", "gowns", "ballgowns", "ball gowns", "fancy", "gorgeous", "formal", "court", "apparel" as the lovely clothes. Understand "dress", "gown", "ballgown", "ball gown" as the lovely clothes when the location does not enclose the ball gown. 
 
 Yourself can be clean or still dirty. Yourself is still dirty.
 
@@ -4524,7 +4540,7 @@ After going from the Clothiers Shop:
 
 Chapter 4 - The Clothier
 
-The clothier is a man, in the clothiers shop. The initial appearance of the clothier is "[if the player is still dirty]The clothier stands nearby, eyeing you with some distaste[otherwise]The clothier hovers nearby, waiting to serve[end if]." The description of the clothier is "Tall, thin, and impeccably dressed, although his fashion sense seems a bit...decorative, compared to the more austere look preferred by men of Toresal's upper class. His hairline is receding, and what hair he has left is plastered back onto his scalp with fragrant oil. He look as though he'd secretly prefer to wipe things down with a scented handkerchief before touching them; somehow, through good breeding and intestinal fortitude, he manages to soldier on despite not doing so." Understand "proprietor", "shopkeeper", "shop keeper", "merchant", "man" as the clothier.
+The clothier is a man, in the clothiers shop. The initial appearance of the clothier is "[if the player is still dirty]The clothier stands nearby, eyeing you with some distaste[otherwise]The clothier hovers nearby, waiting to serve[end if]." The description of the clothier is "Tall, thin, and impeccably dressed, although his fashion sense seems a bit...decorative, compared to the more austere look preferred by men of Toresal's upper class. His hairline is receding, and what hair he has left is plastered back onto his scalp with fragrant oil. He looks as though he'd secretly prefer to wipe things down with a scented handkerchief before touching them; somehow, through good breeding and intestinal fortitude, he manages to soldier on despite not doing so." Understand "proprietor", "shopkeeper", "shop keeper", "merchant", "man" as the clothier.
 
 Every turn when the clothier is nearby and a random chance of 1 in 5 succeeds:
 	say "[one of]The clothier absentmindedly flicks a bit of lint off of his sleeve[or]The clothier wanders over to one of the dresses on display and fusses with the [one of]sleeve[or]hem[or]neckline[at random][or]The clothier inspects his fingernails[or]The clothier purses his lips and hums something indecipherable[or]The clothier slowly looks you up and down. You get the distinct and not-exactly comfortable feeling that he's 'dressing' you with his eyes[at random].";
@@ -4536,13 +4552,19 @@ Before talking to the clothier when the player is still dirty:
 
 Instead of kissing the clothier, say "You should probably get to know the clothier a little better, first."
 
+Instead of taking the lovely clothes:
+	try buying the lovely clothes;
+
 Before buying the lovely clothes when the player is still dirty:
 	say "The clothier is not likely to sell anything to a dirty urchin such as yourself. Besides, you're only interested in the dresses, and it would raise awkward questions if you asked him to sell you one." instead;
 
-Instead of buying the lovely clothes when the player does not have the bag of coins:
+Understand "pick [lovely clothes]" as buying.
+Understand "choose [lovely clothes]" as buying.
+
+Instead of buying the lovely clothes when the player does not have the purse:
 	say "You point to one of the dresses, and the clothier quotes you a price that leaves you feeling distinctly queasy. Of course, your old wardrobe consists entirely of cast-offs from the older orphans and whatever interesting bits you were able to scrounge from back-alley trash bins. Who knew [i]real[r] clothes cost so much?[paragraph break]'Remember what Dame Sandler said, Jacqueline,' remarks Pieter. 'Get yourself some money first.'"
 
-After buying the lovely clothes when the player has the bag of coins and the player does not have the ball gown:
+After buying the lovely clothes when the player has the purse and the player does not have the ball gown:
 	remove Pieter from play;
 	remove the daydress from play;
 	now the player carries the ball gown;
@@ -4561,9 +4583,11 @@ CL2 is a quip. The menu text is "'What's your cheapest dress?'". The display tex
 
 CL3 is a quip. The menu text is "'What would be good to wear to the ball?'". The display text is "[first time]'I'm, um... well, actually I'm going to be attending Fossville's ball tonight,' you say, still a bit giddy at the idea. 'And I need something to wear. What would you suggest?'[paragraph break]The clothier scoffs and rolls his eyes. 'Sister, there's no point in even choosing. They're [i]all[r] good. In fact, I [i]guarantee[r] that if you wear one of my dresses to the ball, [i]no one[r] is going to take their eyes off you. If you manage to find someone who is not treating you like the absolute [i]center of their universe[r], come back here, and I'll give you a full refund.'[subsequently][repeat phrase] 'all of my dresses are fabulous. Pick any you like.'[only]"
 
-CL4 is a quip. The menu text is "'What do you think of this one?'". The display text is "[first time]'You really think this will be all right?' you ask, looking down at the beautiful gown you're now wearing.[paragraph break]'It's fabulous,' rants the clothier. 'It's you. Trust me'.[subsequently][rp] 'you're a princess, darling. You're beautiful.'[only]"
+CL4 is a quip. The menu text is "'What do you think?'". The display text is "[first time]'You really think this will be all right?' you ask, looking down at the beautiful gown you're now wearing.[paragraph break]'It's fabulous,' raves the clothier. 'It's you. Trust me'.[subsequently][rp] 'you're a princess, darling. You're beautiful.'[only]"
 
 CL5 is a quip. The menu text is "'What do you think of Fossville and the Ascension?'". The display text is "'What do you think about the Ascension coming up?' you ask. 'Do you think Baron Fossville has a chance?'[paragraph break]The clothier raises one (plucked, you suspect) eyebrow. 'Listen honey,' he says, 'I know dresses. That's all I know. Well, it's not [i]all[r] I know. But it's all I'm willing to [i]talk[r] about. Don't mix business with pleasure, and don't mix dresses with politics. That's my motto and I'm sticking to it.'"
+
+CL6 is a quip. The menu text is "'Okay, how about... that one?'".
 
 CL1 is clustered with CL2, CL3, CL4 and CL5.
 
@@ -4571,7 +4595,7 @@ The response of CL1 is { CL2, CL3, CL4, CL5 }.
 
 The response of CL2 is { CL2, CL3, CL4, CL5 }.
 
-The response of CL3 is { CL2, CL3, CL4, CL5 }.
+The response of CL3 is { CL2, CL3, CL4, CL5, CL6 }.
 
 The response of CL4 is { CL2, CL3, CL4, CL5 }.
 
@@ -4580,12 +4604,20 @@ The response of CL5 is { CL2, CL3, CL4, CL5 }.
 After populating a quip (called q) that is clustered with CL2:
 	remove q from the current conversation, if present;
 	if CL2 is fired, remove CL2 from the current conversation, if present;
-	if the player has the ball gown begin;
+	if DS49 is unfired:
 		remove CL3 from the current conversation, if present;
-	otherwise;
 		remove CL4 from the current conversation, if present;
-	end if;
-	if CL5 is fired, remove CL5 from the current conversation, if present;
+	if the player has the ball gown:
+		remove CL3 from the current conversation, if present;
+	otherwise:
+		remove CL4 from the current conversation, if present;
+	if CL5 is fired:
+		remove CL5 from the current conversation, if present;
+	unless the player has the purse:
+		remove CL6 from the current conversation, if present;
+
+After firing CL6:
+	try buying the lovely clothes;
 
 Chapter 7 - A ball gown
 
@@ -4887,13 +4919,16 @@ The Chorus Brothers can be respectful or disrespectful. The Chorus Brothers are 
 Instead of talking to the Chorus Brothers when the player is still dirty:
 	say "Both brothers raise their eyebrows (one left, the other right) simultaneously. After a moment, one of them says, 'Forgive us. We are...'[paragraph break]'...[no line break][i]extremely[r] busy,' the other continues. 'No time for...'[paragraph break]'idle chit-chat with penniless ragamuffins,' finishes the first.";
 
+Rule for initiating conversation with the Chorus Brothers:
+	change the chosen opening gambit to CB2;
+
 Instead of kissing the Chorus Brothers, say "It would probably be best if you kept your relationship with the moneylenders strictly professional."
 
 Chapter 4 - Conversation
 
 CB1 is a quip. The display text is "A moment after you enter, two faces suddenly appear at the window, each seeming to slide smoothly in from either side. They look at you with identical expressions of curiosity and a sort of mild, almost professional contempt.[paragraph break]'Good afternoon,' says one.[paragraph break]'May we help you?' asks the other."
 
-CB2 is a quip. The display text is "'I have a question,' you tell the two brothers.[paragraph break]They nod in perfect, synchronized unison. 'Allow us to answer...' says one.[paragraph break]'...to the best of our ability,' finishes the other."
+CB2 is a quip. The menu text is "'I have a question.'". The display text is "'I have a question,' you tell the two brothers.[paragraph break]They nod in perfect, synchronized unison. 'Allow us to answer...' says one.[paragraph break]'...to the best of our ability,' finishes the other."
 
 CB3 is a transitional quip. The menu text is "'I need a loan.'". The display text is "'I, er... I need a loan,' you say, not at all sure how this sort of business is conducted. 'You know, money.'" The following quip of CB3 is CB4.
 
@@ -4905,23 +4940,29 @@ CB6 is a quip. The display text is "The two brothers lean forward eagerly, as th
 
 CB7 is a quip. The menu text is "'Why didn't you lend Fossville money?'". The display text is "[first time]Suddenly you remember running into Baron Fossville — literally — yesterday morning. 'I saw Baron Fossville leaving here yesterday,' you mention casually. 'He seemed pretty upset. Was there some problem with [i]his[r] credentials?'[paragraph break]One of the brothers makes a show of inspecting his fingernails while the other clears his throat. 'We have the utmost...' one of them begins.[paragraph break]'...[no line break][i]respect[r] for Baron Fossville,' continues the other. 'However, he presents certain...'[paragraph break]'...[no line break][i]liabilities[r]. Let us leave it at that.'[subsequently]They shake their heads. 'We're afraid it would not be proper for us to discuss our other clients['] financial matters.'[only]"
 
+CB8 is a quip. The menu text is "'Will this letter work?'". The display text is "'Will this work as credentials?' you ask, holding out the Duke's letter."
+
 The response of CB1 is { CB3, CB5, CB7 }.
 
-The response of CB2 is { CB3, CB5, CB7 }.
+The response of CB2 is { CB3, CB5, CB7, CB8 }.
 
-The response of CB4 is { CB5, CB7 }.
+The response of CB4 is { CB5, CB8 }.
 
-The response of CB5 is { CB3, CB7 }.
+The response of CB5 is { CB2, CB8 }.
 
-The response of CB7 is { CB3, CB5 }.
+The response of CB7 is { CB2 }.
 
-CB1 is clustered with CB2 and CB7.
+CB1 is clustered with CB2, CB4, CB5, CB6 and CB7.
 
 After populating a quip that is clustered with CB1:
-	if CB6 is fired,
-		remove CB3 from the current conversation;
-	if CB4 is unfired or CB6 is fired,
-		remove CB5 from the current conversation;
+	if DS49 is unfired:
+		remove CB3 from the current conversation, if present;
+	if CB6 is fired:
+		remove CB3 from the current conversation, if present;
+	if CB4 is unfired or CB6 is fired:
+		remove CB5 from the current conversation, if present;
+	if CB5 is unfired or the player does not have the secret letter:
+		remove CB8 from the current conversation, if present;
 
 After firing CB3:
 	if the Chorus Brothers are disrespectful begin;
@@ -4931,17 +4972,20 @@ After firing CB3:
 	end if;
 
 After firing CB6:
-	now the player carries the bag of coins;
+	now the player carries the purse;
+
+After firing CB8:
+	try showing the secret letter to the Chorus Brothers;
 
 Chapter 5 - Negotiations
 
-A persuasion rule for asking the Chorus Brothers to try giving the bag of coins to the player:
+A persuasion rule for asking the Chorus Brothers to try giving the purse to the player:
 	if the player is still dirty and the Chorus Brothers are disrespectful begin;
 		say "The brother on the left sniffs. The brother on the right ever-so-slightly twists up the corner of his mouth.[paragraph break]'I think...' says one.[paragraph break]'...[no line break][i]not[r],' says the other.";
 		persuasion fails;
 	end if;
 
-A persuasion rule for asking the Chorus Brothers to try giving the bag of coins to the player:
+A persuasion rule for asking the Chorus Brothers to try giving the purse to the player:
 	if the player is clean and the Chorus Brothers are disrespectful begin;
 		say "A pair of sympathetic smiles, perfectly identical and simultaneous, appear on the brothers['] faces.[paragraph break]'My dear,' begins one, 'you certainly [i]look[r] respectable, but without...'[paragraph break]'...some form of credit history...' adds the other.[paragraph break]'...our hands are tied,' finishes the first.[paragraph break]'Some form of collateral, someone to act as surety, some proof that you are capable of paying your debts...'[paragraph break]'...would help assure us that we were making...'[paragraph break]'...a sound [i]investment[r].'";
 		persuasion fails;
@@ -4953,40 +4997,48 @@ Instead of giving the secret letter to the Chorus Brothers:
 Instead of showing the secret letter to the Chorus Brothers for the first time:
 	now the Chorus Brothers are respectful;
 	say "The brothers both reach out, one with his right hand, the other with his left, and delicately take the letter from you. Their eyes flicker back and forth in unison as they scan the words. When they reach the end, four identical eyebrows shoot up.
-'How very...'[paragraph break]'...[no line break][i]interesting[r]. It would seem you are a personage of more...'[paragraph break]'...[no line break][i]importance[r] than first we assumed.'[paragraph break]They hand the letter back to you, smiling, and ask in chorus, 'How may we help you?'";
+'How very...'[paragraph break]'...[no line break][i]interesting[r]. It would seem you are a personage of more...'[paragraph break]'...[no line break][i]importance[r] than first we assumed.'[paragraph break]They hand the letter back to you, smiling, and ask in chorus, 'How may we help you?'[paragraph break]";
+	if CB3 is fired:
+		start conversation with the Chorus Brothers on CB3;
+	otherwise:
+		start conversation with the Chorus Brothers on CB2;
 
-A persuasion rule for asking the Chorus Brothers to try giving the bag of coins to the player:
+A persuasion rule for asking the Chorus Brothers to try giving the purse to the player:
 	if the player is clean and the Chorus Brothers are respectful begin;
 		[this duplicates CB6]
-		now the player carries the bag of coins;
+		now the player carries the purse;
 		say "The two brothers lean forward eagerly, as though they've been waiting for you to ask.[paragraph break]'We would be [i]delighted[r] to extend to you...'[paragraph break]'...our most prestigious line of credit!'[paragraph break]Over the next few minutes they hand you dozens of sheets of paper covered in dense, tiny script, full of bizarre words like [i]amortization[r], [i]compound interest[r], and [i]escrow[r]. Pieter tries to read some of it, with his brow furrowed up and his lips moving slightly; eventually he shakes his head and mutters, 'Just sign all of them.' You dutifully write your name where the brothers show you.[paragraph break]After it's all done, they sweep all the papers into a slim leather folder, and place a small purse of coins on the counter. 'That's [i]it?[r]' complains Pieter, but when you tug open the drawstring, you see the sunlight gleam of gold.[paragraph break]'When you have secured your position, please remember us...' says one brother.[paragraph break]'...not merely as your creditors...'[paragraph break]'...but as your [i]friends[r].'[paragraph break]And both brothers smile in unison, revealing two sets of wide, white teeth.";
 		persuasion fails;
 	end if;
 
-The bag of coins is a closed, openable container. The Chorus Brothers carry the bag of coins. The description of the bag of coins is "The sack is about the size of your fist. It's very heavy. Even a little bit of gold goes a long way in Toresal, and there's more than just a little bit of gold in here. The drawstring is [if closed]closed[otherwise]open[end if]." Understand "purse", "coin", "gold", "sack", "money" as the bag of coins. The printed name of the bag of coins is "coin purse".
+The purse is a closed, openable container. The Chorus Brothers carry the purse. The description of the purse is "The sack is about the size of your fist. It's very heavy. Even a little bit of gold goes a long way in Toresal, and there's more than just a little bit of gold in here. The drawstring is [if closed]closed[otherwise]open[end if]." The printed name of the purse is "coin purse".
 
-Understand "loan" as the bag of coins when the Chorus Brothers hold the bag of coins. 
+Understand "bag", "sack" as the purse. Understand "coins", "gold", "money", "of" as the purse when the purse is closed.
 
-The drawstring is part of the bag of coins. Understand "drawstrings", "string", "strings" as the drawstring. Instead of examining the drawstring, try examining the bag of coins.
+Understand "loan" as the purse when the Chorus Brothers hold the purse. 
 
-Instead of pulling the drawstring when the bag of coins is open, try closing the bag of coins.
-Instead of pulling the drawstring when the bag of coins is closed, try opening the bag of coins.
+The drawstring is part of the purse. Understand "drawstrings", "string", "strings" as the drawstring. Instead of examining the drawstring, try examining the purse.
 
-After opening or closing the bag of coins:
+Instead of pulling the drawstring when the purse is open, try closing the purse.
+Instead of pulling the drawstring when the purse is closed, try opening the purse.
+
+After opening or closing the purse:
 	say "You pull the drawstring [if open]open[otherwise]closed[end if].";
 
-Instead of giving the bag of coins to someone: say "Very generous of you,  but you're going to need the money for yourself.";
+Instead of giving the purse to someone: say "Very generous of you,  but you're going to need the money for yourself.";
 
-Instead of dropping the bag of coins:
+Instead of dropping the purse:
 	say "It wouldn't be very wise to leave a bag full of gold coins sitting unguarded. Better keep them on your person for now.";
 
-Instead of putting the bag of coins on something:
-	try dropping the bag of coins;
+Instead of putting the purse on something:
+	try dropping the purse;
 
-Instead of inserting the bag of coins into something:
-	try dropping the bag of coins;
+Instead of inserting the purse into something:
+	try dropping the purse;
 
-Inside the bag of coins are some gold coins. The description of the gold coins is "Each coin has the Great Seal of the Kingdom of Miradania on one side; the face of some old, dead king that you've never heard of on the other. You've never seen real gold before, and nothing you've ever seen is quite like it. The coins seem to shine with an inner light.";
+Inside the purse are some gold coins. The description of the gold coins is "Each coin has the Great Seal of the Kingdom of Miradania on one side; the face of some old, dead king that you've never heard of on the other. You've never seen real gold before, and nothing you've ever seen is quite like it. The coins seem to shine with an inner light.";
+
+Understand "money", "great", "seal", "seal of", "of miradania", "kingdom", "kingdom of", "coin" as the gold coins.
 
 Instead of taking the gold coins:
 	say "The bag is the safest place for them, for now. There's no need to take them out unless you're planning to purchase something.";
@@ -5285,8 +5337,6 @@ To set the scene for night:
 	change the circadia to nighttime;
 	now Market Square is mapped west of Commerce Street;
 	now Commerce Street is mapped east of Market Square;
-	now The Alley is mapped northwest of Market Square;
-	now Market Square is mapped southeast of The Alley;
 	move the bottom of the center post to Market Square;
 	move Bobby to Market Square; [for first journey to Lord's Keep]
 
@@ -5294,8 +5344,6 @@ To set the scene for day:
 	change the circadia to daylight;
 	now Grubbers Market Eastern Junction is mapped west of Commerce Street;
 	now Commerce Street is mapped east of Grubbers Market Eastern Junction;
-	now The Alley is mapped northwest of Grubbers Market Northwest Junction;
-	now Grubbers Market Northwest Junction is mapped southeast of The Alley;
 	move the bottom of the center post to Grubbers Market Center Post;
 	now Lords Road is mapped north of Grubbers Market Northwest Junction;
 
@@ -5409,7 +5457,7 @@ Check washing (this is the block washing other people rule):
 		say "I don't suppose [the noun] would care for that." instead.
 
 Check washing (this is the block washing rule):
-	say "That looks clean enough as it is." instead.
+	say "Washing is your least favorite chore. Now would be a great time to skip it." instead.
 
 Section 3 - Kitchen sink play
 
@@ -5809,11 +5857,13 @@ Part 1 - Grubber's Market, night
 
 Chapter 1 - Description
 
-Market Square is a room. "At night, the normally crowded marketplace is an empty maze of shadows, abandoned stalls and rolled-up canvas. The Lord's Road lies north, your little alley lies northwest, and Commerce Street lies back east." The printed name is "Grubber's Market"
+Market Square is a room. "At night, the normally crowded marketplace is an empty maze of shadows, abandoned stalls and rolled-up canvas. The Lord's Road lies north, and Commerce Street lies back east." The printed name is "Grubber's Market"
 
 Understand "Grubbers", "empty", "maze", "shadows", "shadow" as Market Square
 
 The distant description of Market Square is "Grubber's Market, dark and empty, lies to the [best route from location to Market Square]."
+
+Some abandoned stalls are scenery, in the Market Square. The description is "It's a little bit eerie, seeing the whole market empty and packed away like this." Instead of entering the abandoned stalls, say "The stalls are all closed for the night." Understand "closed", "empty", "stall", "canvas", "rolled up", "rolled", "shadow", "shadows" as the abandoned stalls.
 
 Chapter 2 - Restrained exits
 
@@ -5832,7 +5882,7 @@ Before going east from Market Square during Bobby's Adventure:
 Chapter 3 - Events on exit
 
 After going north from Market Square when BO26 is unfired:
-	say "You're too filled with nervous excitement to chit-chat; you want to get on with the adventure! With a grin, you walk right past Bobby without answering towards the gate out of town.[paragraph break]Bobby cocks an eyebrow at you 'Well, okay then,' he mutters, and hurries to catch up.";
+	say "You're too filled with nervous excitement to chit-chat; you want to get on with the adventure! With a grin, you walk right past Bobby without answering towards the gate out of town.[paragraph break]Bobby cocks an eyebrow at you 'Well, okay then,' he mutters, and hurries to catch up. ";
 	now BO26 is fired;
 	continue the action;
 
@@ -6142,6 +6192,14 @@ Some game trails are scenery, in the Woods. The description is "The trails are l
 Instead of searching or examining the game trails in the presence of Pieter when the split sapling is off-stage:
 	try searching the underbrush.
 
+Understand "follow [game trails]" as following.
+
+Instead of following the game trails:
+	if the split sapling is on-stage:
+		try going the way of the split sapling;
+	otherwise:
+		try going a random orthogonal direction;
+
 Section 3 - Scenery (Underbrush)
 
 The underbrush is scenery, in the Woods. The description is "The underbrush is thick and tangled." Understand "thick", "tangled", "under", "brush", "bush", "bushes", "undergrowth" as the underbrush.
@@ -6218,6 +6276,9 @@ The statue is part of the fountain. The description is "The statue's features ar
 Understand "Brigid", "classic", "classical", "cracked", "stone", "cracks", "crack", "style", "old", "sculpture", "feature", "features", "statues", "worn", "obscure", "obscured", "moss" as the statue.
 
 Understand "plinth", "base" as the statue when the secret entrance is not part of the statue.
+
+Instead of pushing, pulling, turning, or shaking the statue:
+	say "The statue does not budge.";
 
 Some dried leaves are scenery, in the fountain. Understand "dry", "leaf", "detritus", "droppings", "bird droppings", "bird dropping", "dropping" as the dried leaves.
 
@@ -8797,7 +8858,6 @@ When Leaving Maiden House ends:
 	update the character list;
 
 After going through the privy window during Leaving Maiden House:
-	say "[command clarification break]";
 	output chapter heading "Chapter 8 - Red Gate Estate";
 	say "You pull yourself through the window and once again clamber up into the alley. You can hear a commotion from the direction of Lord's Market; it looks as though the Baron's mercenaries are still out searching the streets for you, but they'll double back and put a watch on Maiden House soon enough.[paragraph break]There is a scrabbling, grunting sound behind you, and you turn to see Shannon trying to push her way through the window. Confused but not wanting to just stand there and watch her struggle, you give her a hand up.[paragraph break]'Fiona thought I should maybe come with you,' she says, after she's finished smoothing her skirts and catching her breath. 'In case you needed any help.'";
 	continue the action; [TESTME ]
@@ -8847,7 +8907,7 @@ When Shannon's Company ends:
 	say "'Well,' says Shannon, 'I've seen you safely to Dame Sandler. I'd better get back to Maiden House; the Baron's men might get suspicious if I'm gone too long. Take care, Jacqueline.' She hugs you tightly, sniffling a little, and then hurries off to the south.";
 	update the character list;
 
- Chapter 6 - Red Gate Estate, as a region
+Chapter 6 - Red Gate Estate, as a region
 
 The Red Gate Estate region is a region.
 The Foyer, the Dining Room, the Red Gate Kitchen, the Red Gate Estate Second Floor Landing, the Office, the Red Gate Estate Third Floor Landing, the Red Gate Master Bedroom and the Bathroom are in the Red Gate Estate region.
@@ -8867,6 +8927,8 @@ Chapter 1 - Description
 The Foyer [of Red Gate Estate] is north of Red Gate Estate. "The entrance hall is large, high-ceilinged, and empty. Your footsteps echo on the marble floor. A doorway leads north to further rooms, and the street lies south." The printed name is "Entrance Hall".
 
 Understand "entrance", "hall", "large", "high", "ceiling", "ceilinged", "empty", "echoing", "marble", "shadow", "shadows", "shadowed", "interior" as the Foyer.
+
+Understand "marble" as the backdrop-floor when the location is the Entrance Hall.
 
 The distant description of the Foyer is "The foyer lies [best route from location to Foyer] from here."
 
@@ -8896,6 +8958,9 @@ Every turn when the location is the Foyer for the first time:
 Instead of going south from the Foyer when the player is still dirty:
 	say "'Wait,' says Shannon. 'Are you sure you've found everything you were meant to find here?'";
 
+Instead of going to the Foyer when the Bodyguard Scene is happening:
+	say "Pieter puts his hand on your arm. 'I know you are anxious to visit your father's house again,' he says quietly, 'but we really should get to the ball as soon as possible.'"
+
 Part 3 - Dining Room
 
 Chapter 1 - Description
@@ -8909,6 +8974,12 @@ The distant description of the Dining Room is "A dining room lies to the [best r
 Some old furniture is a backdrop. The description is "The furniture shows signs of neglect, but it is finely crafted and obviously very expensive." The old furniture is in Foyer, Dining Room, Red Gate Kitchen, Office, Red Gate Master Bedroom. Understand "chairs", "chair", "table", "tables", "fine", "finely", "crafted", "expensive", "neglected", "dusty", "enshrouded", "shrouded", "sheet enshrouded" as the old furniture.
 
 Understand "dining", "long", "rows", "row", "rows of", "row of" as the old furniture when the location is the Dining Room.
+
+Instead of sitting on the old furniture:
+	say "You'd have to remove the dustsheets first, and there will be time for that later.";
+
+Instead of standing on the old furniture:
+	say "Standing on the old furniture is probably not a good idea.";
 
 Some dustsheets are a backdrop. The description is "The sheets are fine linen, smudged gray with dust." Understand "shroud", "shrouds", "white", "sheets", "sheet", "linen", "linens", "dusty" as the dustsheets. The printed name of the dustsheets is "sheets". The dustsheets are in Foyer, Dining Room, Red Gate Kitchen, Office, Red Gate Master Bedroom.
 
@@ -9050,15 +9121,20 @@ The bathtub is scenery in the bathroom. The description is "The basin is carved 
 
 Chapter 3 - Faucets
 
-Some faucets are fixed in place, in the bathroom. "A pair of strange-looking devices protrudes from the south wall, hanging over the lip of a huge stone basin." Understand "strange", "strange looking", "device", "devices", "wheel", "wheels", "faucet", "brass", "ivory", "fitting", "fittings", "spout", "pair", "plumbing", "pipe", "pipes", "protruding", "spoke", "spokes", "spoked", "curved", "hand sized", "running water", "water", "curving", "gold", "golden", "cold", "hot" as the faucets. Understand "pair of" as the faucets.
+Some faucets are fixed in place, in the bathroom. "A pair of strange-looking devices protrudes from the south wall, hanging over the lip of a huge stone basin." Understand "strange", "strange looking", "device", "devices", "wheel", "wheels", "faucet", "brass", "ivory", "fitting", "fittings", "spout", "pair", "plumbing", "pipe", "pipes", "protruding", "spoke", "spokes", "spoked", "curved", "hand sized", "running water", "water", "curving", "gold", "golden", "cold", "hot", "tap", "taps", "pair of", "carved" as the faucets.
 
 Instead of examining the faucets for the first time, say "The device is made of brass and ivory and protrudes from carved fittings in the wall, at about waist height. It consists of a curved spout flanked by two hand-sized, spoked wheels...[paragraph break]Suddenly you figure it out — these are faucets! Running-water pipes, or 'plumbing' as some call them, are a very recent invention, incredibly rare in Toresal. You've never actually seen faucets up close before.[paragraph break]'Oh, a bath with water-pipes! What a luxury,' exclaims Shannon. 'I've never had a bath that I didn't have to fill myself from a kettle. Back and forth and back and forth — it's either that or take it cold. Kind of takes the relaxation out of it, if you ask me,' she sighs ruefully. 'The Lord Duke was a man of taste and distinction on top of everything else. True nobility, he was.'[paragraph break]And it occurs to you, as you look at your distorted reflection in the golden, curving pipes, you've never had a bath with running water, either. In fact, you can't remember the last time you had [i]any[r] sort of bath, not even the quick spit-baths in a wooden tub full of tepid, cloudy water that are the norm in Maiden House. You've spent your life coated with the grime of the streets more often than not, reeking of sweat and alleyways, hardly noticing it because the smell is around you constantly, and around everyone you know.[paragraph break]But, you realize for the first time, [i]that's not really who you are[r]. You are the Duke's daughter, a child of nobility. By all rights, you should have been sleeping on feather mattresses, smelling of rosewater. This luxury is your heritage… and you've never known a single day of it in your life."
 
 The description of the faucets is "The faucets are made of brass and ivory and protrude from carved fittings in the wall, at about waist height. The curved spout is flanked by two wheels: one for cold water, the other (though you can scarcely imagine it) for hot."
 
-Instead of switching on the faucets, try turning the faucets instead.
+Instead of switching on the faucets:
+	try turning the faucets instead.
+
 Instead of turning the faucets:
 	say "A groaning sound reverberates behind the walls, and then a spout of clean, clear water gushes out of the spout and splashes into the tub."
+
+Instead of drinking the faucets:
+	say "You turn the faucet on and cup your hand under the water to drink. It tastes cold and metallic."
 
 Chapter 4 - Taking a bath
 
@@ -9102,7 +9178,16 @@ Instead of entering the bathtub [subsequent times]:
 
 Chapter 5 - Old clothes for new
 
-Your old clothes are a thing. The description is "Your old clothes are threadbare and crusted with filth." Instead of taking or wearing the old clothes, say "Now that you're finally clean, you don't think you could bear to put those filthy rags on again." Understand "filthy", "rags", "threadbare", "filth", "crusty", "crusted", "encrusted" as the old clothes.
+Your old clothes are a thing, plural-named. The description is "Your old clothes are threadbare and crusted with filth." Understand "filthy", "rags", "threadbare", "filth", "crusty", "crusted", "encrusted" as the old clothes.
+
+Instead of doing something other than wearing or examining the old clothes:
+	say "Now that you're finally clean, you don't want anything to do with those filthy rags. You don't even want to touch them.";
+
+Instead of wearing the old clothes:
+	say "Now that you're finally clean, you don't think you could bear to put those filthy rags on again.";
+
+Instead of washing the old clothes:
+	say "If you washed those clothes now, they'd probably just fall apart.";
 
 The daydress is a wearable thing. The description is "It's nothing fancy — a simple skirt and blouse of finespun linen, with an embroidered bodice. The sort of day dress you might see a somewhat well-to-do lady wearing to the market. It is finer than anything you've ever worn in your life." The printed name is "dress". Understand "simple", "finespun", "embroidered", "embroidery", "fine", "skirt", "blouse", "linen", "bodice", "day dress" as the daydress. Understand "dress" as the daydress when the location does not enclose the clothes.
 
@@ -9132,6 +9217,8 @@ Chapter 1 - Actions and Reactions
 
 After going to the jewelers shop when the player is clean and DS31 is unfired:
 	output chapter heading "Chapter 9 - Preparations";
+	say "[command clarification break]";
+	try looking;
 	update the character list;
 	start conversation with Dame Sandler on DS31;
 
@@ -9180,7 +9267,7 @@ DS39 is a quip. The menu text is "'That's ridiculous.'". The display text is "Yo
 DS40 is a transitional quip. The menu text is "'Is that the only reason Fossville hates me?'". The display text is "'So that's it? That's why Fossville hates me and wants to lock me away?' you ask. 'Because he thinks I'll get the throne instead of him?'[paragraph break]Dame Sandler looks down at her hands for a long time. 'There may be one other reason,' she says. 'Many suspect this, but few will speak of it.' When she looks up at you again, you are shocked to see tears in her eyes. 'Fossville may have murdered your father.'"
 The following quip is DS41.
 
-DS41 is a quip. The display text is "Your stomach feels as though you are falling down a deep hole, but on the outside, you are still and calm. You think you should be surprised, but somehow, you know you had been expecting this all along.[paragraph break]'How did he do it?' you whisper.[paragraph break]'Poison seems most obvious,' Dame Sandler says, regaining a measure of control. 'But no one really knows. There's never been any proof.'[paragraph break]You nod. You feel anger, but it's a smoldering, far away anger. It is something you will have to deal with later. Right now, there are too many other things you need to know."
+DS41 is a quip. The display text is "Your stomach feels as though you are falling down a deep hole, but on the outside, you are still and calm. You think you should be surprised, but somehow, you know you had been expecting this all along.[paragraph break]'How did he do it?' you whisper.[paragraph break]'Poison seems most obvious,' Dame Sandler says, regaining a measure of control. 'But no one really knows. There's never been any proof.'[paragraph break]You nod. You feel anger, but it's a smoldering, far-away anger. It is something you will have to deal with later. Right now, there are too many other things you need to know."
 
 DS42 is a quip. The menu text is "'How would I take the throne?'". The display text is "'Even if I do have a... a credible claim to the throne,' you ask, 'what would I do with it? How am I supposed to take the Ascension? I can't just walk around Grubber's Market shouting, [i]I'm the Duke's daughter, vote for me![r]' You think about it for a moment, then add, 'Can I?'[paragraph break]Dame Sandler smiles. 'Well, the other thing you must realize is that there are also a number of people who are interested in seeing you succeed, and who can help you press your claim. Some of them may believe that you are the better candidate; more of them simply want to spite Fossville; all of them will expect you to be appropriately grateful for their aid should you actually succeed. It is a very valuable commodity, the gratitude of a queen.'"
 
@@ -9275,7 +9362,6 @@ After firing DS49B:
 	now the display case is locked;
 	now the display case contains the valuable jewelry;
 
-
 Chapter 4 - Some Jewelry
 
 Dress jewelry is a kind of thing. Dress jewelry is usually wearable.
@@ -9319,16 +9405,17 @@ After going to somewhere during the bodyguard scene (this is the Pieter followin
 
 The Pieter following rule is listed first in the after rulebook. [It has to run before other rules which may stop the action -- rules such as the greeting when entering the clothier's shop.]
 
-Every turn when the location is not the jewelers shop and a random chance of 1 in 4 succeeds during the Bodyguard scene:
-	if Pieter is nearby begin;
-		say "[one of]Pieter stands close to you protectively.[or]Pieter looks around warily.[or]Pieter fingers his sword hilt[if a random chance of 1 in 2 succeeds], as though expecting an ambush from any quarter[end if].[or]'Don't worry,' Pieter mutters, as much to himself as to you[if a random chance of 1 in 2 succeeds]. 'I won't let anything happen to you.'[otherwise].[end if] [or]Pieter shifts his feet impatiently. 'We need to be on our way,' he mutters. 'The ball starts soon.'[or]'Are you sure you know the way?' Pieter mutters.[at random]";
-	end if;
+Every turn when a random chance of 1 in 4 succeeds during Journey to the Ball:
+	if Pieter is nearby and the location is not Commerce Street:
+		add ATMOS_Pieter to the dramatic possibilities, if absent;
+
+ATMOS_Pieter is a dramatic event. The display text is "[one of]Pieter stands close to you protectively.[or]Pieter looks around warily.[or]Pieter fingers his sword hilt[if a random chance of 1 in 2 succeeds], as though expecting an ambush from any quarter[end if].[or]'Don't worry,' Pieter mutters, as much to himself as to you[if a random chance of 1 in 2 succeeds]. 'I won't let anything happen to you.'[otherwise].[end if] [or]Pieter shifts his feet impatiently. 'We need to be on our way,' he mutters. 'The ball starts soon.'[or]'Are you sure you know the way?' Pieter mutters.[at random]";
 
 Instead of giving the secret letter to Pieter:
 	try showing the secret letter to Pieter;
 
 Instead of showing the secret letter to Pieter:
-	say "'Don't lose that,' Pieter says.[if the player does not have the bag of coins] 'You'll need that to prove your credentials to the Chorus Brothers.'[end if]";
+	say "'Don't lose that,' Pieter says.[if the player does not have the purse] 'You'll need that to prove your credentials to the Chorus Brothers.'[end if]";
 
 Chapter 2 - Constrained exits when with Pieter
 
@@ -9341,7 +9428,7 @@ Instead of going west from Lords Market when the player does not have a gown dur
 Instead of going to the jewelers shop during the Bodyguard scene:
 	say "'There's no need to go back and bother Dame Sandler,' Pieter says. 'We've more important things to do.'";
 
-Instead of going to the moneylenders shop when the player has the bag of coins during the Bodyguard scene:
+Instead of going to the moneylenders shop when the player has the purse during the Bodyguard scene:
 	say "'We've got what we need from those moneylenders,' Pieter said, 'I'd just as soon stay out of their clutches for now.'";
 
 Instead of going to the clothiers shop when the player has the ball gown during the Bodyguard scene:
@@ -9364,7 +9451,7 @@ PI5 is a quip. The menu text is "'What do you think of Baron Fossville?'". The d
 
 PI6 is a quip. The menu text is "'What did you think of my father?'". The display text is "[first time]'I guess you remember when my father ruled the city,' you remark. 'What did you think of him, Pieter?'[paragraph break]'I thought he was a just ruler,' Pieter says. 'I'd have had him for king gladly, if he were still alive. You could do worse for a father, Jacqueline. And I suppose he could have done worse for a daughter,' he adds with a smile.[subsequently][rp] 'he was a good man, and I think he'd be proud of you.'[only]"
 
-PI7 is a quip. The menu text is "'What do you know about fancy balls?'". The display text is "[first time]'Well, Pieter, you ever been to a fancy dress ball, before?' you ask. 'What can we expect?'[paragraph break]Pieter spreads his hands in a shrug. 'I'm afraid I won't be much help, Jacqueline — I'm not very comfortable at parties. Dame Sandler said you're just supposed to socialize, let people know who you are. 'Make yourself visible,' she said. Whatever that means.'[subsequently][rp] 'I have no idea.'[only]"
+PI7 is a quip. The menu text is "'What do you know about fancy balls?'". The display text is "[first time]'Well, Pieter, you ever been to a fancy dress ball, before?' you ask. 'What can we expect?'[paragraph break]Pieter spreads his hands in a shrug. 'I'm afraid I won't be much help, Jacqueline — I'm not very comfortable at parties. Dame Sandler said you're just supposed to socialize, let people know who you are. [']Make yourself visible,['] she said. Whatever that means.'[subsequently][rp] 'I have no idea.'[only]"
 
 PI8 is a quip. The menu text is "'What do you know about the Chorus Brothers?'". The display text is "[first time]'So what do you know about these moneylenders, the Chorus Brothers?' you ask.[paragraph break]'Those two hear nothing but the clink of coin,' grumbles Pieter. 'They'll lend you money quick enough as long as they think they'll get some return out of it. I'd rather not do business with them at all, to be honest, but Dame Sandler says you need their backing.'[subsequently][rp] 'as long as you show them your credentials, you'll be fine.'[only]"
 
@@ -9408,7 +9495,7 @@ After populating a quip (called q) that is clustered with PI1:
 		remove PI2 from the current conversation, if present;
 	if PI3 is fired,
 		remove PI3 from the current conversation, if present;
-	if the player carries the bag of coins,
+	if the player carries the purse,
 		remove PI8 from the current conversation, if present;
 	if the player carries the ball gown,
 		remove PI9 from the current conversation, if present;
@@ -9474,6 +9561,7 @@ Part 3 - Announcement of the Ball
 Journey to the Ball is a scene. Journey to the Ball begins when the player has the ball gown and the player has dress jewelry and the player has the plain dagger and the location is Commerce Street. Journey to the Ball ends when the location is the Ballroom.
 
 When Journey to the Ball begins:
+	ratchet the current tension to important;
 	say "Evening is falling over the city, and the streets are clearing of people.[paragraph break]'The ball at Lord's Keep will be starting soon,' mutters Pieter. 'We'd better hurry!'";
 	set the scene for night;
 	remove Bobby from play; [Pesky Bobby! -- setting the scene for night brings him back to the market place. Never mind.]
@@ -9486,8 +9574,6 @@ The distant description of the Southern Gate is "Far to the [best route from loc
 
 Instead of going to Southern Gate during Bobby's Adventure:
 	say "That way would just take you to Lord's Keep, which is guarded day and night."
-
-
 
 Chapter 1 - The Gatehouse
 
@@ -9572,13 +9658,13 @@ Chapter 2 - Scenery
 
 Section 1 - Scenery (Candles)
 
-Some decorative candles are scenery, in the Ballroom. The printed name is "candles". The description is "The candles are literally everywhere; their light suffuses the entire ballroom." Understand "candle", "light", "glow", "golden", "gold", "flames", "flame", "flickering", "stars", "star", "opulent" as the candles.
+Some decorative candles are scenery, in the Ballroom. The printed name is "candles". The description is "The candles are literally everywhere; their light suffuses the entire ballroom." Understand "candle", "light", "glow", "golden", "gold", "flames", "flame", "flickering", "stars", "star", "opulent", "multitude", "multitude of flames" as the candles.
 
 Instead of doing something other than examining to the candles, say "Everything here is so opulent, you're kind of afraid to touch anything."
 
 Section 2 - Scenery (Chandelier)
 
-Some chandeliers are scenery, in the Ballroom. The description is "The chandeliers are enormous sculptures of dangling crystal, glittering with candlelight." Understand "chandelier", "crystal", "enormous", "sculptures", "dangling", "crystals", "glittering", "opulence" as the chandeliers.
+Some chandeliers are scenery, in the Ballroom. The description is "The chandeliers are enormous sculptures of dangling crystal, glittering with candlelight." Understand "chandelier", "crystal", "enormous", "sculptures", "dangling", "crystals", "glittering", "opulence", "multitude", "massive" as the chandeliers.
 
 Instead of doing something other than examining to the chandeliers, say "The chandeliers are hanging high above your reach."
 
@@ -9617,6 +9703,23 @@ Before doing anything when (the noun is Pieter or the second noun is Pieter) and
 	remove Pieter from play;
 	update the character list;
 	say "You can't see Pieter anywhere; he must have gotten separated from you in the press of guests. For the time being at least, you're on your own." instead;
+
+Section 7 - Scenery (Party food)
+
+Some waiters are a person, in the Ballroom. The waiters are scenery. The printed name of the waiters is "servants". The description of the waiters is "The servants weave deftly through the crowd, intent on making sure that no guest goes without a drink or a canape for more than ten seconds." Understand "servant", "servants", "waiter", "dozens of" as the waiters.
+
+Instead of talking to the waiters, say "The servants seem to be doing their best to ignore you."
+Instead of showing or giving something to the waiters, say "The servants seem to be doing their best to ignore you." 
+
+Instead of kissing or attacking the guests, say "You should probably avoid making a scene."
+Instead of throwing something at the guests, say "You should probably avoid making a scene."
+
+Some platters are a supporter, carried by the waiters. The description of the platters is "The silver platters are polished to a mirror shine, piled high with food and wine." Understand "platter", "silver", "polished", "shine", "mirror", "shiny" as the platters.
+
+Some party food is on the platters. The printed name of the party food is "food and drink". The description of the party food is "Tiny sandwiches, delicate pastries (still fresh from Germaise's oven, you imagine), and neatly ordered ranks of wine glasses are balanced on the platters being carried around by dozens of servants." Understand "drink", "drinks", "wine", "glasses", "glass", "tiny", "sandwich", "sandwiches", "delicate", "pastry", "pastries" as the party food.
+
+Instead of smelling the party food, say "It all smells delicious."
+Instead of doing something other than examining or smelling the party food, say "For some reason, you can't get any of the servants to stop long enough to sample anything on the platters. It's actually very annoying."
 
 Part 6 - Social airs
 
@@ -9783,21 +9886,21 @@ The response of JE10 is { JE9 }.
 
 The response of JE11 is {  }.
 
-The response of JE12 is { JE13, JE14, JE15, JE16, JE17, JE18, JE19 }.
+The response of JE12 is { JE13, JE14, JE15, JE16, JE17, JE18, JE19, JE20 }.
 
-The response of JE13 is { JE13, JE14, JE15, JE16, JE17, JE18, JE19 }.
+The response of JE13 is { JE13, JE14, JE15, JE16, JE17, JE18, JE19, JE20 }.
 
-The response of JE14 is { JE13, JE14, JE15, JE16, JE17, JE18, JE19 }.
+The response of JE14 is { JE13, JE14, JE15, JE16, JE17, JE18, JE19, JE20 }.
 
-The response of JE15 is { JE13, JE14, JE15, JE16, JE17, JE18, JE19 }.
+The response of JE15 is { JE13, JE14, JE15, JE16, JE17, JE18, JE19, JE20 }.
 
-The response of JE16 is { JE13, JE14, JE15, JE16, JE17, JE18, JE19 }.
+The response of JE16 is { JE13, JE14, JE15, JE16, JE17, JE18, JE19, JE20 }.
 
-The response of JE17 is { JE13, JE14, JE15, JE16, JE17, JE18, JE19 }.
+The response of JE17 is { JE13, JE14, JE15, JE16, JE17, JE18, JE19, JE20 }.
 
-The response of JE18 is { JE13, JE14, JE15, JE16, JE17, JE18, JE19 }.
+The response of JE18 is { JE13, JE14, JE15, JE16, JE17, JE18, JE19, JE20 }.
 
-The response of JE19 is { JE13, JE14, JE15, JE16, JE17, JE18, JE19 }.
+The response of JE19 is { JE13, JE14, JE15, JE16, JE17, JE18, JE19, JE20 }.
 
 The response of JE20 is {  }.
 
@@ -9866,11 +9969,11 @@ PR10 is a transitional quip. The menu text is "'I know, I know!'". The display t
 
 PR11 is a transitional quip. The menu text is "'I'm sorry I've made you so uncomfortable.'". The display text is "'I'm sorry I've made your Highness so uncomfortable,' you say, letting just the slightest hint of sarcasm into your voice. 'Hopefully, after I've won the Ascension, our social engagements won't be quite as awkward.'" The following quip is PR15.
 
-PR12 is a transitional quip. The menu text is "'What can you tell me about the Duke of Inhyron?'" The following quip is PR15.
+PR12 is a transitional quip. The menu text is "'What can you tell me about the Duke of Inhyron?'". The display text is "'What can you tell me about—'". The following quip is PR15.
 
-PR13 is a transitional quip. The menu text is "'What can you tell me about the Baron of Amhyron?'". The following quip is PR15.
+PR13 is a transitional quip. The menu text is "'What can you tell me about the Baron of Amhyron?'". The display text is "'What can you tell me about—'". The following quip is PR15.
 
-PR14 is a transitional quip. The menu text is "'What can you tell me about the Earl of Bresa?'". The following quip is PR15.
+PR14 is a transitional quip. The menu text is "'What can you tell me about the Earl of Bresa?'". The display text is "'What can you tell me about—'". The following quip is PR15.
 
 PR15 is a quip. The display text is "'Um, look,' interrupts the Princess, 'I understand you're having a lot of fun pretending to be someone important? But I'm really not interested in listening to some dressed-up alley rat chatter at me all night. So if you'll excuse me...' And then she shoulders past you and disappears into the crowd."
 
@@ -9928,7 +10031,7 @@ Before talking to the Duchess of Inhyron when the current conversationalist is n
 
 IN1 is a quip. The display text is "Duke Inhyron inclines his head as you approach. 'No need for introductions,' he says sternly. 'I am aware of who you are, and I see no reason to incriminate either of us by announcing it.' He looks you up and down with only a slight squint of disapproval. 'Your father was a good ruler and a good man,' he says, 'and though I do not think you have what it takes to fill his shoes, he was a friend, and you are his kin. So there we are. What would you ask of me, girl?'"
 
-IN2 is a quip. The menu text is "'You don't like me very much, do you?'". The display text is "'I get the impression that you don't like me very much,' you say, making an effort to stay polite and unruffled. 'Would you care to tell me why?'[paragraph break]The Duke gives a short, exasperated sigh. 'Very well. I do not feel it is appropriate for you to pursue the Ascension given the... [i]circumstances[r] surrounding your birth. I am not partisan; I have no personal stake in who is chosen to take the throne. However, there are proper, traditional methods for going about it. I would see your father's memory honored properly. If you can convince me that coming out publicly as your his illegitimate heir for political gain would somehow not besmirch his family name, then I might be persuaded to look more favorably on your endeavors.'"
+IN2 is a quip. The menu text is "'You don't like me very much, do you?'". The display text is "'I get the impression that you don't like me very much,' you say, making an effort to stay polite and unruffled. 'Would you care to tell me why?'[paragraph break]The Duke gives a short, exasperated sigh. 'Very well. I do not feel it is appropriate for you to pursue the Ascension given the... [i]circumstances[r] surrounding your birth. I am not partisan; I have no personal stake in who is chosen to take the throne. However, there are proper, traditional methods for going about it. I would see your father's memory honored properly. If you can convince me that coming out publicly as his illegitimate heir for political gain would somehow not besmirch his family name, then I might be persuaded to look more favorably on your endeavors.'"
 
 IN3 is a quip. The menu text is "'You were a friend of my father?'". The display text is "'You were a friend of my father?' you ask. You find it hard to believe that your father would have been friendly with this stuck-up chauvinist.[paragraph break]'I counted your father as a friend and an equal,' says the Duke. 'It pained me to learn of his moral lapse, but none of us are perfect, I suppose. What's done is done, and I do not judge him.'"
 
@@ -9947,14 +10050,16 @@ IN8 is a quip. The menu text is "'What do you think about the Princess?'". The d
 The repeat text is "[rp] 'she is a most respectable young lady.'"
 
 IN9 is a quip. The menu text is "'What can you tell me about Baron Amhyron?'". The display text is "'What can you tell me about Baron Amhyron?' you ask.[paragraph break]'My grandfather granted the Baron's grandfather his title and lands more than half a century ago,' the Duke informs you. 'Since then, the Amhyrons have fulfilled their vassal obligations more than adequately. I sometimes fear that the Baron is too lenient with his subjects, especially in the area of moral guidance, but that is his own concern. So long as the King's Law is enforced and taxes are levied, I am content to merely set an example and allow others to emulate it as they see fit.'"
+The repeat text is "'[rp] 'Baron Amhyron is an adequate ruler, no more.'"
 
 IN10 is a quip. The menu text is "'Why don't you let Baron Amhyron follow his own interests?'". The display text is "'According to Jacobs, you won't let the Baron sneeze without your say-so,' you remark. 'Is it really necessary to keep him so beholden to you? Why don't you let him follow his own interests?'[paragraph break]The Duke stiffens, clearly furious at the idea of someone like Jacobs (or even, you realize, someone like you) gossiping about him. 'The traditions of vassalage are ancient and intricately bound to concepts of honor and moral duty, so it does not surprise me that Jacobs has such a poor understanding of them,' he snaps. 'But fundamental to this tradition is the idea of loyalty. Without loyalty, we are all weakened. If you cannot grasp that, then I have little optimism for your chances for the throne.'"
 
 IN11 is a quip. The menu text is "'What do you know about the Earl of Bresa?'". The display text is "'What do you know about the Earl of Bresa?' you ask.[paragraph break]'The Earl of Bresa is a sterling example of what happens when material wealth is divorced from proper family lineage,' sniffs the Duke. 'People of his class were never meant to wield power, and have no idea how to properly do so.'"
+The repeat text is "[rp] 'the Earl of Bresa is a buffoon and unworthy of his title.'"
 
 IN12 is a quip. The menu text is "'You say you have a son?'". The display text is "'Do I understand correctly Your Grace, that you have a young son?' you ask.[paragraph break]The Duke puffs himself up. 'That's right. He'll be ten years old come this autumn, and already he is a strapping lad, a credit to his bloodline.'"
 
-IN13 is a quip. The menu text is "'I might be willing to marry him.'". The display text is "Choosing your words carefully, you say, 'Since bloodlines are so important to you, I'm sure you're aware of the advantages of marrying into a Royal one. If I win the Ascension, I could make that happen for you.'[paragraph break]The Duke, for once, looks speechless.[paragraph break]You clear your throat and hurry on. 'Think about it, Your Grace. The Princess strikes me as someone who would be very particular about who she married, but I won't have the luxury of being picky. Of course, I am illegitimate... but I'd still be the Queen. And that's what really matters, right?'[paragraph break]The Duke stares at you for a long time, then gives a short, curt bow. 'I will remember that,' he says, then turns stiffly and strides away. His wife scurries after him.[paragraph break]You take a deep breath and try to swallow the nasty taste in your mouth. You've just promised to marry the nine-year-old son of a conceited, condescending bigot. But that might just make the difference when it's time for the Duke to decide whom he's going to support for the Ascension.[paragraph break]You have a feeling that Dame Sandler would be pleased. You're not exactly sure that makes you happy."
+IN13 is a quip. The menu text is "'I might be willing to marry him.'". The display text is "Choosing your words carefully, you say, 'Since bloodlines are so important to you, I'm sure you're aware of the advantages of marrying into a Royal one. If I win the Ascension, I could make that happen for you.'[paragraph break]The Duke, for once, looks speechless.[paragraph break]You clear your throat and hurry on. 'Think about it, Your Grace. The Princess strikes me as someone who would be very particular about whom she married, but I won't have the luxury of being picky. Of course, I am illegitimate... but I'd still be the Queen. And that's what really matters, right?'[paragraph break]The Duke stares at you for a long time, then gives a short, curt bow. 'I will remember that,' he says, then turns stiffly and strides away. His wife scurries after him.[paragraph break]You take a deep breath and try to swallow the nasty taste in your mouth. You've just promised to marry the nine-year-old son of a conceited, condescending bigot. But that might just make the difference when it's time for the Duke to decide whom he's going to support for the Ascension.[paragraph break]You have a feeling that Dame Sandler would be pleased. You're not exactly sure that makes you happy."
 
 IN14 is a quip. The menu text is "'Well, keep him away from me.'". The display text is "You nod. 'Well, if I do become Queen — and I just might, you know — do me a favor and keep him far away from me. In fact, if I have anything to say about it, I'll make sure there's not a respectable family in the kingdom who'll have anything to do with him. It would be worth it to see the look on your face when your son is forced to marry some illegitimate street urchin just to keep your family name going.'[paragraph break]The Duke's face goes purple. 'I will remember this,' he chokes out, then turns on his heel and strides away. His wife scurries after him.[paragraph break]'Except that I'd probably feel too sorry for the street urchin!' you shout after him. Your blood is up and you're breathing hard. You've completely ruined your chances of getting the Duke's support now, of course, but you don’t care — it felt so good to put that conceited, condescending bigot in his place."
 
@@ -9964,25 +10069,25 @@ IN16 is a quip. The menu text is "'Good-bye.'". The display text is "'If you'll 
 
 The response of IN1 is { IN2, IN3, IN4, IN5, IN7, IN8, IN9, IN11, IN12 }.
 
-The response of IN2 is { IN2, IN3, IN6, IN4, IN5, IN7, IN8, IN9, IN10, IN11, IN12 }.
+The response of IN2 is { IN2, IN3, IN6, IN4, IN5, IN7, IN8, IN9, IN10, IN11, IN12, IN16 }.
 
-The response of IN3 is { IN2, IN3, IN6, IN4, IN5, IN7, IN8, IN9, IN10, IN11, IN12 }.
+The response of IN3 is { IN2, IN3, IN6, IN4, IN5, IN7, IN8, IN9, IN10, IN11, IN12, IN16 }.
 
-The response of IN4 is { IN2, IN3, IN6, IN4, IN5, IN7, IN8, IN9, IN10, IN11, IN12 }.
+The response of IN4 is { IN2, IN3, IN6, IN4, IN5, IN7, IN8, IN9, IN10, IN11, IN12, IN16 }.
 
-The response of IN5 is { IN2, IN3, IN6, IN4, IN5, IN7, IN8, IN9, IN10, IN11, IN12 }.
+The response of IN5 is { IN2, IN3, IN6, IN4, IN5, IN7, IN8, IN9, IN10, IN11, IN12, IN16 }.
 
-The response of IN6 is { IN2, IN3, IN6, IN4, IN5, IN7, IN8, IN9, IN10, IN11, IN12 }.
+The response of IN6 is { IN2, IN3, IN6, IN4, IN5, IN7, IN8, IN9, IN10, IN11, IN12, IN16 }.
 
-The response of IN7 is { IN2, IN3, IN6, IN4, IN5, IN7, IN8, IN9, IN10, IN11, IN12 }.
+The response of IN7 is { IN2, IN3, IN6, IN4, IN5, IN7, IN8, IN9, IN10, IN11, IN12, IN16 }.
 
-The response of IN8 is { IN2, IN3, IN6, IN4, IN5, IN7, IN8, IN9, IN10, IN11, IN12 }.
+The response of IN8 is { IN2, IN3, IN6, IN4, IN5, IN7, IN8, IN9, IN10, IN11, IN12, IN16 }.
 
-The response of IN9 is { IN2, IN3, IN6, IN4, IN5, IN7, IN8, IN9, IN10, IN11, IN12 }.
+The response of IN9 is { IN2, IN3, IN6, IN4, IN5, IN7, IN8, IN9, IN10, IN11, IN12, IN16 }.
 
-The response of IN10 is { IN2, IN3, IN6, IN4, IN5, IN7, IN8, IN9, IN10, IN11, IN12 }.
+The response of IN10 is { IN2, IN3, IN6, IN4, IN5, IN7, IN8, IN9, IN10, IN11, IN12, IN16 }.
 
-The response of IN11 is { IN2, IN3, IN6, IN4, IN5, IN7, IN8, IN9, IN10, IN11, IN12 }.
+The response of IN11 is { IN2, IN3, IN6, IN4, IN5, IN7, IN8, IN9, IN10, IN11, IN12, IN16 }.
 
 The response of IN12 is { IN13, IN14 }.
 
@@ -10130,17 +10235,9 @@ The response of AM18 is {  }.
 
 AM3 is clustered with AM4.
 
-After populating a quip (called q) that is clustered with AM3:
-	if AM5 is fired,
-		remove AM5 from the current conversation, if present; 
-	if AM6 is fired,
-		remove AM6 from the current conversation, if present; 
-
 After populating AM6:
 	if AM2 is fired,
 		remove AM2 from the current conversation, if present;
-	if AM5 is fired,
-		remove AM5 from the current conversation, if present;
 	if AM7 is fired,
 		remove AM7 from the current conversation, if present;
 
@@ -10150,10 +10247,6 @@ After populating a quip (called q) that is clustered with AM9:
 	remove q from the current conversation, if present;
 	if AM2 is fired,
 		remove AM2 from the current conversation, if present;
-	if AM5 is fired,
-		remove AM5 from the current conversation, if present;
-	if AM6 is fired,
-		remove AM5 from the current conversation, if present;
 
 After populating a quip (called q) that is clustered with AM9:
 	if AM7 is unfired and AM6 is unfired and AM7 is unfired begin;
@@ -10161,6 +10254,12 @@ After populating a quip (called q) that is clustered with AM9:
 	otherwise if AM7 is fired;
 		remove AM7 from the current conversation, if present;
 	end if;
+
+After populating when the current conversationalist is the Baron of Amhyron:
+	if AM5 is fired:
+		remove AM5 from the current conversation, if present;
+	if AM6 is fired:
+		remove AM6 from the current conversation, if present;
 
 Chapter 6 - Earl of Bresa
 
@@ -10265,13 +10364,13 @@ After talking to someone during Brief Encounter:
 
 A hawk brooch is worn by the Prince of Gravesal. The description is "The brooch is shaped like a hawk, and decorated with bright red garnets." The printed name is "brooch". Understand "garnet", "garnets", "red", "decoration" as the hawk brooch. 
 
-A black cloak is worn by the Prince of Gravesal. The description is "The Prince's cloak and clothes are plain but handsome, and black as coal." The printed name is "cloak". Understand "clothes" as the black cloak.
+A black cloak is worn by the Prince of Gravesal. The description is "The Prince's cloak and clothes are plain but handsome, and black as coal." The printed name is "cloak". Understand "clothes", "coal" as the black cloak.
 
 Section 3 - Conversation
 
 GR1 is a quip. The display text is "'Pardon me,' someone says in a low, strangely accented voice, and a hand touches your elbow. You turn to see a tall, dark-skinned man leaning close to you. 'Please forgive my forwardness,' he murmurs. 'I have been waiting for the right moment to speak to you for some time now, but I fear if I wait much longer, I will never get the chance.'[paragraph break]He nods towards the ballroom entrance — where several of Fossville's mercenaries are standing![paragraph break]'Allow me to introduce myself,' the stranger says, as though nothing at all were amiss. 'I am Prince Gravesal.'"
 
-GR2 is a quip. The menu text is "'Who are you?'". The display text is "Jacobs never mentioned this guy, and you don't remember seeing this man in the ballroom until now. 'Who are you?' you demand.[paragraph break]'Merely an interested observer,' says the Prince with a hint of a smile. 'I have been watching you from afar, and watching the reactions of others to you. I am intrigued.'"
+GR2 is a quip. The menu text is "'Who are you?'". The display text is "Jacobs never mentioned this guy, and you don't remember seeing him in the ballroom until now. 'Who are you?' you demand.[paragraph break]'Merely an interested observer,' says the Prince with a hint of a smile. 'I have been watching you from afar, and watching the reactions of others to you. I am intrigued.'"
 
 GR3 is a quip. The menu text is "'You've been watching me?'". The display text is "'You've been watching me?' you ask. You want to feel offended, but the way he's looking at you makes that difficult. 'Do you mean watching me in a creepy stalker way, or in a secretly working for Fossville way?'[paragraph break]The Prince chuckles. 'Neither, actually. Of course I know who you are and why you're here, but that's not what intrigues me. There's something... special about you. I could see it from the moment I laid eyes on you.'"
 
@@ -10285,7 +10384,7 @@ GR7 is a quip. The menu text is "'What is my fate?'". The display text is "'Okay
 
 The response of GR1 is { GR2, GR3, GR6 }.
 
-The response of GR2 is { GR3, GR4, GR5, GR6 }.
+The response of GR2 is { GR3, GR5, GR6 }.
 
 The response of GR3 is { GR2, GR4, GR5, GR6 }.
 
@@ -10315,6 +10414,9 @@ Chapter 8 - Several Mercenaries
 
 Some several mercenaries are people. The initial appearance is "The mercenaries are working their way around the edge of the ballroom, scanning the crowd." The printed name is "mercenaries". The description is "Rough and ugly, with dirty clothes and mean, scarred faces. They carry serious-looking swords on their hips, and each has a long knife buckled at the small of his back." Understand "mercenary", "soldiers", "soldier", "rough", "ugly", "dirty", "clothes", "mean", "scarred", "scar", "scars", "face", "faces" as the several mercenaries.
 
+Rule for writing a paragraph about the several mercenaries when the location is the War Room:
+	say "The mercenaries stand nearby, watching your every move.";
+
 The mercenary-stuff is part of the several mercenaries. Understand "swords", "sword", "knives", "knife", "long", "serious", "serious looking", "buckle", "buckles", "weapon", "weapons", "arms" as the mercenary-stuff. The description is "The weapons look grossly out of place at this fancy ball, but no one else seems to notice[first time]. Maybe they're not noticing on purpose[only]."
 
 Instead of doing something other than examining to the mercenary-stuff, say "You'd have to get close to the mercenaries to do that, and that doesn't seem like a good idea."
@@ -10336,13 +10438,14 @@ When Confronting the Baron begins:
 	output chapter heading "Chapter 11 - Baron Fossville";
 	say "The mercenaries march you out of the ballroom, through the foyer, and into the inner reaches of the keep. At every doorway you pass a pair of Lord's Guards standing at attention; some of them glare at the ill-kempt and ill-disciplined mercenaries, but no one makes a move to stop them or help you. You are keenly aware of the dagger strapped to your leg under your dress, but there seems to be no opportunity to use it. Not that you'd last very long against a half-dozen armed men anyway.[paragraph break]The last door is not guarded. The mercenaries push you through into a room filled with dim, flickering light.";
 	move the several mercenaries to the War Room;
-	now the several mercenaries are scenery;
 	move Pieter to the War Room;
 	now Pieter is caught;
+	now Pieter is not scenery;
 	now the knotted ropes are part of Pieter;
 	try looking;
 	move Baron Fossville to the War Room;
 	change the current script to {FOSS0, FOSS1, FOSS2, FOSS3, FOSS4, FOSS5, FOSS6, FOSS7, FOSS8, FOSS9, FOSS10};
+	ratchet the current tension to important;
 
 Chapter 2 - War Room
 
@@ -10363,7 +10466,9 @@ The fireplace is scenery, in the War Room. The description is "The fire is banke
 Instead of entering, taking or touching the fireplace, say "You'd be burned quite badly."
 
 Every turn when the fireplace is nearby and a random chance of 1 in 10 succeeds:
-	say "A knothole explodes in the fire, sending a tornado of sparks up the flue.";
+	add ATMOS_fireplace to the dramatic possibilities;
+
+ATMOS_fireplace is a dramatic event. The display text is "A knothole explodes in the fire, sending a tornado of sparks up the flue.";
 
 Section 3 - Scenery (Table)
 
@@ -10381,17 +10486,19 @@ The heavy iron reinforced door is a door. It is east of the War Room. It is clos
 
 Instead of opening the heavy iron reinforced door when the noun is closed, try examining the noun.
 
-
 Section 5 - Scenery (Pieter)
 
 [Again, we use the real live Pieter for this. See his chapter for descriptions etc.]
 
 Every turn when Pieter is nearby and Pieter is caught and a random chance of 1 in 10 succeeds during Confronting the Baron:
-	say "Pieter struggles weakly against his bonds."
+	add ATMOS_Pieter_tied to the dramatic possibilities;
+
+ATMOS_Pieter_tied is a dramatic event. The display text is "Pieter struggles weakly against his bonds." The priority of ATMOS_Pieter_tied is interesting.
 
 Every turn when Pieter is nearby and Pieter is caught during the Skirmish:
-	say "Pieter [one of]struggles desperately against his bonds[or]strains against the ropes holding him[or]shouts unintelligibly through his gag[at random]."
+	add ATMOS_Pieter_struggle to the dramatic possibilities;
 
+ATMOS_Pieter_struggle is a dramatic event. The display text is  "Pieter [one of]struggles desperately against his bonds[or]strains against the ropes holding him[or]shouts unintelligibly through his gag[at random]." The priority of ATMOS_Pieter_struggle is important.
 
 Section 6 - Scenery (Still more Mercenaries)
 
@@ -10409,7 +10516,7 @@ Instead of talking to someone during Confronting the Baron:
 	say "[first time]Fossville's black-gloved hand whips out and cracks you across the face. Stars explode in your vision.[paragraph break]'Please be quiet while I am talking,' says the Baron, as calmly as though he were asking you to pass the salt at the dinner table[subsequently]Not feeling too keen on getting hit again, you decide to keep your mouth shut[only].";
 
 Instead of doing something other than taking inventory, waiting, looking or examining during Confronting the Baron:
-	say "The Baron makes a gesture, and you hear the creak of leather as the mercenaries loosen their blades in their sheaths. 'Ah, ah... no funny moves, now,' warns the Baron.";
+	say "[one of]Before you can move, the Baron makes a gesture, and you hear the creak of leather as the mercenaries loosen their blades in their sheaths. 'Ah, ah... no funny moves, now,' warns the Baron.[or]You hear the hiss of steel sliding out of its sheath, and suddenly someone is pushing the pointy end of a sword into your back. 'One more false move, and I'll have my men run you through,' says the Baron flatly.[or]Not wishing to be stabbed, you decide to remain still for the moment.[stopping]";
 
 Section 8 - Scripted events
 
@@ -10468,7 +10575,7 @@ The Skirmish is a scene. The skirmish begins when FOSS6 is fired. The skirmish e
 The fighting is scenery. The description is "The battle rages everywhere, in the room and out in the hallway. Men are shouting and screaming in pain, steel is clashing on steel." Understand "fight", "battle", "clash", "mercenaries", "mercenary", "men", "hallway", "hall", "steel", "clashing", "shouting", "screaming", "shouts", "shout", "chaotic", "chaos", "vicious", "deafening", "weapon", "weapons", "sword", "swords", "knives" as the fighting. Instead of doing something other than examining or listening to the fighting, say "The fighting is so chaotic, so vicious, that you can't get near enough to anyone to do anything." Instead of listening to the fighting, say "The screams and clashing weapons are deafening."
 
 Before going a direction in the War Room during the Skirmish:
-	say "The hallway is filled with men fighting, Bobby's reinforcements against the Baron's mercenaries. Both sides are so intent on hacking each other to pieces, you'd never get through.[if Pieter is caught] Besides, you can't leave Pieter tied up![end if]" instead;
+	say "The hallway is filled with men fighting, Bobby's reinforcements against the Baron's mercenaries. Both sides are so intent on hacking each other to pieces, you'd never get through. [if Pieter is caught]Besides, you can't leave Pieter tied up![end if]" instead;
 
 Instead of doing something other than talking to or examining to Baron Fossville during the Skirmish:
 	say "You try to get close enough to get in a jab with your dagger, but Bobby pushes you back just as the Baron's [one of]backswing[or]slash[or]thrust[or]jab[at random] nearly takes off your [one of]eye[or]ear[or]hand[or]head[at random]. 'No, Jack!' he yells, 'Leave him to me!'"
@@ -10742,7 +10849,7 @@ Test redgate with "ne / climb wall / unlock red gate estate with key / n / n / n
 
 Test sandler with "e / e / 1 / 1 / 1 / 1 / 1 / 2 / 3 / 3 / 2 / 1 / 1 / take brooch / w"
 
-Test moneylenders with "se / show letter to brothers / 2 / 1 / nw"
+Test moneylenders with "se / show letter to brothers / 2 / 1 / 1 / nw"
 
 Test clothier with "ne / buy ballgown / sw"
 
