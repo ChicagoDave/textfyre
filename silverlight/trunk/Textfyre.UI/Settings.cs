@@ -38,6 +38,7 @@ namespace Textfyre.UI
         public static bool ResizingEnabled = true;
         public static int PrologueNewLines = 0;
         public static PagingMechanismType PagingMechanism = PagingMechanismType.StaticPageCreateBackPages;
+        public static string WaitMessages = String.Empty;
 
         public enum PagingMechanismType
         {

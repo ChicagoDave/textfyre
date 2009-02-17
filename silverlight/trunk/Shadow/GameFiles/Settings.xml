@@ -14,4 +14,5 @@
   <Setting Key="AutoOpenBookCover" Value="True" />
   <Setting Key="PageGripSize" Value="40" />
   <Setting Key="TOCs" Value="Introduction|Map|Hints|Help|Transcript|Credits|Quit" />
+  <Setting Key="WaitMessages" Value="Please wait.|Please wait..|Please wait..." />
 </Settings>

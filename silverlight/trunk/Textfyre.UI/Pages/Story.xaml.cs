@@ -199,6 +199,12 @@ namespace Textfyre.UI.Pages
 
         private void UpdateScreen(IDictionary<OutputChannel, string> output)
         {
+            Dispatcher.BeginInvoke(() =>
+            {
+                TextfyreBook.Wait.Hide();
+            });
+
+            
             string location = String.Empty;
             bool updateLocAndChap = false;
 
@@ -415,6 +421,8 @@ namespace Textfyre.UI.Pages
             _inputLineForTranscript = _inputLine;
             Dispatcher.BeginInvoke(() =>
             {
+                TextfyreBook.Wait.Show();
+
                 TextfyreBook.TranscriptDialog.AddText(">" + _inputLineForTranscript);
             });
 
