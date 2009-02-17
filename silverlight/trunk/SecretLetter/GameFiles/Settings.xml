@@ -22,4 +22,6 @@
   <Setting Key="BookPageInnerContentOffsetTop" Value="0" />
   <Setting Key="PrologueNewLines" Value="0" />
   <Setting Key="PagingMechanism" Value="StaticPageCreateBackPages" />
+  <Setting Key="WaitMessages" Value="Please wait.|Please wait..|Please wait..." />
+
 </Settings>

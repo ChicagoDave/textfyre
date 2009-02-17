@@ -148,6 +148,9 @@
     <Compile Include="Controls\Topic.xaml.cs">
       <DependentUpon>Topic.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Wait.xaml.cs">
+      <DependentUpon>Wait.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Current\Application.cs" />
     <Compile Include="Current\Font.cs" />
     <Compile Include="Current\Game.cs" />
@@ -319,6 +322,10 @@
     <Page Include="Controls\Topic.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Wait.xaml">
+      <SubType>Page</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>
     <Page Include="Master.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>

@@ -28,4 +28,5 @@
   <Setting Key="TOCs" Value="Introduction#Transcript" />
   <Setting Key="PrologueNewLines" Value="47" />
   <Setting Key="PagingMechanism" Value="StaticPageCreateBackPages" />
+  <Setting Key="WaitMessages" Value="Please wait.|Please wait..|Please wait..." />
 </Settings>

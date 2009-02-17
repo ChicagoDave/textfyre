@@ -31,5 +31,6 @@
         <dialog:Confirm x:Name="ConfirmDeleteFileDialog" Title="Delete File?" Message="" CancelText="No" OKText="Yes" Visibility="Collapsed" />
         <dialog:Notes x:Name="NotesDialog" Visibility="Collapsed" />
         <dialog:Confirm x:Name="ConfirmNotesProvideName" Title="Enter a name" Message="Please enter your name." CancelText="" OKText="OK" Visibility="Collapsed" />
+        <ctrls:Wait x:Name="Wait" />
     </Grid>
 </UserControl>
