@@ -1,6 +1,6 @@
 ﻿/*
  * Copyright © 2008, Textfyre, Inc. - All Rights Reserved
- * Please read the accompanying COPYRIGHT file for licensing resstrictions.
+ * Please read the accompanying COPYRIGHT file for licensing restrictions.
  */
 using System;
 using System.Collections.Generic;
@@ -325,12 +325,12 @@ namespace Textfyre.VM
                     return 0;
 
                 if (Parent(e, obj) == class_mc && cla == 0)
-                    if (id < indiv_prop_start || id > indiv_prop_start + 8)
+                    if (id < indiv_prop_start || id >= indiv_prop_start + 8)
                         return 0;
 
                 if (e.image.ReadInt32(e.image.RamStart + SELF_OFFSET) != obj)
                 {
-                    int ix = (e.image.ReadByte(prop + 8) & 1);
+                    int ix = (e.image.ReadByte(prop + 9) & 1);
                     if (ix != 0)
                         return 0;
                 }
@@ -357,12 +357,12 @@ namespace Textfyre.VM
                     return 0;
 
                 if (Parent(e, obj) == class_mc && cla == 0)
-                    if (id < indiv_prop_start || id > indiv_prop_start + 8)
+                    if (id < indiv_prop_start || id >= indiv_prop_start + 8)
                         return 0;
 
                 if (e.image.ReadInt32(e.image.RamStart + SELF_OFFSET) != obj)
                 {
-                    int ix = (e.image.ReadByte(prop + 8) & 1);
+                    int ix = (e.image.ReadByte(prop + 9) & 1);
                     if (ix != 0)
                         return 0;
                 }
