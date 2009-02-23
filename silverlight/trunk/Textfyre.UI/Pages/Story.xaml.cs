@@ -436,7 +436,9 @@ namespace Textfyre.UI.Pages
 
             Dispatcher.BeginInvoke(() =>
             {
+                TextfyreBook.Wait.Hide();
                 Current.Game.TextfyreBook.SaveGameDialog.Show();
+
             });
 
             _saveEvent.WaitOne();
@@ -480,6 +482,7 @@ namespace Textfyre.UI.Pages
         {
             Dispatcher.BeginInvoke(() =>
             {
+                TextfyreBook.Wait.Hide();
                 Current.Game.TextfyreBook.RestoreGameDialog.Show();
             });
 
