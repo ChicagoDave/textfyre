@@ -56,6 +56,8 @@ namespace Textfyre.UI.Entities
         public event EventHandler<TopicListEventArgs> TopicListRequest;
 
         private Entities.DocumentColumnCollection _docColumns = new DocumentColumnCollection();
+        private Entities.DocumentColumnCollection _docColumnsHistory = new DocumentColumnCollection();
+
         private Entities.ColumnElementCollection _elements;
         private Entities.DocumentTextBlock _txtBlk;
 
@@ -84,7 +86,6 @@ namespace Textfyre.UI.Entities
             KeyPress
         }
 
-        //private DocumentColumnCollection _backPages = new DocumentColumnCollection();
 
         public Document()
         {
