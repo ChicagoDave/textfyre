@@ -8,6 +8,8 @@ Include Triggers by Textfyre.
 Include FyreVM Support by Textfyre.
 Include XML Output Toggling by Textfyre.
 
+Quip-debugging-mode is a truth state which varies. Quip-debugging-mode is false.
+
 Part 1 - Definitions
 
 Chapter 1 - Standard quips
@@ -18,18 +20,15 @@ The current conversation is a list of objects [quips] that varies.
 When play begins:
 	now the current conversation is {}.
 
-The current conversationalist is a person that varies.
-
 The menu option currently being displayed is a number that varies;
 
+The current conversationalist is a person that varies.
 The chosen opening gambit is a quip that varies.
 
 A quip has a text called the menu text.
 A quip has a text called the display text.
 A quip has a text called the repeat text.
 A quip has a list of objects [quips] called the response.
-
-The null quip is a quip.
 
 Chapter 2 - Transition quips
 
@@ -44,9 +43,10 @@ Rule for firing an unfired quip (called q):
 		say the display text of q, paragraph break;
 
 Rule for firing a fired quip (called q):
-	if the repeat text of q is not "",
+	if the repeat text of q is not "":
 		say the repeat text of q, paragraph break;
-	otherwise say the display text of q, paragraph break;
+	otherwise:
+		say the display text of q, paragraph break;
 
 Chapter 4 - Conversation Initiation
 
@@ -142,10 +142,13 @@ Last every turn rule when we are selecting menu option or we are talking to some
 
 Populating something is an activity.
 
-Rule for populating a quip (called q):
+Rule for populating a quip (called q) (this is the standard quip-populating rule):
+	let n be the number of entries in the current conversation;
 	change the current conversation to the response of q;
+	if quip-debugging-mode is true:
+		say "(populating [q]: old convo had [n] entr[if n is 1]y[otherwise]ies[end if], new convo has [number of entries in the current conversation].)[paragraph break]";
 
-Last after populating a transitional quip (called tq):
+Last after populating a transitional quip (called tq) (this is the standard quip-transitioning rule):
 	let the real destination be the following quip of tq;
 	carry out the firing activity with the real destination;
 	carry out the populating activity with the real destination;
@@ -156,6 +159,10 @@ Section 1 - The Game Action
 
 Viewing the menu is an action out of world applying to nothing.
 Understand "menu" as viewing the menu.
+Understand "topics" as viewing the menu.
+Understand "topic" as viewing the menu.
+Understand "topic list" as viewing the menu.
+Understand "topiclist" as viewing the menu.
 
 Displaying the menu is an activity.
 Printing the menu text of something is an activity.
@@ -216,21 +223,23 @@ Last after printing the menu text of a quip:
 
 Part 4 - Starting conversations pre-emptively
 
+[This is broken. To fix it demands an extensive rewrite: some of the existing activities need to be recast as proper actions, and "start conversation with..." phrases instead need to become, for instance, "try Jacobs trying talking to the player". This is a step worth taking, as it reduces code complexity, but the existing implementation is not terrible: that is to say, it can all wait for now.]
+
 To start conversation with (the certain someone - a person) on (q - a thing), even if not present:
-	if the location of the certain someone is the location or even if not present begin;
+	if the location of the certain someone is the location or even if not present:
 		now the current conversationalist is the certain someone;
 		carry out the firing activity with q;
-		carry out the populating activity with q;
-		if the number of entries in the current conversation is greater than 0 begin;
-			display the menu;
-		otherwise;
-			carry out the terminating conversation with activity with the current conversationalist;
-		end if;
-	end if;
+		if the current conversationalist is [still] the certain someone:
+			carry out the populating activity with q;
+			if the number of entries in the current conversation is 0:
+				carry out the terminating conversation with activity with the certain someone;
+		if the number of entries in the current conversation is not 0:
+			unless we are talking to someone or we are selecting menu option: [in which cases this is done automatically--]
+				carry out the displaying the menu activity;
 
 Part 5 - Terminating conversations automatically 
 
-Every turn (this is the terminating conversations with absent people rule):
+Last every turn (this is the terminating conversations with absent people rule):
 	if the current conversationalist is not in the location:
 		carry out the terminating conversation with activity with the current conversationalist;
 
