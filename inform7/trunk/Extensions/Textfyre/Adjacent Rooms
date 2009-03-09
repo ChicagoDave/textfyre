@@ -23,16 +23,16 @@ Chapter 1 - EXAMINE
 
 Section 1 - Grammar
 
-Understand "examine [any proximate room]" as inspecting.
 Understand "examine [any playerful room]" as pseudolooking.
+Understand "examine [any proximate room]" as inspecting.
 Understand "examine [text]" as a mistake ("You can't see any such thing.").
 
-Understand "look at/inside/in/into/through [any proximate room]" as inspecting.
 Understand "look at/inside/in/into/through [any playerful room]" as pseudolooking.
+Understand "look at/inside/in/into/through [any proximate room]" as inspecting.
 Understand "look at/inside/in/into/through [text]" as a mistake ("You can't see any such thing.").
 
-Understand "search [any proximate room]" as a mistake ("You will have to go there, first.").
 Understand "search [any playerful room]" as pseudolooking.
+Understand "search [any proximate room]" as a mistake ("You will have to go there, first.").
 Understand "search [text]" as a mistake ("You can't see any such thing.").
 
 Section 2 - Action on current location
@@ -49,16 +49,32 @@ The distant description of a room is usually "".
 
 Inspecting is an action applying to one visible thing.
 
-Carry out inspecting:
-	do nothing;
-
 Report inspecting a room:
-	let the impression be the distant description of the noun;
+	carry out the printing the distant description activity with the noun;
+
+Printing the distant description of something is an activity.
+
+The printing the distant description activity has a text called the impression.
+
+First before printing the distant description of a room (called yonder):
+	now the impression is the distant description of yonder;
+
+Before printing the distant description of a room:
 	if the impression is "",
 		now the impression is the dead-end description of the location;
-	if the impression is "",
-		now the impression is "You see nothing of interest in that direction.";
-	say the impression, paragraph break;
+
+Last before printing the distant description of a room:
+	if the impression is "":
+		if we are going:
+			now the impression is "You can't go that way.";
+		otherwise:
+			now the impression is "You see nothing of interest in that direction.";
+
+For printing the distant description of a room:
+	say the impression, run paragraph on;
+
+Last after printing the distant description of a room:
+	say paragraph break;
 
 Chapter 2 - ENTER
 
@@ -287,8 +303,15 @@ Check unlocking a room with:
 	say "[X].";
 
 Understand "smell [any playerful room]" as smelling.
-Understand "smell [any proximate room]" as a mistake ("You will have to go there, first.").
+Understand "smell [any proximate room]" as smelling.
 Understand "smell [text]" as a mistake ("You can't see any such thing.").
+
+Understand "listen to [any playerful room]" as listening.
+Understand "listen to [any proximate room]" as listening.
+Understand "listen to [text]" as a mistake ("You can't see any such thing.").
+
+Understand "touch [any playerful room]" as touching.
+Understand "touch [text]" as a mistake ("You can't see any such thing.").
 
 Chapter 7 - Looking directions
 
@@ -305,14 +328,14 @@ Setting action variables for facing:
 	now the viewed item is the room noun from the location of the actor; 
 
 Check facing towards a room:
-	try inspecting the viewed item instead;
+	carry out the printing the distant description activity with the viewed item instead;
 
 Check facing towards an open door:
 	let the distant room be the other side of the viewed item;
 	if the distant room is a room,
-		try inspecting the distant room instead;
+		carry out the printing the distant description activity with the distant room instead;
 
-Check facing:
+Report facing:
  	if the viewed item is not a door and the viewed item is not a room begin;
 		if the dead-end description of the location is not "" begin;
 			say the dead-end description of the location, paragraph break instead;

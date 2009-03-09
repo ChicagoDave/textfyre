@@ -4,6 +4,8 @@ Version 1 of Textfyre Standard Rules by Textfyre begins here.
 
 Use authorial modesty.
 
+Include Pronouns by Textfyre.
+
 Volume 1 - For universal use
 
 Book 1 - Definitions
@@ -121,28 +123,40 @@ Part 3 - Activity bug fix
 To decide whether currently running (A - activity) activity:
 	(- (TestActivity({A})) -).
 
+Part 4 - Better 'best route' finding
+
+[Not always - but very frequently - when we ask for a best route, we are already adjacent to the target destination.]
+
+To decide which direction is the quick best route from (here - a room) to (there - a room):
+	if here is adjacent to there:
+		let the possibilities be {north, east, south, west, northeast, southeast, northwest, southwest, up, down, inside, outside};
+		repeat with d running through the possibilities:
+			if the room d from here is there:
+				decide on d;
+	decide on the best route from here to there;
+
 Book 2 - Disambiguations and (Mis)-understandings
 
 Part 1 - Clothing
 
-Does the player mean taking off something worn by the player:
+Does the player mean taking off something worn by the player (this is the very likely to mean taking off worn things rule):
 	it is very likely;
 
-Does the player mean wearing something worn by the player:
+Does the player mean wearing something worn by the player (this is the very unlikely to mean wearing worn things rule):
 	it is very unlikely;
 
-Does the player mean wearing something wearable:
+Does the player mean wearing something wearable (this is the very likely to mean wearing wearable things rule):
 	it is very likely;
 
-Does the player mean wearing something not wearable:
+Does the player mean wearing something not wearable (this is the very unlikely to mean wearing unwearable things rule):
 	it is very unlikely;
 
 Part 2 - Food and drink
 
-Does the player mean eating something edible:
+Does the player mean eating something edible (this is the very likely to mean eating edible things rule):
 	it is very likely;
 
-Does the player mean eating something inedible:
+Does the player mean eating something inedible (this is the very unlikely to mean eating inedible things rule):
 	it is very unlikely;
 
 Part 3 - Doors and boxes
@@ -151,22 +165,27 @@ Chapter 1 - Opening and Closing
 
 [This is not quite right in the way the rules interact.]
 
-Does the player mean opening or closing something openable:
+Does the player mean opening or closing something openable (this is the very likely to mean opening or closing openable things rule):
 	it is very likely;
 
-Does the player mean opening something closed:
+Does the player mean opening something closed (this is the likely to mean opening closed things rule):
 	it is likely;
 
-Does the player mean closing something open:
+Does the player mean closing something open (this is the very likely to mean closing open things rule):
 	it is very likely;
 
-Does the player mean closing something closed:
+Does the player mean closing something closed (this is the unlikely to mean closing closed things rule):
 	it is unlikely;
 
-Does the player mean opening something open:
+Does the player mean opening something open (this is the unlikely to mean opening open things rule):
 	it is unlikely;
 
-Does the player mean opening or closing something unopenable:
+Does the player mean opening or closing something unopenable (this is the very unlikely to mean opening or closing unopenable things rule):
+	it is very unlikely;
+
+Part 4 - Taking
+
+Does the player mean taking something had by the player (this is the very unlikely to mean taking possessions rule):
 	it is very unlikely;
 
 Book 3 - Rulebooks
@@ -228,9 +247,8 @@ This is the enterable reports rule:
 	abide by the standard report entering rule;
 	abide by the describe contents entered into rule;
 
-Check standing on something:
-	abide by the enterable checks rule;
-	
+The enterable checks rule is listed in the check standing on rules.
+
 Check sitting on something:
 	abide by the enterable checks rule;
 
@@ -306,11 +324,52 @@ Part 3 - Eating
 Understand the command "bite" as "eat".
 Understand the command "lick" as "taste".
 
+Part 4 - Reading
+
+Reading is an action applying to one thing, requiring light. 
+
+Check reading (this is the redirect reading to examining rule):
+	try examining the noun instead;
+
+Understand the command "read" as something new.
+Understand "read [something]" as reading.
+Understand "read about [text] in [something]" as consulting it about (with nouns reversed).
+Understand "read [text] in [something]" as consulting it about (with nouns reversed).
+
+Part 5 - Examining
+
+Understand "look [something]" as examining.
+Understand "look for [something]" as examining.
+Understand "search for [something]" as examining.
+
+Part 6 - Taking Inventory
+
+[It's unfortunately hard to jig about with the I7 list writer, and probably easier just not to bother. Thus:]
+
+Instead of taking inventory (this is the Textfyre Standard replacement inventory rule):
+	[The difference between this and the standard inventory style is that we do not show inventory information.]
+	say "You are carrying: [line break]";
+	list the contents of the player, with newlines, indented, including contents, with extra indentation;
+
+After printing the name of something (called x) while taking inventory:
+	carry out the printing inventory information activity with x;
+
+Printing inventory information of something is an activity.
+
+Rule for printing inventory information of something worn by the player:
+	say " (being worn)";
+
+Rule for printing inventory information of an open container (called x):
+	say " (which [is or are for x] open[if the number of things in x is 0], but empty[otherwise], containing:[end if])";
+
+Rule for printing inventory information of a closed container (called x):
+	say " (which [is or are for x] closed[if the number of things in x is 0 and x is transparent], and empty[otherwise if x is transparent], containing:[end if])";
+
 Book 5 - Kinds
 
 Part 1 - Doorways
 
-A doorway is a kind of door. A doorway is usually open, not openable, unlocked, not lockable, privately-named, scenery.
+A doorway is a kind of door. A doorway is usually open, not openable, unlocked, not lockable, privately-named, scenery. The specification of a doorway is "A kind of door which can be referred to by its direction."
 
 Before printing the name of a doorway (called the portal):
 	let d be the direction of the portal from the location;
