@@ -153,7 +153,6 @@ When		Who		What
 2 Aug 2007	G. Jefferis	Most of Grubber's Market
 ]
 
-
 Include FyreVM Support by Textfyre.
 Include Basic Screen Effects by Emily Short.
 Include Punctuation Removal by Emily Short.
@@ -1126,6 +1125,7 @@ Part 2 - Alleyway Introduction
 
 When play begins:
 	[Send the Chapter I Hints; - commented out for play-testing]
+	select theme "GrubbersMarket";
 	select the prologue channel;
 	say "Mid-morning always sees the Grubber's Market at its most crowded. Servants from the aristocratic districts and villagers from outside Toresal crush themselves into the maze of stalls, hoping to beat the noontime heat and get the farmers[apostrophe] produce while it's still fresh. The press of bodies, the din of haggling and bargains struck — it all makes getting around unnoticed easier, although not necessarily more pleasant. No fewer than half a dozen stall-gazing bumpkins have trod on your feet already this morning. You've kept your mouth shut, though. People remember an urchin who gives lip.[paragraph break]'See anything you like?' asks the silk seller, with a teasing smile. You smile back. You couldn’t afford one of her cloaks without nicking a fat purse first, and Teisha doesn’t approve of you stealing from people, even when they’re not her customers.[paragraph break]'Oh, these are [i]much[r] too plain,' you scoff, even as you gaze wistfully at the bright colors, the beautiful embroidery. Time for a bit of breakfast, you decide, and anyway if you linger too long, people will wonder what a boy is doing shopping for women's cloaks. 'Perhaps I'll come back this afternoon, when you've put out your better wares.'[paragraph break]Teisha laughs. 'Don't be a stranger, Jack.'[paragraph break]You make your way through the market, nicking an apple from the fruit stall while its owner argues with a fat Easterner over local politics. Everyone seems to be talking politics these days, you've noticed. Everywhere people are heatedly discussing Baron Fossville's tax policies or something called the 'Ascension' — whatever that is. Boring stuff, really. Finally you reach a quiet alley where you can catch a breath from the crowds and enjoy your apple in peace.[paragraph break]You settle yourself on a crate and take a bite of your apple. Suddenly, from the alley's entrance, you hear voices.";
 	output chapter heading "Chapter 1 - Grubber's Market";
@@ -1373,6 +1373,7 @@ Instead of doing something other than examining or climbing or descending to the
 Section 9 - Event on exit
 
 After going down from Outer Market Roof for the first time:
+	select theme "GrubbersChase";
 	say "As you climb back down the crates, one of them wobbles and your foot slips. You tumble loudly to the cobblestones. 'Stupid! Clumsy!' you mutter, scrambling to your feet.[paragraph break]From the street, you hear, 'What was that? Check the alley!'[paragraph break]Two mercenaries rush in and spot you immediately. They approach warily, their arms spread wide.[paragraph break]You're in trouble now...";
 	move the wandering mercenaries to the location;
 	now the wandering mercenaries are approaching;
@@ -3840,6 +3841,7 @@ Instead of going east from Grubbers Market Eastern Junction when the green silk 
 After going east from Grubbers Market Eastern Junction during Market Escape:
 	say "You reach the edge of the market just ahead of your pursuers and see the mercenary captain standing there. He hasn't seen the commotion yet; he's still casually scanning faces.[paragraph break]You skid to a halt. Everything depends on you looking like you're not in a hurry.[paragraph break]You force yourself to walk slow. Underneath the hood, sweat is pouring down your cheeks, and you can barely control your breathing. The shouts behind you are getting nearer. The captain is not looking at you, he's looking at the mercenaries pounding up behind you. Does he understand what they're shouting? Just a few more steps...[paragraph break]A bead of sweat rolls off the tip of your nose and drops to the ground, leaving a little dark spot in the dust. Did the captain notice?[paragraph break]Five steps... four steps... three steps...[paragraph break]You hear a confused babble of voices behind you as the captain orders his men to halt and explain what's going on.[paragraph break]You slip through the crowds into Commerce Street...";
 	pause the game;
+	select theme "MeetingBobby";
 	output chapter heading "Chapter 2 - Bobby";
 	continue the action;
 
@@ -5515,6 +5517,7 @@ Chapter 3 - Curfew
 Section 1 - Event on entry
 
 After going to the Hallway for the first time:
+	select theme "MaidenHouse";
 	set the scene for night;
 	say "You slip quietly through the front door, into the familiar smells of cooking grease and laundry soap; the familiar sight of shabby, warped floorboards lit by dim, flickering tallow lamps. It's nothing fancy, but it's home, and you're familiar enough with the plight of most of Toresal's orphans to know that you're lucky to have it.";
 	try looking;
@@ -5909,8 +5912,9 @@ Before going through the privy window when in the privy:
 		move the player to the privy, without printing a room description;
 	end if;
 
-After going through the privy window from the privy:
+After going through the privy window from the privy when Leaving Maiden House has not happened:
 	say "[first time]You sneak a furtive glance back at the hallway, then step up onto the bench. It wobbles under your feet, and you grab the window sill to steady yourself.[paragraph break]Then, holding your breath to keep from making a sound, you pull yourself up and through. The window is at ground level outside, and you wriggle out onto the slick cobblestones.[paragraph break]You're free! Of course, the widows will find out you're gone soon enough — Maiden House is not a very big place, after all. But you've snuck out before, and they know you can take care of yourself. At worst, you'll pull extra laundry duty for a few days.[only]";
+	select theme "EmptyGrubbers";
 	continue the action;
 
 Part 7 - Laundry
@@ -6343,6 +6347,7 @@ Instead of going east in the Crossing, try facing east.
 Instead of going southeast in the Crossing, try facing southeast.
 
 After going to Crossing for the first time:
+	select theme "Stream";
 	move Bobby to Woods;
 	say "[command clarification break]";
 	try looking;
@@ -6613,6 +6618,7 @@ Chapter 2 - Events on entering
 Section 1 - On the way there
 
 After looking in the Clearing for the first time during Creeping to Lord's Keep:
+	select theme "Fountain";
 	open the secret entrance;
 	say "'Here we are.' Bobby jumps up into the bowl of the fountain, dried leaves crackling beneath his boots. Then he reaches around the statue of Brigid as though trying to embrace her. His hands fumble at something on the underside of the urn.[paragraph break]Suddenly there is a deep, solid [i]thunk[r] and a scraping sound, and part of the base of the statue moves.[paragraph break]Bobby hops down and pushes against the statue's base. A rectangle of stone about two feet square swings inward. The space behind it is utterly black, and a cold draft of damp-smelling air rises out of it.[paragraph break]'It runs all the way to Lord's Keep,' says Bobby as he brushes off his hands. 'I don't think anyone knows about it. Maybe Lord Toresal did, but now that he's dead it's basically unknown. It's not been used for decades, I'd guess. Well anyway, until now.'[paragraph break]He holds out his hand. His lop-sided smile is absolutely charming. 'After you, kind sir.'";
 	move Bobby to the location;
@@ -6680,6 +6686,7 @@ Chapter 2 - Event on entering
 The torch is a thing. The description is "The torch's flame throws weird, shivering shadows across the walls."
 
 After going down to underneath the fountain [from the Clearing] for the first time:
+	select theme "Tunnel";
 	say "You grope your way down into the tunnel, carefully sliding your feet over steps you cannot see. Echoes fill the darkness: the scrape of your shoes on stone, the drip of water, your own loud breathing.[paragraph break]Behind you, you hear Bobby fumbling with something under his cloak; the [i]click[r] of stone on metal; and then a sickly orange glow spreads across the walls of the tunnel. Your own shadow wobbles hugely in front of you.[paragraph break]You turn around and see Bobby holding a torch. He grins at you. 'Tricky, isn't it?'";
 	now Bobby carries the torch;
 	try looking;
@@ -6881,6 +6888,7 @@ Instead of praying in the Chapel:
 Chapter 2 - Event on entering
 
 After going to the Chapel for the first time:
+	select theme "Chapel";
 	move the torch to the metal bracket;
 	say "Bobby jams his torch into a rusted bracket on the tunnel wall and steps through the secret door, gesturing you to follow. A prickle runs down your back as you step through after him. Are you really sneaking into the [i]Lord's Keep?[no line break] [r]You're not even sure what the punishment for that is... something a lot worse than a few days in jail, certainly.";
 	try looking;
@@ -7028,6 +7036,7 @@ Instead of listening to the Guardhouse when in the Guardhouse:
 Chapter 2 - Event on entry
 
 After going north to the Guardhouse for the first time:
+	select theme "Guardhouse";
 	say "[command clarification break]";
 	try looking;
 	say "Bobby creeps forward and presses himself against the wall next to one of the arrow slits. He hunches closer, peering around the slit's edge. Then he looks up at you and smiles. He points at you, points at the arrow slit, then taps his ear. [i]Listen[r], he's telling you.";
@@ -7126,6 +7135,7 @@ After inspecting the Jailhouse in the Drain Room:
 	say "The main jailhouse room is northeast of here.";
 
 When escaping jail begins:
+	select theme "InJail";
 	Bobby wakes up in two turns from now;
 	repeat with contraband running through things held by the player:
 		if the contraband is not the baggy threadbare clothes, remove the contraband from play;
@@ -8038,6 +8048,7 @@ To decide which glyph is the magic glyph:
 	[all four colors are assigned to glyphs, so the loop won't reach this point.]
 
 After looking in the Sewer for the first time:
+	select theme "Sewer";
 	if the bald headed man is in the Drain Room:
 		change the magic color to a random symbol color;
 		update glyphs;
@@ -8188,6 +8199,7 @@ Instead of going up while in the Thin Alley, try climbing the rain gutter.
 
 Instead of climbing the rain gutter:
 	say "You give the pipe a few experimental tugs, then take a deep breath and start shimmying up. The rain gutter squeaks and groans in protest. Your fingers cramp and your toes scrabble to find purchase on the rough bricks. Finally, three stories up, you grab the edge of the rooftop and haul yourself over.";
+	select theme "RoofTops";
 	move the player to the main rooftop;
 	update the character list;
 
@@ -8415,6 +8427,7 @@ The head of the flight of steps is the Rooftop Garden.
 
 After going down from Rooftop Garden for the first time during the Search:
 	say "Holding your breath, you tiptoe quietly down the stairs. A prickle runs up your spine; you are now an intruder. If the Baron catches you here, he'll have you tossed back into a jail cell — and that's the [i]best[r] case scenario. If what Bobby told you is true, and Fossville knows secrets about you that he's trying to hide, it's more likely he'll just slit your throat.[paragraph break]Have to move quickly, then — search the house, find this letter, and get out.";
+	select theme "SecretLetter";
 	continue the action; [TESTME]
 
 Part 8 - Third Floor Landing
@@ -8773,6 +8786,7 @@ At the time when the butler scene continues:
 At the time when the butler kicks us out:
 	spool through dialogue in the table of Butler's dialogue;
 	now the player is free;
+	select theme "Gallows";
 	output chapter heading "Chapter 6 - Gallows";
 	move the player to East Commerce Street;
 	update the character list;
@@ -8912,6 +8926,7 @@ Chapter 1 - Scene begins
 Bedside Consolation is a scene. Bedside Consolation begins when Bobby's Hanging ends. Bedside Consolation ends when FI25 is fired.
 
 When Bedside Consolation begins:
+	select theme "MaidenHouse";
 	say "You are lying on something soft. Blankets, a thin mattress — you're back in Maiden House, lying in your own bunk. Fiona is sitting on the edge of the bed, watching you with a tender expression. Her eyes are red and raw, though, like she's been crying. For a moment, you feel strange, disconnected. You wonder what's wrong.[paragraph break]And then it comes back to you. It's Bobby. Bobby is dead.[paragraph break]";
 	start conversation with Widow Fiona on FI21;
 
@@ -9214,6 +9229,7 @@ When Leaving Maiden House ends:
 	update the character list;
 
 After going through the privy window during Leaving Maiden House:
+	select theme "RedGateEstate";
 	output chapter heading "Chapter 8 - Red Gate Estate";
 	say "You pull yourself through the window and once again clamber up into the alley. You can hear a commotion from the direction of Lord's Market; it looks as though the Baron's mercenaries are still out searching the streets for you, but they'll double back and put a watch on Maiden House soon enough.[paragraph break]There is a scrabbling, grunting sound behind you, and you turn to see Shannon trying to push her way through the window. Confused but not wanting to just stand there and watch her struggle, you give her a hand up.[paragraph break]'Fiona thought I should maybe come with you,' she says, after she's finished smoothing her skirts and catching her breath. 'In case you needed any help.'";
 	continue the action; [TESTME ]
@@ -9252,6 +9268,10 @@ Instead of going East from East Commerce Street when the player is still dirty d
 
 Instead of going West from East Commerce Street during Shannon's Company:
 	say "'We shouldn't wander the streets any more than we have to,' Shannon says. 'Fossville's men will still be looking for you.'"
+
+After going to East Commerce Street when the player is clean during Shannon's Company:
+	select theme "PreparingForBall";
+	continue the action;
 
 When Shannon's Company ends:
 	remove Widow Shannon from play;
@@ -10069,6 +10089,7 @@ Part 5 - Ballroom
 Chapter 1 - Description
 
 Before going a direction to the ballroom for the first time:
+	select theme "Arrival";
 	now Pieter is scenery;
 	move Pieter to the ballroom;
 	say "You step into a world of light...";
@@ -10872,6 +10893,7 @@ Book 13 - The Baron
 Confronting the Baron is a scene. Confronting the Baron begins when High Society ends. Confronting the Baron ends when the skirmish begins.
 
 When Confronting the Baron begins:
+	select theme "Confrontation";
 	output chapter heading "Chapter 11 - Baron Fossville";
 	say "The mercenaries march you out of the ballroom, through the foyer, and into the inner reaches of the keep. At every doorway you pass a pair of Lord's Guards standing at attention; some of them glare at the ill-kempt and ill-disciplined mercenaries, but no one makes a move to stop them or help you. You are keenly aware of the dagger strapped to your leg under your dress, but there seems to be no opportunity to use it. Not that you'd last very long against a half-dozen armed men anyway.[paragraph break]The last door is not guarded. The mercenaries push you through into a room filled with dim, flickering light.";
 	move Pieter to the War Room;
@@ -11098,6 +11120,7 @@ Instead of cutting the knotted ropes with the plain dagger:
 	try cutting the noun;
 
 When the skirmish ends:
+	select theme "Kidnapped";
 	say "At that moment, there is a sudden [i]crack[r] and a rumbling, and a cold draft rushes into the room, tugging at the flames in the fireplace and throwing the room into wildly pitching shadow.[paragraph break]Behind you, the map wall has opened to reveal a dark, cavernous passageway, and [i]more[r] men are rushing out — men dressed all in black, with dark hoods and scarves hiding their faces.[paragraph break]'That's her! Get her!' cries a voice. A young woman's voice. A voice you've heard before.[paragraph break]It happens so fast. Hands are on you, lifting you off your feet, wresting the dagger from your grasp, pulling you back into that dark, dark tunnel. The firelight falls away, shrinks down to a flickering, orange rectangle. The rumbling starts again, and the rectangle grows narrower, narrower...[paragraph break]'Don't worry,' says the voice. 'We're not going to, like, [i]hurt[r] you.'[paragraph break]And then everything is black.";
 	end the game saying "To be continued";
 
