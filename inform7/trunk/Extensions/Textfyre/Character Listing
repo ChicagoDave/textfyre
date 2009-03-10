@@ -16,7 +16,7 @@ Rule for assembling:
 Character-listing is an activity. 
 
 Rule for character-listing:
-	if FyreVM is present:
+	if XML is in use:
 		select the conversation channel;
 		say "<CharacterList>";
 		repeat with the individual running through the roster of available characters:

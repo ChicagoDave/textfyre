@@ -55,7 +55,8 @@ To clear the current script:
 Chapter 5 - Not for release - Debugging
 
 When play begins:
-	say "[bracket]The Scripted Events extension, which manages certain cut-scenes, is loaded in debugging mode. You can issue these commands:[line break] [i]'scripts off'[r] and [i]'scripts on'[r] to pause and resume cut-scenes.[line break] [i]'scripts forward'[r] to allow a single scripted event to occur.[line break] [i]'scripts'[r] by itself shows a summary of scheduled events.[line break] [i]'scripts list'[r] gives a full list, (may not be useful except to programmers.) [close bracket]", paragraph break;
+	unless FyreVM is present:
+		say "[bracket]The Scripted Events extension, which manages certain cut-scenes, is loaded in debugging mode. You can issue these commands:[line break] [i]'scripts off'[r] and [i]'scripts on'[r] to pause and resume cut-scenes.[line break] [i]'scripts forward'[r] to allow a single scripted event to occur.[line break] [i]'scripts'[r] by itself shows a summary of scheduled events.[line break] [i]'scripts list'[r] gives a full list, (may not be useful except to programmers.) [close bracket]", paragraph break;
 
 Section 1 - Events list
 

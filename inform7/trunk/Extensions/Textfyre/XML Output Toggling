@@ -5,9 +5,7 @@ Use authorial modesty;
 Part 1A - For use with FyreVM Support by Textfyre
 
 To decide whether XML is in use:
-	if FyreVM is present:
-		yes;
-	no;
+	decide on whether or not FyreVM is present;
 
 Part 1B - For use without FyreVM Support by Textfyre
 
