@@ -442,6 +442,9 @@ Volume 3A (for use without FyreVM Support by Textfyre)
 To output chapter heading (header - text):
 	say "[bold type][header] [roman type][paragraph break]";
 
+To select theme (theme - text):
+	do nothing;
+
 Volume 3B (for use with FyreVM Support by Textfyre)
 
 To output chapter heading (header - text):
@@ -451,6 +454,12 @@ To output chapter heading (header - text):
 		select the main channel;
 	otherwise:
 		say "[bold type][header] [roman type][paragraph break]";
+
+To select theme (theme - text):
+	if FyreVM is present:
+		select the theme channel;
+		say theme;
+		select the main channel;
 
 Textfyre Standard Rules ends here.
 
