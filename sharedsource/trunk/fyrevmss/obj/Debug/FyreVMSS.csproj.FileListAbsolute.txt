@@ -1,7 +1,0 @@
-C:\Users\David\Documents\Textfyre\FyreDev\sharedsource\trunk\fyrevmss\bin\Debug\FyreVMSS.dll
-C:\Users\David\Documents\Textfyre\FyreDev\sharedsource\trunk\fyrevmss\bin\Debug\FyreVMSS.pdb
-C:\Users\David\Documents\Textfyre\FyreDev\sharedsource\trunk\fyrevmss\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\David\Documents\Textfyre\FyreDev\sharedsource\trunk\fyrevmss\obj\Debug\Textfyre.VM.Properties.Resources.resources
-C:\Users\David\Documents\Textfyre\FyreDev\sharedsource\trunk\fyrevmss\obj\Debug\FyreVMSS.csproj.GenerateResource.Cache
-C:\Users\David\Documents\Textfyre\FyreDev\sharedsource\trunk\fyrevmss\obj\Debug\FyreVMSS.dll
-C:\Users\David\Documents\Textfyre\FyreDev\sharedsource\trunk\fyrevmss\obj\Debug\FyreVMSS.pdb
