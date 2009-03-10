@@ -2,12 +2,12 @@ Version 1 of XML Output Toggling by Textfyre begins here.
 
 Use authorial modesty;
 
-Part 1A - For use with FyreVM Support by Textfyre
+Part 1A (for use with FyreVM Support by Textfyre)
 
 To decide whether XML is in use:
 	decide on whether or not FyreVM is present;
 
-Part 1B - For use without FyreVM Support by Textfyre
+Part 1B (for use without FyreVM Support by Textfyre)
 
 To decide whether XML is in use:
 	no;
