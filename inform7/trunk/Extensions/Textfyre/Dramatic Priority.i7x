@@ -5,7 +5,7 @@ Dramatic Priority by Textfyre begins here.
 Include Triggers by Textfyre.
 Include Scripted Events by Textfyre.
 
-Dramatic importance is a kind of value. The dramatic importances are trivial, unimportant, interesting, important, essential.
+Dramatic importance is a kind of value. The dramatic importances are trivial, unimportant, interesting, important, essential, and show-stopping.
 
 The current tension is a dramatic importance that varies. The current tension is [initially] trivial.
 
@@ -36,10 +36,12 @@ Rule for deferring dramatic possibilities:
 		repeat with x running through the dramatic possibilities:
 			if the priority of x is at least p:
 				change p to the priority of x;
-			otherwise if the priority of x is at least important:
+				if p is show-stopping:
+					change p to essential;
+			otherwise if the priority of x is at least important and the priority of x is at most essential:
 				add x to the deferred dramatic possibilities, if absent;
 				remove x from the dramatic possibilities;
-			otherwise:
+			otherwise if the priority of x is at most interesting:
 				remove x from the dramatic possibilities;
 
 Choosing a dramatic possibility is an activity.
@@ -52,6 +54,7 @@ First before choosing a dramatic possibility:
 For choosing a dramatic possibility:
 	unless the dramatic possibilities is empty:
 		sort the dramatic possibilities in random order;
+		sort the dramatic possibilities in reverse priority order;
 		change the chosen event to entry 1 of the dramatic possibilities;
 
 Last after choosing a dramatic possibility:
@@ -68,9 +71,8 @@ Last every turn (this is the dramatic priority rule):
 		fire the chosen event;
 		unless the rule failed:
 			remove the chosen event from the dramatic possibilities;
-	if the dramatic possibilities is empty:
-		add the deferred dramatic possibilities to the dramatic possibilities;
-		change the deferred dramatic possibilities to {};
+	add the deferred dramatic possibilities to the dramatic possibilities;
+	change the deferred dramatic possibilities to {};
 	change the current tension to trivial;
 
 To ratchet the current tension to (boiling point - a dramatic importance):
