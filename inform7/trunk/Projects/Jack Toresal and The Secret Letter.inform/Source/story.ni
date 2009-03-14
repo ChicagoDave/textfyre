@@ -2351,7 +2351,7 @@ Monkey business ends when the player has the necklace.
 When Monkey business begins:
 	add EVENT_monkey to the dramatic possibilities, if absent;
 
-EVENT_monkey is a dramatic event. The priority is essential.
+EVENT_monkey is a dramatic event. The priority is show-stopping.
 
 For firing EVENT_monkey:
 	say "Suddenly you hear a commotion from the back of the stall: the crash of a display case hitting the ground; shouts and curses from the stallkeeper; and a horrific, gibbering shriek.[paragraph break]'Come back here, you flea-bitten thief!' yells the stallkeeper, and for a panicked moment you think he means [i]you[r]. Then you see something small and gray dart up to the roof of the stall... it's just a forest monkey, probably someone's pet running loose. And it's clutching one of the stallkeeper's necklaces in its tiny black fist.[paragraph break]The monkey turns and screeches back at the stallkeeper, dodges a clumsily thrown dirt clod, and scampers away.";
@@ -2992,9 +2992,9 @@ The Open-Air Market is a region.
 
 Grubbers Market Candle Stall, Grubbers Market Pottery Stall, Grubbers Market Outside Silk Stall, Grubbers Market Rope Dealer are in the Open-Air Market. [And later we place the perimeter locations in this region as well. See Chapter 3, 'The Market Perimeter Region'.]
 
-Instead of going nowhere from the Open-Air Market:
+[ Instead of going nowhere from the Open-Air Market:
 	if the noun is a planar direction:
-		try facing the noun instead;
+		try facing the noun instead; ]
 
 Chapter 2 - Shoppers Backdrop
 
