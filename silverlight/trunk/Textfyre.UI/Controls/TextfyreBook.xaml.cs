@@ -16,7 +16,11 @@ namespace Textfyre.UI.Controls
     public partial class TextfyreBook : UserControl, IDataProvider
     {
         private List<TextfyreBookPage> _pages;
-        private Entities.Document _document;
+
+        private DocSystem.Document _document = new Textfyre.UI.DocSystem.Document();
+
+      
+        //private Entities.Document _document;
         public Controls.TableOfContent _toc;
 
         #region :: PageCount ::
@@ -30,13 +34,21 @@ namespace Textfyre.UI.Controls
         #endregion
 
         #region :: Public Properties ::
-        public Entities.Document TextfyreDocument
+        public DocSystem.Document TextfyreDocument
         {
             get
             {
                 return _document;
             }
         }
+
+        //public Entities.Document TextfyreDocument
+        //{
+        //    get
+        //    {
+        //        return _document;
+        //    }
+        //}
 
         public void SetLocationAndChapter()
         {
@@ -86,31 +98,18 @@ namespace Textfyre.UI.Controls
                 _pages = new List<TextfyreBookPage>();
             }
 
-            if (_document == null)
-            {
-                _document = new Entities.Document();
-            }
-
             FlipBook.OnPageTurned += new PageTurnedEventHandler(FlipBook_OnPageTurned);
             
             AddFrontPage();
             AddCreditsPage();
             AddTableOfContentsPage();
-            for (int i = 0; i < 500; i++)
-                AddEmptyPage2();
+            //for (int i = 0; i < 500; i++)
+               // AddFrontPage();
 
-            AddColumnPage("Prologue", Textfyre.UI.Entities.DocumentColumnBehaviour.Flip);
-            //AddColumnPage("Empty", Textfyre.UI.Entities.DocumentColumnBehaviour.Flip);
-
-//            string text = @"
-//Interactive fiction, often abbreviated IF, describes software simulating environments in which players use text commands to control characters and influence the environment. Works in this form can be understood as literary narratives and as computer games. In common usage, the word refers to text adventures, a type of adventure game with text-based input and output. The term is sometimes used to encompass the entirety of the medium, but is also sometimes used to distinguish games produced by the interactive fiction community from those created by games companies. It can also be used to distinguish the more modern style of such works, focusing on narrative and not necessarily falling into the adventure game genre at all, from the more traditional focus on puzzles. More expansive definitions of interactive fiction may refer to all adventure games, including wholly graphical adventures such as Myst.
-//
-//As a commercial product, interactive fiction reached its peak in popularity in the 1980s, as a dominant software product marketed for home computers. Because their text-only nature sidestepped the problem of writing for the widely divergent graphics architectures of the day, interactive fiction games were easily ported across all the popular platforms, even those such as CP/M not known for gaming or strong graphics capabilities. Today, interactive fiction no longer appears to be commercially viable, but a steady stream of new works is produced by an online interactive fiction community, using freely available development systems. Most of these games can be downloaded for free from the Interactive Fiction Archive (see external links).
-//
-//
-//";
-//            for (int i = 0; i < 300; i++)
-//                TranscriptDialog.AddText(text);
+            AddStoryPage();
+            AddStoryAidPage();
+            
+            //AddColumnPage("Prologue", Textfyre.UI.Entities.DocumentColumnBehaviour.Flip);
 
             this.Loaded += new RoutedEventHandler(TextfyreBook_Loaded);
             
@@ -301,7 +300,7 @@ namespace Textfyre.UI.Controls
                 Current.Game.MaxPageIndex = 999999;
                 Current.Game.IsStoryRunning = true;
                 this._toc.Refresh();
-                FlipTo("Prologue");
+                FlipTo("BackPage");
                 BookmarkTOC.Visibility = Visibility.Visible;
                 //BookmarkLoad.Visibility = Visibility.Visible;
                 //BookmarkSave.Visibility = Visibility.Visible;
@@ -359,8 +358,8 @@ namespace Textfyre.UI.Controls
         List<StackPanel> testBlocks = new List<StackPanel>();
         private void AddEmptyPage2()
         {
-//            TextfyreBookPage p = CreatePage("");
-            //p.HideHeaderFooter();
+            TextfyreBookPage p = CreatePage("");
+            p.HideHeaderFooter();
 
             string text = @"
 Interactive fiction, often abbreviated IF, describes software simulating environments in which players use text commands to control characters and influence the environment. Works in this form can be understood as literary narratives and as computer games. In common usage, the word refers to text adventures, a type of adventure game with text-based input and output. The term is sometimes used to encompass the entirety of the medium, but is also sometimes used to distinguish games produced by the interactive fiction community from those created by games companies. It can also be used to distinguish the more modern style of such works, focusing on narrative and not necessarily falling into the adventure game genre at all, from the more traditional focus on puzzles. More expansive definitions of interactive fiction may refer to all adventure games, including wholly graphical adventures such as Myst.
@@ -375,36 +374,81 @@ As a commercial product, interactive fiction reached its peak in popularity in t
             StackPanel sp = new StackPanel();
             sp.Children.Add(tb);
             testBlocks.Add(sp);
-//            p.PageScrollViewer.Content = tb;
+            p.PageScrollViewer.Content = tb;
             
-//            p.ctrlFlipButton.IsEnabled = false;
+            p.ctrlFlipButton.IsEnabled = false;
 
 
         }
 
+        public void AddStoryPage()
+        {
+            TextfyreBookPage p = CreatePage("Story");
+        }
 
         public void AddColumnPage( string pageID, Entities.DocumentColumnBehaviour columnBehaviour)
         {            
-            TextfyreBookPage p = CreatePage( pageID );
+            //TextfyreBookPage p = CreatePage( pageID );
 
             //if (pageID == "Prologue")
             //{
             //    p.HideHeaderFooter();
             //}
             
-            _document.AddDocumentColumn(p, columnBehaviour);
+            //_document.AddDocumentColumn(p, columnBehaviour);
         }
 
-        private TextfyreBookPage CreatePage( string pageID )
+
+        #region :: CreatePage ::
+        public TextfyreBookPage CreatePage( string pageID )
         {
             TextfyreBookPage p = new TextfyreBookPage( pageID, _pages.Count + 1);
             _pages.Add(p);
             AddClickFlip(p);
             SetLocationAndChapter();
             return p;
-            
+
         }
 
+        public TextfyreBookPage CreatePageAtIndex(string pageID, int index)
+        {
+            int currentIdx = Controls.FlipBook.UCBook.CurrentUCBook.CurrentSheetIndex;
+            TextfyreBookPage p = new TextfyreBookPage(pageID, _pages.Count + 1);
+            _pages.Insert(index, p);
+            AddClickFlip(p);
+            SetLocationAndChapter();
+
+            if (currentIdx >= index)
+            {
+                Controls.FlipBook.UCBook.CurrentUCBook.CurrentSheetIndex = currentIdx + 1;
+                //Current.Game.TextfyreBook.FlipBook.RefreshSheetsContent();
+            }
+            Current.Game.TextfyreBook.FlipBook.RefreshSheetsContent();
+            return p;
+
+        }
+        public TextfyreBookPage GetFirstPageWithPageID(string pageID)
+        {
+            foreach (TextfyreBookPage page in _pages)
+            {
+                if (page.PageID == pageID)
+                    return page;
+            }
+
+            return null;
+        }
+        public TextfyreBookPage GetLastPageWithPageID(string pageID)
+        {
+            TextfyreBookPage resultPage = null;
+            foreach (TextfyreBookPage page in _pages)
+            {
+                if (page.PageID == pageID)
+                    resultPage = page;
+            }
+
+            return resultPage;
+        }
+        #endregion :: CreatePage ::
 
         private void AddClickFlip(TextfyreBookPage ele)
         {
@@ -503,13 +547,15 @@ As a commercial product, interactive fiction reached its peak in popularity in t
         public void FlipTo(string pageID)
         {
             int index = -1;
+            int i = 0;
             foreach (TextfyreBookPage page in _pages)
             {
                 if (page.PageID == pageID)
                 {
-                    index = page.BookPageIndex;
+                    index = i; // page.BookPageIndex;
                     break;
                 }
+                i++;
             }
 
             if (index > -1)

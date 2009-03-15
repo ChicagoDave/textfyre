@@ -29,6 +29,22 @@ namespace Textfyre.UI.Controls
         private Storyboard _inputFocusStoryboard;
 
 
+        private StackPanel _hostStackPanel = null;
+        public void AddInputToStackPanel(StackPanel sp)
+        {
+            sp.Children.Add(this);
+            _hostStackPanel = sp;
+            _tbInput.Width = sp.Width - 20d;
+            //column.PageHeightReset();
+        }
+        public void RemoveInputFromStackPanel()
+        {
+            if (_hostStackPanel != null)
+                _hostStackPanel.Children.Remove(this);
+
+            _hostStackPanel = null;
+        }
+
         private Entities.DocumentColumn _column = null;
         public void AddInputToColumn(Entities.DocumentColumn column)
         {
@@ -49,6 +65,9 @@ namespace Textfyre.UI.Controls
         {
             get
             {
+                // TODO: Implement StackPanel
+                return true;
+                
                 if (_column == null)
                     return false;
 
@@ -104,7 +123,7 @@ namespace Textfyre.UI.Controls
 
         private void _tbInput_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (_column != null )
+            if ( _hostStackPanel != null || _column != null )
             {
                 SetFocus();
             }

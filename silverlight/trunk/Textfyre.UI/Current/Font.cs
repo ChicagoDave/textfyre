@@ -33,14 +33,23 @@ namespace Textfyre.UI.Current
             public double FontSize;
             //private string _fontPath = "TextfyreApp.Resources.Fonts.";
 
+            System.Collections.Generic.Dictionary<string, Stream> _fontsources
+                = new System.Collections.Generic.Dictionary<string, Stream>();
+
             public FontSource FontSource
             {
                 get
-                {
+                {                    
                     if (FontSourcePath.Length > 0)
                     {
-                        Stream fontStream = Current.Application.GameAssembly.GetManifestResourceStream(Current.Application.EntryPointAssemblyName + ".Fonts." + FontSourcePath);
+                        if (_fontsources.ContainsKey(FontSourcePath))
+                        {
+                            return new FontSource( _fontsources[FontSourcePath]);
+                        }
 
+                        
+                        Stream fontStream = Current.Application.GameAssembly.GetManifestResourceStream(Current.Application.EntryPointAssemblyName + ".Fonts." + FontSourcePath);
+                        _fontsources.Add(FontSourcePath, fontStream);
                         return new FontSource(fontStream);
                     }
 

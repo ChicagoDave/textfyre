@@ -24,10 +24,10 @@ namespace Nightfall
         {
             Textfyre.UI.Current.Application.GameAssembly = System.Reflection.Assembly.GetExecutingAssembly();
 
-            Textfyre.UI.Current.Font.FontDefinition fd =
-new Textfyre.UI.Current.Font.FontDefinition(
-"GOUDR.TTF|GoudyRetrospectiveSSK|15");
-            Textfyre.UI.Current.Font.Main = fd;
+                        Textfyre.UI.Current.Font.FontDefinition fd =
+            new Textfyre.UI.Current.Font.FontDefinition(
+            "GOUDR.TTF|GoudyRetrospectiveSSK|15");
+                        Textfyre.UI.Current.Font.Main = fd;
 
             Textfyre.UI.Current.Font.FontDefinition hfd =
                 new Textfyre.UI.Current.Font.FontDefinition(
