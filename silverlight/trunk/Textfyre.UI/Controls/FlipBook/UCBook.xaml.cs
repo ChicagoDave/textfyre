@@ -85,7 +85,11 @@ namespace Textfyre.UI.Controls.FlipBook
                         RefreshSheetsContent();
                     }
                     else
-                        throw new Exception("Index out of bounds");
+                    {   //throw new Exception("Index out of bounds");
+                        _currentSheetIndex = (dataProvider.GetCount() / 2);
+                        RefreshSheetsContent();
+                    }
+                        
                 }
             }
         }

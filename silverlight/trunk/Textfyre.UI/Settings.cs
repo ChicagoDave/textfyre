@@ -40,6 +40,10 @@ namespace Textfyre.UI
         public static PagingMechanismType PagingMechanism = PagingMechanismType.StaticPageCreateBackPages;
         public static string WaitMessages = String.Empty;
 
+        // Calculated from the other settings
+        public static double BookPageInnerInnerContentWidth = 0;
+        public static double BookPageInnerInnerContentHeight = 0;
+
         public enum PagingMechanismType
         {
             StaticPageCreateBackPages,
@@ -85,7 +89,12 @@ namespace Textfyre.UI
                     fi.SetValue( set, Enum.Parse( typeof(PagingMechanismType), value, true ) );
                 }
 
+
             }
+
+            // Calculated from the other settings
+            BookPageInnerInnerContentWidth = BookPageInnerContentWidth - 35d;
+            BookPageInnerInnerContentHeight = BookPageInnerContentHeight - 35d;
 
         }
     }

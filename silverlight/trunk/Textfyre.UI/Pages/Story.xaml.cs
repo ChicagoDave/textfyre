@@ -132,6 +132,8 @@ namespace Textfyre.UI.Pages
             StartGame(mstr);
         }
 
+        List<Grid> _textblocktests = new List<Grid>();
+
         private void StartGame(Stream mstr)
         {
             _engine = new Engine(mstr);
@@ -255,19 +257,20 @@ namespace Textfyre.UI.Pages
                     }
 
                     System.Text.StringBuilder leadingNewlines = new StringBuilder("");
-                    int i = Settings.PrologueNewLines;
-                    while(i > 0 )
-                    {
-                        leadingNewlines.Append(" " + System.Environment.NewLine);
-                        i--;
-                    }
+                    //int i = Settings.PrologueNewLines;
+                    //while(i > 0 )
+                    //{
+                    //    leadingNewlines.Append(" " + System.Environment.NewLine);
+                    //    i--;
+                    //}
 
                     if( Settings.PagingMechanism == Settings.PagingMechanismType.StaticPageCreateBackPages )
                         prologue = "<PrologueMode/>" + leadingNewlines.ToString() + prologue + "<StoryMode/><FullPageBreak/><ColumnScroll/><AddImagePage/>";
                     else if ( Settings.PagingMechanism == Settings.PagingMechanismType.CreateNewPages )
                         prologue = "<PrologueMode/>" + prologue + "<StoryMode/>";
 
-                    TextfyreBook.TextfyreDocument.AddStml(prologue);
+                    //TextfyreBook.TextfyreDocument.AddStml(prologue);
+                    TextfyreBook.TextfyreDocument.AddFyreXml(prologue);
                 }
             }
             #endregion
@@ -285,7 +288,8 @@ namespace Textfyre.UI.Pages
                 string conversation = output[OutputChannel.Conversation].Replace("\n", String.Empty);
 
                 TextfyreBook.TranscriptDialog.AddText(conversation);
-                TextfyreBook.TextfyreDocument.AddStml(conversation);
+                //TextfyreBook.TextfyreDocument.AddStml(conversation);
+                TextfyreBook.TextfyreDocument.AddFyreXml(conversation);
             }
             #endregion
 
@@ -293,7 +297,7 @@ namespace Textfyre.UI.Pages
             if (AnyOutput(output, OutputChannel.Hints))
             {
                 string hints = output[OutputChannel.Hints].Replace("\n", String.Empty);
-                TextfyreBook.TextfyreDocument.AddHints(hints);
+                //TextfyreBook.TextfyreDocument.AddHints(hints);
             }
             #endregion
 
@@ -322,7 +326,8 @@ namespace Textfyre.UI.Pages
                         txt = Entities.WordDef.ParseTextForWordDefs(txt);
 
                         sbMain.Append(txt);
-                        TextfyreBook.TextfyreDocument.AddStml(txt);
+                        //TextfyreBook.TextfyreDocument.AddStml(txt);
+                        TextfyreBook.TextfyreDocument.AddFyreXml(txt);
                     }
                 }
                 Current.User.LogCommand(sbMain.ToString());
@@ -353,7 +358,8 @@ namespace Textfyre.UI.Pages
                     death = "<Paragraph>" + death + "</Paragraph>";
                 }
 
-                TextfyreBook.TextfyreDocument.AddStml(death);
+                //TextfyreBook.TextfyreDocument.AddStml(death);
+                TextfyreBook.TextfyreDocument.AddFyreXml(death);
             }
             #endregion
 
@@ -367,8 +373,9 @@ namespace Textfyre.UI.Pages
 
                 if (Current.Game.GameMode == GameModes.Story)
                 {
-                    prompt = "<Prompt>" + prompt + "</Prompt>";
-                    TextfyreBook.TextfyreDocument.AddStml(prompt);
+                    prompt = "<Prompt>" + prompt.Replace(">", "&gt;") + "</Prompt>";
+                    //TextfyreBook.TextfyreDocument.AddStml(prompt);
+                    TextfyreBook.TextfyreDocument.AddFyreXml(prompt);
                 }
             }
             #endregion
