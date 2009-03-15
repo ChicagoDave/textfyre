@@ -105,7 +105,6 @@ namespace Textfyre.UI.Controls
             AddTableOfContentsPage();
             //for (int i = 0; i < 500; i++)
                // AddFrontPage();
-
             AddStoryPage();
             AddStoryAidPage();
             
@@ -415,6 +414,7 @@ As a commercial product, interactive fiction reached its peak in popularity in t
             int currentIdx = Controls.FlipBook.UCBook.CurrentUCBook.CurrentSheetIndex;
             TextfyreBookPage p = new TextfyreBookPage(pageID, _pages.Count + 1);
             _pages.Insert(index, p);
+            CorrectBookPageIndex();
             AddClickFlip(p);
             SetLocationAndChapter();
 
@@ -467,12 +467,12 @@ As a commercial product, interactive fiction reached its peak in popularity in t
 
         private void ele_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            FlipBook.AnimateToPreviousPage(500);
+            FlipBook.AnimateToPreviousPage(100);
         }
 
         private void ele_DoubleClick2(object sender, MouseButtonEventArgs e)
         {
-            FlipBook.AnimateToNextPage(500);
+            FlipBook.AnimateToNextPage(100);
         }
 
         private int _animatingToPageIndex = -1;
@@ -486,11 +486,11 @@ As a commercial product, interactive fiction reached its peak in popularity in t
                  _animatingToPageIndex = -1;
              else if (_animatingToPageIndex > rightIdx)
              {
-                 FlipBook.AnimateToNextPage(200);
+                 FlipBook.AnimateToNextPage(100);    // Was 200
              }
              else
              {
-                 FlipBook.AnimateToPreviousPage(200);
+                 FlipBook.AnimateToPreviousPage(100);    // Was 200
              }
         }
 
@@ -552,7 +552,7 @@ As a commercial product, interactive fiction reached its peak in popularity in t
             {
                 if (page.PageID == pageID)
                 {
-                    index = i; // page.BookPageIndex;
+                    index = page.BookPageIndex;
                     break;
                 }
                 i++;
@@ -561,6 +561,15 @@ As a commercial product, interactive fiction reached its peak in popularity in t
             if (index > -1)
                 FlipTo(index);
 
+        }
+
+        private void CorrectBookPageIndex()
+        {
+            int i = 1;
+            foreach (TextfyreBookPage page in _pages)
+            {
+                page.BookPageIndex = i++;
+            }
         }
 
         public void FlipTo(int pageIndex)

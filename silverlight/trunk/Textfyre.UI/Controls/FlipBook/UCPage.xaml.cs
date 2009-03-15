@@ -36,7 +36,7 @@ namespace Textfyre.UI.Controls.FlipBook
             get { return page2; }
         }
 
-        private const int animationDuration = 500;
+        private const int animationDuration = 200;  // Was 500
 
         private void OnLoaded(object sender, RoutedEventArgs args)
         {
