@@ -54,7 +54,7 @@ new Textfyre.UI.Current.Font.FontDefinition(
     "GOUDRI.TTF|GoudyRetrospectiveSSK|18");
             Textfyre.UI.Current.Font.Input = inputfd;
 
-            StoryPage.LoadStory(GameFiles.GameFile.sl_rc1, "sl_rc1", new StoryHandle());
+            StoryPage.LoadStory(GameFiles.GameFile.sl_rc3, "sl_rc3", new StoryHandle());
         }
     }
 }
