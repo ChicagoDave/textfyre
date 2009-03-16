@@ -73,5 +73,12 @@ namespace SecretLetter.GameFiles {
                 return ((byte[])(obj));
             }
         }
+        
+        public static byte[] sl_rc3 {
+            get {
+                object obj = ResourceManager.GetObject("sl_rc3", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
