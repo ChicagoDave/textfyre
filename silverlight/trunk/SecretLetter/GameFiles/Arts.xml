@@ -10,5 +10,8 @@
   <Art ID="TOCArt" Path="" />
 
   <Art ID="BookmarkTOC" Path="Images/BookmarkTOC.xaml" Margin="2,50,0,0" />
+
+  <Art ID="GrubbersMarket" Path="Images/PageArt/JackGrubbers-R.jpg" Width="287" Height="440" />
+  <!-- Org size: 1500 x 1855 -->
   
 </Arts>
