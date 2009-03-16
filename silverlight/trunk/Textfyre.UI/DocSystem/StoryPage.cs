@@ -86,11 +86,32 @@ namespace Textfyre.UI.DocSystem
         {
             _storyPage = Current.Game.TextfyreBook.GetFirstPageWithPageID("Story");
             _scrollViewer = _storyPage.PageScrollViewer;
+            _scrollViewer.IsTabStop = false;
+            _scrollViewer.KeyDown += new KeyEventHandler(_scrollViewer_KeyDown);
+            _scrollViewer.KeyUp += new KeyEventHandler(_scrollViewer_KeyUp);
             StackPanel sp = new StackPanel();
             _scrollViewer.Content = sp;
             _scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
             _stackPanel = sp;
             _stackPanel.SizeChanged += new SizeChangedEventHandler(StackPanel_SizeChanged);
+        }
+
+        void _scrollViewer_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.PageUp:
+                    break;
+            }
+        }
+
+        void _scrollViewer_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.PageUp:
+                    break;
+            }
         }
 
 

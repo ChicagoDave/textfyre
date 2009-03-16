@@ -104,11 +104,13 @@ namespace Textfyre.UI.Pages
             if (e.Key == Key.PageDown)
             {
                 TextfyreBook.FlipForward();
+
             }
 
             if (e.Key == Key.PageUp)
             {
                 TextfyreBook.FlipBack();
+
             }
 
 
