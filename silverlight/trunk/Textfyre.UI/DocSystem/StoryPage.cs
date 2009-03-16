@@ -27,6 +27,14 @@ namespace Textfyre.UI.DocSystem
 
         public event EventHandler<InputWantEventArgs> InputWant;
 
+        public class TopicListWantEventArgs : EventArgs
+        {
+            public string Character;
+            public FyreXmlElementTopicList TopicList;
+        }
+
+        public event EventHandler<TopicListWantEventArgs> TopicListWant;
+
         public StoryPage()
         {
         }
@@ -70,6 +78,17 @@ namespace Textfyre.UI.DocSystem
                                 //Current.Game.IsInputFocusActive = true;
                                 //_input.SetFocus();
                                 break;
+
+                            case SectionType.TopicList:
+                                if (TopicListWant != null)
+                                {
+                                    TopicListWantEventArgs args = new TopicListWantEventArgs();
+                                    args.Character = section.Text;
+                                    args.TopicList = (FyreXmlElementTopicList)section.Data;
+                                    TopicListWant(this, args);
+                                }
+                                break;
+
                         }
                         
                     }

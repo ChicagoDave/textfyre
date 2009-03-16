@@ -120,7 +120,7 @@ namespace Textfyre.UI.Entities
 
         private void Document_TopicListRequest(object sender, Document.TopicListEventArgs e)
         {
-            _storyAid.ShowTopics(e.TopicList);
+            //_storyAid.ShowTopics(e.TopicList);
         }
 
         private void _topicChosen(object sender, Textfyre.UI.Controls.Topic.TopicEventArgs e)
