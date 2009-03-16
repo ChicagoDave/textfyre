@@ -15,6 +15,7 @@ namespace Textfyre.UI.DocSystem
     {
         Content,
         PageBreak,
-        Prompt
+        Prompt,
+        TopicList
     }
 }

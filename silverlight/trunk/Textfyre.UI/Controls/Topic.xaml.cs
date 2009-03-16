@@ -19,7 +19,7 @@ namespace Textfyre.UI.Controls
 	{
         public class TopicEventArgs : EventArgs
         {
-            public Entities.Topic Topic;
+            public DocSystem.Topic Topic;
         }
         public event EventHandler<TopicEventArgs> TopicChosen;
 
@@ -34,7 +34,7 @@ namespace Textfyre.UI.Controls
         {
         }
 
-        public void Load( Entities.TopicListColumnElement topics)
+        public void Load( DocSystem.FyreXmlElementTopicList topics)
         {
             // clear the existing topics...
             TopicList.Children.Clear();
@@ -46,13 +46,13 @@ namespace Textfyre.UI.Controls
             headline.HorizontalAlignment = HorizontalAlignment.Center;
             TopicList.Children.Add(headline);
 
-            foreach (Entities.Topic topic in topics.Topics)
+            foreach (DocSystem.Topic topic in topics.Topics)
             {
                 AddButton(topic);
             }
         }
 
-        private void AddButton( Entities.Topic topic )
+        private void AddButton(DocSystem.Topic topic)
         {
             //Button newButton = new Button();
             //newButton.Style = App.Current.Resources["TopicButtonStyle"] as Style;
@@ -81,7 +81,7 @@ namespace Textfyre.UI.Controls
             {
                 TextButton clickedButton = (TextButton)sender;
                 TopicEventArgs args = new TopicEventArgs();
-                args.Topic = (Entities.Topic)clickedButton.DataContext;
+                args.Topic = (DocSystem.Topic)clickedButton.DataContext;
                 TopicChosen(this, args);
             }
         }

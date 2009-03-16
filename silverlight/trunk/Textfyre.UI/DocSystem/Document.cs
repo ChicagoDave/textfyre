@@ -23,7 +23,14 @@ namespace Textfyre.UI.DocSystem
             _backPages = new BackPages();
             _storyPage = new StoryPage();
             _storyPage.InputWant += new EventHandler<StoryPage.InputWantEventArgs>(_storyPage_InputWant);
+            _storyPage.TopicListWant += new EventHandler<StoryPage.TopicListWantEventArgs>(_storyPage_TopicListWant);
             
+        }
+
+        void _storyPage_TopicListWant(object sender, StoryPage.TopicListWantEventArgs e)
+        {
+            _topics = e.TopicList;
+            _topicListWanted = true;
         }
 
         void _storyPage_InputWant(object sender, StoryPage.InputWantEventArgs e)
@@ -338,17 +345,17 @@ namespace Textfyre.UI.DocSystem
 
         #region :: Topics Handler ::
         private bool _topicListWanted = false;
-        private Entities.TopicListColumnElement _topics;
+        private FyreXmlElementTopicList _topics;
 
         public class TopicListEventArgs : EventArgs
         {
-            public Entities.TopicListColumnElement TopicList;
+            public FyreXmlElementTopicList TopicList;
         }
         public event EventHandler<TopicListEventArgs> TopicListRequest;
 
         private void Document_TopicListRequest(object sender, Document.TopicListEventArgs e)
         {
-            //_storyAid.ShowTopics(e.TopicList);
+            _storyAid.ShowTopics(e.TopicList);
         }
 
         private void _topicChosen(object sender, Textfyre.UI.Controls.Topic.TopicEventArgs e)

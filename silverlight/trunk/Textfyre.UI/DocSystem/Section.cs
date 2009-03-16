@@ -95,6 +95,17 @@ namespace Textfyre.UI.DocSystem
         }
         #endregion
 
+        #region :: Data ::
+        private object _data;
+        public object Data
+        {
+            get
+            {
+                return _data;
+            }
+        }
+        #endregion
+
         #region :: Height ::
         private double _height = 0;
         public double Height
@@ -270,6 +281,15 @@ namespace Textfyre.UI.DocSystem
                             DoImage();
                             return _fyreXmlElements;
                         }
+                        break;
+
+                    case FyreXml.OpCode.TopicList:
+                        FyreXmlElementTopicList eleTopicList = element as FyreXmlElementTopicList;
+                        _sectionType = SectionType.TopicList;
+                        _text = element.Data;
+                        _data = eleTopicList;
+                        EndOfSection();
+                        return _fyreXmlElements;
                         break;
                 }
             }

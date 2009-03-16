@@ -59,7 +59,7 @@ namespace Textfyre.UI.Controls
 
         }
 
-        public void ShowTopics(Entities.TopicListColumnElement topics)
+        public void ShowTopics(DocSystem.FyreXmlElementTopicList topics)
         {
             if (topics.Topics.Count > 0)
             {
