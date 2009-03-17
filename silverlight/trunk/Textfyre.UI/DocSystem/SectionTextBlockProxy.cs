@@ -89,6 +89,19 @@ namespace Textfyre.UI.DocSystem
         //}
         #endregion
 
+        public bool IsWordDefMode
+        {
+            get
+            {   // _txtBlkScroll
+                return _txtBlk.IsWordDefMode;
+            }
+            set
+            {
+                _txtBlkScroll.IsWordDefMode = value;
+                _txtBlk.IsWordDefMode = value;
+            }
+        }
+
         #region :: StackPanels Class ::
         public class StackPanels
         {

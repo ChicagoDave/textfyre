@@ -231,7 +231,6 @@ namespace Textfyre.UI.DocSystem
                         }
                         EndOfSection();
                         return _fyreXmlElements;
-                        break;
 
                     case FyreXml.OpCode.PromptBegin:
                         _sectionType = SectionType.Prompt;
@@ -240,7 +239,6 @@ namespace Textfyre.UI.DocSystem
                     case FyreXml.OpCode.PromptEnd:
                         EndOfSection();
                         return _fyreXmlElements;
-                        break;
 
                     case FyreXml.OpCode.Text:
                         string text = element.Data;
@@ -290,6 +288,14 @@ namespace Textfyre.UI.DocSystem
                         _data = eleTopicList;
                         EndOfSection();
                         return _fyreXmlElements;
+
+                    case FyreXml.OpCode.WordDefOn:
+                        _txtBlk.IsWordDefMode = true;
+                        //_txtBlk.ClearRun();
+                        break;
+                    case FyreXml.OpCode.WordDefOff:
+                        _txtBlk.IsWordDefMode = false;
+                        //_txtBlk.ClearRun();
                         break;
                 }
             }

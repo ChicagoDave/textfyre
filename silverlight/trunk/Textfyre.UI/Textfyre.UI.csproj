@@ -173,6 +173,7 @@
     <Compile Include="DocSystem\StoryPage.cs" />
     <Compile Include="DocSystem\TextFormat.cs" />
     <Compile Include="DocSystem\Topic.cs" />
+    <Compile Include="DocSystem\WordDef.cs" />
     <Compile Include="Entities\ColumnElement.cs" />
     <Compile Include="Entities\ColumnElementCollection.cs" />
     <Compile Include="Entities\Document.cs" />
