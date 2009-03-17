@@ -102,6 +102,19 @@ namespace Textfyre.UI.DocSystem
             }
         }
 
+        public void ShowWordDefs()
+        {
+            _txtBlkScroll.ShowWordDefs();
+            _txtBlk.ShowWordDefs();
+        }
+
+        public void HideWordDefs()
+        {
+            _txtBlkScroll.HideWordDefs();
+            _txtBlk.HideWordDefs();
+        }
+
+
         #region :: StackPanels Class ::
         public class StackPanels
         {

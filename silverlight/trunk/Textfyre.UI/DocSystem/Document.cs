@@ -327,12 +327,18 @@ namespace Textfyre.UI.DocSystem
         #region :: WordDefs Handle ::
         public void HideWordDefs()
         {
-            //_txtBlk.HideWordDefs();
+            foreach (Section section in _sections)
+            {
+                section.HideWordDefs();
+            }
         }
 
         public void ShowWordDefs()
         {
-            //_txtBlk.ShowWordDefs();
+            foreach (Section section in _sections)
+            {
+                section.ShowWordDefs();
+            }
         }
         #endregion :: WordDefs Handle ::
 
