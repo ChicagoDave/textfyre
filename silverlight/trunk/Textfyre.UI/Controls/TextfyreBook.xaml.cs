@@ -176,7 +176,8 @@ namespace Textfyre.UI.Controls
             CreditsText.Margin = new Thickness(20, 0, 0, 0);
 
             TextfyreBookPage p = CreatePage("Credits");
-            p.HideHeaderFooter();
+            p.HideHeader();
+            p.HideFooter();
             p.ctrlFlipButton.IsEnabled = false;
             p.PageScrollViewer.Content = CreditsText;
             p.PageScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
@@ -187,7 +188,8 @@ namespace Textfyre.UI.Controls
         {
             TextfyreBookPage p = CreatePage( "FrontPage" );
 
-            p.HideHeaderFooter();
+            p.HideHeader();
+            p.HideFooter();
             p.ctrlFlipButton.IsEnabled = false;
 
             Art art = new Art();
@@ -202,7 +204,8 @@ namespace Textfyre.UI.Controls
         private void AddTableOfContentsPage()
         {
             TextfyreBookPage p = CreatePage( "TOC" );
-            p.HideHeaderFooter();
+            p.HideHeader();
+            p.HideFooter();
             p.ctrlFlipButton.IsEnabled = false;
 
 
@@ -335,6 +338,8 @@ namespace Textfyre.UI.Controls
             TextfyreBookPage p = CreatePage( "StoryAid" );
             p.ctrlFlipButton.IsEnabled = false;
 
+            p.HideFooter();
+
             Controls.StoryAid sa = new StoryAid();
 
             p.PageScrollViewer.Content = sa;
@@ -348,7 +353,8 @@ namespace Textfyre.UI.Controls
         private void AddEmptyPage()
         {
             TextfyreBookPage p = CreatePage( "" );
-            p.HideHeaderFooter();
+            p.HideHeader();
+            p.HideFooter();
             p.ctrlFlipButton.IsEnabled = false;
 
 
@@ -358,7 +364,8 @@ namespace Textfyre.UI.Controls
         private void AddEmptyPage2()
         {
             TextfyreBookPage p = CreatePage("");
-            p.HideHeaderFooter();
+            p.HideHeader();
+            p.HideFooter();
 
             string text = @"
 Interactive fiction, often abbreviated IF, describes software simulating environments in which players use text commands to control characters and influence the environment. Works in this form can be understood as literary narratives and as computer games. In common usage, the word refers to text adventures, a type of adventure game with text-based input and output. The term is sometimes used to encompass the entirety of the medium, but is also sometimes used to distinguish games produced by the interactive fiction community from those created by games companies. It can also be used to distinguish the more modern style of such works, focusing on narrative and not necessarily falling into the adventure game genre at all, from the more traditional focus on puzzles. More expansive definitions of interactive fiction may refer to all adventure games, including wholly graphical adventures such as Myst.
