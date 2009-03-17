@@ -56,6 +56,19 @@ namespace Textfyre.UI.DocSystem
             }
         }
 
+        private bool _centerDone = false;
+        public void Center()
+        {
+            if (_centerDone)
+                return;
+
+            _centerDone = true;
+
+            _txtBlk.HorizontalAlignment = HorizontalAlignment.Center;
+            _txtBlk.Margin = new Thickness(0, 0, 35, 0);
+            
+        }
+
         public StackPanel AddImage(Image img, double maxWidth)
         {
             _stackPanel = img.AddImageContainer(_hostGrid, maxWidth);

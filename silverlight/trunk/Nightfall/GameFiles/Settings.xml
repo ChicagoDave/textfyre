@@ -29,4 +29,5 @@
   <Setting Key="PrologueNewLines" Value="47" />
   <Setting Key="PagingMechanism" Value="StaticPageCreateBackPages" />
   <Setting Key="WaitMessages" Value="Please wait.|Please wait..|Please wait..." />
+  <Setting Key="CenterHeadline" Value="True" />
 </Settings>

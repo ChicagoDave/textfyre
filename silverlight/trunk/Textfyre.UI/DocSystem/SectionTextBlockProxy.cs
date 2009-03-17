@@ -57,6 +57,12 @@ namespace Textfyre.UI.DocSystem
             }
         }
 
+        public void Center()
+        {
+            _txtBlkScroll.Center();
+            _txtBlk.Center();
+        }
+
         public StackPanels AddImage(Image img, double maxWidthForText)
         {
             StackPanels sps = new StackPanels();
