@@ -177,6 +177,8 @@ namespace Textfyre.UI.DocSystem
                         break;
 
                     case FyreXml.OpCode.HeaderEnd :
+                        if (Settings.CenterHeadline)
+                            _txtBlk.Center();
                         SetTextFormatToNormal();
                         EndOfSection();
                         return _fyreXmlElements;
