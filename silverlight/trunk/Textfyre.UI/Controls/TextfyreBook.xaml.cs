@@ -583,12 +583,32 @@ As a commercial product, interactive fiction reached its peak in popularity in t
         {
             AnimateToPageIndex(pageIndex);
         }
+
+        public void GoTo(string pageID)
+        {
+            int index = -1;
+            int i = 0;
+            foreach (TextfyreBookPage page in _pages)
+            {
+                if (page.PageID == pageID)
+                {
+                    index = page.BookPageIndex;
+                    break;
+                }
+                i++;
+            }
+
+            if (index > 0)
+                FlipBook.CurrentSheetIndex = i-1;
+
+        }
+
         #endregion
 
         #region :: Bookmarks ::
         private void BookmarkTOC_Click(object sender, EventArgs e)
         {
-            FlipTo("TOC");
+            GoTo("TOC");
         }
 
         private void BookmarkLoad_Click(object sender, EventArgs e)
