@@ -382,5 +382,15 @@ namespace Textfyre.UI.DocSystem
         {
             _fyreXmlElements.Insert(0, new FyreXmlElement(FyreXml.OpCode.PageBreak));
         }
+
+        public void ShowWordDefs()
+        {
+            _txtBlk.ShowWordDefs();
+        }
+
+        public void HideWordDefs()
+        {
+            _txtBlk.HideWordDefs();
+        }
     }
 }

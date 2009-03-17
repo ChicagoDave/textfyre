@@ -125,8 +125,11 @@ namespace Textfyre.UI.DocSystem
             return string.Empty;
         }
 
+        private Point _lastWordMeassure = new Point(0,0);
         private bool AddWord(string word)
         {
+            double leftpoint = _txtBlk.ActualWidth;
+
             string runText = _run.Text;
             _run.Text += word;
 
@@ -135,6 +138,8 @@ namespace Textfyre.UI.DocSystem
                 _run.Text = runText;
                 return false;
             }
+
+            _lastWordMeassure = new Point(_txtBlk.ActualWidth - leftpoint, _txtBlk.ActualHeight);
 
             return true;
         }
@@ -146,6 +151,13 @@ namespace Textfyre.UI.DocSystem
             else if( _currentTextFormat.Format == TextFormat.Formats.Headline )
                 Current.Font.ApplyFont(Textfyre.UI.Current.Font.FontType.Headline, _txtBlk);
 
+            if (IsWordDefMode)
+            {
+                if (_run == null)
+                    _run = new Run();
+                WordDefRuns.Add(_run);
+            }
+
             _run = new Run();
 
             if (_currentTextFormat.IsBold)
@@ -154,10 +166,7 @@ namespace Textfyre.UI.DocSystem
             if (_currentTextFormat.IsItalic)
                 _run.FontStyle = FontStyles.Italic;
 
-            if (IsWordDefMode)
-            {
-                WordDefRuns.Add(_run);
-            }
+
 
             _txtBlk.Inlines.Add(_run);
         }
@@ -236,19 +245,6 @@ namespace Textfyre.UI.DocSystem
             }
         }
 
-        private Point MeassureWord(string word)
-        {
-            //TextBlock tb = new TextBlock();
-            //Run rn = new Run();
-            //FormatTextBlock(tb);
-            //FormatRun(rn);
-            //tb.Inlines.Add(rn);
-            //rn.Text = word;
-            //return new Point(tb.ActualWidth, tb.ActualHeight);
-
-            return new Point();
-        }
-
         void _curTB_MouseLeave(object sender, MouseEventArgs e)
         {
             TextBlock tb = sender as TextBlock;
@@ -296,7 +292,7 @@ namespace Textfyre.UI.DocSystem
             {
                 if (IsWordDefMode)
                 {
-                    Point wordMeassure = MeassureWord(word);
+                    Point wordMeassure = _lastWordMeassure;
                     double actHeight = _txtBlk.ActualHeight;
                     double actWidth = _txtBlk.ActualWidth;
 
