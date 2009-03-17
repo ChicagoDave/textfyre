@@ -148,7 +148,12 @@ namespace Textfyre.UI.DocSystem
             {
                 TextfyreBookPage p = Current.Game.TextfyreBook.CreatePageAtIndex("BackPage", tocPage.BookPageIndex);
                 _bookPages.Add(p);
-                p.HideHeaderFooter();
+
+                
+                p.HideHeader();
+                
+                //p.HideFooter();
+
 
                 StackPanel sp = new StackPanel();
                 p.PageScrollViewer.Content = sp;

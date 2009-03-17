@@ -19,10 +19,10 @@ namespace Textfyre.UI.Controls
         public string PageID;
         public int BookPageIndex;
 
-        public TextfyreBookPage( string pageID, int bookPageIndex )
+        public TextfyreBookPage(string pageID, int bookPageIndex)
         {
             PageID = pageID;
-            BookPageIndex = bookPageIndex; 
+            BookPageIndex = bookPageIndex;
 
             InitializeComponent();
 
@@ -52,9 +52,14 @@ namespace Textfyre.UI.Controls
             //ctrlFlipButton.FlipBtn.Click += new EventHandler(FlipBtn_Click);
         }
 
-        public void HideHeaderFooter()
+        public void HideHeader()
         {
             this.LocationChannel.Visibility = Visibility.Collapsed;
+
+        }
+
+        public void HideFooter()
+        {
             this.TimeChannel.Visibility = Visibility.Collapsed;
         }
 
@@ -76,7 +81,7 @@ namespace Textfyre.UI.Controls
             {
                 object o = this.PageScrollViewer.Content;
 
-                if( o == null )
+                if (o == null)
                     return true;
 
                 if (o is StackPanel)
@@ -108,7 +113,7 @@ namespace Textfyre.UI.Controls
                     ctrlFlipButton.VerticalAlignment = VerticalAlignment.Bottom;
                     ctrlFlipButton.Margin = new Thickness(0, 0, 20, 15);
                     ctrlFlipButton.IsEvenPage = true;
-                
+
                 }
                 else
                 {
