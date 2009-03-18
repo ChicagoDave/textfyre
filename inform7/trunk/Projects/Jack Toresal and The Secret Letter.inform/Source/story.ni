@@ -2,6 +2,7 @@
 
 [  Change Log
 When		Who		What
+18-Mar-2009	D. Cornelson	Fixed hints bug.
 02-Mar-2009	G. Jefferis	Assorted bug finding and fixes
 26-Feb-2009	G. Jefferis	Implemented changes from Paul_6_response
 25-Feb-2009	G. Jefferis	Implemented changes from Paul_5_response
@@ -182,10 +183,11 @@ Rule for printing the banner text:
 	say "Copyright © [story creation year] by [story author][line break]";
 	say "Designed by David Cornelson and Michael Gentry[line break]";
 	say "Written by Michael Gentry[line break]";
-	say "Programmed by Graeme Jefferis[line break]";
-	say "Testing by Jacqueline Ashwell, Peter Berman, Eric Eve, Jim Aikin, and Paul O'Brian[line break]";
+	say "Story Programming by Graeme Jefferis[line break]";
+	say "Testing by Jacqueline Ashwell, Peter Berman,[line break]Eric Eve, Jim Aikin, and Paul O'Brian[line break]";
 	say "Original art by Goni Montes[line break]";
 	say "Art Direction by William Capellaro[line break]";
+	say "User Interface Programming by Thomas Lynge[line break]";
 	say "All rights reserved[line break]";
 	select the main channel;
 
@@ -983,7 +985,11 @@ First check singing:
 
 Part 54 - Handling Hints
 
-Investigating is a scene. Investigating begins when Trouble in Grubbers ends. Investigating ends when the player visits Commerce Street East for the first time.
+Investigating is a scene.
+
+Investigating begins when Trouble in Grubbers ends.
+
+Investigating ends when the player is in East Commerce Street for the first time.
 
 Mulling is a scene. Mulling begins when Meeting Bobby ends. Mulling ends when Bobby's adventure begins.
 
@@ -2369,7 +2375,7 @@ When Monkey business begins:
 EVENT_monkey is a dramatic event. The priority is show-stopping.
 
 For firing EVENT_monkey:
-	say "Suddenly you hear a commotion from the back of the stall: the crash of a display case hitting the ground; shouts and curses from the stallkeeper; and a horrific, gibbering shriek.[paragraph break]'Come back here, you flea-bitten thief!' yells the stallkeeper, and for a panicked moment you think he means [i]you[r]. Then you see something small and gray dart up to the roof of the stall... it's just a forest monkey, probably someone's pet running loose. And it's clutching one of the stallkeeper's necklaces in its tiny black fist.[paragraph break]The monkey turns and screeches back at the stallkeeper, dodges a clumsily thrown dirt clod, and scampers away.";
+	say "Suddenly you hear a commotion from the back of the stall: the crash of a display case hitting the ground; shouts and curses from the stallkeeper; and a horrific, gibbering shriek.[paragraph break]'Come back here, you flea-bitten thief!' yells the stallkeeper, and for a panicked moment you think he means [i]you[r]. Then you see something small and gray dart up to the roof of the stall...it's just a forest monkey, probably someone's pet running loose. And it's clutching one of the stallkeeper's necklaces in its tiny black fist.[paragraph break]The monkey turns and screeches back at the stallkeeper, dodges a clumsily thrown dirt clod, and scampers away.";
 	move the monkey to Grubbers Market Top of Center Post;
 
 [ See Top Of Center Post for more Monkey business ]
