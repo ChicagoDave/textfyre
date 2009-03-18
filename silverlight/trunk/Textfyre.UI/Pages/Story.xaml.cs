@@ -299,7 +299,83 @@ namespace Textfyre.UI.Pages
             if (AnyOutput(output, OutputChannel.Hints))
             {
                 string hints = output[OutputChannel.Hints].Replace("\n", String.Empty);
-                //TextfyreBook.TextfyreDocument.AddHints(hints);
+                /*
+                hints = @"<hints title=""Chapter I Hints"">
+<topic title=""What do I do?"">
+<hint id=""1"">You hear voices nearby.</hint>    
+<hint id=""2"">Listen to the voices.</hint>    
+<hint id=""3"">You need to get a better angle.</hint>    
+<hint id=""4"">Notice those crates?</hint>    
+<hint id=""5"">Climb up the crates to get to the roof.</hint>   
+</topic>   
+<topic title=""How do I escape the mercenaries?"">    
+<hint id=""1"">Run!</hint>   
+</topic>   
+<topic title=""There's nowhere to go!"">    
+<hint id=""1"">You can try to lose them in the marketplace.</hint>    
+<hint id=""2"">But they know what you look like.</hint>   
+</topic>   
+<topic title=""Can I get a disguise?"">    
+<hint id=""1"">The mercenaries have a picture of you. Can you change your appearance?</hint>    
+<hint id=""2"">Take off something you're wearing and maybe that will fool them.</hint>    
+<hint id=""3"">Remove your hat.</hint>    
+<hint id=""4"">Can you disguise yourself in some other way?</hint>    
+<hint id=""5"">Try looking at what's available in the silk tent.</hint>    
+<hint id=""6"">You might need a cloak to cover yourself.</hint>    
+<hint id=""7"">Ask Teisha about the green silk cloak.</hint>   
+</topic>   
+<topic title=""What can I do in the market?"">    
+<hint id=""1"">Browse around.</hint>   
+</topic>   
+<topic title=""Teisha won't trade me unless I have jewelry."">    
+<hint id=""1"">Maybe you could find some.</hint>    
+<hint id=""2"">Someone around here has something valuable.</hint>   
+</topic>   
+<topic title=""What is that brown furry thing?"">    
+<hint id=""1"">See if you can find it sitting in one place.</hint>    
+<hint id=""2"">Have you noticed that big post behind some of the tents?</hint>    
+<hint id=""3"">There's a way to get to it.</hint>    
+<hint id=""4"">You'll have to let one of the merchants let you through the back of their tent.</hint>    
+<hint id=""5"">Is there a merchant you're friends with who will do you a favor?</hint>    
+<hint id=""6"">Try the silk tent.</hint>   
+</topic>   
+<topic title=""How do I get the necklace from the monkey?"">    
+<hint id=""1"">Maybe if you give the monkey something else he likes better.</hint>    
+<hint id=""2"">What's available in the market that a monkey likes?</hint>    
+<hint id=""3"">Have you been to the fruit stall?</hint>    
+<hint id=""4"">Monkeys like a banana.</hint>    
+<hint id=""5"">Take a banana from the fruit stall and show it to the monkey.</hint>   
+</topic>   
+<topic title=""How do I buy things in the market?"">    
+<hint id=""1"">You need money to buy things.</hint>    
+<hint id=""2"">You don't have any money.</hint>    
+<hint id=""3"">Well, how about a trade?</hint>    
+<hint id=""4"">You don't have anything to trade, either.</hint>    
+<hint id=""5"">How about stealing?</hint>   
+</topic>   
+<topic title=""Help, the mercenaries are after me again!"">    
+<hint id=""1"">You'd better escape!</hint>    
+<hint id=""2"">Go out the back way (north).</hint>    
+<hint id=""3"">Better go back up the post.</hint>   
+</topic>   
+<topic title=""I'm trapped on top of the pole."">    
+<hint id=""1"">Remember how the monkey got away?</hint>    
+<hint id=""2"">You can't swing on the jewelry, but...</hint>    
+<hint id=""3"">Have you got anything else you can loop over the wire?</hint>    
+<hint id=""4"">Something big enough to hold onto?</hint>    
+<hint id=""5"">Try your gray cloak.</hint>    
+<hint id=""6"">Loop the cloak over the wire, and you'll slide to safety.</hint>    
+<hint id=""7"">Now you need to find a better place to hide.</hint>    
+<hint id=""8"">Escape to Commerce Street, east of the marketplace.</hint>   
+</topic>   
+<topic title=""They still catch me when I try to leave!"">    
+<hint id=""1"">Better wear your new disguise first.</hint>    
+<hint id=""2"">Put on the green silk cloak.</hint>    
+<hint id=""3"">Now you can leave the market and enter Commerce Street.</hint>   
+</topic>  
+</hints>"; 
+                */
+                TextfyreBook.TextfyreDocument.AddHints(hints);
             }
             #endregion
 

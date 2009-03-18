@@ -345,7 +345,7 @@ namespace Textfyre.UI.DocSystem
         #region :: Hints Handle ::
         public void AddHints(string channelData)
         {
-            //_storyAid.AddHints(channelData);
+            _storyAid.AddHints(channelData);
         }
         #endregion :: Hints Handle ::
 
