@@ -25,6 +25,13 @@ namespace Textfyre.UI.Controls.Hints
             LayoutRoot.MouseLeftButtonUp += new MouseButtonEventHandler(LayoutRoot_MouseLeftButtonUp);
             LayoutRoot.MouseEnter += new MouseEventHandler(LayoutRoot_MouseEnter);
             LayoutRoot.MouseLeave += new MouseEventHandler(LayoutRoot_MouseLeave);
+            RevealStoryboard.Completed += new EventHandler(RevealStoryboard_Completed);
+        }
+
+        void RevealStoryboard_Completed(object sender, EventArgs e)
+        {
+            Current.Game.IsInputFocusActive = true;
+            Current.Game.TextfyreBook.TextfyreDocument.InputFocus();
         }
 
         void InitTxtBlocks()
@@ -80,6 +87,7 @@ namespace Textfyre.UI.Controls.Hints
             if (RevealStoryboard.GetCurrentState() != ClockState.Active)
             {
                 RevealStoryboard.Begin();
+             
             }
             
 

@@ -49,6 +49,8 @@ namespace Textfyre.UI.Controls
             PageArt.Visibility = Visibility.Collapsed;
             TopicControl.Visibility = Visibility.Collapsed;
             HintControl.Visibility = Visibility.Visible;
+            Current.Game.IsInputFocusActive = true;
+            Current.Game.TextfyreBook.TextfyreDocument.InputFocus();
         }
 
         public void HideHints()
@@ -56,7 +58,8 @@ namespace Textfyre.UI.Controls
             PageArt.Visibility = Visibility.Visible;
             TopicControl.Visibility = Visibility.Collapsed;
             HintControl.Visibility = Visibility.Collapsed;
-
+            Current.Game.IsInputFocusActive = true;
+            Current.Game.TextfyreBook.TextfyreDocument.InputFocus();
         }
 
         public void ShowTopics(DocSystem.FyreXmlElementTopicList topics)
