@@ -65,5 +65,11 @@ namespace Textfyre.UI.Controls.Hints
                 hg.Close();
             }
         }
+
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            Current.Game.TextfyreBook.TextfyreDocument.StoryAid.HideHints();
+        }
+
     }
 }
