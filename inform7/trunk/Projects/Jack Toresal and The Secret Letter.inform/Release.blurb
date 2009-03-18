@@ -1,7 +1,7 @@
 ! Blurb file created by NI build 5U92
 variable [RELEASE] = "1"
-storyfile "C:\Users\dcornelson\Documents\Inform\Projects\Jack Toresal and The Secret Letter.inform\Build\output.ulx" include
-metadata "C:\Users\dcornelson\Documents\Inform\Projects\Jack Toresal and The Secret Letter.inform\Metadata.iFiction" include
+storyfile "C:\Users\David\Documents\Inform\Projects\Jack Toresal and The Secret Letter.inform\Build\output.ulx" include
+metadata "C:\Users\David\Documents\Inform\Projects\Jack Toresal and The Secret Letter.inform\Metadata.iFiction" include
 variable [YEAR] = "2009"
 variable [TITLE] = "Jack Toresal and The Secret Letter"
 variable [AUTHOR] = "Textfyre, Inc"
