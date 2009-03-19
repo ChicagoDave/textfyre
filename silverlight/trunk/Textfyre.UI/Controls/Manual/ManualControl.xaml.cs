@@ -17,7 +17,7 @@ namespace Textfyre.UI.Controls.Manual
 {
     public partial class ManualControl : UserControl
     {
-        private double _width = Settings.BookPageWidth - 60d; 
+        private double _width = Settings.BookPageWidth - 80d; 
 
         public ManualControl()
         {
@@ -78,6 +78,7 @@ namespace Textfyre.UI.Controls.Manual
             var items = (from item in menu.Elements() select item);
             DisplayLinks(items, true);
 
+            Title.Text = menu.Attribute("title").Value;
         }
 
         void DisplayLinks(IEnumerable<XElement> items, bool showClose)
