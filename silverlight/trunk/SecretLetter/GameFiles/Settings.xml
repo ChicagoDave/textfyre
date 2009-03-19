@@ -6,7 +6,7 @@
   <Setting Key="BookPageHeight" Value="572" />
   <Setting Key="BookPageOffsetLeft" Value="66" />
   <Setting Key="BookPageOffsetTop" Value="0" />
-  <Setting Key="VersionText" Value="18-Mar-2009 Game: rc4 UI: pp5" />
+  <Setting Key="VersionText" Value="19-Mar-2009 Game: rc4 UI: pp4" />
   <Setting Key="StoryID" Value="1" />
   <Setting Key="LogEnabled" Value="True" />
   <Setting Key="UseIndents" Value="True" />
