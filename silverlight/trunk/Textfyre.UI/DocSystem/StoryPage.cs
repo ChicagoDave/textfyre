@@ -15,8 +15,9 @@ namespace Textfyre.UI.DocSystem
     public class StoryPage
     {
         private TextfyreBookPage _storyPage;
-        private ScrollViewer _scrollViewer;
-        private StackPanel _stackPanel;
+        private Controls.StoryScroller _storyScroller;
+        //private ScrollViewer _scrollViewer;
+        //private StackPanel _stackPanel;
         private int sectionPtr = 0;
 
         public class InputWantEventArgs : EventArgs
@@ -43,8 +44,19 @@ namespace Textfyre.UI.DocSystem
         {
             get
             {
-                return _stackPanel;
+                return _storyScroller.ContentPanel; //_stackPanel;
             }
+        }
+
+        public void HostStackPanelAddHeight(double value)
+        {
+            _storyScroller.ContentHeight = _storyScroller.ContentHeight + value;
+        }
+
+        public void HostStackPanelSubstractHeight(double value)
+        {
+            _storyScroller.ContentHeight = _storyScroller.ContentHeight - value;
+
         }
 
         public void Do(SectionCollection sections)
@@ -62,8 +74,10 @@ namespace Textfyre.UI.DocSystem
                     {
                         switch (section.SectionType)
                         {
+                            case SectionType.ArtOnly:
                             case SectionType.Content:
-                                _stackPanel.Children.Add(section.HostGridScroll);
+                                _storyScroller.AddSection(section);    
+                            //_stackPanel.Children.Add(section.HostGridScroll);
                                 break;
                             case SectionType.Prompt:
                                 if (InputWant != null)
@@ -104,93 +118,96 @@ namespace Textfyre.UI.DocSystem
         private void GetStoryPage()
         {
             _storyPage = Current.Game.TextfyreBook.GetFirstPageWithPageID("Story");
-            _scrollViewer = _storyPage.PageScrollViewer;
-            _scrollViewer.IsTabStop = false;
-            _scrollViewer.KeyDown += new KeyEventHandler(_scrollViewer_KeyDown);
-            _scrollViewer.KeyUp += new KeyEventHandler(_scrollViewer_KeyUp);
-            StackPanel sp = new StackPanel();
-            _scrollViewer.Content = sp;
-            _scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
-            _stackPanel = sp;
-            _stackPanel.SizeChanged += new SizeChangedEventHandler(StackPanel_SizeChanged);
+            _storyScroller = new Controls.StoryScroller();
+            _storyPage.PageScrollViewerReplace = _storyScroller;
+            
+            //_scrollViewer = _storyPage.PageScrollViewer;
+            //_scrollViewer.IsTabStop = false;
+            //_scrollViewer.KeyDown += new KeyEventHandler(_scrollViewer_KeyDown);
+            //_scrollViewer.KeyUp += new KeyEventHandler(_scrollViewer_KeyUp);
+            //StackPanel sp = new StackPanel();
+            //_scrollViewer.Content = sp;
+            //_scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+            //_stackPanel = sp;
+            //_stackPanel.SizeChanged += new SizeChangedEventHandler(StackPanel_SizeChanged);
         }
 
-        void _scrollViewer_KeyUp(object sender, KeyEventArgs e)
-        {
-            switch (e.Key)
-            {
-                case Key.PageUp:
-                    break;
-            }
-        }
+        //void _scrollViewer_KeyUp(object sender, KeyEventArgs e)
+        //{
+        //    switch (e.Key)
+        //    {
+        //        case Key.PageUp:
+        //            break;
+        //    }
+        //}
 
-        void _scrollViewer_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.Key)
-            {
-                case Key.PageUp:
-                    break;
-            }
-        }
+        //void _scrollViewer_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    switch (e.Key)
+        //    {
+        //        case Key.PageUp:
+        //            break;
+        //    }
+        //}
 
 
-        #region :: StackPanel & ScrollViewer Scroll ::
-        private void StackPanel_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            Size size = e.NewSize;
-            if (size.Height > _scrollViewer.Height)
-            {
-                _wantedVerticalScrollOffset = size.Height - (ScrollViewer.Height - 8d);
-                //ScrollViewer.ScrollToVerticalOffset(_wantedVerticalScrollOffset);
-                AnimateScroll();
-            }
+        //#region :: StackPanel & ScrollViewer Scroll ::
+        //private void StackPanel_SizeChanged(object sender, SizeChangedEventArgs e)
+        //{
+        //    Size size = e.NewSize;
+        //    if (size.Height > _scrollViewer.Height)
+        //    {
+        //        _wantedVerticalScrollOffset = size.Height - (ScrollViewer.Height - 8d);
+        //        //ScrollViewer.ScrollToVerticalOffset(_wantedVerticalScrollOffset);
+        //        AnimateScroll();
+        //    }
 
-            //RemovePastTextBlocks();
-        }
-        private double _wantedVerticalScrollOffset = 0;
-        private Storyboard _scrollStoryboard;
-        private void AnimateScroll()
-        {
-            if (_wantedVerticalScrollOffset > ScrollViewer.VerticalOffset)
-            {
-                if (_scrollStoryboard == null)
-                {
-                    _scrollStoryboard = new Storyboard();
-                    _scrollStoryboard.Completed += new EventHandler(_scrollStoryboard_Completed);
-                    _scrollStoryboard.Duration = TimeSpan.FromMilliseconds(100);
-                    _scrollStoryboard.Begin();
-                }
-            }
-        }
+        //    //RemovePastTextBlocks();
+        //}
+        //private double _wantedVerticalScrollOffset = 0;
+        //private Storyboard _scrollStoryboard;
+        //private void AnimateScroll()
+        //{
+        //    if (_wantedVerticalScrollOffset > ScrollViewer.VerticalOffset)
+        //    {
+        //        if (_scrollStoryboard == null)
+        //        {
+        //            _scrollStoryboard = new Storyboard();
+        //            _scrollStoryboard.Completed += new EventHandler(_scrollStoryboard_Completed);
+        //            _scrollStoryboard.Duration = TimeSpan.FromMilliseconds(100);
+        //            _scrollStoryboard.Begin();
+        //        }
+        //    }
+        //}
 
-        void _scrollStoryboard_Completed(object sender, EventArgs e)
-        {
-            _scrollStoryboard.Stop();
-            double newScrollPos = ScrollViewer.VerticalOffset + Settings.ScrollSpeed;
-            if (newScrollPos > _wantedVerticalScrollOffset)
-                newScrollPos = _wantedVerticalScrollOffset;
+        //void _scrollStoryboard_Completed(object sender, EventArgs e)
+        //{
+        //    _scrollStoryboard.Stop();
+        //    double newScrollPos = ScrollViewer.VerticalOffset + Settings.ScrollSpeed;
+        //    if (newScrollPos > _wantedVerticalScrollOffset)
+        //        newScrollPos = _wantedVerticalScrollOffset;
 
-            ScrollViewer.ScrollToVerticalOffset(newScrollPos);
+        //    ScrollViewer.ScrollToVerticalOffset(newScrollPos);
 
-            if (_wantedVerticalScrollOffset > ScrollViewer.VerticalOffset)
-            {
-                _scrollStoryboard.Begin();
-            }
-            else
-            {
-                _scrollStoryboard = null;
-            }
-        }
-        #region :: ScrollViewer ::
-        public ScrollViewer ScrollViewer
-        {
-            get
-            {
-                return _scrollViewer;
-            }
-        }
-        #endregion
-        #endregion
+        //    if (_wantedVerticalScrollOffset > ScrollViewer.VerticalOffset)
+        //    {
+        //        _scrollStoryboard.Begin();
+        //    }
+        //    else
+        //    {
+        //        _scrollStoryboard = null;
+        //    }
+        //}
+        //#region :: ScrollViewer ::
+        //public ScrollViewer ScrollViewer
+        //{
+        //    get
+        //    {
+        //        return _scrollViewer;
+        //    }
+        //}
+        //#endregion
+        //#endregion
 
     }
 }

@@ -13,7 +13,6 @@ namespace Textfyre.UI.DocSystem
 {
     public enum ImageAlign
     {
-        Center,
         Left,
         Right
     }

@@ -39,7 +39,8 @@ namespace Textfyre.UI.DocSystem
             WordDefOff,
             PrologueMode,
             StoryMode,
-            LineBreak
+            LineBreak,
+            Art
         }
     }
 }

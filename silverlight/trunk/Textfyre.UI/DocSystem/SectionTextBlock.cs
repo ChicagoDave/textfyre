@@ -75,6 +75,12 @@ namespace Textfyre.UI.DocSystem
             return _stackPanel;
         }
 
+        public StackPanel AddArt(ArtRegister artRegister, double maxWidth)
+        {
+            _stackPanel = artRegister.AddArtContainer(_hostGrid, maxWidth);
+            return _stackPanel;
+        }
+
         public string AddText(string text, TextFormat tf, double maxWidth, StackPanel sp )
         {
             _stackPanel = sp;

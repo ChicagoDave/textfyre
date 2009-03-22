@@ -157,6 +157,12 @@ namespace Textfyre.UI.DocSystem
                 return _fyreXmlElements;
             }
 
+            if (_fyreXmlElements.ArtRegister != null)
+            {
+                DoArt();
+                return _fyreXmlElements;
+            }
+
             bool _processElements = true;
             while (_fyreXmlElements.Count > 0 && _processElements)
             {
@@ -275,10 +281,19 @@ namespace Textfyre.UI.DocSystem
                         break;
 
                     case FyreXml.OpCode.Image:
-                        RegImage( "Images/SpotArt/Crates.png", 80, 70);
+                        RegImage( "Images/SpotArt/Crates.png", 80, 70 );
                         if (_txtBlk.IsEmpty)
                         {
                             DoImage();
+                            return _fyreXmlElements;
+                        }
+                        break;
+
+                    case FyreXml.OpCode.Art:
+                        RegArt( element.Data );
+                        if (_txtBlk.IsEmpty)
+                        {
+                            DoArt();
                             return _fyreXmlElements;
                         }
                         break;
@@ -305,7 +320,7 @@ namespace Textfyre.UI.DocSystem
             return _fyreXmlElements;
         }
 
-        private void RegImage( string imgUrl, double width, double height )
+        private void RegImage(string imgUrl, double width, double height)
         {
             Image img = new Image();
             img.ImgUrl = imgUrl;
@@ -313,6 +328,7 @@ namespace Textfyre.UI.DocSystem
             img.Width = width;
             img.Height = height;
             _fyreXmlElements.Image = img;
+
         }
         private void DoImage()
         {
@@ -328,7 +344,7 @@ namespace Textfyre.UI.DocSystem
 
             int count = 0;
             double totalHeight=0;
-            while (_fyreXmlElements.Count > 0 && totalHeight<img.Height)
+            while (_fyreXmlElements.Count > 0 && totalHeight < img.Height)
             {
                 Section section = new Section();
                 _fyreXmlElements = section.Process(_fyreXmlElements, sps);
@@ -349,6 +365,65 @@ namespace Textfyre.UI.DocSystem
             // Override height
             _height = totalHeight;
         }
+
+        private void RegArt(string artID )
+        {
+            ArtRegister areg = new ArtRegister();
+            areg.ArtID = artID;
+            double[] size = Controls.Art.WidthAndHeight(artID);
+            areg.Width = size[0];
+            areg.Height = size[1];
+
+            _fyreXmlElements.ArtRegister = areg;
+
+        }
+        private void DoArt()
+        {
+            ArtRegister areg = _fyreXmlElements.ArtRegister;
+            if (areg == null)
+                return;
+
+            _fyreXmlElements.ArtRegister = null;
+
+            double maxWidthForText = _fyreXmlElements.PageWidth - areg.Width;
+            _fyreXmlElements.MaxWidth = maxWidthForText;
+            SectionTextBlockProxy.StackPanels sps = _txtBlk.AddArt(areg, maxWidthForText);
+
+            if (sps.StackPanelScroll == null)
+            {
+                _fyreXmlElements.MaxWidth = _fyreXmlElements.PageWidth;
+                _sectionType = SectionType.ArtOnly;
+                EndOfSection();
+                // Override height
+                _height = areg.Height;
+                return;
+            }
+
+            int count = 0;
+            double totalHeight = 0;
+            while (_fyreXmlElements.Count > 0 && totalHeight < areg.Height)
+            {
+                Section section = new Section();
+                _fyreXmlElements = section.Process(_fyreXmlElements, sps);
+
+                if (section.IsEmpty == false)
+                {
+                    section.Sequence = count++;
+                    totalHeight += section.Height;
+                }
+            }
+
+            if (totalHeight < areg.Height)
+                totalHeight = areg.Height;
+
+            _fyreXmlElements.MaxWidth = _fyreXmlElements.PageWidth;
+
+            EndOfSection();
+            // Override height
+            _height = totalHeight;
+        }
+
+
 
         private void EndOfSection()
         {

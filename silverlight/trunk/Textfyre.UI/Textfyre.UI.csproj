@@ -133,6 +133,9 @@
     <Compile Include="Controls\StoryAid.xaml.cs">
       <DependentUpon>StoryAid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\StoryScroller.xaml.cs">
+      <DependentUpon>StoryScroller.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TableOfContent.xaml.cs">
       <DependentUpon>TableOfContent.xaml</DependentUpon>
     </Compile>
@@ -155,6 +158,7 @@
     <Compile Include="Current\Font.cs" />
     <Compile Include="Current\Game.cs" />
     <Compile Include="Current\User.cs" />
+    <Compile Include="DocSystem\ArtRegister.cs" />
     <Compile Include="DocSystem\BackPages.cs" />
     <Compile Include="DocSystem\ContentMode.cs" />
     <Compile Include="DocSystem\Document.cs" />
@@ -321,6 +325,10 @@
     <Page Include="Controls\StoryAid.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\StoryScroller.xaml">
+      <SubType>Page</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>
     <Page Include="Controls\TableOfContent.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>

@@ -29,20 +29,30 @@ namespace Textfyre.UI.Controls
         private Storyboard _inputFocusStoryboard;
 
 
-        private StackPanel _hostStackPanel = null;
-        public void AddInputToStackPanel(StackPanel sp)
+        //private StackPanel _hostStackPanel = null;
+        private DocSystem.StoryPage _storyPage = null;
+        public void AddInputToStackPanel( DocSystem.StoryPage storyPage )
         {
-            sp.Children.Add(this);
-            _hostStackPanel = sp;
-            _tbInput.Width = sp.Width - 20d;
+            _storyPage = storyPage;
+
+            _storyPage.HostStackPanelAddHeight(10d);
+            _storyPage.HostStackPanel.Children.Add(this);
+            _tbInput.Width = _storyPage.HostStackPanel.Width - 20d;
             //column.PageHeightReset();
         }
         public void RemoveInputFromStackPanel()
         {
-            if (_hostStackPanel != null)
-                _hostStackPanel.Children.Remove(this);
+            if (_storyPage != null)
+            {
+                StackPanel sp = _storyPage.HostStackPanel;
+                if (sp.Children.Contains(this))
+                {
+                    _storyPage.HostStackPanelSubstractHeight(10d);
+                    sp.Children.Remove(this);
+                }
+            }
 
-            _hostStackPanel = null;
+            _storyPage = null;
         }
 
         private Entities.DocumentColumn _column = null;
@@ -123,7 +133,7 @@ namespace Textfyre.UI.Controls
 
         private void _tbInput_LostFocus(object sender, RoutedEventArgs e)
         {
-            if ( _hostStackPanel != null || _column != null )
+            if (_storyPage != null || _column != null)
             {
                 SetFocus();
             }

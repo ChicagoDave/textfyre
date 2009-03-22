@@ -52,6 +52,15 @@ namespace Textfyre.UI.Controls
             //ctrlFlipButton.FlipBtn.Click += new EventHandler(FlipBtn_Click);
         }
 
+        public UIElement PageScrollViewerReplace
+        {
+            set
+            {
+                LayoutRoot.Children.RemoveAt(4);
+                LayoutRoot.Children.Insert(4, value);
+            }
+        }
+
         public void HideHeader()
         {
             this.LocationChannel.Visibility = Visibility.Collapsed;

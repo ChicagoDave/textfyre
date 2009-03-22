@@ -97,8 +97,8 @@ namespace Textfyre.UI.DocSystem
                 cd2.Width = new GridLength(maxWidthForText);
                 cd1.Width = new GridLength(_width);
 
-                hostgrid.ColumnDefinitions.Add(cd2);
                 hostgrid.ColumnDefinitions.Add(cd1);
+                hostgrid.ColumnDefinitions.Add(cd2);
                 imgGridColumn = 0;
                 spGridColumn = 1;
             }

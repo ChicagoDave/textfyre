@@ -55,6 +55,19 @@ namespace Textfyre.UI.DocSystem
             }
         }
 
+        private ArtRegister _artRegister;
+        public ArtRegister ArtRegister
+        {
+            get
+            {
+                return _artRegister;
+            }
+            set
+            {
+                _artRegister = value;
+            }
+        }
+
         public double PageWidth { get; set; }
         public double MaxWidth { get; set; }
 
@@ -189,9 +202,15 @@ namespace Textfyre.UI.DocSystem
                     case "/italic":
                         elements.Add(new FyreXmlElement(FyreXml.OpCode.ItalicOff));
                         break;
-                    case "img":
+                    case "image":
+                    case "image/":
                         hasParagraphContentChildren = true;
                         elements.Add(new FyreXmlElement(FyreXml.OpCode.Image));
+                        break;
+                    case "art":
+                    case "art/":
+                        hasParagraphContentChildren = true;
+                        elements.Add(new FyreXmlElement(FyreXml.OpCode.Art, GetAttribute("ID", attributes)));
                         break;
                     case "paragraph":
                         hasParagraphContentChildren = false;
@@ -288,7 +307,11 @@ namespace Textfyre.UI.DocSystem
             if( atts.Length == 0 || atts == "/" )
                 return new Dictionary<string, string>();
 
-            string tag = "<TAG " + atts + "/>";
+            string tag = String.Empty;
+            if( atts.EndsWith("/") )
+                tag = "<TAG " + atts + ">";
+            else
+                tag = "<TAG " + atts + "/>";
             XDocument xDoc = XDocument.Parse(tag);
 
             Dictionary<string, string> dic = new Dictionary<string, string>();

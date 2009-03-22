@@ -72,6 +72,15 @@ namespace Textfyre.UI.DocSystem
             return sps;
         }
 
+        public StackPanels AddArt(ArtRegister artRegister, double maxWidthForText)
+        {
+            StackPanels sps = new StackPanels();
+            sps.StackPanelScroll = _txtBlkScroll.AddArt(artRegister, maxWidthForText);
+            sps.StackPanel = _txtBlk.AddArt(artRegister, maxWidthForText);
+
+            return sps;
+        }
+
         #region :: AddText ::
         public string AddText(string text, TextFormat tf, double maxWidthForText, StackPanels sps)
         {
