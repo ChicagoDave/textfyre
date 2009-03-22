@@ -19,6 +19,13 @@ namespace Textfyre.UI.Controls
         private UIElement _currentElement = null;
         private UIElement _pastElement = null;
 
+        public enum ArtAlign
+        {
+            Center,
+            Left,
+            Right
+        }
+        
         public enum ArtTypes
         {
             PNG,
@@ -31,6 +38,7 @@ namespace Textfyre.UI.Controls
         }
 
         public ArtTypes ArtType;
+        public ArtAlign Align;
 
         private string _id = String.Empty;
         public string ID
@@ -40,6 +48,45 @@ namespace Textfyre.UI.Controls
                 _id = value;
                 Init();
             }
+        }
+
+        public static double[] WidthAndHeight(string artID)
+        {
+            double[] size = { 0, 0 };
+            
+            XDocument x = XDocument.Load(Current.Application.GetResPath("GameFiles/Arts.xml"));
+
+            var arts = (from a in x.Descendants("Art") where a.Attribute("ID").Value == artID select a);
+
+            if (arts.Count() != 1)
+                return size;
+
+            var art = arts.Single();
+
+            if (AttributeExists(art, "Width"))
+            {
+                double width = Double.Parse(art.Attribute("Width").Value);
+                size[0] = width;
+            }
+
+            if (AttributeExists(art, "Height"))
+            {
+                double height = Double.Parse(art.Attribute("Height").Value);
+                size[1] = height;
+            }
+
+            if (AttributeExists(art, "Margin"))
+            {
+                string[] margin = art.Attribute("Margin").Value.Split(',');
+                if (margin.Length == 4)
+                {
+                    //left top right bottom;
+                    size[0] = size[0] + double.Parse(margin[0]) + double.Parse(margin[2]);
+                    size[1] = size[1] + double.Parse(margin[1]) + double.Parse(margin[3]);                    
+                }
+            }
+
+            return size;
         }
 
         private void Init()
@@ -80,6 +127,12 @@ namespace Textfyre.UI.Controls
                 }
             }
 
+            if (AttributeExists(art, "Align"))
+            {
+                string align = art.Attribute("Align").Value;
+                Align = (ArtAlign)System.Enum.Parse(typeof(ArtAlign), align, true);
+            }
+
             string path = art.Attribute("Path").Value.Trim();
 
             if (path.Length == 0)
@@ -101,7 +154,7 @@ namespace Textfyre.UI.Controls
             }
         }
 
-        private bool AttributeExists(XElement ele, string attName)
+        private static bool AttributeExists(XElement ele, string attName)
         {
             foreach (XAttribute xatt in ele.Attributes())
             {

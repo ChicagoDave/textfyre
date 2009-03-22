@@ -13,5 +13,7 @@
 
   <Art ID="GrubbersMarket" Path="Images/PageArt/JackGrubbers-R.jpg" Width="287" Height="440" />
   <!-- Org size: 1500 x 1855 -->
+
+  <Art ID="SpotArtCrates" Path="Images/SpotArt/Crates.png" Width="80" Height="70" Align="Right" />
   
 </Arts>

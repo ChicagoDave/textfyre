@@ -16,6 +16,7 @@ namespace Textfyre.UI.DocSystem
         Content,
         PageBreak,
         Prompt,
-        TopicList
+        TopicList,
+        ArtOnly
     }
 }

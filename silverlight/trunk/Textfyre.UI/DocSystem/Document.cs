@@ -308,7 +308,7 @@ namespace Textfyre.UI.DocSystem
                 //_docColumns.ActiveDocumentColumn.PageHeightInc(40);
                 //_input.AddInputToColumn(_docColumns.ActiveDocumentColumn);
 
-                _input.AddInputToStackPanel(_storyPage.HostStackPanel);
+                _input.AddInputToStackPanel(_storyPage);
 
                 IsInputEnable = IsInputVisible;
                 _input.SetFocus();

@@ -1,0 +1,11 @@
+﻿<UserControl x:Class="Textfyre.UI.Controls.StoryScroller"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    >
+    <Canvas x:Name="LayoutRoot">
+        <Canvas.Clip>
+            <RectangleGeometry x:Name="ContentViewPort" Rect="0,0,300,400" />
+        </Canvas.Clip>
+        <StackPanel Canvas.Top="0" x:Name="ContentPanel"></StackPanel>
+    </Canvas>
+</UserControl>

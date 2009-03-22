@@ -461,16 +461,16 @@ As a commercial product, interactive fiction reached its peak in popularity in t
         {
             ele.DoubleClick += new EventHandler<MouseButtonEventArgs>(ele_DoubleClick);
 
-            if (_pages.Count % 2 == 0)
-            {
-                //ele.DoubleClick += new EventHandler<MouseButtonEventArgs>(ele_DoubleClick);
-                ele.IsEvenPage = false;
-            }
-            else
-            {
-                //ele.DoubleClick+=new EventHandler<MouseButtonEventArgs>(ele_DoubleClick2);
-                ele.IsEvenPage = true;
-            }
+            //if (_pages.Count % 2 == 0)
+            //{
+            //    //ele.DoubleClick += new EventHandler<MouseButtonEventArgs>(ele_DoubleClick);
+            //    ele.IsEvenPage = false;
+            //}
+            //else
+            //{
+            //    //ele.DoubleClick+=new EventHandler<MouseButtonEventArgs>(ele_DoubleClick2);
+            //    ele.IsEvenPage = true;
+            //}
 
         }
 
@@ -581,7 +581,9 @@ As a commercial product, interactive fiction reached its peak in popularity in t
             int i = 1;
             foreach (TextfyreBookPage page in _pages)
             {
-                page.BookPageIndex = i++;
+                page.BookPageIndex = i;
+                page.IsEvenPage = ((i-1) % 2 == 0);
+                i++;
             }
         }
 

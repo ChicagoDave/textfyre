@@ -79,7 +79,7 @@ namespace Textfyre.UI.Pages
         void Keyboard_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
-            {
+            {   
                 case Key.Ctrl:
                     TextfyreBook.TextfyreDocument.ShowWordDefs();
                     _keyCtrlPressed = true;
@@ -392,7 +392,8 @@ namespace Textfyre.UI.Pages
                         TextfyreBook.TranscriptDialog.AddText(tb);
 
                         //string txt = tb.Replace("Several crates are", "<img>Several crates are");
-                        string txt = tb.Replace("bother you here", "<img>bother you here");
+                        //string txt = tb.Replace("bother you here", @"<Image ID=""SpotArtCrates"" />bother you here");
+                        string txt = tb.Replace("bother you here", @"<Art ID=""SpotArtCrates"" />bother you here");
 
                         //txt = Regex.Replace(txt, @"\bmercenaries\b", "<WordDef>mercenaries</WordDef>");
                         //if (location.Length > 0)
