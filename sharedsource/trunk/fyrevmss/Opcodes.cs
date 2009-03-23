@@ -1,12 +1,10 @@
 ﻿/*
  * Copyright © 2008, Textfyre, Inc. - All Rights Reserved
- * Please read the accompanying COPYRIGHT file for licensing restrictions.
+ * Please read the accompanying COPYRIGHT file for licensing resstrictions.
  */
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection.Emit;
-using System.Reflection;
 
 namespace Textfyre.VM
 {
@@ -61,10 +59,10 @@ namespace Textfyre.VM
         private readonly OpcodeAttribute attr;
         private readonly OpcodeHandler handler;
 
-        public Opcode(Engine engine, OpcodeAttribute attr, MethodInfo method)
+        public Opcode(OpcodeAttribute attr, OpcodeHandler handler)
         {
             this.attr = attr;
-            this.handler = MakeHandler(engine, attr, method);
+            this.handler = handler;
         }
 
         public OpcodeAttribute Attr
@@ -80,191 +78,6 @@ namespace Textfyre.VM
         public override string ToString()
         {
             return attr.Name;
-        }
-
-        private static readonly Type[] HandlerParamTypes =
-            new Type[] {
-                typeof(Engine),
-                typeof(uint[]), // operands
-            };
-
-        /// <summary>
-        /// Generates a dynamic method that loads the operands for a particular
-        /// opcode, calls the opcode implementation, and stores the results.
-        /// </summary>
-        /// <param name="engine">The <see cref="Engine"/> to associate with the method.</param>
-        /// <param name="attr">The attribute describing the opcode's behavior.</param>
-        /// <param name="method">The method containing the opcode's implementation.</param>
-        /// <returns>A delegate for the generated method.</returns>
-        private static OpcodeHandler MakeHandler(Engine engine, OpcodeAttribute attr,
-            MethodInfo method)
-        {
-            DynamicMethod dm = new DynamicMethod("decode_" + attr.Name, null,
-                HandlerParamTypes, typeof(Engine));
-            ILGenerator il = dm.GetILGenerator();
-
-            // arg 0: Engine
-            // arg 1: uint[] operands
-
-            byte loadArgs = attr.LoadArgs;
-            byte storeArgs = attr.StoreArgs;
-            OpcodeRule rule = attr.Rule;
-
-            int opcount = loadArgs + storeArgs;
-            if (rule == OpcodeRule.DelayedStore)
-                opcount++;
-            else if (rule == OpcodeRule.Catch)
-                opcount += 2;
-            int typeBytes = (opcount + 1) / 2;
-
-            LocalBuilder imageLocal = il.DeclareLocal(typeof(UlxImage));
-            LocalBuilder pcLocal = il.DeclareLocal(typeof(uint));
-            LocalBuilder operandPosLocal = il.DeclareLocal(typeof(uint));
-            LocalBuilder typeByteLocal = il.DeclareLocal(typeof(byte));
-            FieldInfo imageFI = typeof(Engine).GetField("image", BindingFlags.NonPublic | BindingFlags.Instance);
-            FieldInfo pcFI = typeof(Engine).GetField("pc", BindingFlags.NonPublic | BindingFlags.Instance);
-            MethodInfo readByteMI = typeof(UlxImage).GetMethod("ReadByte");
-            MethodInfo decodeLoadMI = typeof(Engine).GetMethod("DecodeLoadOperand", BindingFlags.NonPublic | BindingFlags.Instance);
-            MethodInfo decodeStoreMI = typeof(Engine).GetMethod("DecodeStoreOperand", BindingFlags.NonPublic | BindingFlags.Instance);
-            MethodInfo decodeDelayedMI = typeof(Engine).GetMethod("DecodeDelayedStoreOperand",
-                BindingFlags.NonPublic | BindingFlags.Instance);
-            MethodInfo storeResultMI = typeof(Engine).GetMethod("StoreResult", BindingFlags.NonPublic | BindingFlags.Instance);
-
-            // load image and PC from fields, and calculate operandPos
-            il.Emit(OpCodes.Ldarg_0);
-            il.Emit(OpCodes.Ldfld, imageFI);
-            il.Emit(OpCodes.Stloc, imageLocal);
-
-            il.Emit(OpCodes.Ldarg_0);
-            il.Emit(OpCodes.Ldfld, pcFI);
-            il.Emit(OpCodes.Stloc, pcLocal);
-
-            il.Emit(OpCodes.Ldloc, pcLocal);
-            il.Emit(OpCodes.Ldc_I4_S, (byte)typeBytes);
-            il.Emit(OpCodes.Add);
-            il.Emit(OpCodes.Stloc, operandPosLocal);
-
-            // read operand types into locals
-            LocalBuilder[] opTypeLocals = new LocalBuilder[opcount];
-            for (int i = 0; i < typeBytes; i++)
-            {
-                //byte x = image.ReadByte(pc + i);
-                il.Emit(OpCodes.Ldloc, imageLocal);
-                il.Emit(OpCodes.Ldloc, pcLocal);
-                if (i > 0)
-                {
-                    il.Emit(OpCodes.Ldc_I4_S, (byte)i);
-                    il.Emit(OpCodes.Add);
-                }
-                il.Emit(OpCodes.Call, readByteMI);
-                il.Emit(OpCodes.Stloc, typeByteLocal);
-
-                //opTypes[i * 2] = (byte)(x & 0xF);
-                il.Emit(OpCodes.Ldloc, typeByteLocal);
-                il.Emit(OpCodes.Ldc_I4_S, (byte)0xF);
-                il.Emit(OpCodes.And);
-                opTypeLocals[i * 2] = il.DeclareLocal(typeof(byte));
-                il.Emit(OpCodes.Stloc, opTypeLocals[i * 2]);
-
-                if (i * 2 + 1 < opcount)
-                {
-                    //opTypes[i * 2 + 1] = (byte)(x >> 4);
-                    il.Emit(OpCodes.Ldloc, typeByteLocal);
-                    il.Emit(OpCodes.Ldc_I4_4);
-                    il.Emit(OpCodes.Shr_Un);
-                    opTypeLocals[i * 2 + 1] = il.DeclareLocal(typeof(byte));
-                    il.Emit(OpCodes.Stloc, opTypeLocals[i * 2 + 1]);
-                }
-            }
-
-            // decode load-operands
-            for (int i = 0; i < loadArgs; i++)
-            {
-                //operands[i] = DecodeLoadOperand(rule, opTypes[i], ref operandPos);
-                il.Emit(OpCodes.Ldarg_1);
-                il.Emit(OpCodes.Ldc_I4_S, (byte)i);
-
-                il.Emit(OpCodes.Ldarg_0);
-                il.Emit(OpCodes.Ldc_I4, (int)rule);
-                il.Emit(OpCodes.Ldloc, opTypeLocals[i]);
-                il.Emit(OpCodes.Ldloca, operandPosLocal);
-                il.Emit(OpCodes.Call, decodeLoadMI);
-
-                il.Emit(OpCodes.Stelem_I4);
-            }
-
-            // decode store-operands
-            LocalBuilder[] resultAddrLocals = new LocalBuilder[storeArgs];
-
-            for (int i = 0; i < storeArgs; i++)
-            {
-                //resultAddrs[i] = DecodeStoreOperand(rule, type, ref operandPos);
-                il.Emit(OpCodes.Ldarg_0);
-                il.Emit(OpCodes.Ldc_I4, (int)rule);
-                il.Emit(OpCodes.Ldloc, opTypeLocals[loadArgs + i]);
-                il.Emit(OpCodes.Ldloca, operandPosLocal);
-                il.Emit(OpCodes.Call, decodeStoreMI);
-                resultAddrLocals[i] = il.DeclareLocal(typeof(uint));
-                il.Emit(OpCodes.Stloc, resultAddrLocals[i]);
-            }
-
-            if (rule == OpcodeRule.DelayedStore || rule == OpcodeRule.Catch)
-            {
-                // decode delayed store operand
-                //DecodeDelayedStoreOperand(type, ref operandPos,
-                //    operands, loadArgs + storeArgs);
-                il.Emit(OpCodes.Ldarg_0);
-                il.Emit(OpCodes.Ldloc, opTypeLocals[loadArgs + storeArgs]);
-                il.Emit(OpCodes.Ldloca, operandPosLocal);
-                il.Emit(OpCodes.Ldarg_1);
-                il.Emit(OpCodes.Ldc_I4_S, (byte)(loadArgs + storeArgs));
-                il.Emit(OpCodes.Call, decodeDelayedMI);
-            }
-
-            if (rule == OpcodeRule.Catch)
-            {
-                // decode final load operand for @catch
-                //operands[loadArgs + storeArgs + 2] =
-                //    DecodeLoadOperand(rule, type, ref operandPos);
-                il.Emit(OpCodes.Ldarg_1);
-                il.Emit(OpCodes.Ldc_I4_S, (byte)(loadArgs + storeArgs + 2));
-
-                il.Emit(OpCodes.Ldarg_0);
-                il.Emit(OpCodes.Ldc_I4, (int)rule);
-                il.Emit(OpCodes.Ldloc, opTypeLocals[loadArgs + storeArgs + 1]);
-                il.Emit(OpCodes.Ldloca, operandPosLocal);
-                il.Emit(OpCodes.Call, decodeLoadMI);
-
-                il.Emit(OpCodes.Stelem_I4);
-            }
-
-            // set PC to the new operandPos (which now points to the next instruction)
-            il.Emit(OpCodes.Ldarg_0);
-            il.Emit(OpCodes.Ldloc, operandPosLocal);
-            il.Emit(OpCodes.Stfld, pcFI);
-
-            // call the opcode implementation
-            il.Emit(OpCodes.Ldarg_0);
-            il.Emit(OpCodes.Ldarg_1);
-            il.Emit(OpCodes.Call, method);
-
-            // store results
-            for (int i = 0; i < storeArgs; i++)
-            {
-                //StoreResult(rule, resultTypes[i], resultAddrs[i],
-                //    operands[loadArgs + i]);
-                il.Emit(OpCodes.Ldarg_0);
-                il.Emit(OpCodes.Ldc_I4, (int)rule);
-                il.Emit(OpCodes.Ldloc, opTypeLocals[loadArgs + i]);
-                il.Emit(OpCodes.Ldloc, resultAddrLocals[i]);
-                il.Emit(OpCodes.Ldarg_1);
-                il.Emit(OpCodes.Ldc_I4_S, (byte)(loadArgs + i));
-                il.Emit(OpCodes.Ldelem_U4);
-                il.Emit(OpCodes.Call, storeResultMI);
-            }
-            
-            il.Emit(OpCodes.Ret);
-            return (OpcodeHandler)dm.CreateDelegate(typeof(OpcodeHandler), engine);
         }
     }
 
@@ -312,6 +125,10 @@ namespace Textfyre.VM
         /// <summary>
         /// Gets the number of load operands, which appear before any store operands.
         /// </summary>
+        /// <remarks>
+        /// If <see cref="Rule"/> is set to <see cref="OpcodeRule.Branch"/>,
+        /// the branch offset is not included in this count.
+        /// </remarks>
         public byte LoadArgs
         {
             get { return loadArgs; }
@@ -1662,14 +1479,21 @@ namespace Textfyre.VM
 
                 case FyreCall.ToLower:
                 case FyreCall.ToUpper:
-                    byte[] bytes = new byte[] { (byte)args[1] };
-                    char[] chars = System.Text.Encoding.GetEncoding(LATIN1_CODEPAGE).GetChars(bytes);
-                    if (call == FyreCall.ToLower)
-                        chars[0] = char.ToLower(chars[0]);
+                    // Silverlight doesn't have the encodings we need to do this the right way...
+                    if (args[1] > 255)
+                    {
+                        // leave it unchanged
+                        args[3] = args[1];
+                    }
                     else
-                        chars[0] = char.ToUpper(chars[0]);
-                    bytes = System.Text.Encoding.GetEncoding(LATIN1_CODEPAGE).GetBytes(chars);
-                    args[3] = bytes[0];
+                    {
+                        char ch = (char)(args[1]);
+                        if (call == FyreCall.ToLower)
+                            ch = char.ToLower(ch);
+                        else
+                            ch = char.ToUpper(ch);
+                        args[3] = (uint)ch;
+                    }
                     break;
 
                 case FyreCall.Channel:

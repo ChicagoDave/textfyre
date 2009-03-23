@@ -1,6 +1,6 @@
 ﻿/*
  * Copyright © 2008, Textfyre, Inc. - All Rights Reserved
- * Please read the accompanying COPYRIGHT file for licensing restrictions.
+ * Please read the accompanying COPYRIGHT file for licensing resstrictions.
  */
 using System;
 using System.Collections.Generic;

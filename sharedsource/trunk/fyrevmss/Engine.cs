@@ -1,14 +1,7 @@
 ﻿/*
  * Copyright © 2008, Textfyre, Inc. - All Rights Reserved
- * Please read the accompanying COPYRIGHT file for licensing restrictions.
+ * Please read the accompanying COPYRIGHT file for licensing resstrictions.
  */
-// define TRACEOPS to see each opcode as it's executed
-//#define TRACEOPS
-
-// define PROFILING to enable in-game performance bookkeeping
-#if DEBUG
-#define PROFILING
-#endif
 
 using System;
 using System.Collections.Generic;
@@ -18,8 +11,6 @@ using System.Text;
 using System.Reflection;
 using System.Diagnostics;
 using System.ComponentModel;
-
-using Textfyre.VM.Profiling;
 
 namespace Textfyre.VM
 {
@@ -160,7 +151,7 @@ namespace Textfyre.VM
             /// </summary>
             Number,
             /// <summary>
-            /// We are returning control to <see cref="Engine.NestedCall(uint)"/>
+            /// We are returning control to <see cref="Engine.NestedCall"/>
             /// after engine code has called a Glulx function.
             /// </summary>
             Return,
@@ -210,150 +201,52 @@ namespace Textfyre.VM
 
         #region Glulx constants
 
-        /// <summary>
-        /// Header size.
-        /// </summary>
+        // Header size and field offsets
         public const int GLULX_HDR_SIZE = 36;
-        /// <summary>
-        /// Magic offset.
-        /// </summary>
         public const int GLULX_HDR_MAGIC_OFFSET = 0;
-        /// <summary>
-        /// Version offset.
-        /// </summary>
         public const int GLULX_HDR_VERSION_OFFSET = 4;
-        /// <summary>
-        /// RAM Start offset.
-        /// </summary>
         public const int GLULX_HDR_RAMSTART_OFFSET = 8;
-        /// <summary>
-        /// EXT Start offset.
-        /// </summary>
         public const int GLULX_HDR_EXTSTART_OFFSET = 12;
-        /// <summary>
-        /// End memory offset.
-        /// </summary>
         public const int GLULX_HDR_ENDMEM_OFFSET = 16;
-        /// <summary>
-        /// Stack size offset.
-        /// </summary>
         public const int GLULX_HDR_STACKSIZE_OFFSET = 20;
-        /// <summary>
-        /// Starting function offset.
-        /// </summary>
         public const int GLULX_HDR_STARTFUNC_OFFSET = 24;
-        /// <summary>
-        /// Decoding table offset.
-        /// </summary>
         public const int GLULX_HDR_DECODINGTBL_OFFSET = 28;
-        /// <summary>
-        /// Checksum offset.
-        /// </summary>
         public const int GLULX_HDR_CHECKSUM_OFFSET = 32;
 
-        /// <summary>
-        /// Storage destination: null.
-        /// </summary>
+        // Call stub: DestType values for function calls
         public const int GLULX_STUB_STORE_NULL = 0;
-        /// <summary>
-        /// Storage destination: memory.
-        /// </summary>
         public const int GLULX_STUB_STORE_MEM = 1;
-        /// <summary>
-        /// Storage destination: local.
-        /// </summary>
         public const int GLULX_STUB_STORE_LOCAL = 2;
-        /// <summary>
-        /// Storage destination: stack.
-        /// </summary>
         public const int GLULX_STUB_STORE_STACK = 3;
 
-        /// <summary>
-        /// Glulx type - Huffman string-compression.
-        /// </summary>
+        // Call stub: DestType values for string printing
         public const int GLULX_STUB_RESUME_HUFFSTR = 10;
-        /// <summary>
-        /// Glulx type - Function.
-        /// </summary>
         public const int GLULX_STUB_RESUME_FUNC = 11;
-        /// <summary>
-        /// Glulx type - Number.
-        /// </summary>
         public const int GLULX_STUB_RESUME_NUMBER = 12;
-        /// <summary>
-        /// Glulx type - CSTR.
-        /// </summary>
         public const int GLULX_STUB_RESUME_CSTR = 13;
-        /// <summary>
-        /// Glulx type - UNISTR.
-        /// </summary>
         public const int GLULX_STUB_RESUME_UNISTR = 14;
 
-        /// <summary>
-        /// Glulx type - Nested calls.
-        /// </summary>
+        // FyreVM addition: DestType value for nested calls
         public const int FYREVM_STUB_RESUME_NATIVE = 99;
 
-        /// <summary>
-        /// Table size offset.
-        /// </summary>
+        // String decoding table: header field offsets
         public const int GLULX_HUFF_TABLESIZE_OFFSET = 0;
-        /// <summary>
-        /// Node count offset.
-        /// </summary>
         public const int GLULX_HUFF_NODECOUNT_OFFSET = 4;
-        /// <summary>
-        /// Root node offset.
-        /// </summary>
         public const int GLULX_HUFF_ROOTNODE_OFFSET = 8;
 
-        /// <summary>
-        /// Node Type - Branch.
-        /// </summary>
+        // String decoding table: node types
         public const int GLULX_HUFF_NODE_BRANCH = 0;
-        /// <summary>
-        /// Node Type - End.
-        /// </summary>
         public const int GLULX_HUFF_NODE_END = 1;
-        /// <summary>
-        /// Node Type - CHAR.
-        /// </summary>
         public const int GLULX_HUFF_NODE_CHAR = 2;
-        /// <summary>
-        /// Node Type - CSTR.
-        /// </summary>
         public const int GLULX_HUFF_NODE_CSTR = 3;
-        /// <summary>
-        /// Node Type - UNICHAR.
-        /// </summary>
         public const int GLULX_HUFF_NODE_UNICHAR = 4;
-        /// <summary>
-        /// Node Type - UNISTR.
-        /// </summary>
         public const int GLULX_HUFF_NODE_UNISTR = 5;
-        /// <summary>
-        /// Node Type - INDIRECT.
-        /// </summary>
         public const int GLULX_HUFF_NODE_INDIRECT = 8;
-        /// <summary>
-        /// Node Type - DBLINDIRECT.
-        /// </summary>
         public const int GLULX_HUFF_NODE_DBLINDIRECT = 9;
-        /// <summary>
-        /// Node Type - INDIRECT_ARGS.
-        /// </summary>
         public const int GLULX_HUFF_NODE_INDIRECT_ARGS = 10;
-        /// <summary>
-        /// Node Type - DBLINDIRECT_ARGS.
-        /// </summary>
         public const int GLULX_HUFF_NODE_DBLINDIRECT_ARGS = 11;
 
         #endregion
-
-        /// <summary>
-        /// Latin 1 code page.
-        /// </summary>
-        private const int LATIN1_CODEPAGE = 28591;
 
         #region Dictionary of opcodes
 
@@ -369,11 +262,8 @@ namespace Textfyre.VM
                 if (attrs.Length > 0)
                 {
                     OpcodeAttribute attr = (OpcodeAttribute)(attrs[0]);
-                    Opcode opcode = new Opcode(this, attr, mi);
-
-                    opcodeDict.Add(attr.Number, opcode);
-                    if (attr.Number < 0x80)
-                        quickOpcodes[attr.Number] = opcode;
+                    Delegate handler = Delegate.CreateDelegate(typeof(OpcodeHandler), this, mi);
+                    opcodeDict.Add(attr.Number, new Opcode(attr, (OpcodeHandler)handler));
                 }
             }
         }
@@ -410,10 +300,6 @@ namespace Textfyre.VM
         private int nestingLevel;
         private Veneer veneer = new Veneer();
         private uint maxHeapSize;
-#if PROFILING
-        private long cycles; // cumulative number of passes through the main loop
-        private Profiler profiler = new Profiler();
-#endif
 
         /// <summary>
         /// Initializes a new instance of the VM from a game file.
@@ -559,10 +445,36 @@ namespace Textfyre.VM
             return stub;
         }
 
+        private static StringBuilder debugBuffer = new StringBuilder();
+
         [Conditional("TRACEOPS")]
         private static void WriteTrace(string str)
         {
-            Console.Write(str);
+            lock (debugBuffer)
+            {
+                debugBuffer.Append(str);
+
+                if (str.Contains("\n"))
+                {
+                    string x = debugBuffer.ToString();
+
+                    do
+                    {
+                        int pos = x.IndexOf('\n');
+                        string line = x.Substring(0, pos).TrimEnd();
+
+                        Debug.WriteLine(line);
+
+                        if (pos == x.Length - 1)
+                            x = "";
+                        else
+                            x = x.Substring(pos + 1);
+                    } while (x.Contains("\n"));
+
+                    debugBuffer.Length = 0;
+                    debugBuffer.Append(x);
+                }
+            }
         }
 
         /// <summary>
@@ -665,6 +577,8 @@ namespace Textfyre.VM
         {
             const int MAX_OPERANDS = 8;
             uint[] operands = new uint[MAX_OPERANDS];
+            uint[] resultAddrs = new uint[MAX_OPERANDS];
+            byte[] resultTypes = new byte[MAX_OPERANDS];
 
             while (running)
             {
@@ -689,17 +603,112 @@ namespace Textfyre.VM
                         }
 
                         // look up opcode info
-                        Opcode opcode = null;
-                        if (opnum < 0x80)
-                            opcode = quickOpcodes[opnum];
-                        else
-                            opcodeDict.TryGetValue(opnum, out opcode);
-                        if (opcode == null)
+                        Opcode opcode;
+                        try
+                        {
+                            opcode = opcodeDict[opnum];
+                            WriteTrace("[" + opcode.ToString());
+                        }
+                        catch (KeyNotFoundException)
+                        {
                             throw new VMException(string.Format("Unrecognized opcode {0:X}h", opnum));
-                        WriteTrace("[" + opcode.ToString());
+                        }
 
-                        // call self-decoding, self-storing opcode implementation
+                        // decode load-operands
+                        uint opcount = (uint)(opcode.Attr.LoadArgs + opcode.Attr.StoreArgs);
+                        if (opcode.Attr.Rule == OpcodeRule.DelayedStore)
+                            opcount++;
+                        else if (opcode.Attr.Rule == OpcodeRule.Catch)
+                            opcount += 2;
+                        uint operandPos = pc + (opcount + 1) / 2;
+
+                        for (int i = 0; i < opcode.Attr.LoadArgs; i++)
+                        {
+                            byte type;
+                            if (i % 2 == 0)
+                            {
+                                type = (byte)(image.ReadByte(pc) & 0xF);
+                            }
+                            else
+                            {
+                                type = (byte)((image.ReadByte(pc) >> 4) & 0xF);
+                                pc++;
+                            }
+
+                            WriteTrace(" ");
+                            operands[i] = DecodeLoadOperand(opcode, type, ref operandPos);
+                        }
+
+                        uint storePos = pc;
+
+                        // decode store-operands
+                        for (int i = 0; i < opcode.Attr.StoreArgs; i++)
+                        {
+                            byte type;
+                            if ((opcode.Attr.LoadArgs + i) % 2 == 0)
+                            {
+                                type = (byte)(image.ReadByte(pc) & 0xF);
+                            }
+                            else
+                            {
+                                type = (byte)((image.ReadByte(pc) >> 4) & 0xF);
+                                pc++;
+                            }
+
+                            resultTypes[i] = type;
+                            WriteTrace(" -> ");
+                            resultAddrs[i] = DecodeStoreOperand(opcode, type, ref operandPos);
+                        }
+
+                        if (opcode.Attr.Rule == OpcodeRule.DelayedStore ||
+                            opcode.Attr.Rule == OpcodeRule.Catch)
+                        {
+                            // decode delayed store operand
+                            byte type;
+                            if ((opcode.Attr.LoadArgs + opcode.Attr.StoreArgs) % 2 == 0)
+                            {
+                                type = (byte)(image.ReadByte(pc) & 0xF);
+                            }
+                            else
+                            {
+                                type = (byte)((image.ReadByte(pc) >> 4) & 0xF);
+                                pc++;
+                            }
+
+                            WriteTrace(" -> ");
+                            DecodeDelayedStoreOperand(type, ref operandPos,
+                                operands, opcode.Attr.LoadArgs + opcode.Attr.StoreArgs);
+                        }
+
+                        if (opcode.Attr.Rule == OpcodeRule.Catch)
+                        {
+                            // decode final load operand for @catch
+                            byte type;
+                            if ((opcode.Attr.LoadArgs + opcode.Attr.StoreArgs + 1) % 2 == 0)
+                            {
+                                type = (byte)(image.ReadByte(pc) & 0xF);
+                            }
+                            else
+                            {
+                                type = (byte)((image.ReadByte(pc) >> 4) & 0xF);
+                                pc++;
+                            }
+
+                            WriteTrace(" ?");
+                            operands[opcode.Attr.LoadArgs + opcode.Attr.StoreArgs + 2] =
+                                DecodeLoadOperand(opcode, type, ref operandPos);
+                        }
+
+                        WriteTrace("]\r\n");
+
+                        // call opcode implementation
+                        pc = operandPos; // after the last operand
                         opcode.Handler(operands);
+
+                        // store results
+                        for (int i = 0; i < opcode.Attr.StoreArgs; i++)
+                            StoreResult(opcode.Attr.Rule, resultTypes[i], resultAddrs[i],
+                                operands[opcode.Attr.LoadArgs + i]);
                         break;
 
                     case ExecutionMode.CString:
@@ -731,7 +740,7 @@ namespace Textfyre.VM
             }
         }
 
-        private uint DecodeLoadOperand(OpcodeRule rule, byte type, ref uint operandPos)
+        private uint DecodeLoadOperand(Opcode opcode, byte type, ref uint operandPos)
         {
             uint address, value;
             switch (type)
@@ -771,7 +780,7 @@ namespace Textfyre.VM
                     WriteTrace("ptr");
                 LoadIndirect:
                     WriteTrace("_" + address.ToString() + "(");
-                    switch (rule)
+                    switch (opcode.Attr.Rule)
                     {
                         case OpcodeRule.Indirect8Bit:
                             value = image.ReadByte(address);
@@ -806,7 +815,7 @@ namespace Textfyre.VM
                 LoadLocal:
                     WriteTrace("local_" + address.ToString() + "(");
                     address += fp + localsPos;
-                    switch (rule)
+                    switch (opcode.Attr.Rule)
                     {
                         case OpcodeRule.Indirect8Bit:
                             if (address >= fp + frameLen)
@@ -852,7 +861,7 @@ namespace Textfyre.VM
             }
         }
 
-        private uint DecodeStoreOperand(OpcodeRule rule, byte type, ref uint operandPos)
+        private uint DecodeStoreOperand(Opcode opcode, byte type, ref uint operandPos)
         {
             uint address;
             switch (type)
@@ -1300,7 +1309,7 @@ namespace Textfyre.VM
             }
 
             LineWantedEventArgs lineArgs = new LineWantedEventArgs();
-            CancelEventArgs waitArgs = new CancelEventArgs();
+           // CancelEventArgs waitArgs = new CancelEventArgs();
 
             // ask the application to read a line
             LineWanted(this, lineArgs);
@@ -1312,14 +1321,36 @@ namespace Textfyre.VM
             }
             else
             {
+                byte[] bytes = null;
                 // write the length first
-                byte[] bytes = Encoding.GetEncoding(LATIN1_CODEPAGE).GetBytes(input);
+                try {
+                    bytes = StringToLatin1(input);
+                } catch (Exception ex) {
+                    Console.Write(ex.Message);
+                }
                 image.WriteInt32(address, (uint)bytes.Length);
                 // followed by the character data, truncated to fit the buffer
                 uint max = Math.Min(bufSize, (uint)bytes.Length);
                 for (uint i = 0; i < max; i++)
                     image.WriteByte(address + 4 + i, bytes[i]);
             }
+        }
+
+        // quick 'n dirty translation, because Silverlight doesn't support ISO-8859-1 encoding
+        private static byte[] StringToLatin1(string str)
+        {
+            byte[] result = new byte[str.Length];
+
+            for (int i = 0; i < str.Length; i++)
+            {
+                ushort value = (ushort)str[i];
+                if (value > 255)
+                    result[i] = (byte)'?';
+                else
+                    result[i] = (byte)value;
+            }
+
+            return result;
         }
 
         private char InputChar()
@@ -1329,7 +1360,7 @@ namespace Textfyre.VM
                 return '\0';
 
             KeyWantedEventArgs keyArgs = new KeyWantedEventArgs();
-            CancelEventArgs waitArgs = new CancelEventArgs();
+            //CancelEventArgs waitArgs = new CancelEventArgs();
 
             // ask the application to read a character
             KeyWanted(this, keyArgs);
@@ -1362,7 +1393,7 @@ namespace Textfyre.VM
             // identifying the destination of the save opcode.
             PushCallStub(new CallStub(destType, destAddr, pc, fp));
             byte[] trimmed = new byte[sp];
-            Array.Copy(stack, trimmed, sp);
+            Array.Copy(stack, trimmed, (int)sp);
             quetzal["Stks"] = trimmed;
             PopCallStub();
 
@@ -1470,24 +1501,5 @@ namespace Textfyre.VM
             running = false;
         }
 
-#if PROFILING
-        /// <summary>
-        /// Enable profiling.
-        /// </summary>
-        public static readonly bool ProfilingEnabled = true;
-#else
-        public static readonly bool ProfilingEnabled = false;
-#endif
-        /// <summary>
-        /// Profiler property.
-        /// </summary>
-        public Profiler Profiler
-        {
-#if PROFILING
-            get { return profiler; }
-#else
-            get { return null; }
-#endif
-        }
     }
 }

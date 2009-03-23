@@ -1,6 +1,6 @@
 ﻿/*
  * Copyright © 2008, Textfyre, Inc. - All Rights Reserved
- * Please read the accompanying COPYRIGHT file for licensing restrictions.
+ * Please read the accompanying COPYRIGHT file for licensing resstrictions.
  */
 using System;
 using System.Collections.Generic;
@@ -58,33 +58,30 @@ namespace Textfyre.VM
         /// </summary>
         Conversation = 11,
         /// <summary>
-        /// A command to play sound in the user interface.
+        /// A Channel for playing sounds.
         /// </summary>
         Sound = 12,
         /// <summary>
-        /// A channel containing the prologue text.
+        /// A channel for the prologue text.
         /// </summary>
         Prologue = 13,
         /// <summary>
-        /// A channel containing the title of the game.
+        /// A channel for the title text.
         /// </summary>
         Title = 14,
         /// <summary>
-        /// A channel containing the credits for the game.
+        /// A channel for the credits of the game.
         /// </summary>
         Credits = 15,
         /// <summary>
-        /// A channel containing the current chapter name within the game.
+        /// A channel for the chapter text.
         /// </summary>
         Chapter = 16,
         /// <summary>
-        /// A channel to handle end of game scenarios (incomplete).
+        /// A channel for reporting that the game has ended in death.
         /// </summary>
         Death = 17,
 
-        /// <summary>
-        /// End pointer of all channels.
-        /// </summary>
         _LAST = Death
     }
 

@@ -1,6 +1,6 @@
 ﻿/*
  * Copyright © 2008, Textfyre, Inc. - All Rights Reserved
- * Please read the accompanying COPYRIGHT file for licensing restrictions.
+ * Please read the accompanying COPYRIGHT file for licensing resstrictions.
  */
 using System;
 using System.Collections.Generic;
@@ -34,21 +34,38 @@ namespace Textfyre.VM
     public sealed class OutputFilterTags
     {
         private string startParaTag = "<Paragraph>";
-        private string endParaTag = "</Paragraph>\n";
-        private string lineBreakTag = "<LineBreak/>\n";
+        private string endParaTag = "</Paragraph>";
+        private string lineBreakTag = "<LineBreak/>";
         private string leftAngleTag = "&lt;";
         private string rightAngleTag = "&gt;";
         private string ampersandTag = "&amp;";
-        private string leftDblQuoteTag = "&#8220;";
-        private string rightDblQuoteTag = "&#8221;";
-        private string leftQuoteTag = "&#8216;";
-        private string rightQuoteTag = "&#8217;";
+        private string leftDblQuoteTag = @""""; //"&#8220;";
+        private string rightDblQuoteTag = @""""; //"&#8221;";
+        private string leftQuoteTag = @"'"; //"&#8216;";
+        private string rightQuoteTag = @"'"; //"&#8217;";
         private string startFixedTag = "<Span FontFamily=\"Courier New\">";
         private string endFixedTag = "</Span>";
         private string startItalicTag = "<Italic>";
         private string endItalicTag = "</Italic>";
         private string startBoldTag = "<Bold>";
         private string endBoldTag = "</Bold>";
+
+        //private string startParaTag = "<TextBlock Height=\"Auto\" Width=\"Auto\" xmlns=\"http://schemas.microsoft.com/client/2007\" xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\" FontFamily=\"Arial\" >";
+        //private string endParaTag = "</TextBlock>~";
+        //private string lineBreakTag = "<LineBreak/>";
+        //private string leftAngleTag = "<";
+        //private string rightAngleTag = ">";
+        //private string ampersandTag = "&";
+        //private string leftDblQuoteTag = "&#8220;";
+        //private string rightDblQuoteTag = "&#8221;";
+        //private string leftQuoteTag = "&#8216;";
+        //private string rightQuoteTag = "&#8217;";
+        //private string startFixedTag = "<Run FontFamily=\"Courier New\">";
+        //private string endFixedTag = "</Run>";
+        //private string startItalicTag = "<Run FontStyle=\"Italic\">";
+        //private string endItalicTag = "</Run>";
+        //private string startBoldTag = "<Run FontWeight=\"Bold\">";
+        //private string endBoldTag = "</Run>";
 
         internal OutputFilterTags()
         {
@@ -291,9 +308,10 @@ namespace Textfyre.VM
         /// <param name="c">The character to write.</param>
         public void Write(char c)
         {
-            if (channel == OutputChannel.Main && filtering)
+            // DAC - 21-Nov-2008: Added Prologue channel to formatting logic.
+            if ((channel == OutputChannel.Main || channel == OutputChannel.Prologue) && filtering)
             {
-                StringBuilder sb = strings[(int)OutputChannel.Main - 1];
+                StringBuilder sb = strings[(int)channel - 1];
                 if (c == '\n')
                 {
                     if (mainParaOpen)
@@ -382,7 +400,7 @@ namespace Textfyre.VM
         /// <summary>
         /// Sets the current output style.
         /// </summary>
-        /// <param name="style">The style to set.</param>
+        /// <param name="value">The style to set.</param>
         /// <remarks>
         /// This method has no effect unless the main channel is selected and
         /// <see cref="FilterEnabled"/> is <see langword="true"/>.

@@ -1,6 +1,6 @@
 ﻿/*
  * Copyright © 2008, Textfyre, Inc. - All Rights Reserved
- * Please read the accompanying COPYRIGHT file for licensing restrictions.
+ * Please read the accompanying COPYRIGHT file for licensing resstrictions.
  */
 using System;
 using System.Collections.Generic;
@@ -97,7 +97,7 @@ namespace Textfyre.VM
                 if ((uint)memory.Length != value)
                 {
                     byte[] newMem = new byte[value];
-                    Array.Copy(memory, newMem, Math.Min((uint)memory.Length, value));
+                    Array.Copy(memory, newMem, (int)Math.Min((uint)memory.Length, (int)value));
                     memory = newMem;
                 }
             }
@@ -227,7 +227,7 @@ namespace Textfyre.VM
             }
 
             EndMem = ramstart + length;
-            Array.Copy(newBlock, offset, memory, ramstart, newBlock.Length - offset);
+            Array.Copy(newBlock, offset, memory, (int)ramstart, newBlock.Length - offset);
         }
 
         /// <summary>
@@ -270,7 +270,7 @@ namespace Textfyre.VM
         /// <param name="dest">The destination array.</param>
         public void ReadRAM(uint address, uint length, byte[] dest)
         {
-            Array.Copy(memory, ramstart + address, dest, 0, length);
+            Array.Copy(memory, (int)(ramstart + address), dest, 0, (int)length);
         }
 
         /// <summary>
@@ -282,7 +282,7 @@ namespace Textfyre.VM
         public void WriteRAM(uint address, byte[] src)
         {
             EndMem = Math.Max(EndMem, ramstart + (uint)src.Length);
-            Array.Copy(src, 0, memory, ramstart + address, src.Length);
+            Array.Copy(src, 0, memory, (int)(ramstart + address), src.Length);
         }
 
         /// <summary>
