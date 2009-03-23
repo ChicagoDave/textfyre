@@ -1,6 +1,6 @@
 ﻿/*
  * Copyright © 2008, Textfyre, Inc. - All Rights Reserved
- * Please read the accompanying COPYRIGHT file for licensing restrictions.
+ * Please read the accompanying COPYRIGHT file for licensing resstrictions.
  */
 using System;
 using System.Collections.Generic;
@@ -126,9 +126,6 @@ namespace Textfyre.VM.Profiling
         private Dictionary<string, SymbolInfo> symbolsByName;
         private bool meterRunning = true;
 
-        /// <summary>
-        /// Empty constructor.
-        /// </summary>
         public Profiler()
         {
         }

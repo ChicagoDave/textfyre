@@ -1,6 +1,6 @@
 ﻿/*
  * Copyright © 2008, Textfyre, Inc. - All Rights Reserved
- * Please read the accompanying COPYRIGHT file for licensing restrictions.
+ * Please read the accompanying COPYRIGHT file for licensing resstrictions.
  */
 using System;
 using System.Collections.Generic;
@@ -286,7 +286,11 @@ namespace Textfyre.VM
                     if (setEndMem(heapAddress + heapExtent))
                     {
                         endMem = heapAddress + heapExtent;
-                        freeList.RemoveAll(blk => blk.Start >= endMem);
+
+                        for (int i = freeList.Count - 1; i >= 0; i--) {
+                            if (freeList[i].Start >= endMem)
+                                freeList.RemoveAt(i);
+                        }
                     }
                 }
             }
