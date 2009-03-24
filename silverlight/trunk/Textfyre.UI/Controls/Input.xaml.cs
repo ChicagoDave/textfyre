@@ -35,7 +35,7 @@ namespace Textfyre.UI.Controls
         {
             _storyPage = storyPage;
 
-            _storyPage.HostStackPanelAddHeight(10d);
+            //_storyPage.HostStackPanelAddHeight(12d);
             _storyPage.HostStackPanel.Children.Add(this);
             _tbInput.Width = _storyPage.HostStackPanel.Width - 20d;
             //column.PageHeightReset();
@@ -47,7 +47,7 @@ namespace Textfyre.UI.Controls
                 StackPanel sp = _storyPage.HostStackPanel;
                 if (sp.Children.Contains(this))
                 {
-                    _storyPage.HostStackPanelSubstractHeight(10d);
+                    //_storyPage.HostStackPanelSubstractHeight(12d);
                     sp.Children.Remove(this);
                 }
             }

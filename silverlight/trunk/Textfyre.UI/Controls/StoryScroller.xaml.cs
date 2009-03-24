@@ -40,13 +40,13 @@ namespace Textfyre.UI.Controls
 
         public void AddSection(DocSystem.Section section)
         {
-            _contentHeight += section.Height;
+            //_contentHeight += section.Height;
             ContentPanel.Children.Add(section.HostGridScroll);
         }
 
         private void Init()
         {
-            _viewportHeight = Settings.BookPageInnerInnerContentHeight;
+            _viewportHeight = Settings.BookPageInnerContentHeight;
 
             LayoutRoot.Width = Settings.BookPageInnerContentWidth;
             ContentPanel.Width = Settings.BookPageInnerContentWidth;
@@ -60,6 +60,8 @@ namespace Textfyre.UI.Controls
 
         private void ContentPanel_SizeChanged(object sender, SizeChangedEventArgs e)
         {
+            _contentHeight = e.NewSize.Height;
+
             if (AmountToScroll > 0)
             {
                 AnimateScroll();
