@@ -473,8 +473,10 @@ namespace Textfyre.UI.Pages
 
         private void engine_KeyWanted(object sender, KeyWantedEventArgs e)
         {
+            
             Dispatcher.BeginInvoke(() =>
             {
+                TextfyreBook.Wait.Hide();
                 TextfyreBook.TextfyreDocument.AddInputSingleChar();
                 TextfyreBook.TextfyreDocument.AddInputHandler();
             });
