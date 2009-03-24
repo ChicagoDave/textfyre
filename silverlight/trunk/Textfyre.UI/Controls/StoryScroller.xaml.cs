@@ -97,11 +97,12 @@ namespace Textfyre.UI.Controls
         void _scrollStoryboard_Completed(object sender, EventArgs e)
         {
             _scrollStoryboard.Stop();
-            double newScrollPos = AmountToScroll + Settings.ScrollSpeed;
+            double newScrollPos = Settings.ScrollSpeed; //AmountToScroll + Settings.ScrollSpeed;
             if (newScrollPos > AmountToScroll)
                 newScrollPos = AmountToScroll;
 
             YOffset = YOffset - newScrollPos;
+
 
             if (AmountToScroll > 0 )
             {
