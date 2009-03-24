@@ -215,10 +215,14 @@ namespace Textfyre.UI.DocSystem
             parseInputArgs = Current.Game.StoryHandle.ParseInput(parseInputArgs);
             text = parseInputArgs.Input;
             transcriptText = parseInputArgs.TranscriptText;
+ 
             if (parseInputArgs.ContinueWithInput == false)
             {
                 _input._tbInput.Text = String.Empty;
                 AddFyreXml("<Italic>&gt;" + transcriptText + "</Italic><LineBreak/>");
+                RemoveInput();
+                AddInput();
+                AddInputHandler();
                 return;
             }
 
