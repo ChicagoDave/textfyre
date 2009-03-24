@@ -24,13 +24,19 @@ namespace Textfyre.UI.Controls
             this.Loaded += new RoutedEventHandler(More_Loaded);
             Current.Font.ApplyFont(Textfyre.UI.Current.Font.FontType.Headline, TBMore);
             TBMore.FontSize = 14;
-            TBMore.Margin = new Thickness(5, 1, 0, 2);
+            TBMore.Margin = new Thickness(5, 3, 0, 0);
+            //this.LostFocus += new RoutedEventHandler(More_LostFocus);
         }
+
+        //void More_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    this.Focus();
+        //}
+
 
         private void More_Loaded(object sender, RoutedEventArgs e)
         {
             TBMore.Text = "<More>";
-            Keyboard.KeyPress += new EventHandler<KeyEventArgs>(Keyboard_KeyPress);
         }
 
         private void Keyboard_KeyPress(object sender, KeyEventArgs e)
@@ -46,12 +52,15 @@ namespace Textfyre.UI.Controls
 
         public void Show()
         {
+            Keyboard.KeyPress += new EventHandler<KeyEventArgs>(Keyboard_KeyPress);
             _isShown = true;
+            this.Focus();
             this.Visibility = Visibility.Visible;
         }
 
         public void Hide()
         {
+            Keyboard.KeyPress -= new EventHandler<KeyEventArgs>(Keyboard_KeyPress);
             _isShown = false;
             this.Visibility = Visibility.Collapsed;
         }

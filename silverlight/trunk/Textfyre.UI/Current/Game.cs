@@ -123,6 +123,23 @@ namespace Textfyre.UI.Current
         }
         #endregion
 
+        
+
+        //#region :: StoryPage ::
+        //private static Controls.TextfyreBookPage _storyPage;
+        //public static Controls.TextfyreBookPage StoryPage
+        //{
+        //    get
+        //    {
+        //        return _storyPage;
+        //    }
+        //    set
+        //    {
+        //        _storyPage = value;
+        //    }
+        //}
+        //#endregion
+
         #region :: Location ::
         private static string _locaton = String.Empty;
         public static string Location

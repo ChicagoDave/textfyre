@@ -59,8 +59,16 @@ namespace Textfyre.UI.DocSystem
 
         }
 
+        private double _lastScrollingHeight = 0;
+        private SectionCollection _sections;
+        private bool _processSections = true;
         public void Do(SectionCollection sections)
         {
+            if (!_processSections)
+                return;
+
+            _sections = sections;
+
             if (_storyPage == null)
                 GetStoryPage();
 
@@ -72,16 +80,28 @@ namespace Textfyre.UI.DocSystem
                     Section section = sections[sectionPtr++];
                     if (section.ContentMode == ContentMode.Story)
                     {
+                        if (_lastScrollingHeight + section.Height + 20
+                            > Settings.BookPageInnerContentHeight)
+                        {
+                            sectionPtr--;
+                            _processSections = false;
+                            _storyPage.ctrlMore.Show();
+                            return;
+                        }
+
+                        _lastScrollingHeight += section.Height;
+
                         switch (section.SectionType)
                         {
                             case SectionType.ArtOnly:
                             case SectionType.Content:
-                                _storyScroller.AddSection(section);    
+                                _storyScroller.AddSection(section);
                             //_stackPanel.Children.Add(section.HostGridScroll);
                                 break;
                             case SectionType.Prompt:
                                 if (InputWant != null)
                                 {
+                                    _lastScrollingHeight = 0;
                                     InputWantEventArgs args = new InputWantEventArgs();
                                     args.LeadText = section.Text;
                                     InputWant(this, args);
@@ -118,6 +138,7 @@ namespace Textfyre.UI.DocSystem
         private void GetStoryPage()
         {
             _storyPage = Current.Game.TextfyreBook.GetFirstPageWithPageID("Story");
+            _storyPage.ctrlMore.Press += new EventHandler(ctrlMore_Press);
             _storyScroller = new Controls.StoryScroller();
             _storyPage.PageScrollViewerReplace = _storyScroller;
             
@@ -130,6 +151,15 @@ namespace Textfyre.UI.DocSystem
             //_scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
             //_stackPanel = sp;
             //_stackPanel.SizeChanged += new SizeChangedEventHandler(StackPanel_SizeChanged);
+        }
+
+        void ctrlMore_Press(object sender, EventArgs e)
+        {
+            _storyPage.ctrlMore.Hide();
+            _processSections = true;
+            _lastScrollingHeight = 0;
+            Do(_sections);
+
         }
 
         //void _scrollViewer_KeyUp(object sender, KeyEventArgs e)
