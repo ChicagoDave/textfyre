@@ -68,6 +68,32 @@ namespace Textfyre.UI.DocSystem
             }
         }
 
+        private bool _isWordDefMode;
+        public bool IsWordDefMode
+        {
+            get
+            {
+                return _isWordDefMode;
+            }
+            set
+            {
+                _isWordDefMode = value;
+            }
+        }
+
+        private string _wordDefID = String.Empty;
+        public string WordDefID
+        {
+            get
+            {
+                return _wordDefID;
+            }
+            set
+            {
+                _wordDefID = value;
+            }
+        }
+
         public double PageWidth { get; set; }
         public double MaxWidth { get; set; }
 
@@ -89,6 +115,8 @@ namespace Textfyre.UI.DocSystem
                 MaxWidth = previousElements.MaxWidth;
                 ContentMode = previousElements.ContentMode;
                 Image = previousElements.Image;
+                IsWordDefMode = previousElements.IsWordDefMode;
+                WordDefID = previousElements.WordDefID;
             }
 
             List<FyreXmlElement> elements = this;
@@ -185,7 +213,7 @@ namespace Textfyre.UI.DocSystem
                         elements.Add(new FyreXmlElement(FyreXml.OpCode.PromptEnd));
                         break;
                     case "worddef":
-                        elements.Add(new FyreXmlElement(FyreXml.OpCode.WordDefOn));
+                        elements.Add(new FyreXmlElement(FyreXml.OpCode.WordDefOn, GetAttribute("ID", attributes)));
                         break;
                     case "/worddef":
                         elements.Add(new FyreXmlElement(FyreXml.OpCode.WordDefOff));

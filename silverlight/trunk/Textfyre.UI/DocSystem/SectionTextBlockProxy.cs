@@ -117,6 +117,19 @@ namespace Textfyre.UI.DocSystem
             }
         }
 
+        public string WordDefID
+        {
+            get
+            {
+                return _txtBlk.WordDefID;
+            }
+            set
+            {
+                _txtBlkScroll.WordDefID = value;
+                _txtBlk.WordDefID = value;
+            }
+        }
+
         public void ShowWordDefs()
         {
             _txtBlkScroll.ShowWordDefs();

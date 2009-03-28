@@ -15,7 +15,7 @@ using System.Text.RegularExpressions;
 
 namespace Textfyre.UI.Entities
 {
-    public class WordDef
+    public class WordDefOLD
     {
         public string Word;
         public Point PointBegin;
@@ -44,7 +44,8 @@ namespace Textfyre.UI.Entities
 
             foreach (string word in WordDefs.Keys)
             {
-                text = Regex.Replace(text, @"\b" + word + @"\b", @"<WordDef>$&</WordDef>", RegexOptions.IgnoreCase);
+                string match = @"\b" + word + @"\b[,.:;]|\b" + word + @"\b";
+                text = Regex.Replace(text, match, @"<WordDef>$&</WordDef>", RegexOptions.IgnoreCase);
             }
 
             return text;

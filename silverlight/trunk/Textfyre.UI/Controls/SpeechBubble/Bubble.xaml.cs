@@ -30,7 +30,7 @@ namespace Textfyre.UI.Controls.SpeechBubble
             BubbleText.Inlines.Clear();
 
             Run body = new Run();
-            body.Text = Entities.WordDef.WordDefs[Entities.WordDef.Key(word)];
+            body.Text = DocSystem.WordDef.GetDescription(word);//Entities.WordDef.WordDefs[Entities.WordDef.Key(word)];
             BubbleText.Inlines.Add(body);
 
             double height = BubbleText.ActualHeight + 20d;
