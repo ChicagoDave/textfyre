@@ -238,6 +238,19 @@ namespace Textfyre.UI.DocSystem
             }
         }
 
+        private string _wordDefID = String.Empty;
+        public string WordDefID
+        {
+            get
+            {
+                return _wordDefID;
+            }
+            set
+            {
+                _wordDefID = value;
+            }
+        }
+
         public void ShowWordDefs()
         {
             Color wordDefColor = new Color();
@@ -285,7 +298,7 @@ namespace Textfyre.UI.DocSystem
                     pos.X <= wd.PointEnd.X && pos.Y <= wd.PointEnd.Y)
                 {
                     tb.Cursor = Cursors.Hand;
-                    activeWord = wd.Word;
+                    activeWord = wd.ID;
                     break;
                 }
                 else
@@ -316,7 +329,7 @@ namespace Textfyre.UI.DocSystem
                     double actWidth = _txtBlk.ActualWidth;
 
                     WordDef wd = new WordDef();
-                    wd.Word = word;
+                    wd.ID = WordDefID;
                     wd.Run = _run;
                     wd.PointBegin = new Point(System.Math.Max(0, (actWidth - wordMeassure.X)), System.Math.Max(0d, actHeight - wordMeassure.Y));
                     wd.PointEnd = new Point(actWidth, actHeight);

@@ -147,6 +147,8 @@ namespace Textfyre.UI.DocSystem
         {
             _txtBlk = new SectionTextBlockProxy();
             _fyreXmlElements = fyreXmlElements;
+            _txtBlk.IsWordDefMode = _fyreXmlElements.IsWordDefMode;
+            _txtBlk.WordDefID = _fyreXmlElements.WordDefID;
 
             _textFormat = _fyreXmlElements.TextFormat;
             _contentMode = _fyreXmlElements.ContentMode;
@@ -307,11 +309,18 @@ namespace Textfyre.UI.DocSystem
                         return _fyreXmlElements;
 
                     case FyreXml.OpCode.WordDefOn:
+                        string id = element.Data;
+                        _fyreXmlElements.IsWordDefMode = true;
                         _txtBlk.IsWordDefMode = true;
+                        _fyreXmlElements.WordDefID = id;
+                        _txtBlk.WordDefID = id;
                         //_txtBlk.ClearRun();
                         break;
                     case FyreXml.OpCode.WordDefOff:
+                        _fyreXmlElements.IsWordDefMode = false;
                         _txtBlk.IsWordDefMode = false;
+                        _fyreXmlElements.WordDefID = String.Empty;
+                        _txtBlk.WordDefID = String.Empty;
                         //_txtBlk.ClearRun();
                         break;
                 }

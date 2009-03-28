@@ -402,7 +402,7 @@ namespace Textfyre.UI.Pages
                         //}
                         txt = Regex.Replace(txt, "(<Paragraph><Bold>)(.+)(</Bold><LineBreak/>)", "<Header>$2</Header><Paragraph>");
 
-                        txt = Entities.WordDef.ParseTextForWordDefs(txt);
+                        txt = DocSystem.WordDef.ParseTextForWordDefs(txt);
 
                         sbMain.Append(txt);
                         //TextfyreBook.TextfyreDocument.AddStml(txt);

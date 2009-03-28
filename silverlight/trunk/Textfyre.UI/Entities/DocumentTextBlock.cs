@@ -68,7 +68,7 @@ namespace Textfyre.UI.Entities
 
 
         private double _curLineHeight = 0d;
-        public class WordDefs : List<WordDef>
+        public class WordDefs : List<WordDefOLD>
         {
         }
 
@@ -190,7 +190,7 @@ namespace Textfyre.UI.Entities
             Current.Game.TextfyreBook.WordDefBubble.Hide();
             Point pos = e.GetPosition(tb);
             string activeWord = String.Empty;
-            foreach (WordDef wd in wds)
+            foreach (WordDefOLD wd in wds)
             {
                 if (pos.X >= wd.PointBegin.X && pos.Y >= wd.PointBegin.Y &&
                     pos.X <= wd.PointEnd.X && pos.Y <= wd.PointEnd.Y)
@@ -317,7 +317,7 @@ namespace Textfyre.UI.Entities
                     double actHeight = _curTB.ActualHeight;
                     double actWidth = _curTBLine.ActualWidth;
 
-                    WordDef wd = new WordDef();
+                    WordDefOLD wd = new WordDefOLD();
                     wd.Word = word;
                     wd.Run = _curTBRun;
                     wd.PointBegin = new Point(System.Math.Max(0,(actWidth - wordMeassure.X)), System.Math.Max(0d, actHeight - wordMeassure.Y));
