@@ -400,7 +400,11 @@ namespace Textfyre.UI.Pages
                         //{
                         //    txt = txt.Replace("<Paragraph><Bold>" + location + "</Bold><LineBreak/>", "<Header>" + location + "</Header><Paragraph>");
                         //}
-                        txt = Regex.Replace(txt, "(<Paragraph><Bold>)(.+)(</Bold><LineBreak/>)", "<Header>$2</Header><Paragraph>");
+
+
+                        txt = Regex.Replace(txt, "(<Paragraph><Bold>)(.*?)(</Bold><LineBreak/>)", "<Header>$2</Header><Paragraph>");
+                        //txt = Regex.Replace(txt, "(<Paragraph><Bold>)(.+)(</Bold><LineBreak/>)", "<Header>$2</Header><Paragraph>");
+                        //txt = Regex.Replace(txt, "(<Bold>)(.+)(</Bold><LineBreak/>)", "<Header>$2</Header>");
 
                         txt = DocSystem.WordDef.ParseTextForWordDefs(txt);
 
