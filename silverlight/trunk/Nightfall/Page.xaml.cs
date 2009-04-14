@@ -24,10 +24,32 @@ namespace Nightfall
         {
             Textfyre.UI.Current.Application.GameAssembly = System.Reflection.Assembly.GetExecutingAssembly();
 
-                        Textfyre.UI.Current.Font.FontDefinition fd =
-            new Textfyre.UI.Current.Font.FontDefinition(
-            "GOUDR.TTF|GoudyRetrospectiveSSK|15");
-                        Textfyre.UI.Current.Font.Main = fd;
+            //            Textfyre.UI.Current.Font.FontDefinition fd =
+            //new Textfyre.UI.Current.Font.FontDefinition(
+            //"GOUDR.TTF|GoudyRetrospectiveSSK|15");
+            //            Textfyre.UI.Current.Font.Main = fd;
+
+            /*
+            Arial 
+            Arial Black
+            Comic Sans MS
+            Courier New
+            Georgia
+            Lucide Grande / Lucida Sans Unicode
+            Times New Roman
+            Trebuchet MS
+            Verdana
+            */
+
+            Textfyre.UI.Current.Font.FontDefinition fd =
+                new Textfyre.UI.Current.Font.FontDefinition("Verdana", 14);
+            Color color = new Color();
+            color.A = 225;
+            color.R = 0;
+            color.G = 0;
+            color.B = 0;
+            fd.Color = new SolidColorBrush(color);
+            Textfyre.UI.Current.Font.Main = fd;
 
             Textfyre.UI.Current.Font.FontDefinition hfd =
                 new Textfyre.UI.Current.Font.FontDefinition(
@@ -55,7 +77,7 @@ namespace Nightfall
             Textfyre.UI.Current.Font.Input = inputfd;
 
             StoryPage.LoadStory(GameFiles.GameFile.Nightfall_r10, "Nightfall_r10", new StoryHandle());
-            
+
         }
 
     }

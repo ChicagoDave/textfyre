@@ -7,7 +7,7 @@
 
 
   <Setting Key="BackgroundColor" Value="#FFFFFFFF" />
-  <Setting Key="ResizingEnabled" Value="True" />
+  <Setting Key="ResizingEnabled" Value="False" />
   <Setting Key="BookWidth" Value="920" />
   <Setting Key="BookPageWidth" Value="400" />
   <Setting Key="BookPageHeight" Value="550" />
