@@ -31,7 +31,39 @@ namespace Textfyre.UI.Current
             public string FontSourcePath;
             public string FontFamilyName;
             public double FontSize;
-            //private string _fontPath = "TextfyreApp.Resources.Fonts.";
+            
+
+            #region :: Color ::
+            private SolidColorBrush _color = null;
+            public SolidColorBrush Color
+            {
+                get
+                {
+                    return _color;
+                }
+                set
+                {
+                    _color = value;
+                }
+            }
+            #endregion
+
+            #region :: FontWeight ::
+            private bool _isFontWeightSet = false;
+            private FontWeight _fontWeight = FontWeights.Normal;
+            public FontWeight FontWeight
+            {
+                get
+                {
+                    return _fontWeight;
+                }
+                set
+                {
+                    _isFontWeightSet = true;
+                    _fontWeight = value;
+                }
+            }
+            #endregion
 
             System.Collections.Generic.Dictionary<string, Stream> _fontsources
                 = new System.Collections.Generic.Dictionary<string, Stream>();
@@ -75,6 +107,16 @@ namespace Textfyre.UI.Current
                 SetDef(fontdef);
             }
 
+            public FontDefinition(string fontSource, string fontFamily, double fontSize)
+            {
+                SetDef(fontSource + "|" + fontFamily + "|" + fontSize.ToString());
+            }
+
+            public FontDefinition(string fontFamily, double fontSize) : this ( String.Empty, fontFamily, fontSize)
+            {
+
+            }
+
             public string GetDef()
             {
                 return FontSourcePath + "|" + FontFamilyName + "|" + FontSize.ToString();
@@ -101,6 +143,13 @@ namespace Textfyre.UI.Current
 
                 textBlock.FontFamily = FontFamily;
                 textBlock.FontSize = FontSize;
+
+                if (_isFontWeightSet)
+                    textBlock.FontWeight = _fontWeight;
+
+                if (_color != null)
+                    textBlock.Foreground = _color;
+
             }
             public void Apply(TextBox textBox)
             {
@@ -111,6 +160,13 @@ namespace Textfyre.UI.Current
 
                 textBox.FontFamily = FontFamily;
                 textBox.FontSize = FontSize;
+
+                if (_isFontWeightSet)
+                    textBox.FontWeight = _fontWeight;
+
+                if (_color != null)
+                    textBox.Foreground = _color;
+
             }
         }
 

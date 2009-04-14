@@ -251,21 +251,39 @@ namespace Textfyre.UI.DocSystem
             }
         }
 
+        private DocSystem.BrushStorage _brushes;
+        private bool _isShowingWordDefs = false;
         public void ShowWordDefs()
         {
+            if (_isShowingWordDefs)
+                return;
+
+            _isShowingWordDefs = true;
+
+            if (_brushes == null)
+                _brushes = new BrushStorage();
+            _brushes.Init();
+
             Color wordDefColor = new Color();
             wordDefColor.A = 255;
             wordDefColor.R = 200;
             wordDefColor.G = 80;
             wordDefColor.B = 55;
             foreach (Run run in WordDefRuns)
-            {
+            {               
+                _brushes.Add(run.Foreground);
                 run.Foreground = new SolidColorBrush(wordDefColor);
             }
         }
 
         public void HideWordDefs()
         {
+            if (_isShowingWordDefs == false)
+                return;
+
+            _isShowingWordDefs = false;
+
+            
             Color wordDefColor = new Color();
             wordDefColor.A = 255;
             wordDefColor.R = 0;
@@ -273,8 +291,10 @@ namespace Textfyre.UI.DocSystem
             wordDefColor.B = 0;
             foreach (Run run in WordDefRuns)
             {
-                run.Foreground = new SolidColorBrush(wordDefColor);
+                run.Foreground = _brushes.GetBrush();
+                //run.Foreground = new SolidColorBrush(wordDefColor);
             }
+            _brushes.Clear();
         }
 
         void _curTB_MouseLeave(object sender, MouseEventArgs e)
