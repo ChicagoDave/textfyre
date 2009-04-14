@@ -65,6 +65,23 @@ namespace Textfyre.UI.Current
             }
             #endregion
 
+            #region :: FontStyle ::
+            private bool _isFontStyleSet = false;
+            private FontStyle _fontStyle = FontStyles.Normal;
+            public FontStyle FontStyle
+            {
+                get
+                {
+                    return _fontStyle;
+                }
+                set
+                {
+                    _isFontStyleSet = true;
+                    _fontStyle = value;
+                }
+            }
+            #endregion
+
             System.Collections.Generic.Dictionary<string, Stream> _fontsources
                 = new System.Collections.Generic.Dictionary<string, Stream>();
 
@@ -147,6 +164,9 @@ namespace Textfyre.UI.Current
                 if (_isFontWeightSet)
                     textBlock.FontWeight = _fontWeight;
 
+                if (_isFontStyleSet)
+                    textBlock.FontStyle = _fontStyle;
+
                 if (_color != null)
                     textBlock.Foreground = _color;
 
@@ -163,6 +183,9 @@ namespace Textfyre.UI.Current
 
                 if (_isFontWeightSet)
                     textBox.FontWeight = _fontWeight;
+
+                if (_isFontStyleSet)
+                    textBox.FontStyle = _fontStyle;
 
                 if (_color != null)
                     textBox.Foreground = _color;

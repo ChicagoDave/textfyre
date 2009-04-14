@@ -53,27 +53,28 @@ namespace Nightfall
 
             Textfyre.UI.Current.Font.FontDefinition hfd =
                 new Textfyre.UI.Current.Font.FontDefinition(
-                    "GOUDOSSC.TTF|GoudyOSSCapsSSK|18");
+                    "|Verdana|18");
             Textfyre.UI.Current.Font.Headline = hfd;
 
             Textfyre.UI.Current.Font.FontDefinition Italicfd =
                 new Textfyre.UI.Current.Font.FontDefinition(
-                    "GOUDRI.TTF|GoudyRetrospectiveSSK|15");
+                    "|Verdana|14");
+            Italicfd.FontStyle = FontStyles.Italic;
             Textfyre.UI.Current.Font.MainItalic = Italicfd;
 
             Textfyre.UI.Current.Font.FontDefinition headerfd =
                 new Textfyre.UI.Current.Font.FontDefinition(
-                "GOUDOSSC.TTF|GoudyOSSCapsSSK|15");
+                "|Verdana|15");
             Textfyre.UI.Current.Font.Header = headerfd;
 
             Textfyre.UI.Current.Font.FontDefinition footerfd =
     new Textfyre.UI.Current.Font.FontDefinition(
-    "GOUDOSSC.TTF|GoudyOSSCapsSSK|12");
+    "|Verdana|12");
             Textfyre.UI.Current.Font.Footer = footerfd;
 
             Textfyre.UI.Current.Font.FontDefinition inputfd =
     new Textfyre.UI.Current.Font.FontDefinition(
-    "GOUDRI.TTF|GoudyRetrospectiveSSK|18");
+    "|Verdana|18");
             Textfyre.UI.Current.Font.Input = inputfd;
 
             StoryPage.LoadStory(GameFiles.GameFile.Nightfall_r10, "Nightfall_r10", new StoryHandle());
