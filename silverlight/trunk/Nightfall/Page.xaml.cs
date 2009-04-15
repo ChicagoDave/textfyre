@@ -42,39 +42,40 @@ namespace Nightfall
             */
 
             Textfyre.UI.Current.Font.FontDefinition fd =
-                new Textfyre.UI.Current.Font.FontDefinition("Verdana", 14);
+                new Textfyre.UI.Current.Font.FontDefinition("Georgia", 15);
             Color color = new Color();
-            color.A = 225;
-            color.R = 0;
-            color.G = 0;
-            color.B = 0;
+            color.A = 255;
+            color.R = 51;
+            color.G = 51;
+            color.B = 51;
             fd.Color = new SolidColorBrush(color);
             Textfyre.UI.Current.Font.Main = fd;
 
             Textfyre.UI.Current.Font.FontDefinition hfd =
                 new Textfyre.UI.Current.Font.FontDefinition(
-                    "|Verdana|18");
+                    "|Georgia|18");
             Textfyre.UI.Current.Font.Headline = hfd;
 
-            Textfyre.UI.Current.Font.FontDefinition Italicfd =
+            Textfyre.UI.Current.Font.FontDefinition italicfd =
                 new Textfyre.UI.Current.Font.FontDefinition(
-                    "|Verdana|14");
-            Italicfd.FontStyle = FontStyles.Italic;
-            Textfyre.UI.Current.Font.MainItalic = Italicfd;
+                    "|Georgia|16");
+            italicfd.Color = new SolidColorBrush(color);
+            italicfd.FontStyle = FontStyles.Italic;
+            Textfyre.UI.Current.Font.MainItalic = italicfd;
 
             Textfyre.UI.Current.Font.FontDefinition headerfd =
                 new Textfyre.UI.Current.Font.FontDefinition(
-                "|Verdana|15");
+                "|Georgia|15");
             Textfyre.UI.Current.Font.Header = headerfd;
 
             Textfyre.UI.Current.Font.FontDefinition footerfd =
     new Textfyre.UI.Current.Font.FontDefinition(
-    "|Verdana|12");
+    "|Georgia|12");
             Textfyre.UI.Current.Font.Footer = footerfd;
 
             Textfyre.UI.Current.Font.FontDefinition inputfd =
     new Textfyre.UI.Current.Font.FontDefinition(
-    "|Verdana|18");
+    "|Georgia|16");
             Textfyre.UI.Current.Font.Input = inputfd;
 
             StoryPage.LoadStory(GameFiles.GameFile.Nightfall_r10, "Nightfall_r10", new StoryHandle());
