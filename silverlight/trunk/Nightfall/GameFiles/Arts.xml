@@ -5,15 +5,23 @@
   <Art ID="BookPage1" Path="Images/Book/NewBookPage1.png" Width="350" Height="550" />
   <Art ID="BookPage2" Path="Images/Book/NewBookPage2.png" Width="350" Height="550" /-->
 
-
-  <Art ID="Book" Path="Images/Book/NewBook.png" Width="920" Height="650" />
+  <!--
+    <Art ID="Book" Path="Images/Book/NewBook.png" Width="920" Height="650" />
   <Art ID="BookCover" Path="Images/Title.png" Width="448" Height="575" Margin="455,10,0,0" />
   <Art ID="BookPage1" Path="Images/Book/NewBookPage1.png" Width="400" Height="550" />
   <Art ID="BookPage2" Path="Images/Book/NewBookPage2.png" Width="400" Height="550" />
   <Art ID="TitlePage" Path="Images/Title.png" Width="280" Height="442" />
   <Art ID="TOCArt" Path="Images/TOCArt.jpg" Width="252" Height="73" Margin="5,40,0,0" />
+  -->
 
-  <Art ID="BookmarkTOC" Path="Images/BookmarkTOC.xaml" Margin="13,50,0,0" />
+  <Art ID="Book" Path="Images/Book/Book.png" Width="1024" Height="600" />
+  <Art ID="BookCover" Path="Images/Title.png" Width="512" Height="600" Margin="510,0,0,0" />
+  <Art ID="BookPage1" Path="Images/Book/BookPageLeft.png" Width="481" Height="577" />
+  <Art ID="BookPage2" Path="Images/Book/BookPageRight.png" Width="481" Height="577" />
+  <Art ID="TitlePage" Path="Images/Title.png" Width="280" Height="442" />
+  <Art ID="TOCArt" Path="Images/TOCArt.jpg" Width="252" Height="73" Margin="5,40,0,0" />
+
+  <Art ID="BookmarkTOC" Path="Images/BookmarkTOC.xaml" Margin="-6,50,0,0" />
   
   <Art ID="tracks" Path="Images/PageArts/nightfall-tracks.jpg" Width="280" Height="440" />
   <Art ID="moonlit street" Path="Images/PageArts/nightfall-moonlit-street.jpg" Width="280" Height="440" />

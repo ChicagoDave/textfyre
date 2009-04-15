@@ -7,13 +7,13 @@
 
 
   <Setting Key="BackgroundColor" Value="#FFFFFFFF" />
-  <Setting Key="ResizingEnabled" Value="False" />
-  <Setting Key="BookWidth" Value="920" />
-  <Setting Key="BookPageWidth" Value="400" />
-  <Setting Key="BookPageHeight" Value="550" />
-  <Setting Key="BookPageOffsetLeft" Value="55" />
-  <Setting Key="BookPageOffsetTop" Value="22" />
-  <Setting Key="BookPageInnerContentWidth" Value="380" />
+  <Setting Key="ResizingEnabled" Value="True" />
+  <Setting Key="BookWidth" Value="1024" />
+  <Setting Key="BookPageWidth" Value="481" />
+  <Setting Key="BookPageHeight" Value="577" />
+  <Setting Key="BookPageOffsetLeft" Value="31" />
+  <Setting Key="BookPageOffsetTop" Value="11" />
+  <Setting Key="BookPageInnerContentWidth" Value="440" />
   <Setting Key="BookPageInnerContentHeight" Value="470" />
   <Setting Key="BookPageInnerContentOffsetLeft" Value="20" />
   <Setting Key="BookPageInnerContentOffsetTop" Value="0" />
