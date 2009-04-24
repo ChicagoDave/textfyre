@@ -1,4 +1,4 @@
-Version 26/080829 of Custom Library Messages by David Fisher begins here.
+Version 29/090225 of Custom Library Messages by David Fisher begins here.
 
 "Enables the standard messages printed by the Inform library
 to be replaced with custom messages, including changes to
@@ -361,7 +361,7 @@ Table of library messages (continued)
 Message Id				Message Text
 LibMsg <person ignores command>	"[The %] [has|have] better things to do."
 LibMsg <cannot talk to absent person>	"[You] seem[-s] to want to talk to someone, but I [can't] see whom."
-LibMsg <cannot talk to inanimate object>	"[You] [=> present tense][can't] talk to [the % dobj]."
+LibMsg <cannot talk to inanimate object>	"[You] [=> present tense][can't][=> default tense] talk to [the % dobj]."
 LibMsg <npc unable to do that>		"[The actor] [is|are] unable to do that."
 
 Section 2.15 - File Operations
@@ -434,7 +434,7 @@ LibMsg <cannot take hidden parts>		"[That|those] [isn't|aren't] available."
 LibMsg <cannot reach within closed containers>	"[The %] [isn't|aren't] open."
 LibMsg <cannot take scenery>			"[That's|they're] hardly portable."
 LibMsg <cannot take something fixed>		"[That's|they're] fixed in place."
-LibMsg <cannot reach within other places>	"[You] [=> present tense][can't] reach into [the % dobj]."
+LibMsg <cannot reach within other places>	"[You] [=> present tense][can't][=> default tense] reach into [the % dobj]."
 
 [ See also:
   	LibMsg <cannot exceed carrying capacity>
@@ -468,11 +468,11 @@ Table of library messages (continued)
 Message Id						Message Text
 LibMsg <report player inserting>				"[if there are multiple objects]Done[otherwise][You] [puts*] [the % dobj] into [the second noun][end if]."
 LibMsg <report npc inserting>				"[The actor] [puts*] [the % dobj] into [the second noun]."
-LibMsg <cannot insert something not held>		"[You] [=> present tense]need[-s] to be holding [the % dobj] before [you] can put [it|them] into something else."
+LibMsg <cannot insert something not held>		"[You] [=> present tense]need[-s][=> default tense] to be holding [the % dobj] before [you] can put [it|them] into something else."
 LibMsg <cannot insert into something not a container>	"[That|those] can't contain things."
 LibMsg <cannot insert into closed containers>		"[The %] [is|are] closed."
 LibMsg <need to take off before inserting>		"[You][apostrophe]ll need to take [it|them] off first."
-LibMsg <cannot insert something into itself>		"[You] [=> present tense][can't] put something inside itself."
+LibMsg <cannot insert something into itself>		"[You] [=> present tense][can't][=> default tense] put something inside itself."
 
 [ See also:
   	LibMsg <cannot insert if this exceeds carrying capacity>
@@ -487,8 +487,8 @@ Table of library messages (continued)
 Message Id						Message Text
 LibMsg <report player putting on>			"[if there are multiple objects]Done[otherwise][You] [puts*] [the % dobj] on [the second noun][end if]."
 LibMsg <report npc putting on>				"[The actor] [puts*] [the % dobj] on [the second noun]."
-LibMsg <cannot put something not held>			"[You] [=> present tense]need[-s] to be holding [the % dobj] before [you] can put [it|them] on top of something else."
-LibMsg <cannot put something on it-self>			"[You] [=> present tense][can't] put something on top of itself."
+LibMsg <cannot put something not held>			"[You] [=> present tense]need[-s][=> default tense] to be holding [the % dobj] before [you] can put [it|them] on top of something else."
+LibMsg <cannot put something on it-self>			"[You] [=> present tense][can't][=> default tense] put something on top of itself."
 LibMsg <cannot put onto something not a supporter>	"Putting things on [the % dobj] [would achieve] nothing."
 LibMsg <cannot put onto something being carried>	"[You] lack[-s] the dexterity."
 
@@ -530,9 +530,9 @@ Message Id						Message Text
 LibMsg <report player entering>			"[You] [get*] [=> %][onto|into] [the % dobj]."
 LibMsg <report npc entering>				"[The actor] [gets*] [=> %][onto|into] [the % dobj]."
 LibMsg <cannot enter something already entered>	"But [you're] already [=> %][on|in] [the % dobj]."
-LibMsg <cannot enter something not enterable>		"[That's|they're] not something [you] [=> present tense][can] [appropriate action for enter verb]."
-LibMsg <cannot enter closed containers>			"[You] [=> present tense][can't] get into the closed [% dobj]."
-LibMsg <cannot enter something carried>		"[You] [=> present tense][can] only get into something free-standing."
+LibMsg <cannot enter something not enterable>		"[That's|they're] not something [you] [=> present tense][can][=> default tense] [appropriate action for enter verb]."
+LibMsg <cannot enter closed containers>			"[You] [=> present tense][can't][=> default tense] get into the closed [% dobj]."
+LibMsg <cannot enter something carried>		"[You] [=> present tense][can][=> default tense] only get into something free-standing."
 
 [ See also:
 	LibMsg <implicitly pass outwards through other barriers>
@@ -721,7 +721,7 @@ Table of library messages (continued)
 Message Id					Message Text
 LibMsg <report player wearing>		"[You] [put*] on [the % dobj]."
 LibMsg <report npc wearing>			"[The actor] [puts*] on [the % dobj]."
-LibMsg <cannot wear something not clothing>	"[You] [=> present tense][can't] wear [that|those]!"
+LibMsg <cannot wear something not clothing>	"[You] [=> present tense][can't][=> default tense] wear [that|those]!"
 LibMsg <cannot wear not holding>		"[You're] not holding [that|those]!"
 LibMsg <cannot wear something already worn>	"[You're] already wearing [that|those]!"
 
@@ -759,7 +759,7 @@ Table of library messages (continued)
 Message Id					Message Text
 LibMsg <report player touching things>		"[You] [feel*] nothing unexpected."
 LibMsg <report npc touching things>		"[The actor] touch[-es] [the % dobj]."
-LibMsg <report player touching self>		"If [you] [=> present tense]think[-s] that[apostrophe]ll help."
+LibMsg <report player touching self>		"If [you] [=> present tense]think[-s][=> default tense] that[apostrophe]ll help."
 LibMsg <report npc touching self>		"[The actor] touch[-es] [himself]."
 LibMsg <report player touching other people>	"[Keep your hands to yourself][if lm_p2 and lm_sing]![otherwise].[end if]"
 LibMsg <report npc touching other people>	"[The actor] touch[-es] [the % dobj]."
@@ -791,7 +791,7 @@ LibMsg <block attacking>			"Violence [isn't|wasn't] the answer to this one."
 LibMsg <block burning>				"This dangerous act [would achieve] little."
 LibMsg <block cutting>				"Cutting [that|those] up [would achieve] little."
 LibMsg <block rubbing>				"[You] achiev[e-s] nothing by this."
-LibMsg <block setting to>			"No, [you] [=> present tense][can't] set [that|those] to anything."
+LibMsg <block setting to>			"No, [you] [=> present tense][can't][=> default tense] set [that|those] to anything."
 LibMsg <block tying>				"[You] [would achieve] nothing by this."
 LibMsg <report player waving things>		"[You] look[-s] ridiculous waving [the % dobj]."
 LibMsg <report npc waving things>		"[The actor] wav[e-s] [the % dobj]."
@@ -826,7 +826,7 @@ LibMsg <report player turning>			"[nothing obvious happens]"
 LibMsg <report npc turning>			"[The actor] turn[-s] [the % dobj]."
 LibMsg <block pushing in directions>		"[The %] [if lm_past]could not[otherwise]cannot[end if] be pushed from place to place."
 LibMsg <not pushed in a direction>		"That's not a direction."
-LibMsg <pushed in illegal direction>		"Not that way [you] [=> present tense][can't]."
+LibMsg <pushed in illegal direction>		"Not that way [you] [=> present tense][can't][=> default tense]."
 LibMsg <cannot push something fixed in place>	"[It is fixed in place]"
 LibMsg <cannot pull something fixed in place>	"[It is fixed in place]"
 LibMsg <cannot turn something fixed in place>	"[It is fixed in place]"
@@ -886,7 +886,9 @@ curr_obj_inform6_value is an object that varies.
   otherwise curr_obj_number is third person and the number and gender are
   determined by the object. ]
 
-curr_obj_tense is a tense that varies.
+temporary_tense is a tense that varies.
+use_temporary_tense is a truth state that varies.
+use_temporary_tense is false.
 curr_obj_number is a grammatical number that varies.
 curr_obj_person is a grammatical person that varies.
 curr_obj_gender is a gender that varies.
@@ -908,17 +910,15 @@ To set the current object to (x_ - an object) / (dbg_msg - text):
       otherwise say "[curr_obj]";
       say "}";
    end if;
-   if curr_obj is the player or curr_obj is_nothing, use the player's TGNP;
-   otherwise use the object's TGNP.
+   if curr_obj is the player or curr_obj is_nothing, use the player's GNP;
+   otherwise use the object's GNP.
 
-To use the player's TGNP:
-   change curr_obj_tense to the library message tense; 
+To use the player's GNP:
    change curr_obj_person to the library message person;
    change curr_obj_number to the library message grammatical number;
    change curr_obj_gender to the library message gender.
 
-To use the object's TGNP:
-   change curr_obj_tense to the library message tense;
+To use the object's GNP:
    change curr_obj_person to third person;
    if curr_obj acts plural, change curr_obj_number to plural;
    otherwise change curr_obj_number to singular;
@@ -957,10 +957,16 @@ Include (-
 Section 3.3 - "Say object" rules
 
 To say => present tense:
-   change curr_obj_tense to present tense.
+   change temporary_tense to present tense;
+   change use_temporary_tense to true.
+
+To say => past tense:
+   change temporary_tense to past tense;
+   change use_temporary_tense to true.
 
 To say => default tense:
-   change curr_obj_tense to the library message tense.
+   change temporary_tense to the library message tense;
+   change use_temporary_tense to false.
 
 To say => %:
    set the current object to the main object / "=>%".
@@ -1055,11 +1061,20 @@ To decide whether (x_ - an object) is nothing:
    (- {x_} == nothing -).
 
 To decide whether lm_present:
-   if curr_obj_tense is present tense, decide yes;
-   decide no.
+	if use_temporary_tense is true:
+   		if temporary_tense is present tense, decide yes;
+		decide no;
+	otherwise:
+   		if library message tense is present tense, decide yes;
+		decide no;
+
 To decide whether lm_past:
-   if curr_obj_tense is past tense, decide yes;
-   decide no.
+	if use_temporary_tense is true:
+		if temporary_tense is past tense, decide yes;
+		decide no;
+	otherwise:
+		if library message tense is past tense, decide yes;
+		decide no.
 
 To decide whether lm_plu:
    if curr_obj_number is plural, decide yes;
@@ -1936,7 +1951,7 @@ Include (-
     (+curr_subject+) = actor;
 
     if (actor ~= player) { set_curr_obj(actor); }
-    else if (lm_o > 0) { set_curr_obj(lm_o); }
+    else if (lm_o ofclass Object) { set_curr_obj(lm_o); }
     else { set_curr_obj(player); }
 
     id = -1;
@@ -2806,9 +2821,7 @@ Section 5.3 - Locale description - unindexed
 The you can see more rule is listed instead of the you-can-also-see 
 rule in the for printing the locale description rules. 
 
-
-For printing the locale description (this is the you can see more 
-rule): 
+This is the you can see more rule: 
 	let the domain be the parameter-object; 
 	let the mentionable count be 0; 
 	repeat with item running through things: 
@@ -3160,10 +3173,9 @@ For example:
 (This is a rare case when "%" and "the noun" are two different objects).
 
 It is also possible to force the tense to be past or present (note that
-this only affects the very next "[...]" command, so it needs to come
-right before it):
+each "[=> present tense]" should have a matching "[=> default tense]").
 
-	"[You] [=> present tense]need[-s] to be holding [the % dobj] before [you] can put [it|them] into something else."
+	"[You] [=> present tense]need[-s][=> default tense] to be holding [the % dobj] before [you] can put [it|them] into something else."
 
 If it is ever necessary to print the current object explicitly, the symbol "$" may be used.
 This acts just like "%", so you can say:
@@ -3473,6 +3485,15 @@ Version 25 (April 20th, 2008)
 Version 26 (August 29th, 2008)
 	* Added section 5.3 (Locale description), containing code by Emily Short to make the standard "you can see" message call this extension.
 
+Version 27 (October 5th, 2008)
+	* Tense was being treated as "past" by default in some situations unless preceeded by "[you]"; now fixed (thanks to Jeff Nyman for pointing this out). Note that "[=> default tense]" is now required after "[=> present tense]" to revert to the current tense.
+
+Version 28 (February 10th, 2009)
+	* Fixed a problem that only showed up in Glulx; messages involving numbers (eg. score notification) were printing an error like "tried to test has or hasn't of illegal object number 1". (Thanks to Victor Gijsbers for pointing this out).
+
+Version 29 (February 25th, 2009)
+	* The "you can see more rule" was being defined as part of the "locale description rules" as well as replacing the you-can-see-more rule -- see http://groups.google.com/group/rec.arts.int-fiction/browse_thread/thread/e2252aefd087fdaf. (Thanks to Victor Gijsbers for the fix).
+
 Section: Important Kinds and Values
 
 Kinds
@@ -3651,7 +3672,7 @@ Section: Commanding People
 	Message Id				Message Text
 	LibMsg <person ignores command>	"[The %] [has|have] better things to do."
 	LibMsg <cannot talk to absent person>	"[You] seem[-s] to want to talk to someone, but I [can't] see whom."
-	LibMsg <cannot talk to inanimate object>	"[You] [=> present tense][can't] talk to [the % dobj]."
+	LibMsg <cannot talk to inanimate object>	"[You] [=> present tense][can't][=> default tense] talk to [the % dobj]."
 	LibMsg <npc unable to do that>		"[The actor] [is|are] unable to do that."
 
 Section: File Operations
@@ -3724,7 +3745,7 @@ Section: Take
 	LibMsg <cannot reach within closed containers>	"[The %] [isn't|aren't] open."
 	LibMsg <cannot take scenery>			"[That's|they're] hardly portable."
 	LibMsg <cannot take something fixed>		"[That's|they're] fixed in place."
-	LibMsg <cannot reach within other places>	"[You] [=> present tense][can't] reach into [the % dobj]."
+	LibMsg <cannot reach within other places>	"[You] [=> present tense][can't][=> default tense] reach into [the % dobj]."
 
 See also:
 
@@ -3759,11 +3780,11 @@ Section: Insert
 	Message Id						Message Text
 	LibMsg <report player inserting>				"Done."
 	LibMsg <report npc inserting>				"[The actor] [puts*] [the % dobj] into [the second noun]."
-	LibMsg <cannot insert something not held>		"[You] [=> present tense]need[-s] to be holding [the % dobj] before [you] can put [it|them] into something else."
+	LibMsg <cannot insert something not held>		"[You] [=> present tense]need[-s][=> default tense] to be holding [the % dobj] before [you] can put [it|them] into something else."
 	LibMsg <cannot insert into something not a container>	"[That|those] can't contain things."
 	LibMsg <cannot insert into closed containers>		"[The %] [is|are] closed."
 	LibMsg <need to take off before inserting>		"[You]'ll need to take [it|them] off first."
-	LibMsg <cannot insert something into itself>		"[You] [=> present tense][can't] put something inside itself."
+	LibMsg <cannot insert something into itself>		"[You] [=> present tense][can't][=> default tense] put something inside itself."
 
 See also:
 
@@ -3779,8 +3800,8 @@ Section: Put On
 	Message Id						Message Text
 	LibMsg <report player putting on>			"[if there are multiple objects]Done[otherwise]library message grammatical numberYou] [puts*] [the % dobj] on [the second noun][end if]."
 	LibMsg <report npc putting on>				"[The actor] [puts*] [the % dobj] on [the second noun]."
-	LibMsg <cannot put something not held>			"[You] [=> present tense]need[-s] to be holding [the % dobj] before [you] can put [it|them] on top of something else."
-	LibMsg <cannot put something on it-self>			"[You] [=> present tense][can't] put something on top of itself."
+	LibMsg <cannot put something not held>			"[You] [=> present tense]need[-s][=> default tense] to be holding [the % dobj] before [you] can put [it|them] on top of something else."
+	LibMsg <cannot put something on it-self>			"[You] [=> present tense][can't][=> default tense] put something on top of itself."
 	LibMsg <cannot put onto something not a supporter>	"Putting things on [the % dobj] [would achieve] nothing."
 	LibMsg <cannot put onto something being carried>	"[You] lack[-s] the dexterity."
 
@@ -3822,9 +3843,9 @@ Section: Enter
 	LibMsg <report player entering>			"[You] [get*] [=> %][onto|into] [the % dobj]."
 	LibMsg <report npc entering>				"[The actor] [gets*] [=> %][onto|into] [the % dobj]."
 	LibMsg <cannot enter something already entered>	"But [you're] already [=> %][on|in] [the % dobj]."
-	LibMsg <cannot enter something not enterable>		"[That's|they're] not something [you] [=> present tense][can] [appropriate action for enter verb]."
-	LibMsg <cannot enter closed containers>			"[You] [=> present tense][can't] get into the closed [% dobj]."
-	LibMsg <cannot enter something carried>		"[You] [=> present tense][can] only get into something free-standing."
+	LibMsg <cannot enter something not enterable>		"[That's|they're] not something [you] [=> present tense][can][=> default tense] [appropriate action for enter verb]."
+	LibMsg <cannot enter closed containers>			"[You] [=> present tense][can't][=> default tense] get into the closed [% dobj]."
+	LibMsg <cannot enter something carried>		"[You] [=> present tense][can][=> default tense] only get into something free-standing."
 
 See also:
 
@@ -4017,7 +4038,7 @@ Section: Wear
 	Message Id					Message Text
 	LibMsg <report player wearing>		"[You] [put*] on [the % dobj]."
 	LibMsg <report npc wearing>			"[The actor] [puts*] on [the % dobj]."
-	LibMsg <cannot wear something not clothing>	"[You] [=> present tense][can't] wear [that|those]!"
+	LibMsg <cannot wear something not clothing>	"[You] [=> present tense][can't][=> default tense] wear [that|those]!"
 	LibMsg <cannot wear not holding>		"[You're] not holding [that|those]!"
 	LibMsg <cannot wear something already worn>	"[You're] already wearing [that|those]!"
 
@@ -4055,7 +4076,7 @@ Section: Touching
 	Message Id					Message Text
 	LibMsg <report player touching things>		"[You] [feel*] nothing unexpected."
 	LibMsg <report npc touching things>		"[The actor] touch[-es] [the % dobj]."
-	LibMsg <report player touching self>		"If [you] [=> present tense]think[-s] that'll help."
+	LibMsg <report player touching self>		"If [you] [=> present tense]think[-s][=> default tense] that'll help."
 	LibMsg <report npc touching self>		"[The actor] touch[-es] [himself]."
 	LibMsg <report player touching other people>	"[Keep your hands to yourself][if lm_p2 and lm_sing]![otherwise].[end if]"
 	LibMsg <report npc touching other people>	"[The actor] touch[-es] [the % dobj]."
@@ -4087,7 +4108,7 @@ Section: Physical Interaction
 	LibMsg <block burning>				"This dangerous act [would achieve] little."
 	LibMsg <block cutting>				"Cutting [that|those] up [would achieve] little."
 	LibMsg <block rubbing>				"[You] achiev[e-s] nothing by this."
-	LibMsg <block setting to>			"No, [you] [=> present tense][can't] set [that|those] to anything."
+	LibMsg <block setting to>			"No, [you] [=> present tense][can't][=> default tense] set [that|those] to anything."
 	LibMsg <block tying>				"[You] [would achieve] nothing by this."
 	LibMsg <report player waving things>		"[You] look[-s] ridiculous waving [the % dobj]."
 	LibMsg <report npc waving things>		"[The actor] wav[e-s] [the % dobj]."
@@ -4122,7 +4143,7 @@ Section: Push, Pull, Turn
 	LibMsg <report npc turning>			"[The actor] turn[-s] [the % dobj]."
 	LibMsg <block pushing in directions>		"[The %] [if lm_past]could not[otherwise]cannot[end if] be pushed from place to place."
 	LibMsg <not pushed in a direction>		"That's not a direction."
-	LibMsg <pushed in illegal direction>		"Not that way [you] [=> present tense][can't]."
+	LibMsg <pushed in illegal direction>		"Not that way [you] [=> present tense][can't][=> default tense]."
 	LibMsg <cannot push something fixed in place>	"[It is fixed in place]"
 	LibMsg <cannot pull something fixed in place>	"[It is fixed in place]"
 	LibMsg <cannot turn something fixed in place>	"[It is fixed in place]"
