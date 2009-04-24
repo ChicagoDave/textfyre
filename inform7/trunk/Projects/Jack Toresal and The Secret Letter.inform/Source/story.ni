@@ -2,8 +2,8 @@
 
 [  Change Log
 When		Who		What
-18-Mar-2009	D. Cornelson	Fixed hints bug.
 23-Apr-2009	G. Jefferis	Updated for 5Z71
+18-Mar-2009	D. Cornelson	Fixed hints bug.
 02-Mar-2009	G. Jefferis	Assorted bug finding and fixes
 26-Feb-2009	G. Jefferis	Implemented changes from Paul_6_response
 25-Feb-2009	G. Jefferis	Implemented changes from Paul_5_response
@@ -170,7 +170,6 @@ Include Dramatic Priority by Textfyre.
 Include Conversation Topics by Textfyre.
 
 Include Secret Letter Hints by Textfyre.
-Include Test Suite by Textfyre.
 Include Xml Output Toggling by Textfyre.
 
 Use no scoring, American dialect and full-length room descriptions.
