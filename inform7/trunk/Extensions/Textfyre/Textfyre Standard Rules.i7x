@@ -360,10 +360,16 @@ Rule for printing inventory information of something worn by the player:
 	say " (being worn)";
 
 Rule for printing inventory information of an open container (called x):
-	say " (which [is or are for x] open[if the number of things in x is 0], but empty[otherwise], containing:[end if])";
+	if x is openable:
+		say " (which [is or are for x] open, [unless x encloses something]but empty[otherwise]containing:[end if])";
+	otherwise:
+		say " ([unless x encloses something]which [is or are for x] empty[otherwise]containing:[end if])";
 
 Rule for printing inventory information of a closed container (called x):
-	say " (which [is or are for x] closed[if the number of things in x is 0 and x is transparent], and empty[otherwise if x is transparent], containing:[end if])";
+	if x is openable:
+		say " (which [is or are for x] closed[if x does not enclose something and x is transparent], and empty[otherwise if x is transparent], containing:[end if])";
+	otherwise:
+		say "[if x does not enclose something and x is transparent](which [is or are for x] empty)[otherwise if x is transparent](containing:)[end if]";
 
 Book 5 - Kinds
 
@@ -407,7 +413,7 @@ Check climbing (this is the slightly more lenient block climbing rule):
 
 Check climbing a staircase (this is the clarify ambiguity of staircases rule):
 	unless the location is the head of the noun or the location is the foot of the noun:
-		say "[The noun] run[s] up and down from here. [first time]Which way do you want to go? [only][paragraph break]" instead;
+		say "[The noun] run[s] up and down from here[one of]. Which way do you want to go?[or].[stopping]" instead;
 
 Carry out climbing a staircase:
 	if the location is the head of the noun:
