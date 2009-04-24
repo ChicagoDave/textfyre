@@ -3,6 +3,7 @@
 [  Change Log
 When		Who		What
 18-Mar-2009	D. Cornelson	Fixed hints bug.
+23-Apr-2009	G. Jefferis	Updated for 5Z71
 02-Mar-2009	G. Jefferis	Assorted bug finding and fixes
 26-Feb-2009	G. Jefferis	Implemented changes from Paul_6_response
 25-Feb-2009	G. Jefferis	Implemented changes from Paul_5_response
@@ -1266,9 +1267,9 @@ Chapter 2 - The Rooftop
 
 Section 1 - Description
 
-The Outer Market Roof is a room. "You're perched atop the red tile roof of the storehouse. From here you have a good view of the market's northwest junction and Lord's Road leading out of town to the north." [Outside from the Outer Market Roof is the Alley. ] The distant description of the Outer Market Roof is "You cannot see up to the roof from down here." The dead-end description of the Outer Market Roof is "Around you there are more tiled rooftops, too steep for you to climb."
+The Outer Market Roof is a privately-named room. "You're perched atop the red tile roof of the storehouse. From here you have a good view of the market's northwest junction and Lord's Road leading out of town to the north." [Outside from the Outer Market Roof is the Alley. ] The distant description of the Outer Market Roof is "You cannot see up to the roof from down here." The dead-end description of the Outer Market Roof is "Around you there are more tiled rooftops, too steep for you to climb."
 
-Understand "rooftop", "roof top" as the Outer Market Roof.
+Understand "roof", "outer market", "market roof/rooftop", "market roof top", "rooftop", "roof top" as the Outer Market Roof.
 
 Instead of examining the backdrop-floor in the Outer Market Roof, try inspecting the Alley.
 
@@ -7206,17 +7207,17 @@ Section 1 - Description
 
 A cell door is a kind of door. The description of a cell door is "[The item described] is made of stout wood reinforced with bands of iron. A tiny viewing window in the upper half of the door allows guards to look in and prisoners to look out. [The item described] is [if the item described is open]open[otherwise]closed[end if]."
 
-The printed name of a cell door is "cell door". A cell door has a direction called door direction. The door direction of a cell door is usually north. A cell door is usually locked. A cell door is usually scenery. A cell door is always lockable.
+The printed name of a cell door is "cell door". A cell door has a direction called tmpdirection. The tmpdirection of a cell door is usually north. A cell door is usually locked. A cell door is usually scenery. A cell door is always lockable.
 
 Understand "stout", "wood", "wooden", "reinforced", "bands", "band", "metal", "iron", "lock", "door", "cell door" as a cell door.
 
 The matching key of a cell door is usually the piece of wire.
 
-[ Unfortunately we're not allowed to use "Understand the door direction property as describing a cell door" because I7 can't parse direction names in typed commands in this way. Disappointing. ]
+[ Unfortunately we're not allowed to use "Understand the tmpdirection property as describing a cell door" because I7 can't parse direction names in typed commands in this way. Disappointing. ]
 
 Before printing the name of a cell door (called x):
-	if the location is the Jailhouse,
-		say "[door direction of x] ";
+	if the location is the Jailhouse:
+		say "[tmpdirection of x] ";
 
 Section 2 - Looking through a cell door (and seeing the other side)
 
@@ -7269,8 +7270,8 @@ Section 3 - The viewing window kind
 A viewing window is a kind of container. The description of a viewing window is "The viewing window is just a tiny square, no more than two handspans to a side, fitted with tough, closely spaced iron bars." The printed name of a viewing window is "viewing window". Understand "tiny", "square", "small", "bar", "bars", "barred", "tough", "iron", "close", "closely spaced" as a viewing window.
 
 After printing the name of a viewing window (called win):
-	if the location is the Jailhouse,
-		say " in the [door direction of holder of win] door";
+	if the location is the Jailhouse:
+		say " in the [tmpdirection of holder of win] door";
 
 Instead of looking through a viewing window (called win):
 	try looking through the holder of win;
@@ -7316,17 +7317,17 @@ Instead of facing west in the Jailhouse, try searching cell-door-3.
 
 Section 2 - Three tricky doors
 
-A locked cell door called a cell-door-1 is south of the jailhouse and north of Jail-Cell. The door direction is south. A viewing window called a Viewing Window 1 is part of cell-door-1. Understand "south" as cell-door-1 when the location is the Jailhouse. Understand "south" as Viewing Window 1 when the location is the Jailhouse.
+A locked cell door called a cell-door-1 is south of the jailhouse and north of Jail-Cell. The tmpdirection is south. A viewing window called a Viewing Window 1 is part of cell-door-1. Understand "south" as cell-door-1 when the location is the Jailhouse. Understand "south" as Viewing Window 1 when the location is the Jailhouse.
 
 Cell-door-1 is outside from Jail-Cell.
 
 Instead of facing north in Jail-Cell, try searching cell-door-1.
 
-A locked cell door called a cell-door-2 is north of the jailhouse and south of Jail-Cell-2. The door direction is north. Understand "north" as cell-door-2 when the location is the Jailhouse. A viewing window called a Viewing Window 2 is part of cell-door-2. Understand "north" as Viewing Window 2 when the location is the Jailhouse.
+A locked cell door called a cell-door-2 is north of the jailhouse and south of Jail-Cell-2. The tmpdirection is north. Understand "north" as cell-door-2 when the location is the Jailhouse. A viewing window called a Viewing Window 2 is part of cell-door-2. Understand "north" as Viewing Window 2 when the location is the Jailhouse.
 
 Instead of facing south in Jail-Cell-2, try searching cell-door-2.
 
-A locked cell door called a cell-door-3 is west of the jailhouse and east of Jail-Cell-3. The door direction is west. Understand "west" as cell-door-3 when the location is the Jailhouse. A viewing window called a Viewing Window 3 is part of cell-door-3. Understand "west" as Viewing Window 3 when the location is the Jailhouse.
+A locked cell door called a cell-door-3 is west of the jailhouse and east of Jail-Cell-3. The tmpdirection is west. Understand "west" as cell-door-3 when the location is the Jailhouse. A viewing window called a Viewing Window 3 is part of cell-door-3. Understand "west" as Viewing Window 3 when the location is the Jailhouse.
 
 Instead of facing east in Jail-Cell-3, try searching cell-door-3.
 
@@ -7678,7 +7679,7 @@ After firing JA21:
 	update the character list;
 
 Rule for populating JA21:
-	if the current conversationalist is Jacobs or the current conversationalist is the player:
+	if the current conversationalist is the prisoner or the current conversationalist is the player:
 		change the current conversation to { };
 
 After firing JA22:
@@ -9063,7 +9064,7 @@ Instead of opening or unlocking something with when the noun is the wooden door 
 
 Chapter 3 - Banging on the door
 
-The Banging is a scene. The Banging begins when the time since Raid on Maiden House began is 1 minute. The Banging ends when the location is the Secret Closet and the player is not on the move. The Banging ends in capture when the time since the Banging began is at least 9 minutes and the location is not the Secret Closet.
+The Banging is a scene. The Banging begins when Raid on Maiden House has happened and the time since Raid on Maiden House began is 1 minute. The Banging ends when the location is the Secret Closet and the player is not on the move. The Banging ends in capture when the time since the Banging began is at least 9 minutes and the location is not the Secret Closet.
 
 Every turn during the Banging, say "The pounding continues[one of], rattling the door in its frame.[or]. 'Open this door, widow, before we break it down!'[or]. 'Open up!'[or].[at random]";
 
@@ -10197,7 +10198,7 @@ Instead of doing something other than examining or smelling the party food, say 
 
 Part 6 - Social airs
 
-High Society is a scene. High Society begins when the time since Journey to the Ball ended is 4 minutes.
+High Society is a scene. High Society begins when Journey To The Ball has ended and the time since Journey to the Ball ended is 4 minutes.
 
 Brief respite is a scene. Brief respite begins when High Society begins. Brief respite ends when every ballgoer in the Ballroom is spoken to.
 
