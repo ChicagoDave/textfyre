@@ -1,32 +1,46 @@
 Test Suite by Textfyre begins here.
 
-Running the test suite is an action applying to one topic.
+To assert that/-- (C - a condition) issuing (report - some text), critically:
+	(- TF_Assertion ({C}, {report}, {critically}); -);	
 
-Carry out running the test suite:
-	say the topic understood, line break;
-	if the topic understood matches the text "exits":
-		run the testsuite exits test;
-	otherwise if the topic understood matches the text "names":
-		run the testsuite names test;
-	otherwise:
-		say "Test not known.";
+To assert that/-- (T - a truth state) issuing (report - some text), critically:
+	if T is false:
+		say "[bracket][bold type][if critically]CRITICAL [end if]ASSERTION FAILED: [report][roman type][close bracket][paragraph break]";
+		if critically:
+			stop the game abruptly;
+		rule fails;
 
-To run the testsuite exits test:
-	repeat with x running through rooms:
-		say "[b][x][r][line break]";
-		carry out the listing available exits activity with x;
+Include (-
+[ TF_Assertion T report c;
+	if (~~(T)) {
+		print "[";
+		if (c) { print "CRITICAL "; }
+		print "ASSERTION FAILED: ";
+		if (metaclass(report) == String) {
+			print (string) report;
+		} else if (metaclass(report) == Routine) {
+			report.call();
+		} else {
+			print "without a printable report.";
+		}
+		print "]^";
+		if (c) quit;
+		rtrue;
+	}
+];
+-).
 
-Definition: a thing is gameplay-relevant:
-	if it is a trigger, no;
-	if it is a room, no;
-	yes;
+Unit testing is an action out of world applying to one visible thing.
+Understand "unit test [any thing]" as unit testing.
 
-To run the testsuite names test:
-	repeat with x running through gameplay-relevant things:
-		say "[b][x][r] ([the x], [a x])[if x is on-stage or x is a backdrop]:[end if] [if x is a backdrop]backdrop [end if][if x is on-stage]in [the location of x][end if][line break]";
-		carry out the printing the description activity with x;
-		wait for the SPACE key;
+Carry out unit testing:
+	abide by the unit test rules for the noun;
 
-Understand "tftest [text]" as running the test suite.
+The unit test rules are an object-based rulebook. The unit test rules have default success.
 
+Chapter 2 - Stopping abruptly (For use without Basic Screen Effects by Emily Short)
+
+To stop the/-- game abruptly:
+	(- quit; -)
+				
 Test Suite ends here.
