@@ -8,8 +8,6 @@ Include Triggers by Textfyre.
 Include FyreVM Support by Textfyre.
 Include XML Output Toggling by Textfyre.
 
-Quip-debugging-mode is a truth state which varies. Quip-debugging-mode is false.
-
 Part 1 - Definitions
 
 Chapter 1 - Standard quips
@@ -145,8 +143,6 @@ Populating something is an activity.
 Rule for populating a quip (called q) (this is the standard quip-populating rule):
 	let n be the number of entries in the current conversation;
 	change the current conversation to the response of q;
-	if quip-debugging-mode is true:
-		say "(populating [q]: old convo had [n] entr[if n is 1]y[otherwise]ies[end if], new convo has [number of entries in the current conversation].)[paragraph break]";
 
 Last after populating a transitional quip (called tq) (this is the standard quip-transitioning rule):
 	let the real destination be the following quip of tq;
@@ -154,6 +150,8 @@ Last after populating a transitional quip (called tq) (this is the standard quip
 	carry out the populating activity with the real destination;
 
 Chapter 2 - Viewing the menu
+
+Menu option number display is a truth state that varies.
 
 Section 1 - The Game Action
 
@@ -209,7 +207,7 @@ Section 3 - Menu option display
 First before printing the menu text of a quip when XML is in use:
 	say "<Topic ID='[the menu option currently being displayed]'>";
 
-Before printing the menu text of a quip:
+Before printing the menu text of a quip when menu option number display is true:
 	say "[the menu option currently being displayed]. ";
 
 Rule for printing the menu text of a quip (called q):
@@ -250,6 +248,26 @@ To TF_QUIP_fix_parser:
 
 Before printing a parser error when the parser error is didn't understand that number:
 	TF_QUIP_fix_parser;
+
+Part 7 - Toggling topic numbers
+
+Understand "show topic numbers" as showing topic numbers.
+Understand "hide topic numbers" as hiding topic numbers.
+
+Showing topic numbers is an action out of world applying to nothing.
+Hiding topic numbers is an action out of world applying to nothing.
+
+Carry out showing topic numbers:
+	change menu option number display to true;
+
+Carry out hiding topic numbers:
+	change menu option number display to false;
+
+Report showing topic numbers:
+	say "[bracket]Topic numbers are now on.[close bracket][paragraph break]";
+
+Report hiding topic numbers:
+	say "[bracket]Topic numbers are now off.[close bracket][paragraph break]";
 
 Part X - Debugging - Not for release
 
