@@ -40,6 +40,7 @@ namespace Textfyre.UI
         public static PagingMechanismType PagingMechanism = PagingMechanismType.StaticPageCreateBackPages;
         public static string WaitMessages = String.Empty;
         public static bool CenterHeadline = true;
+        public static bool UseRealPageNumbers = false;
 
         // Calculated from the other settings
         public static double BookPageInnerInnerContentWidth = 0;

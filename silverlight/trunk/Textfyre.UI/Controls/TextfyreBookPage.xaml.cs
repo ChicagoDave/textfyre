@@ -52,6 +52,14 @@ namespace Textfyre.UI.Controls
             //ctrlFlipButton.FlipBtn.Click += new EventHandler(FlipBtn_Click);
         }
 
+        public void SetTime(string time)
+        {
+            if( Settings.UseRealPageNumbers)
+                TimeChannel.Text = BookPageIndex.ToString();
+            else
+                TimeChannel.Text = time;
+        }
+
         public UIElement PageScrollViewerReplace
         {
             set
@@ -146,6 +154,8 @@ namespace Textfyre.UI.Controls
 
         protected override Size ArrangeOverride(Size finalSize)
         {
+            
+            
             //if (_isEvenPage)
             //{
             //    if (BookPageIndex >= Current.Game.TextfyreBook.PageCount - 1)
