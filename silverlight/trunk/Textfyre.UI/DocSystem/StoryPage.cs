@@ -135,6 +135,11 @@ namespace Textfyre.UI.DocSystem
 
         }
 
+        public void ResetLastScrollingHeight()
+        {
+            _lastScrollingHeight = 0;
+        }
+
         private void GetStoryPage()
         {
             _storyPage = Current.Game.TextfyreBook.GetFirstPageWithPageID("Story");

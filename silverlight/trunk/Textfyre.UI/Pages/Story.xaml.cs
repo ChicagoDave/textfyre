@@ -181,22 +181,19 @@ namespace Textfyre.UI.Pages
 
         private void engine_OutputReady(object sender, OutputReadyEventArgs e)
         {
-            /* Is there a good reason why we're checking the turn count instead of displaying *all* output?
-             * I added the second case here because that was missing some important output, like the
-             * restore/restart/undo prompt. --JM */
+            if (e.Package.Count == 0)
+                return;
+            
+            if (e.Package.ContainsKey(OutputChannel.Time))
+            {   
+                int turn = -1;
+                int.TryParse(e.Package[OutputChannel.Time], out turn);
+                if (turn > -1)
+                    Current.Game.Turn = turn;
+                
+            }
 
-            int turn;
-            if (e.Package.ContainsKey(OutputChannel.Time) &&
-                int.TryParse(e.Package[OutputChannel.Time], out turn) &&
-                turn >= Current.Game.Turn)
-            {
-                Current.Game.Turn = turn;
-                Dispatcher.BeginInvoke(new OutputDelegate(UpdateScreen), e.Package);
-            }
-            else if (e.Package.ContainsKey(OutputChannel.Prompt))
-            {
-                Dispatcher.BeginInvoke(new OutputDelegate(UpdateScreen), e.Package);
-            }
+            Dispatcher.BeginInvoke(new OutputDelegate(UpdateScreen), e.Package);
         }
 
         private delegate void OutputDelegate(IDictionary<OutputChannel, string> output);
