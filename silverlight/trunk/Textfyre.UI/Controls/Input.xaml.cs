@@ -103,8 +103,8 @@ namespace Textfyre.UI.Controls
             _tbInput.IsReadOnly = false;
             _tbInput.IsTabStop = true;
             _tbInput.Focus();
-            _tbLeadText.Text = "";
-            _tbInput.Text = "Please press SPACE to continue.";
+            _tbLeadText.Text = ""; // Was "";
+            _tbInput.Text = ""; // Was: "Please press SPACE to continue.";
             _gridColumn0.Width = new GridLength(_tbLeadText.ActualWidth);
         }
 

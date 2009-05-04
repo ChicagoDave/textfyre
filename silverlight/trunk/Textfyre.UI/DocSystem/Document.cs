@@ -285,6 +285,7 @@ namespace Textfyre.UI.DocSystem
 
         public void AddInputSingleChar()
         {
+            _storyPage.ResetLastScrollingHeight();
             _inputType = InputTypes.KeyPress;
             _addInput = true;
         }
