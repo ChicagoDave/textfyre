@@ -24,5 +24,6 @@
   <Setting Key="PagingMechanism" Value="StaticPageCreateBackPages" />
   <Setting Key="WaitMessages" Value="Please wait.|Please wait..|Please wait..." />
   <Setting Key="CenterHeadline" Value="True" />
+  <Setting Key="UseRealPageNumbers" Value="True" />
 
 </Settings>

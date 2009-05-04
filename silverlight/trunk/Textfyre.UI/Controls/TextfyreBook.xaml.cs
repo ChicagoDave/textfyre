@@ -68,7 +68,8 @@ namespace Textfyre.UI.Controls
         {
             foreach (TextfyreBookPage page in _pages)
             {
-                page.TimeChannel.Text = time;
+                //page.TimeChannel.Text = time;
+                page.SetTime(time);
             }
 
         }
