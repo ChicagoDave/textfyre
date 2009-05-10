@@ -1221,7 +1221,7 @@ namespace Textfyre.VM
             }
             else
             {
-                System.Diagnostics.Debug.Assert(sp >= fp);
+                //System.Diagnostics.Debug.Assert(sp >= fp);
                 sp = fp;
                 ResumeFromCallStub(result);
             }
