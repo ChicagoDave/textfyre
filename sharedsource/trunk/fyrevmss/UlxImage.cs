@@ -186,7 +186,7 @@ namespace Textfyre.VM
             // negative checksum here cancels out the one we'll add inside the loop
             uint sum = (uint)(-ReadInt32(Engine.GLULX_HDR_CHECKSUM_OFFSET));
 
-            System.Diagnostics.Debug.Assert(end % 4 == 0); // Glulx spec 1.2 says ENDMEM % 256 == 0
+            //System.Diagnostics.Debug.Assert(end % 4 == 0); // Glulx spec 1.2 says ENDMEM % 256 == 0
 
             for (uint i = 0; i < end; i += 4)
                 sum += ReadInt32(i);
