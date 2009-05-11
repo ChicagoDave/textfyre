@@ -63,14 +63,6 @@ namespace FyreFrotz
             vm.Run();
         }        
         
-        private void RequestLine()
-        {
-        }
-
-        private void RequestKey()
-        {
-        }
-
         private void vm_LineWanted(object sender, LineWantedEventArgs e)
         {
             Console.Write("\r\n > ");
@@ -80,10 +72,11 @@ namespace FyreFrotz
 
         private void vm_KeyWanted(object sender, KeyWantedEventArgs e)
         {
-            Console.Write("\r\n > ");
+            Console.Write("\r\n");
             ConsoleKeyInfo inputKey = Console.ReadKey();
             inputLine = inputKey.KeyChar.ToString();
             e.Char = inputLine[0];
+            Console.WriteLine("");
         }
 
         private string RemoveMarkup(string text)
