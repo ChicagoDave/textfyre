@@ -4,54 +4,102 @@ Pronouns by Textfyre begins here.
 
 Part 1 - Various pronouns
 
-To say him or her for (x - a person):
-	if x is the player begin;
-		say "you";
-	else if x is neuter;
+To decide whether (x - a thing) takes a plural pronoun:
+	if x is plural-named, yes;
+	no;
+
+To decide whether (x - a thing) takes a singular pronoun:
+	unless x takes a plural pronoun, yes;
+	no;
+
+To decide which indexed text is capitalised/capitalized (x - some text):
+	let z be indexed text;
+	let z be x;
+	replace character number 1 in z with character number 1 in z in upper case;
+	decide on z;
+
+To decide which indexed text is (x - some text) capitalised/capitalized:
+	decide on capitalised x;
+
+To say him or her for (x - a thing):
+	if x is the player:
+		say "yourself";
+	else if x is neuter:
 		say "them";
-	else if x is plural-named;
+	else if x takes a plural pronoun:
 		say "them";
-	else if x is male;
+	else if x is a male person:
 		say "him";
-	else if x is female;
+	else if x is a female person:
 		say "her";
-	else;
+	else:
 		say "it";
-	end if;
+
+To say he or she for (x - a thing):
+	if x is the player:
+		say "you";
+	else if x takes a plural pronoun:
+		say "they";
+	else if x is neuter:
+		say "it";
+	else if x is a male person:
+		say "he";
+	else if x is a female person:
+		say "she";
+	else:
+		say "it";
+
+To say it or they for (x - a thing):
+	if x is the player:
+		say "you";
+	else if x takes a plural pronoun:
+		say "they";
+	else if x is neuter:
+		say "it";
+	else if x is a male person:
+		say "they";
+	else if x is a female person:
+		say "they";
+	else:
+		say "it";
 
 To say it or them for (x - a thing):
-	if x is plural-named begin;
+	if x is the player:
+		say "yourself";
+	else if x takes a plural pronoun:
 		say "them";
-	else;
+	else if x is neuter:
 		say "it";
-	end if;
+	else if x is a male person:
+		say "them";
+	else if x is a female person:
+		say "them";
+	else:
+		say "it";
+
 
 To say its or their for (x - a thing):
-	if x is plural-named begin;
+	if x takes a plural pronoun:
 		say "their";
-	else;
+	else:
 		say "its";
-	end if;
 
 To say that or those for (x - a thing):
-	if x is the player begin;
-		if x is plural-named begin;
+	if x is the player:
+		if x takes a plural pronoun:
 			say "yourselves";
-		else;
+		else:
 			say "yourself";
-		end if;
-	else if x is plural-named;
+	else if x takes a plural pronoun:
 		say "those";
-	else;
+	else:
 		say "that";
-	end if;
 
 To say that or those for (x - a room):
-	if x is plural-named begin;
+	if x takes a plural pronoun:
 		say "those";
-	else;
+	else:
 		say "that";
-	end if;
 
 Part 2 - The verb "to be"
 
@@ -62,40 +110,48 @@ To say is or are for (n - a number):
 		say "are";
 	end if.
 
+To say it's or they're for (x - a thing):
+	say "[it or they for x][apostrophized is or are for x]";
+
+To say he's or she's for (x - a thing):
+	say "[he or she for x][apostrophized is or are for x]";
+
+To say he is or she is for (x - a thing):
+	say "[he or she for x] [is or are for x]";
+
 To say is or are for (x - a thing):
-	if x is the player begin;
+	if x is the player or x takes a plural pronoun:
 		say "are";
-	else if x is singular-named;
+	else:
 		say "is";
-	else if x is plural-named;
-		say "are";
-	else;
-		say "is";
-	end if.
+
+To say apostrophized is or are for (x - a thing):
+	if x is the player or x takes a plural pronoun:
+		say "[']re";
+	else:
+		say "[']s";
 
 Part 3 - The verb "to do" 
 
 To say do or does for (x - an object):
-	if x is the player begin;
+	if x is the player:
 		say "do";
-	else if x is singular-named;
+	else if x takes a singular pronoun:
 		say "does";
-	else if x is plural-named;
+	else if x takes a plural pronoun:
 		say "do";
-	else;
+	else:
 		say "does";
-	end if.
 
-To say dont or doesnt for (x - an object):
-	if x is the player begin;
+To say don't or doesn't for (x - an object):
+	if x is the player:
 		say "don't";
-	else if x is singular-named;
+	else if x takes a singular pronoun:
 		say "doesn't";
-	else if x is plural-named;
+	else if x takes a plural pronoun:
 		say "don't";
-	else;
+	else:
 		say "doesn't";
-	end if.
 
 Pronouns ends here.
 

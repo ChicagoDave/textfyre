@@ -10,7 +10,7 @@ Volume 1 - For universal use
 
 Book 1 - Definitions
 
-Part 1 - Involvement & Redirection
+Part 1 - Properties of actions
 
 Definition: something is involved:
 	if it is the noun:
@@ -30,7 +30,19 @@ To redirect the action from (this - a thing) to (that - a thing):
 	if this is the noun, change the noun to that;
 	if this is the second noun, change the second noun to that;
 
-Part 2 - Properties of directions
+To decide whether the action is physical:
+	if the current action is listening to the location, no;
+	if the current action is smelling the location, no;
+	if the action requires a touchable noun, yes;
+	if the action requires a touchable second noun, yes;
+	no;
+
+Part 2 - Properties of things
+
+Definition: a person is other unless it is the player.
+Definition: a person is another if it is other.
+
+Part 3 - Properties of directions
 
 Chapter 1 - Clockwise and Anticlockwise rotation of directions
 
@@ -153,6 +165,9 @@ Does the player mean wearing something not wearable (this is the very unlikely t
 
 Part 2 - Food and drink
 
+Understand "drink" as drinking.
+Understand "eat" as eating.
+
 Does the player mean eating something edible (this is the very likely to mean eating edible things rule):
 	it is very likely;
 
@@ -183,6 +198,23 @@ Does the player mean opening something open (this is the unlikely to mean openin
 Does the player mean opening or closing something unopenable (this is the very unlikely to mean opening or closing unopenable things rule):
 	it is very unlikely;
 
+Chapter 2 - Inserting and Removing
+
+[ We let the player try these things and fail them: the alternative is an unintuitive 'you can't see any such thing', which seems somewhat worse. ]
+
+Understand "take [things] from [something]" as removing it from.
+Understand "get [things] from [something]" as removing it from.
+Understand "remove [things] from [something]" as removing it from.
+
+Understand "take [things] out of/from [something]" as removing it from.
+Understand "get [things] out of/from [something]" as removing it from.
+Understand "remove [things] out of/from [something]" as removing it from.
+
+Understand "put [things] in/inside/into [something]" as inserting it into.
+Understand "insert [things] in/inside/into [something]" as inserting it into.
+Understand "drop [things] in/inside/down/into/behind [something]" as inserting it into.
+Understand "hide [things] in/inside/down/under/into/behind [something]" as inserting it into.
+
 Part 4 - Taking
 
 Does the player mean taking something had by the player (this is the very unlikely to mean taking possessions rule):
@@ -202,6 +234,7 @@ Part 1 - Enterables
 
 Standing on is an action applying to one thing.
 Sitting on is an action applying to one thing.
+Lying on is an action applying to one thing.
 
 Understand the command "get" as something new.
 Understand "get out/off/up" as exiting.
@@ -233,6 +266,17 @@ Understand "sit on top of [supporter]" as sitting on.
 Understand "sit on/in/inside [supporter]" as sitting on.
 Understand "sit on/in/inside [something]" as entering.
 
+Understand "lie on/in [something]" as lying on.
+Understand "lie down on/in [something]" as lying on.
+Understand "lay on/in [something]" as lying on.
+Understand "lay down on/in [something]" as lying on.
+Understand "lie down" as sleeping.
+Understand "lay down" as sleeping.
+Understand "lie down to/and sleep" as sleeping.
+Understand "lay down to/and sleep" as sleeping.
+Understand "lay me down to/and sleep" as sleeping.
+Understand "go to sleep" as sleeping.
+
 This is the enterable checks rule:
 	abide by the can't enter what's already entered rule;
 	abide by the can't enter what's not enterable rule;
@@ -248,11 +292,18 @@ This is the enterable reports rule:
 	abide by the describe contents entered into rule;
 
 The enterable checks rule is listed in the check standing on rules.
+The enterable checks rule is listed in the check sitting on rules.
+The enterable checks rule is listed in the check lying on rules.
 
-Check sitting on something:
-	abide by the enterable checks rule;
+The enterable carry out rule is listed in the carry out standing on rules.
+The enterable carry out rule is listed in the carry out sitting on rules.
+The enterable carry out rule is listed in the carry out lying on rules.
 
-Carry out standing on something:
+The enterable reports rule is listed in the report standing on rules.
+The enterable reports rule is listed in the report sitting on rules.
+The enterable reports rule is listed in the report lying on rules.
+
+[Carry out standing on something:
 	abide by the enterable carry out rule;
 
 Carry out sitting on something:
@@ -262,7 +313,7 @@ Report standing on something:
 	abide by the enterable reports rule;
 
 Report sitting on something:
-	abide by the enterable reports rule;
+	abide by the enterable reports rule;]
 
 Part 2 - Climbing
 
@@ -342,7 +393,18 @@ Understand "look [something]" as examining.
 Understand "look for [something]" as examining.
 Understand "search for [something]" as examining.
 
-Part 6 - Taking Inventory
+Part 6 - Clothes
+
+Understand "take off [things preferably held]" as taking off.
+Understand "remove [things preferably held]" as taking off.
+Understand "disrobe [things preferably held]" as taking off.
+
+Understand "wear [things preferably held]" as wearing.
+Understand "put on [things preferably held]" as wearing.
+Understand "put [something preferably held] on" as wearing.
+Understand "put [things preferably held] on" as wearing.
+
+Part 7 - Taking Inventory
 
 [It's unfortunately hard to jig about with the I7 list writer, and probably easier just not to bother. Thus:]
 
@@ -435,9 +497,20 @@ Check descending a staircase:
 Carry out descending a staircase:
 	try going down instead;
 
+Book 6 - Miscellany
+
+Chapter 1 - No swearing
+
+Understand the commands "shit", "fuck", "damn", "sod", "curses", "drat", "bother", and "darn" as something new
+
 Volume 2A (for use without Custom Library Messages by David Fisher)
 
 [This space reserved for changes to standard library messages]
+
+Chapter 1 - Parser Errors
+
+Rule for printing a parser error when the parser error is noun did not make sense in that context:
+	say "I can't see any such thing." instead;
 
 Volume 2B (for use with Custom Library Messages by David Fisher)
 

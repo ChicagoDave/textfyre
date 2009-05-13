@@ -54,7 +54,7 @@ The first before initiating conversation with rule:
 	change the chosen opening gambit to nothing;
 
 After initiating conversation with a thing (called the new person):
-	if the chosen opening gambit is not nothing,
+	unless the chosen opening gambit is nothing:
 		now the current conversationalist is the new person;
 
 Chapter 5 - Conversation termination
@@ -128,15 +128,6 @@ Report selecting menu option:
 	carry out the firing activity with q;
 	unless the current conversationalist is the player:
 		carry out the populating activity with q;
-
-Last every turn rule when we are selecting menu option or we are talking to someone:
-	unless the current conversationalist is the player:
-		if the number of entries in the current conversation is greater than 0:
-			if we are talking to someone and the noun is not the current conversationalist:
-				do nothing instead;
-			display the menu;
-		otherwise:
-			carry out the terminating conversation with activity with the current conversationalist;
 
 Populating something is an activity.
 
@@ -219,6 +210,15 @@ After printing the menu text of a quip when XML is in use:
 Last after printing the menu text of a quip:
 	say line break;
 
+Section 4 - Automatic menu display
+
+Last every turn rule when we are selecting menu option or we are talking to someone:
+	unless the current conversationalist is the player or we are talking to the player:
+		if the number of entries in the current conversation is greater than 0:
+			display the menu;
+		otherwise:
+			carry out the terminating conversation with activity with the current conversationalist;
+
 Part 4 - Starting conversations pre-emptively
 
 [This is broken. To fix it demands an extensive rewrite: some of the existing activities need to be recast as proper actions, and "start conversation with..." phrases instead need to become, for instance, "try Jacobs trying talking to the player". This is a step worth taking, as it reduces code complexity, but the existing implementation is not terrible: that is to say, it can all wait for now.]
@@ -233,7 +233,7 @@ To start conversation with (the certain someone - a person) on (q - a thing), ev
 				carry out the terminating conversation with activity with the certain someone;
 		if the number of entries in the current conversation is not 0:
 			unless we are talking to someone or we are selecting menu option: [in which cases this is done automatically--]
-				carry out the displaying the menu activity;
+				display the menu;
 
 Part 5 - Terminating conversations automatically 
 
@@ -276,6 +276,10 @@ After printing the name of an unfired quip:
 
 After printing the name of an fired quip:
 	say " *FIRED*"
+
+After printing the name of a room while constructing the status line:
+	if the current conversationalist is not the player:
+		say " (talking to [the current conversationalist])";
 
 Quips ends here.
 
