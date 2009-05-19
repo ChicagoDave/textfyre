@@ -192,7 +192,6 @@ Rule for printing the banner text:
 	say "Game Engine (FyreVM) by Jesse McGrew[line break]";
 	say "Story Programming by Graeme Jefferis[line break]";
 	say "Testing by Jacqueline Ashwell, Peter Berman,[line break]Eric Eve, Jim Aikin, and Paul O'Brian[line break]";
-	say "Original art by Goni Montes[line break]";
 	say "Art Direction by William Capellaro[line break]";
 	say "User Interface Programming by Thomas Lynge[line break]";
 	say "All rights reserved[line break]";
