@@ -80,7 +80,9 @@ namespace Textfyre.UI.DocSystem
                     Section section = sections[sectionPtr++];
                     if (section.ContentMode == ContentMode.Story)
                     {
-                        if (_lastScrollingHeight + section.Height + 20
+                        //if (_lastScrollingHeight + section.Height + 20
+                        //    > Settings.BookPageInnerContentHeight)
+                        if (_lastScrollingHeight + section.Height
                             > Settings.BookPageInnerContentHeight)
                         {
                             sectionPtr--;
@@ -96,7 +98,7 @@ namespace Textfyre.UI.DocSystem
                             case SectionType.ArtOnly:
                             case SectionType.Content:
                                 _storyScroller.AddSection(section);
-                            //_stackPanel.Children.Add(section.HostGridScroll);
+                                //_stackPanel.Children.Add(section.HostGridScroll);
                                 break;
                             case SectionType.Prompt:
                                 if (InputWant != null)
@@ -124,7 +126,7 @@ namespace Textfyre.UI.DocSystem
                                 break;
 
                         }
-                        
+
                     }
                 }
                 else
@@ -146,7 +148,7 @@ namespace Textfyre.UI.DocSystem
             _storyPage.ctrlMore.Press += new EventHandler(ctrlMore_Press);
             _storyScroller = new Controls.StoryScroller();
             _storyPage.PageScrollViewerReplace = _storyScroller;
-            
+
             //_scrollViewer = _storyPage.PageScrollViewer;
             //_scrollViewer.IsTabStop = false;
             //_scrollViewer.KeyDown += new KeyEventHandler(_scrollViewer_KeyDown);

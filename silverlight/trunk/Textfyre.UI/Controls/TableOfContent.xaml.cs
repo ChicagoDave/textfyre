@@ -37,6 +37,8 @@ namespace Textfyre.UI.Controls
         public TableOfContent()
         {
             InitializeComponent();
+            LayoutRoot.Width = Settings.BookPageInnerContentWidth;
+            LayoutRoot.Height = Settings.BookPageInnerContentHeight;
             Current.Font.ApplyFont(Textfyre.UI.Current.Font.FontType.Header, TitleText);
             TitleText.FontSize = 24d;
             Refresh();

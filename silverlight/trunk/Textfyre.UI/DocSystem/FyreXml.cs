@@ -40,7 +40,9 @@ namespace Textfyre.UI.DocSystem
             PrologueMode,
             StoryMode,
             LineBreak,
-            Art
+            Art,
+            SpanBegin,
+            SpanEnd
         }
     }
 }

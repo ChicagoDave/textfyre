@@ -46,10 +46,14 @@ namespace Textfyre.UI.DocSystem
             //int numberOfBackPages = 0;
             for (int i = _sections.Count-1; i >= 0; i--)
             {
+                double maxPageHeight = displaySection ? Settings.BookPageInnerContentHeight :
+                    Settings.BookPageInnerContentHeight + 22;
+                
                 Section section = _sections[i];
                 if (
                     section.SectionType == SectionType.PageBreak ||
-                    ((height + section.Height) > (Settings.BookPageInnerInnerContentHeight))
+                    //((height + section.Height) > (Settings.BookPageInnerInnerContentHeight))
+                    ((height + section.Height) > (maxPageHeight))
                     )
                 {
                     if (displaySection)
