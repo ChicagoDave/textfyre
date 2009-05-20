@@ -259,6 +259,12 @@ namespace Textfyre.UI.DocSystem
                             }
                         }
                         break;
+                    case "span":
+                        elements.Add(new FyreXmlElement(FyreXml.OpCode.SpanBegin));
+                        break;
+                    case "/span":
+                        elements.Add(new FyreXmlElement(FyreXml.OpCode.SpanEnd));
+                        break;
                     case "linebreak":
                     case "linebreak/":
                         if (topicList == null)
