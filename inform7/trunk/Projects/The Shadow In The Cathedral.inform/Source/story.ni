@@ -1,9 +1,12 @@
 "The Shadow In The Cathedral" by Textfyre Inc
 
-[ XYZZY ]
-
 [  Change Log
 When		Who		What
+18 May 2009	G. Jefferis	Gas Platform
+15 May 2009	G. Jefferis	Bug fixes on ch. 7
+30 Apr 2009	G. Jefferis	Updates to ch. 7
+28 Apr 2009	G. Jefferis	Rope - finishing
+27 Apr 2009	G. Jefferis	Rope - tying and looping
 24 Apr 2009	G. Jefferis	5Z91 updates
 21 Apr 2009	G. Jefferis	Rope work
 10 Apr 2009	G. Jefferis	Warehouse
@@ -67,6 +70,7 @@ Include Conversation Topics by Textfyre.
 Include Counters by Textfyre.
 Include Textfyre Standard Rules by Textfyre.
 Include Grid Layout by Textfyre.
+Include Test Suite by Textfyre.
 
 Book - Initialisation
 
@@ -320,16 +324,16 @@ Part 4 - Clock
 
 A clock is a kind of thing. A clock can be openable. A clock can be open. A clock can be lockable. A clock can be locked. A clock is usually openable, closed, lockable and locked.
 
-A clock has a time called the setting.
+A clock has a time called the face value.
 
 To set (timepiece - a clock) to (t - a time):
-	change the setting of the timepiece to t;
+	change the face value of the timepiece to t;
 
 The advance clocks rule is listed after the advance time rule in the turn sequence rules.
 
 This is the advance clocks rule:
 	repeat with timepiece running through clocks:
-		let x be the setting of the timepiece;
+		let x be the face value of the timepiece;
 		set the timepiece to x + 1 minute;
 
 Part 5 - Wax
@@ -362,16 +366,16 @@ green		blue		green
 green		yellow		green
 
 To decide what wax color is what you get when you mix (first wax - a wax color) with (second wax - a wax color):
-	if first wax is second wax,
+	if first wax is second wax:
 		decide on first wax; [first trivial case - e.g. red + red]
-	if first wax is brown or second wax is brown,
+	if first wax is brown or second wax is brown:
 		decide on brown; [second trivial case - e.g. brown + anything.]
-	if first wax is secondary and second wax is secondary,
+	if first wax is secondary and second wax is secondary:
 		decide on brown; [third trivial case - e.g. purple + orange.]
 	repeat through the table of wax mixtures:
-		if first wax is wax1 entry and second wax is wax2 entry,
+		if first wax is wax1 entry and second wax is wax2 entry:
 			decide on result entry;
-		if first wax is wax2 entry and second wax is wax1 entry,
+		if first wax is wax2 entry and second wax is wax1 entry:
 			decide on result entry;
 	decide on brown;
 
@@ -534,49 +538,100 @@ A pointer has a direction called the way.
 
 Part 12 - Action controls 
 
-Chapter 1 - Action control
+Chapter 1 - Model
 
-An abacus is a kind of thing. Understand "abacus" as an abacus.
-An abacus has a number called the stored value.
-An abacus has an indexed text called the stored meaning.
-An abacus has a table-name called the word-table.
+A difference-engine model is a kind of thing. 
+A difference-engine model has a number called the stored value.
+A difference-engine model has an indexed text called the stored meaning.
+A difference-engine model has a table-name called the word-table.
+
+A difference-engine model can be correctly set. A difference-engine model is usually not correctly set.
+
+Chapter 2 - Controller
+
+An abacus is a kind of thing. Understand "abacus", "steel", "gears", "beads", "tiny", "chains", "thin", "keyhole", "lock", "key hole" as an abacus.
+
+The printed name of an abacus is usually "abacus".
 
 An abacus can be lockable. An abacus is usually lockable.
 An abacus can be locked. An abacus is usually locked.
 
-The description of an abacus is usually "The abacus is made of steel, with gears as the beads, with enough rods to display a five-digit number. It's connected via a web of fine silver chains to the huge Engine and also to another abacus, suspended above it. You remember enough of your elementary mathematics devotions to tell that the abacus currently reads [stored value]."
+An abacus has a difference-engine model called the controlled model. 
 
-Chapter 2 - Special action
+Rule for printing the description of an abacus (called a):
+	let n be the stored value of the controlled model of a;
+	say "[one of]The abacus is fitted with tiny gears for beads, that interlock and lace with small teeth set into the frame. Fine chains run from the back and away into the Engine, as well as up to the signboard overhead. If I remember my Mathematik right the current number is [n]. There’s also a thin keyhole right at the top of the abacus.[or]The number of the abacus reads [n]. At the top of the abacus is a thin keyhole.[stopping]";
+
+Check unlocking an unlocked abacus with something:
+	say "The abacus is already unlocked. I wouldn’t want to shatter the key by turning it too hard." instead;
+
+After unlocking an abacus with something:
+	say "[one of]The abacus emits a series of tiny clicks as I turn the key: one by one, the gears are being released from the frame. They spin, then spin back, as though stretching their muscles ready for work.[or]I unlock the abacus.[stopping]";
+
+Chapter 3 - View
+
+A display board is a kind of thing. Understand "painted", "display", "board", "words", "sign", "signboard" as a display board.
+A display board has a difference-engine model called the viewed model.
+
+Rule for printing the description of a display board (called db):
+	let m be the viewed model of db;
+	say "[one of]Suspended over the abacus is a painted board, a little like the one they use for recording field-Canasta scores in the summer. Painted across its surface is the following unlikely message: '[stored meaning of m]'[or]The board reads '[stored meaning of m]'[stopping] [paragraph break]";
+
+Instead of doing something when a display board is physically involved:
+	say "It's well out of reach.";
+
+Chapter 4 - Special action
 
 Section 1 - Definition
 
 Abacus-setting it to is an action applying to one thing and one number. 
+The abacus-setting it to action has a difference-engine model called the model being adjusted.
 
+Understand "set [abacus]" as a mistake ("I could set the abacus to a 5 digit number.");
 Understand "set [abacus] to [number]" as abacus-setting it to.
 Understand "set [abacus] to [text]" as a mistake ("The abacus can only handle 5 digit numbers.").
 
+Setting action variables for abacus-setting something to:
+	now the model being adjusted is the controlled model of the noun;
+
 Section 2 - Verification
 
-Check setting an abacus to:
+Check setting an abacus to: [the second noun has been parsed as an object in scope!]
 	say "The abacus can only handle 5 digit numbers." instead;
 
 Check abacus-setting an abacus to:
-	if the number understood is less than 10000 or the number understood is greater than 99999,
-		say "The abacus can only handle 5 digit numbers." instead;
-	if "[the number understood]" exactly matches the regular expression "<1-9>{5}",
-		continue the action;
-	say "The abacus doesn't have a setting for zero." instead;
+	if the number understood is less than 10000 or the number understood is greater than 99999:
+		say "The abacus has five rows exactly, one for each digit." instead;
+
+Check abacus-setting a locked abacus to:
+	say "[one of]I try moving the beads on the abacus but they’re all firmly fixed in place. Surely an abacus where you can’t move the beads is as much use as a clock where you have to move the hands?[or]The gears on the abacus won’t move.[stopping]" instead;
+
+Check abacus-setting an abacus to:
+	if the model being adjusted is correctly set:
+		say "I’ve got this part as good as it’s going to get, I think." instead;
+
+Check abacus-setting an abacus to:
+	unless "[the number understood]" exactly matches the regular expression "<1-9>{5}",
+		say "The abacus doesn't have a setting for zero." instead;
 
 Section 3 - Implementation
 
 Carry out abacus-setting an abacus to:
-	let n be the number understood;
+	update the model being adjusted to the number understood;
+
+To update (dm - a difference-engine model) to (n - number):
+	change the stored value of dm to n;
+	change the stored meaning of dm to the meaning calculated by dm;
+
+To decide which indexed text is the meaning calculated by (dm - a difference-engine model):
+	[we do so arithmetically rather than by converting to indexed text]
 	let the meaning be indexed text;
-	let l be 0;
+	let n be the stored value of dm;
+	assert that n is at least 11111 and n is at most 99999 issuing "Difference engine value out of range.";
 	repeat with i running from 1 to 5:
 		let l be the remainder after dividing n by 10;
-		[l is now a single digit between 1 and 9]
-		choose row l in the word-table of the noun; 
+		[l is now the least significant digit of n]
+		choose row l in the word-table of dm; 
 		if i is:
 			-- 1: let the meaning be "[p5 entry]";
 			-- 2: let the meaning be "[p4 entry] [meaning]";
@@ -585,11 +640,17 @@ Carry out abacus-setting an abacus to:
 			-- 5: let the meaning be "[p1 entry] [meaning]";
 		let n be n minus l;
 		let n be n divided by 10; [ -- hence dropping the final digit from n]
-	change the stored meaning of the noun to "[meaning]"; 
-	change the stored value of the noun to the number understood;
+	decide on the meaning; 
+
+Section 4 - Report
+
+The correctness appraisal rules are an object-based rulebook.
 
 Report abacus-setting an abacus to:
-	say "The beads click... and the abacus now reads '[stored meaning of the noun]'[paragraph break]";
+	say "[one of]I set the gears carefully, one by one, trying not to snap any of the tiny teeth along the bars of the frame. It’s a bit like teasing a comb through knotted hair and I don’t get much practice at that. [or]I set the gears quickly and carefully. [stopping]With a clatter, the words on the signboard overhead change. Now they read '[stored meaning of the model being adjusted]'[paragraph break]";
+	consider the correctness appraisal rules for the model being adjusted;
+	if the rule succeeded:
+		now the model being adjusted is correctly set;
 
 Book C - New Relations
 
@@ -969,7 +1030,7 @@ Setting action variables for clock-setting:
 	end if;
 
 Check clock-setting a clock to:
-	if the setting of the noun is the time understood + 1 minute,
+	if the face value of the noun is the time understood + 1 minute,
 		say "The clock's already on [time understood in words], thankfully enough." instead;
 
 Carry out clock-setting a clock to:
@@ -1218,15 +1279,23 @@ Check unscrewing something with something:
 
 Part 25 - Untying
 
-Untying is an action applying to one thing.
+Untying it from is an action applying to two things.
 
-Understand "untie [something]" as untying.
-Understand "unfasten [something]" as untying.
-Understand "release [something]" as untying.
-Understand "loose [something]" as untying.
-Understand "launch [something]" as untying.
+Understand "untie [something]" as untying it from.
+Understand "unfasten [something]" as untying it from.
+Understand "release [something]" as untying it from.
+Understand "loose [something]" as untying it from.
+Understand "launch [something]" as untying it from.
+Understand "remove [something]" as untying it from.
 
-Check untying:
+Understand "untie [something] from [something]" as untying it from.
+Understand "unfasten [something] from [something]" as untying it from.
+Understand "release [something] from [something]" as untying it from.
+Understand "loose [something] from [something]" as untying it from.
+Understand "launch [something] from [something]" as untying it from.
+Understand "remove [something] from [something]" as untying it from.
+
+Check untying something from:
 	say "[The noun] [is-are]n't tied up." instead;
 
 Part 26 - Wrapping
@@ -1355,7 +1424,27 @@ Understand the command "tie" as something new.
 
 Understand "tie [something preferably held] to [something]" as fastening it to.
 
-The block tying rule is listed in the check fastening it to rulebook.
+Carry out fastening something to something:
+	do nothing;
+
+The block tying rule is listed last in the report fastening it to rulebook.
+
+Part 35 - Standing it up
+
+Standing it up is an action applying to one thing.
+
+Understand "stand [something]" as standing it up.
+Understand "stand [something] up" as standing it up.
+Understand "stand up [something]" as standing it up.
+
+Understand "erect [something]" as standing it up.
+
+Understand "prop [something]" as standing it up.
+Understand "prop [something] up" as standing it up.
+Understand "prop up [something]" as standing it up.
+
+Check standing something up:
+	say "That doesn't seem to achieve anything.";
 
 Book E - New Properties
 
@@ -1381,36 +1470,11 @@ A thing can be known or unknown. A thing is usually known.
 
 Book F - General changes to the world model
 
-Part 1 - Automatic doors
+Last unlocking rule when the player has Horloge's keys:
+	rule succeeds with result Horloge's keys;
 
-Implicitly opening something is an activity.
-
-Rule for implicitly opening something (called the unopened item):
-	say "(first opening [the unopened item])[command clarification break]";
-	try silently opening the unopened item; 
-
-Before going through a closed door (called the obstacle):
-	carry out the implicitly opening activity with the obstacle;
-	if the obstacle is closed, stop the action;
-
-Part 2 - Semi-automatic unlocking
-
-Understand "unlock [something]" as unlocking it with;
-
-Rule for supplying a missing second noun while unlocking:
-	let x be the most likely key for the noun;
-	begin the clarifying the parser's choice activity with x;
-	if handling the clarifying the parser's choice activity with x,
-		say "(with [the x])[command clarification break]";
-	end the clarifying the parser's choice activity with x;
-	change the second noun to x;
-
-To decide what thing is the most likely key for (lock - a thing):
-	if the lock provides the property matching key and the player carries the matching key of the lock,
-		decide on the matching key of the lock;
-	if the player carries Horloge's Keys,
-		decide on Horloge's Keys;
-	decide on my lucky key;
+Last unlocking rule when the player has my lucky clock key:
+	rule succeeds with result my lucky clock key;
 
 Part 3 - Unexamined / Examined
 
@@ -1482,7 +1546,7 @@ Instead of emptying the tumbler when not in Inside Clock Case:
 
 Inside the tumbler is a small amount of polish.
 
-Before doing something when the current action involves the small amount of polish:
+Before doing something when the small amount of polish is physically involved:
 	redirect the action from the small amount of polish to the tumbler;
 	try the current action instead;
 
@@ -2144,12 +2208,11 @@ A jar of tea leaves is a container, portable, scenery, in the Kitchen. The descr
 Understand "leaf" as the jar of tea leaves when the location does not enclose the handful of tea leaves.
 
 Instead of taking the jar of tea leaves:
-	if the player carries the handful of tea leaves begin;
+	if the player carries the handful of tea leaves:
 		say "I take a couple more leaves.";
-	otherwise;
+	otherwise:
 		move the handful of tea leaves to the player;
 		say "I scoop up a handful of tea leaves.";
-	end if;
 
 Before inserting the jar of tea leaves into something when the player does not carry the handful of tea leaves:
 	say "(first taking some tea from the jar)[command clarification break]";
@@ -2162,7 +2225,7 @@ Before printing the name of the jar of tea leaves when asking which do you mean:
 Instead of inserting something into the jar of tea leaves:
 	say "I'd be in big trouble if I messed up the tea in this place. It's the sacred drink of the workshop men, and it's pretty expensive too.";
 
-Instead of opening the jar of tea leaves:
+Instead of opening or closing the jar of tea leaves:
 	say "The jar doesn't have a stopper.";
 
 Some dummy tea leaves are inside the jar of tea leaves. The printed name is "tea leaves". Understand "loose" as the dummy tea leaves.
@@ -2286,7 +2349,7 @@ Understand "flint", "iron", "block", "slice" as the flint-iron.
 
 Chapter 6 - Basket
 
-The basket is an open fake container, not openable, part of the tea-machine. The description is "A fine-mesh wire basket positioned near the front of the machine, right over the circular bracket.[if full] It's filled with fresh tea leaves.[end if]"
+The basket is an open fake container, not openable, part of the tea-machine. The description is "A fine-mesh wire basket positioned near the front of the machine, right over the circular bracket[if full]. It's filled with fresh tea leaves[end if]."
 
 Understand "wire", "mesh", "fine-mesh", "fine" as the basket.
 
@@ -2773,7 +2836,7 @@ Part 9 - East Refectory
 
 Chapter 1 - Description
 
-A room called the East Refectory is east of the West Refectory, south from the Kitchen. "The eastern end of the long Refectory is given over in part to the tables lined with brass hourglasses, but in the other half there's nothing but the enormous Refectory Clock. It's an impressive thing, so big because it only needs winding once a year, despite all the gongs, cymbals, tubes and bells that strike when dinner time comes around. Right now, the clock is showing the time at just after [the setting of the refectory clock to the nearest five minutes in words].[if Gong Sounding is happening][paragraph break]The refectory booms with the sound of the clock, striking the dining hour on a hundred bells, cymbals and organ pipes. I can retreat down the length of the dining tables by heading west.[end if]"
+A room called the East Refectory is east of the West Refectory, south from the Kitchen. "The eastern end of the long Refectory is given over in part to the tables lined with brass hourglasses, but in the other half there's nothing but the enormous Refectory Clock. It's an impressive thing, so big because it only needs winding once a year, despite all the gongs, cymbals, tubes and bells that strike when dinner time comes around. Right now, the clock is showing the time at just after [the face value of the refectory clock to the nearest five minutes in words].[if Gong Sounding is happening][paragraph break]The refectory booms with the sound of the clock, striking the dining hour on a hundred bells, cymbals and organ pipes. I can retreat down the length of the dining tables by heading west.[end if]"
 
 Instead of smelling the location when the location is the Upper Hall or the location is the East Refectory:
 	say "Food, rot, cheese, mould, damp and the ever-present scent of grease-oil, coming through the archway to [the best route from the location to the Kitchen].";
@@ -2825,7 +2888,7 @@ Instead of opening the locked Garden Door when Horloge's Keys are carried:
 
 Section 4 - Refectory Clock
 
-The Refectory Clock is a clock, scenery, in the East Refectory. The description is "[if Gong Sounding is not happening]Housed in a case made of oak and glass, the inner workings of the Refectory Clock are visible, for the purpose of contemplation over dinner. In one corner is the colossal spring, about the size of an Oliphant, which powers the clock for over a year and reminds us that we need little to do much. Almost all the rest of the clock is given over to bells, hammers, whistles, gongs, organ pipes, cymbals, and other devices designed to bring even the deafest monk to dinner.[paragraph break]The clock is currently set to [the setting of the refectory clock in words].[otherwise]The Refectory Clock is pounding out a colossal amount of noise![end if]"
+The Refectory Clock is a clock, scenery, in the East Refectory. The description is "[if Gong Sounding is not happening]Housed in a case made of oak and glass, the inner workings of the Refectory Clock are visible, for the purpose of contemplation over dinner. In one corner is the colossal spring, about the size of an Oliphant, which powers the clock for over a year and reminds us that we need little to do much. Almost all the rest of the clock is given over to bells, hammers, whistles, gongs, organ pipes, cymbals, and other devices designed to bring even the deafest monk to dinner.[paragraph break]The clock is currently set to [the face value of the refectory clock in words].[otherwise]The Refectory Clock is pounding out a colossal amount of noise![end if]"
 
 Understand "case/oak/wood/wooden/glass/inner/workings/spring/bells/hammers/whistles/gongs/pipes/organ/cymbals" as the Refectory Clock.
 
@@ -2851,7 +2914,7 @@ Chapter 3 - Gong Sounding
 
 Gong sounding is a scene.
 
-Gong sounding begins when the setting of the Refectory Clock is 5:00 PM. 
+Gong sounding begins when the face value of the Refectory Clock is 5:00 PM. 
 
 When Gong Sounding begins:
 	now the Refectory Clock is closed;
@@ -2946,7 +3009,7 @@ Instead of closing the Cabinet of Relics:
 
 Section 2 - Press Materials
 
-Some press materials are in the Cabinet of Relics. The description is "Typesets and other items, including a full set of new brass gears.[if we know about the broken gear] One stands out; the same cut and bearing as the worn-down cog on the Tea Maker in the Kitchen.[end if]".
+Some press materials are in the Cabinet of Relics. The description is "Typesets and other items, including a full set of new brass gears[if we know about the broken gear]. One stands out; the same cut and bearing as the worn-down cog on the Tea Maker in the Kitchen[end if].".
 
 Instead of taking or searching the press materials:
 	say "'Don't touch those,' Reloh demands. So I don't touch."
@@ -3966,6 +4029,8 @@ Instead of turning a Cartesian Crank (called the handle) backwards:
 	change the coordinate of the model of the handle to n;
 	say "The first tumbler of [the meter of the handle] slowly winds on, so it now reads [tens part of n][units part of n].";
 
+Section 5 - Book Pulling
+
 The iron chain is scenery, in the Cyclical Library. "A long iron chain that leads up to the contraption on the ceiling. I shouldn't say this, but it looks a lot like the toilet flush that Brother Armitage has been designing." 
 
 Instead of pulling the chain:
@@ -3974,23 +4039,23 @@ Instead of pulling the chain:
 
 The book-pulling rules are a rulebook.
 
+To decide which indexed text is the library code:
+	let x be the coordinate of the X control;
+	let y be the coordinate of the Y control;
+	let z be the coordinate of the Z control;
+	decide on "[the tens part of x][the units part of x][the tens part of y][the units part of y][the tens part of z][the units part of z]";
+
 A book-pulling rule:
 	if the letter state of Brother Sa'at is not 1 begin;
 		say "The book is nothing I want though, so I release the chain and it disappears back into the stacks." instead;
 	end if;
 
-A book-pulling rule:
-	let x be the coordinate of the X control;
-	let y be the coordinate of the Y control;
-	let z be the coordinate of the Z control;
-	if x is 4.3 and y is 1.2 and z is 9.5 begin;
-		if the Principia Planetaria has been handled begin;
-			say "The book turns out to be a dummy! Just a block of wood with 'BOOK ON LOAN' painted on the cover. It won't come free; and disappears into the shelf once more." instead;
-		otherwise;
-			now the player carries the Principia Planetaria;
-			say "It's the Principia! I snatch it down and the plate slides back into the shelf." instead;
-		end if;
-	end if;
+A book-pulling rule when the library code is "431295":
+	if the Principia Planetaria has been handled:
+		say "The book turns out to be a dummy! Just a block of wood with 'BOOK ON LOAN' painted on the cover. It won't come free; and disappears into the shelf once more." instead;
+	otherwise:
+		now the player carries the Principia Planetaria;
+		say "It's the Principia! I snatch it down and the plate slides back into the shelf." instead;
 
 A book-pulling rule:
 	say "Sadly, it's not the Principia. I release the chain and the book disappears into the stacks." instead;
@@ -5599,7 +5664,7 @@ Instead of entering the deflated weather balloon:
 	say "I try fitting myself into the basket. A squeeze – got to breathe in – but I'll just about go. I get out again, and that's nice too. So I just need to fill it up and I'm off!";
 
 Instead of entering the inflated weather balloon:
-	try untying the weather balloon instead;
+	try untying the weather balloon from nothing instead;
 
 Instead of taking the weather balloon:
 	say "It's much too large to carry around – not heavy, but if I gathered it up I wouldn't be able to see a thing. On these rooftops, that wouldn't be good for my health!";
@@ -5637,7 +5702,13 @@ A ballooning rule when balloon spotted is false:
 A ballooning rule when the way of the zephyrgraph is not south:
 	say "The Figure's heading south – the zephyrgraph is pointing [way of the zephyrgraph]. I'd be loosescrew to launch now!" instead;
 
-Instead of untying the weather balloon:
+Rule for supplying a missing second noun when untying the weather balloon from:
+	change the second noun to the small spigot;
+
+Instead of untying the weather balloon from the vent:
+	try untying the weather balloon from the small spigot instead;
+
+Instead of untying the weather balloon from the small spigot:
 	abide by the ballooning rules; [i.e. stopping if a test fails]
 	say "I untie the rope but leave it looped around the pipe, and keep a tight hold while I squeeze myself into the basket. Then, with a final check of the zephyrgraph I let go. The balloon whisks up into the sky and the south wind whips me forward. Spinning around and around in my basket – the city below a whirl of colours – beginning to feel a little giddy – but making progress. The dark blot of the ornithopter is getting closer and closer. I'm gaining on him: the wind heaving me along.[paragraph break]...In a few moments I'll be alongside, close enough to demand that he takes hold of the balloon string. He couldn't leave me up here in my balloon: the air's soon going to cool, and then the balloon will sink...[paragraph break]The ornithopter starts moving higher. No. The ground is moving closer. Oh, Wren, you've done it this time, I'm thinking...[paragraph break]With a rush – there's nothing for it – I'm falling. [i]Plummeting.[no line break][r] The clutter of rooftops is rushing closer and closer. There's a smash –[paragraph break]- splintering glass –[paragraph break]- someone thumps me hard on the back. The wind is knocked from me –[paragraph break]- [i]good stuff, Wren. Just like clockwork.[no line break][r]";
 	pause the game;
@@ -6276,9 +6347,8 @@ Instead of opening the clock shop door when the scrap of paper is off-stage:
 Instead of opening the clock shop door:
 	say "'That's the place,' Covalt insists, tapping the address with a finger like a roofing mallet. 'The Difference Engine'll tell you all you want. I hope. If you can get a clear idea what you're wanting and – well, anyway.' He puffs his cheeks. 'One dead air balloon says you'll do your best.'[paragraph break]'Thanks,' I say. The first person to be nice to me – well, ever really. 'I appreciate your help.'[paragraph break]'Well, nothing's too good for a rat,' he snarls. 'And do pop back here later if you need to. I don't think. Bringing the Heretic police and that. Go on! Get out of it.' And with that, he boots me through the door and slams it with relish.";
 	pause the game;
-	[I *think* this bit of text is intended to follow on here:]
-	say "The streets of St Philip are narrow and winding, closer to the veins on a leaf than anything mechanical. Their only Holy Function is to get me completely totally lost, and it does that so well it takes me a good couple of hours to find my way to the steps of the Counting House.[paragraph break]If anyone from the Abbey saw me out here they'd have my guts for wheel-belts. Lucky that this is a side-street off a side-street, the kind of place full of urchins who all look the same as me, and anyway, all the important people here are riding in closed carriages.";
 	move the player to The Street;
+	say "The streets of St Philip are narrow and winding, closer to the veins on a leaf than anything mechanical. Their only Holy Function is to get me completely totally lost, and it does that so well it takes me a good couple of hours to find my way to the steps of the Counting House.[paragraph break]If anyone from the Abbey saw me out here they'd have my guts for wheel-belts. Lucky that this is a side-street off a side-street, the kind of place full of urchins who all look the same as me, and anyway, all the important people here are riding in closed carriages.";
 
 Book 7 - The Counting House
 
@@ -6320,16 +6390,15 @@ Part 2 - Steps
 
 Chapter 1 - Description
 
-The Counting House Steps is a room, northeast of the street. "The steps are wide and flat, leading up between lines of pillars to the wide brass doors of the Counting House. Either side stand two guards pretending to be statues."
+The Counting House Steps is a room, northeast of the street. "The steps are wide and flat, leading up between lines of pillars to the wide brass doors of the Counting House. Either side stand two guards staring out like statues."
 
 After going to the Counting House Steps:
 	the player attempts to enter the counting house in one turn from now;
 	continue the action;
 
 At the time when the player attempts to enter the counting house:
-	if TRIG_COUNTING_HOUSE is unfired begin;
+	if TRIG_COUNTING_HOUSE is unfired and the location is the Counting House Steps:
 		fire TRIG_COUNTING_HOUSE;
-	end if;
 
 TRIG_COUNTING_HOUSE is a trigger.
 Rule for firing unfired TRIG_COUNTING_HOUSE:
@@ -6342,7 +6411,7 @@ Chapter 2 - Scenery
 
 Section 1 - Counting House
 
-The front of the Counting House is a door, open, not openable, scenery, privately-named, north of the Counting House Steps, south of the Grand Foyer. "[if the location is the Counting House Steps]The Counting House is shaped like a big block of hard cheese, straight edges and smooth surfaces. Even the brass doors have a yellowy luster that might be gold or might be oil. They've engraved, of course: Babbage, Godel and Ada of Lovelace (who I'm quite sure isn't a real saint even though she's got the cog-wheel over head like all the others).[otherwise]The large brass doors are padded on this side with thick red leather.[end if]". The printed name is "Counting House".
+The front of the Counting House is a door, open, not openable, scenery, privately-named, north of the Counting House Steps, south of the Grand Foyer. "[if the location is the Counting House Steps]The Counting House is shaped like a big block of hard cheese, all straight edges and smooth surfaces. Even the brass doors have a yellowy luster that might be gold or might be oil. They've engraved, of course, Babbage, Godel and Ada of Lovelace, who I'm quite sure isn't a real saint even though she's got the cog-wheel over head like all the others.[otherwise]The large brass doors are padded on this side with thick red leather.[end if]". The printed name is "Counting House".
 
 Rule for printing the name of the front of the Counting House when the location is the Grand Foyer:
 	say "brass doors";
@@ -6371,7 +6440,7 @@ Rule for firing STEPS_COUNTER:
 
 Chapter 3 - Guards
 
-Some Counting House guards are a person, scenery, privately-named, in the Counting House Steps. "The guards are dressed up in full livery: bright red uniforms with pendulums hanging from both shoulders: embroidered cog-links and knee-high black boots tipped with metal pointers. Each one carries a flat spear. The one carried by the guard on the left is longer than the one carried by the guard on the right which tells you that the one on the [i]right[r] is the most important." The printed name is "guards".
+Some Counting House guards are a person, scenery, privately-named, in the Counting House Steps. "The guards are dressed in full livery: bright red uniforms with pendulums hanging from both shoulders, embroidered cog-links and knee-high black boots tipped with metal pointers. Each one carries a flat spear: the one carried by the guard on the left is longer than the one carried by the guard on the right." The printed name is "guards".
 
 Understand "guard", "guards", "uniformed", "uniform", "uniforms", "livery", "spears", "flat", "on the", "left", "right" as the Counting House Guards.
 
@@ -6412,7 +6481,7 @@ CT_GUARD_SAINTS is a conversation topic. The enquiry text is "'Which are those s
 Section 3 - Permit
 
 Instead of showing the work order to the Counting House guards:
-	say "'How about this?' I try, producing Sa'at's work order.[paragraph break]The guards take one look at the seal and look deeply unimpressed. I suppose I wasn't going to fool guards the same way twice. But then the spears uncross and the first guard says, 'All right then.' The second opens the doors for me and I go inside.[paragraph break]Probably neither can read, and maybe they [i]always[r] look deeply unimpressed.";
+	say "'How about this?' I try, producing Sa'at's work order.[paragraph break]The guards take one look at the seal and look deeply unimpressed. I suppose I wasn't going to fool the guards this way twice. But then the spears uncross and the first guard says, 'all right then.' The second opens the doors for me and I go inside.[paragraph break]Probably neither of them can read.";
 	move the player to the Grand Foyer;
 
 Chapter 4 - Event on Exit
@@ -6427,7 +6496,7 @@ Part 3 - Grand Foyer
 
 Chapter 1 - Description
 
-The Grand Foyer is a room. "The hall is wide and lofty and filled with stars that shine from the sparkling brass fittings. It's like Drake's stories of the Church bath-house: marble and a soft hazy smell. This is the foyer and it's a whole room with [i]nothing[r] in it except two enormous staircases that curve upwards, east and west."
+The Grand Foyer is a room. "The hall is wide and lofty and filled with stars that shine from the sparkling brass fittings. It’s like Drake’s descriptions of the Abbot’s private bath-house: gleaming marble and a soft hazy smell. This is the foyer and it has nothing in it at all apart from two enormous staircase curving upwards to the west and the east."
 
 Instead of going south in the Grand Foyer:
 	say "No thanks. I've got past those guards once, there's no reason to try it again.";
@@ -6456,7 +6525,7 @@ Understand "guards", "guard", "racing" as the marble stairs when Calculatrix Cha
 The description is "The stairs are thickly carpeted, presumably to cut down on the terrible noise of one or two people going up or down should anyone ever enter this building at all."
 
 Rule for printing the description of the marble stairs when in the Grand Foyer:
-	say "Marble steps one after the other, all thickly carpeted with a deep patterned carpet. I thought the Cathedral was lavishly decorated then this place is just extravagant!";
+	say "Marble steps one after the other, all thickly carpeted with a deep patterned carpet. If I thought the Cathedral was lavishly decorated then this place is just extravagant!";
 
 Rule for printing the description of the marble stairs when the location is a landing:
 	say "The stairs lead down, a kind of waterfall of rich carpet and gleaming marble.";
@@ -6499,7 +6568,7 @@ Definition: a room is a hallway:
 	no;
 
 Definition: a room is a platform:
-	if it is the West Platform or it is the East Platform, yes;
+	if it is the Western Platform or it is the Eastern Platform, yes;
 	if it is the Main Platform, yes;
 	no;
 
@@ -6520,10 +6589,13 @@ Instead of climbing or entering the east foyer steps: try going east;
 
 Section 3 - Glass Doors
 
-Some glass doors are a door, open, not openable, scenery, north of the Grand Foyer, south of the Main Platform. "In front of the machine I can make out two ladies, one short and dark-haired wearing a long white gown, the other elegant, thin and dressed up like a princess at a ball."
+Some glass doors are a door, open, not openable, scenery, north of the Grand Foyer, south of the Main Platform. "[if the Calculatrix is in the Main Platform]In front of the machine I can make out two ladies, one short and dark-haired wearing a long white gown, the other elegant, thin and dressed up like a princess at a ball.[otherwise]Beyond the glass doors is the complex and intricate machine, its pinions bent by the warped glass into meaningless shapes.[end if]"
 
-Instead of going through the glass doors:
-	say "[one of]My hand freezes on the door-handle as I overhear a woman's voice. 'The machine works quickly.' Peering through the door I can make out two figures on the other side, bodies stretched and bent by warps in the glass, but still clearly Important People.[or]I don't want to get caught and even if the two women behind the door don't see me they'd be bound to [i]smell[r] me if I went inside.[stopping]";
+Instead of going through the glass doors from the Grand Foyer when the Calculatrix Pristina is in the Main Platform:
+	say "[one of]My hand freezes on the door-handle as I overhear a woman's voice. 'The machine works quickly.' Peering through the door I can make out two figures on the other side, their bodies stretched and bent by the warps in the glass.[or]I don't want to get caught and even if the two women behind the door don't see me they'd be bound to [i]smell[r] me if I went inside.[stopping]";
+
+After going through the glass doors from the Grand Foyer:
+	say "I slip through the glass doors, between the first blocks of the enormous machine and up onto the central platform.";
 
 Instead of opening the glass doors:
 	try entering the glass doors;
@@ -6532,7 +6604,7 @@ Understand "beveled/bevelled", "bubbled", "warped", "bubbles", "warps" as the gl
 
 Section 4 - Desk
 
-A large oak desk is a supporter, in the Grand Foyer. "To the north are two doors of beveled glass. To the south is a large oak desk just next to the brass doors back onto the street." The description is "A sturdy oak table, probably made from the timbers of a sunken Spanish ship or something. [if not empty]On the table is [a list of things on the large oak desk][end if]."
+A large oak desk is a supporter, in the Grand Foyer. "To the north a pair of doors of beveled glass are filled by broken fragments of light and clockwork. To the south is a large oak desk and the bronze doors back onto the street." The description is "A sturdy oak table, probably made from the timbers of a sunken Spanish ship or something. [if not empty]On the table is [a list of things on the large oak desk][end if]."
 
 Rule for writing a paragraph about the large oak desk:
 	say "To the north are two doors of beveled glass. To the south is a large oak desk just next to the brass doors back onto the street.";
@@ -6543,7 +6615,7 @@ Section 5 - Folder
 
 A leather folder is on the large oak desk. The description is "A leather folder containing a few documents. It's stamped with the Parliamentary seal of a spiked wheel."
 
-The reading matter is "Inside are a few documents stamped with Parliament seals. [i]'In the Absence of his Lordship the honourable and worthy minister etc etc. Raffles du Mer, fighting on the Main for cog and country, her Ladyship the honourable and austere etc etc Duchess has been sanctioned to undertake War Office administrative responsibilities. We hope and pray for her husband's swift return...'[r][paragraph break]The next sheet has a hand-written note attached: 'Questions approved. Most unusual? Politically motivated?' Beneath that is a sheet of numbers: must be an accounts list or something."
+The reading matter is "Inside are a few documents stamped with Parliament seals. [i]'In the Absence of his Lordship the honourable and worthy minister etc etc. Raffles du Mer, fighting on the Main for cog and country, her Ladyship the honourable and austere etc etc Duchess has been sanctioned to undertake War Office administrative responsibilities. We hope and pray for her husband's swift return...'[r][paragraph break]The next sheet has a hand-written note attached: [i]'Questions approved. Most unusual? Politically motivated?'[r] Beneath that is a sheet of numbers: must be an accounts list or something."
 
 Instead of opening or searching the leather folder:
 	try reading the leather folder instead;
@@ -6620,16 +6692,10 @@ Chapter 2 - Backdrops
 
 Section 1 - Anxiety Counter
 
-The Anxiety Counter is a counter. The top end is 5. The internal value is 2. The anxiety counter has a number called the stress level. The stress level of the anxiety counter is 0.
+The Anxiety Counter is a counter. The top end is 5. The internal value is 2. 
 
 Rule for firing the anxiety counter when Calculatrix Chase is not happening:
-	change the stress level of the anxiety counter to the remainder after dividing the stress level of the anxiety counter by 9;
-	increase the stress level of the anxiety counter by 1;
-	if the stress level of the anxiety counter is:
-		-- 1: say "People are talking quietly in the offices on either side.";
-		-- 2: say "Somewhere nearby, a floorboard creaks.";
-		-- 3: say "Someone approaches from down the corridor. I throw myself into a doorway until they're safely past.";
-		-- otherwise: say "[bracket]Anxiety counter fires: count is [stress level of the anxiety counter].[close bracket][paragraph break]";
+	say "[one of]People are talking quietly in the offices on either side.[or]Somewhere nearby, a floorboard creaks.[or]Someone approaches from down the corridor. I throw myself into a doorway until they're safely past.[or]From behind one of the doors I can hear voices, deep in conversation.[or]A door-handle turns. I freeze! But then the handle relaxes again and footfalls move away from the door.[or]If each room has just one person in it, that means at least forty ways I could get caught, and eighty pairs of feet…[or]If it weren’t for the carpet in this place my footsteps would have alerted everyone here by now![or]If only the doors had glass panels. Then at least I’d get some warning![cycling]";
 
 The Region of Anxiety is a region. The Western Landing, the Eastern Landing, the Western Hall, the Eastern Hall, the Long Hall are in the Region of Anxiety.
 
@@ -6638,7 +6704,7 @@ Every turn when in the Region of Anxiety:
 
 Section 2 - Some Doors
 
-Some labeled doors are a backdrop, in the region of anxiety.
+Some labeled doors are a backdrop, privately-named, in the region of anxiety.
 
 Instead of opening or entering the labeled doors:
 	say "I can't see whoever's inside wanting to help me."
@@ -6649,9 +6715,9 @@ Rule for printing the description of the labeled doors when in the Western Landi
 Rule for printing the description of the labeled doors when in the Eastern Landing:
 	say "The doors have labels: Governor of Logic, Prime Roster, Department of Conceptual Multiplication, Department of Efficiency and Inversing, Bursary and Expenses...", paragraph break;
 
-Understand "door", "label" as the doors when the location is not the Long Hall or Calculatrix Chase is not happening.
+Understand "label", "labelled", "labeled", "door" as the labeled doors when the player can not see the open subtle escape.
 
-Understand "frosted", "glass", "labels" as the doors.
+Understand "frosted", "glass", "labels", "doors" as the labeled doors.
 
 Section 3 - Staircases
 
@@ -6734,24 +6800,29 @@ Rule for printing the description of the labeled doors when in the Long Hall:
 
 Section 2 - Phantom Door
 
-The subtle door is scenery, privately-named, in the Long Hall. "The door's label is hidden because it's open. And right now, that's all that matters. That and the office beyond is empty."
+The subtle escape is a door, privately-named, east of the Long Hall, west of the Office. The description of the subtle escape is "[if the location is the Long Hall]The door's label is hidden because it's open. And right now, that's all that matters. That and the office beyond is empty.[otherwise]That door leads back to the hall, which means it leads back to the guards, and the guards’ spears. So, no thanks, I’m happy where I am for now… but not for much longer.[end if]". The printed name of the subtle escape is "door".
 
-Understand "door", "open", "label", "office" as the subtle door when Calculatrix Chase is happening.
+The subtle escape is closed.
 
-The subtle door can be open. The subtle door is open.
-The subtle door can be openable. The subtle door is openable.
+Rule for implicitly opening the subtle escape:
+	say "I can't go that way." instead;
 
-The initial appearance of the subtle door is "Except for whoever it was that left their office door open, to the east. Perhaps they were scared by the sound of the guards, converging on me from both sides!"
+The initial appearance of the subtle escape is "Except for whoever it was that left their office door open, to the east. Perhaps they were scared by the sound of the guards, converging on me from both sides!"
 
-Instead of going east in the Long Hall during Calculatrix Chase:
-	say "It's as good a plan as any. I duck through into an office and slam the door behind.";
-	move the player to the office;
+Rule for printing a locale paragraph about the subtle escape when Calculatrix Chase is not happening:
+	now the subtle escape is mentioned;
 
-Instead of entering the subtle door during Calculatrix Chase:
-	try going east;
+Rule for printing a locale paragraph about the subtle escape when in the Office:
+	now the subtle escape is mentioned;
 
 When Calculatrix Chase begins:
-	now the subtle door is not scenery;
+	now the subtle escape is open;
+
+Understand "open", "label", "office", "door" as the subtle escape when Calculatrix Chase is happening.
+
+After going through the subtle escape during Calculatrix Chase:
+	say "It's as good a plan as any. I duck through into an office and slam the door behind.";
+	continue the action;
 
 Part 11 & 12 - Eastern / Western Balconys 
 
@@ -6811,10 +6882,9 @@ The room-script of Western Balcony is { SE_BALCONY_1, SE_BALCONY_2, SE_BALCONY_3
 
 After firing a scripted event that is clustered with SE_BALCONY_1:
 	[maintain balance across the two balconies, as they can't really share the same script.]
-	let the other balcony be the reflection of the location;
-	if the number of entries in the room-script of the other balcony is not 0 begin;
-		remove entry 1 from the room-script of the other balcony;
-	end if;
+	let the far balcony be the reflection of the location;
+	if the number of entries in the room-script of the far balcony is not 0:
+		remove entry 1 from the room-script of the far balcony;
 
 After firing SE_BALCONY_2:
 	now the Calculatrix Pristina is known;
@@ -6843,6 +6913,12 @@ After printing the description of the small golden dials:
 Instead of turning the dials:
 	say "I've no idea what they do, and if I changed any of them I'd never be able to remember how they were set before.";
 
+Instead of inserting something into the dials:
+	if the noun is the ruby key:
+		try turning the dials instead;
+	otherwise:
+		say "[The noun] isn't going to fit there.";
+
 Section 3 - Ruby Key
 
 The ruby key is a thing. The description is "A small key of blood-coloured glass. It seems pretty fragile, but then I could probably break the engine if I sneezed on it."
@@ -6858,14 +6934,23 @@ Chapter 2 - Scenery
 
 Section 1 - Roof Dome
 
-The roof dome is a backdrop, in Main Platform, The Engine Room, Western Balcony, Eastern Balcony, East Platform and West Platform. "Overhead, a dome of iron girders and pale green glass. With the movement below, it makes the whole room feel the way I imagine the ocean to be."
+The roof dome is a backdrop, in Main Platform, The Engine Room, Western Balcony, Eastern Balcony, Eastern Platform, and Western Platform. "Overhead, a dome of iron girders and pale green glass. With the movement below, it makes the whole room feel the way I imagine the ocean to be."
 
 Instead of doing something when the roof dome is physically involved:
 	say "The dome is far out of reach.";
 
 Section 2 - Difference Engine
 
-The Difference Engine is a backdrop, in Main Platform, The Engine Room, West Balcony, and East Balcony. "[if the location is a balcony]The Engine is a neat cube of springs, levers and vertical rods laced with cogs, and unlike any of the clocks I've polished it's organized in a tidy and symmetric way. Each part looks the same as the parts beside it (and all the bits [i]inside[r] look the same again, only smaller). It's like looking at a sugar-crystal close up, and only the platforms and scaffolds that weave around inside break it up at all.[otherwise if inactive]The Engine is made of blocks, each a thicket of spindles lined with a stack of cogs, able to turn together or independently. A single breath of movement flits around the machine from one cog to another like there was a bee trapped in the workings: one moment by my feet and suddenly back over at the platform.[otherwise]The machine moves like a corn-field in a thunderstorm. It seems like every cog is turning, and each spine is clunking up and down, changing the way they interlaced. It's like the mechanism could shake itself loose at any minute. I don't want to be standing in the middle when it does.[end if]"
+The Difference Engine is a backdrop, in Main Platform, The Engine Room, Western Balcony, and Eastern Balcony. 
+
+Rule for printing the description of the Difference Engine when the location is a balcony:
+	say "The Engine is a neat cube of springs, levers and vertical rods laced with cogs, and unlike any of the clocks I've polished it's organized in a tidy and symmetric way. Each part looks the same as the parts beside it (and all the bits [i]inside[r] look the same again, only smaller). It's like looking at a sugar-crystal close up, and only the platforms and scaffolds that weave around inside break it up at all.";
+
+Rule for printing the description of the inactive Difference Engine:
+	say "The Engine is made of blocks, each a thicket of spindles lined with a stack of cogs, able to turn together or independently. A single breath of movement flits around the machine from one cog to another like there was a bee trapped in the workings: one moment by my feet and suddenly back over at the platform[if Calculatrix Chase has not happened]. [paragraph break]And if Covalt thinks this machine can tell me where I can find the Figure in Grey, then I guess it can[end if].";
+
+Rule for printing the description of the Difference Engine:
+	say "The machine moves like a corn-field in a thunderstorm. It seems like every cog is turning, and each spine is clunking up and down, changing the way they interlaced. It's like the mechanism could shake itself loose at any minute. I don't want to be standing in the middle when it does.";
 
 Understand "cube", "springs", "levers", "vertical rods", "rods", "cogs", "platforms", "scaffolds", "blocks", "thicket", "spindles", "stack", "breath", "single breath", "movement", "motion" as the Difference Engine.
 
@@ -6884,7 +6969,7 @@ Part 14 - Main Platform
 
 Chapter 1 - Description
 
-The Main Platform is a room. "A circular platform deep in the heart of the Engine, but the only mechanism is a single lever. It's about large the size you'd need to hold back a spring the strength of a horse. There's also a pedestal dead centre with something Brother Reloh's typewriter on top.[paragraph break]To east and west thin catwalks lead towards panels fitted with controls. I could also go back north, or south towards the glass doors of the Foyer." 
+The Main Platform is a room. "A circular platform deep in the heart of the Engine, but the only mechanism is a single lever. It’s about the size you’d need to hold back a spring the strength of a horse. There’s also a pedestal dead centre with something like Brother Reloh’s typewriter on top. Next to that machine is a small box full of grey pamphlets.[paragraph break]To east and west thin catwalks lead towards panels fitted with controls. I could also go back north, or south towards the glass doors of the Foyer." 
 
 Chapter 2 - Scenery
 
@@ -6912,32 +6997,15 @@ Instead of pushing the clutch:
 Instead of pulling the clutch when the Difference Engine is active:
 	say "The machinery is already pounding away, all around me.";
 
-Instead of pulling the clutch when the controls are nearly properly set:
+Instead of pulling the clutch when exactly one difference-engine model is correctly set:
 	say "I don't know. I'm not at all sure I've phrased the question well enough. Time only happens once, as Horloge likes to say, although the Abbot says everything will repeat, just like Klockwerk. Either way – for now at least – I'm only going to get one shot at this.";
 
-Instead of pulling the clutch when the controls are not properly set:
-	say "I ought to get some idea of how this machine works before I turn it on.";
-
-Instead of pulling the clutch:
+Instead of pulling the clutch when all the difference-engine models are correctly set:
 	now the Difference Engine is active;
 	say "With all the strength I've got left after rooftops and giant bell-towers and ladders and all the rest, I heave back on the lever. Things begin to turn. The platform drops a little lower. Cogs and spindles on all sides start to whip up into a frenzy, the movement spreading across all around the room. It's like kicking over an ant hill.[paragraph break]And then the noise begins.";
 
-Definition: the action-control is properly set:
-	if the stored value of the action-control is 78325, yes;
-	no;
-
-Definition: the actor-control is properly set:
-	if the stored value of the actor-control is 14936, yes;
-	no;
-
-Definition: the controls are properly set:
-	if the actor-control is properly set and the action-control is properly set, yes;
-	no;
-
-Definition: the controls are nearly properly set:
-	if the controls are properly set, no;
-	if the action-control is properly set or the actor-control is properly set, yes;
-	no;
+Instead of pulling the clutch:
+	say "I ought to get some idea of how this machine works before I turn it on.";
 
 Section 4 - The Duchess Du Mer
 
@@ -6962,6 +7030,7 @@ Section 5 - Calculatrix Pristina
 The Calculatrix Pristina is a woman, privately-named, unknown, scenery, in the Main Platform. "The Calculatrix is short and squat, with a flop of brown hair almost covering her glasses. I've heard the monks mutter that it takes a certain kind of woman to work clockwork – what they mean, I don't know, but I guess this prim and awkward-looking woman must have it since she tends one of the most important machines in the world."
 
 Understand "short", "shorter", "shortest", "squat", "woman", "short/shorter one", "dark-haired", "dark haired", "long gown", "gown", "white gown", "long white gown" as the Calculatrix Pristina.
+Understand "figure" as the Calculatrix Pristina when the location is the Grand Foyer.
 Understand "Calculatrix", "Pristina" as the Calculatrix Pristina when the Calculatrix Pristina is known.
 
 Rule for printing the description of the Calculatrix when the location is the Grand Foyer:
@@ -6990,6 +7059,64 @@ Instead of going from the Main Platform when the punchcard is not carried during
 
 After taking the punchcard:
 	say "I whip the card out of the typing machine.";
+
+Section 7 - A box of pamphlets
+
+A box of pamphlets is scenery, in the Main Platform. "The box is full of grey papers stamped with a Parliamentary seal. On the top of each one is written 'STRICT CONFIDENTIAL'."
+
+Understand "grey pamphlets" as the box of pamphlets.
+
+Understand "grey", "pamphlet" as the box of pamphlets when the player can not see the grey pamphlet.
+
+After printing the description of the box of pamphlets:
+	if the grey pamphlet is off-stage:
+		say " I take one out. ";
+		now the player carries the grey pamphlet;
+
+Instead of taking the box of pamphlets:
+	if the grey pamphlet is off-stage:
+		try examining the box of pamphlets;
+	otherwise:
+		say "I don’t want any more of them. One was boring enough.";
+
+The grey pamphlet is a thing. Understand "paper" as the grey pamphlet.
+
+Rule for printing the description of the grey pamphlet:
+	say "'A QUICK SUMMARY OF THE ESSENTIAL NUMERICALS OF ST GODEL.'[paragraph break]It’s a practical handout, presumably for using the machine. None of it makes any sense: 'quintessential numerics', 'adjusted methodologies', 'truth-state deterministic modifiers'. However, at the bottom in larger letter is a table labeled BASIC. Like the Commandments printed on the back of an Abbey Moral Text, this is the bit people actually use. It reads:[paragraph break]";
+	say the table of pamphlet actor words laid out as a grid, paragraph break;
+	say "'In detail,' the pamphlet continues, 'the actions are described as following thus:'[paragraph break]";
+	say the table of pamphlet action words laid out as a grid, paragraph break;
+
+Section 4
+
+Table of grid layout options (continued) [cont. from the Grid Layout extension]
+table 				cell spacings		headings	row numbering
+table of pamphlet actor words	{10, 11, 11, 12, 0}	true		true
+table of pamphlet action words	{10, 15, 12, 10, 0}	true		true
+
+Table of pamphlet actor words
+p1		p2		p3		p4		p5
+"powerful"	"wanting"	"gold"		"breaking"	"universe"
+"far past"	"generous"	"above"		"going"		"giving"
+"diluted"		"past"		"planning"	"flying"		"trying"
+"fire"		"cruel"		"hoping"		"present"	"below"
+"man"		"air"		"wise"		"organic"	"near future"
+"emptiness"	"woman"	"far future"	"aether"		"cloudy"
+"location"	"randomness"	"foolish"		"animal"		"earth"
+"opening"	"city"		"water"		"orderliness"	"plant"
+"getting"	"losing"		"being"		"world"		"saintliness"
+
+Table of pamphlet action words
+p1		p2		p3		p4		p5
+"What"		"wants"		"cost"		"to break"	"everything?"
+"When was"	"much"		"rise"		"to go" 		"money?"
+"How"		"yesterday"	"is planning"	"to steal"	"ambition?"
+"Why"		"wicked"	"hope"		"today"		"nothing?"
+"Who"		"will"		"chose"		"to grow"	"next?"
+"Which"		"give"		"next year"	"to vanish"	"rain?"
+"Where"		"anyone"	"ruin"		"to eat"		"property?"
+"Will"		"in St. Phillip"	"wash"		"to build"	"food?"
+"Can"		"lost"		"live"		"to own"	"immortality?"
 
 Chapter 4 - Calculatrix Chase scene
 
@@ -7091,55 +7218,44 @@ Part 15 - Eastern Platform
 
 Chapter 1 - Description
 
-The Eastern Platform is east of the Main Platform. The printed name is "East Platform". "This is the eastern edge of the wrought iron platform that curves around the face of the Engine. Mounted on the railing and connected to the Engine by a series of fine silver chains is a large, steel abacus, the beads of which are interlocking gears. Suspended above that is what appears to be another abacus, only much more complex, with letters painted on the large beads. There is also an ornate lectern with a book chained to it."
+The Eastern Platform is a major mirror-room, east of the Main Platform. The hemisphere is east. The printed name is "East Platform". The Eastern Platform mirrors the Western Platform.
 
-Chapter 2 - Practical Matrix
+The first description is "This is a small platform to the [west with mirroring] of the central dais. It surrounded on most sides by a brass rail, hooked onto which is a steel abacus that in turn is connected to the Engine by delicate silver chains like the spider-webs of my room after the rain has got in.[paragraph break]Hanging above the platform is a large wooden signboard."
 
-A thing called the Practical Matrix of Numbers and their Implications is scenery, in the Eastern Platform. The description of the Practical Matrix is "On an elegant iron lectern is chained a thick leather tome, with hinges on the binding. The cover reads 'A Practical Matrix of Numbers and their Implications as set down by St. Godel.'" The printed name of the Practical Matrix is "number tome".
+The second description is "This platform is the mirror-image of the one to the [east with mirroring], except that the words on the painted signboard above the abacus are different."
 
-Understand "number", "tome", "leather", "thick", "book", "hinges", "binding", "hinge", "hinged", "bound", "leather-bound" as the Practical Matrix of Numbers.
+Chapter 2 - Action Display
 
-The reading matter of the Practical Matrix is "The book explains that each number has a different essential quality, depending on position it takes in a five-digit number. The book goes on to describe elaborate mathematical functions for posing complex thoughts, but you concern yourself only with the first page, the Table of Basic Implications.[paragraph break][the table of action words laid out as a grid]"
+The action display is a display board, scenery, in the Eastern Platform. The viewed model of the action display is the action-model.
 
-Instead of taking the Practical Matrix:
-	say "It's chained to the lectern.";
+Chapter 3 - Action Control
 
-Section 3 - Action Control
+An abacus called the action-control is scenery, in the Eastern Platform. 
 
-An abacus called the action-control is scenery, in the Eastern Platform. The description is "The abacus is made of steel, with gears as the beads, with enough rods to display a five-digit number. It's connected via a web of fine silver chains to the huge Engine and also to another abacus, suspended above it. You remember enough of your elementary mathematics devotions to tell that the abacus currently reads [stored value]."
+There is a difference-engine model called the action-model.
+The controlled model of the action-control is the action-model.
 
-Before setting a locked abacus to:
-	say "You can't move any of the gears, they're locked in place.";
+The stored value of the action-model is 32149;
+The stored meaning of the action-model is "How much cost today immortality?";
+The word-table of the action-model is the table of action words.
 
-Rule for supplying a missing second noun when the noun is an abacus while unlocking:
-	if the player carries the Ruby Key:
-		change the second noun to the Ruby Key;
-	otherwise:
-		say "You need a key like the one the Calculatrix had to unlock the abacus." instead;
+A correctness appraisal rule for the action-model:
+	if the stored value of the action-model is 78325 or the stored value of the action-model is 78525:
+		say "My heart skips a beat. It’s my question.";
+		rule succeeds;
 
-The word-table of the action-control is the table of action words.
+The last correctness appraisal rule::
+	say "But [one of]I can feel this isn't going to get me closer to knowing where to look for the Figure[or]I don't need a machine to tell me this isn't the question Covalt wanted me to ask[or]I want to know where the Figure in Grey is going to finish up after his ballooning, and I know this isn't going to help with that[or]it doesn't feel right[at random].";
 
-The stored value of the action-control is 32149.
-The stored meaning of the action-control is "How much cost today immortality?"
+An unlocking rule for an abacus:
+	assert that the Ruby Key is not held by the player issuing "Ruby key not held.";
+	say "I’d need some kind of key, surely." instead;
 
-Section 4
+Chapter 4 - Word Table
 
 Table of grid layout options (continued) [cont. from the Grid Layout extension]
 table 			cell spacings		headings	row numbering
-table of actor words	{11, 12, 10, 12, 0}	true		true
 table of action words	{10, 15, 12, 10, 0}	true		true
-
-Table of actor words
-p1		p2		p3		p4		p5
-"powerful"	"greedy"	"yellow"		"hopeless"	"black"
-"ancient"	"giving"		"royal"		"abandoned"	"green"
-"weak"		"old"		"cautious"	"soaring"	"honest"
-"inconstant"	"cruel"		"hopeful"	"stuck"		"digging"
-"man"		"white"		"wise"		"dead"		"child"
-"sorrowful"	"woman"	"baby"		"vacant"		"grey"
-"homely"	"crazy"		"foolish"		"animal"		"brown"
-"welcoming"	"dirty"		"clean"		"benevolent"	"nurturing"
-"childish"	"despondent"	"being"		"blue"		"saintly"
 
 Table of action words
 p1		p2		p3		p4		p5
@@ -7157,25 +7273,79 @@ Chapter 2 - Scenery
 
 Part 16 - Western Platform
 
-The Western Platform is west of the Main Platform. The printed name is "West Platform". "This is the west side of the platform that curves around the face of the Engine. Mounted on the railing and connected to the Engine by a series of fine silver chains is a large, steel abacus, the beads of which are interlocking gears. Suspended above that is what appears to be another abacus, only much more complex, with letters painted on the large beads. There is also an ornate lectern with a book chained to it."
+Chapter 1 - Description
 
-An abacus called the actor-control is scenery, in the Western Platform. The description is "The abacus is made of steel, with gears as the beads, with enough rods to display a five-digit number. It's connected via a web of fine silver chains to the huge Engine and also to another abacus, suspended above it. You remember enough of your elementary mathematics devotions to tell that the abacus currently reads [stored value]."
+The Western Platform is a mirror-room, west of the Main Platform. The printed name is "West Platform". 
 
-The word-table of the actor-control is the table of actor words.
+Chapter 2 - Actor Display
 
-The stored value of the actor-control is 16233.
-The stored meaning of the actor-control is "Powerful woman royal soaring honest"
+The actor-display is a display board, scenery, in the Western Platform. The viewed model of the actor-display is the actor-model.
+
+Chapter 3 - Actor Control
+
+An abacus called the actor-control is scenery, in the Western Platform. 
+
+There is a difference-engine model called the actor-model.
+The controlled model of the actor-control is the actor-model.
+
+The stored value of the actor-model is 16233.
+The stored meaning of the actor-model is "Powerful woman royal soaring honest".
+The word-table of the actor-model is the table of actor words.
+
+A correctness appraisal rule for the actor-model:
+	if the stored value of the actor-model is 14936 or the stored value of the actor-model is 14966:
+		say "Well, it’s not great, but it’s probably as close as I’m going to get.";
+		rule succeeds;
+
+Instead of abacus-setting the actor-control to when the actor-model is correctly set:
+	say "It’s not great, maybe, but it’s probably the best I’m going to manage.";
+
+Chapter 4 - Word Table
+
+Table of grid layout options (continued) [cont. from the Grid Layout extension]
+table 			cell spacings		headings	row numbering
+table of actor words	{11, 12, 10, 12, 0}	true		true
+
+Table of actor words
+p1		p2		p3		p4		p5
+"powerful"	"greedy"	"yellow"		"hopeless"	"black."
+"ancient"	"giving"		"royal"		"abandoned"	"green."
+"weak"		"old"		"cautious"	"soaring"	"honest."
+"inconstant"	"cruel"		"hopeful"	"stuck"		"digging."
+"man"		"white"		"wise"		"dead"		"child."
+"sorrowful"	"woman"	"baby"		"vacant"		"grey."
+"homely"	"crazy"		"foolish"		"animal"		"brown."
+"welcoming"	"dirty"		"clean"		"benevolent"	"nurturing."
+"childish"	"despondent"	"being"		"blue"		"saintly."
 
 Part 17 - Office
 
-The Office is a room. "A bare, humorless office. Its occupant must have rushed out when he heard the clatter, leaving both the door and the east window open."
+Chapter 1 - Description
 
-The office window is an open door, east of the office. Through the office window is the Dank Alley.
+The Office is a room. " This is a grey office, a lot like a monks cell. Whoever was in it probably rushed out because of the guards clattering towards them. Either that or this is where the Calculatrix herself works."
+
+The office window is an open door, east of the office. "Foolishly, they’ve left the window wide open. Shame this is the second floor!".
+
+The description of the office window is "The window overlooks one of the grubby streets outside. There’s a faintly filthy smell drifting in." Through the office window is the Dank Alley.
+
+Chapter 2 - Scenery
+
+Some furnishings are scenery, in the office. "Desk, files, drawers. Nowhere decent to hide."
+
+Instead of doing something when the furnishings are physically involved:
+	say "There’s no good place to hide here. I need to get away!";
+
+Chapter 3 - Exits
+
+Instead of going through the subtle escape from the Office:
+	say "No chance. The guards are coming!";
 
 After going through the office window:
-	say "You hop out the window and slide down the rainspout into a handily placed pile of rubbish. And there you remain, hardly breathing, as you hear guards running out of the Counting House and into the alleys around you. You've made it. You take a moment to breathe and look for the first time at the card in your hand. It's punched with holes that spell out '462 Old Place, DOCKLANDS.' And below that 'BEWARE.' The Docklands are the worst part of the city. You pull yourself out of the garbage. You have a long walk ahead of you.";
+	say "No need to ask twice.[paragraph break]I swing my legs up onto the sill and then I’m over and out – yuk! – straight into a pile of rotting garbage. Something crawls out over my leg but I’m smart and I don’t scream, which means the guards overhead stick their heads out and then disappear again.[paragraph break]Then I’m up, brushing myself down and – once I’m two streets away – taking a deep breath. I might have survived all that but the card in my hand is only going to send me somewhere else. And if I’m following the Figure, things could get pretty hairy pretty fast.[paragraph break]The card, in a neat cog-calligraphic hand underneath the punched-out holes, reads 462 Old Place, DOCKLANDS. Not the nicest part of the city. But I’ve got to stop the Figure stealing the Perpetuum before it’s too late. And that’ll be soon. Thing about time is, it [i]always[r] is. So right now it’s time to get moving!";
 	pause the game;
 	try looking;
+
+Chapter 4 - Scene End
 
 Calculatrix Chase ends in escape when the location is the Dank Alley. 
 
@@ -7279,32 +7449,32 @@ Instead of going a direction in Front Door when the noun is due east:
 
 Chapter 2 - Door
 
-A door called the warehouse door is locked, not open, west of the Front Door. "This side of the warehouse is right up against the side wall of another: I could slip around to north or south."
+A door called the huge iron door is locked, not open, west of the Front Door. "This side of the warehouse is right up against the side wall of another: I could slip around to north or south."
 
-The description of the warehouse door is "The door is made of thick metal – it's amazing the boards below don't break from the weight. It's locked with a huge iron bar and a padlock. It's almost like it's talking to me saying, Wren, you need to find another way in."
+The description of the huge iron door is "The door is made of thick metal – it's amazing the boards below don't break from the weight. It's locked with a huge iron bar and a padlock. It's almost like it's talking to me saying, Wren, you need to find another way in."
 
-Instead of going through the warehouse door from the Front Door:
-	try examining the warehouse door instead;
+Instead of going through the huge iron door from the Front Door:
+	try examining the huge iron door instead;
 
-Instead of opening, pushing, pulling or turning the warehouse door:
+Instead of opening, pushing, pulling or turning the huge iron door:
 	say "The door is locked.";
 
-Instead of unlocking the warehouse door with the wrench:
-	try attacking the warehouse door with the wrench;
+Instead of unlocking the huge iron door with the wrench:
+	try attacking the huge iron door with the wrench;
 
-Instead of unlocking the warehouse door with something:
+Instead of unlocking the huge iron door with something:
 	say "I don't have a key to this door.";
 
-Instead of attacking the warehouse door:
+Instead of attacking the huge iron door:
 	say "If I had a thousand years to scratch away at that padlock with my clock key – or maybe only a hundred with something better – I might be able to get through that iron bar. But what's forged lasts, as the Abbot says, and I wasn't forged.";
 
-Instead of attacking the warehouse door with the wrench:
+Instead of attacking the huge iron door with the wrench:
 	say "It might be a good wrench but I can hardly batter my way through iron with it, can I? A boot's no good for a butter-knife, as they say.";
 
-Instead of attacking the warehouse door with something:
-	try attacking the warehouse door;
+Instead of attacking the huge iron door with something:
+	try attacking the huge iron door;
 
-Rule for supplying a missing second noun when the noun is the warehouse door while unlocking:
+Rule for supplying a missing second noun when the noun is the huge iron door while unlocking:
 	say "I don't have a key to this door." instead;
 
 Part 4 - North Side
@@ -7578,15 +7748,18 @@ After going through the air pocket from the Drain Pipe:
 	now the air pocket is examined;
 	continue the action;
 
-After going through the air pocket from the Loading Bay:
+After going through the air pocket from the Loading Bay when the warehouse door is closed:
 	say "I suppose the water-rats didn't get a chance to eat my toes last time. I drop back into the water of the drain.";
 	continue the action;
+
+Instead of going through the air pocket from the Loading Bay when the warehouse door is open:
+	say "I can’t. The crate is completely blocking the drain. Next high tide, this place is going to [i]flood[r].";
 
 Part 10 - Loading Bay
 
 Chapter 1 - Description
 
-The Loading Bay is a room. "I'm inside the warehouse but there's no sign of the Figure. Or anyone else. Or anything. The warehouse may be massive but it seems to be completely empty, [if the loading-bay door is open]just that crate blocking the drain[otherwise]just one huge crate wrapped all round with thick iron chains[end if] and some piles of debris like those outside. There's enough floor space for a game of clockball, continuing off to the south.[paragraph break]About halfway down is the large metal door I saw from the dock. Above it a fat pipe crosses from wall to wall. The drain I came up from is by the north wall.". The printed name is "Loading".
+The Loading Bay is a room. "I'm inside the warehouse but there's no sign of the Figure. Or anyone else. Or anything. The warehouse may be massive but it seems to be completely empty, [if the warehouse door is open]just that crate blocking the drain[otherwise]just one huge crate wrapped all round with thick iron chains[end if] and some piles of debris like those outside. There's enough floor space for a game of clockball, continuing off to the south.[paragraph break]About halfway down is the large metal door I saw from the dock. Above it a fat pipe crosses from wall to wall. The drain I came up from is by the north wall.". The printed name is "Loading".
 
 Chapter 2 - Scenery
 
@@ -7624,10 +7797,10 @@ The long ladder can be placed. The long ladder is not placed.
 The long ladder can be stuck. The long ladder is not stuck.
 
 After printing the description of the placed long ladder:
-	say " The ladder's propped underneath the pipe.";
+	say "The ladder's propped underneath the pipe. ";
 
 After printing the description of the stuck long ladder:
-	say " The ladder leads down from the platform.";
+	say "The ladder leads down from the platform. ";
 
 Rule for writing a paragraph about the long ladder:
 	say "[if placed]A long ladder leans against the wall below the pipe.[otherwise if stuck]The ladder leads from the platform to the earth floor below.[otherwise]There's a long ladder here.[end if]";
@@ -7660,17 +7833,20 @@ A warehouse pipe is a kind of thing. A warehouse pipe is usually scenery, privat
 
 The north pipe is a warehouse pipe, in the Loading Bay. "The pipe's a fair few feet up the wall. What it's for is anyone's guess." 
 
-Instead of putting the long ladder against the north pipe:
+Instead of putting the long ladder against a warehouse pipe:
+	try standing the long ladder up instead;
+
+Instead of standing the long ladder up when the player can see a warehouse pipe:
 	fire TRIG_LADDER_PIPE;
 	move the long ladder to the location;
 	now the long ladder is placed;
 
-Instead of putting the middle of the rope on the north pipe:
+Instead of putting the middle of the rope on a warehouse pipe:
 	try fastening the noun to the second noun instead;
 
-Before doing something when the north pipe is physically involved:
+Before doing something when a warehouse pipe is physically involved:
 	unless the long ladder is placed and the long ladder is in the location:
-		unless we are putting the long ladder against the north pipe:
+		unless we are putting the long ladder against the second noun or we are fastening a rope segment to the second noun or we are untying a rope segment from the second noun:
 			say "The pipe's out of my reach." instead;
 
 Section 5 - Sliding Door
@@ -7678,7 +7854,7 @@ Section 5 - Sliding Door
 Rule for printing the description of the loading-bay door when in the Loading Bay:
 	say "The huge metal door is made of sliding iron bars that could be lifted up if, say, I was a twelve foot Hotlands warrior.";
 
-Rule for supplying a missing second noun when the noun is the loading-bay door and the location is the Loading Bay while unlocking:
+An unlocking rule for the loading-bay door when the location is the Loading Bay:
 	say "I don't have a key." instead;
 
 Instead of unlocking the loading-bay door with something when the location is the Loading Bay:
@@ -7690,24 +7866,83 @@ Instead of opening, pushing, pulling or turning the loading-bay door:
 Instead of attacking the loading-bay door when the location is the Loading Bay:
 	say "I don't stand a chance.";
 
-Section 6 - Rope
+Section 6 - Crate
+
+An enormous packing crate is scenery, in the Loading Bay. "An enormous packing crate. Whatever’s inside must be important because its wrapped around with iron security chains, almost like they were afraid of whatever’s inside breaking out[if the north end of the rope is tied to the packing crate]. The rope is tied to the crate[end if]."
+
+Rule for printing the description of the enormous packing crate when the warehouse door is open:
+	say "The crate has dropped into the drain, blocking my way out!";
+
+The printed name of the enormous packing crate is "crate".
+
+Instead of taking the packing crate:
+	say "The crate is far too big and heavy for me to carry, I’d need to be a giant to even get my arms around it! But I could probably push it along the floor a little if I needed to.";
+
+Instead of pushing the packing crate:
+	try pushing the noun to nothing;
+
+Rule for supplying a missing second noun when pushing the packing crate to:
+	say "Where should I push the crate?";
+
+Understand "push [enormous packing crate] down/into/through/in/to [air pocket]" as pushing it to. [Not a totally smart thing to do - i.e. the parser never generates such a command - but good enough for what we need]
+
+Instead of pushing the enormous packing crate to a direction (called d):
+	if d is down or d is north:
+		try pushing the noun to the air pocket;
+	otherwise if d is south:
+		say "I put my shoulderblades to the side of the crate and dig my heels in and get it to move maybe an inch... not much further. Another look at the room is enough to convince me there’s no way I can push the crate all the way over there." instead;
+	otherwise:
+		continue the action; [[BUG]: new response required here]
+
+Instead of pushing the enormous packing crate to the air pocket:
+	abide by the crate pushing rules;
+	assert that the south end of the rope is tied to the warehouse door issuing "Rope is tied to door.";
+	assert that the north end of the rope is tied to the enormous crate issuing "Rope is tied to crate.";
+	assert that exactly two rope segments are coiled issuing "Two rope segments coiled.";
+	say "Putting my shoulderblades to the side of the crate and digging my heels into the floorboards, I manage to move the crate a tiny inch towards the drain. Every inch after that is easier as more and more of the crate is out of contact with the floor, until suddenly it’s moving and I nearly fall backwards with it. The crate tumbles away into the drain. The rope goes taut. And across the hall there’s the sound of moving metal...";
+	now the warehouse door is open;
+
+The crate pushing rules are a rulebook.
+
+A crate pushing rule when the enormous packing crate is unsuspended:
+	say "I could push the crate down the drain but then it’d be gone and it’d probably block my way out." instead;
+
+A crate pushing rule when the enormous packing crate is suspended:
+	let r be the other end of the rope nearby;
+	if r is off-stage or r is unanchored:
+		say "I’ve attached this rope to the crate but it’s not tied off anywhere, so surely I’d lose the whole thing if I pushed the crate down the drain?" instead;
+
+A crate pushing rule when no rope segment is coiled:
+	say "Even if the rope was taut – which it isn’t, not by a long way – I don’t think this crate’s heavy enough to rip the door right out of the wall.";
+
+A crate pushing rule when exactly one rope segment is coiled:
+	say "There’s still so much slack in the rope even with it passing over one of the pipes, that I’d just lose the crate down the hole if I did that.";
+
+Section 7 - Rope
 
 A rope segment is a kind of thing.
 
 Interconnection relates one rope segment to another (called the other end). The verb to be terminated at implies the interconnection relation. 
 
-Attachment relates one thing (called the anchor) to one rope segment. The verb to be tied to implies the attachment relation.
+Attachment relates one thing (called the anchor) to one rope segment. The verb to be tied to implies the reversed attachment relation.
 
 A rope segment can be coiled. A rope segment is usually not coiled.
 
 Definition: a rope segment (called the segment) is anchored:
-	if the segment is coiled, yes;
 	if the anchor of the segment is nothing, no;
 	yes;
 
 Definition: a rope segment (called the segment) is unanchored:
-	if the segment is anchored, no;
-	yes;
+	unless the segment is anchored, yes;
+	no;
+
+Definition: a thing is suspended:
+	if a rope segment is tied to it, yes;
+	no;
+
+Definition: a thing is unsuspended:
+	unless it is suspended, yes;
+	no;
 
 To decide which rope segment is the rope nearby:
 	if the location is the Loading Bay:
@@ -7743,20 +7978,20 @@ Rule for writing a paragraph about a rope segment (called the segment):
 To say the room description details of (the segment - a rope segment):
 	say "It";
 	if the segment is tied to something (called the anchor):
-		say " is tied to [the anchor] and ";
-	otherwise if the segment is coiled:
-		say " is looped over a pipe near the ceiling and ";
-	otherwise:
-		say "[']s coiled up on the ground and ";
+		say "'s tied to [the anchor] and";
+	if the segment is coiled:
+		say " is looped over a pipe near the ceiling and";
+	if the middle of the rope is not held and the other end of the segment is off-stage and the segment is unanchored and the segment is not coiled:
+		say " is coiled up on the ground and";
 	[end if]
 	if the other end of the segment is on-stage:
 		if the other end of the segment is coiled:
-			say "disappears to the [if the segment is the north end of the rope]south[otherwise]north[end if] at a sharp angle up towards the roof. It ";
+			say " disappears to the [if the segment is the north end of the rope]south[otherwise]north[end if] at a sharp angle up towards the roof. It";
 		otherwise:
-			say "snakes away to the [if the segment is the north end of the rope]south[otherwise]north[end if]. It ";
+			say " snakes away to the [if the segment is the north end of the rope]south[otherwise]north[end if]. It";
 		[end if]
 	[end if]
-	say "looks far too heavy for me to carry, but I could probably drag it around.";
+	say " looks far too heavy for me to carry, but I could probably drag it around.";
 
 The south end of the rope is a rope segment, privately-named. The south end of the rope is terminated at the north end of the rope. The printed name is "rope". Understand "rope" as the south end of the rope.
 
@@ -7764,7 +7999,7 @@ The middle of the rope is a rope segment, privately-named. The printed name is "
 
 Rule for printing the name of a rope segment (called r) while clarifying the parser's choice of something:
 	if r is the middle of the rope:
-		say "end you're holding";
+		say "end I'm holding";
 	otherwise if the player holds the middle of the rope:
 		if r is tied to something (called the anchor):
 			say "end tied to [the anchor]";
@@ -7773,9 +8008,15 @@ Rule for printing the name of a rope segment (called r) while clarifying the par
 		otherwise:
 			say "length coiled up on the ground";
 
+Rule for implicitly taking a rope segment (called r):
+	say "(first taking [the r])[command clarification break]";
+	try taking r;
+	assert that the player carries the middle of the rope issuing "Player segment carried.";
+	redirect the action from r to the middle of the rope;
+
 Section 6.1 - Taking Rope
 
-Instead of taking a rope segment when the player has the middle of the rope and the noun is unanchored and the other end of the noun is off-stage:
+Instead of taking a rope segment when the player has the middle of the rope and the noun is unanchored and the noun is not coiled and the other end of the noun is off-stage:
 	say "I couldn't carry the whole rope. It's the size of two of me!";
 
 Instead of taking a rope segment when the player has the middle of the rope:
@@ -7784,10 +8025,10 @@ Instead of taking a rope segment when the player has the middle of the rope:
 Carry out taking a rope segment:
 	now the player carries the middle of the rope instead;
 
-Report taking a rope segment when the noun is not tied to something and the other end of the noun is off-stage:
+Report taking a rope segment when the noun is unanchored and the other end of the noun is off-stage:
 	say "I pick up one end of the long rope." instead;
 
-Report taking a rope segment when the noun is tied to something and the other end of the noun is off-stage:
+Report taking a rope segment when the noun is anchored and the other end of the noun is off-stage:
 	say "I've picked up the other end of the long rope." instead;
 
 Report taking a rope segment:
@@ -7795,17 +8036,11 @@ Report taking a rope segment:
 
 Section 6.2 Going with Rope
 
-Definition: a room is in the main warehouse:
-	if it is the Loading Bay, yes;
-	if it is Storage, yes;
-	no;
+The main warehouse is a region. The Loading Bay and the Storage Bay are in the main warehouse.
 
-Definition: a room is not in the main warehouse:
-	if it is in the main warehouse, no;
-	yes;
-
-Instead of going to a room that is not in the main warehouse when the middle of the rope is carried:
-	say "The rope's too bulky for that!";
+Check going when the player carries the middle of the rope:
+	unless the room gone to is in the main warehouse:
+		say "The rope's too bulky for that!" instead;
 
 After going when the player carries the middle of the rope:
 	consider the rope movement rules;
@@ -7814,19 +8049,20 @@ After going when the player carries the middle of the rope:
 The rope movement rules is a rulebook.
 
 A rope movement rule:
-	if the room gone to contains a rope segment and the room gone from contains an anchored rope segment:
-		remove the middle of the rope from play;
-		say "First I let go of the rope.";
+	if the room gone to contains a rope segment and the room gone from contains an rope segment (called r):
+		if r is coiled or r is anchored:
+			remove the middle of the rope from play;
+			say "First I let go of the rope." instead;
 
 A rope movement rule:
 	if the room gone from contains an unanchored rope segment (called the loose end) and the room gone to contains a rope segment:
 		remove the loose end from play;
-		say "I haul the rope back along the floor, coiling it up as I go.";
+		say "I haul the rope back along the floor, coiling it up as I go." instead;
 
 A rope movement rule:
 	if the room gone from contains a rope segment (called the coil) and the other end of the coil is off-stage:
 		move the other end of the coil to the room gone to;
-		say "I drag the rope out along the floor behind me.";
+		say "I drag the rope out along the floor behind me." instead;
 
 Section 6.3 - Dropping Rope
 
@@ -7843,39 +8079,360 @@ Instead of dropping a rope segment when the location does not contain a rope seg
 
 Carry out dropping a rope segment:
 	remove the noun from play instead;
+	assert that the location contains a rope segment issuing "Location contains a rope segment.";
 
 Report dropping a rope segment:
 	say "I let go of the rope." instead;
 
-Section 6.4 - Tying Rope
+Section 6.4 - Looping Rope
 
-Rule for implicitly taking a rope segment (called r):
-	try taking r;
-	redirect the action from r to the middle of the rope;
+The rope-looping rules are a rulebook.
 
-Before fastening a rope segment to a warehouse pipe:
-	if the rope nearby is coiled:
-		say "I’d gain nothing from winding the rope any further around the pipe!" instead;
+A rope-looping rule when the rope nearby is coiled (this is the rope already coiled rule):
+	say "I’d gain nothing from winding the rope any further around the pipe!" instead;
 
-Before fastening a rope segment to a warehouse pipe:
-	if the rope nearby is tied to something: 
-		if the other end of the rope nearby is tied to something:
-			say "Both ends are already tied down!" instead;
-		otherwise:
-			say "I’ve only got the middle of the rope, not a free end.";
+A rope-looping rule when the rope nearby is anchored (this is the rope tied down rule): 
+	if the other end of the rope nearby is anchored:
+		say "Both ends are already tied down!" instead;
+	otherwise if the other end of the rope nearby is on-stage:
+		say "I’ve only got the middle of the rope, not a free end.";
 
-Before fastening a rope segment to a warehouse pipe:
+A rope-looping rule (this is the can't reach the pipe rule):
 	unless the long ladder is placed and the long ladder is in the location:
 		say "[one of]I try slinging the rope up in the air and over the pipe – no success. It’s too heavy for me to get it any distance up before it’s back down on my head again.[or]I can’t reach the pipe from down here![stopping]" instead;
 
 Instead of fastening a rope segment to a warehouse pipe:
+	abide by the rope-looping rules;
+	assert that the long ladder is in the location and the long ladder is placed issuing "The player can reach the rope.";
 	let x be the rope nearby;
 	now x is coiled;
 	say "[one of]I scramble a few rungs up the ladder with the end of the rope looped around my neck – not very safe, I know, but I’m working as fast as I can. Once I’m up high enough I chuck the rope over the pipe. Great. It’s now hanging down like a pulley![or]I scramble up the ladder and toss the rope over the piping.[stopping]";
 
+Section 6.5 - Tying rope
+
+Definition: a thing is a cleat:
+	if it is the enormous packing crate, yes;
+	if it is the warehouse door, yes;
+	no;
+
+The rope-fastening rules are an object-based rulebook.
+
+A rope-fastening rule for something suspended:
+	say "I’d gain nothing by tying the rope up in loops." instead;
+
+A rope-fastening rule for something unsuspended when the rope nearby is anchored:
+	say "I’d gain nothing by tying the rope up in loops." instead;
+
+Instead of fastening a rope segment to a cleat:
+	abide by the rope-fastening rules for the second noun;
+	now the rope nearby is tied to the second noun;
+	remove the middle of the rope from play;
+	continue the action;
+
+After fastening a rope segment to a cleat when no on-stage rope segment is coiled:
+	let r be the other end of the rope nearby;
+	say "I fasten the free end of the rope to [the second noun][if r is on-stage and r is anchored]. The other end is tied to [the anchor of r] across the room but there’s an enormous amount of slack in between[end if].";
+
+After fastening a rope segment to a cleat when exactly one on-stage rope segment is coiled:
+	let r be the other end of the rope nearby;
+	say "I tie off the free end of the rope to [the second noun][if r is on-stage and r is anchored]. The other end is tied to [the anchor of r] across the room but despite passing over one of the ceiling pipes there’s still plenty of slack in the system[otherwise]. The other end passes over one of the ceiling pipes and dangles free on the other side. I’ve made a pulley system, but it might not be enough to shift [the second noun][end if].";
+
+After fastening a rope segment to a cleat when at least two on-stage rope segments are coiled:
+	let r be the other end of the rope nearby;
+	say "[if r is not anchored]I tie this end of my pulley system off to [the second noun].[otherwise]I haul down on this end of the rope, feeling the fibres stretch. When the whole system is as taut as I can get it, I loop it through [the second noun] and tie it tighter than one of Drake’s Viennese burns. As the system relaxes the door seems to move maybe a second’s hand from the floor...[end if]";
+
+Section 6.6 - Untying rope
+
+Rule for supplying a missing second noun when untying a rope segment from something:
+	if the player can see a cleat:
+		if the rope nearby is tied to a cleat:
+			change the second noun to the anchor of the noun;
+
+Before untying the middle of the rope from something:
+	redirect the action from the middle of the rope to the rope nearby;
+
+Instead of untying a rope segment from something:
+	if the second noun is not a cleat:
+		say "[The noun] isn't tied to [that or those for the second noun]!" instead;
+	abide by the rope-untying rules;
+	now the noun is tied to nothing;	
+	say "[one of]It takes a bit of jiggling, but I work free the knot from [the second noun][or]I work free the knot from [the second noun][stopping].";
+
+The rope-untying rules are a rulebook.
+
+A rope-untying rule when the rope nearby is not anchored:
+	say "The rope isn’t tied to anything here." instead;
+
+A rope-untying rule when the warehouse door is open:
+	say "The rope system is held so tight I can’t begin to get the knots to move." instead;
+
+Instead of untying a rope segment from a warehouse pipe:
+	abide by the rope-unlooping rules;
+	now the noun is not coiled;
+	say "I pull the rope back down from the pipe.";
+
+Section 6.7 - Unlooping rope
+
+The rope-unlooping rules are a rulebook.
+
+A rope-unlooping rule when the rope nearby is not coiled:
+	say "The rope isn’t looped over the pipe here!" instead;
+
+A rope-unlooping rule when the rope nearby is anchored:
+	if the other end of the rope nearby is on-stage:
+		if the other end of the rope nearby is anchored:
+			say "But both ends of the rope are tied down!" instead;
+
+A rope-unlooping rule when the rope nearby is anchored:
+	if the other end of the rope nearby is on-stage:
+		remove the other end of the rope nearby from play;
+		now the other end of the rope nearby is not coiled;
+		now the rope nearby is not coiled;
+		say "Holding the rope just by where I’ve tied it, I haul it arm over arm until finally it falls free of the pipe overhead." instead;
+
+Section 6.8 - Pulling Rope
+
+Before pulling a rope segment:
+	unless the noun is the middle of the rope:
+		carry out the implicitly taking activity with the noun;
+
+Instead of pulling a rope segment:
+	abide by the rope-pulling rules;
+
+The rope-pulling rules are a rulebook.
+
+A rope-pulling rule when the warehouse door is open:
+	say "The rope is already as taut at it’ll go, holding that door open!" instead;
+
+A rope-pulling rule when the south end of the rope is anchored and no on-stage rope segment is coiled:
+	say "[one of]I can pull all I like, but I’m never going to just pull the door away from the wall. It’s supposed to move upwards, like someone was pulling it from above![or]I need to get that rope to pull upwards, not along the floor![stopping]" instead;
+
+A rope-pulling rule when the south end of the rope is anchored and exactly one on-stage rope segment is coiled:
+	say "[one of]There’s a tiny moment when I think I’m actually doing some good, before I try just hanging with all my weight on the rope. And that does no good. So what more can I do?[or]I’m simply not heavy enough to get that door to shift. I need something heavier than it. A battleship maybe, or a small moon.[stopping]" instead;
+
+A rope-pulling rule when at least two on-stage rope segments are anchored:
+	say "I tug one way and the other. Both ends of this rope are firmly tied." instead;
+
+A rope-pulling rule when the rope nearby is anchored and the other end of the rope nearby is off-stage:
+	say "This end is firmly tied." instead;
+
+A rope-pulling rule when the other end of the rope nearby is off-stage and the rope nearby is coiled:
+	now the rope nearby is not coiled;
+	say "I pull the rope clear from the pipe. It whips the floor with a vengeance." instead;
+
+A rope-pulling rule when the other end of the rope nearby is off-stage:
+	say "The free end of the rope waggles around the floor." instead;
+
+A rope-pulling rule when the other end of the rope nearby is anchored:
+	say "The other end of the rope is firmly tied." instead;
+
+A rope-pulling rule when the other end of the rope nearby is coiled:
+	now the other end of the rope nearby is not coiled;
+	remove the other end of the rope nearby from play;
+	say "There’s a thump as the other end of the rope uncoils from the pipe. I drag it back across the floor and gather it up." instead;
+
+A rope-pulling rule:
+	remove the other end of the rope nearby from play;
+	say "I pull the rope back over from the other end of the long room." instead;
+
 Part 11 - Storage
 
 The Storage Bay is a room, south of the Loading Bay. "This is the south end of the enormous room but it has another door to the east: this one less formidable-looking than the others and labeled with a sign: KEEP OUT. Sounds promising, even though from what I saw of the warehouse on the outside, there really can't be much more to the building at all. Perhaps this is the cupboard where the Figure sleeps." The printed name is "Storage".
+
+The south pipe is a warehouse pipe, in the Storage Bay. "The pipe's a fair few feet up the wall. What it's for is anyone's guess." 
+
+Chapter 2 - Warehouse Door
+
+The warehouse door is a door, not open, not openable, not locked, not lockable, east of the Storage Bay, west of Gas Platform. "The enormous warehouse continues back to the north towards the drain I came up by. There’s a second fat pipe crossing the room here." The description is "The door is designed to slide up into the ceiling and in the centre of it is an iron ring for lifting. Presumably the Figure can just slide it up, but I certainly can’t.[If the Warehouse Door is suspended and the warehouse door is closed] The rope I’ve got tied to it might help though[otherwise if the warehouse door is open] Instead I’ve got the rope tied to it, and my pulley system has lifted the whole thing about two feet from the floor[end if]."
+
+Instead of opening, pulling or pushing the closed warehouse door:
+	say "It’s far heavier than me. There’s no way I can move it unaided.";
+
+Instead of opening, pulling or pushing the open warehouse door:
+	say "It was hard enough getting it this far! I shouldn’t be ungrateful!";
+
+After going through the warehouse door:
+	say "[one of]Lying on my belly I pull myself through the gap into darkness. Halfway through I have a sudden horrible image: the Figure, standing by the crate in the drain with a candle to the rope that’s holding the enormous door above me. As quick as I can I pull myself through[or]I crawl under the door[stopping][if the player carries the long ladder]. Then I reach back through the gap and pull the ladder after me[end if].";
+	continue the action;
+
+Part 12 - Gas Platform
+
+Chapter 1 - Description
+
+Gas Platform is a room.
+
+Gas Platform can be murky or bright. Gas Platform is murky.
+
+Rule for printing the name of Gas Platform:
+	say "[if Gas Platform is murky]Darkness[otherwise]Gas Platform[end if]";
+
+Rule for printing the description of a lit room when in the Gas Platform:
+	if the Gas Platform is murky:
+		say "I’m on some kind of metal platform in the dark. The crack of light below the door is enough to make out a few controls beside me and a set of stairs leading down to the north. Down seems an odd way to be going since we’re above the river. There’s probably serpents down there, or octopuses, or water-camels.";
+	otherwise:
+		say "I’m on a metal platform that sticks out over an impossibly large space, twice the size of the warehouse I’m in at least. The room below is deep: the original staircase to the north gives up halfway down[if the long ladder is stuck]. Beyond that there’s the ladder[end if].[paragraph break]In the light of a hundred gas-lamps I can see the carved earth walls. This whole place has been scooped clean out of the rock and it’s filled with rows upon rows of silent metal men: a whole army of statues. Perhaps somewhere amongst them is the Figure.";
+
+Rule for writing a paragraph about the warehouse door when in the Gas Platform:
+	now the warehouse door is mentioned;
+	do nothing;
+
+Chapter 2 - Staircase
+
+Section 1 - Staircase
+
+The broken staircase is a door, open, not openable, scenery, down from the Gas Platform, up from the Warehouse Basement, north from the Gas Platform.
+
+Rule for printing the name of the broken staircase when in the Gas Platform:
+	say "staircase";
+
+Rule for printing the description of the broken staircase when in the Gas Platform:
+	if the Gas Platform is murky:
+		say "I can’t see much beyond the first few steps.";
+	otherwise:
+		say "The staircase gives up halfway to the floor. It’s like the platform was sticking its tongue out at the army below. It’s probably them who chopped it in half."
+
+The broken staircase can be fixed. The broken staircase is not fixed.
+
+Instead of going through the broken staircase from the Gas Platform when the broken staircase is not fixed:
+	if the Gas Platform is murky:
+		say "[one of]I feel my way down the first few steps: then the metal underfoot starts to rock and sway. Perhaps all this is built on the water and is floating – or perhaps the supports have rotted and the staircase is about to fall. Terrified, I race back up to the safety of the platform.[or]I’m not going down that staircase in the dark. There’s something wrong about it.[stopping]";
+	otherwise:
+		say "The staircase ends halfway to the ground, in midair with nothing holding it up.";
+
+After going through the broken staircase from the Gas Platform:
+	say "There’s no way I’m turning my back on those metal men, so I swing round to the back of the ladder and climb down that, even though there’s a moment when I’m hanging out over an enormous drop.[paragraph break]None of them move as I make my way down.";
+	continue the action;
+
+Section 2 - Ladder
+
+Instead of standing the long ladder up when in the Gas Platform:
+	if the Gas Platform is murky:
+		say "It’s far too dark to go waving the ladder around in here. I’d probably knock myself out.";
+	otherwise:
+		move the long ladder to the location;
+		now the long ladder is stuck;
+		now the broken staircase is fixed;
+		say "It takes a small army of Wren’s all working together, but eventually I get the ladder over the side and pointing down towards the rock floor below. Then I let go and it lands with a [i]crash[r].[paragraph break]None of the metal men react.";
+
+Chapter 3 - Gas controls
+
+Section 1 - Control Panel
+
+Some gas controls are scenery, in the Gas Platform. "[if the Gas Platform is murky]There might be more controls out there in the dark but what’s visible are a button below a large lever, and a red-painted bolt.[otherwise]These are the controls for the gas-lights. There must be a big tank under the platform or something.[end if]"
+
+Instead of switching on the gas controls:
+	say "I don’t know what they do, let alone how to make them work. There’s nothing for it, Wren, but to guess and hope you don’t break anything!";
+
+Section 2 - Ignition Bolt
+
+An ignition bolt is part of the gas controls. The description of the ignition bolt is "[if the Gas Platform is bright]Around the bolt is engraved HI, OFF and IGN. Whatever that means.[otherwise]The bolt’s just a bolt, but knowing my luck I’ll turn it and find it was the only thing holding this platform up.[end if]"
+
+The ignition bolt has a number called the setting. The setting of the ignition bolt is 1.
+
+Instead of turning or opening the ignition bolt:
+	say "I can’t turn it with just my hands. Which might even be lucky.";
+
+Instead of unscrewing the ignition bolt with the wrench:
+	abide by the bolt-turning rules;
+
+Instead of screwing the ignition bolt in with the wrench:
+	try unscrewing the noun with the second noun instead;
+
+The bolt-turning rules are a rulebook.
+
+A bolt-turning rule when the Gas Platform is bright:
+	say "I’ve already got the lights working. I don’t want to be in the dark now I’ve seen what’s down there." instead;
+
+A bolt-turning rule when the long lever is not armed:
+	say "The bolt doesn’t seem to turn: partly because the lever’s in the way of the wrench handle." instead;
+
+A bolt-turning rule when the ignition button is not ignited:
+	change the setting of the ignition bolt to the remainder after dividing the setting of the ignition bolt by 2; [0, 1, 2]
+	increment the setting of the ignition bolt by 1; [1, 2, 3]
+	if the setting of the ignition bolt is:
+		-- 2:
+			say "I heave the bolt around. The room is suddenly filled by a hissing sound, like a thousand baby cobras coiling and getting ready to strike!" instead;
+		-- 3:
+			say "I turn the bolt further. The baby cobras grow up into hot-headed angry adult cobras the size of oak trees. I’m almost deafened by the noise." instead;
+		-- 1:
+			say "I heave the bolt further still. Abruptly, the room falls quiet." instead;
+
+A bolt-turning rule when the ignition button is ignited:
+	now the Gas Platform is bright;
+	say "I heave the bolt around and the stars on the wall erupt into flame, filling the chamber with light! And what a chamber – deep and wide – this is like standing inside the clock of the Cathedral all over again. The room below must be carved out of the rock below the riverbed, and its wall are crisscrossed with pipes which are now providing light.[paragraph break]And the room is full of people. Men, standing in rows and staring at me. I try not to move – hoping they won’t see me. They’re doing the same. Its like the room was filled with mirrors reflecting my image. I wave a hand but nothing happens. Nothing at all. They’re statues – in full armour – gleaming metal statues, more than I could count without growing thirty or forty more hands.[paragraph break]Whatever they are they must be connected to the Figure. There’s nothing for it, Wren, but to get a closer look somehow..." instead;
+
+Section 3 - Lever
+
+A long lever is part of the gas controls. The description of the long lever is "[if the Gas Platform is bright]A long metal lever labeled IGN is red letters.[otherwise]It feels like a metal lever, not as heavy as the one on the Difference Engine but still needing both hands to pull.[end if]"
+
+The long lever can be armed. The long lever is not armed.
+
+Instead of pushing the long lever:
+	say "The lever doesn’t push.";
+
+Instead of pulling or switching on the armed long lever:
+	say "The lever’s already pulled up as far as possible.";
+
+Instead of pulling or switching on the long lever:
+	now the long lever is armed;
+	say "Pulling the lever takes all the strength I’ve got left (which isn’t too much). In reply from the darkness comes the sound of a thousand tiny clicks.";
+
+Section 4 - Ignition
+
+An ignition button is part of the gas controls. The description of the ignition button is "[if the Gas Platform is bright]A large brass button labeled IGN.[otherwise]Just underneath the lever is a large brass button.[end if]"
+
+The ignition button can be ignited. The ignition button is not ignited.
+
+Instead of pushing or switching on the ignition button:
+	abide by the ignition rules;	
+
+The ignition rules are a rulebook.
+
+An ignition rule when the ignition button is ignited:
+	say "I wouldn’t want to risk turning the gas off by accident!" instead;
+
+An ignition rule when the long lever is not armed:
+	say "I push the button. Huh. Doesn’t seem to do anything." instead;
+
+An ignition rule when the setting of the ignition bolt is 1:
+	now the long lever is not armed;
+	say "I push the button. The lever drops back suddenly almost taking my arm off! There’s that clicking noise all around again." instead;
+
+An ignition rule when the setting of the ignition bolt is 2:
+	now the ignition button is ignited;
+	now the long lever is not armed;
+	say "I push the button. The lever drops back suddenly almost taking my arm off! At the same time, the room is filled by a snapping noise and suddenly the darkness is full of stars! A whole sky of blue points. Where am I now? Outside? It’s a huge space, wherever it is. The hissing noise has stopped, too." instead;
+
+An ignition rule when the setting of the ignition bolt is 3:
+	say "I push down on the button but it refuses to press. One of those cobras must have gotten stuck underneath it or something." instead;
+
+Part 13 - Warehouse
+
+The Warehouse Basement is a room. "I’m standing in a forest of eyes, and arms, and hands. There are metal men all around me, on every side, all slightly different. The flickering gas-lights make it look and sound like they’re breathing. Any one might be about to reach out a hand and grab my shoulder… I need to work out the Figure’s plan as quickly as possible and then get out of here. In one piece!"
+
+The printed name of the Warehouse Basement is "Warehouse"
+
+Rule for printing the name of the broken staircase when in the Warehouse Basement:
+	say "ladder";
+
+Rule for printing the description of the broken staircase when in the Warehouse Basement:
+	say "The ladder’s my ticket out of here, back up to the platform. (I don’t want to think about how I’m going to get back down that drain!)";
+
+Instead of going through the broken staircase from the Warehouse Basement:
+	say "I’m not running till I’ve worked out what the Figure’s up to. Once I know that, [i]then[r] I’m running.";
+
+The army of metal statues is scenery, in the Warehouse Basement. "Each man is made of fine steel and brass and stands upright, about six foot tall. Their faces are bare faceplates with tiny glass eyes, but they all look like they’re crying because of deep channels for rain run-off that run from forehead to chin. Each one has a small hatch in the middle of their chest, a tiny fraction ajar."
+
+Instead of doing something when the army of metal statues is physically involved:
+	say "With shaking fingers I open the hatch on the front of the nearest man. No surprise maybe to find he’s full of clockwork, but it’s clockwork like I’ve never seen before: cogs so small it’s like his whole body is infested with woodlice and maggots scrambling over one another. It’s like someone had taken the whole of the Difference Engine and shrunk it to fit.[paragraph break]Except there’s obviously something missing. All those cogs would need a spring about the size of the metal man’s head and it would need to be placed right in the middle where it could unwind to every part of his body. But in the perfect spot there’s nothing but a gap, like someone built this machine but never gave it a heart. What good are these men if all they do is stand in line?[paragraph break]That’s when I notice the seal. Something embossed on the inside of the chest hatch. I take a step back to see it more clearly – a winding key above an ocean wave, familiar from somewhere – and step into something firm and solid. A man out of line?[paragraph break]Then a hand grips my throat. 'Who sent you here?' demands a voice, smooth and icy. A voice I know well, that I should have been expecting. 'Who else knows about this place? Tell me before I crush every pinion in your neck.'[paragraph break]My toes are scrabbling on the ground. I try to scream but nothing comes out beyond a whisper. I can see the outline of the Figure’s cowl and beyond that, for the first time, almost make out an unhappy face.[paragraph break]'You’ll tell me or you’ll die here,' the Figure says quietly. 'You’ll die cold and alone like the rat you are.'[paragraph break]The room is getting darker. The tank for the gas lamps must be running low. Soon it’ll be me and the Figure and all these men, and no-one will ever find me or know where I’ve gone. Or is that someone? In the background? A shape, a shadow, my imagination or…[paragraph break]'Covalt?' I whisper, in desperation. 'Covalt, is that…'[paragraph break]Then the lights disappear completely. The heavy cord of the clock-key round my neck has become tangled while I was asleep. The stars are coming out. And then I’m underwater again.";
+	pause the game;
+	move the player to the feather bed;
+
+Understand "mechanical", "men" as the army of metal statues.
+
+Book 9 - Return to Covalt's
+
+
 
 Book W - Walkthrough Script
 
@@ -7883,27 +8440,31 @@ Test walkthrough with "test intro / test abbey / test cathedral / test clockchas
 
 Test intro with "z/w/hide in clock/put tumbler on door/z/z/z/out/w/w".
 
-Test abbey with "d/e/sw/e/get cup/e/n/put cup in bracket/w/w/z/z/z/e/e/get tea/x train/get gear/turn spigot/wind key/put tea in basket/w/sw/sw/w/get new gear/ne/e/ne/e/put new gear in train/pull lever/z/z/z/w/w/z/z/z/e/e/e/get tea/w/sw/sw/sw/w/put tea on table/get keys/get keys/e/e/e/unlock clock/set clock to 4:59/z/w/w/sw/sw/w"
+Test abbey with "d/e/sw/e/get cup/e/n/put cup in bracket/w/w/z/z/z/e/e/get tea/x train/get gear/turn spigot/wind key/put tea in basket/w/sw/sw/w/get new gear/ne/e/ne/e/put new gear in train/pull lever/z/z/z/w/w/z/z/z/e/e/e/get tea/w/sw/sw/sw/w/put tea on table/get keys/get keys/e/e/e/unlock clock/set clock to 4:59/z/w/w/sw/sw/w".
+
+Test abbey2 with "d/e/sw/e/get cup/e/n/put cup in bracket/w/w/z/z/z/e/e/get tea/x train/get gear/turn spigot/wind key/put tea in basket/w/sw/sw/w/get new gear/ne/e/ne/e/put new gear in train/pull lever/z/z/z/w/w/z/z/z/e/e/e/get tea/w/sw/sw/sw/w/put tea on table/get keys/get keys/e/e/e/unlock clock".
 
 [ "d/e/sw/w/z/e/ne/e/put cup in bracket/get tea/w/w/z/e/e/x train/get worn gear/turn spigot/w/sw/w/z/z/e/sw/w/get gear/e/ne/e/e/n/put gear in train/put leaves in basket/wind key/pull lever/z/w/w/z/e/e/get tea/z/w/sw/w/give tea to horloge/get keys/get keys/e/ne/z/z/sw/e/e/unlock clock/open clock/turn clock to 4:59/w/w/sw/sw/w" ]
 
-test cathedral with "w/n/e/get blue/get red/w/n/n/w/sw/open tome/get knife/ne/e/s/s/w/put red in brazier/put blue in brazier/get purple with knife/e/n/n/e/se/take work order/nw/w/w/sw/look up principia planetaria in catalogue/test steel/test brass/test gold/pull chain/ne/e/e/se/give principia to sa'at/take order/give wax to sa'at/get order/nw/w/n/e/give work order to doric/give work order to doric/n/lever, spring, winding key"
+test cathedral with "w/n/e/get blue/get red/w/n/n/w/sw/open tome/get knife/ne/e/s/s/w/put red in brazier/put blue in brazier/get purple with knife/e/n/n/e/se/take work order/nw/w/w/sw/look up principia planetaria in catalogue/test steel/test brass/test gold/pull chain/ne/e/e/se/give principia to sa'at/take order/give wax to sa'at/get order/nw/w/n/e/give work order to doric/give work order to doric/n/lever, spring, winding key".
 
-test clockchase with "z/z/z/nw/z/sw/u/z/z/jump/u/hold chain/pull lever/d/out/z/z/w/jump"
+test clockchase with "z/z/z/nw/z/sw/u/z/z/jump/u/hold chain/pull lever/d/out/z/z/w/jump".
 
-test rooftops with "sw/scrape mortar with knife/get bricks/ne/se/sw/drop bricks/ne/get plank/sw/put plank in notch/put bricks in notch/ne/get pipe/sw/get tarp/e/put pipe on chimney/put tarp on chimney/turn pipe sw/w/s/nw/turn compass south/turn crank/look through telescope/se/put balloon on vent/z/z/z/z/z/z/z/z/z/z/z/enter balloon"
+test rooftops with "sw/scrape mortar with knife/get bricks/ne/se/sw/drop bricks/ne/get plank/sw/put plank in notch/put bricks in notch/ne/get pipe/sw/get tarp/e/put pipe on chimney/put tarp on chimney/turn pipe sw/w/s/nw/turn compass south/turn crank/look through telescope/se/put balloon on vent/z/z/z/z/z/z/z/z/z/z/z/enter balloon".
 
-test steel with "turn steel crank/g/g/g/g/g/turn steel crank backwards/g/g/g/g/g/g/g/g"
+test steel with "turn steel crank/g/g/g/g/g/turn steel crank backwards/g/g/g/g/g/g/g/g".
 
-test brass with "turn brass crank"
+test brass with "turn brass crank".
 
-test gold with "turn gold crank/g/g/g/g/g/g/turn gold crank backwards/g/g"
+test gold with "turn gold crank/g/g/g/g/g/g/turn gold crank backwards/g/g".
 
-test covalt with "tell giant about balloon / tell giant about figure / tell covalt about abbot / tell covalt about perpetuum / x table / x shelves / x pendulums / x tools / x workbench / x brown lump / x mechanical monkey / ask covalt about difference / out"
+test covalt with "tell giant about balloon / tell giant about figure / tell covalt about abbot / tell covalt about perpetuum / x table / x shelves / x pendulums / x tools / x workbench / x brown lump / x mechanical monkey / ask covalt about difference / out".
 
-test countinghouse with "up / show order to guards / w / nw / n / e / z / z / d / x dials / get key / s / w / unlock abacus / set abacus to 14936 / e / e / set abacus to 78325 / w / pull lever / z / get card / n / w / w / ne / e / e";
+test countinghouse with "up / show order to guards / w / nw / n / e / z / z / d / x dials / get key / s / w / unlock abacus / set abacus to 14936 / e / e / unlock abacus / set abacus to 78325 / w / pull lever / z / get card / n / w / w / ne / e / e".
 
-test outsidewarehouse with "n/e/n/x rubble/get wrench/w/w/unscrew bolts with wrench/unscrew bolts with wrench/unscrew bolts with wrench/w/unscrew bolts with wrench/unscrew bolts with wrench/enter drain/u"
+test outsidewarehouse with "n/e/n/x rubble/get wrench/w/w/unscrew bolts with wrench/unscrew bolts with wrench/unscrew bolts with wrench/w/unscrew bolts with wrench/unscrew bolts with wrench/enter drain/u".
+
+test insidewarehouse with "x junk / get ladder / put ladder against pipe / get rope / put rope on pipe / tie rope to crate / get ladder / get rope / s / put ladder against pipe / put rope on pipe / tie rope to door / n / push crate down drain / s / get ladder / e / pull lever / turn bolt with wrench / push button / pull lever / turn bolt with wrench / stand ladder / down".
 
 Book X - Not For Release - Fixing the RNG
 
