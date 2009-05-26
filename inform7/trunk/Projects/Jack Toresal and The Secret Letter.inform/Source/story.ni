@@ -2,6 +2,8 @@
 
 [  Change Log
 When		Who		What
+22-May-2009	G. Jefferis	Hints
+21-May-2009	G. Jefferis	Hints
 13-May-2009	G. Jefferis	complete changes from BermanTranscriptResponse
 11-May-2009	G. Jefferis	changes from BermanTranscriptResponse
 8-May-2009	G. Jefferis	changes from BermanTranscriptResponse
@@ -330,7 +332,7 @@ Definition: a thing is nearby:
 
 Chapter 2 - Automatic doors
 
-Implicitly opening something is an activity.
+[ Implicitly opening something is an activity.
 
 Before going through a closed door (called the obstacle):
 	carry out the implicitly opening activity with the obstacle;
@@ -338,7 +340,7 @@ Before going through a closed door (called the obstacle):
 
 Rule for implicitly opening something (called the unopened item):
 	say "(first opening [the unopened item])[command clarification break]";
-	try silently opening the unopened item; 
+	try silently opening the unopened item; ]
 
 Chapter 3 - Landings
 
@@ -1022,27 +1024,91 @@ First check singing:
 
 Part 54 - Handling Hints
 
-Investigating is a scene.
+Grubbers Hints is a scene. Grubbers Hints begins when Trouble in Grubbers begins. Grubbers Hints ends when Trouble in Grubbers ends.
 
-Investigating begins when Trouble in Grubbers ends.
+Commerce Street Hints is a scene. Commerce Street Hints begins when Grubbers Hints ends.
+Commerce Street Hints ends when Meeting Bobby begins.
 
-Investigating ends when the player is in East Commerce Street for the first time.
+Mulling Hints is a scene. Mulling Hints begins when Commerce Street Hints ends. Mulling Hints ends when the location is in Maiden House [region].
 
-Mulling is a scene. Mulling begins when Meeting Bobby ends. Mulling ends when Bobby's adventure begins.
+Maiden House Hints is a scene. Maiden House Hints begins when Mulling Hints ends. Maiden House Hints ends when the location is not in Maiden House [the region].
 
-Every turn during Trouble in Grubbers:
-	Send the Trouble-In-Grubbers-Hints.
+Nighttime Hints is a scene. Nighttime Hints begins when Maiden House Hints ends. Nighttime Hints ends when the location is the Clearing.
 
-Every turn during Investigating:
-	Send the Investigating-Hints.
-[
-Every turn during Meeting Bobby:
-	Send the Chapter III Hints.
+Lord's Keep Hints is a scene. Lord's Keep Hints begins when Nighttime Hints ends. Lord's Keep Hints ends when Escaping Jail begins.
 
-Every turn during Mulling:
-	Send the Chapter IV Hints.
-]
-[Every turn during ]
+Escaping Jail Hints is a scene. Escaping Jail Hints begins when Lord's Keep Hints ends. Escaping Jail Hints ends when Escaping Jail ends.
+
+Escaping Sewer Hints is a scene. Escaping Sewer Hints begins when Escaping Jail Hints ends. Escaping Sewer Hints ends when the location is Commerce Street.
+
+Rooftop Hints is a scene. Rooftop Hints begins when Escaping Sewer Hints ends. Rooftop Hints ends when the Search begins.
+
+Search Hints is a scene. Search Hints begins when Rooftop Hints ends. Search Hints ends when the location is East Commerce Street.
+
+Hanging Hints is a scene. Hanging Hints begins when Search Hints ends. Hanging Hints ends when Bobby's Hanging ends.
+
+Raid Hints is a scene. Raid Hints begins when Hanging Hints ends. Raid Hints ends when Shannon's Company begins.
+
+Red Gate Hints is a scene. Red Gate Hints begins when Raid Hints ends. Red Gate Hints ends when DS31 is fired.
+
+Preparing Hints is a scene. Preparing Hints begins when Red Gate Hints ends. Preparing Hints ends when Journey To The Ball Ends.
+
+Dancing Hints is a scene. Dancing Hints begins when Preparing Hints ends. Dancing Hints ends when High Society ends.
+
+Confrontation Hints is a scene. Confrontation Hints begins when Dancing Hints ends. Confrontation Hints ends when the Skirmish begins.
+
+Skirmish Hints is a scene. Skirmish Hints begins when Confrontation Hints ends. The Skirmish ends when the Entire Game ends.
+
+When Grubbers Hints begins:
+	Send the Trouble-In-Grubbers-Hints;
+
+When Commerce Street Hints begins:
+	Send the Investigating-Hints;
+
+When Mulling Hints begins:
+	Send the Mulling-What-To-Do-Hints;
+
+When Maiden House Hints begins:
+	Send the Sneaking-One-Hints;
+
+When Nighttime Hints begins:
+	Send the Bobby-Adventure-One-Hints
+
+When Lord's Keep Hints begins:
+	Send the Bobby-Adventure-Two-Hints;
+
+When Escaping Jail Hints begins:
+	Send the Escaping-Jail-Hints;
+
+When Escaping Sewer Hints begins:
+	Send the Escaping-Sewer-Hints;
+
+When Rooftop Hints begins:
+	Send the Rooftops-Hints;
+
+When Search Hints begins:
+	Send the Secret-Letter-Hints
+
+When Hanging Hints begins:
+	Send the Gallows-Hints
+
+When Raid Hints begins:
+	Send the Sneaking-Two-Hints
+
+When Red Gate Hints begins:
+	Send the Red-Gate-Hints;
+
+When Preparing Hints begins:
+	Send the Preparations-Hints;
+
+When Dancing Hints begins:
+	Send the Sneaking-Three-Hints;
+
+When Confrontation Hints begins:
+	Send the Ballroom-Hints;
+
+When Skirmish Hints begins:
+	Send the War-Room-Hints;
 
 Book 1 - Prologue
 
@@ -11468,6 +11534,8 @@ Check examining a doorway:
 		try inspecting x instead;
 
 Book X - Walkthrough - Not for release
+
+test scenetest with "scenes / test walkthrough";
 
 test walkthrough with "test walk1 / test walk2 / test walk3"
 
