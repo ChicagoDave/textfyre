@@ -178,6 +178,20 @@ Part 3 - Doors and boxes
 
 Chapter 1 - Opening and Closing
 
+Section 1 - Implicitly opening
+
+Implicitly opening something is an activity.
+
+Rule for implicitly opening something (called the unopened item):
+	say "(first opening [the unopened item])[command clarification break]";
+	try silently opening the unopened item; 
+
+Before going through a closed door (called the obstacle):
+	carry out the implicitly opening activity with the obstacle;
+	if the obstacle is closed, stop the action;
+
+Section 2 - Does the player mean
+
 [This is not quite right in the way the rules interact.]
 
 Does the player mean opening or closing something openable (this is the very likely to mean opening or closing openable things rule):
@@ -200,7 +214,7 @@ Does the player mean opening or closing something unopenable (this is the very u
 
 Chapter 2 - Inserting and Removing
 
-[ We let the player try these things and fail them: the alternative is an unintuitive 'you can't see any such thing', which seems somewhat worse. ]
+[ We let the player try these things and fail them: the default message that occurs otherwise is 'you can't see any such thing', which seems somewhat worse. ]
 
 Understand "take [things] from [something]" as removing it from.
 Understand "get [things] from [something]" as removing it from.
@@ -214,6 +228,41 @@ Understand "put [things] in/inside/into [something]" as inserting it into.
 Understand "insert [things] in/inside/into [something]" as inserting it into.
 Understand "drop [things] in/inside/down/into/behind [something]" as inserting it into.
 Understand "hide [things] in/inside/down/under/into/behind [something]" as inserting it into.
+
+Chapter 3 - Locking and unlocking
+
+Matching relates a thing (called the key in question) to a thing (called the lock) when the lock provides the property matching key and the matching key of the lock is the key in question.
+The verb to fit (it fits, they fit, it fitted) implies the matching relation.
+
+Definition: a thing is a key:
+	if it fits something, yes;
+	no;
+
+Definition: a thing is a lock:
+	if it is not lockable, no;
+	if it provides the property matching key:
+		yes;
+	no;
+
+Understand "unlock [something]" as unlocking it with;
+Understand "put [key thing] in/into [lock thing]" as unlocking it with (with nouns reversed);
+Understand "insert [key thing] in/into [lock thing]" as unlocking it with (with nouns reversed);
+
+The unlocking rules are an object-based rulebook.
+
+First unlocking rule for something lockable (called l) (this is the matching key rule):
+	if the player carries something (called k) that fits l:
+		rule succeeds with result k;
+
+Rule for supplying a missing second noun while unlocking something (called the lock) with:
+	consider the unlocking rules for the lock;
+	if the rule succeeded:
+		let the chosen key be the result of the rule;
+		begin the clarifying the parser's choice activity with the chosen key;
+		if handling the clarifying the parser's choice activity with the chosen key:
+			say "(with [the chosen key])[command clarification break]";
+		end the clarifying the parser's choice activity with the chosen key;
+		change the second noun to the chosen key;		
 
 Part 4 - Taking
 
