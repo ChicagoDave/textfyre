@@ -102,8 +102,8 @@ namespace Textfyre.UI
             RootScaleTransform.ScaleY = uniformScaleAmount;
 
             // Translate the root Canvas to center horizontally
-            //double scaledWidth = Math.Min(_originalWidth * uniformScaleAmount, currentWidth);
-            //RootTranslateTransform.X = (Math.Min(LayoutRoot.ActualWidth, currentWidth) - scaledWidth) / 2d;
+            double scaledWidth = Math.Min(_originalWidth * uniformScaleAmount, currentWidth);
+			RootTranslateTransform.X = ( currentWidth - scaledWidth) / 2d;
 
         }
 
