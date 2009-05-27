@@ -4,6 +4,6 @@
              xmlns:ui="clr-namespace:Textfyre.UI;assembly=Textfyre.UI"
     >
     <Grid x:Name="LayoutRoot">
-        <ui:Page x:Name="StoryPage" />
-    </Grid>
+		<ui:Page x:Name="StoryPage" />
+	</Grid>
 </UserControl>

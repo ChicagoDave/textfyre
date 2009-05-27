@@ -37,10 +37,11 @@ namespace Textfyre.UI
             double currentWidth = Application.Current.Host.Content.ActualWidth;
             double currentHeight = Application.Current.Host.Content.ActualHeight;
 
-            this.Width = currentWidth;
-            this.Height = currentHeight;
-            LayoutRoot.Width = currentWidth;
-            LayoutRoot.Height = currentHeight;
+			this.Width = currentWidth;
+			this.Height = currentHeight;
+			LayoutRoot.Width = currentWidth;
+			LayoutRoot.Height = currentHeight;
+
 
             MasterPage.SetSize();
             MasterPage.Resize();
