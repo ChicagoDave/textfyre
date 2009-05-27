@@ -153,7 +153,8 @@ namespace Textfyre.UI.DocSystem
         {
             // Add page after TOC
             TextfyreBookPage tocPage = Current.Game.TextfyreBook.GetFirstPageWithPageID("TOC");
-            if (tocPage != null)
+			//TextfyreBookPage tocPage = Current.Game.TextfyreBook.GetFirstPageWithPageID("MiscPageRight");
+			if (tocPage != null)
             {
                 TextfyreBookPage p = Current.Game.TextfyreBook.CreatePageAtIndex("BackPage", tocPage.BookPageIndex);
                 _bookPages.Add(p);

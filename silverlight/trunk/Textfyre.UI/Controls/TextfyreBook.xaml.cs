@@ -102,9 +102,10 @@ namespace Textfyre.UI.Controls
             FlipBook.OnPageTurned += new PageTurnedEventHandler(FlipBook_OnPageTurned);
             
             AddFrontPage();
-            AddCreditsPage();
-            AddTableOfContentsPage();
-            //for (int i = 0; i < 500; i++)
+			AddHelperPages();
+			AddCreditsPage();
+			AddTableOfContentsPage();
+			//for (int i = 0; i < 500; i++)
                // AddFrontPage();
             AddStoryPage();
             AddStoryAidPage();
@@ -184,6 +185,26 @@ namespace Textfyre.UI.Controls
             p.PageScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
             p.PageScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
         }
+
+		private void AddHelperPages()
+		{
+			TextfyreBookPage p1 = CreatePage("MiscPageLeft");
+			p1.HideHeader();
+			p1.HideFooter();
+			p1.ctrlFlipButton.IsEnabled = false;
+			p1.PageScrollViewer.Content = "";
+			p1.PageScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
+			p1.PageScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+
+			TextfyreBookPage p2 = CreatePage("MiscPageRight");
+			p2.HideHeader();
+			p2.HideFooter();
+			p2.ctrlFlipButton.IsEnabled = false;
+			p2.PageScrollViewer.Content = "";
+			p2.PageScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
+			p2.PageScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+		}
+
 
         private void AddFrontPage()
         {
@@ -280,7 +301,7 @@ namespace Textfyre.UI.Controls
         {
             foreach (TextfyreBookPage page in _pages)
             {
-                if (page.PageID != "TOC" && page.PageID != "FrontPage" && page.PageID != "")
+				if (page.PageID != "MiscPageLeft" && page.PageID != "MiscPageRight" && page.PageID != "TOC" && page.PageID != "FrontPage" && page.PageID != "")
                 {
                     _pages.Remove(page);
                     RemoveStoryPages();
