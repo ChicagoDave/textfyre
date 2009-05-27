@@ -8,7 +8,7 @@
   <Setting Key="BookPageOffsetTop" Value="0" />
   <Setting Key="VersionText" Value="15-May-2009 Game: rc5 UI: pp6" />
   <Setting Key="StoryID" Value="1" />
-  <Setting Key="LogEnabled" Value="True" />
+  <Setting Key="LogEnabled" Value="False" />
   <Setting Key="UseIndents" Value="True" />
   <Setting Key="UseNewLineAfterParagraph" Value="False" />
   <Setting Key="ScrollSpeed" Value="50" />
