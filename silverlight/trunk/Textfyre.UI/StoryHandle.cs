@@ -35,5 +35,52 @@ namespace Textfyre.UI
         {
             Current.Game.TextfyreBook.Manual.Hide();
         }
+
+        #region :: Toc Select ::
+        public class TocArgs
+        {
+            public Textfyre.UI.Controls.TableOfContent.Action TocItem;
+            public Textfyre.UI.Controls.TextfyreBookPage LeftPage;
+            public Textfyre.UI.Controls.TextfyreBookPage RightPage;
+            public bool GoToItem;
+            public bool GoDirectly;
+            public bool IsItemHandled;
+
+            public object LeftPageContent
+            {
+                set
+                {
+                    LeftPage.PageScrollViewer.Content = value;
+                }
+            }
+
+            public object RightPageContent
+            {
+                set
+                {
+                    RightPage.PageScrollViewer.Content = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Return true if handled.
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public virtual bool TocSelect(TocArgs args)
+        {
+            if (args.GoToItem && args.GoDirectly)
+            {
+                Current.Game.TextfyreBook.GoTo("MiscPageLeft");
+            }
+            else if (args.GoToItem && args.GoDirectly == false)
+            {
+                Current.Game.TextfyreBook.FlipTo("MiscPageLeft");
+            }
+
+            return args.IsItemHandled;
+        }
+        #endregion
     }
 }

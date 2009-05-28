@@ -108,7 +108,7 @@ namespace Textfyre.UI.Controls
                // AddFrontPage();
             AddStoryPage();
             AddStoryAidPage();
-            AddHelperPages();
+            AddMiscPages();
             
             //AddColumnPage("Prologue", Textfyre.UI.Entities.DocumentColumnBehaviour.Flip);
 
@@ -186,13 +186,16 @@ namespace Textfyre.UI.Controls
             p.PageScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
         }
 
-		private void AddHelperPages()
+        private TextfyreBookPage _miscPageLeft;
+        private TextfyreBookPage _miscPageRight;
+		private void AddMiscPages()
 		{
 			TextfyreBookPage p1 = CreatePage("MiscPageLeft");
 			p1.HideHeader();
 			p1.HideFooter();
 			p1.ctrlFlipButton.IsEnabled = false;
 			p1.PageScrollViewer.Content = "";
+            _miscPageLeft = p1;
 			p1.PageScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
 			p1.PageScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
 
@@ -201,7 +204,8 @@ namespace Textfyre.UI.Controls
 			p2.HideFooter();
 			p2.ctrlFlipButton.IsEnabled = false;
 			p2.PageScrollViewer.Content = "";
-			p2.PageScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
+            _miscPageRight = p2;
+            p2.PageScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
 			p2.PageScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
 		}
 
@@ -248,6 +252,16 @@ namespace Textfyre.UI.Controls
 
         private void _toc_TableOfContentAction(object sender, TableOfContent.TableOfContentActionEventArgs e)
         {
+            StoryHandle.TocArgs tocArgs = new StoryHandle.TocArgs();
+            tocArgs.TocItem = e.Action;
+            tocArgs.IsItemHandled = false;
+            tocArgs.GoDirectly = true;
+            tocArgs.GoToItem = false;
+            tocArgs.LeftPage = _miscPageLeft;
+            tocArgs.RightPage = _miscPageRight;
+            if (Current.Game.StoryHandle.TocSelect(tocArgs))
+                return;
+
             switch (e.Action)
             {
                 case TableOfContent.Action.Introduction:
@@ -267,7 +281,7 @@ namespace Textfyre.UI.Controls
                     break;
 
                 case TableOfContent.Action.ContinueGame:
-                    FlipTo("Story");
+                    GoTo("Story");
                     break;
 
                 case TableOfContent.Action.SaveGame:
@@ -292,7 +306,7 @@ namespace Textfyre.UI.Controls
 
                 case TableOfContent.Action.Hints:
                     Current.Game.TextfyreBook.TextfyreDocument.StoryAid.ShowHints();
-                    FlipTo("Story");
+                    GoTo("Story");
                     break;
             }
         }
@@ -631,7 +645,7 @@ As a commercial product, interactive fiction reached its peak in popularity in t
             }
 
             if (index > 0)
-                FlipBook.CurrentSheetIndex = i-1;
+                FlipBook.CurrentSheetIndex = index / 2;//i-1;
 
         }
 
