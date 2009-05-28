@@ -102,13 +102,13 @@ namespace Textfyre.UI.Controls
             FlipBook.OnPageTurned += new PageTurnedEventHandler(FlipBook_OnPageTurned);
             
             AddFrontPage();
-			AddHelperPages();
 			AddCreditsPage();
 			AddTableOfContentsPage();
 			//for (int i = 0; i < 500; i++)
                // AddFrontPage();
             AddStoryPage();
             AddStoryAidPage();
+            AddHelperPages();
             
             //AddColumnPage("Prologue", Textfyre.UI.Entities.DocumentColumnBehaviour.Flip);
 
@@ -447,7 +447,9 @@ As a commercial product, interactive fiction reached its peak in popularity in t
             AddClickFlip(p);
             SetLocationAndChapter();
 
-            if (currentIdx >= index)
+            bool isCompleteSheet = _pages.Count % 2 == 1;
+
+            if (currentIdx >= index && isCompleteSheet )
             {
                 Controls.FlipBook.UCBook.CurrentUCBook.CurrentSheetIndex = currentIdx + 1;
                 //Current.Game.TextfyreBook.FlipBook.RefreshSheetsContent();
