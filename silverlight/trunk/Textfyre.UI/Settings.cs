@@ -41,6 +41,7 @@ namespace Textfyre.UI
         public static string WaitMessages = String.Empty;
         public static bool CenterHeadline = true;
         public static bool UseRealPageNumbers = false;
+        public static string SaveGameDirectory = "Directory";
 
         // Calculated from the other settings
         public static double BookPageInnerInnerContentWidth = 0;

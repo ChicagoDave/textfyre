@@ -79,7 +79,7 @@ namespace Textfyre.UI.Pages
         void Keyboard_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
-            {   
+            {
                 case Key.Ctrl:
                     TextfyreBook.TextfyreDocument.ShowWordDefs();
                     _keyCtrlPressed = true;
@@ -130,7 +130,7 @@ namespace Textfyre.UI.Pages
         private void LoadGame(byte[] memorystream, string gameFileName)
         {
             Current.Game.GameFileName = gameFileName;
-            MemoryStream mstr = new MemoryStream(memorystream);  
+            MemoryStream mstr = new MemoryStream(memorystream);
             StartGame(mstr);
         }
 
@@ -183,14 +183,14 @@ namespace Textfyre.UI.Pages
         {
             if (e.Package.Count == 0)
                 return;
-            
+
             if (e.Package.ContainsKey(OutputChannel.Time))
-            {   
+            {
                 int turn = -1;
                 int.TryParse(e.Package[OutputChannel.Time], out turn);
                 if (turn > -1)
                     Current.Game.Turn = turn;
-                
+
             }
 
             Dispatcher.BeginInvoke(new OutputDelegate(UpdateScreen), e.Package);
@@ -205,7 +205,7 @@ namespace Textfyre.UI.Pages
                 TextfyreBook.Wait.Hide();
             });
 
-            
+
             string location = String.Empty;
             bool updateLocAndChap = false;
 
@@ -263,12 +263,13 @@ namespace Textfyre.UI.Pages
                     //    i--;
                     //}
 
-                    if( Settings.PagingMechanism == Settings.PagingMechanismType.StaticPageCreateBackPages )
+                    if (Settings.PagingMechanism == Settings.PagingMechanismType.StaticPageCreateBackPages)
                         prologue = "<PrologueMode/>" + leadingNewlines.ToString() + prologue + "<StoryMode/><FullPageBreak/><ColumnScroll/><AddImagePage/>";
-                    else if ( Settings.PagingMechanism == Settings.PagingMechanismType.CreateNewPages )
+                    else if (Settings.PagingMechanism == Settings.PagingMechanismType.CreateNewPages)
                         prologue = "<PrologueMode/>" + prologue + "<StoryMode/>";
 
                     //TextfyreBook.TextfyreDocument.AddStml(prologue);
+                    Current.Game.GameState.FyreXmlAdd(prologue);
                     TextfyreBook.TextfyreDocument.AddFyreXml(prologue);
                 }
             }
@@ -287,6 +288,7 @@ namespace Textfyre.UI.Pages
                 string conversation = output[OutputChannel.Conversation].Replace("\n", String.Empty);
 
                 TextfyreBook.TranscriptDialog.AddText(conversation);
+                Current.Game.GameState.FyreXmlAdd(conversation);
                 //TextfyreBook.TextfyreDocument.AddStml(conversation);
                 TextfyreBook.TextfyreDocument.AddFyreXml(conversation);
             }
@@ -407,6 +409,7 @@ namespace Textfyre.UI.Pages
 
                         sbMain.Append(txt);
                         //TextfyreBook.TextfyreDocument.AddStml(txt);
+                        Current.Game.GameState.FyreXmlAdd(txt);
                         TextfyreBook.TextfyreDocument.AddFyreXml(txt);
                     }
                 }
@@ -432,6 +435,7 @@ namespace Textfyre.UI.Pages
             {
                 string death = output[OutputChannel.Death];
                 TextfyreBook.TranscriptDialog.AddText(death);
+                Current.Game.GameState.FyreXmlAdd(death);
 
                 if (!death.StartsWith("<Paragraph"))
                 {
@@ -474,7 +478,7 @@ namespace Textfyre.UI.Pages
 
         private void engine_KeyWanted(object sender, KeyWantedEventArgs e)
         {
-            
+
             Dispatcher.BeginInvoke(() =>
             {
                 TextfyreBook.Wait.Hide();
@@ -513,6 +517,7 @@ namespace Textfyre.UI.Pages
                 TextfyreBook.Wait.Show();
 
                 TextfyreBook.TranscriptDialog.AddText(">" + _inputLineForTranscript);
+                Current.Game.GameState.FyreXmlAdd("<Paragraph>&gt;" + _inputLineForTranscript + "</Paragraph>");
             });
 
             e.Line = _inputLine;
@@ -554,7 +559,7 @@ namespace Textfyre.UI.Pages
                         Current.Game.MaxPageIndex = 999999;
                         Current.Game.IsStoryRunning = true;
                         TextfyreBook._toc.Refresh();
-                        TextfyreBook.FlipTo("Story");
+                        TextfyreBook.GoTo("Story");
                         TextfyreBook.BookmarkTOC.Visibility = Visibility.Visible;
                     }
                 });
@@ -580,7 +585,7 @@ namespace Textfyre.UI.Pages
             if (_saveFile != null)
             {
                 string filePath = _saveFile.BinaryStoryFilePath;
-
+  
                 IsolatedStorageFile IsoStorageFile =
                     System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForApplication();
 
@@ -589,12 +594,17 @@ namespace Textfyre.UI.Pages
 
                 Dispatcher.BeginInvoke(() =>
                 {
+                    Current.Game.GameState.FyreXmlClear();
+                    Current.Game.GameState.FyreXmlAdd(_saveFile.FyreXml);
+                    Current.Game.GameState.ActivateGameState();
+                    
                     Current.Game.IsStoryChanged = false;
                     Current.Game.MaxPageIndex = 999999;
                     Current.Game.IsStoryRunning = true;
                     TextfyreBook._toc.Refresh();
-                    TextfyreBook.FlipTo("Story");
+                    TextfyreBook.GoTo("Story");
                     TextfyreBook.BookmarkTOC.Visibility = Visibility.Visible;
+
                 });
 
                 //    IsolatedStorageFile IsoStorageFile =

@@ -186,6 +186,7 @@
     <Compile Include="Entities\DocumentColumnBehaviour.cs" />
     <Compile Include="Entities\DocumentColumnCollection.cs" />
     <Compile Include="Entities\DocumentTextBlock.cs" />
+    <Compile Include="Entities\GameState.cs" />
     <Compile Include="Entities\MapConnection.cs" />
     <Compile Include="Entities\MapConnectionCollection.cs" />
     <Compile Include="Entities\MapConnectionCorner.cs" />

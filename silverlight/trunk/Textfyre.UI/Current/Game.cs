@@ -65,6 +65,23 @@ namespace Textfyre.UI.Current
         }
         #endregion
 
+        #region :: IsScrollLimitEnabled ::
+        private static bool _isScrollLimitEnabled = true;
+        public static bool IsScrollLimitEnabled
+        {
+            get
+            {
+                return _isScrollLimitEnabled;
+            }
+
+            set
+            {
+                _isScrollLimitEnabled = value;
+            }
+        }
+        #endregion
+
+
         #region :: IsInputFocusActive ::
         private static bool _isInputFocusActive = true;
         public static bool IsInputFocusActive
@@ -310,6 +327,17 @@ namespace Textfyre.UI.Current
             set
             {
                 _gameMode = value;
+            }
+        }
+        #endregion
+
+        #region :: GameState ::
+        private static Entities.GameState _gameState = new Entities.GameState();
+        public static Entities.GameState GameState
+        {
+            get
+            {
+                return _gameState;
             }
         }
         #endregion

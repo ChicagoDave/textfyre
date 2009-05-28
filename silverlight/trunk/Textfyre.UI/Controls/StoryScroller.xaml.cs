@@ -84,6 +84,11 @@ namespace Textfyre.UI.Controls
         {
             if (AmountToScroll > 0)
             {
+                if (Current.Game.IsScrollLimitEnabled == false)
+                {
+                    YOffset = YOffset - AmountToScroll;
+                }
+                else
                 if (_scrollStoryboard == null )
                 {
                     _scrollStoryboard = new Storyboard();
@@ -98,6 +103,7 @@ namespace Textfyre.UI.Controls
         {
             _scrollStoryboard.Stop();
             double newScrollPos = Settings.ScrollSpeed; //AmountToScroll + Settings.ScrollSpeed;
+            
             if (newScrollPos > AmountToScroll)
                 newScrollPos = AmountToScroll;
 

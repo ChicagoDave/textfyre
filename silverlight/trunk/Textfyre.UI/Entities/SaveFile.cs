@@ -12,6 +12,7 @@ using System.IO;
 using System.Text;
 using System.IO.IsolatedStorage;
 using System.Collections.Generic;
+using System.Windows.Threading;
 
 namespace Textfyre.UI.Entities
 {
@@ -73,6 +74,19 @@ namespace Textfyre.UI.Entities
             }
         }
 
+        private string _fyreXml = String.Empty;
+        public string FyreXml
+        {
+            get
+            {
+                return _fyreXml;
+            }
+            set
+            {
+                _fyreXml = value;
+            }
+        }
+
         public void Delete()
         {
             if (_filename.Length == 0)
@@ -95,6 +109,7 @@ namespace Textfyre.UI.Entities
         /// <returns></returns>
         public string Save()
         {
+
             if (_filename.Length == 0)
             {
                 _filename = FindFilename();
@@ -214,7 +229,8 @@ namespace Textfyre.UI.Entities
             sb.Append(ToParam(saveFile.Title) + "|");
             sb.Append(ToParam(saveFile.Description) + "|");
             sb.Append(ToParam(saveFile.SaveTime.ToString()) + "|");
-            sb.Append(ToParam(saveFile.GameFileVersion.ToString()) + "");
+            sb.Append(ToParam(saveFile.GameFileVersion.ToString()) + "|");
+            sb.Append(ToParam(saveFile.FyreXml) + "");
 
             return sb.ToString();
         }
@@ -243,6 +259,11 @@ namespace Textfyre.UI.Entities
                 saveFile.GameFileVersion = FromParam(parts[4]);
             }
 
+            if (parts.Length >= 6)
+            {
+                saveFile.FyreXml = FromParam(parts[5]);
+            }
+
             return saveFile;
         }
 
@@ -256,7 +277,7 @@ namespace Textfyre.UI.Entities
             return value.Replace("&#124;", "|");
         }
 
-        private const string _dir = "SecretLetterSaveFiles";
+        private static string _dir = Settings.SaveGameDirectory;
         
         public static System.IO.IsolatedStorage.IsolatedStorageFile IsoFile
         {

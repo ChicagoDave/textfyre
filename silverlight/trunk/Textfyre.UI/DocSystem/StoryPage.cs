@@ -82,13 +82,14 @@ namespace Textfyre.UI.DocSystem
                     {
                         //if (_lastScrollingHeight + section.Height + 20
                         //    > Settings.BookPageInnerContentHeight)
-                        if (_lastScrollingHeight + section.Height
+                        if (Current.Game.IsScrollLimitEnabled && _lastScrollingHeight + section.Height
                             > Settings.BookPageInnerContentHeight)
                         {
                             sectionPtr--;
                             _processSections = false;
                             _storyPage.ctrlMore.Show();
                             return;
+                            
                         }
 
                         _lastScrollingHeight += section.Height;
@@ -103,10 +104,12 @@ namespace Textfyre.UI.DocSystem
                             case SectionType.Prompt:
                                 if (InputWant != null)
                                 {
+                                    Current.Game.IsScrollLimitEnabled = true;
                                     _lastScrollingHeight = 0;
                                     InputWantEventArgs args = new InputWantEventArgs();
                                     args.LeadText = section.Text;
                                     InputWant(this, args);
+                                    
                                 }
                                 //_input._tbLeadText.Text = section.Text;
                                 //_input.AddInputToStackPanel(_stackPanel);

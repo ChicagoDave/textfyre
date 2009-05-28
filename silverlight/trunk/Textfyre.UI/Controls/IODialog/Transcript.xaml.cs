@@ -16,6 +16,7 @@ namespace Textfyre.UI.Controls.IODialog
 {
     public partial class Transcript : UserControl
     {
+        
         public Transcript()
         {
             InitializeComponent();

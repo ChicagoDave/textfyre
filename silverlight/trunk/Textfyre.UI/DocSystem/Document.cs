@@ -27,6 +27,11 @@ namespace Textfyre.UI.DocSystem
             
         }
 
+        public void ClearAll()
+        {
+            _sections.Clear();
+        }
+
         void _storyPage_TopicListWant(object sender, StoryPage.TopicListWantEventArgs e)
         {
             _topics = e.TopicList;
