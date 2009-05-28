@@ -116,6 +116,7 @@ namespace Textfyre.UI.Controls.IODialog
                 sf.Description = this.TbDescription.Text.Trim();
                 sf.SaveTime = System.DateTime.Now;
                 sf.GameFileVersion = Current.Game.GameFileName;
+                sf.FyreXml = Current.Game.GameState.FyreXml;
 
                 SaveEventArgs args = new SaveEventArgs();
                 args.SaveFile = sf;

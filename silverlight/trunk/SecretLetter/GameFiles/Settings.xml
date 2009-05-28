@@ -25,5 +25,6 @@
   <Setting Key="WaitMessages" Value="Please wait.|Please wait..|Please wait..." />
   <Setting Key="CenterHeadline" Value="True" />
   <Setting Key="UseRealPageNumbers" Value="True" />
+  <Setting Key="SaveGameDirectory" Value="SecretLetterSaveFiles" />
 
 </Settings>

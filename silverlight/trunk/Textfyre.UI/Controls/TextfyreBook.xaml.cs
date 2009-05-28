@@ -315,7 +315,7 @@ namespace Textfyre.UI.Controls
         {
             foreach (TextfyreBookPage page in _pages)
             {
-				if (page.PageID != "MiscPageLeft" && page.PageID != "MiscPageRight" && page.PageID != "TOC" && page.PageID != "FrontPage" && page.PageID != "")
+				if (page.PageID != "MiscPageLeft" && page.PageID != "MiscPageRight" && page.PageID != "TOC" && page.PageID != "FrontPage" && page.PageID != ""  && page.PageID != "Credits")
                 {
                     _pages.Remove(page);
                     RemoveStoryPages();
@@ -323,6 +323,31 @@ namespace Textfyre.UI.Controls
                 }
             }
         }
+
+        public void ClearStoryPage()
+        {
+            foreach (TextfyreBookPage page in _pages)
+            {
+                if (page.PageID == "Story")
+                {
+                    page.PageScrollViewer.Content = null;
+                }
+            }
+        }
+
+        public void RemoveBackPages()
+        {
+            foreach (TextfyreBookPage page in _pages)
+            {
+                if (page.PageID == "BackPage" )
+                {
+                    _pages.Remove(page);
+                    RemoveBackPages();
+                    return;
+                }
+            }
+        }
+
 
         public void RestartGame()
         {
@@ -621,7 +646,12 @@ As a commercial product, interactive fiction reached its peak in popularity in t
             {
                 page.BookPageIndex = i;
                 page.IsEvenPage = ((i-1) % 2 == 0);
+                //if (page.PageID == "Story")
+                //{
+                //    Current.Game.MaxPageIndex = i/2;
+                //}
                 i++;
+
             }
         }
 
