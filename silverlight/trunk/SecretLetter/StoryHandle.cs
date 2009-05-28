@@ -13,6 +13,19 @@ namespace SecretLetter
 {
     public class StoryHandle : Textfyre.UI.StoryHandle
     {
+        public override bool TocSelect(TocArgs args)
+        {
+            if (args.TocItem == Textfyre.UI.Controls.TableOfContent.Action.Map)
+            {
+                args.LeftPageContent = "Map1";
+                args.RightPageContent = "Map2";
+                args.GoDirectly = true;
+                args.GoToItem = true;
 
+                args.IsItemHandled = true;
+            }
+
+            return base.TocSelect(args);
+        }
     }
 }
