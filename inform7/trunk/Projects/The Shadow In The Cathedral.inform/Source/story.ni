@@ -2,6 +2,9 @@
 
 [  Change Log
 When		Who		What
+01 Jun 2009	G. Jefferis	Remainder of Covalt's conversation
+27 May 2009	G. Jefferis	Return to Covalt's - conversation
+26 May 2009	G. Jefferis	Return to Covalt's
 18 May 2009	G. Jefferis	Gas Platform
 15 May 2009	G. Jefferis	Bug fixes on ch. 7
 30 Apr 2009	G. Jefferis	Updates to ch. 7
@@ -68,6 +71,7 @@ Include Scripted Events by Textfyre.
 Include Scripted Room Events by Textfyre.
 Include Conversation Topics by Textfyre.
 Include Counters by Textfyre.
+Include Direct Questions by Textfyre.
 Include Textfyre Standard Rules by Textfyre.
 Include Grid Layout by Textfyre.
 Include Test Suite by Textfyre.
@@ -256,12 +260,12 @@ Rule for printing the description of a device (called item):
 		abide by the examine undescribed devices rule instead;
 	say "[description of item] [run paragraph on]";
 
-Rule for printing the description of something (called item): 
+Rule for printing the description of a thing (called item): 
 	if the item goes undescribed by source text,
 		abide by the examine undescribed things rule instead;
 	say "[description of item] [run paragraph on]";
 
-Last after printing the description of something (called item):
+Last after printing the description of a thing (called item):
 	unless the item goes undescribed by source text,
 		say paragraph break;
 
@@ -290,8 +294,12 @@ This is the fancy room description body text rule:
 			continue the action;
 		begin the printing the description of a lit room activity;
 		if handling the printing the description of a lit room activity,
-			print the location's description; [Standard Rules phrase]
+			carry out the printing the description activity with the location;
+			[ print the location's description; [Standard Rules phrase] ]
 		end the printing the description of a lit room activity;
+
+Rule for printing the description of a room:
+	print the location's description; [Standard Rules phrase]
 
 Book B - New Kinds
 
@@ -882,11 +890,10 @@ Check emptying:
 		say "That doesn't contain anything." instead;
 
 Check emptying:
-	if the noun is closed and the noun is openable begin;
+	if the noun is closed and the noun is openable:
 		say "(first opening the noun)[command clarification break]";
 		try opening the noun;
 		if the noun is closed, rule fails;
-	end if;
 
 Check emptying:
 	if the noun does not contain a thing,
@@ -5751,7 +5758,7 @@ Covalt's Bedroom is a room. "[one of]I'm lying on a large feather bed, surrounde
 
 The printed name of Covalt's Bedroom is "Bedroom".
 
-Instead of going north from Covalt's Bedroom when the player can see Covalt:
+Instead of going north from Covalt's Bedroom when the player can see Covalt and Return to Covalt's has not happened:
 	say "There's no way I'm slipping past him. He's got both his beady eyes on me, and so do his ravens.";
 
 Chapter 2 - Event on Entry
@@ -5771,10 +5778,10 @@ Section 1 - Feather bed
 
 A feather bed is scenery, an enterable supporter, in Covalt's Bedroom. "The large feather bed has a dent in the middle deep enough for me to disappear in. Whoever sleeps here must be seriously heavy."
 
-Instead of hiding under the bed:
+Instead of hiding under the feather bed:
 	say "He's right there. He can see me already!";
 
-Instead of standing on the bed:
+Instead of standing on the feather bed when the player is not on the feather bed:
 	say "Even then I couldn't reach the skylight, and I don't think the giant would like it.";
 
 After getting off the feather bed:
@@ -5885,7 +5892,7 @@ CT_COV_1_FIGURE		"[figure]"
 CT_COV_1_ARCHBISHOP		"bishop" or "archbishop"
 CT_COV_1_PEOPLE		"[abbeyfolk]" or "[sa'at]"
 CT_COV_1_COVALT		"giant" or "him" or "himself"
-CT_COV_1_RAVENS		"ravens"
+CT_COV_1_RAVENS		"ravens" or "his ravens" or "hugin" or "mummin"
 CT_COV_1_CLOCKWORK		"clockwork" or "clock work" or "clocks" or "saints"
 CT_COV_1_SORRY		"sorry" or "apologise" or "apologies"
 CT_COV_1_PERPETUUM		"perpetuum" or "mobile" or "stealing" or "theft" or "robbery" or "plan" or "plot"
@@ -5943,7 +5950,7 @@ CT_COV_2_ARCHBISHOPCATHEDRAL		"cathedral" or "bishop" or "archbishop"
 CT_COV_2_ABBOTFIGURE	"abbot" or "gubbler" or "figure" or "figure in grey/gray" or "gray/grey figure"
 CT_COV_1_PEOPLE		"[calvinanddrake]" or "brother" or "horloge" or "reloh" or "sa'at" or "cook"
 CT_COV_2_COVALT		"giant" or "him" or "himself"
-CT_COV_2_RAVENS		"ravens"
+CT_COV_2_RAVENS		"ravens" or "his ravens" or "hugin" or "mummin"
 CT_COV_2_CLOCKWORK		"clockwork" or "clock work" or "clocks" or "saints"
 CT_COV_2_SORRY		"sorry" or "apologise" or "apologies"
 CT_COV_2_PERPETUUM		"perpetuum" or "mobile" or "stealing" or "theft" or "robbery" or "plan" or "plot"
@@ -5996,7 +6003,7 @@ CT_COV_3_ABBOT		"abbot" or "gubbler"
 CT_COV_3_FIGURE		"figure" or "figure in grey/gray" or "gray/grey figure"
 CT_COV_1_PEOPLE		"[calvinanddrake]" or "brother" or "horloge" or "reloh" or "sa'at" or "cook"
 CT_COV_3_COVALT		"giant" or "him" or "himself"
-CT_COV_3_RAVENS		"ravens"
+CT_COV_3_RAVENS		"ravens" or "his ravens" or "hugin" or "mummin"
 CT_COV_3_CLOCKWORK		"clockwork" or "clock work" or "clocks" or "saints"
 CT_COV_3_SAINTS		"saint" or "saints"
 CT_COV_3_SORRY		"sorry" or "apologise" or "apologies"
@@ -6022,7 +6029,7 @@ CT_COV_3_ARCHBISHOP is a conversation topic. The enquiry text is "'I tried to te
 
 CT_COV_3_COVALT is a conversation topic. The enquiry text is "'Who are you?'". The response text is "'A clockmaker. An inventory. Aint meant to do both,' he smiles. 'But they're a little too scared to stop me. Besides, I'm the only one who knows how to mend the rose clock up, so, they call me heretic but they need me to keep both thumbs.'".
 
-CT_COV_3_RAVENS is a conversation topic. The enquiry text is "'Do your ravens have names?'". The response text is "'Course they do. Hugin. Mummin. If that aint old Celtic for hours and minutes, well, it should be.'".
+CT_COV_3_RAVENS is a conversation topic. The enquiry text is "'Do your ravens have names?'". The response text is "'Course they do. Hugin. Mummin. If that ain't old Celtic for hours and minutes, well, it should be.'".
 
 CT_COV_3_CLOCKWORK is a conversation topic. The enquiry text is "'How long have you been doing clockwork?'". The response text is "He waves an arm around the room, nearly taking my head with it. 'Takes a lifetime to build up this. I trained in Geneva. To be a monk. Didn't like it. Couldn't see why I couldn't swing clock parts and, well. Sorry.' His thick cheeks turn a little red. 'Maybe you're too young for a full life story.'".
 
@@ -6157,7 +6164,7 @@ CT_COV_5_FIGURE		"figure" or "figure in grey/gray" or "gray/grey figure"
 CT_COV_5_ARCHBISHOP		"bishop" or "archbishop"
 CT_COV_1_PEOPLE		"[calvinanddrake]" or "brother" or "horloge" or "reloh" or "sa'at" or "cook"
 CT_COV_5_COVALT		"giant" or "covalt" or "him" or "himself"
-CT_COV_5_RAVENS		"his ravens" or "ravens"
+CT_COV_5_RAVENS		"his ravens" or "ravens" or "hugin" or "mummin"
 CT_COV_5_CLOCKWORK		"clockwork"
 CT_COV_5_SAINTS		"saint" or "saints" or "babbage" or "newton" or "st babbage" or "st newton"
 CT_COV_5_SORRY		"sorry" or "apologise" or "apologies"
@@ -6254,11 +6261,12 @@ After printing the description of uninspected clutter when the player remembers 
 	fire TRIG_DIAGRAM_FOUND instead;
 
 Rule for firing COVALT_COUNTER when the state of Covalt is 3:
-	if at least 10 things are inspected begin;
+	if at least 10 things are inspected:
 		say "'Ah! Here's the snake from its hollow log!' He pulls out a folded sheet of paper.[paragraph break]";
 		fire TRIG_DIAGRAM_FOUND instead;
-	end if;
 	let the curio be a random uninspected clutter in the Clock Shop;
+	while the curio is the clock shop door:
+		let the curio be a random uninspected clutter in the Clock Shop;
 	now Covalt remembers the curio;
 	say "[one of]Covalt rummages through [the curio].[or]Covalt is looking at [the curio], hoping to find his diagram.[or]Covalt straightens up from [the curio]. 'Nothing there,' he reports.[or]Covalt is shaking his head. 'It's not with [the curio].'[in random order]";
 
@@ -6278,8 +6286,12 @@ After printing the description of the Perpetuum Mobile diagram when TRIG_DIAGRAM
 
 TRIG_DIAGRAM is a trigger.
 
-Rule for firing unfired TRIG_DIAGRAM:
-	say "[paragraph break]'It's not the full picture,' Covalt remarks. 'You can't get it from just one angle. You got look, lots of ways. So, you know. This picture's more for [i]inspiration[r] than to actually [i]build[r] one. That's what I told the Figure, see.'[run paragraph on]";
+Rule for firing unfired TRIG_DIAGRAM when the player can see Covalt:
+	if Return to Covalt's has not happened:
+		say "[paragraph break]'It's not the full picture,' Covalt remarks. 'You can't get it from just one angle. You got look, lots of ways. So, you know. This picture's more for [i]inspiration[r] than to actually [i]build[r] one. That's what I told the Figure, see.'[run paragraph on]";
+
+Instead of dropping the Perpetuum Mobile diagram:
+	say "Come on, Wren, you can’t go leaving diagrams of Holy Relics lying around the place now can you?";
 
 Chapter 3 - Clutter
 
@@ -6328,7 +6340,7 @@ The sketch papers are scenery, clutter, on the workbench. "The desk is covered i
 
 Chapter 4 - Door
 
-The clock shop door is a door, privately-named, clutter, scenery, southwest of the Clock Shop. The description is "On the back of the door to the street is a series of shelves, each bristling with all manner of clocks.".
+The clock shop door is a closed door, privately-named, clutter, scenery, southwest of the Clock Shop, northeast of Escapement St. The description is "On the back of the door to the street is a series of shelves, each bristling with all manner of clocks.".
 
 Understand "door" as the clock shop door. The printed name is "door".
 
@@ -6338,13 +6350,13 @@ Instead of exiting in the Clock Shop:
 Instead of going outside from the Clock Shop:
 	try going southwest;
 
-Instead of going southwest in the Clock Shop:
-	try opening the clock shop door instead;
+[Instead of going southwest in the Clock Shop:
+	try opening the clock shop door instead;]
 
 Instead of opening the clock shop door when the scrap of paper is off-stage:
 	say "'Not so fast,' Covalt growls. 'You can't go running off with no idea else what's next or you'll wind up dancing in the circus or something and what kind of [i]story[r] would that be, eh? So settle down, quit with your legging it, and let's get thinking.'";
 
-Instead of opening the clock shop door:
+Instead of opening the clock shop door when Return to Covalt's has not happened:
 	say "'That's the place,' Covalt insists, tapping the address with a finger like a roofing mallet. 'The Difference Engine'll tell you all you want. I hope. If you can get a clear idea what you're wanting and – well, anyway.' He puffs his cheeks. 'One dead air balloon says you'll do your best.'[paragraph break]'Thanks,' I say. The first person to be nice to me – well, ever really. 'I appreciate your help.'[paragraph break]'Well, nothing's too good for a rat,' he snarls. 'And do pop back here later if you need to. I don't think. Bringing the Heretic police and that. Go on! Get out of it.' And with that, he boots me through the door and slams it with relish.";
 	pause the game;
 	move the player to The Street;
@@ -7577,11 +7589,24 @@ Definition: a room is overground:
 Instead of smelling the location when the location is an underwater room:
 	say "But I'd drown!";
 
+Understand "swim" as jumping when the location is an underwater room.
+
 Instead of jumping when the location is an underwater room:
 	say "I thrash wildly about, only managing to raise a cloud of bubbles and muck.";
 
 Instead of dropping something when the location is an underwater room:
 	say "I'd only lose [if the noun is plural-named]them[otherwise]it[end if].";
+
+To decide whether the player has been underwater:
+	if an underwater room is visited, yes;
+	no;
+
+To decide whether the player has not been underwater:
+	unless the player has been underwater, yes;
+	no;
+
+Rule for printing the description of the Perpetuum Mobile diagram when the player has been underwater:
+	say "The diagram’s bedraggled but still clear enough to read. ";
 
 Chapter 1 - River 1 Description
 
@@ -8423,16 +8448,381 @@ Instead of going through the broken staircase from the Warehouse Basement:
 
 The army of metal statues is scenery, in the Warehouse Basement. "Each man is made of fine steel and brass and stands upright, about six foot tall. Their faces are bare faceplates with tiny glass eyes, but they all look like they’re crying because of deep channels for rain run-off that run from forehead to chin. Each one has a small hatch in the middle of their chest, a tiny fraction ajar."
 
+Understand "mechanical", "men", "man" as the army of metal statues.
+
 Instead of doing something when the army of metal statues is physically involved:
 	say "With shaking fingers I open the hatch on the front of the nearest man. No surprise maybe to find he’s full of clockwork, but it’s clockwork like I’ve never seen before: cogs so small it’s like his whole body is infested with woodlice and maggots scrambling over one another. It’s like someone had taken the whole of the Difference Engine and shrunk it to fit.[paragraph break]Except there’s obviously something missing. All those cogs would need a spring about the size of the metal man’s head and it would need to be placed right in the middle where it could unwind to every part of his body. But in the perfect spot there’s nothing but a gap, like someone built this machine but never gave it a heart. What good are these men if all they do is stand in line?[paragraph break]That’s when I notice the seal. Something embossed on the inside of the chest hatch. I take a step back to see it more clearly – a winding key above an ocean wave, familiar from somewhere – and step into something firm and solid. A man out of line?[paragraph break]Then a hand grips my throat. 'Who sent you here?' demands a voice, smooth and icy. A voice I know well, that I should have been expecting. 'Who else knows about this place? Tell me before I crush every pinion in your neck.'[paragraph break]My toes are scrabbling on the ground. I try to scream but nothing comes out beyond a whisper. I can see the outline of the Figure’s cowl and beyond that, for the first time, almost make out an unhappy face.[paragraph break]'You’ll tell me or you’ll die here,' the Figure says quietly. 'You’ll die cold and alone like the rat you are.'[paragraph break]The room is getting darker. The tank for the gas lamps must be running low. Soon it’ll be me and the Figure and all these men, and no-one will ever find me or know where I’ve gone. Or is that someone? In the background? A shape, a shadow, my imagination or…[paragraph break]'Covalt?' I whisper, in desperation. 'Covalt, is that…'[paragraph break]Then the lights disappear completely. The heavy cord of the clock-key round my neck has become tangled while I was asleep. The stars are coming out. And then I’m underwater again.";
 	pause the game;
+	fire SE_RETURN_1;
+	move Covalt to Covalt's Bedroom;
 	move the player to the feather bed;
-
-Understand "mechanical", "men" as the army of metal statues.
+	change the current script to {SE_RETURN_0, SE_RETURN_2}
 
 Book 9 - Return to Covalt's
 
+Return to Covalt's is a scene. Return to Covalt's begins when the player can see the army of metal statues. 
 
+Part 1 - Bedroom
+
+Chapter 1 - Description
+
+Rule for printing the description of Covalt's Bedroom during Return to Covalt's:
+	say "Covalt’s little back room. The skylight’s still got a Wren-shaped hole in it but at least the bits of balloon have been tidied away into a corner with all the rest of a clockmaker’s junk.";
+
+After going north from Covalt's Bedroom when Return to Covalt's is happening and Covalt is in Covalt's Bedroom: [horrible unnatural language]
+	if the state of Covalt is:
+		-- 1: say "Covalt follows you, his expression anxious.";
+		-- 2: say "Covalt follows you. 'You looking for something, are you?'";
+		-- 3: say "Covalt follows you. 'Sit still, won’t you? You’re giving me frets.'";
+		-- 4: say "Covalt follows you.";
+	try looking;
+	move Covalt to Clock Shop;
+
+Chapter 2 - Events
+
+SE_RETURN_0 is a scripted event. [dummy]
+
+SE_RETURN_1 is a scripted event. The display text is "There’s something pinching my nose. And again. Regular, like a second-hand – maybe he’s tied me to a clock, I’m thinking, maybe I’m going round and round the face on the Cathedral…[paragraph break]I open my eyes and two black birds flutter away, startled.[paragraph break]'There you are. Still in there? That’s good enough.' The voice is old and crumbling like the stones of the Abbey walls. Covalt. 'I found you on my doorstep. Hour ago or more than that. Wasn’t sure you were breathing. Don’t know how people tick and you can’t wind them back up.'"
+
+SE_RETURN_2 is a scripted event. The display text is "'Found this with you,' Covalt adds, holding up a scrap of paper that looks like a postage stamp in his gigantic hand. 'Stay away – this is what it says, you see, now what I’m telling you. Stay away or the child will… Well.' The old man pauses, awkwardly. 'It says to stay away, whichever-wards.'"
+
+After firing SE_RETURN_1:
+	change the state of Covalt to 1;
+
+Chapter 3 - Scenery
+
+Rule for printing the description of the feather bed during Return to Covalt's:
+	say "Covalt’s feather bed – large enough to sleep four of the Abbey’s initiated and still leave room for a nightmare or two. ";
+
+Instead of standing on the feather bed when the player is not on the feather bed during Return to Covalt's:
+	say "Now isn’t the time for more sleeping.";
+
+After getting off the feather bed during Return to Covalt's:
+	say "My bones make a noise like cracking timber as I haul myself up.";
+
+Rule for printing the description of the wrecked skylight during Return to Covalt's:
+	say "The bits and pieces of my balloon, piled up on one side.";
+
+Instead of doing something when the wrecked skylight is involved during Return to Covalt's:
+	say "They’re as broken as the springs that hold my brain in my place. Oh, my head!";
+
+Chapter 4 - Ravens
+
+Rule for printing the description of the ravens when the state of Covalt is 1 during Return to Covalt's:
+	say "The ravens flit around the room, on a fixed pattern. One goes, then the other. Round and round like, well, like they weren’t real ravens. Which they’re not, of course, however well-built and oiled they are. ";
+
+Rule for printing the description of the ravens when the state of Covalt is 2 during Return to Covalt's:
+	say "The ravens have settled, one on top of Covalt’s head and the other on his left hand. ";
+
+Rule for printing the description of the ravens when the state of Covalt is 3 during Return to Covalt's:
+	say "The ravens are pecking and peeking across the floor[one of]. 'Making a fool of us,' Covalt remarks, catching my eye[or][stopping]. ";
+
+Rule for printing the description of the ravens when the state of Covalt is 4 during Return to Covalt's:
+	say "The ravens have retired to a rafter. ";
+
+Instead of doing something when the ravens are physically involved and the state of Covalt is 1 during Return to Covalt's:
+	say "I couldn’t catch them!";
+
+Instead of doing something when the ravens are physically involved and the state of Covalt is 2 during Return to Covalt's:
+	say "The raven pecks back, quick and vicious[one of]. 'Just like a real bird,' Covalt remarks proudly[or][stopping].";
+
+Instead of doing something when the ravens are physically involved and the state of Covalt is 3 during Return to Covalt's:
+	say "The raven skitters and hops out of my reach.";
+
+Instead of doing something when the ravens are physically involved and the state of Covalt is 4 during Return to Covalt's:
+	say "The ravens are up, out of reach on a rafter.";
+
+Chapter 5 - Covalt
+
+Rule for printing the description of Covalt when the state of Covalt is 1 during Return to Covalt's:
+	say "Covalt is pacing back and forth. Every time he turns he nearly bring down a wall with his massive shoulders. ";
+
+Rule for printing the description of Covalt when the state of Covalt is 2 during Return to Covalt's:
+	say "Covalt is seated, colossal head between colossal hands. ";
+
+Rule for printing the description of Covalt when the state of Covalt is 3 during Return to Covalt's:
+	say "Covalt is poking through the room looking for some kind of answer. ";
+
+Rule for printing the description of Covalt when the state of Covalt is 4 during Return to Covalt's:
+	say "Covalt is hard at work at the workbench. ";
+
+First for writing a paragraph about Covalt during Return to Covalt's:
+	now Covalt is mentioned;
+	carry out the printing the description activity with Covalt;
+	say paragraph break;
+
+Chapter 6 - Conversation Tables
+
+Section 1 - When Concerned
+
+Table of concerned Covalt conversation
+conversation			topic
+CT_COV_R1_MYSELF		"me" or "myself" or "self" or "Wren" or "story" or "my story"
+CT_COV_R1_BALLOON		"balloon" or "skylight" or "ceiling" or "wreckage" or "wreck" or "window" or "weather balloon" or "sorry" or "apologies" or "apologise"
+CT_COV_R1_ABBEY		"[abbey]" 
+CT_COV_R1_CATHEDRAL		"[cathedral]"
+CT_COV_R1_ABBOT		"[abbot]"
+CT_COV_R1_FIGURE		"[figure]"
+CT_COV_R1_ARCHBISHOP	"bishop" or "archbishop"
+CT_COV_R1_PEOPLE		"[abbeyfolk]" or "[sa'at]"
+CT_COV_R1_COVALT		"giant" or "covalt" or "him" or "himself"
+CT_COV_R1_RAVENS		"ravens" or "his ravens" or "hugin" or "mummin"
+CT_COV_R1_CLOCKWORK	"clockwork" or "clock work" or "clocks"
+CT_COV_R1_PERPETUUM		"perpetuum" or "mobile" or "stealing" or "theft" or "robbery" or "plan" or "plot"
+CT_COV_R1_DIFFERENCEENGINE	"difference" or "engine" or "machine" or "knowing machine"
+CT_COV_R1_ARMY		"docks" or "dockyard" or "warehouse" or "docklands" or "old place" or "army" or "metal" or "mechanical" or "men" or "statues" or "machines" or "soldiers"
+
+Rule for choosing the conversation table of Covalt when the state of Covalt is 1 during Return to Covalt's:
+	change the chosen conversation table to the table of concerned Covalt conversation;
+
+CT_COV_R1_MYSELF is a conversation topic. The enquiry text is "'I should tell you what happened, I’ve got to,' I begin hurriedly. 'The Figure, and I found… and there was this rope and I…'". The response text is "'Slow down, slow down!' Covalt chides. 'Start with something and go on from there. Or you won’t have a story, you’ll have a coughing fit!'".
+CT_COV_R1_BALLOON is a conversation topic. The enquiry text is "'I’m sorry about your skylight.'". The response text is "'Never mind my skylight,' he answers, crossly. 'I don’t want no sorries from half-dead children!'".
+CT_COV_R1_ABBEY is a conversation topic. The enquiry text is "'Perhaps I should go back to the Abbey.'". The response text is "'Not until you’ve told me what’s happened to you,' Covalt replies severely.".
+CT_COV_R1_CATHEDRAL is a conversation topic. The enquiry text is "'I’ve got to get to the Cathedral,' I insist.". The response text is "'Not till we have a plan you don’t.' He waves the Figure’s note meaningfully. 'And we won’t have a plan till you’ve told me what’s going on.'".
+CT_COV_R1_ABBOT is a conversation topic. The enquiry text is "'The Abbot must know I’m  missing by now.'". The response text is "'Well, perhaps he cares or not, never mind,' Covalt replies roughly. 'But you’ve been blacked out hard enough that you’re owed a little time without a whipping.'".
+CT_COV_R1_FIGURE is a conversation topic. The enquiry text is "'The Figure must have brought me here,' I say. 'He tried to strangle me…'". The response text is "'So?' Covalt’s voice is urgent. 'Where were you? What did you find?'".
+CT_COV_R1_ARCHBISHOP is a conversation topic. The enquiry text is "'I’ve got to tell the Archbishop!' I insist.". The response text is "'No you don’t, urchin.' Covalt stamps his foot. 'You’ve got to tell me.'".
+CT_COV_R1_PEOPLE is a conversation topic. The enquiry text is "He wouldn’t know them.".
+CT_COV_R1_COVALT is a conversation topic. The enquiry text is "'Are you all right?' I ask.". The response text is "'Me? ME?' He looks furious. 'I’ve got this half-dead half-guttered gutter rat stinking of river water dropped dead on my doorstep and… oh!' He growls. 'You tell me about you. And leave me out of it, right?'".
+CT_COV_R1_RAVENS is a conversation topic. The enquiry text is "'Are your birds all right?'". The response text is "'You must be addled,' he replies, in a voice as soft as falling granite. 'Worrying about my birds. Now what happened to you?'".
+CT_COV_R1_CLOCKWORK is a conversation topic. The enquiry text is "'I found clockwork,' I begin. 'Clockwork…'". The response text is "'Start from somewhere else,' Covalt insists. 'From the start or wherever but somewhere with sense!'".
+CT_COV_R1_PERPETUUM	 is a conversation topic. The enquiry text is "'He might have stolen the Perpetuum already!'". The response text is "'That he might,' Covalt replies. 'But I didn’t feel any earthquake yet and you believe me, if your Figure starts taking that thing apart you’ll feel it in the wind-up of your bones.'".
+CT_COV_R1_DIFFERENCEENGINE is a conversation topic. The enquiry text is "'I got to the Engine, like you said,' I tell him.". The response text is "'Course you did,' he replies, with clear pride. 'And where did it send you on to?'".
+CT_COV_R1_ARMY is a conversation topic. The enquiry text is "'The Engine sent me to the docks!' I tell him. 'And I found – an army…' I try to describe the soldiers with their metal faces and mechanical chests.". The response text is "Covalt is nodding before I’ve finished. 'So that’s your answer then,' Covalt says, seriously. 'The Perpetuum.'".
+
+CT_COV_R1_MYSELF is clustered with CT_COV_R1_BALLOON, CT_COV_R1_ABBEY, CT_COV_R1_CATHEDRAL, CT_COV_R1_ABBOT, CT_COV_R1_FIGURE, CT_COV_R1_ARCHBISHOP, CT_COV_R1_PEOPLE, CT_COV_R1_COVALT, CT_COV_R1_RAVENS, CT_COV_R1_CLOCKWORK, CT_COV_R1_PERPETUUM, CT_COV_R1_DIFFERENCEENGINE,  CT_COV_R1_ARMY.
+
+[These topics may only be fired once.]
+Rule for firing a fired conversation topic that is clustered with CT_COV_R1_MYSELF:
+	say "I've already talked to him about that." instead;
+
+After firing CT_COV_R1_ARMY:
+	change the state of Covalt to 2;
+
+Section 2 - When Realizing
+
+Table of realizing Covalt conversation
+conversation			topic
+CT_COV_R2_MYSELF		"me" or "myself" or "self" or "Wren" or "story" or "my story"
+CT_COV_R2_BALLOON		"balloon" or "skylight" or "ceiling" or "wreckage" or "wreck" or "window" or "weather balloon" or "sorry" or "apologies" or "apologise"
+CT_COV_R2_CHURCH		"[abbey]" or "[cathedral]" or "[figure]"
+CT_COV_R2_CLERGY		"[abbot]" or "bishop" or "archbishop"
+CT_COV_R2_PEOPLE		"[abbeyfolk]" or "[sa'at]"
+CT_COV_R2_COVALT		"giant" or "covalt" or "him" or "himself"
+CT_COV_R2_RAVENS		"ravens" or "raven" or "his ravens" or "hugin" or "mummin"
+CT_COV_R2_PERPETUUM		"perpetuum" or "mobile" or "stealing" or "theft" or "robbery" or "plan" or "plot"
+CT_COV_R2_DIFFERENCEENGINE	"difference" or "engine" or "machine" or "knowing machine"
+CT_COV_R2_ARMY		"docks" or "dockyard" or "warehouse" or "docklands" or "old place" or "clockwork" or "clock work" or "clocks" or "army" or "metal" or "mechanical" or "men" or "statues" or "machines" or "soldiers"
+
+Rule for choosing the conversation table of Covalt when the state of Covalt is 2 during Return to Covalt's:
+	change the chosen conversation table to the table of realizing Covalt conversation;
+
+CT_COV_R2_MYSELF is a conversation topic. The enquiry text is "'Then the Figure found me and knocked me out,' I tell him, finishing my story.". The response text is "'Yes, yes.' He’s not listening – brows bent, deep in thought.". 
+CT_COV_R2_BALLOON is a conversation topic. The enquiry text is "'I’m sorry about your skylight.'". The response text is "'Never mind my skylight,' he answers, crossly. 'I don’t want no sorries from half-dead children!'".
+CT_COV_R2_CHURCH is a conversation topic. The enquiry text is "'Do you think the Figure’ll go back to the Cathedral?' I ask.". The response text is "'The Figure? Certainly,' Covalt says. 'We know what he’s wanting, after all, don’t we? And I don’t suppose getting fingers round your throat will have changed that for him.'".
+CT_COV_R2_CLERGY is a conversation topic. The enquiry text is "'We should warn someone in the Church.'". The response text is "'You have any proof?' Covalt replies angrily. 'You’ve given yourself a rusty enough name already today.' Then suddenly he’s grinning. 'They don’t listen to rats like us, rat.'".
+CT_COV_R2_PEOPLE is a conversation topic. The enquiry text is "He won’t know them.".
+CT_COV_R2_COVALT is a conversation topic. The enquiry text is "'What are you thinking?' I ask.". The response text is "'Can’t you guess?' he replies.".
+CT_COV_R2_RAVENS is a conversation topic. The enquiry text is "'Are your birds all right?'". The response text is "He waves the question away unanswered.".
+CT_COV_R2_DIFFERENCEENGINE is a conversation topic. The enquiry text is "'Surely the Difference Engine could tell us what’s going on…'". The response text is "He laughs bitterly. 'We don’t need an Engine for that no more. Got a perfectly good rig of springs up here.' He taps his temple.".
+CT_COV_R2_ARMY is a conversation topic. The enquiry text is "'The clockwork men…'". The response text is "'All had hatches in their guts, I heard you. You see the cogs on this don’t you?'".
+CT_COV_R2_PERPETUUM is a conversation topic. The enquiry text is "'The Perpetuum,' I say. 'The Figure wants it for the army?'". The response text is "'He’s going to make a copy,' Covalt says heavily. 'Give each one a heart that never needs no winding. Merciless and unstoppable soldiers. More like a plague than an army.'[paragraph break]'But for what?'[paragraph break]Covalt shrugs. 'We won’t find out. Copying the Perpetuum? That’s like jamming a second spring into a working balance. Too much power. Or too much of something.' In a moment Covalt is on his feet again. 'Here’s how I see it. We need to stop the Figure but we can’t. We stop him today and he’ll be back tomorrow. He’s going to steal that Perpetuum and somehow we’ve got to put the chocks in [i]after[r] that.'[paragraph break]'How?'[paragraph break]Then he shakes his head. 'I’ll be widder-wound if I can see how.'".
+
+CT_COV_R2_MYSELF is clustered with CT_COV_R2_BALLOON, CT_COV_R2_CHURCH, CT_COV_R2_CLERGY, CT_COV_R2_PEOPLE, CT_COV_R2_COVALT, CT_COV_R2_RAVENS, CT_COV_R2_PERPETUUM, CT_COV_R2_DIFFERENCEENGINE,  CT_COV_R2_ARMY.
+
+[These topics may only be fired once.]
+Rule for firing a fired conversation topic that is clustered with CT_COV_R2_MYSELF:
+	say "I've already talked to him about that." instead;
+
+Rule for firing CT_COV_R2_BALLOON:
+	fire CT_COV_R1_BALLOON;
+
+[If we ask Covalt about himself a second time, it is the same as asking about the Perpetuum - but without the usual enquiry text.]
+
+First for firing fired CT_COV_R2_COVALT:
+	if the enquiry text of CT_COV_R2_COVALT is not "":
+		say the enquiry text of CT_COV_R2_COVALT;
+	change the enquiry text of CT_COV_R2_PERPETUUM to "";
+	fire CT_COV_R2_PERPETUUM;
+
+[If we respond cluelessly to either of Covalt's prompts, it is the same as asking him about himself for the second time -- only without even that enquiry text!]
+
+First after firing unfired CT_COV_R2_COVALT:
+	ask DQ_COV_R2_GUESS;
+
+First after firing unfired CT_COV_R2_ARMY:
+	ask DQ_COV_R2_GUESS;
+
+DQ_COV_R2_GUESS is a direct question.
+
+A negative response rule for DQ_COV_R2_GUESS:
+	now CT_COV_R2_COVALT is fired; [as though it were a repeat firing]
+	change the enquiry text of CT_COV_R2_COVALT to "";
+	fire CT_COV_R2_COVALT; [thereby firing the Perpetuum response only]
+
+[Finally, the above mechanisms funnel conversation through to the Perpetuum quip]
+
+After firing CT_COV_R2_PERPETUUM:
+	change the state of Covalt to 3;
+
+Section 3 - When figuring out what to do
+
+Table of planning Covalt conversation
+conversation			topic
+CT_COV_R3_MYSELF		"me" or "myself" or "self" or "Wren" or "story" or "my story"
+CT_COV_R3_BALLOON		"balloon" or "skylight" or "ceiling" or "wreckage" or "wreck" or "window" or "weather balloon" or "sorry" or "apologies" or "apologise"
+CT_COV_R3_CHURCH		"[abbey]" or "[cathedral]" or "[abbot]" or "bishop" or "archbishop"
+CT_COV_R3_FIGURE		"[figure]"
+CT_COV_R3_PEOPLE		"[abbeyfolk]" or "[sa'at]"
+CT_COV_R3_COVALT		"giant" or "covalt" or "him" or "himself"
+CT_COV_R3_RAVENS		"ravens" or "raven" or "his ravens" or "hugin" or "mummin"
+CT_COV_R3_CLOCKWORK	"clockwork" or "clock work" or "clocks"
+CT_COV_R3_SAINTS		"saint" or "saints" or "babbage" or "newton" or "st babbage" or "st newton"
+CT_COV_R3_DIFFERENCEENGINE	"difference" or "engine" or "machine" or "knowing machine"
+CT_COV_R3_PERPETUUM		"perpetuum" or "mobile" or "stealing" or "theft" or "robbery" or "plan" or "plot"
+
+Rule for choosing the conversation table of Covalt when the state of Covalt is 3 during Return to Covalt's:
+	change the chosen conversation table to the table of planning Covalt conversation;
+
+CT_COV_R3_MYSELF is a conversation topic. The enquiry text is "'What can I do?' I ask.". The response text is "'Right now? Think. First step is [i]always[r] to think. How do we stop a Figure when we can’t stop a Figure?'".
+CT_COV_R3_BALLOON is a conversation topic.
+CT_COV_R3_CHURCH is a conversation topic. The enquiry text is "'I could go back to the Cathedral.' I gulp. 'Get in his way.'". The response text is "'Sneak in? You definitely will. No other way to get to the teeth on this one. But then what? That’s the rock.' He stares at his big fingers. 'It’s there, right in my hands like I’m holding it already, but I don’t see it!'".
+CT_COV_R3_FIGURE is a conversation topic. The enquiry text is "'The Figure’s too strong for me to fight,' I remind him. 'I tried, and...'". The response text is "'No matter. You won’t be fighting him again. Brave but not brainy. What we need is a trick. A trap. And traps need bait...'".
+CT_COV_R3_PEOPLE is a conversation topic. The enquiry text is "He won't know them". 
+CT_COV_R3_COVALT is a conversation topic. The enquiry text is "'Are you all right?'". The response text is "'I’m thinking,' he snaps. 'Haven’t you seen someone thinking before? Some kind of rat you are. Can’t you do some thinking of your own?'".
+CT_COV_R3_RAVENS is a conversation topic.
+CT_COV_R3_CLOCKWORK is a conversation topic. The enquiry text is "'Can we use clockwork?'". The response text is "'You can always rely on clockwork,' Covalt replies strictly. 'Don’t forget that.'".
+CT_COV_R3_SAINTS is a conversation topic. The enquiry text is "'Maybe we should pray...'". The response text is "'We can get to that once we’ve got some fool-of-a-chance scheme on the way,' Covalt replies. 'Plenty of time.'".
+CT_COV_R3_DIFFERENCEENGINE is a conversation topic. The enquiry text is "'I’m not going to ask that Difference Engine again,' I assure him.". The response text is "He chortles. 'I don’t think you will. I didn’t think you would first time over. I thought it’d get you arrested and out of my hair.'".
+CT_COV_R3_PERPETUUM is a conversation topic. The enquiry text is "'Do you think we could steal the Perpetuum first?'". The response text is "'Not a bad idea,' he admits, mulling it over, brain turning round on its spindle. But finally he shakes his head. 'No good. Where do you think the Figure would look when he didn’t find it? Right here, I’d say.'".
+
+CT_COV_R3_MYSELF is clustered with CT_COV_R3_BALLOON, CT_COV_R3_CHURCH, CT_COV_R3_FIGURE, CT_COV_R3_PEOPLE, CT_COV_R3_COVALT, CT_COV_R3_RAVENS, CT_COV_R3_CLOCKWORK, CT_COV_R3_SAINTS, CT_COV_R3_DIFFERENCEENGINE, CT_COV_R3_PERPETUUM.
+
+Rule for firing a fired conversation topic that is clustered with CT_COV_R3_MYSELF:
+	say "I've already talked to him about that." instead;
+
+Rule for firing CT_COV_R3_BALLOON:
+	fire CT_COV_R1_BALLOON;
+
+Rule for firing CT_COV_R3_RAVENS:
+	fire CT_COV_R2_RAVENS;
+
+Instead of doing something when the Perpetuum Mobile diagram is involved and the state of Covalt is 3:
+	if we are not giving the perpetuum mobile diagram to Covalt:
+		try giving the perpetuum mobile diagram to Covalt instead;
+
+Instead of giving or showing the Perpetuum Mobile diagram to Covalt when the state of Covalt is less than 3:
+	say "He doesn’t even look. He’s thinking about something else.";
+
+Instead of giving or showing the Perpetuum Mobile diagram to Covalt when the state of Covalt is 3:
+	now Covalt carries the Perpetuum Mobile diagram;
+	now the player carries the silver coins;
+	change the state of Covalt to 4;
+	say "'Wait now, what’s that? What are you doing with that?' Covalt’s voice is shaking, unless I’m still feeling dizzy. He’s pointing at the diagram of the Perpetuum in my hands like it was a two-foot rat. 'Did I tell you could go walking off with that?'[paragraph break]'I...'[paragraph break]Then the grin breaks out across his face like a sunrise through dirty glass windows. 'Because that’s a bloody brilliant thought from a brain as small as yours. Brilliant. I was saying I couldn’t build a Perpetuum, wasn’t I? But I can always build a box. Doesn’t take nothing to build a box. A trap. And here.'[paragraph break]Digging in a pocket he pulls out screws, keys, lengths of wire coiled in helices, a plane file, sandpaper and then finally, three shiny silver minutes that make my eyes light up.[paragraph break]'There’s an autopothecary over the street,' he says gleefully. 'You get yourself in there and buy the strongest sleeping drug you’re old enough to buy. Then we’ll spring-load it into a decoy Perpetuum and next morning there’ll be a sleeping Figure in the Cathedral vaults ready to be locked up and forgotten.'[paragraph break]";
+	if the location is the Clock Shop:
+		say "Covalt smiles a wicked smile and then turns to rummaging across his worktop. 'I’ll get some bits together.'";
+	otherwise:
+		say "Covalt drags me through into the main workshop and starts rummaging across his worktop. 'I’ll get some bits together. Get yourself going.'";
+		move the player to the Clock Shop;
+		move Covalt to the Clock Shop;
+
+Section 4 - When we have a plan
+
+Table of working Covalt conversation
+conversation			topic
+CT_COV_R4_MYSELF		"me" or "myself" or "self" or "Wren" or "story" or "my story" or "[abbey]"
+CT_COV_R4_BALLOON		"balloon" or "skylight" or "ceiling" or "wreckage" or "wreck" or "window" or "weather balloon"
+CT_COV_R4_CATHEDRAL		"[cathedral]"
+CT_COV_R4_CLERGY		"[abbot]" or "bishop" or "archbishop"
+CT_COV_R4_FIGURE		"[figure]"
+CT_COV_R4_PEOPLE		"[abbeyfolk]" or "[sa'at]"
+CT_COV_R4_COVALT		"giant" or "covalt" or "him" or "himself"
+CT_COV_R4_RAVENS		"ravens" or "raven" or "his ravens" or "hugin" or "mummin"
+CT_COV_R4_CLOCKWORK	"clockwork" or "clock work" or "clocks"
+CT_COV_R4_SAINTS		"saint" or "saints" or "babbage" or "newton" or "st babbage" or "st newton"
+CT_COV_R4_DIFFERENCEENGINE	"difference" or "engine" or "machine" or "knowing machine"
+CT_COV_R4_PERPETUUM		"perpetuum" or "mobile" or "stealing" or "theft" or "robbery" or "plan" or "plot"
+
+CT_COV_R4_MYSELF is a conversation topic. The enquiry text is "'What happens to me after we catch the Figure?'". The response text is "The old giant looks up at me with some sympathy. 'Since this plan of ours doesn’t have a wet flame’s chance of working,' he says very sensibly, 'we’d better not waste time worrying about that.' But I can see he’s not being honest.".
+CT_COV_R4_BALLOON is a conversation topic. The enquiry text is "'Breaking into the vaults will be nothing compared to that balloon ride.'". The response text is "'Idiot,' Covalt replies. 'You’ll trip over your feet and that’ll be that.'".
+CT_COV_R4_CATHEDRAL is a conversation topic. The enquiry text is "'What happens if I don’t make it back into the Cathedral?'". The response text is "'You will,' Covalt says. 'That’s not the risky part of the plan, so you’ve got to.'".
+CT_COV_R4_CLERGY is a conversation topic. The enquiry text is "'If they catch me in there...'". The response text is "'Then don’t let them catch you,' Covalt growls. 'The point is they catch [i]him[r]. So let’s make sure that’s how it happens.'".
+CT_COV_R4_FIGURE is a conversation topic. The enquiry text is "'And then when they find the Figure, passed out...'". The response text is "'Holding what looks like the Perpetuum... It'll be a short sentence.' He draws one finger across his throat. 'And then we wind out what to do with the real Perpetuum,' he sighs.".
+CT_COV_R4_PEOPLE is a conversation topic. The enquiry text is "He won’t know them.".
+CT_COV_R4_COVALT is a conversation topic. The enquiry text is "'Can you really make something that’ll look convincing? The Figure is no idiot...'". The response text is "'I can,' Covalt replies stiffly, 'and I’ll do it even better if you stop with your rusty talking.'".
+CT_COV_R4_RAVENS is a conversation topic. The enquiry text is "'If you can make something that looks like a raven...' I begin.". The response text is "He pauses for a moment, then smiles. 'Kind of you, street-rat. So.'".
+
+CT_COV_R4_CLOCKWORK is a conversation topic.
+CT_COV_R4_SAINTS is a conversation topic.
+CT_COV_R4_DIFFERENCEENGINE is a conversation topic.
+CT_COV_R4_PERPETUUM is a conversation topic.
+
+Rule for firing CT_COV_R4_CLOCKWORK:
+	fire CT_COV_R3_CLOCKWORK;
+
+Rule for firing CT_COV_R4_SAINTS:
+	fire CT_COV_R3_SAINTS;
+
+Rule for firing CT_COV_R4_DIFFERENCEENGINE:
+	fire CT_COV_R3_DIFFERENCEENGINE;
+
+Rule for firing CT_COV_R4_PERPETUUM:
+	fire CT_COV_R3_PERPETUUM;
+
+CT_COV_R4_MYSELF is clustered with CT_COV_R4_BALLOON, CT_COV_R4_CATHEDRAL, CT_COV_R4_CLERGY, CT_COV_R4_FIGURE, CT_COV_R4_PEOPLE, CT_COV_R4_COVALT, CT_COV_R4_RAVENS, CT_COV_R4_CLOCKWORK, CT_COV_R4_SAINTS, CT_COV_R4_DIFFERENCEENGINE, CT_COV_R4_PERPETUUM.
+
+Chapter 7 - Idle actions
+
+Rule for firing COVALT_COUNTER when the state of Covalt is 1 during Return to Covalt's:
+	say "[one of]Covalt paces the floor, waiting for me to explain.[or]'Well?' Covalt demands.[or]'You’d better tell me what happened to you,' Covalt growls.[or][stopping]";
+
+Rule for firing COVALT_COUNTER when the state of Covalt is 2 during Return to Covalt's:
+	say "[one of]Covalt looks stunned, like he’s been used as a bell-clapper.[or]The giant’s face is cracked with frowns.[or]'I don’t see the teeth on this,' Covalt grumbles. 'I don’t see them at all.'[or][stopping]";
+
+Rule for firing COVALT_COUNTER when the state of Covalt is 3 during Return to Covalt's:
+	say "[one of]'What we need,' Covalt murmurs, 'is a plan.'[or]'Some kind of plan,' Covalt grumbles. 'You can’t make eggs into an omelet if you don’t have a plan.'[or]'Can’t do anything without a plan, you see,' Covalt says. 'Something to lay out what you do, when.'[or][fire TRIG_COV_DIAGRAM][stopping]";
+
+TRIG_COV_DIAGRAM is a trigger.
+
+Rule for firing unfired TRIG_COV_DIAGRAM:
+	try giving the Perpetuum Mobile diagram to Covalt;
+
+Rule for firing COVALT_COUNTER when the state of Covalt is 4 during Return to Covalt's:
+	say "[one of]Covalt has settled at his workbench and is turning the plan of the Perpetuum this way and that.[or]Covalt rummages across his workbench and comes up trumps with a  sheet of metal and a small brass pin.[or]'Just the surface stuff,' Covalt murmurs to himself. 'None of them workings.'[or]'Are you still here?' Covalt demands of me, suddenly. 'Where’s your side of all this?'[or][stopping]";
+
+Part 2 - Clock Shop
+
+Rule for printing the description of the Clock Shop during Return to Covalt's:
+	say "Looks like Covalt didn’t tidy up while I was out, then. From the bedroom door to the south round to the door to the southwest there are 11 hours of stuff – cogs, traces, all that clockwork the monks polish up and Covalt just tosses around his room like so much chickenfeed.";
+
+Instead of opening the clock shop door when the state of Covalt is less than 4 and Return to Covalt's is happening:
+	say "[one of]'Stop there,' Covalt demands, blocking my way with one gigantic hand. 'You’ve dragged me up into this, now you’re going to help me out.'[or]Covalt stops me. 'Not till we’ve a plan and I know what’s what.'[or]Covalt stops me.[stopping]";
+
+After going through the clock shop door from the Clock Shop during Return to Covalt's:
+	if the state of Covalt is 4:
+		say "'Make it a knock-out, don’t go halves!' Covalt shouts after me.";
+	continue the action;
+
+Part 3 - Escapement Street
+
+Escapement St is a room. "It’s night. Gaslight webs the shining edges of the cobblestones. All the shops are closed except for Covalt’s back northeast. The streets are empty of people, no boys running around or girls weaving cats-cradle between their hands.[paragraph break]But the Autopothecary to the southwest is still open. It never closes."
+
+The printed name of Escapement St is "Escapement Street".
+
+Chapter 8 - Silver minutes
+
+Some silver coins are a thing. The silver coins have a number called the count. The count of the silver coins is 3.
+
+The printed name of the silver coins is "silver minutes".
+Understand "minutes" as the silver coins.
+
+Rule for printing the description of the silver coins:
+	say capitalized "[count of silver coins in words] silver coin[s]. [run paragraph on]";
+	say "More money than I've ever held before. Certainly more than they give out at Newtonmass (and then take straight back off us in the New Year’s Donations).";
+
+Part 4 - Autopothecary
+
+The Autopothecary is southwest of Escapement St. "This is a small booth, all tiled gleaming white and washed down to make the place look healthy and clean. The plate glass wall to the southeast lets in enough gaslight to see the controls of the machine: a series of little doors, each with it’s own coin slot beneath. Beside it is a neat little press for combining fresh ingredients into medicines. Above that is a price-list chalked up like an inn sign."
 
 Book W - Walkthrough Script
 
@@ -8458,13 +8848,13 @@ test brass with "turn brass crank".
 
 test gold with "turn gold crank/g/g/g/g/g/g/turn gold crank backwards/g/g".
 
-test covalt with "tell giant about balloon / tell giant about figure / tell covalt about abbot / tell covalt about perpetuum / x table / x shelves / x pendulums / x tools / x workbench / x brown lump / x mechanical monkey / ask covalt about difference / out".
+test covalt with "tell giant about balloon / tell giant about figure / tell covalt about abbot / tell covalt about perpetuum / x table / x shelves / x clocks / x tools / x workbench / x brown lump / x mechanical monkey / ask covalt about difference / out".
 
 test countinghouse with "up / show order to guards / w / nw / n / e / z / z / d / x dials / get key / s / w / unlock abacus / set abacus to 14936 / e / e / unlock abacus / set abacus to 78325 / w / pull lever / z / get card / n / w / w / ne / e / e".
 
 test outsidewarehouse with "n/e/n/x rubble/get wrench/w/w/unscrew bolts with wrench/unscrew bolts with wrench/unscrew bolts with wrench/w/unscrew bolts with wrench/unscrew bolts with wrench/enter drain/u".
 
-test insidewarehouse with "x junk / get ladder / put ladder against pipe / get rope / put rope on pipe / tie rope to crate / get ladder / get rope / s / put ladder against pipe / put rope on pipe / tie rope to door / n / push crate down drain / s / get ladder / e / pull lever / turn bolt with wrench / push button / pull lever / turn bolt with wrench / stand ladder / down".
+test insidewarehouse with "x junk / get ladder / put ladder against pipe / get rope / put rope on pipe / tie rope to crate / get ladder / get rope / s / put ladder against pipe / put rope on pipe / tie rope to door / n / push crate down drain / s / get ladder / e / pull lever / turn bolt with wrench / push button / pull lever / turn bolt with wrench / stand ladder / down / open men".
 
 Book X - Not For Release - Fixing the RNG
 
