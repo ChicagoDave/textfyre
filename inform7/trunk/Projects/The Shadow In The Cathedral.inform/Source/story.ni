@@ -2,6 +2,7 @@
 
 [  Change Log
 When		Who		What
+04 Jun 2009	J. Ingold	Added synonyms to verbs. Removed grammar lines leading to "rub" action. Added an ornamental action, "making the sign of". Slowed the clock-kind down to increase by 1 minute every 10 turns (to "discourage" accidental solution of time-puzzles -- it now takes 1200 moves for the Refectory Clock to strike 5pm, instead of only 120.) Added "[or-separated list of ...] substitution and used it to give help escaping Drake.
 01 Jun 2009	G. Jefferis	Remainder of Covalt's conversation
 27 May 2009	G. Jefferis	Return to Covalt's - conversation
 26 May 2009	G. Jefferis	Return to Covalt's
@@ -188,6 +189,26 @@ To say (dir - a direction) with mirroring:
 	otherwise:
 		say dir in the mirror;
 
+Chapter 4 - Or-separated lists
+
+[ Two syntaxes: [or-separated list of ...] and [the or-separated list of...] .]
+
+To say or-separated list of (the collection - a description):
+	let N be the number of members of the collection;
+	repeat with item running through the collection:
+		say "[item]";
+		decrease N by 1;
+		if N is 1, say " or ";
+		if N > 1, say ", ";
+
+To say the or-separated list of (the collection - a description):
+	let N be the number of members of the collection;
+	repeat with item running through the collection:
+		say "[the item]";
+		decrease N by 1;
+		if N is 1, say " or ";
+		if N > 1, say ", "; 
+
 Part 2 - New things to do
 
 Chapter 3 - Solidity of wax
@@ -332,17 +353,20 @@ Part 4 - Clock
 
 A clock is a kind of thing. A clock can be openable. A clock can be open. A clock can be lockable. A clock can be locked. A clock is usually openable, closed, lockable and locked.
 
-A clock has a time called the face value.
+A clock has a time called the face value. A clock has a number called the second-hand.
 
 To set (timepiece - a clock) to (t - a time):
 	change the face value of the timepiece to t;
+	change the second-hand of the timepiece to 0;
 
 The advance clocks rule is listed after the advance time rule in the turn sequence rules.
 
 This is the advance clocks rule:
 	repeat with timepiece running through clocks:
 		let x be the face value of the timepiece;
-		set the timepiece to x + 1 minute;
+		increase the second-hand of the timepiece by 1;
+		if the second-hand of the timepiece > 10:
+			set the timepiece to x + 1 minute;
 
 Part 5 - Wax
 
@@ -787,6 +811,15 @@ Book D - New actions
 
 Part 1 - Polishing
 
+Understand the command "rub" as something new.
+Understand the command "polish" as something new.
+Understand the command "clean" as something new.
+Understand the command "dust" as something new.
+Understand the command "scrub" as something new.
+Understand the command "shine" as something new.
+Understand the command "sweep" as something new.
+Understand the command "wipe" as something new.
+
 Polishing it with is an action applying to one thing and one carried thing and requiring light.
 
 Understand "polish [something] with [something]" as polishing it with.
@@ -794,8 +827,10 @@ Understand "rub [something] with [something]" as polishing it with.
 Understand "buff [something] with [something]" as polishing it with.
 Understand "clean [something] with [something]" as polishing it with.
 Understand "wipe [something] with [something]" as polishing it with.
+Understand "dust [something] with [something]" as polishing it with.
 Understand "polish [something]" as polishing it with.
 Understand "rub [something]" as polishing it with.
+Understand "dust [something]" as polishing it with.
 Understand "buff [something]" as polishing it with.
 Understand "clean [something]" as polishing it with.
 Understand "wipe [something]" as polishing it with.
@@ -818,7 +853,7 @@ Chapter 1 - Hiding Under
 
 Hiding under is an action with past participle hidden, applying to one visible thing.
 
-Understand "hide under/underneath/beneath [something]" as hiding under.
+Understand "hide under/underneath/beneath/below [something]" as hiding under.
 
 Carry out hiding under:
 	do nothing;
@@ -985,9 +1020,9 @@ Carry out climbing up something: try climbing the noun instead.
 
 Part 8 - Lying (down) on 
 
-Understand "lie on [supporter]" as entering.
+Understand "lie on/across/over [supporter]" as entering.
 Understand "lie down on [supporter]" as entering.
-Understand "sprawl on [supporter]" as entering.
+Understand "sprawl on/across/over [supporter]" as entering.
 
 Part 9 - Reading
 
@@ -1119,16 +1154,17 @@ Scraping is an action applying to one thing, and requiring light.
 
 Understand "scrape [something]" as scraping.
 Understand "scrape [something] up/off/away" as scraping.
+Understand "scrape up/off/away [something]" as scraping.
 
 Check scraping:
-	say "I can't see a need to scrape [if the noun is plural-named]those[otherwise]that[end if].";
+	say "I can't see a need to scrape [if the noun is plural-named]those[otherwise]that[end if]." instead;
 
 Chapter 2 - Scraping with
 
 Scraping it with is an action applying to one thing and one carried thing, and requiring light.
 
 Check scraping something with something unsuitable for scraping:
-	say "That's not much use for scraping things with.";
+	say "That's not much use for scraping things with." instead;
 
 Check scraping something with:
 	say "I can't see a need to scrape [if the noun is plural-named]those[otherwise]that[end if]." instead;
@@ -1136,6 +1172,7 @@ Check scraping something with:
 Understand "get [something] with [something preferably held]" as scraping it with.
 Understand "scrape [something] with [something preferably held]" as scraping it with.
 Understand "scrape [something] up/off/away with [something preferably held]" as scraping it with.
+Understand "scrape up/off/away [something] with [something preferably held]" as scraping it with.
 
 Part 17 - Cutting it with
 
@@ -1453,6 +1490,37 @@ Understand "prop up [something]" as standing it up.
 Check standing something up:
 	say "That doesn't seem to achieve anything.";
 
+Part 36 - Making the sign of
+
+Making the sign of is an action applying to one visible thing.
+
+Understand "make the sign of [any clock-sign]" as making the sign of.
+Understand "make sign of [any clock-sign]" as making the sign of.
+Understand "make the sign of [any thing]" as making the sign of.
+Understand "make sign of [any thing]" as making the sign of.
+
+Check making the sign of something when the noun is not a clock-sign:
+	say "That's not a Holy Sign: to do that might get me struck by a counterweight." instead.
+
+Carry out making the sign of a clock-sign:
+	do nothing.
+
+Report making the sign of a clock-sign:
+	say "I quietly make the sign of the [i][noun][r]." instead;
+
+Chapter 1 - Signs the player can make
+
+A clock-sign is a kind of thing. Understand "sign" as a clock-sign.
+
+The winding-key-sign is a clock-sign. Understand "winding key", "key" as the winding-key-sign. The printed name of the winding-key-sign is "winding key".
+The penduluum-sign is a clock-sign. Understand "pendulum/penduluum" as the penduluum-sign. The printed name of the penduluum-sign is "penduluum".
+The lever-sign is a clock-sign. Understand "lever" as the lever-sign. The printed name of the lever-sign is "lever".
+The screw-sign is a clock-sign. Understand "screw" as the screw-sign. The printed name of the screw-sign is "screw".
+
+Part 37 - Synonyms for drink
+
+Understand "drink from [something]" as drinking.
+
 Book E - New Properties
 
 Part 1 - Wakefulness
@@ -1573,6 +1641,9 @@ Part 1 - The Abbot's Room
 Chapter 1 - Description
 
 The Abbot's Quarters is a room. "[if Clock Case has been hidden in and the Introduction is happening]I need to get out of this place as fast as I can and without attracting any more attention. The door to the hallway is back west and as for polishing the Grandfather clock - well, forget it![otherwise if Introduction is happening]If I thought Abbots lived in luxury, then I was dead wrong. Even my attic's cosier than this. The Abbot's got no furniture at all, except a desk and a cot, and no decoration except for a bust of St. Newton. None of the axle-mounted bevelled mobiles I was expecting. There's barely even any sunlight: one thin window to catch the sun-rise, opposite the door to the hallway back east.[otherwise]The Abbot's Quarters again. Gubbler is here, standing by his desk (no chair, remember?). He's looking right at me, waiting for me to explain why I'm interrupting him, and why I haven’t run away back west yet.[end if]"
+
+Check listening to the Abbot's Quarters:
+	say "The clock-gears are chanting quietly to themselves." instead;
 
 Chapter 2 - Grandfather Clock
 
@@ -2101,7 +2172,7 @@ Part 3 - Rickety Stair
 
 Chapter 1 - Description
 
-The Rickety Stair is a room. The description is "I'm in the western corner of the Great Hall, just by the foot of the ladder up to my room. There's a note attached to it, asking Amble the caretaker not to put it back in the shed just yet."
+The Rickety Stair is a room. The description is "I'm in the western corner of the Great Hall, just by the foot of the ladder up to my room (the rest of the hall is east). There's a note attached to it, asking Amble the caretaker not to put it back in the shed just yet."
 
 Chapter 2 - Scenery
 
@@ -2839,6 +2910,12 @@ After taking the teacup for the first time:
 Instead of giving the empty teacup to Horloge:
 	say "'Well, what good's that?' Horloge demands. 'That's whotsit without the whotsit, like a whotsit with no whotsit!' He seem positively enraged.";
 
+Instead of drinking or tasting the empty teacup:
+	say "I mime sipping tea, like I was a real monk and not just a two-tooth initiate."
+
+Instead of drinking or tasting the full teacup:
+	say "I can't. It's not [i]for[r] me.";
+
 Part 9 - East Refectory
 
 Chapter 1 - Description
@@ -3232,6 +3309,7 @@ Drake has a list of objects called the route.
 The route of Drake is { Central Hall, Lower Hall, Scriptorium, Library, Central Hall, West Refectory, East Refectory, Kitchen, Upper Hall }.
 
 Drake has a truth state called pause flag.
+Drake has a truth state called escaped flag.
 
 Every turn during Drake's Patrol:
 	[ we give Drake a 40% chance of loitering in his location for a single turn  ]
@@ -3239,6 +3317,9 @@ Every turn during Drake's Patrol:
 	[ should seed the random number generator in DEBUG mode? ]
 	if pause flag of Drake is false and a random chance of 4 in 10 succeeds:
 		now pause flag of Drake is true;
+	else if escaped flag of Drake is true:
+		now escaped flag of Drake is false;
+		follow the warn of Drake's approach rule;
 	else:
 		now pause flag of Drake is false;
 		let d be the best route from the location of Drake to Drake's next destination;
@@ -3252,6 +3333,10 @@ To decide which room is Drake's next destination:
 
 To decide which room is Drake's future destination:
 	decide on entry 2 of the route of Drake;
+
+To decide which room is Drake's previous destination:
+	let N be the number of entries in the route of Drake - 1;
+	decide on entry N of the route of Drake;
 
 Definition: a room is Drake-occupied:
 	if it is the location of Drake, yes;
@@ -3274,17 +3359,37 @@ Before going to a Drake-occupied room during Drake's Patrol:
 		carry out the firing activity with ATTIC1 instead;
 	say "Just in time, I see Drake's there. I hang back, to let him move on." instead;
 
-Before going to a Drake-threatened room during Drake's Patrol:
+Automatically-dodging-Drake is a truth state that varies.
+
+Before going to a Drake-threatened room when automatically-dodging-Drake is false during Drake's Patrol (this is the keep the player from entering Drake's path voluntarily rule):
 	say "I catch the sound of hobnailed boots. Drake's heading this way! I'd better wait, and let him pass." instead;
 
 After Drake going:
+	abide by the warn of Drake's approach rule.
+
+This is the warn of Drake's approach rule:
 	if the location of the player is Drake's future destination begin;
 		let dir be the direction Drake is coming from;
-		say "[one of]Distantly – but not distantly enough – I can hear the clock and clatter of Drake's boots. The sound's coming from the [direction Drake is coming from].[or][sound of footsteps from dir][stopping]" instead;
+		say "[one of]Distantly – but not distantly enough – I can hear the Refectory Clock and clatter of Drake's boots. The sound's coming from the [direction Drake is coming from].[or][sound of footsteps from dir][stopping]" instead;
 	otherwise if the location of the player is Drake's next destination;
 		let dir be the direction Drake is coming from;
-		say "[one of]Looking [dir], I can see Drake. He's coming this way![or]Drake's just off to [the dir], and he's coming this way![or]I've got a moment before Drake spots me: he's just appeared, to [the dir].[at random]" instead;
+		say "[one of]Looking [dir], I can see Drake. He's coming this way! [or]Drake's just off to [the dir], and he's coming this way! [or]I've got a moment before Drake spots me: he's just appeared, to [the dir]. [at random]";
+		say "[one of]I could escape[or]Escape lies[or]I'd better disappear[or]Time to leave: I can go[at random] [or-separated list of Drake-viable directions]." instead;
 	otherwise if the location of the player is the location of Drake;
+		[ sometimes, we let the player escape ]
+		if a random chance of 40 in 100 succeeds
+		begin;
+			let the way be a random Drake-viable direction;
+			if the way is a direction
+			begin;
+				say "Drake [one of]appears[or]comes into the room[or]enters[at random]: I [one of]dive[or]hurry[or]dash[or]scamper[or]almost crawl[as decreasingly likely outcomes] away [way].";
+				now automatically-dodging-Drake is true;
+				try going the way;
+				now the escaped flag of Drake is true;
+				now automatically-dodging-Drake is false;
+				rule succeeds;
+			end if;
+		end if;
 		carry out the firing activity with ATTIC1 instead;
 	end if;
 	continue the action;
@@ -3300,6 +3405,18 @@ To decide which direction is the direction Drake is coming from:
 		now x is the Drake's next destination;
 	end if;
 	decide on the best route from the location of the player to x;
+
+Definition: a direction (called the way) is Drake-viable:
+	[ We find directions that Drake isn't at, ignoring inside and outside, up and down because they're ugly ]
+	if the way is outside or the way is inside or the way is up or the way is down, no;
+	let the new place be the room the way from the location;
+	if the new place is not a room, no;
+	[ is he there? ]
+	if the new place is the location of Drake, no;
+	[ was he there? - stops the player swapping rooms with him ]
+	if the location of Drake is the location and the new place is Drake's previous destination, no;
+	yes;
+
 
 Part 15 - The Abbey, as a region
 
