@@ -2,13 +2,13 @@
 <help>
   <menu title="Instructions">
     <item title="Introduction to Secret Letter">
-      <paragraph>[italic type]Nightfall[roman type] takes place in a city the Player Character knows well; he's lived there all his life and so has a far better knowledge of the local geography than the player begins with. To help bridge this knowledge gap you can use the command GO TO X or FIND X (these mean the same thing) to go either to a named destination or an object the player knows about. This command will take the player character towards his destination one step at a time. To continue towards the destination, use the CONTINUE command (which you can abbreviate to C). Note that the CONTINUE command can be used after any number of intervening commands, including explicit compass-movement commands.</paragraph>
-      <paragraph>The exit lister on the top of the right page shows a list of directions you can go in from your current location. Any directions in upper case indicate directions to locations you haven't yet visited.</paragraph>
-      <paragraph>Several locations trigger memories the first time you visit them. If you want see the memory associated with the location you're in again, you can use the command REMEMBER. To see the memory associated with another location you've visited, use the command REMEMBER {location Name}, for example REMEMBER BAR. You can use the command PLACES to list the names of all the places you've visited. To recapitulate all the memories you've triggered so far, you can use the command RECAP.</paragraph>
-      <paragraph>You can use the command THINK to get some ideas for what to do next. These will be the player character's ideas, and some of them may be better than others. This command helps bridge the gap between player knowledge and player character knowledge. If you're stuck and THINK doesn't give you enough of a hint, you can try the command THINK HARDER (or just THINK HARD), which in some cases may provide a much more explicit hint.</paragraph>
-      <paragraph>In brief, make regular use of the THINK command as an integral part of the game. Use THINK HARDER for hints.</paragraph>
-      <paragraph>To converse with other characters use commands like ASK BOB ABOUT RING or TELL BOB ABOUT DAGGER; these commands may be abbreviated to A RING or T DAGGER. You can also respond to certain questions asked by other characters with a simple YES or NO.</paragraph>
-      <paragraph>Finally, you may not like the ending you get first time round. To avoid having to play all the way through again from the beginning to find a better ending, you may want to save at fairly regular intervals.</paragraph>
+      <paragraph>[italic type]Jack Toresal and The Secret Letter[roman type] takes place in the northern town of Toresal on the island continent of Miradania. Jack, an orphan since birth, is fourteen years old and is suddenly drawn into a life or death adventure.</paragraph>
+      <paragraph>This story, or game, is called Interactive Fiction. Since Jack is the main character in this story, you control Jack's every move and every decision. You get to decide how the story unfolds.</paragraph>
+      <paragraph>Interactive Fiction consists of a setting or map, scenery, and items of interest. You can tell Jack to move around the setting by using compass rose directions like NORTH, SOUTHEAST, UP, or IN. The eight main directions can be abbreviated to N, NE, E, SE, S, SW, W, NW. You can also open, push, pull, close, and throw things.</paragraph>
+      <paragraph>How do you do all of these things? Well unlike any other game, Secret Letter will let you type in your commands from the keyboard and that is how you tell Jack what to do next.</paragraph>
+      <paragraph>If you get stuck, you can head to the Table of Contents and click [italic type]Get Hints[roman type].</paragraph>
+      <paragraph>When you run into other characters, they may try to talk to you. If this happens, a list of conversation topics will appear and you can click these in any order. If you want to initiate a conversation, type TALK TO character.</paragraph>
+      <paragraph>Finally, you may not like the ending you get first time round. To avoid having to play all the way through again from the beginning to find a better ending, you may want to save at fairly regular intervals. You can either type SAVE, or head to the Table of Contents and click [italic type]Save The Current Game[roman type].</paragraph>
     </item>
     <item title="Instructions for Play">
       <menu title="Instructions for Play">
@@ -81,36 +81,22 @@
             <item title="Cooperate">
               <paragraph>Play with someone else. Two heads are often better than one. If that doesn't work, try emailing the author or (better yet) posting a request for hints on the newsgroup rec.games.int-fiction.  For best results, put the name of the game you want help with in the subject line; then leave a page or so of blank spoiler space (so that no one will read about where you got to in the game unless they've already played it), and describe your problem as clearly as possible.  Someone will probably be able to tell you how to get around it.</paragraph>
             </item>
+            <item title="Get Hints">
+              <paragraph>If you really don't know what to do, click on the Table of Contents and click [italic type]Get Hints[romain type] and you will be given a list of things to help you through your predicament.</paragraph>
+            </item>
           </menu>
         </item>
       </menu>
     </item>
-    <item title="Time and Turns">
-      <menu title="Time and Turns">
-        <item title="General">
-          <paragraph>The top of the right page shows the time of day (i.e. the current time within the story world of the game). You don't have forever to resolve the situation you're in, and if you run out of time you'll reach a losing ending.</paragraph>
-          <paragraph>In a standard Inform game, time advances at one minute per turn. In this game, some actions take less than a minute: some of these take no time at all, and some take some fraction of a minute. Actions that typically take only a few seconds include examining unimportant objects and basic inventory manipulation like taking and dropping thngs. This allows you more turns before you finally run out of time. Note that other actions, like moving from place to place, or examining more complex objects (like reading a book), typically take a full minute still. The result is a very rough approximation to realism in these timings.</paragraph>
-          <paragraph>In game play terms, this means that you may or may not see the game time (shown on the top of the right page) advance on any particular term. This doesn't necessarily mean the turn took no time; it may mean it took some length of time less than 60 seconds (so that if you repeated the same action several times you'd eventually see the time advance). If you like, you can change the way the current time is displayed so that it shows seconds as well as hours and minutes. This will make it clear precisely how long each action is taking, but you may find that attending to such precise game mechanics detracts from engagement with the story.</paragraph>
-          <paragraph>You can use the commands SHOW SECONDS and HIDE SECONDS to add or remove the seconds element from the time displayed on the top of the right page.</paragraph>
-          <paragraph>Note that since there are a variable number of turns per minutes, you can't work out how many turns you've taken simply from the game time. If for any reason you do want to know this, you can use the TURNS command.</paragraph>
-        </item>
-        <item title="Time Limit Hint (spoiler)">The game takes place entirely at night, so the very latest it can end is just before dawn, around 4:30 am.</item>
-      </menu>
-    </item>
-    <item title="Hints">
-      <paragraph>Nightfall is a semi-puzzleless game. There are a few puzzles, but they are not meant to be particularly challenging and they are not the main point of the game. The main point is to work out what's going on and what to do about it. Several endings are possible, depending on how things play out.</paragraph>
-      <paragraph>Don't be in too much of a hurry to rush through the city; take time to read the text, it may be important. In particular, certain locations trigger memories the first time you visit them, and the back-story formed by these memories is important. If you want to see the memory associated with the location you're in again, you can use the command REMEMBER. To see the memory associated with another location you've visited, use the command REMEMBER &lt;location name&gt;, for example REMEMBER BAR. You can use the command PLACES to list the names of all the places you've visited. To recapitulate all the memories you've triggered so far, you can use the command RECAP.</paragraph>
-      <paragraph>Nightfall has several possible endings, which broadly fall into three main types. It's not possible to put the game into a state where you can't reach one of the endings, but it's certainly possible to put it into a state where you can't reach one of the better endings, so if you think you may want to see more than one ending, it's probably a good idea to save quite often.</paragraph>
-      <paragraph>The individual puzzles in Nightfall aren't meant to be particularly difficult, but if you do get stuck, try using the THINK command, which will offer some suggestions based on the player character's knowledge. If that doesn't give you enough help, you can try the command THINK HARDER which may give you rather more explicit hints. THINK HARDER is in effect a hints command; using it more than once may give you increasingly explicit hints. You can safely use the THINK command without getting spoilers; use THINK HARDER if you want hints.</paragraph>
-      <paragraph>The meta-puzzle in Nightfall is clued partly by the various recollections triggered by various locations and by what's written on certain things. To refresh your memory of these you can use the RECAP command.</paragraph>
-    </item>
     <item title="Credits">
-      <paragraph>Nightfall by Eric Eve.</paragraph>
-      <paragraph>Inform 7 by Graham Nelson, with several useful extensions by Emily Short.</paragraph>
-      <paragraph>Alpha-testing by Jim Aikin, Michel Nizette, and El Clerigo Urbatain.</paragraph>
-      <paragraph>Beta-testing by: Rune Berg, Stefano Bonora, Jason Catena, Danii, D.J. Hastings, Carl Muckenhoupt, Michel Nizette, S. John Ross, Dirk Straube, Mike Tarbert, El Clerigo Urbatain and Jerome West.</paragraph>
-      <paragraph>Special thanks to all these testers who between them uncovered a multitude of issues and offered a host of suggestions to make this game far better than it otherwise would have been.</paragraph>
-      <paragraph>This version of Nightfall is freely hosted by Textfyre, Inc and implemented by Thomas Lynge of Tenteo Consulting.</paragraph>
+      <paragraph>Jack Toresal and The Secret Letter by Mike Gentry and David Cornelson.</paragraph>
+      <paragraph>Inform 7 by Graham Nelson, with several useful extensions by Emily Short and Graeme Jefferis.</paragraph>
+      <paragraph>System programming by Jesse McGrew.</paragraph>
+      <paragraph>Game programming by Graeme Jefferis.</paragraph>
+      <paragraph>Beta-testing by: Jacqueline Ashwell, Eric Eve, Peter Berman, Jim Aikin, and Paul O'Brian.</paragraph>
+      <paragraph>The map was drawn by Jennifer Montes.</paragraph>
+      <paragraph>The artwork was drawn by various artists whose names will be added here shortly.</paragraph>
+      <paragraph>A special thanks goes out to Graham Nelson and Emily Short, without whom Textfyre would not have existed. Their dedication to Interactive Fiction and to the Inform 7 development tools is simply astounding. We're grateful for their many contributions.</paragraph>
     </item>
   </menu>
 </help>
