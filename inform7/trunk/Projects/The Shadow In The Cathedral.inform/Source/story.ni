@@ -2,6 +2,7 @@
 
 [  Change Log
 When		Who		What
+05 Jun 2009     J. Ingold       Better cluing for the 5pm time-setting. Horloge nows "walks through" to hint about the keys (so long as you haven't seen him before). Some text rewrites.
 04 Jun 2009	J. Ingold	Added synonyms to verbs. Removed grammar lines leading to "rub" action. Added an ornamental action, "making the sign of". Slowed the clock-kind down to increase by 1 minute every 10 turns (to "discourage" accidental solution of time-puzzles -- it now takes 1200 moves for the Refectory Clock to strike 5pm, instead of only 120.) Added "[or-separated list of ...] substitution and used it to give help escaping Drake.
 01 Jun 2009	G. Jefferis	Remainder of Covalt's conversation
 27 May 2009	G. Jefferis	Return to Covalt's - conversation
@@ -367,6 +368,7 @@ This is the advance clocks rule:
 		increase the second-hand of the timepiece by 1;
 		if the second-hand of the timepiece > 10:
 			set the timepiece to x + 1 minute;
+			if the timepiece is visible, say "[The timepiece] clunks forward one minute.";
 
 Part 5 - Wax
 
@@ -1403,6 +1405,8 @@ Attacking it with is an action applying to one thing and one carried thing.
 Understand "attack [something] with [something preferably held]" as attacking it with.
 Understand "bash [something]" as attacking.
 Understand "bash [something] with [something preferably held]" as attacking it with.
+Understand "strike [something]" as attacking.
+Understand "strike [something] with [something preferably held]" as attacking it with.
 Understand "batter [something]" as attacking.
 Understand "batter [something] with [something preferably held]" as attacking it with.
 Understand "batter down/through [something]" as attacking.
@@ -1513,6 +1517,7 @@ Chapter 1 - Signs the player can make
 A clock-sign is a kind of thing. Understand "sign" as a clock-sign.
 
 The winding-key-sign is a clock-sign. Understand "winding key", "key" as the winding-key-sign. The printed name of the winding-key-sign is "winding key".
+The winding-gear-sign is a clock-sign. Understand "winding gear", "gear" as the winding-gear-sign. The printed name of the winding-gear-sign is "winding gear".
 The penduluum-sign is a clock-sign. Understand "pendulum/penduluum" as the penduluum-sign. The printed name of the penduluum-sign is "penduluum".
 The lever-sign is a clock-sign. Understand "lever" as the lever-sign. The printed name of the lever-sign is "lever".
 The screw-sign is a clock-sign. Understand "screw" as the screw-sign. The printed name of the screw-sign is "screw".
@@ -1644,6 +1649,8 @@ The Abbot's Quarters is a room. "[if Clock Case has been hidden in and the Intro
 
 Check listening to the Abbot's Quarters:
 	say "The clock-gears are chanting quietly to themselves." instead;
+
+Instead of exiting when the player is in the Abbot's Quarters: try going west instead.
 
 Chapter 2 - Grandfather Clock
 
@@ -2021,7 +2028,7 @@ CCASE3 is a scripted event. The display text is "'I told you now didn't I tell y
 
 CCASE4 is a scripted event. The display text is "'But these things, these things are not always tick-tock, they never are,' the old man replies. His voice is quivering, quite different from the steady drone he has when intoning in Chapel. 'The – item you asked about – it's in the Vaults, you see? The Vaults. Even if I could get in, I ...'[paragraph break][if the player is eavesdropping]'Your excuses we find disappointing. Very disappointing. More of this and, Abbot, we may need to unslip your gears completely.'[otherwise]The Figure is too far from the keyhole and speaks too quietly for me to hear clearly. 'Disappointing,' he says; and then 'unslip your gears.'[end if]"
 
-CCASE5 is a scripted event. The display text is "The Abbot is spluttering and choking. I've seen him like this only once, when as a young initiate I dropped and smashed an altimeter right before the Archbishop was due to visit.[paragraph break][if the player is eavesdropping]The Figure continues. 'Clearly you're too old to steal the item for us. We have a better mechanism for obtaining it. But you must provide us with the opportunity. Is that understood?'[otherwise]The Figure's quiet voice continues. I can make out; 'too old to steal', 'a better mechanism', 'the opportunity.'[end if][paragraph break]The Abbot nods violently, shaking out agreement the way I might beat dirt from a duster. 'My money?' he asks."
+CCASE5 is a scripted event. The display text is "The Abbot is spluttering and choking. I've seen him like this only once, when as a young initiate I dropped and smashed an altimeter right before the Archbishop was due to visit.[paragraph break][if the player is eavesdropping]The Figure continues. 'Clearly you're too old to steal the item for us. We have a better mechanism for obtaining it. But you must provide us with the opportunity. Is that understood?'[otherwise]The Figure's quiet voice continues. I can make out; 'too old to steal', 'a better mechanism', 'the opportunity.'[end if][paragraph break]The Abbot nods violently, shaking out agreement the way I might beat dirt from a duster. 'My money?' he asks.[paragraph break]What? [i]Steal? Money?[r] This doesn't sound clockwise to me!"
 
 CCASE6 is a scripted event. The display text is "There's the clink, of a pouch of golden minutes. A heavy pouch. The Figure, paying the Abbot...? Then suddenly, there's a third voice. 'Sorry, Father, to interrupt, but you said...'[paragraph break]It's a monk of the Abbey. 'Get out!' the Abbot screeches. His bearing's lost its oil, it seems. 'Get out, get out!'[paragraph break]'But Father,' the monk continues, 'it's [i]time[r], you know. You told me to tell you when it was [i]time[r].'[paragraph break]'Oh! Of course of course,' he mumbles. 'I'll... We'll continue this discussion later, then,' he says, to the Figure.[paragraph break][if the player is eavesdropping]'We certainly will,' the Figure replies.[otherwise]The Figure intones something in reply.[end if][paragraph break]The Abbot leaves, and that leaves me alone, inside this clock, with the stranger outside. He's coming nearer... I can hear his fingers on the door of the case! I must have nudged the [i]penduluum[r], he must have seen the clock-hands quiver... but then, there's the swish of his cloak as he moves away, and the click as the door closes. Phew."
 
@@ -2037,9 +2044,14 @@ Book 2 - The Abbey Of Time
 
 Part 1 - Corridor of Contemplation
 
+Before exiting in the Corridor of Contemplation: try going west instead.
+
 Chapter 1 - Description
 
 The Corridor of Contemplation is a room. "The ancient stones of the Abbey rise to about shoulder-height before arching over, forcing me to bow my head in supplication before the Abbot's door, back east. To the west, I can hear the gentle echo of ticks and tocks coming from the Abbey's main hall.[paragraph break]Carved into the walls are a series of pious engravings, depicting the long path from initiate to Abbot."
+
+Check listening to the Corridor of Contemplation: 
+	say "Ticks and tocks to the west that all say one thing. Hurry up!" instead.
 
 Chapter 2 - Scenery
 
@@ -2127,7 +2139,9 @@ Instead of doing something when the distant city is physically involved:
 
 Section 6 - Cathedral Spires
 
-The cathedral spires are scenery, in the Attic Room. "Twelve spires arranged in a ring about the Great Dome, to mirror the Twelve Devotions of the Greater Rotation. Rumour among initiates has it that the Cathedral was once a sundial that marked the time by casting shadows on numerals scattered about the city, but that St Newton abolished that, tore up the numerals and hid them away. They say there are twelve different numbers that used to be the first twelve but now no-one is allowed to use them. I don't believe a word of it, of course." The printed name is "Cathedral"
+The cathedral spires are scenery, in the Attic Room. "Twelve spires arranged in a ring about the Great Dome, to mirror the Twelve Devotions of the Greater Rotation[one of]. Rumour among initiates has it that the Cathedral was once a sundial that marked the time by casting shadows on numerals scattered about the city, but then St Newton abolished that, tore up the numerals and hid them away.[paragraph break]They say there are twelve different numbers that used to be the first twelve but now no-one is allowed to use them. I don't believe a word of it, of course[or][stopping]." The printed name is "Cathedral"
+
+Understand "twelve spires", "dome", "great dome" as the cathedral spires.
 
 Instead of doing something when the cathedral spires are physically involved:
 	say "It's right across the city from me!";
@@ -2186,19 +2200,23 @@ Instead of examining the note:
 	try reading the note;
 
 Instead of taking the note:
-	say "I'd rather leave the sign be. Last time Amble took the ladder away guess where I was?";
+	say "I'll leave the sign be. Last time Amble took the ladder away guess where I was?";
 
 Part 4 - Upper Hall
 
+Instead of exiting in the Upper Hall: try going southwest.
+
 Chapter 1 - Description
 
-A room called the Upper Hall is east of the Rickety Stair. "The Great Hall of the Abbey is the biggest room I've seen in my life, running from this end all the way southwest (and it is all the way, I'm never allowed any further than the Great Doors and the Yard outside). If I crane my neck I can see the dark square of the floorboards of my room – the ladder is on one side, to the west. Lights move in and out overhead, from the candles moving on their Holy Tracks. Strong smells float through an archway to the east.[paragraph break]From their niches, the Three Major Saints are watching sternly, keen that I should get out of the Cathedral and talk to the Archbishop as quickly as possible."
+A room called the Upper Hall is east of the Rickety Stair. "The Great Hall of the Abbey is the biggest room I've seen in my life, running from this end all the way southwest (and it is all the way, I'm never allowed any further than the Great Doors and the Yard outside). If I crane my neck I can see the dark square of the floorboards of my room – the ladder snakes down from one side, west of here. Lights move in and out overhead, from the candles moving on their Holy Tracks. Strong smells float through an archway to the east.[paragraph break]From their niches, the Three Major Saints are watching sternly, keen that I should get out of the Cathedral and talk to the Archbishop as quickly as possible."
+
+
 
 Chapter 2 - Scenery
 
 Section 1 - Statues
 
-Some statues are scenery, in the Upper Hall. The description is "The Three Major Saints examine me right back, their faces shining with Holy Precision. St Breguet, the Maker; St Newton, the Thinker; and St Babbage, the Calculatrometrist. They're only statues, of course, but they're still quite creepy here in the half-light of the moving candles."
+Some statues are scenery, in the Upper Hall. The description is "The Three Major Saints examine me right back, their faces shining with Holy Precision. St Breguet, the Maker; St Newton, the Thinker; and St Babbage, the Calculatrometrist. They're only statues, of course, but they're still quite creepy here in the half-light of the moving candles[one of].[paragraph break]They all stare southwest, towards the doors and beyond, the Cathedral. Home of the Archbishop[stopping]."
 
 Understand "three", "major", "saints", "st", "saint", "statue", "of", "the" as the statues.
 Understand "isaac", "newton", "thinker" as the statues.
@@ -2862,6 +2880,9 @@ Definition: Horloge is not sipping his tea:
 
 Part 7 - Central Hall
 
+Instead of exiting in the Central Hall: try going southwest.
+Instead of going inside in the Central Hall: try going northeast.
+
 Chapter 1 - Description
 
 The Central Hall is east of the Library, southwest of the Upper Hall. "I'm standing in the very centre of the Abbey's Great Hall. It's impossible not to crane my neck at the ceiling held aloft by buttresses the size of gigantic oak trees. To think, people built this in the days before real pulley-transmissions! It must have taken [i]weeks[r]! The hall continues northeast into shadow, and southwest, towards the sunlight, the Yard and above all, the Archbishop.[paragraph break]The vast empty space is filled by the muttering and echo of Holy Mechanisms, and the hiss of the candles as they sweep around their Tracks, providing a little light everywhere but rarely ever enough. I can just make out archways both east and west."
@@ -2968,21 +2989,51 @@ Instead of opening the locked Garden Door when Horloge's Keys are not carried:
 	say "It's locked.";
 
 Instead of opening the locked Garden Door when Horloge's Keys are carried:
-	say "I try every key on Horloge's bunch, but none of them seem to the fit the garden door's lock.[one of] Widdershins! That was my way out![or][stopping] Looks like I'm going to have to think of something else. Some other way of distracting Drake and Calvin...";
+	try unlocking the Garden Door with Horloge's Keys.
+
+Instead of unlocking the locked Garden Door with Horloge's Keys:
+	say "That door leads to the walled garden. I don't want to be trapped in here, I want to get out to the Cathedral!";
 
 Section 4 - Refectory Clock
 
-The Refectory Clock is a clock, scenery, in the East Refectory. The description is "[if Gong Sounding is not happening]Housed in a case made of oak and glass, the inner workings of the Refectory Clock are visible, for the purpose of contemplation over dinner. In one corner is the colossal spring, about the size of an Oliphant, which powers the clock for over a year and reminds us that we need little to do much. Almost all the rest of the clock is given over to bells, hammers, whistles, gongs, organ pipes, cymbals, and other devices designed to bring even the deafest monk to dinner.[paragraph break]The clock is currently set to [the face value of the refectory clock in words].[otherwise]The Refectory Clock is pounding out a colossal amount of noise![end if]"
+The Refectory Clock is a clock, scenery, in the East Refectory. 
+
+Instead of examining the Refectory Clock when Gong Sounding is happening:
+	say "The Refectory Clock is pounding out a colossal amount of noise!";
+
+The description is "[one of]Housed in a case made of oak and glass, the inner workings of the Refectory Clock are visible, for the purpose of contemplation over dinner. In one corner is the colossal spring, about the size of an Oliphant, which powers the clock for over a year and reminds us that we need little to do much. Almost all the rest of the clock is given over to bells, hammers, whistles, gongs, organ pipes, cymbals, and other devices designed to bring even the deafest monk to dinner.[paragraph break][or]It's mostly bells. [stopping]The clock is currently set to [the face value of the refectory clock in words][if the face value of the refectory clock is before 5:00 PM]. Still a while till five o'clock, and dinner[end if].".
 
 Understand "case/oak/wood/wooden/glass/inner/workings/spring/bells/hammers/whistles/gongs/pipes/organ/cymbals" as the Refectory Clock.
 
 The matching key of the refectory clock is Horloge's Keys.
 
+
+Instead of ringing the Refectory Clock during Gong Sounding:
+    say "It's doing that itself already[one of]! I SAID, IT'S DOING THAT ITSELF ALREADY!![run paragraph on][or][stopping]!"
+
 Instead of ringing the refectory clock:
-	say "The gongs can't be rung by hand. There's an extremely complicated system of piston-powered hammers for that, all controlled by the hands on the main dial.";
+	say "The gongs can't be rung by hand. There's an extremely complicated system of piston-powered hammers for that, all ready to go off at five o'clock to call the monks for dinner.";
+	if the Refectory Clock is locked and CALVINIDEA is fired and HORLOGEWALKTHROUGH1 is unfired:
+		say "...And that's controlled by the hands, and the hands are inside the clockface and the clockface is locked...";
+		fire HORLOGEWALKTHROUGH1;
+
+Before attacking the Refectory Clock:
+	try ringing the Refectory Clock instead.
+
+Before attacking the Refectory Clock with something carried by the player:
+	try ringing the Refectory Clock instead.
 
 First before clock-setting the refectory clock to when the Refectory Clock is locked:
-	say "Resetting a clock is heresy of a pretty high order: but even if the situation is desperate enough to require it, the case is still locked." instead;
+	say "Resetting a clock is heresy of a pretty high order: but even if the situation is desperate enough to require it, the case is still locked.";
+	fire HORLOGEWALKTHROUGH1 instead;
+
+Instead of opening the locked Refectory Clock when Horloge's Keys have not been handled:
+	say "One of the monks in the Abbey will have keys. Probably lying around, too[one of]. I've had to pinch them before when they've made me get things from the cellar[or][stopping].";
+	fire HORLOGEWALKTHROUGH1;
+
+Instead of unlocking the locked Refectory Clock with the lucky clock key:
+	say "Don't you think I've tried that before? Whatever this key opens, it's not the Refectory Clock[if Horloge's Keys have not been handled] ... and the key that [i]does[r] open the Refectory Clock will belong to one of the monks. I should explore the Abbey and see what I can find[end if].";
+	fire HORLOGEWALKTHROUGH1;
 
 Before clock-setting the refectory clock to during Gong Sounding:
 	say "I'm not going anywhere near the clock now it's ringing. You know what happened to the Cook when he did." instead;
@@ -2991,8 +3042,34 @@ Last before clock-setting the refectory clock to when the Refectory Clock is clo
 	carry out the implicitly opening activity with the refectory clock;
 
 After clock-setting the refectory clock to:
-	say "[one of]Putting a clock wrong turns my stomach... but the thought of that Figure in Grey spurs me on. So I make the sign of the Winding Key – maybe that'll buy me some forgiveness when I wind down. Then I push the hands round to [the time understood in words].[or]It's horrible to be making a habit of this. Flinching, I push the hands round to [the time understood in words].[stopping]";
+	say "[one of]Putting a clock wrong turns my stomach... but the thought of that Figure in Grey spurs me on. So I make the sign of the Winding Key - maybe that'll buy me some forgiveness when I wind down. Then I push the hands round to [the time understood in words].[or]It's horrible to be making a habit of this. Flinching, I push the hands round to [the time understood in words].[stopping]";
 	consider the scene changing rules;
+
+Section 5 - We see Horloge and his Keys
+
+HORLOGEWALKTHROUGH1 is a trigger.
+
+Rule for firing unfired HORLOGEWALKTHROUGH1:
+	Horloge walks through in one turn from now;
+	[ we aim to prevent the player getting collared before Horloge has appeared. This may fail. ]
+	now the do-pause flag of Drake is true;
+
+At the time when Horloge walks through:
+	if the location of Horloge is visited:
+		say "Skip a tooth! [i]Didn't Brother Horloge have some keys? [r]In the [location of Horloge]?";
+	else:
+   		if the location is the East Refectory:
+			say "There's a louding clunking sound and not from the clock. Then";
+		else if the location is the West Refectory:
+			say "At the other end of the Refectory,";
+		else if the location is the Kitchen:
+			say "From the south:";
+		else:
+		[ This last line shouldn't be possible, but more-or-less covers us against bizarre outcomes. ]
+			say "I catch a glimpse from the Refectory as";
+		say " the garden door opens. A hooded figure comes through and locks the door again with a [i]fat bunch of keys[r]. It's Brother Horloge! He paces away, back to his place in the [location of Horloge].";
+        
+
 
 Chapter 3 - Gong Sounding
 
@@ -3134,6 +3211,10 @@ Does the player mean doing something with the new gear:
 
 Part 11 - Lower Hall
 
+Instead of going inside in the Lower Hall: try going northeast.
+Instead of exiting in the Lower Hall: try going southwest.
+
+
 Chapter 1 - Description
 
 Lower Hall is east of the Scriptorium, southwest of the Central Hall, west of the Corridor of Contemplation. The description is "Looking northeast, the Great Hall of the Abbey stretches away like the belly of some big beast, laid out ready to have its mouth stuffed with an apple. The walls are lit in Holy Patterns by candles on Sacred Tracks suspended in the air. There's just enough light to make out the Corridor of Contemplation to the east and the wider archway to the Scriptorium to the west.[paragraph break]But more importantly, the great Entry – and exit – of the Abbey is to the southwest. And if I'm going to get out of here and talk to the Archbishop that's the only way to go."
@@ -3145,7 +3226,9 @@ Chapter 2 - Scenery
 Calvin is a man in Lower Hall. "But maybe you're starting to see what kind of luck I have. Right there, in the Entry, is Calvin, working on a clock." The description of Calvin is "He's hard at work – or he is whenever a monk goes past, anyway. The rest of the time he's fiddling with his hair in the reflection of the bits he's polished so far. I'm not going to be able to slip past him like that. I'm going to need to get him out of there somehow.[fire CALVINIDEA]"
 
 Instead of going southwest from the Lower Hall in the presence of Calvin:
-	say "What, just waltz past him, stop and say hi? He'd have me by the hair in moments. No, I need some kind of plan to get past him.[fire CALVINIDEA]";
+	say "What, just waltz past Calvin, stop. Ask the time? He'd have me by the hair in moments. No, I need some kind of plan to get him away from there.[fire CALVINIDEA]";
+
+Understand "clock" as Calvin.
 
 CALVINIDEA is a trigger.
 
@@ -3153,7 +3236,7 @@ Rule for firing unfired CALVINIDEA:
 	Wren has an idea in one turn from now;
 
 At the time when Wren has an idea:
-	say "Calvin will be there till the Refectory Clock chimes for dinner. And that, slow and sure as clockwork, has given me an idea. The Refectory Clock...[paragraph break]";
+	say "[i]Calvin will be guarding that door till dinner time[r], I think, angrily. And then, slow and sure as clockwork, I have an idea. Not till dinner time. Until the Refectory Clock [i]strikes five o'clock[r]... And - in times of Holy Crisis - clocks can be changed...[paragraph break]";
 
 Part 12 - Abbot's Quarters
 
@@ -3308,20 +3391,23 @@ Drake has a list of objects called the route.
 
 The route of Drake is { Central Hall, Lower Hall, Scriptorium, Library, Central Hall, West Refectory, East Refectory, Kitchen, Upper Hall }.
 
-Drake has a truth state called pause flag.
+Drake has a truth state called can-pause flag.
+Drake has a truth state called do-pause flag.
 Drake has a truth state called escaped flag.
 
 Every turn during Drake's Patrol:
 	[ we give Drake a 40% chance of loitering in his location for a single turn  ]
 	[ this might well be irritating for the purposes of testing as it's randomised ]
 	[ should seed the random number generator in DEBUG mode? ]
-	if pause flag of Drake is false and a random chance of 4 in 10 succeeds:
-		now pause flag of Drake is true;
+	if can-pause flag of Drake is true and a random chance of 4 in 10 succeeds:
+		now can-pause flag of Drake is false;
+	else if the do-pause flag of Drake is true:
+		now the do-pause flag of Drake is false;
 	else if escaped flag of Drake is true:
 		now escaped flag of Drake is false;
 		follow the warn of Drake's approach rule;
 	else:
-		now pause flag of Drake is false;
+		now the can-pause flag of Drake is true;
 		let d be the best route from the location of Drake to Drake's next destination;
 		rotate the route of Drake backwards;
 		try Drake going d;
@@ -3334,7 +3420,7 @@ To decide which room is Drake's next destination:
 To decide which room is Drake's future destination:
 	decide on entry 2 of the route of Drake;
 
-To decide which room is Drake's previous destination:
+To decide which room is Drake's previous location:
 	let N be the number of entries in the route of Drake - 1;
 	decide on entry N of the route of Drake;
 
@@ -3362,7 +3448,14 @@ Before going to a Drake-occupied room during Drake's Patrol:
 Automatically-dodging-Drake is a truth state that varies.
 
 Before going to a Drake-threatened room when automatically-dodging-Drake is false during Drake's Patrol (this is the keep the player from entering Drake's path voluntarily rule):
-	say "I catch the sound of hobnailed boots. Drake's heading this way! I'd better wait, and let him pass." instead;
+	now the can-pause flag of Drake is false;
+	say "[one of]I catch the sound of hobnailed boots from that direction. Drake's heading this way[or][one of]Drake! I'll keep out of his sight here[or]I spy Drake and pull back[cycling][stopping]. ";
+	if the location of the player is Drake's future destination:
+		now the do-pause flag of Drake is true;
+		say paragraph break;
+		stop the action;
+	else:
+		say "I'll [one of]wait and [or][stopping]let him pass." instead;
 
 After Drake going:
 	abide by the warn of Drake's approach rule.
@@ -3370,11 +3463,11 @@ After Drake going:
 This is the warn of Drake's approach rule:
 	if the location of the player is Drake's future destination begin;
 		let dir be the direction Drake is coming from;
-		say "[one of]Distantly – but not distantly enough – I can hear the Refectory Clock and clatter of Drake's boots. The sound's coming from the [direction Drake is coming from].[or][sound of footsteps from dir][stopping]" instead;
+		say "[one of]Distantly - but not distantly enough - I can hear the Refectory Clock and clatter of Drake's boots. The sound's coming from the [direction Drake is coming from].[or][sound of footsteps from dir][stopping]" instead;
 	otherwise if the location of the player is Drake's next destination;
 		let dir be the direction Drake is coming from;
-		say "[one of]Looking [dir], I can see Drake. He's coming this way! [or]Drake's just off to [the dir], and he's coming this way! [or]I've got a moment before Drake spots me: he's just appeared, to [the dir]. [at random]";
-		say "[one of]I could escape[or]Escape lies[or]I'd better disappear[or]Time to leave: I can go[at random] [or-separated list of Drake-viable directions]." instead;
+		say "[one of]Drake's coming! [or]Looking [dir], I can see Drake. He's coming this way! [or]Drake's just off to [the dir], and he's coming this way! [or]I've got a moment before Drake spots me: he's just appeared, to [the dir]. [as decreasingly likely outcomes]";
+		say "[one of]I can escape[or]Escape lies[or]I'd better disappear[or]Time to leave: I can go[at random] [or-separated list of Drake-viable directions]." instead;
 	otherwise if the location of the player is the location of Drake;
 		[ sometimes, we let the player escape ]
 		if a random chance of 40 in 100 succeeds
@@ -3382,7 +3475,7 @@ This is the warn of Drake's approach rule:
 			let the way be a random Drake-viable direction;
 			if the way is a direction
 			begin;
-				say "Drake [one of]appears[or]comes into the room[or]enters[at random]: I [one of]dive[or]hurry[or]dash[or]scamper[or]almost crawl[as decreasingly likely outcomes] away [way].";
+				say "Drake [one of]appears[or]enters[or]comes into the room[as decreasingly likely outcomes]: I [one of]dive[or]hurry[or]dash[or]scamper[or]almost crawl[as decreasingly likely outcomes] away [way].";
 				now automatically-dodging-Drake is true;
 				try going the way;
 				now the escaped flag of Drake is true;
@@ -3391,11 +3484,14 @@ This is the warn of Drake's approach rule:
 			end if;
 		end if;
 		carry out the firing activity with ATTIC1 instead;
+	otherwise if the number of moves from the location to the location of Drake is greater than 1 and the number of moves from the location to Drake's previous location is 1;
+		[so he's moving away from you, and you're waiting behind him]
+		say "[one of]I hear footsteps, but they're moving away, off into the Abbey[or][one of]Footsteps - moving away[or]I hear footsteps, receeding[or]The stones echo departing footsteps[as decreasingly likely outcomes][stopping]." instead;		
 	end if;
 	continue the action;
 
 To say sound of footsteps from (d - a direction):
-	say "[one of]Drake's footsteps echo in from [the d].[or]Drake's on patrol, and I can hear him heading this way, from [the d].[or]Drake's clattering boots are audible to [the d].[at random]";
+	say "[one of]Drake, approaching from [the d]![or]Drake's footsteps echo in from [the d].[or]Drake's clattering boots are audible to [the d].[or]Drake's on patrol, and I can hear him heading this way, from [the d].[as decreasingly likely outcomes]";
 
 To decide which direction is the direction Drake is coming from:
 	let x be the Attic Room;
@@ -3414,7 +3510,7 @@ Definition: a direction (called the way) is Drake-viable:
 	[ is he there? ]
 	if the new place is the location of Drake, no;
 	[ was he there? - stops the player swapping rooms with him ]
-	if the location of Drake is the location and the new place is Drake's previous destination, no;
+	if the location of Drake is the location and the new place is Drake's previous location, no;
 	yes;
 
 
