@@ -1,5 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <WordDefs>
+  <WordDef>
+    <Words>
+      <Word>aristocratic</Word>
+      <Word>aristocrat</Word>
+    </Words>
+    <Description>Aristocrats are usually the wealthy people, dressing in the latest styles, having the best manners.</Description>
+  </WordDef>
   <WordDef>
     <Words>
       <Word>skulk</Word>
@@ -11,7 +18,7 @@
     <Words>
       <Word>you</Word>
     </Words>
-    <Description>You're Jack Toresal, an orphan in the Kingdom of Jais Del Brin in the land of Miradan.</Description>
+    <Description>You're Jack Toresal, an orphan in the Kingdom of Jais Del Brin in the land of Miradania.</Description>
   </WordDef>
   <WordDef>
     <Words>
@@ -627,5 +634,11 @@
       <Word>Maiden House</Word>
     </Words>
     <Description>The name of the orphanage where you've been raised since your mother died giving birth to you.</Description>
+  </WordDef>
+  <WordDef>
+    <Words>
+      <Word>tucked</Word>
+    </Words>
+    <Description>Something that is either hidden or placed somewhere that's mostly out of sight.</Description>
   </WordDef>
 </WordDefs>
