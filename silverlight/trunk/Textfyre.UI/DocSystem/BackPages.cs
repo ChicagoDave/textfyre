@@ -67,7 +67,7 @@ namespace Textfyre.UI.DocSystem
                 }
 
                 StackPanel sp = _currentPage.PageScrollViewer.Content as StackPanel;
-                //sp.VerticalAlignment = VerticalAlignment.Bottom;
+                sp.VerticalAlignment = VerticalAlignment.Top;
 
                 height += section.Height;
 
