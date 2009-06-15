@@ -91,7 +91,7 @@ namespace Textfyre.UI.DocSystem
                 
                 // Debug: Show section border.
                 //Rectangle rt = new Rectangle();
-                //rt.Stroke = new SolidColorBrush( Colors.Black);
+                //rt.Stroke = new SolidColorBrush( Colors.Gray);
                 //rt.StrokeThickness = 1;
                 //_hostGrid.Children.Add(rt);
             }
@@ -117,7 +117,7 @@ namespace Textfyre.UI.DocSystem
             bool cont = true;
             string word = String.Empty;
             while (cont)
-            {
+            {                
                 int nextSpace = text.IndexOf(' ', pointer);
 
                 if (nextSpace > -1)
