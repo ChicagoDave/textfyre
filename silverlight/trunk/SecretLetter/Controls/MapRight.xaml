@@ -1,11 +1,9 @@
-﻿<UserControl x:Class="SecretLetter.Controls.MapLeft"
+﻿<UserControl x:Class="SecretLetter.Controls.MapRight"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:tfctrl="clr-namespace:Textfyre.UI.Controls;assembly=Textfyre.UI"
     >
     <Grid x:Name="LayoutRoot">
-        <StackPanel>
-            <tfctrl:Art x:Name="mapArt" />
-        </StackPanel>
+        <tfctrl:Art x:Name="mapArt" />
     </Grid>
 </UserControl>

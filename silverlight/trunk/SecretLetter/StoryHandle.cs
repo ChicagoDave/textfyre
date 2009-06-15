@@ -17,8 +17,12 @@ namespace SecretLetter
         {
             if (args.TocItem == Textfyre.UI.Controls.TableOfContent.Action.Map)
             {
-                args.LeftPageContent = new Controls.MapLeft();
-                args.RightPageContent = "Map2";
+                //args.LeftPageContent = new Controls.MapLeft();                
+                //args.RightPageContent = new Controls.MapRight();
+                args.LeftPageControlsAdd(new Controls.MapLeft());
+                args.RightPageControlsAdd(new Controls.MapRight());
+
+                
                 args.GoDirectly = true;
                 args.GoToItem = true;
 

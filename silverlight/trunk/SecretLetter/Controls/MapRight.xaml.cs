@@ -12,22 +12,17 @@ using System.Windows.Shapes;
 
 namespace SecretLetter.Controls
 {
-    public partial class MapLeft : UserControl
+    public partial class MapRight : UserControl
     {
-        public MapLeft()
+        public MapRight()
         {
             InitializeComponent();
-            this.Loaded += new RoutedEventHandler(MapLeft_Loaded);
+            this.Loaded += new RoutedEventHandler(MapRight_Loaded);
         }
 
-        void MapLeft_Loaded(object sender, RoutedEventArgs e)
+        void MapRight_Loaded(object sender, RoutedEventArgs e)
         {
-            mapArt.ID = "Map1Left";
+            mapArt.ID = "Map1Right";
         }
-
-        //private void RectCtrl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        //{
-        //    RectText.Text = "Clicked!";
-        //}
     }
 }
