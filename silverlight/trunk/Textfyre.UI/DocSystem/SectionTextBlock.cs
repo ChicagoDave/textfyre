@@ -86,8 +86,16 @@ namespace Textfyre.UI.DocSystem
             _stackPanel = sp;
 
             if (_stackPanel == null && _hostGrid.Children.Count == 0)
+            {
                 _hostGrid.Children.Add(_txtBlk);
-
+                
+                // Debug: Show section border.
+                //Rectangle rt = new Rectangle();
+                //rt.Stroke = new SolidColorBrush( Colors.Black);
+                //rt.StrokeThickness = 1;
+                //_hostGrid.Children.Add(rt);
+            }
+            
             _maxWidth = maxWidth;
 
             if (_stackPanel != null)
