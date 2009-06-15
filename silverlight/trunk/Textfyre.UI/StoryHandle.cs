@@ -61,6 +61,16 @@ namespace Textfyre.UI
                     RightPage.PageScrollViewer.Content = value;
                 }
             }
+
+            public void RightPageControlsAdd(UIElement uielement)
+            {
+                RightPage.LayoutRoot.Children.Add(uielement);
+            }
+
+            public void LeftPageControlsAdd(UIElement uielement)
+            {
+                LeftPage.LayoutRoot.Children.Add(uielement);
+            }
         }
 
         /// <summary>

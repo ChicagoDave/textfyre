@@ -15,5 +15,8 @@
   <!-- Org size: 1500 x 1855 -->
 
   <Art ID="SpotArtCrates" Path="Images/SpotArt/Crates.png" Width="80" Height="70" Align="Right" />
-  
+
+  <Art ID="Map1Left" Path="Images/MapLeft.jpg" Width="390" Height="500" Margin="0,40,0,0" />
+  <Art ID="Map1Right" Path="Images/MapRight.jpg" Width="390" Height="500" Margin="0,5,0,0" />
+
 </Arts>
