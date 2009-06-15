@@ -4,6 +4,6 @@
              xmlns:tfctrl="clr-namespace:Textfyre.UI.Controls;assembly=Textfyre.UI"
     >
     <Grid x:Name="LayoutRoot">
-        <tfctrl:Art x:Name="mapArt" />
+        <tfctrl:Art x:Name="mapArt" HorizontalAlignment="Left" VerticalAlignment="Top" />
     </Grid>
 </UserControl>
