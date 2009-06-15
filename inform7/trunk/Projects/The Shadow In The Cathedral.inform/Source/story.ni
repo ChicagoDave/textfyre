@@ -1,7 +1,9 @@
 "The Shadow In The Cathedral" by Textfyre Inc
 
+
 [  Change Log
 When		Who		What
+15 Jun 2009	J. Ingold	Play-tested C2. Several changes, including a Pantry off the kitchen with tea leaves in and the ability to hide from Drake. Synonym "fill <x> with water". 
 05 Jun 2009     J. Ingold       Better cluing for the 5pm time-setting. Horloge nows "walks through" to hint about the keys (so long as you haven't seen him before). Some text rewrites.
 04 Jun 2009	J. Ingold	Added synonyms to verbs. Removed grammar lines leading to "rub" action. Added an ornamental action, "making the sign of". Slowed the clock-kind down to increase by 1 minute every 10 turns (to "discourage" accidental solution of time-puzzles -- it now takes 1200 moves for the Refectory Clock to strike 5pm, instead of only 120.) Added "[or-separated list of ...] substitution and used it to give help escaping Drake.
 01 Jun 2009	G. Jefferis	Remainder of Covalt's conversation
@@ -957,7 +959,12 @@ Part 5 - Filling
 
 Filling is an action applying to one thing.
 Understand "fill [something]" as filling.
+Understand "fill up [something]" as filling.
+Understand "fill [something] up" as filling.
 Understand "fill [something] with [other things]" as inserting it into (with nouns reversed).
+Understand "fill [something] up with water" as filling.
+Understand "fill up [something] with water" as filling.
+Understand "fill [something] with water" as filling.
 
 Check filling:
 	if the noun is not a container,
@@ -1784,6 +1791,8 @@ After going through the Abbot's Door from the Corridor of Contemplation when Int
 
 Chapter 4 - Scenery Items
 
+Understand "hide" as a mistake ("Where? There's the cot, the table, but none of those seem too good...") when Voices have been heard and the Grandfather Clock is not visited and the Introduction is happening.
+
 Section 1 - Cot
 
 The Abbot's cot is scenery, in the Abbot's Quarters. "The Abbot's cot is a hard wooden pallet, with no pillow and one small blanket. 'Mustn't sleep,' I can hear him saying. 'Time doesn't sleep. Sleep is our great weakness.'" Understand "bed", "pallet", "blanket" as the cot.
@@ -2042,6 +2051,8 @@ To decide if the clock event is not finished:
 
 Book 2 - The Abbey Of Time
 
+A thing can be Drake-hideable. A thing is seldom Drake-hideable.
+
 Part 1 - Corridor of Contemplation
 
 Before exiting in the Corridor of Contemplation: try going west instead.
@@ -2118,7 +2129,7 @@ A pencil sketch is scenery, in the Attic Room. The description is "It's a pencil
 
 Section 4 - Window
 
-A window called my window is scenery, in the Attic Room. "On tiptoes, I can see right across the city of St Philip. It's a maze of rooftops like a tangle of thorn bushes. If people could only see this view, then they might not be so strict about Precision and Good Order... Or maybe they would, because looming over all the houses are the great spires of the Cathedral of Time, its great clock keeping time for the whole city." Understand "hole", "tile", "roof tile", "missing roof tile", "missing tile" as my window.
+A window called my window is scenery, in the Attic Room. "On tiptoes, I can see right across the city of St Philip. It's a maze of rooftops like a tangle of thorn bushes. If people could only see this view, then they might not be so strict about Precision and Good Order... Or maybe they would, because looming over all the houses are the great spires of the Cathedral of Time, its great clock keeping time for the whole city.[paragraph break]And the Cathedral is where I would find the Archbishop. I've got to tell him what I heard!". Understand "hole", "tile", "roof tile", "missing roof tile", "missing tile" as my window.
 
 Instead of entering my window:
 	say "It's too small for me to climb through, and anyway, despite my name, I'm no bird.";
@@ -2248,12 +2259,15 @@ Before doing something when the candle-tracks are physically involved:
 
 Part 5 - Kitchen
 
+Instead of going inside when in the Kitchen:
+	try going north instead.
+
 Chapter 1 - Description
 
-The Kitchen is east of the Upper Hall. "If there was ever a proof of the perfection of Clockwork over Nature, it's that the dirtiest and most hectic room in the whole Abbey is its Kitchen. Shelves, walls and floor are covered by machines belching, slicing, steaming, chopping, stirring, boiling, broiling, frying, pureeing ... the list goes on. The noise, smell and heat is almost overpowering, and the Cook, who controls this madhouse, can only stand it because he's stone deaf.[if Quest for Tea is happening][paragraph break][tea machine details][end if][paragraph break]I can escape back into the cool of the Hall to the west. South, through a broad arch, is the Refectory[if Gong Sounding is happening], where the Refectory Clock is throwing up a wall of sound[end if]."
+The Kitchen is east of the Upper Hall. "If there was ever a proof of the perfection of Clockwork over Nature, it's that the dirtiest and most hectic room in the whole Abbey is its Kitchen. Shelves, walls and floor are covered by machines belching, slicing, steaming, chopping, stirring, boiling, broiling, frying, pureeing ... the list goes on. The noise, smell and heat is almost overpowering, and the Cook, who controls this madhouse, can only stand it because he's stone deaf.[if Quest for Tea is happening][paragraph break][tea machine details][end if][paragraph break]The cool of the Hall is west. South, through a broad arch, is the Refectory[if Gong Sounding is happening], where the Refectory Clock is throwing up a wall of sound[end if]. North is the dark recess of the Pantry."
 
 To say tea machine details:
-	say "In one corner is the only machine I'm allowed to use: the Tea Maker. There's a jar of tea leaf beside it. [if the bracket contains the empty teacup]In the bracket of the machine is a teacup. [otherwise if the bracket contains the full teacup]In the bracket of the machine is a steaming cup of tea. [end if]";
+	say "In one corner is the only machine I'm allowed to use: the Tea Maker. [if the bracket contains the empty teacup]In the bracket of the machine is a teacup. [otherwise if the bracket contains the full teacup]In the bracket of the machine is a steaming cup of tea. [end if]";
 
 Instead of inserting the teacup into the tea-machine:
 	try inserting the teacup into the bracket;
@@ -2297,64 +2311,23 @@ Understand "pipes", "devices", "wires", "pulleys", "ducts", "gears", "cog-teeth"
 Instead of doing something when the machines are physically involved:
 	say "[one of]The Cook hurtles over and beats me away with a towel.[or]The Cook scowls and slaps me away.[or]I might lose a finger if I tried that![at random]";
 
-Section 2 - Jar of tea leaf
+Section 2 - a pantry to hide in
 
-A jar of tea leaves is a container, portable, scenery, in the Kitchen. The description is "A glass apothecary jar of tea leaves, that come shipped in by Zepplin from the Asynchronous Continent." The printed name is "tea leaves". 
+A pantry-ghost is scenery, in the Kitchen. The description is "The pantry is a dark recess to the north[one of]. Strong smells wander out like labourers from a beer break[or][stopping]."
 
-Understand "leaf" as the jar of tea leaves when the location does not enclose the handful of tea leaves.
+Understand "pantry" as the pantry-ghost.
 
-Instead of taking the jar of tea leaves:
-	if the player carries the handful of tea leaves:
-		say "I take a couple more leaves.";
-	otherwise:
-		move the handful of tea leaves to the player;
-		say "I scoop up a handful of tea leaves.";
+Instead of smelling the pantry-ghost:
+	say "I pop my head inside...";
+	try going north;
+	say "...and take a good sniff. Mmm...";
+	try smelling instead.
 
-Before inserting the jar of tea leaves into something when the player does not carry the handful of tea leaves:
-	say "(first taking some tea from the jar)[command clarification break]";
-	now the player carries the handful of tea leaves;
-	try inserting the handful of tea leaves into the second noun instead; 
+Instead of hiding inside the pantry-ghost:
+	try going north instead;
 
-Before printing the name of the jar of tea leaves when asking which do you mean:
-	say "jar of ";
-
-Instead of inserting something into the jar of tea leaves:
-	say "I'd be in big trouble if I messed up the tea in this place. It's the sacred drink of the workshop men, and it's pretty expensive too.";
-
-Instead of opening or closing the jar of tea leaves:
-	say "The jar doesn't have a stopper.";
-
-Some dummy tea leaves are inside the jar of tea leaves. The printed name is "tea leaves". Understand "loose" as the dummy tea leaves.
-
-Instead of taking the dummy tea leaves: try taking the jar of tea leaves;
-Instead of examining the dummy tea leaves: try examining the jar of tea leaves;
-
-Before printing the name of the dummy tea leaves when asking which do you mean:
-	say "loose ";
-
-After printing the name of the dummy tea leaves when asking which do you mean:
-	say " (inside the jar)"
-
-Does the player mean doing something with the dummy tea leaves:
-	it is very unlikely;
-
-Section 3 - Handful of tea leaves
-
-A handful of tea leaves is a thing. The description is "A handful of tea leaves." Understand "leaf" as the handful of tea leaves.
-
-Instead of inserting the handful of tea leaves into the jar of tea leaves:
-	remove the handful of tea leaves from play;
-	say "I put the tea leaf back into the jar.";
-
-Instead of dropping the handful of tea leaves:
-	remove the handful of tea leaves from play;
-	say "I scatter the tea leaves. They quickly disintegrate and are gone.";
-
-Instead of putting the handful of tea leaves on something:
-	try dropping the handful of tea leaves instead;
-
-Instead of inserting the handful of tea leaves into something:
-	try dropping the handful of tea leaves instead;
+Instead of searching or entering the pantry-ghost:
+	try going north instead;
 
 Part T - The Tea Machine
 
@@ -2378,7 +2351,7 @@ Instead of doing something to a tea-critical thing when the Tea-Machine is switc
 
 Chapter 1 - Machine 'Chassis'
 
-The Tea-Machine is a privately-named device, scenery, in the Kitchen. The description is "[if switched off]Very complex, but robustly built and able to perform its functions a few thousand times without needing to be oiled. It consists of a framework of arms and struts, most of which move, though there's a plate at the front to hold the primary gear-train that's between the lever and the winding key. Inside the machine I can make out a kettle, a spigot, and a basket suspended over a semi-circular bracket. There's a burner somewhere, too.[otherwise]The machine is clanking, spinning, whirring and generally doing its thing.[end if]"
+The Tea-Machine is a privately-named device, scenery, in the Kitchen. The description is "[if switched off]Very complex, but robustly built and able to perform its functions a few thousand times without needing oil. It consists of a framework of arms and struts, most of which move, though there's a plate at the front to hold the primary gear-train that's between the lever and the winding key.[paragraph break]Inside the machine I can make out a kettle, a spigot, and a basket suspended over a semi-circular bracket. There's a burner somewhere, too.[otherwise]The machine is clanking, spinning, whirring and generally doing its thing.[end if]"
 
 The printed name of the tea-machine is "Tea Maker".
 Understand "machine", "maker", "tea machine", "tea maker" as the tea-machine.
@@ -2647,6 +2620,110 @@ Instead of emptying the full teacup:
 Instead of inserting something into the full teacup:
 	say "Don't. That would spoil the tea."
 
+Part P - The Pantry
+
+Instead of exiting when the player is in the Pantry:
+	try going south instead.
+
+Chapter 1 - Description
+
+The Abbey Pantry is a room. It is north of the Kitchen. "The Pantry is as tiny as a clock-case and filled with shelves that smell of herb and oil - but it's dark enough to hide someone like me..."
+
+Section 1 - Using your nose
+
+SMELLPANTRY is a trigger.
+
+Instead of smelling in the Abbey Pantry:
+	say "The strongest smell comes from the jar of tea leaf on the shelves.";
+	fire SMELLPANTRY;
+
+Section 2 - Giving it away for player's who don't notice
+
+Instead of going south from the Pantry when SMELLPANTRY is unfired:
+	say "I'm distracted for a moment by a strong smell from one of the jars. It's only tea but it makes my stomach turn circles. [i]How[r] long till five o'clock and dinner time?";
+	fire SMELLPANTRY;
+	
+
+Chapter 2 - Scenery
+
+Some pantry-shelves are a supporter, in the Abbey Pantry. The printed name is "pantry shelves".
+
+Rule for writing a paragraph about the pantry-shelves when SMELLPANTRY is fired:
+	say "The strongest smell in the room comes from a jar of tea leaf on the shelves." instead;
+
+Rule for writing a paragraph about the pantry-shelves:
+	now the pantry-shelves are mentioned instead;
+
+Understand "shelf/shelves" as the pantry-shelves.
+
+Instead of putting something on the pantry-shelves:
+	say "I'm an Assistant Clock-polisher, not a shelf-stacker!";
+
+Instead of searching the pantry-shelves:
+	fire SMELLPANTRY;
+	say "The shelves are cluttered with all sorts of things, including a jar of tea leaf.";
+
+Section 1 - Jar of tea leaf
+
+A jar of tea leaves is a container, portable, on the pantry-shelves. The description is "A glass apothecary jar of tea leaves, that come shipped in by Zepplin from the Asynchronous Continent." The printed name is "tea leaves". 
+
+Understand "leaf" as the jar of tea leaves when the location does not enclose the handful of tea leaves.
+
+Instead of taking the jar of tea leaves:
+	if the player carries the handful of tea leaves:
+		say "I take a couple more leaves.";
+	otherwise:
+		move the handful of tea leaves to the player;
+		say "I scoop up a handful of tea leaves.";
+
+Before inserting the jar of tea leaves into something when the player does not carry the handful of tea leaves:
+	say "(first taking some tea from the jar)[command clarification break]";
+	now the player carries the handful of tea leaves;
+	try inserting the handful of tea leaves into the second noun instead; 
+
+Before printing the name of the jar of tea leaves when asking which do you mean:
+	say "jar of ";
+
+Instead of inserting something into the jar of tea leaves:
+	say "I'd be in big trouble if I messed up the tea in this place. It's the sacred drink of the workshop men, and it's pretty expensive too.";
+
+Instead of opening or closing the jar of tea leaves:
+	say "The jar doesn't have a stopper.";
+
+Some dummy tea leaves are inside the jar of tea leaves. The printed name is "tea leaves". Understand "loose" as the dummy tea leaves.
+
+Instead of taking the dummy tea leaves: try taking the jar of tea leaves;
+Instead of examining the dummy tea leaves: try examining the jar of tea leaves;
+
+Before printing the name of the dummy tea leaves when asking which do you mean:
+	say "loose ";
+
+After printing the name of the dummy tea leaves when asking which do you mean:
+	say " (inside the jar)"
+
+Does the player mean doing something with the dummy tea leaves:
+	it is very unlikely;
+
+Section 3 - Handful of tea leaves
+
+A handful of tea leaves is a thing. The description is "A handful of tea leaves." Understand "leaf" as the handful of tea leaves.
+
+Instead of inserting the handful of tea leaves into the jar of tea leaves:
+	remove the handful of tea leaves from play;
+	say "I put the tea leaf back into the jar.";
+
+Instead of dropping the handful of tea leaves:
+	remove the handful of tea leaves from play;
+	say "I scatter the tea leaves. They quickly disintegrate and are gone.";
+
+Instead of putting the handful of tea leaves on something:
+	try dropping the handful of tea leaves instead;
+
+Instead of inserting the handful of tea leaves into something:
+	try dropping the handful of tea leaves instead;
+
+
+
 Part 6 - Library
 
 Chapter 1 - Description
@@ -2757,6 +2834,9 @@ Horloge's mechanical owl is carried by Horloge. The description is "Horloge's me
 
 Instead of turning Horloge's mechanical owl:
 	say "The owl seems to have lost its key somewhere. It's probably on Horloge's keyring.";
+
+Instead of unscrewing Horloge's mechanical owl with the lucky clock key:
+	say "My clock key would never fit Horloge's bird: it's far too delicate a mechanism.";
 
 Instead of turning Horloge's mechanical owl when Horloge's Keys are carried:
 	say "I don't want Horloge to see I've got his keys.";
@@ -2897,7 +2977,7 @@ Chapter 2 - Scenery
 
 Section 1 - Long Table and Benches
 
-Some long tables are a supporter, enterable, in the west refectory. The description of the long tables is "Two long oak tables flanked by benches. Each monk's place is marked by an hourglass, fixed to a brass rod along the centre of the table." Understand "table", "bench", "benches", "dining" as the long tables.
+Some long tables are a supporter, Drake-hideable, enterable, in the west refectory. The description of the long tables is "Two long oak tables flanked by benches. Each monk's place is marked by an hourglass, fixed to a brass rod along the centre of the table." Understand "table", "bench", "benches", "dining" as the long tables.
 
 Instead of putting something on the long tables:
 	say "I shouldn't clutter the table. I only cleaned up here a few hours ago.";
@@ -2929,7 +3009,7 @@ After taking the teacup for the first time:
 	say "I pick up the empty cup from its place beside by Brother Horloge's hourglass." instead;
 
 Instead of giving the empty teacup to Horloge:
-	say "'Well, what good's that?' Horloge demands. 'That's whotsit without the whotsit, like a whotsit with no whotsit!' He seem positively enraged.";
+	say "Horloge peers at the cup - peers at me - peers at the cup again. His brow creases like scrumpled paper.[paragraph break]'Well, what good's that?' he demands. 'That's whotsit without the whotsit, like a whotsit with no whotsit!' He seem positively enraged.";
 
 Instead of drinking or tasting the empty teacup:
 	say "I mime sipping tea, like I was a real monk and not just a two-tooth initiate."
@@ -2957,7 +3037,7 @@ Chapter 2 - Scenery
 
 Section 1 - Long Table and Benches
 
-Some long benches are a supporter, enterable, in the east refectory. The description of the long benches is "Two long oak tables flanked by benches. Each monk's place is marked by an hourglass, fixed to a brass rod along the centre of the table." Understand "table", "tables", "bench", "dining" as the long benches.
+Some long benches are a supporter, Drake-hideable, enterable, in the east refectory. The description of the long benches is "Two long oak tables flanked by benches. Each monk's place is marked by an hourglass, fixed to a brass rod along the centre of the table." Understand "table", "tables", "bench", "dining" as the long benches.
 
 The printed name of the long benches is "long tables".
 
@@ -3407,10 +3487,13 @@ Every turn during Drake's Patrol:
 		now escaped flag of Drake is false;
 		follow the warn of Drake's approach rule;
 	else:
-		now the can-pause flag of Drake is true;
-		let d be the best route from the location of Drake to Drake's next destination;
-		rotate the route of Drake backwards;
-		try Drake going d;
+		move Drake one place along.
+
+To move Drake one place along:
+	now the can-pause flag of Drake is true;
+	let d be the best route from the location of Drake to Drake's next destination;
+	rotate the route of Drake backwards;
+	try Drake going d;
 
 Section 3 - Definitions
 
@@ -3512,6 +3595,48 @@ Definition: a direction (called the way) is Drake-viable:
 	[ was he there? - stops the player swapping rooms with him ]
 	if the location of Drake is the location and the new place is Drake's previous location, no;
 	yes;
+
+Chapter 4 - Hiding from Drake
+
+Section - Times you can't hide
+
+Instead of hiding under something Drake-hideable when the location is not Drake's next destination and the location is not Drake's future destination during Drake's Patrol:
+	say "I don't need to hide. Drake's not on me quite yet.";
+	now the do-pause flag of Drake is true;
+
+Instead of hiding inside something Drake-hideable when the location is not Drake's next destination and the location is not Drake's future destination during Drake's Patrol:
+	say "I don't need to hide. Drake's not on me quite yet.";
+	now the do-pause flag of Drake is true;
+
+Section - Hiding and moving Drake on
+
+Instead of hiding under something Drake-hideable during Drake's Patrol:
+	hide from Drake under the noun;
+
+Instead of hiding inside something Drake-hideable during Drake's Patrol:
+	hide from Drake inside the noun;
+
+To hide from Drake under (t - a thing):
+	say "Great idea![paragraph break]I scoot under [the t], just in time! Drake marches through the room, whistling to himself. Once he's gone, I get back on my feet.";
+	move Drake away;
+
+To hide from Drake inside (t - a thing):
+	say "Good thinking![paragraph break]I duck inside [the t], just in time! Drake marches through the room. Once he's gone, I slip back out.";
+	move Drake away;
+
+To move Drake away:
+	while Drake's previous location is not the location:
+		move Drake to Drake's next destination;
+		rotate the route of Drake backwards;
+	now the do-pause flag of Drake is true;
+
+Section - Places you can't hide
+
+Instead of hiding inside something during Drake's Patrol:
+	say "[one of]I can't hide in there![or]That's no good![or]That would never work![cycling]"
+
+Instead of hiding under something during Drake's Patrol:
+	say "[one of]I can't hide there![or]That's no good![or]That would never work![cycling]"
 
 
 Part 15 - The Abbey, as a region
