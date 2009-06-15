@@ -268,6 +268,8 @@ namespace Textfyre.UI.Pages
                     else if (Settings.PagingMechanism == Settings.PagingMechanismType.CreateNewPages)
                         prologue = "<PrologueMode/>" + prologue + "<StoryMode/>";
 
+                    prologue = DocSystem.WordDef.ParseTextForWordDefs(prologue);
+
                     //TextfyreBook.TextfyreDocument.AddStml(prologue);
                     Current.Game.GameState.FyreXmlAdd(prologue);
                     TextfyreBook.TextfyreDocument.AddFyreXml(prologue);
