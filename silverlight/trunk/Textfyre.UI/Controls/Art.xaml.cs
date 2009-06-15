@@ -19,6 +19,19 @@ namespace Textfyre.UI.Controls
         private UIElement _currentElement = null;
         private UIElement _pastElement = null;
 
+        private bool _fadeArt = true;
+        public bool FadeArt
+        {
+            get
+            {
+                return _fadeArt;
+            }
+            set
+            {
+                _fadeArt = value;
+            }
+        }
+
         public enum ArtAlign
         {
             Center,
@@ -133,6 +146,12 @@ namespace Textfyre.UI.Controls
                 Align = (ArtAlign)System.Enum.Parse(typeof(ArtAlign), align, true);
             }
 
+            if (AttributeExists(art, "Fade"))
+            {
+                string fade = art.Attribute("Fade").Value;
+                FadeArt = Boolean.Parse(fade);
+            }
+
             string path = art.Attribute("Path").Value.Trim();
 
             if (path.Length == 0)
@@ -171,6 +190,12 @@ namespace Textfyre.UI.Controls
             _currentElement = uie;
             LayoutRoot.Children.Add(_currentElement);
 
+            if (_fadeArt == false)
+            {
+                RemovePastElement();
+                return;
+            }
+
             // Fadeout
             if (_pastElement != null)
             {
@@ -203,7 +228,12 @@ namespace Textfyre.UI.Controls
 
         void fo_Completed(object sender, EventArgs e)
         {
-            if (_pastElement != null)
+            RemovePastElement();
+        }
+
+        private void RemovePastElement()
+        {
+if (_pastElement != null)
             {
                 LayoutRoot.Children.Remove(_pastElement);
                 _pastElement = null;
