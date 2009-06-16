@@ -109,7 +109,7 @@ namespace Textfyre.UI.DocSystem
                             case SectionType.Prompt:
                                 if (InputWant != null)
                                 {
-                                    Current.Game.IsScrollLimitEnabled = true;
+                                    //Current.Game.IsScrollLimitEnabled = true;
                                     _lastScrollingHeight = 0;
                                     InputWantEventArgs args = new InputWantEventArgs();
                                     args.LeadText = section.Text;

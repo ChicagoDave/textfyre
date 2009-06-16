@@ -71,6 +71,7 @@ namespace Textfyre.UI.Controls.IODialog
 
         void file_FileClick(object sender, File.FileEventArgs e)
         {
+            Current.Game.TextfyreBook.Wait.Show(true);
             if (RestoreRequest != null)
             {
                 RestoreEventArgs args = new RestoreEventArgs();

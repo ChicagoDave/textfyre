@@ -26,6 +26,11 @@ namespace Textfyre.UI.Controls
 
         public void Show()
         {
+            Show(false);
+        }
+
+        public void Show(bool showInstantly)
+        {
             
             _isShowState = true;
 
@@ -33,7 +38,13 @@ namespace Textfyre.UI.Controls
 
             InitWaitText();
             DestroyStoryboard();
-            
+
+            if (showInstantly)
+            {
+                DisplayWait();
+                return;
+            }
+
             if (_storyboard == null)
             {
                 _storyboard = new Storyboard();
@@ -57,7 +68,11 @@ namespace Textfyre.UI.Controls
         void _storyboard_Completed(object sender, EventArgs e)
         {
             DestroyStoryboard();
+            DisplayWait();
+        }
 
+        private void DisplayWait()
+        {
             if (_isShowState)
             {
                 this.Visibility = Visibility.Visible;
