@@ -330,7 +330,7 @@ namespace Textfyre.UI.Controls.FlipBook
         {
             get
             {
-                if (this.page1 == null || this.page1.Content == null)
+                if (this.page1 == null || this.page1.Content == null || this.page1.Content is Textfyre.UI.Controls.TextfyreBookPage == false)
                     return false;
 
                 string pageID = (this.page1.Content as Textfyre.UI.Controls.TextfyreBookPage).PageID;
