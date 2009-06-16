@@ -23,6 +23,7 @@ namespace Textfyre.UI.Entities
             Current.Game.IsScrollLimitEnabled = false;
             Current.Game.TextfyreBook.RemoveBackPages();
             Current.Game.TextfyreBook.ClearStoryPage();
+            
             Current.Game.TextfyreBook.TextfyreDocument.ClearAll();
             Current.Game.TextfyreBook.TextfyreDocument.AddFyreXml(FyreXml);
         }

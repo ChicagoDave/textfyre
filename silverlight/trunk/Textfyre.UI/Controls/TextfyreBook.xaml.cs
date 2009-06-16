@@ -318,6 +318,7 @@ namespace Textfyre.UI.Controls
 				if (page.PageID != "MiscPageLeft" && page.PageID != "MiscPageRight" && page.PageID != "TOC" && page.PageID != "FrontPage" && page.PageID != ""  && page.PageID != "Credits")
                 {
                     _pages.Remove(page);
+                    Current.Game.TextfyreBook.FlipBook.RefreshSheetsContent();
                     RemoveStoryPages();
                     return;
                 }
@@ -341,7 +342,9 @@ namespace Textfyre.UI.Controls
             {
                 if (page.PageID == "BackPage" )
                 {
+                    page.PageID = "";
                     _pages.Remove(page);
+                    Current.Game.TextfyreBook.FlipBook.RefreshSheetsContent();
                     RemoveBackPages();
                     return;
                 }

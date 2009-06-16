@@ -13,5 +13,8 @@
         </ScrollViewer>
         <ctrls:More x:Name="ctrlMore" Visibility="Collapsed" />
         <ctrls:FlipButton x:Name="ctrlFlipButton" />
+    
+        <TextBlock Margin="20,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Text="" TextWrapping="Wrap" x:Name="Debug" Foreground="Brown" TextAlignment="Left" Width="200" Height="34" />
+
     </Grid>
 </UserControl>
