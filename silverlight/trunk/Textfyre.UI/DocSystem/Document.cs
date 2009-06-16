@@ -29,6 +29,7 @@ namespace Textfyre.UI.DocSystem
 
         public void ClearAll()
         {
+            _storyPage.Reset();
             _sections.Clear();
         }
 
