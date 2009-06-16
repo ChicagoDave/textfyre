@@ -1,8 +1,12 @@
 "The Shadow In The Cathedral" by Textfyre Inc
 
+[
+Include (- Constant DEBUG; -) after "Definitions.i6t".
+]
 
 [  Change Log
 When		Who		What
+16 Jun 2009 	J. Ingold	Added "hide" command (action is "hiding from view"), used to give a response to more general input. Fixed a bug in the tea-machine process. Repaired the abbey test script, that I seem to have broken by changing Drake's logic. Changed descriptions of the Hall rooms when the gongs are ringing and the player should be heading out.
 15 Jun 2009	J. Ingold	Play-tested C2. Several changes, including a Pantry off the kitchen with tea leaves in and the ability to hide from Drake. Synonym "fill <x> with water". 
 05 Jun 2009     J. Ingold       Better cluing for the 5pm time-setting. Horloge nows "walks through" to hint about the keys (so long as you haven't seen him before). Some text rewrites.
 04 Jun 2009	J. Ingold	Added synonyms to verbs. Removed grammar lines leading to "rub" action. Added an ornamental action, "making the sign of". Slowed the clock-kind down to increase by 1 minute every 10 turns (to "discourage" accidental solution of time-puzzles -- it now takes 1200 moves for the Refectory Clock to strike 5pm, instead of only 120.) Added "[or-separated list of ...] substitution and used it to give help escaping Drake.
@@ -351,6 +355,12 @@ A fake container is a kind of container.
 A fake container can be empty or full.
 
 A fake container is usually empty.
+
+Report searching an empty fake container:
+	say "[The noun] is empty." instead;
+
+Report searching a full fake container:
+	say "[The noun] is full." instead.
 
 Part 4 - Clock
 
@@ -893,6 +903,19 @@ Carry out hiding behind:
 Report hiding behind:
 	say "There's no need to hide right now.";
 
+Chapter 4 - Hiding from view
+
+Hiding from view is an action applying to nothing.
+
+Understand "hide" as hiding from view.
+
+Carry out hiding from view:
+      do nothing;
+
+Report hiding from view:
+      say "There's no need to hide right now."
+      
+
 Part 3 - Listening at and Listening with
 
 Understand "listen at [something]" as listening to.
@@ -1062,9 +1085,14 @@ Understand "mend [something]" as repairing.
 Check repairing:
 	say "That doesn't need to be repaired." instead;
 
+Part 10B - Replacing
+
+Understand "replace [something] with [something]" as putting it on (with nouns reversed).
+
 Part 11 - Winding
 
 Understand the command "wind" as "turn".
+Understand "wind up [something]" as turning.
 
 Part 12 - Clock-setting
 
@@ -1524,6 +1552,7 @@ Chapter 1 - Signs the player can make
 A clock-sign is a kind of thing. Understand "sign" as a clock-sign.
 
 The winding-key-sign is a clock-sign. Understand "winding key", "key" as the winding-key-sign. The printed name of the winding-key-sign is "winding key".
+The sad-depreciation-sign is a clock-sign. Understand "sad depreciation", "depreciation" as the sad-depreciation-sign. The printed name of the sad-depreciation-sign is "sad depreciation".
 The winding-gear-sign is a clock-sign. Understand "winding gear", "gear" as the winding-gear-sign. The printed name of the winding-gear-sign is "winding gear".
 The penduluum-sign is a clock-sign. Understand "pendulum/penduluum" as the penduluum-sign. The printed name of the penduluum-sign is "penduluum".
 The lever-sign is a clock-sign. Understand "lever" as the lever-sign. The printed name of the lever-sign is "lever".
@@ -1532,6 +1561,15 @@ The screw-sign is a clock-sign. Understand "screw" as the screw-sign. The printe
 Part 37 - Synonyms for drink
 
 Understand "drink from [something]" as drinking.
+
+Part 38 - Sharpening
+
+Sharpening is an action applying to one thing.
+
+Understand "sharpen [something]" as sharpening.
+
+Check sharpening:
+	say "That doesn't need to be sharpened." instead;
 
 Book E - New Properties
 
@@ -1725,6 +1763,9 @@ Instead of hiding inside the Grandfather Clock when in Abbot's Quarters and Voic
 Instead of hiding behind the Grandfather Clock when in Abbot's Quarters and Voices have been heard and Hiding in the Clock has not happened:
 	say "No space behind - but plenty inside. [run paragraph on]";
 	try entering the noun instead;
+	
+Instead of hiding from view when Voices have been heard and the Grandfather Clock is not visited and the Introduction is happening:
+	say "Where? There's the cot, the table, but none of those seem too good..."
 
 Section 5 - Components - Clock Door and Keyhole
 
@@ -1791,8 +1832,9 @@ After going through the Abbot's Door from the Corridor of Contemplation when Int
 
 Chapter 4 - Scenery Items
 
-Understand "hide" as a mistake ("Where? There's the cot, the table, but none of those seem too good...") when Voices have been heard and the Grandfather Clock is not visited and the Introduction is happening.
 
+
+	
 Section 1 - Cot
 
 The Abbot's cot is scenery, in the Abbot's Quarters. "The Abbot's cot is a hard wooden pallet, with no pillow and one small blanket. 'Mustn't sleep,' I can hear him saying. 'Time doesn't sleep. Sleep is our great weakness.'" Understand "bed", "pallet", "blanket" as the cot.
@@ -1886,7 +1928,7 @@ To decide if Voices have not been Heard:
 
 AB_QUART4 is a scripted event. The display text is "The Abbot's voice is getting closer. The old man may move slower than a short hand, but he's definitely coming this way."
 
-AB_QUART5 is a scripted event. The display text is "Oh, widdershins! Gubbler is right outside the door! I'd better hide!"
+AB_QUART5 is a scripted event. The display text is "Oh, widdershins! Gubbler is right outside the door! I'd better hide [i]somewhere[r]!"
 
 Part 2 - Inside the Clock
 
@@ -2099,7 +2141,7 @@ To decide if the player is not taken to the attic:
 
 Part 2 - Attic Bedroom
 
-Chapter 1 - Description
+Chapter 1 - Description  
 
 The Attic Room is a room. "[if the player is in the Attic Room for more than the first time]Back in the attic. The Cathedral is still just as far away, visible through the hole in the ceiling above my cot. But the ladder's the only way out of here.[otherwise]This isn't really an attic. It isn't really a room either. It's a couple of floorboards laid across some roof rafters right in the ceiling of the Abbey. There's enough floor-space for a cot and a laundry crate, but I have to be careful not to roll out of bed, because if I do, the thick cobwebs all around aren't going to stop me from falling...[paragraph break]A little hole in the ceiling provides some sunlight: and when it rains, it means I can wash my hair, too. It's right above the rickety ladder down to the ground (and that means the ladder is starting to rot and bend)."
 
@@ -2262,9 +2304,13 @@ Part 5 - Kitchen
 Instead of going inside when in the Kitchen:
 	try going north instead.
 
+Instead of exiting when in the Kitchen:
+	say "I leave the Kitchen by the west door.";
+	try going west instead.
+
 Chapter 1 - Description
 
-The Kitchen is east of the Upper Hall. "If there was ever a proof of the perfection of Clockwork over Nature, it's that the dirtiest and most hectic room in the whole Abbey is its Kitchen. Shelves, walls and floor are covered by machines belching, slicing, steaming, chopping, stirring, boiling, broiling, frying, pureeing ... the list goes on. The noise, smell and heat is almost overpowering, and the Cook, who controls this madhouse, can only stand it because he's stone deaf.[if Quest for Tea is happening][paragraph break][tea machine details][end if][paragraph break]The cool of the Hall is west. South, through a broad arch, is the Refectory[if Gong Sounding is happening], where the Refectory Clock is throwing up a wall of sound[end if]. North is the dark recess of the Pantry."
+The Kitchen is east of the Upper Hall. "[if Gong Sounding is not happening]If there was ever a proof of the perfection of Clockwork over Nature, it's that the dirtiest and most hectic room in the whole Abbey is its Kitchen. Shelves, walls and floor are covered by machines belching, slicing, steaming, chopping, stirring, boiling, broiling, frying, pureeing ... the list goes on. The noise, smell and heat is almost overpowering, and the Cook, who controls this madhouse, can only stand it because he's stone deaf. [otherwise]The Cook is working like a double-escapement all of a sudden, probably trying to get dinner ready two hours too soon! [end if][if Quest for Tea is happening][paragraph break][tea machine details][end if][paragraph break]The cool of the Hall is west. South, through a broad arch, is the Refectory[if Gong Sounding is happening], where the Refectory Clock is throwing up a wall of sound[end if]. North is the dark recess of the Pantry."
 
 To say tea machine details:
 	say "In one corner is the only machine I'm allowed to use: the Tea Maker. [if the bracket contains the empty teacup]In the bracket of the machine is a teacup. [otherwise if the bracket contains the full teacup]In the bracket of the machine is a steaming cup of tea. [end if]";
@@ -2291,10 +2337,10 @@ Chapter 2 - The Cook
 
 Section 1 - Description
 
-The Cook is a man, scenery, in the Kitchen. "The story goes that the Cook lost his hearing while setting rat-traps inside the great Refectory Clock. He'd been late about his chores and so instead of being there at 4.30 like his rota told him to, he was there at 5.00. When the gongs ran for dinner, he was still inside the case. If it's true, then never mind his ears, it's a wonder he can still [i]see[r] or [i]think[r]. That clock is [i]seriously[r] loud."
+The Cook is a man, scenery, in the Kitchen. "[if Gong Sounding is not happening]The story goes that the Cook lost his hearing while setting rat-traps inside the great Refectory Clock. He'd been late about his chores and so instead of being there at 4.30 like his rota told him to, he was there at 5.00. When the gongs ran for dinner, he was still inside the case. If it's true, then never mind his ears, it's a wonder he can still [i]see[r] or [i]think[r]. That clock is [i]seriously[r] loud.[otherwise]The Cook has gone into double-time.[end if]"
 
 Before asking the Cook about something:
-	say "The Cook doesn't waste time trying to lip-read. He picks me up, puts me to one side, and gets back to [one of]walloping the toaster[or]scooping soot from the grill[or]injecting steam through a waxed cloth pipe into a pot[or]cooking[or]plugging holes in a hot-water pipe with bread dough[or]setting dials on the furnaces[or]stirring a pan using a three-foot spoon[at random]."
+	say "The Cook doesn't waste time trying to lip-read. He picks me up, puts me to one side, and gets back to [one of]walloping the toaster[or]scooping soot from the grill[or]injecting steam through a waxed cloth pipe into a pot[or]cooking[or]plugging holes in a hot-water pipe with bread dough[or]setting dials on the furnaces[or]stirring a pan using a three-foot spoon[at random]." instead.
 
 Section 2 - Idle actions
 
@@ -2323,11 +2369,18 @@ Instead of smelling the pantry-ghost:
 	say "...and take a good sniff. Mmm...";
 	try smelling instead.
 
-Instead of hiding inside the pantry-ghost:
-	try going north instead;
+Before hiding inside the pantry-ghost:
+	if the location is not Drake's future destination and the location is not Drake's next destination:
+		say "I can't hear Drake coming so I'm clock-on for now." instead;
+	otherwise:
+		say "I duck into the pantry.";
+		try going north instead;
 
 Instead of searching or entering the pantry-ghost:
 	try going north instead;
+
+Instead of hiding from view when the location is the Kitchen and Drake's Patrol is happening:
+        try hiding inside the pantry-ghost;
 
 Part T - The Tea Machine
 
@@ -2353,8 +2406,11 @@ Chapter 1 - Machine 'Chassis'
 
 The Tea-Machine is a privately-named device, scenery, in the Kitchen. The description is "[if switched off]Very complex, but robustly built and able to perform its functions a few thousand times without needing oil. It consists of a framework of arms and struts, most of which move, though there's a plate at the front to hold the primary gear-train that's between the lever and the winding key.[paragraph break]Inside the machine I can make out a kettle, a spigot, and a basket suspended over a semi-circular bracket. There's a burner somewhere, too.[otherwise]The machine is clanking, spinning, whirring and generally doing its thing.[end if]"
 
+Instead of taking the Tea-Machine:
+	say "The machine is plumbed, weighted, counter-balanced, sprung and assembled with all the Holy Engineering that the Abbey can spare for its kitchens. I can't just walk off with it even if I [i]could[r] pick it up."
+
 The printed name of the tea-machine is "Tea Maker".
-Understand "machine", "maker", "tea machine", "tea maker" as the tea-machine.
+Understand "machine", "maker", "spring", "tea machine", "tea maker" as the tea-machine.
 
 Before switching on the switched off tea-machine:
 	say "It does no good to talk to a machine so casually, as Gubbler would say. Each sacred part must be treated as an individual operating within a larger purpose. Keys must be wound, levers pulled, spigots opened... that sort of thing." instead;
@@ -2377,7 +2433,7 @@ Before switching on the spigot when the kettle is full:
 
 Instead of switching on the spigot:
 	now the kettle is full;
-	say "The spigot releases a thin dribble of water into the kettle. Across the room, the clouds coming from the steamer suddenly thin out and the Cook pauses to give me the most evil of evil stares. I turn the spigot closed again." instead;
+	say "The spigot releases a thin dribble of water into the kettle. Across the room, the clouds coming from the steamer suddenly thin out.[paragraph break]The Cook stops and gives me the most evil of evil stares. I turn the spigot closed again." instead;
 
 Chapter 3 - Kettle
 
@@ -2447,6 +2503,12 @@ Instead of inserting something into the basket:
 Instead of taking the basket:
 	say "The basket is firmly fixed to the machine by two long struts, designed to shake out the last drops towards the end of the process. 'No cog left unturned,' as Gubbler would say.";
 
+Instead of searching the full basket:
+	say "The basket contains a handful of tea-leaves.";
+
+Before removing something from the tea-machine when the noun is enclosed by the tea-machine:
+	try taking the noun instead.
+
 Chapter 7 - Bracket
 
 The bracket is an open container, part of the tea-machine. The description is "Just below the main gear train is a semi-circular bracket made of silver [if the teacup is not in the bracket], unsurprisingly about the size of a teacup.[otherwise if the teacup is empty], in which is a tea cup waiting for tea.[otherwise] in which is a nice full cup of tea.[end if]"
@@ -2477,7 +2539,7 @@ Does the player mean doing something with the gear train:
 
 Section 2 - Small, worn-down gear
 
-The small gear is part of the gear train. The description is "Half the teeth have rounded, like those of an old man, the kind that eats nothing but cabbage."
+The small gear is part of the gear train. The description is "Half the teeth have rounded, like those of an old man, the kind that eats nothing but cabbage. I'm going to need to find a new one from somewhere."
 
 Understand "worn", "worn down", "worn-down", "teeth", "cog" as the small gear.
 
@@ -2485,14 +2547,26 @@ Instead of taking the small gear when the small gear is part of the gear train:
 	now the player carries the small gear;
 	say "While the Cook is distracted – the Cook is [i]always[r] distracted – I pluck the out the worn down gear. Not the sort of repair a clock polisher should be doing!";
 
+Instead of sharpening the small gear:
+	say "I don't have the skills or grace to sharpen a cog probably. I'm going to need to find a new one instead.";
+
 Instead of repairing the small gear:
 	say "It's worn. There's nothing anyone can do to change that.";
 
 Section 3 - Making repairs
 
+Instead of putting the new gear on the small gear when the small gear is part of the gear train:
+	try inserting the new gear into the gear train instead.
+
+Instead of inserting the new gear into the gear train when the small gear is part of the gear train:
+	try taking the small gear;
+	if the small gear is not part of the gear train:
+		continue the action;
+
 Instead of inserting the new gear into the gear train:
 	remove the new gear from play;
 	now the new gear is part of the gear train;
+	say "I slip the new gear into place. [run paragraph on]";
 	try examining the gear train;
 
 Chapter 9 - Tea Maker Key
@@ -2508,6 +2582,9 @@ After turning the tea-machine key:
 
 Instead of taking the tea-machine key:
 	say "The key is fixed deep inside the device.";
+
+Instead of turning the tea-machine:
+	try turning the tea-machine key.
 
 Chapter 10 - Tea Machine Lever
 
@@ -2545,7 +2622,7 @@ A tea-making rule:
 		say "The Cook gawps, then troops over and belts me around the head. He points firmly at the kettle in the middle of the machine – the [i]empty[r] kettle in the middle of the machine – then stalks back over to his chopping machine." instead;
 
 A tea-making rule:
-	if the basket is empty,
+	if the basket is not full,
 		say "Don't you think the tea would be rather bland if I don't put some [i]tea[r] in? The machine is clockwork but it's not [i]magic[r], you know!" instead;
 
 A tea-making rule:
@@ -2558,7 +2635,7 @@ A tea-making rule:
 
 A tea-making rule:
 	if the small gear is part of the gear train begin;
-		say "The lever locks down and sets the first few gears in motion. But it doesn't seem to be carrying over correctly. [run paragraph on]";
+		say "[one of]The lever locks down and sets the first few gears in motion. But it doesn't seem to be carrying over correctly[or]The lever doesn't do anything[stopping]. [run paragraph on]";
 		try examining the gear train;
 		say "I release the lever and it springs back up." instead;
 	end if;
@@ -2764,7 +2841,7 @@ Understand "windows", "panels", "panel", "watch", "escapement", "astrolabe", "or
 
 Section 4 - Table
 
-A wheeled table is fixed in place, in the Library. The description is "The table is set on little brass castors to allow Brother Horloge to follow the feeble patch of sunlight around the room."
+A wheeled table is fixed in place, Drake-hideable, in the Library. The description is "The table is set on little brass castors to allow Brother Horloge to follow the feeble patch of sunlight around the room."
 
 Understand "castor", "caster", "castors", "casters", "wheel", "wheels" as the wheeled table.
 
@@ -2965,13 +3042,13 @@ Instead of going inside in the Central Hall: try going northeast.
 
 Chapter 1 - Description
 
-The Central Hall is east of the Library, southwest of the Upper Hall. "I'm standing in the very centre of the Abbey's Great Hall. It's impossible not to crane my neck at the ceiling held aloft by buttresses the size of gigantic oak trees. To think, people built this in the days before real pulley-transmissions! It must have taken [i]weeks[r]! The hall continues northeast into shadow, and southwest, towards the sunlight, the Yard and above all, the Archbishop.[paragraph break]The vast empty space is filled by the muttering and echo of Holy Mechanisms, and the hiss of the candles as they sweep around their Tracks, providing a little light everywhere but rarely ever enough. I can just make out archways both east and west."
+The Central Hall is east of the Library, southwest of the Upper Hall. "[if Gong Sounding is not happening]I'm standing in the very centre of the Abbey's Great Hall. It's impossible not to crane my neck at the ceiling held aloft by buttresses the size of gigantic oak trees. To think, people built this in the days before real pulley-transmissions! It must have taken [i]weeks[r]! The hall continues northeast into shadow, and southwest, towards the sunlight, the Yard and above all, the Archbishop.[paragraph break]The vast empty space is filled by the muttering and echo of Holy Mechanisms, and the hiss of the candles as they sweep around their Tracks, providing a little light everywhere but rarely ever enough. I can just make out archways both east and west.[otherwise]The archway at the end of the hall, to the southwest, is clear. I can almost see the Cathedral beyond.[end if]"
 
 Part 8 - West Refectory
 
 Chapter 1 - Description
 
-A room called the West Refectory is east of the Central Hall. "I spend some of my time here, eating at one of the two long tables. I spend even more serving the monks. Each of them has their own seat, marked by a little brass hourglass, and if the twenty or so I can see here weren't enough (which they aren't), there's more to the east, where the Refectory continues. Back west is the archway to the Great Hall."
+A room called the West Refectory is east of the Central Hall. "[if Gong Sounding is not happening]I spend some of my time here, eating at one of the two long tables. I spend even more serving the monks. Each of them has their own seat, marked by a little brass hourglass, and if the twenty or so I can see here weren't enough (which they aren't), there's more to the east, where the Refectory continues. Back west is the archway to the Great Hall.[otherwise]The Hall is back west. In a few minutes, this room will be full of confused monks. I need to not be here when that happens...[end if]"
 
 Chapter 2 - Scenery
 
@@ -3021,7 +3098,7 @@ Part 9 - East Refectory
 
 Chapter 1 - Description
 
-A room called the East Refectory is east of the West Refectory, south from the Kitchen. "The eastern end of the long Refectory is given over in part to the tables lined with brass hourglasses, but in the other half there's nothing but the enormous Refectory Clock. It's an impressive thing, so big because it only needs winding once a year, despite all the gongs, cymbals, tubes and bells that strike when dinner time comes around. Right now, the clock is showing the time at just after [the face value of the refectory clock to the nearest five minutes in words].[if Gong Sounding is happening][paragraph break]The refectory booms with the sound of the clock, striking the dining hour on a hundred bells, cymbals and organ pipes. I can retreat down the length of the dining tables by heading west.[end if]"
+A room called the East Refectory is east of the West Refectory, south from the Kitchen. "[if Gong Sounding is not happening]The eastern end of the long Refectory is given over in part to the tables lined with brass hourglasses, but in the other half there's nothing but the enormous Refectory Clock. It's an impressive thing, so big because it only needs winding once a year, despite all the gongs, cymbals, tubes and bells that strike when dinner time comes around. Right now, the clock is showing the time at just after [the face value of the refectory clock to the nearest five minutes in words].[otherwise]The refectory booms with the sound of the clock, striking the dining hour on a hundred bells, cymbals and organ pipes. I can retreat down the length of the dining tables to the west, or north into the kitchen.[end if]"
 
 Instead of smelling the location when the location is the Upper Hall or the location is the East Refectory:
 	say "Food, rot, cheese, mould, damp and the ever-present scent of grease-oil, coming through the archway to [the best route from the location to the Kitchen].";
@@ -3192,6 +3269,9 @@ Section 2 - Dummy Calvin and Drake
 
 CalvinAndDrake are a man. CalvinAndDrake are privately-named, proper-named, and plural-named. The printed name is "Calvin and Drake". The description is "Calvin and Drake are too busy to pay any notice of me now." Understand "Calvin", "Drake", "Calvin and Drake", "Drake and Calvin" as CalvinAndDrake.
 
+Rule for writing a paragraph about CalvinAndDrake:
+	say "Calvin and Drake are here, leaping with distraction at the sight of the booming clock." instead.
+
 Instead of doing something when CalvinAndDrake are physically involved:
 	try examining CalvinAndDrake instead;
 
@@ -3228,7 +3308,7 @@ Instead of reading or searching the Duplicator:
 
 Chapter 4 - Gutenberg Press
 
-The Gutenberg Press is a device, in the Scriptorium. The description is "A massive Gutenberg press, the source of all the city of St Philip's holy texts and condemnations. The recent spate of pamphlets advising against 'heretical new ideas' – whatever they might be – has run the press down rather severely. I make the sign of Sad Depreciation. Reloh sees, and nods his approval."
+The Gutenberg Press is a device, in the Scriptorium. The description is "A massive Gutenberg press, the source of all the city of St Philip's holy texts and condemnations. The recent spate of pamphlets advising against 'heretical new ideas' - whatever they might be - has run the press down rather severely. I make the sign of Sad Depreciation. Reloh sees, and nods his approval."
 
 Rule for writing a paragraph about the Gutenberg:
 	say "The Gutenberg seems to be in the midst of a repair. [The Cabinet of Relics] next to it is open.";
@@ -3240,7 +3320,7 @@ Chapter 5 - Cabinet of Relics
 
 Section 1 - Description
 
-The Cabinet of Relics is a container, open, openable, scenery, in the Scriptorium. The description is "The Cabinet of Relics is open, which it shouldn't be, but presumably whichever monk was in the middle of consecrating the Gutenberg needed a three-quarter inch screw and slipped out to buy one. Inside the cabinet are typesets, spare gears, ink rollers – many objects of the Copying."
+The Cabinet of Relics is a container, Drake-hideable, open, openable, scenery, in the Scriptorium. The description is "The Cabinet of Relics is open, which it shouldn't be, but presumably whichever monk was in the middle of consecrating the Gutenberg needed a three-quarter inch screw and slipped out to buy one. Inside the cabinet are typesets, spare gears, ink rollers – many objects of the Copying."
 
 Instead of searching the Cabinet of Relics:
 	try examining the press materials;
@@ -3297,7 +3377,7 @@ Instead of exiting in the Lower Hall: try going southwest.
 
 Chapter 1 - Description
 
-Lower Hall is east of the Scriptorium, southwest of the Central Hall, west of the Corridor of Contemplation. The description is "Looking northeast, the Great Hall of the Abbey stretches away like the belly of some big beast, laid out ready to have its mouth stuffed with an apple. The walls are lit in Holy Patterns by candles on Sacred Tracks suspended in the air. There's just enough light to make out the Corridor of Contemplation to the east and the wider archway to the Scriptorium to the west.[paragraph break]But more importantly, the great Entry – and exit – of the Abbey is to the southwest. And if I'm going to get out of here and talk to the Archbishop that's the only way to go."
+Lower Hall is east of the Scriptorium, southwest of the Central Hall, west of the Corridor of Contemplation. The description is "[if Gong Sounding is not happening]Looking northeast, the Great Hall of the Abbey stretches away like the belly of some big beast, laid out ready to have its mouth stuffed with an apple. The walls are lit in Holy Patterns by candles on Sacred Tracks suspended in the air. There's just enough light to make out the Corridor of Contemplation to the east and the wider archway to the Scriptorium to the west.[paragraph break]But more importantly, the great Entry – and exit – of the Abbey is to the southwest. And if I'm going to get out of here and talk to the Archbishop that's the only way to go.[otherwise]The exit to the Abbey is clear to the southwest. Quickly, now, before someone turns that clock off and starts looking for someone to blame![end if]"
 
 Index map with the Corridor of Contemplation mapped east of Lower Hall.
 
@@ -3417,7 +3497,7 @@ Part 13 - Entry
 
 Chapter 1 - Description
 
-The Abbey Entry is southwest of the Lower Hall. "Sunlight and the sound of the city of St Philip pour in from the west through the Abbey's great doors. At last! I can get away and see the Archbishop!... before whatever happens happens.[paragraph break]To the east, a cloister runs towards the cells of the monks, novices, initiates, unaffiliated staff – really, of everyone apart from me." The printed name is "Entry".
+The Abbey Entry is southwest of the Lower Hall. "Sunlight and the sound of the city of St Philip pour in from the west through the Abbey's great doors. At last! I can get away and see the Archbishop!... before whatever happens, happens![paragraph break]To the east, a cloister runs towards the cells of the monks, novices, initiates, unaffiliated staff – really, of everyone apart from me." The printed name is "Entry".
 
 The Abbey Doors are a door, open, scenery, west of the Entry, east of the Cathedral Yard.
 The description is "Ornately carved with planets, their orbits planned and plotted out for them in advance. Everything on its correct path... just as I should be!"
@@ -3526,7 +3606,7 @@ Before going to a Drake-occupied room during Drake's Patrol:
 		[ doesn't make sense if we "hang back" and then get caught anyway, so we catch that here. ]
 		say "I walk right into Drake - no time to run away.[paragraph break]";
 		carry out the firing activity with ATTIC1 instead;
-	say "Just in time, I see Drake's there. I hang back, to let him move on." instead;
+	say "Just in time, I see Drake's there. I hang back. He'll move on in a moment." instead;
 
 Automatically-dodging-Drake is a truth state that varies.
 
@@ -3569,7 +3649,7 @@ This is the warn of Drake's approach rule:
 		carry out the firing activity with ATTIC1 instead;
 	otherwise if the number of moves from the location to the location of Drake is greater than 1 and the number of moves from the location to Drake's previous location is 1;
 		[so he's moving away from you, and you're waiting behind him]
-		say "[one of]I hear footsteps, but they're moving away, off into the Abbey[or][one of]Footsteps - moving away[or]I hear footsteps, receeding[or]The stones echo departing footsteps[as decreasingly likely outcomes][stopping]." instead;		
+		say "[one of]I hear footsteps, moving away into the Abbey[or][one of]Footsteps - moving away[or]I hear footsteps, receeding[or]The stones echo departing footsteps[as decreasingly likely outcomes][stopping]." instead;		
 	end if;
 	continue the action;
 
@@ -3608,20 +3688,32 @@ Instead of hiding inside something Drake-hideable when the location is not Drake
 	say "I don't need to hide. Drake's not on me quite yet.";
 	now the do-pause flag of Drake is true;
 
+Instead of hiding behind something Drake-hideable when the location is not Drake's next destination and the location is not Drake's future destination during Drake's Patrol:
+	say "I don't need to hide. Drake's not on me quite yet.";
+	now the do-pause flag of Drake is true;
+
+
 Section - Hiding and moving Drake on
 
+Instead of hiding from view when Drake's Patrol is happening:
+	say "There's nowhere to hide here.";
+
+Instead of hiding from view when Drake's Patrol is happening and something Drake-hideable is visible:
+	hide from Drake inside a random Drake-hideable visible thing;
+
+
 Instead of hiding under something Drake-hideable during Drake's Patrol:
-	hide from Drake under the noun;
+	hide from Drake inside the noun;
 
 Instead of hiding inside something Drake-hideable during Drake's Patrol:
 	hide from Drake inside the noun;
 
-To hide from Drake under (t - a thing):
-	say "Great idea![paragraph break]I scoot under [the t], just in time! Drake marches through the room, whistling to himself. Once he's gone, I get back on my feet.";
-	move Drake away;
+Instead of hiding behind something Drake-hideable during Drake's Patrol:
+	hide from Drake inside the noun;
+
 
 To hide from Drake inside (t - a thing):
-	say "Good thinking![paragraph break]I duck inside [the t], just in time! Drake marches through the room. Once he's gone, I slip back out.";
+	say "[one of]Good thinking![paragraph break][or][stopping]I duck behind [the t], just in time! Drake marches through the room. Once he's gone, I slip back out.";
 	move Drake away;
 
 To move Drake away:
@@ -3631,6 +3723,9 @@ To move Drake away:
 	now the do-pause flag of Drake is true;
 
 Section - Places you can't hide
+
+Instead of hiding behind something during Drake's Patrol:
+	say "[one of]I can't hide there![or]That's no good![or]That would never work![cycling]"
 
 Instead of hiding inside something during Drake's Patrol:
 	say "[one of]I can't hide in there![or]That's no good![or]That would never work![cycling]"
@@ -3872,7 +3967,7 @@ Section 1 - Statuettes
 
 Some statuettes are scenery, in the Shrine of the Saints. The printed name is "statues". Understand "statue", "statues", "niche", "niches", "bust", "busts" as the statuettes.
 
-The description of the statuettes is "[one of]St Wainwright, with his compasses.[or]St Maxwell, with his electronia.[or]St Cauchy, with his dividing rod.[or]St Decartes, with his set square.[or]St Allan, with his hexagonal key.[or]St Ykea, with his design manuals.[at random]"
+The description of the statuettes is "There's one: [one of]St Wainwright, with his compasses.[or]St Maxwell, with his electronia.[or]St Cauchy, with his dividing rod.[or]St Decartes, with his set square.[or]St Allan, with his hexagonal key.[or]St Ykea, with his design manuals.[at random]"
 
 Instead of taking or pushing the statuettes:
 	say "The statues are firmly bolted into place. The Church don't want parishioners feeling tempted. Or Clock Polishers, either.";
@@ -3981,7 +4076,7 @@ Section 1 - Description
 The brazier is a container, open, not openable, scenery, in the Calendar Shrine. "A brass dish set over a little tripod, in the centre of which a quiet flame burns. It's meant for incense and holy oils, that kind of thing. Doesn't seem very mechanistic to me: must be a hangover from the past, like shoelaces and Laundry."
 
 Instead of touching the brazier:
-	say "It's not [i]too[r] hot. Perhaps the fire understand is like the spring in the Refectory Clock: delivering a tiny amount of power for a very very long time.";
+	say "It's not [i]too[r] hot. Perhaps the fire underneath is like the spring in the Refectory Clock: delivering a tiny amount of power for a very very long time.";
 
 Section 2 - Wax Mixing
 
@@ -9168,7 +9263,7 @@ Test walkthrough with "test intro / test abbey / test cathedral / test clockchas
 
 Test intro with "z/w/hide in clock/put tumbler on door/z/z/z/out/w/w".
 
-Test abbey with "d/e/sw/e/get cup/e/n/put cup in bracket/w/w/z/z/z/e/e/get tea/x train/get gear/turn spigot/wind key/put tea in basket/w/sw/sw/w/get new gear/ne/e/ne/e/put new gear in train/pull lever/z/z/z/w/w/z/z/z/e/e/e/get tea/w/sw/sw/sw/w/put tea on table/get keys/get keys/e/e/e/unlock clock/set clock to 4:59/z/w/w/sw/sw/w".
+Test abbey with "d/e/sw/e/get cup/e/n/put cup in bracket/w/w/z/z/z/e/e/n/smell/get tea/z/z/z/z/s/x train/get gear/turn spigot/wind key/put tea in basket/w/z/z/z/sw/sw/w/get new gear/ne/z/z/z/z/e/ne/e/put new gear in train/pull lever/z/z/z/w/w/z/z/z/e/e/e/get tea/w/sw/w/put tea on table/get keys/get keys/e/e/e/unlock clock/set clock to 5:00/z/w/w/sw/sw/w".
 
 Test abbey2 with "d/e/sw/e/get cup/e/n/put cup in bracket/w/w/z/z/z/e/e/get tea/x train/get gear/turn spigot/wind key/put tea in basket/w/sw/sw/w/get new gear/ne/e/ne/e/put new gear in train/pull lever/z/z/z/w/w/z/z/z/e/e/e/get tea/w/sw/sw/sw/w/put tea on table/get keys/get keys/e/e/e/unlock clock".
 
