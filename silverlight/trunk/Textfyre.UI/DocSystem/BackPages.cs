@@ -30,9 +30,15 @@ namespace Textfyre.UI.DocSystem
 
             _sectionsIndex = 0;
 
-            foreach (TextfyreBookPage page in _bookPages)
+            List<TextfyreBookPage> bookPages = _bookPages;
+            _bookPages = new List<TextfyreBookPage>();
+            foreach (TextfyreBookPage page in bookPages)
             {
-                EmptyPage(page);
+                if (page.PageID == "BackPage")
+                {
+                    EmptyPage(page);
+                    _bookPages.Add(page);
+                }
             }
 
             ProcessSections();

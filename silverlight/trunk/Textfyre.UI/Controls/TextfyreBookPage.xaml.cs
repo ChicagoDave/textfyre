@@ -16,15 +16,27 @@ namespace Textfyre.UI.Controls
     {
         private Helpers.MouseClickManager _mouseClickManager;
 
-        public string PageID;
+        private string _pageID;
+        public string PageID
+        {
+            get
+            {
+                return _pageID;
+            }
+            set
+            {
+                _pageID = value;
+                Debug.Text = _pageID;
+            }
+        }
         public int BookPageIndex;
 
         public TextfyreBookPage(string pageID, int bookPageIndex)
         {
+            InitializeComponent();
+
             PageID = pageID;
             BookPageIndex = bookPageIndex;
-
-            InitializeComponent();
 
             PageScrollViewer.Width = Settings.BookPageInnerContentWidth;
             PageScrollViewer.Height = Settings.BookPageInnerContentHeight;
