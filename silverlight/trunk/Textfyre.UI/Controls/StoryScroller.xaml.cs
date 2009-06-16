@@ -93,7 +93,7 @@ namespace Textfyre.UI.Controls
                 {
                     _scrollStoryboard = new Storyboard();
                     _scrollStoryboard.Completed += new EventHandler(_scrollStoryboard_Completed);
-                    _scrollStoryboard.Duration = TimeSpan.FromMilliseconds(100);
+                    _scrollStoryboard.Duration = TimeSpan.FromMilliseconds(50);
                     _scrollStoryboard.Begin();
                 }
             }
