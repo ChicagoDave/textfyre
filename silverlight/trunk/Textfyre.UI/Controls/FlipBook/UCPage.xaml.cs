@@ -238,6 +238,88 @@ namespace Textfyre.UI.Controls.FlipBook
             pf.Segments.Add(new LineSegment { Point = new Point(0, ActualHeight) });
         }
 
+        #region :: CornerGuideAnimation ::
+        private UIElement _cornerGuideAnimationUIElement = null;
+        private double _cornerGuideCnt = 0;
+        private double _cornerGuideDir = 0.50d;
+        private Storyboard _cornerGuideStoryboard = null;
+        public void CornerGuideAnimation(UIElement uie)
+        {
+            if (this.page1 == null || this.page1.Content == null)
+                return;
+            
+            string pageID = (this.page1.Content as Textfyre.UI.Controls.TextfyreBookPage).PageID;
+            if (pageID != "Story")
+                return;
+
+            _cornerGuideAnimationUIElement = uie;
+
+            if (Current.Game.CanPageFlipForward == false)
+                return;
+
+            if ((Status == PageStatus.DropAnimation) || (Status == PageStatus.TurnAnimation))
+                return;
+
+            if (_cornerGuideStoryboard == null)
+            {
+                _cornerGuideStoryboard = new Storyboard();
+                _cornerGuideStoryboard.Completed += new EventHandler(_cornerGuideStoryboard_Completed);
+                _cornerGuideStoryboard.Duration = TimeSpan.FromMilliseconds(50);
+            }
+
+            if( _cornerGuideStoryboard.GetCurrentState() != ClockState.Active )
+                _cornerGuideStoryboard.Begin();
+
+        }
+
+        void _cornerGuideStoryboard_Completed(object sender, EventArgs e)
+        {
+            if (_cornerGuideAnimationUIElement == null)
+                return;
+
+            Point p = new Point(0, 0);
+            CornerOrigin corner = CornerOrigin.BottomRight;
+            if (IsBottomRightCornerEnabled)
+            {
+                corner = CornerOrigin.BottomRight;
+                Rect rect = new Rect(_cornerGuideAnimationUIElement.RenderSize.Width - gripSize, _cornerGuideAnimationUIElement.RenderSize.Height - gripSize, gripSize, gripSize);
+
+                p = new Point(rect.Left + 10 + _cornerGuideCnt, rect.Top + 10 + _cornerGuideCnt);
+                _cornerGuideCnt += _cornerGuideDir;
+                if (_cornerGuideCnt > 10)
+                    _cornerGuideDir = -0.50d;
+                if (_cornerGuideCnt < 0)
+                    _cornerGuideDir = 0.50d;
+            }
+            //else if (IsBottomLeftCornerEnabled)
+            //{
+            //    corner = CornerOrigin.BottomLeft;
+            //    Rect rect = new Rect(0, _cornerGuideAnimationUIElement.RenderSize.Height - gripSize, gripSize, gripSize);
+
+            //    p = new Point(rect.Right - 10 + _cornerGuideCnt, rect.Top + 10 + _cornerGuideCnt);
+            //    //_cornerGuideCnt -= _cornerGuideDir;
+            //    //if (_cornerGuideCnt > 10)
+            //    //    _cornerGuideDir = -0.50d;
+            //    //if (_cornerGuideCnt < 0)
+            //    //    _cornerGuideDir = 0.50d;
+            //}
+
+            if (p.X != 0 && p.Y != 0)
+            {
+                double pageHeight = this.ActualHeight;
+                if (p.Y >= pageHeight - 2 && p.Y <= pageHeight + 1)
+                    p.Y = pageHeight + 2;
+                
+                Status = PageStatus.Dragging;
+                PageParameters? parameters = ComputePage(_cornerGuideAnimationUIElement, p, corner);
+                _cornerPoint = p;
+                if (parameters != null)
+                    ApplyParameters(parameters.Value);
+            }
+            _cornerGuideStoryboard.Begin();
+        }
+        #endregion
+
         private void OnMouseMove(object sender, MouseEventArgs args)
         {
             if (args == null)
@@ -283,11 +365,13 @@ namespace Textfyre.UI.Controls.FlipBook
                     {
                         DropPage(ComputeAnimationDuration(source, p, origin));
                     }
+                    CornerGuideAnimation(source);
                     return;
                 }
                 Status = PageStatus.DraggingWithoutCapture;
             }
 
+            _cornerGuideAnimationUIElement = null;
             PageParameters? parameters = ComputePage(source, p, origin);
             _cornerPoint = p;
             if (parameters != null)
@@ -651,6 +735,7 @@ namespace Textfyre.UI.Controls.FlipBook
             IsTopRightCornerEnabledProperty = DependencyProperty.Register("IsTopRightCornerEnabled", typeof(bool), typeof(UCPage), null); //new PropertyMetadata(true));
             IsBottomLeftCornerEnabledProperty = DependencyProperty.Register("IsBottomLeftCornerEnabled", typeof(bool), typeof(UCPage), null); //new PropertyMetadata(true));
             IsBottomRightCornerEnabledProperty = DependencyProperty.Register("IsBottomRightCornerEnabled", typeof(bool), typeof(UCPage), null); //new PropertyMetadata(true));
+            
         }
         static void OnCornerPointChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
