@@ -491,6 +491,7 @@ namespace Textfyre.UI.Pages
 
             Current.Game.IsEngineRunning = false;
             inputReadyEvent.WaitOne();
+            Current.Game.IsScrollLimitEnabled = true;
             Current.Game.IsEngineRunning = true;
             char key = (_inputLine != null && _inputLine.Length > 0) ? _inputLine[0] : ' ';
             e.Char = key;
@@ -518,7 +519,7 @@ namespace Textfyre.UI.Pages
             Dispatcher.BeginInvoke(() =>
             {
                 TextfyreBook.Wait.Show();
-
+                Current.Game.IsScrollLimitEnabled = true;
                 TextfyreBook.TranscriptDialog.AddText(">" + _inputLineForTranscript);
                 Current.Game.GameState.FyreXmlAdd("<Paragraph>&gt;" + _inputLineForTranscript + "</Paragraph>");
             });
@@ -542,6 +543,7 @@ namespace Textfyre.UI.Pages
 
             if (_saveFile != null)
             {
+                
                 string filePath = _saveFile.Save();
 
                 IsolatedStorageFile IsoStorageFile =

@@ -105,10 +105,12 @@ namespace Textfyre.UI.Controls.IODialog
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
+            
             if (TbTitle.Text.Trim().Length == 0)
                 return;
             
             Hide();
+            Current.Game.TextfyreBook.Wait.Show(true);
             if (SaveRequest != null)
             {
                 Entities.SaveFile sf = new Textfyre.UI.Entities.SaveFile();
