@@ -251,7 +251,14 @@ namespace Textfyre.UI.Entities
                 saveFile.Filename = FromParam(parts[0]);
                 saveFile.Title = FromParam(parts[1]);
                 saveFile.Description = FromParam(parts[2]);
-                saveFile.SaveTime = DateTime.Parse(FromParam(parts[3]));
+                try
+                {
+                    saveFile.SaveTime = DateTime.Parse(FromParam(parts[3]));
+                }
+                catch
+                {
+                    saveFile.SaveTime = DateTime.Now;
+                }
             }
 
             if (parts.Length >= 5)
