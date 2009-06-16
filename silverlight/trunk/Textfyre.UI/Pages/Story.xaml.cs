@@ -233,6 +233,7 @@ namespace Textfyre.UI.Pages
             if (AnyOutput(output, OutputChannel.Credits))
             {
                 string credits = "" + output[OutputChannel.Credits] + "";
+                credits = credits.Replace("&#169;", "©");
 
                 TextfyreBook.TranscriptDialog.AddText(credits);
 
