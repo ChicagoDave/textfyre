@@ -15,15 +15,15 @@ namespace SecretLetter
     {
         public override bool TocSelect(TocArgs args)
         {
-            if (args.TocItem == Textfyre.UI.Controls.TableOfContent.Action.StartNewGame)
+            switch (args.TocItem)
             {
-                //args.LeftPageContent = new Controls.MapLeft();                
-                //args.RightPageContent = new Controls.MapRight();
-                args.LeftPageControlsAdd(new Controls.MapLeft());
-                args.RightPageControlsAdd(new Controls.MapRight());
-
+                case Textfyre.UI.Controls.TableOfContent.Action.StartNewGame:
+                case Textfyre.UI.Controls.TableOfContent.Action.RestoreGame:
+                    args.LeftPageControlsAdd(new Controls.MapLeft());
+                    args.RightPageControlsAdd(new Controls.MapRight());
+                    break;
             }
-
+            
             if (args.TocItem == Textfyre.UI.Controls.TableOfContent.Action.Map)
             {   
                 args.GoDirectly = true;

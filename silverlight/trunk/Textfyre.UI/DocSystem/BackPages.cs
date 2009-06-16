@@ -38,17 +38,23 @@ namespace Textfyre.UI.DocSystem
             ProcessSections();
         }
 
+        private double _pageHeight = 0d;
         void ProcessSections()
         {
+            _pageHeight = Settings.BookPageInnerInnerContentHeight - 10;
+
             _currentPage = GetNextPage();
             double height = 0;
             bool displaySection = false;    // Skip first page (which is shown on the story page)
             //int numberOfBackPages = 0;
             for (int i = _sections.Count-1; i >= 0; i--)
             {
-                double maxPageHeight = displaySection ? Settings.BookPageInnerContentHeight :
-                    Settings.BookPageInnerContentHeight + 22;
-                
+//                double maxPageHeight = displaySection ? Settings.BookPageInnerContentHeight :
+//                    Settings.BookPageInnerContentHeight + 22;
+
+                double maxPageHeight = displaySection ? _pageHeight : _pageHeight + 22;
+
+
                 Section section = _sections[i];
                 if (
                     section.SectionType == SectionType.PageBreak ||
@@ -84,7 +90,7 @@ namespace Textfyre.UI.DocSystem
 
         private void EndPage(TextfyreBookPage page, double height)
         {
-            double heightDiff = Settings.BookPageInnerInnerContentHeight - height;
+            double heightDiff = _pageHeight - height;
             StackPanel sp = page.PageScrollViewer.Content as StackPanel;
 
             if (sp == null)
@@ -100,6 +106,7 @@ namespace Textfyre.UI.DocSystem
                 rect.Height = heightDiff;
                 //rect.Fill = new SolidColorBrush(Colors.Red);
                 //rect.Stroke = new SolidColorBrush(Colors.Black);
+
                 sp.Children.Insert(0, rect);
             }
         }
