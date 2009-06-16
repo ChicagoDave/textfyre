@@ -20,6 +20,11 @@ namespace Textfyre.UI.DocSystem
         //private StackPanel _stackPanel;
         private int sectionPtr = 0;
 
+        public void Reset()
+        {
+            sectionPtr = 0;
+        }
+
         public class InputWantEventArgs : EventArgs
         {
             public string LeadText;
