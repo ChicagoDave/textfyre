@@ -56,7 +56,7 @@ namespace Textfyre.UI.DocSystem
             {
                 string word = wd.Word;
                 string id = wd.ID;
-                string match = @"\b" + word + @"\b[,.:;]|\b" + word + @"\b";
+                string match = @"(\b" + word + @"\b[,.:;]|\b" + word + @"\b)(?!')(?!-)";
                 text = Regex.Replace(text, match, @"<WordDef ID=""" + id + @""">$&</WordDef>", RegexOptions.IgnoreCase);
             
             }
