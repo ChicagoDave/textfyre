@@ -245,11 +245,10 @@ namespace Textfyre.UI.Controls.FlipBook
         private Storyboard _cornerGuideStoryboard = null;
         public void CornerGuideAnimation(UIElement uie)
         {
-            if (this.page1 == null || this.page1.Content == null)
+            if (_cornerGuideStoryboard != null)
                 return;
             
-            string pageID = (this.page1.Content as Textfyre.UI.Controls.TextfyreBookPage).PageID;
-            if (pageID != "Story")
+            if (IsNextPageAStoryPage == false)
                 return;
 
             _cornerGuideAnimationUIElement = uie;
@@ -264,7 +263,7 @@ namespace Textfyre.UI.Controls.FlipBook
             {
                 _cornerGuideStoryboard = new Storyboard();
                 _cornerGuideStoryboard.Completed += new EventHandler(_cornerGuideStoryboard_Completed);
-                _cornerGuideStoryboard.Duration = TimeSpan.FromMilliseconds(50);
+                _cornerGuideStoryboard.Duration = TimeSpan.FromMilliseconds(100);
             }
 
             if( _cornerGuideStoryboard.GetCurrentState() != ClockState.Active )
@@ -275,7 +274,15 @@ namespace Textfyre.UI.Controls.FlipBook
         void _cornerGuideStoryboard_Completed(object sender, EventArgs e)
         {
             if (_cornerGuideAnimationUIElement == null)
+            {
                 return;
+            }
+
+            if (IsNextPageAStoryPage == false)
+            {
+                _cornerGuideAnimationUIElement = null;
+                return;
+            }
 
             Point p = new Point(0, 0);
             CornerOrigin corner = CornerOrigin.BottomRight;
@@ -310,7 +317,7 @@ namespace Textfyre.UI.Controls.FlipBook
                 if (p.Y >= pageHeight - 2 && p.Y <= pageHeight + 1)
                     p.Y = pageHeight + 2;
                 
-                Status = PageStatus.Dragging;
+                //Status = PageStatus.;
                 PageParameters? parameters = ComputePage(_cornerGuideAnimationUIElement, p, corner);
                 _cornerPoint = p;
                 if (parameters != null)
@@ -318,6 +325,22 @@ namespace Textfyre.UI.Controls.FlipBook
             }
             _cornerGuideStoryboard.Begin();
         }
+
+        private bool IsNextPageAStoryPage
+        {
+            get
+            {
+                if (this.page1 == null || this.page1.Content == null)
+                    return false;
+
+                string pageID = (this.page1.Content as Textfyre.UI.Controls.TextfyreBookPage).PageID;
+                if (pageID != "Story")
+                    return false;
+
+                return true;
+            }
+        }
+
         #endregion
 
         private void OnMouseMove(object sender, MouseEventArgs args)
