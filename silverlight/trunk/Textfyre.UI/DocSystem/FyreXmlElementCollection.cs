@@ -146,6 +146,9 @@ namespace Textfyre.UI.DocSystem
                             FyreXml.Tags
                             );
 
+
+            stmlFormatted = stmlFormatted.Replace("&amp;", "&");
+
             string[] ts = stmlFormatted.Split('<');
             for (int i = 0; i < ts.Length; i++)
             {
