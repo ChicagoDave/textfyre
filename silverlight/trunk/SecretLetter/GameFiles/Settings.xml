@@ -26,5 +26,7 @@
   <Setting Key="CenterHeadline" Value="True" />
   <Setting Key="UseRealPageNumbers" Value="True" />
   <Setting Key="SaveGameDirectory" Value="SecretLetterSaveFiles" />
+  <Setting Key="TextBetweenPrologueAndStory" Value="Chapter 1" />
+
 
 </Settings>

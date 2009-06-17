@@ -32,4 +32,5 @@
   <Setting Key="CenterHeadline" Value="True" />
   <Setting Key="UseRealPageNumbers" Value="False" />
   <Setting Key="SaveGameDirectory" Value="NightfallSaveFiles" />
+  <Setting Key="TextBetweenPrologueAndStory" Value="Nightfall" />
 </Settings>
