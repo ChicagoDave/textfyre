@@ -38,7 +38,7 @@ namespace Textfyre.UI.Controls
         void Application_StoryReady(object sender, EventArgs e)
         {
             LoadingText.Text = "Click To Begin...";
-            if (Settings.AutoOpenBookCover)
+            if (Settings.AutoOpenBookCover || Settings.IsRestartingGame)
                 OpenBook();
             else
                 AddClickHandlers();
@@ -65,6 +65,12 @@ namespace Textfyre.UI.Controls
             if (BookOpen != null)
             {
                 BookOpen(this, new EventArgs());
+            }
+
+            if (Settings.IsRestartingGame)
+            {
+                Settings.IsRestartingGame = false;
+                Current.Game.TextfyreBook.RestartGame();
             }
         }
 
