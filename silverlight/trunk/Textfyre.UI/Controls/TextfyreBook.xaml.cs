@@ -356,9 +356,8 @@ namespace Textfyre.UI.Controls
         {
             if (Current.Game.IsStoryRunning)
             {
-                Current.Game.GameMode = GameModes.Restart;
-                _document.Input("restart");
-                FlipTo("Story");
+                Settings.IsRestartingGame = true;
+                System.Windows.Browser.HtmlPage.Window.Invoke("resetStory");
             }
             else
             {
@@ -366,11 +365,36 @@ namespace Textfyre.UI.Controls
                 Current.Game.MaxPageIndex = 999999;
                 Current.Game.IsStoryRunning = true;
                 this._toc.Refresh();
-                FlipTo("BackPage");
+                GoTo("BackPage");
                 BookmarkTOC.Visibility = Visibility.Visible;
                 //BookmarkLoad.Visibility = Visibility.Visible;
                 //BookmarkSave.Visibility = Visibility.Visible;
+
             }
+            //if (Current.Game.IsStoryRunning)
+            //{
+            //    Current.Game.GameMode = GameModes.Restart;
+            //    _document.Input("restart");
+            //    Current.Game.GameState.FyreXmlClear();
+            //    Current.Game.GameState.ActivateGameState();
+            //    Current.Game.GameMode = GameModes.Story;
+            //    Current.Game.MaxPageIndex = 999999;
+            //    Current.Game.IsStoryRunning = true;
+            //    this._toc.Refresh();
+            //    GoTo("BackPage");
+            //    BookmarkTOC.Visibility = Visibility.Visible;
+            //}
+            //else
+            //{
+            //    Current.Game.GameMode = GameModes.Story;
+            //    Current.Game.MaxPageIndex = 999999;
+            //    Current.Game.IsStoryRunning = true;
+            //    this._toc.Refresh();
+            //    GoTo("BackPage");
+            //    BookmarkTOC.Visibility = Visibility.Visible;
+            //    //BookmarkLoad.Visibility = Visibility.Visible;
+            //    //BookmarkSave.Visibility = Visibility.Visible;
+            //}
         }
         void ConfirmSaveBeforeRestartDialog_ConfirmAnswer(object sender, Textfyre.UI.Controls.IODialog.Confirm.ConfirmAnswerEventArgs e)
         {

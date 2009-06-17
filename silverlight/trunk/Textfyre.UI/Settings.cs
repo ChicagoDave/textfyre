@@ -48,6 +48,23 @@ namespace Textfyre.UI
         public static double BookPageInnerInnerContentWidth = 0;
         public static double BookPageInnerInnerContentHeight = 0;
 
+        public static bool IsRestartingGame
+        {
+            get
+            {
+                return Storage.Settings.Get("RestartGame") == "1";
+            }
+
+            set
+            {
+                if (value)
+                    Storage.Settings.Set("RestartGame","1");
+                else
+                    Storage.Settings.Set("RestartGame", "");
+
+            }
+        }
+
         public enum PagingMechanismType
         {
             StaticPageCreateBackPages,

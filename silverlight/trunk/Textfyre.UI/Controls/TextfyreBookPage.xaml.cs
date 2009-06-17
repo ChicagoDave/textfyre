@@ -26,7 +26,7 @@ namespace Textfyre.UI.Controls
             set
             {
                 _pageID = value;
-                Debug.Text = _pageID;
+                //Debug.Text = _pageID;
             }
         }
         public int BookPageIndex;
