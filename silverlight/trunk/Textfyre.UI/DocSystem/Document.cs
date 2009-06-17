@@ -377,7 +377,8 @@ namespace Textfyre.UI.DocSystem
 
         private void _topicChosen(object sender, Textfyre.UI.Controls.Topic.TopicEventArgs e)
         {
-            Input(e.Topic.ID, String.Empty);
+            //Input(e.Topic.ID, String.Empty);
+            Input(e.Topic.ID, e.Topic.Text);
         }
         #endregion :: Topics Handler ::
 
