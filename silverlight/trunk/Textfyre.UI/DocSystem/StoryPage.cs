@@ -53,16 +53,16 @@ namespace Textfyre.UI.DocSystem
             }
         }
 
-        public void HostStackPanelAddHeight(double value)
-        {
-            _storyScroller.ContentHeight = _storyScroller.ContentHeight + value;
-        }
+        //public void HostStackPanelAddHeight(double value)
+        //{
+        //    _storyScroller.ContentHeight = _storyScroller.ContentHeight + value;
+        //}
 
-        public void HostStackPanelSubstractHeight(double value)
-        {
-            _storyScroller.ContentHeight = _storyScroller.ContentHeight - value;
+        //public void HostStackPanelSubstractHeight(double value)
+        //{
+        //    _storyScroller.ContentHeight = _storyScroller.ContentHeight - value;
 
-        }
+        //}
 
         private double _lastScrollingHeight = 0;
         private SectionCollection _sections;
