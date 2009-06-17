@@ -342,5 +342,50 @@ namespace Textfyre.UI.Current
         }
         #endregion
 
+
+        private static string _themeID;
+        public static string ThemeID
+        {
+            get
+            {
+                return _themeID;
+            }
+            set
+            {
+                _themeID = value;
+                if (Settings.PagingMechanism == Settings.PagingMechanismType.StaticPageCreateBackPages)
+                    Current.Game.TextfyreBook.TextfyreDocument.StoryAid.PageArtID = _themeID;
+                else if (Settings.PagingMechanism == Settings.PagingMechanismType.CreateNewPages)
+                    Current.Game.TextfyreBook.AddPageArtPage(_themeID);
+            }
+        }
+
+        private static string _storyTitle;
+        public static string StoryTitle
+        {
+            get
+            {
+                return _storyTitle;
+            }
+            set
+            {
+                _storyTitle = value;
+            }
+        }
+
+        private static string _hints;
+        public static string Hints
+        {
+            get
+            {
+                return _hints;
+            }
+            set
+            {
+                _hints = value;
+                if( _hints != null && _hints.Length > 0 )
+                    Current.Game.TextfyreBook.TextfyreDocument.AddHints(_hints);
+            }
+        }
     }
 }

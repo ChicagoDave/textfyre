@@ -119,6 +119,12 @@ namespace Textfyre.UI.Controls.IODialog
                 sf.SaveTime = System.DateTime.Now;
                 sf.GameFileVersion = Current.Game.GameFileName;
                 sf.FyreXml = Current.Game.GameState.FyreXml;
+                sf.Transcript = Current.Game.TextfyreBook.TranscriptDialog.TranscriptText.Text;
+                sf.StoryTitle = Current.Game.StoryTitle;
+                sf.Chapter = Current.Game.Chapter;
+                sf.Theme = Current.Game.ThemeID;
+                sf.Hints = Current.Game.Hints;
+
 
                 SaveEventArgs args = new SaveEventArgs();
                 args.SaveFile = sf;
