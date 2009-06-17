@@ -53,6 +53,7 @@ namespace Textfyre.UI.DocSystem
             double height = 0;
             bool displaySection = false;    // Skip first page (which is shown on the story page)
             int numberOfBackPages = 0;
+            bool prologueBegin = false;
             for (int i = _sections.Count-1; i >= 0; i--)
             {
 //                double maxPageHeight = displaySection ? Settings.BookPageInnerContentHeight :
@@ -62,6 +63,23 @@ namespace Textfyre.UI.DocSystem
 
 
                 Section section = _sections[i];
+
+                if (prologueBegin == false && section.ContentMode == ContentMode.Prologue)
+                {
+                    // Make sure we always keep the prologue pages together.
+                    prologueBegin = true;
+                    if (numberOfBackPages % 2 == 1)
+                    {
+                        //StackPanel sp = _currentPage.PageScrollViewer.Content as StackPanel;
+                        //sp.VerticalAlignment = VerticalAlignment.Top;
+                        //sp.Children.Insert(0, ControlToInsert);
+
+                        EndPage(_currentPage, height);
+                        _currentPage = GetNextPage();
+                        numberOfBackPages++;
+                    }
+                }
+
                 if (
                     section.SectionType == SectionType.PageBreak ||
                     //((height + section.Height) > (Settings.BookPageInnerInnerContentHeight))
@@ -88,6 +106,8 @@ namespace Textfyre.UI.DocSystem
 
                 //if (numberOfBackPages >= 2)
                 //    break;
+
+                
 
             }
             EndPage(_currentPage, height);
