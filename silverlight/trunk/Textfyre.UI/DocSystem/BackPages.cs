@@ -52,7 +52,7 @@ namespace Textfyre.UI.DocSystem
             _currentPage = GetNextPage();
             double height = 0;
             bool displaySection = false;    // Skip first page (which is shown on the story page)
-            //int numberOfBackPages = 0;
+            int numberOfBackPages = 0;
             for (int i = _sections.Count-1; i >= 0; i--)
             {
 //                double maxPageHeight = displaySection ? Settings.BookPageInnerContentHeight :
@@ -72,7 +72,7 @@ namespace Textfyre.UI.DocSystem
                     {
                         EndPage(_currentPage, height);
                         _currentPage = GetNextPage();
-                        //numberOfBackPages++;
+                        numberOfBackPages++;
                     }
                     height = 0;
                     displaySection = true;
@@ -86,8 +86,8 @@ namespace Textfyre.UI.DocSystem
                 if (displaySection)
                     sp.Children.Insert(0, section.HostGrid);
 
-                //if (numberOfBackPages >= 2)
-                //    break;
+                if (numberOfBackPages >= 2)
+                    break;
 
             }
             EndPage(_currentPage, height);
