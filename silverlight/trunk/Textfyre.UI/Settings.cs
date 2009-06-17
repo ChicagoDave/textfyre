@@ -42,6 +42,7 @@ namespace Textfyre.UI
         public static bool CenterHeadline = true;
         public static bool UseRealPageNumbers = false;
         public static string SaveGameDirectory = "Directory";
+        public static string TextBetweenPrologueAndStory = String.Empty;
 
         // Calculated from the other settings
         public static double BookPageInnerInnerContentWidth = 0;

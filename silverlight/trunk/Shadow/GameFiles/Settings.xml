@@ -18,5 +18,6 @@
   <Setting Key="CenterHeadline" Value="True" />
   <Setting Key="UseRealPageNumbers" Value="False" />
   <Setting Key="SaveGameDirectory" Value="ShadowSaveFiles" />
+  <Setting Key="TextBetweenPrologueAndStory" Value="Chapter 1" />
 
 </Settings>

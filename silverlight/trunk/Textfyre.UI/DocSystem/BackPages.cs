@@ -74,7 +74,7 @@ namespace Textfyre.UI.DocSystem
                         sp2.VerticalAlignment = VerticalAlignment.Center;
 
                         TextBlock tb = new TextBlock();
-                        tb.Text = Current.Game.StoryTitle;
+                        tb.Text = Settings.TextBetweenPrologueAndStory;
                         tb.TextAlignment = TextAlignment.Center;
                         tb.Margin = new Thickness(0, 0, 10, 0);
                         Current.Font.Headline.Apply(tb);
