@@ -86,8 +86,8 @@ namespace Textfyre.UI.DocSystem
                 if (displaySection)
                     sp.Children.Insert(0, section.HostGrid);
 
-                if (numberOfBackPages >= 2)
-                    break;
+                //if (numberOfBackPages >= 2)
+                //    break;
 
             }
             EndPage(_currentPage, height);

@@ -206,6 +206,11 @@ namespace Textfyre.UI.Pages
             });
 
 
+            if (AnyOutput(output, OutputChannel.Title))
+            {
+                Current.Game.StoryTitle = output[OutputChannel.Title];
+            }
+
             string location = String.Empty;
             bool updateLocAndChap = false;
 
@@ -377,7 +382,7 @@ namespace Textfyre.UI.Pages
 </topic>  
 </hints>"; 
                 */
-                TextfyreBook.TextfyreDocument.AddHints(hints);
+                Current.Game.Hints = hints;
             }
             #endregion
 
@@ -425,10 +430,7 @@ namespace Textfyre.UI.Pages
             {
                 string themeID = output[OutputChannel.Theme];
 
-                if (Settings.PagingMechanism == Settings.PagingMechanismType.StaticPageCreateBackPages)
-                    Current.Game.TextfyreBook.TextfyreDocument.StoryAid.PageArtID = themeID;
-                else if (Settings.PagingMechanism == Settings.PagingMechanismType.CreateNewPages)
-                    Current.Game.TextfyreBook.AddPageArtPage(themeID);
+                Current.Game.ThemeID = themeID;
             }
             #endregion
 
@@ -609,6 +611,13 @@ namespace Textfyre.UI.Pages
                     TextfyreBook._toc.Refresh();
                     TextfyreBook.GoTo("Story");
                     TextfyreBook.BookmarkTOC.Visibility = Visibility.Visible;
+
+                    Current.Game.TextfyreBook.TranscriptDialog.TranscriptText.Text = _saveFile.Transcript;
+                    Current.Game.StoryTitle = _saveFile.StoryTitle;
+                    Current.Game.Chapter = _saveFile.Chapter;
+                    Current.Game.ThemeID = _saveFile.Theme;
+                    Current.Game.Hints = _saveFile.Hints;
+
 
                 });
 
