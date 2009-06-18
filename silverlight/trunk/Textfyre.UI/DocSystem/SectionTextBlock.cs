@@ -26,6 +26,7 @@ namespace Textfyre.UI.DocSystem
             _txtBlk.MouseMove += new MouseEventHandler(_curTB_MouseMove);
             _txtBlk.MouseLeave += new MouseEventHandler(_curTB_MouseLeave);
             _txtBlk.MouseLeftButtonUp += new MouseButtonEventHandler(_curTB_MouseLeftButtonUp);
+            _txtBlk.MouseLeftButtonDown += new MouseButtonEventHandler(_txtBlk_MouseLeftButtonDown);
         }
 
         private Grid _hostGrid = new Grid();
@@ -307,6 +308,7 @@ namespace Textfyre.UI.DocSystem
 
         void _curTB_MouseLeave(object sender, MouseEventArgs e)
         {
+            Current.Game.TextfyreBook.WordDefBubble.Hide();
             TextBlock tb = sender as TextBlock;
             tb.Cursor = null;
         }
@@ -317,7 +319,7 @@ namespace Textfyre.UI.DocSystem
             TextBlock tb = sender as TextBlock;
             WordDefs wds = tb.Tag as WordDefs;
 
-            Current.Game.TextfyreBook.WordDefBubble.Hide();
+            //Current.Game.TextfyreBook.WordDefBubble.Hide();
             Point pos = e.GetPosition(tb);
             string activeWord = String.Empty;
             foreach (WordDef wd in wds)
@@ -337,13 +339,20 @@ namespace Textfyre.UI.DocSystem
             _activeWord = activeWord;
         }
 
-        private void _curTB_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        void _txtBlk_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (_activeWord.Length > 0)
             {
                 Point pos = e.GetPosition(Current.Game.TextfyreBook);
                 Current.Game.TextfyreBook.WordDefBubble.Show(_activeWord, pos.X, pos.Y);
             }
+        }
+
+
+        private void _curTB_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Current.Game.TextfyreBook.WordDefBubble.Hide();
+
         }
 
         public void DoWordDef(string word)
