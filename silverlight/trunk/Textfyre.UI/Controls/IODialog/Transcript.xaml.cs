@@ -72,10 +72,43 @@ namespace Textfyre.UI.Controls.IODialog
 
             Textfyre.UI.Transcript.Lib.IO.Set(transcript);
 
-            string org = System.Windows.Browser.HtmlPage.Document.DocumentUri.OriginalString;
-            Uri uri = new Uri(org.Replace("Default.htm", "Transcript.htm"), UriKind.Absolute);
-            System.Windows.Browser.HtmlWindow winTranscript = System.Windows.Browser.HtmlPage.PopupWindow(uri, "Transcript", opt);
+            string newurl = String.Empty;
 
+            if (Current.Application.IsDesktopVersion)
+            {
+                Uri uri = new Uri("Transcript.htm", UriKind.Relative);
+                System.Windows.Browser.HtmlWindow winTranscript = System.Windows.Browser.HtmlPage.PopupWindow(uri, "Transcript", opt);
+
+            }
+            else
+            {
+
+                string org = System.Windows.Browser.HtmlPage.Document.DocumentUri.OriginalString;
+
+                string[] spliturl = org.Split('/');
+                if (spliturl.Length > 0)
+                {
+                    string file = spliturl[spliturl.Length - 1];
+
+                    if (file.Length == 0)
+                    {
+                        if (org.EndsWith("/"))
+                            newurl = "Transcript.htm";
+                        else
+                            newurl = "/Transcript.htm";
+                    }
+                    else
+                    {
+                        newurl = org.Replace(file, "Transcript.htm");
+                    }
+
+                }
+                if (newurl.Length > 0)
+                {
+                    Uri uri = new Uri(newurl, UriKind.Absolute);
+                    System.Windows.Browser.HtmlWindow winTranscript = System.Windows.Browser.HtmlPage.PopupWindow(uri, "Transcript", opt);
+                }
+            }
         }
     }
 }
