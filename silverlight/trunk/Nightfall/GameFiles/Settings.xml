@@ -33,4 +33,5 @@
   <Setting Key="UseRealPageNumbers" Value="False" />
   <Setting Key="SaveGameDirectory" Value="NightfallSaveFiles" />
   <Setting Key="TextBetweenPrologueAndStory" Value="Nightfall" />
+  <Setting Key="QuitUrl" Value="http://www.textfyre.com" />
 </Settings>

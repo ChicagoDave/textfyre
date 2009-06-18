@@ -33,6 +33,13 @@ namespace Textfyre.UI
         }
         #endregion
 
+        #region :: QuitGame ::
+        public void QuitGame()
+        {
+            Current.Game.TextfyreBook.QuitGameInit();
+        }
+        #endregion
+
         #region :: Manual ::
         public void ShowManual()
         {
