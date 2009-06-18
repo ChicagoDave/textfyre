@@ -388,7 +388,7 @@ namespace Textfyre.UI.Controls.FlipBook
                     {
                         DropPage(ComputeAnimationDuration(source, p, origin));
                     }
-                    //CornerGuideAnimation(source);
+                    CornerGuideAnimation(source);
                     return;
                 }
                 Status = PageStatus.DraggingWithoutCapture;

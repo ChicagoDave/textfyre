@@ -13,6 +13,20 @@ namespace SecretLetter
 {
     public class StoryHandle : Textfyre.UI.StoryHandle
     {
+        public override ParseInputArgs ParseInput(ParseInputArgs args)
+        {
+            string input = args.Input.Trim().ToLower();
+            switch (input)
+            {
+                case "restart":
+                    args.ContinueWithInput = false;
+                    this.RestartGame();
+                    break;
+            }
+
+            return base.ParseInput(args);
+        }
+
         public override bool TocSelect(TocArgs args)
         {
             switch (args.TocItem)

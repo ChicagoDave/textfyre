@@ -203,6 +203,12 @@ namespace Textfyre.UI.Pages
             Dispatcher.BeginInvoke(() =>
             {
                 TextfyreBook.Wait.Hide();
+
+                if (Current.Game.GameMode == GameModes.ExecuteRestart)
+                {
+                    Current.Game.TextfyreBook.RestartGame();
+                }
+            
             });
 
 
@@ -546,6 +552,15 @@ namespace Textfyre.UI.Pages
             if (_saveFile != null)
             {
                 
+                Dispatcher.BeginInvoke(() =>
+                {
+                    if (Current.Game.GameMode == GameModes.Restart)
+                    {
+                        Current.Game.GameMode = GameModes.ExecuteRestart;
+                    }
+
+                });
+                
                 string filePath = _saveFile.Save();
 
                 IsolatedStorageFile IsoStorageFile =
@@ -556,11 +571,7 @@ namespace Textfyre.UI.Pages
 
                 Dispatcher.BeginInvoke(() =>
                 {
-                    if (Current.Game.GameMode == GameModes.Restart)
-                    {
-                        TextfyreBook.RestartGame();
-                    }
-                    else
+                    if (Current.Game.GameMode != GameModes.ExecuteRestart)
                     {
                         Current.Game.IsStoryChanged = false;
                         Current.Game.MaxPageIndex = 999999;

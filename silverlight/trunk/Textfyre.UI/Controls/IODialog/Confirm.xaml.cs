@@ -70,11 +70,13 @@ namespace Textfyre.UI.Controls.IODialog
 
         public void Show()
         {
+            Current.Game.IsInputFocusActive = false;
             this.Visibility = Visibility.Visible;
         }
 
         public void Hide()
         {
+            Current.Game.IsInputFocusActive = true;
             this.Visibility = Visibility.Collapsed;
         }
 

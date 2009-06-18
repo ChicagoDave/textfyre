@@ -269,15 +269,7 @@ namespace Textfyre.UI.Controls
                     break;
 
                 case TableOfContent.Action.StartNewGame:
-                    Current.Game.GameMode = GameModes.Restart;
-                    if (Current.Game.IsStoryChanged)
-                    {
-                        ConfirmSaveBeforeRestartDialog.Show();
-                    }
-                    else
-                    {
-                        RestartGame();
-                    }
+                    RestartGameInit();
                     break;
 
                 case TableOfContent.Action.ContinueGame:
@@ -351,6 +343,19 @@ namespace Textfyre.UI.Controls
             }
         }
 
+
+        public void RestartGameInit()
+        {
+            Current.Game.GameMode = GameModes.Restart;
+            if (Current.Game.IsStoryChanged)
+            {
+                ConfirmSaveBeforeRestartDialog.Show();
+            }
+            else
+            {
+                RestartGame();
+            }
+        }
 
         public void RestartGame()
         {
