@@ -19,6 +19,7 @@ namespace Textfyre.UI.Current
 {
     public static class Application
     {
+        #region :: GameAssembly ::
         private static Assembly _gameAssembly;
         public static Assembly GameAssembly
         {
@@ -31,7 +32,8 @@ namespace Textfyre.UI.Current
                 _gameAssembly = value;
             }
         }
-        
+        #endregion
+
         #region :: SessionID ::
         private static string _sessionID = String.Empty;
         public static string SessionID
@@ -108,5 +110,26 @@ namespace Textfyre.UI.Current
             return XamlReader.Load(xaml) as UIElement;
         }
         #endregion
+
+        #region :: IsDesktopVersion ::
+        public static bool IsDesktopVersion
+        {
+            get
+            {
+                return System.Windows.Browser.HtmlPage.Document.DocumentUri.LocalPath.ToLower().EndsWith(".hta");
+            }
+        }
+        #endregion
+
+        #region :: IsBrowserVersion ::
+        public static bool IsBrowserVersion
+        {
+            get
+            {
+                return !IsDesktopVersion;
+            }
+        }
+        #endregion
+
     }
 }
