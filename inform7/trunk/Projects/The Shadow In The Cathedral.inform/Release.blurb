@@ -1,9 +1,25 @@
-! Blurb file created by NI build 5T18
-variable [RELEASE] = "1"
-storyfile "C:\Documents and Settings\Administrator\My Documents\Inform\Projects\The Shadow In The Cathedral.inform\Build\output.ulx" include
-metadata "C:\Documents and Settings\Administrator\My Documents\Inform\Projects\The Shadow In The Cathedral.inform\Metadata.iFiction" include
-variable [YEAR] = "2008"
-variable [TITLE] = "The Shadow In The Cathedral"
-variable [AUTHOR] = "Textfyre Inc"
-variable [BLURB] = "A work of interactive fiction."
-variable [IFID] = "E413E011-60CF-48F6-8620-A8A55467AE0D"
+! Blurb file created by Inform build 5Z71
+
+! Identification
+
+project folder "C:\Users\David\Documents\Inform\Projects\The Shadow In The Cathedral.inform"
+
+! Blorb instructions
+
+storyfile leafname "The Shadow In The Cathedral.gblorb"
+storyfile "C:\Users\David\Documents\Inform\Projects\The Shadow In The Cathedral.inform\Build\output.ulx" include
+ifiction "C:\Users\David\Documents\Inform\Projects\The Shadow In The Cathedral.inform\Metadata.iFiction" include
+cover "C:\Program Files\Inform 7 5Z\Inform7\Extensions\Reserved\DefaultCover.jpg"
+picture 1 "C:\Program Files\Inform 7 5Z\Inform7\Extensions\Reserved\DefaultCover.jpg"
+
+! Placeholder variables
+
+placeholder [IFID] = "E413E011-60CF-48F6-8620-A8A55467AE0D"
+placeholder [RELEASE] = "1"
+placeholder [YEAR] = "2009"
+placeholder [TITLE] = "The Shadow In The Cathedral"
+placeholder [AUTHOR] = "Textfyre Inc"
+placeholder [BLURB] = "A work of interactive fiction."
+
+! Other material to release
+

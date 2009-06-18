@@ -2,6 +2,7 @@
 
 [  Change Log
 When		Who		What
+07-Jun-2009	D. Cornelson	Fixed hint ordering, caused crash in Silverlight.
 22-May-2009	G. Jefferis	Hints
 21-May-2009	G. Jefferis	Hints
 13-May-2009	G. Jefferis	complete changes from BermanTranscriptResponse
@@ -188,14 +189,15 @@ Rule for printing the banner text:
 	say "[b][story title][r][line break]";
 	select the credits channel;
 	say "[story title] by [story author][line break]";
-	say "Copyright © [story creation year] by [story author][line break]";
-	say "Designed by David Cornelson and Michael Gentry[line break]";
-	say "Written by Michael Gentry[line break]";
+	say "Copyright &#169; [story creation year] by [story author][line break]";
+	say "Story developed by David Cornelson[line break]";
+	say "Designed and Written by Michael Gentry[line break]";
 	say "Game Engine (FyreVM) by Jesse McGrew[line break]";
-	say "Story Programming by Graeme Jefferis[line break]";
+	say "Inform 7 Story Programming by Graeme Jefferis[line break]";
 	say "Testing by Jacqueline Ashwell, Peter Berman,[line break]Eric Eve, Jim Aikin, and Paul O'Brian[line break]";
-	say "Art Direction by William Capellaro[line break]";
 	say "User Interface Programming by Thomas Lynge[line break]";
+	say "Special thanks to Graham Nelson and Emily Short[line break]";
+	say "for all of their hard work on Inform 7.[line break]";
 	say "All rights reserved[line break]";
 	select the main channel;
 
