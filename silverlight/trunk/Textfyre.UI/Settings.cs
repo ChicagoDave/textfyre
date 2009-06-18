@@ -45,6 +45,17 @@ namespace Textfyre.UI
         public static string TextBetweenPrologueAndStory = String.Empty;
         public static string QuitUrl = String.Empty;
 
+        // Silverlight Param Settings
+        public static bool IsDesktopVersion = false;
+        public static bool IsBrowserVersion
+        {
+            get
+            {
+                return !IsDesktopVersion;
+            }
+        }
+        public static bool CloseWindowOnQuit = false;
+        
         // Calculated from the other settings
         public static double BookPageInnerInnerContentWidth = 0;
         public static double BookPageInnerInnerContentHeight = 0;

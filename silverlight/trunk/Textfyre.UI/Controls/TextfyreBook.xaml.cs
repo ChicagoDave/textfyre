@@ -150,7 +150,7 @@ namespace Textfyre.UI.Controls
 
         public void QuitGame()
         {
-            if (Current.Application.IsDesktopVersion || Settings.QuitUrl.Length == 0)
+            if (Settings.CloseWindowOnQuit || Settings.QuitUrl.Length == 0)
                 System.Windows.Browser.HtmlPage.Window.Invoke("quitStory");
             else
             {

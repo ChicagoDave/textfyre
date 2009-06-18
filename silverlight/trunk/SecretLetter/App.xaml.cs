@@ -26,6 +26,9 @@ namespace SecretLetter
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            Textfyre.UI.Settings.IsDesktopVersion = Boolean.Parse(e.InitParams["isdesktopversion"]);
+            Textfyre.UI.Settings.CloseWindowOnQuit = Boolean.Parse(e.InitParams["closewindowonquit"]);
+
             this.RootVisual = new Page();
         }
 

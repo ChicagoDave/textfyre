@@ -74,7 +74,7 @@ namespace Textfyre.UI.Controls.IODialog
 
             string newurl = String.Empty;
 
-            if (Current.Application.IsDesktopVersion)
+            if (Settings.IsDesktopVersion)
             {
                 Uri uri = new Uri("Transcript.htm", UriKind.Relative);
                 System.Windows.Browser.HtmlWindow winTranscript = System.Windows.Browser.HtmlPage.PopupWindow(uri, "Transcript", opt);
