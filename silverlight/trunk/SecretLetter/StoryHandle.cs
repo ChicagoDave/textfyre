@@ -22,6 +22,10 @@ namespace SecretLetter
                     args.ContinueWithInput = false;
                     this.RestartGame();
                     break;
+                case "quit":
+                    args.ContinueWithInput = false;
+                    this.QuitGame();
+                    break;
             }
 
             return base.ParseInput(args);

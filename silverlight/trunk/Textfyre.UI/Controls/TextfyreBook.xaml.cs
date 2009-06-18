@@ -139,7 +139,24 @@ namespace Textfyre.UI.Controls
 
         void ConfirmQuitDialog_ConfirmAnswer(object sender, Textfyre.UI.Controls.IODialog.Confirm.ConfirmAnswerEventArgs e)
         {
-            // TODO:
+            if (e.IsAnswerOK)
+                QuitGame();
+        }
+
+        public void QuitGameInit()
+        {
+            Current.Game.TextfyreBook.ConfirmQuitDialog.Show();
+        }
+
+        public void QuitGame()
+        {
+            if (Current.Application.IsDesktopVersion || Settings.QuitUrl.Length == 0)
+                System.Windows.Browser.HtmlPage.Window.Invoke("quitStory");
+            else
+            {
+                System.Windows.Browser.HtmlPage.Window.Navigate(
+                    new Uri(Settings.QuitUrl, UriKind.Absolute));
+            }
         }
 
         void TextfyreBook_Loaded(object sender, RoutedEventArgs e)
@@ -285,7 +302,7 @@ namespace Textfyre.UI.Controls
                     break;
 
                 case TableOfContent.Action.Quit:
-                    Current.Game.TextfyreBook.ConfirmQuitDialog.Show();
+                    QuitGameInit();
                     break;
 
                 case TableOfContent.Action.Transcript:
@@ -343,6 +360,7 @@ namespace Textfyre.UI.Controls
             }
         }
 
+        
 
         public void RestartGameInit()
         {

@@ -19,5 +19,6 @@
   <Setting Key="UseRealPageNumbers" Value="False" />
   <Setting Key="SaveGameDirectory" Value="ShadowSaveFiles" />
   <Setting Key="TextBetweenPrologueAndStory" Value="Chapter 1" />
+  <Setting Key="QuitUrl" Value="http://www.textfyre.com" />
 
 </Settings>

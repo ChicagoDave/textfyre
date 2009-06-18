@@ -27,6 +27,7 @@
   <Setting Key="UseRealPageNumbers" Value="True" />
   <Setting Key="SaveGameDirectory" Value="SecretLetterSaveFiles" />
   <Setting Key="TextBetweenPrologueAndStory" Value="Chapter 1" />
+  <Setting Key="QuitUrl" Value="http://www.textfyre.com" />
 
 
 </Settings>
