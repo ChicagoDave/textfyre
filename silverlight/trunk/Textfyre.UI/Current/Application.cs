@@ -110,26 +110,5 @@ namespace Textfyre.UI.Current
             return XamlReader.Load(xaml) as UIElement;
         }
         #endregion
-
-        #region :: IsDesktopVersion ::
-        public static bool IsDesktopVersion
-        {
-            get
-            {
-                return System.Windows.Browser.HtmlPage.Document.DocumentUri.LocalPath.ToLower().EndsWith(".hta");
-            }
-        }
-        #endregion
-
-        #region :: IsBrowserVersion ::
-        public static bool IsBrowserVersion
-        {
-            get
-            {
-                return !IsDesktopVersion;
-            }
-        }
-        #endregion
-
     }
 }
