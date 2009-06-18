@@ -95,11 +95,23 @@ namespace Textfyre.UI.Controls.FlipBook
                 if (SetStatus != null)
                     SetStatus(value);
                 else
-                    _status = value; 
-                gridShadow.Visibility = value == PageStatus.None ? Visibility.Collapsed : Visibility.Visible;
-                canvasReflection.Visibility = value == PageStatus.None ? Visibility.Collapsed : Visibility.Visible;
+                    _status = value;
+
+                SetShadowVisibility(value != PageStatus.None);
+                SetReflectionVisibility(value != PageStatus.None);
             }
         }
+
+        private void SetShadowVisibility(bool visible)
+        {
+            gridShadow.Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        private void SetReflectionVisibility(bool visible)
+        {
+            canvasReflection.Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
+        }
+
 
         private Point _cornerPoint;
         
@@ -317,7 +329,9 @@ namespace Textfyre.UI.Controls.FlipBook
                 if (p.Y >= pageHeight - 2 && p.Y <= pageHeight + 1)
                     p.Y = pageHeight + 2;
                 
-                //Status = PageStatus.;
+                //Status = PageStatus.Guiding;
+                SetReflectionVisibility(true);
+                //SetShadowAndReflectionVisibility(true);
                 PageParameters? parameters = ComputePage(_cornerGuideAnimationUIElement, p, corner);
                 _cornerPoint = p;
                 if (parameters != null)
