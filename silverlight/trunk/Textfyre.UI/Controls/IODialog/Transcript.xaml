@@ -27,8 +27,8 @@
 
             <Grid Grid.Column="0" Grid.Row="2" x:Name="ButtonGrid">
                 <Button IsEnabled="True" x:Name="BtnClose" Content="Close" Click="BtnClose_Click" Style="{StaticResource DialogButtonStyle}" Width="100" Height="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,8,0" />
-                <Button IsEnabled="True" x:Name="BtnCopySelection" Content="Access Selected Text" Click="BtnCopySelection_Click" Style="{StaticResource DialogButtonStyle}" Width="150" Height="25" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8,0,168,0" />
-                <Button IsEnabled="True" x:Name="BtnSave" Content="Access Entire Text" Click="BtnSave_Click" Style="{StaticResource DialogButtonStyle}" Width="150" Height="25" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8,0,8,0" />
+                <Button Visibility="Collapsed" IsEnabled="True" x:Name="BtnCopySelection" Content="Access Selected Text" Click="BtnCopySelection_Click" Style="{StaticResource DialogButtonStyle}" Width="150" Height="25" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8,0,168,0" />
+                <Button Visibility="Collapsed" IsEnabled="True" x:Name="BtnSave" Content="Access Entire Text" Click="BtnSave_Click" Style="{StaticResource DialogButtonStyle}" Width="150" Height="25" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8,0,8,0" />
             </Grid>
 
 
