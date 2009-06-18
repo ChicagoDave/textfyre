@@ -178,7 +178,8 @@ First before displaying the menu rule:
 	select the conversation channel;
 
 Before displaying the menu when XML is in use:
-	say "<TopicList Character='[The Current Conversationalist]'>[line break]";
+	if the current conversationalist is not the player or the number of entries in the current conversation is not 0:
+		say "<TopicList Character='[The Current Conversationalist]'>[line break]";
 
 Rule for displaying the menu:
 	change the menu option currently being displayed to 1;
@@ -187,8 +188,13 @@ Rule for displaying the menu:
 		increment the menu option currently being displayed by 1;
 	end repeat;
 
+Rule for displaying the menu when the current conversationalist is the player or the number of entries in the current conversation is 0:
+	if XML is in use:
+		say "<TopicList/>";
+
 After displaying the menu when XML is in use:
-	say "</TopicList>";
+	if the current conversationalist is not the player or the number of entries in the current conversation is not 0:
+		say "</TopicList>";
 
 The last after displaying the menu rule:
 	select the main channel;

@@ -24,6 +24,12 @@ Rule for character-listing:
 		say "</CharacterList>";
 		select the main channel;
 
+Rule for character-listing when the number of entries in the roster of available characters is 0:
+	if XML is in use:
+		select the conversation channel;
+		say "<CharacterList/>";
+		select the main channel;
+
 To update the character list:
 	let the old roster be the roster of available characters;
 	carry out the assembling activity;
