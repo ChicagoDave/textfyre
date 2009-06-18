@@ -38,7 +38,7 @@ namespace Textfyre.UI.Pages
 
             this.Loaded += new RoutedEventHandler(Story_Loaded);
 
-            _tbVersion.Text = Settings.VersionText; //Current.Application.IsLatestGameFileVersion ? "Latest Version" : "Old Version";
+            _tbVersion.Text = Settings.VersionText + " " + (Current.Application.IsDesktopVersion?"(Desktop)":"(Browser)"); //Current.Application.IsLatestGameFileVersion ? "Latest Version" : "Old Version";
 
             TextfyreBook.TextfyreDocument.InputEntered += new EventHandler<Textfyre.UI.Controls.Input.InputEventArgs>(TextfyreDocument_InputEntered);
             TextfyreBook.SaveGameDialog.SaveRequest += new EventHandler<Textfyre.UI.Controls.IODialog.Save.SaveEventArgs>(SaveGameDialog_SaveRequest);
