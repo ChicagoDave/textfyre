@@ -15,7 +15,7 @@ namespace Textfyre.UI
     {
             Story,
             Restart,
-            RestartEnd,
+            ExecuteRestart,
             Quit
     }
 }

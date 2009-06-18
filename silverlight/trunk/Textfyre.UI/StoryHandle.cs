@@ -26,6 +26,14 @@ namespace Textfyre.UI
             return args;
         }
 
+        #region :: RestartGame ::
+        public void RestartGame()
+        {
+            Current.Game.TextfyreBook.RestartGameInit();
+        }
+        #endregion
+
+        #region :: Manual ::
         public void ShowManual()
         {
             Current.Game.TextfyreBook.Manual.Show();
@@ -35,6 +43,7 @@ namespace Textfyre.UI
         {
             Current.Game.TextfyreBook.Manual.Hide();
         }
+        #endregion
 
         #region :: Toc Select ::
         public class TocArgs
