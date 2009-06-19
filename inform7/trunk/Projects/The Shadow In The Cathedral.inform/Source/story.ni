@@ -6,6 +6,7 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 
 [  Change Log
 When		Who		What
+18-Jun-2009	D. Cornelson	Updated standard credits and added play-testing commenting code. Added first bits of regression response testing.
 16 Jun 2009 	J. Ingold	Added "hide" command (action is "hiding from view"), used to give a response to more general input. Fixed a bug in the tea-machine process. Repaired the abbey test script, that I seem to have broken by changing Drake's logic. Changed descriptions of the Hall rooms when the gongs are ringing and the player should be heading out.
 15 Jun 2009	J. Ingold	Play-tested C2. Several changes, including a Pantry off the kitchen with tea leaves in and the ability to hide from Drake. Synonym "fill <x> with water". 
 05 Jun 2009     J. Ingold       Better cluing for the 5pm time-setting. Horloge nows "walks through" to hint about the keys (so long as you haven't seen him before). Some text rewrites.
@@ -100,8 +101,12 @@ Rule for printing the banner text:
 	say "Copyright [story creation year] by [story author][line break]";
 	say "Designed by Ian Finley[line break]";
 	say "Written by Jon Ingold[line break]";
-	say "Programmed by Graeme Jefferis[line break]";
-	say "Testing by Jacqueline A. Lott[line break]";
+	say "Game Engine (FyreVM) by Jesse McGrew[line break]";
+	say "Inform 7 Story Programming by Graeme Jefferis[line break]";
+	say "Testing by ____[line break]";
+	say "User Interface Programming by Thomas Lynge[line break]";
+	say "Special thanks to Graham Nelson and Emily Short[line break]";
+	say "for all of their hard work on Inform 7.[line break]";
 	say "All rights reserved[line break]";
 	select the main channel;
 
@@ -112,6 +117,15 @@ When play begins:
 
 After reading a command:
 	remove stray punctuation;
+
+After reading a command: 
+	let T be indexed text; 
+	let T be the player's command;
+	if T matches the regular expression "^\*|\[bracket]":
+		say "[bracket][one of]Your comment has been noted[or]Noted[stopping].[close bracket][paragraph break]";
+		reject the player's command; 
+	otherwise:
+		continue the action. 
 
 Section 2 - Clock setting
 
@@ -9310,4 +9324,8 @@ Carry out unxyzzying:
 
 Report unxyzzying:
 	say "A hollow voice whispers 'oorg.'";
+
+Book Y - Not For Release - Alpha Testing
+
+test quarters with "x desk / x designs / x scratches / x cot / x blanket / x bust / x window / x door / x pendulum / x weights / x weight of precision / x counterweight / x counterweight of slapdashery / x figure / x abbot";
 
