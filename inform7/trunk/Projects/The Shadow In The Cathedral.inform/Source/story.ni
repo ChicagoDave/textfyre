@@ -230,6 +230,19 @@ To say the or-separated list of (the collection - a description):
 		if N is 1, say " or ";
 		if N > 1, say ", "; 
 
+Chapter 5 - Default Message fixes
+
+[ Parser errors should still be in second person. ]
+
+Table of custom library messages (continued)
+Message ID						Message Text 
+LibMsg <who disambiguation>	"Who do you mean, " 
+LibMsg <which disambiguation>	"Which do you mean, " 
+LibMsg <whom disambiguation>	"Whom do you want[if main object is not the player] [the %][otherwise]me[end if] to [the last command]?" 
+LibMsg <what disambiguation>	"What do you want[if main object is not the player] [the %][otherwise]me[end if] to [the last command]?" 
+
+
+
 Part 2 - New things to do
 
 Chapter 3 - Solidity of wax
@@ -1844,6 +1857,17 @@ After going through the Abbot's Door from the Corridor of Contemplation when Int
 	say "I knock before entering the Abbot's study.";
 	continue the action;
 
+Instead of examining the Abbot's Door:
+	if Hiding in the Clock has ended and Introduction is happening:
+		say "That's the way I need to go to get out of here.";
+	otherwise if Hiding in the Clock is happening:
+		say "I can't see the door from here. I wish I could do [i]more[r] than see it.";
+	otherwise if Voices have been heard:
+		say "People are coming this way!";
+	otherwise:
+		say "It's a heavy oak door.";
+
+
 Chapter 4 - Scenery Items
 
 
@@ -1881,6 +1905,12 @@ Instead of looking under the desk when Voices have been heard during Introductio
 
 Instead of looking under the desk:
 	say "There's nothing of interest under the Abbot's desk. No spare polish, for example." instead;
+
+Some geometric designs are part of the Abbot's desk. Understand "scratch", "scratches", "design" as the geometric designs.
+
+Instead of examining the geometric designs: say "Years of designers have imprinted the footprints of their thoughts into the surface of the wood itself. In another hundred years, the desk itself will be a Relic in the Cathedral Reliquary." 
+
+Instead of polishing the geometric designs with the rag: say "I couldn't cover them!"
 
 Section 3 - Bust of St Newton
 
@@ -1983,6 +2013,20 @@ Understand "mechanism", "workings", "brass", "holy", "blessed", "bevelled", "bev
 
 Instead of doing something when the penduluum is physically involved:
 	say "To stop a clock is like murder. To shift the balance... that's something even worse still.";
+
+Section 2b - Weights
+
+A clock-weight is a kind of thing.
+
+The weight of Precision is scenery, clock-weight in Inside Clock Case. "The weight of Precision falls in delicate steps, moving - the Abbot says - like a dancer across a ballroom floor. Not something I've seen myself."
+
+The counterweight of Slapdashery is scenery, clock-weight in Inside Clock Case. "The counterweight of Slapdashery climbs its chain in fits and jerks."
+
+Understand "weights" as a clock-weight.
+
+Instead of pushing or pulling or taking a clock-weight:
+	say "Interfering with the internal mechanisms of a clock is unthinkable!"
+
 
 Section 3 - Abbot Gubbler (through the keyhole)
 
