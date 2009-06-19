@@ -24,7 +24,8 @@ namespace Textfyre.UI.Controls
             Quit,
             Transcript,
             Map,
-            Hints
+            Hints,
+            Settings
         }
 
         public class TableOfContentActionEventArgs : EventArgs
@@ -51,6 +52,7 @@ namespace Textfyre.UI.Controls
             BtnTranscript.Visibility = (tocs.IndexOf("Transcript") > -1) ? Visibility.Visible : Visibility.Collapsed;
             BtnCredits.Visibility = (tocs.IndexOf("Credits") > -1) ? Visibility.Visible : Visibility.Collapsed;
             BtnQuit.Visibility = (tocs.IndexOf("Quit") > -1) ? Visibility.Visible : Visibility.Collapsed;
+            BtnSettings.Visibility = (tocs.IndexOf("Settings") > -1) ? Visibility.Visible : Visibility.Collapsed;
 
             
         }
@@ -119,6 +121,11 @@ namespace Textfyre.UI.Controls
         private void BtnIntroduction_Click(object sender, EventArgs e)
         {
             OnTableOfContentAction(Action.Introduction);
+        }
+
+        private void BtnSettings_Click(object sender, EventArgs e)
+        {
+            OnTableOfContentAction(Action.Settings);
         }
     }
 }

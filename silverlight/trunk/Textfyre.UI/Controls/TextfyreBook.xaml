@@ -8,6 +8,7 @@
              xmlns:worddef="clr-namespace:Textfyre.UI.Controls.SpeechBubble"
              xmlns:mapping="clr-namespace:Textfyre.UI.Controls.Mapping"
              xmlns:manual="clr-namespace:Textfyre.UI.Controls.Manual"
+             xmlns:settings="clr-namespace:Textfyre.UI.Controls.UserSettings"
     Width="800" Height="600">
     <Grid x:Name="LayoutRoot" Width="800" Height="600">
         <ctrls:Art ID="Book" />
@@ -31,6 +32,7 @@
         <dialog:Confirm x:Name="ConfirmDeleteFileDialog" Title="Delete File?" Message="" CancelText="No" OKText="Yes" Visibility="Collapsed" />
         <dialog:Notes x:Name="NotesDialog" Visibility="Collapsed" />
         <dialog:Confirm x:Name="ConfirmNotesProvideName" Title="Enter a name" Message="Please enter your name." CancelText="" OKText="OK" Visibility="Collapsed" />
+        <settings:UserSettingsForm x:Name="UserSettingsDialog" Visibility="Collapsed" />
         <ctrls:Wait x:Name="Wait" />
     </Grid>
 </UserControl>

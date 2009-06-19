@@ -18,6 +18,7 @@
             <ctrl:TextButton x:Name="BtnTranscript" Click="BtnTranscript_Click"  Enabled="False" Text="Transcript" Margin="0,0,0,10" />
             <ctrl:TextButton x:Name="BtnCredits" Enabled="False" Text="Credits" Margin="0,0,0,10" />
             <ctrl:TextButton x:Name="BtnContinueGame" Enabled="False" Text="Continue Game" Click="BtnContinueGame_Click" Margin="0,0,0,10" />
+            <ctrl:TextButton x:Name="BtnSettings" Enabled="True" Text="Settings" Click="BtnSettings_Click" Margin="0,0,0,10" />
             <ctrl:TextButton x:Name="BtnQuit" Click="BtnQuit_Click" Enabled="True" Text="Quit" Margin="0,0,0,10" />
         </StackPanel>
     </Grid>
