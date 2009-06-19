@@ -317,6 +317,10 @@ namespace Textfyre.UI.Controls
                     Current.Game.TextfyreBook.TextfyreDocument.StoryAid.ShowHints();
                     GoTo("Story");
                     break;
+
+                case TableOfContent.Action.Settings:
+                    Current.Game.TextfyreBook.UserSettingsDialog.Show();
+                    break;
             }
         }
 
