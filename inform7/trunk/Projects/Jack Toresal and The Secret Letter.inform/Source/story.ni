@@ -2,6 +2,7 @@
 
 [  Change Log
 When		Who		What
+18-Jun-2009	D. Cornelson	Fixed fountain open bug.
 07-Jun-2009	D. Cornelson	Fixed hint ordering, caused crash in Silverlight.
 22-May-2009	G. Jefferis	Hints
 21-May-2009	G. Jefferis	Hints
@@ -6818,6 +6819,8 @@ Instead of entering the fountain when the secret entrance is not part of the sta
 
 Instead of searching the statue, try examining the statue.
 
+After entering the fountain for the first time:
+	open the secret entrance.
 
 Section 3 - Ruined pavilion
 
@@ -6886,7 +6889,7 @@ To open the secret entrance:
 	change the down exit of the Clearing to underneath the fountain;
 
 When play begins:
-	open the secret entrance;
+	close the secret entrance;
 
 Chapter 2 - Events on entering
 
