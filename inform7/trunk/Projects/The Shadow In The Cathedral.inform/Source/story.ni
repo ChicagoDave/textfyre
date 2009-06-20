@@ -6,6 +6,7 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 
 [  Change Log
 When		Who		What
+20-Jun-2009	J. Ingold		Started playthrough of ch. 3. Added "Cathedral Space" region to cover the rooms. Added cathedral backdrop to these. Made "in" and "out" work. Added some hints after meeting Doric and to room descriptions. Added "listen" responses for the monks. Auto-exit of pews.
 19-Jun-2009	J. Ingold		ch. 1 stuff: Fixed issues from Ian and David. Added "making to leave" action, covering EXIT and GO OUT, for diverting movement. Added short-cuts, extra turns to first scene. Fixed bug on typing "open clock" twice. Added Wren's description to the start text. Some rewrites to try and add tension. DIDN'T add ceiling/wall/floor objects - that's a bit scary. 
 18-Jun-2009	D. Cornelson	Updated standard credits and added play-testing commenting code. Added first bits of regression response testing.
 16 Jun 2009 	J. Ingold	Added "hide" command (action is "hiding from view"), used to give a response to more general input. Fixed a bug in the tea-machine process. Repaired the abbey test script, that I seem to have broken by changing Drake's logic. Changed descriptions of the Hall rooms when the gongs are ringing and the player should be heading out.
@@ -540,7 +541,11 @@ Rule for printing the name of a candle dispenser:
 
 Part 8 - Pews
 
-A pew is a kind of supporter. A pew is always enterable. A pew is usually scenery, plural-named. The printed name is usually "pews".
+A pew is a kind of supporter. A pew is always enterable. A pew is usually scenery, plural-named. The printed name is usually "pews". Understand "pew/pews/seat/seats/bench/benches" as a pew.
+
+Instead of going when the player is on a pew (this is the auto-exit pews rule):
+	try getting off a random pew enclosing the player;
+	if the player is not on a pew, continue the action.
 
 Part 9 - Cartesian controls
 
@@ -1117,10 +1122,11 @@ Part 10B - Replacing
 
 Understand "replace [something] with [something]" as putting it on (with nouns reversed).
 
-Part 11 - Winding
+Part 11 - Winding and setting are synonyms for turn
 
 Understand the command "wind" as "turn".
 Understand "wind up [something]" as turning.
+Understand "set [something]" as turning.
 
 Part 12 - Clock-setting
 
@@ -1130,6 +1136,7 @@ Clock-setting it to is an action applying to one thing and one time. The clock-s
 Understand "set [clock] to [time]" as clock-setting it to.
 Understand "turn [clock] to [time]" as clock-setting it to.
 Understand "turn [clock] to [text]" as setting it to.
+
 
 Setting action variables for clock-setting:
 	if the time understood is before 12:00 PM or the time understood is after 11:59 PM begin;
@@ -1446,8 +1453,15 @@ Enquiring of it about is an action applying to two things.
 Understand "tell [someone] about [something worthy of inspection]" as enquiring of it about.
 Understand "ask [someone] about [something worthy of inspection]" as enquiring of it about.
 
+Understand "tell [someone] [something worthy of inspection]" as enquiring of it about.
+Understand "ask [someone] [something worthy of inspection]" as enquiring of it about.
+
+Understand "tell [someone] [text]" as telling it about.
+Understand "ask [someone] [text]" as asking it about.
+
 Report enquiring of someone about something:
 	say "There is no reply.";
+
 
 Part 29 - Lying Down
 
@@ -1577,6 +1591,10 @@ Carry out making the sign of a clock-sign:
 Report making the sign of a clock-sign:
 	say "I quietly make the sign of the [i][noun][r]." instead;
 
+Understand "pray" as making the sign of.
+Rule for supplying a missing noun for making the sign of:
+	change the noun to a random clock-sign.
+
 Chapter 1 - Signs the player can make
 
 A clock-sign is a kind of thing. Understand "sign" as a clock-sign.
@@ -1611,6 +1629,12 @@ Part 40 - Kind of action - making to leave
 
 Exiting is making to leave.
 Going outside is making to leave.
+
+Part 41 - Synonyms for exit
+
+Understand "leave [something]" as getting off.
+Understand "get out of [something]" as getting off.
+Understand "depart [something]" as getting off.
 
 Book E - New Properties
 
@@ -3875,24 +3899,51 @@ Instead of hiding under something during Drake's Patrol:
 
 Part 15 - The Abbey, as a region
 
-The Abbey Region is a region. The Abbot's Quarters, Corridor of Contemplation, Attic Room, Rickety Stair, Upper Hall, Kitchen, Library, Central Hall, West Refectory, East Refectory, Scriptorium, Lower Hall, and Abbey Entry are in the Abbey Region.
+The Abbey Region is a region. The Abbot's Quarters, Corridor of Contemplation, Attic Room, Rickety Stair, Upper Hall, Kitchen, Library, Central Hall, West Refectory, East Refectory, Scriptorium, Lower Hall, Abbey Pantry, and Abbey Entry are in the Abbey Region.
 
 Book 3 - The Cathedral Of Time
+
+The Cathedral Space is a region.
 
 Part 1 - Cathedral Yard
 
 Chapter 1 - Description
 
-The Cathedral Yard is a room. "The Yard is where we go on Saturdays for exercise, cleaning up the muck left behind by the market (worse once a month when the horse-traders from the south come up and leave their presents for the Abbey gardens). Today it's quiet, at least, with the space between the Abbey to the east and the Cathedral to the west empty but for the usual collection of beggars, unfortunates, wretches and the disadvantaged poor.[one of][paragraph break]The Cathedral really is enormous – but it doesn't have many rooms, so finding the Archbishop shouldn't take too long. Which is lucky, because I don't know how long I've got before Gubbler – and the mysterious Figure – put their plan into action. I've got to warn someone soon.[or][stopping]"
+The Cathedral Yard is a room in the Cathedral Space. "The Yard is where we go on Saturdays for exercise, cleaning up the muck left behind by the market (worse once a month when the horse-traders from the south come up and leave their presents for the Abbey gardens). Today it's quiet, at least, with the space between the Abbey to the east and the Cathedral to the west empty but for the usual collection of beggars, unfortunates, wretches and the disadvantaged poor.[one of][paragraph break]The Cathedral really is enormous – but it doesn't have many rooms, so finding the Archbishop shouldn't take too long. Which is lucky, because I don't know how long I've got before Gubbler – and the mysterious Figure – put their plan into action. I've got to warn someone soon.[or][stopping]"
 
-Instead of going east from the Cathedral Yard:
+Instead of going east in the Cathedral Yard:
 	say "No, I need to find the Archbishop, not get rounded up by Calvin and Drake and set to work polishing again. Besides, by the sound of the clock, it's 5pm in there, which would be far too late!"
+
+Instead of going inside in the Cathedral Yard: try going west.
+Instead of making to leave in the Cathedral Yard: try going west.
+
+Chapter 2 - The Cathedral object
+
+The Cathedral of Time is backdrop, in the Cathedral Space. 
+
+Instead of examining the Cathedral of Time in the Cathedral Yard:
+	say "The Cathedral door is open to the west, like a big mouth ready to swallow me whole."
+
+Instead of examining the Cathedral of Time:
+	say "The Cathedral walls rise all around me."	
+
+Instead of entering the Cathedral of Time: 
+	try going inside.
+
+Instead of getting off the Cathedral of Time:
+	try going outside.
+
+Instead of listening when in the Cathedral Space:
+	say "The soft sound of chanting drifts down the length of the Cathedral.";
 
 Part 2 - Great Door
 
 Chapter 1 - Description
 
-The Cathedral Entrance is west of the Cathedral Yard. "Imagine an ant crawling up inside a daffodil. That's what it's like here, and this is just the Entry to the massive Cathedral further north (I guess in there you'll need to imagine an ant inside a church bell).[paragraph break]Let me try and do better. The main doors south are about as tall as the Abbey itself, so they need a lot of space just to fit the hinges in (those are about as big as me, I think). I came in from the Yard by the east door; there's another similar door west but it's locked right now as the Cathedral is closed to the public most times.[paragraph break]Looking northwards I can see the long Nave, and the altar beyond. Carved on the floor just by my feet is the first of the aisle's Great Seals." The printed name is "Great Door".
+The Cathedral Entrance is west of the Cathedral Yard,  in the Cathedral Space. "Imagine an ant crawling up inside a daffodil trumpet. That's what it's like to stand in here, and this is just the Entry to the massive Cathedral further north (I guess in there you'll need to imagine an ant inside a church bell).[paragraph break]Let me try and do better. The main doors south are about as tall as the Abbey itself, so they need a lot of space just to fit the hinges in (those are about as big as me, I think). I came in from the Yard by the east door; there's another similar door west but it's locked right now. The Cathedral is closed to the public most of the time.[paragraph break]Looking northwards I can see the long Nave, and the altar beyond. Carved on the floor just by my feet is the first of the aisle's Great Seals." The printed name is "Great Door".
+
+Instead of making to leave when in the Cathedral Entrance: try going east instead.
+Instead of going inside in the Cathedral Entrance: try going north instead.
 
 Chapter 2 - Scenery
 
@@ -3928,7 +3979,18 @@ Part 3 - Lower Nave
 
 Chapter 1 - Description
 
-The Lower Nave is north of the Cathedral Entrance. "The Nave of the Cathedral is a quiet place, quieter than the Abbey because the Archbishop only allows study here and no workshops. Pews on either side are enough to seat a thousand easily, with more further north. I can't look at the ceiling (it's so high) without lying down across the Second Great Seal, and the last time I did that a monk tripped up on me and had me thrown out.[paragraph break]East and west are smaller shrines, and back south are the Cathedral's Great Doors."
+The Lower Nave is north of the Cathedral Entrance, in the Cathedral Space. "The Nave of the Cathedral is a quiet place, quieter than the Abbey because the Archbishop only allows study here and no workshops. Pews on either side are enough to seat a thousand easily, with more further north. I can't look at the ceiling (it's so high) without lying down across the Second Great Seal, and the last time I did that a monk tripped up on me and had me thrown out.[paragraph break]East and west are smaller shrines, and back south are the Cathedral's Great Doors."
+
+Instead of making to leave when in the Lower Nave: try going south instead.
+Instead of going inside in the Lower Nave: try going north instead.
+
+Section 2 - Idle actions
+
+Every turn when in the Lower Nave and a random chance of 1 in 3 succeeds:
+	say "A little heat licks in from the west.";
+
+Instead of sleeping in the Lower Nave:
+	say "I'm not trying that again."
 
 Chapter 2 - Scenery
 
@@ -3946,7 +4008,10 @@ Part 4 - Upper Nave
 
 Chapter 1 - Description
 
-The Upper Nave is north of the Lower Nave. "This is the north end of the Nave, where the more important people sit during services – you can tell that because the pews either side are wider and have more legroom, and each has a little cup-holder carved into its armrest. Of course, it's also closer to the Altar to the north (and further from the draught coming up from the doors to the south)."
+The Upper Nave is north of the Lower Nave, in the Cathedral Space. "This is the north end of the Nave, where the more important people sit during services – you can tell that because the pews either side are wider and have more legroom, and each has a little cup-holder carved into its armrest. Of course, it's also closer to the Altar to the north (and further from the draught coming up from the doors to the south).[paragraph break]A group of monks are standing around the altar, singing softly[if East Clerestory is not visited]. The Archbishop's office will be beyond and up the stairs, I think[end if]."
+
+Instead of making to leave when in the Upper Nave: try going south instead.
+Instead of going inside in the Upper Nave: try going north instead.
 
 Chapter 2 - Scenery
 
@@ -3961,11 +4026,27 @@ Section 2 - Pews
 
 Some upper pews are a pew, in the Upper Nave. "Rows of varnished oak pews. I'm glad I'm not a Cathedral Wood Polisher! That'd take [i]forever[r]." The printed name is "pews".
 
+Section 3 - Monks and the altar
+
+Some monks-and-altar are scenery, privately-named, in the Upper Nave. "The monks are gathered around the altar, singing through a ritual." The printed name is "monks around the altar". Understand "monks/monk/altar", "monk/monks at/around" as the monks-and-altar.
+
+Instead of doing something when the monks-and-altar is physically involved:
+	say "I creep north.";
+	try going north.
+
+Instead of listening when in the Upper Nave:
+	say "The monks song echoes off the walls, one syllable at a time, singing one second at a time."
+
 Part 5 - Altar
 
 Chapter 1 - Description
 
-The Cathedral Altar is north of the Upper Nave. "On a dais is the main altar, representing the Celestial Workbench itself. Hanging over it as large as the setting sun is the incredible machinery of the Cathedral Clock itself.[paragraph break]Around the altar, a group of monks are celebrating and blessing something on the altar. I can slip away – quickly, please! – in any of the four main directions, although if I go round the dais I might have to scurry."
+The Cathedral Altar is north of the Upper Nave, in the Cathedral Space. "On a dais is the main altar, representing the Celestial Workbench itself. Hanging over it as large as the setting sun is the incredible machinery of the Cathedral Clock itself.[paragraph break]Around the dais, a group of monks are celebrating and blessing something on the altar. I can slip away – quickly, please! – in any of the four main directions, although if I go round the dais I might have to scurry[if East Clerestory is not visited]. (The Archbishop's room is north of here, I think, above the Choir.)[else].[end if]"
+
+Instead of making to leave when in the Cathedral Altar: try going south instead.
+Instead of going inside in the Cathedral Altar: say "I'm in the heart of the Cathedral right here."
+
+Instead of singing: say "I don't think the monks would appreciate my joining in."
 
 Chapter 2 - Scenery
 
@@ -4023,7 +4104,13 @@ Part 6 - Choir
 
 Chapter 1 - Description
 
-The Cathedral Choir is north of the Cathedral Altar. "To the north of the altar, this is a semi-circular space with staircases to east and west leading up to the gallery overhead. When they sing from up there – I've only heard it once – they fill the whole Cathedral with their beating rhythmic music: songs that echo round and around the dome overhead like the movement of the Greater Rotation itself." The printed name is "Choir".
+The Cathedral Choir is north of the Cathedral Altar, in the Cathedral Space. "To the north of the altar, this is a semi-circular space with staircases to east and west leading up to the gallery overhead. When they sing from up there – I've only heard it once – they fill the whole Cathedral with their beating rhythmic music: songs that echo round and around the dome overhead like the movement of the Greater Rotation itself." The printed name is "Choir".
+
+Instead of making to leave when in the Cathedral Choir: try going south instead.
+Instead of going inside in the Cathedral Choir: try going south instead.
+
+Instead of going up in the Cathedral Choir:
+	say "East or west?"
 
 Chapter 2 - Scenery
 
@@ -4098,13 +4185,16 @@ Part 7 - Shrine Of The Saints
 
 Chapter 1 - Description
 
-The Shrine of the Saints is east from the Lower Nave. "A small shrine but a packed one. Where the Abbey's got three niches for the Major Three Saints, the Cathedral has about a hundred niches for the Minor Everybody Else. Little busts and statuettes, some holding the tools of their trade, and all glaring at me for skulking around in here. The Nave is back west."
+The Shrine of the Saints is east from the Lower Nave, in the Cathedral Space. "A small shrine but a packed one. Where the Abbey's got three niches for the Major Three Saints, the Cathedral has about a hundred niches for the Minor Everybody Else. Little busts and statuettes, some holding the tools of their trade, and all glaring at me for skulking around in here. The Nave is back west."
+
+Instead of making to leave when in the Shrine of the Saints: try going west instead.
+Instead of going inside in the Shrine of the Saints: try going west instead.
 
 Chapter 2 - Scenery
 
 Section 1 - Statuettes
 
-Some statuettes are scenery, in the Shrine of the Saints. The printed name is "statues". Understand "statue", "statues", "niche", "niches", "bust", "busts" as the statuettes.
+Some statuettes are scenery, in the Shrine of the Saints. The printed name is "statues". Understand "statue", "statues", "niche", "niches", "bust", "busts", "saint", "saints" as the statuettes.
 
 The description of the statuettes is "There's one: [one of]St Wainwright, with his compasses.[or]St Maxwell, with his electronia.[or]St Cauchy, with his dividing rod.[or]St Decartes, with his set square.[or]St Allan, with his hexagonal key.[or]St Ykea, with his design manuals.[at random]"
 
@@ -4152,7 +4242,10 @@ Part 8 - East Apse
 
 Chapter 1 - Description
 
-The East Apse is east of the Cathedral Altar. "More pews, facing the altar back west. This is the women's corner, because they aren't allowed to sit with the men (especially those with children, who have to sit at the back). Much more interesting, though, is the iron grate to the northeast that covers – so they say – the door to the Cathedral crypt.[paragraph break]There's also a door to the southeast, and in the corner of my eye, I keep catching movement from somewhere inside."
+The East Apse is east of the Cathedral Altar, in the Cathedral Space. "More pews, facing the altar back west. This is the women's corner, because they aren't allowed to sit with the men (especially those with children, who have to sit at the back). Much more interesting, though, is the iron grate to the northeast that covers – so they say – the door to the Cathedral crypt.[paragraph break]There's also a door to the southeast, and in the corner of my eye, I keep catching movement from somewhere inside."
+
+Instead of making to leave when in the East Apse: try going west instead.
+Instead of going inside in the East Apse: try going west instead.
 
 Chapter 2 - Crypt Grate
 
@@ -4181,7 +4274,10 @@ Part 9 - West Apse
 
 Chapter 1 - West Apse
 
-The West Apse is west of the Cathedral Altar. "There are more pews, though there's clearly one row missing, which Drake says is the one they took and chopped up to make the floorboards of my room. I don't believe it – why would anyone waste such a good bit of wood on me?[paragraph break]Anyway, the altar is back east and there's another archway in the southwest corner of the room. Silence emerges through it like noise from Calvin's mouth when he's eating. It must be a library."
+The West Apse is west of the Cathedral Altar, in the Cathedral Space. "There are more pews, though there's clearly one row missing, which Drake says is the one they took and chopped up to make the floorboards of my room. I don't believe it – why would anyone waste such a good bit of wood on me?[paragraph break]Anyway, the altar is back east and there's another archway in the southwest corner of the room. Silence emerges through it like noise from Calvin's mouth when he's eating. It must be a library."
+
+Instead of making to leave when in the West Apse: try going east instead.
+Instead of going inside in the West Apse: try going east instead.
 
 Chapter 2 - Archway
 
@@ -4195,7 +4291,10 @@ Part 10 - Calendar Shrine
 
 Chapter 1 - Description
 
-The Calendar Shrine is west of the Lower Nave. "[if we have not examined the Calendar]This shrine is centred around a big brass table with a glass top, which doesn't seem nearly important enough for the Cathedral of St Philip! Perhaps the important thing is the brazier in the corner: a shallow dish held over a low, flickering flame. The Nave is back east, should any of this prove dull.[otherwise]This shrine contains the Calendar Unlimited, which I'm pretty sure is the thing St Philip built to get a city a named after him. It's ticking away quietly next to the brass brazier. The Nave is back east.[end if]"
+The Calendar Shrine is west of the Lower Nave, in the Cathedral Space. "[if we have not examined the Calendar]This shrine is centred around a big brass table with a glass top, which doesn't seem nearly important enough for the Cathedral of St Philip! Perhaps the important thing is the brazier in the corner: a shallow dish held over a low, flickering flame. The Nave is back east, should any of this prove dull.[otherwise]This shrine contains the Calendar Unlimited, which I'm pretty sure is the thing St Philip built to get a city a named after him. It's ticking away quietly next to the brass brazier. The Nave is back east.[end if]"
+
+Instead of making to leave when in the Calendar Shrine: try going east instead.
+Instead of going inside in the Calendar Shrine: try going east instead.
 
 Chapter 2 - Scenery
 
@@ -4302,7 +4401,10 @@ Part 11 - Orrey Hall
 
 Chapter 1 - Description
 
-The Orrey Hall is southeast of the hall door. "This hall is mostly filled by a machine like no other: it serves no obvious purpose at all and is, unusually, extremely slow and quiet. It's called the 'Orrey' and it's meant to depict the movements of the heavens, though to me it looks more like the badly mangled bicycles you see dredged up from the river, and how anyone's meant to read the whirls of discs, balls, wire hoops and spindles is beyond me."
+The Orrey Hall is southeast of the hall door, in the Cathedral Space. "This hall is mostly filled by a machine like no other: it serves no obvious purpose at all and is, unusually, extremely slow and quiet. It's called the 'Orrey' and it's meant to depict the movements of the heavens, though to me it looks more like the badly mangled bicycles you see dredged up from the river, and how anyone's meant to read the whirls of discs, balls, wire hoops and spindles is beyond me."
+
+Instead of making to leave when in the Orrey Hall: try going northwest instead.
+Instead of going inside in the Orrey Hall: try going northwest instead.
 
 Section 2 - Event on Entry
 
@@ -4526,7 +4628,10 @@ Part 12 - Cyclical Library
 
 Chapter 1 - Description
 
-The Cyclical Library is southwest of the Library Archway. "The Library of the Cathedral of Time is about as much like the one in the Abbey as the mould on the floorboards of my room is like the oak tree standing outside the Cathedral gate. This room is massive, and mechanised. Little blocks of shelving, holding about twenty books each, tile the cylindrical wall in a kind of mosaic, but they're all fixed up to winches, pulleys, and the whole room can revolve, so instead of you going to a find a book... well, you get the idea."
+The Cyclical Library is southwest of the Library Archway, in the Cathedral Space. "The Library of the Cathedral of Time is about as much like the one in the Abbey as the mould on the floorboards of my room is like the oak tree standing outside the Cathedral gate. This room is massive, and mechanised. Little blocks of shelving, holding about twenty books each, tile the cylindrical wall in a kind of mosaic, but they're all fixed up to winches, pulleys, and the whole room can revolve, so instead of you going to a find a book... well, you get the idea."
+
+Instead of making to leave when in the Cyclical Library: try going northeast instead.
+Instead of going inside in the Cyclical Library: try going northeast instead.
 
 Section 2 - Event on Entry
 
@@ -4710,7 +4815,12 @@ Instead of reading the Principia Planetaria:
 
 Part 13 - West Clerestory
 
-The West Clerestory is a room. "[if Archbishop's Meeting has not happened]This balcony has a good view down over the choir stalls and the altar where the monks are still clustered. The sun has just come round and I'm standing, bathed in colourful light from the enormous stained glass window. Spiral stairs lead down, and the balcony curves around to the northeast.[otherwise]This is where the Figure went – and it's not hard to see where he went next either. Part of the west wall has disappeared to reveal a ladder built into a space in the brickwork. No problem, though. I'm [i]good[r] with ladders.[end if]"
+The West Clerestory is a room, in the Cathedral Space. "[if Archbishop's Meeting has not happened]This balcony has a good view down over the choir stalls and the altar where the monks are still clustered. The sun has just come round and I'm standing, bathed in colourful light from the enormous stained glass window. Spiral stairs lead down, and the balcony curves around to the northeast.[otherwise]This is where the Figure went – and it's not hard to see where he went next either. Part of the west wall has disappeared to reveal a ladder built into a space in the brickwork. No problem, though. I'm [i]good[r] with ladders.[end if]"
+
+Instead of making to leave when in the West Clerestory: try going down instead.
+Instead of going inside in the West Clerestory: try going down instead.
+
+Chapter 1 - Window of the Lever
 
 The window of the lever is a stained glass window, scenery, in the West Clerestory. "This pane of glass depicts an enormous lever, being operated from very far off by a man wearing a bed-sheet. (Or that's what it looks like to me: he's probably meant to be an angel)."
 
@@ -4736,7 +4846,10 @@ Part 14 - North Clerestory
 
 Chapter 1 - Description
 
-The North Clerestory is a room, northeast of the West Clerestory, northwest of the East Clerestory. "[if Archbishop's Meeting has not happened]This is the far north end of the church, and from this balcony you have a great view, over the heads of the monks and all the way to the great doors at the end. The balcony itself curves away to southwest and southeast.[otherwise]The north end of the church. There's the big stained window overhead and also the enormous statues of Babbage and Breguet.[end if]"
+The North Clerestory is a room, northeast of the West Clerestory, northwest of the East Clerestory, in the Cathedral Space. "[if Archbishop's Meeting has not happened]This is the far north end of the church, and from this balcony you have a great view, over the heads of the monks and all the way to the great doors at the end. The balcony itself curves away to southwest and southeast.[otherwise]The north end of the church. There's the big stained window overhead and also the enormous statues of Babbage and Breguet.[end if]"
+
+Instead of making to leave when in the North Clerestory: try going southwest instead.
+Instead of going inside in the North Clerestory: try going southwest instead.
 
 Chapter 2 - Scenery
 
@@ -4880,7 +4993,10 @@ Part 15 - East Clerestory
 
 Chapter 1 - Description
 
-The East Clerestory is a room. "[if Archbishop's Meeting has not happened]This balcony, which curves to the northwest, is built right above the choir stalls. You could probably jump down onto them if you felt really brave, but it'd be easier to take the stairs, built against the east wall, just below the enormous stained glass window.[otherwise]I'm back on the balcony on the east side of the Cathedral, underneath the gigantic window depicting a winding key. Stairs lead down and the balcony curves away to the northwest.[end if]"
+The East Clerestory is a room, in the Cathedral Space. "[if Archbishop's Meeting has not happened]This balcony, which curves to the northwest, is built right above the choir stalls. I could probably jump down onto them if I felt really brave, but it'd be easier to take the stairs, built against the east wall, just below the enormous stained glass window.[otherwise]I'm back on the balcony on the east side of the Cathedral, underneath the gigantic window depicting a winding key. Stairs lead down and the balcony curves away to the northwest.[end if]"
+
+Instead of making to leave when in the East Clerestory: try going down instead.
+Instead of going inside in the East Clerestory: try going down instead.
 
 Chapter 2 - Events on Entry
 
@@ -4916,9 +5032,9 @@ The description of Doric is "[DoricDescription]"
 
 To say DoricDescription:
 	if Doric is awake begin;
-		say "The Guard is a member of the Protectorate, hired from the ranks of the Swiss Watch and trained specially for Church service. This one wears an elaborate uniform of straps and buckles that clink whenever he moves. More menacingly, he carries a large halberd.";
+		say "The Guard is a member of the Protectorate, hired from the ranks of the Swiss Watch and trained specially for Church service. This one wears an elaborate uniform of straps and buckles that clink whenever he moves. More menacingly, he carries a large halberd. ";
 	otherwise;
-		say "For a highly-trained guard I'm not impressed. He seems to have fallen asleep on his feet. His brain must have wound down...[If CHASE0 is fired] Either that or all the running around has worn him out.[end if]";
+		say "For a highly-trained guard I'm not impressed. He seems to have fallen asleep on his feet. His brain must have wound down...[If CHASE0 is fired] Either that or all the running around has worn him out.[end if] ";
 	end if;
 
 Doric has a truth state called the faith flag.
@@ -4972,7 +5088,7 @@ The conversation table of Doric is the Table of Doric's Conversation.
 Table of Doric's Conversation
 topic						conversation
 "faith" or "creed" or "creed of the church" or "creed of church"	CT_DOR_FAITH
-"business" or "proof" or "proof of business"		CT_DOR_BUSINESS
+"business" or "proof" or "proof of business" or "paperwork" or "documentation"		CT_DOR_BUSINESS
 "abbey"						CT_DOR_ABBEY
 "cathedral"					CT_DOR_CATHEDRAL
 "[abbot]" or "[figure]"				CT_DOR_ABBOT
@@ -5083,8 +5199,12 @@ After reading a command when Doric is inquisitive:
 	otherwise if lever_flag is 1 AND spring_flag + winding_key_flag is not 0:
 		say "'That's very close,' Doric says, clearly tempted to let the mistake pass. Then his back stiffens. 'But it's not close enough to let me say you can see the Archbishop. So you'd better rack your brains or rack off. Clear?'" instead;
 	otherwise:
-		say "'Hardly. What sort of creed is that?' he smirks. 'Now, you may have forgotten it, or may you may not know. Not my place to judge. So you have a think and get back to me.' He smiles, smugly. 'I'll be waiting. Right here. In the way.'" instead;
+		if business flag of Doric is false:
+			say "'No,' he replies curtly. 'But don't matter. If you don't have the paperwork, you aren't coming through creed or no creed.'" instead;
+		otherwise:
+			say "[one of]'Hardly. What sort of creed is that?' he smirks. 'Now, you may have forgotten it, or may you may not know. Not my place to judge. So you have a think and get back to me.' He smiles, smugly. 'I'll be waiting. Right here. In the way.'[or]'Look, kid,' he grins. 'A Church Creed is a special kind of thing like... like a well-oiled sword, only words, right? And either you go it or you don't. And if you don't...' He shrugs. 'I'll stay right here.'[or]'No,' he replies, shaking his head. 'Not even close.'[stopping]" instead;
 
+	
 Section 5 - Proof of business
 
 Instead of showing the work order to awake Doric:
@@ -5160,6 +5280,18 @@ Instead of going through the Bishop's Door in the presence of awake Doric when t
 After going through the Bishop's Door from the East Clerestory in the presence of awake Doric:
 	say "'In you go,' Doric says, tipping his head. 'But don't you go tellin['] him how I'm doing anything other than my job, mind. I've got to be careful. These are restless times. The Calendar says so. Always check the Calendar.'[paragraph break]'Thanks,' I say. 'I will.'[paragraph break]The Bishop's Door – I made it!";
 	continue the action;
+
+Section - Post Doric
+
+BISH_DOOR_AFTEREVENT1 is a trigger.
+
+Every turn when BISH_DOOR_EVENT1 is fired and BISH_DOOR_AFTEREVENT1 is unfired and the location is not the East Clerestory:
+	fire BISH_DOOR_AFTEREVENT1;
+
+Rule for firing unfired BISH_DOOR_AFTEREVENT1:
+	if business flag of Doric is false and faith flag of Doric is false:
+		say "Out of sight of the guard - I give a shout of frustration. What am I meant to do now? Second Assistant Clock Polishers don't know any creeds. And paperwork? How can I get paperwork around here?";
+
 
 Book 4 - The Cathedral Of Time (Continued)
 
