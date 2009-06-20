@@ -2,6 +2,7 @@
 
 [  Change Log
 When		Who		What
+19-Jun-2009	G. Jefferis	Sleep in Maiden House
 18-Jun-2009	D. Cornelson	Fixed fountain open bug.
 07-Jun-2009	D. Cornelson	Fixed hint ordering, caused crash in Silverlight.
 22-May-2009	G. Jefferis	Hints
@@ -5711,6 +5712,19 @@ Instead of facing outside while in the Hallway, try facing north.
 
 The Hallway overlooks Entrance to Maiden House.
 
+After going to the Hallway from the Dormitory when the orphans are asleep:
+	fire TRIG_TIPTOE;
+	continue the action;
+
+TRIG_TIPTOE is a trigger.
+
+Rule for firing unfired TRIG_TIPTOE:
+	say "You tiptoe out into the hallway. Widow Theresa is nowhere in sight.";
+
+When Bobby's Hanging ends:
+	remove the orphans from play;
+	move Widow Shannon to the Laundry;
+
 Chapter 2 - Widow Theresa
 
 Section 1 - Description
@@ -5841,6 +5855,15 @@ A bunk bed is a supporter, scenery, enterable, in the dormitory. The printed nam
 
 Instead of sleeping in the presence of the bunk bed when the player is not on the bunk bed:
 	try entering the bunk bed;
+
+First instead of entering the bunk bed when Widow Theresa is in the Hallway:
+	say "Grumbling, you climb into your bunk and make yourself as comfortable as you can on the lumpy mattress. The other children eventually lie down and fall quiet, and Widow Fiona stops in to blow out the light. Soon all you can hear are the soft snores of children and the occasional creaking of a floorboard. You are determined to keep your eyes open until you are sure Theresa has left the hallway, but soon your muscles, tense from the day's chase, are unknotting... your breath is coming slower, heavier...[paragraph break]You snap awake, heart pounding. How long were you asleep? It seems like it couldn't have been that long, but the thought of missing your rendez-vous with Bobby is agonizing.[paragraph break]As quietly as you can, you slip out of bed.";
+	remove Widow Theresa from play;
+	remove Widow Shannon from play;
+	remove Widow Fiona from play;
+	remove the dishes from play;
+	remove dirty underpants from play;
+	now the orphans are asleep;
 
 Instead of entering the bunk bed when Bobby's Adventure has not happened:
 	say "You're not even [i]close[r] to being tired. You couldn't possibly go to sleep until you've seen what Bobby wanted to show you."
@@ -6105,6 +6128,9 @@ Part 6 - Privy
 Chapter 1 - Description 
 
 The Privy is southwest of the Hallway. "Not much more than a narrow closet, with a hole in the floor and a bench over it. At least it's more private than an alley."
+
+Instead of going from the Hallway to the Privy when Widow Theresa is in the Hallway:
+	say "[one of]'Not so fast,' snaps Widow Theresa, blocking your path. 'Don't think I don't know what you're up to.'[paragraph break]'But I really have to go to the bathroom!' you protest, knowing that it would do no good even if it were true.[paragraph break]Theresa smirks. 'Then you can do it with the door open, while I stand and watch. No? Well then, I guess you can hold it until the morning. Until then, you're not going anywhere but to bed.'[or]It's no use; Widow Theresa is watching you like a hawk.[stopping]";
 
 Before going when in the privy:
 	if the noun is outside:
@@ -11690,7 +11716,7 @@ Test Intro with "u/z/z/z/z/d/se/s/s/ne/ne"
 
 Test Market with "xyzzy/e/steal banana/unxyzzy/sw/se/n/n/u/give banana to monkey/d/s/give necklace to teisha/n/u/slide down northeast cable with gray cloak/get cloak/wear silk cloak/s/e"
 
-Test meeting with "e/e/s/1/1/2/sw/s/sw/climb through window/ne/ne/n/w/w/w"
+Test meeting with "e/e/s/1/1/2/sw/s/nw/sleep/se/sw/climb through window/ne/ne/n/w/w/w"
 
 Test adventure with "n/e/n/xyzzy/n/unxyzzy/n/d/n/n/sw/u/n/listen at slit/listen to slit/s/d/ne/s/s/u"
 
