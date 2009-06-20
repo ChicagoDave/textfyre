@@ -6,6 +6,7 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 
 [  Change Log
 When		Who		What
+19-Jun-2009	J. Ingold		ch. 1 stuff: Fixed issues from Ian and David. Added "making to leave" action, covering EXIT and GO OUT, for diverting movement. Added short-cuts, extra turns to first scene. Fixed bug on typing "open clock" twice. Added Wren's description to the start text. Some rewrites to try and add tension. DIDN'T add ceiling/wall/floor objects - that's a bit scary. 
 18-Jun-2009	D. Cornelson	Updated standard credits and added play-testing commenting code. Added first bits of regression response testing.
 16 Jun 2009 	J. Ingold	Added "hide" command (action is "hiding from view"), used to give a response to more general input. Fixed a bug in the tea-machine process. Repaired the abbey test script, that I seem to have broken by changing Drake's logic. Changed descriptions of the Hall rooms when the gongs are ringing and the player should be heading out.
 15 Jun 2009	J. Ingold	Play-tested C2. Several changes, including a Pantry off the kitchen with tea leaves in and the ability to hide from Drake. Synonym "fill <x> with water". 
@@ -113,7 +114,7 @@ Rule for printing the banner text:
 When play begins:
 	change the library message person to first person; 
 	[ change the library message number to singular; ]
-	change the current script to {AB_QUART1, AB_QUART2, AB_QUART3, AB_QUART4, AB_QUART5, CCASE1};
+	change the current script to {AB_QUART1, AB_QUART2, AB_QUART_PAUSE, AB_QUART3, AB_QUART4, AB_QUART4B, AB_QUART5, CCASE1};
 
 After reading a command:
 	remove stray punctuation;
@@ -1475,6 +1476,8 @@ Understand "batter down/through [something]" as attacking.
 Understand "batter down/through [something] with [something preferably held]" as attacking it with.
 Understand "batter [something] down" as attacking.
 Understand "batter [something] down with [something preferably held]" as attacking it with.
+Understand "stop [something]" as attacking.
+Understand "stop [something] with [something preferably held]" as attacking it with.
 Understand "beat [something] with [something preferably held]" as attacking it with.
 Understand "beat down [something] with [something preferably held]" as attacking it with.
 Understand "beat [something] down with [something preferably held]" as attacking it with.
@@ -1598,6 +1601,17 @@ Understand "sharpen [something]" as sharpening.
 Check sharpening:
 	say "That doesn't need to be sharpened." instead;
 
+Part 39 - Synonyms for enter
+
+Understand "go out of [something]" as entering.
+
+Part 40 - Kind of action - making to leave
+
+[ used for exit/go out ]
+
+Exiting is making to leave.
+Going outside is making to leave.
+
 Book E - New Properties
 
 Part 1 - Wakefulness
@@ -1656,7 +1670,8 @@ Part 1 - Introduction
 
 When play begins:
 	select the prologue channel;
-	say "'[i]HEY WREN![no line break][r]'[paragraph break]Uh-oh.[paragraph break]'We've got a job for you!'[paragraph break]'Yeah, a promotion!'[paragraph break]This, coming from Drake and Calvin, means something horrible is about to happen.[paragraph break]'You've got your rag, don't you?'[paragraph break]'And your polish?'[paragraph break]'Yes,' I bleat.[paragraph break]'Course you do. Well, we've got something for you to do.'[paragraph break]'Yeah,' chimes Calvin.[paragraph break]One on each arm, they march me down the hall, towards the Abbots door. Am I in trouble? Going to be thrown out of the Cathedral?[paragraph break]'On three!' shouts Drake.[paragraph break]'Dong!' Calvin counts. 'Dong! [i]Dong![no line break][r]'[paragraph break]They shove me through the door. I fall into the Abbot's personal chamber. I might not know much about the Abbey but I do know that I [i]really[r] shouldn't be in here[paragraph break]";
+	say "[my description][line break]";	
+	say "'[i]HEY WREN![no line break][r]'[paragraph break]Uh-oh.[paragraph break]'We've got a job for you!'[paragraph break]'Yeah, a promotion!'[paragraph break]This, coming from Drake and Calvin, means something horrible is about to happen.[paragraph break]'You've got your rag, don't you?'[paragraph break]'And your polish?'[paragraph break]'Yes,' I bleat, holding up the glass tumbler they've given me.[paragraph break]'Course you do. Well, we've got something for you to do.'[paragraph break]'Yeah,' chimes Calvin.[paragraph break]One on each arm, they march me down the hall, towards the Abbots door. Am I in trouble? Going to be thrown out of the Cathedral?[paragraph break]'On three!' shouts Drake.[paragraph break]'Dong!' Calvin counts. 'Dong! [i]Dong![no line break][r]'[paragraph break]They shove me through the door. I fall into the Abbot's personal chamber. I might not know much about the Abbey but I do know that I [i]really[r] shouldn't be in here.[paragraph break]";
 	select the main channel;
 
 Part 2 - Wren
@@ -1664,6 +1679,9 @@ Part 2 - Wren
 Chapter 1 - Description of Wren
 
 Instead of examining the player:
+	say "[my description]".
+
+To say my description:
 	say "When the monks took me, aged six months, into their care, they named me Wren. Maybe because I was small, insignificant, and happy to eat any crumbs they threw my way. But these days I'm Wren, 2nd Assistant Clock Polisher... and that's a role that's about as important in the workings of the Cathedral of Time as the large deaf man who re-stretches the worn-out springs."
 
 Chapter 2 - Wren's Possessions
@@ -1687,7 +1705,7 @@ Does the player mean doing something with the lucky key:
 
 A rag is carried by the player. The description is "The tool of the polisher's trade. And this old rag looks like it's been the tool of several polishers before me, too."
 
-A tumbler is a container, open, carried by the player. The description is "A small glass with all that's left of my daily wood polish ration. How I'm supposed to do all the rest of my chores after this I don't know, but Drake and Calvin didn't seem too worried about that." Understand "glass" as the tumbler.
+A tumbler is a container, open, carried by the player. The description is "A small glass with all that's left of my daily wood polish ration. How I'm supposed to do all the rest of my chores after this I don't know, but Drake and Calvin didn't seem too worried about that." Understand "glass" as the tumbler. The printed name of the tumbler is "glass tumbler".
 
 Rule for emptying away the small amount of polish when in Inside Clock Case:
 	remove the small amount of polish from play;
@@ -1696,7 +1714,9 @@ Rule for emptying away the small amount of polish when in Inside Clock Case:
 Instead of emptying the tumbler when not in Inside Clock Case:
 	say "I'll need to save every last drop. There's twenty more clocks to do today at least!";
 
-Inside the tumbler is a small amount of polish.
+Inside the tumbler is a small amount of polish. Understand "wood", "ration", "daily ration" as the small amount of polish.
+
+Before examining the small amount of polish: try examining the tumbler instead.
 
 Before doing something when the small amount of polish is physically involved:
 	redirect the action from the small amount of polish to the tumbler;
@@ -1717,12 +1737,13 @@ Part 1 - The Abbot's Room
 
 Chapter 1 - Description
 
-The Abbot's Quarters is a room. "[if Clock Case has been hidden in and the Introduction is happening]I need to get out of this place as fast as I can and without attracting any more attention. The door to the hallway is back west and as for polishing the Grandfather clock - well, forget it![otherwise if Introduction is happening]If I thought Abbots lived in luxury, then I was dead wrong. Even my attic's cosier than this. The Abbot's got no furniture at all, except a desk and a cot, and no decoration except for a bust of St. Newton. None of the axle-mounted bevelled mobiles I was expecting. There's barely even any sunlight: one thin window to catch the sun-rise, opposite the door to the hallway back east.[otherwise]The Abbot's Quarters again. Gubbler is here, standing by his desk (no chair, remember?). He's looking right at me, waiting for me to explain why I'm interrupting him, and why I haven’t run away back west yet.[end if]"
+The Abbot's Quarters is a room. "[if Clock Case has been hidden in and the Introduction is happening]I need to get out of this place as fast as I can and without attracting any more attention. The door to the hallway is back west and as for polishing the Grandfather clock - well, forget it![otherwise if Introduction is happening]If I thought Abbots lived in luxury, then I was dead wrong. Even my attic's cozier than this. The Abbot's got no furniture at all, except a desk and a cot, and no decoration except for a bust of St. Newton. None of the axle-mounted, bevelled mobiles I was expecting. There's barely even any sunlight: one thin window to catch the sun-rise, opposite the door to the hallway back west.[otherwise]The Abbot's Quarters again. Gubbler is here, standing by his desk (no chair, remember?). He's looking right at me, waiting for me to explain why I'm interrupting him, and why I haven’t run away back west yet.[end if]"
 
 Check listening to the Abbot's Quarters:
 	say "The clock-gears are chanting quietly to themselves." instead;
 
-Instead of exiting when the player is in the Abbot's Quarters: try going west instead.
+Instead of making to leave when the player is in the Abbot's Quarters: try going west instead.
+
 
 Chapter 2 - Grandfather Clock
 
@@ -1735,6 +1756,9 @@ The description is "No wonder Calvin and Drake didn't want to do this. Abbot Gub
 Understand "Abbot Gubbler's", "Abbot's" as the Grandfather Clock.
 
 The Grandfather Clock is inside from Abbot's Quarters, outside from Inside Clock Case.
+
+Instead of inserting something into the Grandfather Clock:
+	say "I'm not here to litter his clock up with things.";
 
 Section 2 - Actions - Polishing
 
@@ -1750,6 +1774,9 @@ After opening the Grandfather Clock when in Abbot's Quarters:
 	say "I open the clock door and peek inside. [run paragraph on]";
 	try searching the Grandfather Clock instead;
 
+Instead of opening the Grandfather Clock when in the Abbot's Quarters and AB_QUART4 is fired:
+	try entering the Grandfather Clock instead.
+
 Instead of searching the closed Grandfather Clock when in Abbot's Quarters:
 	try opening the Grandfather Clock instead;
 
@@ -1757,10 +1784,15 @@ Before entering the closed Grandfather Clock when in Inside Clock Case during Hi
 	try opening the Grandfather Clock instead; [fails]
 
 Before entering the closed Grandfather Clock when in Inside Clock Case:
-	try silently opening the Grandfather Clock; [succeeds]
+	now the Grandfather Clock is open;
+[	try silently opening the Grandfather Clock; [succeeds]]
 
 Instead of searching the Grandfather Clock:
 	say "For a big clock it's got a pretty small [i]penduluum[r], about the size of Calvin's fist and not as big as Drake's. There's even enough space in front of it for the Abbot to hang up one of his spare robes."
+
+Instead of opening the Grandfather Clock when Hiding in the Clock has ended:
+	now the Grandfather Clock is open;
+	try exiting instead.
 
 Instead of opening the Grandfather Clock during Hiding in the Clock:
 	say "You've got a spring missing if you think I can slip out, unnoticed, or come up with a decent excuse as to why I've been hiding in the Abbot's grandfather. No, I'm staying put and hoping nothing happens to make the old man need to change his clothes."
@@ -1770,7 +1802,9 @@ After going through the Grandfather Clock from Inside Clock Case to Abbot's Quar
 	say "[one of]I spill gratefully out of the clock, gasping for breath as though I've been underwater. I've just been holding it in, of course. As for what I've heard – well, I probably shouldn't have, and the quicker I can get out of here, the better.[or][stopping]";
 	continue the action;
 
-Instead of exiting when in Inside Clock Case:
+
+
+Instead of making to leave when in Inside Clock Case:
 	try entering the grandfather clock;
 
 Section 4 - Actions - entering
@@ -1826,6 +1860,9 @@ Section 6 - Scoping and Reaching into the Clock
 After deciding the scope of the player when the location is Abbot's Quarters and the Grandfather Clock is open:
 	place Inside Clock Case in scope;
 
+Does the player mean doing something with Inside Clock Case:
+	it is very unlikely.
+
 Rule for reaching inside Inside Clock Case when the Grandfather Clock is open:
 	allow access;
 
@@ -1837,8 +1874,9 @@ Instead of going through the Abbot's Door when AB_QUART1 is unfired:
 	add AB_QUART1A at entry 1 in the current script;
 
 Instead of going through the Abbot's Door when Voices have not been heard:
-	say "Curses to counterweights! It's not on my rota, this clock, so why should I finish off my polish on it? I head for the doorway – then freeze. Voices, coming down the hall. It's the Abbot himself, coming this way!";
+	say "Curses to counterweights! It's not on my rota, this clock, so why should I finish off my polish on it? I head for the doorway – then freeze. Voices, coming down the hall. It's the Abbot Gubbler himself, coming this way!";
 	remove AB_QUART2 from the current script, if present;
+	remove AB_QUART_PAUSE from the current script, if present;
 	remove AB_QUART3 from the current script, if present;
 	add AB_QUART3A at entry 1 in the current script; [dummy event for good timing]
 
@@ -1892,7 +1930,7 @@ Instead of looking under the cot:
 
 Section 2 - Desk
 
-The Abbot's desk is scenery, in the Abbot's Quarters. "Gubbler's desk is bare and old. The surface is scratched a little with geometric designs."
+The Abbot's desk is scenery, in the Abbot's Quarters. "Gubbler's desk is bare and old. The surface is scratched a little with geometric designs." Understand "table" as the desk.
 
 Instead of polishing the desk with the rag:
 	say "But I'm going to need all the polish I've got for the clock!";
@@ -1906,7 +1944,10 @@ Instead of looking under the desk when Voices have been heard during Introductio
 Instead of looking under the desk:
 	say "There's nothing of interest under the Abbot's desk. No spare polish, for example." instead;
 
-Some geometric designs are part of the Abbot's desk. Understand "scratch", "scratches", "design" as the geometric designs.
+Instead of opening the desk:
+	say "I'm not here to go rummaging around in the Abbot's papers. They'd have be thrown into prison for spying!";
+
+Some geometric designs are part of the Abbot's desk. Understand "scratch", "surface", "table's/desk's/table/desk surface/top", "scratches", "design" as the geometric designs.
 
 Instead of examining the geometric designs: say "Years of designers have imprinted the footprints of their thoughts into the surface of the wood itself. In another hundred years, the desk itself will be a Relic in the Cathedral Reliquary." 
 
@@ -1948,6 +1989,8 @@ AB_QUART1 is a scripted event. The display text is "'And don't come out till tha
 
 AB_QUART1A is a scripted event. The display text is "'Yeah,' Calvin says. 'It's got to look as good as if we did it!'[paragraph break]'Idiot,' Drake mutters. 'Come on.'[paragraph break]Their voices disappear down the hall."
 
+AB_QUART_PAUSE is a scripted event. The display text is "This isn't fair. I'm just a Second Assistant Clock Polisher. I should be watching someone else polishing a clock. And I've only got one glass tumbler half full of polish: it'll take a miracle to do the whole thing."
+
 After firing AB_QUART1A:
 	now AB_QUART1 is fired;
 
@@ -1972,13 +2015,15 @@ To decide if Voices have not been Heard:
 
 AB_QUART4 is a scripted event. The display text is "The Abbot's voice is getting closer. The old man may move slower than a short hand, but he's definitely coming this way."
 
-AB_QUART5 is a scripted event. The display text is "Oh, widdershins! Gubbler is right outside the door! I'd better hide [i]somewhere[r]!"
+AB_QUART4B is a scripted event. The display text is "Oh, no! I shouldn't [i]be[r] here!"
+
+AB_QUART5 is a scripted event. The display text is "Oh, widdershins! Abbot Gubbler is right outside the door! I'd better hide [i]somewhere[r]!"
 
 Part 2 - Inside the Clock
 
 Chapter 1 - Description
 
-The description of Inside Clock Case is "[if the player is casually overhearing]As the phrase goes, I'm stuck between a rack and a gear-trace; except here I'm in the narrow gap between the clock case door and the heavy swinging [i]penduluum[r] behind. And if that hit me, and disrupted the holy timings... well, there's no way they wouldn't notice when the clock-hands stopped moving, let's just say.[otherwise]I'm leaning up against the door of the clock, with my ear pressed against the glass tumbler. The penduluum behind is like someone breathing in my ear. If I'm caught in here, I'm dead.[end if]"
+The description of Inside Clock Case is "[if the player is casually overhearing]As the phrase goes, I'm stuck between a rack and a gear-trace; except here I'm in the narrow gap between the clock case door and the heavy swinging [i]penduluum[r] behind. And if I get in the way of that, and disrupt the clock's holy timings... well, there's no way they wouldn't notice when the clock-hands stopped moving, let's just say.[otherwise]I'm leaning up against the door of the clock, with my ear pressed against the glass tumbler. The penduluum behind is like someone breathing in my ear. If I'm caught in here, I'm dead.[end if]"
 
 Index map with Inside Clock Case mapped east of Abbot's Quarters.
 
@@ -1994,16 +2039,22 @@ Understand "Abbot's", "robes", "hood", "sleeve", "sleeves", "soft/softer", "lini
 Before wearing the spare robe:
 	say "One day, maybe, once I've worked my way up to the status of clock-watcher and can start learning the Twelve Devotions. But not yet." instead;
 
+Before searching the spare robe when in Inside Clock Case:
+	say "I peek into the pockets looking for an ear-trumpet to use on the door... but don't find one there." instead.
+
+Before searching the spare robe:
+	say "I can't go peeking into the Abbot's things!";
+
 Before doing something when the spare robe is physically involved:
 	say "Better not. My fingers are all greasy with polish." instead;
 
-The little sewn-in pocket is a container, open, not openable, part of the spare robe.
+The little sewn-in pocket is a container, open, not openable, part of the spare robe. Understand "pockets", "pockets/pocket of [something related by reversed incorporation]" as the sewn-in pocket.
 
 Instead of doing something when the little sewn-in pocket is physically involved:
 	say "Better not. My fingers are all greasy with polish.";
 
-Instead of examining the little sewn-in pocket:
-	try examining the spare robe instead;
+Instead of examining or searching the little sewn-in pocket:
+	try searching the spare robe instead;
 
 Section 2 - Penduluum
 
@@ -2012,7 +2063,7 @@ The penduluum is scenery in Inside Clock Case. "The [i]penduluum[r] is a large a
 Understand "mechanism", "workings", "brass", "holy", "blessed", "bevelled", "beveled", "weight", "counterweight", "precision", "slapdashery", "pendulum" as the penduluum.
 
 Instead of doing something when the penduluum is physically involved:
-	say "To stop a clock is like murder. To shift the balance... that's something even worse still.";
+	say "To stop a clock is murder. To shift the balance... that's something worse still.";
 
 Section 2b - Weights
 
@@ -2046,6 +2097,14 @@ Understand "man", "men", "person", "people", "figure", "in", "grey", "gray", "ca
 Instead of doing something when the keyhole-figure is physically involved:
 	say "Draw attention to myself? I may be honest, but I'm not stupid. If I get kicked out of the Abbey I'll be nothing but a street urchin for the rest of a very short life."
 
+Section 5 - Monk (through the keyhole)
+
+The keyhole-monk is a man, privately-named, scenery. "I can't see him." Understand "monk", "third voice" as the keyhole-monk. The printed name is "monk".
+
+Instead of doing something when the keyhole-monk is physically involved:
+	say "The monk is outside, and wouldn't help me anyway.";
+
+
 Chapter 4 - Listening puzzle
 
 Yourself can be casually overhearing or eavesdropping. Yourself is casually overhearing.
@@ -2061,7 +2120,7 @@ Instead of listening with the tumbler to the clock-door when the player is eaves
 	say "The tumbler is already fast against the door.";
 
 Instead of listening [without the tumbler] to the keyhole during Hiding in the Clock:
-	say "I put one ear to the keyhole but the Figure's voice is still too faint. But that's right and proper, isn't it? I shouldn't be eavesdropping on the Abbot's private conferences! I'd better just wait till he goes.";
+	say "I put one ear to the keyhole but the Figure's voice is still too faint. I try cupping one hand around my ear, to the keyhole. Still no good[one of]. If I had something I could use to listen better then maybe I'd at least have some warning before they open the clock and skin me alive[or][stopping].";
 
 Before putting the tumbler on the clock-door:
 	try listening with the tumbler to the clock-door instead;
@@ -2102,7 +2161,7 @@ Hiding in the clock is a scene. Hiding in the clock begins when the player is in
 
 When Hiding in the Clock begins:
 	carry out the firing activity with CCASE2;
-	change the current script to { CCASE3, CCASE4, CCASE5, CCASE6 };
+	change the current script to { CCASE3, CCASE4, CCASE5, CCASE5B, CCASE6, CCASE6B };
 	move the keyhole-figure to Inside Clock Case;
 	move the keyhole-abbot to Inside Clock Case;
 	
@@ -2128,26 +2187,44 @@ To decide if Clock Case has not been hidden in:
 
 Section 2 - Scripted dialogue
 
-CCASE2 is a scripted event. The display text is "Oh, no... That click outside was the sound of the Abbot closing the door. Looks like he – and the grey figure I glimpsed with him – are going to be here for a while..."
+CCASE2 is a scripted event. The display text is "Oh, no... That click outside was the sound of the Abbot closing the door. Looks like he – and the grey figure I glimpsed with him – are going to be here for a while... And if they find me here, I'm toast!"
 
 After firing CCASE2:
 	now the Abbot's Door is closed;
 
-CCASE3 is a scripted event. The display text is "'I told you now didn't I tell you?' old Abbot Gubbler is saying, plaintively. 'Here? Why here? You shouldn't have come here.'[paragraph break][if the player is eavesdropping]The Figure says something in reply. With the glass, I can hear quite clearly. That was a good idea. 'We have been disappointed with your failure. The cause and effect principle, Abbot. Such failure must bring consequences.'[otherwise]The Figure says something in reply. I can only hear two words, but they're enough to stop my heart. 'Failure,' and 'Consequences.'[end if]"
+CCASE3 is a scripted event. The display text is "'I told you now didn't I tell you?' old Abbot Gubbler is saying, plaintively. 'Here? Why here? You shouldn't have come here.'[paragraph break][if the player is eavesdropping]The Figure says something in reply. With the glass, I can hear quite clearly. That was a good idea. 'We have been disappointed with your failure. The cause and effect principle, Abbot. Such failure must bring consequences.'[otherwise]The Figure says something in reply. I can only hear two words, but they're enough to stop my heart. 'Failure,' and 'Consequences.' I'm straining to hear more. Something awful is going on here, but what?[end if]"
 
-CCASE4 is a scripted event. The display text is "'But these things, these things are not always tick-tock, they never are,' the old man replies. His voice is quivering, quite different from the steady drone he has when intoning in Chapel. 'The – item you asked about – it's in the Vaults, you see? The Vaults. Even if I could get in, I ...'[paragraph break][if the player is eavesdropping]'Your excuses we find disappointing. Very disappointing. More of this and, Abbot, we may need to unslip your gears completely.'[otherwise]The Figure is too far from the keyhole and speaks too quietly for me to hear clearly. 'Disappointing,' he says; and then 'unslip your gears.'[end if]"
+CCASE4 is a scripted event. The display text is "'But these things, these things are not always tick-tock, they never are,' the old man replies. His voice is quivering, quite different from the steady drone he has when intoning in Chapel. 'The – item you asked about – it's in the Vaults, you see? The Vaults. Even if I could get in, I ...'[paragraph break][if the player is eavesdropping]'Your excuses we find disappointing. Very disappointing. More of this and, Abbot, we may need to unslip your gears completely.'[otherwise]I still can't hear anything properly! The Figure is too far from the keyhole and speaks too quietly. 'Disappointing,' he says; something else, then 'unslip your gears.'[end if]"
 
-CCASE5 is a scripted event. The display text is "The Abbot is spluttering and choking. I've seen him like this only once, when as a young initiate I dropped and smashed an altimeter right before the Archbishop was due to visit.[paragraph break][if the player is eavesdropping]The Figure continues. 'Clearly you're too old to steal the item for us. We have a better mechanism for obtaining it. But you must provide us with the opportunity. Is that understood?'[otherwise]The Figure's quiet voice continues. I can make out; 'too old to steal', 'a better mechanism', 'the opportunity.'[end if][paragraph break]The Abbot nods violently, shaking out agreement the way I might beat dirt from a duster. 'My money?' he asks.[paragraph break]What? [i]Steal? Money?[r] This doesn't sound clockwise to me!"
+CCASE5 is a scripted event. The display text is "The Abbot is spluttering and choking. I've seen him like this only once, when as a young initiate I dropped and smashed an altimeter right before the Archbishop was due to visit.[paragraph break][if the player is eavesdropping]The Figure continues. 'Clearly you're too old to steal the item for us. We have a better mechanism for obtaining it. But you must provide us with the opportunity. Is that understood?'[otherwise]The Figure's quiet voice continues. I can make out; 'too old to steal', 'a better mechanism', 'the opportunity.'[end if][paragraph break]The Abbot nods violently, shaking out agreement the way I might beat dirt from a duster. 'My money?' he asks."
 
-CCASE6 is a scripted event. The display text is "There's the clink, of a pouch of golden minutes. A heavy pouch. The Figure, paying the Abbot...? Then suddenly, there's a third voice. 'Sorry, Father, to interrupt, but you said...'[paragraph break]It's a monk of the Abbey. 'Get out!' the Abbot screeches. His bearing's lost its oil, it seems. 'Get out, get out!'[paragraph break]'But Father,' the monk continues, 'it's [i]time[r], you know. You told me to tell you when it was [i]time[r].'[paragraph break]'Oh! Of course of course,' he mumbles. 'I'll... We'll continue this discussion later, then,' he says, to the Figure.[paragraph break][if the player is eavesdropping]'We certainly will,' the Figure replies.[otherwise]The Figure intones something in reply.[end if][paragraph break]The Abbot leaves, and that leaves me alone, inside this clock, with the stranger outside. He's coming nearer... I can hear his fingers on the door of the case! I must have nudged the [i]penduluum[r], he must have seen the clock-hands quiver... but then, there's the swish of his cloak as he moves away, and the click as the door closes. Phew."
+CCASE5B is a scripted event. The display text is "For a moment, there's nothing more. Then the Figure says, all to clearly: 'You understand what you're doing? The Church will never recover from this.'[paragraph break]Maybe the Abbot replies: just a badly-oiled squeak."
+
+
+CCASE6 is a scripted event. The display text is "There's the clink, of a pouch of golden minutes. A heavy pouch. The Figure, paying the Abbot...? Then suddenly, there's a third voice. 'Sorry, Father, to interrupt, but you said...'[paragraph break]It's a monk of the Abbey. 'Get out!' the Abbot screeches. His bearing's lost its oil, it seems. 'Get out, get out!'";
+
+CCASE6B is a scripted event. The display text is "'But Father,' the monk continues, 'it's [i]time[r], you know. You told me to tell you when it was [i]time[r].'[paragraph break]'Oh! Of course of course,' he mumbles. 'I'll... We'll continue this discussion later, then,' he says, to the Figure.[paragraph break][if the player is eavesdropping]'We certainly will,' the Figure replies.[otherwise]The Figure intones something in reply.[end if][paragraph break]The Abbot leaves, and that leaves me alone, inside this clock, with the stranger outside. He's coming nearer... I can hear his fingers on the door of the case! I must have nudged the [i]penduluum[r], he must have seen the clock-hands quiver... but then, there's the swish of his cloak as he moves away, and the click as the door closes. Phew."
 
 To decide if the clock event is finished:
-	if CCASE6 is fired, yes;
+	if CCASE6B is fired, yes;
 	no;
 
 To decide if the clock event is not finished:
 	if the clock event is finished, no;
 	yes;
+
+After firing CCASE6:
+	move keyhole-monk to the location;
+
+After firing CCASE6B:
+	remove keyhole-monk from play.
+
+Section 3 - After the clock scene
+
+Heading for the Cathedral is a scene. Heading for the Cathedral begins when the location is the Abbot's Quarters and the Inside Clock Case has been visited. Heading for the Cathedral ends when the location is the Cathedral Yard.
+
+When Heading for the Cathedral begins:
+	say "That Figure sounded murderous. Stealing from the Vaults, they said! And Gubbler took his money. Whatever they're doing, it's serious, and I'm the only one who knows about it. And if they ever know I know then who knows what will become of me...[paragraph break]I need to stop the cogs on this, somehow; not just for the Church, but for my own neck too!"
 
 Book 2 - The Abbey Of Time
 
@@ -2170,7 +2247,7 @@ Section 1 - Engravings
 
 Some engravings are scenery, in the corridor of contemplation. "The carvings start with a young child, polishing and smoothing brass under the eye of some old monk. I don't remember them ever smiling at me that nicely. Then a bit along and further up than I am there are older children at the benches, placing cogs onto spindles. Then there's a long period of study, learning the Twelve Devotions of the Greater Rotation; then the monk's habit, the clock-face hair-cut and hours spent doing incision with the stylus... And beyond that takes me closer to the Abbot's door than I'd like. I don't want him to think I'm eavesdropping, do I?"
 
-Understand "pious" as the engravings.
+Understand "pious", "path", "initiate", "Abbot" as the engravings.
 
 Instead of examining the engravings during Introduction:
 	say "If someone comes, that's what I'll do, to explain why I'm here. But no-one's coming, and that means I'd better get away, fast.";
@@ -2315,7 +2392,7 @@ Instead of taking the note:
 
 Part 4 - Upper Hall
 
-Instead of exiting in the Upper Hall: try going southwest.
+Instead of making to leave when in the Upper Hall: try going southwest.
 
 Chapter 1 - Description
 
@@ -2362,7 +2439,7 @@ Part 5 - Kitchen
 Instead of going inside when in the Kitchen:
 	try going north instead.
 
-Instead of exiting when in the Kitchen:
+Instead of making to leave when in the Kitchen:
 	say "I leave the Kitchen by the west door.";
 	try going west instead.
 
@@ -2757,7 +2834,7 @@ Instead of inserting something into the full teacup:
 
 Part P - The Pantry
 
-Instead of exiting when the player is in the Pantry:
+Instead of making to leave when the player is in the Pantry:
 	try going south instead.
 
 Chapter 1 - Description
@@ -3095,7 +3172,7 @@ Definition: Horloge is not sipping his tea:
 
 Part 7 - Central Hall
 
-Instead of exiting in the Central Hall: try going southwest.
+Instead of making to leave in the Central Hall: try going southwest.
 Instead of going inside in the Central Hall: try going northeast.
 
 Chapter 1 - Description
@@ -3245,6 +3322,10 @@ First before clock-setting the refectory clock to when the Refectory Clock is lo
 Instead of opening the locked Refectory Clock when Horloge's Keys have not been handled:
 	say "One of the monks in the Abbey will have keys. Probably lying around, too[one of]. I've had to pinch them before when they've made me get things from the cellar[or][stopping].";
 	fire HORLOGEWALKTHROUGH1;
+
+Instead of opening the locked Refectory Clock when Horloge's Keys are carried by the player:
+	try unlocking the Refectory Clock with Horloge's Keys;
+	if the Refectory Clock is unlocked, continue the action.
 
 Instead of unlocking the locked Refectory Clock with the lucky clock key:
 	say "Don't you think I've tried that before? Whatever this key opens, it's not the Refectory Clock[if Horloge's Keys have not been handled] ... and the key that [i]does[r] open the Refectory Clock will belong to one of the monks. I should explore the Abbey and see what I can find[end if].";
@@ -3430,7 +3511,7 @@ Does the player mean doing something with the new gear:
 Part 11 - Lower Hall
 
 Instead of going inside in the Lower Hall: try going northeast.
-Instead of exiting in the Lower Hall: try going southwest.
+Instead of making to leave in the Lower Hall: try going southwest.
 
 
 Chapter 1 - Description
@@ -9319,7 +9400,7 @@ Book W - Walkthrough Script
 
 Test walkthrough with "test intro / test abbey / test cathedral / test clockchase / test rooftops / test covalt / test countinghouse / test outsidewarehouse".
 
-Test intro with "z/w/hide in clock/put tumbler on door/z/z/z/out/w/w".
+Test intro with "z/w/hide in clock/put tumbler on door/z/z/z/z/z/out/w/w".
 
 Test abbey with "d/e/sw/e/get cup/e/n/put cup in bracket/w/w/z/z/z/e/e/n/smell/get tea/z/z/z/z/s/x train/get gear/turn spigot/wind key/put tea in basket/w/z/z/z/sw/sw/w/get new gear/ne/z/z/z/z/e/ne/e/put new gear in train/pull lever/z/z/z/w/w/z/z/z/e/e/e/get tea/w/sw/w/put tea on table/get keys/get keys/e/e/e/unlock clock/set clock to 5:00/z/w/w/sw/sw/w".
 
