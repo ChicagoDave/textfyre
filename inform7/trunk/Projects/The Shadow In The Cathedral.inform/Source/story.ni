@@ -6,6 +6,7 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 
 [  Change Log
 When		Who		What
+21-Jun-2009	J. Ingold		Doric: added hints to his creed response. Made chase sequence give a hint about the creed. Pushed players to explore further. Fixed a bug with hiding. 
 20-Jun-2009	J. Ingold		Started playthrough of ch. 3. Added "Cathedral Space" region to cover the rooms. Added cathedral backdrop to these. Made "in" and "out" work. Added some hints after meeting Doric and to room descriptions. Added "listen" responses for the monks. Auto-exit of pews.
 19-Jun-2009	J. Ingold		ch. 1 stuff: Fixed issues from Ian and David. Added "making to leave" action, covering EXIT and GO OUT, for diverting movement. Added short-cuts, extra turns to first scene. Fixed bug on typing "open clock" twice. Added Wren's description to the start text. Some rewrites to try and add tension. DIDN'T add ceiling/wall/floor objects - that's a bit scary. 
 18-Jun-2009	D. Cornelson	Updated standard credits and added play-testing commenting code. Added first bits of regression response testing.
@@ -1635,6 +1636,26 @@ Part 41 - Synonyms for exit
 Understand "leave [something]" as getting off.
 Understand "get out of [something]" as getting off.
 Understand "depart [something]" as getting off.
+
+Part 41 - Shouting at
+
+Shouting at is an action applying to one visible thing.
+
+Understand "shout at/to [someone]" as shouting at.
+Understand "call to/at/over [someone]" as shouting at.
+Understand "shout at/to [something]" as shouting at.
+Understand "call to/at/over [something]" as shouting at.
+
+Understand the command "yell" as "shout".
+
+Check shouting at something which is not a person:
+	say "There's no use shouting at [a noun]." instead.
+
+Check shouting at yourself:
+	say "[i]Idiot, Wren[r]." instead;
+
+Check shouting at someone:
+	say "My shout is more like a squeak." instead;
 
 Book E - New Properties
 
@@ -4116,7 +4137,7 @@ Chapter 2 - Scenery
 
 Section 1 - Windows
 
-Some window panels are scenery, in the Cathedral choir. "There are windows here and more above in the Clerestory. What those show I can't make out from down here, but around this space are a series of panels depicting the Twelve Devotions, as visited upon St. Newton in pursuit of his great discoveries. The last shows an object much like the one on the altar back south: beneath it is written 'In Infinituum, Momentuum Grant Motion Infinituum.'"
+Some window panels are scenery, in the Cathedral choir. "There are windows here and more above in the Clerestory. What those show I can't make out from down here, but around this space are a series of panels depicting the Twelve Devotions, as visited upon St. Newton in pursuit of his great discoveries.[paragraph break]The last shows an object much like the one on the altar back south: beneath it is written 'In Infinituum, Momentuum Grant Motion Infinituum.'"
 
 Understand "stained-glass", "stained glass", "stained", "windows" as the window panels.
 
@@ -4438,7 +4459,9 @@ Brother Sa'at has a number called the letter state. The letter state of Brother 
 
 Section 2 - Conversation
 
-CT_SAAT_CREED is a conversation topic. The enquiry text is "'Brother Sa'at,' I ask. 'What's the creed of the Church?'" The response text is "'How should I know?' he demands right back. 'The others might have time for dogma and ritual – the idiots outside with that Perpetuum of theirs, checking to see it's still going, isn't that pathetic? Like they've not seen the best Perpetuum is the one they're standing on. Where's their faith, I'd ask? Where? In a creed? Or in a machine?' He waves an angry hand at the great Orrey, then snatches it back to start winding his fingers together."
+CT_SAAT_CREED is a conversation topic. The enquiry text is "'Brother Sa'at,' I ask. 'What's the creed of the Church?'" The response text is "'Creed? Who has time for creeds? Creeds and passwords are the same thing, that's all a creed is. Some mystery about levers and springs and cogs and whatever else, it's all hopelessly out of date.' He shrugs. 'You'll probably hear them chanting it. Back there.'"
+
+CT_SAAT_ALTAR is a conversation topic. The enquiry text is "'The monks singing around the altar,' I ask. 'What's that thing they've got?'" The response text is "'That thing?' he snaps. 'That thing is only the Perpetuum. And all those idiots can do with it is dogma and ritual! Checking to see it's still going, isn't that pathetic? Like they've not seen the best Perpetuum is the one they're standing on. Where's their faith, I'd ask? Where? In a ritual? Or in a machine?' He waves an angry hand at the great Orrey, then snatches it back to start winding his fingers together."
 
 CT_SAAT_BUSINESS is a conversation topic. The enquiry text is "'What's this work order for?' I ask." The response text is "'They're not about to let just any old ragamuffin barging into the Society of Astronomers,' Sa'at says, in disbelief. 'It's not a school, you know. It's a Society. Of Astronomers. They don't want just anyone barging in and saying, [']Will my crops fail?['], [']What about little Billy's hypothermia?['] You've no idea what a hassle people are. And they're everywhere! You go outside, you can't [i]move[r] for people!' He stops suddenly, and goes quiet."
 
@@ -4469,6 +4492,7 @@ The conversation table of Brother Sa'at is the table of Brother Sa'at's Conversa
 Table of Brother Sa'at's Conversation
 topic							conversation
 "faith" or "creed" or "religion" or "church"			CT_SAAT_CREED
+"ritual" or "altar" or "song" or "perpetuum" 			CT_SAAT_ALTAR
 "business" or "proof"					CT_SAAT_BUSINESS
 "cathedral" or "abbey"					CT_SAAT_CATHEDRAL
 "[abbot]"						CT_SAAT_ABBOT
@@ -4848,8 +4872,8 @@ Chapter 1 - Description
 
 The North Clerestory is a room, northeast of the West Clerestory, northwest of the East Clerestory, in the Cathedral Space. "[if Archbishop's Meeting has not happened]This is the far north end of the church, and from this balcony you have a great view, over the heads of the monks and all the way to the great doors at the end. The balcony itself curves away to southwest and southeast.[otherwise]The north end of the church. There's the big stained window overhead and also the enormous statues of Babbage and Breguet.[end if]"
 
-Instead of making to leave when in the North Clerestory: try going southwest instead.
-Instead of going inside in the North Clerestory: try going southwest instead.
+Instead of making to leave when in the North Clerestory: try going southeast instead.
+Instead of going inside in the North Clerestory: try going southeast instead.
 
 Chapter 2 - Scenery
 
@@ -4869,6 +4893,9 @@ Section 2 - Shadowy Gap
 
 The shadowy gap is part of the statues of St Breguet. Understand "shadows", "shadow" as the shadowy gap.
 
+Instead of hiding from view when in the North Clerestory:
+	try hiding inside the shadowy gap instead.
+
 Instead of entering the shadowy gap:
 	try hiding inside the shadowy gap instead;
 
@@ -4876,7 +4903,7 @@ Instead of hiding inside the shadowy gap when the number of entries in the curre
 	now Doric is fooled;
 	say "I slip into the shadowy gap between the statues['] legs.";
 
-Instead of hiding inside the shadowy gap when the current script is not {}:
+Instead of hiding inside the shadowy gap when Doric is not in the East Clerestory: [ was current script not {} but this doesn't seem to fire. ]
 	say "Doric's already passed me by. No need to waste time!";
 
 Instead of hiding inside the shadowy gap:
@@ -4892,13 +4919,24 @@ Understand "spring", "windows" as the window of the snake.
 
 Section 4 - Distant Doric
 
-DistantDoric is a man, in the North Clerestory. "Along the balcony to the southeast I can see a guard, standing duty." The description is "A Protectorate, of the Archbishop's personal guard. He'll be tough, strong [i]and[r] stupid."
+DistantDoric is a man, in the North Clerestory. "Along the balcony to the southeast I can see a guard, standing duty." The description is "A Protectorate, of the Archbishop's personal guard. He'll be tough, strong [i]and[r] stupid." The printed name is "Doric".
 
 Understand "guard", "man", "Doric", "protectorate" as DistantDoric.
 
 Instead of asking DistantDoric about something when in the North Clerestory:
+	try shouting at DistantDoric instead;
+
+Instead of shouting at DistantDoric when in the North Clerestory:
 	start the chase;
 	say "'Hey, Doric!' I yell. 'How come a man as fat as you isn't on marches?'[paragraph break]'Why, you...' he growls. Quick: he's coming this way!";
+
+Instead of throwing something at DistantDoric when in the North Clerestory:
+	say "[The noun] wouldn't make a great missile. There might be something better around here somewhere - for what good making a member of the Swiss Watch angry will do."
+
+Instead of throwing a wax lump at DistantDoric when in the North Clerestory:
+	start the chase;
+	move the noun to the East Clerestory;
+	say "I lob [the noun] squarely at the side of Doric's helmet. He turns around, startled. And spots me.[paragraph break]'Why, you...' he growls. Quick, Wren: he's coming this way!"
 
 Section 5 - Chase Event
 
@@ -4917,6 +4955,8 @@ To start the chase:
 	change the current script to {CHASE0, CHASE1, CHASE2, CHASE3, CHASE4};
 
 Rule for firing CHASE1:
+	if the player is not in the North Clerestory:
+		say "Doric races along the balcony to the North Clerestory.";
 	move Doric to the North Clerestory;
 
 Rule for firing CHASE1 when Doric is fooled:
@@ -4927,6 +4967,8 @@ Rule for firing CHASE1 when Doric is fooled:
 
 Rule for firing CHASE2:
 	move Doric to the West Clerestory;
+	if the player is not in the West Clerestory:
+		say "The guard races around the balcony to the west.";
 
 Rule for firing CHASE3:
 	if the player is not in the Choir:
@@ -4940,7 +4982,7 @@ First after firing a scripted event that is clustered with CHASE1:
 	if the player can see Doric begin;
 		move Doric to the East Clerestory;
 		clear the current script;
-		say "Doric catches up with me, puffing and panting a little. He boxes my ears very skilfully and demands I apologise. I apologise. He grunts and returns to his door.";
+		say "Doric catches up with me, puffing and panting a little. [one of]'Why, in the name of the Lever and...' - then he stops himself short and[or]He[stopping] boxes my ears very skilfully, demanding I apologise. I apologise. [paragraph break]He grunts and returns to his door[one of], muttering, 'almost gave t'away there, Doric, almost gave t'away.'[or].[stopping]";
 	end if;
 
 Chapter 3 - Event on Entry - Overheard Conversation
@@ -5198,6 +5240,8 @@ After reading a command when Doric is inquisitive:
 		say "'That's very close,' Doric says, clearly tempted to let the mistake pass. Then his back stiffens. 'But it's not close enough to let me say you can see the Archbishop. So you'd better rack your brains or rack off. Clear?'" instead;
 	otherwise if lever_flag is 1 AND spring_flag + winding_key_flag is not 0:
 		say "'That's very close,' Doric says, clearly tempted to let the mistake pass. Then his back stiffens. 'But it's not close enough to let me say you can see the Archbishop. So you'd better rack your brains or rack off. Clear?'" instead;
+	otherwise if lever_flag is 1:
+		say "'You can guess words all you like,' he replies smugly, but I've clearly rattled him somehow. 'But a creed's got more to it than one thing like that.'" instead;
 	otherwise:
 		if business flag of Doric is false:
 			say "'No,' he replies curtly. 'But don't matter. If you don't have the paperwork, you aren't coming through creed or no creed.'" instead;
@@ -5221,6 +5265,9 @@ Section 6 - Other interaction
 
 Instead of throwing a wax lump at awake Doric:
 	say "No way. Doric would beat me to a pulp. I ought to give myself a head-start, at least.";
+
+Instead of throwing something at awake Doric:
+	say "[The noun] wouldn't make much of a missile. And he'd have my head beaten in a moment, anyway.";
 
 Instead of waking asleep Doric:
 	say "Let him sleep. He won't be any use to me awake, will he? And I'd probably need some order stamped in gold-and-turquoise to get him to open his eyes anyway."
@@ -5262,7 +5309,7 @@ Rule for firing unfired BISH_DOOR_EVENT1:
 	say "I approach the guard, wearing my best Abbey-servant voice. 'Excuse me,' I begin. 'I'm here to see the Archbishop.'[paragraph break]'Are you, Squirt?' the guard replies easily. Ah. Not such a pushover, then. 'Got an appointment, do you? I suppose you must, [']cos you know what a waste of time it'd be to turn up wanting to see a man like the Archbishop with no appointment. Like a bald man at a barbers. Waste of time. So you've an appointment, don't you?'[paragraph break]'I'm on Abbey business,' I say.[paragraph break]'If you were on Abbey business,' the guard replies with a smile, 'and I'm not saying you're not, I aint calling you a liar. But if you were, you'd be carrying one of them documents they give to people to prove they're on Abbey business. Church Accreditation, I believe it's called. And it you [i]were[r] on business and not, say,' – he pauses for effect – 'some scruff of a street-rat fallen in here from the street...'[paragraph break]I start to protest but he cuts me off with a poke of his halberd.[paragraph break]'Then sure as my name's Doric – which it is – sure as that you'd be able to quote me a bit of the creed. Wouldn't you, now? That's how it'd be, I fathom, if you were here on business. Real Church business.' He looks at you firmly. 'So are you going to tell me the creed, then? Go right ahead.' He starts waiting. He's good at that, clearly.";
 
 Instead of going through the Bishop's Door when the player can not see Doric:
-	say "The door's unguarded. Excellent! Except... it's locked. Doric must have some kind of key. Well, so much for [i]that[r] great plan, then.";
+	say "The door's unguarded. Excellent! I put my hand on the handle and... it's locked! Not fair!";
 
 Instead of going through the Bishop's Door in the presence of asleep Doric:
 	say "What's the use? He wouldn't believe the Vaults were being looted if I walked into his room holding a bunch of the relics myself.";
@@ -5281,7 +5328,7 @@ After going through the Bishop's Door from the East Clerestory in the presence o
 	say "'In you go,' Doric says, tipping his head. 'But don't you go tellin['] him how I'm doing anything other than my job, mind. I've got to be careful. These are restless times. The Calendar says so. Always check the Calendar.'[paragraph break]'Thanks,' I say. 'I will.'[paragraph break]The Bishop's Door – I made it!";
 	continue the action;
 
-Section - Post Doric
+Section 3 - Post Doric Hints
 
 BISH_DOOR_AFTEREVENT1 is a trigger.
 
@@ -5290,7 +5337,11 @@ Every turn when BISH_DOOR_EVENT1 is fired and BISH_DOOR_AFTEREVENT1 is unfired a
 
 Rule for firing unfired BISH_DOOR_AFTEREVENT1:
 	if business flag of Doric is false and faith flag of Doric is false:
-		say "Out of sight of the guard - I give a shout of frustration. What am I meant to do now? Second Assistant Clock Polishers don't know any creeds. And paperwork? How can I get paperwork around here?";
+		say "Out of sight of the guard - I give a shout of frustration. What am I meant to do now? Second Assistant Clock Polishers don't know any creeds. And paperwork? How can I get paperwork around here?[paragraph break]Then, like a slipping escapement, a gentle tick-tock in my mind: ";
+		if the Orrey Hall is visited: 
+			say "Brother Sa'at. Maybe Brother Sa'at can help.";
+		otherwise:
+			say "look around, Wren. Look around.";
 
 
 Book 4 - The Cathedral Of Time (Continued)
