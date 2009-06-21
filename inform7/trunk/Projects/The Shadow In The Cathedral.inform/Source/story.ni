@@ -6,7 +6,8 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 
 [  Change Log
 When		Who		What
-21-Jun-2009	J. Ingold		Doric: added hints to his creed response. Made chase sequence give a hint about the creed. Pushed players to explore further. Fixed a bug with hiding. 
+21-Jun-2009	J. Ingold		Added "Set clock to dinner-time"
+21-Jun-2009	J. Ingold		Doric: added hints to his creed response. Made chase sequence give a hint about the creed. Pushed players to explore further. Fixed a bug with hiding.
 20-Jun-2009	J. Ingold		Started playthrough of ch. 3. Added "Cathedral Space" region to cover the rooms. Added cathedral backdrop to these. Made "in" and "out" work. Added some hints after meeting Doric and to room descriptions. Added "listen" responses for the monks. Auto-exit of pews.
 19-Jun-2009	J. Ingold		ch. 1 stuff: Fixed issues from Ian and David. Added "making to leave" action, covering EXIT and GO OUT, for diverting movement. Added short-cuts, extra turns to first scene. Fixed bug on typing "open clock" twice. Added Wren's description to the start text. Some rewrites to try and add tension. DIDN'T add ceiling/wall/floor objects - that's a bit scary. 
 18-Jun-2009	D. Cornelson	Updated standard credits and added play-testing commenting code. Added first bits of regression response testing.
@@ -3385,6 +3386,11 @@ Last before clock-setting the refectory clock to when the Refectory Clock is clo
 After clock-setting the refectory clock to:
 	say "[one of]Putting a clock wrong turns my stomach... but the thought of that Figure in Grey spurs me on. So I make the sign of the Winding Key - maybe that'll buy me some forgiveness when I wind down. Then I push the hands round to [the time understood in words].[or]It's horrible to be making a habit of this. Flinching, I push the hands round to [the time understood in words].[stopping]";
 	consider the scene changing rules;
+
+Instead of setting the refectory clock to when the topic understood matches "[dinner]":
+	try clock-setting the refectory clock to 5:00 PM.
+
+Understand "dinner/lunch", "time", "dinner-time", "lunch-time" as "[dinner]".
 
 Section 5 - We see Horloge and his Keys
 
