@@ -199,6 +199,7 @@ Rule for printing the banner text:
 	say "Inform 7 Story Programming by Graeme Jefferis[line break]";
 	say "Testing by Jacqueline Ashwell, Peter Berman,[line break]Eric Eve, Jim Aikin, and Paul O'Brian[line break]";
 	say "User Interface Programming by Thomas Lynge[line break]";
+	say "Sketches by Erika Swanson, whom we thank for taking[line break]on so much work in so little time.[line break]";
 	say "Special thanks to Graham Nelson and Emily Short[line break]";
 	say "for all of their hard work on Inform 7.[line break]";
 	say "All rights reserved[line break]";
