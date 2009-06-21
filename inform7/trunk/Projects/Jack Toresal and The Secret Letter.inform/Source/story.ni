@@ -3,6 +3,7 @@
 [  Change Log
 When		Who		What
 19-Jun-2009	G. Jefferis	Sleep in Maiden House
+19-Jun-2009	D. Cornelson	Small fixes here and there.	
 18-Jun-2009	D. Cornelson	Fixed fountain open bug.
 07-Jun-2009	D. Cornelson	Fixed hint ordering, caused crash in Silverlight.
 22-May-2009	G. Jefferis	Hints
@@ -4684,7 +4685,7 @@ OM2 is a quip. The menu text is "'Tell me about your weapons.'". The display tex
 
 OM3 is a quip. The menu text is "'What do you know about the mercenaries in Grubber's Market?'". The display text is "'Do you, uh, know anything about the mercenaries who were in Grubber's Market this morning?'[paragraph break]Olgan smiles unpleasantly. 'They're some of my best customers. Should I let them know you were asking?'[paragraph break]'Er — no, no thanks,' you stammer. 'Not necessary.'"
 
-OM4 is a quip. The menu text is "'Have you seen Bobby lately?'". The display text is "'I, uh, don't suppose you've seen Bobby around?' you ask. 'Tall? Blonde hair?'[paragraph break]Olgan Minor just curls his lip with contempt."
+OM4 is a quip. The menu text is "'Have you seen Bobby lately?'". The display text is "'I, uh, don't suppose you've seen Bobby around?' you ask. 'Tall? Black hair?'[paragraph break]Olgan Minor just curls his lip with contempt."
 
 OM6 is a quip. The menu text is "'What do you think about Baron Fossville?'". The display text is "'So what's your opinion on Baron Fossville?' you ask.[paragraph break]'I don't discuss politics with customers,' Olgan snaps."
 
@@ -5546,7 +5547,7 @@ To say bobby's description:
 	otherwise if the Skirmish is happening:
 		say "Bobby looks none the worse for wear after his hanging. He's still smiling that wild, lopsided smile, even as he parries the Baron's savage blows";
 	otherwise:
-		say "Bobby is a few years older than you, a tall, broad-shouldered lad with touseled blond hair and a rakish grin. He's an orphan, like you, and like you he makes the streets of the city his home and lives by his wits. Unlike you, he doesn't have the safety net of Maiden House to fall back on, but somehow he always seems to do well for himself.[paragraph break]You also happen to think that he's devastatingly handsome, although you would never admit that under the worst torture the King's interrogators could devise. He doesn't even know that you're really a girl, and you're not about to tell him, because if he knew he would certainly stop inviting you along on his exploits";
+		say "Bobby is a few years older than you, a tall, broad-shouldered lad with tousled black hair and a rakish grin. He's an orphan, like you, and like you he makes the streets of the city his home and lives by his wits. Unlike you, he doesn't have the safety net of Maiden House to fall back on, but somehow he always seems to do well for himself.[paragraph break]You also happen to think that he's devastatingly handsome, although you would never admit that under the worst torture the King's interrogators could devise. He doesn't even know that you're really a girl, and you're not about to tell him, because if he knew he would certainly stop inviting you along on his exploits";
 
 Instead of kissing Bobby:
 	if the location is the War Room, say "Bobby is a little busy right now!";
