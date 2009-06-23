@@ -516,10 +516,10 @@ Check facing through something closed:
 Check facing towards nothing:
 	say "You see nothing of interest in that direction." instead;
 
-Report facing upwards towards a room:
+Report facing up towards a room:
 	say "[The viewed item] lies above.";
 
-Report facing downwards towards a room:
+Report facing down towards a room:
 	say "[The viewed item] lies below.";
 
 Report facing inside towards a room:
