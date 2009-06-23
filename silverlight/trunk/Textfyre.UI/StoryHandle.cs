@@ -52,6 +52,20 @@ namespace Textfyre.UI
         }
         #endregion
 
+        #region :: Hints ::
+        public void ShowHints()
+        {
+            Current.Game.TextfyreBook.TextfyreDocument.StoryAid.ShowHints();
+        }
+        #endregion
+
+        #region :: GoToMiscPages ::
+        public void GoToMiscPages()
+        {
+            Current.Game.TextfyreBook.GoTo("MiscPageLeft");
+        }
+        #endregion
+
         #region :: Toc Select ::
         public class TocArgs
         {

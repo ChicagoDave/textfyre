@@ -27,14 +27,17 @@ namespace SecretLetter
                     this.QuitGame();
                     break;
                 case "help":
-                        // TODO: Show into in the TOC
+                    args.ContinueWithInput = false;
+                    this.ShowManual();
                     break;
                 case "map":
-                        // TODO: Show map pages
+                    args.ContinueWithInput = false;
+                    this.GoToMiscPages();
                     break;
                 case "hint":
                 case "hints":
-                        // TODO: Show hint menu
+                    args.ContinueWithInput = false;
+                    this.ShowHints();
                     break;
             }
 
