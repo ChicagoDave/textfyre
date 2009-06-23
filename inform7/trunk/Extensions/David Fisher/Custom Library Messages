@@ -115,7 +115,7 @@ The library message tense is a tense that varies.
 The library message grammatical number is a grammatical number that varies.
 The library message person is a grammatical person that varies.
 The library message gender is a gender that varies.
-Library_message_debug is a thing. Library_message_debug can be on or off.
+Library_message_debug is a thing. Library_message_debug can be debugging.
 
 Section 1.2 - Defaults
 
@@ -123,7 +123,7 @@ The library message tense is present tense.
 The library message grammatical number is singular.
 The library message person is second person.
 The library message gender is gender masculine.
-Library_message_debug is off.
+Library_message_debug is not debugging.
 
 Table of custom library messages
 Message Id			Message Text
@@ -904,7 +904,7 @@ To set the current object to (x_ - an object) / (dbg_msg - text):
    if x_ is_nothing, change curr_obj to main object;	[ make sure it is always valid ]
    otherwise change curr_obj to x_;
    if curr_obj is_nothing, change curr_obj to the player; [last resort]
-   if library_message_debug is on begin;
+   if library_message_debug is debugging begin;
       say "{[dbg_msg]:obj=";
       if curr_obj is the player, say "player"; [infinite recursion if prints player!]
       otherwise say "[curr_obj]";
@@ -2808,7 +2808,7 @@ To decide whether there is no newly visible exterior:
 
 [ Special handling for "go" without a direction ]
 
-The block vaguely going rule is not listed in the for supplying a missing noun rules.
+The block vaguely going rule is not listed in the for supplying a missing noun rules. 
 
 Rule for supplying a missing noun while going:
    display LibMsg <block vaguely going>;
