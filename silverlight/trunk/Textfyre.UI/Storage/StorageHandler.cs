@@ -31,7 +31,6 @@ namespace Textfyre.UI.Storage {
 
                 }
             } catch (IsolatedStorageException ex) {
-                MessageBox.Show(ex.Message);
             }
 
             // TODO: Delete backup file, if everything went fine.
@@ -55,7 +54,6 @@ namespace Textfyre.UI.Storage {
                     }
                 }
             } catch (IsolatedStorageException ex) {
-                MessageBox.Show(ex.Message);
             }
             return sb;
         }
@@ -70,7 +68,6 @@ namespace Textfyre.UI.Storage {
                 if (IsoStorageFile.FileExists(filename))
                     IsoStorageFile.DeleteFile(filename);
             } catch (IsolatedStorageException ex) {
-                MessageBox.Show(ex.Message);
             }
         }
         #endregion
