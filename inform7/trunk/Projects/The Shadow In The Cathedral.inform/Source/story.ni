@@ -11,10 +11,15 @@ When		Who		What
 20-Jun-2009	J. Ingold		Started playthrough of ch. 3. Added "Cathedral Space" region to cover the rooms. Added cathedral backdrop to these. Made "in" and "out" work. Added some hints after meeting Doric and to room descriptions. Added "listen" responses for the monks. Auto-exit of pews.
 19-Jun-2009	J. Ingold		ch. 1 stuff: Fixed issues from Ian and David. Added "making to leave" action, covering EXIT and GO OUT, for diverting movement. Added short-cuts, extra turns to first scene. Fixed bug on typing "open clock" twice. Added Wren's description to the start text. Some rewrites to try and add tension. DIDN'T add ceiling/wall/floor objects - that's a bit scary. 
 18-Jun-2009	D. Cornelson	Updated standard credits and added play-testing commenting code. Added first bits of regression response testing.
-16 Jun 2009 	J. Ingold	Added "hide" command (action is "hiding from view"), used to give a response to more general input. Fixed a bug in the tea-machine process. Repaired the abbey test script, that I seem to have broken by changing Drake's logic. Changed descriptions of the Hall rooms when the gongs are ringing and the player should be heading out.
-15 Jun 2009	J. Ingold	Play-tested C2. Several changes, including a Pantry off the kitchen with tea leaves in and the ability to hide from Drake. Synonym "fill <x> with water". 
-05 Jun 2009     J. Ingold       Better cluing for the 5pm time-setting. Horloge nows "walks through" to hint about the keys (so long as you haven't seen him before). Some text rewrites.
-04 Jun 2009	J. Ingold	Added synonyms to verbs. Removed grammar lines leading to "rub" action. Added an ornamental action, "making the sign of". Slowed the clock-kind down to increase by 1 minute every 10 turns (to "discourage" accidental solution of time-puzzles -- it now takes 1200 moves for the Refectory Clock to strike 5pm, instead of only 120.) Added "[or-separated list of ...] substitution and used it to give help escaping Drake.
+16 Jun 2009	J. Ingold		Added "hide" command (action is "hiding from view"), used to give a response to more general input. Fixed a bug in the tea-machine process. Repaired the abbey test script, that I seem to have broken by changing Drake's logic. Changed descriptions of the Hall rooms when the gongs are ringing and the player should be heading out.
+16 Jun 2009	G. Jefferis	Return to Cathedral
+15 Jun 2009	G. Jefferis	Return to Cathedral; Calvin's Patrol
+15 Jun 2009	J. Ingold		Play-tested C2. Several changes, including a Pantry off the kitchen with tea leaves in and the ability to hide from Drake. Synonym "fill <x> with water". 
+11 Jun 2009	G. Jefferis	Return to Cathedral
+09 Jun 2009	G. Jefferis	Autopothecary complete
+05 Jun 2009	G. Jefferis	Autopothecary boxes
+05 Jun 2009	J. Ingold		Better cluing for the 5pm time-setting. Horloge nows "walks through" to hint about the keys (so long as you haven't seen him before). Some text rewrites.
+04 Jun 2009	J. Ingold		Added synonyms to verbs. Removed grammar lines leading to "rub" action. Added an ornamental action, "making the sign of". Slowed the clock-kind down to increase by 1 minute every 10 turns (to "discourage" accidental solution of time-puzzles -- it now takes 1200 moves for the Refectory Clock to strike 5pm, instead of only 120.) Added "[or-separated list of ...] substitution and used it to give help escaping Drake.
 01 Jun 2009	G. Jefferis	Remainder of Covalt's conversation
 27 May 2009	G. Jefferis	Return to Covalt's - conversation
 26 May 2009	G. Jefferis	Return to Covalt's
@@ -88,6 +93,7 @@ Include Direct Questions by Textfyre.
 Include Textfyre Standard Rules by Textfyre.
 Include Grid Layout by Textfyre.
 Include Test Suite by Textfyre.
+Include Parse List by Textfyre.
 
 Book - Initialisation
 
@@ -185,28 +191,7 @@ To say r:
 To say b:
 	say bold type;
 
-Chapter 2 - Various pronouns and parts of speech
-
-[Ganked from ex.414 "Odins" ]
-
-The last mentioned thing is a thing that varies. 
-
-After printing the name of something (called the target): 
-    change the last mentioned thing to the target. 
-
-To say it-they: 
-    if the last mentioned thing is plural-named, say "they"; 
-    otherwise say "it";
-
-To say is-are: 
-    if the last mentioned thing is plural-named, say "are"; 
-    otherwise say "is";
-
-To say s-are: 
-    if the last mentioned thing is plural-named, say " are"; 
-    otherwise say "[']s";
-
-Chapter 3 - Directions which may be mirrored
+Chapter 2 - Directions which may be mirrored
 
 To say (dir - a direction) with mirroring:
 	if the hemisphere of the location is the natural hemisphere:
@@ -245,8 +230,6 @@ LibMsg <which disambiguation>	"Which do you mean, "
 LibMsg <whom disambiguation>	"Whom do you want[if main object is not the player] [the %][otherwise]me[end if] to [the last command]?" 
 LibMsg <what disambiguation>	"What do you want[if main object is not the player] [the %][otherwise]me[end if] to [the last command]?" 
 
-
-
 Part 2 - New things to do
 
 Chapter 3 - Solidity of wax
@@ -262,8 +245,8 @@ Definition: a thing is suitable for scraping:
 	no;
 
 Definition: a thing is unsuitable for scraping:
-	if it is suitable for scraping, no;
-	yes;
+	unless it is suitable for scraping, yes;
+	no;
 
 Chapter 5 - Screwing tools
 
@@ -273,23 +256,35 @@ Definition: a thing is suitable for screwing:
 	no;
 
 Definition: a thing is unsuitable for screwing:
-	if it is suitable for screwing, no;
-	yes;
+	unless it is suitable for screwing, yes;
+	no;
 
 Chapter 6 - Wrapping tools
 
 Definition: a thing is suitable for wrapping:
 	if it is the tarp, yes;
+	if it is the linen cloth, yes;
 	no;
 
 Definition: a thing is unsuitable for wrapping:
-	if it is suitable for wrapping, no;
-	yes;
+	unless it is suitable for wrapping, yes;
+	no;
 
 Chapter 7 - Clutter
 
 Definition: a thing is worthy of inspection:
 	if it is clutter, yes;
+	no;
+
+Chapter 8 - Jamming tools
+
+Definition: a thing is suitable for jamming:
+	if it is the wrench, yes;
+	if it is the knife, yes;
+	no;
+
+Definition: a thing is unsuitable for jamming:
+	unless it is suitable for jamming, yes;
 	no;
 
 Part 4 - New Activities
@@ -301,6 +296,7 @@ Chapter 1 - Printing the description of something
 The fancy examining rule is listed instead of the standard examining rule in the carry out examining rules. 
 
 Printing the description of something is an activity. 
+The printing the description activity has a truth state called the final-paragraph-break;
 
 This is the fancy examining rule:
 	carry out the printing the description activity with the noun;
@@ -309,28 +305,32 @@ The examine undescribed things rule is not listed in any rulebook.
 The examine undescribed devices rule is not listed in any rulebook.
 The examine undescribed containers rule is not listed in any rulebook.
 
+First before printing the description:
+	change the final-paragraph-break to false;
+
 Rule for printing the description of a container (called item): 
-	if the item goes undescribed by source text,
+	if the item goes undescribed by source text:
 		abide by the examine undescribed containers rule instead;
-	say "[description of item] [run paragraph on]";
+	say description of item;
+	change the final-paragraph-break to true;
 
 Rule for printing the description of a device (called item): 
-	if the item goes undescribed by source text,
+	if the item goes undescribed by source text:
 		abide by the examine undescribed devices rule instead;
-	say "[description of item] [run paragraph on]";
+	say description of item;
+	change the final-paragraph-break to true;
 
 Rule for printing the description of a thing (called item): 
-	if the item goes undescribed by source text,
+	if the item goes undescribed by source text:
 		abide by the examine undescribed things rule instead;
-	say "[description of item] [run paragraph on]";
+	say description of item;
+	change the final-paragraph-break to true;
 
-Last after printing the description of a thing (called item):
-	unless the item goes undescribed by source text,
+Last after printing the description of a thing:
+	if the final-paragraph-break is true:
 		say paragraph break;
 
-Chapter 2 - Printing the description of a lit room
-
-Printing the description of a lit room is an activity. 
+Chapter 2 - Printing the description of a room
 
 The fancy room description body text rule is listed instead of the room description body text rule in the carry out looking rules. 
 
@@ -351,11 +351,7 @@ This is the fancy room description body text rule:
 			abbreviated form allowed is true and
 			the location is visited,
 			continue the action;
-		begin the printing the description of a lit room activity;
-		if handling the printing the description of a lit room activity,
-			carry out the printing the description activity with the location;
-			[ print the location's description; [Standard Rules phrase] ]
-		end the printing the description of a lit room activity;
+		carry out the printing the description activity with the location;
 
 Rule for printing the description of a room:
 	print the location's description; [Standard Rules phrase]
@@ -417,7 +413,7 @@ Part 5 - Wax
 
 Chapter 1 - Colors
 
-Wax color is a kind of value. The wax colors are red, blue, yellow, purple, orange, green and brown.
+Wax color is a kind of value. The wax colors are red, blue, yellow, purple, orange, green, brown, and clear.
 
 To decide if (w - a wax color) is primary:
 	if w is red, yes;
@@ -513,17 +509,19 @@ Understand "wax candle" as a candle.
 Understand "wax" as a candle when the location does not enclose a wax lump.
 Understand the wax property as describing a candle.
 
+Before printing the name of a candle (called c):
+	if the wax of c is not clear:
+		say "[wax of c] ";
+
 Rule for printing the name of a candle:
-	say "[wax] candle";
+	say "candle";
 
 To say candlecolor of (c - a candle):
-	if the wax of c is red begin;
-		say "strawberry-red";
-	otherwise if the wax of c is blue;
-		say "sky-blue";
-	otherwise if the wax of c is yellow;
-		say "daffodil-yellow"; 
-	end if;
+	if the wax of c is:
+		-- red: say "strawberry-red";
+		-- blue: say "sky-blue";
+		-- yellow: say "daffodil-yellow"; 
+		-- otherwise: say the wax of c;
 
 Understand "strawberry", "strawberry-red" as a candle when the wax of the item described is red.
 Understand "sky", "sky-blue" as a candle when the wax of the item described is blue.
@@ -545,9 +543,9 @@ Part 8 - Pews
 
 A pew is a kind of supporter. A pew is always enterable. A pew is usually scenery, plural-named. The printed name is usually "pews". Understand "pew/pews/seat/seats/bench/benches" as a pew.
 
-Instead of going when the player is on a pew (this is the auto-exit pews rule):
-	try getting off a random pew enclosing the player;
-	if the player is not on a pew, continue the action.
+Instead of going when the player is on a pew (called the perch) (this is the auto-exit pews rule):
+	try getting off the perch;
+	if the player is not on a pew, continue the action;
 
 Part 9 - Cartesian controls
 
@@ -582,11 +580,11 @@ Rule for printing the name of a Cartesian Crank (called c):
 Rule for printing the description of a Cartesian Crank (called c):
 	let mod be the model of c;
 	[ let metal be the metal of mod; ]
-	say "The [metal of mod] crank is connected by a system of mobile rods to [the meter of c]. I could turn it either clockwise or anticlockwise."
+	say "The [metal of mod] crank is connected by a system of mobile rods to [the meter of c]. I could turn it either clockwise or anticlockwise.";
 
 Rule for printing the description of a Cartesian Meter (called m):
 	let mod be the model of m;
-	say "A glass cylinder capped with steel and engraved with a letter [letter of mod]. Inside are two revolving tumblers engraved with numerals. They read [tens part of coordinate of mod][units part of coordinate of mod]. Two piston-arms lead back to the [metal of mod] crank."
+	say "A glass cylinder capped with steel and engraved with a letter [letter of mod]. Inside are two revolving tumblers engraved with numerals. They read [tens part of coordinate of mod][units part of coordinate of mod]. Two piston-arms lead back to the [metal of mod] crank.";
 
 Understand "cylinder" as a Cartesian Meter.
 
@@ -599,16 +597,15 @@ Printing the drop event of something is an activity.
 
 After taking something heavy:
 	begin the printing the take event activity with the noun;
-	if handling the printing the take event activity with the noun,
+	if handling the printing the take event activity with the noun:
 		say "Taken.[paragraph break]";
 	end the printing the take event activity with the noun;
-	if the number of heavy things carried by the player is at least two begin;
+	if the number of heavy things carried by the player is at least two:
 		let the deadweight be the noun;
 		while the deadweight is the noun
 			repeatedly let the deadweight be a random heavy thing held by the player;
 		carry out the printing the drop event activity with the deadweight;
 		try silently dropping the deadweight;
-	end if;
 
 Part 11 - Pointers
 
@@ -805,18 +802,17 @@ A mirror-room has a text called the second description.
 
 Section 3 - Implementation
 
-Before printing the description of a lit room when the location is an unvisited mirror-room: 
-	if the reflection of the location is unvisited:
-		now the location is first seen;
-		now the reflection of the location is second seen;
+Before printing the description of an unvisited mirror-room (called m): 
+	if the reflection of m is unvisited:
+		now m is first seen;
+		now the reflection of m is second seen;
 
-Rule for printing the description of a lit room when the location is a mirror-room:
-	let x be the location;
-	if the location is minor, change x to the reflection of the location;
-	if the location is first seen:
-		say the first description of x, paragraph break;
+Rule for printing the description of a mirror-room (called m):
+	if m is minor, change m to the reflection of the location;
+	if m is first seen:
+		say the first description of m, paragraph break;
 	otherwise:
-		say the second description of x, paragraph break;
+		say the second description of m, paragraph break;
 
 Chapter 4 - Mirror items
 
@@ -1218,6 +1214,19 @@ Understand "use [a door]" as entering. [Automatically opening it as necessary.]
 Understand "use [something] on/with [something]" as using it with.
 Understand "use [something]" as using.
 
+[Change 'use <something> to foo' into 'foo with <something>'
+
+e.g.
+USE TARPAULIN TO WRAP PIPE becomes WRAP PIPE WITH TARPAULIN
+USE TUMBLER TO LISTEN AT KEYHOLE becomes LISTEN AT KEYHOLE WITH TUMBLER
+]
+
+After reading a command: 
+	let N be indexed text;
+	let N be the player's command; 
+	replace the regular expression "\buse (.+?) to (.+)" in N with "\2 with \1"; 
+	change the text of the player's command to N. 
+
 Understand the command "try" and "employ" as "use".
 
 Part 16 - Scraping
@@ -1428,7 +1437,7 @@ Check wrapping something with something unsuitable for wrapping:
 	say "[The second noun] [is-are] not much use for wrapping things with.";
 
 Check wrapping something with something:
-	say "[The noun][s-are] good for covering things, but there's no reason to cover what doesn't need covering.";
+	say "[The second noun][s-are] good for covering things, but there's no reason to cover what doesn't need covering.";
 
 Part 27 - Putting Against
 
@@ -1658,6 +1667,14 @@ Check shouting at yourself:
 Check shouting at someone:
 	say "My shout is more like a squeak." instead;
 
+Part 38 - Jamming
+
+Understand "jam [something] with [something preferably held]" as inserting it into (with nouns reversed).
+Understand "stop [something] with [something preferably held]" as inserting it into (with nouns reversed).
+Understand "jam [something]" as attacking.
+Understand "stop [enormous penduluum]" as attacking.
+
+
 Book E - New Properties
 
 Part 1 - Wakefulness
@@ -1740,8 +1757,9 @@ Instead of dropping the lucky key:
 Instead of putting the lucky key on something:
 	try dropping the lucky key instead;
 
-Instead of inserting the lucky key into something:
-	try dropping the lucky key instead;
+Instead of inserting the lucky key into a container:
+	if the container is not held by the player:
+		try dropping the lucky key instead;
 
 Instead of throwing the lucky key at something:
 	try dropping the lucky key instead;
@@ -1751,6 +1769,7 @@ Does the player mean doing something with the lucky key:
 
 A rag is carried by the player. The description is "The tool of the polisher's trade. And this old rag looks like it's been the tool of several polishers before me, too."
 
+Understand "old", "dirty", "polishing" as the rag.
 A tumbler is a container, open, carried by the player. The description is "A small glass with all that's left of my daily wood polish ration. How I'm supposed to do all the rest of my chores after this I don't know, but Drake and Calvin didn't seem too worried about that." Understand "glass" as the tumbler. The printed name of the tumbler is "glass tumbler".
 
 Rule for emptying away the small amount of polish when in Inside Clock Case:
@@ -1847,8 +1866,6 @@ After going through the Grandfather Clock from Inside Clock Case to Abbot's Quar
 	now the player is casually overhearing;
 	say "[one of]I spill gratefully out of the clock, gasping for breath as though I've been underwater. I've just been holding it in, of course. As for what I've heard – well, I probably shouldn't have, and the quicker I can get out of here, the better.[or][stopping]";
 	continue the action;
-
-
 
 Instead of making to leave when in Inside Clock Case:
 	try entering the grandfather clock;
@@ -2124,7 +2141,6 @@ Understand "weights" as a clock-weight.
 Instead of pushing or pulling or taking a clock-weight:
 	say "Interfering with the internal mechanisms of a clock is unthinkable!"
 
-
 Section 3 - Abbot Gubbler (through the keyhole)
 
 The keyhole-abbot is a man, privately-named, proper-named, scenery. [initially out of play] "I can't see much through the keyhole, except the Abbot's stout waist and shaking hands. Not much good for winding anything now, but if I said as much to anyone then I'd be in real trouble." The printed name is "Abbot Gubbler".
@@ -2150,15 +2166,13 @@ The keyhole-monk is a man, privately-named, scenery. "I can't see him." Understa
 Instead of doing something when the keyhole-monk is physically involved:
 	say "The monk is outside, and wouldn't help me anyway.";
 
-
 Chapter 4 - Listening puzzle
 
 Yourself can be casually overhearing or eavesdropping. Yourself is casually overhearing.
 
 Instead of listening with the tumbler to the clock-door when the player is casually overhearing during Hiding in the Clock:
-	if the tumbler contains something begin;
+	if the tumbler contains something:
 		try emptying the tumbler;
-	end if;
 	now the player is eavesdropping;
 	say "I put the glass tumbler carefully against the door, then lean down to press my ear against it. Fantastic! I can hear much more clearly now!";
 
@@ -2210,7 +2224,8 @@ When Hiding in the Clock begins:
 	change the current script to { CCASE3, CCASE4, CCASE5, CCASE5B, CCASE6, CCASE6B };
 	move the keyhole-figure to Inside Clock Case;
 	move the keyhole-abbot to Inside Clock Case;
-	
+	now the Grandfather Clock is closed;
+
 When Hiding in the Clock ends:
 	remove the keyhole-abbot from play;
 	remove the keyhole-figure from play;
@@ -2244,8 +2259,7 @@ CCASE4 is a scripted event. The display text is "'But these things, these things
 
 CCASE5 is a scripted event. The display text is "The Abbot is spluttering and choking. I've seen him like this only once, when as a young initiate I dropped and smashed an altimeter right before the Archbishop was due to visit.[paragraph break][if the player is eavesdropping]The Figure continues. 'Clearly you're too old to steal the item for us. We have a better mechanism for obtaining it. But you must provide us with the opportunity. Is that understood?'[otherwise]The Figure's quiet voice continues. I can make out; 'too old to steal', 'a better mechanism', 'the opportunity.'[end if][paragraph break]The Abbot nods violently, shaking out agreement the way I might beat dirt from a duster. 'My money?' he asks."
 
-CCASE5B is a scripted event. The display text is "For a moment, there's nothing more. Then the Figure says, all to clearly: 'You understand what you're doing? The Church will never recover from this.'[paragraph break]Maybe the Abbot replies: just a badly-oiled squeak."
-
+CCASE5B is a scripted event. The display text is "For a moment, there's nothing more. Then the Figure says, all too clearly: 'You understand what you're doing? The Church will never recover from this.'[paragraph break]Maybe the Abbot replies: just a badly-oiled squeak."
 
 CCASE6 is a scripted event. The display text is "There's the clink, of a pouch of golden minutes. A heavy pouch. The Figure, paying the Abbot...? Then suddenly, there's a third voice. 'Sorry, Father, to interrupt, but you said...'[paragraph break]It's a monk of the Abbey. 'Get out!' the Abbot screeches. His bearing's lost its oil, it seems. 'Get out, get out!'";
 
@@ -2444,8 +2458,6 @@ Chapter 1 - Description
 
 A room called the Upper Hall is east of the Rickety Stair. "The Great Hall of the Abbey is the biggest room I've seen in my life, running from this end all the way southwest (and it is all the way, I'm never allowed any further than the Great Doors and the Yard outside). If I crane my neck I can see the dark square of the floorboards of my room – the ladder snakes down from one side, west of here. Lights move in and out overhead, from the candles moving on their Holy Tracks. Strong smells float through an archway to the east.[paragraph break]From their niches, the Three Major Saints are watching sternly, keen that I should get out of the Cathedral and talk to the Archbishop as quickly as possible."
 
-
-
 Chapter 2 - Scenery
 
 Section 1 - Statues
@@ -2621,7 +2633,7 @@ Chapter 3 - Kettle
 The kettle is a fake container, open, openable, part of the tea-machine. The description is "The brass kettle is suspended from an arm-brace under the spigot and near the burner. [if full]It's full of water.[end if]"
 
 Rule for printing the description of the kettle when the tea-machine is switched on:
-	say "The kettle is steaming away. ";
+	say "The kettle is steaming away.";
 
 Understand "brass", "brace" as the kettle.
 Understand "empty" as the kettle when the kettle is empty.
@@ -2639,7 +2651,7 @@ The burner is an internal gubbin, part of the tea-machine.
 The description is "The burner is a little spout for the gas which is pumped in from the cow-sheds in the countryside, or so Drake says. It's currently unlit but on one side is the flint-iron, ready to spark should the gear-train connected to it be put in motion."
 
 Rule for printing the description of the burner when the tea-machine is switched on:
-	say "The burner is [if the burner is lit]firing[otherwise]cooling[end if]. ";
+	say "The burner is [if the burner is lit]firing[otherwise]cooling[end if].";
 
 Understand "spout", "gas", "pipe" as the burner.
 
@@ -2815,11 +2827,10 @@ A tea-making rule:
 		say "The lever moves without resistance. It's been long enough since breakfast, clearly, that the spring has wound down." instead;
 
 A tea-making rule:
-	if the small gear is part of the gear train begin;
+	if the small gear is part of the gear train:
 		say "[one of]The lever locks down and sets the first few gears in motion. But it doesn't seem to be carrying over correctly[or]The lever doesn't do anything[stopping]. [run paragraph on]";
 		try examining the gear train;
 		say "I release the lever and it springs back up." instead;
-	end if;
 
 A tea-making rule:
 	if the new gear is not part of the gear train,
@@ -2895,12 +2906,11 @@ Instead of smelling in the Abbey Pantry:
 	say "The strongest smell comes from the jar of tea leaf on the shelves.";
 	fire SMELLPANTRY;
 
-Section 2 - Giving it away for player's who don't notice
+Section 2 - Giving it away for players who don't notice
 
 Instead of going south from the Pantry when SMELLPANTRY is unfired:
 	say "I'm distracted for a moment by a strong smell from one of the jars. It's only tea but it makes my stomach turn circles. [i]How[r] long till five o'clock and dinner time?";
 	fire SMELLPANTRY;
-	
 
 Chapter 2 - Scenery
 
@@ -2979,8 +2989,6 @@ Instead of putting the handful of tea leaves on something:
 
 Instead of inserting the handful of tea leaves into something:
 	try dropping the handful of tea leaves instead;
-
-
 
 Part 6 - Library
 
@@ -3213,8 +3221,8 @@ Definition: Horloge is sipping his tea:
 	no;
 
 Definition: Horloge is not sipping his tea:
-	if Horloge is sipping his tea, no;
-	yes;
+	unless Horloge is sipping his tea, yes;
+	no;
 
 Part 7 - Central Hall
 
@@ -3415,8 +3423,6 @@ At the time when Horloge walks through:
 		[ This last line shouldn't be possible, but more-or-less covers us against bizarre outcomes. ]
 			say "I catch a glimpse from the Refectory as";
 		say " the garden door opens. A hooded figure comes through and locks the door again with a [i]fat bunch of keys[r]. It's Brother Horloge! He paces away, back to his place in the [location of Horloge].";
-        
-
 
 Chapter 3 - Gong Sounding
 
@@ -3578,12 +3584,13 @@ Calvin is a man in Lower Hall. "But maybe you're starting to see what kind of lu
 Instead of going southwest from the Lower Hall in the presence of Calvin:
 	say "What, just waltz past Calvin, stop. Ask the time? He'd have me by the hair in moments. No, I need some kind of plan to get him away from there.[fire CALVINIDEA]";
 
-Understand "clock" as Calvin.
+Understand "clock" as Calvin when the location of Calvin is the Lower Hall.
 
 CALVINIDEA is a trigger.
 
 Rule for firing unfired CALVINIDEA:
-	Wren has an idea in one turn from now;
+	if Gong Sounding has not happened:
+		Wren has an idea in one turn from now;
 
 At the time when Wren has an idea:
 	say "[i]Calvin will be guarding that door till dinner time[r], I think, angrily. And then, slow and sure as clockwork, I have an idea. Not till dinner time. Until the Refectory Clock [i]strikes five o'clock[r]... And - in times of Holy Crisis - clocks can be changed...[paragraph break]";
@@ -3980,14 +3987,14 @@ The entry seal is scenery, in the Cathedral Entrance. "The first seal is made of
 
 Section 2 - Great Doors
 
-The Great Doors are a closed door, scenery, south of the Cathedral Entrance. "The doors are covered in carvings and inscriptions, some of the Mechanists, but ever a few from the older faiths of smoke and fire. The doors lead to the city but are rarely open (Last Newtonmass I was part of a parade of children that troop to get the homeless to do some proper work, but I'll be too old for that this year.)" Understand "door", "carving", "inscription", "carvings", "inscriptions" as the Great Doors.
+Some Great Doors are a closed door, scenery, south of the Cathedral Entrance. "The doors are covered in carvings and inscriptions, some of the Mechanists, but ever a few from the older faiths of smoke and fire. The doors lead to the city but are rarely open (Last Newtonmass I was part of a parade of children that troop to get the homeless to do some proper work, but I'll be too old for that this year.)" Understand "door", "carving", "inscription", "carvings", "inscriptions" as the Great Doors.
 
 Instead of opening the Great Doors:
 	say "You're joking, I suppose.";
 
 Section 3 - West Door
 
-The West Door is a closed door, locked, scenery, west of the Cathedral Entrance. "A smaller door leading west to another yard, and the city. It's locked, of course."
+The West Door is a closed door, locked, scenery, west of the Cathedral Entrance, east of the Public Yard. "A smaller door leading west to another yard, and the city. It's locked, of course."
 
 Instead of opening the West Door:
 	say "It's locked.";
@@ -4044,8 +4051,7 @@ Chapter 2 - Scenery
 
 Section 1 - Upper Seal
 
-The Upper Seal is fixed in place, in the Upper Nave. "On the floor here is the Third Seal."
-The description is "This one is a fine gold gilt, depicting an enormous ornate head with stone-block teeth. A winding-key."
+The Upper Seal is scenery, fixed in place, in the Upper Nave. The description is "This one is a fine gold gilt, depicting an enormous ornate head with stone-block teeth. A winding-key."
 
 Understand "third", "gold", "golden", "gilt", "ornate", "enormous", "head", "teeth", "winding key", "winding-key", "key", "great" as the upper seal. The printed name is "Great Seal".
 
@@ -4134,7 +4140,11 @@ Chapter 1 - Description
 The Cathedral Choir is north of the Cathedral Altar, in the Cathedral Space. "To the north of the altar, this is a semi-circular space with staircases to east and west leading up to the gallery overhead. When they sing from up there – I've only heard it once – they fill the whole Cathedral with their beating rhythmic music: songs that echo round and around the dome overhead like the movement of the Greater Rotation itself." The printed name is "Choir".
 
 Instead of making to leave when in the Cathedral Choir: try going south instead.
-Instead of going inside in the Cathedral Choir: try going south instead.
+
+Instead of going inside in the Cathedral Choir:
+	unless the player can see the open secret panel:
+		try going south instead;
+	continue the action;
 
 Instead of going up in the Cathedral Choir:
 	say "East or west?"
@@ -4177,23 +4187,26 @@ Rule for firing unfired EAST_STAIR_EVENT1:
 	say "'I'll be back,' I promise the guard.[paragraph break]'Sure you will. With an Army, I suppose,' he laughs.";
 
 Instead of going through the east stairs from the East Clerestory when Archbishop's Meeting has happened:
-	say "There's definitely something happening on the balcony to the northwest. I'd better investigate, hadn't I?";
+	unless Calvin's Patrol has happened:
+		say "There's definitely something happening on the balcony to the northwest. I'd better investigate, hadn't I?" instead;
+	otherwise:
+		continue the action;
 
-After going through the east stairs from the East Clerestory:
+After going through the east stairs from the East Clerestory when Calvin's Patrol has not happened:
 	say "I climb downstairs. The guard watches me closely, on the lookout for any tricks.";
 	continue the action;
 
-After going through the west stairs from the Cathedral Choir:
+After going through the west stairs from the Cathedral Choir when Calvin's Patrol has not happened:
 	say "Two rotations to reach the top. Everything in this place is designed to be correct, as carefully set as new teeth on a dog-screw.";
 	continue the action;
 
-After going through the west stairs from the West Clerestory:
+After going through the west stairs from the West Clerestory when Calvin's Patrol has not happened:
 	say "I climb back down.";
 	continue the action;
 
 Section 3 - Choir Stalls
 
-Some choir stalls are in the Cathedral Choir. "During normal services the choir sit in the stalls on the ground level by the east staircase. They're covered in carvings just like those on the Abbey doors, but lit up in brilliant colours from the stained glass all around."
+Some choir stalls are a supporter, enterable, in the Cathedral Choir. "During normal services the choir sit in the stalls on the ground level by the east staircase. They're covered in carvings just like those on the Abbey doors, but lit up in brilliant colours from the stained glass all around."
 
 Understand "carving", "carvings" as the choir stalls.
 
@@ -4230,13 +4243,13 @@ Instead of taking or pushing the statuettes:
 
 Section 2 - Brass Stand
 
-The stand is in the Shrine of the Saints. "A brass stand in the middle of the room is thick with candles, all unlit. They come in three colours, same as the bruises Drake gives me; red then blue then yellow."
+The brass stand is scenery, in the Shrine of the Saints.
 
-Understand "brass" as the stand.
+[[TODO]: [JON]: I take it the 'green' candles below are meant to be blue. Can you check and fix, please?]
 
 The description is "The stand holds dozens of candles for devotions by laymen. They come in three colours: red for metal-workers and craftsmen, green for farmers and market-trades, and yellow for architects and draughtsmen. None are lit."
 
-Instead of taking the stand:
+Instead of taking the brass stand:
 	say "I'd look pretty conspicious walking around with it: it's easily as big as I am.";
 
 Section 3 - Many different-colored candles
@@ -4245,9 +4258,9 @@ The single-red-candle is a candle. The wax is red.
 The single-blue-candle is a candle. The wax is blue. 
 The single-yellow-candle is a candle. The wax is yellow.
 
-Some red-candles are a candle dispenser, in the Shrine of the Saints. The wax is red. The representative item is the single-red-candle.
-Some blue-candles are a candle dispenser, in the Shrine of the Saints. The wax is blue. The representative item is the single-blue-candle.
-Some yellow-candles are a candle dispenser, in the Shrine of the Saints. The wax is yellow. The representative item is the single-yellow-candle.
+Some red-candles are a candle dispenser, part of the brass stand. The wax is red. The representative item is the single-red-candle.
+Some blue-candles are a candle dispenser, part of the brass stand. The wax is blue. The representative item is the single-blue-candle.
+Some yellow-candles are a candle dispenser, part of the brass stand. The wax is yellow. The representative item is the single-yellow-candle.
 
 Understand "red", "candle", "candles" as the red-candles.
 Understand "blue", "candle", "candles" as the blue-candles.
@@ -4258,12 +4271,11 @@ Understand "blue candle" as the blue-candles when the player can not see the sin
 Understand "yellow candle" as the yellow-candles when the player can not see the single-yellow-candle.
 
 Instead of taking a candle dispenser:
-	if the representative item of the noun is on-stage begin;
+	if the representative item of the noun is on-stage:
 		say "I've already got [a representative item of the noun].";
-	otherwise;
+	otherwise:
 		move the representative item of the noun to the player;
 		say "I pluck [a representative item of the noun] from the stand.";
-	end if;
 
 Part 8 - East Apse
 
@@ -4276,22 +4288,22 @@ Instead of going inside in the East Apse: try going west instead.
 
 Chapter 2 - Crypt Grate
 
-The crypt grate is a door, closed, locked, scenery, northeast of the East Apse. "The iron grate is made of metal a foot thick and it's locked with a gigantic padlock. I doubt I could manage to turn the lock even if I had the key for it, which I don't."
+The crypt grate is a door, closed, locked, scenery, northeast of the East Apse, southwest of the Crypt Stairs. "The iron grate is made of metal a foot thick and it's locked with a gigantic padlock. I doubt I could manage to turn the lock even if I had the key for it, which I don't."
 
 Understand "metal", "iron", "padlock", "lock", "chain", "blackened", "black" as the crypt grate.
 
-Instead of opening the crypt grate:
+Instead of opening the crypt grate when the player does not have the old iron crypt key:
 	say "The grate is locked with a blackened chain and padlock that's about the size of my head.";
 
-Instead of unlocking the crypt grate with something:
+Instead of unlocking the crypt grate with something when the second noun is not the old iron crypt key:
 	say "The grate is locked with a blackened chain and padlock that's about the size of my head.";
 
-Instead of going northeast in the East Apse:
-	say "Did you read the bit about the padlock?";
+Before going through the crypt grate from the East Apse when Return To The Cathedral has not happened:
+	say "Did you read the bit about the padlock?" instead;
 
 Chapter 3 - Orrey Hall Door
 
-The hall door is a door, open, scenery, southeast of the East Apse. 
+The hall door is a door, open, scenery, southeast of the East Apse.  [[JON]: Description?]
 
 Chapter 4 - Pews
 
@@ -4308,7 +4320,7 @@ Instead of going inside in the West Apse: try going east instead.
 
 Chapter 2 - Archway
 
-The library archway is an open door, scenery, not openable, southwest of the West Apse. 
+The library archway is an open door, scenery, not openable, southwest of the West Apse. [[JON]: Description? ]
 
 Chapter 3 - Pews
 
@@ -5034,8 +5046,11 @@ Instead of going southwest from the North Clerestory when the player can see the
 	do nothing;
 
 After going southwest from the North Clerestory when Overheard Conversation has happened:
-	say "I chase after the Figure.";
-	try looking instead;
+	unless Return To The Cathedral has happened:
+		say "I chase after the Figure.";
+		try looking instead;
+	otherwise:
+		continue the action;
 
 Part 15 - East Clerestory
 
@@ -5374,7 +5389,12 @@ Chapter 2 - Scenery
 
 The Archbishop's desk is a supporter, scenery, in the Bishop's library. The description is "The Archbishop's desk has a single drawer. No doubt what's in that is highly important."
 The printed name is "desk".
-Understand "drawer" as the Archbishop's desk.
+
+The single drawer is a container, closed, locked, part of the Archbishop's Desk. The old iron crypt key is in the single drawer.
+
+Instead of doing something when the single drawer is involved and Return To The Cathedral has not happened:
+	redirect the action from the single drawer to the Archbishop's Desk;
+	try the current action instead;
 
 Some Archbishop's bookshelves are scenery, in the Bishop's library. The description is "Well, of course he has books. But I didn't come here to read or to rummage around."
 The printed name is "books".
@@ -5417,7 +5437,7 @@ When Archbishop's Meeting begins:
 	move the secret ladder to the West Clerestory;
 
 Rule for printing the description of a stained glass window when Archbishop's Meeting has happened:
-	say "Perhaps I should tear it down and replace it with a picture of a Figure in Grey handing the Abbot a bag stuffed with a few hours['] worth of gold minutes. ";
+	say "Perhaps I should tear it down and replace it with a picture of a Figure in Grey handing the Abbot a bag stuffed with a few hours['] worth of gold minutes.";
 
 Chapter 4 - Scripted Events
 
@@ -5625,7 +5645,7 @@ Section 2 - Rose Window
 A rose window is a backdrop, in the Upper Gears, Rafters, Behind the Clock Face, Minute Hand, and Parapet.
 
 Rule for printing the description of the rose window when in Upper Gears:
-	say "The window is above and beyond. Its stained glass covers the clock's workings in fractured colours. It's beautiful here. Light and clockwork in perfect harmony.[paragraph break]A pulley hangs at its top, attached to the long chain that feeds into the barrel by my feet. ";
+	say "The window is above and beyond. Its stained glass covers the clock's workings in fractured colours. It's beautiful here. Light and clockwork in perfect harmony.[paragraph break]A pulley hangs at its top, attached to the long chain that feeds into the barrel by my feet.";
 
 Understand "clock", "face" as the rose window.
 
@@ -5636,7 +5656,7 @@ A thick chain is a backdrop, in the Upper Gears, the Rafters, and Behind the Clo
 Understand "pulley", "weight", "iron" as the thick chain when the location is not Upper Gears.
 
 Rule for printing the description of the thick chain when in the Upper Gears:
-	say "The thick links of the chain run up to a pulley by the window. Over the pulley is a weight, [if the iron weight is high]hoisted as high as it can go[otherwise]which dangles far below[end if]. ";
+	say "The thick links of the chain run up to a pulley by the window. Over the pulley is a weight, [if the iron weight is high]hoisted as high as it can go[otherwise]which dangles far below[end if].";
 
 Instead of climbing the thick chain when in Upper Gears:
 	say "I could grip my arms around the chain but the angle's too steep – and the distance, it's pretty far! I can't just climb out. I really can't.";
@@ -5685,7 +5705,7 @@ Instead of doing something when the Rose Window is physically involved and the l
 	say "It's sheer glass. I couldn't do anything.";
 
 Rule for printing the description of the rose window when in Rafters:
-	say "The window is close enough to touch – but so large it fills everything I can see. Somewhere below a panel is missing, creating a small door. ";
+	say "The window is close enough to touch – but so large it fills everything I can see. Somewhere below a panel is missing, creating a small door.";
 
 Part 9 - Behind the Clock Face
 
@@ -5716,7 +5736,7 @@ Chapter 2 - Scenery
 Section 1 - Rose Window
 
 Rule for printing the description of the rose window when in Behind the Clock Face:
-	say "Jewelled light blinds me. Only the square of blue sky – the door – looks safe. ";
+	say "Jewelled light blinds me. Only the square of blue sky – the door – looks safe.";
 
 Book 5 - The Roofs of the City
 
@@ -5747,7 +5767,7 @@ Chapter 2 - Scenery
 Section 1 - Clock face / Rose Window
 
 Rule for printing the description of the rose window when in Minute Hand:
-	say "The gigantic clock face. It has no handholds, no rungs. Nothing. ";
+	say "The gigantic clock face. It has no handholds, no rungs. Nothing.";
 
 Section 2 - City View
 
@@ -5810,7 +5830,7 @@ Chapter 3 - Scenery
 Section 1 - Rose Window
 
 Rule for printing the description of the rose window when in Parapet:
-	say "I could just about touch the VI now. ";
+	say "I could just about touch the VI now.";
 
 Instead of climbing the rose window when in Parapet:
 	say "There's no way back up the glass – thankfully.";
@@ -5827,7 +5847,7 @@ Section 2 - Gargoyles
 Understand "spire", "spires", "gable", "gables" as the gargoyles of vice when the location is Parapet.
 
 Rule for printing the description of the gargoyles of vice when in Parapet:
-	say "The edge of the roof is lines with gargoyles all ready to spit rainwater down on people in the street below. ";
+	say "The edge of the roof is lines with gargoyles all ready to spit rainwater down on people in the street below.";
 
 Instead of climbing or jumping on the gargoyles of vice when in Parapet:
 	say "I'm certainly not going to let go of them! They're the only things keeping me up here!";
@@ -5868,7 +5888,7 @@ Section 1 - Gargoyles
 Understand "spire", "spires", "gable", "gables", "cathedral" as the gargoyles of vice when the location is Buttress.
 
 Rule for printing the description of the gargoyles of vice when in Buttress:
-	say "The Cathedral roof is back east. ";
+	say "The Cathedral roof is back east.";
 
 Instead of entering or climbing or jumping on the gargoyles of vice when in Buttress:
 	try going east;
@@ -5919,7 +5939,7 @@ Section 2 - Platform
 
 A raised platform is scenery, in Rooftop 2. "I can't make out what's on the platform[if Observation Platform is not visited] (if anything)[end if]: but I can see it's encircled by a railing."
 
-The printed name is "platform".
+The printed name is "platform". Understand "railing", "railings" as the raised platform.
 
 Instead of jumping on the raised platform:
 	try jumping;
@@ -5971,9 +5991,12 @@ Instead of scraping the mortar with the knife:
 	now the mortar is loose;
 	say "Using the knife point I work out some of the mortar, break up some more, and free up a small chunk of bricks that I can probably just about carry.";
 
+Instead of attacking the mortar with something:
+	try scraping the mortar with the second noun instead;
+
 Part 6 - Sloping Roofs
 
-Sloping Roofs is a room, south of Rooftop 1. "It's hard to keep my bearings here: below, several streets are coming together and their overhanging roofs – good for keeping the rain off – create a loose patchwork of tiles, chimneys, gaps and different levels. I can scramble up a few levels to the north, or I could probably slip away west and south, but I might get turned around in either of those directions."
+Sloping Roofs is a room, south of Rooftop 1. "It's hard to keep my bearings here: below, several streets are coming together and their overhanging roofs – good for keeping the rain off – create a loose patchwork of tiles, chimneys, gaps and different levels. I can scramble up a few levels to the north, or I could probably slip away east and south, but I might get turned around in either of those directions."
 
 Sloping Roofs is south of Rooftop 2. North of Sloping Roofs is Rooftop 1. 
 
@@ -6090,6 +6113,9 @@ Section 2 - Notch
 A notch is a container, fixed in place, in Rooftop 4. "The low south wall is missing a few bricks creating a gap – well, I'll call it a [i]notch[r]." The description is "The [']notch['] is a gap in the brickwork of the low south wall overlooking the alley. Maybe the missing bricks fell out down below: that would have been pretty bad!"
 
 Understand "gap" as the notch.
+
+Instead of putting something on the notch:
+	try inserting the noun into the second noun;
 
 After inserting the solid board into the notch:
 	say "The board slides in – not perfectly, it's no clockwork but it'll do. The plank extends out over the alley to the south, almost all the way!";
@@ -6215,11 +6241,14 @@ Instead of putting the tarp on the elongated chimney pipe:
 	now the elongated chimney pipe is wrapped;
 	say "I wrap the Figure's tarpaulin a couple of times around the pipe as insulation.";
 
+Instead of wrapping the elongated chimney pipe with the tarp:
+	try putting the tarp on the elongated chimney pipe;
+
 Instead of turning the elongated chimney pipe:
-	try direction-setting the compass to anticlockwise of the way of the compass;
+	try direction-setting the chimney pipe to anticlockwise of the way of the chimney pipe;
 
 Instead of turning the elongated chimney pipe forwards:
-	try direction-setting the compass to clockwise of the way of the compass;
+	try direction-setting the chimney pipe to clockwise of the way of the chimney pipe;
 
 After direction-setting the elongated chimney pipe to a direction:
 	if the way of the elongated chimney pipe is southwest begin;
@@ -6236,6 +6265,7 @@ Chapter 1 - Description
 The Observation Platform is a room. "I'm standing on a platform overlooking a roof covered in broken bricks to the north. A flight of metal steps lead down to the southeast, back to the weather station. A brass railing runs around the edge to stop anyone falling – I could use one of those for my bedroom."
 
 North from the Observation Platform is Rooftop 2.
+Down from the Observation Platform is the Weather Station.
 
 Instead of jumping in Observation Platform:
 	try going north;
@@ -6331,7 +6361,7 @@ After direction-setting the compass to a direction:
 
 Section 3 - Crank
 
-The large crank is part of the telescope. "The large crank is attached to one leg of the tripod. There's presumably an Archimedes screw inside or something connecting it to the compass and the telescope up top."
+The large crank is part of the telescope. The description is "The large crank is attached to one leg of the tripod. There's presumably an Archimedes screw inside or something connecting it to the compass and the telescope up top."
 
 Understand "handle" as the large crank.
 
@@ -6562,19 +6592,19 @@ Section 3 - Ravens
 Some ravens are an animal, carried by Covalt.
 
 Rule for printing the description of the ravens when the state of Covalt is 1:
-	say "The ravens sit one to a shoulder and eye me viciously. ";
+	say "The ravens sit one to a shoulder and eye me viciously.";
 
 Rule for printing the description of the ravens when the state of Covalt is 2:
-	say "The ravens are flapping and chittering, clearly agitated. ";
+	say "The ravens are flapping and chittering, clearly agitated.";
 
 Rule for printing the description of the ravens when the state of Covalt is 3:
-	say "One of the ravens has climbed onto Covalt's head. The other is battling for the place. ";
+	say "One of the ravens has climbed onto Covalt's head. The other is battling for the place.";
 
 Rule for printing the description of the ravens when the state of Covalt is 4:
-	say "The ravens have taken wing and are flapping round madly in a tiny space above Covalt's head. He doesn't seem to notice. ";
+	say "The ravens have taken wing and are flapping round madly in a tiny space above Covalt's head. He doesn't seem to notice.";
 
 Rule for printing the description of the ravens when the state of Covalt is 5:
-	say "The ravens have settled again, both together on the same shoulder, with looks of icy determination. ";
+	say "The ravens have settled again, both together on the same shoulder, with looks of icy determination.";
 
 Instead of doing something when the ravens are physically involved and the state of Covalt is 1:
 	say "No chance. They're clearly his.";
@@ -6620,19 +6650,19 @@ Rule for writing a paragraph about Covalt [other times]:
 Section 2 - Descriptions
 
 Rule for printing the description of Covalt when the state of Covalt is 1:
-	say "The giant is six-and-a bit feet of solid bone and grime. His overalls are oil-covered and in one hand he's clutching a penduluum weight heavy enough to concuss a horse. ";
+	say "The giant is six-and-a bit feet of solid bone and grime. His overalls are oil-covered and in one hand he's clutching a penduluum weight heavy enough to concuss a horse.";
 
 Rule for printing the description of Covalt when the state of Covalt is 2:
-	say "Covalt is eyeing me intently, demanding to know more. He's still blocking the doorway. ";
+	say "Covalt is eyeing me intently, demanding to know more. He's still blocking the doorway.";
 
 Rule for printing the description of Covalt when the state of Covalt is 3:
-	say "Covalt casts about his, swinging his gigantic chin this way and that like some enormous clock-weight. He's looking for his diagram. ";
+	say "Covalt casts about his, swinging his gigantic chin this way and that like some enormous clock-weight. He's looking for his diagram.";
 
 Rule for printing the description of Covalt when the state of Covalt is 4:
-	say "Covalt is deep in thought. ";
+	say "Covalt is deep in thought.";
 
 Rule for printing the description of Covalt when the state of Covalt is 5:
-	say "Covalt seems to have relaxed a bit, and now looks only big, and not as colossal as he did before. I can see now how delicate his fingers are and how sharp his eyes. No brute after all. ";
+	say "Covalt seems to have relaxed a bit, and now looks only big, and not as colossal as he did before. I can see now how delicate his fingers are and how sharp his eyes. No brute after all.";
 
 Section 3 - Possessions
 
@@ -6899,8 +6929,8 @@ After firing CT_COV_4_DIFFERENCE:
 CT_COV_4_THINKING is a conversation topic. The enquiry text is "[one of]'I...'[or]'But...'[or]'Maybe...'[or]'And...'[or]'Yes...'[or]'Where...'[or]'What...'[or]I swallow.[at random]". The response text is "[one of]He interrupts your question. 'Look, we need to work all this through. Plan it out. Let me think, don't pester me.'[or]'There's variables here. Levers left and right. We need to work out what's next to see what we do next. Something different needs to be done.'[or]'Problem solving,' Covalt interjects. 'Is clockwork, too. A different kind of clockwork, but still clockwork.'[or]'What's the difference?' he remarks to himself, not listening to me. 'That's the question.'[or]'We just need to think of some different way to go about this,' he grumbles.[or]He waves my comment away. 'No, no. Something different. Really different.'[or][fire CT_COV_4_DIFFERENCE][stopping]"
 
 Rule for firing CT_COV_4_DIFFERENCE while firing CT_COV_4_THINKING or firing COVALT_COUNTER:
-	[we don't want to print the enquiry text in these situations]
-	say the response text of CT_COV_4_DIFFERENCE, paragraph break;
+	[we don't want to print the enquiry text in these situations] 
+	say the response text of CT_COV_4_DIFFERENCE;
 
 After firing unfired CT_COV_4_DIFFERENCE:
 	add SE_COV_COUNTING_HOUSE to the current script;
@@ -7012,10 +7042,10 @@ The Clock Shop is north of Covalt's Bedroom. "When I say I'm in Covalt's shop I'
 Chapter 2 - Rummaging puzzle
 
 After printing the description of a clutter thing (called the junk) that is remembered by Covalt when the state of Covalt is 3:
-	say "[paragraph break][one of]'Not there,' Covalt says. [run paragraph on][or]'I tried that,' Covalt remarks. [run paragraph on][or]'No good,' Covalt says. [run paragraph on][or]'I already tried there,' Covalt remarks. [run paragraph on][in random order]";
+	say "[paragraph break][one of]'Not there,' Covalt says.[or]'I tried that,' Covalt remarks.[or]'No good,' Covalt says.[or]'I already tried there,' Covalt remarks.[in random order] ";
 
 After printing the description of uninspected clutter when the state of Covalt is 3:
-	say "[one of]No sign of the diagram. [run paragraph on][or]No diagram there. [run paragraph on][or]No luck. [run paragraph on][or][stopping]";
+	say " [one of]No sign of the diagram. [or]No diagram there. [or]No luck. [or][stopping]";
 
 After printing the description of uninspected clutter when the player remembers at least six things and the state of Covalt is 3:
 	say " And here's his diagram too. I pull it out and hand it over to him.[paragraph break]";
@@ -7057,7 +7087,7 @@ Instead of dropping the Perpetuum Mobile diagram:
 Chapter 3 - Clutter
 
 The junk is privately-named, scenery, clutter, in the Clock Shop. "Clutter is assorted stuff filling up space. It'd be better to say this room has 'gaps', one of which I'm standing in and another I'm using to breathe. The rest is filled by the workbench, the wall of pendulums of all shapes and sizes, and, everywhere else, clock parts."
-Understand "clutter", "junk" as the junk.
+Understand "assorted", "clutter", "junk", "stuff", "mess", "things", "gaps" as the junk.
 
 A rack of shelves is scenery, clutter, in the Clock Shop. "A rack of shelves hang on the back of the door to the street. They mostly hold clocks (mainly whole clocks), although I can see a monkey-head sticking up at the back." The printed name is "shelves".
 
@@ -7101,9 +7131,11 @@ The sketch papers are scenery, clutter, on the workbench. "The desk is covered i
 
 Chapter 4 - Door
 
-The clock shop door is a closed door, privately-named, clutter, scenery, southwest of the Clock Shop, northeast of Escapement St. The description is "On the back of the door to the street is a series of shelves, each bristling with all manner of clocks.".
+The clock shop door is a closed door, privately-named, clutter, scenery, southwest of the Clock Shop, northeast of Escapement St. The description is "[if the location is the Clock Shop]On the back of the door to the street is a series of shelves, each bristling with all manner of clocks.[otherwise]The sign reads Covalt & Son, Chronometers Secular, Sacred and Second-Sprung. The word Son has been scratched out.[end if]".
 
 Understand "door" as the clock shop door. The printed name is "door".
+
+Understand "covalt", "covalt's", "chronometers", "scratched", "out", "and", "son", "word", "clock", "shop", "door", "sign" as the clock shop door when the location is Escapement St.
 
 Instead of exiting in the Clock Shop:
 	try going southwest;
@@ -7483,10 +7515,10 @@ Instead of opening or entering the labeled doors:
 	say "I can't see whoever's inside wanting to help me."
 
 Rule for printing the description of the labeled doors when in the Western Landing:
-	say "The doors have labels: Office of Paradox, Bureau of Rhetorical Simplification, Archive of Unanswerable Queries, Department of Departmental Allocation next to the Department of Recursion, Department of Dependencies...", paragraph break;
+	say "The doors have labels: Office of Paradox, Bureau of Rhetorical Simplification, Archive of Unanswerable Queries, Department of Departmental Allocation next to the Department of Recursion, Department of Dependencies...";
 
 Rule for printing the description of the labeled doors when in the Eastern Landing:
-	say "The doors have labels: Governor of Logic, Prime Roster, Department of Conceptual Multiplication, Department of Efficiency and Inversing, Bursary and Expenses...", paragraph break;
+	say "The doors have labels: Governor of Logic, Prime Roster, Department of Conceptual Multiplication, Department of Efficiency and Inversing, Bursary and Expenses...";
 
 Understand "label", "labelled", "labeled", "door" as the labeled doors when the player can not see the open subtle escape.
 
@@ -7555,10 +7587,10 @@ Rule for firing fired TRIG_BALCONY:
 Section 4 - Doors
 
 Rule for printing the description of the labeled doors when in the Western Hall:
-	say "The doors have labels: Geographic to Semantic Mapping, Future Dating, Office of Deliberate and Indeliberate Misinformation, Catering and Festivities. ", paragraph break;
+	say "The doors have labels: Geographic to Semantic Mapping, Future Dating, Office of Deliberate and Indeliberate Misinformation, Catering and Festivities.";
 
 Rule for printing the description of the labeled doors when in the Eastern Hall:
-	say "The doors have labels: Department of Communications, Office of Lubrication, Translation - Retranslation – Obfuscation, Secretarial Pool and Showers.", paragraph break;
+	say "The doors have labels: Department of Communications, Office of Lubrication, Translation - Retranslation – Obfuscation, Secretarial Pool and Showers.";
 
 Part 10 - Long Hall
 
@@ -7569,7 +7601,7 @@ Chapter 2 - Scenery
 Section 1 - Doors
 
 Rule for printing the description of the labeled doors when in the Long Hall:
-	say "The doors have labels: Office of Indexing, Department of Information Intersection, Department of Prophecy Management and Suitable Doubt, Minister for Consolidation.", paragraph break;
+	say "The doors have labels: Office of Indexing, Department of Information Intersection, Department of Prophecy Management and Suitable Doubt, Minister for Consolidation.";
 
 Section 2 - Phantom Door
 
@@ -7681,7 +7713,7 @@ After printing the description of the small golden dials:
 	if the ruby key is off-stage:
 		move the ruby key to the small golden dials;
 	if the ruby key has not been carried:
-		say "[paragraph break]Sticking from one dial is a ruby-glass key.[run paragraph on]";
+		say "[paragraph break]Sticking from one dial is a ruby-glass key. ";
 
 Instead of turning the dials:
 	say "I've no idea what they do, and if I changed any of them I'd never be able to remember how they were set before.";
@@ -7790,7 +7822,7 @@ Understand "Duchess", "Du", "Mer" as the Duchess Du Mer when the Duchess Du Mer 
 The Duchess Du Mer is a woman, privately-named, unknown, scenery, in the Main Platform. "One thing's sure: she's a beautiful lady. Long gleaming hair like fresh oil, cheekbones arched like pinions arms. She could be the Goddess of Klockwerk brought to life if the Church allowed such a ridiculous idea outside of the Newtonmass stories of children."
 
 Rule for printing the description of the Duchess when the location is the Grand Foyer:
-	say "I can't see a lot through the bubbled glass. ";
+	say "I can't see a lot through the bubbled glass.";
 
 Rule for printing the name of the unknown Duchess Du Mer:
 	say "tall [if the location is the Foyer]figure[otherwise]woman[end if]";
@@ -7807,7 +7839,7 @@ Understand "figure" as the Calculatrix Pristina when the location is the Grand F
 Understand "Calculatrix", "Pristina" as the Calculatrix Pristina when the Calculatrix Pristina is known.
 
 Rule for printing the description of the Calculatrix when the location is the Grand Foyer:
-	say "I can't see a lot through the bubbled glass. ";
+	say "I can't see a lot through the bubbled glass.";
 
 Rule for printing the description of the Calculatrix when Calculatrix Chase is happening or the location is Caught:
 	say "She's white with fury. On either side of her are guards, bristling with rage and anger.";
@@ -8203,6 +8235,9 @@ First after printing the description of the warehouse walls when the location do
 After printing the description of the warehouse walls in the South Side:
 	say "White paint on the brickwork reads IV:VI:II. ";
 
+[ Last after printing the description of the warehouse walls:
+	say paragraph break; ]
+
 Instead of climbing the warehouse walls:
 	say "The metal is too slick to climb.";
 
@@ -8367,7 +8402,7 @@ To decide whether the player has not been underwater:
 	no;
 
 Rule for printing the description of the Perpetuum Mobile diagram when the player has been underwater:
-	say "The diagram’s bedraggled but still clear enough to read. ";
+	say "The diagram’s bedraggled but still clear enough to read.";
 
 Chapter 1 - River 1 Description
 
@@ -9052,7 +9087,7 @@ Gas Platform can be murky or bright. Gas Platform is murky.
 Rule for printing the name of Gas Platform:
 	say "[if Gas Platform is murky]Darkness[otherwise]Gas Platform[end if]";
 
-Rule for printing the description of a lit room when in the Gas Platform:
+Rule for printing the description of the Gas Platform:
 	if the Gas Platform is murky:
 		say "I’m on some kind of metal platform in the dark. The crack of light below the door is enough to make out a few controls beside me and a set of stairs leading down to the north. Down seems an odd way to be going since we’re above the river. There’s probably serpents down there, or octopuses, or water-camels.";
 	otherwise:
@@ -9253,7 +9288,7 @@ After firing SE_RETURN_1:
 Chapter 3 - Scenery
 
 Rule for printing the description of the feather bed during Return to Covalt's:
-	say "Covalt’s feather bed – large enough to sleep four of the Abbey’s initiated and still leave room for a nightmare or two. ";
+	say "Covalt’s feather bed – large enough to sleep four of the Abbey’s initiated and still leave room for a nightmare or two.";
 
 Instead of standing on the feather bed when the player is not on the feather bed during Return to Covalt's:
 	say "Now isn’t the time for more sleeping.";
@@ -9270,16 +9305,16 @@ Instead of doing something when the wrecked skylight is involved during Return t
 Chapter 4 - Ravens
 
 Rule for printing the description of the ravens when the state of Covalt is 1 during Return to Covalt's:
-	say "The ravens flit around the room, on a fixed pattern. One goes, then the other. Round and round like, well, like they weren’t real ravens. Which they’re not, of course, however well-built and oiled they are. ";
+	say "The ravens flit around the room, on a fixed pattern. One goes, then the other. Round and round like, well, like they weren’t real ravens. Which they’re not, of course, however well-built and oiled they are.";
 
 Rule for printing the description of the ravens when the state of Covalt is 2 during Return to Covalt's:
-	say "The ravens have settled, one on top of Covalt’s head and the other on his left hand. ";
+	say "The ravens have settled, one on top of Covalt’s head and the other on his left hand.";
 
 Rule for printing the description of the ravens when the state of Covalt is 3 during Return to Covalt's:
-	say "The ravens are pecking and peeking across the floor[one of]. 'Making a fool of us,' Covalt remarks, catching my eye[or][stopping]. ";
+	say "The ravens are pecking and peeking across the floor[one of]. 'Making a fool of us,' Covalt remarks, catching my eye[or][stopping].";
 
 Rule for printing the description of the ravens when the state of Covalt is 4 during Return to Covalt's:
-	say "The ravens have retired to a rafter. ";
+	say "The ravens have retired to a rafter.";
 
 Instead of doing something when the ravens are physically involved and the state of Covalt is 1 during Return to Covalt's:
 	say "I couldn’t catch them!";
@@ -9296,21 +9331,21 @@ Instead of doing something when the ravens are physically involved and the state
 Chapter 5 - Covalt
 
 Rule for printing the description of Covalt when the state of Covalt is 1 during Return to Covalt's:
-	say "Covalt is pacing back and forth. Every time he turns he nearly bring down a wall with his massive shoulders. ";
+	say "Covalt is pacing back and forth. Every time he turns he nearly brings down a wall with his massive shoulders.";
 
 Rule for printing the description of Covalt when the state of Covalt is 2 during Return to Covalt's:
-	say "Covalt is seated, colossal head between colossal hands. ";
+	say "Covalt is seated, colossal head between colossal hands.";
 
 Rule for printing the description of Covalt when the state of Covalt is 3 during Return to Covalt's:
-	say "Covalt is poking through the room looking for some kind of answer. ";
+	say "Covalt is poking through the room looking for some kind of answer.";
 
 Rule for printing the description of Covalt when the state of Covalt is 4 during Return to Covalt's:
-	say "Covalt is hard at work at the workbench. ";
+	say "Covalt is hard at work at the workbench.";
 
 First for writing a paragraph about Covalt during Return to Covalt's:
 	now Covalt is mentioned;
 	carry out the printing the description activity with Covalt;
-	say paragraph break;
+	[ say paragraph break; ]
 
 Chapter 6 - Conversation Tables
 
@@ -9564,18 +9599,53 @@ After going through the clock shop door from the Clock Shop during Return to Cov
 		say "'Make it a knock-out, don’t go halves!' Covalt shouts after me.";
 	continue the action;
 
+Instead of closing the clock shop door when in the Clock Shop during Return to Covalt's:
+	say "I wouldn’t dare touch it. Who knows what mechanics its got to try and take my hand off if I did?";
+
+Instead of doing something when a clutter thing (called the junk) is involved during Return To Covalt's:
+	if the junk is not the clock shop door:
+		say "This stuff isn’t going to help me now.";
+	otherwise:
+		continue the action;
+
 Part 3 - Escapement Street
 
-Escapement St is a room. "It’s night. Gaslight webs the shining edges of the cobblestones. All the shops are closed except for Covalt’s back northeast. The streets are empty of people, no boys running around or girls weaving cats-cradle between their hands.[paragraph break]But the Autopothecary to the southwest is still open. It never closes."
+Escapement St is a room. "It’s night. Gaslight webs the shining edges of the cobblestones. All the shops are closed except for Covalt’s back northeast. The streets are empty of people, no boys running around or girls weaving cats-cradle between their hands.[paragraph break]But the Autopothecary to the northwest is still open. It never closes."
 
 The printed name of Escapement St is "Escapement Street".
 
+The autopothecary shopfront is scenery, in Escapement St. "The Autopothecary is a machine set behind some expensive plate glass. OPEN ALL NIGHT, reads the sign. FOR WINDING-UP AND WINDING-DOWN AT ALL HOURS OF THE WATCH."
+
+Instead of entering the autopothecary shopfront:
+	try going northwest;
+
+Instead of going north in Escapement St:
+	say "I don’t have the time – or the wind – to go running all over the city any more.";
+
+Instead of going south in Escapement St:
+	say "I don’t have the time – or the wind – to go running all over the city any more.";
+
+Instead of going to the Clock Shop from Escapement St when the player does not have the sleeping drug:
+	say "Covalt would eat my head if I went back empty-handed." instead;
+
+Some gaslamps are scenery, in Escapement St.  "[one of]The lamps have all been lit by little wedge-shaped hammers that peel back on ratchets and strike a flint inside the... look, this doesn’t really matter, does it?[or]There’s enough light to see the Autopothecary, northwest, and Covalt’s to the northeast, and what else is in the dark can stay there for all I care.[stopping]"
+
+Understand "gas", "lamp", "gaslamp", "lamps", "light", "lights" as the gaslamps.
+
 Chapter 8 - Silver minutes
 
-Some silver coins are a thing. The silver coins have a number called the count. The count of the silver coins is 3.
+Some silver coins are a proper-named thing. The silver coins have a number called the count. The count of the silver coins is 3.
 
-The printed name of the silver coins is "silver minutes".
-Understand "minutes" as the silver coins.
+Understand "1", "one" as the silver coins.
+Understand "2", "two" as the silver coins when the count of the silver coins is at least 2.
+Understand "3", "three" as the silver coins when the count of the silver coins is at least 3.
+Understand "silver", "coin", "minute", "minutes" as the silver coins.
+
+Before printing the name of the silver coins:
+	say "[count of silver coins in words] ";
+
+Rule for printing the name of the silver coins:
+	say "silver minute[if the count of the silver coins is not 1]s[end if]".
 
 Rule for printing the description of the silver coins:
 	say capitalized "[count of silver coins in words] silver coin[s]. [run paragraph on]";
@@ -9583,7 +9653,1199 @@ Rule for printing the description of the silver coins:
 
 Part 4 - Autopothecary
 
-The Autopothecary is southwest of Escapement St. "This is a small booth, all tiled gleaming white and washed down to make the place look healthy and clean. The plate glass wall to the southeast lets in enough gaslight to see the controls of the machine: a series of little doors, each with it’s own coin slot beneath. Beside it is a neat little press for combining fresh ingredients into medicines. Above that is a price-list chalked up like an inn sign."
+The Autopothecary Booth is northwest of Escapement St. "This is a small booth, all tiled gleaming white and washed down to make the place look healthy and clean. The plate glass wall to the southeast lets in enough gaslight to see the controls of the machine: a series of little doors, each with its own coin slot beneath. Beside it is a neat little press for combining fresh ingredients into medicines. Above that is a price-list chalked up like an inn sign."
+
+The printed name of the Autopothecary Booth is "Autopothecary".
+
+Table of grid layout options (continued) [cont. from the Grid Layout extension]
+table 					cell spacings
+table of autopothecary ingredients		{19, 34, 4}
+
+Table of autopothecary ingredients
+p1			p3		p2
+"NAME"			"DOOR"		"EFFECT"
+"Feverfew"		"A1"		"Reduces headaches"
+"Peppermint"		"A2"		"To ease the stomach"
+"Willow bark"		"A3"		"Reduces fever"
+"Oil of Vitriol"		"A4"		"Intensifies effect of other oils"
+"Horehound"		"B1"		"Expectorant"
+"Poppy"			"B2"		"Induces sleep"
+"Foxglove"		"B3"		"For difficulties of the heart"
+"Pokeweed"		"B4"		"Improves complexion"
+"Oil of Clotweed"		"C1"		"Strengthens blood"
+"Tincture of Morphos"	"C2"		"For dreaming"
+"Tincture of Hermes"	"C3"		"Clarifies the mind"
+"Poryphic Salts"		"D1"		"Aids the flow of vital blood vessels in time of peculiar need"
+"Albumic Salts"		"D2"		"For invigoration"
+"Entropic Salts"		"D3"		"To ease breathing"
+
+[ When play begins:
+	say the table of autopothecary ingredients laid out as a long grid; ]
+
+A tiny door is a kind of container, scenery, open, not openable. Some tiny doors in the Autopothecary are defined by the table of autopothecary vending machine slots.
+
+The description of a tiny door is usually "Each door’s about big enough for a mouse, but if I put my coins in and only get a mouse in return I’ll be spitting screws until the thirteenth stroke. The doors are all labeled but not with what they sell, only with codes: B3 or D2."
+
+Understand "tiny", "doors", "door", "slot", "slots" as a tiny door.
+
+Table of Autopothecary Vending Machine Slots
+tiny door	label		product		effect
+door A1		"A1"		"feverfew"	"for reducing headaches"
+door A2		"A2"		"peppermint"	"for easing the stomach"
+door A3		"A3"		"willow bark"	"for reducing fever"
+door A4		"A4"		"oil of vitriol"	"for intensifying the effect of other oils"
+door B1		"B1"		"horehound"	"an expectorant"
+door B2		"B2"		"poppy"		"for inducing sleep"
+door B3		"B3"		"foxglove"	"for heart difficulties"
+door B4		"B4"		"pokeweed"	"for improving complexion"
+door C1		"C1"		"oil of clotweed"		"for strengthening blood"
+door C2		"C2"		"tincture of Morphos"	"for dreaming"
+door C3		"C3"		"tincture of Hermes"	"for clarifying the mind"
+door D1		"D1"		"poryphic salts"		"to aid the flow of blood vessels"
+door D2		"D2"		"albumic salts"	"for invigoration"
+door D3		"D3"		"entropic salts"	"to ease breathing"
+
+Rule for asking which do you mean when everything matched by the parser is a tiny door:
+	say "Which door?" instead;
+
+Rule for deciding whether all includes a tiny door:
+	it does not;
+
+Chapter 3 - Please Insert Coin
+
+Section 1 - Items available
+
+Medicine is a kind of thing.
+
+Some oil of vitriol is a medicine. The description is "A small glass vial filled with an emerald green oil."
+Understand "small", "glass", "vial", "filled", "with", "emerald", "green", "oil" as the oil of vitriol.
+
+The Tincture of Morphos is a medicine, proper-named. The description is "A glass bottle filled with a clear liquid that sparkles like crystal.".
+Understand "small", "glass", "bottle", "filled", "with", "clear", "sparkling/sparkly", "crystal", "liquid" as the Tincture of Morphos.
+
+Some poppy seed-pods are a medicine. The description is "A handful of tiny poppy seed-pods."
+Understand "handful", "tiny", "seed", "seeds", "pod", "pods" as the poppy seed-pods.
+
+Rule for printing the name of the oil of vitriol when we are inserting silver coins into a tiny door:
+	say "little vial of green oil";	
+
+Rule for printing the name of the Tincture of Morphos when we are inserting silver coins into a tiny door:
+	say "small bottle of some clear, evil-looking liquid";
+
+Rule for printing the name of the poppy seed-pods when we are inserting silver coins into a tiny door:
+	say "few dark green seed pods";
+
+Instead of eating or drinking medicine:
+	say "No chance. I’m not experimenting on myself!";
+
+Section 2 - Inner Workings
+
+Instead of buying a tiny door when the player has silver coins:
+	try inserting the silver coins into the noun;
+
+Instead of inserting the silver coins into a tiny door:
+	abide by the vending machine rules for the second noun;
+
+The vending machine rules are an object-based rulebook.
+The vending machine rulebook has an object called the vended item.
+
+First vending machine rule for door A4:
+	change the vended item to the oil of vitriol;
+
+First vending machine rule for door B2:
+	change the vended item to the poppy seed-pods;
+
+First vending machine rule for door C2:
+	change the vended item to the tincture of morphos;
+
+A vending machine rule when the vended item is not nothing:
+	if the vended item is on-stage:
+		say "I’ve already got that ingredient from the drawer." instead;
+
+First vending machine rule for door D1 when TRIG_DOOR_D1 is unfired:
+	fire TRIG_DOOR_D1 instead;
+
+TRIG_DOOR_D1 is a trigger.
+For firing TRIG_DOOR_D1: say "The price on that door is a colossal 16 minutes!";
+
+Last vending machine rule for a tiny door (called x) when the vended item is nothing:
+	choose row with a tiny door of x in the table of autopothecary vending machine slots;  
+	say "[one of]I don’t know. I’ve only got [count of silver coins in words] coin[s] and I wouldn’t want to buy the wrong thing.[or]But that's [product entry], [effect entry]! What good would that be?[stopping]" instead;
+
+Last vending machine rule for a tiny door (called x) when the vended item is not nothing and the count of silver coins is 1 and the player is not honest:
+	if TRIG_LAST_COIN is unfired:
+		change the remembered slot of DQ_COIN to x;
+		fire TRIG_LAST_COIN instead;
+	otherwise:
+		now the player is honest;
+		say "You chicken, Wren. [run paragraph on]";
+
+Last vending machine rule for a tiny door (called x) when the vended item is not nothing:
+	decrement the count of the silver coins by 1;
+	if the count of the silver coins is at most 0:
+		remove the silver coins from play;
+	now the player carries the vended item;
+	say "[one of]The coin disappears into the slot and watching it go is a bit like losing a finger or waking up in the morning when it’s wet and cold and it’s washing day. Then there’s a loud clatter from inside the autopothecary and the little door drops open – just long enough for me to snatch out a [vended item].[or]I drop in the second coin and this time I’m ready for the door, managing to get out a [vended item] without trapping my fingers on the way out.[or]The last coin disappears, gone for good into this stupid little machine. In return I get a [vended item].[stopping]";
+
+Section 3 - A Moral Dilemma
+
+Yourself can be honest, dishonest, or morally neutral. Yourself is morally neutral.
+
+TRIG_LAST_COIN is a trigger.
+
+Rule for firing unfired TRIG_LAST_COIN:
+	say "The last coin... couldn’t I make do with the ingredients we've got?";
+	ask DQ_COIN;
+
+DQ_COIN is a direct question. DQ_COIN has a tiny door called the remembered slot.
+
+An affirmative response rule for DQ_COIN:
+	now the player is dishonest;
+	say "I’m sure what we’ve got will be strong enough.";
+
+A negative response rule for DQ_COIN:
+	now the player is honest;
+	try inserting the silver coins into the remembered slot of DQ_COIN;
+
+Chapter 4 - Drug Press
+
+Section 1 - Description
+
+The autopothecary press is a container, scenery, in the Autopothecary. "The press is a small contraption for mixing drugs together. Since it’s meant to be used in the middle of the night by people with roaring headaches and upset bellies it’s got instructions all over it and it couldn’t be easier. Right now, the little tin disc above the machine is displaying: '[press status message]'[paragraph break]"
+
+The reading matter of the autopothecary press is "The little tin disc above the machine displays '[press status message]'[paragraph break]";
+
+Understand "lever", "tin", "disc" as the autopothecary press.
+
+The autopothecary press has a number called the state. The state of the autopothecary press is 1.
+
+To say press status message:
+	if the state of the autopothecary press is:
+		-- 1: say "Add Herbs and lift lever.[run paragraph on]";
+		-- 2: say "Add Herbs and lift lever.[run paragraph on]";
+		-- 3: say "Add liquids.[run paragraph on]";
+		-- 4: say "Lift lever if ready to combine all ingredients.[run paragraph on]";
+		-- 5: say "Lift lever if ready to combine all ingredients.[run paragraph on]";
+		-- 6: say "Add Herbs and lift lever.[run paragraph on]";
+
+Section 2 - Drug Adding
+
+The drug-adding rules are an object-based rulebook.
+
+Instead of inserting something into the autopothecary press:
+	abide by the drug-adding rules for the noun;
+
+A drug-adding rule for a thing (called x) when x is not medicine:
+	say "I don't want to break it." instead;
+
+A drug-adding rule for the poppy seed-pods:
+	say "Following the instructions on the sign, I brush the poppy seeds off my palm and into the press.";
+	remove the poppy seed-pods from play;
+	change the state of the autopothecary press to 2;
+	rule succeeds;
+
+A drug-adding rule for the oil of vitriol when the state of the autopothecary press is less than 3:
+	say "The little sign says 'Add herbs and raise lever,' but the oil isn’t a herb." instead;
+
+A drug-adding rule for the tincture of Morphos when the state of the autopothecary press is less than 3:
+	say "The little sign says 'Add herbs and raise lever,' but the tincture isn’t a herb." instead;
+
+A drug-adding rule for the oil of vitriol:
+	say "I drip the contents of the vial into the funnel[if the state of the autopothecary press is 3]. The tin sign rotates to read 'lift lever if ready.'[otherwise].[end if]";
+	remove the oil of vitriol from play;
+	increment the state of the autopothecary press by 1;
+	rule succeeds;
+
+A drug-adding rule for the tincture of morphos:
+	say "The Morphos falls in tiny starlight splashes into the bowl of the press. There’s a faint bitter smell that makes my head spin... [if the state of the autopothecary press is 3]The tin sign rotates to read 'lift lever if ready.' [end if][paragraph break]";
+	remove the tincture of morphos from play;
+	increment the state of the autopothecary press by 1;
+	rule succeeds;
+
+Section 3 - Drug Pressing
+
+Instead of pushing or switching on the autopothecary press:
+	try pulling the autopothecary press instead;
+
+Instead of pulling the autopothecary press:
+	abide by the drug-pressing rules;
+
+The drug-pressing rules are a rulebook.
+
+A drug-pressing rule when the state of the autopothecary press is 1:
+	say "I give the lever a twitch. The two plates inside come neatly together, then separate out again since there’s nothing inside to squeeze." instead;
+
+A drug-pressing rule when the state of the autopothecary press is 2:
+	change the state of the autopothecary press to 3;
+	say "I push the lever up. Two plates inside the machine come together to squeeze the pods, releasing golden oil into a bowl below. The disc on the front of the machine rotates to read 'Now add liquids.'" instead;
+
+A drug-pressing rule when the state of the autopothecary press is 3:
+	say "I push the lever again, giving the seed pods another squash, but there’s no more oil to drain out." instead;
+
+TRIG_LAST_MINUTE is a trigger.
+
+Rule for firing unfired TRIG_LAST_MINUTE:
+	say "I’ve still got one minute left to spend. If there’s something else that’ll make this drug more powerful I’d better find it." instead;
+
+A drug-pressing rule when the state of the autopothecary press is 4 and the count of the silver coins is 0:
+	say "I’ve still got my third ingredient left to put in." instead;
+
+A drug-pressing rule when the state of the autopothecary press is 4:
+	if the player is dishonest:
+		change the state of the autopothecary press to 5;
+		anonymously abide by the drug-production rule;
+		[stop]
+	if TRIG_LAST_MINUTE is unfired:
+		fire TRIG_LAST_MINUTE instead;
+	now the player is dishonest;
+	say "I’ll keep the third coin, then. For myself.";
+	change the state of the autopothecary press to 5;
+	anonymously abide by the drug-production rule;
+
+A drug-pressing rule when the state of the autopothecary press is 5:
+	assert that the player is not dishonest issuing "Player is not dishonest.";
+	now the sleeping drug is strong;
+
+A drug-pressing rule when the state of the autopothecary press is 5 (this is the drug-production rule):
+	now the player carries the sleeping drug;
+	now the state of the autopothecary press is 6;
+	say "The lever springs up then down, clamping a lid onto the bowl inside the machine. There’s a brief moment of spinning and then the whole press tips over and out drains a murky liquid to be caught in a bottle below. That’s my sleeping drug! Gingerly, I pick it up." instead;
+
+A drug-pressing rule when the state of the autopothecary press is 6:
+	say "The machine is empty." instead;
+
+Section 4 - A Sleeping Drug
+
+The sleeping drug is medicine. The description is "A little bottle of a murky grey coloured liquid. Perfect for the Figure[if weak].  I only hope it’s strong enough[end if]."
+
+The sleeping drug can be weak or strong. The sleeping drug is weak.
+
+Instead of giving the sleeping drug to Covalt:
+	remove the sleeping drug from play;
+	say "Covalt barely looks up from his work. 'I’m sure it’ll do,' he snaps. 'Stick it over there and don’t say anything else at any point until I’ve got all this work done.' On the bench in front of him is half a box and it doesn’t look bad – the little ball rolling down the zigzag track, the casements either side that flip-flop the surface. And on the inside is a tight spring attached to a little hammer from a bell-strike ready to the break the glass, right about a small needle.[paragraph break]Gingerly Covalt picks up the bottle, and fits it into the box. 'Don’t press the casements,' he warns. 'Or you’ll fire the needle. Don’t forget that.' With slow delicacy he clicks a panel into place.[paragraph break]'I could go to the gallows for making this,' Covalt says. 'They won’t thank me. They won’t thank either of us. They’ll be grateful and then they’ll send us up the scaffold. But we’ll face that when the hands come round for it. You ready?'[paragraph break]I nod. What else can I do?[paragraph break]'Sneak into the vaults and swap this over. So good luck and I’m not coming with you. If they ask you where you got this from you say it fell from the stars.' And then he chucks me out and slams the door.[paragraph break]And then I’m off, on my own again, back on my way to the Cathedral of Time.";
+	now the player carries the decoy Perpetuum;
+	pause the game;
+	say "Like the lowliest ratchet in the bottom of a gear-train, I move in darkness. Through the streets of the city, sticking close to the walls. Carrying the Perpetuum – or something that looks so much like it – that I can’t afford to be seen. My only hope would be that they mistook me for a scruffy little angel.[paragraph break]Luckily it’s easy to find my way. The Cathedral’s great dome looms over all of St Phillip, blotting out stars. I head deeper into darkness until it fills the entire northeastern sky, and that’s when I’m beside the great Western door.";
+	move the player to the Public Yard;
+
+Book 10 - Return to the Cathedral
+
+When Return to the Cathedral begins:
+	now the West Door [public entrance to the Cathedral] is unlocked;
+	now the West Door is open;
+	remove the Chanting Monks from play;
+
+The decoy Perpetuum Mobile is a thing. [[JON]: Description for this please.]
+
+Instead of dropping the decoy Perpetuum when TRIG_SECRET_PANEL is unfired:
+	say "I need it. I can’t afford to lose it in the dark.";
+
+Instead of dropping the decoy Perpetuum when TRIG_SECRET_PANEL is fired and the location is not the Cathedral Choir:
+	say "I want to keep it as near me as I can.";
+
+After dropping the decoy Perpetuum:
+	assert that TRIG_SECRET_PANEL is fired issuing "Secret Panel has been entered?";
+	assert that the location is Cathedral Choir issuing "In Cathedral Choir.";
+	now the decoy Perpetuum is scenery;
+	say "I tuck the Perpetuum into the shadows by the stalls. Barely visible to anyone – I hope." instead;
+
+Part 1 - Public Yard
+
+Return to the Cathedral is a scene. Return To The Cathedral begins when the player carries the decoy Perpetuum.
+
+The Public Yard is a room. "The public square where the people come to hear the edicts and songs and gather before Mass, Volume and Compline. It’s empty now except for a towering statue of St Newton, gazing thoughtfully up at the stars. The great door of the Cathedral is open to the east.[one of][paragraph break]There’s no time to lose.[or][stopping]"
+
+The silhouetted Cathedral of Time is scenery, in the Public Yard. "The Cathedral raises spires like pins in a pin-cushion, only just visible as gaps in the stars. The glowing face of the rose window clock puts the time as a quarter to midnight. The door to the Cathedral is open.". The printed name of the silhouetted Cathedral is "Cathedral".
+
+The statue of St Isaac Newton is scenery, in the Public Yard. "Newton stands, apple in one hand, skull in the other. If he let go of either one I’d be crushed like a beetle in Drake’s bunkroom.". The printed name of the statue of St Isaac Newton is "statue of St Newton".
+
+Understand "apple", "skull" as the statue of St Isaac Newton.
+
+Rule for printing the description of the West Door when in the Public Yard during Return To The Cathedral:
+	say "The great door is open, just enough to let someone slip inside. Probably left that way for the Figure. I need to be quick.";
+
+After going through the West Door from the Public Yard during Return To The Cathedral:
+	say "I slip into the dark.";
+	continue the action;
+
+Instead of closing the open West Door during Return To The Cathedral:
+	say "It’s too heavy for me to move.";
+
+Instead of entering the silhouetted Cathedral of Time:
+	try going east;
+
+Part 2 - Cathedral Entrance
+
+Rule for printing the description of the Cathedral Entrance during Return To The Cathedral:
+	say "The Cathedral to the north is almost pitch dark, with a few false stars – candles, reflecting from the polished brass and the windows. The huge doors east and south are sealed fast: the door west should be but it’s been left open[one of]. [paragraph break]I need to get down to the Crypt, to plant the decoy. And fast – before the Figure beats me to it.[or].[stopping]";
+
+Rule for printing the description of the entry seal during Return To The Cathedral:
+	say "I can barely see the seal in the half-light.";
+
+Instead of doing something when the Great Doors are physically involved during Return To The Cathedral:
+	say "The doors are shut fast.";
+
+Instead of doing something when the East Doors are physically involved during Return To The Cathedral:
+	say "The doors are shut fast.";
+
+Rule for printing the description of the West Door when in the Cathedral Entrance during Return To The Cathedral:
+	say "The small west door is a crack ajar.";
+
+Instead of closing the open West Door when in the Cathedral Entrance during Return To The Cathedral:
+	say "It’s too heavy for me to shift. I can’t keep the Figure out.";
+
+Instead of going through the West Door from the Cathedral Entrance during Return To The Cathedral:
+	say "No time for turning back!";
+
+Part 3 - Lower Nave
+
+Rule for printing the description of the Lower Nave during Return To The Cathedral:
+	say "Oak pews are sleeping either side of the aisle. I can barely see the shrines to east and west. Past the second seal to the north, the nave continues.";
+
+Rule for printing the description of the lower seal during Return To The Cathedral:
+	say "I can barely see the seal in the half-light.";
+
+Instead of going south from the Lower Nave during Return To The Cathedral:
+	say "I can’t run away now.";
+
+After going west from the Lower Nave during Return To The Cathedral:
+	say "I slip between the pews and into the shrines.";
+	continue the action;
+
+After going east from the Lower Nave during Return To The Cathedral:
+	say "I slip between the pews and into the shrines.";
+	continue the action;
+
+After going north from the Lower Nave during Return To The Cathedral:
+	say "I creep further in.";
+	continue the action;
+
+Chapter 2 - Pews
+
+Rule for printing the description of a pew during Return To The Cathedral:
+	say "Rows of varnished oak pews.";
+
+Instead of entering or hiding inside or hiding under or hiding behind a pew when Calvin's Patrol has not happened during Return To The Cathedral:
+	say "Now is not a time to pray, or hide!";
+
+Instead of entering or standing on or sitting on or hiding inside or hiding under or hiding behind a pew (called the hiding place) during Calvin's Patrol:
+	say "[one of]I dive in between the pews[or]I shuffle in between the pews[or]I drop to my knees between the pews[at random][if the player carries a lit candle], and blow out my candle[end if].";
+	move the player to the hiding place, without printing a room description;
+	while the player carries a lit candle:
+		let x be a random candle held by the player;
+		now x is not lit;
+
+Part 4 - Upper Nave
+
+Rule for printing the description of the Upper Nave during Return To The Cathedral:
+	say "The nave is wider here, wider than to the south and with more tightly-packed pews on either side. But right now only shadows are bowing their heads. To the north is the altar, still gleaming.";
+
+Rule for printing the description of the upper seal during Return To The Cathedral:
+	say "I can barely see the seal in the half-light.";
+
+After going to the Upper Nave during Return To The Cathedral:
+	if Calvin Cutscene has not happened:
+		change the current script to {SE_CALVIN_1, SE_CALVIN_2, SE_CALVIN_3};
+	continue the action;
+
+SE_CALVIN_1 is a scripted event. The display text is "There are two figures sitting at its base, with a single candle between them. When I recognize Calvin I duck immediately behind a pew. How am I supposed to get past those two?[paragraph break]They’re playing dice. They must have been here some time."
+
+SE_CALVIN_2 is a scripted event. The display text is "'How are we meant to tell if someone’s grey in this light?' Calvin complains. He’s whispering. 'Why couldn’t the old man have given us a password to ask for or something?'[paragraph break]Drake is more boisterous. By the look on his face he’s just rolled eleven. 'If the Abbott says to keep people out, we keep people out. Maybe even people in grey.'".
+
+SE_CALVIN_3 is a scripted event. The display text is "'What’s that?' Calvin is up, suddenly, looking around. 'I heard something.'[paragraph break]'Better get to our places,' Drake says, sounding a little more nervous now. 'I’ll guard the library. You’re on patrol.'[paragraph break]'Me? Why...'[paragraph break]'Get on with it,' Drake snaps. The candles move out into darkness, one west and one north, then in and out of sight up a set of winding stairs.".
+
+Calvin Cutscene is a scene. Calvin Cutscene begins when SE_CALVIN_1 is listed in the current script. Calvin Cutscene ends when the current script is empty.
+
+Instead of doing something during Calvin Cutscene:
+	unless we are waiting or we are listening or we are taking inventory:
+		say "I’m frozen with fear." instead;
+	if we are taking inventory:
+		continue the action;
+
+Calvin's Patrol is a scene. Calvin's Patrol begins when SE_CALVIN_3 is fired.
+
+When Calvin's Patrol begins:
+	now Calvin is scenery;
+	move Calvin to the West Apse;
+	move the ebony dice to the Cathedral Altar;
+
+Part 5 - Altar
+
+Rule for printing the description of the Cathedral Altar during Return To The Cathedral:
+	say "The altar is still gleaming even though the candlelight has gone. It’s set between the workings of the great clock in the centre of the Cathedral. Aisles lead off in all four directions, but the Crypt is to the east.";
+
+Section 1 - Altar, Clock Machinery, Dais and Canopy
+
+Rule for printing the description of scenery when in the Cathedral Altar during Return To The Cathedral:
+	say "It would be worth enough to buy a house if it wasn’t too heavy to lift.";
+
+Instead of taking scenery when in the Cathedral Altar during Return To The Cathedral:
+	say "I’m not here to steal anything. Well. Almost not anything.";
+
+Section 2 - Dice
+
+There is a plural-named thing called two ebony dice. "Calvin has left his dice here." The description of the two ebony dice is "Two ebony dice. I don’t get things like that."
+
+Instead of taking the ebony dice:
+	say "Not now. No time for games.";
+
+Part 6 - Choir
+
+Part 1 - Description
+
+Rule for printing the description of the Cathedral Choir during Return To The Cathedral:
+	say "This is like standing in the bottom of the Abbey’s well: a circular pool of dark with the gigantic window just a different shade of dark. To the south is the altar but I can’t see it, and right overhead is the great engine of the clock. I can almost feel it ready to fall.";
+
+Part 2 - Scenery
+
+Rule for printing the description of the window panels during Return To The Cathedral:
+	say "The windows are dark.";
+
+Rule for printing the description of the east stairs during Return To The Cathedral:
+	say "Spiral steps leading up.";
+
+Instead of going through the East Stairs from the Cathedral Choir during Return To The Cathedral:
+	say "[one of]I start up the stairs then freeze. Light – a single point. Drake’s candle.[or]Drake hasn’t moved. There’s no going up that way.[stopping]";
+	if TRIG_CRYPT_GRATE is fired and TRIG_SECRET_PASSAGE is unfired:
+		fire TRIG_SECRET_PASSAGE;
+
+Rule for printing the description of the west stairs during Return To The Cathedral:
+	say "Spiral steps leading up.";
+
+After going through the west stairs from the Cathedral Choir during Return To The Cathedral:
+	say "I dash quickly up the stairs.";
+	continue the action;
+
+Part 3 - Choir Stalls
+
+Rule for printing the description of the Choir Stalls during Return To The Cathedral:
+	say "The stalls are like trolls in the dark. Their carvings are tattoos.";
+
+After printing the description of the Choir Stalls during Return To The Cathedral:
+	if TRIG_SECRET_PASSAGE is fired:
+		try touching the Choir Stalls;
+
+Instead of entering or sitting on or standing on the Choir Stalls during Return To The Cathedral:
+	say "Now isn’t the time to practice my singing!";
+
+Instead of entering or sitting on or standing on the Choir Stalls when the player can see the open secret panel during Return To The Cathedral:
+	try going inside;
+
+Instead of going inside when the player can see the closed secret panel:
+	try going north instead;
+
+Instead of pushing or pulling or opening the Choir Stalls during Return To The Cathedral:
+	try touching the Choir Stalls instead;
+
+Instead of touching the Choir Stalls when the Secret Panel is closed and the player carries a lit candle during Return To The Cathedral:
+	now the Secret Panel is open;
+	say "I run my hand across the embossed figures. Woodworkers, joiners, lathes, bevellers, the men who put the threads on screws. Their tools – hammers and files and drills...[paragraph break]...one panel swings open revealing a dark passage beyond.";
+
+Instead of touching the Choir Stalls when the Secret Panel is closed during Return To The Cathedral:
+	say "I lean in close to examine the carvings but can’t make out any of the details. There are hundreds of figures – if there’s a catch here, it could be anywhere![paragraph break]Without a decent light, I’ll never find it (and with a decent light, Drake will certainly find [i]me[r].)";
+
+Instead of touching the Choir Stalls when the Secret Panel is open during Return To The Cathedral:
+	say "One panel swings open revealing a dark passage beyond.";
+
+Instead of going through the secret panel when the player carries the decoy Perpetuum:
+	fire TRIG_SECRET_PANEL;
+
+TRIG_SECRET_PANEL is a trigger.
+
+Rule for firing TRIG_SECRET_PANEL:
+	say "The false Perpetuum is too wide to carry into the gap. I’m going to have to leave it here.";
+
+A secret panel is a door, privately-named, scenery, closed, inside from the Cathedral Choir, outside from the Secret Stair.
+
+Part 7 - Shrine of the Saints
+
+Rule for printing the description of the Shrine of the Saints during Return To The Cathedral:
+	say "East of the nave, the shrine is lit by a single shaded lantern. From the walls, the eyes of statuettes glitter like rat faces. I can barely see the stand of candles in the middle.";
+
+Part 2 - Scenery
+
+Rule for printing the description of the statuettes during Return To The Cathedral:
+	say "They are the icons of the saints. I can’t make out any detail beyond the smooth polished tonsures and the cog-teeth halos above.";
+
+Instead of taking or pushing the statuettes during Return To The Cathedral:
+	say "The statues are holy relics. I’m not here to steal relics – except, of course, I am. Only not these ones. More important ones.";
+
+A devotional oil lamp is scenery, in the Shrine of the Saints. "An oil lamp in a brass band. It flickers with a deep amber glow."
+
+Understand "deep", "amber", "flickering", "flicker", "glowing", "glow", "oil", "lantern", "lamp", "in", "in a", "brass", "band" as the devotional lamp.
+
+Part 3 - More candles
+
+Rule for printing the description of the brass stand during Return To The Cathedral:
+	say "The stand is lined with candles meant for devotions to the saints.";
+
+Some thin candles are scenery, part of the brass stand. "There are hundreds of thin candles." The indefinite article of the thin candles is "hundreds of".
+
+Rule for deciding the concealed possessions of the brass stand:
+	if Return To The Cathedral is happening:
+		if the particular possession is a candle dispenser:
+			yes;
+	otherwise:
+		if the particular possession is the thin candles:
+			yes;
+	no;
+
+Instead of taking the thin candles:
+	if the player has a candle:
+		say "I don’t need another one.";
+	otherwise:
+		now the player carries the single-candle;
+		say "I pick a candle from the stand.";
+
+A candle can be lit or unlit. A candle is usually unlit. Understand "lit", "flame" as a candle when the item described is lit.
+
+The single-candle is a candle, privately-named. The printed name of the single-candle is "candle". The wax is clear. Understand "narrow", "candle" as the single-candle.
+
+When Return To The Cathedral begins:
+	if the player has a candle:
+		while the player has a candle:
+			remove a random candle had by the player from play;
+		now the player carries the single-candle;
+
+Rule for printing the description of a candle during Return To The Cathedral:
+	say "[if unlit]It’s too dark to tell what colour the wax is. Not that it matters, now.[otherwise]The narrow candle throws out a circle of light.[end if]";
+
+Instead of dropping the unlit single-candle:
+	say "If I put it down I would lose it in the darkness.";
+
+Instead of inserting the single-candle into the brazier:
+	say "All that seems like weeks ago now.";
+
+Instead of inserting a candle into the devotional oil lamp:
+	now the noun is lit;
+	say "I tip the candle into the lantern flames. It sparks and hisses as it lights.";
+
+After going from the Shrine of the Saints to the Lower Nave when the player has a lit candle:
+	say "I go back to the nave, careful to shield the candle’s light behind my palm. Mustn’t be seen. Not here[if Calvin Cutscene has happened]. Not by those two[end if].";
+	continue the action;
+
+Part 8 - East Apse
+
+Rule for printing the description of the East Apse during Return To The Cathedral:
+	say "The eastern apse is filled with pews. Through the heavy door to the south I can hear the Orrey, still moving in its endless cycle. To the northeast is an iron grate: it leads to the crypts[one of]. [paragraph break]That way, Wren, and be bold about it.[or].[stopping]";
+
+Rule for printing the description of the Hall Door during Return To The Cathedral:
+	say "The heavy door to the Orrey is locked.";
+
+When Return To The Cathedral begins:
+	now the Hall Door is closed;
+	now the Hall Door is locked;
+
+Instead of knocking on the Hall Door during Return To The Cathedral:
+	say "I don’t want to wake anyone[one of]. Sa’at’s probably still in there, working through his endless papers, putting each one he finishes to the bottom of his stack to do again[or][stopping].";
+
+Rule for printing the description of the crypt grate during Return To The Cathedral:
+	say "This is the grate to the crypt. It’s smaller than a man – dating from a time before the Cathedral, before even the City. Perfect size for a Wren. Or a stooping Figure.";
+
+Instead of opening the crypt grate when the player does not have the old iron crypt key during Return To The Cathedral:
+	fire TRIG_CRYPT_GRATE instead;
+
+Instead of unlocking the crypt grate with something when the player does not have the old iron crypt key during Return To The Cathedral:
+	fire TRIG_CRYPT_GRATE instead;
+
+First unlocking rule for the Crypt Grate when the player does not have the old iron crypt key during Return To The Cathedral:
+	fire TRIG_CRYPT_GRATE instead;
+
+TRIG_CRYPT_GRATE is a trigger.
+
+Rule for firing TRIG_CRYPT_GRATE:
+	say "The grate is locked. The Bishop hasn’t left it open – he must have given the Figure the key. But the only key?[paragraph break]Not the only key. I saw one earlier. In the Bishop's desk. Where he kept it.";
+
+Part 9 - West Apse
+
+Rule for printing the description of the West Apse during Return To The Cathedral:
+	say "Rows of pews face the altar back east. To the south, the door to the Great Library is closed.";
+
+When Return To The Cathedral begins:
+	now the Library Archway is closed;
+	now the Library Archway is locked;
+
+Instead of doing something when the Library Archway is physically involved:
+	say "The oak door is locked.";
+
+Instead of knocking on the Library Archway:
+	say "[one of]I knock nervously. There is no response.[or]I try again, more boldly. Still nothing. And why should there be? And who here would help me? For all they know, Wren, [i]you’re carrying the Perpetuum[r].[stopping]"
+
+Part 10 - Calendar Shrine
+
+Rule for printing the description of the Calendar Shrine during Return To The Cathedral:
+	say "The Calendar Unlimited is like a still pond in the darkness. The nave is back east.";
+
+Rule for printing the description of the Calendar Unlimited during Return To The Cathedral:
+	say "The table-like machine seems still, but beneath the surface everything is whirring. All the indicators say Danger, Darkness and the jagged crack of the Fundamental Flaw.";
+
+Instead of doing something when the Calendar Unlimited is physically involved during Return To The Cathedral:
+	say "I’m not here for that. One relic is enough.";
+
+Rule for printing the description of the Brazier during Return To The Cathedral:
+	say "The brazier is cold.";
+
+Before inserting something into the Brazier during Return To The Cathedral:
+	say "No time to play now.";
+
+Part 11 - West Clerestory
+
+[[JON]: What should "circles the choice" be? ]
+
+Rule for printing the description of the West Clerestory during Return To The Cathedral:
+	say "The clerestory circles the choice from a storey above, but now is nothing but a coal-pit. The balcony continues northeast. Stairs spiral downwards through a hole in the floor.";
+
+Rule for printing the description of a stained glass window during Return To The Cathedral:
+	say "The windows are dark.";
+
+Rule for printing the description of the West Stairs during Return To The Cathedral:
+	say "The stairs lead down.";
+
+Part 12 - North Clerestory
+
+Rule for printing the description of the North Clerestory during Return To The Cathedral:
+	say "The clerestory curves here, from southwest to southeast, and that’s where Drake is standing with his candle: right outside the Bishop’s Library. [one of][paragraph break]Who are they supposed to be guarding it from? Surely not the Figure? And then I realize. The Abbott’s set them to guard it from me – or anyone like me. Anyone who might get into the Library and somehow stop the Figure from reaching the crypt.[or][paragraph break][stopping]";
+
+Instead of going to the East Clerestory from the North Clerestory during Return To The Cathedral:
+	say "I can’t let Drake find me[if TRIG_CRYPT_GRATE is fired]. There has to be another way[end if].";
+	if TRIG_CRYPT_GRATE is fired and TRIG_SECRET_PASSAGE is unfired:
+		fire TRIG_SECRET_PASSAGE;
+
+Rule for printing the description of the statues of St Breguet and St Babbage during Return To The Cathedral:
+	say "It’s too dark to see them.";
+
+TRIG_SECRET_PASSAGE is a trigger. 
+
+Rule for firing unfired TRIG_SECRET_PASSAGE:
+	say "Wait. Something the Abbott said, before, when talking to the Figure, about secret doors...[paragraph break][i]'Six? The only one I know is the one to the Bishop’s Library! Where there’s a drill...'[run paragraph on][r][paragraph break]Where there’s a drill, Wren. Where there’s a drill – there’s a way...";
+
+Part 13 - Calvin's Patrol
+
+Every turn during Calvin's Patrol:
+	consider the patrolling rulebook for Calvin;
+
+The patrolling rules are an object-based rulebook.
+
+Calvin has a list of objects [rooms] called the patrol. The patrol of Calvin is { West Apse, Cathedral Altar, Upper Nave, Lower Nave, Upper Nave, Cathedral Altar, East Apse, Cathedral Altar}.
+
+COUNTER_CALVIN is a counter. The top end of COUNTER_CALVIN is 2.
+
+A patrolling rule for Calvin (this is the only move on alternate turns rule):
+	increment COUNTER_CALVIN;
+	if the internal value of COUNTER_CALVIN is 2:
+		if the player can see Calvin:
+			anonymously abide by the detection rulebook;
+		do nothing instead;
+
+A patrolling rule for Calvin (this is the Calvin movement rule):
+	rotate the patrol of Calvin backwards;
+	move Calvin to entry 1 of the patrol of Calvin;
+
+A patrolling rule for Calvin:
+	if entry 1 of the patrol of Calvin is the location:
+		say "Calvin is almost on me. Either I run or I hide!" instead;
+
+A patrolling rule for Calvin:
+	if entry 2 of the patrol of Calvin is the location:
+		say "The light of a candle is approaching from [the quick best route from the location to the location of Calvin][one of]. Time to get out of here, Wren![or].[stopping]" instead;
+
+A patrolling rule for Calvin:
+	if entry 3 of the patrol of Calvin is the location:
+		say "I can hear footsteps approaching from [the best route from the location to the location of Calvin]." instead;
+
+The detection rules are a rulebook. The detection rules have default no outcome.
+
+First detection rule:
+	if the player is on a pew:
+		say "[one of]Calvin pauses, sniffing the air. His eyes are darting in the candlelight. They glance at me two or three times – straight at me. But he comes no closer.[paragraph break][or][stopping]Calvin moves on.";
+		anonymously abide by the Calvin movement rule instead;
+
+TRIG_CAL_DETECT is a trigger.
+
+A detection rule when TRIG_CAL_DETECT is unfired:
+	fire TRIG_CAL_DETECT;
+	move the player to Public Yard instead;
+ 
+Rule for firing TRIG_CAL_DETECT:
+	say "For a moment it looks like Calvin will look straight through me, but then he looks straight [i]at[r] me. For a moment he’s silent. I can see the belting coming a mile off: he’s winding up his anger, getting it ready to let loose...[paragraph break]'Wren?' he hisses, under his breath. 'What are you [i]doing[r] here? If Drake finds you he’d [i]string you up![run paragraph on][r]'[paragraph break]His voice is shaking. I’ve never heard him so angry. Or not angry – afraid. The whites of his eyes have turned yellow. 'You’ve got to go. [i]This isn’t a game![r]'[paragraph break]He grabs my arm as he speaks – here it comes, I’m thinking – then he drags me away through the nave of the church, hissing at me to stay quiet, all the way to the front gate. 'Go. All right? Please. Don’t tell anyone.'[paragraph break]Then he – and his feeble candle – have disappeared back inside.";
+
+A detection rule:
+	say "[one of]'Wren, please!' Calvin hisses. He looks awful, almost sick. 'Don't stay here. You stupid [i]novice[r]. And if you do stay here, [i]hide[r]. Whatever you do. [i]Hide![run paragraph on][r]'[paragraph break]And then, just like that, he moves away.[or]Calvin doesn’t seem to see me. Just passes straight through.[stopping]";
+	anonymously abide by the Calvin movement rule;
+
+Book 11 - Bishop's Library
+
+Part 1 - Secret Stair
+
+The Secret Stair is a room. "This is nothing but a tiny gap between the stones, maybe built for insulation or for the rats to build their nests. It winds upwards as it curves around the clerestory. A staircase."
+
+After going up from the Secret Stair:
+	say "I creep my way up the stairs."; continue the action;
+
+After going outside from the Secret Stair:
+	say "I slip out, grateful for the space to breath."; continue the action;
+
+The sloping floor is scenery, in the Secret Stair. "The floor itself tilts upwards."
+
+Understand "staircase", "stairs", "steps", "stair", "stair case", "step", "sloping", "tilting", "slope", "tilt", "sloped", "tilted", "floor", "itself" as the sloping floor.
+
+Up from the Secret Stair is the Ancient Landing.
+
+Part 2 - Ancient Landing
+
+The Ancient Landing is a room. "Dusty wooden floorboards fill this tiny space between the walls - the stairs have emerged onto a landing, with a banister rail along one side. Perhaps this was once part of a larger room: now its just a missing piece, that ends to the south in solid stone...[paragraph break]...and to the east, ends in a wooden door carved with a clock."
+
+Instead of going south in the Ancient Landing:
+	say "It's solid stone.";
+
+After going down from the Ancient Landing:
+	say "I slip back into the staircase."; continue the action;
+
+A gap in the stonework is scenery, in the Ancient Landing. "If I didn’t know they were there I’d think they were just a gap in the stonework." 
+
+Understand "staircase", "stairs", "steps", "stair", "stair case", "step", "sloping", "tilting", "slope", "tilt", "sloped", "tilted", "floor", "itself" as the gap in the stonework.
+
+Instead of entering the gap in the stonework:
+	try going down;
+
+A banister is scenery, in the Ancient Landing. "The wood is ancient and drilled with termite holes. In place to aid an old man, maybe, if he came through here to hide."
+
+Chapter 1 - Clock Door
+
+The secret Clock Door is a door, scenery, closed, openable, not lockable, east of the Ancient Landing, west of the Bishop's Library. "A wood panel door carved with the single image of a clock face. It seems solid enough."
+
+Rule for printing the description of the open secret Clock Door:
+	say "The door has slid back to reveal the inside of a Grandfather clock. Beyond the penduluum is moonlight, and the Library.";
+	if the enormous penduluum is ticking:
+		say "The penduluum strikes backwards and forward past the door.";
+	otherwise:
+		say "The penduluum is still.";
+
+First before going through the closed secret Clock Door:
+	say "Maybe it’s a door. Maybe it’s a wall." instead; [no implicit opening]
+
+Instead of opening the open secret Clock Door:
+	say "The panel has slid away into the wall.";
+
+After opening the secret Clock Door:
+	say "Getting my fingers in at six o’clock and eleven I heave with all my might – and almost fall. The wooden panel moves easily, drawing aside into the wall to reveal shining clock working, weights, and a beating penduluum like a heart… It’s the inside of a Grandfather clock. And beyond the workings I can see the Library.";
+
+Instead of closing the closed secret Clock Door:
+	say "The panel is already closed.";
+
+After closing the secret Clock Door:
+	say "The panel slides back across the clock. However old it might be, it moves with well-greased ease.";
+
+Instead of going through the secret Clock Door from the Ancient Landing when the enormous penduluum is ticking:
+	say "[one of]I move forward slowly, but the swinging Penduluum is stomping in my path like a giant blacksmith bashing a hammer down and aiming for my chest. Two beats a second – faster than I can move.[or]The heavy penduluum is blocking my path as sure as it was Drake hitting one fist after the other.[stopping]";
+
+After going through the secret Clock Door from the Ancient Landing:
+	say "I slip around the side of the penduluum, through the glass doors and out into the Library.";
+	continue the action;
+
+Chapter 2 - Inner Workings
+
+Section 1 - Penduluum
+
+The clock workings is a room.
+
+After deciding the scope of the player when the secret Clock Door is open in the Ancient Landing:
+	place the clock workings in scope;
+
+A rule for reaching inside the clock workings:
+	if the secret Clock Door is open:
+		allow access;
+
+The enormous penduluum is scenery, in the clock workings. "The Penduluum is enormous. [if stopped]It hangs lifeless as a cow from a butcher’s hook.[otherwise]It beats heavy time, side to side, driving the workings of the clock, driven by enormous counterweights on either side.[end if]"
+
+The enormous penduluum can be ticking or stopped. The enormous penduluum is ticking.
+
+Instead of taking, pushing, pulling or attacking the stopped enormous penduluum:
+	say "I’m not big enough to get that Penduluum to move.";
+
+Instead of taking, pushing, pulling or attacking the ticking enormous penduluum:
+	say "It’d knock me flat!";
+
+Section 2 - Weights
+
+Some heavy brass weights are scenery, in the clock workings. "Two heavy brass cylinders that drive the clock, inch by weighty inch[if removed]. They are side by side on the bottom of the clock case[end if]."
+
+The heavy brass weights can be present or removed. The heavy brass weights are present.
+
+Instead of taking the removed heavy brass weights:
+	say "The weights are too heavy to carry, or to put back.";
+
+Instead of taking the present heavy brass weights:
+	say "I wrap my whole body round the weight on the left-hand side and heave upwards, trying to slip it from its hook[if the enormous penduluum is ticking]. The giant penduluum comes so close to my head that it bellows in my ear, once, twice, three times[end if]. My muscles are straining so hard I can feel my shoulder-ball lifting from its socket.[paragraph break]And then suddenly the weight is free, and it drops the ground. Drake must have heard that, I think. Have to hope the Bishop locks his door.[paragraph break][if the enormous penduluum is ticking]The penduluum winds to a stop. [fire TRIG_JAMMED_CLOCK][end if]";
+	now the heavy brass weights are removed;	
+	now the enormous penduluum is stopped;
+
+COUNTER_WEIGHTS [ha!] is a counter. The internal value is 2. The top end is 2.
+
+Every turn when the player can see the present heavy brass weights:
+	increment COUNTER_WEIGHTS;
+
+Rule for firing COUNTER_WEIGHTS:
+	if the perfect clockwork workings are not jammed:
+		say "The weights of the Penduluum ratchet one notch lower[one of].[or].[or]. If only I wait another three hours they might reach the base.[or].[stopping]";
+
+Section 3 - Clockwork
+
+TRIG_JAMMED_CLOCK is a trigger. 
+
+Rule for firing unfired TRIG_JAMMED_CLOCK:
+	say "[i]This is what will happen if the Perpetuum is taken[r], I try to tell myself. [i]Only not just here. Everywhere[r].";
+
+Some perfect clockwork workings are a container, scenery, in the clock workings.  "The clockwork of the Bishop’s clock is perfect: carved with precision, fitted with reverence, tuned by blind masters with hearing that prevents them sleeping in the same rooms as moths or ants or woodworm[if jammed]. And I’ve jammed the workings[end if]."
+
+Rule for printing the name of the perfect clockwork workings:
+	say "workings";
+
+The perfect clockwork can be running smoothly or jammed. The perfect clockwork is running smoothly.
+
+Instead of inserting something unsuitable for jamming into the perfect clockwork workings:
+	say "I can't see what good that will do.";
+
+After inserting something suitable for jamming into the perfect clockwork workings:
+	now the perfect clockwork workings are jammed;
+	say "Clockwork – the movement of tick after tock – is the engine that drives the whole universe, every star, every planet, every leaf on every tree. It is unstoppable, unquestionable, unjudging, fair, precise and orderly. Clockwork continues, as the Abbott says: it defeats us all.[paragraph break]But then the Abbott has never plunged [a noun] into the gear trace of a clock and watched the gears scream and shake and choke in fury. It is an ultimate heresy: the sound must be the sound of the demons that have come to take my springs.[paragraph break][if the enormous penduluum is ticking][paragraph break]The penduluum swings to a stop. There is sudden, terrible silence. [fire TRIG_JAMMED_CLOCK][end if]";
+
+After removing something from the perfect clockwork workings:
+	now the perfect clockwork workings are running smoothly;
+	if the heavy brass weights are present:
+		now the penduluum is ticking;
+	say "I slide [the noun] from the workings of the clock. The cogs snap after them but the clock, incredibly, begins to turn once more[if the heavy brass weights are present]. Even the penduluum begins to move[end if]."
+
+Part 3 - Bishop's Library
+
+When Return To The Cathedral begins:
+	remove the Archbishop from play;
+
+Rule for printing the description of the Bishop's Library during Return To The Cathedral:
+	say "The small library is the first lit room I’ve seen in the Cathedral, like the Bishop had somehow fixed the moon in place to shine through the enormous stained-glass windows. The room is filled with the shadows of saints and the letters of proverbs – across the desk floats [i]Patience is the Key[r]. But not now, Wren. Now speed is of the essence.[paragraph break]The Grandfather clock is open and eerily silent. The desk drawer is [if the single drawer is closed]closed[otherwise]open[end if].";
+
+Instead of waiting in the Bishop's Library during Return To The Cathedral:
+	say "This isn’t helping, Wren.";
+
+Instead of going south from the Bishop's Library during Return To The Cathedral:
+	say "The door must be locked – and even if it isn’t, Drake’s right outside.";
+
+Rule for printing the description of the Archbishop's Desk during Return To The Cathedral:
+	say "Light from the window highlights the blotter and the top drawer of the desk.";
+
+First unlocking rule for the Archbishop's Desk during Return To The Cathedral:
+	say "I don’t have a key. There must be some other way to slip the catch." instead;
+
+First unlocking rule for the single drawer during Return To The Cathedral:
+	say "I don’t have a key. There must be some other way to slip the catch." instead;
+
+Instead of unlocking the Archbishop's Desk with something:
+	redirect the action from the Archbishop's Desk to the single drawer;
+	try the current action instead;
+
+Instead of opening or closing or pushing or pulling the Archbishop's Desk:
+	redirect the action from the Archbishop's Desk to the single drawer;
+	try the current action instead;
+
+Definition: a thing is suitable for catch-slipping:
+	if it is the knife, yes;
+	if it is the blotter, yes;
+	no;
+
+Instead of unlocking the locked single drawer with something suitable for catch-slipping during Return To The Cathedral:
+	say "I slide [the noun] across the top of the drawer until it finds the catch. It shouldn’t be this easy – but it seems that luck the Abbott is always saying doesn’t exist is with me. The lock turns over.";
+	now the single drawer is unlocked;
+
+Instead of opening or pulling the locked single drawer during Return To The Cathedral:
+	say "I try and heave the drawer, but it’s locked. Not very securely, perhaps, but locked all the same.";
+
+After opening the unlocked single drawer during Return To The Cathedral:
+	say "I slide open the drawer.";
+	try searching the single drawer;
+
+After searching the open single drawer during Return To The Cathedral:
+	if the old iron crypt key is in the single drawer:
+		say "Inside is the key the Bishop showed me: the old iron key that opens the crypt grate.";
+	otherwise:
+		say "There’s nothing important inside.";
+
+The description of the old iron crypt key is "The key is maybe as old as the Cathedral walls themselves. Heavy and hooked like something broken off a boat’s anchor chain[one of]. Perhaps they use it to punish those who try to break into the crypts...[paragraph break]...the Figure had better hope he doesn’t meet me down there[or][stopping].";
+
+A blotter is scenery, on the Archbishop's Desk. "[if the blotter is on the Archbishop's Desk]Projected across the blotter are the words [i]Patience is the Key[r][otherwise]It’s just a blotter, flat and wide, made of thin wood[end if]." 
+
+Rule for printing the description of the Archbishop's bookshelves during Return To The Cathedral:
+	say "I’m not here to read. I’m here to get that key!";
+
+Rule for printing the description of the narrow windows during Return To The Cathedral:
+	say "The room is walled on one side by glass decorated with saints and wise proverbs. None of which is 'steal that key and then get running.'";
+
+Rule for printing the description of the secret Clock Door when in the Bishop's Library during Return To The Cathedral:
+	say "The Bishop’s clock has stopped, maybe for the first time since it was made. And I did it. Me.";
+
+After going through the secret Clock Door from the Bishop's Library during Return To The Cathedral:
+	say "I slip back through the clock, closing its front doors as I go.";
+
+Rule for printing the description of the Bishop's Door when in the Bishop's Library during Return To The Cathedral:
+	say "The door to the clerestory is almost certainly locked.";
+
+Instead of going through the Bishop's Door from the Bishop's Library during Return To The Cathedral:
+	say "The door to the clerestory is almost certainly locked.";
+
+Part 4 - Choir
+
+Chapter 1 - Lost Perpetuum trick
+
+Last after going to the Cathedral Choir from the Secret Stair during Return To The Cathedral:
+	if TRIG_LOST_DECOY is unfired:
+		try looking;
+		fire TRIG_LOST_DECOY;
+	otherwise:
+		continue the action;
+
+The decoy perpetuum can be lost. The decoy perpetuum is not lost.
+
+TRIG_LOST_DECOY is a trigger.
+
+Rule for firing TRIG_LOST_DECOY:
+	now the decoy perpetuum is lost;
+	say "The Perpetuum’s not where I left it! It’s gone.";
+
+After reading a command when the decoy perpetuum is lost:
+	now the decoy perpetuum is not lost;
+	now the player carries the decoy perpetuum;
+	say "Oh, no. There it is. I just didn’t see it in the dark.[paragraph break]I quickly pick it up.";
+	reject the player's command;
+
+Part 5 - Crypt
+
+The matching key of the crypt grate is the old iron crypt key.
+
+After unlocking the crypt grate with the old iron crypt key:
+	say "I turn the key as slowly and quietly as I can. Tumblers move like ravens out of the way of a carriage: slowly, reluctantly, in hopping movements, croaking and clawing as they go.
+Then the gate is open. Like a pin into a hinge joint, I enter the dark.";
+	now the crypt grate is open;
+	if the implicitly opening activity is not going on,
+		try going the crypt grate instead;
+
+Book 12 - Crypt
+
+Part 1 - Crypt Stairs
+
+The Crypt Stairs is a room. "[one of]I turn and lock the grate behind me, snapping closed the padlock so that the Figure won’t suspect. Trapping me down here with him.[or]This isn’t the time for fear, Wren, even if this is the place for it. There are steps leading down: I need to take them.[stopping]"
+
+The printed name of the Crypt Stairs is "Staircase".
+
+After going to the Crypt Stairs from the East Apse:
+	now the crypt grate is closed; now the crypt grate is locked;
+	say "From the window of my tiny room in the rafters I’ve often watched the shadow of the Cathedral of Time as it races round the streets of St Philip – leaping up with the dawn and not stopping for breath till night.[paragraph break]Today I saw another shadow, grey this time instead of black, and inside the Cathedral.[paragraph break]And now, I am a shadow myself. A shadow in the Cathedral: a darkness moving through the darkness of the crypts. There are stairs leading down: I can smell them, cold air from underground, with a hint of grease, the sweetness of lamps and beeswax.[paragraph break]Like a shadow, all the light is behind me.[paragraph break]Like a shadow, I can’t stop moving.";
+	continue the action;
+
+Instead of going southwest when in the Crypt Stairs:
+	say "I can’t. I’ve locked the grate behind me, and I need to move on.";
+
+Rule for printing the description of the crypt grate when in the Crypt Stairs:
+	say "The thick iron grate leads back to the Cathedral, but I’m not going that way.";
+
+Before going through the crypt grate when in the Crypt Stairs:
+	say "I need to keep going. I don’t have much time." instead;
+
+Instead of opening the crypt grate when in the Crypt Stairs:
+	try going the noun instead;
+
+Instead of unlocking the crypt grate with something when in the Crypt Stairs:
+	try going the noun instead;
+
+Part 2 - Ossuary
+
+The Ossuary is a room, down from the Crypt Stairs. "[one of]A few years ago, before I got to clock polishing, when I was still sweeping up dust and coiling wire for my dinner, one of the Brothers died. His name was Brother Wilmslow but Calvin and Drake called him Brother Weakslow because he was so old he couldn’t move any faster than a shuffle and had trouble lifting his fork. I don’t think I ever spoke to him and he was so near-blind he probably never saw me at all.[paragraph break]I don’t think he can see me now, either, even though that’s him, propped up in a stone niche in the wall of the tunnel to the south.[or]The walls are smooth stones but into some are built triangular niches. Can’t I just tell you about the niches? Do I have to tell you about the skeletons and bodies sitting up inside them?[paragraph break]Round the head of each is tied a small round dial – a deathwatch. They make no sound at all.[paragraph break]The tunnel goes south. So will I, once I get the courage.[stopping]"
+
+Instead of listening to the Ossuary:
+	say "None of the bodies are making any noise. They must be praying, counting seconds or reciting the Tangent.";
+
+Some triangular niches are scenery, in the Ossuary. "Not all the stone niches are full. Some have bodies sitting cross-legged, and some have sunken piles of bones with skulls surrounded by knees."
+The printed name of the triangular niches is "niches".
+
+Understand "triangle", "niche" as the triangular niches.
+
+Instead of entering the triangular niches:
+	say "I know I’m going to die down here all right, but I’m not that keen to get it over with!";
+
+Brother Wilmslow is a man, scenery, in the Ossuary. "Brother Wilmslow is sitting up, as if he’d fallen asleep at dinner. On his head is the small round dial of his deathwatch."
+
+Understand "weakslow" as Brother Wilmslow.
+
+Instead of doing something when Brother Wilmslow is physically involved:
+	say "I don’t want to wake him.";
+
+Rule for speaking with Brother Wilmslow:
+	say "Brother Wilmslow was always deaf as well as blind. Now he’s mute too. It must be awful for him down here with nothing to do.";
+
+The bodies of dead monks are scenery, in the Ossuary. "They’re all Brothers, still robed, though some of the robes are only so much dust and cobweb."
+
+Understand "dusty", "robed", "skeleton", "skeletons", "heads", "sunken", "piles", "piles of", "bone", "bones", "skull", "skulls", "knees", "robe", "robes" as the bodies of dead monks. The printed name of the bodies of dead monks is "skeletons".
+
+Instead of taking or searching the bodies of dead monks:
+	say "No chance ! I’m not digging around inside a skeleton. You must think I’m crazy!";
+
+Some deathwatches are scenery, in the Ossuary. "A small round dial tied by a wire band to the forehead of the Brother. Each seems still but is moving really: the minute hand pushing forward then juddering back, as though the springs were too spent to get the hand round the dial. They aren’t – these springs will run until the soul has gone. But the watches have been cobbled: how could the watch move beyond the moment of death when their owners couldn’t?"
+
+Instead of taking the deathwatches:
+	say "It’s not my time for one. Not yet.";
+
+Instead of setting the deathwatches to something:
+	try switching on the noun;
+
+Instead of turning, switching on, switching off the deathwatches:
+	say "If I turned the watch backward I might wake him. If I turned it back, he might crumble to dust. I leave it alone.";
+
+Part 3 - Landing
+
+The Crypt Landing is a room, south of the Ossuary. "[one of]Light! [or][stopping]The tunnel from the north opens out here into a vaulted chamber and there are four iron torches burning in each corner. Between them, east and west, are arched doorways like lidded eyes. By the south wall, a missing flagstone leads further down: more darkness."
+
+The printed name of the Crypt Landing is "Landing".
+
+After going from the Ossuary to the Crypt Landing:
+	say "[one of]I don’t want to meet the Figure here. Only one place to hide and I don’t like it. So I keep going.[or][stopping]";
+	continue the action;
+
+Some steep stairs are scenery, in the Crypt Landing. "Steep stairs – so steep I’d have to go backwards. They lead into pitch dark."
+
+Understand "darkness", "steps", "staircase" as the steep stairs.
+
+Some carved archways are scenery in the Crypt Landing. "Each arch is topping by a carving: a skull on its side, the eye-sockets forming an hourglass."
+
+Instead of entering the carved archways:
+	say "Which way, Wren? East or west?";
+
+Understand "skull", "skulls", "arch", "archway", "arches", "carvings", "eye", "sockets", "hourglass", "hourglasses", "hour glass", "hour glasses" as the carved archways.
+
+Part 4 - Upper Vault
+
+The Upper Vault is a room, west of the Crypt Landing. "[one of]I catch my breath as I enter. [or][stopping]This room is a vault of ancient pagan relics: torchlight from the arch back east gleams over water-clocks and candle-clocks and stranger devices I can’t even name, made of wood and bone. There’s no brass here, no cogs, no bearings, no blown glass. It should have all been destroyed.[paragraph break]As if I needed to add, the Perpetuum is [i]not[r] here[if sundial on shelf]. The only metal thing at all is the plate of a large sundial, resting on a shelf[end if]."
+
+An eastern arch is scenery, in the upper vault. "The arch leads back to the landing." Understand "east", "archway" as the eastern arch.
+
+Instead of entering the eastern arch:
+	try going east instead;
+
+Some pagan relics are scenery, in the upper vault. 
+
+Instead of doing something when the pagan relics are involved:
+	say "[one of]In the days before St Newton people had been ignorant of Penduluums and the Simple Approximation of Sine, and had been forced to use all sorts of foolish things to measure time. None of them worked, of course – water slides and marked candles and so forth. Brother Reloh says that without a True understanding of Time, Time cannot exist.[paragraph break]Looking at all the things here I feel sorry for those primitive people, who must have always been waking up to find the day was over, or enduring nights that went on forever without any breakfast.[or]Leave them be. Their time is finally done.[stopping]"
+
+A dusty shelf is scenery, in the upper vault. The printed name is "shelf".
+
+A plate sundial is on the dusty shelf. "The plate sundial is made of dark, lusty gold, and would probably be worth a packet if anyone could be demon-happy enough to buy it in the markets of the town. The gnomon is razor sharp still but the underside is worn away, with a series of strange indentations."
+
+After taking the plate sundial:
+	say "The plate is heavier than it looks.";
+
+Understand "dark", "lusty", "gold", "razor", "sharp", "gnomon", "worn", "underside", "series", "series of", "strange", "indentations" as the plate sundial.
+
+Part 5 - Mortuary
+
+The Mortuary is a room, east from the Crypt Landing. "[one of]The back of my neck starts prickling and I’m only one step inside. [i]Don’t be a fool, Wren. No ghosts in these machines[r]. But that doesn’t stop all sort of things from making people dead, so that they end up in rooms like this one.[paragraph break][or][stopping]The stone walls are cold, and wet with the last breath of all the bodies that have been prepared down here. When they come they lie down on the large stone slab in the centre of the room. Blown-glass tubes lead out from it on either side with another at one end. Their insides are the colour of burnt bacon.[paragraph break]By the arch to the west is a shelf carved out of the rock. On it are the tools of the trade: spices, cloth, dowels, oil. At least there’s no lathe or whetstone or screws."
+
+Instead of smelling the Mortuary:
+	say "The room is heavy with death, like an October night heavy with rain.";
+
+Instead of listening to the Mortuary:
+	say "The wet walls are whispering, Wren.";
+
+Chapter 2 - Scenery
+
+Section 1 - Arch
+
+A western arch is scenery, in the mortuary. "The arch leads back to the landing." Understand "west", "archway" as the western arch.
+
+Instead of entering the western arch:
+	try going west instead;
+
+Section 2 - Slab
+
+A slab is scenery, in the Mortuary. "The slab is a bit larger than a man, a bit wider than a man, and has a shallow impression in the shape of a man, with his legs together and wrists by the blown-glass tubes."
+
+Instead of entering the slab:
+	say "You must think I’m crazy! The ghosts would eat my bones for breakfast!";
+
+Section 3 - Shelf
+
+A rock shelf is scenery, in the Mortuary. "The shelf is hewn from the rock itself, to hold the bandages and the oil. On one side is a stack of wooden dowels."
+
+Instead of entering the rock shelf:
+	say "It’s too small for me to hide.";
+
+Instead of putting something on the rock shelf:
+	say "I’m not here to tidy things away.";
+
+Section 4 - Spices
+
+Some jars of spices are scenery, on the rock shelf. "The shelves are lined with the spices of death: cinnamon, cardamom, mace and star anise. They sit in jars between the rolls of bandages and the bowl of oil.";
+
+Understand "jar of", "jar", "cinnamon", "cardamom", "mace", "star anise", "of death", "death" as the jars of spices.
+
+Instead of taking the jars of spices for the first time:
+	say "I don’t think Cook would like me adding those to the Abbey soup.";
+
+Instead of taking the jars of spices:
+	try smelling the jars of spices;
+
+Instead of smelling, tasting, eating the jars of spices:
+	say "The smell is enough to make me feel ill.";
+
+Section 5 - Oils
+
+A bowl of thick black oil is scenery, on the rock shelf. "At one end of the shelf is a wide shallow bowl, thick with dark black oil."
+
+Instead of taking the bowl of black oil for the first time:
+	say "I try lifting the bowl, only to find that it isn’t a bowl: it’s a carved part of the shelf."
+
+Instead of taking the bowl of black oil:
+	try attacking the bowl of black oil;
+
+Instead of attacking or pulling or turning the bowl of black oil:
+	say "I don’t have a stone-hammer with me.";
+
+Instead of touching, tasting, drinking, eating the bowl of black oil:
+	say "The oil is as thick as slug-slime and as black as death. Who knows what it’s made from?";
+
+Section 6 - Bandages
+
+Some bandages are scenery, on the rock shelf. "Long rolls of cloth fill half the shelf – dry cloth, the same colour as bone and as dry as bone[if the linen cloth is off-stage]. One end of the roll hangs loose, like a lolling tongue[end if]."
+
+Some linen cloth is a thing. The description is "[if oiled]A strip of linen, gleaming smugly with oil.[else]I’ve torn a strip of linen from the bandage roll, about the length of my arm.[end if]"
+
+The linen cloth can be oiled or unoiled. The linen cloth is unoiled.
+
+Understand "dry" as the linen cloth when the linen cloth is unoiled.
+
+Instead of taking the bandages when the linen cloth is off-stage:
+	say "I tear away a strip of the dry linen cloth.";
+	now the linen cloth is unoiled;
+	now the player carries the linen cloth;
+
+Instead of taking the bandages:
+	say "I’ve already got enough. I’m not here to wrap myself up – or anyone else.";
+
+Instead of inserting the oiled linen cloth into the bowl of black oil:
+	say "It’s already soaked through with oil.";
+
+Instead of inserting the unoiled linen cloth into the bowl of black oil:
+	say "[one of]I dip the linen strip once, twice in the bowl of oil. It comes out gleaming.[or]I soak the linen strip.[stopping]"
+
+Section 7 - Dowels
+
+Some dowels are scenery, on the rock shelf. "There’s a pile of stocky wooden dowels on the shelf. I don’t even want to think what they’re for."
+
+Instead of taking the dowels when the dowel is off-stage:
+	say "I pick up a dowel. It’s a good length, but far too light to use as a cudgel. (And I’m too much of a wimp to use one, too.)"
+
+Instead of taking the dowels:
+	say "I’ve already got one.";
+
+Part 6 - Dark Stair
+
+The Dark Stair is a room, south from the Crypt Landing, down from the Crypt Landing. "Total darkness. I’m feeling my way – one step, then another, like I was coming down the ladder from my room. Then just as I’m getting the hang of it, the deep step gets deeper and deeper and I realise my foot is heading out into nothingness because the stairs have stopped… with no time to pull back I sit down, sharply. Below me is empty air – could be a handspan, could be the height of a tower. The air is still, and cold. The darkness around could be the size of the night."
 
 Book W - Walkthrough Script
 
@@ -9597,11 +10859,11 @@ Test abbey2 with "d/e/sw/e/get cup/e/n/put cup in bracket/w/w/z/z/z/e/e/get tea/
 
 [ "d/e/sw/w/z/e/ne/e/put cup in bracket/get tea/w/w/z/e/e/x train/get worn gear/turn spigot/w/sw/w/z/z/e/sw/w/get gear/e/ne/e/e/n/put gear in train/put leaves in basket/wind key/pull lever/z/w/w/z/e/e/get tea/z/w/sw/w/give tea to horloge/get keys/get keys/e/ne/z/z/sw/e/e/unlock clock/open clock/turn clock to 4:59/w/w/sw/sw/w" ]
 
-test cathedral with "w/n/e/get blue/get red/w/n/n/w/sw/open tome/get knife/ne/e/s/s/w/put red in brazier/put blue in brazier/get purple with knife/e/n/n/e/se/take work order/nw/w/w/sw/look up principia planetaria in catalogue/test steel/test brass/test gold/pull chain/ne/e/e/se/give principia to sa'at/take order/give wax to sa'at/get order/nw/w/n/e/give work order to doric/give work order to doric/n/lever, spring, winding key".
+test cathedral with "w/n/e/get blue/get red/get yellow/w/n/n/w/sw/open tome/get knife/ne/e/s/s/w/put red in brazier/put blue in brazier/get purple with knife/e/n/n/e/se/take work order/nw/w/w/sw/look up principia planetaria in catalogue/test steel/test brass/test gold/pull chain/ne/e/e/se/give principia to sa'at/take order/give wax to sa'at/get order/nw/w/n/e/give work order to doric/give work order to doric/n/lever, spring, winding key".
 
 test clockchase with "z/z/z/nw/z/sw/u/z/z/jump/u/hold chain/pull lever/d/out/z/z/w/jump".
 
-test rooftops with "sw/scrape mortar with knife/get bricks/ne/se/sw/drop bricks/ne/get plank/sw/put plank in notch/put bricks in notch/ne/get pipe/sw/get tarp/e/put pipe on chimney/put tarp on chimney/turn pipe sw/w/s/nw/turn compass south/turn crank/look through telescope/se/put balloon on vent/z/z/z/z/z/z/z/z/z/z/z/enter balloon".
+test rooftops with "sw/scrape mortar with knife/get bricks/ne/se/sw/drop bricks/ne/get plank/sw/put plank in notch/put bricks in notch/ne/get pipe/sw/get tarp/e/put pipe on chimney/put tarp on chimney/turn pipe sw/w/s/nw/turn compass south/turn crank/look through telescope/se/put balloon on vent/z/z/z/z/z/z/z/z/z/z/z/z/enter balloon".
 
 test steel with "turn steel crank/g/g/g/g/g/turn steel crank backwards/g/g/g/g/g/g/g/g".
 
@@ -9609,13 +10871,15 @@ test brass with "turn brass crank".
 
 test gold with "turn gold crank/g/g/g/g/g/g/turn gold crank backwards/g/g".
 
-test covalt with "tell giant about balloon / tell giant about figure / tell covalt about abbot / tell covalt about perpetuum / x table / x shelves / x clocks / x tools / x workbench / x brown lump / x mechanical monkey / ask covalt about difference / out".
+test covalt with "tell giant about balloon / tell giant about figure / tell covalt about abbot / tell covalt about perpetuum / x table / x shelves / x clocks / x tools / x workbench / x brown lump / x water clock / ask covalt about difference / out".
 
 test countinghouse with "up / show order to guards / w / nw / n / e / z / z / d / x dials / get key / s / w / unlock abacus / set abacus to 14936 / e / e / unlock abacus / set abacus to 78325 / w / pull lever / z / get card / n / w / w / ne / e / e".
 
 test outsidewarehouse with "n/e/n/x rubble/get wrench/w/w/unscrew bolts with wrench/unscrew bolts with wrench/unscrew bolts with wrench/w/unscrew bolts with wrench/unscrew bolts with wrench/enter drain/u".
 
 test insidewarehouse with "x junk / get ladder / put ladder against pipe / get rope / put rope on pipe / tie rope to crate / get ladder / get rope / s / put ladder against pipe / put rope on pipe / tie rope to door / n / push crate down drain / s / get ladder / e / pull lever / turn bolt with wrench / push button / pull lever / turn bolt with wrench / stand ladder / down / open men".
+
+test covaltreturn with "ask covalt about me / tell covalt about dockyard / tell covalt about me / tell covalt about himself / no / x diagram / sw / nw / buy b2 / buy a4 / buy c2 / no / put poppy seeds in press / pull lever / put tincture in press / put oil in press / pull lever / se / ne / give drug to covalt"
 
 Book X - Not For Release - Fixing the RNG
 
