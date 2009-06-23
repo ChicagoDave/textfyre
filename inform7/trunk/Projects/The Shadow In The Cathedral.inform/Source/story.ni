@@ -6,6 +6,8 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 
 [  Change Log
 When		Who		What
+23-Jun-2009	G. Jefferis	Crypt map and scenery
+22-Jun-2009	G. Jefferis	Entry to Crypt
 21-Jun-2009	J. Ingold		Added "Set clock to dinner-time"
 21-Jun-2009	J. Ingold		Doric: added hints to his creed response. Made chase sequence give a hint about the creed. Pushed players to explore further. Fixed a bug with hiding.
 20-Jun-2009	J. Ingold		Started playthrough of ch. 3. Added "Cathedral Space" region to cover the rooms. Added cathedral backdrop to these. Made "in" and "out" work. Added some hints after meeting Doric and to room descriptions. Added "listen" responses for the monks. Auto-exit of pews.
@@ -10685,7 +10687,16 @@ The bodies of dead monks are scenery, in the Ossuary. "They’re all Brothers, s
 Understand "dusty", "robed", "skeleton", "skeletons", "heads", "sunken", "piles", "piles of", "bone", "bones", "skull", "skulls", "knees", "robe", "robes" as the bodies of dead monks. The printed name of the bodies of dead monks is "skeletons".
 
 Instead of taking or searching the bodies of dead monks:
+	if the linen cloth has been held and the dowel handle is not on-stage:
+		now the player carries the arm bone;
+		say "I pick out the oldest-looking bone I can, and hold it by one end, trying not to squirm. I can feel the ghost reaching down the length of it to hold me back.";
+	otherwise:
+		continue the action;
+
+Instead of taking or searching the bodies of dead monks:
 	say "No chance ! I’m not digging around inside a skeleton. You must think I’m crazy!";
+
+The arm bone is a thing. "I think it’s an arm." The printed name of the arm bone is "bone".
 
 Some deathwatches are scenery, in the Ossuary. "A small round dial tied by a wire band to the forehead of the Brother. Each seems still but is moving really: the minute hand pushing forward then juddering back, as though the springs were too spent to get the hand round the dial. They aren’t – these springs will run until the soul has gone. But the watches have been cobbled: how could the watch move beyond the moment of death when their owners couldn’t?"
 
@@ -10837,11 +10848,28 @@ Section 7 - Dowels
 
 Some dowels are scenery, on the rock shelf. "There’s a pile of stocky wooden dowels on the shelf. I don’t even want to think what they’re for."
 
-Instead of taking the dowels when the dowel is off-stage:
+Instead of taking the dowels when the dowel handle is off-stage:
+	now the player carries the dowel handle;
 	say "I pick up a dowel. It’s a good length, but far too light to use as a cudgel. (And I’m too much of a wimp to use one, too.)"
 
 Instead of taking the dowels:
 	say "I’ve already got one.";
+
+The dowel handle is a thing. "It’s a good length, the size and shape of my forearm." The printed name is "handle".
+
+Section 8 - Making a torch
+
+A thing can be a torch stick.
+The dowel handle is a torch stick.
+The bone is a torch stick.
+
+After wrapping a torch stick thing (called the stick) with the linen cloth:
+	remove the noun from play;
+	remove the second noun from play;
+	now the player carries the makeshift torch;
+	say "I roll the [if the linen cloth is oiled]oozing [end if]linen around the end of the [if the stick is a dowel handle]wooden handle[else]bone[end if], once, twice, until it's tight. I’m left holding something that looks a lot like a [if the linen cloth is unoiled]dry torch[else]torch, ready to be lit[end if]."
+
+The makeshift torch is a thing.
 
 Part 6 - Dark Stair
 
@@ -10880,6 +10908,8 @@ test outsidewarehouse with "n/e/n/x rubble/get wrench/w/w/unscrew bolts with wre
 test insidewarehouse with "x junk / get ladder / put ladder against pipe / get rope / put rope on pipe / tie rope to crate / get ladder / get rope / s / put ladder against pipe / put rope on pipe / tie rope to door / n / push crate down drain / s / get ladder / e / pull lever / turn bolt with wrench / push button / pull lever / turn bolt with wrench / stand ladder / down / open men".
 
 test covaltreturn with "ask covalt about me / tell covalt about dockyard / tell covalt about me / tell covalt about himself / no / x diagram / sw / nw / buy b2 / buy a4 / buy c2 / no / put poppy seeds in press / pull lever / put tincture in press / put oil in press / pull lever / se / ne / give drug to covalt"
+
+test returncathedral with "e/n/e/put candle in lantern / w / n / z / z / n / e / ne / w / n / e / x carvings / in / drop perpetuum / in / u / open door / get weights / e / open drawer with knife / open drawer / get key / w / d / out / s / s / e / ne"
 
 Book X - Not For Release - Fixing the RNG
 
