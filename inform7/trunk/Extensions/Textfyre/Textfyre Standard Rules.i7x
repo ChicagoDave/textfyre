@@ -174,23 +174,7 @@ Does the player mean eating something edible (this is the very likely to mean ea
 Does the player mean eating something inedible (this is the very unlikely to mean eating inedible things rule):
 	it is very unlikely;
 
-Part 3 - Doors and boxes
-
-Chapter 1 - Opening and Closing
-
-Section 1 - Implicitly opening
-
-Implicitly opening something is an activity.
-
-Rule for implicitly opening something (called the unopened item):
-	say "(first opening [the unopened item])[command clarification break]";
-	try silently opening the unopened item; 
-
-Before going through a closed door (called the obstacle):
-	carry out the implicitly opening activity with the obstacle;
-	if the obstacle is closed, stop the action;
-
-Section 2 - Does the player mean
+Part 3 - Doors
 
 [This is not quite right in the way the rules interact.]
 
@@ -211,58 +195,6 @@ Does the player mean opening something open (this is the unlikely to mean openin
 
 Does the player mean opening or closing something unopenable (this is the very unlikely to mean opening or closing unopenable things rule):
 	it is very unlikely;
-
-Chapter 2 - Inserting and Removing
-
-[ We let the player try these things and fail them: the default message that occurs otherwise is 'you can't see any such thing', which seems somewhat worse. ]
-
-Understand "take [things] from [something]" as removing it from.
-Understand "get [things] from [something]" as removing it from.
-Understand "remove [things] from [something]" as removing it from.
-
-Understand "take [things] out of/from [something]" as removing it from.
-Understand "get [things] out of/from [something]" as removing it from.
-Understand "remove [things] out of/from [something]" as removing it from.
-
-Understand "put [things] in/inside/into [something]" as inserting it into.
-Understand "insert [things] in/inside/into [something]" as inserting it into.
-Understand "drop [things] in/inside/down/into/behind [something]" as inserting it into.
-Understand "hide [things] in/inside/down/under/into/behind [something]" as inserting it into.
-
-Chapter 3 - Locking and unlocking
-
-Matching relates a thing (called the key in question) to a thing (called the lock) when the lock provides the property matching key and the matching key of the lock is the key in question.
-The verb to fit (it fits, they fit, it fitted) implies the matching relation.
-
-Definition: a thing is a key:
-	if it fits something, yes;
-	no;
-
-Definition: a thing is a lock:
-	if it is not lockable, no;
-	if it provides the property matching key:
-		yes;
-	no;
-
-Understand "unlock [something]" as unlocking it with;
-Understand "put [key thing] in/into [lock thing]" as unlocking it with (with nouns reversed);
-Understand "insert [key thing] in/into [lock thing]" as unlocking it with (with nouns reversed);
-
-The unlocking rules are an object-based rulebook.
-
-First unlocking rule for something lockable (called l) (this is the matching key rule):
-	if the player carries something (called k) that fits l:
-		rule succeeds with result k;
-
-Rule for supplying a missing second noun while unlocking something (called the lock) with:
-	consider the unlocking rules for the lock;
-	if the rule succeeded:
-		let the chosen key be the result of the rule;
-		begin the clarifying the parser's choice activity with the chosen key;
-		if handling the clarifying the parser's choice activity with the chosen key:
-			say "(with [the chosen key])[command clarification break]";
-		end the clarifying the parser's choice activity with the chosen key;
-		change the second noun to the chosen key;		
 
 Part 4 - Taking
 
@@ -482,6 +414,123 @@ Rule for printing inventory information of a closed container (called x):
 	otherwise:
 		say "[if x does not enclose something and x is transparent](which [is or are for x] empty)[otherwise if x is transparent](containing:)[end if]";
 
+Part 8 - Doors
+
+Chapter 1 - Implicitly opening
+
+Implicitly opening something is an activity.
+
+Rule for implicitly opening something (called the unopened item):
+	say "(first opening [the unopened item])[command clarification break]";
+	try silently opening the unopened item; 
+
+Rule for implicitly opening something locked (called the locked item):
+	consider the unlocking rules for the locked item;
+	if the rule succeeded:
+		let the chosen key be the result of the rule;
+		say "(first unlocking [the locked item] with [the chosen key])[command clarification break]";
+		try silently unlocking the locked item with the chosen key;
+		if the locked item is unlocked and the locked item is closed:
+			try silently opening the locked item; 
+
+Before going through a closed door (called the obstacle):
+	carry out the implicitly opening activity with the obstacle;
+	if the obstacle is closed, stop the action;
+
+Chapter 2 - Implicitly unlocking
+
+The unlocking rules are an object-based rulebook.
+
+First unlocking rule for something lockable (called l) (this is the matching key rule):
+	if the player carries something (called k) that fits l:
+		rule succeeds with result k;
+
+Rule for supplying a missing second noun while unlocking something (called the locked item) with:
+	consider the unlocking rules for the locked item;
+	if the rule succeeded:
+		let the chosen key be the result of the rule;
+		begin the clarifying the parser's choice activity with the chosen key;
+		if handling the clarifying the parser's choice activity with the chosen key:
+			say "(with [the chosen key])[command clarification break]";
+		end the clarifying the parser's choice activity with the chosen key;
+		change the second noun to the chosen key;
+
+Chapter 3 - Locking and unlocking
+
+Matching relates a thing (called the key in question) to a thing (called the lock) when the lock provides the property matching key and the matching key of the lock is the key in question.
+The verb to fit (it fits, they fit, it fitted) implies the matching relation.
+
+Definition: a thing is a key:
+	if it fits something, yes;
+	no;
+
+Definition: a thing is a lock:
+	if it is not lockable, no;
+	if it provides the property matching key:
+		yes;
+	no;
+
+Understand "unlock [something]" as unlocking it with;
+Understand "put [key thing] in/into [lock thing]" as unlocking it with (with nouns reversed);
+Understand "insert [key thing] in/into [lock thing]" as unlocking it with (with nouns reversed);
+
+Part 9 - Inserting and Removing
+
+[ We let the player try these things and fail them: the default message that occurs otherwise is 'you can't see any such thing', which seems somewhat worse. ]
+
+Understand "take [things] from [something]" as removing it from.
+Understand "get [things] from [something]" as removing it from.
+Understand "remove [things] from [something]" as removing it from.
+
+Understand "take [things] out of/from [something]" as removing it from.
+Understand "get [things] out of/from [something]" as removing it from.
+Understand "remove [things] out of/from [something]" as removing it from.
+
+Understand "put [things] in/inside/into [something]" as inserting it into.
+Understand "insert [things] in/inside/into [something]" as inserting it into.
+Understand "drop [things] in/inside/down/into/behind [something]" as inserting it into.
+Understand "hide [things] in/inside/down/under/into/behind [something]" as inserting it into.
+
+Part 10 - Facing Directions (for use without Adjacent Rooms by Textfyre)
+
+[Adapted from manual example #66, "A View of Green Hills".]
+
+Printing the distant description of something is an activity.
+
+Facing is an action applying to one visible thing.
+The facing action has an object called the viewed item (matched as "towards").
+The facing action has an object called the aperture viewed through (matched as "through").
+
+Understand "look [direction]" as facing. 
+Understand "examine [direction]" as facing. 
+
+Setting action variables for facing:
+	now the viewed item is the room-or-door noun from the location of the actor; 
+	if the viewed item is a door:
+		change the aperture viewed through to the viewed item;
+		change the viewed item to the other side of the aperture viewed through;
+
+Check facing through something closed:
+	say "[The aperture viewed through] [is-are] closed." instead;
+
+Check facing towards nothing:
+	say "You see nothing of interest in that direction." instead;
+
+Report facing upwards towards a room:
+	say "[The viewed item] lies above.";
+
+Report facing downwards towards a room:
+	say "[The viewed item] lies below.";
+
+Report facing inside towards a room:
+	say "[The viewed item] lies inwards.";
+
+Report facing outside towards a room:
+	say "[The viewed item] lies outwards.";
+
+Report facing towards a room:
+	say "[The viewed item] lies to [the noun].";
+
 Book 5 - Kinds
 
 Part 1 - Doorways
@@ -546,7 +595,7 @@ Check descending a staircase:
 Carry out descending a staircase:
 	try going down instead;
 
-Book 6 - Miscellany
+Book X - Miscellany
 
 Chapter 1 - No swearing
 

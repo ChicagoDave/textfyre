@@ -2,7 +2,28 @@ Pronouns by Textfyre begins here.
 
 "Phrases to say various pronouns and conjugations of the verb 'to be' for in-game objects."
 
-Part 1 - Various pronouns
+Part 1 - Various pronouns and parts of speech
+
+[Ganked from ex.414 "Odins" ]
+
+The last mentioned thing is a thing that varies. 
+
+After printing the name of something (called the target): 
+	change the last mentioned thing to the target. 
+
+To say it-they: 
+    if the last mentioned thing is plural-named, say "they"; 
+    otherwise say "it";
+
+To say is-are: 
+    if the last mentioned thing is plural-named, say "are"; 
+    otherwise say "is";
+
+To say s-are: 
+    if the last mentioned thing is plural-named, say " are"; 
+    otherwise say "[']s";
+
+Part 2 - Various pronouns
 
 To decide whether (x - a thing) takes a plural pronoun:
 	if x is plural-named, yes;
