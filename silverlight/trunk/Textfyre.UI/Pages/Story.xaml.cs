@@ -560,14 +560,20 @@ namespace Textfyre.UI.Pages
                     }
 
                 });
-                
-                string filePath = _saveFile.Save();
 
-                IsolatedStorageFile IsoStorageFile =
-                    System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForApplication();
+                try
+                {
+                    string filePath = _saveFile.Save();
+                    IsolatedStorageFile IsoStorageFile =
+                        System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForApplication();
 
-                e.Stream = new IsolatedStorageFileStream(filePath,
-                                FileMode.OpenOrCreate, Entities.SaveFile.IsoFile);
+                    e.Stream = new IsolatedStorageFileStream(filePath,
+                                    FileMode.OpenOrCreate, Entities.SaveFile.IsoFile);
+                }
+                catch( Exception exp )
+                {
+                    Current.Game.TextfyreBook.TranscriptDialog.AddText(exp.Message);
+                }
 
                 Dispatcher.BeginInvoke(() =>
                 {
@@ -602,6 +608,8 @@ namespace Textfyre.UI.Pages
 
             if (_saveFile != null)
             {
+                try
+                {
                 string filePath = _saveFile.BinaryStoryFilePath;
   
                 IsolatedStorageFile IsoStorageFile =
@@ -609,6 +617,11 @@ namespace Textfyre.UI.Pages
 
                 e.Stream = new IsolatedStorageFileStream(filePath,
                                 FileMode.Open, Entities.SaveFile.IsoFile);
+                }
+                catch (Exception exp)
+                {
+                    Current.Game.TextfyreBook.TranscriptDialog.AddText(exp.Message);
+                }
 
                 Dispatcher.BeginInvoke(() =>
                 {
