@@ -26,6 +26,16 @@ namespace SecretLetter
                     args.ContinueWithInput = false;
                     this.QuitGame();
                     break;
+                case "help":
+                        // TODO: Show into in the TOC
+                    break;
+                case "map":
+                        // TODO: Show map pages
+                    break;
+                case "hint":
+                case "hints":
+                        // TODO: Show hint menu
+                    break;
             }
 
             return base.ParseInput(args);
