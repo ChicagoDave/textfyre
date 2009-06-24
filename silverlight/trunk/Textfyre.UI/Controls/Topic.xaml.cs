@@ -39,6 +39,13 @@ namespace Textfyre.UI.Controls
             // clear the existing topics...
             TopicList.Children.Clear();
 
+            ArtHolder.Children.Clear();
+            Controls.Art art = new Art();
+            art.HorizontalAlignment = HorizontalAlignment.Right;
+            art.VerticalAlignment = VerticalAlignment.Top;
+            art.ID = "CameoArt_" + topics.Data;
+            ArtHolder.Children.Add(art);
+
             TextBlock headline = new TextBlock();
             Current.Font.ApplyFont(Textfyre.UI.Current.Font.FontType.Headline, headline);
             headline.Text = "- " + topics.Data + " -";
