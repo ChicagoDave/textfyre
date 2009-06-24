@@ -130,7 +130,7 @@ To decide if (that way - a direction) is due (bearing - a direction):
 
 Part 3 - Activity bug fix
 
-[A bug in 5U92 seems to necessitate this]
+[This is a bug with David Fisher's Custom Library Messages; a conflict with the standard rules definition for 'going on' (adj. of an activity.)]
 
 To decide whether currently running (A - activity) activity:
 	(- (TestActivity({A})) -).
