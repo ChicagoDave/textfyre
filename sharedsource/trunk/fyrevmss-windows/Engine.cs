@@ -125,6 +125,63 @@ namespace Textfyre.VM
     public delegate void SaveRestoreEventHandler(object sender, SaveRestoreEventArgs e);
 
     /// <summary>
+    /// Provides data for a save/restore error event.
+    /// </summary>
+    public class SaveRestoreErrorEventArgs : EventArgs
+    {
+        private Exception exception;
+        private Stream stream;
+        private bool saving, retry;
+
+        /// <summary>
+        /// Gets or sets the exception that caused the event to be raised.
+        /// </summary>
+        public Exception Exception
+        {
+            get { return exception; }
+            set { exception = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the <see cref="Engine"/>
+        /// was saving (rather than restoring) the game when the error occurred.
+        /// </summary>
+        public bool WasSaving
+        {
+            get { return saving; }
+            set { saving = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the stream that was being used to save or restore.
+        /// The event handler may change this to try a different stream.
+        /// </summary>
+        public Stream Stream
+        {
+            get { return stream; }
+            set { stream = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the <see cref="Engine"/>
+        /// should retry the operation that failed. The event handler may set
+        /// this if it corrects the error.
+        /// </summary>
+        public bool Retry
+        {
+            get { return retry; }
+            set { retry = value; }
+        }
+    }
+
+    /// <summary>
+    /// A delegate that handles the <see cref="Engine.SaveRestoreError"/> event.
+    /// </summary>
+    /// <param name="sender">The <see cref="Engine"/> raising the event.</param>
+    /// <param name="e">The event arguments.</param>
+    public delegate void SaveRestoreErrorEventHandler(object sender, SaveRestoreErrorEventArgs e);
+
+    /// <summary>
     /// The main FyreVM class, which implements a modified Glulx interpreter.
     /// </summary>
     public partial class Engine
@@ -389,6 +446,11 @@ namespace Textfyre.VM
         /// </summary>
         public event SaveRestoreEventHandler LoadRequested;
 
+        /// <summary>
+        /// Raised when an exception is caught during save/restore.
+        /// </summary>
+        public event SaveRestoreErrorEventHandler SaveRestoreError;
+        
         /// <summary>
         /// Gets or sets a value indicating whether the main output channel
         /// is subject to filtering, which separates the output into paragraphs
