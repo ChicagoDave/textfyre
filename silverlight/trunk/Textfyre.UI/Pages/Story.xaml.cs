@@ -572,7 +572,15 @@ namespace Textfyre.UI.Pages
                 }
                 catch( Exception exp )
                 {
-                    Current.Game.TextfyreBook.TranscriptDialog.AddText(exp.Message);
+                    Dispatcher.BeginInvoke(() =>
+                    {
+                        Current.Game.TextfyreBook.TranscriptDialog.AddText("\n" + exp.Message + "\n");
+                        Current.Game.IsStoryRunning = true;
+                        TextfyreBook._toc.Refresh();
+                        TextfyreBook.TranscriptDialog.Show();
+                        System.Windows.Browser.HtmlPage.Window.Alert("An error occurred. Please check the transcript.");
+                    });
+                    return;
                 }
 
                 Dispatcher.BeginInvoke(() =>
@@ -620,7 +628,15 @@ namespace Textfyre.UI.Pages
                 }
                 catch (Exception exp)
                 {
-                    Current.Game.TextfyreBook.TranscriptDialog.AddText(exp.Message);
+                    Dispatcher.BeginInvoke(() =>
+                    {
+                        Current.Game.TextfyreBook.TranscriptDialog.AddText("\n" + exp.Message + "\n");
+                        Current.Game.IsStoryRunning = true;
+                        TextfyreBook._toc.Refresh();
+                        TextfyreBook.TranscriptDialog.Show();
+                        System.Windows.Browser.HtmlPage.Window.Alert("An error occurred. Please check the transcript.");
+                    });
+                    return;
                 }
 
                 Dispatcher.BeginInvoke(() =>
