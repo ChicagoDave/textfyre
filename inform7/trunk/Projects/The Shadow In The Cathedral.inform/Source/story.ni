@@ -6,6 +6,7 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 
 [  Change Log
 When		Who		What
+24-Jun-2009 G. Jefferis	Gnomon control puzzle
 23-Jun-2009	G. Jefferis	Crypt map and scenery
 22-Jun-2009	G. Jefferis	Entry to Crypt
 21-Jun-2009	J. Ingold		Added "Set clock to dinner-time"
@@ -96,6 +97,7 @@ Include Textfyre Standard Rules by Textfyre.
 Include Grid Layout by Textfyre.
 Include Test Suite by Textfyre.
 Include Parse List by Textfyre.
+Include Textfyre Standard Backdrops by Textfyre.
 
 Book - Initialisation
 
@@ -664,7 +666,8 @@ Chapter 4 - Special action
 
 Section 1 - Definition
 
-Abacus-setting it to is an action applying to one thing and one number. 
+Abacus-setting it to is an action applying to one thing and one number.
+ 
 The abacus-setting it to action has a difference-engine model called the model being adjusted.
 
 Understand "set [abacus]" as a mistake ("I could set the abacus to a 5 digit number.");
@@ -1050,7 +1053,7 @@ Check inflating:
 
 Part 6 - Looking through
 
-[Look through usually generates the "search" action, as in "look through pile of books." But mostly in this game we want to "look through window" or "look through keyhole"... ]
+[LOOK THROUGH usually generates the "search" action, as in "look through pile of books." But mostly in this game we want to "look through window" or "look through keyhole"... ]
 
 Looking through is an action applying to one visible thing.
 Understand "look through [door]" as looking through.
@@ -1137,7 +1140,6 @@ Understand "set [clock] to [time]" as clock-setting it to.
 Understand "turn [clock] to [time]" as clock-setting it to.
 Understand "turn [clock] to [text]" as setting it to.
 
-
 Setting action variables for clock-setting:
 	if the time understood is before 12:00 PM or the time understood is after 11:59 PM begin;
 		change the time understood to 12 hours after the time understood;
@@ -1183,6 +1185,17 @@ Carry out direction-setting to:
 
 Report direction-setting to:
 	say "I rotate [the noun] until it points [second noun].";
+
+Part 13 B - Number-setting
+
+Number-setting it to is an action applying to one thing and one number.
+
+Understand "set [thing] to [number]" as number-setting it to.
+Understand "turn [thing] to [number]" as number-setting it to.
+Understand "dial [thing] to [number]" as number-setting it to.
+Understand "change [thing] to [number]" as number-setting it to.
+Understand "point [thing] to [number]" as number-setting it to.
+Understand "move [thing] to [number]" as number-setting it to.
 
 Part 14 - Ringing
 
@@ -1292,6 +1305,10 @@ Carry out turning something forwards:
 
 Carry out turning something backwards:
 	try turning the noun instead;
+
+Turning something is rotating.
+Turning something forwards is rotating.
+Turning something backwards is rotating.
 
 Part 19 - Knocking
 
@@ -1436,10 +1453,10 @@ Understand "wrap [something] around [something]" as wrapping it with (with nouns
 Understand "cover [something] with [something]" as wrapping it with.
 
 Check wrapping something with something unsuitable for wrapping:
-	say "[The second noun] [is-are] not much use for wrapping things with.";
+	say "[The second noun] [is-are] not much use for wrapping things with." instead;
 
 Check wrapping something with something:
-	say "[The second noun][s-are] good for covering things, but there's no reason to cover what doesn't need covering.";
+	say "[The second noun][s-are] good for covering things, but there's no reason to cover what doesn't need covering." instead;
 
 Part 27 - Putting Against
 
@@ -2209,6 +2226,7 @@ Instead of listening to Inside Clock Case:
 	[eg > LISTEN with no objects]
 	if the player is casually overhearing,
 		try listening to the keyhole instead;
+	continue the action;
 
 Instead of listening with the tumbler to Inside Clock Case:
 	[eg > LISTEN WITH TUMBLER with no second noun]
@@ -10659,10 +10677,16 @@ Instead of unlocking the crypt grate with something when in the Crypt Stairs:
 
 Part 2 - Ossuary
 
+Chapter 1 - Description
+
 The Ossuary is a room, down from the Crypt Stairs. "[one of]A few years ago, before I got to clock polishing, when I was still sweeping up dust and coiling wire for my dinner, one of the Brothers died. His name was Brother Wilmslow but Calvin and Drake called him Brother Weakslow because he was so old he couldn’t move any faster than a shuffle and had trouble lifting his fork. I don’t think I ever spoke to him and he was so near-blind he probably never saw me at all.[paragraph break]I don’t think he can see me now, either, even though that’s him, propped up in a stone niche in the wall of the tunnel to the south.[or]The walls are smooth stones but into some are built triangular niches. Can’t I just tell you about the niches? Do I have to tell you about the skeletons and bodies sitting up inside them?[paragraph break]Round the head of each is tied a small round dial – a deathwatch. They make no sound at all.[paragraph break]The tunnel goes south. So will I, once I get the courage.[stopping]"
 
 Instead of listening to the Ossuary:
 	say "None of the bodies are making any noise. They must be praying, counting seconds or reciting the Tangent.";
+
+Chapter 2 - Scenery
+
+Section 1 - Niches
 
 Some triangular niches are scenery, in the Ossuary. "Not all the stone niches are full. Some have bodies sitting cross-legged, and some have sunken piles of bones with skulls surrounded by knees."
 The printed name of the triangular niches is "niches".
@@ -10671,6 +10695,8 @@ Understand "triangle", "niche" as the triangular niches.
 
 Instead of entering the triangular niches:
 	say "I know I’m going to die down here all right, but I’m not that keen to get it over with!";
+
+Section 2 - Brother Wilmslow
 
 Brother Wilmslow is a man, scenery, in the Ossuary. "Brother Wilmslow is sitting up, as if he’d fallen asleep at dinner. On his head is the small round dial of his deathwatch."
 
@@ -10681,6 +10707,8 @@ Instead of doing something when Brother Wilmslow is physically involved:
 
 Rule for speaking with Brother Wilmslow:
 	say "Brother Wilmslow was always deaf as well as blind. Now he’s mute too. It must be awful for him down here with nothing to do.";
+
+Section 3 - Bodies
 
 The bodies of dead monks are scenery, in the Ossuary. "They’re all Brothers, still robed, though some of the robes are only so much dust and cobweb."
 
@@ -10698,6 +10726,8 @@ Instead of taking or searching the bodies of dead monks:
 
 The arm bone is a thing. "I think it’s an arm." The printed name of the arm bone is "bone".
 
+Section 4 - Deathwatches
+
 Some deathwatches are scenery, in the Ossuary. "A small round dial tied by a wire band to the forehead of the Brother. Each seems still but is moving really: the minute hand pushing forward then juddering back, as though the springs were too spent to get the hand round the dial. They aren’t – these springs will run until the soul has gone. But the watches have been cobbled: how could the watch move beyond the moment of death when their owners couldn’t?"
 
 Instead of taking the deathwatches:
@@ -10711,6 +10741,8 @@ Instead of turning, switching on, switching off the deathwatches:
 
 Part 3 - Landing
 
+Chapter 1 - Description
+
 The Crypt Landing is a room, south of the Ossuary. "[one of]Light! [or][stopping]The tunnel from the north opens out here into a vaulted chamber and there are four iron torches burning in each corner. Between them, east and west, are arched doorways like lidded eyes. By the south wall, a missing flagstone leads further down: more darkness."
 
 The printed name of the Crypt Landing is "Landing".
@@ -10719,9 +10751,15 @@ After going from the Ossuary to the Crypt Landing:
 	say "[one of]I don’t want to meet the Figure here. Only one place to hide and I don’t like it. So I keep going.[or][stopping]";
 	continue the action;
 
+Chapter 2 - Scenery
+
+Section 1 - Stairs
+
 Some steep stairs are scenery, in the Crypt Landing. "Steep stairs – so steep I’d have to go backwards. They lead into pitch dark."
 
 Understand "darkness", "steps", "staircase" as the steep stairs.
+
+Section 2 - Archways
 
 Some carved archways are scenery in the Crypt Landing. "Each arch is topping by a carving: a skull on its side, the eye-sockets forming an hourglass."
 
@@ -10729,6 +10767,17 @@ Instead of entering the carved archways:
 	say "Which way, Wren? East or west?";
 
 Understand "skull", "skulls", "arch", "archway", "arches", "carvings", "eye", "sockets", "hourglass", "hourglasses", "hour glass", "hour glasses" as the carved archways.
+
+Section 3 - Lanterns
+
+Some iron torches are scenery, in the Crypt Landing. "The torches are inlaid with carvings of the crescent moon. Their rope wicks burn slightly blue: fuel must be running into them through channels in the stone, but what kind of fuel it is that burns forever I can’t think[one of]. [i]Maybe it’s dead men’s breath. That’d certainly explain the smell[r].[or].[stopping]"
+
+Understand "crescent", "moon", "rope", "wicks", "blue", "fire", "fires", "smelly", "light", "lights", "burning", "lantern", "lanterns" as the iron torches.
+
+Understand "torch" as the iron torches when the player can not see the makeshift torch.
+
+Instead of taking the iron torches:
+	say "The torches are fixed to the wall[one of] – and if they’re fed from inside, they’d be no good removed anyway[or][stopping]."
 
 Part 4 - Upper Vault
 
@@ -10857,23 +10906,211 @@ Instead of taking the dowels:
 
 The dowel handle is a thing. "It’s a good length, the size and shape of my forearm." The printed name is "handle".
 
-Section 8 - Making a torch
+Chapter 3 - Making a torch
+
+Section 1 - Construction
 
 A thing can be a torch stick.
 The dowel handle is a torch stick.
 The bone is a torch stick.
 
-After wrapping a torch stick thing (called the stick) with the linen cloth:
+Instead of wrapping a torch stick thing (called the stick) with the linen cloth:
 	remove the noun from play;
 	remove the second noun from play;
+	now the stick is part of the makeshift torch;
+	now the linen cloth is part of the makeshift torch;
 	now the player carries the makeshift torch;
 	say "I roll the [if the linen cloth is oiled]oozing [end if]linen around the end of the [if the stick is a dowel handle]wooden handle[else]bone[end if], once, twice, until it's tight. I’m left holding something that looks a lot like a [if the linen cloth is unoiled]dry torch[else]torch, ready to be lit[end if]."
 
-The makeshift torch is a thing.
+Section 2 - Description
+
+The makeshift torch is a thing. The description of the makeshift torch is "It’s the best I can do for a torch: cloth wrapped around a handle [if the arm bone is part of the makeshift torch]that once held a hand of its own[end if]."
+
+Rule for printing the description of the lit makeshift torch:
+	say "Clockwork can do a lot of things: tell the time, move the wheels of a cart, operate pistons and machines, move the stars and the Earth, even predict the weather. But clockwork can’t make Light. Only Fire makes Light – and that’s what I’ve got. I’m a Second Assistant Clock Polisher, and I’ve got fire on a stick.";
+
+Rule for printing the name of the lit makeshift torch:
+	say "brightly burning torch";
+
+Section 3 - Oiling
+
+Instead of inserting the lit makeshift torch into the bowl of black oil:
+	say "No chance. It might explode.";
+
+Instead of inserting the unlit makeshift torch into the bowl of black oil when the linen cloth is oiled:
+	say "The torch is already soaked with oil. Any more and it might blow up!";
+
+Instead of inserting the unlit makeshift torch into the bowl of black oil:
+	now the linen cloth is oiled;
+	say "I dip the head of the torch into the oil until it gleams.";
+
+Section 4 - Lighting
+
+Instead of inserting the unlit makeshift torch into the iron torches when the linen cloth is oiled:
+	now the makeshift torch is lit;
+	say "I lift the head of the torch up to the flame – and it catches in a second. The walls around me leap with light!";
+
+Instead of inserting the unlit makeshift torch into the iron torches when the linen cloth is unoiled:
+	remove the linen cloth from play;
+	remove the makeshift torch from play;
+	now the player carries everything that is part of the makeshift torch;
+	say "[one of]I reach up to light the linen head of the torch. It ignites and begins to glower with flame. Then ashes break off, and soon the whole thing has burned to nothing.[or]I burn the linen on the torch-head to nothing. It’s no good without fuel![stopping]";
+
+Before doing something when a torch-part is involved:
+	if the noun is a torch-part:
+		redirect the action from the noun to the makeshift torch;
+	if the second noun is a torch-part:
+		redirect the action from the second noun to the makeshift torch;
+	try the current action instead;
+
+Definition: a thing is a torch-part:
+	if it is part of the makeshift torch, yes;
+	no;
 
 Part 6 - Dark Stair
 
-The Dark Stair is a room, south from the Crypt Landing, down from the Crypt Landing. "Total darkness. I’m feeling my way – one step, then another, like I was coming down the ladder from my room. Then just as I’m getting the hang of it, the deep step gets deeper and deeper and I realise my foot is heading out into nothingness because the stairs have stopped… with no time to pull back I sit down, sharply. Below me is empty air – could be a handspan, could be the height of a tower. The air is still, and cold. The darkness around could be the size of the night."
+Chapter 1 - Description
+
+The Dark Stair is a room, south from the Crypt Landing, down from the Crypt Landing. "The stairs down from the landing end in midair. Everything beyond is darkness."
+
+Rule for printing the description of the Dark Stair when the player can see the lit makeshift torch:
+	if the gnomon tip is in the location:
+		say "There’s a gap, between the end of the stairs, and the start of the smooth stone slope that disappears downwards into the dark. It’s no staircase, but there are worn-down depressions down its length. It’s a handspan wide and no more.[paragraph break]";
+	otherwise:
+		say "I’m at the bottom of a staircase with nothing but the dark below.[paragraph break]";
+	say "The step before the last step is wider than the others: on the left a metal sconce is fixed to the wall. On the right is a low stone pedestal. If I started to fall I could grab onto either!"
+
+After going from the Crypt Landing to the Dark Stair when TRIG_DARK_STAIR is unfired:
+	fire TRIG_DARK_STAIR;
+	continue the action;
+
+TRIG_DARK_STAIR is a trigger.
+
+Rule for firing unfired TRIG_DARK_STAIR when the player has the lit makeshift torch:
+	say "The stairs disappear downwards. I must be lower than the Abbey well by now, maybe even lower than the spring of St Philip itself. My hands are running over stone bricks – then slick rock seamed with rough minerals.[paragraph break]Then, quite suddenly, the stairs come to an end in mid-air. Below them is empty space: my torch is like the scratch of a fingernail on the Polar Ice. It’s as though the world was hollow and I had reached the rotten core.";
+
+Rule for firing unfired TRIG_DARK_STAIR:
+	say "Total darkness. I’m feeling my way – one step, then another, like I was coming down the ladder from my room. Then just as I’m getting the hang of it, the deep step gets deeper and deeper and I realise my foot is heading out into nothingness because the stairs have stopped… with no time to pull back I sit down, sharply. Below me is empty air – could be a handspan, could be the height of a tower. The air is still, and cold. The darkness around could be the size of the night.";
+
+Instead of dropping something in the Dark Stair:
+	say "I can’t risk it rolling and disappearing into space.";
+
+Chapter 2 - Scenery
+
+Rule for deciding the concealed possessions of the Dark Stair:
+	if the player can see the lit makeshift torch, no;
+	if the particular possession is the sconce, yes;
+	if the particular possession is the pedestal, yes;
+
+Section 1 - Staircase
+
+A dangling stair is scenery, in the Dark Stair. "Each step is a carved stone block, dangling from the block before. In the end they’re all supported by nothing. Only darkness lies below." 
+
+Section 2 - Sconce
+
+A sconce is scenery, a container, in the Dark Stair. "It’s an iron pike with a bracket set on the wall. The bracket is wrought to look like the rays of a sun."
+
+Instead of taking the sconce:
+	say "It’s fixed into the stone. That means it’s a solid handhold.";
+ 
+Understand "solid", "wrought", "iron", "pike", "bracket", "sun", "rays", "holder" as the sconce.
+
+After inserting the lit makeshift torch into the sconce:
+	say "I slow the torch neatly into the sconce. Light pours down over the pedestal opposite.";
+
+After taking the lit makeshift torch when the makeshift torch was in the sconce:
+	say "I lift the torch back out of the sconce.";
+
+Section 3 - Pedestal
+
+A pedestal is scenery, a supporter, in the Dark Stair. "A granite column, waist-high to a man which means nose-height to me. The surface is marked with ridges and slots in some kind of design – maybe there used to be something here, some kind of treasure that was ripped away – or a goblin – or a heretical device powered by water or the movement of ants."
+
+Instead of pushing, pulling the pedestal:
+	try turning the noun instead;
+
+After putting the plate sundial on the pedestal:
+	now the plate sundial is part of the pedestal;
+	say "The sundial fits the pedestal-top precisely, almost as if the ancients who built it were capable of engineering. But primitives had no Mechanics. It was St Newton who brought us out of the dark."
+
+Section 4 - Gnomon Control (Assembled Pedestal)
+
+Definition: the pedestal is assembled if the plate sundial is part of it.
+Definition: the pedestal is unassembled unless it is assembled.
+
+The pedestal has a number called the shadow setting. The shadow setting of the pedestal is 4.
+
+Instead of rotating when the noun is the unassembled pedestal:
+	say "The pedestal seems to shift but only for a moment before locking up[one of]. It might be a crank with a cam or a cam without a key, as the Abbot would say, but either way it won’t go[or][stopping].";
+
+Before doing something when the plate sundial is involved and the pedestal is assembled:
+	redirect the action from the plate sundial to the pedestal;
+	try the current action instead;
+
+Instead of taking the assembled pedestal:
+	say "The sundial seems to have locked into place and I can’t see how[one of]. With a sinking feeling I realise I’ve made things easier for the Figure, not harder[or][stopping].";
+
+Rule for printing the description of the assembled pedestal:
+	say "The sundial sits on the granite pedestal, slotted neatly into place. [if the lit makeshift torch is in the sconce]The torchlight casts a needlepoint shadow: the time is [shadow setting of the pedestal in words][otherwise]The light of my torch is making the time leap like crazy, as though the Earth had come loose from its bearing and was rolling end over end past the sun[end if]."
+
+Instead of rotating when the noun is the assembled pedestal and the player carries the makeshift torch:
+	say "If I’m going to shift this pedestal around I’ll need my hands free. The torch is in the way!";
+
+Instead of turning the assembled pedestal:
+	let n be the shadow setting of the pedestal + 1;
+	while n is greater than 12:
+		change n to n - 12; [13 becomes 1]
+	try number-setting the noun to n;
+
+Instead of turning the assembled pedestal backwards:
+	let n be the shadow setting of the pedestal - 1;
+	while n is less than 1:
+		change n to n + 12; [0 becomes 12]
+	try number-setting the noun to n;
+
+Instead of number-setting the assembled pedestal to when the number understood is less than 1:
+	say "The clock face reaches from one to twelve.";
+
+Instead of number-setting the assembled pedestal to when the number understood is greater than 12:
+	say "The clock face reaches from one to twelve.";
+
+Instead of number-setting the assembled pedestal to when the number understood is the shadow setting of the pedestal:
+	say "The shadow is already pointing at [shadow setting of the pedestal in words].";
+
+Instead of number-setting the assembled pedestal to when the shadow setting of the pedestal is 12:
+	say "I can’t get the gnomon to turn any more[one of]. Maybe the Abbott was hoping he’d simply run off into the dark. Instead, I’ve saved him...[or].[stopping]";
+
+Instead of number-setting the assembled pedestal to:
+	change the shadow setting of the pedestal to the number understood;
+	say "[one of]I grab the edges of the pedestal and heave. To my surprise, it turns without trouble, like some great weight had been quietly counterbalanced away.[or]I put both hands on the pedestal and drag it round.[or]I haul on the pedestal.[stopping]";
+	consider the gnomon rules;
+
+The gnomon rules are a rulebook.
+
+A gnomon rule when the shadow setting of the pedestal is 12:
+	move the gnomon tip to the Dark Stair; 
+	say "The shadow on the face of the gnomon creeps round to midnight and after settling for a moment, the stairs underneath me start to shake, as if they were being lifted from underneath! [i]Now you’ve done it, Wren. This whole place is going to fall! [r][paragraph break]But it doesn’t. Instead, something massive – stone, moving on ancient castors – wheels into place at the end of the stairs. A smooth stone slope, leading down." instead;
+
+A gnomon rule when the shadow setting of the pedestal is 1 or the shadow setting of the pedestal is 11:
+	say "The shadow settles at [shadow setting of the pedestal in words] o’clock[one of]. In the darkness, I hear something grumble and groan in response, like there was a giant trapped down there and the sundial was the lock on its cage.[or]. Whatever’s down there is right by me![or].[stopping]" instead;
+
+A gnomon rule:
+	say "The shadow moves to [shadow setting of the pedestal in words].[paragraph break][one of]In the dark, something whispers and mutters.[or]Whatever’s down there in the darkness grumbles again, like it was dragging gigantic feet.[or]The grumbling thing is louder now.[or]Something is definitely moving down there, in the dark, and by the sound of it, it’s the size of the Cathedral itself.[or]The machinery responds, huge and awful.[stopping]" instead;
+
+Section 5 - Gnomon Tip
+
+The gnomon tip is scenery.
+
+Instead of going down from the Dark Stair when the player can not see the gnomon tip:
+	say "There’s nothing but space there! I’m not jumping!";
+
+Instead of jumping in the Dark Stair:
+	try going down;
+
+Part 7 - Gnomon
+
+The Middle of the Gnomon is a room, down from the Dark Stair. "The light from above quickly disappears. I’m left in darkness, worse than before. There aren’t even any walls to hang on to. I can feel the stone underfoot getting thinner and thinner, until I’m standing on a wire..."
+
+The printed name of the middle of the gnomon is "Gnomon".
 
 Book W - Walkthrough Script
 
@@ -10910,6 +11147,8 @@ test insidewarehouse with "x junk / get ladder / put ladder against pipe / get r
 test covaltreturn with "ask covalt about me / tell covalt about dockyard / tell covalt about me / tell covalt about himself / no / x diagram / sw / nw / buy b2 / buy a4 / buy c2 / no / put poppy seeds in press / pull lever / put tincture in press / put oil in press / pull lever / se / ne / give drug to covalt"
 
 test returncathedral with "e/n/e/put candle in lantern / w / n / z / z / n / e / ne / w / n / e / x carvings / in / drop perpetuum / in / u / open door / get weights / e / open drawer with knife / open drawer / get key / w / d / out / s / s / e / ne"
+
+test crypt with "d"
 
 Book X - Not For Release - Fixing the RNG
 
