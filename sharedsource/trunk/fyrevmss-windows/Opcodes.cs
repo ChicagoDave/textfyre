@@ -1458,7 +1458,39 @@ namespace Textfyre.VM
                 {
                     try
                     {
-                        SaveToStream(e.Stream, args[1], args[2]);
+                        do
+                        {
+                            try
+                            {
+                                SaveToStream(e.Stream, args[1], args[2]);
+                            }
+                            catch (Exception ex)
+                            {
+                                if (SaveRestoreError != null)
+                                {
+                                    SaveRestoreErrorEventArgs ee = new SaveRestoreErrorEventArgs();
+                                    ee.WasSaving = true;
+                                    ee.Exception = ex;
+                                    ee.Stream = e.Stream;
+                                    ee.Retry = false;
+                                    SaveRestoreError(this, ee);
+
+                                    if (ee.Retry)
+                                    {
+                                        if (e.Stream != ee.Stream)
+                                        {
+                                            e.Stream.Close();
+                                            e.Stream = ee.Stream;
+                                        }
+                                        continue;
+                                    }
+                                }
+
+                                // unrecoverable
+                                PerformDelayedStore(args[1], args[2], 1);
+                                return;
+                            }
+                        } while (false);
                     }
                     finally
                     {
@@ -1484,7 +1516,39 @@ namespace Textfyre.VM
                 {
                     try
                     {
-                        LoadFromStream(e.Stream);
+                        do
+                        {
+                            try
+                            {
+                                LoadFromStream(e.Stream);
+                            }
+                            catch (Exception ex)
+                            {
+                                if (SaveRestoreError != null)
+                                {
+                                    SaveRestoreErrorEventArgs ee = new SaveRestoreErrorEventArgs();
+                                    ee.WasSaving = false;
+                                    ee.Exception = ex;
+                                    ee.Stream = e.Stream;
+                                    ee.Retry = false;
+                                    SaveRestoreError(this, ee);
+
+                                    if (ee.Retry)
+                                    {
+                                        if (e.Stream != ee.Stream)
+                                        {
+                                            e.Stream.Close();
+                                            e.Stream = ee.Stream;
+                                        }
+                                        continue;
+                                    }
+                                }
+
+                                // unrecoverable
+                                PerformDelayedStore(args[1], args[2], 1);
+                                return;
+                            }
+                        } while (false);
                     }
                     finally
                     {
