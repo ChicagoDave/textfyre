@@ -74,33 +74,33 @@ namespace Textfyre.VM
                 aes.Key = key;
                 aes.IV = iv;
 
-                using (CryptoStream cstream = new CryptoStream(
-                    stream, aes.CreateDecryptor(), CryptoStreamMode.Read))
-                {
-                    // decrypt the header
-                    cstream.Read(memory, 0, Engine.GLULX_HDR_SIZE);
+                // we need to keep the original stream open, so no using block
+                CryptoStream cstream = new CryptoStream(
+                    stream, aes.CreateDecryptor(), CryptoStreamMode.Read);
 
-                    if (memory[0] != (byte)'G' || memory[1] != (byte)'l' ||
-                        memory[2] != (byte)'u' || memory[3] != (byte)'l')
-                        throw new ArgumentException(SWrongMagic);
+                // decrypt the header
+                cstream.Read(memory, 0, Engine.GLULX_HDR_SIZE);
 
-                    uint endmem = ReadInt32(Engine.GLULX_HDR_ENDMEM_OFFSET);
-                    uint length = ReadInt32(Engine.GLULX_HDR_EXTSTART_OFFSET);
-                    ramstart = ReadInt32(Engine.GLULX_HDR_RAMSTART_OFFSET);
+                if (memory[0] != (byte)'G' || memory[1] != (byte)'l' ||
+                    memory[2] != (byte)'u' || memory[3] != (byte)'l')
+                    throw new ArgumentException(SWrongMagic);
 
-                    // now read the whole thing
-                    byte[] header = memory;
-                    memory = new byte[endmem];
-                    Array.Copy(header, memory, Engine.GLULX_HDR_SIZE);
-                    cstream.Read(memory, Engine.GLULX_HDR_SIZE, (int)length - Engine.GLULX_HDR_SIZE);
+                uint endmem = ReadInt32(Engine.GLULX_HDR_ENDMEM_OFFSET);
+                uint length = ReadInt32(Engine.GLULX_HDR_EXTSTART_OFFSET);
+                ramstart = ReadInt32(Engine.GLULX_HDR_RAMSTART_OFFSET);
 
-                    // cache original RAM and IFHD immediately so we don't have to decrypt again when saving
-                    originalHeader = new byte[128];
-                    Array.Copy(memory, originalHeader, 128);
+                // now read the whole thing
+                byte[] header = memory;
+                memory = new byte[endmem];
+                Array.Copy(header, memory, Engine.GLULX_HDR_SIZE);
+                cstream.Read(memory, Engine.GLULX_HDR_SIZE, (int)length - Engine.GLULX_HDR_SIZE);
 
-                    originalRam = new byte[endmem - ramstart];
-                    Array.Copy(memory, (int)ramstart, originalRam, 0, originalRam.Length);
-                }
+                // cache original RAM and IFHD immediately so we don't have to decrypt again when saving
+                originalHeader = new byte[128];
+                Array.Copy(memory, originalHeader, 128);
+
+                originalRam = new byte[endmem - ramstart];
+                Array.Copy(memory, (int)ramstart, originalRam, 0, originalRam.Length);
             }
             else
             {
