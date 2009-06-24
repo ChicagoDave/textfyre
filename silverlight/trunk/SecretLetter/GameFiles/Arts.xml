@@ -19,4 +19,7 @@
   <Art ID="Map1Left" Path="Images/MapLeft.jpg" Width="392" Height="500" Margin="4,40,0,0" Fade="False" />
   <Art ID="Map1Right" Path="Images/MapRight.jpg" Width="392" Height="500" Margin="0,40,0,0" Fade="False" />
 
+  
+  <Art ID="CameoArt_Teisha" Path="Images/CameoArt/Teisha.png" Width="200" Height="205" Margin="0,0,0,0" />
+
 </Arts>
