@@ -125,10 +125,6 @@ namespace Textfyre.VM
         /// <summary>
         /// Gets the number of load operands, which appear before any store operands.
         /// </summary>
-        /// <remarks>
-        /// If <see cref="Rule"/> is set to <see cref="OpcodeRule.Branch"/>,
-        /// the branch offset is not included in this count.
-        /// </remarks>
         public byte LoadArgs
         {
             get { return loadArgs; }

@@ -2,11 +2,15 @@
  * Copyright © 2008, Textfyre, Inc. - All Rights Reserved
  * Please read the accompanying COPYRIGHT file for licensing resstrictions.
  */
+
+#undef ENCRYPTED_GAMES_ONLY
+
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Security.Cryptography;
 
 namespace Textfyre.VM
 {
@@ -43,23 +47,84 @@ namespace Textfyre.VM
             stream.Seek(0, SeekOrigin.Begin);
             stream.Read(memory, 0, Engine.GLULX_HDR_SIZE);
 
-            if (memory[0] != (byte)'G' || memory[1] != (byte)'l' ||
-                memory[2] != (byte)'u' || memory[3] != (byte)'l')
-                throw new ArgumentException(".ulx file has wrong magic number");
+            const string SWrongMagic = ".ulx file has wrong magic number";
 
-            uint endmem = ReadInt32(Engine.GLULX_HDR_ENDMEM_OFFSET);
+            // could be encrypted
+            if (memory[0] == (byte)'J' && memory[1] == (byte)'A' &&
+                memory[2] == (byte)'C' && memory[3] == (byte)'K')
+            {
+                // 4-byte magic number is followed by a 32-byte munged key,
+                // which we transform by XORing with our own key
+                //                     12345678901234567890123456789012
+                const string keykey = "Please don't share the game file";
+                // we need a 16-byte initialization vector too
+                //                       1234567890123456
+                const string ivString = "Hi from Textfyre";
 
-            // now read the whole thing
-            memory = new byte[endmem];
-            stream.Seek(0, SeekOrigin.Begin);
-            stream.Read(memory, 0, (int)stream.Length);
+                byte[] key = new byte[32];
+                for (int i = 0; i < 32; i++)
+                    key[i] = (byte)(memory[4 + i] ^ keykey[i]);
+
+                byte[] iv = new byte[16];
+                for (int i = 0; i < 16; i++)
+                    iv[i] = (byte)ivString[i];
+
+                Aes aes = new AesManaged();
+                aes.KeySize = 256;
+                aes.Key = key;
+                aes.IV = iv;
+
+                using (CryptoStream cstream = new CryptoStream(
+                    stream, aes.CreateDecryptor(), CryptoStreamMode.Read))
+                {
+                    // decrypt the header
+                    cstream.Read(memory, 0, Engine.GLULX_HDR_SIZE);
+
+                    if (memory[0] != (byte)'G' || memory[1] != (byte)'l' ||
+                        memory[2] != (byte)'u' || memory[3] != (byte)'l')
+                        throw new ArgumentException(SWrongMagic);
+
+                    uint endmem = ReadInt32(Engine.GLULX_HDR_ENDMEM_OFFSET);
+                    uint length = ReadInt32(Engine.GLULX_HDR_EXTSTART_OFFSET);
+                    ramstart = ReadInt32(Engine.GLULX_HDR_RAMSTART_OFFSET);
+
+                    // now read the whole thing
+                    byte[] header = memory;
+                    memory = new byte[endmem];
+                    Array.Copy(header, memory, Engine.GLULX_HDR_SIZE);
+                    cstream.Read(memory, Engine.GLULX_HDR_SIZE, (int)length - Engine.GLULX_HDR_SIZE);
+
+                    // cache original RAM and IFHD immediately so we don't have to decrypt again when saving
+                    originalHeader = new byte[128];
+                    Array.Copy(memory, originalHeader, 128);
+
+                    originalRam = new byte[endmem - ramstart];
+                    Array.Copy(memory, originalRam, originalRam.Length);
+                }
+            }
+            else
+            {
+#if ENCRYPTED_GAMES_ONLY
+                throw new ArgumentException(SWrongMagic);
+#else
+                if (memory[0] != (byte)'G' || memory[1] != (byte)'l' ||
+                    memory[2] != (byte)'u' || memory[3] != (byte)'l')
+                    throw new ArgumentException(SWrongMagic);
+
+                uint endmem = ReadInt32(Engine.GLULX_HDR_ENDMEM_OFFSET);
+                ramstart = ReadInt32(Engine.GLULX_HDR_RAMSTART_OFFSET);
+
+                // now read the whole thing
+                memory = new byte[endmem];
+                stream.Seek(0, SeekOrigin.Begin);
+                stream.Read(memory, 0, (int)stream.Length);
+#endif
+            }
 
             // verify checksum
             uint checksum = CalculateChecksum();
             if (checksum != ReadInt32(Engine.GLULX_HDR_CHECKSUM_OFFSET))
                 throw new ArgumentException(".ulx file has incorrect checksum");
-
-            ramstart = ReadInt32(Engine.GLULX_HDR_RAMSTART_OFFSET);
         }
 
         /// <summary>
