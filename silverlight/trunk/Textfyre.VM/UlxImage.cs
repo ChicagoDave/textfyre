@@ -99,7 +99,7 @@ namespace Textfyre.VM
                     Array.Copy(memory, originalHeader, 128);
 
                     originalRam = new byte[endmem - ramstart];
-                    Array.Copy(memory, originalRam, originalRam.Length);
+                    Array.Copy(memory, (int)ramstart, originalRam, 0, originalRam.Length);
                 }
             }
             else
