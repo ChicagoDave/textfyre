@@ -27,7 +27,7 @@ namespace Textfyre.UI.Controls.Mapping
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(DragDocument_Loaded);
             InitMap();
-            MapImage.Source = Current.Application.GetImageBitmap("Images/Book800Page1.png");
+            //MapImage.Source = Current.Application.GetImageBitmap("Images/Book800Page1.png");
         }
 
         #region :: SetLocation ::

@@ -185,6 +185,15 @@ namespace Textfyre.UI.Controls
         private void AddCreditsPage()
         {
             //<TextBlock x:Name="CreditsText" />
+            StackPanel sp = new StackPanel();
+            sp.HorizontalAlignment = HorizontalAlignment.Left;
+            sp.VerticalAlignment = VerticalAlignment.Bottom;
+
+            Controls.Art creditArt = new Art();
+            creditArt.ID = "CreditArt";
+
+            sp.Children.Add(creditArt);
+
             CreditsText = new TextBlock();
             Current.Font.ApplyFont(Textfyre.UI.Current.Font.FontType.Main, CreditsText);
             CreditsText.FontSize = 14d;
@@ -192,13 +201,15 @@ namespace Textfyre.UI.Controls
             //CreditsText.Height = 180d;
             CreditsText.HorizontalAlignment = HorizontalAlignment.Left;
             CreditsText.VerticalAlignment = VerticalAlignment.Bottom;
-            CreditsText.Margin = new Thickness(20, 0, 0, 0);
+            CreditsText.Margin = new Thickness(20, 20, 0, 0);
+
+            sp.Children.Add(CreditsText);
 
             TextfyreBookPage p = CreatePage("Credits");
             p.HideHeader();
             p.HideFooter();
             p.ctrlFlipButton.IsEnabled = false;
-            p.PageScrollViewer.Content = CreditsText;
+            p.PageScrollViewer.Content = sp;
             p.PageScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
             p.PageScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
         }

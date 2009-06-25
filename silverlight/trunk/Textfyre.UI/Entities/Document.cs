@@ -824,7 +824,7 @@ namespace Textfyre.UI.Entities
             grid.Children.Add(_txtBlk.TextBlock);
 
             Image img = new Image();
-            img.Source = Current.Application.GetImageBitmap("Images/SpotArt/Crates.png");
+            //img.Source = Current.Application.GetImageBitmap("Images/SpotArt/Crates.png");
             img.Width = 80d;
             img.Height = 70d;
             img.SetValue(Grid.ColumnProperty, 1);

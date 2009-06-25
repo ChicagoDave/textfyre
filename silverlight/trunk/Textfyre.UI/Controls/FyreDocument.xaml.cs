@@ -246,7 +246,7 @@ namespace Textfyre.UI.Controls
             grid.Children.Add(_curTB);
 
             Image img = new Image();
-            img.Source = Current.Application.GetImageBitmap("Images/SpotArt/Crates.png");
+            //img.Source = Current.Application.GetImageBitmap("Images/SpotArt/Crates.png");
             img.Width = 80d;
             img.Height = 70d;
             img.SetValue(Grid.ColumnProperty, 1);
