@@ -1,5 +1,7 @@
 Textfyre Standard Backdrops by Textfyre begins here.
 
+Include Textfyre Standard Rules by Textfyre.
+
 A room can be interior or exterior. A room is usually interior.
 A room can be grounded or aerial. A room is usually grounded.
 
@@ -15,12 +17,12 @@ night		false		true
 
 Atmospheric condition is a kind of value. The atmospheric conditions are defined by the table of atmospheric conditions.
 
-The weather is an atmospheric condition that varies. The weather is sunny.
+The weather is an atmospheric condition that varies. The weather is clear skies.
 
 Table of atmospheric conditions
 atmospheric condition
-sunny
-cloudy
+clear skies
+cloudy skies
 
 The backdrop-floor is a privately-named backdrop. The backdrop-floor is everywhere. The printed name of the backdrop-floor is "floor".
 Understand "floor", "ground" as the backdrop-floor when the location is grounded.
@@ -35,12 +37,21 @@ The backdrop-sky is a privately-named backdrop. The backdrop-sky is everywhere. 
 Understand "sky" as the backdrop-sky when the location is exterior.
 
 The backdrop-sun is privately-named, scenery. The backdrop-sun is part of the backdrop-sky. The printed name of the backdrop-sun is "sun".
-Understand "sun" as the backdrop-sun when the location is exterior and the weather is sunny and the sunlight of the time of day is true.
+Understand "sun" as the backdrop-sun when the location is exterior and the weather is clear skies and the sunlight of the time of day is true.
 
 The backdrop-moon is privately-named, scenery. The backdrop-moon is part of the backdrop-sky. The printed name of the backdrop-moon is "moon".
 Understand "moon" as the backdrop-moon when the location is exterior and the moonlight of the time of day is true.
 
 Some backdrop-clouds are privately-named, scenery. The backdrop-clouds are part of the backdrop-sky. The printed name of the backdrop-clouds is "clouds".
-Understand "clouds" as the backdrop-clouds when the location is exterior and the weather is cloudy.
+Understand "clouds" as the backdrop-clouds when the location is exterior and the weather is cloudy skies.
+
+Understand "north/n wall" as north when the location is interior.
+Understand "south/s wall" as south when the location is interior.
+Understand "east/e wall" as east when the location is interior.
+Understand "west/w wall" as west when the location is interior.
+Understand "northwest/nw wall" as northwest when the location is interior.
+Understand "northeast/ne wall" as northeast when the location is interior.
+Understand "southwest/sw wall" as southwest when the location is interior.
+Understand "southeast/se wall" as southeast when the location is interior.
 
 Textfyre Standard Backdrops ends here.

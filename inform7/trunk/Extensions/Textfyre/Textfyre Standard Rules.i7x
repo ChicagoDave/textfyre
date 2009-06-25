@@ -128,6 +128,20 @@ To decide if (that way - a direction) is due (bearing - a direction):
 	if that way is anticlockwise of the bearing, yes;
 	no;
 
+Chapter 6 - Availability of Exits
+
+Exiting relates a room (called R) to a direction (called D-wards) when the room-or-door D-wards from R is not nothing. The verb to exit (it exits, they exit, it exited, it is exited, it is exiting) implies the exiting relation.
+
+Definition: a direction (called D) is a wall:
+	decide on whether or not D is a wall from the location;
+
+To decide whether (D - a direction) is a wall from (R - a room):
+	unless D is planar, no; [up, down, in and out are never walls]
+	if R exits D, no;
+	yes;
+
+Walling relates a room (called R) to a direction (called D-wards) when D-wards is a wall from R. The verb to be walled to implies the walling relation.
+
 Part 3 - Activity bug fix
 
 [This is a bug with David Fisher's Custom Library Messages; a conflict with the standard rules definition for 'going on' (adj. of an activity.)]
