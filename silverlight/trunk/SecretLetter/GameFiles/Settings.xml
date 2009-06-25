@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Settings>
   <Setting Key="BackgroundColor" Value="#FFFFFFFF" />
-  <Setting Key="BookWidth" Value="920" />
-  <Setting Key="BookPageWidth" Value="400" />
-  <Setting Key="BookPageHeight" Value="564" />
-  <Setting Key="BookPageOffsetLeft" Value="66" />
-  <Setting Key="BookPageOffsetTop" Value="0" />
+  <Setting Key="BookWidth" Value="825" />
+  <Setting Key="BookPageWidth" Value="381" />
+  <Setting Key="BookPageHeight" Value="538" />
+  <Setting Key="BookPageOffsetLeft" Value="31" />
+  <Setting Key="BookPageOffsetTop" Value="33" />
   <Setting Key="VersionText" Value="Version: 0.994.090625" />
   <Setting Key="StoryID" Value="1" />
   <Setting Key="LogEnabled" Value="False" />
