@@ -2,19 +2,19 @@
 <Arts>
   <!--Art ID="Book" Path="Images/finalBookBase.png" Width="1475" Height="976" /-->
   <!--Art ID="BookCover" Path="Images/BookCover.png" Width="403" Height="581"  Margin="460,0,0,0" /-->
-  <Art ID="Book" Path="Images/bookopen.png" Width="900" Height="600" />
-  <Art ID="BookCover" Path="Images/bookcover.png" Width="450" Height="600"  Margin="460,0,0,0" />
-  <Art ID="BookPage1" Path="Images/finalbook_leftpage.png" Width="400" Height="580" />
-  <Art ID="BookPage2" Path="Images/finalBookRightPage.png" Width="400" Height="580" />
-  <Art ID="TitlePage" Path="Images/Frontpage.png" Width="280" Height="442" />
+  <Art ID="Book" Path="Images/openbook.png" Width="900" Height="635" />
+  <Art ID="BookCover" Path="Images/bookcover.png" Width="450" Height="689"  Margin="460,0,0,0" />
+  <Art ID="BookPage1" Path="Images/leftpage.png" Width="400" Height="564" />
+  <Art ID="BookPage2" Path="Images/rightpage.png" Width="400" Height="564" />
+  <Art ID="TitlePage" Path="Images/PageArt/GrubbersChase.png" Width="280" Height="429" />
   <Art ID="TOCArt" Path="" />
 
   <Art ID="BookmarkTOC" Path="Images/BookmarkTOC.xaml" Margin="2,50,0,0" />
 
-  <Art ID="GrubbersMarket" Path="Images/PageArt/GrubbersChase.png" Width="287" Height="440" />
-  <Art ID="MeetingBobby" Path="Images/PageArt/MeetingBobby.png" Width="287" Height="440" />
-  <Art ID="Gallows" Path="Images/PageArt/Gallows.png" Width="287" Height="440" />
-  <Art ID="InJail" Path="Images/PageArt/InJail.png" Width="287" Height="440" />
+  <Art ID="GrubbersMarket" Path="Images/PageArt/GrubbersChase.png" Width="280" Height="429" />
+  <Art ID="MeetingBobby" Path="Images/PageArt/MeetingBobby.png" Width="280" Height="429" />
+  <Art ID="Gallows" Path="Images/PageArt/Gallows.png" Width="280" Height="429" />
+  <Art ID="InJail" Path="Images/PageArt/InJail.png" Width="280" Height="429" />
   <!-- Org size: 1500 x 1855 -->
 
   <Art ID="Map1Left" Path="Images/MapLeft.jpg" Width="392" Height="500" Margin="4,40,0,0" Fade="False" />
