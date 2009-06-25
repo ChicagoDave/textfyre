@@ -20,6 +20,7 @@ namespace Textfyre.UI.Controls
         {
             InitializeComponent();
             TopicControl.TopicChosen += new EventHandler<Topic.TopicEventArgs>(TopicControl_TopicChosen);
+            this.Width = Settings.BookPageInnerInnerContentWidth;
         }
 
         void TopicControl_TopicChosen(object sender, Topic.TopicEventArgs e)

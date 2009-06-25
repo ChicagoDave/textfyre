@@ -4,7 +4,7 @@
              xmlns:ctrl="clr-namespace:Textfyre.UI.Controls"
              xmlns:hints="clr-namespace:Textfyre.UI.Controls.Hints"
              >
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot" >
         <ctrl:Art x:Name="PageArt" Visibility="Visible" />
         <ctrl:Topic x:Name="TopicControl" Visibility="Collapsed" />
         <hints:HintPage x:Name="HintControl" Visibility="Collapsed" />
