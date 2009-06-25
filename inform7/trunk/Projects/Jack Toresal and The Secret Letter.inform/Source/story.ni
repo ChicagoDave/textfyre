@@ -2,6 +2,7 @@
 
 [  Change Log
 When		Who		What
+25-Jun-2009	G. Jefferis	Various location and scenario images
 22-Jun-2009	G. Jefferis	UNDO hack moved to Restore After Undo extension
 19-Jun-2009	G. Jefferis	Sleep in Maiden House
 19-Jun-2009	D. Cornelson	Small fixes here and there.	
@@ -182,7 +183,9 @@ Include Scripted Events by Textfyre.
 Include Character Listing by Textfyre.
 Include Dramatic Priority by Textfyre.
 Include Conversation Topics by Textfyre.
+
 Include Restoring After Undo by Textfyre.
+Include Image Output by Textfyre.
 
 Include Secret Letter Hints by Textfyre.
 Include Xml Output Toggling by Textfyre.
@@ -325,12 +328,6 @@ Index map with Behind Maiden House mapped southwest of Entrance To Maiden House.
 
 [Can't seem to get the map to draw Maiden House correctly, no matter how I arrange it. Oh well.]
 
-Part 3 - Properties of Tables
-
-To say random entry of (t - a table-name):
-	choose a random row in t;
-	say "[text entry]". 
-
 Part 4 - Properties of Objects
 
 Chapter 1 - Proximity
@@ -339,19 +336,7 @@ Definition: a thing is nearby:
 	if it is in the location then decide yes;
 	decide no.
 
-Chapter 2 - Automatic doors
-
-[ Implicitly opening something is an activity.
-
-Before going through a closed door (called the obstacle):
-	carry out the implicitly opening activity with the obstacle;
-	if the obstacle is closed, stop the action;
-
-Rule for implicitly opening something (called the unopened item):
-	say "(first opening [the unopened item])[command clarification break]";
-	try silently opening the unopened item; ]
-
-Chapter 3 - Landings
+Chapter 2 - Landings
 
 A Landing is a kind of room.
 Understand "main", "hall", "hallway" as a Landing.
@@ -1178,13 +1163,95 @@ After restoring after undo:
 After restoring after undo:
 	carry out the sending hints activity;
 
+Part 56 - Image updates
+
+When play begins:
+	update the current image;
+
+Last every turn rule:
+	update the current image;
+
+After restoring after undo:
+	update the current image;
+
+An image-changing rule during Trouble In Grubbers:
+	change the image currently being displayed to "GrubbersChase";
+
+An image-changing rule when the location is the Back Alley and the player can see Bobby:
+	change the image currently being displayed to "MeetingBobby";
+
+An image-changing rule when the location is in Maiden House:
+	change the image currently being displayed to "MaidenHouse";
+
+An image-changing rule when the location is Market Square and the player can see Bobby:
+	change the image currently being displayed to "EmptyGrubbersWithBobby";
+
+An image-changing rule during Bobby's Adventure:
+	change the image currently being displayed to "JackInDisguise";
+
+An image-changing rule when the location is the Crossing during Bobby's Adventure:
+	change the image currently being displayed to "StreamWithBobby";
+
+An image-changing rule when the location is the Crossing during the Bodyguard Scene:
+	change the image currently being displayed to "StreamWithPieter";
+
+An image-changing rule when the location is the Clearing during Bobby's Adventure:
+	change the image currently being displayed to "FountainWithBobby";
+
+An image-changing rule when the location is the Clearing during the Bodyguard Scene:
+	change the image currently being displayed to "FountainWithPieter";
+
+An image-changing rule when the location is in the Tunnels:
+	change the image currently being displayed to "Tunnel";
+
+An image-changing rule when the location is the Chapel:
+	change the image currently being displayed to "Chapel";
+
+An image-changing rule when the location is the Guardhouse:
+	change the image currently being displayed to "Guardhouse";
+
+An image-changing rule when the location is in the Prison Region:
+	change the image currently being displayed to "InJail";
+
+An image-changing rule when the location is in the Sewers Region:
+	change the image currently being displayed to "Sewer";
+
+An image-changing rule when the location is in the Rooftops Region:
+	change the image currently being displayed to "Rooftops";
+
+An image-changing rule when the location is the Library and the player has the Secret Letter:
+	change the image currently being displayed to "SecretLetter";
+
+An image-changing rule when the location is Lords Market during Bobby's Hanging:
+	change the image currently being displayed to "Gallows";
+
+An image-changing rule when the location is in Red Gate Estate and the player is still dirty:
+	change the image currently being displayed to "Red Gate Estate";
+
+An image-changing rule when the location is the Ballroom:
+	change the image currently being displayed to "TheBall";
+
+An image-changing rule when the location is the War Room:
+	change the image currently being displayed to "WarRoom";
+
+[Finally, the drop-through defaults:]
+
+An image-changing rule when the player wears the daydress:
+	change the image currently being displayed to "JackInSimpleDress";
+
+An image-changing rule when the player wears the ball gown:
+	change the image currently being displayed to "JackInBallGown";
+
+An image-changing rule:
+	change the image currently being displayed to "JackInDisguise";
+
 Book 1 - Prologue
 
 Part 1 - Jack Toresal
 
 Chapter 1 - Jack herself
 
-Section - appearance
+Section - Appearance
 
 Instead of examining the player, say "Most people know you as 'Jack,' a fourteen-year-old street urchin of uncertain means. You are slight of build for a boy your age, though your baggy clothes hide much of your physique. Your shoulder-length hair is ragged, a victim of many self-inflicted trimmings. Though usually in need of a good scrubbing, you are an attractive youth, with a softness to your face that makes you seem younger than your years.[paragraph break]Fortunately, it also leads people to underestimate your wiles and resourcefulness, which have caused more than one stallkeeper to call you by your second most common sobriquet, 'Lousy thief!'[paragraph break]Only a few people know you by your real name, and you are pleased to keep it that way."
 Understand "Jack", "Jacqueline" as yourself.
@@ -3556,13 +3623,13 @@ Chapter 2 - Sliding down action
 
 Sliding down it barehanded is an action with past participle slid, applying to one thing.
 Understand "slide [cable]" as sliding down it barehanded.
-Understand "slide down [something]" as sliding down it barehanded.
+Understand "slide down/along [something]" as sliding down it barehanded.
 Check sliding down it barehanded (this is the block sliding rule):
 	say "You can't slide down that.";
 
 Sliding down it with is an action with past participle slid, applying to two things.
 Understand "slide [cable] with/using [something preferably held]" as sliding down it with.
-Understand "slide down [something] with/using [something preferably held]" as sliding down it with.
+Understand "slide down/along [something] with/using [something preferably held]" as sliding down it with.
 Check sliding down it with (this is the block sliding with rule):
 	say "You can't slide down that.";
 
@@ -8995,7 +9062,8 @@ The secret letter is a thing. Understand "parchment", "page", "sheet", "folded",
 The description of the secret letter is "The parchment is thin and the ink faded, but the writing is still quite legible, a strong, graceful script that flows down the page.[paragraph break][i]Your Royal Highness[r], it begins,[paragraph break][i]It is with a sad but hopeful heart that I write to you, for I must reveal deeds that I am not proud of, and yet perhaps I may thereby put an end to an injustice that has gone on far too long.[paragraph break]My lawful marriage was determined by political expediency rather than by the urgings of my own heart, as you well know. My wife was ever a dutiful companion, but never truly happy. I do not blame her. For my part, I did my best to ensure that she lived a lifestyle fitting for a Duchess, and that she wanted for nothing save my love.[paragraph break]Were this the full extent of my shame, I would have no need to write to you, for a loveless marriage is hardly a rare thing in our kingdom. However, it is to confess yet a further disgrace that I must pen this letter. I was not merely cool in my affections, but an unfaithful husband as well. I took a mistress, a woman on whom I bestowed all the tenderness I was unable to give my wife. And with this mistress, I had a child.[paragraph break]I kept the child's existence a secret, as much to spare my wife the ignominy as to avoid the political complications that would otherwise have ensued. From my private finances I established an orphanage here in the city, and paid a tutor from the Royal College to pose as one of the headmistresses, to raise and educate the child properly. In secret I have sponsored this child for ten years.[paragraph break]I feel it is past time for this secrecy to end. I have grown ill with a mysterious sickness these past months, and I fear that my life will soon come to a close. My wife was never able to provide me with a lawful heir, and yet I would not see my family name extinguished merely because I had not the courage to face up to my failings as a husband.[paragraph break]Therefore it is my wish that the crown recognize this child, who bears no fault for the circumstances of her birth, as my sole and lawful beneficiary, to inherit my title and estate in full upon my death, or upon her sixteenth birthday should I die before she reaches the age of majority. I hereby, by my will and by royal law, and in full possession of my faculties, declare my heir:[paragraph break]
 [fixed letter spacing]          [variable letter spacing][i]Jacqueline Toresal[paragraph break]Signed and witnessed therewith,[paragraph break]Lord William, Duke of Toresal[r][paragraph break]"
 
-After examining the letter for the first time:
+After examining the secret letter for the first time:
+	update the current image;
 	say "Your hand is trembling as you refold the letter. You tell yourself that it's a coincidence, just someone who happens to have the same first name as you — but in your heart you know it must be true.[paragraph break]And yet... it poses so many more questions than it answers. The letter is addressed to the queen, and dated three years ago, just a few months before the Duke's death. Why was it never posted? And what is it doing in Baron Fossville's library?[paragraph break]A noise from the bedroom startles you out of your puzzling. Now that you have what you came for, you need to get out of here — fast.";
 
 The printed name of the letter is "[if we have examined the letter]letter[otherwise]folded sheet of parchment[end if]"
@@ -9209,6 +9277,7 @@ Bedside Consolation is a scene. Bedside Consolation begins when Bobby's Hanging 
 When Bedside Consolation begins:
 	select theme "MaidenHouse";
 	say "You are lying on something soft. Blankets, a thin mattress — you're back in Maiden House, lying in your own bunk. Fiona is sitting on the edge of the bed, watching you with a tender expression. Her eyes are red and raw, though, like she's been crying. For a moment, you feel strange, disconnected. You wonder what's wrong.[paragraph break]And then it comes back to you. It's Bobby. Bobby is dead.[paragraph break]";
+	update the current image;
 	start conversation with Widow Fiona on FI21;
 
 Instead of going from the Dormitory during Bedside Consolation:
