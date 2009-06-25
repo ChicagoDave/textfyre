@@ -16,7 +16,7 @@
   <Setting Key="PageGripSize" Value="40" />
   <Setting Key="TOCs" Value="Introduction|Map|Hints|Transcript|Quit" />
   <Setting Key="ResizingEnabled" Value="True" />
-  <Setting Key="BookPageInnerContentWidth" Value="380" />
+  <Setting Key="BookPageInnerContentWidth" Value="360" />
   <Setting Key="BookPageInnerContentHeight" Value="470" />
   <Setting Key="BookPageInnerContentOffsetLeft" Value="20" />
   <Setting Key="BookPageInnerContentOffsetTop" Value="0" />
