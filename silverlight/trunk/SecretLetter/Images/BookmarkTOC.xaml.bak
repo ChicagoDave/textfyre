@@ -5,7 +5,7 @@
     <Grid x:Name="LayoutRoot" Cursor="Hand">
         <Path Height="60.501" Margin="0.123,-0.415,3.877,0.415" x:Name="BookmarkPath" Width="38.192" Fill="#CCEFDDC9" Stretch="Fill" Stroke="#FFA78560" Data="M41.691189,66.744873 L3.8033125,67.464302 L10.355247,93.935265 L3.6778665,122.60923 L42.047905,122.21695 z"/>
         <Rectangle Height="58.67" HorizontalAlignment="Right" Margin="0,0.877,3.877,1.123" x:Name="BookmarkRect" Width="2.2" Fill="#CCEFDDC8" Stroke="{x:Null}" />
-        <TextBlock Height="29.786" Margin="-8.262,15.039,-8.738,15.961" x:Name="BookmarkText" Width="58.75" RenderTransformOrigin="0.5,0.5" Foreground="#FF6F5A43" Text="Table of Contents" TextAlignment="Center" TextWrapping="Wrap" >
+        <TextBlock Height="29.786" Margin="-8.262,15.039,-8.738,15.961" x:Name="BookmarkText" Width="58.75" RenderTransformOrigin="0.5,0.5" Foreground="#FF6F5A43" Text="Table of Content" TextAlignment="Center" TextWrapping="Wrap" >
 				<TextBlock.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
