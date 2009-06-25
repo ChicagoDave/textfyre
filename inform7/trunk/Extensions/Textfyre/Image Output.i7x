@@ -14,7 +14,7 @@ To update the current image:
 			select the theme channel;
 			say the image currently being displayed;
 			select the main channel;
-		otherwise:
-			say "[bracket]IMAGE: [image currently being displayed][close bracket][paragraph break]";
+		[ otherwise:
+			say "[bracket]IMAGE: [image currently being displayed][close bracket][paragraph break]"; ]
 
 Image Output ends here.
