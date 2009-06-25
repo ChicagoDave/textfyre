@@ -84,6 +84,9 @@
             <item title="Get Hints">
               <paragraph>If you really don't know what to do, click on the Table of Contents and click [italic type]Get Hints[romain type] and you will be given a list of things to help you through your predicament.</paragraph>
             </item>
+            <item title="Textfyre Forums">
+              <paragraph><![CDATA[If you're still stuck, post a question on our forums at http://forums.textfyre.com.]]></paragraph>
+            </item>
           </menu>
         </item>
       </menu>
@@ -94,9 +97,11 @@
       <paragraph>System programming by Jesse McGrew.</paragraph>
       <paragraph>Game programming by Graeme Jefferis.</paragraph>
       <paragraph>Beta-testing by: Jacqueline Ashwell, Eric Eve, Peter Berman, Jim Aikin, and Paul O'Brian.</paragraph>
-      <paragraph>The map was drawn by Jennifer Montes.</paragraph>
-      <paragraph>The artwork was drawn by various artists whose names will be added here shortly.</paragraph>
+      <paragraph>The map is by Jennifer Montes.</paragraph>
+      <paragraph>The book cover and background are from IStockPhoto.Com</paragraph>
+      <paragraph>The drawings are by Erika Swanson of SimplyErika.Com</paragraph>
       <paragraph>A special thanks goes out to Graham Nelson and Emily Short, without whom Textfyre would not have existed. Their dedication to Interactive Fiction and to the Inform 7 development tools is simply astounding. We're grateful for their many contributions.</paragraph>
+      <paragraph>We also want to thank J. Robinson Wheeler, Gunther Schmidl, Justin de Vesine, and everyone in the Interactive Fiction hobbyist community for their suppport.</paragraph>
     </item>
   </menu>
 </help>
