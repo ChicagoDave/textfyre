@@ -283,7 +283,7 @@ namespace Textfyre.UI.DocSystem
                         break;
 
                     case FyreXml.OpCode.Image:
-                        RegImage( "Images/SpotArt/Crates.png", 80, 70 );
+                        //RegImage( "Images/SpotArt/Crates.png", 80, 70 );
                         if (_txtBlk.IsEmpty)
                         {
                             DoImage();

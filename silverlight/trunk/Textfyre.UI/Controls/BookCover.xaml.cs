@@ -30,7 +30,7 @@ namespace Textfyre.UI.Controls
             this.FlipCoverStoryboard.Completed += new EventHandler(FlipCoverStoryboard_Completed);
             Current.Game.StoryReady += new EventHandler(Application_StoryReady);
 
-            PageSide.Source = Current.Application.GetImageBitmap("Images/BookPagesSideWide.png");
+            //PageSide.Source = Current.Application.GetImageBitmap("Images/BookPagesSideWide.png");
             Current.Font.ApplyFont(Textfyre.UI.Current.Font.FontType.Headline, LoadingText);
 
         }

@@ -2,25 +2,29 @@
 <Arts>
   <!--Art ID="Book" Path="Images/finalBookBase.png" Width="1475" Height="976" /-->
   <!--Art ID="BookCover" Path="Images/BookCover.png" Width="403" Height="581"  Margin="460,0,0,0" /-->
-  <Art ID="Book" Path="Images/openbook.png" Width="825" Height="582" />
-  <Art ID="BookCover" Path="Images/bookcover.png" Width="418" Height="582"  Margin="402,10,0,0" />
-  <Art ID="BookPage1" Path="Images/leftpage.png" Width="400" Height="564" />
-  <Art ID="BookPage2" Path="Images/rightpage.png" Width="400" Height="564" />
-  <Art ID="TitlePage" Path="Images/PageArt/GrubbersChase.png" Width="280" Height="429" />
+  <Art ID="Book" Path="Images/openbook.jpg" Width="825" Height="582" />
+  <Art ID="BookCover" Path="Images/BookCover.jpg" Width="418" Height="582"  Margin="402,10,0,0" />
+  <Art ID="BookPage1" Path="Images/leftpage.jpg" Width="400" Height="564" />
+  <Art ID="BookPage2" Path="Images/rightpage.jpg" Width="400" Height="564" />
+  <Art ID="TitlePage" Path="Images/PageArt/GrubbersChase.jpg" Width="280" Height="429" />
   <Art ID="TOCArt" Path="" />
 
   <Art ID="BookmarkTOC" Path="Images/BookmarkTOC.xaml" Margin="-6,50,0,0" />
 
-  <Art ID="GrubbersMarket" Path="Images/PageArt/GrubbersChase.png" Width="280" Height="429" />
-  <Art ID="MeetingBobby" Path="Images/PageArt/MeetingBobby.png" Width="280" Height="429" />
-  <Art ID="Gallows" Path="Images/PageArt/Gallows.png" Width="280" Height="429" />
-  <Art ID="InJail" Path="Images/PageArt/InJail.png" Width="280" Height="429" />
+  <Art ID="GrubbersMarket" Path="Images/PageArt/GrubbersChase.jpg" Width="280" Height="429" />
+  <Art ID="MeetingBobby" Path="Images/PageArt/MeetingBobby.jpg" Width="280" Height="429" />
+  <Art ID="Gallows" Path="Images/PageArt/Gallows.jpg" Width="280" Height="429" />
+  <Art ID="InJail" Path="Images/PageArt/InJail.jpg" Width="280" Height="429" />
   <!-- Org size: 1500 x 1855 -->
 
   <Art ID="Map1Left" Path="Images/MapLeft.jpg" Width="392" Height="500" Margin="2,20,0,0" Fade="False" />
   <Art ID="Map1Right" Path="Images/MapRight.jpg" Width="392" Height="500" Margin="0,20,0,0" Fade="False" />
 
+
+  <Art ID="CreditArt" Path="Images/textfyre_majorart_titlepage.jpg" Width="280" Height="186" Margin="0,0,0,30" Fade="False" />
+
   
+
   <!--<Art ID="CameoArt_Teisha" Path="Images/CameoArt/Teisha.png" Width="200" Height="205" Margin="0,0,0,0" />-->
 
 </Arts>
