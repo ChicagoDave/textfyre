@@ -136,7 +136,7 @@ namespace Textfyre.UI.Controls
                     BookPage2.Visibility = Visibility.Visible;
                     ctrlMore.HorizontalAlignment = HorizontalAlignment.Right;
                     ctrlMore.VerticalAlignment = VerticalAlignment.Bottom;
-                    ctrlMore.Margin = new Thickness(0, 0, 30, 40);
+                    ctrlMore.Margin = new Thickness(0, 0, 30, 20);
 
                     ctrlFlipButton.HorizontalAlignment = HorizontalAlignment.Right;
                     ctrlFlipButton.VerticalAlignment = VerticalAlignment.Bottom;
@@ -150,7 +150,7 @@ namespace Textfyre.UI.Controls
                     BookPage2.Visibility = Visibility.Collapsed;
                     ctrlMore.HorizontalAlignment = HorizontalAlignment.Left;
                     ctrlMore.VerticalAlignment = VerticalAlignment.Bottom;
-                    ctrlMore.Margin = new Thickness(20, 0, 0, 40);
+                    ctrlMore.Margin = new Thickness(20, 0, 0, 20);
 
                     ctrlFlipButton.HorizontalAlignment = HorizontalAlignment.Left;
                     ctrlFlipButton.VerticalAlignment = VerticalAlignment.Bottom;
