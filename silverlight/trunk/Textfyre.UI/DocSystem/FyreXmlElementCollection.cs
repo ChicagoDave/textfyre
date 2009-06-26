@@ -106,7 +106,7 @@ namespace Textfyre.UI.DocSystem
         {
             if (previousElements == null)
             {
-                PageWidth = Settings.BookPageInnerInnerContentWidth;
+                PageWidth = Settings.BookPageInnerInnerContentWidth + Settings.AdditionalWidthForTextLines;
                 MaxWidth = PageWidth;
             }
             else

@@ -23,6 +23,7 @@ namespace Textfyre.UI
         public static double BookPageOffsetLeft = 0;
         public static double BookPageOffsetTop = 0;
         public static double BookPageInnerContentWidth = 0;
+        public static double AdditionalWidthForTextLines = 0;
         public static double BookPageInnerContentHeight = 0;
         public static double BookPageInnerContentOffsetLeft = 0;
         public static double BookPageInnerContentOffsetTop = 0;
