@@ -219,9 +219,9 @@ namespace Textfyre.UI.Controls
                 else
                 {
                     rect = new Rectangle();
-                    rect.Stroke = new SolidColorBrush(Colors.Black);
+                    //rect.Stroke = new SolidColorBrush(Colors.Black);
                     rect.StrokeThickness = 1d;
-                    rect.Fill = new SolidColorBrush(Colors.Red);
+                    //rect.Fill = new SolidColorBrush(Colors.Red);
                     rect.Width=100;
                     rect.Height = 0;
                     ContentPanel.Children.Insert(0, rect);

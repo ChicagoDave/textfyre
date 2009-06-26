@@ -50,7 +50,29 @@ namespace Textfyre.UI.Controls
             }
         }
 
+        private Storyboard _delaysb;
         public void Show()
+        {
+            if (_delaysb == null)
+            {
+                _delaysb = new Storyboard();
+                _delaysb.Completed += new EventHandler(_delaysb_Completed);
+                _delaysb.Duration = TimeSpan.FromSeconds(1);
+            }
+
+            if (_delaysb.GetCurrentState() != ClockState.Active)
+            {
+                _delaysb.Begin();
+            }
+            else
+            {
+                _delaysb.Stop();
+                _delaysb.Begin();
+            }
+
+        }
+
+        void _delaysb_Completed(object sender, EventArgs e)
         {
             Keyboard.KeyPress += new EventHandler<KeyEventArgs>(Keyboard_KeyPress);
             _isShown = true;
