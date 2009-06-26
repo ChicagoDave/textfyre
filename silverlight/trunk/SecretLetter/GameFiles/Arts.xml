@@ -30,5 +30,6 @@
   <!-- SpotArt -->
   <Art ID="SpotArtPrologue" TextMatch="Mid-morning always sees the Grubber" ShowText="True" Path="Images/prologue.jpg" Width="280" Height="182" Align="Center" Margin="0,0,0,30" />
 
+  <Art ID="TheEndLink" LinkText="Visit the Textfyre website." LinkUrl="http://www.textfyre.com" TextMatch="TheTextToSearchFor" ShowText="True" Align="Left" Margin="0,0,0,0" />
 
 </Arts>

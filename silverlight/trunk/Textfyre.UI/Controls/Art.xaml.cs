@@ -152,25 +152,71 @@ namespace Textfyre.UI.Controls
                 FadeArt = Boolean.Parse(fade);
             }
 
-            string path = art.Attribute("Path").Value.Trim();
+            string path = String.Empty;
+            if (AttributeExists(art, "Path"))
+            {
+                path = art.Attribute("Path").Value.Trim();
+            }
 
-            if (path.Length == 0)
+            if (path.Length != 0)
+            {
+
+                if (path.EndsWith(".png") || path.EndsWith(".jpg"))
+                {
+                    ArtType = ArtTypes.PNG;
+                    Image image = new Image();
+                    image.Source = Current.Application.GetImageBitmap(path);
+                    image.Stretch = Stretch.Fill;
+                    RegisterArt(image);
+                }
+                else if (path.EndsWith(".xaml"))
+                {
+                    ArtType = ArtTypes.XAML;
+                    UserControl userControl = Current.Application.GetImageXaml(path) as UserControl;
+                    RegisterArt(userControl);
+                }
+
                 return;
+            }
 
-            if (path.EndsWith(".png") || path.EndsWith(".jpg"))
+            if (AttributeExists(art, "LinkUrl") && AttributeExists(art, "LinkText"))
             {
-                ArtType = ArtTypes.PNG;
-                Image image = new Image();
-                image.Source = Current.Application.GetImageBitmap(path);
-                image.Stretch = Stretch.Fill;
-                RegisterArt(image);
+                string linkUrl = art.Attribute("LinkUrl").Value.Trim();
+                string linkText = art.Attribute("LinkText").Value.Trim();
+                HyperlinkButton hlb = new HyperlinkButton();
+                hlb.Content = linkText;
+                hlb.NavigateUri = new Uri(linkUrl, UriKind.Absolute);
+                hlb.MouseEnter += new MouseEventHandler(hlb_MouseEnter);
+                hlb.MouseLeave += new MouseEventHandler(hlb_MouseLeave);
+
+                switch( Align )
+                {
+                    case ArtAlign.Center:
+                        hlb.HorizontalContentAlignment = HorizontalAlignment.Center;
+                        break;
+                    case ArtAlign.Left:
+                        hlb.HorizontalContentAlignment = HorizontalAlignment.Left;
+                        break;
+                    case ArtAlign.Right:
+                        hlb.HorizontalContentAlignment = HorizontalAlignment.Right;
+                        break;
+                }
+
+                Align = ArtAlign.Center;
+
+                RegisterArt(hlb);
             }
-            else if (path.EndsWith(".xaml"))
-            {
-                ArtType = ArtTypes.XAML;
-                UserControl userControl = Current.Application.GetImageXaml(path) as UserControl;
-                RegisterArt(userControl);
-            }
+
+        }
+
+        void hlb_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Current.Game.IsInputFocusActive = true;
+        }
+
+        void hlb_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Current.Game.IsInputFocusActive = false;
         }
 
         private static bool AttributeExists(XElement ele, string attName)
