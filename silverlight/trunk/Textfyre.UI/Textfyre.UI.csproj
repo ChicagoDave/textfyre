@@ -222,6 +222,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="SpotArt.cs" />
     <Compile Include="Storage\Settings.cs" />
     <Compile Include="Storage\StorageHandler.cs" />
     <Compile Include="StoryHandle.cs" />

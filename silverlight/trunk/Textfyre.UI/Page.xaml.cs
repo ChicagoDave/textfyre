@@ -20,6 +20,7 @@ namespace Textfyre.UI
         {
             InitializeComponent();
             Settings.Init();
+            SpotArt.Init();
             this.Background = Helpers.Color.SolidColorBrush(Settings.BackgroundColor);
             LayoutRoot.Background = Helpers.Color.SolidColorBrush(Settings.BackgroundColor);
             Application.Current.Host.Content.Resized += new EventHandler(Content_Resized);

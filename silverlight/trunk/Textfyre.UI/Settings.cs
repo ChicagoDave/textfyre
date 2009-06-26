@@ -126,6 +126,11 @@ namespace Textfyre.UI
 
             }
 
+            
+            
+            
+            
+            
             // Calculated from the other settings
             BookPageInnerInnerContentWidth = BookPageInnerContentWidth - 35d;
             BookPageInnerInnerContentHeight = BookPageInnerContentHeight - 13d; // -35d;

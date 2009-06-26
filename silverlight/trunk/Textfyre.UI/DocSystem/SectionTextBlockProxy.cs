@@ -41,6 +41,14 @@ namespace Textfyre.UI.DocSystem
             }
         }
 
+        public bool IsEmptyTrim
+        {
+            get
+            {
+                return _txtBlk.IsEmptyTrim;
+            }
+        }
+
         public string Text
         {
             get

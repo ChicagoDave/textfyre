@@ -14,7 +14,7 @@
   <Setting Key="BookPageOffsetLeft" Value="31" />
   <Setting Key="BookPageOffsetTop" Value="11" />
   <Setting Key="BookPageInnerContentWidth" Value="440" />
-  <Setting Key="AdditionalWidthForTextLines" Value="0" />
+  <Setting Key="AdditionalWidthForTextLines" Value="30" />
   <Setting Key="BookPageInnerContentHeight" Value="470" />
   <Setting Key="BookPageInnerContentOffsetLeft" Value="20" />
   <Setting Key="BookPageInnerContentOffsetTop" Value="0" />
