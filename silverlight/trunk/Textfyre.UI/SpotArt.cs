@@ -16,10 +16,12 @@ namespace Textfyre.UI
     public static class SpotArt
     {
         private static System.Collections.Generic.Dictionary<string, string> _dic;
+        private static System.Collections.Generic.Dictionary<string, bool> _dicShowText;
 
         public static void Init()
         {
             _dic = new System.Collections.Generic.Dictionary<string, string>();
+            _dicShowText = new System.Collections.Generic.Dictionary<string, bool>();
 
             XDocument x = XDocument.Load(Current.Application.GetResPath("GameFiles/Arts.xml"));
 
@@ -31,6 +33,12 @@ namespace Textfyre.UI
                     string id = art.Attribute("ID").Value;
                     string text = art.Attribute("TextMatch").Value;
                     _dic.Add(id, text);
+
+                    bool showText = true;
+                    if (art.Attribute("ShowText") != null)
+                        showText = bool.Parse(art.Attribute("ShowText").Value);
+
+                    _dicShowText.Add(id, showText);
                 }
             }
         }
@@ -42,7 +50,11 @@ namespace Textfyre.UI
 
             foreach (string key in _dic.Keys)
             {
-                text = text.Replace(_dic[key], @"<Art ID=""" + key + @""" />" + _dic[key]);
+                if( _dicShowText[key] )
+                    text = text.Replace(_dic[key], @"<Art ID=""" + key + @""" />" + _dic[key]);
+                else
+                    text = text.Replace(_dic[key], @"<Art ID=""" + key + @""" />");
+
             }
 
             return text;

@@ -36,7 +36,7 @@
   <Art ID="churchyard" Path="Images/PageArts/nightfall-churchyard.jpg" Width="280" Height="440" />
 
   <!-- SpotArt -->
-  <Art ID="SpotArtPrologue" TextMatch="You've lived in this city" Path="Images/PageArts/nightfall-churchyard.jpg" Width="200" Height="120" Align="Center" Margin="0,0,0,20" />
+  <Art ID="SpotArtPrologue" TextMatch="You've lived in this city" ShowText="True" Path="Images/PageArts/nightfall-churchyard.jpg" Width="200" Height="120" Align="Center" Margin="0,0,0,20" />
 
 
 </Arts>

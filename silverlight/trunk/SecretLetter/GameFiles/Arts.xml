@@ -28,7 +28,7 @@
   <!--<Art ID="CameoArt_Teisha" Path="Images/CameoArt/Teisha.png" Width="200" Height="205" Margin="0,0,0,0" />-->
 
   <!-- SpotArt -->
-  <Art ID="SpotArtPrologue" TextMatch="Mid-morning always sees the Grubber" Path="Images/prologue.jpg" Width="280" Height="182" Align="Center" Margin="0,0,0,30" />
+  <Art ID="SpotArtPrologue" TextMatch="Mid-morning always sees the Grubber" ShowText="True" Path="Images/prologue.jpg" Width="280" Height="182" Align="Center" Margin="0,0,0,30" />
 
 
 </Arts>
