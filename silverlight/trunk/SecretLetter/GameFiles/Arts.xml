@@ -15,6 +15,10 @@
   <Art ID="MeetingBobby" Path="Images/PageArt/MeetingBobby.jpg" Width="280" Height="429" />
   <Art ID="Gallows" Path="Images/PageArt/Gallows.jpg" Width="280" Height="429" />
   <Art ID="InJail" Path="Images/PageArt/InJail.jpg" Width="280" Height="429" />
+  <Art ID="JackInDisguise" Path="Images/PageArt/JackInDisguise.jpg" Width="280" Height="429" />
+  <Art ID="JackInSimpleDress" Path="Images/PageArt/JackInSimpleDress.jpg" Width="280" Height="429" />
+  <Art ID="JackInBallGown" Path="Images/PageArt/JackInBallGown.jpg" Width="280" Height="429" />
+
   <!-- Org size: 1500 x 1855 -->
 
   <Art ID="Map1Left" Path="Images/MapLeft.jpg" Width="392" Height="500" Margin="2,20,0,0" Fade="False" />
@@ -23,13 +27,14 @@
 
   <Art ID="CreditArt" Path="Images/textfyre_majorart_titlepage.jpg" Width="280" Height="186" Margin="0,0,0,30" Fade="False" />
 
-  
-
   <!--<Art ID="CameoArt_Teisha" Path="Images/CameoArt/Teisha.png" Width="200" Height="205" Margin="0,0,0,0" />-->
 
   <!-- SpotArt -->
   <Art ID="SpotArtPrologue" TextMatch="Mid-morning always sees the Grubber" ShowText="True" Path="Images/prologue.jpg" Width="280" Height="182" Align="Center" Margin="0,0,0,30" />
 
-  <Art ID="TheEndLink" LinkText="Visit the Textfyre website." LinkUrl="http://www.textfyre.com" TextMatch="TheTextToSearchFor" ShowText="True" Align="Left" Margin="0,0,0,0" />
+  <Art ID="TFLink" LinkText="Visit the Textfyre website." LinkUrl="http://www.textfyre.com" TextMatch="www.textfyre.com" ShowText="True" Align="Left" Margin="0,0,0,0" />
+  <Art ID="I7Link" LinkText="Visit the Inform 7 website." LinkUrl="http://www.inform7.com" TextMatch="www.inform7.com" ShowText="True" Align="Left" Margin="0,0,0,0" />
+  <Art ID="TenteoLink" LinkText="Visit the Tenteo website." LinkUrl="http://www.tenteo.com" TextMatch="www.tenteo.com" ShowText="True" Align="Left" Margin="0,0,0,0" />
+  <Art ID="ErikaLink" LinkText="Visit Erika's website." LinkUrl="http://www.simplyerika.com" TextMatch="www.simplyerika.com" ShowText="True" Align="Left" Margin="0,0,0,0" />
 
 </Arts>
