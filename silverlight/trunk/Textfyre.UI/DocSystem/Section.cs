@@ -293,8 +293,11 @@ namespace Textfyre.UI.DocSystem
 
                     case FyreXml.OpCode.Art:
                         RegArt( element.Data );
-                        if (_txtBlk.IsEmpty)
+                        if (_txtBlk.IsEmptyTrim)
                         {
+                            if( _txtBlk.IsEmpty == false )
+                                AddTextToFyreXmlElements(_txtBlk.Text);
+                            
                             DoArt();
                             return _fyreXmlElements;
                         }

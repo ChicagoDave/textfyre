@@ -210,6 +210,18 @@ namespace Textfyre.UI.DocSystem
             }
         }
 
+        public bool IsEmptyTrim
+        {
+            get
+            {
+                if (_stackPanel != null)
+                    return false;
+
+                return _txtBlk.Text.Trim().Length == 0;
+            }
+        }
+
+
         public string Text
         {
             get

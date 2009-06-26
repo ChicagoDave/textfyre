@@ -267,6 +267,8 @@ namespace Textfyre.UI.Pages
                         prologue = "<Paragraph>" + prologue + "</Paragraph>";
                     }
 
+                    prologue = SpotArt.InsertSpotArt(prologue);
+
                     System.Text.StringBuilder leadingNewlines = new StringBuilder("");
                     //int i = Settings.PrologueNewLines;
                     //while(i > 0 )
@@ -406,7 +408,7 @@ namespace Textfyre.UI.Pages
 
                         //string txt = tb.Replace("Several crates are", "<img>Several crates are");
                         //string txt = tb.Replace("bother you here", @"<Image ID=""SpotArtCrates"" />bother you here");
-                        string txt = tb; //.Replace("bother you here", @"<Art ID=""SpotArtCrates"" />bother you here");
+                        string txt = SpotArt.InsertSpotArt(tb); //.Replace("bother you here", @"<Art ID=""SpotArtCrates"" />bother you here");
 
                         //txt = Regex.Replace(txt, @"\bmercenaries\b", "<WordDef>mercenaries</WordDef>");
                         //if (location.Length > 0)
