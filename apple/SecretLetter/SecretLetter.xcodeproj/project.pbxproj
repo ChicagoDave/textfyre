@@ -1,0 +1,452 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		834B12560795DCB300E4BF6C /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834B12530795DCB300E4BF6C /* AppController.m */; };
+		834B12570795DCB300E4BF6C /* WebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834B12550795DCB300E4BF6C /* WebController.m */; };
+		834B13820795DD1F00E4BF6C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834B13810795DD1F00E4BF6C /* WebKit.framework */; };
+		834B13D30795DE5200E4BF6C /* MyDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 834B13D20795DE5200E4BF6C /* MyDocument.nib */; };
+		87091D410FF32E8500AD1EEE /* DownloadDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87091D3E0FF32E8500AD1EEE /* DownloadDelegate.m */; };
+		87091D420FF32E8500AD1EEE /* PolicyDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87091D400FF32E8500AD1EEE /* PolicyDelegate.m */; };
+		871B9C4E0FF5F13300C17B9B /* InstallSilverlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 871B9C4D0FF5F13300C17B9B /* InstallSilverlight.png */; };
+		871B9C510FF5F15C00C17B9B /* smallicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 871B9C500FF5F15C00C17B9B /* smallicon.icns */; };
+		871B9CAF0FF5F82400C17B9B /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 871B9CAE0FF5F82400C17B9B /* Credits.html */; };
+		877CAA9B0FF47C3700148F52 /* Downloader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 877CAA9A0FF47C3700148F52 /* Downloader.xib */; };
+		877CAAB80FF480BD00148F52 /* DownloadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 877CAAB70FF480BD00148F52 /* DownloadController.m */; };
+		87886E3A0FF50EE400E75C02 /* RestartController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87886E390FF50EE400E75C02 /* RestartController.m */; };
+		87886F750FF55F6700E75C02 /* Installer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87886F740FF55F6700E75C02 /* Installer.xib */; };
+		879158200FF3164500AB26B9 /* SecretLetter.xap in Resources */ = {isa = PBXBuildFile; fileRef = 8791580F0FF3164500AB26B9 /* SecretLetter.xap */; };
+		879158220FF3164500AB26B9 /* Textfyre.UI.Transcript.Popup.xap in Resources */ = {isa = PBXBuildFile; fileRef = 879158110FF3164500AB26B9 /* Textfyre.UI.Transcript.Popup.xap */; };
+		879158260FF3164500AB26B9 /* SecretLetter.htm in Resources */ = {isa = PBXBuildFile; fileRef = 879158150FF3164500AB26B9 /* SecretLetter.htm */; };
+		8791582B0FF3164500AB26B9 /* Silverlight.js in Resources */ = {isa = PBXBuildFile; fileRef = 8791581C0FF3164500AB26B9 /* Silverlight.js */; };
+		8791582C0FF3164500AB26B9 /* Transcript.htm in Resources */ = {isa = PBXBuildFile; fileRef = 8791581D0FF3164500AB26B9 /* Transcript.htm */; };
+		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
+		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8724F24A0FE4428000465738 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		834B12520795DCB300E4BF6C /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
+		834B12530795DCB300E4BF6C /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
+		834B12540795DCB300E4BF6C /* WebController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = WebController.h; sourceTree = "<group>"; };
+		834B12550795DCB300E4BF6C /* WebController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = WebController.m; sourceTree = "<group>"; };
+		834B12580795DCCD00E4BF6C /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MyDocument.nib; sourceTree = "<group>"; };
+		834B13810795DD1F00E4BF6C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
+		87091D3D0FF32E8500AD1EEE /* DownloadDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadDelegate.h; sourceTree = "<group>"; };
+		87091D3E0FF32E8500AD1EEE /* DownloadDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadDelegate.m; sourceTree = "<group>"; };
+		87091D3F0FF32E8500AD1EEE /* PolicyDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolicyDelegate.h; sourceTree = "<group>"; };
+		87091D400FF32E8500AD1EEE /* PolicyDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolicyDelegate.m; sourceTree = "<group>"; };
+		871B9C4D0FF5F13300C17B9B /* InstallSilverlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InstallSilverlight.png; sourceTree = "<group>"; };
+		871B9C500FF5F15C00C17B9B /* smallicon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = smallicon.icns; sourceTree = "<group>"; };
+		871B9CAE0FF5F82400C17B9B /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
+		877CA8B40FF4097400148F52 /* SecretLetter_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecretLetter_Prefix.pch; sourceTree = "<group>"; };
+		877CAA9A0FF47C3700148F52 /* Downloader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Downloader.xib; sourceTree = "<group>"; };
+		877CAAB60FF480BD00148F52 /* DownloadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadController.h; sourceTree = "<group>"; };
+		877CAAB70FF480BD00148F52 /* DownloadController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadController.m; sourceTree = "<group>"; };
+		87886E380FF50EE400E75C02 /* RestartController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestartController.h; sourceTree = "<group>"; };
+		87886E390FF50EE400E75C02 /* RestartController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestartController.m; sourceTree = "<group>"; };
+		87886F740FF55F6700E75C02 /* Installer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Installer.xib; sourceTree = "<group>"; };
+		8791580F0FF3164500AB26B9 /* SecretLetter.xap */ = {isa = PBXFileReference; lastKnownFileType = file; path = SecretLetter.xap; sourceTree = "<group>"; };
+		879158110FF3164500AB26B9 /* Textfyre.UI.Transcript.Popup.xap */ = {isa = PBXFileReference; lastKnownFileType = file; path = Textfyre.UI.Transcript.Popup.xap; sourceTree = "<group>"; };
+		879158140FF3164500AB26B9 /* SecretLetter.hta */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SecretLetter.hta; sourceTree = "<group>"; };
+		879158150FF3164500AB26B9 /* SecretLetter.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SecretLetter.htm; sourceTree = "<group>"; };
+		879158170FF3164500AB26B9 /* Silverlight.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Silverlight.js; sourceTree = "<group>"; };
+		879158190FF3164500AB26B9 /* home.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = home.ico; sourceTree = "<group>"; };
+		8791581C0FF3164500AB26B9 /* Silverlight.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Silverlight.js; sourceTree = "<group>"; };
+		8791581D0FF3164500AB26B9 /* Transcript.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Transcript.htm; sourceTree = "<group>"; };
+		8791581E0FF3164500AB26B9 /* web.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = web.config; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* SecretLetter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecretLetter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				834B13820795DD1F00E4BF6C /* WebKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				87886E380FF50EE400E75C02 /* RestartController.h */,
+				87886E390FF50EE400E75C02 /* RestartController.m */,
+				87091D3D0FF32E8500AD1EEE /* DownloadDelegate.h */,
+				87091D3E0FF32E8500AD1EEE /* DownloadDelegate.m */,
+				87091D3F0FF32E8500AD1EEE /* PolicyDelegate.h */,
+				87091D400FF32E8500AD1EEE /* PolicyDelegate.m */,
+				834B12520795DCB300E4BF6C /* AppController.h */,
+				834B12530795DCB300E4BF6C /* AppController.m */,
+				834B12540795DCB300E4BF6C /* WebController.h */,
+				834B12550795DCB300E4BF6C /* WebController.m */,
+				877CAAB60FF480BD00148F52 /* DownloadController.h */,
+				877CAAB70FF480BD00148F52 /* DownloadController.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* SecretLetter.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* MiniBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = MiniBrowser;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				877CA8B40FF4097400148F52 /* SecretLetter_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				871B9C500FF5F15C00C17B9B /* smallicon.icns */,
+				8791580A0FF3164400AB26B9 /* TextfyreSLAppWeb */,
+				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
+				834B13D20795DE5200E4BF6C /* MyDocument.nib */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				877CAA9A0FF47C3700148F52 /* Downloader.xib */,
+				87886F740FF55F6700E75C02 /* Installer.xib */,
+				871B9CAE0FF5F82400C17B9B /* Credits.html */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				834B13810795DD1F00E4BF6C /* WebKit.framework */,
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8791580A0FF3164400AB26B9 /* TextfyreSLAppWeb */ = {
+			isa = PBXGroup;
+			children = (
+				871B9C4D0FF5F13300C17B9B /* InstallSilverlight.png */,
+				8791580D0FF3164400AB26B9 /* ClientBin */,
+				879158140FF3164500AB26B9 /* SecretLetter.hta */,
+				879158150FF3164500AB26B9 /* SecretLetter.htm */,
+				879158170FF3164500AB26B9 /* Silverlight.js */,
+				879158180FF3164500AB26B9 /* SLData */,
+				8791581A0FF3164500AB26B9 /* SLInstall */,
+				8791581D0FF3164500AB26B9 /* Transcript.htm */,
+				8791581E0FF3164500AB26B9 /* web.config */,
+			);
+			path = TextfyreSLAppWeb;
+			sourceTree = "<group>";
+		};
+		8791580D0FF3164400AB26B9 /* ClientBin */ = {
+			isa = PBXGroup;
+			children = (
+				8791580F0FF3164500AB26B9 /* SecretLetter.xap */,
+				879158110FF3164500AB26B9 /* Textfyre.UI.Transcript.Popup.xap */,
+			);
+			path = ClientBin;
+			sourceTree = "<group>";
+		};
+		879158180FF3164500AB26B9 /* SLData */ = {
+			isa = PBXGroup;
+			children = (
+				879158190FF3164500AB26B9 /* home.ico */,
+			);
+			path = SLData;
+			sourceTree = "<group>";
+		};
+		8791581A0FF3164500AB26B9 /* SLInstall */ = {
+			isa = PBXGroup;
+			children = (
+				8791581C0FF3164500AB26B9 /* Silverlight.js */,
+			);
+			path = SLInstall;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* SecretLetter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 149C297908902C52008A9EFC /* Build configuration list for PBXNativeTarget "SecretLetter" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+				8724F24A0FE4428000465738 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SecretLetter;
+			productInstallPath = "$(HOME)/Applications";
+			productName = MiniBrowser;
+			productReference = 8D1107320486CEB800E47090 /* SecretLetter.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 149C297D08902C52008A9EFC /* Build configuration list for PBXProject "SecretLetter" */;
+			compatibilityVersion = "Xcode 2.4";
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				de,
+				en,
+				es,
+				fr,
+				it,
+				ja,
+				ko,
+				"zh-Hans",
+				"zh-Hant",
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* MiniBrowser */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* SecretLetter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */,
+				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				834B13D30795DE5200E4BF6C /* MyDocument.nib in Resources */,
+				879158200FF3164500AB26B9 /* SecretLetter.xap in Resources */,
+				879158220FF3164500AB26B9 /* Textfyre.UI.Transcript.Popup.xap in Resources */,
+				8791582B0FF3164500AB26B9 /* Silverlight.js in Resources */,
+				879158260FF3164500AB26B9 /* SecretLetter.htm in Resources */,
+				8791582C0FF3164500AB26B9 /* Transcript.htm in Resources */,
+				877CAA9B0FF47C3700148F52 /* Downloader.xib in Resources */,
+				87886F750FF55F6700E75C02 /* Installer.xib in Resources */,
+				871B9C4E0FF5F13300C17B9B /* InstallSilverlight.png in Resources */,
+				871B9C510FF5F15C00C17B9B /* smallicon.icns in Resources */,
+				871B9CAF0FF5F82400C17B9B /* Credits.html in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				834B12560795DCB300E4BF6C /* AppController.m in Sources */,
+				834B12570795DCB300E4BF6C /* WebController.m in Sources */,
+				87091D410FF32E8500AD1EEE /* DownloadDelegate.m in Sources */,
+				87091D420FF32E8500AD1EEE /* PolicyDelegate.m in Sources */,
+				877CAAB80FF480BD00148F52 /* DownloadController.m in Sources */,
+				87886E3A0FF50EE400E75C02 /* RestartController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		29B97318FDCFA39411CA2CEA /* MainMenu.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				29B97319FDCFA39411CA2CEA /* English */,
+			);
+			name = MainMenu.nib;
+			sourceTree = "<group>";
+		};
+		834B13D20795DE5200E4BF6C /* MyDocument.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				834B12580795DCCD00E4BF6C /* English */,
+			);
+			name = MyDocument.nib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		149C297A08902C52008A9EFC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = SecretLetter_Prefix.pch;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = NO;
+				GCC_TREAT_NONCONFORMANT_CODE_ERRORS_AS_WARNINGS = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = NO;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_PROTOTYPE_CONVERSION = NO;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = NO;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = NO;
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
+				GCC_WARN_UNUSED_VALUE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/Silverlight.plugin/Contents/MacOS\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../Silverlight.plugin/Contents/MacOS\"";
+				PRODUCT_NAME = SecretLetter;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		149C297B08902C52008A9EFC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = SecretLetter_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/Silverlight.plugin/Contents/MacOS\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../Silverlight.plugin/Contents/MacOS\"";
+				PRODUCT_NAME = SecretLetter;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		149C297E08902C52008A9EFC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Debug;
+		};
+		149C297F08902C52008A9EFC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		149C297908902C52008A9EFC /* Build configuration list for PBXNativeTarget "SecretLetter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				149C297A08902C52008A9EFC /* Debug */,
+				149C297B08902C52008A9EFC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		149C297D08902C52008A9EFC /* Build configuration list for PBXProject "SecretLetter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				149C297E08902C52008A9EFC /* Debug */,
+				149C297F08902C52008A9EFC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
