@@ -37,10 +37,10 @@ The backdrop-sky is a privately-named backdrop. The backdrop-sky is everywhere. 
 Understand "sky" as the backdrop-sky when the location is exterior.
 
 The backdrop-sun is privately-named, scenery. The backdrop-sun is part of the backdrop-sky. The printed name of the backdrop-sun is "sun".
-Understand "sun" as the backdrop-sun when the location is exterior and the weather is clear skies and the sunlight of the time of day is true.
+Understand "sun" as the backdrop-sun when the location is exterior and the weather is clear skies and the sunlight of the present moment is true.
 
 The backdrop-moon is privately-named, scenery. The backdrop-moon is part of the backdrop-sky. The printed name of the backdrop-moon is "moon".
-Understand "moon" as the backdrop-moon when the location is exterior and the moonlight of the time of day is true.
+Understand "moon" as the backdrop-moon when the location is exterior and the moonlight of the present moment is true.
 
 Some backdrop-clouds are privately-named, scenery. The backdrop-clouds are part of the backdrop-sky. The printed name of the backdrop-clouds is "clouds".
 Understand "clouds" as the backdrop-clouds when the location is exterior and the weather is cloudy skies.
