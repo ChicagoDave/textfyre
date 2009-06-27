@@ -1,5 +1,7 @@
 Version 1/081211 of FyreVM Support (for Glulx only) by Textfyre begins here.
 
+Use authorial modesty.
+
 Chapter 1 - FyreVM-specific constants and definitions
 
 [FyreVM defines a new opcode to handle the things that would otherwise be handled by @glk. These definitions allow us to use that opcode.]

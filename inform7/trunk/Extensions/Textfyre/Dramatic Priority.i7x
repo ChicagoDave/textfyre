@@ -2,6 +2,8 @@ Dramatic Priority by Textfyre begins here.
 
 "A means by which important events can take priority over less important ones, so dramatic verisimilitude can be maintained."
 
+Use authorial modesty.
+
 Include Triggers by Textfyre.
 Include Scripted Events by Textfyre.
 

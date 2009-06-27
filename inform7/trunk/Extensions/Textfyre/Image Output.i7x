@@ -2,6 +2,8 @@ Image Output by Textfyre begins here.
 
 Include Textfyre Standard Rules by Textfyre.
 
+Use authorial modesty.
+
 The image currently being displayed is a text that varies.
 
 The image-changing rules are a rulebook. The image-changing rules have default success.

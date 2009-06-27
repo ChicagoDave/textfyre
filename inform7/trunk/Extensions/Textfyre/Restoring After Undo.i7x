@@ -1,5 +1,7 @@
 Restoring After Undo by Textfyre begins here.
 
+Use authorial modesty.
+
 Restoring after undo is an activity.
 
 Include (-
