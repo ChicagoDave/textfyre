@@ -1177,7 +1177,8 @@ After restoring after undo:
 An image-changing rule during Trouble In Grubbers:
 	change the image currently being displayed to "GrubbersChase";
 
-An image-changing rule when the location is the Back Alley and the player can see Bobby:
+An image-changing rule when the Back Alley is visited during Mulling Hints:
+	[A nasty hack! - Using the hint scenes.]
 	change the image currently being displayed to "MeetingBobby";
 
 An image-changing rule when the location is in Maiden House:
