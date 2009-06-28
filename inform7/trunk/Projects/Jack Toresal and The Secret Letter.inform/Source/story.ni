@@ -2,6 +2,8 @@
 
 [  Change Log
 When		Who		What
+27-Jun-2009	D. Cornelson	Image changes.
+26-Jun-2009	D. Cornelson	Final edit before release.
 25-Jun-2009	G. Jefferis	Various location and scenario images
 22-Jun-2009	G. Jefferis	UNDO hack moved to Restore After Undo extension
 19-Jun-2009	G. Jefferis	Sleep in Maiden House
@@ -199,15 +201,14 @@ Rule for printing the banner text:
 	select the credits channel;
 	say "[story title] by [story author][line break]";
 	say "Copyright &#169; [story creation year] by [story author][line break]";
-	say "Story developed by David Cornelson[line break]";
 	say "Designed and Written by Michael Gentry[line break]";
 	say "Game Engine (FyreVM) by Jesse McGrew[line break]";
 	say "Inform 7 Story Programming by Graeme Jefferis[line break]";
 	say "Testing by Jacqueline Ashwell, Peter Berman,[line break]Eric Eve, Jim Aikin, and Paul O'Brian[line break]";
-	say "User Interface Programming by Thomas Lynge[line break]";
-	say "Sketches by Erika Swanson, whom we thank for taking[line break]on so much work in so little time.[line break]";
+	say "User Interface Programming by Thomas Lynge[line break] of Tenteo (www.tenteo.com)[line break]";
+	say "Sketches by Erika Swanson (www.simplyerika.com).[line break]";
 	say "Special thanks to Graham Nelson and Emily Short[line break]";
-	say "for all of their hard work on Inform 7.[line break]";
+	say "for Inform 7 (www.inform7.com)[line break]";
 	say "All rights reserved[line break]";
 	select the main channel;
 
@@ -1181,15 +1182,15 @@ An image-changing rule when the Back Alley is visited during Mulling Hints:
 	[A nasty hack! - Using the hint scenes.]
 	change the image currently being displayed to "MeetingBobby";
 
-An image-changing rule when the location is in Maiden House:
+An image-changing rule when the location is in Maiden House or the location is in Entrance to Maiden House or the location is Behind Maiden House:
 	change the image currently being displayed to "MaidenHouse";
-
+[
 An image-changing rule when the location is Market Square and the player can see Bobby:
 	change the image currently being displayed to "EmptyGrubbersWithBobby";
-
+]
 An image-changing rule during Bobby's Adventure:
 	change the image currently being displayed to "JackInDisguise";
-
+[
 An image-changing rule when the location is the Crossing during Bobby's Adventure:
 	change the image currently being displayed to "StreamWithBobby";
 
@@ -1210,10 +1211,10 @@ An image-changing rule when the location is the Chapel:
 
 An image-changing rule when the location is the Guardhouse:
 	change the image currently being displayed to "Guardhouse";
-
+]
 An image-changing rule when the location is in the Prison Region:
 	change the image currently being displayed to "InJail";
-
+[
 An image-changing rule when the location is in the Sewers Region:
 	change the image currently being displayed to "Sewer";
 
@@ -1222,10 +1223,10 @@ An image-changing rule when the location is in the Rooftops Region:
 
 An image-changing rule when the location is the Library and the player has the Secret Letter:
 	change the image currently being displayed to "SecretLetter";
-
+]
 An image-changing rule when the location is Lords Market during Bobby's Hanging:
 	change the image currently being displayed to "Gallows";
-
+[
 An image-changing rule when the location is in Red Gate Estate and the player is still dirty:
 	change the image currently being displayed to "Red Gate Estate";
 
@@ -1234,7 +1235,7 @@ An image-changing rule when the location is the Ballroom:
 
 An image-changing rule when the location is the War Room:
 	change the image currently being displayed to "WarRoom";
-
+]
 [Finally, the drop-through defaults:]
 
 An image-changing rule when the player wears the daydress:
@@ -5651,6 +5652,10 @@ The response of BO15 is { BO6, BO12, BO14 }
 Part 3 - Entrance to Maiden House
 
 Chapter 1 - Description 
+[ *** Code changed for Demo Version ***]
+
+[
+Purchase Full Version is southwest of the back alley. The description is "You have reached the end of the playable demonstration of [i]Jack Toresal and The Secret Letter[r]. Who is Baron Fossville? What is Bobby's plan? Why are the mercenaries chasing you? What is the Princess doing in Toresal? To find out the answer to all of these questions, you can purchase the full, downloadable, version for Windows XP, Vista, or Intel Mac OS X by surfing to www.textfyre.com."]
 
 Entrance to Maiden House is southwest of the back alley. The description is "The alley dead-ends in a small courtyard surrounded by old, run-down buildings. You can return to the main part of the city to the northeast."
 
