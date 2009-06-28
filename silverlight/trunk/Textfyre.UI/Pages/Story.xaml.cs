@@ -551,18 +551,18 @@ namespace Textfyre.UI.Pages
 
             _saveEvent.WaitOne();
 
+            Dispatcher.BeginInvoke(() =>
+            {
+                if (Current.Game.GameMode == GameModes.Restart)
+                {
+                    Current.Game.GameMode = GameModes.ExecuteRestart;
+                }
+
+            });
+
             if (_saveFile != null)
             {
                 
-                Dispatcher.BeginInvoke(() =>
-                {
-                    if (Current.Game.GameMode == GameModes.Restart)
-                    {
-                        Current.Game.GameMode = GameModes.ExecuteRestart;
-                    }
-
-                });
-
                 try
                 {
                     string filePath = _saveFile.Save();
