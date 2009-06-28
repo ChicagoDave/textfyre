@@ -114,5 +114,9 @@
       <paragraph>Roger Carbol, Amoral Support</paragraph>
       <paragraph>Sarah Morayati, Apple Volatility Engineer</paragraph>
     </item>
+    <item title="Updates">
+      <paragraph>1.01 - Added ifMUD credits and tried to resolve images issues.</paragraph>
+      <paragraph>1.02 - Images issues should be resolved now.</paragraph>
+    </item>
   </menu>
 </help>
