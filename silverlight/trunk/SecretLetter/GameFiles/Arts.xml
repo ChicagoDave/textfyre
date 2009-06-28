@@ -13,6 +13,7 @@
 
   <Art ID="GrubbersMarket" Path="Images/PageArt/GrubbersChase.jpg" Width="280" Height="429" />
   <Art ID="MeetingBobby" Path="Images/PageArt/MeetingBobby.jpg" Width="280" Height="429" />
+  <Art ID="MaidenHouse" Path="Images/PageArt/MaidenHouse.jpg" Width="280" Height="429" />
   <Art ID="Gallows" Path="Images/PageArt/Gallows.jpg" Width="280" Height="429" />
   <Art ID="InJail" Path="Images/PageArt/InJail.jpg" Width="280" Height="429" />
   <Art ID="JackInDisguise" Path="Images/PageArt/JackInDisguise.jpg" Width="280" Height="429" />
@@ -25,7 +26,7 @@
   <Art ID="Map1Right" Path="Images/MapRight.jpg" Width="392" Height="500" Margin="0,20,0,0" Fade="False" />
 
 
-  <Art ID="CreditArt" Path="Images/textfyre_majorart_titlepage.jpg" Width="280" Height="186" Margin="0,0,0,30" Fade="False" />
+  <Art ID="CreditArt" Path="Images/TitlePage.jpg" Width="280" Height="186" Margin="0,0,0,30" Fade="False" />
 
   <!--<Art ID="CameoArt_Teisha" Path="Images/CameoArt/Teisha.png" Width="200" Height="205" Margin="0,0,0,0" />-->
 
