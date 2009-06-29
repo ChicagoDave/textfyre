@@ -112,10 +112,29 @@ namespace Textfyre.UI.Controls
 
             XDocument x = XDocument.Load(Current.Application.GetResPath("GameFiles/Arts.xml"));
 
-            var arts = (from a in x.Descendants("Art") where a.Attribute("ID").Value == _id select a);
-
-            if (arts.Count() != 1)
+            string[] ids = _id.Split(',');
+            if (ids.Length == 0)
                 return;
+            var arts = (from a in x.Descendants("Art") where a.Attribute("ID").Value == ids[0].Trim() select a);
+            if (arts.Count() < 1)
+            {
+                bool found = false;
+                for (int i = 1; i < ids.Length; i++)
+                {
+                    arts = (from a in x.Descendants("Art") where a.Attribute("ID").Value == ids[i].Trim() select a);
+
+
+                    if (arts.Count() > 0)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                    return;
+
+            }
 
             var art = arts.Single();
 
