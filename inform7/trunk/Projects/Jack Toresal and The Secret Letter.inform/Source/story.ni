@@ -1178,64 +1178,78 @@ After restoring after undo:
 An image-changing rule during Trouble In Grubbers:
 	change the image currently being displayed to "GrubbersChase";
 
-An image-changing rule when the Back Alley is visited during Mulling Hints:
-	[A nasty hack! - Using the hint scenes.]
+An image-changing rule when the location is Entrance to Maiden House or the location is Behind Maiden House:
+	change the image currently being displayed to "MaidenHouse";
+
+An image-changing rule when the location is in the Maiden House:
+	change the image currently being displayed to "MaidenHouse";
+
+An image-changing rule when the location is the Back Alley and Entrance to Maiden House is unvisited:
 	change the image currently being displayed to "MeetingBobby";
 
-An image-changing rule when the location is in Maiden House or the location is in Entrance to Maiden House or the location is Behind Maiden House:
-	change the image currently being displayed to "MaidenHouse";
-[
 An image-changing rule when the location is Market Square and the player can see Bobby:
-	change the image currently being displayed to "EmptyGrubbersWithBobby";
-]
-An image-changing rule during Bobby's Adventure:
-	change the image currently being displayed to "JackInDisguise";
-[
+	change the image currently being displayed to "EmptyGrubbers,JackInDisguise";
+
+An image-changing rule when the location is Market Square and the player can see Pieter:
+	change the image currently being displayed to "EmptyGrubbers,JackInBallGown";
+
 An image-changing rule when the location is the Crossing during Bobby's Adventure:
-	change the image currently being displayed to "StreamWithBobby";
+	change the image currently being displayed to "StreamWithBobby,JackInDisguise";
 
 An image-changing rule when the location is the Crossing during the Bodyguard Scene:
-	change the image currently being displayed to "StreamWithPieter";
+	change the image currently being displayed to "StreamWithPieter,JackInBallGown";
 
 An image-changing rule when the location is the Clearing during Bobby's Adventure:
-	change the image currently being displayed to "FountainWithBobby";
+	change the image currently being displayed to "FountainWithBobby,JackInDisguise";
 
 An image-changing rule when the location is the Clearing during the Bodyguard Scene:
-	change the image currently being displayed to "FountainWithPieter";
+	change the image currently being displayed to "FountainWithPieter,JackInBallGown";
+
+An image-changing rule when the location is in the Tunnels and the player can see Pieter:
+	change the image currently being displayed to "Tunnel,JackInBallGown";
 
 An image-changing rule when the location is in the Tunnels:
-	change the image currently being displayed to "Tunnel";
+	change the image currently being displayed to "Tunnel,JackInDisguise";
 
-An image-changing rule when the location is the Chapel:
-	change the image currently being displayed to "Chapel";
+An image-changing rule when the location is the Chapel and the player can see Bobby:
+	change the image currently being displayed to "Chapel,JackInDisguise";
+
+An image-changing rule when the location is the Chapel and the player can see Bobby:
+	change the image currently being displayed to "Chapel,JackInBallGown";
 
 An image-changing rule when the location is the Guardhouse:
-	change the image currently being displayed to "Guardhouse";
-]
+	change the image currently being displayed to "Guardhouse,JackInDisguise";
+
+An image-changing rule during Bobby's Adventure:
+	change the image currently being displayed to "JackInDisguise";
+
 An image-changing rule when the location is in the Prison Region:
 	change the image currently being displayed to "InJail";
-[
+
 An image-changing rule when the location is in the Sewers Region:
-	change the image currently being displayed to "Sewer";
+	change the image currently being displayed to "Sewer,JackInDisguise";
 
 An image-changing rule when the location is in the Rooftops Region:
-	change the image currently being displayed to "Rooftops";
+	change the image currently being displayed to "Rooftops,JackInDisguise";
 
 An image-changing rule when the location is the Library and the player has the Secret Letter:
-	change the image currently being displayed to "SecretLetter";
-]
+	change the image currently being displayed to "SecretLetter,JackInDisguise";
+
+An image-changing rule when the location is in the Black Gate Estate Region:
+	change the image currently being displayed to "BlackGateEstate,JackInDisguise";
+
 An image-changing rule when the location is Lords Market during Bobby's Hanging:
 	change the image currently being displayed to "Gallows";
-[
-An image-changing rule when the location is in Red Gate Estate and the player is still dirty:
-	change the image currently being displayed to "Red Gate Estate";
+
+An image-changing rule when the location is in the Red Gate Estate Region and the player is not wearing the daydress:
+	change the image currently being displayed to "RedGateEstate,JackInDisguise";
 
 An image-changing rule when the location is the Ballroom:
-	change the image currently being displayed to "TheBall";
+	change the image currently being displayed to "TheBall,JackInBallGown";
 
 An image-changing rule when the location is the War Room:
-	change the image currently being displayed to "WarRoom";
-]
+	change the image currently being displayed to "WarRoom,JackInBallGown";
+
 [Finally, the drop-through defaults:]
 
 An image-changing rule when the player wears the daydress:
