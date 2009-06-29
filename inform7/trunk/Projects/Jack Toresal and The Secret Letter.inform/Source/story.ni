@@ -184,7 +184,7 @@ Include Counters by Textfyre.
 Include Scripted Events by Textfyre.
 Include Character Listing by Textfyre.
 Include Dramatic Priority by Textfyre.
-Include Conversation Topics by Textfyre.
+[ Include Conversation Topics by Textfyre. ]
 
 Include Restoring After Undo by Textfyre.
 Include Image Output by Textfyre.
@@ -193,6 +193,7 @@ Include Secret Letter Hints by Textfyre.
 Include Xml Output Toggling by Textfyre.
 
 Use no scoring, American dialect and full-length room descriptions.
+Use authorial modesty.
 The story creation year is 2009.
 
 Rule for printing the banner text:
