@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFyre", "WinFyre\WinFyre.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FyreChannels", "..\FyreChannels\FyreChannels.csproj", "{982EAD2F-FF0B-4793-BBE8-F3DACCF98A90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextfyreVM", "..\..\fyrevmss-windows\TextfyreVM.csproj", "{61B1E1B1-82B8-42F7-9600-F57B0F254638}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{982EAD2F-FF0B-4793-BBE8-F3DACCF98A90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{982EAD2F-FF0B-4793-BBE8-F3DACCF98A90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{982EAD2F-FF0B-4793-BBE8-F3DACCF98A90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61B1E1B1-82B8-42F7-9600-F57B0F254638}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61B1E1B1-82B8-42F7-9600-F57B0F254638}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61B1E1B1-82B8-42F7-9600-F57B0F254638}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61B1E1B1-82B8-42F7-9600-F57B0F254638}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
