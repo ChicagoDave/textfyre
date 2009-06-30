@@ -100,6 +100,7 @@ namespace Textfyre.UI.Entities
         #endregion
 
         #region :: Transcript ::
+        //[System.Xml.Serialization.XmlIgnore()]
         private string _transcript = String.Empty;
         public string Transcript
         {
@@ -112,6 +113,10 @@ namespace Textfyre.UI.Entities
                 _transcript = value;
             }
         }
+
+
+
+
         #endregion
 
         #region :: Chapter ::
@@ -182,11 +187,11 @@ namespace Textfyre.UI.Entities
             IsolatedStorageFile isoFile = IsoFile;
             string filepath = _dir + @"\" + _filename;
 
-            if (isoFile.FileExists(filepath + ".inf"))
-                isoFile.DeleteFile(filepath + ".inf");
+            if (isoFile.FileExists(filepath + ".fvt"))
+                isoFile.DeleteFile(filepath + ".fvt");
 
-            if (isoFile.FileExists(filepath + ".sav"))
-                isoFile.DeleteFile(filepath + ".sav");
+            if (isoFile.FileExists(filepath + ".fvq"))
+                isoFile.DeleteFile(filepath + ".fvq");
             
         }
 
@@ -208,7 +213,7 @@ namespace Textfyre.UI.Entities
             using (IsolatedStorageFile isoFile = IsoFile)
             {
                 using (IsolatedStorageFileStream stream =
-                new IsolatedStorageFileStream( filepath + ".inf", FileMode.Create, isoFile))
+                new IsolatedStorageFileStream( filepath + ".fvt", FileMode.Create, isoFile))
                 {
                     using (StreamWriter writer = new StreamWriter(stream))
                     {
@@ -217,7 +222,7 @@ namespace Textfyre.UI.Entities
                 }
             }
 
-            return filepath + ".sav";
+            return filepath + ".fvq";
 
         }
 
@@ -238,7 +243,7 @@ namespace Textfyre.UI.Entities
         {
             get
             {
-                return _dir + @"\" + _filename + ".sav";
+                return _dir + @"\" + _filename + ".fvq";
             }
         }
 
@@ -251,7 +256,7 @@ namespace Textfyre.UI.Entities
                 if (iso.DirectoryExists(_dir) == false)
                     return 0;
 
-                string[] files = iso.GetFileNames(_dir + @"\*" + Current.Game.GameFileName + ".inf");
+                string[] files = iso.GetFileNames(_dir + @"\*" + Current.Game.GameFileName + ".fvt");
                 return files.Length;
             }
         }
@@ -279,7 +284,7 @@ namespace Textfyre.UI.Entities
                 if (iso.DirectoryExists(_dir) == false)
                     return saveFiles;
 
-                string[] files = iso.GetFileNames(_dir + @"\*" + Current.Game.GameFileName + ".inf");
+                string[] files = iso.GetFileNames(_dir + @"\*" + Current.Game.GameFileName + ".fvt");
                 foreach (string file in files)
                 {
                     using (IsolatedStorageFile isoFile = IsoFile)
