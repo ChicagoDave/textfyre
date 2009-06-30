@@ -278,6 +278,7 @@ namespace Textfyre.UI.DocSystem
                         }
                         break;
 
+                    case "characterlist/":
                     case "topiclist/":
                         // No Topics.
                         elements.Add(new FyreXmlElementTopicList(FyreXml.OpCode.TopicList));
