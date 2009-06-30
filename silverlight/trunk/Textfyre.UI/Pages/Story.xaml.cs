@@ -1,21 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+using System.IO;
+using System.IO.IsolatedStorage;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using Textfyre.VM;
-using System.Threading;
-using System.IO;
-using System.Windows.Markup;
-using System.IO.IsolatedStorage;
-using System.Text.RegularExpressions;
-using System.Text;
 
 namespace Textfyre.UI.Pages
 {
@@ -25,6 +18,8 @@ namespace Textfyre.UI.Pages
         private Thread _engineThread;
         private string _inputLine = null;
         private AutoResetEvent inputReadyEvent = new AutoResetEvent(false);
+
+        private DateTime _commandStartTime;
 
         private AutoResetEvent _saveEvent = new AutoResetEvent(false);
 
@@ -38,7 +33,7 @@ namespace Textfyre.UI.Pages
 
             this.Loaded += new RoutedEventHandler(Story_Loaded);
 
-            _tbVersion.Text = Settings.VersionText + " " + (Settings.IsDesktopVersion?"(Desktop)":"(Browser)"); //Current.Application.IsLatestGameFileVersion ? "Latest Version" : "Old Version";
+            _tbVersion.Text = string.Concat(Settings.VersionText, " ", (Settings.IsDesktopVersion?"(Desktop)":"(Browser)"));
 
             TextfyreBook.TextfyreDocument.InputEntered += new EventHandler<Textfyre.UI.Controls.Input.InputEventArgs>(TextfyreDocument_InputEntered);
             TextfyreBook.SaveGameDialog.SaveRequest += new EventHandler<Textfyre.UI.Controls.IODialog.Save.SaveEventArgs>(SaveGameDialog_SaveRequest);
@@ -104,20 +99,18 @@ namespace Textfyre.UI.Pages
             if (e.Key == Key.PageDown)
             {
                 TextfyreBook.FlipForward();
-
             }
 
             if (e.Key == Key.PageUp)
             {
                 TextfyreBook.FlipBack();
-
             }
-
 
         }
 
         private void TextfyreDocument_InputEntered(object sender, Textfyre.UI.Controls.Input.InputEventArgs e)
         {
+            _commandStartTime = DateTime.Now;
             _inputLine = e.TextEntered;
             inputReadyEvent.Set();
         }
@@ -152,33 +145,6 @@ namespace Textfyre.UI.Pages
             _engineThread.Start();
         }
 
-        //public void StopEngine()
-        //{
-        //    if (_saveEvent != null)
-        //        _saveEvent.Close();
-
-        //    if (_engineThread != null
-        //        && _engineThread.ThreadState != ThreadState.Stopped)
-        //    {
-        //        while (_isEngineRunning)
-        //            Thread.Sleep(10);
-
-        //        try
-        //        {
-        //            _engineThread.Abort();
-        //        }
-        //        catch
-        //        { }
-        //    }
-
-
-        //    if( _engine != null )
-        //        _engine.Stop();
-
-        //    _engineThread = null;
-        //    _engine = null;
-        //}
-
         private void engine_OutputReady(object sender, OutputReadyEventArgs e)
         {
             if (e.Package.Count == 0)
@@ -211,6 +177,10 @@ namespace Textfyre.UI.Pages
             
             });
 
+            TimeSpan elapsed = DateTime.Now.Subtract(_commandStartTime);
+
+            if (Settings.Profile)
+                TextfyreBook.TextfyreDocument.AddFyreXml(String.Concat(Resource.FyreXML_Paragraph_Begin, "Elapsed VM Time: ", elapsed.ToString(), Resource.FyreXML_Paragraph_End));
 
             if (AnyOutput(output, OutputChannel.Title))
             {
@@ -235,15 +205,17 @@ namespace Textfyre.UI.Pages
                 Current.Game.Chapter = chapter;
                 updateLocAndChap = true;
             }
-            #endregion
 
             if (updateLocAndChap)
                 TextfyreBook.SetLocationAndChapter();
 
+            #endregion
+
+
             #region :: Credits ::
             if (AnyOutput(output, OutputChannel.Credits))
             {
-                string credits = "" + output[OutputChannel.Credits] + "";
+                string credits = string.Concat("", output[OutputChannel.Credits], "");
                 credits = credits.Replace("&#169;", "©");
 
                 TextfyreBook.TranscriptDialog.AddText(credits);
@@ -262,29 +234,22 @@ namespace Textfyre.UI.Pages
                     string prologue = output[OutputChannel.Prologue];
                     TextfyreBook.TranscriptDialog.AddText(prologue);
 
-                    if (!prologue.StartsWith("<Paragraph"))
+                    if (!prologue.StartsWith(Resource.FyreXML_Paragraph_Partial_Begin))
                     {
-                        prologue = "<Paragraph>" + prologue + "</Paragraph>";
+                        prologue = String.Concat(Resource.FyreXML_Paragraph_Begin, prologue, Resource.FyreXML_Paragraph_End);
                     }
 
                     prologue = SpotArt.InsertSpotArt(prologue);
 
                     System.Text.StringBuilder leadingNewlines = new StringBuilder("");
-                    //int i = Settings.PrologueNewLines;
-                    //while(i > 0 )
-                    //{
-                    //    leadingNewlines.Append(" " + System.Environment.NewLine);
-                    //    i--;
-                    //}
 
                     if (Settings.PagingMechanism == Settings.PagingMechanismType.StaticPageCreateBackPages)
-                        prologue = "<PrologueMode/>" + leadingNewlines.ToString() + prologue + "<StoryMode/><FullPageBreak/><ColumnScroll/><AddImagePage/>";
+                        prologue = String.Concat(Resource.FyreXML_PrologueMode, leadingNewlines.ToString(), prologue, Resource.FyreXML_PrologueContents);
                     else if (Settings.PagingMechanism == Settings.PagingMechanismType.CreateNewPages)
-                        prologue = "<PrologueMode/>" + prologue + "<StoryMode/>";
+                        prologue = String.Concat(Resource.FyreXML_PrologueMode, prologue, Resource.FyreXML_StoryMode);
 
                     prologue = DocSystem.WordDef.ParseTextForWordDefs(prologue);
 
-                    //TextfyreBook.TextfyreDocument.AddStml(prologue);
                     Current.Game.GameState.FyreXmlAdd(prologue);
                     TextfyreBook.TextfyreDocument.AddFyreXml(prologue);
                 }
@@ -305,7 +270,6 @@ namespace Textfyre.UI.Pages
 
                 TextfyreBook.TranscriptDialog.AddText(conversation);
                 Current.Game.GameState.FyreXmlAdd(conversation);
-                //TextfyreBook.TextfyreDocument.AddStml(conversation);
                 TextfyreBook.TextfyreDocument.AddFyreXml(conversation);
             }
             #endregion
@@ -314,82 +278,6 @@ namespace Textfyre.UI.Pages
             if (AnyOutput(output, OutputChannel.Hints))
             {
                 string hints = output[OutputChannel.Hints].Replace("\n", String.Empty);
-                /*
-                hints = @"<hints title=""Chapter I Hints"">
-<topic title=""What do I do?"">
-<hint id=""1"">You hear voices nearby.</hint>    
-<hint id=""2"">Listen to the voices.</hint>    
-<hint id=""3"">You need to get a better angle.</hint>    
-<hint id=""4"">Notice those crates?</hint>    
-<hint id=""5"">Climb up the crates to get to the roof.</hint>   
-</topic>   
-<topic title=""How do I escape the mercenaries?"">    
-<hint id=""1"">Run!</hint>   
-</topic>   
-<topic title=""There's nowhere to go!"">    
-<hint id=""1"">You can try to lose them in the marketplace.</hint>    
-<hint id=""2"">But they know what you look like.</hint>   
-</topic>   
-<topic title=""Can I get a disguise?"">    
-<hint id=""1"">The mercenaries have a picture of you. Can you change your appearance?</hint>    
-<hint id=""2"">Take off something you're wearing and maybe that will fool them.</hint>    
-<hint id=""3"">Remove your hat.</hint>    
-<hint id=""4"">Can you disguise yourself in some other way?</hint>    
-<hint id=""5"">Try looking at what's available in the silk tent.</hint>    
-<hint id=""6"">You might need a cloak to cover yourself.</hint>    
-<hint id=""7"">Ask Teisha about the green silk cloak.</hint>   
-</topic>   
-<topic title=""What can I do in the market?"">    
-<hint id=""1"">Browse around.</hint>   
-</topic>   
-<topic title=""Teisha won't trade me unless I have jewelry."">    
-<hint id=""1"">Maybe you could find some.</hint>    
-<hint id=""2"">Someone around here has something valuable.</hint>   
-</topic>   
-<topic title=""What is that brown furry thing?"">    
-<hint id=""1"">See if you can find it sitting in one place.</hint>    
-<hint id=""2"">Have you noticed that big post behind some of the tents?</hint>    
-<hint id=""3"">There's a way to get to it.</hint>    
-<hint id=""4"">You'll have to let one of the merchants let you through the back of their tent.</hint>    
-<hint id=""5"">Is there a merchant you're friends with who will do you a favor?</hint>    
-<hint id=""6"">Try the silk tent.</hint>   
-</topic>   
-<topic title=""How do I get the necklace from the monkey?"">    
-<hint id=""1"">Maybe if you give the monkey something else he likes better.</hint>    
-<hint id=""2"">What's available in the market that a monkey likes?</hint>    
-<hint id=""3"">Have you been to the fruit stall?</hint>    
-<hint id=""4"">Monkeys like a banana.</hint>    
-<hint id=""5"">Take a banana from the fruit stall and show it to the monkey.</hint>   
-</topic>   
-<topic title=""How do I buy things in the market?"">    
-<hint id=""1"">You need money to buy things.</hint>    
-<hint id=""2"">You don't have any money.</hint>    
-<hint id=""3"">Well, how about a trade?</hint>    
-<hint id=""4"">You don't have anything to trade, either.</hint>    
-<hint id=""5"">How about stealing?</hint>   
-</topic>   
-<topic title=""Help, the mercenaries are after me again!"">    
-<hint id=""1"">You'd better escape!</hint>    
-<hint id=""2"">Go out the back way (north).</hint>    
-<hint id=""3"">Better go back up the post.</hint>   
-</topic>   
-<topic title=""I'm trapped on top of the pole."">    
-<hint id=""1"">Remember how the monkey got away?</hint>    
-<hint id=""2"">You can't swing on the jewelry, but...</hint>    
-<hint id=""3"">Have you got anything else you can loop over the wire?</hint>    
-<hint id=""4"">Something big enough to hold onto?</hint>    
-<hint id=""5"">Try your gray cloak.</hint>    
-<hint id=""6"">Loop the cloak over the wire, and you'll slide to safety.</hint>    
-<hint id=""7"">Now you need to find a better place to hide.</hint>    
-<hint id=""8"">Escape to Commerce Street, east of the marketplace.</hint>   
-</topic>   
-<topic title=""They still catch me when I try to leave!"">    
-<hint id=""1"">Better wear your new disguise first.</hint>    
-<hint id=""2"">Put on the green silk cloak.</hint>    
-<hint id=""3"">Now you can leave the market and enter Commerce Street.</hint>   
-</topic>  
-</hints>"; 
-                */
                 Current.Game.Hints = hints;
             }
             #endregion
@@ -397,6 +285,11 @@ namespace Textfyre.UI.Pages
             #region :: Main ::
             if (AnyOutput(output, OutputChannel.Main))
             {
+                elapsed = DateTime.Now.Subtract(_commandStartTime);
+
+                if (Settings.Profile)
+                    TextfyreBook.TextfyreDocument.AddFyreXml(String.Concat(Resource.FyreXML_Paragraph_Begin, "Elapsed Time: ", elapsed.ToString(), Resource.FyreXML_Paragraph_End));
+
                 string[] tbs = output[OutputChannel.Main].Split('~');
 
                 System.Text.StringBuilder sbMain = new System.Text.StringBuilder("");
@@ -406,25 +299,14 @@ namespace Textfyre.UI.Pages
                     {
                         TextfyreBook.TranscriptDialog.AddText(tb);
 
-                        //string txt = tb.Replace("Several crates are", "<img>Several crates are");
-                        //string txt = tb.Replace("bother you here", @"<Image ID=""SpotArtCrates"" />bother you here");
-                        string txt = SpotArt.InsertSpotArt(tb); //.Replace("bother you here", @"<Art ID=""SpotArtCrates"" />bother you here");
+                        string txt = SpotArt.InsertSpotArt(tb);
 
-                        //txt = Regex.Replace(txt, @"\bmercenaries\b", "<WordDef>mercenaries</WordDef>");
-                        //if (location.Length > 0)
-                        //{
-                        //    txt = txt.Replace("<Paragraph><Bold>" + location + "</Bold><LineBreak/>", "<Header>" + location + "</Header><Paragraph>");
-                        //}
-
-
-                        txt = Regex.Replace(txt, "(<Paragraph><Bold>)(.*?)(</Bold><LineBreak/>)", "<Header>$2</Header><Paragraph>");
-                        //txt = Regex.Replace(txt, "(<Paragraph><Bold>)(.+)(</Bold><LineBreak/>)", "<Header>$2</Header><Paragraph>");
-                        //txt = Regex.Replace(txt, "(<Bold>)(.+)(</Bold><LineBreak/>)", "<Header>$2</Header>");
+                        txt = Regex.Replace(txt, Resource.FyreXML_LocationName_Regex_Search, Resource.FyreXML_LocationName_Replacement);
 
                         txt = DocSystem.WordDef.ParseTextForWordDefs(txt);
 
                         sbMain.Append(txt);
-                        //TextfyreBook.TextfyreDocument.AddStml(txt);
+
                         Current.Game.GameState.FyreXmlAdd(txt);
                         TextfyreBook.TextfyreDocument.AddFyreXml(txt);
                     }
@@ -442,7 +324,6 @@ namespace Textfyre.UI.Pages
             }
             #endregion
 
-
             #region :: Death ::
             if (AnyOutput(output, OutputChannel.Death))
             {
@@ -450,12 +331,11 @@ namespace Textfyre.UI.Pages
                 TextfyreBook.TranscriptDialog.AddText(death);
                 Current.Game.GameState.FyreXmlAdd(death);
 
-                if (!death.StartsWith("<Paragraph"))
+                if (!death.StartsWith(Resource.FyreXML_Paragraph_Partial_Begin))
                 {
-                    death = "<Paragraph>" + death + "</Paragraph>";
+                    death = String.Concat(Resource.FyreXML_Paragraph_Begin, death, Resource.FyreXML_Paragraph_End);
                 }
 
-                //TextfyreBook.TextfyreDocument.AddStml(death);
                 TextfyreBook.TextfyreDocument.AddFyreXml(death);
             }
             #endregion
@@ -465,18 +345,19 @@ namespace Textfyre.UI.Pages
             {
                 bool promptOnly = output.Count == 1;
                 string prompt = output[OutputChannel.Prompt];
-                //TextfyreBook.TranscriptDialog.AddText(prompt);
-
 
                 if (Current.Game.GameMode == GameModes.Story)
                 {
-                    prompt = "<Prompt>" + prompt.Replace(">", "&gt;") + "</Prompt>";
-                    //TextfyreBook.TextfyreDocument.AddStml(prompt);
+                    elapsed = DateTime.Now.Subtract(_commandStartTime);
+
+                    if (Settings.Profile)
+                        TextfyreBook.TextfyreDocument.AddFyreXml(String.Concat(Resource.FyreXML_Paragraph_Begin, "Elapsed Time: ", elapsed.ToString(), Resource.FyreXML_Paragraph_End));
+
+                    prompt = String.Concat(Resource.FyreXML_Prompt_Start, prompt.Replace(">", "&gt;"), Resource.FyreXML_Prompt_End);
                     TextfyreBook.TextfyreDocument.AddFyreXml(prompt);
                 }
             }
             #endregion
-
 
             Current.Game.IsStoryReady = true;
         }
@@ -530,8 +411,8 @@ namespace Textfyre.UI.Pages
             {
                 TextfyreBook.Wait.Show();
                 Current.Game.IsScrollLimitEnabled = true;
-                TextfyreBook.TranscriptDialog.AddText(">" + _inputLineForTranscript);
-                Current.Game.GameState.FyreXmlAdd("<Paragraph>&gt;" + _inputLineForTranscript + "</Paragraph>");
+                TextfyreBook.TranscriptDialog.AddText(String.Concat(">", _inputLineForTranscript));
+                Current.Game.GameState.FyreXmlAdd(String.Concat(Resource.FyreXML_Paragraph_Begin, "&gt;", _inputLineForTranscript, Resource.FyreXML_Paragraph_End));
             });
 
             e.Line = _inputLine;
@@ -577,7 +458,7 @@ namespace Textfyre.UI.Pages
                 {
                     Dispatcher.BeginInvoke(() =>
                     {
-                        Current.Game.TextfyreBook.TranscriptDialog.AddText("\n" + exp.Message + "\n");
+                        Current.Game.TextfyreBook.TranscriptDialog.AddText(String.Concat("\n", exp.Message, "\n"));
                         Current.Game.IsStoryRunning = true;
                         TextfyreBook._toc.Refresh();
                         TextfyreBook.TranscriptDialog.Show();
@@ -634,7 +515,7 @@ namespace Textfyre.UI.Pages
                 {
                     Dispatcher.BeginInvoke(() =>
                     {
-                        Current.Game.TextfyreBook.TranscriptDialog.AddText("\n" + exp.Message + "\n");
+                        Current.Game.TextfyreBook.TranscriptDialog.AddText(String.Concat("\n", exp.Message, "\n"));
                         Current.Game.IsStoryRunning = true;
                         TextfyreBook._toc.Refresh();
                         TextfyreBook.TranscriptDialog.Show();
@@ -664,12 +545,6 @@ namespace Textfyre.UI.Pages
 
 
                 });
-
-                //    IsolatedStorageFile IsoStorageFile =
-                //        System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForApplication();
-
-                //    e.Stream = new IsolatedStorageFileStream("SecretLetter.save",
-                //FileMode.OpenOrCreate, IsoStorageFile);
             }
         }
 

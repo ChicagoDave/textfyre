@@ -310,18 +310,6 @@ namespace Textfyre.UI.Controls.FlipBook
                 if (_cornerGuideCnt < 0)
                     _cornerGuideDir = 0.50d;
             }
-            //else if (IsBottomLeftCornerEnabled)
-            //{
-            //    corner = CornerOrigin.BottomLeft;
-            //    Rect rect = new Rect(0, _cornerGuideAnimationUIElement.RenderSize.Height - gripSize, gripSize, gripSize);
-
-            //    p = new Point(rect.Right - 10 + _cornerGuideCnt, rect.Top + 10 + _cornerGuideCnt);
-            //    //_cornerGuideCnt -= _cornerGuideDir;
-            //    //if (_cornerGuideCnt > 10)
-            //    //    _cornerGuideDir = -0.50d;
-            //    //if (_cornerGuideCnt < 0)
-            //    //    _cornerGuideDir = 0.50d;
-            //}
 
             if (p.X != 0 && p.Y != 0)
             {
@@ -329,9 +317,7 @@ namespace Textfyre.UI.Controls.FlipBook
                 if (p.Y >= pageHeight - 2 && p.Y <= pageHeight + 1)
                     p.Y = pageHeight + 2;
                 
-                //Status = PageStatus.Guiding;
                 SetReflectionVisibility(true);
-                //SetShadowAndReflectionVisibility(true);
                 PageParameters? parameters = ComputePage(_cornerGuideAnimationUIElement, p, corner);
                 _cornerPoint = p;
                 if (parameters != null)
@@ -601,32 +587,6 @@ namespace Textfyre.UI.Controls.FlipBook
             UIElement source = this as UIElement;
             CornerPoint = _cornerPoint;
 
-            //this.BeginAnimation(UCPage.CornerPointProperty, null);
-
-            //PointAnimation anim =
-            //    new PointAnimation()
-            //    {
-            //        To = OriginToPoint(this, origin),
-            //        Duration = new Duration(TimeSpan.FromMilliseconds(duration))
-            //    };
-            //anim.AccelerationRatio = 0.6;
-            //anim.CurrentTimeInvalidated += new EventHandler(anim_CurrentTimeInvalidated);
-            
-            //anim.Completed += new EventHandler(anim_Completed);
-
-            //var sb = new Storyboard();
-            //sb.Duration = anim.Duration;
-            //sb.Children.Add(anim);
-            //Storyboard.SetTarget(anim, this);
-            //Storyboard.SetTargetProperty(anim, "CornerPoint");
-
-            //(this.Parent as FrameworkElement).Resources.Add(sb);
-            //this.Resources.Add(sb);
-            //sb.Completed += new EventHandler(anim_Completed);
-            //sb.Begin();
-
-            //this.BeginAnimation(UCPage.CornerPointProperty, anim);
-
             var anim = new TimerAnimation<Point>(this, UCPage.CornerPointProperty,
                 OriginToPoint(this, origin), new Duration(TimeSpan.FromMilliseconds(duration)),
                     (from, to, percent) => new Point { X = from.X + (to.X - from.X) * percent, Y = from.Y + (to.Y - from.Y) * percent });
@@ -646,16 +606,6 @@ namespace Textfyre.UI.Controls.FlipBook
             UIElement source = this as UIElement;
             CornerPoint = _cornerPoint;
 
-            //this.BeginAnimation(UCPage.CornerPointProperty, null);
-            //PointAnimation anim = 
-            //    new PointAnimation(
-            //        OriginToOppositePoint(this, origin),
-            //        new Duration(TimeSpan.FromMilliseconds(duration)));
-            //anim.AccelerationRatio = 0.6;
-
-            //anim.CurrentTimeInvalidated +=new EventHandler(anim_CurrentTimeInvalidated);
-            //anim.Completed += new EventHandler(anim_Completed);
-            //this.BeginAnimation(UCPage.CornerPointProperty, anim);
             var anim = new TimerAnimation<Point>(this, UCPage.CornerPointProperty,
                 OriginToOppositePoint(this, origin), new Duration(TimeSpan.FromMilliseconds(duration)),
                     (from, to, percent) => new Point { X = from.X + (to.X - from.X) * percent, Y = from.Y + (to.Y - from.Y) * percent });
@@ -684,23 +634,6 @@ namespace Textfyre.UI.Controls.FlipBook
             origin = fromCorner;
             CornerPoint = startPoint;
 
-            //BezierSegment bs =
-            //    new BezierSegment { Point1 = startPoint, Point2 = new Point(endPoint.X + (startPoint.X - endPoint.X) / 3, 250), Point3 = endPoint };
-
-            //PathGeometry path = new PathGeometry();
-            //PathFigure figure = new PathFigure();
-            //figure.StartPoint = startPoint;
-            //figure.Segments.Add(bs);
-            //figure.IsClosed = false;
-            //path.Figures.Add(figure);
-
-            //PointAnimationUsingPath anim =
-            //    new PointAnimationUsingPath();
-            //anim.PathGeometry = path;
-            //anim.Duration = new Duration(TimeSpan.FromMilliseconds(duration));
-            //anim.AccelerationRatio = 0.6;
-
-            //anim.CurrentTimeInvalidated += new EventHandler(anim_CurrentTimeInvalidated);
             var anim = new TimerAnimation<Point>(this, UCPage.CornerPointProperty,
                 endPoint, new Duration(TimeSpan.FromMilliseconds(duration)),
                 (from, to, percent) => ComputeAutoAnimationPoints(from, to, percent));
