@@ -20,6 +20,8 @@ namespace Textfyre.UI.Pages
         private AutoResetEvent inputReadyEvent = new AutoResetEvent(false);
 
         private DateTime _commandStartTime;
+        private TimeSpan _sendToVM;
+        private TimeSpan _returnFromVM;
 
         private AutoResetEvent _saveEvent = new AutoResetEvent(false);
 
@@ -105,7 +107,6 @@ namespace Textfyre.UI.Pages
             {
                 TextfyreBook.FlipBack();
             }
-
         }
 
         private void TextfyreDocument_InputEntered(object sender, Textfyre.UI.Controls.Input.InputEventArgs e)
@@ -147,6 +148,8 @@ namespace Textfyre.UI.Pages
 
         private void engine_OutputReady(object sender, OutputReadyEventArgs e)
         {
+            _returnFromVM = DateTime.Now.Subtract(_commandStartTime);
+            _returnFromVM = _returnFromVM.Subtract(_sendToVM);
             if (e.Package.Count == 0)
                 return;
 
@@ -180,7 +183,7 @@ namespace Textfyre.UI.Pages
             TimeSpan elapsed = DateTime.Now.Subtract(_commandStartTime);
 
             if (Settings.Profile)
-                TextfyreBook.TextfyreDocument.AddFyreXml(String.Concat(Resource.FyreXML_Paragraph_Begin, "Elapsed VM Time: ", elapsed.ToString(), Resource.FyreXML_Paragraph_End));
+                TextfyreBook.TextfyreDocument.AddFyreXml(String.Concat(Resource.FyreXML_Paragraph_Begin, "Elapsed VM Time: ", _returnFromVM.ToString(), Resource.FyreXML_Paragraph_End));
 
             if (AnyOutput(output, OutputChannel.Title))
             {
@@ -417,6 +420,8 @@ namespace Textfyre.UI.Pages
 
             e.Line = _inputLine;
             _inputLine = null;
+
+            _sendToVM = DateTime.Now.Subtract(_commandStartTime);
         }
 
         private Entities.SaveFile _saveFile;
