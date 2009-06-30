@@ -45,6 +45,7 @@ namespace Textfyre.UI
         public static string SaveGameDirectory = "Directory";
         public static string TextBetweenPrologueAndStory = String.Empty;
         public static string QuitUrl = String.Empty;
+        public static bool Profile = false;
 
         // Silverlight Param Settings
         public static bool IsDesktopVersion = false;
@@ -67,14 +68,12 @@ namespace Textfyre.UI
             {
                 return Storage.Settings.Get("RestartGame") == "1";
             }
-
             set
             {
                 if (value)
                     Storage.Settings.Set("RestartGame","1");
                 else
                     Storage.Settings.Set("RestartGame", "");
-
             }
         }
 
@@ -122,18 +121,11 @@ namespace Textfyre.UI
                     Settings set = new Settings();
                     fi.SetValue( set, Enum.Parse( typeof(PagingMechanismType), value, true ) );
                 }
-
-
             }
-
-            
-            
-            
-            
             
             // Calculated from the other settings
             BookPageInnerInnerContentWidth = BookPageInnerContentWidth - 35d;
-            BookPageInnerInnerContentHeight = BookPageInnerContentHeight - 13d; // -35d;
+            BookPageInnerInnerContentHeight = BookPageInnerContentHeight - 13d;
 
         }
     }
