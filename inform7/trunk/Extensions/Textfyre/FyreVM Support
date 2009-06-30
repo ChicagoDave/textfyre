@@ -90,6 +90,9 @@ Constant FYV_readprop_err = 1011;
 
 Include (-
 [ REGISTER_VENEER_R;
+    @gestalt 4 20 is_fyrevm; ! Test if this interpreter has FyreVM channels
+    if (~~is_fyrevm) rfalse;
+    
     FyreCall(FY_SETVENEER, FYV_Z__Region, Z__Region);
     FyreCall(FY_SETVENEER, FYV_CP__Tab, CP__Tab);
     FyreCall(FY_SETVENEER, FYV_OC__Cl, OC__Cl);
@@ -125,7 +128,7 @@ The register veneer routines rule translates into I6 as "REGISTER_VENEER_R".
 To decide whether FyreVM is present: (- (is_fyrevm) -). [This global variable is defined below, before VM_Initialise.]
 To decide whether FyreVM is not present: (- (~~is_fyrevm) -).
 
-After starting the virtual machine when FyreVM is present: follow the register veneer routines rule.
+After starting the virtual machine: follow the register veneer routines rule.
 
 [And these set up an alternative way to print text into an array, since Inform's default way of doing that requires Glk.]
 
