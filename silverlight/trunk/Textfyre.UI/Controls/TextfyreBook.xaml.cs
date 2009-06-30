@@ -677,12 +677,12 @@ As a commercial product, interactive fiction reached its peak in popularity in t
         #region :: Flip Methods ::
         public void FlipBack()
         {
-            FlipBook.AnimateToPreviousPage(500);
+            FlipBook.AnimateToPreviousPage(100);
         }
 
         public void FlipForward()
         {
-            FlipBook.AnimateToNextPage(500);
+            FlipBook.AnimateToNextPage(100);
         }
 
         public void FlipTo(string pageID)
