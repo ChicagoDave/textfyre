@@ -49,6 +49,20 @@
     <Reference Include="System.Xml.Linq, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="7Zip\Common\CRC.cs" />
+    <Compile Include="7Zip\Common\InBuffer.cs" />
+    <Compile Include="7Zip\Common\OutBuffer.cs" />
+    <Compile Include="7Zip\ICoder.cs" />
+    <Compile Include="7Zip\LZMA\LzmaBase.cs" />
+    <Compile Include="7Zip\LZMA\LzmaDecoder.cs" />
+    <Compile Include="7Zip\LZMA\LzmaEncoder.cs" />
+    <Compile Include="7Zip\LZ\IMatchFinder.cs" />
+    <Compile Include="7Zip\LZ\LzBinTree.cs" />
+    <Compile Include="7Zip\LZ\LzInWindow.cs" />
+    <Compile Include="7Zip\LZ\LzOutWindow.cs" />
+    <Compile Include="7Zip\RangeCoder\RangeCoder.cs" />
+    <Compile Include="7Zip\RangeCoder\RangeCoderBit.cs" />
+    <Compile Include="7Zip\RangeCoder\RangeCoderBitTree.cs" />
     <Compile Include="Controls\Art.xaml.cs">
       <DependentUpon>Art.xaml</DependentUpon>
     </Compile>

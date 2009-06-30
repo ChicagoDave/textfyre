@@ -116,7 +116,8 @@
     </item>
     <item title="Updates">
       <paragraph>1.01 - Added ifMUD credits and tried to resolve images issues.</paragraph>
-      <paragraph>1.02 - Images issues should be resolved now.</paragraph>
+      <paragraph>1.02 - Images broken, one pass at fixing failed.</paragraph>
+      <paragraph>1.03 - Images issues are resolved. Fixed 'romain' typo.</paragraph>
     </item>
   </menu>
 </help>
