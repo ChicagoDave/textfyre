@@ -569,8 +569,9 @@ namespace Textfyre.UI.Pages
                     IsolatedStorageFile IsoStorageFile =
                         System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForApplication();
 
-                    e.Stream = new IsolatedStorageFileStream(filePath,
+                    Stream isoStream = new IsolatedStorageFileStream(filePath,
                                     FileMode.OpenOrCreate, Entities.SaveFile.IsoFile);
+                    e.Stream = new CompressingStream(isoStream);
                 }
                 catch( Exception exp )
                 {
@@ -625,8 +626,9 @@ namespace Textfyre.UI.Pages
                 IsolatedStorageFile IsoStorageFile =
                     System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForApplication();
 
-                e.Stream = new IsolatedStorageFileStream(filePath,
+                Stream isoStream = new IsolatedStorageFileStream(filePath,
                                 FileMode.Open, Entities.SaveFile.IsoFile);
+                e.Stream = new DecompressingStream(isoStream);
                 }
                 catch (Exception exp)
                 {
