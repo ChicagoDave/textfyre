@@ -215,7 +215,8 @@ namespace Textfyre.UI.Entities
                 using (IsolatedStorageFileStream stream =
                 new IsolatedStorageFileStream( filepath + ".fvt", FileMode.Create, isoFile))
                 {
-                    using (StreamWriter writer = new StreamWriter(stream))
+                    using (CompressingStream cstream = new CompressingStream(stream))
+                    using (StreamWriter writer = new StreamWriter(cstream))
                     {
                         writer.Write( Serialize(this) );
                     }
@@ -292,7 +293,8 @@ namespace Textfyre.UI.Entities
                         using (IsolatedStorageFileStream stream =
                         new IsolatedStorageFileStream(_dir + @"\" +file, FileMode.Open, isoFile))
                         {
-                            using (StreamReader reader = new StreamReader(stream))
+                            using (DecompressingStream dstream = new DecompressingStream(stream))
+                            using (StreamReader reader = new StreamReader(dstream))
                             {
                                 string js = reader.ReadToEnd();
                                 SaveFile sf = SaveFile.Deserialize(js);
