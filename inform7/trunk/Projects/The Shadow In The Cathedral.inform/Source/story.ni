@@ -6,6 +6,7 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 
 [  Change Log
 When		Who		What
+30-Jun-2009 	J. Ingold	Player can now specify how many times to turn a crank/lever (a variable is set called "the number of turns to make") to speed up dial-setting puzzles. A general turn will pick a number at random, but tilt the random process to stop at correct positions for ease of use. Added some conversation to Sa'at. 
 29-Jun-2009	J. Ingold	Additions to Doric and Sa'at. More conversation topics. Doric can be crashed into during chase scene, and he drops a hint. Orrey description changes on second viewing. Added "shout at" action. Added balcony rail to Clerestory. Added plural controls (cranks and dials) for catching non-specific input in the Library. In general, trooping my way through chapter 3, but not done yet. Also, most of Ian's changes to c2 incorporated (remaining to be added anon.)
 24-Jun-2009 G. Jefferis	Gnomon control puzzle
 23-Jun-2009	G. Jefferis	Crypt map and scenery
@@ -223,6 +224,18 @@ To say the or-separated list of (the collection - a description):
 		decrease N by 1;
 		if N is 1, say " or ";
 		if N > 1, say ", "; 
+
+Chapter 4b - Number of times
+
+To say (N - a number) times:
+	if N is zero:
+		say "never";
+	else if N is 1:
+		say "once";
+	else if N is 2:
+		 say "twice";
+	else:
+		say "[N in words] times";
 
 Chapter 5 - Default Message fixes
 
@@ -1205,6 +1218,9 @@ Understand "change [thing] to [number]" as number-setting it to.
 Understand "point [thing] to [number]" as number-setting it to.
 Understand "move [thing] to [number]" as number-setting it to.
 
+Check number-setting it to:
+	say "I can't set [the noun] to anything!" instead.
+
 Part 14 - Ringing
 
 Ringing is an action applying to one thing.
@@ -1299,12 +1315,14 @@ Part 18 - Turning backwards and forwards
 
 Turning it forwards is an action applying to one thing.
 
-Understand "turn [something] forward/forwards" as turning it forwards.
-Understand "turn [something] clockwise/right" as turning it forwards.
+Understand "turn [something] [clockwise]" as turning it forwards.
 
 Turning it backwards is an action applying to one thing.
 
-Understand "turn [something] back/backward/backwards/anticlockwise/counterclockwise/counter-clockwise/left" as turning it backwards.
+Understand "forward/forwards/clockwise/right" as "[clockwise]".
+Understand "back/backward/backwards/anticlockwise/counterclockwise/counter-clockwise/widdershins/left"  as "[widdershins]".
+
+Understand "turn [something] [widdershins]" as turning it backwards.
 
 [In most cases we aren't worried about handedness, even if the player does specify:]
 
@@ -1317,6 +1335,54 @@ Carry out turning something backwards:
 Turning something is rotating.
 Turning something forwards is rotating.
 Turning something backwards is rotating.
+
+Section 2 - Turning repeatedly
+
+[ We don't create a new action for this: rather, we allow the player to add" junk" on the end of the command, which we pick up using "player's command includes" later on. ]
+
+Understand "once/twice/thrice" or "a lot" or "repeatedly" or "several/many time/times/turn/turns" as "[repeatedly]".
+Understand "[number] time/times/turn/turns" as "[n-repeatedly]".
+Understand "[number] time/times/turn/turns round/around/over" as "[n-repeatedly]".
+
+Understand "turn [something] [repeatedly]" as turning it forwards.
+Understand "turn [something] [clockwise] [repeatedly]" as turning it forwards.
+Understand "turn [something] [widdershins] [repeatedly]" as turning it backwards.
+
+Turning it forwards repeatedly is an action applying to one thing and one number.
+Turning it backwards repeatedly is an action applying to one thing and one number.
+
+Understand "turn [something] [n-repeatedly]" as turning it forwards repeatedly.
+Understand "turn [something] [clockwise] [n-repeatedly]" as turning it forwards repeatedly.
+Understand "turn [something] [widdershins] [n-repeatedly]" as turning it backwards repeatedly.
+
+First before turning something forwards repeatedly:
+	now the number of turns to make is the number understood;
+	try turning the noun forwards instead.
+
+First before turning something backwards repeatedly:
+	now the number of turns to make is the number understood;
+	try turning the noun backwards instead.
+
+The number of turns to make is a number that varies.
+Every turn: now the number of turns to make is 0.
+
+The first before turning something forwards:
+	assign the number of turns.
+The first before turning something backwards:
+	assign the number of turns.
+The first before turning something:
+	assign the number of turns.
+
+To assign the number of turns:
+	if the player's command includes "once":
+		now the number of turns to make is 1;
+	else if the player's command includes "twice":
+		now the number of turns to make is 2;
+	else if the player's command includes "thrice":
+		now the number of turns to make is 3;
+	else if the player's command includes "lot/repeatedly/several/many":
+		now the number of turns to make is a random number between 2 and 5;
+[	say "***Setting the number of turns to make to [the number of turns to make]***.";		]
 
 Part 19 - Knocking
 
@@ -4625,7 +4691,7 @@ CT_SAAT_CLOCKWORK is a conversation topic. The enquiry text is "'But how does Cl
 
 CT_SAAT_SAINTS is a conversation topic. The enquiry text is "'What does one have to do to be a Saint?' I ask." The response text is "'Build one little trinket people think is [i]useful[r],' Sa'at replies bitterly."
 
-CT_SAAT_BOOKS is a conversation topic. The enquiry text is "[if the letter state of Brother Sa'at is 0]'Do you read a lot of books?' I ask.[otherwise if the letter state of Brother Sa'at is 1]'Which book was it again?' I ask.[otherwise]'Is it a good book?' I ask, thinking of Planeteria.[end if]". The response text is "[if the letter state of Brother Sa'at is 0]'No. Books are for looking things up in,' Sa'at says firmly. 'Not for reading. Start-to-finish is best left for writers and writers alone.'[otherwise if the letter state of Brother Sa'at is 1]'Principia Planeteria. Newton. Now get it quickly, before I calcify on the spot,' he says.[otherwise]'The good-est,' he scowls, sarcastically. 'Best thing Newton ever did. All this nonsense with penduluums.' He shakes his head, then rounds on me. 'Don't listen to me, or you'll get into a lot of trouble, understand? And you'll only get out of it if you're very, very clever. I was, but you're probably not. So just don't listen to me at all.'[end if]"
+CT_SAAT_BOOKS is a conversation topic. The enquiry text is "[if the letter state of Brother Sa'at is 0]'Do you read a lot of books?' I ask.[otherwise if the letter state of Brother Sa'at is 1]'Which book was it again?' I ask.[otherwise]'Is it a good book?' I ask, thinking of Planeteria.[end if]". The response text is "[if the letter state of Brother Sa'at is 0]'No. Books are for looking things up in,' Sa'at says firmly. 'Not for reading. Start-to-finish is best left for writers and writers alone.'[otherwise if the letter state of Brother Sa'at is 1]'Principia Planeteria. Newton. Now get it quickly, before I calcify on the spot,' he says.[otherwise]'The good-est,' he scowls, sarcastically. 'Best thing Newton ever did. All this nonsense with penduluums.' He shakes his head, then rounds on me. 'Now, don't listen to me, or you'll get into a lot of trouble, understand? And you'll only get out of it if you're very, very clever. I was, but I should think you're not. So just don't listen to me at all.'[end if]"
 
 CT_SAAT_COORDINATES is a conversation topic. The enquiry text is "'What are the co-ordinates for this book?' I ask.". The response text is "'Co-ordinates?' Sa'at demands, incredulously. 'For a [i]book[r]? Co-ordinates for a [i]planet[r], yes. For a [i]moon[r]. For a comet anytime between now and next century, then you should be asking me, no-one else knows a thing about it. But a [i]book[r]? You don't find books in the heavens! You find books in [i]catalogues[r] and [i]indices[r]!' He is almost red in the face, except he probably doesn't have the blood in him.".
 
@@ -4634,6 +4700,11 @@ CT_SAAT_LIBRARY is a conversation topic. The enquiry text is "[if Cyclical Libra
 The response text is "[if Cyclical Library is not visited]'You found this place, didn't you?' Sa'at replies, with an impatient wave of his hand. 'Just do the same thing the other way!'[else]'Really!' he exclaims, contemptuously. 'Don't they [i]teach[r] you anything? Well!' He harrumphs. 'I'm certainly not about to, anyway!'[end if]".
 
 CT_SAAT_ORREY is a conversation topic. The enquiry text is "[if Brother Sa'at is inspecting his orrey]'Is the orrey all right?' I ask.[otherwise]'Did you build this orrey?' I ask.[end if]". The response text is "[if Brother Sa'at is inspecting his orrey]'I don't know what you did,' he replies menacingly. 'But when I fix it I don't expect to see it go wrong again. It's most upsetting.' He winds his hands in despair.[otherwise]'Every gear and trace,' he says proudly. 'Years ago now and I still don't fully understand it. It's a marvel. A [i]mystery[r]. I spend night after night,' – his eyes are filling with tears now – 'just contemplating it. You have to look at the right [i]times[r], you see.' He's shaking. 'Have to get the times right otherwise it's no [i]good[r]...'[end if]"
+
+CT_SAAT_WAX is a conversation topic. 
+
+The enquiry text is "'Where can I get wax from?' I ask.".
+The response text is "'Where does wax come from?' Sa'at repeats, seemingly absolutely astonished. 'Where do you [i]think[r] wax comes from, idiot? Where else [i]could[r] wax come from? Wax comes out of the back-end of [i]bees[r], obviously!' He scratches his nose. 'Of course, it's not purple yet then. Gets turned into candles and I don't know what else.' Thinks. 'I don't know what else. Hmph. More bees, probably. Typical.'".
 
 The conversation table of Brother Sa'at is the table of Brother Sa'at's Conversation.
 
@@ -4655,6 +4726,7 @@ topic							conversation
 "books" or "book" or "principia" or "planetaria"	CT_SAAT_BOOKS
 "[orrey]"							CT_SAAT_ORREY
 "coordinates" or "co-ordinates"		CT_SAAT_COORDINATES
+"wax" or "candle/candles" 		CT_SAAT_WAX
 
 Understand "orrey" or "planets" or "sky" or "machine" or "mechanism" or "construction" or "comet" or "balls" or "ball" or "rod" or "rods" as "[orrey]".
 
@@ -4690,6 +4762,13 @@ Definition: the work order is sealed:
 Definition: the work order is not sealed:
 	if the work order is sealed, no;
 	yes;
+
+Before asking Brother Sa'at for the work order:
+	try taking the work order instead.
+
+Before asking Brother Sa'at for the Principia Planetaria:
+	try taking the Principia Planetaria instead.
+
 
 Instead of dropping the sealed work order:
 	say "Better hang onto it. You never know when something with the seal on it might come in handy." instead;
@@ -4743,6 +4822,10 @@ At the time when Brother Sa'at fixes the problem:
 
 Part B - Bureaucracy puzzle (work order stamping)
 
+Understand "clean ear" as a mistake ("Sa'at watches me. 'No good. Honestly. I mean, honestly.'") when in the Orrey Hall.
+
+Understand "clean out/my/your ear" as a mistake ("Sa'at watches me. 'No good. Honestly. I mean, honestly.'") when in the Orrey Hall.
+
 Instead of taking the work order when the letter state of Brother Sa'at is 0 and Brother Sa'at is sat at his desk:
 	change the letter state of Brother Sa'at to 1;
 	if BISH_DOOR_EVENT1 is fired, say "A work order, I'm thinking: [i]perfect[r]. I can think of somewhere handy to wave this! But then Brother ";
@@ -4753,7 +4836,7 @@ Instead of taking the work order when the letter state of Brother Sa'at is 1 and
 
 Instead of taking the work order when the letter state of Brother Sa'at is 2 and Brother Sa'at is sat at his desk:
 	change the letter state of Brother Sa'at to 3;
-	say "Sa'at snatches back the order to check it over. 'Coordinates – map – Crab Nebule – yes, yes, we know. As the cog said to the butcher's wife. What? Oh. Oh, [i]cam[r].' He scowls at me. 'Seal and sign. They always say, seal and sign. I've signed, but oh, no, not good enough, is it?' He begins the process of hunting around again.[paragraph break]'Do you need another book?' I ask.[paragraph break]'No. Idiot,' he says. 'I need some wax for sealing with. Official business, has to be purple wax, none of this empty-your-ear business that was good enough a few years ago. Oh no. The world's gone mad, I tell you.' He winds his hands together quite unexpectedly. 'Mad.'"
+	say "Sa'at snatches back the order to check it over. 'Coordinates – map – Crab Nebule – yes, yes, we know. As the cog said to the butcher's wife. What? Oh. Oh, [i]cam[r].' He scowls at me. 'Seal and sign. They always say, seal and sign. I've signed, but oh, no, not good enough, is it?' He begins the process of hunting around again.[paragraph break]'Do you need another book?' I ask.[paragraph break]'No. Idiot,' he says. 'I need some wax for sealing with. Official business, has to be purple wax, none of this empty-your-ear business that was perfectly good enough a few years ago. Oh no. The world's gone mad, I tell you.' He winds his hands together quite unexpectedly. 'Mad.'"
 
 Instead of taking the work order when the letter state of Brother Sa'at is 3 and Brother Sa'at is sat at his desk:
 	say "'Without a seal,' Sa'at says, 'this parchment you're so busy trying to steal is worse than useless. It's a waste of my time [i]and[r] it's useless.'"
@@ -4882,49 +4965,66 @@ The brass crank is a Cartesian Crank, part of the controls. The model of the bra
 The gold crank is a Cartesian Crank, part of the controls. The model of the gold crank is the Z control. The meter of the gold crank is the Z meter. Understand "Z crank" as the steel crank.
 
 Instead of turning a Cartesian Crank (called the handle):
+[we rotate as many times as specified by the player, or by a random amount. We tell the player which we're doing, and the random one will never go past a correct answer! ]
+	let the turn-count be the number of turns to make;
+	if the turn-count is 0, let the turn-count be a random number between 1 and 4;
 	let n be the coordinate of the model of the handle;
-	if the units part of n is 9 begin;
-		decrease n by 0.9;
-	otherwise;
-		increase n by 0.1;
-	end if;
+	repeat with turn-number running from 1 to the turn-count:
+		if the units part of n is 9:
+			decrease n by 0.9;
+		otherwise:
+			increase n by 0.1;
+		if the number of turns to make is 0: [ ie. player didn't specify] 
+			if units part of n is 3 or the units part of n is 2 or the units part of n is 5:
+				let the turn-count be the turn-number;
+				break;
 	change the coordinate of the model of the handle to n;
-	say "The second tumbler of [the meter of the handle] slowly winds on, so it now reads [tens part of n][units part of n].";
+	say "I turn [the handle] clockwise [turn-count times][one of], and the second tumbler of [the meter of the handle] slowly winds on, so it now[or]. [The meter of the handle][stopping] reads [tens part of n][units part of n].";
 
 Instead of turning a Cartesian Crank (called the handle) backwards:
+[we rotate as many times as specified by the player, or by a random amount. We tell the player which we're doing, and the random one will never go past the tens column of a correct answer! ]
+	let the turn-count be the number of turns to make;
+	if the turn-count is 0, let the turn-count be a random number between 1 and 4;
 	let n be the coordinate of the model of the handle;
-	if the tens part of n is 9 begin;
-		decrease n by 9.0;
-	otherwise;
-		increase n by 1.0;
-	end if;
+	repeat with turn-number running from 1 to the turn-count:
+		if the tens part of n is 9:
+			decrease n by 9.0;
+		otherwise:
+			increase n by 1.0;
+		if the number of turns to make is 0: [ ie. player didn't specify] 
+			if the tens part of n is 4 or the tens part of n is 1 or the tens part of n is 9:
+				let the turn-count be the turn-number;
+				break;
 	change the coordinate of the model of the handle to n;
-	say "The first tumbler of [the meter of the handle] slowly winds on, so it now reads [tens part of n][units part of n].";
+	say "I turn [the handle] anticlockwise [turn-count times][one of], and the second tumbler of [the meter of the handle] slowly winds on, so it[or]. [The meter of the handle][stopping] now reads [tens part of n][units part of n].";
+
+Instead of number-setting a Cartesian Crank to:
+	try number-setting the meter of the noun to the number understood instead
+
+Instead of number-setting a Cartesian Meter to:
+	say "I can't turn the numbers directly, but I could turn the cranks clockwise or anticlockwise.";
 
 Section 4b - Plural objects for cranks and dials
 
 Some group-cranks are privately-named, part of the controls. The printed name is "cranks". Understand "cranks" as the group-cranks. 
 
 Before doing something with the group-cranks:
+	if examining, say "Three cranks - steel, brass and gold. They're attached by piston-arms to the X, Y and Z meters in that order." instead;
 	say "You'll have to pick a crank: steel, brass, or gold?" instead.
-
-Before examining the group-cranks:
-	say "Three cranks - steel, brass and gold. They're attached by piston-arms to the X, Y and Z meters in that order." instead.
 
 Some group-meters are privately-named, part of the controls. The printed name is "meters". Understand "meters", "dials" as the group-meters. 
 
 Before doing something with the group-meters:
+	if examining, say "The dials read [value of X control] (attached to the steel crank), [value of Y control] (attached to the brass crank) and [value of Z control] (attached to the gold crank, which I can't help noticing is a little more securely attached)." instead;
 	say "You'll have to pick a dial: X, Y or Z?" instead.
 
-Before examining the group-meters:
-	say "The dials read [value of X control] (attached to the steel crank), [value of Y control] (attached to the brass crank) and [value of Z control] (attached to the gold crank, which I can't help noticing is a little more securely attached)." instead.
 
 Section 5 - Book Pulling
 
 The iron chain is scenery, in the Cyclical Library. "A long iron chain that leads up to the contraption on the ceiling. I shouldn't say this, but it looks a lot like the toilet flush that Brother Armitage has been designing." 
 
 Instead of pulling the chain:
-	say "I pull hard on the chain and very slowly, the mechanism overhead comes to life. The walls themselves start to move! Sections of shelf seem to float upwards, creating gaps that others sidle into. It's like a basket of crabs kicked over in a market; all the books scuttling this way and that. Noisy, though. Shelves collide with thumps and groans and scrapes. The initiates look very annoyed indeed.[paragraph break]Eventually, it comes to a halt, and a metal plate extends down from a position above my head with a single book in place.";
+	say "I pull hard on the chain[one of] and very slowly, the mechanism overhead comes to life. The walls themselves start to move! Sections of shelf seem to float upwards, creating gaps that others sidle into. It's like a basket of crabs kicked over in a market; all the books scuttling this way and that. Noisy, though. Shelves collide with thumps and groans and scrapes. The initiates look very annoyed indeed.[paragraph break][or]. Shelves move and glide around the walls of library with colossal noise! [stopping]Eventually, everything comes to a halt, and a metal plate extends down from a position above my head with a single book in place.";
 	abide by the book-pulling rules;
 
 The book-pulling rules are a rulebook.
@@ -4968,13 +5068,15 @@ Instead of consulting the card catalogue about:
 Table of index cards
 topic		response
 "principia"	"I find one, then another, then a third Principia... seems to be a popular name.[if the letter state of Brother Sa'at is 1] Which one was Sa'at after?[end if]"
-"planetaria" or "principia planetaria"		"There are a lot of cards labelled 'Principia', but after a while I pick out Newton's [i]Planetaria[r]. The card reads: '[']Principa Planetaria, the apocryphal astronomical writings of St. Isaac Newton.['] Cartesian Call Number (43, 12, 95).' I put it back in the catalogue."
+"planetaria" or "principia planetaria" or "saats/sa'ats/saat's/sa'at's book/volume/request" or "astronomy" or "stars" or "planets" or "planetarium"		"There are a lot of cards labelled 'Principia', but after a while I pick out Newton's [i]Planetaria[r]. The card reads: '[']Principa Planetaria, the apocryphal astronomical writings of St. Isaac Newton.['] Cartesian Call Number (43, 12, 95).' I put it back in the catalogue."
 
 Section 6 - Tome
 
-The tome is in the Cyclical Library. "On one of the desks, without a reader, sits a gigantic Tome."
+The gigantic tome is in the Cyclical Library. "On one of the desks, without a reader, sits a gigantic Tome."
 
 The description is "[if uncut]A large volume, fresh from the Gutenberg in the Abbey. I can tell it's new by the freshness of the leather, and smell of burnt ink and the way some of the pages are still uncut – each leaf is printed double and folded over before being stitched in, so the book needs to be sliced open. Whichever monk was reading it probably went off to find a knife.[otherwise]The book is very new and not very evenly cut.[end if]"
+
+Understand "book" as the gigantic tome.
 
 The tome can be cut open or uncut. The tome is uncut.
 
@@ -5012,12 +5114,12 @@ Instead of dropping the knife:
 
 Section 8 - The Principia Planetaria
 
-The Principia Planetaria is a thing. The indefinite article is "The". The description is "It's a slim volume – surprisingly. The title is 'Principia Planeteria: The Apocryphal Astronomical Writings of St. Issac Newton.'"
+The Principia Planetaria is a thing. The indefinite article is "The". The description is "It's a slim volume – surprisingly. The title is 'Principia Planeteria: The Apocryphal Astronomical Writings of St. Isaac Newton.'"
 
 Understand "book", "tome", "tables", "co-ordinates", "apocrypha", "diagrams" as the Principia Planetaria.
 
 Instead of reading the Principia Planetaria:
-	say "Why anyone would want to read this is beyond me. After a hundred pages of numerical tables listing the table-co-ordinates of co-ordinates of stars, there follows a hundred pages of diagrams, depicted the night skies and the structures beyond, all joined up by watch escapements, rods, springs, levers and releases. [i]Newton's Clock Universalis[r], it's called. It's like someone sketched a night sky and doodled on it. (It's an [i]Apocrypha[r]. I'm pretty sure that means it's rubbish).";
+	say "Why anyone would want to read this is beyond me. After a hundred pages of numerical tables listing the table-co-ordinates of co-ordinates of stars, there follows a hundred pages of diagrams of the night skies and everything beyond, all joined up by watch escapements, rods, springs, levers and releases. [i]Newton's Clock Universalis[r], it's called. It's like someone sketched the Milky Way and their child doodled all over it. (It's an [i]Apocrypha[r]. I'm pretty sure that means it's rubbish).";
 
 Part 13 - West Clerestory
 
