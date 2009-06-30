@@ -76,35 +76,35 @@ namespace Textfyre.UI.DocSystem
 
                 Section section = _sections[i];
 
-                if (prologueBegin == false && section.ContentMode == ContentMode.Prologue)
-                {
-                    // Make sure we always keep the prologue pages together.
-                    prologueBegin = true;
-                    if (numberOfBackPages % 2 == 1)
-                    {
-                        StackPanel sp2 = _currentPage.PageScrollViewer.Content as StackPanel;
-                        sp2.VerticalAlignment = VerticalAlignment.Center;
+                //if (prologueBegin == false && section.ContentMode == ContentMode.Prologue)
+                //{
+                //    // Make sure we always keep the prologue pages together.
+                //    prologueBegin = true;
+                //    if (numberOfBackPages % 2 == 1)
+                //    {
+                //        StackPanel sp2 = _currentPage.PageScrollViewer.Content as StackPanel;
+                //        sp2.VerticalAlignment = VerticalAlignment.Center;
 
-                        TextBlock tb = new TextBlock();
-                        tb.Text = Settings.TextBetweenPrologueAndStory;
-                        tb.TextAlignment = TextAlignment.Center;
-                        tb.Margin = new Thickness(0, 0, 10, 0);
-                        Current.Font.Headline.Apply(tb);
+                //        TextBlock tb = new TextBlock();
+                //        tb.Text = Settings.TextBetweenPrologueAndStory;
+                //        tb.TextAlignment = TextAlignment.Center;
+                //        tb.Margin = new Thickness(0, 0, 10, 0);
+                //        Current.Font.Headline.Apply(tb);
                         
-                        Grid gd = new Grid();
-                        //gd.Height = 100;
-                        //gd.Width = Settings.BookPageInnerInnerContentWidth;
+                //        Grid gd = new Grid();
+                //        //gd.Height = 100;
+                //        //gd.Width = Settings.BookPageInnerInnerContentWidth;
                         
-                        gd.Children.Add(tb);
+                //        gd.Children.Add(tb);
                         
-                        sp2.Children.Insert(0, gd);
+                //        sp2.Children.Insert(0, gd);
 
-                        _currentPage = GetNextPage();
-                        numberOfBackPages++;
-                        //if (numberOfBackPages >= 2)
-                        //    break;
-                    }
-                }
+                //        _currentPage = GetNextPage();
+                //        numberOfBackPages++;
+                //        //if (numberOfBackPages >= 2)
+                //        //    break;
+                //    }
+                //}
 
                 if (
                     section.SectionType == SectionType.PageBreak ||
