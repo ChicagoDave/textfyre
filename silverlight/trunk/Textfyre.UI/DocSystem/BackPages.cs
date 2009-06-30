@@ -24,8 +24,20 @@ namespace Textfyre.UI.DocSystem
 
         private StackPanel _stackPanel;
 
+        private bool _hasInit = false;
+        void FlipBook_OnPageTurned(int leftPageIndex, int rightPageIndex)
+        {
+            int i = leftPageIndex;
+        }
+
         public void Do( SectionCollection sections )
         {
+            if (!_hasInit)
+            {
+                _hasInit = true;
+                Current.Game.TextfyreBook.FlipBook.OnPageTurned += new Textfyre.UI.Controls.FlipBook.PageTurnedEventHandler(FlipBook_OnPageTurned);
+            }
+
             _sections = sections;
 
             _sectionsIndex = 0;
@@ -89,6 +101,8 @@ namespace Textfyre.UI.DocSystem
 
                         _currentPage = GetNextPage();
                         numberOfBackPages++;
+                        //if (numberOfBackPages >= 2)
+                        //    break;
                     }
                 }
 
@@ -103,6 +117,8 @@ namespace Textfyre.UI.DocSystem
                         EndPage(_currentPage, height);
                         _currentPage = GetNextPage();
                         numberOfBackPages++;
+                        //if (numberOfBackPages >= 2)
+                        //    break;
                     }
                     height = 0;
                     displaySection = true;
@@ -114,12 +130,7 @@ namespace Textfyre.UI.DocSystem
                 height += section.Height;
 
                 if (displaySection)
-                    sp.Children.Insert(0, section.HostGrid);
-
-                //if (numberOfBackPages >= 2)
-                //    break;
-
-                
+                    sp.Children.Insert(0, section.HostGrid);                
 
             }
             EndPage(_currentPage, height);
