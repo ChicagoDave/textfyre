@@ -22,6 +22,14 @@ namespace SecretLetter
 
         void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            switch( Textfyre.UI.Current.Application.Platform )
+            {
+                case Textfyre.UI.Current.Platform.Windows:
+                    
+                    break;
+                default:
+                    break;
+            }
             Textfyre.UI.Current.Application.GameAssembly = System.Reflection.Assembly.GetExecutingAssembly();
             
             Textfyre.UI.Current.Font.FontDefinition fd =

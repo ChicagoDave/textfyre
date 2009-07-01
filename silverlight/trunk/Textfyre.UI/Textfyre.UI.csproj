@@ -175,6 +175,7 @@
     <Compile Include="Current\Application.cs" />
     <Compile Include="Current\Font.cs" />
     <Compile Include="Current\Game.cs" />
+    <Compile Include="Current\Platform.cs" />
     <Compile Include="Current\User.cs" />
     <Compile Include="DecompressingStream.cs" />
     <Compile Include="DocSystem\ArtRegister.cs" />

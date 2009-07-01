@@ -34,6 +34,31 @@ namespace Textfyre.UI.Current
         }
         #endregion
 
+        #region :: Platform ::
+        private static Current.Platform _platform = Current.Platform.NA;
+        public static Current.Platform Platform
+        {
+            get
+            {
+                if (_platform == Platform.NA)
+                {
+                    string pfstr = System.Windows.Browser.HtmlPage.BrowserInformation.Platform;
+
+                    _platform = Platform.Windows;
+
+                    if (pfstr.Contains("Mac"))
+                        _platform = Platform.Mac;
+                    else if (pfstr.Contains("Linux"))
+                        _platform = Platform.Linux;
+                    else if (pfstr.Contains("Unix"))
+                        _platform = Platform.Linux;
+                }
+
+                return _platform;
+            }
+
+        }
+        #endregion
         #region :: SessionID ::
         private static string _sessionID = String.Empty;
         public static string SessionID
