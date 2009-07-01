@@ -26,17 +26,17 @@ namespace SecretLetter
             
             Textfyre.UI.Current.Font.FontDefinition fd =
 new Textfyre.UI.Current.Font.FontDefinition(
-"GOUDR.TTF|GoudyRetrospectiveSSK|15");
+"GOUDR.TTF|GoudyRetrospectiveSSK|14.333");
             Textfyre.UI.Current.Font.Main = fd;
 
             Textfyre.UI.Current.Font.FontDefinition hfd =
                 new Textfyre.UI.Current.Font.FontDefinition(
-                    "GOUDOSSC.TTF|GoudyOSSCapsSSK|18");
+                    "GOUDOSSC.TTF|GoudyOSSCapsSSK|17.333");
             Textfyre.UI.Current.Font.Headline = hfd;
 
             Textfyre.UI.Current.Font.FontDefinition Italicfd =
                 new Textfyre.UI.Current.Font.FontDefinition(
-                    "GOUDRI.TTF|GoudyRetrospectiveSSK|15");
+                    "GOUDRI.TTF|GoudyRetrospectiveSSK|14.333");
             Textfyre.UI.Current.Font.MainItalic = Italicfd;
 
             Textfyre.UI.Current.Font.FontDefinition headerfd =
@@ -51,7 +51,7 @@ new Textfyre.UI.Current.Font.FontDefinition(
 
             Textfyre.UI.Current.Font.FontDefinition inputfd =
     new Textfyre.UI.Current.Font.FontDefinition(
-    "GOUDRI.TTF|GoudyRetrospectiveSSK|18");
+    "GOUDRI.TTF|GoudyRetrospectiveSSK|17.333");
             Textfyre.UI.Current.Font.Input = inputfd;
 
             StoryPage.LoadStory(GameFiles.GameFile.sl_v1_04e, "sl_v1_04e", new StoryHandle());
