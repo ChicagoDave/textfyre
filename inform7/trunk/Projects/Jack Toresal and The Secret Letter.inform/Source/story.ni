@@ -3,6 +3,7 @@
 [  Change Log
 When		Who		What
 02-Jul-2009	G. Jefferis	Distant descriptions fix.
+29-Jun-2009	D. Cornelson	Jesse fixed FyreVM Support.
 01-Jul-2009	G. Jefferis	Pieter's mutterings, Amhyron fix.
 27-Jun-2009	D. Cornelson	Image changes.
 26-Jun-2009	D. Cornelson	Final edit before release.
