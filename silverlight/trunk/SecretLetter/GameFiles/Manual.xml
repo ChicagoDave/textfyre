@@ -119,6 +119,7 @@
       <paragraph>1.02 - Images broken, one pass at fixing failed.</paragraph>
       <paragraph>1.03 - Images issues are resolved. Fixed 'romain' typo.</paragraph>
       <paragraph>1.04 - Save is compressed and speedier. Unresolved memory leak effects Mac users. Unresolved Font issue on Mac.</paragraph>
+      <paragraph>1.05 - Resolved Font issue on Mac. Fixed some minor game play issues. Unresolved memory leak effects Mac users.</paragraph>
     </item>
   </menu>
 </help>

@@ -1,12 +1,12 @@
 ﻿/*
- * Copyright © 2008, Textfyre, Inc. - All Rights Reserved
+ * Copyright © 2009, Textfyre, Inc. - All Rights Reserved
  * Please read the accompanying COPYRIGHT file for licensing resstrictions.
  */
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.IO;
 
 namespace Textfyre.VM.Profiling
 {

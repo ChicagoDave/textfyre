@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{982EAD2F-FF0B-4793-BBE8-F3DACCF98A90}</ProjectGuid>
+    <ProjectGuid>{5454CFB3-E4EC-4837-936A-3C343E47B771}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FyreChannels</RootNamespace>
-    <AssemblyName>FyreChannels</AssemblyName>
+    <RootNamespace>FyreWinClient</RootNamespace>
+    <AssemblyName>FyreWinClient</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -54,33 +54,65 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Preferences.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Preferences.Designer.cs">
+      <DependentUpon>Preferences.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Include="Properties\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="COPYRIGHT" />
+    <None Include="app.config" />
+    <None Include="GameFiles\sl-v1.04e.ulx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Properties\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\fyrevmss-windows\TextfyreVM.csproj">
+    <EmbeddedResource Include="Images\PageArt\Gallows.jpg" />
+    <EmbeddedResource Include="Images\PageArt\GrubbersChase.jpg" />
+    <EmbeddedResource Include="Images\PageArt\InJail.jpg" />
+    <EmbeddedResource Include="Images\PageArt\JackInBallGown.jpg" />
+    <EmbeddedResource Include="Images\PageArt\JackInDisguise.jpg" />
+    <EmbeddedResource Include="Images\PageArt\JackInSimpleDress.jpg" />
+    <EmbeddedResource Include="Images\PageArt\MaidenHouse.jpg" />
+    <EmbeddedResource Include="Images\PageArt\MeetingBobby.jpg" />
+    <EmbeddedResource Include="Preferences.resx">
+      <DependentUpon>Preferences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\rightpage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\sharedsource\trunk\fyrevmss-windows\TextfyreVM.csproj">
       <Project>{61B1E1B1-82B8-42F7-9600-F57B0F254638}</Project>
       <Name>TextfyreVM</Name>
     </ProjectReference>
