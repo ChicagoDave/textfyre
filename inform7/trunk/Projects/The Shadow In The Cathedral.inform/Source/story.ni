@@ -6,6 +6,7 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 
 [  Change Log
 When		Who		What
+1-July-2009		J. Ingold	Last of Ian's C2 feedback. Indicated Horloge will talk after tea. Finished c3 playthrough. Added some missing descriptions, and a way to get the knife later if you missed it. Extended Sa'at conversation again.
 30-Jun-2009 	J. Ingold	Player can now specify how many times to turn a crank/lever (a variable is set called "the number of turns to make") to speed up dial-setting puzzles. A general turn will pick a number at random, but tilt the random process to stop at correct positions for ease of use. Added some conversation to Sa'at. 
 29-Jun-2009	J. Ingold	Additions to Doric and Sa'at. More conversation topics. Doric can be crashed into during chase scene, and he drops a hint. Orrey description changes on second viewing. Added "shout at" action. Added balcony rail to Clerestory. Added plural controls (cranks and dials) for catching non-specific input in the Library. In general, trooping my way through chapter 3, but not done yet. Also, most of Ian's changes to c2 incorporated (remaining to be added anon.)
 24-Jun-2009 G. Jefferis	Gnomon control puzzle
@@ -507,6 +508,22 @@ Rule for printing the name of a wax lump (called the lump):
 
 The description of a wax lump is "[An item described].";
 
+Instead of squeezing a wax lump: say "Squishy and warm."
+
+Section 2 - Grouping wax lumps
+
+The plural of wax lump is wax lumps.
+
+Before listing contents: group wax lumps together.
+
+Before grouping together wax lumps:
+	say "[listing group size in words] wax lumps: ";
+
+Before printing the name of a wax lump when grouping together:
+	say "a ";
+
+
+
 Chapter 3 - The Wax Factory
 
 The Beehive is a container. In the Beehive are 24 wax lumps.
@@ -518,6 +535,25 @@ To melt together (lump A - a wax lump) and (lump B - a wax lump):
 	change the color of lump A to the new color;
 	change the size of lump A to the new size;
 
+Section 2 - mixing lumps together by hand
+
+[ I'd like to add the following, but the syntax is messy to build: "Squeeze blue and red lumps together". What we need is a multiple action that's not treated as one. One for later, maybe? ]
+
+[Instead of squeezing a wax lump (called lump A) into a wax lump (called lump B):
+	say "I squish and squirm and squiff the two lumps together, ending up with ";
+	melt together lump A and lump B;
+	say "[a lump A]."
+
+Instead of squeezing a wax lump into a candle:
+	try squeezing the second noun into the noun.
+
+Instead of squeezing a candle into a wax lump:
+	say "I'd need to melt down [the noun] first somehow, it's not soft enough as [it-they] [is-are]."
+
+Instead of squeezing a candle into a candle:
+	say "I'd need to melt down the candles first somehow, they're not soft enough as they are."
+]
+
 Part 6 - Candles
 
 A candle is a kind of thing. A candle has a wax color called the wax. The description of a candle is usually "The candle is long and thin with a thin string wick. The wax is [candlecolor of the item described]."
@@ -527,11 +563,13 @@ Understand "wax candle" as a candle.
 Understand "wax" as a candle when the location does not enclose a wax lump.
 Understand the wax property as describing a candle.
 
-Before printing the name of a candle (called c):
+[Before printing the name of a candle (called c):
+	if the wax of c is not clear:
+		say "[wax of c] ";]
+
+Rule for printing the name of a candle (called c):
 	if the wax of c is not clear:
 		say "[wax of c] ";
-
-Rule for printing the name of a candle:
 	say "candle";
 
 To say candlecolor of (c - a candle):
@@ -545,6 +583,20 @@ Understand "strawberry", "strawberry-red" as a candle when the wax of the item d
 Understand "sky", "sky-blue" as a candle when the wax of the item described is blue.
 Understand "daffodil", "daffodil-yellow" as a candle when the wax of the item described is yellow.
 
+Instead of squeezing or attacking a candle:
+	say "I crumble the thin candle to dust in my hand[one of]. (And that's all I can do - if I want to melt it down, I'd need more than just brute force.)[or].[stopping]";
+
+Section - plurals and groups
+
+The plural of candle is candles.
+
+Before listing contents: group candles together.
+
+Before grouping together candles:
+	say "[listing group size in words] candles: ";
+Rule for printing the name of a candle (called c) when grouping together:
+	say "[wax of c]";
+
 Part 7 - Candle Dispensers
 
 A candle dispenser is a kind of thing.
@@ -552,8 +604,17 @@ A candle dispenser has a wax color called the wax.
 A candle dispenser has a candle called the representative item.
 A candle dispenser is scenery.
 
-The description of a candle dispenser is usually "There are several [wax] candles on the stand, grouped together on one of the sides."
+The description of a candle dispenser is usually "There is a cluster of [wax] candles on the stand, between the [otherwax of the item described] candles."
 
+To say otherwax of (c - a candle dispenser):
+	let first-done be false;
+	repeat with N running through candle dispensers enclosed by the holder of c:
+		if c is not N:
+			say "[wax of N]";
+			if first-done is false:
+				say " and ";
+				let first-done be true;
+	
 Rule for printing the name of a candle dispenser:
 	say "[wax] candles";
 
@@ -1085,6 +1146,12 @@ Part 6b - Look Around
 
 Understand "look around" as looking.
 
+Part 6c - Look On
+
+Understand "look on [supporter]" as searching.
+Understand "look on [something]" as searching.
+
+
 Part 7 - Climbing
 
 Understand "climb over/through [something]" as climbing.
@@ -1237,12 +1304,12 @@ Part 15 - Using
 Using is an action applying to one thing.
 
 Check using:
-	say "You will have to be more specific about your intentions.";
+	say "You will have to be more specific about what you want me to do." instead.
 
 Using it with is an action applying to two things.
 
 Check using something with something:
-	say "You will have to be more specific about your intentions.";
+	say "You will have to be more specific about what you want me to do." instead.
 
 Understand "use [an edible thing]" as eating. 
 Understand "use [a wearable thing]" as wearing. 
@@ -1296,6 +1363,8 @@ Understand "scrape [something] with [something preferably held]" as scraping it 
 Understand "scrape [something] up/off/away with [something preferably held]" as scraping it with.
 Understand "scrape up/off/away [something] with [something preferably held]" as scraping it with.
 
+Understand "take [something] with [something]" as scraping it with.
+
 Part 17 - Cutting it with
 
 Understand the command "cut" as something new.
@@ -1313,11 +1382,11 @@ Check an actor slicing (this is the block slicing rule):
 
 Part 18 - Turning backwards and forwards
 
-Turning it forwards is an action applying to one thing.
+Turning it forwards is an action applying to one thing, and requiring light..
 
 Understand "turn [something] [clockwise]" as turning it forwards.
 
-Turning it backwards is an action applying to one thing.
+Turning it backwards is an action applying to one thing, and requiring light..
 
 Understand "forward/forwards/clockwise/right" as "[clockwise]".
 Understand "back/backward/backwards/anticlockwise/counterclockwise/counter-clockwise/widdershins/left"  as "[widdershins]".
@@ -1348,8 +1417,8 @@ Understand "turn [something] [repeatedly]" as turning it forwards.
 Understand "turn [something] [clockwise] [repeatedly]" as turning it forwards.
 Understand "turn [something] [widdershins] [repeatedly]" as turning it backwards.
 
-Turning it forwards repeatedly is an action applying to one thing and one number.
-Turning it backwards repeatedly is an action applying to one thing and one number.
+Turning it forwards repeatedly is an action applying to one thing and one number, and requiring light..
+Turning it backwards repeatedly is an action applying to one thing and one number, and requiring light..
 
 Understand "turn [something] [n-repeatedly]" as turning it forwards repeatedly.
 Understand "turn [something] [clockwise] [n-repeatedly]" as turning it forwards repeatedly.
@@ -1386,7 +1455,7 @@ To assign the number of turns:
 
 Part 19 - Knocking
 
-Knocking on is an action applying to one thing.
+Knocking on is an action applying to one thing, and requiring light..
 Understand "knock [something]" as knocking on.
 Understand "knock on [something]" as knocking on.
 
@@ -1422,9 +1491,9 @@ Understand "let go of [something]" as dropping.
 
 Part 22 - Jumping off, jumping on
 
-Jumping off is an action applying to one thing.
-Jumping on is an action applying to one thing.
-Jumping over is an action applying to one thing.
+Jumping off is an action applying to one thing, and requiring light..
+Jumping on is an action applying to one thing, and requiring light..
+Jumping over is an action applying to one thing, and requiring light..
 
 Understand "jump off [something]" as jumping off.
 Understand "jump on/onto [something]" as jumping on.
@@ -1621,6 +1690,15 @@ Understand "maim [person] with [something preferably held]" as attacking it with
 Check attacking something with:
 	say "Violence is seldom the answer." instead;
 
+Part 30b - Synoynms for squeeze
+
+
+Understand the command "crush" as "squeeze".
+
+Understand "pulverise [something]" as squeezing.
+Understand "pulverize [something]" as squeezing.
+
+
 Part 31 - Running
 
 [For the sake of a quick gag in North Side of the Warehouse:]
@@ -1781,6 +1859,22 @@ Understand "type on [something]" as typing on.
 
 Check typing on:
 	say "That's no something I could type on." instead.
+
+Part 44 - Melting
+
+Melting it on is an action applying to two things.
+
+Understand "melt [something] on [something]" as melting it on.
+
+Check melting it on:
+	say "I can't melt [the noun]!" instead.
+
+Part 45 - Add something to
+
+Understand "add [something] to [container]" as inserting it into.
+Understand "add [something] to [supporter]" as putting it on.
+Understand "add [something] to [something]" as inserting it into.
+
 
 Book E - New Properties
 
@@ -2059,7 +2153,7 @@ Instead of going through the Abbot's Door when Clock Case has not been hidden in
 	say "The Abbot's voice is getting nearer... If he sees I've been in here, he'll have me turning the paddles in the laundry room for a month! There's nothing for it, I'll [i]have[r] to escape.";
 
 After going west through the Abbot's Door when Hiding in the Clock has ended during Introduction:
-	say "I'm going to have to tell someone what I just heard. A theft, from the Vaults! But if the Abbot's involved – then who else might be? After all, the figure he was talking to could have been [i]anyone[r] in the Abbey!";
+	say "I'm going to have to tell someone what I just heard. A theft, from the Vaults! But if the Abbot's involved – who else might be? After all, the figure he was talking to could have been [i]anyone[r] in the Abbey!";
 	continue the action;
 
 Rule for implicitly opening the Abbot's Door:
@@ -2080,11 +2174,13 @@ Instead of examining the Abbot's Door:
 	otherwise:
 		say "It's a heavy oak door.";
 
+Before going through the closed Abbot's Door when Hiding in the Clock has ended:
+	try opening the Abbot's Door instead;
+
+Report opening the Abbot's Door when Hiding in the Clock has ended:
+	say "I haul open the door." instead.
 
 Chapter 4 - Scenery Items
-
-
-
 	
 Section 1 - Cot
 
@@ -2370,7 +2466,7 @@ CCASE3 is a scripted event. The display text is "'I told you now didn't I tell y
 
 CCASE4 is a scripted event. The display text is "'But these things, these things are not always tick-tock, they never are,' the old man replies. His voice is quivering, quite different from the steady drone he has when intoning in Chapel. 'The – item you asked about – it's in the Vaults, you see? The Vaults. Even if I could get in, I ...'[paragraph break][if the player is eavesdropping]'Your excuses we find disappointing. Very disappointing. More of this and, Abbot, we may need to unslip your gears completely.'[otherwise]I still can't hear anything properly! The Figure is too far from the keyhole and speaks too quietly. 'Disappointing,' he says; something else, then 'unslip your gears.'[end if]"
 
-CCASE5 is a scripted event. The display text is "The Abbot is spluttering and choking. I've seen him like this only once, when as a young initiate I dropped and smashed an altimeter right before the Archbishop was due to visit.[paragraph break][if the player is eavesdropping]The Figure continues. 'Clearly you're too old to steal the item for us. We have a better mechanism for obtaining it. But you must provide us with the opportunity. Is that understood?'[otherwise]The Figure's quiet voice continues. I can make out; 'too old to steal', 'a better mechanism', 'the opportunity.'[end if][paragraph break]The Abbot nods violently, shaking out agreement the way I might beat dirt from a duster. 'My money?' he asks."
+CCASE5 is a scripted event. The display text is "The Abbot is spluttering and choking. I've seen him like this only once, when as a young foundling I dropped and smashed an altimeter right before the Archbishop was due to visit.[paragraph break][if the player is eavesdropping]The Figure continues. 'Clearly you're too old to steal the item for us. We have a better mechanism for obtaining it. But you must provide us with the opportunity. Is that understood?'[otherwise]The Figure's quiet voice continues. I can make out; 'too old to steal', 'a better mechanism', 'the opportunity.'[end if][paragraph break]The Abbot nods violently, shaking out agreement the way I might beat dirt from a duster. 'My money?' he asks."
 
 CCASE5B is a scripted event. The display text is "For a moment, there's nothing more. Then the Figure says, all too clearly: 'You understand what you're doing? The Church will never recover from this.'[paragraph break]Maybe the Abbot replies: just a badly-oiled squeak."
 
@@ -2394,10 +2490,10 @@ After firing CCASE6B:
 
 Section 3 - After the clock scene
 
-Heading for the Cathedral is a scene. Heading for the Cathedral begins when the location is the Abbot's Quarters and the Inside Clock Case has been visited. Heading for the Cathedral ends when the location is the Cathedral Yard.
+Heading for the Cathedral is a scene. Heading for the Cathedral begins when the location is the Abbot's Quarters and the Abbot's Door is open and the Inside Clock Case has been visited. Heading for the Cathedral ends when the location is the Cathedral Yard.
 
 When Heading for the Cathedral begins:
-	say "That Figure sounded murderous. Stealing from the Vaults, they said! And Gubbler took his money. Whatever they're doing, it's serious, and I'm the only one who knows about it. And if they ever know I know then who knows what will become of me...[paragraph break]I need to stop the cogs on this, somehow; not just for the Church, but for my own neck too!"
+	say "I can't stop thinking about that Figure in Grey. Stealing from the Vaults... I always knew Gubbler was a rat, even if he [i]is[r] the Abbot! But whatever they're up to, I'm probably the only one who knows about it - which means I'm the only one who can stop it. Cog's Teeth! I might get made a novice for it! Even better, a 1st Assistant Clock Polisher - then I'd outrank Calvin and Drake!"
 
 Book 2 - The Abbey Of Time
 
@@ -2430,14 +2526,14 @@ Chapter 2 - Exits
 Instead of going west from the Corridor of Contemplation during Introduction:
 	carry out the firing activity with ATTIC1;
 
-ATTIC1 is a scripted event. The display text of ATTIC1 is "[one of]I dart out of the tunnel, only to be stopped dead by a depressing sight. It's Calvin and Drake, hurrying in through the Abbey's Great Entry. Their mouths are white with sugar.[paragraph break]'Hey, you!' Drake shouts. In a moment he's got me by the ear. 'What were you doing in the Abbot's room? That's not on your rota!'[paragraph break]'Yeah!' Calvin adds. 'And why are you slipping away when we told you to stay there?'[paragraph break]'Idiot,' Drake hisses. Louder – for the benefit of any passing monks – he says, 'That's it, Wren. You're consigned to your room.' For good measure, he punches me on the arm, then the two of them drag me away, heels over flagstones, right to the bottom of the ladder.[paragraph break]'Up you go,' Calvin says. 'And you're not to come down till dark!'[paragraph break]'What about dinner?' I ask.[paragraph break]'Should have thought of that, shouldn't you?' Drake says.[paragraph break]'More for us,' Calvin adds. 'Only two hours to go. I'm starved.'[paragraph break]With that, they punch me again, and wait until I scurry away up the ladder.[or]'Wren!' Drake exclaims. He wallops me on the arm. 'I thought I told you to stay in your room?' He doesn't wait for an excuse before I'm dragged off to the ladder. Then he waits – and wallops me – until I give in and climb all the way back up.[or]Drake looks like he's swallowed a bee. Not only have I disobeyed him, but I've done it [i]twice[r]. 'I'm going to have your skin,' he hisses into in my ear. 'I'm going to use it as a cloak come winter. Understand?' With that he drags me back off to my attic. This time, I can barely climb the stairs.[or]Oh, no, not again... Drake storms in and grabs me by the nose. I'm pulled off to the ladder base. 'Please,' I beg. 'I'm too tired to climb it again.' He looks at me as if I'm stupid. 'Then don't climb back down this time!' he says.[or][final attic trip][stopping]"
+ATTIC1 is a scripted event. The display text of ATTIC1 is "[one of]I dart out of the tunnel, but when I'm stop-clocked by a depressing sight. It's Calvin and Drake, hurrying in through the Abbey's Great Entry. Their mouths are white with sugar.[paragraph break]'Hey, you!' Drake shouts. In a moment he's got me by the ear. 'What were you doing in the Abbot's room? That's not on your rota!'[paragraph break]'Yeah!' Calvin adds. 'And why are you slipping away when we told you to stay there?'[paragraph break]'Idiot,' Drake hisses. Louder – for the benefit of any passing monks – he says, 'That's it, Wren. You're consigned to your room.' For good measure, he punches me on the arm, then the two of them drag me away, heels over flagstones, right to the bottom of the ladder.[paragraph break]'Up you go,' Calvin says. 'And you're not to come down till dark!'[paragraph break]'What about dinner?' I ask.[paragraph break]'Should have thought of that, shouldn't you?' Drake says.[paragraph break]'More for us,' Calvin adds. 'Only two hours to go. I'm starved.'[paragraph break]With that, they punch me again, and wait until I scurry away up the ladder.[or]'Wren!' Drake exclaims. He wallops me on the arm. 'I thought I told you to stay in your room?' He doesn't wait for an excuse before I'm dragged off to the ladder. Then he waits – and wallops me – until I give in and climb all the way back up.[or]Drake looks like he's swallowed a bee. Not only have I disobeyed him, but I've done it [i]twice[r]. 'I'm going to have your skin,' he hisses into in my ear. 'I'm going to use it as a cloak come winter. Understand?' With that he drags me back off to my attic. This time, I can barely climb the stairs.[or]Oh, no, not again... Drake storms in and grabs me by the nose. I'm pulled off to the ladder base. 'Please,' I beg. 'I'm too tired to climb it again.' He looks at me as if I'm stupid. 'Then don't climb back down this time!' he says.[or][final attic trip][stopping]"
 
 To say final attic trip:
 	say "Drake [one of]wallops[or]punches[or]hits[or]kicks[at random] me, [one of]boiling[or]shaking[or]simmering[at random] with [one of]rage[or]anger[or]fury[or]irritation[at random]. Back to the ladder, and up I go...";
 
 After firing ATTIC1:
 	move the player to Attic Room;
-	say "[one of]Through my window I can see the Cathedral across the yard outside. If I was a bird, I could escape easily, and tell someone what I've overheard. The Abbot's about to do something terrible and I've got to stop him! Someone at the Cathedral would listen: the Archbishop himself, perhaps. He might remember me from the time he visited, when he helped me repair an altimeter I'd broken. If only I could fly.[paragraph break]But perhaps I can escape on foot. If I'm clever. [i]Clockwise[r].[or]That was careless, getting caught. But I can still make it to the Cathedral. I'll just have to be more cunning this time. Remember, Wren, it's easy: the whole world runs on clockwork. Just a matter of staying ahead of the biting teeth.[or]A quick pause for breath and... right then. I'm ready. I'm going to get out of the Abbey somehow, and warn the Archbishop. And I won't give up till I've got there![stopping]"
+	say "[one of]Through my window I can see the Cathedral across the yard outside. If I was a bird, I could escape easily, and tell someone what I've overheard. Someone at the Cathedral would listen: I could tell the Archbishop himself, maybe. He might remember me from the time he visited, when he helped me repair an altimeter I'd broken. If only I could fly.[paragraph break]But perhaps I can escape on foot. If I'm clever. [i]Clockwise[r].[or]That was careless, getting caught. But I can still make it to the Cathedral. I'll just have to be more cunning this time. Remember, Wren, it's easy: the whole world runs on clockwork. Just a matter of staying ahead of the biting teeth.[or]A quick pause for breath and... right then. I'm ready. I'm going to get out of the Abbey somehow, and warn the Archbishop. And I won't give up till I've got there![stopping]"
 
 To decide if the player is taken to the attic:
 	if ATTIC1 is fired, yes;
@@ -2576,7 +2672,7 @@ Instead of making to leave when in the Upper Hall: try going southwest.
 
 Chapter 1 - Description
 
-A room called the Upper Hall is east of the Rickety Stair. "The Great Hall of the Abbey is the biggest room I've seen in my life, running from this end all the way southwest (and it is all the way, I'm never allowed any further than the Great Doors and the Yard outside). If I crane my neck I can see the dark square of the floorboards of my room – the ladder snakes down from one side, west of here. Lights move in and out overhead, from the candles moving on their Holy Tracks. Strong smells float through an archway to the east.[paragraph break]From their niches, the Three Major Saints are watching sternly, keen that I should get out of the Cathedral and talk to the Archbishop as quickly as possible."
+A room called the Upper Hall is east of the Rickety Stair. "[one of]The Great Hall of the Abbey is the biggest room I've seen in my life, running from this end all the way southwest (and it is all the way, I'm never allowed any further than the Great Doors and the Yard outside). [or][stopping]If I crane my neck I can see the dark square of the floorboards of my room – the ladder snakes down from one side, west of here. Lights move in and out overhead, from the candles moving on their Holy Tracks. Strong smells float through an archway to the east.[paragraph break]From their niches, the Three Major Saints are watching sternly, keen that I should [one of]get[or]head southwest[stopping] out of the Cathedral and see the Archbishop as quickly as possible."
 
 Chapter 2 - Scenery
 
@@ -3258,7 +3354,7 @@ topic						conversation
 "owl" or "rachael" or "his owl"			CT_HOR2_OWL
 "books" or "book" or "texts" or "key texts"		CT_HOR2_BOOKS
 "clockwork"					CT_HOR2_CLOCKWORK
-"saints"						CT_HOR2_SAINTS
+"saints" or "newton" or "babbage" or "breguet"							CT_HOR2_SAINTS
 "himself" or "horloge"				CT_HOR2_HORLOGE
 "gong" or "gongs" or "dinner"			CT_HOR2_GONG
 "reloh" or "brother reloh"				CT_HOR2_RELOH
@@ -3349,7 +3445,7 @@ Instead of giving the full teacup to Horloge:
 	try putting the noun on the wheeled table;
 
 After putting the full teacup on the wheeled table:
-	say "I set the cup down beside Brother Horloge's elbow. 'Excellent, there,' he says, beaming, nostrils twitching. 'Such a smell! The finest!' He lifts the cup, takes a sip and smacks his lips. 'It's the slight metallic tang that really gives it the [i]whotsit[r],' he adds. His eyes half-close in calm delight.";
+	say "I set the cup down beside Brother Horloge's elbow. 'Excellent, there,' he says, beaming, nostrils twitching. 'Such a smell! The finest!' He lifts the cup, takes a sip and smacks his lips. 'It's the slight metallic tang that really gives it the [i]whotsit[r],' he adds. His eyes half-close in calm delight. 'Now,' he adds. 'Was there anything?'";
 
 Definition: Horloge is sipping his tea:
 	if the full teacup is on the wheeled table, yes;
@@ -3366,7 +3462,7 @@ Instead of going inside in the Central Hall: try going northeast.
 
 Chapter 1 - Description
 
-The Central Hall is east of the Library, southwest of the Upper Hall. "[if Gong Sounding is not happening]I'm standing in the very centre of the Abbey's Great Hall. It's impossible not to crane my neck at the ceiling held aloft by buttresses the size of gigantic oak trees. To think, people built this in the days before real pulley-transmissions! It must have taken [i]weeks[r]! The hall continues northeast into shadow, and southwest, towards the sunlight, the Yard and above all, the Archbishop.[paragraph break]The vast empty space is filled by the muttering and echo of Holy Mechanisms, and the hiss of the candles as they sweep around their Tracks, providing a little light everywhere but rarely ever enough. I can just make out archways both east and west.[otherwise]The archway at the end of the hall, to the southwest, is clear. I can almost see the Cathedral beyond.[end if]"
+The Central Hall is east of the Library, southwest of the Upper Hall. "[if Gong Sounding is not happening]I'm standing in the very centre of the Abbey's Great Hall. [one of]It's impossible not to crane my neck at the ceiling held aloft by buttresses the size of gigantic oak trees. To think, people built this in the days before real pulley-transmissions! It must have taken [i]weeks[r]! The hall continues northeast into shadow, and southwest, towards the sunlight, the Yard and above all, the Archbishop.[paragraph break][or][stopping]The vast empty space is filled by the muttering and echo of Holy Mechanisms, and the hiss of the candles as they sweep around their Tracks, providing a little light everywhere but rarely ever enough. I can just make out archways both east and west.[otherwise]The archway at the end of the hall, to the southwest, is clear. I can almost see the Cathedral beyond.[end if]"
 
 Part 8 - West Refectory
 
@@ -3758,6 +3854,15 @@ Instead of going southwest from the Lower Hall in the presence of Calvin:
 	say "What, just waltz past Calvin, stop. Ask the time? He'd have me by the hair in moments. No, I need some kind of plan to get him away from there.[fire CALVINIDEA]";
 
 Understand "clock" as Calvin when the location of Calvin is the Lower Hall.
+Understand "entry", "arch" as Calvin when the location of Calvin is the Lower Hall.
+
+Instead of examining the southwest when the location of Calvin is the Lower Hall and the location is the Lower Hall:
+	try examining Calvin instead.
+
+Instead doing something with Calvin in the Lower Hall:
+	if examining, continue the action;
+	if searching, try examining Calvin instead;
+	say "I don't want to attract his attention, do I? I want to get rid of him!"
 
 CALVINIDEA is a trigger.
 
@@ -3803,7 +3908,7 @@ topic					conversation
 "salamander"				CT_ABBOT_SALAMANDER
 "books"					CT_ABBOT_BOOKS
 "clockwork"				CT_ABBOT_CLOCKWORK
-"saints"					CT_ABBOT_SAINTS
+"saints" or "newton" or "babbage" or "breguet"					CT_ABBOT_SAINTS
 "horloge" or "brother horloge"		CT_ABBOT_HORLOGE
 "reloh" or "brother reloh"			CT_ABBOT_RELOH
 
@@ -3872,6 +3977,10 @@ Chapter 1 - Description
 
 The Abbey Entry is southwest of the Lower Hall. "Sunlight and the sound of the city of St Philip pour in from the west through the Abbey's great doors. At last! I can get away and see the Archbishop!... before whatever happens, happens![paragraph break]To the east, a cloister runs towards the cells of the monks, novices, initiates, unaffiliated staff – really, of everyone apart from me." The printed name is "Entry".
 
+Instead of making to leave when in the Abbey Entry: try going west instead.
+Instead of going inside when in the Abbey Entry: try going east instead.
+
+
 The Abbey Doors are a door, open, scenery, west of the Entry, east of the Cathedral Yard.
 The description is "Ornately carved with planets, their orbits planned and plotted out for them in advance. Everything on its correct path... just as I should be!"
 
@@ -3887,7 +3996,7 @@ The description is "That way lies the cells where everyone else sleeps."
 Understand "cloisters", "cells" as the Cloister.
 
 Instead of going through the Cloister,
-	say "No time to waste here. Calvin will be back as soon as they turn the clock off.";
+	say "No time to waste here. Calvin will be back as soon as they turn that clock off.";
 
 Part 14 - Drake
 
@@ -4119,7 +4228,7 @@ Part 1 - Cathedral Yard
 
 Chapter 1 - Description
 
-The Cathedral Yard is a room in the Cathedral Space. "The Yard is where we go on Saturdays for exercise, cleaning up the muck left behind by the market (worse once a month when the horse-traders from the south come up and leave their presents for the Abbey gardens). Today it's quiet, at least, with the space between the Abbey to the east and the Cathedral to the west empty but for the usual collection of beggars, unfortunates, wretches and the disadvantaged poor.[one of][paragraph break]The Cathedral really is enormous – but it doesn't have many rooms, so finding the Archbishop shouldn't take too long. Which is lucky, because I don't know how long I've got before Gubbler – and the mysterious Figure – put their plan into action. I've got to warn the Archbishop. He's the only one who can stop them![or][stopping]"
+The Cathedral Yard is a room in the Cathedral Space. "The Yard is where we go on Saturdays for exercise, cleaning up the muck left behind by the market (worse once a month when the horse-traders from the south come up and leave their presents for the Abbey gardens). Today it's quiet, at least, with the space between the Abbey to the east and the Cathedral to the west empty but for the usual collection of beggars, unfortunates, wretches and the disadvantaged poor.[one of][paragraph break]The Cathedral really is enormous – but it doesn't have many rooms, so finding the Archbishop shouldn't take too long. Which is lucky, because I don't know how long I've got before Gubbler – and the mysterious Figure – put their plan into action. If I warn the Archbishop too late it'll be no good. He might just blame me for whatever it is they're planning to steal![or][stopping]"
 
 Instead of going east in the Cathedral Yard:
 	say "No, I need to find the Archbishop, not get rounded up by Calvin and Drake and set to work polishing again. Besides, by the sound of the clock, it's 5pm in there, which would be far too late!"
@@ -4194,9 +4303,12 @@ The Lower Nave is north of the Cathedral Entrance, in the Cathedral Space. "The 
 Instead of making to leave when in the Lower Nave: try going south instead.
 Instead of going inside in the Lower Nave: try going north instead.
 
+Instead of smelling in the Lower Nave:
+	say "There's a smell of burning oil from the west.";
+
 Section 2 - Idle actions
 
-Every turn when in the Lower Nave and a random chance of 1 in 3 succeeds:
+Every turn when in the Lower Nave and a random chance of 1 in 3 succeeds and not smelling:
 	say "A little heat licks in from the west.";
 
 Instead of sleeping in the Lower Nave:
@@ -4408,7 +4520,7 @@ Part 7 - Shrine Of The Saints
 
 Chapter 1 - Description
 
-The Shrine of the Saints is east from the Lower Nave, in the Cathedral Space. "A small shrine but a packed one. Where the Abbey's got three niches for the Major Three Saints, the Cathedral has about a hundred niches for the Minor Everybody Else. Little busts and statuettes, some holding the tools of their trade, and all glaring at me for skulking around in here. The Nave is back west."
+The Shrine of the Saints is east from the Lower Nave, in the Cathedral Space. "A small shrine but a packed one. Where the Abbey's got three niches for the Major Three Saints, the Cathedral has about a hundred niches for the Minor Everybody Else. Little busts and statuettes, some holding the tools of their trade, and all glaring at me for skulking around in here. The Nave is back west.[paragraph break]In one corner is a stand of candles, for use in devotions (and for the poor to pinch for lighting)."
 
 Instead of making to leave when in the Shrine of the Saints: try going west instead.
 Instead of going inside in the Shrine of the Saints: try going west instead.
@@ -4428,9 +4540,12 @@ Section 2 - Brass Stand
 
 The brass stand is scenery, in the Shrine of the Saints.
 
-[[TODO]: [JON]: I take it the 'green' candles below are meant to be blue. Can you check and fix, please?]
+The description is "The stand holds dozens of candles for devotions by laymen. They come in three colours: red for metal-workers and craftsmen, blue for fishermen and market-trades, and yellow for architects and draughtsmen. None are lit."
 
-The description is "The stand holds dozens of candles for devotions by laymen. They come in three colours: red for metal-workers and craftsmen, green for farmers and market-trades, and yellow for architects and draughtsmen. None are lit."
+Understand "stand of candles" as the brass stand. 
+
+Instead of searching the brass stand:
+	say "There are three colours of candle on the stand: red, blue and yellow."
 
 Instead of taking the brass stand:
 	say "I'd look pretty conspicious walking around with it: it's easily as big as I am.";
@@ -4444,6 +4559,8 @@ The single-yellow-candle is a candle. The wax is yellow.
 Some red-candles are a candle dispenser, part of the brass stand. The wax is red. The representative item is the single-red-candle.
 Some blue-candles are a candle dispenser, part of the brass stand. The wax is blue. The representative item is the single-blue-candle.
 Some yellow-candles are a candle dispenser, part of the brass stand. The wax is yellow. The representative item is the single-yellow-candle.
+
+Does the player mean examining the yellow-candles: it is likely.
 
 Understand "red", "candle", "candles" as the red-candles.
 Understand "blue", "candle", "candles" as the blue-candles.
@@ -4459,6 +4576,11 @@ Instead of taking a candle dispenser:
 	otherwise:
 		move the representative item of the noun to the player;
 		say "I pluck [a representative item of the noun] from the stand.";
+
+Check melting a candle on:
+	say "I can't melt [the noun] on [the second noun]!" instead.
+
+
 
 Part 8 - East Apse
 
@@ -4516,7 +4638,7 @@ Part 10 - Calendar Shrine
 
 Chapter 1 - Description
 
-The Calendar Shrine is west of the Lower Nave, in the Cathedral Space. "[if we have not examined the Calendar]This shrine is centred around a big brass table with a glass top, which doesn't seem nearly important enough for the Cathedral of St Philip! Perhaps the important thing is the brazier in the corner: a shallow dish held over a low, flickering flame. The Nave is back east, should any of this prove dull.[otherwise]This shrine contains the Calendar Unlimited, which I'm pretty sure is the thing St Philip built to get a city a named after him. It's ticking away quietly next to the brass brazier. The Nave is back east.[end if]"
+The Calendar Shrine is west of the Lower Nave, in the Cathedral Space. "[if we have not examined the Calendar]This shrine is centred around a big brass table with a glass top, which doesn't seem nearly important enough for the Cathedral of St Philip! Perhaps the important thing is the brazier in the corner: a shallow dish held over a low, flickering flame. The Nave is back east, should any of this prove dull.[otherwise]This shrine contains the Calendar Unlimited, which I'm pretty sure is the thing St Philip built to get a city a named after him. It's ticking away quietly next to the brass brazier. The Nave is back east.[end if][if the number of things in the brazier is not zero][paragraph break]In the brazier, bubbling slightly, [is-are a list of things in the brazier].[end if]"
 
 Instead of making to leave when in the Calendar Shrine: try going east instead.
 Instead of going inside in the Calendar Shrine: try going east instead.
@@ -4541,11 +4663,17 @@ The brazier is a container, open, not openable, scenery, in the Calendar Shrine.
 Instead of touching the brazier:
 	say "It's not [i]too[r] hot. Perhaps the fire underneath is like the spring in the Refectory Clock: delivering a tiny amount of power for a very very long time.";
 
+Instead of melting a candle on the brazier:
+	try inserting the noun into the brazier instead.
+
+Before putting something on the brazier:
+	try inserting the noun into the brazier instead.
+
 Section 2 - Wax Mixing
 
 Before inserting something into the brazier:
 	if the noun is not a candle and the noun is not a wax lump,
-		say "The brazier's pretty hot. I don't want to damage [the noun]" instead;
+		say "The brazier's pretty hot. I don't want to damage [the noun]." instead;
 
 Instead of inserting something into the brazier:
 	consider the wax-mixing rules for the noun;
@@ -4645,7 +4773,7 @@ Every turn when the player has been in the Orrey Hall for at least one turn and 
 	fire SAATEVENT1;
 
 Before asking Brother Sa'at about when SAATEVENT1 is unfired:
-	say "I open my mouth a little: maybe 5 degrees. [run paragraph on]";
+	say "I open my mouth a little: maybe five degrees. [run paragraph on]";
 	fire SAATEVENT1 instead.
 
 After looking in the Orrey Hall when the tome is uncut and we have examined the tome and the knife is off-stage:
@@ -4667,7 +4795,7 @@ Brother Sa'at has a number called the letter state. The letter state of Brother 
 
 Section 2 - Conversation
 
-CT_SAAT_CREED is a conversation topic. The enquiry text is "'Brother Sa'at,' I ask. 'What's the creed of the Church?'" The response text is "'Creed? Who has time for creeds? Creeds and passwords are the same thing, that's all a creed is. Some mystery about levers and springs and cogs and whatever else, it's all hopelessly out of date.' He shrugs. 'You'll probably hear them chanting it. Back there.'"
+CT_SAAT_CREED is a conversation topic. The enquiry text is "'Brother Sa'at,' I ask. 'What's the creed of the Church?'" The response text is "'Creed? Who has time for creeds? Creeds and passwords are the same thing, that's all a creed is. In the name of the Radish, the Cartwheel and the Winding Key, or something like that, it's all hopelessly out of date.' He shrugs. 'You'll probably hear them chanting about it. Back [i]there[r].'"
 
 CT_SAAT_ALTAR is a conversation topic. The enquiry text is "'The monks singing around the altar,' I ask. 'What's that thing they've got?'" The response text is "'That thing?' he snaps. 'That thing is only the Perpetuum. And all those idiots can do with it is dogma and ritual! Checking to see it's still going, isn't that pathetic? Like they've not seen the best Perpetuum is the one they're standing on. Where's their faith, I'd ask? Where? In a ritual? Or in a machine?' He waves an angry hand at the great Orrey, then snatches it back to start winding his fingers together."
 
@@ -4721,7 +4849,7 @@ topic							conversation
 "door"							CT_SAAT_DOOR
 "sa'at" or "saat" or "brother saat" or "brother sa'at" or "himself" or "him" 		CT_SAAT_SAAT
 "clockwork"						CT_SAAT_CLOCKWORK
-"saints"							CT_SAAT_SAINTS
+"saints" or "newton" or "babbage" or "breguet"								CT_SAAT_SAINTS
 "library"							CT_SAAT_LIBRARY
 "books" or "book" or "principia" or "planetaria"	CT_SAAT_BOOKS
 "[orrey]"							CT_SAAT_ORREY
@@ -4743,10 +4871,11 @@ Section 3 - Idle Actions
 The Sa'atCounter is a counter. The top end is 4. The internal value is 2. [We have the 'work order' event on the first turn we enter.]
 
 Every turn when the player can see Brother Sa'at:
-	increment the Sa'atCounter;
+	if Brother Sa'at is not inspecting his Orrey:
+		increment the Sa'atCounter;
 
 Rule for firing the Sa'atCounter:
-	say "[one of]The orrey quietly revolves.[or]	Something the orrey does – though I can't see a thing different – makes Sa'at clap his hands in delight.[or]Sa'at's eyes dart across the wheel of his orrey like he was reading a book.[or]The gears on the orrey slowly tug at the distant comets over the doorway.[or]Sa'at jots a note to himself, very quickly, almost without seeing what it says.[at random]"
+	say "[one of]The orrey quietly revolves.[or]Something the orrey does – though I can't see a thing different – makes Sa'at clap his hands in delight.[or]Sa'at's eyes dart across the wheel of his orrey like he was reading a book.[or]The gears on the orrey slowly tug at the distant comets over the doorway.[or]Sa'at jots a note to himself, very quickly, almost without seeing what it says.[at random]"
 
 Chapter 3 - Work Order
 
@@ -4779,6 +4908,9 @@ Instead of putting the sealed work order on something:
 Instead of inserting the sealed work order into something:
 	say "Better hang onto it. You never know when something with the seal on it might come in handy." instead;
 
+Instead of dropping the work order in the Orrey Hall:
+	try putting the work order on the desk instead.
+
 Chapter 4 - Desk
 
 The Brother-Sa'at's desk is a supporter, in the Orrey Hall. The description is "The desk is covered in paper, covered in scribbles."
@@ -4791,6 +4923,8 @@ Rule for writing a paragraph about Brother-Sa'at's desk:
 Instead of putting something on Brother-Sa'at's desk:
 	try giving the noun to Brother Sa'at instead;
 
+
+
 Chapter 5 - Papers
 
 Brother-Sa'at's papers are on Brother-Sa'at's desk. The description is "I can't make the slightest sense of any of it."
@@ -4800,7 +4934,13 @@ Understand "pile", "pile of", "Sa'at's papers", "Brother Sa'at's papers" as Brot
 The printed name is "Sa'at's papers".
 
 Instead of taking Brother-Sa'at's papers:
-	say "It all looks like junk to me.[if BISH_DOOR_EVENT1 is fired] It certainly wouldn't convince a Protectorate that I was working for anyone. Anyone sane, anway.[end if]";
+	say "It all looks like junk to me[if BISH_DOOR_EVENT1 is fired] It certainly wouldn't convince a member of the Swiss Watch that I was working for anyone. Anyone sane, anway[end if].";
+
+Instead of putting something on Brother-Sa'at's papers:
+	try giving the noun to Brother Sa'at instead;
+
+Instead of inserting something into Brother-Sa'at's papers:
+	try giving the noun to Brother Sa'at instead;
 
 Chapter 6 - Orrey
 
@@ -4845,11 +4985,13 @@ After taking the work order when the letter state of Brother Sa'at is less than 
 	say "I slip the work order off his desk while he's distracted with the orrey. 'You!' he boils. Not distracted enough. But he doesn't snatch it back. 'Don't do that!' He's too wrapped up watching his machine to actually do anything – just shakes his fist, and then gets back to work." instead;
 
 After taking the work order when the letter state of Brother Sa'at is 4:
-	say "Sa'at snatches it back off me, to check it over. 'Sign, seal, coordinates, Crab Nebula, Henric Sa'at, that's me, all good. Good!' He seems satisfied and puts the order into my hands again. 'Now run along. The Society is in Paris, as I'm sure you know, so you'll have to get the boat from Port Hauter, it's about three days in one of those wagon-things they let children travel on. Take a pigeon and sent me a note when you arrive. Good luck!' With a poor attempt at affection, he pats me on the shoulder." instead;
+	say "Sa'at snatches it back off me, to check it over. 'Sign, seal, coordinates, Crab Nebula, [i]Henric Sa'at[r], that's me, all good. Good!' He seems satisfied and puts the order into my hands again. 'Now run along. The [i]Society[r] is in Paris, as I'm sure you know, so you'll [i]have[r] to get the boat from Port Hauter, it's about three days in one of those [i]wagon-things[r] they let children ride. Take a [i]pigeon[r] and send me a note if... when... you make it. Best of luck!' With a poor attempt at affection, he pats me on the shoulder." instead;
+
+Understand "henric" as Brother Sa'at.
 
 Instead of giving the Work Order to Brother Sa'at when the letter state of Brother Sa'at is not 4:
 	move the work order to Brother-Sa'at's desk;
-	say "'Good for you,' he says, putting the work order back on his desk. 'And let that be a lesson to you not to steal!' He's grinning, for no reason. Then he returns his attention to the orrey." instead;
+	say "I hand Sa'at back his work order. 'Good for you,' he says. 'And let that be a lesson to you [i]not[r] to steal!' He's grinning, for no reason. Then he returns his [i]attention[r] to the orrey." instead;
 
 Instead of giving the Work Order to Brother Sa'at when the letter state of Brother Sa'at is 4:
 	say "'Well, I don't want it back, it's too late for that,' he says. 'You've promised. Now get on with it. To Paris! It'll only take about a month, I don't know what you're worried about.'" instead;
@@ -4860,7 +5002,11 @@ Instead of giving the Principia Planetaria to Brother Sa'at when Brother-Sa'at's
 Instead of giving the Principia Planetaria to Brother Sa'at when Brother-Sa'at's desk encloses the work order:
 	remove the Principia Planetaria from play;
 	change the letter state of Brother Sa'at to 2;
-	say "'Is this the book?' I ask, offering the Principia Planetaria to Sa'at.[paragraph break]'Well done,' he replies, insincerely. 'Well done. You managed to not bring me the Principia Mechanistica, Principia Mathematica or the Principia Copiomatrix. Or any of the other dubious volumes I'm always pulling down.' He takes the book I have brought and quickly flicks through the pages. Seems he knows exactly what he's after...[paragraph break]'There we are. Coordinates...' He scribbles something down onto the work order on the desk. 'Done. Coordinates to find coordinates, all to find coordinates,' he says with a smile. The book he puts away in his desk. 'I'll keep that,' he mutters, winding his hands around one another. 'Yes, why not?'" instead;
+	say "'Is this the book?' I ask, offering the Principia Planetaria to Sa'at.[paragraph break]'Well [r]done[r],' he replies, insincerely. 'Well done. You managed to [i]not[r] bring me the Principia Mechanistica, Principia Mathematica or the Principia Copiomatrix. Or [i]any[r] of the other dubious volumes I'm always pulling down.' He takes the book I have brought and quickly flicks through the pages. Seems he knows exactly what he's after...[paragraph break]'There we are. [i]Coordinates[r]...' He scribbles something down onto the work order on the desk. 'Done. Coordinates to find coordinates, all to find [i]coordinates[r],' he says with a smile. The book he puts away in his desk. 'I'll keep that,' he mutters, winding his hands around one another. 'Yes, why [i]not[r]?'" instead;
+
+To decide if we have provided Sa'at with the book:
+	if the letter state of Brother Sa'at is at least 2, yes;
+	no.
 
 Instead of giving a wax lump to Brother Sa'at when the letter state of Brother Sa'at is less than 3:
 	say "'What are you waving that at me for?' Sa'at demands. 'And I hope you didn't steal it from my desk.'";
@@ -4877,12 +5023,22 @@ Instead of giving an unpurple-colored wax lump to Brother Sa'at when the letter 
 	say "'Purple wax?' Sa'at demands, looking at me like I'm an idiot. 'Did something go wrong with your eyes? Or didn't they teach you colours when they explained the use of your opposable thumb?' He snickers to himself, then returns to his work.";
 
 Instead of giving a purple-colored wax lump to Brother Sa'at when the letter state of Brother Sa'at is 3 and Brother-Sa'at's desk does not enclose the work order:
-	say "'Will this do?' I ask, holding out the lump of purple wax. Sa'at doesn't look closely. 'Yes, but I rather think you'll need to give me back my work order first, don't you? Before I have the Protectorate down here, very angry indeed.'";
+	say "'Will this do?' I ask, holding out the lump of purple wax. Sa'at doesn't look closely.[paragraph break]'Yes, but I rather [i]think[r] you'll need to give me back my work order [i]first[r], don't you? Before I have the [i]Swiss Watch[r] down here, very angry [i]indeed[r].'";
+
+The wax-task been-and-returned flag is a truth state that varies.
+
+Every turn when the location is not the Orrey Hall and the letter state of Brother Sa'at is 3:
+	now the wax-task been-and-returned flag is true;
 
 Instead of giving a purple-colored wax lump to Brother Sa'at when the letter state of Brother Sa'at is 3 and Brother-Sa'at's desk encloses the work order:
 	change the letter state of Brother Sa'at to 4;
 	remove the noun from play;
-	say "'Will this do?' I hold out the lump of purple wax.[paragraph break]He looks at it curiously. 'Did you get this from the Cathedral store cupboard?' he asks. 'You took long enough about it, it's hardly far away. And it's a pretty disgusting colour, isn't it? Look at all the streaks. Never mind. I'd rather have this done [i]now[r] than in another two months, or however long it'll take you to find a simple cupboard.'[paragraph break]With that he produces a small metal box, into which he drops the wax lump. Winding the box up with a key, it starts to rattle and shake and eventually smoke. Once it's run down, the wax inside has melted enough for Sa'at to dribble a few drops onto the work order and then stamp it with his ring.[paragraph break]'Good,' he announces. 'That's that. Bureaucracy dealt with. No need to wax lyrical about it.' He rubs his hands, chortles to himself, then abruptly stops and returns to his work. I'm roundly ignored in all this, of course."
+	say "'Will this do?' I hold out the lump of purple wax.[paragraph break]He looks at it curiously. 'Did you get this from the Cathedral [i]store cupboard[r]?' he asks. ";
+	if wax-task been-and-returned flag is true:
+		say "'You took long enough [i]about[r] it, it's hardly far away. And it's";
+	otherwise:
+		say "'I don't think you did. It's";
+	say " a pretty disgusting [i]colour[r], isn't it? Look at all the streaks. Never mind. I'd rather have this done [i]now[r] than in another two months, or however long it'll [i]take[r] you to find a simple cupboard.'[paragraph break]With that he produces a small metal box, into which he drops the wax lump. Winding the box up with a key, it starts to rattle and shake and eventually smoke. Once it's run down, the wax inside has melted enough for Sa'at to dribble a few drops onto the work order and then stamp it with his ring.[paragraph break]'Good,' he announces. 'That's that. [i]Bureaucracy[r] appeased. No need to wax [i]lyrical[r] about it.' He rubs his hands, chortles to himself, then abruptly stops and returns to his work. I'm roundly ignored in all this, of course."
 
 Instead of giving a wax lump to Brother Sa'at when the letter state of Brother Sa'at is 4:
 	say "'Yes, very good,' Sa'at says with a sigh. 'It's already sealed, so you can put your nasty wax away.'"
@@ -5076,7 +5232,8 @@ The gigantic tome is in the Cyclical Library. "On one of the desks, without a re
 
 The description is "[if uncut]A large volume, fresh from the Gutenberg in the Abbey. I can tell it's new by the freshness of the leather, and smell of burnt ink and the way some of the pages are still uncut – each leaf is printed double and folded over before being stitched in, so the book needs to be sliced open. Whichever monk was reading it probably went off to find a knife.[otherwise]The book is very new and not very evenly cut.[end if]"
 
-Understand "book" as the gigantic tome.
+Understand "book", "page", "pages", "leaf", "leaves" as the gigantic tome.
+Understand "uncut" as the gigantic tome when the tome is uncut.
 
 The tome can be cut open or uncut. The tome is uncut.
 
@@ -5100,6 +5257,8 @@ Instead of slicing the uncut tome with the knife:
 	now the tome is cut open;
 	say "I slit open the pages of the Tome with the knife. What a helpful child I am!";
 
+
+
 Section 7 - Knife
 
 A knife is a thing. The description is "A short steel letter-opener, sharp enough to slice through paper but probably not much good for fending off Calvin."
@@ -5110,7 +5269,33 @@ After taking the knife:
 	say "I pick up the knife." instead;
 
 Instead of dropping the knife:
-	say "Knife like this might come in useful. If I run into any Figures... or any Drakes...[paragraph break]";
+	say "A knife like this might come in useful. If I run into any Figures... or any Drakes...[paragraph break]";
+
+Does the player mean slicing with the knife:
+	it is likely.
+
+Section 6b - The Tome disappears and the Knife is left behind
+
+[ If the player fails to find the Knife and has finished with the Planteria puzzle so he won't go back, we drop the knife in his view so he can continue the game ! ]
+
+MONK_DROPS_KNIFE is a trigger.
+
+Every turn when the location is the Upper Nave and the knife is off-stage and the knife is not handled and we have provided Sa'at with the book [so we aren't going back to the Library and we don't have the knife ]: 
+	fire MONK_DROPS_KNIFE;
+
+Rule for firing unfired MONK_DROPS_KNIFE:
+	move the knife to the location;
+	remove the gigantic tome from play;
+	move backdrop-initiate to the Upper Nave;
+	say "A hassled initiate dashes through the Nave, knocking me to one side with the corner of the gigantic Tome he's carrying in both arms. The collision makes something clatter to the floor, but he doesn't see it - and then he's gone."
+
+Understand "clatter", "something" as the knife when MONK_DROPS_KNIFE is fired and the knife is not handled.
+
+Instead of examining the backdrop-floor in the Upper Nave when MONK_DROPS_KNIFE is fired and the knife is not handled:
+	say "On the floor is a long paper knife."
+
+The backdrop-initiate is a man, scenery, privately-named. Understand "tome", "gigantic", "initiate", "monk", "hassled" as the backdrop-initiate. The printed name is "hassled initiate". Before doing something with the backdrop-initiate, say "The initate is long gone." instead.
+
 
 Section 8 - The Principia Planetaria
 
@@ -5412,7 +5597,8 @@ Section 2 - Atmospheric events
 The DoricCounter is a counter. The internal value is 2. The top end is 4.
 
 Every turn when the player can see awake Doric:
-	increment the DoricCounter;
+	if Doric is not the noun [to avoid when we've talked to him, hopefully]:
+		increment the DoricCounter;
 
 Rule for firing the DoricCounter when in the East Clerestory:
 	say "[one of]Doric stares me down. Not fair: he's trained in this sort of thing.[or]Doric shines his halberd on his sleeve.[or]Doric resolutely does not adjust his feet.[or]Doric glares straight ahead; with a little sideways so he can see me.[at random]"
@@ -5522,7 +5708,7 @@ After reading a command when Doric is inquisitive:
 		let W be word number i in X;
 		if W is "lever":
 			let lever_flag be 1;
-		otherwise if W is "spring":
+		otherwise if W is "spring" or W is "coil":
 			if lever_flag is 1:
 				let spring_flag be 1;
 			otherwise:
@@ -5547,7 +5733,9 @@ After reading a command when Doric is inquisitive:
 	[end repeat]
 	if winding_key_flag is 1:
 		now the faith flag of Doric is true;
-		say "'Close enough,' Doric agrees. 'I guess y'are an Abbey rat then, like y['] said before.'";
+		say "'Close enough,' Doric agrees, with an anticlimactic shrug. 'I guess y'are an Abbey rat then, like y['] said before.'";
+		if the business flag of Doric is false:
+			say "[paragraph break]He still doesn't move aside.";
 		if Doric is door-continuing:
 			try entering the Bishop's Door instead;
 		stop the action;
@@ -5558,7 +5746,7 @@ After reading a command when Doric is inquisitive:
 	otherwise if lever_flag is 1 AND spring_flag + winding_key_flag is not 0:
 		say "'That's very close,' Doric says, clearly tempted to let the mistake pass. Then his back stiffens. 'But it's not close enough to let me say you can see the Archbishop. So you'd better rack your brains or rack off. Clear?'" instead;
 	otherwise if lever_flag is 1:
-		say "'You can guess words all you like,' he replies smugly, but I've clearly rattled him somehow. 'But a creed's got more to it than one thing like that.'" instead;
+		say "'You can guess words all you like,' he replies smugly, but I've clearly rattled him somehow so I must be close. 'But a creed's got more to it than one thing like that.'" instead;
 	otherwise:
 		if business flag of Doric is false:
 			say "'No,' he replies curtly. 'But don't matter. If you don't have the paperwork, you aren't coming through. Creed or no creed.' He smiles with satisfaction." instead;
@@ -5641,8 +5829,8 @@ Instead of going through the Bishop's Door in the presence of awake Doric when t
 	say "'So you're a church kid, are you?' Doric says conversationally, just happening to block my way into the room with his halberd. 'Prove it, then. Tell me the creed and I'll let you through.'";
 	test the player's creed, continuing on success;
 
-After going through the Bishop's Door from the East Clerestory in the presence of awake Doric:
-	say "'In you go,' Doric says, tipping his head. 'But don't you go tellin['] him how I'm doing anything other than my job, mind. I've got to be careful. These are restless times. The Calendar says so. Always check the Calendar.'[paragraph break]'Thanks,' I say. 'I will.'[paragraph break]The Bishop's Door – I made it!";
+After going through the Bishop's Door from the East Clerestory when awake Doric is in the East Clerestory:
+	say "'In you go,' Doric says, tipping his head. 'But don't you go tellin['] him how I'm doing anything other than my job, mind. I've got to be careful. These are restless times. The Calendar says so. Always check the Calendar.'[paragraph break]The Bishop's Door – I made it!";
 	continue the action;
 
 Section 3 - Post Doric Hints
@@ -6980,7 +7168,7 @@ CT_COV_1_ARCHBISHOP		"bishop" or "archbishop"
 CT_COV_1_PEOPLE		"[abbeyfolk]" or "[sa'at]"
 CT_COV_1_COVALT		"giant" or "him" or "himself"
 CT_COV_1_RAVENS		"ravens" or "his ravens" or "hugin" or "mummin"
-CT_COV_1_CLOCKWORK		"clockwork" or "clock work" or "clocks" or "saints"
+CT_COV_1_CLOCKWORK		"clockwork" or "clock work" or "clocks" or "saints" or "newton" or "babbage" or "breguet"	
 CT_COV_1_SORRY		"sorry" or "apologise" or "apologies"
 CT_COV_1_PERPETUUM		"perpetuum" or "mobile" or "stealing" or "theft" or "robbery" or "plan" or "plot"
 
@@ -7038,7 +7226,7 @@ CT_COV_2_ABBOTFIGURE	"abbot" or "gubbler" or "figure" or "figure in grey/gray" o
 CT_COV_1_PEOPLE		"[calvinanddrake]" or "brother" or "horloge" or "reloh" or "sa'at" or "cook"
 CT_COV_2_COVALT		"giant" or "him" or "himself"
 CT_COV_2_RAVENS		"ravens" or "his ravens" or "hugin" or "mummin"
-CT_COV_2_CLOCKWORK		"clockwork" or "clock work" or "clocks" or "saints"
+CT_COV_2_CLOCKWORK		"clockwork" or "clock work" or "clocks" or "saints" or "newton" or "babbage" or "breguet"	
 CT_COV_2_SORRY		"sorry" or "apologise" or "apologies"
 CT_COV_2_PERPETUUM		"perpetuum" or "mobile" or "stealing" or "theft" or "robbery" or "plan" or "plot"
 
@@ -7091,7 +7279,7 @@ CT_COV_3_FIGURE		"figure" or "figure in grey/gray" or "gray/grey figure"
 CT_COV_1_PEOPLE		"[calvinanddrake]" or "brother" or "horloge" or "reloh" or "sa'at" or "cook"
 CT_COV_3_COVALT		"giant" or "him" or "himself"
 CT_COV_3_RAVENS		"ravens" or "his ravens" or "hugin" or "mummin"
-CT_COV_3_CLOCKWORK		"clockwork" or "clock work" or "clocks" or "saints"
+CT_COV_3_CLOCKWORK		"clockwork" or "clock work" or "clocks" or "saints" or "newton" or "babbage" or "breguet"	
 CT_COV_3_SAINTS		"saint" or "saints"
 CT_COV_3_SORRY		"sorry" or "apologise" or "apologies"
 CT_COV_3_PERPETUUM		"perpetuum" or "mobile" or "stealing" or "theft" or "robbery" or "plan" or "plot"
@@ -7253,7 +7441,7 @@ CT_COV_1_PEOPLE		"[calvinanddrake]" or "brother" or "horloge" or "reloh" or "sa'
 CT_COV_5_COVALT		"giant" or "covalt" or "him" or "himself"
 CT_COV_5_RAVENS		"his ravens" or "ravens" or "hugin" or "mummin"
 CT_COV_5_CLOCKWORK		"clockwork"
-CT_COV_5_SAINTS		"saint" or "saints" or "babbage" or "newton" or "st babbage" or "st newton"
+CT_COV_5_SAINTS		"saint" or "saints" or "babbage" or "newton" or "st babbage" or "st newton" or "breguet" or "st breguet"
 CT_COV_5_SORRY		"sorry" or "apologise" or "apologies"
 CT_COV_5_PERPETUUM		"perpetuum" or "mobile"
 CT_COV_3_HERESY		"heretical designs" or "heresy" or "voltaic" or "new designs" or "designs" or "heresies"
@@ -7559,7 +7747,7 @@ CT_GUARD_PEOPLE		"[abbeyfolk]"
 CT_GUARD_ENGINE		"engine" or "difference"
 CT_GUARD_COUNTINGHOUSE	"counting" or "house" or "building"
 CT_GUARD_CLOCKWORK		"clockwork"
-CT_GUARD_SAINTS		"saints"
+CT_GUARD_SAINTS		"saints" or "newton" or "babbage" or "breguet" or "godel"
 
 CT_GUARD_ENTRY is a conversation topic. The enquiry text is "'You've got to let me in. I'm from the Cathedral.'". The response text is "The guards look unimpressed. 'Without proof I'm afraid you could just as well be from the cock-fighting pits, looking to see who'll win tonight.'". 
 
@@ -9831,7 +10019,7 @@ CT_COV_R4_PEOPLE		"[abbeyfolk]" or "[sa'at]"
 CT_COV_R4_COVALT		"giant" or "covalt" or "him" or "himself"
 CT_COV_R4_RAVENS		"ravens" or "raven" or "his ravens" or "hugin" or "mummin"
 CT_COV_R4_CLOCKWORK	"clockwork" or "clock work" or "clocks"
-CT_COV_R4_SAINTS		"saint" or "saints" or "babbage" or "newton" or "st babbage" or "st newton"
+CT_COV_R4_SAINTS		"saint" or "saints" or "babbage" or "newton" or "st babbage" or "st newton" or "godel" or "breguet" or "st breguet" or "st godel"
 CT_COV_R4_DIFFERENCEENGINE	"difference" or "engine" or "machine" or "knowing machine"
 CT_COV_R4_PERPETUUM		"perpetuum" or "mobile" or "stealing" or "theft" or "robbery" or "plan" or "plot"
 
@@ -10231,7 +10419,7 @@ When Return to the Cathedral begins:
 	now the West Door is open;
 	remove the Chanting Monks from play;
 
-The decoy Perpetuum Mobile is a thing. [[JON]: Description for this please.]
+The decoy Perpetuum Mobile is a thing. The description is "Covalt's done an incredible job. I only caught a glimpse of the Perpetuum before, but this is exactly like it. The board on top, with the track for the ball-bearing, and a few tiny levers sticking from the sides like ant's legs. And everything else (and in this case, [i]nothing[r] else) hidden away inside."
 
 Instead of dropping the decoy Perpetuum when TRIG_SECRET_PANEL is unfired:
 	say "I need it. I can’t afford to lose it in the dark.";
@@ -10586,10 +10774,8 @@ Before inserting something into the Brazier during Return To The Cathedral:
 
 Part 11 - West Clerestory
 
-[[JON]: What should "circles the choice" be? ]
-
 Rule for printing the description of the West Clerestory during Return To The Cathedral:
-	say "The clerestory circles the choice from a storey above, but now is nothing but a coal-pit. The balcony continues northeast. Stairs spiral downwards through a hole in the floor.";
+	say "The clerestory circles the Choir from a storey above, but now is nothing but a coal-pit. The balcony continues northeast. Stairs spiral downwards through a hole in the floor.";
 
 Rule for printing the description of a stained glass window during Return To The Cathedral:
 	say "The windows are dark.";
@@ -11394,25 +11580,25 @@ Test jonsprogress with "test intro / test abbey / w / n / n / n / n / w / ne".
 
 Test walkthrough with "test intro / test abbey / test cathedral / test clockchase / test rooftops / test covalt / test countinghouse / test outsidewarehouse".
 
-Test intro with "z/w/hide in clock/put tumbler on door/z/z/z/z/z/out/w/w".
+Test intro with "z/w/hide in clock/put tumbler on door/z/z/z/z/z/out/open door/w/w".
 
-Test abbey with "d/e/sw/e/get cup/e/n/put cup in bracket/w/w/z/z/z/e/e/n/smell/get tea/z/z/z/z/s/x train/get gear/turn spigot/wind key/put tea in basket/w/z/z/z/sw/sw/w/get new gear/ne/z/z/z/z/e/ne/e/put new gear in train/pull lever/z/z/z/w/w/z/z/z/e/e/e/get tea/w/sw/w/put tea on table/get keys/get keys/e/e/e/unlock clock/set clock to 5:00/z/w/w/sw/sw/w".
+Test abbey with "d/e/sw/e/hide/get cup/e/n/put cup in bracket/w/w/z/z/z/e/e/n/smell/get tea/z/z/z/z/s/x train/get gear/turn spigot/wind key/n/z/s/put tea in basket/w/z/z/z/z/sw/sw/w/get new gear/ne/z/z/z/z/e/ne/e/put new gear in train/n/z/s/pull lever/z/z/z/w/w/z/e/e/get tea/w/sw/w/put tea on table/get keys/get keys/e/e/e/unlock clock/set clock to 5:00/z/w/w/sw/sw/w".
 
 Test abbey2 with "d/e/sw/e/get cup/e/n/put cup in bracket/w/w/z/z/z/e/e/get tea/x train/get gear/turn spigot/wind key/put tea in basket/w/sw/sw/w/get new gear/ne/e/ne/e/put new gear in train/pull lever/z/z/z/w/w/z/z/z/e/e/e/get tea/w/sw/sw/sw/w/put tea on table/get keys/get keys/e/e/e/unlock clock".
 
 [ "d/e/sw/w/z/e/ne/e/put cup in bracket/get tea/w/w/z/e/e/x train/get worn gear/turn spigot/w/sw/w/z/z/e/sw/w/get gear/e/ne/e/e/n/put gear in train/put leaves in basket/wind key/pull lever/z/w/w/z/e/e/get tea/z/w/sw/w/give tea to horloge/get keys/get keys/e/ne/z/z/sw/e/e/unlock clock/open clock/turn clock to 4:59/w/w/sw/sw/w" ]
 
-test cathedral with "w/n/e/get blue/get red/get yellow/w/n/n/w/sw/open tome/get knife/ne/e/s/s/w/put red in brazier/put blue in brazier/get purple with knife/e/n/n/e/se/take work order/nw/w/w/sw/look up principia planetaria in catalogue/test steel/test brass/test gold/pull chain/ne/e/e/se/give principia to sa'at/take order/give wax to sa'at/get order/nw/w/n/e/give work order to doric/give work order to doric/n/lever, spring, winding key".
+test cathedral with "w/n/e/get blue/get red/get yellow/w/n/n/w/sw/open tome/get knife/ne/e/s/s/w/put red in brazier/put blue in brazier/get purple with knife/e/n/n/e/se/take work order/nw/w/w/sw/look up principia planetaria in catalogue/test steel/test brass/test gold/pull chain/ne/e/e/se/give principia to sa'at/take order/nw/se/give wax to sa'at/get order/nw/w/n/e/give work order to doric/give work order to doric/n/lever, spring, winding key".
 
 test clockchase with "z/z/z/nw/z/sw/u/z/z/jump/u/hold chain/pull lever/d/out/z/z/w/jump".
 
 test rooftops with "sw/scrape mortar with knife/get bricks/ne/se/sw/drop bricks/ne/get plank/sw/put plank in notch/put bricks in notch/ne/get pipe/sw/get tarp/e/put pipe on chimney/put tarp on chimney/turn pipe sw/w/s/nw/turn compass south/turn crank/look through telescope/se/put balloon on vent/z/z/z/z/z/z/z/z/z/z/z/z/enter balloon".
 
-test steel with "turn steel crank/g/g/g/g/g/turn steel crank backwards/g/g/g/g/g/g/g/g".
+test steel with "turn steel crank 6 times/turn steel crank backwards 9 times".
 
 test brass with "turn brass crank".
 
-test gold with "turn gold crank/g/g/g/g/g/g/turn gold crank backwards/g/g".
+test gold with "turn gold crank 7 times/turn gold crank backwards 3 times".
 
 test covalt with "tell giant about balloon / tell giant about figure / tell covalt about abbot / tell covalt about perpetuum / x table / x shelves / x clocks / x tools / x workbench / x brown lump / x water clock / ask covalt about difference / out".
 
