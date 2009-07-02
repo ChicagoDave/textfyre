@@ -132,15 +132,13 @@ Chapter 6 - Availability of Exits
 
 Exiting relates a room (called R) to a direction (called D-wards) when the room-or-door D-wards from R is not nothing. The verb to exit (it exits, they exit, it exited, it is exited, it is exiting) implies the exiting relation.
 
-Definition: a direction (called D) is a wall:
-	decide on whether or not D is a wall from the location;
+Leading relates a door (called X) to a direction (called D-wards) when the room-or-door D-wards from the location is X. The verb to lead (he leads, they lead, he led) implies the leading relation.
 
-To decide whether (D - a direction) is a wall from (R - a room):
-	unless D is planar, no; [up, down, in and out are never walls]
-	if R exits D, no;
-	yes;
+Definition: a direction (called D) is an exit:
+	if the location exits D, yes;
+	no;
 
-Walling relates a room (called R) to a direction (called D-wards) when D-wards is a wall from R. The verb to be walled to implies the walling relation.
+Understand "[something related by leading]" as a door.
 
 Part 3 - Activity bug fix
 
@@ -159,7 +157,7 @@ To decide which direction is the quick best route from (here - a room) to (there
 		repeat with d running through the possibilities:
 			if the room d from here is there:
 				decide on d;
-	decide on the best route from here to there;
+	decide on the best route from here to there, using even locked doors;
 
 Book 2 - Disambiguations and (Mis)-understandings
 
@@ -252,6 +250,8 @@ Understand "go [supporter]" as standing on. [Not quite sure about this line, nor
 Understand "go [something]" as entering.
 Understand "go into/in/inside/through [something]" as entering.
 
+Understand the command "head" as "go".
+
 Understand the command "enter" as something new.
 Understand "enter [supporter]" as standing on.
 Understand "enter [something]" as entering.
@@ -273,18 +273,18 @@ Understand "lay me down to/and sleep" as sleeping.
 Understand "go to sleep" as sleeping.
 
 This is the enterable checks rule:
-	abide by the can't enter what's already entered rule;
-	abide by the can't enter what's not enterable rule;
-	abide by the can't enter closed containers rule;
-	abide by the can't enter something carried rule;
-	abide by the implicitly pass through other barriers rule;
+	anonymously abide by the can't enter what's already entered rule;
+	anonymously abide by the can't enter what's not enterable rule;
+	anonymously abide by the can't enter closed containers rule;
+	anonymously abide by the can't enter something carried rule;
+	anonymously abide by the implicitly pass through other barriers rule;
 
 This is the enterable carry out rule:
-	abide by the standard entering rule;
+	anonymously abide by the standard entering rule;
 
 This is the enterable reports rule:
-	abide by the standard report entering rule;
-	abide by the describe contents entered into rule;
+	anonymously abide by the standard report entering rule;
+	anonymously abide by the describe contents entered into rule;
 
 The enterable checks rule is listed in the check standing on rules.
 The enterable checks rule is listed in the check sitting on rules.
@@ -297,18 +297,6 @@ The enterable carry out rule is listed in the carry out lying on rules.
 The enterable reports rule is listed in the report standing on rules.
 The enterable reports rule is listed in the report sitting on rules.
 The enterable reports rule is listed in the report lying on rules.
-
-[Carry out standing on something:
-	abide by the enterable carry out rule;
-
-Carry out sitting on something:
-	abide by the enterable carry out rule;
-
-Report standing on something:
-	abide by the enterable reports rule;
-
-Report sitting on something:
-	abide by the enterable reports rule;]
 
 Part 2 - Climbing
 
@@ -390,9 +378,10 @@ Understand "search for [something]" as examining.
 
 Part 6 - Clothes
 
-Understand "take off [things preferably held]" as taking off.
-Understand "remove [things preferably held]" as taking off.
-Understand "disrobe [things preferably held]" as taking off.
+Understand "take off [things]" as taking off when the item described is worn.
+[Understand "remove [things]" as taking off when the item described is worn.
+Understand "remove [things]" as taking.]
+Understand "disrobe [things]" as taking off when the item described is worn.
 
 Understand "wear [things preferably held]" as wearing.
 Understand "put on [things preferably held]" as wearing.
@@ -445,11 +434,12 @@ Rule for implicitly opening something locked (called the locked item):
 		say "(first unlocking [the locked item] with [the chosen key])[command clarification break]";
 		try silently unlocking the locked item with the chosen key;
 		if the locked item is unlocked and the locked item is closed:
-			try silently opening the locked item; 
+			try silently opening the locked item;
 
 Before going through a closed door (called the obstacle):
 	carry out the implicitly opening activity with the obstacle;
-	if the obstacle is closed, stop the action;
+	if the obstacle is locked and the obstacle is closed:
+		stop the action;
 
 Chapter 2 - Implicitly unlocking
 
@@ -492,18 +482,39 @@ Part 9 - Inserting and Removing
 
 [ We let the player try these things and fail them: the default message that occurs otherwise is 'you can't see any such thing', which seems somewhat worse. ]
 
+Understand the command "remove" as something new.
+Understand "remove [things] from [something]" as removing it from.
+Understand "remove [things]" as removing it from.
+Understand "remove [things] out of/from [something]" as removing it from.
+
 Understand "take [things] from [something]" as removing it from.
 Understand "get [things] from [something]" as removing it from.
-Understand "remove [things] from [something]" as removing it from.
 
 Understand "take [things] out of/from [something]" as removing it from.
 Understand "get [things] out of/from [something]" as removing it from.
-Understand "remove [things] out of/from [something]" as removing it from.
+
+Rule for supplying a missing second noun when removing something from:
+	if something (called the enclosure) contains the noun:
+		begin the clarifying the parser's choice activity with the enclosure;
+		if handling the clarifying the parser's choice activity with the enclosure:
+			say "(from [the enclosure])[command clarification break]";
+		end the clarifying the parser's choice activity with the enclosure;
+		change the second noun to the enclosure;
+	otherwise if the player wears the noun:
+		change the second noun to the player;
+	otherwise:
+		change the second noun to the holder of the noun;
 
 Understand "put [things] in/inside/into [something]" as inserting it into.
 Understand "insert [things] in/inside/into [something]" as inserting it into.
 Understand "drop [things] in/inside/down/into/behind [something]" as inserting it into.
 Understand "hide [things] in/inside/down/under/into/behind [something]" as inserting it into.
+
+Check removing something worn by the player from the player (this is the convert remove to take off rule):
+	try taking off the noun instead;
+
+Check removing something carried by the player from the player (this is the can't remove from onesself rule):
+	say "You already have that." instead;
 
 Part 10 - Facing Directions (for use without Adjacent Rooms by Textfyre)
 
