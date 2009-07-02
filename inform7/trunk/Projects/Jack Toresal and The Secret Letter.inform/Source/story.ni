@@ -2,9 +2,10 @@
 
 [  Change Log
 When		Who		What
+02-Jul-2009	D. Cornelson	Added 'gap' and lowered 1 in 5 to 1 in 3 for Pieter's Mutterings.
 02-Jul-2009	G. Jefferis	Distant descriptions fix.
-29-Jun-2009	D. Cornelson	Jesse fixed FyreVM Support.
 01-Jul-2009	G. Jefferis	Pieter's mutterings, Amhyron fix.
+29-Jun-2009	D. Cornelson	Jesse fixed FyreVM Support.
 27-Jun-2009	D. Cornelson	Image changes.
 26-Jun-2009	D. Cornelson	Final edit before release.
 25-Jun-2009	G. Jefferis	Various location and scenario images
@@ -7140,7 +7141,7 @@ Chapter 4 - Hole in wall, and brick
 
 [ The hole starts off out-of-play, and must be discovered by "touch wall" or similar. ]
 
-The rectangular hole is a container. In the rectangular hole is the brick. Understand "rough", "rectangle" as the rectangular hole.
+The rectangular hole is a container. In the rectangular hole is the brick. Understand "rough", "rectangle", "gap" as the rectangular hole.
 
 Instead of examining the rectangular hole: try searching the rectangular hole.
 
@@ -10263,7 +10264,7 @@ ATMOS_Pieter_following is a dramatic event. The display text is "Pieter [one of]
 
 The Pieter following rule is listed first in the after rulebook. [It has to run before other rules which may stop the action -- rules such as the greeting when entering the clothier's shop.]
 
-Every turn when a random chance of 1 in 5 succeeds during Journey to the Ball:
+Every turn when a random chance of 1 in 3 succeeds during Journey to the Ball:
 	if Pieter is nearby and the location is not Commerce Street:
 		add ATMOS_Pieter to the dramatic possibilities, if absent;
 
@@ -11778,6 +11779,8 @@ test toball with "test walk1 / test redgate/test sandler/test moneylender/test c
 Test walk1 with "test intro/test market/test meeting/test adventure/test jail/test sewers"
 
 Test walk2 with "test rooftops/test blackgate/test hanging/test maidens"
+
+Test brick with "test walk1/test walk2/test redgate/test sandler/test moneylender/test clothier/test armory"
 
 Test walk3 with "test redgate/test sandler/test moneylender/test clothier/test armory/test ballgoing/test socializing/test warroom" 
 
