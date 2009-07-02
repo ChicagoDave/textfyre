@@ -2,6 +2,8 @@
 
 [  Change Log
 When		Who		What
+02-Jul-2009	G. Jefferis	Distant descriptions fix.
+01-Jul-2009	G. Jefferis	Pieter's mutterings, Amhyron fix.
 27-Jun-2009	D. Cornelson	Image changes.
 26-Jun-2009	D. Cornelson	Final edit before release.
 25-Jun-2009	G. Jefferis	Various location and scenario images
@@ -1426,11 +1428,11 @@ Instead of going outside in the Alley:
 
 After looking in the Alley for the first time, say "A group of people have gathered just outside the alley. You can't quite hear what they're saying from here, but there is a grim, ugly tone to them that speaks of dangerous doings.";
 
-After inspecting the Alley while in Grubbers Market Northwest Junction:
-	say "The entrance to a narrow alley lies northwest.";
+Rule for printing the distant description of the Alley when in Grubbers Market Northwest Junction:
+	say "The entrance to a narrow alley lies northwest. ";
 
-After inspecting the Alley while in Outer Market Roof:
-	say "You can climb back down the crates to the alley below.";
+Rule for printing the distant description of the Alley when in Outer Market Roof:
+	say "You can climb back down the crates to the alley below. ";
 
 Understand "narrow" and "alley" as the Alley.
 Understand "entrance" as the Alley when the location is Grubbers Market Northwest Junction.
@@ -2156,11 +2158,11 @@ Understand "relatively", "open", "space", "corner", "edge" as Grubbers Market No
 Understand "narrow", "slice" as Grubbers Market Northwest Junction when the location is the Alley.
 Understand "crowded", "proper" as Grubbers Market Northwest Junction when the location is the Outer Market Roof.
 
-After inspecting Grubbers Market Northwest Junction while in the Alley:
-	say "You can't really see more than a narrow slice of the northwest junction from back here.";
+Rule for printing the distant description of Grubbers Market Northwest Junction while in the Alley:
+	say "You can't really see more than a narrow slice of the northwest junction from back here. ";
 
-After inspecting Grubbers Market Northwest Junction while in Top of Center Post:
-	say "It's too far to make out any details from here.";
+Rule for printing the distant description of Grubbers Market Northwest Junction while in Top of Center Post:
+	say "It's too far to make out any details from here. ";
 
 Grubbers Market Northwest Junction overlooks Lords Road.
 
@@ -2268,8 +2270,8 @@ Grubbers Market Fruit Stall is a market stall and southeast of Grubbers Market G
 
 Grubbers Market Fruit Stall can be orderly or chaotic. Grubbers Market Fruit Stall is orderly.
 
-After inspecting Grubbers Market Fruit Stall while in Grubbers Market Top of Center Post:
-	say "It's too far to make out any details from here.";
+Rule for printing the distant description of Grubbers Market Fruit Stall while in Grubbers Market Top of Center Post:
+	say "It's too far to make out any details from here. ";
 
 Instead of smelling the Grubbers Market Fruit Stall:
 	say "It smells delicious here.";
@@ -2449,8 +2451,8 @@ Grubbers Market Hat Stall is a market stall and south of Grubbers Market Eastern
 
 Understand "hats" as the Hat Stall.
 
-After inspecting Grubbers Market Hat Stall while in Top of Center Post:
-	say "It's too far to make out any details from here.";
+Rule for printing the distant description of Grubbers Market Hat Stall while in Top of Center Post:
+	say "It's too far to make out any details from here. ";
 
 Chapter 2 - Contents (Pegs)
 
@@ -2593,8 +2595,8 @@ Grubbers Market Exotic Gems Stall is a market stall and northwest of Grubbers Ma
 
 Understand "gem", "jewel", "jewels", "jewelry", "jewelery" as the Grubbers Market Exotic Gems Stall. 
 
-After inspecting Grubbers Market Exotic Gems Stall while in Top of Center Post:
-	say "It's too far to make out any details from here.";
+Rule for printing the distant description of Grubbers Market Exotic Gems Stall while in Top of Center Post:
+	say "It's too far to make out any details from here. ";
 
 Chapter 2 - Contents (Gems)
 
@@ -2930,8 +2932,8 @@ Instead of going inside in Grubbers Market Outside Silk Stall:
 Instead of facing inside in Grubbers Market Outside Silk Stall:
 	try facing north;
 
-After inspecting Grubbers Market Outside Silk Stall while in Grubbers Market Teishas Tent:
-	say "You can't see much from inside the tent.";
+Rule for printing the distant description of Grubbers Market Outside Silk Stall while in Grubbers Market Teishas Tent:
+	say "You can't see much from inside the tent. ";
 
 Chapter 2 - Scenery (Tent)
 
@@ -3562,11 +3564,11 @@ Grubbers Market Center Post is a room. "This is a cramped little square formed b
 
 The printed name is "Behind the Silk Tent". Understand "Teishas", "cramped", "little", "square", "behind", "silk", "tent" as Grubbers Market Center Post.
 
-After inspecting Grubbers Market Center Post while in Grubbers Market Teishas Tent:
-	say "You can't see much from inside the tent.";
+Rule for printing the distant description of Grubbers Market Center Post while in Grubbers Market Teishas Tent:
+	say "You can't see much from inside the tent. ";
 
-After inspecting Grubbers Market Center Post while in Grubbers Market Top of Center Post:
-	say "That little area behind the tent looks very, very tiny from up here.";
+Rule for printing the distant description of Grubbers Market Center Post while in Grubbers Market Top of Center Post:
+	say "That little area behind the tent looks very, very tiny from up here. ";
 
 Instead of going inside in Grubbers Market Center Post:
 	try going south;
@@ -4149,7 +4151,8 @@ The distant description of Commerce Street is "Commerce Street lies just [if loc
 
 The dead-end description of Commerce Street is "There are no shops on the south side of the street."
 
-After inspecting Commerce Street while in Grubbers Market Top of Center Post, say "You can just make out Commerce Street to the east, far below."
+Rule for printing the distant description of Commerce Street while in Grubbers Market Top of Center Post:
+	say "You can just make out Commerce Street to the east, far below. ";
 
 Instead of facing north in Commerce Street, try examining the butchers storefront.
 Instead of facing northwest in Commerce Street, try examining the bakery storefront.
@@ -5679,7 +5682,8 @@ Understand "narrow", "street", "dead end", "cul de sac", "courtyard", "small", "
 Instead of facing southwest while in Entrance to Maiden House, say "Looks like you could just scoot around the corner of the southern building into a tiny spur off the main alley."
 Instead of facing south while in Entrance to Maiden House, try examining the wooden door.
 
-After inspecting the Hallway while in Entrance to Maiden House, say "You'll have to to go inside to get a better look at that."
+Rule for printing the distant description of the Hallway while in Entrance to Maiden House:
+	say "You'll have to to go inside to get a better look at that. ";
 
 The dead-end description of Entrance to Maiden House is "[description of run-down buildings]".
 
@@ -5724,7 +5728,8 @@ Understand "main", "center", "Maiden", "House", "hall", "corridor", "passage", "
 
 The distant description of the Hallway is "The main hallway lies just to the [quick best route from the location to the Hallway]."
 
-After inspecting the Entrance to Maiden House while in the Hallway, say "You'll have to go outside to get a better look at the courtyard outside Maiden House."
+Rule for printing the distant description of the Entrance to Maiden House while in the Hallway:
+	say "You'll have to go outside to get a better look at the courtyard outside Maiden House. ";
 
 Instead of facing outside while in the Hallway, try facing north.
 
@@ -6394,8 +6399,6 @@ The response of SH14 is {SH15, SH16}.
 The response of SH15 is {SH14, SH16}.
 The response of SH16 is {SH14, SH15}.
 
-
-
 Section 4 - Stick and Soap
 
 The wooden stirring stick is carried by Widow Shannon. Understand "thick", "wood" as the wooden stirring stick. The description of the stirring stick is "Widow Shannon always uses that stick to stir the laundry." The printed name of the stirring stick is "stick".
@@ -6406,7 +6409,10 @@ Part 8 - Behind Maiden House
 
 Behind Maiden House is a room. "This tiny spur of an alleyway runs between the back of Maiden House and the high stone wall surrounding the park. You can make your way around to the Maiden House Entrance to the northeast."
 
-Understand "tiny", "narrow", "spur", "corner", "alley", "alleyway", "back", "of" as Behind Maiden House.
+Rule for printing the name of Behind Maiden House while asking which do you mean:
+	say "the alley behind Maiden House";
+
+Understand "tiny", "narrow", "spur", "corner", "alley", "alleyway", "back of" as Behind Maiden House.
 
 Instead of facing north while in Behind Maiden House, try examining the mortar wall.
 Instead of facing east while in Behind Maiden House, try searching the privy window.
@@ -6554,8 +6560,10 @@ Lords Road is north of Market Square and southwest of the Crossing. "The wide an
 
 Understand "wide", "paved", "well paved", "west", "western", "edge", "bound", "boundary", "straight" as Lords Road.
 
-After inspecting Lords Road while in Outer Market Roof, say "Lord's Road runs straight north beyond the Market Gates."
-After inspecting Lords Road while in the Pasture, say "Lord's Road bounds the western edge of the pasture."
+Rule for printing the distant description of Lords Road while in Outer Market Roof:
+	say "Lord's Road runs straight north beyond the Market Gates. ";
+Rule for printing the distant description of Lords Road while in the Pasture:
+	say "Lord's Road bounds the western edge of the pasture. ";
 
 Instead of facing southeast while in Lords Road, say "That way stands the high outer wall of Toresal."
 Instead of facing southwest while in Lords Road, say "That way stands the high outer wall of Toresal."
@@ -6977,8 +6985,8 @@ Instead of going outside in Underneath the Fountain:
 Instead of going inside in the Clearing:
 	try going down;
 
-After inspecting the Clearing while the location is Underneath the Fountain:
-	say "You can't see any part of the clearing from down here."
+Rule for printing the distant description of the Clearing while the location is Underneath the Fountain:
+	say "You can't see any part of the clearing from down here. ";
 
 Instead of smelling Underneath the Fountain when in Underneath the Fountain:
 	say "It smells damp and sour down here. You'll be glad to get back into the fresh air.";
@@ -6989,7 +6997,7 @@ Instead of listening to Underneath the Fountain when in Underneath the Fountain:
 Instead of talking to Bobby in the Tunnels:
 	say "Bobby raises his hand wordlessly, as if to say, [i]not now[r].";
 
-Instead of talking to Bobby in Lord's Keep:
+Instead of talking to Bobby in Lord's Keep during Bobby's Adventure:
 	say "Bobby shakes his head and puts his finger to his lips."; 
 
 Section 1 - Scenery (Fungus)
@@ -7039,7 +7047,8 @@ Understand "tunnel", "end", "dead end", "of", "walls", [ "wall" [causes conflict
 
 Understand "south", "southern", "south wall", "southern wall" as the Secret Passage when the location is the Chapel.
 
-After inspecting the Secret Passage in Underneath the Fountain, say "The tunnel continues on to the north."
+Rule for printing the distant description of the Secret Passage when in Underneath the Fountain:
+	say "The tunnel continues on to the north. ";
 
 Section 1 - Scenery (Empty metal bracket)
 
@@ -7144,8 +7153,8 @@ After searching the rectangular hole:
 Understand "loose" as the brick when the rectangular hole contains the brick.
 The description of the brick is "[if the rectangular hole contains the brick]The brick is loose here.[otherwise]You see nothing special about the brick.[end if]"
 
-Instead of pulling the brick when the rectangular hole contains the brick:
-	try taking the brick instead.
+Instead of pulling the brick when the brick was in the rectangular hole:
+	try taking the brick instead;
 
 After taking the brick when the brick was contained by the rectangular hole:
 	reveal the lever;
@@ -7174,6 +7183,7 @@ To reveal the lever:
 	now the short lever is part of the rectangular hole.
 
 To conceal the lever:
+	[Actually, I suppose 'remove from play' would do the job here.]
 	now the short lever is part of Limbo.
 
 Part 9 - The Tunnels (region)
@@ -7188,11 +7198,13 @@ The Chapel is a room. The description is "The chapel of the Goddesses is a spaci
 
 Understand "temple", "shrine", "Goddesses", "of the Goddesses", "spacious", "octagon", "octagonal", "8 sided", "eight sided", "empty", "wall", "walls", "wood", "panel", "panels", "paneled", "bare", "glow", "glowing", "warm", "warmly", "high", "ceiling", "shadow", "shadows" as the Chapel.
 
-After inspecting the Chapel in the Secret Passage, say "The tunnel opens into a dimly lit room to the north."
+Rule for printing the distant description of the Chapel when in the Secret Passage:
+	say "The tunnel opens into a dimly lit room to the north. ";
 
 Instead of inspecting the Secret Passage in the Chapel, try examining the blank stone wall.
 
-After inspecting the Chapel in the Lower Bailey, say "The chapel lies to the northeast."
+Rule for printing the distant description of the Chapel when in the Lower Bailey:
+	say "The chapel lies to the northeast. ";
 
 The dead-end description of the Chapel is "Wood-paneled walls surround you on all sides; the only exits are southwest and south, through the secret passage."
 
@@ -7237,7 +7249,8 @@ Understand "castle", "keep", "courtyard", "yard", "wedge", "thick", "shadow", "b
 
 The distant description of the Lower Bailey is "The keep's lower bailey is [quick best route from location to Lower Bailey] of here."
 
-After inspecting the Lower Bailey in the Upper Bailey, say "The lower bailey is spread out beneath you, half in moonlight, half in shadow."
+Rule for printing the distant description of the Lower Bailey when in the Upper Bailey:
+	say "The lower bailey is spread out beneath you, half in moonlight, half in shadow. ";
 
 The dead-end description of the Lower Bailey is "The thick stone walls of the keep surround you on all sides."
 
@@ -7297,9 +7310,11 @@ The Upper Bailey is up from the Lower Bailey. The description is "At the top of 
 
 Understand "wall", "walls", "outer", "top", "of", "walkway", "stone", "stones", "parapet", "parapets", "narrow" as the Upper Bailey.
 
-After inspecting the Upper Bailey in the Lower Bailey, say "You can see a walkway at the top of the keep's outer walls."
+Rule for printing the distant description of the Upper Bailey when in the Lower Bailey:
+	say "You can see a walkway at the top of the keep's outer walls. ";
 
-After inspecting the Upper Bailey in the Guardhouse, say "The walkway of the upper bailey is south of here."
+Rule for printing the distant description of the Upper Bailey when in the Guardhouse:
+	say "The walkway of the upper bailey is south of here. ";
 
 Instead of facing down while in the Upper Bailey, try inspecting the Lower Bailey.
 
@@ -7455,8 +7470,8 @@ The Jailhouse is a room. The description of the jailhouse is "The jailhouse is h
 
 The dead-end description of the Jailhouse is "There's no way out that direction."
 
-After inspecting the Jailhouse in the Drain Room:
-	say "The main jailhouse room is northeast of here.";
+Rule for printing the distant description of the Jailhouse when in the Drain Room:
+	say "The main jailhouse room is northeast of here. ";
 
 When escaping jail begins:
 	select theme "InJail";
@@ -8539,7 +8554,8 @@ Understand "narrow", "rectangle", "rectangular" as the backdrop-sky when the loc
 
 The dead-end description of the Thin Alley is "There's nowhere else to go in this little place. Just back the way you came... or up."
 
-After inspecting the main rooftop in the thin alley, say "You can't see much of the rooftops from down here."
+Rule for printing the distant description of the main rooftop when in the thin alley:
+	say "You can't see much of the rooftops from down here. ";
 
 The distant description of the thin alley is "The alley is way, [i]way[r] down below you."
 
@@ -8597,7 +8613,11 @@ The Rooftop Edge is east from the main rooftop. "The rooftop landscape ends here
 
 Understand "miniature", "mountain", "range", "mountains", "peak", "peaks", "valley", "valleys", "landscape", "roof", "roofs", "end" as the Rooftop Edge.
 
-The Rooftop Edge overlooks Commerce Street. After inspecting Commerce Street in Rooftop Edge, say "All the people way down there on Commerce Street look like ants from up here." Understand "people", "crowd", "crowds", "pedestrians", "pedestrian", "pavement", "ants", "ant", "little", "wide", "residential", "affluent", "district", "business", "drop", "gap" as Commerce Street when the location is Rooftop Edge.
+The Rooftop Edge overlooks Commerce Street.
+Rule for printing the distant description of Commerce Street when in Rooftop Edge:
+	say "All the people way down there on Commerce Street look like ants from up here.";
+
+Understand "people", "crowd", "crowds", "pedestrians", "pedestrian", "pavement", "ants", "ant", "little", "wide", "residential", "affluent", "district", "business", "drop", "gap" as Commerce Street when the location is Rooftop Edge.
 
 The distant description of Rooftop Edge is "The rooftops come to an end somewhere to the east."
 
@@ -8703,9 +8723,15 @@ Instead of going west in Roof of Black Gate Estate, say "If at all possible, you
 
 Instead of jumping in Roof of Black Gate Estate, try going west.
 
-After inspecting Rooftop Edge in Roof of Black Gate Estate, say "You can see the rooftops stretching away to the west, beyond the big drop."
+Rule for printing the distant description of Rooftop Edge when in Roof of Black Gate Estate:
+	say "You can see the rooftops stretching away to the west, beyond the big drop. ";
 
-Roof of Black Gate Estate overlooks Commerce Street. After inspecting Commerce Street in Roof of Black Gate Estate, say "All the people way down there on Commerce Street look like ants from up here." Understand "people", "crowd", "crowds", "pedestrians", "pedestrian", "pavement", "ants", "ant", "little", "wide", "residential", "affluent", "district", "business", "drop", "gap" as Commerce Street when the location is Roof of Black Gate Estate.
+Roof of Black Gate Estate overlooks Commerce Street.
+
+Rule for printing the distant description of  Commerce Street when in Roof of Black Gate Estate:
+	say "All the people way down there on Commerce Street look like ants from up here.";
+
+Understand "people", "crowd", "crowds", "pedestrians", "pedestrian", "pavement", "ants", "ant", "little", "wide", "residential", "affluent", "district", "business", "drop", "gap" as Commerce Street when the location is Roof of Black Gate Estate.
 
 The distant description of Roof of Black Gate Estate is "To the [quick best route from location to Roof of Black Gate Estate], the roof ends at an ornate balcony."
 
@@ -8764,7 +8790,8 @@ Understand "rose", "roses", "flower", "flowers", "faint", "smell", "perfume", "s
 
 The distant description of the Rooftop Garden is "A faint scent of roses wafts over from the garden to the [quick best route from location to the Rooftop Garden]."
 
-After inspecting the Rooftop Garden in the Third Floor Landing, say "The garden is upstairs from here."
+Rule for printing the distant description of the Rooftop Garden when in the Third Floor Landing:
+	say "The garden is upstairs from here. ";
 
 Section 2 - Scenery
 
@@ -8799,9 +8826,12 @@ Chapter 1 - Description
 
 The Third Floor Landing is a Landing, down from the Rooftop Garden. The description is "This is the main stairway that winds up and down the back of Black Gate Estate. A hallway leads south." Inside from the Rooftop Garden is the Third Floor Landing.
 
-After inspecting the Third Floor Landing in the Music Room, say "You can see the main stairway to the north."
-After inspecting the Third Floor Landing in the Rooftop Garden, say "The stairs lead down."
-After inspecting the Third Floor Landing in the Second Floor Landing, say "The stairs lead up."
+Rule for printing the distant description of the Third Floor Landing when in the Music Room:
+	say "You can see the main stairway to the north. ";
+Rule for printing the distant description of the Third Floor Landing when in the Rooftop Garden:
+	say "The stairs lead down. ";
+Rule for printing the distant description of the Third Floor Landing when in the Second Floor Landing:
+	say "The stairs lead up. ";
 
 Part 9 - Music Room
 
@@ -8809,7 +8839,7 @@ Chapter 1 - Description
 
 The Music Room is a room. "The walls of this room are painted with the Fossville coat of arms, intertwined in a pattern of gilded vines. Your footsteps are muffled by a deep blue carpet. The room continues south, and stairs lie to the north." Understand "hall", "hallway" as the Music Room when the location is the Third Floor Landing.
 
-The distant description of the Music Room is "The music room lies [quick best route from location to the Music Room]." 
+The distant description of the Music Room is "The music room lies [quick best route from location to the Music Room]."
 
 bg_musicroom_door is a doorway, south of the Third Floor Landing, north of the Music Room.
 
@@ -9691,11 +9721,14 @@ The Foyer overlooks East Commerce Street.
 
 East Commerce Street overlooks the Foyer.
 
-After inspecting the Foyer in East Commerce Street:
-	if Red Gate Estate is open, say "You cannot see into the shadowed interior from here.";
-	otherwise say "The front door of Red Gate Estate is closed."
+Rule for printing the distant description of the Foyer when in East Commerce Street:
+	if Red Gate Estate is open:
+		say "You cannot see into the shadowed interior from here. ";
+	otherwise:
+		say "The front door of Red Gate Estate is closed. ";
 
-After inspecting East Commerce Street in the Foyer, say "The bustle of the street outside does not reach in here. Here, all is quiet."
+Rule for printing the distant description of East Commerce Street when in the Foyer:
+	say "The bustle of the street outside does not reach in here. Here, all is quiet. ";
 
 Instead of talking to Widow Shannon in the Red Gate Estate region:
 	say "Something about this place — the stillness, the solemn expectancy — makes you reluctant to break the silence with idle chatter.";
@@ -9768,8 +9801,10 @@ The rg_kitchen_door is a doorway, north of the Dining Room, south of the Red Gat
 
 The firepit is scenery in the Red Gate Kitchen. Understand "fireplace", "fire", "pit", "ash", "ashes", "cold", "dark" as the firepit. "Nothing but ashes there now." Instead of searching the firepit, try examining the firepit instead.
 
-After inspecting the Red Gate Kitchen in the Dining Room, say "The kitchen lies north of here."
-After inspecting the Red Gate Kitchen in the Red Gate Estate Second Floor Landing, say "The kitchen is downstairs."
+Rule for printing the distant description of the Red Gate Kitchen when  in the Dining Room:
+	say "The kitchen lies north of here. ";
+Rule for printing the distant description of the Red Gate Kitchen when in the Red Gate Estate Second Floor Landing:
+	say "The kitchen is downstairs. ";
 
 Part 5 - Second Floor Landing
 
@@ -9779,11 +9814,11 @@ The Red Gate Estate Second Floor Landing is a Landing, up from the Red Gate Kitc
 
 Understand "shadowed", "shadowy", "shadow", "shaded", "shady" as a Landing when the location is in Red Gate Estate and the location is not the item described.
 
-After inspecting the Red Gate Estate Second Floor Landing:
+Rule for printing the distant description of the Red Gate Estate Second Floor Landing:
 	if the location is:
-		-- Red Gate Kitchen: say "The stairs lead up to the second floor.";
-		-- Red Gate Estate Third Floor Landing: say "The stairs continue down.";
-		-- Office: say "You can see stairs north of here."
+		-- Red Gate Kitchen: say "The stairs lead up to the second floor. ";
+		-- Red Gate Estate Third Floor Landing: say "The stairs continue down. ";
+		-- Office: say "You can see stairs north of here. ";
 
 Part 6 - Office
 
@@ -9891,9 +9926,9 @@ Part 7 - Third Floor Landing
 
 The Red Gate Estate Third Floor Landing is a Landing, up from the Red Gate Estate Second Floor Landing. "The stairs end here at the third floor. A doorway leads south." The printed name is "Third Floor Landing". 
 
-After inspecting the Red Gate Estate Third Floor Landing:
-	if the location is Red Gate Master Bedroom, say "You can see stairs to the north.";
-	otherwise say "The stairs lead up."
+Rule for printing the distant description of the Red Gate Estate Third Floor Landing:
+	if the location is Red Gate Master Bedroom, say "You can see stairs to the north. ";
+	otherwise say "The stairs lead up. ";
 
 Part 8 - Red Gate Master Bedroom
 
@@ -10227,11 +10262,20 @@ ATMOS_Pieter_following is a dramatic event. The display text is "Pieter [one of]
 
 The Pieter following rule is listed first in the after rulebook. [It has to run before other rules which may stop the action -- rules such as the greeting when entering the clothier's shop.]
 
-Every turn when a random chance of 1 in 4 succeeds during Journey to the Ball:
+Every turn when a random chance of 1 in 5 succeeds during Journey to the Ball:
 	if Pieter is nearby and the location is not Commerce Street:
 		add ATMOS_Pieter to the dramatic possibilities, if absent;
 
-ATMOS_Pieter is a dramatic event. The display text is "[one of]Pieter stands close to you protectively.[or]Pieter looks around warily.[or]Pieter fingers his sword hilt[if a random chance of 1 in 2 succeeds], as though expecting an ambush from any quarter[end if].[or]'Don't worry,' Pieter mutters, as much to himself as to you[if a random chance of 1 in 2 succeeds]. 'I won't let anything happen to you.'[otherwise].[end if] [or]Pieter shifts his feet impatiently. 'We need to be on our way,' he mutters. 'The ball starts soon.'[or]'Are you sure you know the way?' Pieter mutters.[at random]";
+ATMOS_Pieter is a dramatic event. The display text is "[one of]'Remember, keep that dagger hidden until you absolutely need it,' says Pieter. 'It’s no good in a sword fight, so your only advantage is surprise.'[or]'I don't know why I let Dame Sandler talk me into this,' Pieter mutters.[or]'I'm not sure what Dame Sandler expects you to do at this ball,' says Pieter. 'Introduce yourself to a lot of people, I guess?'[or]'When we get there, try to stay in a well-lit, crowded place, okay, Jack?' says Pieter. 'Don’t go wandering off.'[or]'Don’t worry,' says Pieter, 'I’ll have your back. But you’re going to have to do all the talking.'[or]'If the Baron tries anything, we are leaving. Immediately,' growls Pieter.[or]'Try not to get into any fights,' Pieter warns. 'I got you that dagger for protection, not so you could wreak your vengeance.'[or]'Try to do whatever it is you need to do quickly,' says Pieter. 'I don’t want to stay any longer than we have to.'[or]'If we manage to survive tonight, it’ll be a miracle,' mutters Pieter.[or]'I have a bad feeling about this,' says Pieter under his breath.[in random order]";
+
+ATMOS_Pieter has a number called the firing count.
+
+After firing ATMOS_Pieter:
+	increment the firing count of ATMOS_Pieter by 1;
+
+Rule for firing ATMOS_Pieter when the firing count of ATMOS_Pieter is at least 10:
+	change the firing count of ATMOS_Pieter to 10; [prevent its infinite incrementation]
+	do nothing;
 
 Instead of giving the secret letter to Pieter:
 	try showing the secret letter to Pieter;
@@ -10448,8 +10492,11 @@ Part 4 - Foyer
 
 The Entrance Hall is north of Lower Bailey. "The entrance hall has been decorated for the occasion, its stark, stone walls hidden behind festive tapestries and garlands. A few guests stand around in groups, chatting, but the main event seems to be in the ballroom, north of here." The printed name is "Foyer". Understand "foyer", "inner", "keep", "castle" as the foyer.
 
-After inspecting the Entrance Hall in the Lower Bailey, say "You can't quite make out the details of the foyer from out here."
-Instead of inspecting the Entrance Hall in the Ballroom, try facing south.
+Rule for printing the distant description of the Entrance Hall when in the Lower Bailey:
+	say "You can't quite make out the details of the foyer from out here. ";
+
+Instead of inspecting the Entrance Hall when in the Ballroom:
+	try facing south;
 
 Instead of listening to the Entrance Hall when in the Entrance Hall, say "You can hear the sounds of laughter and music coming from the ballroom to the north."
 Instead of listening to the Ballroom in the Entrance Hall, try listening to the Entrance Hall.
@@ -10490,7 +10537,8 @@ Instead of going from the ballroom:
 
 Instead of facing a planar direction in the Ballroom, say "The guests are crowded so close together, you can't even see to the edges of the room."
 
-After inspecting the Ballroom in the Entrance Hall, say "You can see glittering lights and hear the sounds of laughter and music coming from the ballroom to the north."
+Rule for printing the distant description of the Ballroom when in the Entrance Hall:
+	say "You can see glittering lights and hear the sounds of laughter and music coming from the ballroom to the north. ";
 
 Understand "hall", "ball", "party", "lights", "light", "glittering", "laughter", "music", "voices", "sounds" as the Ballroom.
 
@@ -11133,11 +11181,13 @@ After populating a quip (called q) that is clustered with AM9:
 
 After populating when the current conversationalist is the Baron of Amhyron:
 	if AM2 is fired:
-		remove AM5 from the current conversation, if present;
+		remove AM2 from the current conversation, if present;
 	if AM5 is fired:
 		remove AM5 from the current conversation, if present;
 	if AM6 is fired:
 		remove AM6 from the current conversation, if present;
+	if AM7 is fired:
+		remove AM7 from the current conversation, if present;
 
 Chapter 6 - Earl of Bresa
 
@@ -11693,17 +11743,15 @@ Before doing something when the backdrop-moon is physically involved:
 
 Chapter 4 - Looking high, looking low
 
-Check facing up:
-	if the location is interior begin;
+Check facing up when the room up from the location is nothing:
+	if the location is interior:
 		try examining the backdrop-ceiling instead;
-	otherwise;
+	otherwise:
 		try examining the backdrop-sky instead;
-	end if;
 
-Check facing down:
-	if the location is grounded begin;
+Check facing down when the room up from the location is nothing:
+	if the location is grounded:
 		try examining the backdrop-floor instead;
-	end if;
 
 Part 2 - Rooms generally
 
