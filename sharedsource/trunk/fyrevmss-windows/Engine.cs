@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright © 2008, Textfyre, Inc. - All Rights Reserved
+ * Copyright © 2009, Textfyre, Inc. - All Rights Reserved
  * Please read the accompanying COPYRIGHT file for licensing resstrictions.
  */
 // define TRACEOPS to see each opcode as it's executed
@@ -12,13 +12,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Reflection;
-using System.Diagnostics;
 using System.ComponentModel;
-
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
+using System.Text;
 using Textfyre.VM.Profiling;
 
 namespace Textfyre.VM

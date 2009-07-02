@@ -1,20 +1,19 @@
 ﻿/*
- * Copyright © 2008, Textfyre, Inc. - All Rights Reserved
+ * Copyright © 2009, Textfyre, Inc. - All Rights Reserved
  * Please read the accompanying COPYRIGHT file for licensing resstrictions.
  */
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 
-namespace Textfyre.VM
-{
+#undef ENCRYPTED_GAMES_ONLY
+
+using System;
+using System.IO;
+using System.Security.Cryptography;
+
+namespace Textfyre.VM {
     /// <summary>
     /// Represents the ROM and RAM of a Glulx game image.
     /// </summary>
-    internal class UlxImage
-    {
+    internal class UlxImage {
         private byte[] memory;
         private uint ramstart;
         private Stream originalStream;
@@ -24,14 +23,12 @@ namespace Textfyre.VM
         /// Initializes a new instance from the specified stream.
         /// </summary>
         /// <param name="stream">A stream containing the Glulx image.</param>
-        public UlxImage(Stream stream)
-        {
+        public UlxImage(Stream stream) {
             originalStream = stream;
             LoadFromStream(stream);
         }
 
-        private void LoadFromStream(Stream stream)
-        {
+        private void LoadFromStream(Stream stream) {
             if (stream.Length > int.MaxValue)
                 throw new ArgumentException(".ulx file is too big");
 
@@ -43,23 +40,81 @@ namespace Textfyre.VM
             stream.Seek(0, SeekOrigin.Begin);
             stream.Read(memory, 0, Engine.GLULX_HDR_SIZE);
 
-            if (memory[0] != (byte)'G' || memory[1] != (byte)'l' ||
-                memory[2] != (byte)'u' || memory[3] != (byte)'l')
-                throw new ArgumentException(".ulx file has wrong magic number");
+            const string SWrongMagic = ".ulx file has wrong magic number";
 
-            uint endmem = ReadInt32(Engine.GLULX_HDR_ENDMEM_OFFSET);
+            // could be encrypted
+            if (memory[0] == (byte)'J' && memory[1] == (byte)'A' &&
+                memory[2] == (byte)'C' && memory[3] == (byte)'K') {
+                // 4-byte magic number is followed by a 32-byte munged key,
+                // which we transform by XORing with our own key
+                //                     12345678901234567890123456789012
+                const string keykey = "Please don't share the game file";
+                // we need a 16-byte initialization vector too
+                //                       1234567890123456
+                const string ivString = "Hi from Textfyre";
 
-            // now read the whole thing
-            memory = new byte[endmem];
-            stream.Seek(0, SeekOrigin.Begin);
-            stream.Read(memory, 0, (int)stream.Length);
+                byte[] key = new byte[32];
+                for (int i = 0; i < 32; i++)
+                    key[i] = (byte)(memory[4 + i] ^ keykey[i]);
+
+                byte[] iv = new byte[16];
+                for (int i = 0; i < 16; i++)
+                    iv[i] = (byte)ivString[i];
+
+                Aes aes = new AesManaged();
+                aes.KeySize = 256;
+                aes.Key = key;
+                aes.IV = iv;
+
+                // we need to keep the original stream open, so no using block
+                CryptoStream cstream = new CryptoStream(
+                    stream, aes.CreateDecryptor(), CryptoStreamMode.Read);
+
+                // decrypt the header
+                cstream.Read(memory, 0, Engine.GLULX_HDR_SIZE);
+
+                if (memory[0] != (byte)'G' || memory[1] != (byte)'l' ||
+                    memory[2] != (byte)'u' || memory[3] != (byte)'l')
+                    throw new ArgumentException(SWrongMagic);
+
+                uint endmem = ReadInt32(Engine.GLULX_HDR_ENDMEM_OFFSET);
+                uint length = ReadInt32(Engine.GLULX_HDR_EXTSTART_OFFSET);
+                ramstart = ReadInt32(Engine.GLULX_HDR_RAMSTART_OFFSET);
+
+                // now read the whole thing
+                byte[] header = memory;
+                memory = new byte[endmem];
+                Array.Copy(header, memory, Engine.GLULX_HDR_SIZE);
+                cstream.Read(memory, Engine.GLULX_HDR_SIZE, (int)length - Engine.GLULX_HDR_SIZE);
+
+                // cache original RAM and IFHD immediately so we don't have to decrypt again when saving
+                originalHeader = new byte[128];
+                Array.Copy(memory, originalHeader, 128);
+
+                originalRam = new byte[endmem - ramstart];
+                Array.Copy(memory, (int)ramstart, originalRam, 0, originalRam.Length);
+            } else {
+#if ENCRYPTED_GAMES_ONLY
+                throw new ArgumentException(SWrongMagic);
+#else
+                if (memory[0] != (byte)'G' || memory[1] != (byte)'l' ||
+                    memory[2] != (byte)'u' || memory[3] != (byte)'l')
+                    throw new ArgumentException(SWrongMagic);
+
+                uint endmem = ReadInt32(Engine.GLULX_HDR_ENDMEM_OFFSET);
+                ramstart = ReadInt32(Engine.GLULX_HDR_RAMSTART_OFFSET);
+
+                // now read the whole thing
+                memory = new byte[endmem];
+                stream.Seek(0, SeekOrigin.Begin);
+                stream.Read(memory, 0, (int)stream.Length);
+#endif
+            }
 
             // verify checksum
             uint checksum = CalculateChecksum();
             if (checksum != ReadInt32(Engine.GLULX_HDR_CHECKSUM_OFFSET))
                 throw new ArgumentException(".ulx file has incorrect checksum");
-
-            ramstart = ReadInt32(Engine.GLULX_HDR_RAMSTART_OFFSET);
         }
 
         /// <summary>
@@ -69,8 +124,7 @@ namespace Textfyre.VM
         /// The region of memory below RamStart is considered ROM. Addresses
         /// below RamStart are readable but unwritable.
         /// </remarks>
-        public uint RamStart
-        {
+        public uint RamStart {
             get { return ramstart; }
         }
 
@@ -82,22 +136,18 @@ namespace Textfyre.VM
         /// automatically by the heap allocator). Addresses above EndMem are
         /// neither readable nor writable.
         /// </remarks>
-        public uint EndMem
-        {
-            get
-            {
+        public uint EndMem {
+            get {
                 return (uint)memory.Length;
             }
-            set
-            {
+            set {
                 // round up to the next multiple of 256
                 if (value % 256 != 0)
                     value = (value + 255) & 0xFFFFFF00;
 
-                if ((uint)memory.Length != value)
-                {
+                if ((uint)memory.Length != value) {
                     byte[] newMem = new byte[value];
-                    Array.Copy(memory, newMem, Math.Min((uint)memory.Length, value));
+                    Array.Copy(memory, newMem, (int)Math.Min((uint)memory.Length, (int)value));
                     memory = newMem;
                 }
             }
@@ -108,8 +158,7 @@ namespace Textfyre.VM
         /// </summary>
         /// <param name="offset">The address to read from.</param>
         /// <returns>The byte at the specified address.</returns>
-        public byte ReadByte(uint offset)
-        {
+        public byte ReadByte(uint offset) {
             return memory[offset];
         }
 
@@ -118,8 +167,7 @@ namespace Textfyre.VM
         /// </summary>
         /// <param name="offset">The address to read from</param>
         /// <returns>The word at the specified address.</returns>
-        public ushort ReadInt16(uint offset)
-        {
+        public ushort ReadInt16(uint offset) {
             return BigEndian.ReadInt16(memory, offset);
         }
 
@@ -128,8 +176,7 @@ namespace Textfyre.VM
         /// </summary>
         /// <param name="offset">The address to read from.</param>
         /// <returns>The 32-bit value at the specified address.</returns>
-        public uint ReadInt32(uint offset)
-        {
+        public uint ReadInt32(uint offset) {
             return BigEndian.ReadInt32(memory, offset);
         }
 
@@ -139,8 +186,7 @@ namespace Textfyre.VM
         /// <param name="offset">The address to write to.</param>
         /// <param name="value">The value to write.</param>
         /// <exception cref="VMException">The address is below RamStart.</exception>
-        public void WriteByte(uint offset, byte value)
-        {
+        public void WriteByte(uint offset, byte value) {
             if (offset < ramstart)
                 throw new VMException("Writing into ROM");
 
@@ -153,8 +199,7 @@ namespace Textfyre.VM
         /// <param name="offset">The address to write to.</param>
         /// <param name="value">The value to write.</param>
         /// <exception cref="VMException">The address is below RamStart.</exception>
-        public void WriteInt16(uint offset, ushort value)
-        {
+        public void WriteInt16(uint offset, ushort value) {
             if (offset < ramstart)
                 throw new VMException("Writing into ROM");
 
@@ -167,8 +212,7 @@ namespace Textfyre.VM
         /// <param name="offset">The address to write to.</param>
         /// <param name="value">The value to write.</param>
         /// <exception cref="VMException">The address is below RamStart.</exception>
-        public void WriteInt32(uint offset, uint value)
-        {
+        public void WriteInt32(uint offset, uint value) {
             if (offset < ramstart)
                 throw new VMException("Writing into ROM");
 
@@ -180,8 +224,7 @@ namespace Textfyre.VM
         /// </summary>
         /// <returns>The sum of the entire image, taken as an array of
         /// 32-bit words.</returns>
-        public uint CalculateChecksum()
-        {
+        public uint CalculateChecksum() {
             uint end = ReadInt32(Engine.GLULX_HDR_EXTSTART_OFFSET);
             // negative checksum here cancels out the one we'll add inside the loop
             uint sum = (uint)(-ReadInt32(Engine.GLULX_HDR_CHECKSUM_OFFSET));
@@ -198,8 +241,7 @@ namespace Textfyre.VM
         /// Gets the entire contents of memory.
         /// </summary>
         /// <returns>An array containing all VM memory, ROM and RAM.</returns>
-        public byte[] GetMemory()
-        {
+        public byte[] GetMemory() {
             return memory;
         }
 
@@ -210,34 +252,28 @@ namespace Textfyre.VM
         /// <param name="embeddedLength">If true, indicates that <paramref name="newBlock"/>
         /// is prefixed with a 32-bit word giving the new size of RAM, which may be
         /// more than the number of bytes actually contained in the rest of the array.</param>
-        public void SetRAM(byte[] newBlock, bool embeddedLength)
-        {
+        public void SetRAM(byte[] newBlock, bool embeddedLength) {
             uint length;
             int offset;
 
-            if (embeddedLength)
-            {
+            if (embeddedLength) {
                 offset = 4;
                 length = (uint)((newBlock[0] << 24) + (newBlock[1] << 16) + (newBlock[2] << 8) + newBlock[3]);
-            }
-            else
-            {
+            } else {
                 offset = 0;
                 length = (uint)newBlock.Length;
             }
 
             EndMem = ramstart + length;
-            Array.Copy(newBlock, offset, memory, ramstart, newBlock.Length - offset);
+            Array.Copy(newBlock, offset, memory, (int)ramstart, newBlock.Length - offset);
         }
 
         /// <summary>
         /// Obtains the initial contents of RAM from the game file.
         /// </summary>
         /// <returns>The initial contents of RAM.</returns>
-        public byte[] GetOriginalRAM()
-        {
-            if (originalRam == null)
-            {
+        public byte[] GetOriginalRAM() {
+            if (originalRam == null) {
                 int length = (int)(ReadInt32(Engine.GLULX_HDR_ENDMEM_OFFSET) - ramstart);
                 originalRam = new byte[length];
                 originalStream.Seek(ramstart, SeekOrigin.Begin);
@@ -250,10 +286,8 @@ namespace Textfyre.VM
         /// Obtains the header from the game file.
         /// </summary>
         /// <returns>The first 128 bytes of the game file.</returns>
-        public byte[] GetOriginalIFHD()
-        {
-            if (originalHeader == null)
-            {
+        public byte[] GetOriginalIFHD() {
+            if (originalHeader == null) {
                 originalHeader = new byte[128];
                 originalStream.Seek(0, SeekOrigin.Begin);
                 originalStream.Read(originalHeader, 0, 128);
@@ -268,9 +302,8 @@ namespace Textfyre.VM
         /// at which to start copying.</param>
         /// <param name="length">The number of bytes to copy.</param>
         /// <param name="dest">The destination array.</param>
-        public void ReadRAM(uint address, uint length, byte[] dest)
-        {
-            Array.Copy(memory, ramstart + address, dest, 0, length);
+        public void ReadRAM(uint address, uint length, byte[] dest) {
+            Array.Copy(memory, (int)(ramstart + address), dest, 0, (int)length);
         }
 
         /// <summary>
@@ -279,18 +312,16 @@ namespace Textfyre.VM
         /// <param name="address">The address, based at <see cref="RamStart"/>,
         /// at which to start copying.</param>
         /// <param name="src">The source array.</param>
-        public void WriteRAM(uint address, byte[] src)
-        {
+        public void WriteRAM(uint address, byte[] src) {
             EndMem = Math.Max(EndMem, ramstart + (uint)src.Length);
-            Array.Copy(src, 0, memory, ramstart + address, src.Length);
+            Array.Copy(src, 0, memory, (int)(ramstart + address), src.Length);
         }
 
         /// <summary>
         /// Reloads the game file, discarding all changes that have been made
         /// to RAM and restoring the memory map to its original size.
         /// </summary>
-        public void Revert()
-        {
+        public void Revert() {
             LoadFromStream(originalStream);
         }
     }

@@ -118,7 +118,43 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="sl_v1_05e" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>sl-v1.05e.ulx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Gallows" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\PageArt\Gallows.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GameFile" xml:space="preserve">
+    <value>sl-v1.04e.ulx</value>
+  </data>
+  <data name="GrubbersChase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\PageArt\GrubbersChase.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InJail" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\PageArt\InJail.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="JackInBallGown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\PageArt\JackInBallGown.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="JackInDisguise" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\PageArt\JackInDisguise.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="JackInSimpleDress" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\PageArt\JackInSimpleDress.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MaidenHouse" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\PageArt\MaidenHouse.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MeetingBobby" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\PageArt\MeetingBobby.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rightpage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\rightpage.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sl_v1_04e" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\GameFiles\sl-v1.04e.ulx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Jack Toresal and The Secret Letter</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version: 1.04.20090701</value>
   </data>
 </root>
