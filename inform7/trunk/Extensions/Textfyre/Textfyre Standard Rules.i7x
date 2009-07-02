@@ -435,6 +435,9 @@ Rule for implicitly opening something locked (called the locked item):
 		try silently unlocking the locked item with the chosen key;
 		if the locked item is unlocked and the locked item is closed:
 			try silently opening the locked item;
+	otherwise:
+		say "(first opening [the locked item])[command clarification break]";
+		try silently opening the locked item; 
 
 Before going through a closed door (called the obstacle):
 	carry out the implicitly opening activity with the obstacle;
