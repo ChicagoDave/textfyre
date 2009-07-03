@@ -369,6 +369,7 @@ namespace Textfyre.VM
         private int nestingLevel;
         private Veneer veneer = new Veneer();
         private uint maxHeapSize;
+        private bool allowFiltering = true, gameWantsFiltering = true;
 #if PROFILING
         private long cycles; // cumulative number of passes through the main loop
         private Profiler profiler = new Profiler();
@@ -450,15 +451,25 @@ namespace Textfyre.VM
         public event SaveRestoreErrorEventHandler SaveRestoreError;
         
         /// <summary>
-        /// Gets or sets a value indicating whether the main output channel
-        /// is subject to filtering, which separates the output into paragraphs
-        /// and applies text styles using a configurable set of tags.
+        /// Gets or sets a value indicating whether the main and prologue output
+        /// channels are subject to filtering, which separates the output into
+        /// paragraphs and applies text styles using a configurable set of tags.
         /// </summary>
+        /// <remarks>
+        /// <para></para>
+        /// <para>This is separate from the filtering setting that the game
+        /// controls. If this property is false, output filtering will be
+        /// disabled even if the game requests it.</para>
+        /// </remarks>
         /// <seealso cref="OutputFilterTags"/>
         public bool OutputFilterEnabled
         {
-            get { return outputBuffer.FilterEnabled; }
-            set { outputBuffer.FilterEnabled = value; }
+            get { return allowFiltering; }
+            set
+            {
+                allowFiltering = value;
+                outputBuffer.FilterEnabled = allowFiltering & gameWantsFiltering;
+            }
         }
 
         /// <summary>
