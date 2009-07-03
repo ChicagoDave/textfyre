@@ -42,6 +42,19 @@ namespace FyreWinClient {
             }
         }
 
+        private void PreferencesCancelButton_Click(object sender, EventArgs e) {
+            this.Close();
+        }
+
+        private void ColorButton_Click(object sender, EventArgs e) {
+            DialogResult result = colorDialog1.ShowDialog();
+
+            if (result == DialogResult.OK) {
+                BackgroundColorBox.BackColor = colorDialog1.Color;
+                FyreWinClient.Properties.Settings.Default.WindowBackColor = colorDialog1.Color;
+            }
+        }
+
 
     }
 }

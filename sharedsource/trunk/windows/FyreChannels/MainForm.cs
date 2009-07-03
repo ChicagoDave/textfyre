@@ -448,5 +448,9 @@ namespace SimpleFyre
             txtOutput.SelectionStart = txtOutput.Text.Length;
             txtOutput.ScrollToCaret();
         }
+
+        private void txtInput_TextChanged(object sender, EventArgs e) {
+
+        }
     }
 }

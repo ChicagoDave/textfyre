@@ -59,19 +59,5 @@ namespace FyreWinClient.Properties {
                 resourceCulture = value;
             }
         }
-        
-        internal static System.Drawing.Bitmap JackInDisguise {
-            get {
-                object obj = ResourceManager.GetObject("JackInDisguise", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap rightpage {
-            get {
-                object obj = ResourceManager.GetObject("rightpage", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }
