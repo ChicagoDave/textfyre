@@ -43,6 +43,7 @@
             // 
             // TextWindow
             // 
+            this.TextWindow.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
             this.TextWindow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextWindow.Location = new System.Drawing.Point(3, 23);
             this.TextWindow.Name = "TextWindow";
