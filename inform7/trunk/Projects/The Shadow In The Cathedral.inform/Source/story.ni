@@ -1,11 +1,14 @@
 "The Shadow In The Cathedral" by Textfyre Inc
 
+
 [
 Include (- Constant DEBUG; -) after "Definitions.i6t".
 ]
 
 [  Change Log
 When		Who		What
+3-July-2009		J. Ingold 	Added "talk" verb, and "ask about <topic>" with no specified NPC. Began C4.
+2-July-2009		J. Ingold	Added Herb Garden location, where the player can (optionally) pick up a knife by solving a quick puzzle involving revolving flower beds. If they do, the knife & tome are removed from the Cyclical Library (in c3). Player's can't do both!
 1-July-2009		J. Ingold	Last of Ian's C2 feedback. Indicated Horloge will talk after tea. Finished c3 playthrough. Added some missing descriptions, and a way to get the knife later if you missed it. Extended Sa'at conversation again.
 30-Jun-2009 	J. Ingold	Player can now specify how many times to turn a crank/lever (a variable is set called "the number of turns to make") to speed up dial-setting puzzles. A general turn will pick a number at random, but tilt the random process to stop at correct positions for ease of use. Added some conversation to Sa'at. 
 29-Jun-2009	J. Ingold	Additions to Doric and Sa'at. More conversation topics. Doric can be crashed into during chase scene, and he drops a hint. Orrey description changes on second viewing. Added "shout at" action. Added balcony rail to Clerestory. Added plural controls (cranks and dials) for catching non-specific input in the Library. In general, trooping my way through chapter 3, but not done yet. Also, most of Ian's changes to c2 incorporated (remaining to be added anon.)
@@ -1151,6 +1154,10 @@ Part 6c - Look On
 Understand "look on [supporter]" as searching.
 Understand "look on [something]" as searching.
 
+Part 6d - Digging is a synonym for search
+
+Understand "dig in/through/under/up [something]" as searching.
+Understand "dig around in [something]" as searching.
 
 Part 7 - Climbing
 
@@ -1698,6 +1705,10 @@ Understand the command "crush" as "squeeze".
 Understand "pulverise [something]" as squeezing.
 Understand "pulverize [something]" as squeezing.
 
+Part 30c - Synonyms for take
+
+Understand the command "catch" as "take".
+Understand the command "collect" as "take".
 
 Part 31 - Running
 
@@ -1874,6 +1885,48 @@ Part 45 - Add something to
 Understand "add [something] to [container]" as inserting it into.
 Understand "add [something] to [supporter]" as putting it on.
 Understand "add [something] to [something]" as inserting it into.
+
+Part 47- Covering
+
+Understand the command "cover" as something new.
+
+Understand "cover [something]" as closing.
+Understand "cover up [something]" as closing.
+Understand "cover [something] up" as closing.
+
+Understand "hand/hands", "my/your/one/both hand/hands" as "[hands]".
+
+Understand "cover [something] with [hands]" as touching.
+
+Understand "cover [something] with [something]" as putting it on (with nouns reversed).
+
+Understand "put [hands] on/over [something]" as touching.
+
+Understand "put [something] over [something]" as putting it on.
+
+Part 48 - Asking with no NPC
+
+Asking no-one in particular about is an action applying to one topic.
+Telling no-one in particular about is an action applying to one topic.
+
+Understand "ask about [text]" as asking no-one in particular about.
+Understand "tell about [text]" as telling no-one in particular about.
+Understand "talk about [text]" as telling no-one in particular about.
+
+Definition: a person is conversationally available if they are visible and they are enclosed by the location and they are not the player.
+
+Check asking no-one in particular about:
+	if the number of  conversationally available  people is zero:
+		say "I'm not mad enough yet to talk to myself." instead;
+	if the number of conversationally available  people is at least two:
+		say "I'll have to decide who to say that to: [the or-separated list of visible other people]." instead;
+	try asking a random conversationally available  person about the topic understood instead.
+
+Check telling no-one in particular about:
+	try asking no-one in particular about the topic understood instead.
+
+Understand "talk to [someone] about [something worthy of inspection]" as enquiring of it about.
+Understand "talk to [someone] about [text]" as telling it about.
 
 
 Book E - New Properties
@@ -2549,7 +2602,7 @@ Chapter 1 - Description
 
 The Attic Room is a room. "[if the player is in the Attic Room for more than the first time]Back in the attic. The Cathedral is still just as far away, visible through the hole in the ceiling above my cot. But the ladder's the only way out of here.[otherwise]This isn't really an attic. It isn't really a room either. It's a couple of floorboards laid across some roof rafters right in the ceiling of the Abbey. There's enough floor-space for a cot and a laundry crate, but I have to be careful not to roll out of bed, because if I do, the thick cobwebs all around aren't going to stop me from falling...[paragraph break]A little hole in the ceiling provides some sunlight: and when it rains, it means I can wash my hair, too. It's right above the rickety ladder down to the ground (and that means the ladder is starting to rot and bend)."
 
-Understand "cobwebs", "floorboards" and "rafters" as the backdrop-floor when in the Attic Room.
+Understand "cobwebs", "floorboards" and "rafters/rafter" as the backdrop-floor when in the Attic Room.
 
 Instead of examining the backdrop-floor when in the Attic Room:
 	say "There isn't a floor here, just a few rafters and a long drop on either side!"
@@ -2558,7 +2611,7 @@ Chapter 2 - Scenery
 
 Section 1 - Cot
 
-A supporter called my cot is enterable, scenery, in the Attic Room. "My cot is made of pinewood – flimsy stuff, you'd never make a clock from it. At least it has edges, so I can find it in the dark. I'd love to have a more solid bed – a horsehair mattress and everything – but it'd be so heavy it'd go straight through my floorboards. 'You'd better not grow,' Drake's told me before. 'Or you'll go straight through yourself.'" Understand "pine", "pinewood", "wood", "wooden", "bed" as my cot.
+A supporter called my cot is enterable, scenery, in the Attic Room. "My cot is made of pinewood – flimsy stuff that you'd never make a clock from. At least the bedframe has edges, so I can find it in the dark. I'd love to have a more solid bed – a horsehair mattress and everything – but it'd be so heavy it'd go straight through my floorboards. 'You'd better not grow,' Drake's told me before. 'Or you'll go straight through yourself.'[paragraph break]Beside the cot is a pencil sketch of my family." Understand "pine", "pinewood", "bedframe", "frame", "wood", "wooden", "bed" as my cot.
 
 Instead of entering my cot:
 	say "[one of]Stretching out on the cot gives me a good view through my window. I can see the spires of the Cathedral, tipping with Time's Arrows and flocked with birds. The Archbishop would listen, I'm thinking. If only I could reach him.[or]There's no time for that, Wren![stopping]"
@@ -2577,6 +2630,8 @@ Instead of searching the crate:
 Section 3 - Picture
 
 A pencil sketch is scenery, in the Attic Room. The description is "It's a pencil sketch of my family, or at least, that's what the monks say it is. Really, the mother and father don't look a thing like me, and the swarm of children around them don't either. But still, they'd explain why I was donated to the Abbey. Too many mouths to feed already." The printed name is "picture".
+
+Understand "picture", "family", "children", "mother", "father", "drawing" as the pencil sketch.
 
 Section 4 - Window
 
@@ -3313,7 +3368,7 @@ Table of Horloge's Conversation
 topic					conversation
 "drink" or "a drink"			CT_HOR1_DRINK
 "tea"					CT_HOR1_TEA
-"whotsit"				CT_HOR1_WHOTSIT
+"whotsit/wotsit/whatsit/watsit"				CT_HOR1_WHOTSIT
 
 CT_HOR1_DRINK is a conversation topic. The enquiry text is "'A drink?' I ask." The response text is "'A good cup of that whotsit, yes. Now run.' He waves a finger vaguely. 'Run along.'".
 
@@ -3559,12 +3614,12 @@ Instead of turning the polished hourglasses: say "The hourglasses tell the monks
 
 Section 3 - Garden Door
 
-The garden door is a locked door, east of the East Refectory. The description is "A low door leading out into the garden."
+The garden door is a locked door, east of the East Refectory and west of the Abbey Herb Garden. The description is "A low door leading out into the garden."
 
 Understand "low", "green", "small", "herb" as the garden door.
 
 Rule for writing a paragraph about the garden door:
-	say "Pungent smells drift in from the kitchen to the north. On the east wall is the small green door to the Abbey's herb garden."
+	say "Pungent smells drift in from the kitchen to the north. On the east wall is the small green door to the Abbey's herb garden[if garden door is open]. It's wide open[end if]."
 
 Instead of opening the locked Garden Door when Horloge's Keys are not carried:
 	say "It's locked.";
@@ -3572,8 +3627,10 @@ Instead of opening the locked Garden Door when Horloge's Keys are not carried:
 Instead of opening the locked Garden Door when Horloge's Keys are carried:
 	try unlocking the Garden Door with Horloge's Keys.
 
-Instead of unlocking the locked Garden Door with Horloge's Keys:
-	say "That door leads to the walled garden. I don't want to be trapped in here, I want to get out to the Cathedral!";
+[Instead of unlocking the locked Garden Door with Horloge's Keys:
+	say "That door leads to the walled garden. I don't want to be trapped in here, I want to get out to the Cathedral!";]
+
+Horloge's Keys unlock the garden door.
 
 Section 4 - Refectory Clock
 
@@ -4218,7 +4275,163 @@ Instead of hiding under something during Drake's Patrol:
 
 Part 15 - The Abbey, as a region
 
-The Abbey Region is a region. The Abbot's Quarters, Corridor of Contemplation, Attic Room, Rickety Stair, Upper Hall, Kitchen, Library, Central Hall, West Refectory, East Refectory, Scriptorium, Lower Hall, Abbey Pantry, and Abbey Entry are in the Abbey Region.
+The Abbey Region is a region. The Abbot's Quarters, Corridor of Contemplation, Attic Room, Rickety Stair, Upper Hall, Kitchen, Library, Central Hall, West Refectory, East Refectory, Scriptorium, Lower Hall, Abbey Pantry, Abbey Herb Garden and Abbey Entry are in the Abbey Region.
+
+Part 16 - The Herb Garden
+
+The Abbey Herb Garden is a room. "[one of]Standing in the garden is a bit like walking on tilting floorboards: every step you take has an unexpected spring to it. That's because where the ground should be there's a large metal disc with a large glass lens at its centre, on which all the soil beds are laid out like numbers on a clock. As the day goes on, the disc revolves so that the plants can follow the sunlight until at night, they've covered by the metal hood built into the south wall[or]Right now, [if the plants are day-plants]the lens in the centre of the great disc of the garden is bathed in light and the day-plants are out: basil, thyme, potatoes, other vegetables. The mushroom beds are under the metal hood on the south wall[else]the night-plants are out: mushrooms and nightcaps and fungi, and the day-plants are under the metal hood, safe from snails and birds[end if][if there is something on the large lens]. The lens is covered by [the list of things on the large lens][end if][stopping].[paragraph break]Otherwise, there are tall walls on four sides and only one door, back into the Abbey, to the west."
+
+Instead of going inside when in the Abbey Herb Garden: try going west instead.
+Instead of making to leave when in the Abbey Herb Garden: try going west instead.
+
+Instead of going through the garden door to the Abbey Herb Garden during Gong Sounding:
+	say "No time for horticulture now. I need to get out of here!"
+
+Instead of examining the garden door in the Abbey Herb Garden:
+	say "The interior of the Abbey is shadowy: too dark to see."
+
+Rule for writing a paragraph about the garden door when in the Abbey Herb Garden:
+	now the garden door is mentioned;
+
+Every turn when in the Abbey Herb Garden and a random chance of 1 in 3 succeeds:
+	say "[one of]The metal plate ticks slowly round.[or]The plants are glowing under the beautiful sunshine.[or]The sunlight makes my back prick with sweat.[or]Butterflies flit between the flowers.[or]A few insects buzz through the leaves.[or]Smells lift from the plants.[or]Birds flit by overhead.[or]Sunlight gleams off [if plants are day-plants]the lens in the centre of the garden[else]the metal floor of the garden, but doesn't hit the covered lens[end if].[at random]";
+
+Instead of jumping in the Abbey Herb Garden:
+	say "The floor rocks a little when I land."
+
+Section 2 - scenery - walls
+
+Some garden walls are scenery in the Herb Garden. "The walls nine or ten feet of smoothed-down stone, to stop climbers and creepers, human and vegetable alike."
+
+Instead of climbing or jumping over the garden walls: say "I'm not a frog, you know!"
+
+Instead of attacking or pushing or pulling the garden walls: say "They've been built to withstand cannonfire. There's not much I can do to change that."
+
+Section 3 - background animals
+
+Some creatures are scenery, animals, in the Abbey Herb Garden. Understand "birds/bird/insect/insects/bee/bees/butterfly/butterflies" as the creatures. "The garden is alive with small things."
+
+Instead of taking the creatures: say "They're busy. So, remember, am I."
+
+
+Chapter 2 - The Machinery
+
+
+The revolving metal plate is scenery in the Herb Garden. "The entire garden floor is one revolving metal plate, set on castors, that ticks slowly round to follow the motion of the sun around the garden. There's even a low cover at one end, to shield the plants from interested birds at four in the morning.[paragraph break]In the centre is the large lens that drives the mechanism." 
+
+Understand "disc", "floor", "garden" as the revolving metal plate.
+
+Instead of taking or pushing or attacking the metal plate: say "It's enormous: would take four men just to roll it into place. The garden walls were probably built around it."
+
+Instead of looking under the metal plate: say "There are castors there - I can't see them, but I'm a believer in clockwork - I don't have to see it to know it's there."
+
+Instead of setting or turning the metal plate: say "It doesn't have any levers or pulleys. The whole plate is powered by the rays of the sun, focuses through the lens at its centre."
+
+Understand  "castors/castor" as the revolving metal plate.
+
+Section 2 - giant lens
+
+The large lens is a supporter, part of the revolving metal plate. The description of the large lens is "The lens drives the mechanism, by collecting sunlight and using it to heat a spring of copper underneath the plate. The spring then winds and unwinds as it extends and shrinks, and the plate turns around - keeping the day-plants, herbs and vegetables, in the best sunshine possible, and at night, letting the mushrooms come out to collect the dew[if there is something on the large lens].[paragraph break]On the lens is [the list of things on large lens][end if].";
+
+To revolve into daytime:
+	now the plants are day-plants;
+	remove the short stake from play;
+	say 	"[one of]The garden revolves back as light hits the lens once more. The herbs and vegetables come out of hiding into the sunshine! [or]The lens lights up and the day-beds revolve back out from the under the cover. [stopping][one of]The movement almost knocks me over.[or]I have to balance to stay upright as the plate turns.[or]I'm pointing [one of]north[or]south[or]east[or]west[cycling] now.[at random]";
+
+Instead of looking through the large lens:
+	say "Peering through the lens I can just see the outline of the gigantic copper spring that drives the garden round and around."
+
+To revolve into nighttime:
+	now the plants are night-plants;
+	if the knife is not handled, move the short stake to the Abbey Herb Garden; 
+	say "[one of]There's a pause, and then the whole garden begins to revolve! The day-plants move under the shade of the metal hood, and the night-plants - mushrooms and fungi - emerge in their place[or]The garden revolves once more, bringing the night-plants back into view[stopping][if knife is not handled]. Stuck in the beds amongst them is a short stake[end if].";
+
+Instead of closing or touching the large lens:
+	say "I put both hands over the lens. ";
+	revolve into nighttime;
+
+Definition: something is away from the lens if it is not the large lens and it is not enclosed by the player.
+
+Before doing something when something away from the lens is physically involved and there is no thing on the large lens and the plants are night-plants:
+	say "I lift my hand away from the lens. ";
+	revolve into daytime;
+	if the short stake is physically involved or the plants are physically involved, stop the action;
+	continue the action;
+
+Before putting something on the large lens:
+	if the noun is not the rag, say "The [noun] is tiny compared to the size of the lens.";
+
+After putting something on the large lens:
+	say "I cover the lens with [the noun]. ";
+	revolve into nighttime instead;
+
+Instead of taking something when the noun is on the large lens:
+	say "I remove [the noun] from the lens. ";
+	now the noun is carried by the player;
+	revolve into daytime instead;
+
+Section 3-  the Hood
+
+The metal hood is scenery, in the Herb Garden. Understand "cover" as the hood. "The metal hood comes up to my knees, and is snugly built for the plants to slide in underneath without being hurt. It keeps the mushrooms shady (and warm) during the day, and the vegetables protected from snails at night."
+
+Instead of hiding under or entering or hiding behind the metal hood: say "The hood is filled with flowerbeds. There's no room for me in there!"
+
+The copper spring is part of the revolving plate. "There's a spring somewhere underneath, that expands and contracts in the heat from the lens, and drives the whole garden around."
+
+Instead of doing something when the copper spring is physically involved:
+	say "I can't see the spring, it's underneath the garden floor.";
+
+Chapter 3 - the Plants
+
+Section 1 - Soil Beds
+
+Some soil beds are scenery in the Herb Garden. Understand "flowerbed/bed", "flower bed/beds", "tub", "tubs", "ceramic", "earth" as the soil beds. "The soil beds are ceramic tubs, deep enough for growing tubers and wide enough to hold a good range of plants. The metal plate they're set on revolves them to follow the sun around the garden, so each plant gets exactly what it needs.[paragraph break]In the visible tubs are [if plants are night-plants]mushrooms and nightcaps[else]herbs and vegetables[end if]." 
+
+Understand "day-beds", "day bed/beds", "day-bed" as the soil beds when the plants are day-plants.
+Understand "night-beds", "night bed/beds", "night-bed", "mushroom bed/beds" as the soil beds when the plants are night-plants.
+
+Instead of putting something on the soil beds: 
+	try taking the plants.
+
+Instead of inserting something into the soil beds:
+	try taking the plants.
+
+Instead of searching the soil beds:
+	say "I'm not a dog!"
+
+Section 2 - plants
+
+Some plants are scenery in the Herb Garden. The plants can be day-plants or night-plants. The plants are day-plants.
+
+Understand "herb/herbs/plant/flower/flowers/basil/potatoes/vegetables" or "day-plants" or "day plants" as the plants when the plants are day-plants. 
+Understand "mushroom/fungi/fungus/nightcap/thyme" or "night-plants" or "night plants" as the plants when the plants are night-plants. 
+
+Instead of taking or pulling or attacking the day-plants plants:
+	say "I don't think Brother Saffron would appreciate me messing with his plants."
+
+Instead of eating or tasting the day-plants plants:
+	say "Some need cooking before they're edible: some the leaves are tough as leather and only what's below the surface is any good. And I'm a 2nd Assistant Clock Polisher, so I certainly don't know tick from tock."
+
+Instead of eating or tasting or touching or taking or pulling or attacking the night-plants plants:
+	say "Plenty of these mushrooms are grown for the Apothecary. Some might drive you mad, or blind, or worse. I'm not touching any."
+
+Instead of smelling in the Herb Garden:
+	say "There's a whole range of smells, from sweet to spicy."
+
+
+Section 5 - the stake in the ground
+
+The short stake is a thing. "Sticking from one of the beds newly emerged from the cover is a short stake."
+
+Instead of taking or pulling or looking under or pushing the short stake:
+	[ we reward the player with a knife, and remove the Tome in the library where the player would otherwise pick this up in Chapter 3. ]
+	remove the gigantic Tome from play;
+	remove the short stake from play;
+	move the knife to the player;
+	now the knife is handled;
+	now the knife is a garden-knife;
+	say "I pull the stake free of the soil, only to find it's the handle of a gardener's knife! Someone must have left it here by accident. Still, could be useful if I meet any Grey Figures..."
+
 
 Book 3 - The Cathedral Of Time
 
@@ -5263,7 +5476,9 @@ Section 7 - Knife
 
 A knife is a thing. The description is "A short steel letter-opener, sharp enough to slice through paper but probably not much good for fending off Calvin."
 
-Understand "letter-opener", "letter opener" as the knife.
+Understand "letter-opener", "letter opener" as the knife when the knife is not a garden-knife.
+Understand "gardener's", "gardeners" as the knife when the knife is a garden-knife.
+
 
 After taking the knife:
 	say "I pick up the knife." instead;
@@ -5271,8 +5486,20 @@ After taking the knife:
 Instead of dropping the knife:
 	say "A knife like this might come in useful. If I run into any Figures... or any Drakes...[paragraph break]";
 
+Instead of putting the knife on something:
+	try dropping the knife.
+
+Instead of inserting the knife into something:
+	try dropping the knife.
+
 Does the player mean slicing with the knife:
 	it is likely.
+
+
+The knife can be a garden-knife. The knife is not a garden-knife.
+
+Instead of examining the garden-knife knife:
+	say "A short gardener's knife, sharp enough for slicing bramble-stems but probably not much good for fending off Calvin."
 
 Section 6b - The Tome disappears and the Knife is left behind
 
@@ -5869,6 +6096,8 @@ Rule for clarifying the parser's choice of the Archbishop:
 Instead of going through the Bishop's Door from the Bishop's Library:
 	say "But I have to convince him! I can't just give up now!";	
 
+Before making to leave when in the Bishop's Library: try going south instead.
+
 Chapter 2 - Scenery
 
 The Archbishop's desk is a supporter, scenery, in the Bishop's library. The description is "The Archbishop's desk has a single drawer. No doubt what's in that is highly important."
@@ -5895,7 +6124,7 @@ Chapter 3 - Event on Entry
 BISHEVENT1 is a trigger.
 
 Rule for firing unfired BISHEVENT1:
-	say "'Well, well!' the Archbishop remarks, with an unhurried smile. 'I don't remember your name, young one, but I remember your face. Why did they send you? You've not broken something again, I trust?'[paragraph break]For a moment I'm too tongue-tied to speak. It's the Archbishop himself!";
+	say "'Well, well!' he remarks, with an unhurried smile. 'I don't remember your name, young one, but I remember your face. Why did they send you? You've not broken something again, I trust?'[paragraph break]For a moment I'm too tongue-tied to speak. It's the Archbishop himself!";
 
 After looking in the Bishop's Library when BISHEVENT1 is unfired:
 	fire BISHEVENT1;
@@ -11576,7 +11805,7 @@ The printed name of the middle of the gnomon is "Gnomon".
 
 Book W - Walkthrough Script
 
-Test jonsprogress with "test intro / test abbey / w / n / n / n / n / w / ne".
+Test jonsprogress with "test intro / test abbey / test cathedral".
 
 Test walkthrough with "test intro / test abbey / test cathedral / test clockchase / test rooftops / test covalt / test countinghouse / test outsidewarehouse".
 
