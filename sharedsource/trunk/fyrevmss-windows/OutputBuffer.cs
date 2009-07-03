@@ -271,7 +271,7 @@ namespace Textfyre.VM
         /// <param name="s">The string to write.</param>
         public void Write(string s)
         {
-            if (channel == OutputChannel.Main && filtering)
+            if (IsFilteredChannel(channel) && filtering)
             {
                 // main channel needs char-by-char filtering
                 foreach (char c in s)
@@ -290,9 +290,9 @@ namespace Textfyre.VM
         /// <param name="c">The character to write.</param>
         public void Write(char c)
         {
-            if (channel == OutputChannel.Main && filtering)
+            if (IsFilteredChannel(channel) && filtering)
             {
-                StringBuilder sb = strings[(int)OutputChannel.Main - 1];
+                StringBuilder sb = strings[(int)channel - 1];
                 if (c == '\n')
                 {
                     if (mainParaOpen)
@@ -358,6 +358,19 @@ namespace Textfyre.VM
             }
         }
 
+        private static bool IsFilteredChannel(OutputChannel channel)
+        {
+            switch (channel)
+            {
+                case OutputChannel.Main:
+                case OutputChannel.Prologue:
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
         private void OpenFormattingTags(StringBuilder sb)
         {
             if (mainIsFixed)
@@ -388,7 +401,7 @@ namespace Textfyre.VM
         /// </remarks>
         public void SetStyle(OutputStyle style)
         {
-            if (channel == OutputChannel.Main && filtering)
+            if (IsFilteredChannel(channel) && filtering)
             {
                 StringBuilder sb = strings[(int)OutputChannel.Main - 1];
                 // canonical nesting order: (fixed (italic (bold)))

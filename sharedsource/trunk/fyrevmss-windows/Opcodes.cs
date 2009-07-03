@@ -1745,7 +1745,8 @@ namespace Textfyre.VM
                     break;
 
                 case FyreCall.EnableFilter:
-                    outputBuffer.FilterEnabled = (args[1] != 0);
+                    gameWantsFiltering = (args[1] != 0);
+                    outputBuffer.FilterEnabled = allowFiltering & gameWantsFiltering;
                     break;
 
                 case FyreCall.SetVeneer:
