@@ -34,6 +34,8 @@ namespace FyreWinClient {
             UpperRight.Font = Properties.Settings.Default.HeaderFooterFont;
             LowerLeft.Font = Properties.Settings.Default.HeaderFooterFont;
             LowerRight.Font = Properties.Settings.Default.HeaderFooterFont;
+            TextWindow.BackColor = Properties.Settings.Default.WindowBackColor;
+            TextWindow.ForeColor = Properties.Settings.Default.FontColor;
         }
 
         private void StartGame() {
@@ -49,7 +51,7 @@ namespace FyreWinClient {
             LowerRight.Text = "";
             TextWindow.Clear();
 
-            MemoryStream fileData = new MemoryStream(Properties.Resource.sl_v1_04e);
+            MemoryStream fileData = new MemoryStream(Properties.Resource.sl_v1_05xe);
 
             vm = new Engine(fileData);
             vm.OutputFilterEnabled = false;
@@ -117,6 +119,9 @@ namespace FyreWinClient {
         }
 
         private void GotInput(string line) {
+            TextWindow.SelectionFont = new Font(Properties.Settings.Default.GameFont, FontStyle.Bold);
+            TextWindow.AppendText(String.Format("\r\n> {0}\r\n", InputText.Text));
+            TextWindow.SelectionFont = new Font(Properties.Settings.Default.GameFont, FontStyle.Regular);
             InputText.Enabled = false;
             inputLine = line;
             inputReadyEvent.Set();
@@ -134,19 +139,19 @@ namespace FyreWinClient {
             if (package.TryGetValue(OutputChannel.Prologue, out text)) {
                 channelText[(int)OutputChannel.Prologue] = text.Trim();
 
-                TextWindow.AppendText(String.Format("{0}\r\n\r\n", text));
+                TextWindow.AppendText(String.Format("{0}\r\n", text));
             }
 
             if (package.TryGetValue(OutputChannel.Credits, out text)) {
                 channelText[(int)OutputChannel.Credits] = text.Trim();
 
-                TextWindow.AppendText(text);
+                TextWindow.AppendText(String.Concat(text.Replace("&#169;","@"),"\r\n"));
             }
 
             if (package.TryGetValue(OutputChannel.Main, out text)) {
                 channelText[((int)OutputChannel.Main)] = text;
 
-                TextWindow.AppendText(text);
+                TextWindow.AppendText(String.Concat(text.Trim(),"\r\n"));
             }
 
             if (package.TryGetValue(OutputChannel.Location, out text)) {
@@ -158,7 +163,7 @@ namespace FyreWinClient {
             if (package.TryGetValue(OutputChannel.Score, out text)) {
                 channelText[(int)OutputChannel.Score] = text.Trim();
 
-                LowerRight.Text = String.Format("Score: {0}", text);
+                //LowerRight.Text = String.Format("Score: {0}", text);
             }
 
             if (package.TryGetValue(OutputChannel.Time, out text)) {
@@ -192,7 +197,19 @@ namespace FyreWinClient {
             }
 
             if (package.TryGetValue(OutputChannel.Conversation, out text)) {
+                TextWindow.AppendText("\r\n");
                 channelText[(int)OutputChannel.Conversation] = text.Trim();
+
+                if (text.Length > 0) {
+                    string[] delim = new string[] {"\n"};
+                    string[] clines = text.Split(delim, StringSplitOptions.RemoveEmptyEntries);
+
+                    int num = 0;
+                    foreach (string cline in clines) {
+                        num++;
+                        TextWindow.AppendText(string.Format("{0}. {1}\r\n", num, cline));
+                    }
+                }
             }
 
             if (package.TryGetValue(OutputChannel.Sound, out text)) {
@@ -208,6 +225,8 @@ namespace FyreWinClient {
             if (package.TryGetValue(OutputChannel.Death, out text)) {
                 channelText[(int)OutputChannel.Death] = text.Trim();
             }
+
+            TextWindow.ScrollToCaret();
         }
 
         private void ArrangeInput(object sender, EventArgs e) {

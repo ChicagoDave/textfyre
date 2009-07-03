@@ -32,6 +32,10 @@
             this.HFButton = new System.Windows.Forms.Button();
             this.HFFont = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.BackgroundColorBox = new System.Windows.Forms.TextBox();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.ColorButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -64,7 +68,7 @@
             // PreferenceOKButton
             // 
             this.PreferenceOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.PreferenceOKButton.Location = new System.Drawing.Point(210, 275);
+            this.PreferenceOKButton.Location = new System.Drawing.Point(167, 275);
             this.PreferenceOKButton.Name = "PreferenceOKButton";
             this.PreferenceOKButton.Size = new System.Drawing.Size(75, 23);
             this.PreferenceOKButton.TabIndex = 3;
@@ -74,12 +78,13 @@
             // PreferencesCancelButton
             // 
             this.PreferencesCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.PreferencesCancelButton.Location = new System.Drawing.Point(291, 275);
+            this.PreferencesCancelButton.Location = new System.Drawing.Point(248, 275);
             this.PreferencesCancelButton.Name = "PreferencesCancelButton";
             this.PreferencesCancelButton.Size = new System.Drawing.Size(75, 23);
             this.PreferencesCancelButton.TabIndex = 4;
             this.PreferencesCancelButton.Text = "&Cancel";
             this.PreferencesCancelButton.UseVisualStyleBackColor = true;
+            this.PreferencesCancelButton.Click += new System.EventHandler(this.PreferencesCancelButton_Click);
             // 
             // HFButton
             // 
@@ -108,11 +113,44 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Header/Footer Font";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 87);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(92, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Background Color";
+            // 
+            // BackgroundColorBox
+            // 
+            this.BackgroundColorBox.BackColor = System.Drawing.Color.White;
+            this.BackgroundColorBox.ForeColor = System.Drawing.Color.Black;
+            this.BackgroundColorBox.Location = new System.Drawing.Point(15, 103);
+            this.BackgroundColorBox.Name = "BackgroundColorBox";
+            this.BackgroundColorBox.ReadOnly = true;
+            this.BackgroundColorBox.Size = new System.Drawing.Size(280, 20);
+            this.BackgroundColorBox.TabIndex = 9;
+            this.BackgroundColorBox.Text = "The lazy fox jumped over the brown grue.";
+            // 
+            // ColorButton
+            // 
+            this.ColorButton.Location = new System.Drawing.Point(298, 103);
+            this.ColorButton.Name = "ColorButton";
+            this.ColorButton.Size = new System.Drawing.Size(25, 20);
+            this.ColorButton.TabIndex = 10;
+            this.ColorButton.Text = "...";
+            this.ColorButton.UseVisualStyleBackColor = true;
+            this.ColorButton.Click += new System.EventHandler(this.ColorButton_Click);
+            // 
             // Preferences
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(370, 310);
+            this.ClientSize = new System.Drawing.Size(337, 310);
+            this.Controls.Add(this.ColorButton);
+            this.Controls.Add(this.BackgroundColorBox);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.HFButton);
             this.Controls.Add(this.HFFont);
             this.Controls.Add(this.label2);
@@ -140,5 +178,9 @@
         private System.Windows.Forms.Button HFButton;
         private System.Windows.Forms.TextBox HFFont;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox BackgroundColorBox;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Button ColorButton;
     }
 }

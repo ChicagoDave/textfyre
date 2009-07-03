@@ -209,6 +209,7 @@ namespace Textfyre.VM
         private bool mainIsBold, mainIsItalic, mainIsFixed, mainParaOpen, mainBreakPending;
         private bool mainRightQuote;
         private bool filtering = true;
+        private bool overrideFiltering = false;
         private OutputFilterTags filterTags = new OutputFilterTags();
 
         /// <summary>
@@ -252,7 +253,12 @@ namespace Textfyre.VM
         public bool FilterEnabled
         {
             get { return filtering; }
-            set { filtering = value; }
+            set { if (!overrideFiltering) filtering = value; }
+        }
+
+        public bool OverrideFiltering {
+            get { return overrideFiltering; }
+            set { overrideFiltering = value; }
         }
 
         /// <summary>

@@ -122,7 +122,7 @@
     <value>..\Images\PageArt\Gallows.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GameFile" xml:space="preserve">
-    <value>sl-v1.04e.ulx</value>
+    <value>sl-v1.05xe.ulx</value>
   </data>
   <data name="GrubbersChase" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\PageArt\GrubbersChase.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,13 +148,13 @@
   <data name="rightpage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\rightpage.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sl_v1_04e" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GameFiles\sl-v1.04e.ulx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="Title" xml:space="preserve">
     <value>Jack Toresal and The Secret Letter</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version: 1.04.20090701</value>
+    <value>Version: 1.05.20090702</value>
+  </data>
+  <data name="sl_v1_05xe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\GameFiles\sl-v1.05xe.ulx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

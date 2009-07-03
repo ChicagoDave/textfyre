@@ -68,7 +68,7 @@ namespace FyreWinClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to sl-v1.04e.ulx.
+        ///   Looks up a localized string similar to sl-v1.05xe.ulx.
         /// </summary>
         internal static string GameFile {
             get {
@@ -132,9 +132,9 @@ namespace FyreWinClient.Properties {
             }
         }
         
-        internal static byte[] sl_v1_04e {
+        internal static byte[] sl_v1_05xe {
             get {
-                object obj = ResourceManager.GetObject("sl_v1_04e", resourceCulture);
+                object obj = ResourceManager.GetObject("sl_v1_05xe", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -149,7 +149,7 @@ namespace FyreWinClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Version: 1.04.20090701.
+        ///   Looks up a localized string similar to Version: 1.05.20090702.
         /// </summary>
         internal static string Version {
             get {
