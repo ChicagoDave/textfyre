@@ -4,7 +4,7 @@
              xmlns:ctrl="clr-namespace:Textfyre.UI.Controls"
     >
     <Grid x:Name="LayoutRoot">
-        <ctrl:Art />
+        <ctrl:Art ID="BookPage2"/>
         <Grid Margin="20,20,20,20">
         <ScrollViewer x:Name="ManualScroller" BorderThickness="0" Style="{StaticResource ScrollViewerStyle1}" VerticalScrollBarVisibility="Auto">
             <StackPanel x:Name="ContentStack">
