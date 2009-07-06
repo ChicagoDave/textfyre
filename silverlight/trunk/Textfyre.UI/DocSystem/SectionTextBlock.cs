@@ -105,12 +105,12 @@ namespace Textfyre.UI.DocSystem
                     _stackPanel.Children.Add(_txtBlk);
 
                 //_txtBlk = new TextBlock();
-                _currentTextFormat = tf;
+                _currentTextFormat = tf.Copy();
                 CreateFormat();
             }
             else if (!tf.IsEqual(_currentTextFormat))
             {
-                _currentTextFormat = tf;
+                _currentTextFormat = tf.Copy();
                 CreateFormat();
             }
 
