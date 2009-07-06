@@ -16,6 +16,21 @@ namespace Textfyre.UI.Entities
     {
         public List<Run> WordDefRuns = new List<Run>();
 
+        private TextBlock _curTB;
+        private Run _curTBRun;
+        private TextBlock _curTBPre;
+        private Run _curTBRunPre;
+        private TextBlock _curTBLine;
+        private Run _curTBRunLine;
+        private Current.Font.FontType _curFontType = Textfyre.UI.Current.Font.FontType.Main;
+        private double _wantedWidth;
+        private int _bold = 0;
+        private int _italic = 0;
+        private bool _isWordDefMode = false;
+        private int _textBlockCount = 0;
+        private string _activeWord = String.Empty;
+        private string _word;
+
         public void ShowWordDefs()
         {
             Color wordDefColor = new Color();
@@ -42,18 +57,6 @@ namespace Textfyre.UI.Entities
             }
         }
 
-        private TextBlock _curTB;
-        private Run _curTBRun;
-        private TextBlock _curTBPre;
-        private Run _curTBRunPre;
-        private TextBlock _curTBLine;
-        private Run _curTBRunLine;
-        private Current.Font.FontType _curFontType = Textfyre.UI.Current.Font.FontType.Main;
-
-        private int _bold = 0;
-        private int _italic = 0;
-
-        private bool _isWordDefMode = false;
         public bool IsWordDefMode
         {
             get
@@ -66,8 +69,6 @@ namespace Textfyre.UI.Entities
             }
         }
 
-
-        private double _curLineHeight = 0d;
         public class WordDefs : List<WordDefOLD>
         {
         }
@@ -88,7 +89,6 @@ namespace Textfyre.UI.Entities
             }
         }
 
-        private double _wantedWidth;
         public void Create(double width)
         {
             _wantedWidth = width;
@@ -99,12 +99,10 @@ namespace Textfyre.UI.Entities
 
             WordDefs wds = new WordDefs();
             _curTB.Tag = wds;
-            _curLineHeight = 0;
 
             _curTB.MouseMove += new MouseEventHandler(_curTB_MouseMove);
             _curTB.MouseLeave += new MouseEventHandler(_curTB_MouseLeave);
             _curTB.MouseLeftButtonUp += new MouseButtonEventHandler(_curTB_MouseLeftButtonUp);
-
         }
 
         private void CreateLine()
@@ -112,7 +110,6 @@ namespace Textfyre.UI.Entities
             InitTextBlock( ref _curTBLine);
         }
 
-        private int _textBlockCount = 0;
         private void InitTextBlock(ref TextBlock tb)
         {
             _textBlockCount++;
@@ -181,7 +178,6 @@ namespace Textfyre.UI.Entities
             tb.Cursor = null;
         }
 
-        private string _activeWord = String.Empty;
         void _curTB_MouseMove(object sender, MouseEventArgs e)
         {
             TextBlock tb = sender as TextBlock;
@@ -265,17 +261,11 @@ namespace Textfyre.UI.Entities
             }
         }
 
-        //public void AddText(string text)
-        //{
-        //    _curTBRun.Text += text;
-        //}
-
         /// <summary>
         /// Returns true if new line.
         /// </summary>
         /// <param name="word"></param>
         /// <returns></returns>
-        private string _word;
         public bool AddWordBegin(string word)
         {
             _word = word;

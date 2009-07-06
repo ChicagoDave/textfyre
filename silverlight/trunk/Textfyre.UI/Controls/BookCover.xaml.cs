@@ -30,12 +30,10 @@ namespace Textfyre.UI.Controls
             this.FlipCoverStoryboard.Completed += new EventHandler(FlipCoverStoryboard_Completed);
             Current.Game.StoryReady += new EventHandler(Application_StoryReady);
 
-            //PageSide.Source = Current.Application.GetImageBitmap("Images/BookPagesSideWide.png");
             Current.Font.ApplyFont(Textfyre.UI.Current.Font.FontType.Headline, LoadingText);
-
         }
 
-        void Application_StoryReady(object sender, EventArgs e)
+        private void Application_StoryReady(object sender, EventArgs e)
         {
             LoadingText.Text = "Click To Begin...";
             if (Settings.AutoOpenBookCover || Settings.IsRestartingGame)

@@ -9,14 +9,19 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.ComponentModel;
 
 namespace Textfyre.UI.Controls
 {
     public partial class TextfyreBookPage : UserControl
     {
-        private Helpers.MouseClickManager _mouseClickManager;
+        public int BookPageIndex;
 
+        private Helpers.MouseClickManager _mouseClickManager;
         private string _pageID;
+
+        public PropertyDescriptor ID;
+
         public string PageID
         {
             get
@@ -26,10 +31,8 @@ namespace Textfyre.UI.Controls
             set
             {
                 _pageID = value;
-                //Debug.Text = _pageID;
             }
         }
-        public int BookPageIndex;
 
         public TextfyreBookPage(string pageID, int bookPageIndex)
         {

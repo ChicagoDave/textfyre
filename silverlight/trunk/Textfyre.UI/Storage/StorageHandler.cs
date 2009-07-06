@@ -15,7 +15,6 @@ namespace Textfyre.UI.Storage {
     public static class StorageHandler {
         #region :: ReadTextFile, WriteTextFile ::
         public static void WriteTextFile(string filename, string data) {
-            // TODO: Backup file, in case we hit the memory limit.
             DeleteFile(filename);
 
             try {
@@ -30,10 +29,8 @@ namespace Textfyre.UI.Storage {
                     }
 
                 }
-            } catch (IsolatedStorageException ex) {
+            } catch {
             }
-
-            // TODO: Delete backup file, if everything went fine.
         }
 
         public static string ReadTextFile(string filename) {
@@ -53,7 +50,7 @@ namespace Textfyre.UI.Storage {
                         sb = reader.ReadToEnd();
                     }
                 }
-            } catch (IsolatedStorageException ex) {
+            } catch {
             }
             return sb;
         }
@@ -67,7 +64,7 @@ namespace Textfyre.UI.Storage {
 
                 if (IsoStorageFile.FileExists(filename))
                     IsoStorageFile.DeleteFile(filename);
-            } catch (IsolatedStorageException ex) {
+            } catch {
             }
         }
         #endregion

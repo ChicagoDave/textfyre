@@ -1,15 +1,8 @@
-﻿using System;
-using System.Net;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Textfyre.UI.Controls;
-using System.Collections.Generic;
 
 namespace Textfyre.UI.DocSystem
 {
@@ -17,12 +10,7 @@ namespace Textfyre.UI.DocSystem
     {
         private List<TextfyreBookPage> _bookPages = new List<TextfyreBookPage>();
         private TextfyreBookPage _currentPage;
-        private int _bookPagesIndex = 0;
-
-        private int _sectionsIndex = 0;
         private SectionCollection _sections;
-
-        private StackPanel _stackPanel;
 
         private bool _hasInit = false;
         void FlipBook_OnPageTurned(int leftPageIndex, int rightPageIndex)
@@ -39,8 +27,6 @@ namespace Textfyre.UI.DocSystem
             }
 
             _sections = sections;
-
-            _sectionsIndex = 0;
 
             List<TextfyreBookPage> bookPages = _bookPages;
             _bookPages = new List<TextfyreBookPage>();
@@ -65,7 +51,6 @@ namespace Textfyre.UI.DocSystem
             double height = 0;
             bool displaySection = false;    // Skip first page (which is shown on the story page)
             int numberOfBackPages = 0;
-            bool prologueBegin = false;
             for (int i = _sections.Count-1; i >= 0; i--)
             {
 //                double maxPageHeight = displaySection ? Settings.BookPageInnerContentHeight :

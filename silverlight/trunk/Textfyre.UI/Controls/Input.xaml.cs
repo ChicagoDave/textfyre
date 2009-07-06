@@ -14,32 +14,31 @@ namespace Textfyre.UI.Controls
 {
     public partial class Input : UserControl
     {
+        public event EventHandler AnyKeyPress;
+        public event EventHandler<InputEventArgs> InputEntered;
+
+        private Entities.DocumentColumn _column = null;
+        private bool _isWaitForKeyMode = false;
+        private bool _isSingleCharMode = false;
+        private Storyboard _inputFocusStoryboard;
+        private DocSystem.StoryPage _storyPage = null;
         private List<string> _history = new List<string>();
         private int _historyPos;
+        private bool _enableInput = true;
         
         public class InputEventArgs : EventArgs
         {
             public string TextEntered;
         }
-        public event EventHandler<InputEventArgs> InputEntered;
 
-        public event EventHandler AnyKeyPress;
-        private bool _isWaitForKeyMode = false;
-        private bool _isSingleCharMode = false;
-        private Storyboard _inputFocusStoryboard;
-
-
-        //private StackPanel _hostStackPanel = null;
-        private DocSystem.StoryPage _storyPage = null;
         public void AddInputToStackPanel( DocSystem.StoryPage storyPage )
         {
             _storyPage = storyPage;
 
-            //_storyPage.HostStackPanelAddHeight(12d);
             _storyPage.HostStackPanel.Children.Add(this);
             _tbInput.Width = _storyPage.HostStackPanel.Width - 20d;
-            //column.PageHeightReset();
         }
+
         public void RemoveInputFromStackPanel()
         {
             if (_storyPage != null)
@@ -47,7 +46,6 @@ namespace Textfyre.UI.Controls
                 StackPanel sp = _storyPage.HostStackPanel;
                 if (sp.Children.Contains(this))
                 {
-                    //_storyPage.HostStackPanelSubstractHeight(12d);
                     sp.Children.Remove(this);
                 }
             }
@@ -55,7 +53,6 @@ namespace Textfyre.UI.Controls
             _storyPage = null;
         }
 
-        private Entities.DocumentColumn _column = null;
         public void AddInputToColumn(Entities.DocumentColumn column)
         {
             column.Add(this);
@@ -63,6 +60,7 @@ namespace Textfyre.UI.Controls
             _tbInput.Width = column.Width - 20d;
             column.PageHeightReset();
         }
+
         public void RemoveInputFromColumn()
         {
             if (_column != null)
@@ -78,11 +76,11 @@ namespace Textfyre.UI.Controls
                 // TODO: Implement StackPanel
                 return true;
                 
-                if (_column == null)
-                    return false;
+                //if (_column == null)
+                //    return false;
 
-                return (_column.TextfyreBookPage.BookPageIndex == Current.Game.LeftPageIndex ||
-                    _column.TextfyreBookPage.BookPageIndex == Current.Game.RightPageIndex);
+                //return (_column.TextfyreBookPage.BookPageIndex == Current.Game.LeftPageIndex ||
+                //    _column.TextfyreBookPage.BookPageIndex == Current.Game.RightPageIndex);
             }
         }
 
@@ -177,8 +175,6 @@ namespace Textfyre.UI.Controls
             _tbInput.KeyDown += new KeyEventHandler(_tbInput_KeyDown);
         }
 
-        #region :: EnableInput ::
-        private bool _enableInput = true;
         public bool EnableInput
         {
             get
@@ -191,7 +187,6 @@ namespace Textfyre.UI.Controls
                 _enableInput = value;
             }
         }
-        #endregion
 
         void _tbInput_KeyDown(object sender, KeyEventArgs e)
         {
@@ -283,6 +278,9 @@ namespace Textfyre.UI.Controls
 
         private void AddToHistory(string input)
         {
+            // Only save last 20 things.
+            if (_history.Count == 20)
+                _history.RemoveAt(19);
             _history.Add(input);
             _historyPos = _history.Count;
         }
