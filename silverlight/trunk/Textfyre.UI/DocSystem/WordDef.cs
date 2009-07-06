@@ -56,7 +56,17 @@ namespace Textfyre.UI.DocSystem
             {
                 string word = wd.Word;
                 string id = wd.ID;
-                string match = @"(?<!<)(\b" + word + @"\b[,.:;?!]|\b" + word + @"\b)(?!')(?!-)(?!>)";
+                //string match = @"(?<!<)(\b" + word + @"\b[,.:;?!]|\b" + word + @"\b)(?!')(?!-)(?!>)";
+                string match = @"(?<!<)(""?)(\b" + word + @"\b[,.:;?!]|\b" + word + @"\b)(?!')(?!-)(?(1)(?<=.{0})(""?))(?!>)";
+
+                //string pattern = 
+                //    "(?<![<])" +                           /* negative lookbehind for < */                      
+                //    "(\")?" +                             /* match a " (or maybe not) */
+                //    "(\\b" + word + @"\\b[,.:;?!]?)" +           /* you, as a word, maybe punctuated */                      
+                //    "(?!')" +                             /* but not "you're" etc */                      
+                //    "(?!-)" +                             /* and not "you-" */                      
+                //    "(?(1)(?<=.{0})|(\"?))(?!>)";         /* match a " if the first did not */
+
                 text = Regex.Replace(text, match, @"<WordDef ID=""" + id + @""">$&</WordDef>", RegexOptions.IgnoreCase);
             
             }
