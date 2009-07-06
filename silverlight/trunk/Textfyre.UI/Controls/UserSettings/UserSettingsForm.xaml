@@ -21,7 +21,17 @@
 
             <Border Grid.Column="0" Grid.Row="1" BorderBrush="#FF8C7052" BorderThickness="2" >
                 <Grid x:Name="ListFilesContent">
-                    <TextBox x:Name="TranscriptText" Background="#FFEDD8C2" Margin="4,4,4,4" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
+                    <StackPanel Margin="10,10,10,10">
+                        <TextBlock>Font:</TextBlock>
+                        <ComboBox x:Name="DdlFont"></ComboBox>
+                        <TextBlock>Font Size:</TextBlock>
+                        <ComboBox x:Name="DdlFontSize"></ComboBox>
+                        <TextBlock>Font Color:</TextBlock>
+                        <Slider></Slider>
+                        <TextBlock>Background Color:</TextBlock>
+                        <Slider></Slider>
+
+                    </StackPanel>
                 </Grid>
             </Border>
 

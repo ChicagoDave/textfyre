@@ -18,7 +18,20 @@ namespace Textfyre.UI.Controls.UserSettings
         {
             InitializeComponent();
             Current.Font.ApplyFont(Textfyre.UI.Current.Font.FontType.Header, DialogTitle);
-            DialogTitle.FontSize = 24d;        
+            DialogTitle.FontSize = 24d;
+
+            string fontFamily = Storage.Settings.Get("FontFamily");
+
+            if (fontFamily.Length == 0)
+                fontFamily = "Default";
+
+            DdlFont.Items.Add(new TextBlock().Text = "Default");
+
+            if( Current.Application.Platform == Textfyre.UI.Current.Platform.Windows )
+                DdlFont.Items.Add(new TextBlock().Text = "Georgia");
+
+            DdlFont.Items.Add(new TextBlock().Text = "Times New Roman");
+            
         }
 
         public void Show()
