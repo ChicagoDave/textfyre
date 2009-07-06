@@ -6,7 +6,7 @@
   <Setting Key="BookPageHeight" Value="538" />
   <Setting Key="BookPageOffsetLeft" Value="31" />
   <Setting Key="BookPageOffsetTop" Value="33" />
-  <Setting Key="VersionText" Value="Version: 1.05.20090702" />
+  <Setting Key="VersionText" Value="Version: 1.05.20090706" />
   <Setting Key="StoryID" Value="1" />
   <Setting Key="LogEnabled" Value="False" />
   <Setting Key="UseIndents" Value="True" />
