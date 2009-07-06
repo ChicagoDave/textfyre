@@ -43,6 +43,7 @@
 
             <Border Grid.Column="0" Grid.Row="3" BorderBrush="#FF8C7052" BorderThickness="2" x:Name="ButtonContent">
                 <Grid x:Name="ButtonGrid">
+                    <Button x:Name="BtnIncreaseStorageSpace" Content="Increase Storage Space" Click="BtnIncreaseStorageSpace_Click" Style="{StaticResource DialogButtonStyle}" Height="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,0,0,0" />
                     <Button x:Name="BtnCancel" Content="Cancel" Click="BtnCancel_Click" Style="{StaticResource DialogButtonStyle}" Width="100" Height="25" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,116,0" />
                     <Button x:Name="BtnSave" Content="Save" Click="BtnSave_Click" Style="{StaticResource DialogButtonStyle}" Width="100" Height="25" Margin="0,0,4,0" VerticalAlignment="Center" HorizontalAlignment="Right" />
                 </Grid>
