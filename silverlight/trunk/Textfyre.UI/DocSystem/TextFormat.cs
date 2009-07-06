@@ -29,7 +29,7 @@ namespace Textfyre.UI.DocSystem
 
         #region :: IsEqual ::
         public bool IsEqual(TextFormat tf)
-        {
+        {            
             if (tf.Format != this.Format)
                 return false;
 
@@ -124,5 +124,16 @@ namespace Textfyre.UI.DocSystem
             }
         }
         #endregion
+
+        public TextFormat Copy()
+        {
+            TextFormat tf = new TextFormat();
+            tf.Format = this.Format;
+            tf.Align = this.Align;
+            tf.IsBold = this.IsBold;
+            tf.IsItalic = this.IsItalic;
+
+            return tf;
+        }
     }
 }

@@ -102,8 +102,8 @@ namespace Textfyre.UI.DocSystem
                         EndPage(_currentPage, height);
                         _currentPage = GetNextPage();
                         numberOfBackPages++;
-                        //if (numberOfBackPages >= 2)
-                        //    break;
+                        if ( Settings.MaxBackPages > 0 && numberOfBackPages >= Settings.MaxBackPages)
+                            break;
                     }
                     height = 0;
                     displaySection = true;

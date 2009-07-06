@@ -170,6 +170,8 @@ namespace Textfyre.UI.DocSystem
             {
                 FyreXmlElement element = _fyreXmlElements[0];
                 _fyreXmlElements.RemoveAt(0);
+                if (element == null)
+                    break;
                 switch (element.OpCode)
                 {
                     case FyreXml.OpCode.PrologueMode:

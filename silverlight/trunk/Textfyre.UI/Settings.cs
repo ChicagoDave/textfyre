@@ -47,6 +47,8 @@ namespace Textfyre.UI
         public static string QuitUrl = String.Empty;
         public static bool Profile = false;
 
+        public static int MaxBackPages = 0;
+
         // Silverlight Param Settings
         public static bool IsDesktopVersion = false;
         public static bool IsBrowserVersion
