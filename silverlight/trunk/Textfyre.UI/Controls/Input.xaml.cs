@@ -160,7 +160,7 @@ namespace Textfyre.UI.Controls
             if (_inputFocusStoryboard == null)
             {
                 _inputFocusStoryboard = new Storyboard();
-                _inputFocusStoryboard.Duration = TimeSpan.FromMilliseconds(10);
+                _inputFocusStoryboard.Duration = TimeSpan.FromMilliseconds(250);
                 _inputFocusStoryboard.Completed += new EventHandler(_sb_Completed);
             }
 
@@ -170,9 +170,14 @@ namespace Textfyre.UI.Controls
             }
         }
 
+        private bool _isInitInputDone = false;
         void Input_Loaded(object sender, RoutedEventArgs e)
         {
-            _tbInput.KeyDown += new KeyEventHandler(_tbInput_KeyDown);
+            if (!_isInitInputDone)
+            {
+                _isInitInputDone = true;
+                _tbInput.KeyDown += new KeyEventHandler(_tbInput_KeyDown);
+            }
         }
 
         public bool EnableInput
@@ -206,6 +211,7 @@ namespace Textfyre.UI.Controls
                 {
                     _historyPos--;
                     _tbInput.Text = _history[_historyPos];
+                    _tbInput.SelectionStart = _tbInput.Text.Length;
                 }
                 else
                 {
@@ -222,6 +228,7 @@ namespace Textfyre.UI.Controls
                 if (_historyPos >= 0 && _historyPos < _history.Count)
                 {
                     _tbInput.Text = _history[_historyPos];
+                    _tbInput.SelectionStart = _tbInput.Text.Length;
 
                 }
                 else
