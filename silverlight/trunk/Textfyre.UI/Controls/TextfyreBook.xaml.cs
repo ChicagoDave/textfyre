@@ -577,6 +577,7 @@ As a commercial product, interactive fiction reached its peak in popularity in t
         }
         #endregion :: CreatePage ::
 
+
         private void AddClickFlip(TextfyreBookPage ele)
         {
             ele.DoubleClick += new EventHandler<MouseButtonEventArgs>(ele_DoubleClick);
@@ -646,6 +647,9 @@ As a commercial product, interactive fiction reached its peak in popularity in t
 
         public object GetItem(int index)
         {
+            if (index < 0 || index >= _pages.Count)
+                return null;
+
             return _pages[index];
         }
 

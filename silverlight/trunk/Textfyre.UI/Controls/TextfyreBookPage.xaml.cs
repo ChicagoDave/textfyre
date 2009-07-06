@@ -69,8 +69,10 @@ namespace Textfyre.UI.Controls
 
         public void SetTime(string time)
         {
-            if( Settings.UseRealPageNumbers)
+            if (Settings.UseRealPageNumbers)
+            {
                 TimeChannel.Text = BookPageIndex.ToString();
+            }
             else
                 TimeChannel.Text = time;
         }
@@ -82,6 +84,7 @@ namespace Textfyre.UI.Controls
                 LayoutRoot.Children.RemoveAt(4);
                 LayoutRoot.Children.Insert(4, value);
             }
+
         }
 
         public void HideHeader()

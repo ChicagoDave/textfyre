@@ -11,15 +11,47 @@ namespace Textfyre.UI.DocSystem
         private List<TextfyreBookPage> _bookPages = new List<TextfyreBookPage>();
         private TextfyreBookPage _currentPage;
         private SectionCollection _sections;
+        
+        private int _leftPageIndex = 0;
+        private int _rightPageIndex = 0;
+        private string _leftPageID = string.Empty;
+        private string _rightPageID = string.Empty;
+        private int _maxPages = 0;
 
         private bool _hasInit = false;
         void FlipBook_OnPageTurned(int leftPageIndex, int rightPageIndex)
         {
-            int i = leftPageIndex;
+            string preLeftPageID = _leftPageID;
+
+            _leftPageIndex = leftPageIndex;
+            _rightPageIndex = rightPageIndex;
+
+            _leftPageID = string.Empty;
+            object currpage = Current.Game.TextfyreBook.GetItem(_leftPageIndex-1);
+            if (currpage != null && currpage is Controls.TextfyreBookPage)
+                _leftPageID = (currpage as Controls.TextfyreBookPage).PageID;
+
+            _rightPageID = string.Empty;
+            object currrpage = Current.Game.TextfyreBook.GetItem(_rightPageIndex-1);
+            if (currrpage != null && currpage is Controls.TextfyreBookPage)
+                _rightPageID = (currrpage as Controls.TextfyreBookPage).PageID;
+
+
+            if ( _rightPageID != "Story" && preLeftPageID == "Story" && (_leftPageID == "BackPage" || _rightPageID=="TOC"))
+            {
+                Do(_sections);
+            }
         }
+
+        
 
         public void Do( SectionCollection sections )
         {
+            string lpageid = _leftPageID;
+            string rpageid = _rightPageID;
+
+            _maxPages = _leftPageID == "Story" ? 2 : Settings.MaxBackPages;
+
             if (!_hasInit)
             {
                 _hasInit = true;
@@ -50,6 +82,7 @@ namespace Textfyre.UI.DocSystem
             _currentPage = GetNextPage();
             double height = 0;
             bool displaySection = false;    // Skip first page (which is shown on the story page)
+            bool maxPagesReached = false;
             int numberOfBackPages = 0;
             for (int i = _sections.Count-1; i >= 0; i--)
             {
@@ -102,21 +135,23 @@ namespace Textfyre.UI.DocSystem
                         EndPage(_currentPage, height);
                         _currentPage = GetNextPage();
                         numberOfBackPages++;
-                        if ( Settings.MaxBackPages > 0 && numberOfBackPages >= Settings.MaxBackPages)
-                            break;
+                        if (_maxPages > 0 && numberOfBackPages >= _maxPages)
+                            maxPagesReached = true;
                     }
                     height = 0;
                     displaySection = true;
                 }
 
-                StackPanel sp = _currentPage.PageScrollViewer.Content as StackPanel;
-                sp.VerticalAlignment = VerticalAlignment.Top;
-
                 height += section.Height;
 
-                if (displaySection)
-                    sp.Children.Insert(0, section.HostGrid);                
+                if (!maxPagesReached)
+                {
+                    StackPanel sp = _currentPage.PageScrollViewer.Content as StackPanel;
+                    sp.VerticalAlignment = VerticalAlignment.Top;
 
+                    if (displaySection)
+                        sp.Children.Insert(0, section.HostGrid);
+                }
             }
             EndPage(_currentPage, height);
 
