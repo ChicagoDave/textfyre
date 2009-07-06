@@ -6,6 +6,7 @@
     <Grid x:Name="LayoutRoot">
         <ctrls:Art x:Name="BookPage1" ID="BookPage1" />
         <ctrls:Art x:Name="BookPage2" ID="BookPage2" Visibility="Collapsed" />
+        <Grid x:Name="BookPageColorizer" Background="#00FFFFFF" />
         <TextBlock Margin="-10,10,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="" TextWrapping="Wrap" x:Name="LocationChannel" TextAlignment="Center" Height="57"/>
         <TextBlock Margin="-10,0,0,10" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Text="" TextWrapping="Wrap" x:Name="TimeChannel" TextAlignment="Center" RenderTransformOrigin="0.5,20" Height="18" />
 
