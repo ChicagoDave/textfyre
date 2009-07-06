@@ -16,11 +16,7 @@ namespace Textfyre.UI.Controls
     public partial class TextfyreBook : UserControl, IDataProvider
     {
         private List<TextfyreBookPage> _pages;
-
         private DocSystem.Document _document = new Textfyre.UI.DocSystem.Document();
-
-      
-        //private Entities.Document _document;
         public Controls.TableOfContent _toc;
 
         #region :: PageCount ::
@@ -318,10 +314,6 @@ namespace Textfyre.UI.Controls
 
                 case TableOfContent.Action.Transcript:
                     Current.Game.TextfyreBook.TranscriptDialog.Show();
-                    break;
-
-                case TableOfContent.Action.Map:
-                    Current.Game.TextfyreBook.Map.Show();
                     break;
 
                 case TableOfContent.Action.Hints:

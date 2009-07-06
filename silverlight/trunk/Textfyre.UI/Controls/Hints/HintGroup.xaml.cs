@@ -20,7 +20,6 @@ namespace Textfyre.UI.Controls.Hints
         private double _height = 0;
         private double _currentHeight = 0;
         private Storyboard _expandStoryboard;
-        private int _hintsRevealed = 0;
         private List<string> _hintTexts;
 
         private State _state;

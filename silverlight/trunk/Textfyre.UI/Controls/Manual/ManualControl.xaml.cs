@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using System.Xml.Linq;
-using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace Textfyre.UI.Controls.Manual
 {
     public partial class ManualControl : UserControl
     {
-        private double _width = Settings.BookPageWidth - 80d; 
+        public string ID;
+
+        private double _width = Settings.BookPageWidth - 80d;
+        private string _mainTitle = String.Empty;
+        private string _text = string.Empty;
+        private Stack<string> _titles = new Stack<string>();
 
         public ManualControl()
         {
@@ -25,17 +25,12 @@ namespace Textfyre.UI.Controls.Manual
             this.Loaded += new RoutedEventHandler(ManualControl_Loaded);
         }
 
-        void ManualControl_Loaded(object sender, RoutedEventArgs e)
+        private void ManualControl_Loaded(object sender, RoutedEventArgs e)
         {
             this.Width = Settings.BookPageWidth;
             this.Height = Settings.BookPageHeight;
             this.Margin = new Thickness( Settings.BookPageWidth + Settings.BookPageOffsetLeft, Settings.BookPageOffsetTop, 0, 0 );
-
-
-
         }
-
-        string _mainTitle = String.Empty;
 
         public void Show()
         {
@@ -64,7 +59,7 @@ namespace Textfyre.UI.Controls.Manual
             this.Visibility = Visibility.Collapsed;
         }
 
-        XElement RootMenu()
+        private XElement RootMenu()
         {
             XDocument x = XDocument.Load(Current.Application.GetResPath("GameFiles/Manual.xml"));
 
@@ -73,7 +68,7 @@ namespace Textfyre.UI.Controls.Manual
             return rootmenu;
         }
 
-        void ShowItems(XElement menu)
+        private void ShowItems(XElement menu)
         {            
             var items = (from item in menu.Elements() select item);
             DisplayLinks(items, true);
@@ -81,7 +76,7 @@ namespace Textfyre.UI.Controls.Manual
             Title.Text = menu.Attribute("title").Value;
         }
 
-        void DisplayLinks(IEnumerable<XElement> items, bool showClose)
+        private void DisplayLinks(IEnumerable<XElement> items, bool showClose)
         {
             foreach (var item in items)
             {
@@ -112,10 +107,7 @@ namespace Textfyre.UI.Controls.Manual
             }
         }
 
-        string _text = string.Empty;
-        Stack<string> _titles = new Stack<string>();
-
-        void DisplayContent(string title)
+        private void DisplayContent(string title)
         {
             _titles.Push(title);
 
@@ -174,11 +166,9 @@ namespace Textfyre.UI.Controls.Manual
             sp.Children.Add(ExitTextBlock());
 
             Topics.Children.Add(sp);
-
-
         }
 
-        void InsertText( TextBlock tb, string text )
+        private void InsertText( TextBlock tb, string text )
         {
             //Regex re = new Regex(@"\[/?\w+\s+[^\]]*\]|\w+[^\]\[]*");
             Regex re = new Regex(@"\[\w+[^\]]*\]|\w+[^\]\[]*");
@@ -222,7 +212,7 @@ namespace Textfyre.UI.Controls.Manual
             tb.Inlines.Add(run);
         }
 
-        TextBlock ExitTextBlock()
+        private TextBlock ExitTextBlock()
         {
             TextBlock tbExit = new TextBlock();
             tbExit.TextWrapping = TextWrapping.Wrap;
@@ -236,12 +226,12 @@ namespace Textfyre.UI.Controls.Manual
             return tbExit;
         }
 
-        void tbExit_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void tbExit_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             Hide();
         }
 
-        void tb_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void tb_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             ClearTopics();
 
@@ -251,7 +241,7 @@ namespace Textfyre.UI.Controls.Manual
 
         }
 
-        void tbClose_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void tbClose_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             ClearTopics();
 
@@ -270,7 +260,7 @@ namespace Textfyre.UI.Controls.Manual
         }
 
 
-        void tbTOC_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void tbTOC_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             _titles.Clear();
             ClearTopics();
@@ -278,7 +268,7 @@ namespace Textfyre.UI.Controls.Manual
             ShowItems(RootMenu());
         }
 
-        void ClearTopics()
+        private void ClearTopics()
         {
             ManualScroller.ScrollToVerticalOffset(-999999);
             Topics.Children.Clear();

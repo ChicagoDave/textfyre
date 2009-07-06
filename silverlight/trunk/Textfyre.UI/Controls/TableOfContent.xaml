@@ -4,7 +4,7 @@
     xmlns:ctrl="clr-namespace:Textfyre.UI.Controls"
     >
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <ctrl:Art ID="TOCArt" VerticalAlignment="Top" />
+        <ctrl:Art VerticalAlignment="Top" />
         <StackPanel x:Name="ContentList" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock x:Name="TitleText" Text="- Table of Contents -" Height="30" HorizontalAlignment="Center" />
             <TextBlock Width="10" Height="20" Text=" " />

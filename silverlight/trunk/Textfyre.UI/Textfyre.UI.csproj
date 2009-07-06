@@ -126,18 +126,6 @@
     <Compile Include="Controls\Manual\ManualControl.xaml.cs">
       <DependentUpon>ManualControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Mapping\Connection.xaml.cs">
-      <DependentUpon>Connection.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Mapping\DragHand.xaml.cs">
-      <DependentUpon>DragHand.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Mapping\Location.xaml.cs">
-      <DependentUpon>Location.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Mapping\Map.xaml.cs">
-      <DependentUpon>Map.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\More.xaml.cs">
       <DependentUpon>More.xaml</DependentUpon>
     </Compile>
@@ -207,12 +195,6 @@
     <Compile Include="Entities\DocumentColumnCollection.cs" />
     <Compile Include="Entities\DocumentTextBlock.cs" />
     <Compile Include="Entities\GameState.cs" />
-    <Compile Include="Entities\MapConnection.cs" />
-    <Compile Include="Entities\MapConnectionCollection.cs" />
-    <Compile Include="Entities\MapConnectionCorner.cs" />
-    <Compile Include="Entities\MapConnectionType.cs" />
-    <Compile Include="Entities\MapLocation.cs" />
-    <Compile Include="Entities\MapLocationCollection.cs" />
     <Compile Include="Entities\OpCode.cs" />
     <Compile Include="Entities\SaveFile.cs" />
     <Compile Include="Entities\TextfyreTagList.cs" />
@@ -325,22 +307,6 @@
     <Page Include="Controls\Manual\ManualControl.xaml">
       <SubType>Page</SubType>
       <Generator>MSBuild:MarkupCompilePass1</Generator>
-    </Page>
-    <Page Include="Controls\Mapping\Connection.xaml">
-      <Generator>MSBuild:MarkupCompilePass1</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\Mapping\DragHand.xaml">
-      <Generator>MSBuild:MarkupCompilePass1</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\Mapping\Location.xaml">
-      <Generator>MSBuild:MarkupCompilePass1</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\Mapping\Map.xaml">
-      <Generator>MSBuild:MarkupCompilePass1</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\More.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>

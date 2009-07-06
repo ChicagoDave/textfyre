@@ -45,12 +45,9 @@ namespace Textfyre.UI.Pages
             Keyboard.KeyDown += new EventHandler<KeyEventArgs>(Keyboard_KeyDown);
             Keyboard.KeyUp += new EventHandler<KeyEventArgs>(Keyboard_KeyUp);
 
-            //Entities.SaveFile.DeleteOldSaveFiles();
-
             LoadGame(memorystream, gameFileName);
         }
 
-        bool _keyCtrlPressed = false;
         bool _keyAltPressed = false;
         bool _keyShiftPressed = false;
 
@@ -61,7 +58,6 @@ namespace Textfyre.UI.Pages
             {
                 case Key.Ctrl:
                     TextfyreBook.TextfyreDocument.HideWordDefs();
-                    _keyCtrlPressed = false;
                     break;
                 case Key.Alt:
                     _keyAltPressed = false;
@@ -79,7 +75,6 @@ namespace Textfyre.UI.Pages
             {
                 case Key.Ctrl:
                     TextfyreBook.TextfyreDocument.ShowWordDefs();
-                    _keyCtrlPressed = true;
                     break;
                 case Key.Alt:
                     _keyAltPressed = true;
@@ -199,7 +194,6 @@ namespace Textfyre.UI.Pages
                 location = output[OutputChannel.Location];
                 Current.Game.Location = location;
                 updateLocAndChap = true;
-                TextfyreBook.Map.SetLocation(location);
             }
 
             if (AnyOutput(output, OutputChannel.Chapter))

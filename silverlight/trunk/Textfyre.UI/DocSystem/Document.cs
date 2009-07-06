@@ -13,10 +13,22 @@ namespace Textfyre.UI.DocSystem
 {
     public class Document
     {
+        public event EventHandler<Controls.Input.InputEventArgs> InputEntered;
+        public event EventHandler<TopicListEventArgs> TopicListRequest;
+
+        private bool _topicListWanted = false;
+        private FyreXmlElementTopicList _topics;
+        private FyreXmlElementCollection _fyreXmlElements;
+        private SectionCollection _sections = new SectionCollection();
         private BackPages _backPages;
         private StoryPage _storyPage;
-        
-        
+        private Textfyre.UI.Controls.TextfyreBookPage _storyAidPage;
+        private Controls.StoryAid _storyAid = new Textfyre.UI.Controls.StoryAid();
+        private bool _isInputAdded = false;
+        private Controls.Input _input;
+        private bool _addInput = false;
+        private InputTypes _inputType;
+
         public Document()
         {
             InitInput();
@@ -33,25 +45,18 @@ namespace Textfyre.UI.DocSystem
             _sections.Clear();
         }
 
-        void _storyPage_TopicListWant(object sender, StoryPage.TopicListWantEventArgs e)
+        private void _storyPage_TopicListWant(object sender, StoryPage.TopicListWantEventArgs e)
         {
             _topics = e.TopicList;
             _topicListWanted = true;
         }
 
-        void _storyPage_InputWant(object sender, StoryPage.InputWantEventArgs e)
+        private void _storyPage_InputWant(object sender, StoryPage.InputWantEventArgs e)
         {
             RemoveInput();
             AddInput();
             AddInputHandler();
-
-            //Current.Game.IsInputFocusActive = true;
         }
-
-
-        #region :: FyreXML Handle ::
-        FyreXmlElementCollection _fyreXmlElements;
-        SectionCollection _sections = new SectionCollection();
 
         public FyreXmlElementCollection AddStml(string fyreXml)
         {
@@ -66,7 +71,7 @@ namespace Textfyre.UI.DocSystem
             return _fyreXmlElements;
         }
 
-        void ProcessElementsIntoSections()
+        private void ProcessElementsIntoSections()
         {
             while (_fyreXmlElements.Count > 0)
             {
@@ -83,34 +88,12 @@ namespace Textfyre.UI.DocSystem
             }
         }
 
-        int sectionIndex = 0;
-        //bool firstTime = true;
-        void DisplaySections()
+        private void DisplaySections()
         {
-            //if (firstTime)
-            //{
-            //    firstTime = false;
-            //    // Display prologue the first time,
-            //    // before going to the story page
-            //    //_backPages.Do(_sections);
-            //}
-
             _backPages.Do(_sections);
             _storyPage.Do(_sections);
-
         }
-        void DisplayScrollSections()
-        {   
-            // Remember to skip prologue sections
 
-            // Experimental:
-        }
-        #endregion :: FyreXml Handle ::
-
-        #region :: StoryAid Handle ::
-        private Textfyre.UI.Controls.TextfyreBookPage _storyAidPage;
-
-        private Controls.StoryAid _storyAid = new Textfyre.UI.Controls.StoryAid();
         public Controls.StoryAid StoryAid
         {
             get
@@ -125,16 +108,9 @@ namespace Textfyre.UI.DocSystem
             _storyAidPage = page;
             TopicListRequest += new EventHandler<TopicListEventArgs>(Document_TopicListRequest);
         }
-        #endregion :: StoryAid ::
 
         #region :: Input Handle ::
-        public event EventHandler<Controls.Input.InputEventArgs> InputEntered;
-        private bool _isInputAdded = false;
-        private Controls.Input _input;
-        private bool _addInput = false;
-        private InputTypes _inputType;
-        private enum InputTypes
-        {
+        private enum InputTypes {
             Normal,
             KeyPress
         }
@@ -182,6 +158,7 @@ namespace Textfyre.UI.DocSystem
         {
             Input(inputText, inputText);
         }
+
         public void Input(string inputText, string transcriptText)
         {
             bool addNotesText = false;
@@ -194,10 +171,6 @@ namespace Textfyre.UI.DocSystem
                 text = inputText.Substring(0, mulPos);
                 addNotesText = true;
                 notesText = inputText.Substring(mulPos);
-
-                //if (inputText == transcriptText)
-                //    transcriptText = text;
-
             }
 
             Current.Game.IsStoryChanged = true;
@@ -270,8 +243,6 @@ namespace Textfyre.UI.DocSystem
             {
                 _isInputAdded = false;
                 _input.RemoveInputFromStackPanel();
-                //_docColumns.ActiveDocumentColumn.PageHeightReset();
-                //_txtBlk.Clear();
             }
         }
 
@@ -315,10 +286,6 @@ namespace Textfyre.UI.DocSystem
                     _input.SetModeNormal();
                 }
 
-                //_docColumns.ActiveDocumentColumn.PageHeightInc(_txtBlk.Height);
-                //_docColumns.ActiveDocumentColumn.PageHeightInc(40);
-                //_input.AddInputToColumn(_docColumns.ActiveDocumentColumn);
-
                 _input.AddInputToStackPanel(_storyPage);
 
                 IsInputEnable = IsInputVisible;
@@ -361,14 +328,11 @@ namespace Textfyre.UI.DocSystem
         #endregion :: Hints Handle ::
 
         #region :: Topics Handler ::
-        private bool _topicListWanted = false;
-        private FyreXmlElementTopicList _topics;
 
         public class TopicListEventArgs : EventArgs
         {
             public FyreXmlElementTopicList TopicList;
         }
-        public event EventHandler<TopicListEventArgs> TopicListRequest;
 
         private void Document_TopicListRequest(object sender, Document.TopicListEventArgs e)
         {
@@ -381,10 +345,5 @@ namespace Textfyre.UI.DocSystem
             Input(e.Topic.ID, e.Topic.Text);
         }
         #endregion :: Topics Handler ::
-
-        void DistributeSectionsIntoPages()
-        {
-
-        }
     }
 }

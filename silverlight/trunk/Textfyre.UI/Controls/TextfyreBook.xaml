@@ -6,7 +6,6 @@
     xmlns:demogp="clr-namespace:Textfyre.UI.Controls.Demographic"
              xmlns:dialog="clr-namespace:Textfyre.UI.Controls.IODialog"
              xmlns:worddef="clr-namespace:Textfyre.UI.Controls.SpeechBubble"
-             xmlns:mapping="clr-namespace:Textfyre.UI.Controls.Mapping"
              xmlns:manual="clr-namespace:Textfyre.UI.Controls.Manual"
              xmlns:settings="clr-namespace:Textfyre.UI.Controls.UserSettings"
     Width="800" Height="600">
@@ -22,7 +21,6 @@
         <ctrls:Bookmark x:Name="BookmarkLoad" Click="BookmarkLoad_Click" Margin="1,105,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Collapsed" />
         <ctrls:Bookmark x:Name="BookmarkSave" Click="BookmarkSave_Click" Margin="2,160,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Collapsed" />
         <ctrls:BookCover x:Name="BookCover" />
-        <mapping:Map x:Name="Map" Visibility="Collapsed" Margin="0,0,65,0" HorizontalAlignment="Right" VerticalAlignment="Center" />
         <manual:ManualControl x:Name="Manual" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <dialog:Transcript x:Name="TranscriptDialog" Visibility="Collapsed" />
         <dialog:Save x:Name="SaveGameDialog" Visibility="Collapsed" />

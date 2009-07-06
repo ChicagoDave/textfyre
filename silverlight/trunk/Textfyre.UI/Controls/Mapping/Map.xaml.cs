@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using System.Xml;
 using System.Xml.Linq;
-using System.Linq;
 
 namespace Textfyre.UI.Controls.Mapping
 {
@@ -27,7 +22,6 @@ namespace Textfyre.UI.Controls.Mapping
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(DragDocument_Loaded);
             InitMap();
-            //MapImage.Source = Current.Application.GetImageBitmap("Images/Book800Page1.png");
         }
 
         #region :: SetLocation ::
