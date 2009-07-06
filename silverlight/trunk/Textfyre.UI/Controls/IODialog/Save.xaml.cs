@@ -122,5 +122,11 @@ namespace Textfyre.UI.Controls.IODialog
                 SaveRequest(this, args);
             }
         }
+
+        private void BtnIncreaseStorageSpace_Click(object sender, RoutedEventArgs e)
+        {
+            Entities.SaveFile.IncreaseStorageSpace();
+            Refresh();
+        }
     }
 }

@@ -445,7 +445,18 @@ namespace Textfyre.UI.Entities
             }
         }
 
-
+        public static void IncreaseStorageSpace()
+        {
+            try
+            {
+                long newSize = IsoFile.Quota + 1000000;
+                IsoFile.IncreaseQuotaTo(newSize);
+            }
+            catch
+            {
+                MessageBox.Show("It was not possible to increase the storage space");
+            }
+        }
 
     }
 }
