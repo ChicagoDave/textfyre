@@ -61,6 +61,8 @@ namespace Textfyre.UI.Controls.UserSettings
             if (style.Contains("I"))
                 fd.IsItalic = true;
 
+            fd.Color = (BtnColor.SelectedBrush as SolidColorBrush).Color.ToString();
+
             return fd;
         }
 
