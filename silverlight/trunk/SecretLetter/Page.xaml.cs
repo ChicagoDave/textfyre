@@ -25,92 +25,52 @@ namespace SecretLetter
 
             Textfyre.UI.Current.Application.GameAssembly = System.Reflection.Assembly.GetExecutingAssembly();
 
-
             switch (Textfyre.UI.Current.Application.Platform)
             {
                 case Textfyre.UI.Current.Platform.Windows:
-                    SetGoudyFonts();
                     break;
                 default:
-                    SetStandardFonts();
                     break;
             }
+
+            InitUserSettings();
 
             StoryPage.LoadStory(GameFiles.GameFile.sl_v1_05e, "sl_v1_05e", new StoryHandle());
         }
 
-
-        private void SetGoudyFonts()
+        private void InitUserSettings()
         {
-            Textfyre.UI.Current.Font.FontDefinition fd =
-new Textfyre.UI.Current.Font.FontDefinition(
-"GOUDR.TTF|GoudyRetrospectiveSSK|14");
-            Textfyre.UI.Current.Font.Main = fd;
+            if (Textfyre.UI.UserSettings.FontHeadline.FontFamily.Length == 0)
+            {
+                Textfyre.UI.UserSettings.FontHeadline =
+                    new Textfyre.UI.UserSettings.FontDef("Georgia", 17, "#FF000000", false);
+            }
 
-            Textfyre.UI.Current.Font.FontDefinition hfd =
-                new Textfyre.UI.Current.Font.FontDefinition(
-                    "GOUDOSSC.TTF|GoudyOSSCapsSSK|17");
-            Textfyre.UI.Current.Font.Headline = hfd;
+            if (Textfyre.UI.UserSettings.FontText.FontFamily.Length == 0)
+            {
+                Textfyre.UI.UserSettings.FontText =
+                    new Textfyre.UI.UserSettings.FontDef("Georgia", 13, "#FF333333", false);
+            }
 
-            Textfyre.UI.Current.Font.FontDefinition Italicfd =
-                new Textfyre.UI.Current.Font.FontDefinition(
-                    "GOUDRI.TTF|GoudyRetrospectiveSSK|14");
-            Textfyre.UI.Current.Font.MainItalic = Italicfd;
+            if (Textfyre.UI.UserSettings.FontInput.FontFamily.Length == 0)
+            {
+                Textfyre.UI.UserSettings.FontInput =
+                    new Textfyre.UI.UserSettings.FontDef("Georgia", 16, "#FF000000", false);
+            }
 
-            Textfyre.UI.Current.Font.FontDefinition headerfd =
-                new Textfyre.UI.Current.Font.FontDefinition(
-                "GOUDYMER.TTF|Goudy Mediaeval|16");
-            Textfyre.UI.Current.Font.Header = headerfd;
+            if (Textfyre.UI.UserSettings.FontHeader.FontFamily.Length == 0)
+            {
+                Textfyre.UI.UserSettings.FontHeader =
+                    new Textfyre.UI.UserSettings.FontDef("Georgia", 14, "#FF000000", false);
+            }
 
-            Textfyre.UI.Current.Font.FontDefinition footerfd =
-    new Textfyre.UI.Current.Font.FontDefinition(
-    "GOUDOSSC.TTF|GoudyOSSCapsSSK|12");
-            Textfyre.UI.Current.Font.Footer = footerfd;
+            if (Textfyre.UI.UserSettings.FontFooter.FontFamily.Length == 0)
+            {
+                Textfyre.UI.UserSettings.FontFooter =
+                    new Textfyre.UI.UserSettings.FontDef("Georgia", 12, "#FF000000", false);
+            }
 
-            Textfyre.UI.Current.Font.FontDefinition inputfd =
-    new Textfyre.UI.Current.Font.FontDefinition(
-    "GOUDRI.TTF|GoudyRetrospectiveSSK|17");
-            Textfyre.UI.Current.Font.Input = inputfd;
-        }
-
-        private void SetStandardFonts()
-        {
-            Textfyre.UI.Current.Font.FontDefinition fd =
-    new Textfyre.UI.Current.Font.FontDefinition("Georgia", 14);
-            Color color = new Color();
-            color.A = 255;
-            color.R = 51;
-            color.G = 51;
-            color.B = 51;
-            fd.Color = new SolidColorBrush(color);
-            Textfyre.UI.Current.Font.Main = fd;
-
-            Textfyre.UI.Current.Font.FontDefinition hfd =
-                new Textfyre.UI.Current.Font.FontDefinition(
-                    "|Georgia|17");
-            Textfyre.UI.Current.Font.Headline = hfd;
-
-            Textfyre.UI.Current.Font.FontDefinition italicfd =
-                new Textfyre.UI.Current.Font.FontDefinition(
-                    "|Georgia|16");
-            italicfd.Color = new SolidColorBrush(color);
-            italicfd.FontStyle = FontStyles.Italic;
-            Textfyre.UI.Current.Font.MainItalic = italicfd;
-
-            Textfyre.UI.Current.Font.FontDefinition headerfd =
-                new Textfyre.UI.Current.Font.FontDefinition(
-                "|Georgia|14");
-            Textfyre.UI.Current.Font.Header = headerfd;
-
-            Textfyre.UI.Current.Font.FontDefinition footerfd =
-    new Textfyre.UI.Current.Font.FontDefinition(
-    "|Georgia|12");
-            Textfyre.UI.Current.Font.Footer = footerfd;
-
-            Textfyre.UI.Current.Font.FontDefinition inputfd =
-    new Textfyre.UI.Current.Font.FontDefinition(
-    "|Georgia|16");
-            Textfyre.UI.Current.Font.Input = inputfd;
+            Textfyre.UI.UserSettings.SetFonts();
         }
     }
 }

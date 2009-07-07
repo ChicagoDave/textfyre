@@ -21,9 +21,7 @@ namespace Textfyre.UI.Controls.UserSettings
         int m_sampleY;
         private Color m_selectedColor;
         public delegate void ColorSelectedHandler(Color c);
-        public event ColorSelectedHandler ColorSelected;
-
-        public event EventHandler Close;
+        //public event ColorSelectedHandler ColorSelected;
 
         public ColorPicker()
         {
@@ -146,18 +144,30 @@ namespace Textfyre.UI.Controls.UserSettings
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
-            if (Close != null)
-            {
-                Close(this, new EventArgs());
-            }
+            this.Visibility = Visibility.Collapsed;
         }
 
         private void BtnOK_Click(object sender, RoutedEventArgs e)
         {
-            if (ColorSelected != null)
+            //if (ColorSelected != null)
+            //{
+            //    ColorSelected(m_selectedColor);
+            //}
+            if (_colorPickerBtn != null)
             {
-                ColorSelected(m_selectedColor);
+                _colorPickerBtn.SelectedBrush = new SolidColorBrush(m_selectedColor);
             }
+            this.Visibility = Visibility.Collapsed;
+        }
+
+        private ColorPickerButton _colorPickerBtn;
+        public void Show( ColorPickerButton colorPickerBtn )
+        {
+            _colorPickerBtn = colorPickerBtn;
+            m_selectedColor = (_colorPickerBtn.SelectedBrush as SolidColorBrush).Color;
+            SelectedColor.Fill = new SolidColorBrush(m_selectedColor);
+            HexValue.Text = m_colorSpace.GetHexCode(m_selectedColor);
+            this.Visibility = Visibility.Visible;
         }
 
     }

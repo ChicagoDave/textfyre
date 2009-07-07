@@ -18,6 +18,13 @@ namespace Textfyre.UI.Controls.UserSettings
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(FontPicker_Loaded);
+            BtnColor.Click += new EventHandler(BtnColor_Click);
+
+        }
+
+        void BtnColor_Click(object sender, EventArgs e)
+        {
+            UserSettingsForm.ColorPicker.Show(BtnColor);
         }
 
         public string FontTitle
@@ -39,12 +46,63 @@ namespace Textfyre.UI.Controls.UserSettings
             Populate();
         }
 
+        public void SetFont(Textfyre.UI.UserSettings.FontDef fd)
+        {
+            int i = 0;
+            foreach (ComboBoxItem item in CBFontFamily.Items)
+            {
+                Textfyre.UI.UserSettings.AvailFontDef afd = item.Tag as Textfyre.UI.UserSettings.AvailFontDef;
+
+                if (afd.FontFamily == fd.FontFamily)
+                {
+                    CBFontFamily.SelectedIndex = i;
+                    
+                    break;
+                }
+                
+                i++;
+            }
+
+            i = 0;
+            foreach (ComboBoxItem item in CBFontSize.Items)
+            {
+                string afd = item.Tag as string;
+
+                if (afd == fd.Size.ToString())
+                {
+                    CBFontSize.SelectedIndex = i;
+
+                    break;
+                }
+
+                i++;
+            }
+
+            if (!fd.IsBold && !fd.IsItalic)
+                CBFontStyle.SelectedIndex = 0;
+            else if (fd.IsItalic && fd.IsBold)
+                CBFontStyle.SelectedIndex = 3;
+            else if (fd.IsBold)
+                CBFontStyle.SelectedIndex = 1;
+            else CBFontStyle.SelectedIndex = 2;
+
+            BtnColor.SelectedBrush = Helpers.Color.SolidColorBrush(fd.Color);
+            
+        }
+
+        private bool _isPopulated = false;
         private void Populate()
         {
-            string[] fonts = Settings.AvailableFonts.Split('|');
-            for (int i = 0; i < fonts.Length; i += 2)
+            if (_isPopulated)
+                return;
+
+            _isPopulated = true;
+
+            Textfyre.UI.UserSettings.InitAvailableFontDefs();
+
+            foreach (Textfyre.UI.UserSettings.AvailFontDef fd in Textfyre.UI.UserSettings.AvailableFontDefs)
             {
-                CBFontFamily.Items.Add(FontItem(fonts[i], fonts[i+1]));
+                CBFontFamily.Items.Add( FontItem(fd.Title, fd) );
             }
 
             for (int i = 7; i < 25; i++)
@@ -59,7 +117,7 @@ namespace Textfyre.UI.Controls.UserSettings
 
         }
 
-        private ComboBoxItem FontItem(string text, string value)
+        private ComboBoxItem FontItem(string text, object value)
         {
             ComboBoxItem item = new ComboBoxItem();
             item.Content = text;

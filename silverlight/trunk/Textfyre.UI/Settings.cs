@@ -48,7 +48,6 @@ namespace Textfyre.UI
         public static bool Profile = false;
 
         public static int MaxBackPages = 0;
-        public static string AvailableFonts = String.Empty;
 
         // Silverlight Param Settings
         public static bool IsDesktopVersion = false;

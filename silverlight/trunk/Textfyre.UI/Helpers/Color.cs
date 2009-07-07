@@ -22,6 +22,9 @@ namespace Textfyre.UI.Helpers
         {
             string hex = hexColor;
 
+            if (hex.Length == 0)
+                hex = "#FF000000";
+
             if (hex.StartsWith("#") == false)
                 hex = "#" + hex;
 
