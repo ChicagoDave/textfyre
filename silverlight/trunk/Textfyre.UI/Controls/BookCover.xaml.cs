@@ -31,6 +31,7 @@ namespace Textfyre.UI.Controls
             Current.Game.StoryReady += new EventHandler(Application_StoryReady);
 
             Current.Font.ApplyFont(Textfyre.UI.Current.Font.FontType.Headline, LoadingText);
+            LoadingText.Foreground = Helpers.Color.SolidColorBrush("#FFFFFFFF");
         }
 
         private void Application_StoryReady(object sender, EventArgs e)

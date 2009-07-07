@@ -14,28 +14,29 @@ namespace Textfyre.UI.Controls.UserSettings
 {
     public partial class UserSettingsForm : UserControl
     {
+        public static ColorPicker ColorPicker;
+        
         public UserSettingsForm()
         {
             InitializeComponent();
+            this.Loaded += new RoutedEventHandler(UserSettingsForm_Loaded);
             Current.Font.ApplyFont(Textfyre.UI.Current.Font.FontType.Header, DialogTitle);
             DialogTitle.FontSize = 24d;
-            ColorPickerPopup.Close += new EventHandler(ColorPickerPopup_Close);
-            ColorPickerPopup.ColorSelected += new ColorPicker.ColorSelectedHandler(ColorPickerPopup_ColorSelected);
-            
+            ColorPicker = ColorPickerPopup;
         }
 
-        void ColorPickerPopup_ColorSelected(Color c)
+        void UserSettingsForm_Loaded(object sender, RoutedEventArgs e)
         {
 
-        }
-
-        void ColorPickerPopup_Close(object sender, EventArgs e)
-        {
-            ColorPickerPopup.Visibility = Visibility.Collapsed;
         }
 
         public void Show()
         {
+            this.FPHeadline.SetFont(Textfyre.UI.UserSettings.FontHeadline);
+            this.FPText.SetFont(Textfyre.UI.UserSettings.FontText);
+            this.FPInput.SetFont(Textfyre.UI.UserSettings.FontInput);
+            this.FPHeader.SetFont(Textfyre.UI.UserSettings.FontHeader);
+            this.FPFooter.SetFont(Textfyre.UI.UserSettings.FontFooter); 
             this.Visibility = Visibility.Visible;
         }
 

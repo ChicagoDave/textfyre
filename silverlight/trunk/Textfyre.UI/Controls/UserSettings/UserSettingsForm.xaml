@@ -29,7 +29,7 @@
                         <ctrl:FontPicker x:Name="FPHeader" FontTitle="Header" />
                         <ctrl:FontPicker x:Name="FPFooter" FontTitle="Footer" />
                     </StackPanel>
-                    <ctrl:ColorPicker x:Name="ColorPickerPopup" Visibility="Visible" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <ctrl:ColorPicker x:Name="ColorPickerPopup" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </Grid>
             </Border>
 

@@ -23,7 +23,7 @@ namespace Textfyre.UI.Storage
             if (_storageSetting.ContainsKey(key) == false)
                 return String.Empty;
 
-            return _storageSetting[key];
+            return _storageSetting[key].Replace("&23;","#");
         }
 
         public static bool GetBoolean(string key, bool defaultValue)
@@ -56,11 +56,13 @@ namespace Textfyre.UI.Storage
         {
             SettingsInit();
 
+            string val = value.Replace("#", "&23;");
+
             if (_storageSetting.ContainsKey(key) == false)
-                _storageSetting.Add(key, value);
+                _storageSetting.Add(key, val);
             else
             {
-                _storageSetting[key] = value;
+                _storageSetting[key] = val;
             }
             WriteStorageSetting();
         }
