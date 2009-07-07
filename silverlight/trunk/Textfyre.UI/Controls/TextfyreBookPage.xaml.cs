@@ -64,6 +64,8 @@ namespace Textfyre.UI.Controls
             this.LayoutRoot.Width = Settings.BookPageWidth;
             this.LayoutRoot.Height = Settings.BookPageHeight;
 
+            BookPageColorizer.Background = Textfyre.UI.UserSettings.PageBackgroundBrush;
+
             //ctrlFlipButton.FlipBtn.Click += new EventHandler(FlipBtn_Click);
         }
 

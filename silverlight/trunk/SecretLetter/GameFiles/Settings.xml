@@ -14,7 +14,7 @@
   <Setting Key="ScrollSpeed" Value="100" />
   <Setting Key="AutoOpenBookCover" Value="False" />
   <Setting Key="PageGripSize" Value="40" />
-  <Setting Key="TOCs" Value="Introduction|Map|Hints|Transcript|Quit" />
+  <Setting Key="TOCs" Value="Introduction|Map|Hints|Transcript|Settings|Quit" />
   <Setting Key="ResizingEnabled" Value="True" />
   <Setting Key="BookPageInnerContentWidth" Value="350" />
   <Setting Key="AdditionalWidthForTextLines" Value="25" />

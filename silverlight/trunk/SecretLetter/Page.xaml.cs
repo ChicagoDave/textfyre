@@ -71,6 +71,11 @@ namespace SecretLetter
             }
 
             Textfyre.UI.UserSettings.SetFonts();
+
+            if (Textfyre.UI.UserSettings.PageBackgroundColor.Length == 0)
+            {
+                Textfyre.UI.UserSettings.PageBackgroundColor = "#00000000";
+            }
         }
     }
 }
