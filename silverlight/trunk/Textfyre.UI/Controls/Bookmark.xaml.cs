@@ -30,13 +30,20 @@ namespace Textfyre.UI.Controls
 
         public event EventHandler Click;
 
+
         public string ArtID
         {
+            get
+            {
+                return (string)GetValue(ArtIDProperty);
+            }
             set
             {
+                SetValue(ArtIDProperty, value);
                 BookmarkArt.ID = value;
             }
         }
+        public static readonly DependencyProperty ArtIDProperty = DependencyProperty.Register("ArtID", typeof(string), typeof(Bookmark), new PropertyMetadata(""));
 
 
     }

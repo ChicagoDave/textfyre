@@ -22,43 +22,69 @@ namespace Textfyre.UI.Controls.IODialog
             TxtMessage.FontSize = 20d;
         }
 
+
+
         public string Title
         {
+            get
+            {
+                return (string)GetValue(TitleProperty);
+            }
             set
             {
+                SetValue(TitleProperty, value);
                 DialogTitle.Text = value;
             }
         }
+        public static readonly DependencyProperty TitleProperty = DependencyProperty.Register("Title", typeof(string), typeof(Confirm), new PropertyMetadata(""));
 
         public string Message
         {
+            get
+            {
+                return (string)GetValue(MessageProperty);
+            }
             set
             {
+                SetValue(MessageProperty, value);
                 TxtMessage.Text = value;
             }
         }
+        public static readonly DependencyProperty MessageProperty = DependencyProperty.Register("Message", typeof(string), typeof(Confirm), new PropertyMetadata(""));
 
         public string CancelText
         {
+            get
+            {
+                return (string)GetValue(CancelTextProperty);
+            }
             set
             {
+                SetValue(CancelTextProperty, value);
                 BtnCancel.Content = value;
 
                 if (value.Length == 0)
                     BtnCancel.Visibility = Visibility.Collapsed;
                 else
                     BtnCancel.Visibility = Visibility.Visible;
-
             }
         }
+        public static readonly DependencyProperty CancelTextProperty = DependencyProperty.Register("CancelText", typeof(string), typeof(Confirm), new PropertyMetadata(""));
 
         public string OKText
         {
+            get
+            {
+                return (string)GetValue(OKTextProperty);
+            }
             set
             {
+                SetValue(OKTextProperty, value);
                 BtnOK.Content = value;
             }
         }
+        public static readonly DependencyProperty OKTextProperty = DependencyProperty.Register("OKText", typeof(string), typeof(Confirm), new PropertyMetadata(""));
+
 
         public void Show()
         {
