@@ -28,6 +28,9 @@
                         <ctrl:FontPicker x:Name="FPInput" FontTitle="Input" />
                         <ctrl:FontPicker x:Name="FPHeader" FontTitle="Header" />
                         <ctrl:FontPicker x:Name="FPFooter" FontTitle="Footer" />
+                        <StackPanel Orientation="Horizontal">
+                            <ctrl:FontsPreview x:Name="FPPreview" Margin="0,20,20,20" />
+                        </StackPanel>
                     </StackPanel>
                     <ctrl:ColorPicker x:Name="ColorPickerPopup" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </Grid>

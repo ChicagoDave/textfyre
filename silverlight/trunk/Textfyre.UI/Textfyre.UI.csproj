@@ -165,6 +165,9 @@
     <Compile Include="Controls\UserSettings\FontPicker.xaml.cs">
       <DependentUpon>FontPicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UserSettings\FontsPreview.xaml.cs">
+      <DependentUpon>FontsPreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UserSettings\UserSettingsForm.xaml.cs">
       <DependentUpon>UserSettingsForm.xaml</DependentUpon>
     </Compile>
@@ -365,6 +368,10 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>
     <Page Include="Controls\UserSettings\FontPicker.xaml">
+      <SubType>Page</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </Page>
+    <Page Include="Controls\UserSettings\FontsPreview.xaml">
       <SubType>Page</SubType>
       <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>

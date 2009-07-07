@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="Textfyre.UI.Controls.UserSettings.FontsPreview"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ctrl="clr-namespace:Textfyre.UI.Controls"         
+    >
+    <Grid x:Name="LayoutRoot">
+        <ctrl:Art ID="BookPage2" />
+        <Grid x:Name="PageColorizer" />
+        <StackPanel>
+            <TextBlock x:Name="TbHeader" Text="Header" HorizontalAlignment="Center" Margin="0,10,0,0" />
+            <TextBlock x:Name="TbHeadline" Text="Headline" HorizontalAlignment="Center" Margin="0,10,0,0" />
+            <TextBlock x:Name="TbText" Text="The quick brown fox jumped over the lazy dog." HorizontalAlignment="Center" Margin="0,10,0,0" />
+            <TextBlock x:Name="TbInput" Text="Input" HorizontalAlignment="Center" Margin="0,10,0,0" />
+            <TextBlock x:Name="TbFooter" Text="Footer" HorizontalAlignment="Center" Margin="0,10,0,0" />
+        </StackPanel>
+    </Grid>
+</UserControl>

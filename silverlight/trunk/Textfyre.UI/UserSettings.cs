@@ -180,6 +180,32 @@ namespace Textfyre.UI
         }
         #endregion
 
+        private static SolidColorBrush _pageBackgroundBrush;
+        public static SolidColorBrush PageBackgroundBrush
+        {
+            get
+            {
+                if (_pageBackgroundBrush == null)
+                {
+                    _pageBackgroundBrush = Helpers.Color.SolidColorBrush(PageBackgroundColor);
+                }
+
+                return _pageBackgroundBrush;
+            }
+        }
+        public static string PageBackgroundColor
+        {
+            get
+            {
+                 return Storage.Settings.Get("PageBgColor");
+            }
+
+            set
+            {
+                Storage.Settings.Set("PageBgColor", value );
+            }
+        }
+
         public static Textfyre.UI.Current.Font.FontDefinition FromFontDef(FontDef fd)
         {
             Textfyre.UI.Current.Font.FontDefinition rfd;
