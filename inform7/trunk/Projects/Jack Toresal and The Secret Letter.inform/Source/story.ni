@@ -2,6 +2,7 @@
 
 [  Change Log
 When		Who		What
+06-Jul-2009	D. Cornelson	Fixed Chapter 10 title change.
 02-Jul-2009	D. Cornelson	Added 'gap' and lowered 1 in 5 to 1 in 3 for Pieter's Mutterings.
 02-Jul-2009	G. Jefferis	Distant descriptions fix.
 01-Jul-2009	G. Jefferis	Pieter's mutterings, Amhyron fix.
@@ -206,7 +207,8 @@ Rule for printing the banner text:
 	select the credits channel;
 	say "[story title] by [story author][line break]";
 	say "Copyright &#169; [story creation year] by [story author][line break]";
-	say "Designed and Written by Michael Gentry[line break]";
+	say "Story by David Cornelson[line break]";
+	say "Written by Michael Gentry[line break]";
 	say "Game Engine (FyreVM) by Jesse McGrew[line break]";
 	say "Inform 7 Story Programming by Graeme Jefferis[line break]";
 	say "Testing by Jacqueline Ashwell, Peter Berman,[line break]Eric Eve, Jim Aikin, and Paul O'Brian[line break]";
@@ -10512,12 +10514,12 @@ Some garlands are scenery, in the Entrance Hall. Understand "garland" as the gar
 Section 2 - Event on exiting
 
 After going north to the Entrance Hall for the first time:
+	output chapter heading "Chapter 10 - The Ball";
 	say "A servant in formal livery bows, then takes your and Pieter's cloaks and deftly spirits them away.[paragraph break]Pieter takes a deep breath. 'Well, we made it,' he whispers. 'Although frankly, I'd rather we were still sneaking through dark, dirty tunnels. I guess you'd better head into the ballroom and start mingling.'";
 	continue the action;
 
 Instead of going south from the Entrance Hall during Journey To The Ball:
 	say "Pieter puts his hand on your back, gently but firmly. 'Don't lose your nerve now,' he says. 'You'll be fine; I'll be right behind you the whole time.'";
-	output chapter heading "Chapter 10 - The Ball";
 
 Part 5 - Ballroom
 
