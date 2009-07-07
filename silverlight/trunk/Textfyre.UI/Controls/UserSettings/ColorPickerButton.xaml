@@ -3,6 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     >
     <Grid x:Name="LayoutRoot">
-        <Rectangle x:Name="BtnColor" Cursor="Hand" RadiusX="4" RadiusY="4" Fill="Red" Width="50" Height="18" Stroke="Black" MouseLeftButtonUp="BtnColor_MouseLeftButtonUp" />
+        <Rectangle x:Name="BtnColor" Cursor="Hand" RadiusX="4" RadiusY="4" Fill="Red" Width="50" Height="18" Stroke="Black" MouseLeftButtonUp="BtnColor_MouseLeftButtonUp"/>
     </Grid>
 </UserControl>
