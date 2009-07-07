@@ -157,6 +157,7 @@ namespace Textfyre.UI.Controls.UserSettings
             {
                 _colorPickerBtn.SelectedBrush = new SolidColorBrush(m_selectedColor);
             }
+            UserSettingsForm.OnUpdatePreview(this);
             this.Visibility = Visibility.Collapsed;
         }
 

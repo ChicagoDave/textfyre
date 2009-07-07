@@ -30,6 +30,10 @@
                         <ctrl:FontPicker x:Name="FPFooter" FontTitle="Footer" />
                         <StackPanel Orientation="Horizontal">
                             <ctrl:FontsPreview x:Name="FPPreview" Margin="0,20,20,20" />
+                            <StackPanel Margin="0,20,20,20">
+                                <TextBlock Text="Background Color" />
+                                <ctrl:ColorPickerButton x:Name="CpbBgColor" SelectedBrush="#00FFFFFF" />
+                            </StackPanel>
                         </StackPanel>
                     </StackPanel>
                     <ctrl:ColorPicker x:Name="ColorPickerPopup" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" />
@@ -38,7 +42,7 @@
 
             <Grid Grid.Column="0" Grid.Row="2" x:Name="ButtonGrid">
                 <Button IsEnabled="True" x:Name="BtnClose" Content="Cancel" Click="BtnClose_Click" Style="{StaticResource DialogButtonStyle}" Width="100" Height="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,8,0" />
-                <Button IsEnabled="True" x:Name="BtnOK" Content="OK" Click="BtnOK_Click"  Style="{StaticResource DialogButtonStyle}" Width="100" Height="25" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8,0,8,0" />
+                <Button IsEnabled="True" x:Name="BtnOK" Content="Save Settings and Restart" Click="BtnOK_Click"  Style="{StaticResource DialogButtonStyle}" Width="200" Height="25" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8,0,8,0" />
             </Grid>
 
 
