@@ -35,7 +35,7 @@ namespace SecretLetter
 
             InitUserSettings();
 
-            StoryPage.LoadStory(GameFiles.GameFile.sl_v1_05e, "sl_v1_05e", new StoryHandle());
+            StoryPage.LoadStory(GameFiles.GameFile.sl_v1_06e, "sl_v1_06e", new StoryHandle());
         }
 
         private void InitUserSettings()
