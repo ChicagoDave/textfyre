@@ -46,7 +46,25 @@ namespace Textfyre.UI.Controls.UserSettings
             Populate();
         }
 
-        public void SetFont(Textfyre.UI.UserSettings.FontDef fd)
+        public Textfyre.UI.UserSettings.FontDef GetFontDef()
+        {
+            Textfyre.UI.UserSettings.AvailFontDef afd = ((CBFontFamily.SelectedItem) as ComboBoxItem).Tag as Textfyre.UI.UserSettings.AvailFontDef;
+            
+            Textfyre.UI.UserSettings.FontDef fd = new Textfyre.UI.UserSettings.FontDef();
+            fd.Source = afd.Source;
+            fd.FontFamily = afd.FontFamily;
+            fd.Size = double.Parse(((CBFontSize.SelectedItem) as ComboBoxItem).Tag as string);
+
+            string style = ((CBFontStyle.SelectedItem) as ComboBoxItem).Tag as string;
+            if (style.Contains("B"))
+                fd.IsBold = true;
+            if (style.Contains("I"))
+                fd.IsItalic = true;
+
+            return fd;
+        }
+
+        public void SetFontDef(Textfyre.UI.UserSettings.FontDef fd)
         {
             int i = 0;
             foreach (ComboBoxItem item in CBFontFamily.Items)

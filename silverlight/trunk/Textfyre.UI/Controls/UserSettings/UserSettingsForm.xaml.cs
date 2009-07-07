@@ -32,11 +32,11 @@ namespace Textfyre.UI.Controls.UserSettings
 
         public void Show()
         {
-            this.FPHeadline.SetFont(Textfyre.UI.UserSettings.FontHeadline);
-            this.FPText.SetFont(Textfyre.UI.UserSettings.FontText);
-            this.FPInput.SetFont(Textfyre.UI.UserSettings.FontInput);
-            this.FPHeader.SetFont(Textfyre.UI.UserSettings.FontHeader);
-            this.FPFooter.SetFont(Textfyre.UI.UserSettings.FontFooter); 
+            this.FPHeadline.SetFontDef(Textfyre.UI.UserSettings.FontHeadline);
+            this.FPText.SetFontDef(Textfyre.UI.UserSettings.FontText);
+            this.FPInput.SetFontDef(Textfyre.UI.UserSettings.FontInput);
+            this.FPHeader.SetFontDef(Textfyre.UI.UserSettings.FontHeader);
+            this.FPFooter.SetFontDef(Textfyre.UI.UserSettings.FontFooter); 
             this.Visibility = Visibility.Visible;
         }
 
@@ -49,5 +49,16 @@ namespace Textfyre.UI.Controls.UserSettings
         {
             Hide();
         }
+
+        private void BtnOK_Click(object sender, RoutedEventArgs e)
+        {
+            Textfyre.UI.UserSettings.FontHeadline = this.FPHeadline.GetFontDef();
+            Textfyre.UI.UserSettings.FontText = this.FPText.GetFontDef();
+            Textfyre.UI.UserSettings.FontInput = this.FPInput.GetFontDef();
+            Textfyre.UI.UserSettings.FontHeader = this.FPHeader.GetFontDef();
+            Textfyre.UI.UserSettings.FontFooter = this.FPFooter.GetFontDef();
+
+            Hide();
+        }    
     }
 }

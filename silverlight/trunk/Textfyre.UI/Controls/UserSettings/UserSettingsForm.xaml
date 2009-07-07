@@ -34,7 +34,8 @@
             </Border>
 
             <Grid Grid.Column="0" Grid.Row="2" x:Name="ButtonGrid">
-                <Button IsEnabled="True" x:Name="BtnClose" Content="Close" Click="BtnClose_Click" Style="{StaticResource DialogButtonStyle}" Width="100" Height="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,8,0" />
+                <Button IsEnabled="True" x:Name="BtnClose" Content="Cancel" Click="BtnClose_Click" Style="{StaticResource DialogButtonStyle}" Width="100" Height="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,8,0" />
+                <Button IsEnabled="True" x:Name="BtnOK" Content="OK" Click="BtnOK_Click"  Style="{StaticResource DialogButtonStyle}" Width="100" Height="25" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8,0,8,0" />
             </Grid>
 
 
