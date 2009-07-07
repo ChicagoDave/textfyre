@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Fonts>
+  <Font Title="Arial" Source="" FontFamily="Arial" IsWinOnly="False" />
+  <Font Title="Georgia" Source="" FontFamily="Georgia" IsWinOnly="False" />
+  <Font Title="Goudy Normal (memory-heavy)" Source="GOUDR.TTF" FontFamily="GoudyRetrospectiveSSK" IsWinOnly="True" />
+</Fonts>
