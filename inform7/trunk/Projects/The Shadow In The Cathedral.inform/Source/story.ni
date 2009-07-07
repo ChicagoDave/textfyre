@@ -1,12 +1,20 @@
 "The Shadow In The Cathedral" by Textfyre Inc
 
+[
+Unclustering is an action applying to nothing.
+Understand "uncluster" as unclustering.
+Carry out unclustering:
+	repeat with item running through conversation topics:
+		if the number of things clustered with the item is one, say "[item]...";
 
+]
 [
 Include (- Constant DEBUG; -) after "Definitions.i6t".
 ]
 
 [  Change Log
 When		Who		What
+6-July-2009		J. Ingold	Ian's C3 changes are almost all in. Added a new verb, "approaching" to cover "go to" and "follow" commands, and some (limited) support for these in the game. This will need a lot of new rules writing... Added a new kind, a "glimpse backdrop", which is a backdrop "too far away" to interact with, that can be identified (new relation) to a real game object. When approaching a glimpse, the game will take the player towards the identified item (if it has been identified with anything). Meanwhile, working through c4: the escaping Figure is a backdrop in all these rooms who you can "follow" and attempt (and fail) to talk to. fixed the penduluum sequence (counters go up after messages are printed, it seems, not before!)
 3-July-2009		J. Ingold 	Added "talk" verb, and "ask about <topic>" with no specified NPC. Began C4.
 2-July-2009		J. Ingold	Added Herb Garden location, where the player can (optionally) pick up a knife by solving a quick puzzle involving revolving flower beds. If they do, the knife & tome are removed from the Cyclical Library (in c3). Player's can't do both!
 1-July-2009		J. Ingold	Last of Ian's C2 feedback. Indicated Horloge will talk after tea. Finished c3 playthrough. Added some missing descriptions, and a way to get the knife later if you missed it. Extended Sa'at conversation again.
@@ -174,6 +182,12 @@ The replacement can't take scenery rule is listed instead of the can't take scen
 This is the replacement can't take scenery rule:
 	if the noun is scenery and the noun is not portable:
 		say "That's hardly portable." instead;
+
+Section 5 - Preventing non-portable scenery from showing up in "all" lists
+
+Rule for deciding whether all includes a not portable scenery thing:
+	it does not.
+
 
 Section M - Miscellanea
 
@@ -390,6 +404,12 @@ Instead of climbing a window:
 A glass window is a kind of window. Understand "glass", "window" as a glass window.
 
 A stained glass window is a kind of glass window. Understand "stained", "stained-glass" as a stained glass window.
+
+Instead of attacking a stained glass window:
+	say "These things are sacred. I couldn't touch them! (Anyway, they're too high up.)";
+
+Instead of attacking a stained glass window (called the target) with something:
+	try attacking the target instead.
 
 Part 2 - Monk
 
@@ -815,6 +835,64 @@ Report abacus-setting an abacus to:
 	consider the correctness appraisal rules for the model being adjusted;
 	if the rule succeeded:
 		now the model being adjusted is correctly set;
+
+Part 13 - Great Seals
+
+A Great Seal is a kind of thing. A Great Seal is scenery.
+
+Understand "great", "seal" as a Great Seal.
+
+Instead of taking a Great Seal:
+	say "It's enormous: so wide that if I lay down on it, I couldn't touch fingers and toes to its circumference."
+
+Instead of entering a Great Seal:
+	say "I'm already standing on the seal: it's hard not to."
+
+part 14 - Glimpse backdrops
+
+A glimpse backdrop is a kind of backdrop. The description of a glimpse backdrop is usually "I can't see [the item described] right now."
+
+Section 1 - Glimpses identify real objects
+
+Identification relates one glimpse backdrop to one thing. The verb to identify (he identifies, they identify, he identified, it is identified, he is identifying) implies the identification relation.
+
+Definition: a glimpse backdrop is matched-up if there is something identified by it.
+
+A glimpse backdrop is usually privately-named. 
+
+Rule for printing the name of an matched-up glimpse backdrop:
+	say "[random thing identified by the item described]";
+
+Section 2 -  Interaction
+
+Instead of doing something when a glimpse backdrop (called the far-off thing) is physically involved:
+	say "I can't reach [the far-off thing] from where I am."
+
+Section 3 - Approaching
+
+Instead of approaching an matched-up glimpse backdrop (called the far-off thing):
+	let N be a random thing identified by the far-off thing;
+	let N be the location of N;
+	if N is a room:
+		let the way be the best route from the location to N, using doors;
+		if the way is a direction, try going the way instead;
+	continue the action;
+
+Check approaching a glimpse backdrop (called the far-off thing):
+	say "I can't see how to get to [the far-off thing]." instead;
+
+Section 4 - Animate Glimpse Backdrops
+
+An animate glimpse backdrop is a kind of glimpse backdrop.
+
+Include (- has animate, -) when defining an animate glimpse backdrop.
+
+Instead of asking an animate glimpse backdrop (called the far-off guy) about:
+	say "I can't talk to [the far-off guy] from here." instead;
+
+Section 5 - Does the player mean doing something with a glimpse backdrop - no
+
+Does the player mean doing something with a glimpse backdrop: it is unlikely.
 
 Book C - New Relations
 
@@ -1488,13 +1566,18 @@ Check waking an asleep person:
 
 The block waking rule is not listed in any rulebook.
 
-Part 21 - Synonyms for take / drop
+Part 21 - Synonyms for take / drop / push
 
 Understand "grip [something]" as taking.
 Understand "grab [something]" as taking.
 Understand "hold on to [something]" as taking.
 
 Understand "let go of [something]" as dropping.
+
+Understand "push [something] out of the/my way" as pushing.
+Understand "push [something] out of way" as pushing.
+Understand "push through [something]" as pushing.
+
 
 Part 22 - Jumping off, jumping on
 
@@ -1928,6 +2011,29 @@ Check telling no-one in particular about:
 Understand "talk to [someone] about [something worthy of inspection]" as enquiring of it about.
 Understand "talk to [someone] about [text]" as telling it about.
 
+Check answering it that (this is the divert to just asking rule):
+	try asking the noun about the topic understood instead.
+
+
+
+Part 49 - Go To Something
+
+[ currently, we implement this only for glimpsed backdrops. Ideally we extend to cover locations in the currently vicinity, however the hell we define that! ]
+
+Approaching is an action applying to one visible thing.
+
+Understand "go to/after/toward/for/towards [something]" as approaching.
+Understand "follow [something]" as approaching.
+Understand "approach [something]" as approaching.
+Understand "chase [something]" as approaching.
+Understand "go the same way as [something]" as approaching.
+Understand "go in the direction of [something]" as approaching.
+Understand "go in direction of [something]" as approaching.
+
+
+
+Check approaching something (this is the block approaching rule):
+	say "[The noun] is right here already!" instead.
 
 Book E - New Properties
 
@@ -1975,16 +2081,26 @@ Book G - Conversation Tokens
 
 Understand "calvin", "drake", "calvin and drake", "drake and calvin" as "[calvinanddrake]".
 Understand "figure", "figure in grey/gray", "grey/gray figure" as "[figure]".
+
 Understand "abbot", "abbott", "gubbler" as "[abbot]".
 
-Understand "cathedral", "cathedral of time" as "[cathedral]".
+Understand "bishop", "archbishop", "arch-bishop", "steelspring", "steel-spring", "steel spring" as "[archbishop]".
+
+Understand "cathedral", "cathedral of time", "church" as "[cathedral]".
 Understand "abbey", "abbey of time" as "[abbey]".
 
 Understand "reloh", "brother reloh" as "[reloh]".
-Understand "sa'at", "brother sa'at" as "[sa'at]".
+Understand "sa'at", "brother sa'at", "saat", "brother saat" as "[sa'at]".
 Understand "horloge", "brother horloge" as "[horloge]".
 
 Understand "cook", "[calvinanddrake]", "[reloh]", "[horloge]" as "[abbeyfolk]"
+
+Understand "clockwork", "clock-work", "klockwerk", "clock work", "clocks" as "[clockwork]".
+Understand "saints" or "saint" or "ykea" or "maxwell" or "newton" or "babbage" or "breguet" or "st maxwell" or "st newton" or "st ykea" or "st babbage" or "st breguet"  as "[saints]".
+
+Understand "me" or "myself" or "self" or "Wren" or "story" or "my story" as "[me]".
+Understand "him" or "himself" as "[himself]".
+Understand "her" or "herself" as "[himself]".
 
 Book 0 - Prologue
 
@@ -2054,6 +2170,8 @@ When Introduction ends:
 	move Abbot Gubbler to Abbot's Quarters;
 	now the Grandfather Clock is scenery; [suppressing initial appearance] 
 	now the Grandfather Clock is closed;
+
+Definition: a room is in the Introduction if it is the Abbot's Quarters or it is Inside Clock Case.
 
 Book 1 - The Abbot's Quarters
 
@@ -2128,6 +2246,7 @@ After going through the Grandfather Clock from Inside Clock Case to Abbot's Quar
 
 Instead of making to leave when in Inside Clock Case:
 	try entering the grandfather clock;
+
 
 Section 4 - Actions - entering
 
@@ -2326,6 +2445,9 @@ AB_QUART3 is a scripted event. The display text is "From the hallway outside com
 
 AB_QUART3A is a scripted event. [A dummy 'Voices heard', for cases where the player directly triggers the event.] 
 
+After firing AB_QUART3:
+	move the glimpsed-Abbot backdrop to all rooms that are the Abbot's Quarters;
+
 After firing AB_QUART3A:
 	now AB_QUART3 is fired;
 
@@ -2342,6 +2464,39 @@ AB_QUART4 is a scripted event. The display text is "The Abbot's voice is getting
 AB_QUART4B is a scripted event. The display text is "Oh, no! I shouldn't [i]be[r] here!"
 
 AB_QUART5 is a scripted event. The display text is "Oh, widdershins! Abbot Gubbler is right outside the door! I'd better hide [i]somewhere[r]!"
+
+Chapter 6 - Glimpses of people
+
+Section 1 - Glimpsed-Abbot
+
+Glimpsed-Abbot is an animate glimpse backdrop. Understand "[abbot]" as the glimpsed-Abbot. The printed name is "Abbot Gubbler". "[if Inside Clock Case is unvisited]He's coming this way![else]He's gone - for now, at least![end if]"
+
+Instead of approaching the glimpsed-Abbot when in the Abbot's Quarters:
+	try going west instead;
+
+Every turn when in the Corridor of Contemplation:
+	remove the glimpsed-Abbot from play;
+
+Section 2 - Glimpsed-Figure
+
+Intro-glimpsed-Figure is an animate glimpse backdrop. Understand "[figure]" as the Intro-glimpsed-Figure. "I didn't see the Figure clearly." The printed name is "figure in grey".
+
+Instead of approaching the Intro-glimpsed-Figure:
+	say "No thanks. I hope I never run into that Figure again.";
+
+Every turn when in the Corridor of Contemplation:
+	remove the Intro-glimpsed-Figure from play;
+
+Section 3 - Glimpsed-Calvin and Drake
+
+Intro-glimpsed-CandD is an animate glimpse backdrop in the Abbot's Quarters, in Inside Clock Case, in Corridor of Contemplation. Understand "[calvinanddrake]" as the Intro-glimpsed-CandD. The printed name is "Calvin and Drake". "Calvin and Drake are bigger than me, meaner, and I could do a lot better without them."
+
+Instead of approaching Intro-glimpsed-CandD:
+	try going west instead;
+
+Every turn when in the Attic Room:
+	remove the Intro-glimpsed-CandD from play;
+
 
 Part 2 - Inside the Clock
 
@@ -2498,6 +2653,7 @@ CCASE1 is a scripted event. The display text is "'We'll talk in here,' I hear th
  
 After firing CCASE1:
 	now the Grandfather Clock is closed;
+	move the Intro-glimpsed-Figure backdrop to all rooms that are the Abbot's Quarters;
 	move the player to Inside Clock Case;
 
 To decide if Clock Case has been hidden in:
@@ -2539,7 +2695,8 @@ After firing CCASE6:
 	move keyhole-monk to the location;
 
 After firing CCASE6B:
-	remove keyhole-monk from play.
+	remove keyhole-monk from play;
+	move the Intro-glimpsed-Figure backdrop to all rooms. [ dangerous, but we'll remove it from play again in a moment. ]
 
 Section 3 - After the clock scene
 
@@ -2554,7 +2711,7 @@ A thing can be Drake-hideable. A thing is seldom Drake-hideable.
 
 Part 1 - Corridor of Contemplation
 
-Before exiting in the Corridor of Contemplation: try going west instead.
+Before making to leave in the Corridor of Contemplation: try going west instead.
 
 Chapter 1 - Description
 
@@ -2633,6 +2790,9 @@ A pencil sketch is scenery, in the Attic Room. The description is "It's a pencil
 
 Understand "picture", "family", "children", "mother", "father", "drawing" as the pencil sketch.
 
+Instead of taking the pencil sketch: 
+	say "I wouldn't want to lose it, or damage it. It's really the only thing I've got, apart from the clock key round my neck."
+
 Section 4 - Window
 
 A window called my window is scenery, in the Attic Room. "On tiptoes, I can see right across the city of St Philip. It's a maze of rooftops like a tangle of thorn bushes. If people could only see this view, then they might not be so strict about Precision and Good Order... Or maybe they would, because looming over all the houses are the great spires of the Cathedral of Time, its great clock keeping time for the whole city.[paragraph break]And the Cathedral is where I would find the Archbishop. I've got to tell him what I heard!". Understand "hole", "tile", "roof tile", "missing roof tile", "missing tile" as my window.
@@ -2660,7 +2820,7 @@ Section 6 - Cathedral Spires
 
 The cathedral spires are scenery, in the Attic Room. "Twelve spires arranged in a ring about the Great Dome, to mirror the Twelve Devotions of the Greater Rotation[one of]. Rumour among initiates has it that the Cathedral was once a sundial that marked the time by casting shadows on numerals scattered about the city, but then St Newton abolished that, tore up the numerals and hid them away.[paragraph break]They say there are twelve different numbers that used to be the first twelve but now no-one is allowed to use them. I don't believe a word of it, of course[or][stopping]." The printed name is "Cathedral"
 
-Understand "twelve spires", "dome", "great dome" as the cathedral spires.
+Understand "twelve spires", "dome", "great dome", "church" as the cathedral spires.
 
 Instead of doing something when the cathedral spires are physically involved:
 	say "It's right across the city from me!";
@@ -3399,7 +3559,7 @@ Table of Horloge's Further Conversation
 topic						conversation 
 "keys" or "key"					CT_HOR2_KEYS
 "[calvinanddrake]"				CT_HOR2_CALVINDRAKE
-"abbey"						CT_HOR2_ABBEY
+"[abbey]"						CT_HOR2_ABBEY
 "light" or "window" or "windows"			CT_HOR2_LIGHT
 "[cathedral]"					CT_HOR2_CATHEDRAL
 "[abbot]"					CT_HOR2_ABBOT
@@ -3408,13 +3568,13 @@ topic						conversation
 "cook"						CT_HOR2_COOK
 "owl" or "rachael" or "his owl"			CT_HOR2_OWL
 "books" or "book" or "texts" or "key texts"		CT_HOR2_BOOKS
-"clockwork"					CT_HOR2_CLOCKWORK
-"saints" or "newton" or "babbage" or "breguet"							CT_HOR2_SAINTS
-"himself" or "horloge"				CT_HOR2_HORLOGE
+"[clockwork]"					CT_HOR2_CLOCKWORK
+"[saints]"								CT_HOR2_SAINTS
+"[himself]" or "[horloge]"				CT_HOR2_HORLOGE
 "gong" or "gongs" or "dinner"			CT_HOR2_GONG
-"reloh" or "brother reloh"				CT_HOR2_RELOH
+"[reloh]" 							CT_HOR2_RELOH
 
-CT_HOR2_KEYS is clustered with CT_HOR2_CALVINDRAKE, CT_HOR2_ABBEY, CT_HOR2_LIGHT, CT_HOR2_CATHEDRAL, CT_HOR2_ABBOT, CT_HOR2_FIGURE, CT_HOR2_TEA, CT_HOR2_COOK, CT_HOR2_OWL, CT_HOR2_BOOKS, CT_HOR2 _CLOCKWORK, CT_HOR2_SAINTS, CT_HOR2_HORLOGE, CT_HOR2_GONG, CT_HOR2_RELOH.
+CT_HOR2_KEYS is clustered with CT_HOR2_CALVINDRAKE, CT_HOR2_ABBEY, CT_HOR2_LIGHT, CT_HOR2_CATHEDRAL, CT_HOR2_ABBOT, CT_HOR2_FIGURE, CT_HOR2_TEA, CT_HOR2_COOK, CT_HOR2_OWL, CT_HOR2_BOOKS, CT_HOR2_CLOCKWORK, CT_HOR2_SAINTS, CT_HOR2_HORLOGE, CT_HOR2_GONG, CT_HOR2_RELOH.
 
 [These topics may only be fired once.]
 Rule for firing a fired conversation topic that is clustered with CT_HOR2_KEYS:
@@ -3732,6 +3892,10 @@ A room can be near-to-garden. A room is seldom near-to-garden. The East Refector
 Horloge-backdrop is a backdrop. The printed name of Horloge-backdrop is "Brother Horloge". The Horloge-backdrop is privately-named, proper-named. Understand "brother", "horloge" as the Horloge-backdrop.
 
 Before doing something with the Horloge-backdrop:
+	if approaching:
+		say "I head from the Library.";
+		let the way be the best route from the location to the Library, using doors;
+		if the way is a direction, 	try going the way instead;
 	say "Brother Horloge will have gone back to the Library." instead.
 
 After going to the Library:
@@ -3954,20 +4118,20 @@ The conversation table of Abbot Gubbler is the Table of Gubbler's Conversation.
 
 Table of Gubbler's Conversation
 topic					conversation
-"me" or "myself" or "wren"		CT_ABBOT_WREN
-"calvin" or "drake" or "calvin and drake" or "drake and calvin"	CT_ABBOT_CALVINDRAKE
-"abbey"					CT_ABBOT_ABBEY
-"cathedral"				CT_ABBOT_CATHEDRAL
-"[abbot]" or "himself" or "him" 		CT_ABBOT_ABBOT
+"[me]"		CT_ABBOT_WREN
+"[calvinanddrake]"		CT_ABBOT_CALVINDRAKE
+"[abbey]"					CT_ABBOT_ABBEY
+"[cathedral]"				CT_ABBOT_CATHEDRAL
+"[abbot]" or "[himself]" 		CT_ABBOT_ABBOT
 "[figure]"				CT_ABBOT_FIGUREINGREY
 "tea" or "cup of tea"			CT_ABBOT_TEA
 "cook"					CT_ABBOT_COOK
 "salamander"				CT_ABBOT_SALAMANDER
 "books"					CT_ABBOT_BOOKS
-"clockwork"				CT_ABBOT_CLOCKWORK
-"saints" or "newton" or "babbage" or "breguet"					CT_ABBOT_SAINTS
-"horloge" or "brother horloge"		CT_ABBOT_HORLOGE
-"reloh" or "brother reloh"			CT_ABBOT_RELOH
+"[clockwork]"				CT_ABBOT_CLOCKWORK
+"[saints]"					CT_ABBOT_SAINTS
+"[horloge]" 				CT_ABBOT_HORLOGE
+"[reloh]" 					CT_ABBOT_RELOH
 
 Instead of asking the Abbot Gubbler about "money":
 	say "I could never ask the Abbot about that. He'd have me polishing the floor in the stables in seconds."
@@ -4037,9 +4201,9 @@ The Abbey Entry is southwest of the Lower Hall. "Sunlight and the sound of the c
 Instead of making to leave when in the Abbey Entry: try going west instead.
 Instead of going inside when in the Abbey Entry: try going east instead.
 
-
 The Abbey Doors are a door, open, scenery, west of the Entry, east of the Cathedral Yard.
-The description is "Ornately carved with planets, their orbits planned and plotted out for them in advance. Everything on its correct path... just as I should be!"
+
+The description is "Ornately carved with planets, their orbits planned and plotted out for them in advance. Everything on its correct path... just as I should be!" Understand "door" as the Abbey Doors.
 
 Instead of opening or closing the Abbey Doors:
 	say "The doors would take ten men to shift easily, or one clever system of pulleys. Either way, I can't do a thing on my own.";
@@ -4072,6 +4236,9 @@ Before examining Drake during Drake's Patrol:
 
 Before doing something when Drake is physically involved during Drake's Patrol:
 	say "He's far away and I want to keep it that way." instead.
+
+Instead of approaching Drake during Drake's Patrol:
+	say "No thanks. I don't want to run into him!"
 
 Chapter 2 - Route
 
@@ -4287,8 +4454,14 @@ Instead of making to leave when in the Abbey Herb Garden: try going west instead
 Instead of going through the garden door to the Abbey Herb Garden during Gong Sounding:
 	say "No time for horticulture now. I need to get out of here!"
 
+Instead of facing west in the Abbey Herb Garden: 
+	try examining the garden door instead.
+
 Instead of examining the garden door in the Abbey Herb Garden:
-	say "The interior of the Abbey is shadowy: too dark to see."
+	if the garden door is open:
+		say "The garden door is closed.";
+	else:
+		say "The interior of the Abbey is shadowy: too dark to see."
 
 Rule for writing a paragraph about the garden door when in the Abbey Herb Garden:
 	now the garden door is mentioned;
@@ -4352,10 +4525,11 @@ Instead of closing or touching the large lens:
 
 Definition: something is away from the lens if it is not the large lens and it is not enclosed by the player.
 
-Before doing something when something away from the lens is physically involved and there is no thing on the large lens and the plants are night-plants:
-	say "I lift my hand away from the lens. ";
-	revolve into daytime;
-	if the short stake is physically involved or the plants are physically involved, stop the action;
+Before doing something when something away from the lens is physically involved or going west: 
+	if there is no thing on the large lens and the plants are night-plants:
+		say "I lift my hand away from the lens. ";
+		revolve into daytime;
+		if the short stake is physically involved or the plants are physically involved, stop the action;
 	continue the action;
 
 Before putting something on the large lens:
@@ -4441,17 +4615,101 @@ Part 1 - Cathedral Yard
 
 Chapter 1 - Description
 
-The Cathedral Yard is a room in the Cathedral Space. "The Yard is where we go on Saturdays for exercise, cleaning up the muck left behind by the market (worse once a month when the horse-traders from the south come up and leave their presents for the Abbey gardens). Today it's quiet, at least, with the space between the Abbey to the east and the Cathedral to the west empty but for the usual collection of beggars, unfortunates, wretches and the disadvantaged poor.[one of][paragraph break]The Cathedral really is enormous – but it doesn't have many rooms, so finding the Archbishop shouldn't take too long. Which is lucky, because I don't know how long I've got before Gubbler – and the mysterious Figure – put their plan into action. If I warn the Archbishop too late it'll be no good. He might just blame me for whatever it is they're planning to steal![or][stopping]"
+The Cathedral Yard is a room, exterior, in the Cathedral Space. "The Yard is where we go on Saturdays for exercise, cleaning up the muck left behind by the market (worse once a month when the horse-traders from the south come up and leave their presents for the Abbey gardens). Today it's quiet, at least, with the space between the Abbey to the east and the Cathedral to the west empty but for the usual collection of beggars, unfortunates, wretches and the disadvantaged poor.[one of][paragraph break]The Cathedral really is enormous – but it doesn't have many rooms, so finding the Archbishop shouldn't take too long. Which is lucky, because I don't know how long I've got before Gubbler – and the mysterious Figure – put their plan into action. If I warn the Archbishop too late it'll be no good. He might just blame me for whatever it is they're planning to steal![or][stopping]"
 
 Instead of going east in the Cathedral Yard:
 	say "No, I need to find the Archbishop, not get rounded up by Calvin and Drake and set to work polishing again. Besides, by the sound of the clock, it's 5pm in there, which would be far too late!"
 
+Instead of entering the Abbey Doors in the Cathedral Yard:
+	say "No, I need to find the Archbishop, not get rounded up by Calvin and Drake and set to work polishing again. Besides, by the sound of the clock, it's 5pm in there, which would be far too late!"
+
+Instead of examining the backdrop-sky in the Cathedral Yard:
+	say "Clouds are turning around, but only slowly."
+
+Instead of examining the backdrop-floor in the Cathedral Yard:
+	say "The yard is dusty underfoot."
+
+Understand "dust" as the backdrop-floor when in the Cathedral Yard.
+
+
 Instead of going inside in the Cathedral Yard: try going west.
 Instead of making to leave in the Cathedral Yard: try going west.
 
+Chapter 1b - Wretches
+
+Section - Description
+
+Some poor wretches are scenery, men in the Cathedral Yard. Understand "beggar/beggars", "unfortunates", "disadvantaged", "leper/lepers" as the poor wretches. "In a civilised city like St Philip there's no reason for anyone to beg. That's what the Abbot says. There's always a spring that needs winding somewhere, so no-one need be short of a coin unless they're too Vice-ridden to work... But then, I did just see the Abbot taking money for no work at all..."
+
+Instead of giving something to the poor wretches:
+	try dropping the noun;
+
+Instead of touching or pushing or attacking the poor wretches:
+	say "I don't want to go near them. Who knows what I'll catch.";
+
+Instead of dropping something in the Cathedral Yard:
+	if BEGGAR_YARD2 is fired:
+		do nothing instead;
+	else:
+		remove the noun from play;
+		say "I drop [the noun] and the beggars fall on it like hungry wolves, scrabbling and fighting for it. One gets it and soon both are gone, in a cloud of dust.";
+		now BEGGAR_YARD2 is fired;
+
+Report dropping something in the Cathedral Yard:
+	say "I drop [the noun] but the beggars don't seem interested." instead;
+
+Section 2 - Blocking your way
+
+Instead of going west when BEGGAR_YARD1 is fired and BEGGAR_YARD2 is unfired and BEGGAR_WONT_MOVE is unfired:
+	fire BEGGAR_WONT_MOVE;
+
+Rule for firing unfired BEGGAR_WONT_MOVE:
+	say "The beggars are in my way! I'm staying clear.";
+
+Instead of going west when BEGGAR_YARD1 is fired and BEGGAR_YARD2 is unfired:
+	now BEGGAR_YARD2 is fired;
+	say "Time to wind my courage, Wren: I put my elbows out and push my way between the grasping hands.";
+	continue the action;
+
+Instead of touching or pushing or attacking the poor wretches when BEGGAR_YARD1 is fired and BEGGAR_YARD2 is unfired:
+	now BEGGAR_WONT_MOVE is fired;
+	try going west instead;
+
+Section 2 - Beggars get in the way
+
+BEGGAR_YARD1 is a trigger. BEGGAR_YARD2 is a trigger. BEGGAR_WONT_MOVE is a trigger.
+
+Rule for firing unfired BEGGAR_YARD1:
+	say "A couple of beggars shuffle over to me, their hands held out pitifully. They're diseased, like rats, and covered in sores. I hang back, pretty disgusted."
+
+Every turn when BEGGAR_YARD1 is fired and BEGGAR_YARD2 is unfired and a random chance of 1 in 2 succeeds:
+	if going west or entering the Cathedral of Time or going inside:
+		do nothing;
+	else if BEGGAR_YARD1 has been fired for at least 6 turns:
+		fire BEGGAR_YARD2;
+	else:
+		say "[one of]'Think of a spring,' the Abbot would say, talking about the likes of the beggars in front of me. 'Put something in, and then you will receive. But Mechanics tells us that nothing can come of nothing.'[or]The beggars[or]The diseased wretches[or]The unfortunates in front of me[at random] [one of]moan and grumble[or]plead and beg[or]hold out diseased hands[or]scratch towards my clothes[at random][one of] pitifully[or], looking ill[or] with agonising slowness[at random].";
+
+[This rule comes here so that the rule above won't fire when this one fires.]
+
+Every turn when in the Cathedral Yard and BEGGAR_YARD1 is unfired:
+	fire BEGGAR_YARD1;	
+
+Rule for firing unfired BEGGAR_YARD2:
+	say "Without a word, the creeping beggars lose interest in me and move away across the yard.";
+
+Every turn when in the Cathedral Yard and BEGGAR_YARD2 is fired and a random chance of 1 in 3 succeeds:
+	say "[one of]The beggars are baying and moaning softly.[or]One of the wretches is muttering about 'clockwerk men'. Poor man.[or]The wretches are tussling amongst themselves[cycling]";
+
+
 Chapter 2 - The Cathedral object
 
-The Cathedral of Time is backdrop, in the Cathedral Space. 
+The Cathedral of Time is backdrop, in the Cathedral Space.  Understand "church" as the Cathedral of Time.
+
+Understand "door/doors" as the Cathedral of Time when in the Cathedral Yard.
+Understand "choir" as the Cathedral of Time when not in the Cathedral Choir.
+Understand "nave" as the Cathedral of Time.
+Understand "clerestory" as the Cathedral of Time when not in the Choir.
 
 Instead of examining the Cathedral of Time in the Cathedral Yard:
 	say "The Cathedral door is open to the west, like a big mouth ready to swallow me whole."
@@ -4481,7 +4739,10 @@ Chapter 2 - Scenery
 
 Section 1 - Great Seal
 
-The entry seal is scenery, in the Cathedral Entrance. "The first seal is made of steel cast directly onto the stone. It's so big that it's hard to see what it is, but – a long rod, tilting a large boulder – it's got to be a lever." Understand "lever", "steel", "boulder", "rod", "first", "great" as the entry seal. The printed name is "Great Seal".
+
+The entry seal is a Great Seal, in the Cathedral Entrance. "The first seal is made of steel cast directly onto the stone. It's so big that it's hard to see what it is, but – a long rod, tilting a large boulder – it's got to be a lever." Understand "lever", "steel", "boulder", "rod", "first", "great" as the entry seal. The printed name is "Great Seal".
+
+
 
 Section 2 - Great Doors
 
@@ -4501,11 +4762,31 @@ Section 4 - East Door
 
 The East Door is scenery, in the Cathedral Entrance. "That's the door back to the Cathedral Yard."
 
-Instead of opening or entering the East Door:
-	try going east;
+Instead of opening the East Door when Upper Nave is not visited:
+	say "The East Door is open already - I just came in that way, remember?"
+
+Instead of entering the East Door:
+	try going east instead;
 
 Instead of closing the East Door:
 	say "It's not for me to go round shutting doors in this place.";
+
+Section 5 - Glimpse of Altar
+
+The glimpsed Altar is a glimpse backdrop, in Great Door, in Lower Nave, in Upper Nave, in East Apse, in West Apse, in North Clerestory, in Cathedral Choir, in East Clerestory, in West Clerestory. "The altar is surrounding by monks, softly-singing." Understand "altar" as the glimpsed Altar.
+
+The glimpsed Altar identifies the iron altar.
+
+The glimpsed Monks is a glimpse backdrop, in Great Door, in Lower Nave, in Upper Nave, in East Apse, in West Apse, in North Clerestory, in Cathedral Choir, in East Clerestory, in West Clerestory. "The monks are gathered around some gleaming object on the altar." Understand "monk/monks", "chanting", "singing" as the glimpsed Monks.
+
+The glimpsed Monks identifies the chanting Monks.
+
+Instead of listening when the glimpsed Monks are visible:
+	say "The monks song echoes off the walls, one syllable at a time, one second at a time."
+
+The glimpsed Perpetuum is a glimpse backdrop, in Great Door, in Lower Nave, in Upper Nave, in East Apse, in West Apse, in North Clerestory, in Cathedral Choir, in East Clerestory, in West Clerestory. "I can't make out much of the gleaming object from here, except it's gold - and it's moving." Understand "object", "perpetuum", "mobile", "clock", "gleaming", "gold" as the glimpsed Perpetuum.
+
+The glimpsed Perpetuum identifies the Perpetuum Mobile.
 
 Part 3 - Lower Nave
 
@@ -4531,7 +4812,7 @@ Chapter 2 - Scenery
 
 Section 1 - Lower Seal
 
-The Lower Seal is scenery, in the Lower Nave. "This one is made of brass, all wound up into a coil. It's either a spring or one of Reloh's mechanical serpents."
+The Lower Seal is a Great Seal, in the Lower Nave. "This one is made of brass, all wound up into a coil. It's either a spring or one of Reloh's mechanical serpents."
 
 Understand "spring", "brass", "coil", "second", "great" as the lower seal. The printed name of the Lower Seal is "Great Seal".
 
@@ -4552,30 +4833,21 @@ Chapter 2 - Scenery
 
 Section 1 - Upper Seal
 
-The Upper Seal is scenery, fixed in place, in the Upper Nave. The description is "This one is a fine gold gilt, depicting an enormous ornate head with stone-block teeth. A winding-key."
+The Upper Seal is a Great Seal, fixed in place, in the Upper Nave. The description is "This one is a fine gold gilt, depicting an enormous ornate head with stone-block teeth. A winding-key."
 
 Understand "third", "gold", "golden", "gilt", "ornate", "enormous", "head", "teeth", "winding key", "winding-key", "key", "great" as the upper seal. The printed name is "Great Seal".
 
 Section 2 - Pews
 
-Some upper pews are a pew, in the Upper Nave. "Rows of varnished oak pews. I'm glad I'm not a Cathedral Wood Polisher! That'd take [i]forever[r]." The printed name is "pews".
+Some upper pews are a pew, in the Upper Nave. "Rows of varnished oak pews. I'm glad I'm not a Cathedral Wood Polisher! That'd take [i]forever[r]." The printed name is "pews". Understand "cupholder", "cup holder", "cup-holder" as the upper pews.
 
-Section 3 - Monks and the altar
 
-Some monks-and-altar are scenery, privately-named, in the Upper Nave. "The monks are gathered around the altar, singing through a ritual." The printed name is "monks around the altar". Understand "monks/monk/altar", "monk/monks at/around" as the monks-and-altar.
-
-Instead of doing something when the monks-and-altar is physically involved:
-	say "I creep north.";
-	try going north.
-
-Instead of listening when in the Upper Nave:
-	say "The monks song echoes off the walls, one syllable at a time, singing one second at a time."
 
 Part 5 - Altar
 
 Chapter 1 - Description
 
-The Cathedral Altar is north of the Upper Nave, in the Cathedral Space. "On a dais is the main altar, representing the Celestial Workbench itself. Hanging over it as large as the setting sun is the incredible machinery of the Cathedral Clock itself.[paragraph break]Around the dais, a group of monks are celebrating and blessing something on the altar. I can slip away – quickly, please! – in any of the four main directions, although if I go round the dais I might have to scurry[if East Clerestory is not visited]. (The Archbishop's room is north of here, I think, above the Choir.)[else].[end if]"
+The Cathedral Altar is north of the Upper Nave, in the Cathedral Space. "On a dais is the main altar, representing the Celestial Workbench itself. Hanging over it as large as the setting sun is the incredible machinery of the Cathedral Clock itself.[paragraph break]Around the dais, a group of monks are celebrating and blessing something on the altar. I can slip away – quickly, please! – in any of the four main directions, although I might have to scurry to get around the dais[if East Clerestory is not visited] (the Archbishop's room is north of here, I think, above the Choir.)[else].[end if]"
 
 Instead of making to leave when in the Cathedral Altar: try going south instead.
 Instead of going inside in the Cathedral Altar: say "I'm in the heart of the Cathedral right here."
@@ -4621,7 +4893,10 @@ Section 5 - Perpetuum Mobile
 
 The Perpetuum Mobile is scenery, on the iron altar. The description is "The machine on the altar is a finely-wrought case of dark wood topped by a tilting board. Standing on tip-toes I can see a ball-bearing, wearily wending its way along a grooved path in the surface of the board. As it reaches one side, there is a loud cheer from the monks – the board tilts – and the ball continues back the other way. The effect is mesmerizing and the mechanism almost totally silent.[paragraph break]I think it's the most beautiful – most expensive thing – that I've ever seen. This isn't just a relic, clearly. This is something else."
 
-Understand "case", "dark", "wood", "tilting", "board", "ball-bearing", "groove", "grooved", "path", "track", "gold", "brass", "ball", "ball bearing", "mechanism", "machine" as the Perpetuum Mobile.
+Rule for printing the name of the Perpetuum Mobile when the Bishop's Library is unvisited:
+	say "gleaming object"
+
+Understand "case", "dark", "wood", "tilting", "board", "ball-bearing", "groove", "grooved", "path", "track", "gold", "brass", "ball", "ball bearing", "mechanism", "machine", "gleaming", "object" as the Perpetuum Mobile.
 
 Instead of doing something when the Perpetuum Mobile is physically involved:
 	say "[fire TRIG_NOINTERFERE]";
@@ -4689,7 +4964,8 @@ After going to the North Clerestory from the East Clerestory when BISH_DOOR_EVEN
 EAST_STAIR_EVENT1 is a trigger. 
 
 Rule for firing unfired EAST_STAIR_EVENT1:
-	say "'I'll be back,' I promise the guard.[paragraph break]'Sure you will. With an Army, I suppose,' he laughs.";
+	if Bishop's Library is unvisited:
+		say "'I'll be back,' I promise the guard.[paragraph break]'Sure you will. With an Army, I suppose,' he laughs.";
 
 Instead of going through the east stairs from the East Clerestory when Archbishop's Meeting has happened:
 	unless Calvin's Patrol has happened:
@@ -4728,6 +5004,16 @@ Instead of singing in the Cathedral Choir:
 
 Instead of touching the choir stalls:
 	say "The wood is soft and old."
+
+Section 4 - Balcony above
+
+The balcony-Clerestory is a glimpse backdrop in the Cathedral Choir. "The balcony is overhead, encircling this space."
+
+Understand "balcony", "gallery", "clerestory" as the balcony-Clerestory. The printed name is "Clerestory".
+
+Instead of approaching or entering the balcony-Clerestory:
+	try going up.
+
 
 Part 7 - Shrine Of The Saints
 
@@ -4806,7 +5092,7 @@ Instead of going inside in the East Apse: try going southeast instead.
 
 Chapter 2 - Crypt Grate
 
-The crypt grate is a door, closed, locked, scenery, northeast of the East Apse, southwest of the Crypt Stairs. "The iron grate is made of metal a foot thick and it's locked with a gigantic padlock. I doubt I could manage to turn the lock even if I had the key for it, which I don't."
+The crypt grate is a door, closed, locked, scenery, northeast of the East Apse, southwest of the Crypt Stairs. "The iron grate is made of metal a foot thick and it's locked with a gigantic padlock. I doubt I could manage to turn the lock even if I had the key for it, which I don't. Behind this is the Cathedral Vault: the one Gubbler was talking about breaking into! I guess they haven't tried yet..."
 
 Understand "metal", "iron", "padlock", "lock", "chain", "blackened", "black" as the crypt grate.
 
@@ -5047,31 +5333,35 @@ CT_SAAT_WAX is a conversation topic.
 The enquiry text is "'Where can I get wax from?' I ask.".
 The response text is "'Where does wax come from?' Sa'at repeats, seemingly absolutely astonished. 'Where do you [i]think[r] wax comes from, idiot? Where else [i]could[r] wax come from? Wax comes out of the back-end of [i]bees[r], obviously!' He scratches his nose. 'Of course, it's not purple yet then. Gets turned into candles and I don't know what else.' Thinks. 'I don't know what else. Hmph. More bees, probably. Typical.'".
 
+CT_SAAT_HELP is a conversation topic. The enquiry text is "'Brother Sa'at,' I ask. 'Can you help me?'" 
+The response text is "'I think you'll find [i]you[r] are helping [i]me[r],' Sa'at replies archly. Then he steeples his fingers and adds, 'of course, what goes [i]around[r] often comes [i]back[r], does it not? I'm sure you'll learn a lot running my errands for me.'"
+
 The conversation table of Brother Sa'at is the table of Brother Sa'at's Conversation.
 
 Table of Brother Sa'at's Conversation
 topic							conversation
+"help" or "aid" or "assistance"			CT_SAAT_HELP
 "faith" or "creed" or "religion" or "church"			CT_SAAT_CREED
 "ritual" or "altar" or "song" or "perpetuum" 			CT_SAAT_ALTAR
 "business" or "proof"					CT_SAAT_BUSINESS
-"cathedral" or "abbey"					CT_SAAT_CATHEDRAL
+"[cathedral]" or "[abbey]"					CT_SAAT_CATHEDRAL
 "[abbot]"						CT_SAAT_ABBOT
 "[figure]"						CT_SAAT_FIGURE
-"archbishop" or "steelspring"				CT_SAAT_ARCHBISHOP
+"[archbishop]"				CT_SAAT_ARCHBISHOP
 "[abbeyfolk]"						CT_SAAT_MONKS
 "door"							CT_SAAT_DOOR
-"sa'at" or "saat" or "brother saat" or "brother sa'at" or "himself" or "him" 		CT_SAAT_SAAT
-"clockwork"						CT_SAAT_CLOCKWORK
-"saints" or "newton" or "babbage" or "breguet"								CT_SAAT_SAINTS
-"library"							CT_SAAT_LIBRARY
+"[sa'at]" or "[himself]" 		CT_SAAT_SAAT
+"[clockwork]"						CT_SAAT_CLOCKWORK
+"[saints]"									CT_SAAT_SAINTS
+"library"									CT_SAAT_LIBRARY
 "books" or "book" or "principia" or "planetaria"	CT_SAAT_BOOKS
-"[orrey]"							CT_SAAT_ORREY
-"coordinates" or "co-ordinates"		CT_SAAT_COORDINATES
-"wax" or "candle/candles" 		CT_SAAT_WAX
+"[orrey]"										CT_SAAT_ORREY
+"coordinates" or "co-ordinates"					CT_SAAT_COORDINATES
+"wax" or "candle/candles" 				CT_SAAT_WAX
 
 Understand "orrey" or "planets" or "sky" or "machine" or "mechanism" or "construction" or "comet" or "balls" or "ball" or "rod" or "rods" as "[orrey]".
 
-CT_SAAT_CREED is clustered with CT_SAAT_BUSINESS, CT_SAAT_CATHEDRAL, CT_SAAT_ABBOT, CT_SAAT_FIGURE, CT_SAAT_ARCHBISHOP, CT_SAAT_MONKS, CT_SAAT_DOOR, CT_SAAT_SAAT, CT_SAAT_CLOCKWORK, CT_SAAT_SAINTS, CT_SAAT_BOOKS, CT_SAAT_ORREY.
+CT_SAAT_CREED is clustered with CT_SAAT_BUSINESS, CT_SAAT_CATHEDRAL, CT_SAAT_ABBOT, CT_SAAT_FIGURE, CT_SAAT_ARCHBISHOP, CT_SAAT_MONKS, CT_SAAT_DOOR, CT_SAAT_SAAT, CT_SAAT_CLOCKWORK, CT_SAAT_SAINTS, CT_SAAT_BOOKS, CT_SAAT_ORREY, CT_SAAT_ALTAR, CT_SAAT_COORDINATES, CT_SAAT_LIBRARY, CT_SAAT_WAX, CT_SAAT_HELP.
 
 Rule for firing a fired conversation topic that is clustered with CT_SAAT_CREED:
 	say "I've already asked about that." instead;
@@ -5182,7 +5472,7 @@ Understand "clean out/my/your ear" as a mistake ("Sa'at watches me. 'No good. Ho
 Instead of taking the work order when the letter state of Brother Sa'at is 0 and Brother Sa'at is sat at his desk:
 	change the letter state of Brother Sa'at to 1;
 	if BISH_DOOR_EVENT1 is fired, say "A work order, I'm thinking: [i]perfect[r]. I can think of somewhere handy to wave this! But then Brother ";
-	say "Sa'at snatches the order back out of my hands.[paragraph break]'Oh, [i]cantilever[r],' he swears, coarsely, looking it over. 'I've [i]forgotten[r] the coordinates, haven't I?' He begins hunting around for something but evidently can't find it. 'You!' he declares, waving an unruly finger. 'You, go get a Principia, will you? From the [i]library[r]. A Planetaria, mind you now, not one of those Mathematicas, they're no use to me. Good! Well, [i]then[r]! [i]Off[r] you go!' He puts the order back down on his desk and proceeds to ignore me.";
+	say "Sa'at snatches the order back out of my hands.[paragraph break]'Oh, [i]cantilever[r],' he swears, coarsely, looking it over. 'I've [i]forgotten[r] the galactic axis that I want, haven't I?' He begins hunting around for something but evidently can't find it. 'You!' he declares, waving an unruly finger. 'You, go get a Principia, will you? From the [i]library[r]. A Planetaria, mind you now, not one of those Mathematicas, they're no use to me. Good! Well, [i]then[r]! [i]Off[r] you go!' He puts the order back down on his desk and proceeds to ignore me.";
 
 Instead of taking the work order when the letter state of Brother Sa'at is 1 and Brother Sa'at is sat at his desk:
 	say "Sa'at snatches it back from me. 'I told you to get my book!' he exclaims. 'This order's no use without the co-ordinates. How would they know which map to provide? Think, child. [i]Think![no line break][r]'[paragraph break]";
@@ -5287,8 +5577,13 @@ Section 1 - Initiates
 
 Some initiates are scenery, in the Cyclical Library. "Between where I am, and the monks around the altar back in the Cathedral, comes a long period with a shaved head but no dining rights. The boys here are studying hard because they're getting hungry."
 
+Understand "monk", "monks", "reader", "readers", "initiate" as the initiates.
+
 Instead of doing something when the initiates are physically involved:
 	say "I'd better not disturb them.";
+
+Before asking the initiates about:
+	say "I'm not meant to disturb them. They're deep in study."
 
 Section 2 - Library Tables
 
@@ -5309,29 +5604,33 @@ Section 4 - Contraption
 
 A contraption is in the Cyclical Library. "This is all controlled by a gold-panelled contraption that dangles from the ceiling like a chandelier they forgot to hoist. It's got three main controls. Occasionally, one of the initiates going through the studying phase of their education goes up and takes a look, but they seem nervous to touch it, for some reason."
 
+Understand "chandelier", "machine" as the contraption.
+
 The description is "Suspended from the centre of the ceiling the contraption is covered in controls. Somehow what you select down here on ground level gets fed into the mechanism that controls the walls. There must be wires running up inside the tubes and turning cogs overhead. "
 
 Instead of doing something when the contraption is physically involved:
 	say "You'd need to be specific on which control I should use, and how.";
 
-Some controls are part of the contraption. The description is "The controls consist of three cranks (one steel, one brass and one gold), beneath which are three rotating cylindrical dials engraved with numerals and the letters X, Y and Z. Next to all this is an iron chain that runs right back up to the ceiling."
+Some controls are part of the contraption. The description is "The controls consist of three cranks (one steel, one brass and one gold), beneath which are three rotating cylindrical dials engraved with numerals and the letters X, Y and Z, showing [coordinate of X control], [coordinate of Y control], [coordinate of Z control]. Next to all this is an iron chain that runs right back up to the ceiling."
 
 Instead of using or switching on the controls:
 	say "If I just mess about at random with these things I'll probably turn the whole library inside out. Best to be specific. Which control, which way?";
 
 The X control is a Cartesian Control. The metal of the X control is "steel". The letter is "X". The coordinate is 5.7.
 The Y control is a Cartesian Control. The metal of the Y control is "brass". The letter is "Y". The coordinate is 1.1.
-The Z control is a Cartesian Control. The metal of the Z control is "gold". The letter is "Z". The coordinate is 6.8.
+The Z control is a Cartesian Control. The metal of the Z control is "gold". The letter is "Z". The coordinate is 6.8. 
 
-The X meter is a Cartesian Meter, part of the controls. The model of the X meter is the X control.
+The X meter is a Cartesian Meter, part of the controls. The model of the X meter is the X control. Understand "steel" as the X meter.
 The Y meter is a Cartesian Meter, part of the controls. The model of the Y meter is the Y control.
+Understand "brass" as the X meter.
 The Z meter is a Cartesian Meter, part of the controls. The model of the Z meter is the Z control.
+Understand "gold" as the X meter.
 
 Understand "control", "dial" as a Cartesian Meter.
 
-The steel crank is a Cartesian Crank, part of the controls. The model of the steel crank is the X control. The meter of the steel crank is the X meter. Understand "X crank" as the steel crank.
-The brass crank is a Cartesian Crank, part of the controls. The model of the brass crank is the Y control. The meter of the brass crank is the Y meter. Understand "Y crank" as the steel crank. 
-The gold crank is a Cartesian Crank, part of the controls. The model of the gold crank is the Z control. The meter of the gold crank is the Z meter. Understand "Z crank" as the steel crank.
+The steel crank is a Cartesian Crank, part of the controls. The model of the steel crank is the X control. The meter of the steel crank is the X meter. Understand "x crank" as the steel crank.
+The brass crank is a Cartesian Crank, part of the controls. The model of the brass crank is the Y control. The meter of the brass crank is the Y meter. Understand "y crank" as the steel crank. 
+The gold crank is a Cartesian Crank, part of the controls. The model of the gold crank is the Z control. The meter of the gold crank is the Z meter. Understand "z crank" as the steel crank.
 
 Instead of turning a Cartesian Crank (called the handle):
 [we rotate as many times as specified by the player, or by a random amount. We tell the player which we're doing, and the random one will never go past a correct answer! ]
@@ -5438,6 +5737,7 @@ Table of index cards
 topic		response
 "principia"	"I find one, then another, then a third Principia... seems to be a popular name.[if the letter state of Brother Sa'at is 1] Which one was Sa'at after?[end if]"
 "planetaria" or "principia planetaria" or "saats/sa'ats/saat's/sa'at's book/volume/request" or "astronomy" or "stars" or "planets" or "planetarium"		"There are a lot of cards labelled 'Principia', but after a while I pick out Newton's [i]Planetaria[r]. The card reads: '[']Principa Planetaria, the apocryphal astronomical writings of St. Isaac Newton.['] Cartesian Call Number (43, 12, 95).' I put it back in the catalogue."
+"newton"	"[one of]Nothing: all the cards are indexed by work name, not author. But can I remember the work name? It was the Participant, or the Particular, or something like that.[or]Still nothing. Looks like they haven't improved the system yet, then.[stopping]"
 
 Section 6 - Tome
 
@@ -5483,14 +5783,14 @@ Understand "gardener's", "gardeners" as the knife when the knife is a garden-kni
 After taking the knife:
 	say "I pick up the knife." instead;
 
-Instead of dropping the knife:
-	say "A knife like this might come in useful. If I run into any Figures... or any Drakes...[paragraph break]";
+Before dropping the knife:
+	say "A knife like this might come in useful. If I run into any Figures... or any Drakes...[paragraph break]" instead.
 
-Instead of putting the knife on something:
-	try dropping the knife.
+Before putting the knife on something:
+	try dropping the knife instead.
 
-Instead of inserting the knife into something:
-	try dropping the knife.
+Before inserting the knife into something:
+	try dropping the knife instead.
 
 Does the player mean slicing with the knife:
 	it is likely.
@@ -5542,7 +5842,7 @@ Instead of going inside in the West Clerestory: try going down instead.
 
 Chapter 1 - Window of the Lever
 
-The window of the lever is a stained glass window, scenery, in the West Clerestory. "This pane of glass depicts an enormous lever, being operated from very far off by a man wearing a bed-sheet. (Or that's what it looks like to me: he's probably meant to be an angel)."
+The window of the lever is a stained glass window, scenery, in the West Clerestory. "This pane of glass depicts an enormous lever, being operated from very far off by a man wearing a bed-sheet. (Or that's what it looks like to me: he's probably meant to be an angel)." Understand "windows" as the window of the lever.
 
 Chapter 2 - Ladder
 
@@ -5555,12 +5855,26 @@ Understand "flue" as the secret ladder.
 Instead of going up in the presence of the secret ladder:
 	try climbing the secret ladder;
 
+Instead of going west in the presence of the secret ladder:
+	try climbing the secret ladder;
+
+Instead of going inside in the presence of the secret ladder:
+	try climbing the secret ladder;
+
 Instead of climbing the secret ladder:
 	say "I scurry up the rungs of the ladder. A few squeak and bend but none of them break.[paragraph break]And then I'm out on a narrow ledge, high up near the Cathedral's roof! Mustn't look down!";
 	move the player to Among the Gargoyles;
 
 Instead of closing the secret ladder:
 	say "I can't see any mechanism for it (the Figure must have been in quite a hurry not to do it himself. So I've scared him, then!)";
+
+
+After looking in the West Clerestory when Overheard Conversation has ended:
+	move the escaping Figure backdrop to all rooms that are the West Clerestory;
+
+Instead of approaching the escaping Figure in West Clerestory:
+	try climbing the secret ladder.
+	
 
 Chapter 3 - Balcony
 
@@ -5577,10 +5891,21 @@ Part 14 - North Clerestory
 
 Chapter 1 - Description
 
-The North Clerestory is a room, northeast of the West Clerestory, northwest of the East Clerestory, in the Cathedral Space. "[if Archbishop's Meeting has not happened]To the south the whole cathedral stretches away, all monks and pews and the three Great Seals on the floow. The balcony - which is the only thing to stop me breaking my neck - curves from southwest to southeast.[otherwise]The north end of the cathedral. There's the big stained window overhead and also the enormous statues of Babbage and Breguet.[end if]"
+The North Clerestory is a room, northeast of the West Clerestory, northwest of the East Clerestory, in the Cathedral Space. "[if Archbishop's Meeting has not happened]To the south the whole cathedral stretches away, all monks and pews and the three Great Seals on the floor. The balcony - which is the only thing to stop me breaking my neck - curves from southwest to southeast.[otherwise]The north end of the cathedral. There's the big stained window overhead and also the enormous statues of Babbage and Breguet.[end if]"
 
 Instead of making to leave when in the North Clerestory: try going southwest instead.
 Instead of going inside in the North Clerestory: try going southeast instead.
+
+Section 2 - Glimpses of Great Seals
+
+Some great-seals are glimpse backdrops in the North Clerestory. "The three seals run up the length of the Church: I can see the nearest, depicting the winding key, the others are less clear from here."
+
+Understand "three seals", "seals", "great seals", "three great seals", "seal", "first seal", "second seal", "third seal", "first great seal", "second great seal", "third great seal" as great-seals. 
+
+The printed name of great-seals are "three Great Seals".
+
+Instead of approaching the great-seals:
+	try going southeast; 
 
 Chapter 2 - Scenery
 
@@ -5618,7 +5943,7 @@ Instead of hiding inside the shadowy gap:
 
 Section 3 - Windows
 
-The window of the snake is a stained glass window, scenery, in the North Clerestory. "This window depicts a gigantic coiled snake made of steel."
+The window of the snake is a stained glass window, scenery, in the North Clerestory. "This window depicts a gigantic coiled snake made of steel." Understand "windows" as the window of the snake.
 
 The printed name is "window".
 
@@ -5627,6 +5952,9 @@ Understand "spring", "windows" as the window of the snake.
 Section 4 - Distant Doric
 
 DistantDoric is a man, in the North Clerestory. "Along the balcony to the southeast I can see a guard, standing duty." The description is "A Protectorate, of the Archbishop's personal guard. He'll be tough, strong [i]and[r] stupid." The printed name is "Doric".
+
+Instead of approaching DistantDoric:
+	try going southeast;
 
 Understand "guard", "man", "Doric", "protectorate", "watchman" as DistantDoric.
 
@@ -5718,19 +6046,33 @@ Section 1 - Beginning
 Overheard Conversation is a scene. Overheard Conversation begins when the location is the North Clerestory and Archbishop's Meeting has happened. Overheard Conversation ends when SE_NC_FIGUREEVENT3 is fired.
 
 After looking in the North Clerestory when Archbishop's Meeting has happened and SE_NC_FIGUREEVENT2 is unfired:
-	change the current script to { SE_NC_FIGUREEVENT2, SE_NC_FIGUREEVENT3 };
+	change the current script to { SE_NC_FIGUREEVENT2, SE_NC_FIGUREEVENT2B , SE_NC_FIGUREEVENT3 };
 
 Section 2 - Scripted events
 
-SE_NC_FIGUREEVENT2 is a scripted event. The display text is "Gubbler and the Figure, in the shadows between the statues! I duck behind Babbage's coat-tails to listen.[paragraph break]'I'm not, erm, not happy, no,' Gubbler is saying. 'This isn't right.'[paragraph break]'It's vital. Give me the key,' the Figure replies. The voice is a quiet murmur, like the sound of a mead barrel rolling over flagstones. 'You've got your money.'[paragraph break]'Here.' Gubbler sounds reluctant. 'It's an exact copy of, erm, the one, in the desk. Yes. And there's a guard too, but I'll well – I'll – well. It doesn't do to say.'[paragraph break]'And the final lock?'[paragraph break]'That's your problem,' Gubbler says, sounding almost proud. 'Nothing to do with, no, oh no. Look: do you even know your way around this Cathedral?'[paragraph break]'Intimately,' the Figure replies smoothly. 'All six secret doors.'[paragraph break]'Six?' Gubbler demands. His voice is sweating. 'The only one I know is the one to the Bishop's Library! Where there's a drill and all... Look. I'm going to, erm, go. Good luck. I hope you get caught.'[paragraph break]With that, the Abbot shuffles away southeast."
+SE_NC_FIGUREEVENT2 is a scripted event. The display text is "Gubbler and the Figure, in the shadows between the statues! I duck behind Babbage's coat-tails to listen.[paragraph break]'I'm not, erm, not happy, no,' Gubbler is saying. 'This isn't right.'[paragraph break]'It's vital. Give me the key,' the Figure replies. The voice is a quiet murmur, like the sound of a mead barrel rolling over flagstones. 'You've got your money.'[paragraph break]'Here.' Gubbler sounds reluctant. 'It's an exact copy of, erm, the one, in the desk. Yes. And there's a guard too, but I'll well – I'll – well. It doesn't do to say.'";
+
+SE_NC_FIGUREEVENT2B is a scripted event. The display text is "'And the final lock?' the Figure demands.[paragraph break]'That's your problem,' Gubbler says, sounding almost like an Abbot for once. 'Nothing to do with me, no, oh no. Look: do you even know your way around this Cathedral?'[paragraph break]'Intimately,' the Figure replies smoothly. 'All six secret doors.'[paragraph break]'Six?' Gubbler demands. His voice is sweating. 'The only one I know is the one from the Choir to the Bishop's Library! Where there's a drill and all... Look. I'm going to, erm, go. Good luck. I hope you get caught.'[paragraph break]With that, the Abbot shuffles away southeast."
 
 After firing SE_NC_FIGUREEVENT2:
 	move the Figure in Grey to the North Clerestory;
+	move the Abbot-in-meeting to the North Clerestory;
 
-SE_NC_FIGUREEVENT3 is a scripted event. The display text is "The Figure glides out of the shadows – right over to where I'm standing. 'I see you, little one,' he says softly. The face is nothing but darkness below his hood. His tight leather costume makes his look like a snake. 'You should stop turning up where you aren't wanted,' the Figure advises menacingly. 'You're playing with fire. You are warned.'[paragraph break]Then, in a flash of silver like a fish slipping the bait, the Figure wheels and darts away southwest."
+After firing SE_NC_FIGUREEVENT2B:
+	remove the Abbot-in-meeting from play;
+	move the glimpsed-Abbot backdrop to all rooms that are the North Clerestory;
+
+SE_NC_FIGUREEVENT3 is a scripted event. The display text is "The Figure glides out of the shadows – right over to where I'm standing. 'I see you, little one,' he says softly. The face is nothing but darkness below his hood. His tight leather costume makes him look like a snake. 'You should stop turning up where you aren't wanted,' the Figure advises menacingly. 'You're playing with fire. You are warned.'[paragraph break]Then, in a flash of silver like a fish slipping the bait, the Figure wheels and darts away southwest."
 
 After firing SE_NC_FIGUREEVENT3:
 	remove the Figure in Grey from play;
+	move the escaping Figure backdrop to all rooms that are the North Clerestory;
+
+Instead of approaching the escaping Figure in the North Clerestory:
+	try going southwest instead;
+
+Instead of approaching the glimpsed-Abbot when in the North Clerestory:
+	try going southeast instead;
 
 Section 3 - The Figure In Grey, Again
 
@@ -5742,12 +6084,31 @@ Instead of doing something when the Figure in Grey is physically involved:
 Instead of examining the statues of St Breguet and St Babbage when the player can see the Figure in Grey:
 	do nothing;
 
+Section 3b - The Abbot, in meeting
+
+Abbot-in-meeting is a privately-named, man. Understand "abbot/abbott", "gubbler", "man" as Abbot-in-meeting. The printed name is "Abbot Gubbler". The description is "I can't see him clearly, but I know that voice anywhere. He sounds even more afraid than last time.";
+
+Instead of listening in the presence of the Abbot-in-meeting:
+	say "I'm listening as hard as I can!";
+
+Instead of doing something when the Abbot-in-meeting is physically involved:
+	do nothing;
+
 Section 4 - Constrained Exits
 
 Instead of going southeast from the North Clerestory when the player can see the Figure in Grey:
 	say "The Figure might see me!";
 
 Instead of going southeast from the North Clerestory when Overheard Conversation has happened:
+	say "Look – no-one else is going to stop this. So I better had. And I'm not going to be threatened!";
+
+Instead of going down from the West Clerestory when Overheard Conversation has happened:
+	say "Look – no-one else is going to stop this. So I better had. And I'm not going to be threatened!";
+
+Instead of going the West Stairs in the West Clerestory when Overheard Conversation has happened:
+	say "Look – no-one else is going to stop this. So I better had. And I'm not going to be threatened!";
+
+Instead of going northwest from the West Clerestory when Overheard Conversation has happened:
 	say "Look – no-one else is going to stop this. So I better had. And I'm not going to be threatened!";
 
 Instead of going southwest from the North Clerestory when the player can see the Figure in Grey:
@@ -5789,7 +6150,20 @@ Rule for firing unfired FIGUREEVENT1:
 	say "What's the point of adults, exactly? They sit around complaining about how rotten everything is – you've heard them – but when a real problem comes along they don't do anything. It's not good. I'll just...[paragraph break]Wait a minute. Noises, to the northwest. Whispers. A glimpse of Grey...[paragraph break]";
 
 After looking in the East Clerestory when Archbishop's Meeting has happened and FIGUREEVENT1 is unfired:
+	move the glimpse of the Figure to the East Clerestory;
 	fire FIGUREEVENT1;
+
+The glimpse of the Figure is a scenery thing. Understand "grey" as the glimpse of the Figure. "I catch just a glimpse of a Grey in the shadows between the two statues to the northwest. If I crept that way, I might be able to catch what's being said..."
+
+Instead of examining the glimpse of the Figure for the second time:
+	say "I creep closer.";
+	try going northwest instead;
+
+Instead of facing northwest when the glimpse of the figure is in the location:
+	try examining the glimpse of the Figure instead;
+
+Before listening when the glimpse of the Figure is visible:
+	say "I can't make it out from here, but there are murmurs... words... perhaps if I snuck up a little closer..." instead;
 
 Chapter 3 - Doric
 
@@ -5853,26 +6227,32 @@ CT_DOR_DOOR is a conversation topic. The enquiry text is "'Can I go through your
 CT_DOR_SAAT is a conversation topic. The enquiry text is "'Do you know anything about Brother Sa'at?' I ask.". The response text is "'If he's not trying to come through this door then I don't know a thing,' he says. 'So don't think you can name-drop your way into my confidence.'".
 CT_DOR_CLOCKWORK is a conversation topic. The enquiry text is "'Are you interested in clockwork?' I ask.". The response text is "'I'm a pious man,' he says, abruptly, affected by your question. 'Not a holy one, maybe, and not clever enough for mysteries and that. But I pay my duties once a week.'".
 CT_DOR_SAINTS is a conversation topic. The enquiry text is "'Who's your favourite saint?' I ask.". The response text is "'I dunno.' He shrugs. 'Newton was a good one, wasn't it? All that slogging around being hit by apples. Good training, they say.'".
-CT_DOR_BOOKS is a conversation topic. The enquiry text is "'I need to find a book,' I tell him.". The response text is "'So what y['] asking me for? Like I can read, a Protectorate like me? I ought to chuck over that balcony for suggestin' it. But I won't.' He tips his head at the door. 'Boss might hear it. Doesn't like violence inside.' Suddenly he stiffens. 'Less it's necessary, don't think about rushing me neither.'".
+CT_DOR_BOOKS is a conversation topic. The enquiry text is "'I need to find a book,' I tell him.". The response text is "'So what y['] asking me for? Like I can read, a Protectorate like me? I ought to chuck you over t' balcony for suggestin' it. But I won't.' He tips his head at the door. 'Boss might hear it. Doesn't like violence inside.' Suddenly he stiffens. 'Less it's necessary, don't think about rushing me neither.'".
+
+CT_DOR_SEAL is a conversation topic. The enquiry text is "'Do I need this proof of yours sealed or stamped?' I ask." The response text is "'First of all,' Doric answers patiently, 'if you was a proper Abbey type, you'd already know. Second of all, without a seal a piece of paper's just a piece of paper. Third of all, you can't get seals just anywhere so you can get your hopes down already. Got it?'"
+
+CT_DOR_ME is a conversation topic. The enquiry text is "'Listen, I'm from the Abbey,' I begin, 'and...'". The response text is "'I don't much care if you're from the Moon,' Doric replies smartly. 'Either you're not comin' in or you're not comin' in, that's how I see it. And in the rare occasion that you [i]are[r] comin' in, you'll have something good enough to make me step aside. Won't you, rat?'"
 
 The conversation table of Doric is the Table of Doric's Conversation.
 
 Table of Doric's Conversation
 topic						conversation
 "faith" or "creed" or "creed of the church" or "creed of church"	CT_DOR_FAITH
-"business" or "proof" or "proof of business" or "paperwork" or "documentation"		CT_DOR_BUSINESS
+"work order" or "business" or "proof" or "proof of business" or "paperwork" or "documentation"		CT_DOR_BUSINESS
+"seal" or "stamp"				CT_DOR_SEAL
 "abbey"						CT_DOR_ABBEY
 "cathedral"					CT_DOR_CATHEDRAL
 "[abbot]" or "[figure]"				CT_DOR_ABBOT
 "archbishop"					CT_DOR_ARCHBISHOP
 "[abbeyfolk]"					CT_DOR_PEOPLE
 "door"						CT_DOR_DOOR
-"sa'at" or "brother sa'at"				CT_DOR_SAAT
-"clockwork"					CT_DOR_CLOCKWORK
+"[sa'at]"				CT_DOR_SAAT
+"[clockwork]"					CT_DOR_CLOCKWORK
 "saints"						CT_DOR_SAINTS
 "books" or "library" or "principia" or "planetaria"	CT_DOR_BOOKS
+"[me]"					CT_DOR_ME
 
-CT_DOR_FAITH is clustered with CT_DOR_BUSINESS, CT_DOR_ABBEY, CT_DOR_CATHEDRAL, CT_DOR_ABBOT, CT_DOR_ARCHBISHOP, CT_DOR_PEOPLE, CT_DOR_DOOR, CT_DOR_SAAT, CT_DOR_CLOCKWORK, CT_DOR_SAINTS, CT_DOR_BOOKS.
+CT_DOR_FAITH is clustered with CT_DOR_BUSINESS, CT_DOR_ABBEY, CT_DOR_CATHEDRAL, CT_DOR_ABBOT, CT_DOR_ARCHBISHOP, CT_DOR_PEOPLE, CT_DOR_DOOR, CT_DOR_SAAT, CT_DOR_CLOCKWORK, CT_DOR_SAINTS, CT_DOR_BOOKS, CT_DOR_SEAL, CT_DOR_ME.
 
 Rule for firing a fired conversation topic that is clustered with CT_DOR_FAITH:
 	say "I've already asked about that." instead;
@@ -6011,7 +6391,7 @@ Chapter 3 - Scenery
 
 Section 1 - Windows
 
-The window of the winding-key is a stained glass window, scenery, in the East Clerestory. "The gigantic window depicts an enormous iron winding key being lowered from the sky by cherubs. Lots of them. (Got to be [i]physical[r], after all, like all good Art. The monks have no doubt computed the correct and proper weight for a cherub's wings to carry)."
+The window of the winding-key is a stained glass window, scenery, in the East Clerestory. "The gigantic window depicts an enormous iron winding key being lowered from the sky by cherubs. Lots of them. (Got to be [i]physical[r], after all, like all good Art. The monks have no doubt computed the correct and proper weight for a cherub's wings to carry)." Understand "windows" as the window of the winding-key.
 
 The printed name is "window".
 
@@ -6082,13 +6462,19 @@ Part 1 - Bishop's Library
 
 Chapter 1 - Description
 
-The Bishop's Library is a room. "I'd been expecting something grander than this! Maybe a long sofa, a little more light, perhaps even his own Tea Maker. But instead there's nothing but a single desk, some books, and a lot of wrought iron decoration – hooks, candle-brackets, ink-wells – all made from a single sweeping line of iron that curls around the floor and walls like a wandering pen-stroke."
+The Bishop's Library is a room. "[one of]I'd been expecting something grander than this! Maybe a long sofa, a little more light, perhaps even his own Tea Maker. But instead there's[or]There's[stopping] nothing but a single desk, some books, and a lot of wrought iron decoration – hooks, candle-brackets, ink-wells – all made from a single sweeping line of iron that curls around the floor and walls like a wandering pen-stroke."
+
+
+Before making to leave when in the Bishop's Library: try going south instead.
+
+
+Section 1 - The Archbishop
 
 The Archbishop is a man, in the Bishop's Library. "The Archbishop himself sits behind the desk, his face barely visible in the light through the narrow windows."
 
 The description is "He's a nice old man and looks quite fine dressed in his full ceremonial robes. Around his neck he wears a Symbolic Key on a chain – a bit like mine, I suppose. His hands are quietly folded and he's listening – but I don't think he's taking me very seriously."
 
-Understand "bishop", "arch-bishop", "arch bishop" as the Archbishop.
+Understand "bishop", "arch-bishop", "arch bishop", "steelspring" as the Archbishop.
 
 Rule for clarifying the parser's choice of the Archbishop:
 	do nothing;
@@ -6096,7 +6482,8 @@ Rule for clarifying the parser's choice of the Archbishop:
 Instead of going through the Bishop's Door from the Bishop's Library:
 	say "But I have to convince him! I can't just give up now!";	
 
-Before making to leave when in the Bishop's Library: try going south instead.
+The Symbolic Key is carried by the Archbishop. It has description "The Key is long, thin, and set with twelve teeth around its circumference. What it's a key to I don't know. Office, maybe. Anyway, it's more important than the clock key round [i]my[r] neck."
+
 
 Chapter 2 - Scenery
 
@@ -6180,9 +6567,30 @@ Part 4 - West Clerestory B
 
 [For the above, see Book 3, Parts 13, 14 and 15. ]
 
+
+Part 4b - The Escaping Figure
+
+[ TO DO: follow, appearing and disappearing as appropriate. need in c5 too? ]
+
+The escaping Figure is an animate glimpse backdrop. Understand "[figure]", "man", "escaping" as the escaping Figure. "The Figure is a good way ahead of me, but if I keep moving, I'm [i]sure[r] I can catch up!"
+
+Rule for writing a paragraph about the escaping Figure:
+	now the escaping Figure is mentioned;
+
+Before of asking the escaping Figure about:
+	say "The Figure isn't waiting around to talk to me. The Figure is getting away!" instead;
+
+Before shouting at the escaping Figure:
+	say "'Hey!' I holler. 'Stop where you are!'[paragraph break]Nothing." instead;
+
+section 2 - the Upper reaches region
+
+The Upper Reaches of the Cathedral are a region. Among the Gargoyles, Lower Gears, Upper Gears, Rafters, Behind the Clock Face are in the Upper Reaches of the Cathedral.
+
 Part 5 - Among the Gargoyles
 
-Among the Gargoyles is a room. "Looking down – oh, no... - there's the floor of the choir, far below. I'm really, really high up – higher than my little bedroom – and this ledge is a lot narrower than my bed.[paragraph break]The cityscape workings of the Cathedral clock are suspended from the Cathedral's dome, just a little out of reach."
+
+Among the Gargoyles is a room. "Looking down – oh, no... - there's the floor of the choir, far below. I'm really, really high up – higher than my little bedroom – and this ledge is a lot narrower than my bed... And there's nothing to hold onto - nothing out there but space, and the gigantic workings of the Cathedral clock, like a hornet's nest suspended from the centre of the dome."
 
 Instead of going down in Among the Gargoyles:
 	say "I've got to follow him... somehow...[paragraph break]";
@@ -6190,14 +6598,29 @@ Instead of going down in Among the Gargoyles:
 Instead of going a direction in Among the Gargoyles:
 	say "There's no way off this ledge at all!";
 
+Instead of facing down when in Among the Gargoyles or in Lower Gears:
+	say "A million metres below me are monks as small as black ants crawling round the altar below the clock. They'll get the shock of their lives when I fall on them..."
+
+Instead of approaching the escaping Figure in Among the Gargoyles:
+	say "How I'm supposed to get over [i]there[r]?"
+
+
 Chapter 2 - Scripted Events
 
-After looking in Among the Gargoyles:
+After looking in Among the Gargoyles when SE_GARGOYLES1 is unfired:
 	change the current script to { SE_GARGOYLES1, SE_GARGOYLES2 };
+	move the escaping Figure to the Upper Reaches of the Cathedral;
+	update backdrop positions;
 
-SE_GARGOYLES1 is a scripted event. The display text is "Steady, Wren. You're good with heights, aren't you? Yes – but not with pendulums! I duck to avoid the massive pendulum of the clock which almost knocks me clear of this ledge! I cling onto a gargoyle and I don't... look... down...".
+SE_GARGOYLES1 is a scripted event. The display text is "Steady, Wren. You're good with heights, aren't you? But maybe not with pendulums! I duck to avoid the massive penduluum of the clock as it almost knocks me clear of the ledge! I cling onto a gargoyle and I don't... look... down...".
 
-SE_GARGOYLES2 is a scripted event. The display text is "Clinging to the clock's gears like a spider, I see the Figure, his head turned to look back at me. For a moment he's quite still – then an escapement above him turns and he's up and away, into the heart of the mechanism.".
+SE_GARGOYLES2 is a scripted event. The display text is "I spot the Figure, clinging to the clock's gears like a spider. The hood is turned to look back at me. For a moment he's still – then an escapement above him turns and he's scuttles away, deep into the turning wheels.".
+
+Instead of doing something with the escaping Figure when SE_GARGOYLES2 is not fired and SE_GARGOYLES1 is fired:
+	[ we're in Amongst the Gargoyles and we've not yet seen him. But we're about to! ]
+	do nothing;
+
+
 
 Chapter 3 - Pendulum
 
@@ -6207,32 +6630,36 @@ The printed name is "penduluum". Understand "pendulum" as the cathedral clock pe
 
 The PenduluumCounter is a Busy Counter. The top end is 4. The internal value is 4.
 
-Every turn when in Among the Gargoyles:
+Every turn when in Among the Gargoyles and SE_GARGOYLES2 is fired:
 	increment the PenduluumCounter;
 
 Rule for firing the PenduluumCounter when the internal value of the PenduluumCounter is 1:
-	say "[one of]The penduluum reaches the far point of its swing.[or]The penduluum is deep inside the clock mechanism.[or]The penduluum swings away.[stopping]";
+	say "[one of]The penduluum hangs still in space for a full second at the far point of its swing.[or]The penduluum coasts to a stop inside the clock.[or]The penduluum is dead still, at the far point of its swing.[or]The penduluum is far off inside the clock.[stopping]";
 
 Rule for firing the PenduluumCounter when the internal value of the PenduluumCounter is 2:
-	say "[one of]The penduluum races towards you, so close![or]The penduluum is swinging through the heart of the clock, right for me![or]The penduluum swings ever closer.[stopping]";
+	say "[one of]The penduluum plunges towards me, coming closer every second![or]The penduluum is picking up speed, heading right for me![or]The penduluum charges towards me![stopping]";
 
 Rule for firing the PenduluumCounter when the internal value of the PenduluumCounter is 3:
-	say "[one of]The penduluum nearly knocks you back, then moves away.[or]I dodge the penduluum and it swings away.[or]For a moment the penduluum is stationary beside me, then it seems to float backwards off the ledge, pulling at me like a tide.[or]The penduluum almost hits me.[stopping]";
+	say "[one of]The penduluum swings up to ledge, almost knocking me down.[or]The penduluum slows to the edge of the ledge and waits for a moment, before starting to swing away.[or]For a moment the penduluum is still beside me, then it seems to float backwards off the ledge.[or]The penduluum almost hits me as it turns.[stopping]";
 
 Rule for firing the PenduluumCounter when the internal value of the PenduluumCounter is 4:
-	say "[one of]The penduluum swings towards the machinery of the cathedral clock.[or]The penduluum swings back into the depths of the clock's workings.[or]The penduluum swings away.[stopping]";
+	say "[one of]The penduluum sails away in slow-motion through the machinery of the great Clock.[or]The penduluum soars back into the depths of the clock's workings.[or]The penduluum swings away.[stopping]";
 
 Instead of jumping in Among the Gargoyles:
 	try taking the cathedral clock penduluum instead;
 
-Instead of climbing or climbing up the Cathedral Clock penduluum:
+Instead of climbing or climbing up or jumping on the Cathedral Clock penduluum:
 	try taking the cathedral clock penduluum instead;
 
-Before taking the Cathedral Clock penduluum when the internal value of the PenduluumCounter is 1 or the internal value of the PenduluumCounter is 4: 
-	say "The penduluum's at the other end of its swing. You can't fly, young Wren." instead;
+Before taking the Cathedral Clock penduluum when the internal value of the PenduluumCounter is 1 or the internal value of the PenduluumCounter is 2:  [ that is, "sailed away" or "far point of swing" ] 
+	say "The penduluum's at the far end of its swing. [i]You can't fly, young Wren[r]." instead;
 
 Instead of taking the Cathedral Clock penduluum: 
-	say "I can't believe this... as the penduluum approaches and slows to a moment's halt, I wrap my arms around it. The whole clock above seems to shiver from the extra weight and then I'm away, floating over space, faster and faster...[paragraph break]At the lowest point when I'm whipping through the air, I let go and drop onto a platform, surrounded by gears and windings. The penduluum is gone in a moment.";
+	if the internal value of the PenduluumCounter is 3: [ this is, "approaching fast" ]
+		say "Until the last moment I don't whether I can do it... and as the penduluum slows to a halt, I wrap my arms around it. A moment later my feet are in mid-air and";
+	else:  [ this is, "up to the ledge" ]  
+		say "Every wire in my body is telling me it's too late, and that makes it even later. At the last possible moment I jump into space... I'm over the vast hall of the Cathedral... and then with an awkward crash I hit the penduluum and wrap my arms around it![paragraph break]The whole clock above seems to shiver from the extra weight and then";
+	say " I'm away, floating over space, faster and faster...[paragraph break]At the lowest point when I'm whipping through the air, I let go and drop onto a platform, surrounded by gears and windings. The penduluum is gone in a moment.";
 	move the player to Lower Gears;
 
 Chapter 4 - Scenery
@@ -6253,23 +6680,47 @@ The choir floor is a backdrop, in Among the Gargoyles, Lower Gears and Upper Gea
 Instead of doing something when the Choir Floor is physically involved:
 	say "[if the location is not Upper Gears]No thanks.[otherwise]I can't see the floor any more from this height.[end if]";
 
+Some singing monks is a backdrop, in Among the Gargoyles, Lower Gears and Upper Gears. "[if location is not Upper Gears]Far below are shining spots - the bald heads of the monks around the altar. The machine on the altar itself is a single gleaming gold dot.[else]I can't see the monks any more, only hear the whisper of their song.[end if]". Understand "altar", "gold", "dot", "gleam", "bald", "head", "heads", "chant", "chanting", "song" as the singing monks.
+
+Include (- has animate, -) when defining the singing monks.
+
+Before asking the singing monks about:
+	say "If I cried for help now they'd probably think it was a miracle: the Clock talking back to them." instead;
+
+Before shouting at the singing monks:
+	say "If I cried for help now they'd probably think it was a miracle: the Clock talking back to them." instead;
+
+Instead of doing something when the singing monks are physically involved:
+	say "[if the location is not Upper Gears]No thanks.[otherwise]I can't see the monks any more from this height.[end if]";
+
+Every turn when the singing monks are visible and a random chance of 1 in 3 succeeds and SE_GARGOYLES2 is fired:
+	if the location is the Upper Gears:
+		say "[one of]The chanting is barely audible now.[or]The monk's song is lost in the tick-tock of the clock.[or][stopping]";
+	else:
+		say "[one of]Thin singing drifts up from the floor far below.[or]The stone echo with soft chanting, regular and low, like the murmur of a shifting counterweight.[or]The monks below are just bright spots in black circles on the distant Cathedral floor.[or][stopping]"; 
+	
 Section 3 - Gears
 
 Some gearwheels are a backdrop, in Among the Gargoyles, Lower Gears, Upper Gears, and the Rafters. "[if the location is Among The Gargoyles]The workings of the clock are a shipwreck of cogs, wheels and traces, their teeth and struts and scaffolds moving with the same slow purpose as Sa'at's Great Orrey. Up above them I can just see the enormous face of the rose window clock face.[otherwise if the location is Lower Gears]It's a maze of gears, chains and pinions, all in constant movement. A few have rungs and ladder-holds beside them, others have struts across their diameters.[otherwise if the location is Upper Gears]There are pulleys and chains everywhere, all turning the massive shaft of the clock overhead.[otherwise if the location is Rafters]The gears are across the room from where I am. The clock-face itself is nothing but a glass wall and the gigantic hands whose shadows I can just see.[end if]"
 
 The printed name of the gearwheels is "gears".
 
-Understand "gear", "gears", "working", "workings", "clockwork", "cog", "cogs", "wheel", "wheels", "trace", "traces", "teeth", "strut", "struts", "pinion", "pinions", "scaffold", "scaffolds" as the gearwheels.
+Understand "gear", "gears", "working", "workings", "[clockwork]", "cog", "cogs", "wheel", "wheels", "trace", "traces", "teeth", "strut", "struts", "pinion", "pinions", "scaffold", "scaffolds" as the gearwheels.
+
+Understand "clock", "cathedral clock" as the gearwheels when in Lower Gears or in Upper Gears or in Rafters.
 
 Instead of climbing the gearwheels when in Among the Gargoyles:
-	say "They're twenty feet away or more, suspended over thin air and the choir below!";
+	say "They're a jump of twenty feet away or more, suspended over thin air and the choir below!";
 
 Instead of doing something when in the Rafters and the gearwheels are physically involved:
 	say "They're back across the space from me.";
 
+
 Part 6 - Lower Gears
 
-Lower Gears is a room. "I'm sandwiched between two gears of the Cathedral clock, on a narrow wooden platform that winds in and out between the workings. This noise is louder than Reloh's duplicator – like an army of cooks all banging saucepans. I can barely keep straight which way is up and which way is down.[paragraph break]Platforms lead away to the [available platforms]."
+Lower Gears is a room. "I'm sandwiched between two gears of the Cathedral clock, on a narrow wooden platform that winds in and out between the workings. [one of]This noise is louder than Reloh's duplicator – like an army of cooks all banging saucepans. I can barely keep straight which way is up and which way is down.[paragraph break][or][stopping]Platforms lead away to the [available platforms]."
+
+
 
 Index map with Lower Gears mapped north of Among the Gargoyles.
 
@@ -6292,9 +6743,17 @@ Understand "chain", "chains", "rung", "rungs", "ladder", "ladders", "hold", "hol
 Instead of climbing the gearwheels when in Lower Gears:
 	try going up;
 
+Instead of approaching the Escaping figure when in the Lower Gears:
+	try going up.
+
 Part 7 - Upper Gears
 
 Upper Gears is a room, up from Lower Gears. "Further up now, and hanging onto a scaffold beam for dear life. Below – quite a lot of space, and the rest of the mechanism. Around, cogs grinding the rust off other cogs. And in front: a void of empty space. A gap – and then the beautiful crystal light of the rose window: the clock face itself, filling my eyes with light.[paragraph break]Way overhead, higher even still, is the shaft that turns the clock hands, reaching out from the gigantic mechanism and through the window. There's no way I can climb there. The gears here are smaller and moving too fast."
+
+
+
+Instead of approaching the escaping Figure in Upper Gears:
+	say "The Figure must have climed the gear-teeth: I can't do that! I'm just a child!"
 
 Chapter 2 - Event on entry
 
@@ -6305,6 +6764,7 @@ After looking in Upper Gears when UG_FIGURE1 is unfired:
 
 Rule for firing UG_FIGURE1:
 	say "Clinging to the shaft overhead is the Figure. He must have climbed the gear-teeth themselves.[paragraph break]'Why do you follow me, child?' the Figure demands, his hooded face turning towards me. 'You can't stop me from stealing the Perpetuum. There are greater wheels turning here that you don't understand!'[paragraph break]Then swiftly and smoothly, like a cat, he grabs onto a passing length of chain and soaring up into space. But I'm thinking one thing: he's planning to steal the [i]Perpetuum![r]";
+
 
 Chapter 3 - Objects
 
@@ -6400,6 +6860,13 @@ Chapter 1 - Description
 
 Rafters is a room. "I'm clinging to a rafter. Beside me is the long chain from the pulley, down past the rose window that lights up everything in vivid red, blue and green. My foot could almost reach the XII on the clock face... Below is nothing but a few more rafters, presumably used for placing the glass. Below that is a long drop, and the chanting of the monks far below.[paragraph break]By one of the rafters way below is a little door in the clock face – a pane of glass, swung open. [i]The Figure.[r]" 
 
+
+Instead of approaching the escaping Figure in the Rafters:
+	try going down;
+
+Instead of making to leave in the Rafters: 
+	try going down.
+
 Chapter 2 - Scenery
 
 Instead of going up in the Rafters:
@@ -6409,7 +6876,7 @@ Instead of going a planar direction when in the Rafters:
 	say "I can't go anywhere from here. I'm out on a limb, with just the chain for company.";
 
 After going down from the Rafters:
-	say "Gingerly, I clamber down the chain and onto the rafters below.";
+	say "Gingerly, I clamber down the chain and onto the rafters behind the clock face, lower down.";
 	continue the action;
 
 Section 1 - Rose Window
@@ -6425,6 +6892,9 @@ Part 9 - Behind the Clock Face
 Chapter 1 - Description
 
 Behind the Clock Face is a room, down from the Rafters. "Like an unlucky symbol I can see the giant clock face in front of me, in reverse. The hands are turning widdershins, very slowly. The rafter I'm on extends right up to the glass panel set in the clock face, where a small square of normal light breaks the green and silver of the stained glass, near the IV.[paragraph break]The chain extends beside me, up and down."
+
+Instead of approaching the escaping Figure in the Rafters:
+	try going outside;
 
 Instead of going up when in Behind the Clock Face:
 	say "The door is within reach. This is where the Figure went.";
@@ -6453,9 +6923,20 @@ Rule for printing the description of the rose window when in Behind the Clock Fa
 
 Book 5 - The Roofs of the City
 
+The Roofs of the City is a region. The Minute Hand, Parapet  are in the Roofs of the City.
+
 Part 1 - Minute Hand
 
 Minute Hand is a room, outside from Behind the Clock Face. "It's a good thing I'm good with heights, because this is the highest I've ever been. My back's pressed against the cool glass of the rose window, and I'm standing – I'm standing on a wide metal girder. The [i]long[r] girder. The one that tells you minutes. Luckily it's between the III and the IV so I can stand here, because the metal's smooth and there's nothing to cling onto.[paragraph break]Stretched out below me is the whole of the city of St Philip. Most of it looks like it washed up here sometime when the rivers flooded. Only the Abbey looks like it was actually built instead of dropped."
+
+Instead of going inside from the Minute Hand:
+	say "It's too late. I'm frozen to the spot, not going anywhere."
+
+After looking in the Minute Hand:
+	move the escaping Figure to the Roofs of the City;
+
+Instead of approaching the escaping Figure when in the Minute Hand:
+	say "I can't begin to understand how he got there..."
 
 Index map with Minute Hand mapped east of Behind the Clock Face.
 
@@ -6471,6 +6952,9 @@ SE_MINHAND3 is a scripted event. The display text is "From behind the window the
 
 After firing SE_MINHAND3:
 	move the player to the Parapet;
+
+Instead of going down in Minute Hand:
+	try jumping.
 
 Instead of jumping in Minute Hand:
 	say "No chance. It's too far. I'd have my neck in pieces before my feet hit the stone.";
@@ -6598,7 +7082,7 @@ Chapter 2 - Scenery
 
 Section 1 - Gargoyles
 
-Understand "spire", "spires", "gable", "gables", "cathedral" as the gargoyles of vice when the location is Buttress.
+Understand "spire", "spires", "gable", "gables", "[cathedral]" as the gargoyles of vice when the location is Buttress.
 
 Rule for printing the description of the gargoyles of vice when in Buttress:
 	say "The Cathedral roof is back east.";
@@ -7387,17 +7871,17 @@ Section 1 - When Angry
 
 Table of angry Covalt conversation
 conversation			topic
-CT_COV_1_MYSELF		"me" or "myself" or "self" or "Wren" or "story" or "my story"
+CT_COV_1_MYSELF		"[me]"
 CT_COV_1_BALLOON		"balloon" or "skylight" or "ceiling" or "wreckage" or "wreck" or "window" or "weather balloon"
 CT_COV_1_ABBEY		"[abbey]" 
 CT_COV_1_CATHEDRAL		"[cathedral]"
 CT_COV_1_ABBOT		"[abbot]"
 CT_COV_1_FIGURE		"[figure]"
-CT_COV_1_ARCHBISHOP		"bishop" or "archbishop"
+CT_COV_1_ARCHBISHOP		"[archbishop]"
 CT_COV_1_PEOPLE		"[abbeyfolk]" or "[sa'at]"
-CT_COV_1_COVALT		"giant" or "him" or "himself"
+CT_COV_1_COVALT		"giant" or "[himself]"
 CT_COV_1_RAVENS		"ravens" or "his ravens" or "hugin" or "mummin"
-CT_COV_1_CLOCKWORK		"clockwork" or "clock work" or "clocks" or "saints" or "newton" or "babbage" or "breguet"	
+CT_COV_1_CLOCKWORK		"[clockwork]" or "[saints]"	
 CT_COV_1_SORRY		"sorry" or "apologise" or "apologies"
 CT_COV_1_PERPETUUM		"perpetuum" or "mobile" or "stealing" or "theft" or "robbery" or "plan" or "plot"
 
@@ -7447,15 +7931,15 @@ Section 2 - When Cautious
 
 Table of cautious Covalt conversation
 conversation			topic
-CT_COV_2_MYSELF		"me" or "myself" or "self" or "Wren" or "story" or "my story"
+CT_COV_2_MYSELF		"[me]"
 CT_COV_2_BALLOON		"balloon" or "skylight" or "wreckage" or "wreck" or "window" or "weather balloon"
-CT_COV_2_ABBEY		"abbey" 
-CT_COV_2_ARCHBISHOPCATHEDRAL		"cathedral" or "bishop" or "archbishop"
-CT_COV_2_ABBOTFIGURE	"abbot" or "gubbler" or "figure" or "figure in grey/gray" or "gray/grey figure"
-CT_COV_1_PEOPLE		"[calvinanddrake]" or "brother" or "horloge" or "reloh" or "sa'at" or "cook"
-CT_COV_2_COVALT		"giant" or "him" or "himself"
+CT_COV_2_ABBEY		"[abbey]" 
+CT_COV_2_ARCHBISHOPCATHEDRAL		"[cathedral]" or "[archbishop]"
+CT_COV_2_ABBOTFIGURE	"[abbot]" or "[figure]" 
+CT_COV_1_PEOPLE		"[calvinanddrake]" or "[horloge]" or "[reloh]" or "[sa'at]" or "cook"
+CT_COV_2_COVALT		"giant" or "[himself]"
 CT_COV_2_RAVENS		"ravens" or "his ravens" or "hugin" or "mummin"
-CT_COV_2_CLOCKWORK		"clockwork" or "clock work" or "clocks" or "saints" or "newton" or "babbage" or "breguet"	
+CT_COV_2_CLOCKWORK		"[clockwork]" or "[saints]"
 CT_COV_2_SORRY		"sorry" or "apologise" or "apologies"
 CT_COV_2_PERPETUUM		"perpetuum" or "mobile" or "stealing" or "theft" or "robbery" or "plan" or "plot"
 
@@ -7498,18 +7982,18 @@ Section 3 - When Searching
 
 Table of searching Covalt conversation
 conversation			topic
-CT_COV_3_MYSELF		"me" or "myself" or "self" or "Wren" or "story" or "my story"
+CT_COV_3_MYSELF		"[me]"
 CT_COV_3_BALLOON		"balloon" or "skylight" or "wreckage" or "wreck" or "window" or "weather balloon"
-CT_COV_3_ABBEY		"abbey" 
-CT_COV_3_ARCHBISHOP		"bishop" or "archbishop"
-CT_COV_3_CATHEDRAL		"cathedral"
-CT_COV_3_ABBOT		"abbot" or "gubbler"
-CT_COV_3_FIGURE		"figure" or "figure in grey/gray" or "gray/grey figure"
-CT_COV_1_PEOPLE		"[calvinanddrake]" or "brother" or "horloge" or "reloh" or "sa'at" or "cook"
-CT_COV_3_COVALT		"giant" or "him" or "himself"
+CT_COV_3_ABBEY		"[abbey]" 
+CT_COV_3_ARCHBISHOP	 "[archbishop]"
+CT_COV_3_CATHEDRAL		"[cathedral]"
+CT_COV_3_ABBOT		"[abbot]"
+CT_COV_3_FIGURE		"[figure]"
+CT_COV_1_PEOPLE		"[calvinanddrake]" or "[horloge]" or "[reloh]" or "[sa'at]" or "cook"
+CT_COV_3_COVALT		"giant" or "[himself]"
 CT_COV_3_RAVENS		"ravens" or "his ravens" or "hugin" or "mummin"
-CT_COV_3_CLOCKWORK		"clockwork" or "clock work" or "clocks" or "saints" or "newton" or "babbage" or "breguet"	
-CT_COV_3_SAINTS		"saint" or "saints"
+CT_COV_3_CLOCKWORK		"[clockwork]" 
+CT_COV_3_SAINTS		"[saints]"
 CT_COV_3_SORRY		"sorry" or "apologise" or "apologies"
 CT_COV_3_PERPETUUM		"perpetuum" or "mobile" or "stealing" or "theft" or "robbery" or "plan" or "plot"
 CT_COV_3_HERESY		"heretical designs" or "heresy" or "new designs" or "heresies"
@@ -7545,7 +8029,7 @@ CT_COV_3_PERPETUUM is a conversation topic. The enquiry text is "'What is the Pe
 
 CT_COV_3_HERESY is a conversation topic. The enquiry text is "'What were your new designs?'". The response text is "'Well,' he says, pausing to look flattered. 'Mostly voltaics. Wires, filaments. Was thinking about candles, see. Nothing clockwork in a candle, is there?'[paragraph break]I mention the candles on tracks in the Abbey, and he nods.[paragraph break]'See? They've built that [i]because[r] there's no clockwork in candles. Well. I was working on that. Fixing it. But.' He draws a long breath. 'The Church sent me a very nice letter about it and I decided to stop. And you tell them that when you get back, won't you. There's a good sprat.'".
 
-CT_COV_3_MYSELF is clustered with CT_COV_3_BALLOON, CT_COV_3_ABBEY, CT_COV_3_ARCHBISHOP, CT_COV_3_CATHEDRAL, CT_COV_3_ABBOT, CT_COV_3_FIGURE, CT_COV_3_COVALT, CT_COV_3_RAVENS, CT_COV_3_CLOCKWORK, CT_COV_3_SORRY, CT_COV_3_PERPETUUM, CT_COV_3_HERESY.
+CT_COV_3_MYSELF is clustered with CT_COV_3_BALLOON, CT_COV_3_ABBEY, CT_COV_3_ARCHBISHOP, CT_COV_3_CATHEDRAL, CT_COV_3_ABBOT, CT_COV_3_FIGURE, CT_COV_3_COVALT, CT_COV_3_RAVENS, CT_COV_3_CLOCKWORK, CT_COV_3_SORRY, CT_COV_3_PERPETUUM, CT_COV_3_HERESY, CT_COV_3_SAINTS.
 
 [These topics may only be fired once.]
 Rule for firing a fired conversation topic that is clustered with CT_COV_3_MYSELF:
@@ -7659,21 +8143,27 @@ Section 5 - When enthusiastic
 
 Table of enthusiastic Covalt conversation
 conversation			topic
-CT_COV_5_MYSELF		"me" or "myself" or "self" or "Wren" or "story" or "my story"
+CT_COV_5_MYSELF		"[me]"
 CT_COV_5_DIFFERENCEENGINE	"difference" or "engine" or "machine" or "knowing machine"
-CT_COV_5_ABBEY		"abbey"
-CT_COV_5_CATHEDRAL		"cathedral"
-CT_COV_5_ABBOT		"abbot" or "gubbler"
-CT_COV_5_FIGURE		"figure" or "figure in grey/gray" or "gray/grey figure"
-CT_COV_5_ARCHBISHOP		"bishop" or "archbishop"
-CT_COV_1_PEOPLE		"[calvinanddrake]" or "brother" or "horloge" or "reloh" or "sa'at" or "cook"
-CT_COV_5_COVALT		"giant" or "covalt" or "him" or "himself"
+CT_COV_5_ABBEY		"[abbey]"
+CT_COV_5_CATHEDRAL		"[cathedral]"
+CT_COV_5_ABBOT		"[abbot]"
+CT_COV_5_FIGURE		"[figure]" 
+CT_COV_5_ARCHBISHOP		"[archbishop]"
+CT_COV_1_PEOPLE		"[calvinanddrake]" or "[horloge]" or "[reloh]" or "[sa'at]" or "cook"
+CT_COV_5_COVALT		"giant" or "covalt" or "[himself]"
 CT_COV_5_RAVENS		"his ravens" or "ravens" or "hugin" or "mummin"
-CT_COV_5_CLOCKWORK		"clockwork"
-CT_COV_5_SAINTS		"saint" or "saints" or "babbage" or "newton" or "st babbage" or "st newton" or "breguet" or "st breguet"
+CT_COV_5_CLOCKWORK		"[clockwork]" 
+CT_COV_5_SAINTS		"[saints]" 
 CT_COV_5_SORRY		"sorry" or "apologise" or "apologies"
 CT_COV_5_PERPETUUM		"perpetuum" or "mobile"
 CT_COV_3_HERESY		"heretical designs" or "heresy" or "voltaic" or "new designs" or "designs" or "heresies"
+
+[ only once ]
+Rule for firing a fired conversation topic that is clustered with CT_COV_5_MYSELF:
+	say "I've already asked about that." instead;
+
+CT_COV_5_MYSELF is clustered with CT_COV_5_DIFFERENCEENGINE, CT_COV_5_ABBEY, CT_COV_5_CATHEDRAL, CT_COV_5_ABBOT, CT_COV_5_FIGURE, CT_COV_5_ARCHBISHOP, CT_COV_5_PEOPLE, CT_COV_5_COVALT, CT_COV_5_RAVENS, CT_COV_5_CLOCKWORK, CT_COV_5_SAINTS, CT_COV_5_SORRY, CT_COV_5_PERPETUUM, CT_COV_5_HERESY.
 
 Rule for choosing the conversation table of Covalt when the state of Covalt is 5:
 	change the chosen conversation table to the table of enthusiastic Covalt conversation;
@@ -7975,8 +8465,14 @@ CT_GUARD_FIGURE		"[figure]"
 CT_GUARD_PEOPLE		"[abbeyfolk]"
 CT_GUARD_ENGINE		"engine" or "difference"
 CT_GUARD_COUNTINGHOUSE	"counting" or "house" or "building"
-CT_GUARD_CLOCKWORK		"clockwork"
+CT_GUARD_CLOCKWORK		"[clockwork]" 
 CT_GUARD_SAINTS		"saints" or "newton" or "babbage" or "breguet" or "godel"
+
+CT_GUARD_ENTRY is clustered with CT_GUARD_PROOF, CT_GUARD_CATHEDRAL, CT_GUARD_FIGURE, CT_GUARD_PEOPLE, CT_GUARD_ENGINE, CT_GUARD_COUNTINGHOUSE, CT_GUARD_CLOCKWORK, CT_GUARD_SAINTS.
+
+[These topics may only be fired once.]
+Rule for firing a fired conversation topic that is clustered with CT_GUARD_ENTRY:
+	say "I've already asked about that." instead;
 
 CT_GUARD_ENTRY is a conversation topic. The enquiry text is "'You've got to let me in. I'm from the Cathedral.'". The response text is "The guards look unimpressed. 'Without proof I'm afraid you could just as well be from the cock-fighting pits, looking to see who'll win tonight.'". 
 
@@ -10066,17 +10562,17 @@ Section 1 - When Concerned
 
 Table of concerned Covalt conversation
 conversation			topic
-CT_COV_R1_MYSELF		"me" or "myself" or "self" or "Wren" or "story" or "my story"
+CT_COV_R1_MYSELF		"[me]"
 CT_COV_R1_BALLOON		"balloon" or "skylight" or "ceiling" or "wreckage" or "wreck" or "window" or "weather balloon" or "sorry" or "apologies" or "apologise"
 CT_COV_R1_ABBEY		"[abbey]" 
 CT_COV_R1_CATHEDRAL		"[cathedral]"
 CT_COV_R1_ABBOT		"[abbot]"
 CT_COV_R1_FIGURE		"[figure]"
-CT_COV_R1_ARCHBISHOP	"bishop" or "archbishop"
+CT_COV_R1_ARCHBISHOP	 "[archbishop]"
 CT_COV_R1_PEOPLE		"[abbeyfolk]" or "[sa'at]"
-CT_COV_R1_COVALT		"giant" or "covalt" or "him" or "himself"
+CT_COV_R1_COVALT		"giant" or "covalt" or "[himself]"
 CT_COV_R1_RAVENS		"ravens" or "his ravens" or "hugin" or "mummin"
-CT_COV_R1_CLOCKWORK	"clockwork" or "clock work" or "clocks"
+CT_COV_R1_CLOCKWORK	"[clockwork]" 
 CT_COV_R1_PERPETUUM		"perpetuum" or "mobile" or "stealing" or "theft" or "robbery" or "plan" or "plot"
 CT_COV_R1_DIFFERENCEENGINE	"difference" or "engine" or "machine" or "knowing machine"
 CT_COV_R1_ARMY		"docks" or "dockyard" or "warehouse" or "docklands" or "old place" or "army" or "metal" or "mechanical" or "men" or "statues" or "machines" or "soldiers"
@@ -10112,16 +10608,16 @@ Section 2 - When Realizing
 
 Table of realizing Covalt conversation
 conversation			topic
-CT_COV_R2_MYSELF		"me" or "myself" or "self" or "Wren" or "story" or "my story"
+CT_COV_R2_MYSELF		"[me]"
 CT_COV_R2_BALLOON		"balloon" or "skylight" or "ceiling" or "wreckage" or "wreck" or "window" or "weather balloon" or "sorry" or "apologies" or "apologise"
 CT_COV_R2_CHURCH		"[abbey]" or "[cathedral]" or "[figure]"
-CT_COV_R2_CLERGY		"[abbot]" or "bishop" or "archbishop"
+CT_COV_R2_CLERGY		"[abbot]" or "[archbishop]"
 CT_COV_R2_PEOPLE		"[abbeyfolk]" or "[sa'at]"
-CT_COV_R2_COVALT		"giant" or "covalt" or "him" or "himself"
+CT_COV_R2_COVALT		"giant" or "covalt" or "[himself]"
 CT_COV_R2_RAVENS		"ravens" or "raven" or "his ravens" or "hugin" or "mummin"
 CT_COV_R2_PERPETUUM		"perpetuum" or "mobile" or "stealing" or "theft" or "robbery" or "plan" or "plot"
 CT_COV_R2_DIFFERENCEENGINE	"difference" or "engine" or "machine" or "knowing machine"
-CT_COV_R2_ARMY		"docks" or "dockyard" or "warehouse" or "docklands" or "old place" or "clockwork" or "clock work" or "clocks" or "army" or "metal" or "mechanical" or "men" or "statues" or "machines" or "soldiers"
+CT_COV_R2_ARMY		"docks" or "dockyard" or "warehouse" or "docklands" or "old place" or "[clockwork]" or "army" or "metal" or "mechanical" or "men" or "statues" or "machines" or "soldiers"
 
 Rule for choosing the conversation table of Covalt when the state of Covalt is 2 during Return to Covalt's:
 	change the chosen conversation table to the table of realizing Covalt conversation;
@@ -10178,15 +10674,15 @@ Section 3 - When figuring out what to do
 
 Table of planning Covalt conversation
 conversation			topic
-CT_COV_R3_MYSELF		"me" or "myself" or "self" or "Wren" or "story" or "my story"
+CT_COV_R3_MYSELF		"[me]"
 CT_COV_R3_BALLOON		"balloon" or "skylight" or "ceiling" or "wreckage" or "wreck" or "window" or "weather balloon" or "sorry" or "apologies" or "apologise"
-CT_COV_R3_CHURCH		"[abbey]" or "[cathedral]" or "[abbot]" or "bishop" or "archbishop"
-CT_COV_R3_FIGURE		"[figure]"
+CT_COV_R3_CHURCH		"[abbey]" or "[cathedral]" or "[abbot]" or "[archbishop]"
+CT_COV_R3_FIGURE			"[figure]"
 CT_COV_R3_PEOPLE		"[abbeyfolk]" or "[sa'at]"
-CT_COV_R3_COVALT		"giant" or "covalt" or "him" or "himself"
+CT_COV_R3_COVALT		"giant" or "covalt" or "[himself]"
 CT_COV_R3_RAVENS		"ravens" or "raven" or "his ravens" or "hugin" or "mummin"
-CT_COV_R3_CLOCKWORK	"clockwork" or "clock work" or "clocks"
-CT_COV_R3_SAINTS		"saint" or "saints" or "babbage" or "newton" or "st babbage" or "st newton"
+CT_COV_R3_CLOCKWORK	"[clockwork]" 
+CT_COV_R3_SAINTS			"[saints]"
 CT_COV_R3_DIFFERENCEENGINE	"difference" or "engine" or "machine" or "knowing machine"
 CT_COV_R3_PERPETUUM		"perpetuum" or "mobile" or "stealing" or "theft" or "robbery" or "plan" or "plot"
 
@@ -10239,15 +10735,15 @@ Section 4 - When we have a plan
 
 Table of working Covalt conversation
 conversation			topic
-CT_COV_R4_MYSELF		"me" or "myself" or "self" or "Wren" or "story" or "my story" or "[abbey]"
+CT_COV_R4_MYSELF		"[me]" or "[abbey]"
 CT_COV_R4_BALLOON		"balloon" or "skylight" or "ceiling" or "wreckage" or "wreck" or "window" or "weather balloon"
 CT_COV_R4_CATHEDRAL		"[cathedral]"
-CT_COV_R4_CLERGY		"[abbot]" or "bishop" or "archbishop"
-CT_COV_R4_FIGURE		"[figure]"
+CT_COV_R4_CLERGY		"[abbot]" or "[archbishop]"
+CT_COV_R4_FIGURE			"[figure]"
 CT_COV_R4_PEOPLE		"[abbeyfolk]" or "[sa'at]"
-CT_COV_R4_COVALT		"giant" or "covalt" or "him" or "himself"
+CT_COV_R4_COVALT		"giant" or "covalt" or "[himself]"
 CT_COV_R4_RAVENS		"ravens" or "raven" or "his ravens" or "hugin" or "mummin"
-CT_COV_R4_CLOCKWORK	"clockwork" or "clock work" or "clocks"
+CT_COV_R4_CLOCKWORK	"[clockwork]" 
 CT_COV_R4_SAINTS		"saint" or "saints" or "babbage" or "newton" or "st babbage" or "st newton" or "godel" or "breguet" or "st breguet" or "st godel"
 CT_COV_R4_DIFFERENCEENGINE	"difference" or "engine" or "machine" or "knowing machine"
 CT_COV_R4_PERPETUUM		"perpetuum" or "mobile" or "stealing" or "theft" or "robbery" or "plan" or "plot"
@@ -10668,7 +11164,7 @@ Return to the Cathedral is a scene. Return To The Cathedral begins when the play
 
 The Public Yard is a room. "The public square where the people come to hear the edicts and songs and gather before Mass, Volume and Compline. It’s empty now except for a towering statue of St Newton, gazing thoughtfully up at the stars. The great door of the Cathedral is open to the east.[one of][paragraph break]There’s no time to lose.[or][stopping]"
 
-The silhouetted Cathedral of Time is scenery, in the Public Yard. "The Cathedral raises spires like pins in a pin-cushion, only just visible as gaps in the stars. The glowing face of the rose window clock puts the time as a quarter to midnight. The door to the Cathedral is open.". The printed name of the silhouetted Cathedral is "Cathedral".
+The silhouetted Cathedral of Time is scenery, in the Public Yard. "The Cathedral raises spires like pins in a pin-cushion, only just visible as gaps in the stars. The glowing face of the rose window clock puts the time as a quarter to midnight. The door to the Cathedral is open.". The printed name of the silhouetted Cathedral is "Cathedral". Understand "church" as the silhouetted Cathedral of Time.
 
 The statue of St Isaac Newton is scenery, in the Public Yard. "Newton stands, apple in one hand, skull in the other. If he let go of either one I’d be crushed like a beetle in Drake’s bunkroom.". The printed name of the statue of St Isaac Newton is "statue of St Newton".
 
@@ -11028,7 +11524,7 @@ Rule for printing the description of the statues of St Breguet and St Babbage du
 TRIG_SECRET_PASSAGE is a trigger. 
 
 Rule for firing unfired TRIG_SECRET_PASSAGE:
-	say "Wait. Something the Abbott said, before, when talking to the Figure, about secret doors...[paragraph break][i]'Six? The only one I know is the one to the Bishop’s Library! Where there’s a drill...'[run paragraph on][r][paragraph break]Where there’s a drill, Wren. Where there’s a drill – there’s a way...";
+	say "Wait. Something the Abbott said, before, when talking to the Figure, about secret doors...[paragraph break][i]'Six? The only one I know is the one from the Choir to the Bishop’s Library! Where there’s a drill...'[run paragraph on][r][paragraph break]Where there’s a drill, Wren. Where there’s a drill – there’s a way...";
 
 Part 13 - Calvin's Patrol
 
@@ -11805,13 +12301,13 @@ The printed name of the middle of the gnomon is "Gnomon".
 
 Book W - Walkthrough Script
 
-Test jonsprogress with "test intro / test abbey / test cathedral".
+Test jonsprogress with "test intro / test abbey / test cathedral / z/z/z/nw/z/z/sw/u".
 
 Test walkthrough with "test intro / test abbey / test cathedral / test clockchase / test rooftops / test covalt / test countinghouse / test outsidewarehouse".
 
 Test intro with "z/w/hide in clock/put tumbler on door/z/z/z/z/z/out/open door/w/w".
 
-Test abbey with "d/e/sw/e/hide/get cup/e/n/put cup in bracket/w/w/z/z/z/e/e/n/smell/get tea/z/z/z/z/s/x train/get gear/turn spigot/wind key/n/z/s/put tea in basket/w/z/z/z/z/sw/sw/w/get new gear/ne/z/z/z/z/e/ne/e/put new gear in train/n/z/s/pull lever/z/z/z/w/w/z/e/e/get tea/w/sw/w/put tea on table/get keys/get keys/e/e/e/unlock clock/set clock to 5:00/z/w/w/sw/sw/w".
+Test abbey with "d/e/sw/e/hide/get cup/e/n/put cup in bracket/w/w/z/z/z/e/e/n/smell/get tea/z/z/z/z/s/x train/get gear/turn spigot/wind key/n/z/s/put tea in basket/w/z/z/z/z/sw/sw/w/get new gear/ne/z/z/z/z/e/ne/e/put new gear in train/n/z/s/pull lever/z/z/z/w/w/z/e/e/get tea/w/sw/w/put tea on table/get keys/get keys/e/e/e/unlock clock/set clock to 5:00/z/w/w/sw/sw/w/drop rag/w".
 
 Test abbey2 with "d/e/sw/e/get cup/e/n/put cup in bracket/w/w/z/z/z/e/e/get tea/x train/get gear/turn spigot/wind key/put tea in basket/w/sw/sw/w/get new gear/ne/e/ne/e/put new gear in train/pull lever/z/z/z/w/w/z/z/z/e/e/e/get tea/w/sw/sw/sw/w/put tea on table/get keys/get keys/e/e/e/unlock clock".
 
@@ -11819,7 +12315,7 @@ Test abbey2 with "d/e/sw/e/get cup/e/n/put cup in bracket/w/w/z/z/z/e/e/get tea/
 
 test cathedral with "w/n/e/get blue/get red/get yellow/w/n/n/w/sw/open tome/get knife/ne/e/s/s/w/put red in brazier/put blue in brazier/get purple with knife/e/n/n/e/se/take work order/nw/w/w/sw/look up principia planetaria in catalogue/test steel/test brass/test gold/pull chain/ne/e/e/se/give principia to sa'at/take order/nw/se/give wax to sa'at/get order/nw/w/n/e/give work order to doric/give work order to doric/n/lever, spring, winding key".
 
-test clockchase with "z/z/z/nw/z/sw/u/z/z/jump/u/hold chain/pull lever/d/out/z/z/w/jump".
+test clockchase with "z/z/z/nw/z/z/sw/u/z/z/jump/u/hold chain/pull lever/d/out/z/z/w/jump".
 
 test rooftops with "sw/scrape mortar with knife/get bricks/ne/se/sw/drop bricks/ne/get plank/sw/put plank in notch/put bricks in notch/ne/get pipe/sw/get tarp/e/put pipe on chimney/put tarp on chimney/turn pipe sw/w/s/nw/turn compass south/turn crank/look through telescope/se/put balloon on vent/z/z/z/z/z/z/z/z/z/z/z/z/enter balloon".
 
