@@ -51,12 +51,22 @@ namespace Textfyre.UI.Controls {
         ////    set { SetValue(IsSpinningProperty, value); }
         ////}
 
-        public string ID {
-            set {
+        public string ID
+        {
+
+            get
+            {
+                return (string)GetValue(IDProperty);
+            }
+            set
+            {
+                SetValue(IDProperty, value);
                 _id = value;
                 Init();
             }
         }
+        public static readonly DependencyProperty IDProperty = DependencyProperty.Register("ID", typeof(string), typeof(Art), new PropertyMetadata(""));
+
 
         public static double[] WidthAndHeight(string artID) {
             double[] size = { 0, 0 };

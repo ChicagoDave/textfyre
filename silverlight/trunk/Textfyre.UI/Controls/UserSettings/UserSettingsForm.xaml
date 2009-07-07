@@ -1,6 +1,7 @@
 ﻿<UserControl x:Class="Textfyre.UI.Controls.UserSettings.UserSettingsForm"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ctrl="clr-namespace:Textfyre.UI.Controls.UserSettings"
     >
     <Grid Background="#99EDD8C2">
 
@@ -22,6 +23,7 @@
             <Border Grid.Column="0" Grid.Row="1" BorderBrush="#FF8C7052" BorderThickness="2" >
                 <Grid x:Name="ListFilesContent">
                     <StackPanel Margin="10,10,10,10">
+                        <ctrl:FontPicker x:Name="FPMain" FontTitle="Main" />
                         <TextBlock>Font:</TextBlock>
                         <ComboBox x:Name="DdlFont"></ComboBox>
                         <TextBlock>Font Size:</TextBlock>
