@@ -58,7 +58,7 @@
             <Rectangle Width="70" Height="20" Fill="Black" />
             <TextBlock x:Name="HexValue" Foreground="White" Width="100" Text="#FF000000" FontFamily="Arial" FontSize="11" Canvas.Top="4" Canvas.Left="5"  Height="10" />
         </Canvas>
-            <Slider x:Name="SliderOpacity" Height="180" Orientation="Vertical" Canvas.Left="204" Maximum="255" Minimum="0" Value="255" Background="Black" />
+            <Slider ToolTipService.ToolTip="Transparency for allowing the book page to be visible under the chosen color." x:Name="SliderOpacity" Height="180" Orientation="Vertical" Canvas.Left="204" Maximum="255" Minimum="0" Value="255" Background="Black" />
             <Grid Width="218" Canvas.Left="0" Canvas.Top="202">
                 <Button x:Name="BtnCancel" Click="BtnCancel_Click" Content="Cancel" Width="100" HorizontalAlignment="Left" />
                 <Button x:Name="BtnOK" Click="BtnOK_Click" Content="OK" Width="100" HorizontalAlignment="Right" />
