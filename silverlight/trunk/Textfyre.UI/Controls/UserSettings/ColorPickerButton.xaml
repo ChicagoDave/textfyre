@@ -1,0 +1,8 @@
+﻿<UserControl x:Class="Textfyre.UI.Controls.UserSettings.ColorPickerButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    >
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Rectangle x:Name="BtnColor" Fill="Red" Width="50" Height="25" Stroke="Black" MouseLeftButtonUp="BtnColor_MouseLeftButtonUp" />
+    </Grid>
+</UserControl>

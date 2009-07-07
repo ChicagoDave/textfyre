@@ -154,6 +154,14 @@
     <Compile Include="Controls\Topic.xaml.cs">
       <DependentUpon>Topic.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UserSettings\ColorChangedEventArgs.cs" />
+    <Compile Include="Controls\UserSettings\ColorPicker.xaml.cs">
+      <DependentUpon>ColorPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserSettings\ColorPickerButton.xaml.cs">
+      <DependentUpon>ColorPickerButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserSettings\ColorSpace.cs" />
     <Compile Include="Controls\UserSettings\FontPicker.xaml.cs">
       <DependentUpon>FontPicker.xaml</DependentUpon>
     </Compile>
@@ -233,6 +241,7 @@
     <Compile Include="Storage\Settings.cs" />
     <Compile Include="Storage\StorageHandler.cs" />
     <Compile Include="StoryHandle.cs" />
+    <Compile Include="UserSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\Art.xaml">
@@ -346,6 +355,14 @@
     <Page Include="Controls\Topic.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\UserSettings\ColorPicker.xaml">
+      <SubType>Page</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </Page>
+    <Page Include="Controls\UserSettings\ColorPickerButton.xaml">
+      <SubType>Page</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>
     <Page Include="Controls\UserSettings\FontPicker.xaml">
       <SubType>Page</SubType>
