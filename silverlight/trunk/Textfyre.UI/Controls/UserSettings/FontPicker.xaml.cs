@@ -41,9 +41,22 @@ namespace Textfyre.UI.Controls.UserSettings
 
         private void Populate()
         {
-            CBFontFamily.Items.Add(FontItem("Georgia", "Georgia"));
-            CBFontFamily.Items.Add(FontItem("Arial", "Arial"));
-            CBFontFamily.Items.Add(FontItem("Goudy (memory-heavy)", "Goudy"));
+            string[] fonts = Settings.AvailableFonts.Split('|');
+            for (int i = 0; i < fonts.Length; i += 2)
+            {
+                CBFontFamily.Items.Add(FontItem(fonts[i], fonts[i+1]));
+            }
+
+            for (int i = 7; i < 25; i++)
+            {
+                CBFontSize.Items.Add( FontItem( i.ToString(), i.ToString()));
+            }
+
+            CBFontStyle.Items.Add( FontItem( "Normal", "Normal" ));
+            CBFontStyle.Items.Add(FontItem("Bold", "B"));
+            CBFontStyle.Items.Add(FontItem("Italic", "I"));
+            CBFontStyle.Items.Add(FontItem("Bold and Italic", "BI"));
+
         }
 
         private ComboBoxItem FontItem(string text, string value)

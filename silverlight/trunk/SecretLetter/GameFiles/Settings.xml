@@ -30,5 +30,5 @@
   <Setting Key="TextBetweenPrologueAndStory" Value="Chapter 1" />
   <Setting Key="QuitUrl" Value="http://www.textfyre.com" />
   <Setting Key="Profile" Value="False" />
-
+  <Setting Key="AvailableFonts" Value="Arial|Arial|Georgia|Georgia|Goudy (memory-heavy)|Goudy|Times New Roman|Times New Romain" />
 </Settings>

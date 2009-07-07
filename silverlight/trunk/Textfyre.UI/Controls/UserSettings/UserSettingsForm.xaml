@@ -23,17 +23,13 @@
             <Border Grid.Column="0" Grid.Row="1" BorderBrush="#FF8C7052" BorderThickness="2" >
                 <Grid x:Name="ListFilesContent">
                     <StackPanel Margin="10,10,10,10">
-                        <ctrl:FontPicker x:Name="FPMain" FontTitle="Main" />
-                        <TextBlock>Font:</TextBlock>
-                        <ComboBox x:Name="DdlFont"></ComboBox>
-                        <TextBlock>Font Size:</TextBlock>
-                        <ComboBox x:Name="DdlFontSize"></ComboBox>
-                        <TextBlock>Font Color:</TextBlock>
-                        <Slider></Slider>
-                        <TextBlock>Background Color:</TextBlock>
-                        <Slider></Slider>
-
+                        <ctrl:FontPicker x:Name="FPHeadline" FontTitle="Headline" />
+                        <ctrl:FontPicker x:Name="FPText" FontTitle="Text" />
+                        <ctrl:FontPicker x:Name="FPInput" FontTitle="Input" />
+                        <ctrl:FontPicker x:Name="FPHeader" FontTitle="Header" />
+                        <ctrl:FontPicker x:Name="FPFooter" FontTitle="Footer" />
                     </StackPanel>
+                    <ctrl:ColorPicker x:Name="ColorPickerPopup" Visibility="Visible" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </Grid>
             </Border>
 
