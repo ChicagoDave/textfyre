@@ -33,6 +33,9 @@
           <paragraph>There are usually assorted things you may do with these objects. OPEN, CLOSE, WEAR, EAT, LOCK, and UNLOCK are especially common.</paragraph>
           <paragraph>Occasionally, you will find that the game does not recognize the name of an object even though it has been described as being in the room with you. If this is the case, the object is just there for scenery, and you may assume that you do not need to interact with it.</paragraph>
         </item>
+        <item title="Features">
+          <paragraph>Word Definitions: You can't hold the Ctrl key down and this will change the color of words that have definitions. If you click on these words, you will see a popup balloon. Try it.</paragraph>
+        </item>
         <item title="Controlling the Game">
           <paragraph>
             There are a few simple commands for controlling the game itself. These are:[linebreak]
@@ -97,6 +100,7 @@
       <paragraph>System programming by Jesse McGrew.</paragraph>
       <paragraph>Game programming by Graeme Jefferis.</paragraph>
       <paragraph>Beta-testing by: Jacqueline Ashwell, Eric Eve, Peter Berman, Jim Aikin, and Paul O'Brian.</paragraph>
+      <paragraph>The opening Grubber's Market puzzle was co-designed by Gabby Cornelson.</paragraph>
       <paragraph>The map is by Jennifer Montes.</paragraph>
       <paragraph>The book cover and background are from IStockPhoto.Com</paragraph>
       <paragraph>The drawings are by Erika Swanson of simplyerika.com</paragraph>
@@ -105,7 +109,7 @@
       <paragraph>Justin de Vesine, Purveyor of Fine Apples</paragraph>
       <paragraph>Gunther Schmidl, Isolated Exception</paragraph>
       <paragraph>Marius Muller, Futile Attempts Coordinator</paragraph>
-      <paragraph>Jose Borges, anxiety to ifreview the game :)</paragraph>
+      <paragraph>Jose Borges, Anxious IFReviewer</paragraph>
       <paragraph>Nate Cull, Licensed Professional Gawker</paragraph>
       <paragraph>Adam Atkinson, Importer of Sardinian Cheeses</paragraph>
       <paragraph>David Given, Hazardous Foodstuff Evaluator</paragraph>
@@ -119,8 +123,8 @@
       <paragraph>1.02  - Images broken, one pass at fixing failed.</paragraph>
       <paragraph>1.03  - Images issues are resolved. Fixed 'romain' typo.</paragraph>
       <paragraph>1.04  - Save is compressed and speedier. Unresolved memory leak effects Mac users. Unresolved Font issue on Mac.</paragraph>
-      <paragraph>1.05a - Resolved Font issue on Mac. Fixed some minor game play issues. Unresolved memory leak effects Mac users.</paragraph>
-      <paragraph>1.05b - Resolved keyboard memory leak on Mac.</paragraph>
+      <paragraph>1.05  - Resolved Font issue on Mac. Fixed some minor game play issues. Unresolved memory leak effects Mac users.</paragraph>
+      <paragraph>1.06  - 7-Jul-2009: Resolved keyboard memory leak by removing Goudy Font. Added Settings page to adjust colors and fonts. Fixed missing Chapter 10 heading. Fixed quotes getting wrapped.</paragraph>
     </item>
   </menu>
 </help>

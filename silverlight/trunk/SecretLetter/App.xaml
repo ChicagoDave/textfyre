@@ -4,6 +4,13 @@
              xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
              >
     <Application.Resources>
+        <!-- Font Styles -->
+        <Style x:Name="MainText" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Georgia"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="FontStyle" Value="Normal"></Setter>
+        </Style>
+        
         <!-- TEXTBOX INPUT -->
         <Style x:Key="TextBoxStyle1" TargetType="TextBox">
             <Setter Property="Template">

@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Fonts>
   <Font Title="Arial" Source="" FontFamily="Arial" IsWinOnly="False" />
+  <Font Title="Arial Black" Source="" FontFamily="Arial Black" IsWinOnly="False" />
+  <Font Title="Courier New" Source="" FontFamily="Courier New" IsWinOnly="False" />
   <Font Title="Georgia" Source="" FontFamily="Georgia" IsWinOnly="False" />
-  <Font Title="Goudy Normal (memory-heavy)" Source="GOUDR.TTF" FontFamily="GoudyRetrospectiveSSK" IsWinOnly="True" />
+  <Font Title="Palatino Linotype" Source="" FontFamily="Palatino Linotype" IsWinOnly="False" />
+  <Font Title="Tahoma" Source="" FontFamily="Tahoma" IsWinOnly="False" />
+  <Font Title="Times New Roman" Source="" FontFamily="Times New Roman" IsWinOnly="False" />
+  <Font Title="Trebuchet MS" Source="" FontFamily="Trebuchet MS" IsWinOnly="False" />
+  <Font Title="Verdana" Source="" FontFamily="Verdana" IsWinOnly="False" />
 </Fonts>
