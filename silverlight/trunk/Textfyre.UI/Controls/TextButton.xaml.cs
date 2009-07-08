@@ -24,6 +24,7 @@ namespace Textfyre.UI.Controls
             ButtonText.MouseLeftButtonDown += new MouseButtonEventHandler(ButtonText_MouseLeftButtonDown);
             ButtonText.MouseLeftButtonUp += new MouseButtonEventHandler(ButtonText_MouseLeftButtonUp);
             FormatButton();
+            this.NormalColor.Value = Textfyre.UI.Current.Font.Headline.Color.Color;
         }
 
         private bool _isButtonDown = false;
@@ -115,7 +116,7 @@ namespace Textfyre.UI.Controls
                 }
                 else
                 {
-                    ButtonText.Foreground = new SolidColorBrush(Colors.Black);
+                    ButtonText.Foreground = Textfyre.UI.Current.Font.Headline.Color;
                 }
             }
         }
