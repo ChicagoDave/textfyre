@@ -243,10 +243,29 @@ namespace Textfyre.UI.DocSystem
                         hasParagraphContentChildren = true;
                         elements.Add(new FyreXmlElement(FyreXml.OpCode.Art, GetAttribute("ID", attributes)));
                         break;
+                    case "textblock" :
+                        hasParagraphContentChildren = false;
+                        elements.Add(new FyreXmlElement(FyreXml.OpCode.TextBlockBegin));
+                        lastParagraphIndex = elements.Count - 1;
+                        break;
                     case "paragraph":
                         hasParagraphContentChildren = false;
                         elements.Add(new FyreXmlElement(FyreXml.OpCode.ParagraphBegin));
                         lastParagraphIndex = elements.Count - 1;
+                        break;
+                    case "/textblock":
+                        if (hasParagraphContentChildren)
+                        {
+                            elements.Add(new FyreXmlElement(FyreXml.OpCode.TextBlockEnd));
+                        }
+                        else
+                        {
+                            if (lastParagraphIndex > -1)
+                            {
+                                elements.RemoveAt(lastParagraphIndex);
+                                lastParagraphIndex = -1;
+                            }
+                        }
                         break;
                     case "/paragraph":
                         if (hasParagraphContentChildren)

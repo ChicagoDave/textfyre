@@ -42,7 +42,9 @@ namespace Textfyre.UI.DocSystem
             LineBreak,
             Art,
             SpanBegin,
-            SpanEnd
+            SpanEnd,
+            TextBlockBegin,
+            TextBlockEnd
         }
     }
 }

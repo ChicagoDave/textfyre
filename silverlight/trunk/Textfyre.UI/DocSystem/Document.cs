@@ -180,7 +180,7 @@ namespace Textfyre.UI.DocSystem
                 if (text.Length == 0)
                 {
                     _input._tbInput.Text = String.Empty;
-                    AddFyreXml("<Italic>&gt;" + transcriptText + "</Italic><LineBreak/>");
+                    AddFyreXml("<TextBlock><Italic>&gt;" + transcriptText + "</Italic></TextBlock>");
                     Current.Game.TextfyreBook.NotesDialog.AddNotes(notesText);
                     return;
                 }
@@ -198,7 +198,7 @@ namespace Textfyre.UI.DocSystem
             if (parseInputArgs.ContinueWithInput == false)
             {
                 _input._tbInput.Text = String.Empty;
-                AddFyreXml("<Italic>&gt;" + transcriptText + "</Italic><LineBreak/>");
+                AddFyreXml("<TextBlock><Italic>&gt;" + transcriptText + "</Italic></TextBlock>");
                 RemoveInput();
                 AddInput();
                 AddInputHandler();
@@ -207,7 +207,7 @@ namespace Textfyre.UI.DocSystem
 
             RemoveInput();
             if (transcriptText.Length > 0)
-                AddFyreXml("<Italic>&gt;" + transcriptText + "</Italic><LineBreak/>");
+                AddFyreXml("<TextBlock><Italic>&gt;" + transcriptText + "</Italic></TextBlock>");
             //this.AddStml("<Paragraph><Italic>&gt;" + transcriptText + "</Italic></Paragraph>");
 
 
