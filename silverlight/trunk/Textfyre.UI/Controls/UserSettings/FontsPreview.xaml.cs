@@ -17,6 +17,10 @@ namespace Textfyre.UI.Controls.UserSettings
         public FontsPreview()
         {
             InitializeComponent();
+            TbText.Text = 
+                "The quick brown fox jumped over the lazy dog."
+                + Environment.NewLine +
+                "The quick brown fox jumped over the lazy dog.";
         }
     }
 }

@@ -9,8 +9,8 @@
         <StackPanel>
             <TextBlock x:Name="TbHeader" Text="Header" HorizontalAlignment="Center" Margin="0,10,0,0" />
             <TextBlock x:Name="TbHeadline" Text="Headline" HorizontalAlignment="Center" Margin="0,10,0,0" />
-            <TextBlock x:Name="TbText" Text="The quick brown fox jumped over the lazy dog." HorizontalAlignment="Center" Margin="0,10,0,0" />
-            <TextBlock x:Name="TbInput" Text="Input" HorizontalAlignment="Center" Margin="0,10,0,0" />
+            <TextBlock x:Name="TbText" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,10,0,0" />
+            <TextBlock x:Name="TbInput" Text=">Input " HorizontalAlignment="Center" Margin="0,10,0,0" />
             <TextBlock x:Name="TbFooter" Text="Footer" HorizontalAlignment="Center" Margin="0,10,0,0" />
         </StackPanel>
     </Grid>

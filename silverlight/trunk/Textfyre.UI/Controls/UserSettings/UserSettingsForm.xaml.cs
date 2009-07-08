@@ -111,9 +111,13 @@ namespace Textfyre.UI.Controls.UserSettings
 
         private void BtnReset_Click(object sender, RoutedEventArgs e)
         {
-            Current.Game.StoryHandle.UserSettingsReset();
-            Hide();
-            System.Windows.Browser.HtmlPage.Window.Invoke("resetStory");
+            this.FPHeadline.SetFontDef(Current.Game.StoryHandle.UserSettingsDefaultFontHeadline());
+            this.FPText.SetFontDef(Current.Game.StoryHandle.UserSettingsDefaultFontText());
+            this.FPInput.SetFontDef(Current.Game.StoryHandle.UserSettingsDefaultFontInput());
+            this.FPHeader.SetFontDef(Current.Game.StoryHandle.UserSettingsDefaultFontHeader());
+            this.FPFooter.SetFontDef(Current.Game.StoryHandle.UserSettingsDefaultFontFooter());
+            this.CpbBgColor.SelectedBrush = Helpers.Color.SolidColorBrush(Current.Game.StoryHandle.UserSettingsDefaultPageBackgroundColor());
+            DoUpdatePreview();
         }    
     }
 }
