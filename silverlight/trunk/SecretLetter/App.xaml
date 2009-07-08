@@ -12,9 +12,15 @@
         </Style>
         <Style x:Name="LoadingText" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Georgia"></Setter>
-            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="FontSize" Value="17"></Setter>
             <Setter Property="FontStyle" Value="Normal"></Setter>
-            <Setter Property="Foreground" Value="#FFFFFFFF" />
+            <Setter Property="Foreground" Value="#FFF0F0F0" />
+        </Style>
+        <Style x:Name="CreditsText" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Georgia"></Setter>
+            <Setter Property="FontSize" Value="12"></Setter>
+            <Setter Property="FontStyle" Value="Normal"></Setter>
+            <Setter Property="Foreground" Value="#FF333333" />
         </Style>
         <!-- Font Styles -->
 

@@ -34,6 +34,21 @@ namespace Textfyre.UI.Current
         }
         #endregion
 
+        #region :: AppResources ::
+        private static ResourceDictionary _appResources;
+        public static ResourceDictionary AppResources
+        {
+            get
+            {
+                return _appResources;
+            }
+            set
+            {
+                _appResources = value;
+            }
+        }
+        #endregion
+
         #region :: Platform ::
         private static Current.Platform _platform = Current.Platform.NA;
         public static Current.Platform Platform

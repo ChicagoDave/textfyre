@@ -22,8 +22,10 @@ namespace SecretLetter
 
         void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            
 
             Textfyre.UI.Current.Application.GameAssembly = System.Reflection.Assembly.GetExecutingAssembly();
+            Textfyre.UI.Current.Application.AppResources = App.Current.Resources;
 
             switch (Textfyre.UI.Current.Application.Platform)
             {
