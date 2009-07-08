@@ -107,6 +107,13 @@ namespace Textfyre.UI.Controls.UserSettings
 
             Hide();
             System.Windows.Browser.HtmlPage.Window.Invoke("resetStory");
+        }
+
+        private void BtnReset_Click(object sender, RoutedEventArgs e)
+        {
+            Current.Game.StoryHandle.UserSettingsReset();
+            Hide();
+            System.Windows.Browser.HtmlPage.Window.Invoke("resetStory");
         }    
     }
 }

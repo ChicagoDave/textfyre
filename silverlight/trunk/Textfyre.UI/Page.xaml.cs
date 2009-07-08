@@ -38,10 +38,10 @@ namespace Textfyre.UI
             double currentWidth = Application.Current.Host.Content.ActualWidth;
             double currentHeight = Application.Current.Host.Content.ActualHeight;
 
-			this.Width = currentWidth;
-			this.Height = currentHeight;
-			LayoutRoot.Width = currentWidth;
-			LayoutRoot.Height = currentHeight;
+            this.Width = currentWidth;
+            this.Height = currentHeight;
+            LayoutRoot.Width = currentWidth;
+            LayoutRoot.Height = currentHeight;
 
 
             MasterPage.SetSize();
@@ -56,7 +56,13 @@ namespace Textfyre.UI
 
         public void LoadStory(byte[] memorystream, string gameFileName, StoryHandle storyHandle)
         {
-            Current.Game.StoryHandle = storyHandle;
+            if (storyHandle == null)
+                Current.Game.StoryHandle = new StoryHandle();
+            else
+                Current.Game.StoryHandle = storyHandle;
+
+            Current.Game.StoryHandle.UserSettingsInit();
+
             MasterPage.LoadStory(memorystream, gameFileName);
         }
     }
