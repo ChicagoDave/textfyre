@@ -11,7 +11,7 @@
 	<key>CFBundleGetInfoString</key>
 	<string>1.0, Copyright 2009 Textfyre, Inc.</string>
 	<key>CFBundleIconFile</key>
-	<string>smallicon.icns</string>
+	<string>secretletter3.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.textfyre.SecretLetter</string>
 	<key>CFBundleInfoDictionaryVersion</key>
