@@ -16,6 +16,12 @@
             <Setter Property="FontStyle" Value="Normal"></Setter>
             <Setter Property="Foreground" Value="#FF000000" />
         </Style>
+        <Style x:Name="CreditsText" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Georgia"></Setter>
+            <Setter Property="FontSize" Value="12"></Setter>
+            <Setter Property="FontStyle" Value="Normal"></Setter>
+            <Setter Property="Foreground" Value="#FF333333" />
+        </Style>
         <!-- Font Styles -->
 
 

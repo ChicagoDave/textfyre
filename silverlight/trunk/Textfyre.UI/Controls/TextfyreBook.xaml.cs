@@ -191,8 +191,9 @@ namespace Textfyre.UI.Controls
             sp.Children.Add(creditArt);
 
             CreditsText = new TextBlock();
-            Current.Font.ApplyFont(Textfyre.UI.Current.Font.FontType.Main, CreditsText);
+            //Current.Font.ApplyFont(Textfyre.UI.Current.Font.FontType.Main, CreditsText);
             //CreditsText.FontSize = 12d;
+            CreditsText.Style = Current.Application.AppResources["CreditsText"] as Style;
             CreditsText.Width = Settings.BookPageInnerInnerContentWidth;
             CreditsText.TextWrapping = TextWrapping.Wrap;
             //CreditsText.Height = 180d;

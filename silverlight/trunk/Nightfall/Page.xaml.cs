@@ -23,6 +23,7 @@ namespace Nightfall
         void Page_Loaded(object sender, RoutedEventArgs e)
         {
             Textfyre.UI.Current.Application.GameAssembly = System.Reflection.Assembly.GetExecutingAssembly();
+            Textfyre.UI.Current.Application.AppResources = App.Current.Resources;
 
             StoryPage.LoadStory(GameFiles.GameFile.Nightfall_r10, "Nightfall_r10", new StoryHandle());
         }
