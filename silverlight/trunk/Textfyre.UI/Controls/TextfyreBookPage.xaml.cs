@@ -83,8 +83,10 @@ namespace Textfyre.UI.Controls
         {
             set
             {
-                LayoutRoot.Children.RemoveAt(4);
-                LayoutRoot.Children.Insert(4, value);
+                int idx = LayoutRoot.Children.IndexOf(PageScrollViewer);
+
+                LayoutRoot.Children.RemoveAt(idx);
+                LayoutRoot.Children.Insert(idx, value);
             }
 
         }
