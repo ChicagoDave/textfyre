@@ -10,7 +10,14 @@
             <Setter Property="FontSize" Value="14"></Setter>
             <Setter Property="FontStyle" Value="Normal"></Setter>
         </Style>
-        
+        <Style x:Name="LoadingText" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Georgia"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="FontStyle" Value="Normal"></Setter>
+            <Setter Property="Foreground" Value="#FFFFFFFF" />
+        </Style>
+        <!-- Font Styles -->
+
         <!-- TEXTBOX INPUT -->
         <Style x:Key="TextBoxStyle1" TargetType="TextBox">
             <Setter Property="Template">
@@ -1234,11 +1241,7 @@
         </Style>
         <!-- SpeechBubble Style End -->
 
-        <!-- LoadingText -->
-        <Style x:Key="LoadingText" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="#FFFFFFFF" />
-        </Style>
-        <!-- LoadingText -->
+
 
 
     </Application.Resources>

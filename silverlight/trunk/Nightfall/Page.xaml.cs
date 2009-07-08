@@ -24,63 +24,7 @@ namespace Nightfall
         {
             Textfyre.UI.Current.Application.GameAssembly = System.Reflection.Assembly.GetExecutingAssembly();
 
-            //            Textfyre.UI.Current.Font.FontDefinition fd =
-            //new Textfyre.UI.Current.Font.FontDefinition(
-            //"GOUDR.TTF|GoudyRetrospectiveSSK|15");
-            //            Textfyre.UI.Current.Font.Main = fd;
-
-            /*
-            Arial 
-            Arial Black
-            Comic Sans MS
-            Courier New
-            Georgia
-            Lucide Grande / Lucida Sans Unicode
-            Times New Roman
-            Trebuchet MS
-            Verdana
-            */
-
-            Textfyre.UI.Current.Font.FontDefinition fd =
-                new Textfyre.UI.Current.Font.FontDefinition("Georgia", 15);
-            Color color = new Color();
-            color.A = 255;
-            color.R = 51;
-            color.G = 51;
-            color.B = 51;
-            fd.Color = new SolidColorBrush(color);
-            Textfyre.UI.Current.Font.Main = fd;
-
-            Textfyre.UI.Current.Font.FontDefinition hfd =
-                new Textfyre.UI.Current.Font.FontDefinition(
-                    "|Georgia|18");
-            Textfyre.UI.Current.Font.Headline = hfd;
-
-            Textfyre.UI.Current.Font.FontDefinition italicfd =
-                new Textfyre.UI.Current.Font.FontDefinition(
-                    "|Georgia|16");
-            italicfd.Color = new SolidColorBrush(color);
-            italicfd.FontStyle = FontStyles.Italic;
-            Textfyre.UI.Current.Font.MainItalic = italicfd;
-
-            Textfyre.UI.Current.Font.FontDefinition headerfd =
-                new Textfyre.UI.Current.Font.FontDefinition(
-                "|Georgia|15");
-            Textfyre.UI.Current.Font.Header = headerfd;
-
-            Textfyre.UI.Current.Font.FontDefinition footerfd =
-    new Textfyre.UI.Current.Font.FontDefinition(
-    "|Georgia|12");
-            Textfyre.UI.Current.Font.Footer = footerfd;
-
-            Textfyre.UI.Current.Font.FontDefinition inputfd =
-    new Textfyre.UI.Current.Font.FontDefinition(
-    "|Georgia|16");
-            Textfyre.UI.Current.Font.Input = inputfd;
-
             StoryPage.LoadStory(GameFiles.GameFile.Nightfall_r10, "Nightfall_r10", new StoryHandle());
-
         }
-
     }
 }

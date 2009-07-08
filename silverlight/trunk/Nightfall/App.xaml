@@ -4,6 +4,22 @@
              xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
              >
     <Application.Resources>
+        <!-- Font Styles -->
+        <Style x:Name="MainText" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Georgia"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="FontStyle" Value="Normal"></Setter>
+        </Style>
+        <Style x:Name="LoadingText" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Georgia"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="FontStyle" Value="Normal"></Setter>
+            <Setter Property="Foreground" Value="#FF000000" />
+        </Style>
+        <!-- Font Styles -->
+
+
+
         <!-- TEXTBOX INPUT -->
         <Style x:Key="TextBoxStyle1" TargetType="TextBox">
             <Setter Property="Template">
@@ -1225,13 +1241,6 @@
             <Setter Property="RadiusX" Value="16" />
             <Setter Property="RadiusY" Value="16" />
         </Style>
-        <!-- SpeechBubble Style End -->
-
-        <!-- LoadingText -->
-        <Style x:Key="LoadingText" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="#FF000000" />
-        </Style>
-        <!-- LoadingText -->
-        
+        <!-- SpeechBubble Style End -->        
     </Application.Resources>
 </Application>

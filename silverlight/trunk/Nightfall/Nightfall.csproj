@@ -83,10 +83,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Fonts\GOUDOSSC.TTF" />
-    <EmbeddedResource Include="Fonts\GOUDR.TTF" />
-    <EmbeddedResource Include="Fonts\GOUDRI.TTF" />
-    <EmbeddedResource Include="Fonts\GOUDYMER.TTF" />
     <EmbeddedResource Include="GameFiles\GameFile.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>GameFile.Designer.cs</LastGenOutput>
@@ -144,6 +140,12 @@
     <Resource Include="Images\Book\Book.png" />
     <Resource Include="Images\Book\BookPageLeft.png" />
     <Resource Include="Images\Book\BookPageRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="GameFiles\Fonts.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Fonts\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight\v2.0\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

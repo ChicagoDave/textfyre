@@ -26,7 +26,7 @@
   <Setting Key="ScrollSpeed" Value="100" />
   <Setting Key="AutoOpenBookCover" Value="False" />
   <Setting Key="PageGripSize" Value="40" />
-  <Setting Key="TOCs" Value="Introduction#Transcript" />
+  <Setting Key="TOCs" Value="Introduction|Transcript|Settings|Quit" />
   <Setting Key="PrologueNewLines" Value="47" />
   <Setting Key="PagingMechanism" Value="StaticPageCreateBackPages" />
   <Setting Key="WaitMessages" Value="Please wait.|Please wait..|Please wait..." />
@@ -34,5 +34,5 @@
   <Setting Key="UseRealPageNumbers" Value="False" />
   <Setting Key="SaveGameDirectory" Value="NightfallSaveFiles" />
   <Setting Key="TextBetweenPrologueAndStory" Value="Nightfall" />
-  <Setting Key="QuitUrl" Value="http://www.textfyre.com" />
+  <Setting Key="QuitUrl" Value="http://www.tenteo.com" />
 </Settings>
