@@ -201,6 +201,8 @@ namespace Textfyre.UI.Controls
             CreditsText.VerticalAlignment = VerticalAlignment.Bottom;
             CreditsText.Margin = new Thickness(20, 10, 0, 0);
 
+            CreditsText.Foreground = Textfyre.UI.Current.Font.Main.Color;
+
             sp.Children.Add(CreditsText);
 
             TextfyreBookPage p = CreatePage("Credits");

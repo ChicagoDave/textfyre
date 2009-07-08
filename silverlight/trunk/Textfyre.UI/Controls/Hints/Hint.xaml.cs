@@ -50,6 +50,8 @@ namespace Textfyre.UI.Controls.Hints
             HintTxt5.FontSize = 11;
             HintTxt6.FontSize = 11;
 
+            FinalColorBrush.Value = Textfyre.UI.Current.Font.Main.Color.Color;
+
             SetCursor(false);
         }
 

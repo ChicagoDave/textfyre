@@ -30,6 +30,7 @@ namespace Textfyre.UI.Controls.Manual
             this.Width = Settings.BookPageWidth;
             this.Height = Settings.BookPageHeight;
             this.Margin = new Thickness( Settings.BookPageWidth + Settings.BookPageOffsetLeft, Settings.BookPageOffsetTop, 0, 0 );
+            this.BookPageColorizer.Background = Textfyre.UI.UserSettings.PageBackgroundBrush;
         }
 
         public void Show()
