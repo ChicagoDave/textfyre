@@ -144,13 +144,18 @@ namespace Textfyre.UI.DocSystem
 
                 height += section.Height;
 
+                StackPanel sp = _currentPage.PageScrollViewer.Content as StackPanel;
                 if (!maxPagesReached)
                 {
-                    StackPanel sp = _currentPage.PageScrollViewer.Content as StackPanel;
                     sp.VerticalAlignment = VerticalAlignment.Top;
 
                     if (displaySection)
                         sp.Children.Insert(0, section.HostGrid);
+                }
+                else
+                {
+                    if (sp.Children.Count == 0)
+                        sp.Children.Add(new TextBlock());
                 }
             }
             EndPage(_currentPage, height);
