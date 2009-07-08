@@ -213,7 +213,7 @@ namespace Textfyre.UI.Pages
             if (AnyOutput(output, OutputChannel.Credits))
             {
                 string credits = string.Concat("", output[OutputChannel.Credits], "");
-                credits = credits.Replace("&#169;", "©");
+                credits = credits.Replace("&#169;", "©").Replace(Environment.NewLine + " ", Environment.NewLine).Replace("\n ", "\n");
 
                 TextfyreBook.TranscriptDialog.AddText(credits);
 

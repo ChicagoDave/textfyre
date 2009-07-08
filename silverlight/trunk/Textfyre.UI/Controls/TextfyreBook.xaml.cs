@@ -193,7 +193,8 @@ namespace Textfyre.UI.Controls
             CreditsText = new TextBlock();
             Current.Font.ApplyFont(Textfyre.UI.Current.Font.FontType.Main, CreditsText);
             CreditsText.FontSize = 12d;
-            CreditsText.Width = 300d;
+            CreditsText.Width = Settings.BookPageInnerInnerContentWidth;
+            CreditsText.TextWrapping = TextWrapping.Wrap;
             //CreditsText.Height = 180d;
             CreditsText.HorizontalAlignment = HorizontalAlignment.Left;
             CreditsText.VerticalAlignment = VerticalAlignment.Bottom;
