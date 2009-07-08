@@ -104,7 +104,6 @@ namespace Textfyre.UI.Controls.UserSettings
             Textfyre.UI.UserSettings.FontFooter = this.FPFooter.GetFontDef();
 
             Textfyre.UI.UserSettings.PageBackgroundColor = (this.CpbBgColor.SelectedBrush as SolidColorBrush).Color.ToString();
-
             Hide();
             System.Windows.Browser.HtmlPage.Window.Invoke("resetStory");
         }
