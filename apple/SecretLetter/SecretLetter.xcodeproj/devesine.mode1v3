@@ -281,13 +281,12 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>35</integer>
 									<integer>17</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 23}, {186, 613}}</string>
+							<string>{{0, 0}, {186, 613}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -322,7 +321,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SecretLetter.htm</string>
+								<string>WebController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -330,11 +329,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SecretLetter.htm</string>
+										<string>WebController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>8798004B0FFB22E800A4DF95</string>
+										<string>87A4325C10044F5A00A02CCA</string>
 										<key>history</key>
 										<array>
 											<string>8724F2320FE441C800465738</string>
@@ -355,13 +354,14 @@
 											<string>871B9C5B0FF5F30000C17B9B</string>
 											<string>871B9C5D0FF5F30000C17B9B</string>
 											<string>871B9C5E0FF5F30000C17B9B</string>
-											<string>871B9C5F0FF5F30000C17B9B</string>
 											<string>871B9C8A0FF5F61900C17B9B</string>
 											<string>871B9C9D0FF5F68700C17B9B</string>
 											<string>871B9CA80FF5F74A00C17B9B</string>
 											<string>871B9CB50FF5FA7F00C17B9B</string>
 											<string>871B9CB60FF5FA7F00C17B9B</string>
-											<string>87B1D96B0FFA781B005D78CD</string>
+											<string>871993E60FFE446A00E90860</string>
+											<string>871993E70FFE446A00E90860</string>
+											<string>872E2C4B1002366300790490</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -390,6 +390,7 @@
 											<string>871B9CAB0FF5F74A00C17B9B</string>
 											<string>871B9CB80FF5FA7F00C17B9B</string>
 											<string>871B9CB90FF5FA7F00C17B9B</string>
+											<string>871993EA0FFE446A00E90860</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -447,9 +448,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>879800460FFB216C00A4DF95</string>
+				<string>87A4324810044C2700A02CCA</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>879800470FFB216C00A4DF95</string>
+				<string>87A4324910044C2700A02CCA</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -584,6 +585,7 @@
 	<key>WindowOrderList</key>
 	<array>
 		<string>8724F23F0FE441C800465738</string>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>/Users/devesine/Source/textfyre/tfdev/apple/SecretLetter/SecretLetter.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -664,7 +666,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>8724F23F0FE441C800465738</string>
-				<string>8798004C0FFB22E800A4DF95</string>
+				<string>87A4324A10044C2700A02CCA</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -749,13 +751,11 @@
 									<key>DebugVariablesTableConfiguration</key>
 									<array>
 										<string>Name</string>
-										<real>120</real>
+										<real>143</real>
 										<string>Value</string>
-										<real>85</real>
+										<real>108</real>
 										<string>Summary</string>
-										<real>80</real>
-										<string>Type</string>
-										<real>84</real>
+										<real>102</real>
 									</array>
 									<key>Frame</key>
 									<string>{{316, 0}, {378, 203}}</string>
@@ -786,13 +786,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>871B9C700FF5F30000C17B9B</string>
+				<string>87A4324B10044C2700A02CCA</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>871B9C710FF5F30000C17B9B</string>
-				<string>871B9C720FF5F30000C17B9B</string>
-				<string>871B9C730FF5F30000C17B9B</string>
-				<string>871B9C740FF5F30000C17B9B</string>
-				<string>871B9C750FF5F30000C17B9B</string>
+				<string>87A4324C10044C2700A02CCA</string>
+				<string>87A4324D10044C2700A02CCA</string>
+				<string>87A4324E10044C2700A02CCA</string>
+				<string>87A4324F10044C2700A02CCA</string>
+				<string>87A4325010044C2700A02CCA</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>

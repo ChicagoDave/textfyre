@@ -25,6 +25,7 @@
 		879158260FF3164500AB26B9 /* SecretLetter.htm in Resources */ = {isa = PBXBuildFile; fileRef = 879158150FF3164500AB26B9 /* SecretLetter.htm */; };
 		8791582B0FF3164500AB26B9 /* Silverlight.js in Resources */ = {isa = PBXBuildFile; fileRef = 8791581C0FF3164500AB26B9 /* Silverlight.js */; };
 		8791582C0FF3164500AB26B9 /* Transcript.htm in Resources */ = {isa = PBXBuildFile; fileRef = 8791581D0FF3164500AB26B9 /* Transcript.htm */; };
+		87A4325410044C4600A02CCA /* secretletter3.icns in Resources */ = {isa = PBXBuildFile; fileRef = 87A4325310044C4600A02CCA /* secretletter3.icns */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -77,6 +78,7 @@
 		8791581C0FF3164500AB26B9 /* Silverlight.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Silverlight.js; sourceTree = "<group>"; };
 		8791581D0FF3164500AB26B9 /* Transcript.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Transcript.htm; sourceTree = "<group>"; };
 		8791581E0FF3164500AB26B9 /* web.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = web.config; sourceTree = "<group>"; };
+		87A4325310044C4600A02CCA /* secretletter3.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = secretletter3.icns; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* SecretLetter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecretLetter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -145,6 +147,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				87A4325310044C4600A02CCA /* secretletter3.icns */,
 				871B9C500FF5F15C00C17B9B /* smallicon.icns */,
 				8791580A0FF3164400AB26B9 /* TextfyreSLAppWeb */,
 				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
@@ -280,6 +283,7 @@
 				871B9C4E0FF5F13300C17B9B /* InstallSilverlight.png in Resources */,
 				871B9C510FF5F15C00C17B9B /* smallicon.icns in Resources */,
 				871B9CAF0FF5F82400C17B9B /* Credits.html in Resources */,
+				87A4325410044C4600A02CCA /* secretletter3.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
