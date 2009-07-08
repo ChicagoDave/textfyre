@@ -207,13 +207,16 @@ namespace Textfyre.UI.DocSystem
                         _textFormat.IsItalic = false;
                         break;
 
-
+                    case FyreXml.OpCode.TextBlockBegin:
+                        SetTextFormatToNormal();
+                        break;
                     case FyreXml.OpCode.ParagraphBegin :
                         SetTextFormatToNormal();
                         if (Settings.UseIndents && _textFormat.Align == TextFormat.AlignType.Left)
                             AddTextToFyreXmlElements("    ");
                         break;
 
+                    case FyreXml.OpCode.TextBlockEnd:
                     case FyreXml.OpCode.ParagraphEnd:
                         EndOfSection();
                         return _fyreXmlElements;
