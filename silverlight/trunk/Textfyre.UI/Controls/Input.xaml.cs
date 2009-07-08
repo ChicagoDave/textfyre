@@ -243,6 +243,10 @@ namespace Textfyre.UI.Controls
                 return;
             }
 
+            if (e.Key == Key.F11) {
+                Application.Current.Host.Content.IsFullScreen = true;
+            }
+
             if (_isWaitForKeyMode)
             {
                 e.Handled = true;
@@ -287,7 +291,7 @@ namespace Textfyre.UI.Controls
         {
             // Only save last 20 things.
             if (_history.Count == 20)
-                _history.RemoveAt(19);
+                _history.RemoveAt(0);
             _history.Add(input);
             _historyPos = _history.Count;
         }
