@@ -20,6 +20,16 @@ namespace Textfyre.UI.Controls.UserSettings
             this.Loaded += new RoutedEventHandler(FontPicker_Loaded);
             BtnColor.Click += new EventHandler(BtnColor_Click);
 
+            CBFontFamily.SelectionChanged += new SelectionChangedEventHandler(SelectionChanged);
+            CBFontSize.SelectionChanged += new SelectionChangedEventHandler(SelectionChanged);
+            CBFontStyle.SelectionChanged += new SelectionChangedEventHandler(SelectionChanged);
+               
+        }
+
+        void SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if( _isFontDefSet )     
+                UserSettingsForm.OnUpdatePreview(this);
         }
 
         void BtnColor_Click(object sender, EventArgs e)
@@ -66,6 +76,7 @@ namespace Textfyre.UI.Controls.UserSettings
             return fd;
         }
 
+        private bool _isFontDefSet = false;
         public void SetFontDef(Textfyre.UI.UserSettings.FontDef fd)
         {
             int i = 0;
@@ -107,7 +118,9 @@ namespace Textfyre.UI.Controls.UserSettings
             else CBFontStyle.SelectedIndex = 2;
 
             BtnColor.SelectedBrush = Helpers.Color.SolidColorBrush(fd.Color);
-            
+
+            _isFontDefSet = true;
+
         }
 
         private bool _isPopulated = false;

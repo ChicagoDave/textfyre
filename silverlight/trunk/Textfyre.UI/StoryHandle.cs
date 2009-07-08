@@ -122,5 +122,64 @@ namespace Textfyre.UI
             return args.IsItemHandled;
         }
         #endregion
+
+        #region :: UserSettings ::
+        public virtual void UserSettingsInit()
+        {
+            if (Textfyre.UI.UserSettings.FontHeadline.FontFamily.Length == 0)
+            {
+                Textfyre.UI.UserSettings.FontHeadline =
+                    new Textfyre.UI.UserSettings.FontDef("Georgia", 17, "#FF000000", false);
+            }
+
+            if (Textfyre.UI.UserSettings.FontText.FontFamily.Length == 0)
+            {
+                Textfyre.UI.UserSettings.FontText =
+                    new Textfyre.UI.UserSettings.FontDef("Georgia", 13, "#FF333333", false);
+            }
+
+            if (Textfyre.UI.UserSettings.FontInput.FontFamily.Length == 0)
+            {
+                Textfyre.UI.UserSettings.FontInput =
+                    new Textfyre.UI.UserSettings.FontDef("Georgia", 16, "#FF000000", false);
+            }
+
+            if (Textfyre.UI.UserSettings.FontHeader.FontFamily.Length == 0)
+            {
+                Textfyre.UI.UserSettings.FontHeader =
+                    new Textfyre.UI.UserSettings.FontDef("Georgia", 14, "#FF000000", false);
+            }
+
+            if (Textfyre.UI.UserSettings.FontFooter.FontFamily.Length == 0)
+            {
+                Textfyre.UI.UserSettings.FontFooter =
+                    new Textfyre.UI.UserSettings.FontDef("Georgia", 12, "#FF000000", false);
+            }
+
+            Textfyre.UI.UserSettings.SetFonts();
+
+            if (Textfyre.UI.UserSettings.PageBackgroundColor.Length == 0)
+            {
+                Textfyre.UI.UserSettings.PageBackgroundColor = "#00000000";
+            }
+        }
+
+        public virtual void UserSettingsReset()
+        {
+            Textfyre.UI.UserSettings.FontHeadline =
+                new Textfyre.UI.UserSettings.FontDef("Georgia", 17, "#FF000000", false);
+            Textfyre.UI.UserSettings.FontText =
+                new Textfyre.UI.UserSettings.FontDef("Georgia", 13, "#FF333333", false);
+            Textfyre.UI.UserSettings.FontInput =
+                new Textfyre.UI.UserSettings.FontDef("Georgia", 16, "#FF000000", false);
+            Textfyre.UI.UserSettings.FontHeader =
+                new Textfyre.UI.UserSettings.FontDef("Georgia", 14, "#FF000000", false);
+            Textfyre.UI.UserSettings.FontFooter =
+                new Textfyre.UI.UserSettings.FontDef("Georgia", 12, "#FF000000", false);
+            Textfyre.UI.UserSettings.SetFonts();
+
+            Textfyre.UI.UserSettings.PageBackgroundColor = "#00000000";
+        }
+        #endregion
     }
 }
