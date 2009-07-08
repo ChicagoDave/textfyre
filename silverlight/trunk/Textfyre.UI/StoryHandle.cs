@@ -141,7 +141,7 @@ namespace Textfyre.UI
             if (Textfyre.UI.UserSettings.FontInput.FontFamily.Length == 0)
             {
                 Textfyre.UI.UserSettings.FontInput =
-                    new Textfyre.UI.UserSettings.FontDef("Georgia", 16, "#FF000000", false);
+                    new Textfyre.UI.UserSettings.FontDef("Georgia", 14, "#FF000000", false);
             }
 
             if (Textfyre.UI.UserSettings.FontHeader.FontFamily.Length == 0)
@@ -171,7 +171,7 @@ namespace Textfyre.UI
             Textfyre.UI.UserSettings.FontText =
                 new Textfyre.UI.UserSettings.FontDef("Georgia", 13, "#FF333333", false);
             Textfyre.UI.UserSettings.FontInput =
-                new Textfyre.UI.UserSettings.FontDef("Georgia", 16, "#FF000000", false);
+                new Textfyre.UI.UserSettings.FontDef("Georgia", 14, "#FF000000", false);
             Textfyre.UI.UserSettings.FontHeader =
                 new Textfyre.UI.UserSettings.FontDef("Georgia", 14, "#FF000000", false);
             Textfyre.UI.UserSettings.FontFooter =
