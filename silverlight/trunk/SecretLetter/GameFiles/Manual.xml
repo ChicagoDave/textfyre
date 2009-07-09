@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <help>
-  <menu title="Things you really don't want to know...">
-    <item title="A very unnecessary introduction to Secret Letter">
+  <menu title="Instructions">
+    <item title="Introduction to Secret Letter">
       <paragraph>[italic type]Jack Toresal and The Secret Letter[roman type] takes place in the northern town of Toresal on the island continent of Miradania. Jack, an orphan since birth, is fourteen years old and is suddenly drawn into a life or death adventure.</paragraph>
       <paragraph>This story, or game, is called Interactive Fiction. Since Jack is the main character in this story, you control Jack's every move and every decision. You get to decide how the story unfolds.</paragraph>
       <paragraph>Interactive Fiction consists of a setting or map, scenery, and items of interest. You can tell Jack to move around the setting by using compass rose directions like NORTH, SOUTHEAST, UP, or IN. The eight main directions can be abbreviated to N, NE, E, SE, S, SW, W, NW. You can also open, push, pull, close, and throw things.</paragraph>
@@ -10,31 +10,31 @@
       <paragraph>When you run into other characters, they may try to talk to you. If this happens, a list of conversation topics will appear and you can click these in any order. If you want to initiate a conversation, type TALK TO character.</paragraph>
       <paragraph>Finally, you may not like the ending you get first time round. To avoid having to play all the way through again from the beginning to find a better ending, you may want to save at fairly regular intervals. You can either type SAVE, or head to the Table of Contents and click [italic type]Save The Current Game[roman type].</paragraph>
     </item>
-    <item title="How not to play the game">
-      <menu title="Don't Read This!">
-        <item title="Why Interactive Fiction is quite horrible...">
+    <item title="Instructions for Play">
+      <menu title="Instructions for Play">
+        <item title="About Interactive Fiction">
           <paragraph>The game you are playing is a work of Interactive Fiction.  In interactive fiction you play the main character of a story.  You type commands which determine the actions of the character and the flow of the plot.  Some IF games include graphics, but most do not: the imagery is provided courtesy of your imagination.  On the other hand, there's a wide range of action available: whereas in other games you may be restricted to shooting, movement, or searching items you can click on with a mouse, IF allows you a wide range of verbs.</paragraph>
         </item>
-        <item title="Why the greater than sign &gt; should make you unplug your computer and curl up under the desk and cry...">
+        <item title="What to do with &gt;">
           <paragraph>The &gt; sign is where the game says, "Okay, what do you want to do now?"  You may respond by typing an instruction -- usually an imperative verb, possibly followed by prepositions and objects.  So, for instance, LOOK, LOOK AT FISH, TAKE FISH.</paragraph>
         </item>
-        <item title="Preventing long term, enjoyable play at all cost...">
+        <item title="Getting Started">
           <paragraph>The first thing you want to do when starting a game is acquaint yourself with your surroundings and get a sense of your goal. To this end, you should read the introductory text carefully. Sometimes it contains clues. You will also want to look at the room you are in. Notice where the exits from the room are, and what objects are described here. If any of these seem interesting, you may want to EXAMINE them.</paragraph>
           <paragraph>You might also want to examine yourself (EXAMINE ME) to see whether the author has left you any clues about your character. TAKE INVENTORY will tell you what you're carrying, as well.</paragraph>
           <paragraph>Once you've gotten your bearings, you may want to explore. Move from room to room, and check out every location available.</paragraph>
         </item>
-        <item title="Really, why do you need to move about at all?">
+        <item title="Rooms and Travel">
           <paragraph>At any given time, you are in a specific location, or room. When you go into a room, the game will print a description of what you can see there. This description will contain two vital kinds of information: things in the room you can interact with or take, and a list of exits, or ways out. If you want to see the description again, you may just type LOOK.</paragraph>
           <paragraph>When you want to leave a location and go to another one, you may communicate this to the game using compass directions: eg, GO NORTH. For simplicity's sake, you are allowed to omit the word GO, and to abbreviate the compass directions. So you may use NORTH, SOUTH, EAST, WEST, NORTHEAST, SOUTHEAST, NORTHWEST, SOUTHWEST, UP, and DOWN, or in short form N, S, E, W, NE, SE, NW, SW, U, and D.</paragraph>
           <paragraph>In some locations, IN and OUT will also be useful.</paragraph>
         </item>
-        <item title="Don't touch anything or I'll slap your hand!">
+        <item title="Objects">
           <paragraph>Throughout the game there will be assorted objects that you can do things with. Most importantly, you may TAKE or GET items, and (when you are tired of them) DROP them again. INVENTORY (abbreviated I) will list the items you are currently holding.</paragraph>
           <paragraph>There are usually assorted things you may do with these objects. OPEN, CLOSE, WEAR, EAT, LOCK, and UNLOCK are especially common.</paragraph>
           <paragraph>Occasionally, you will find that the game does not recognize the name of an object even though it has been described as being in the room with you. If this is the case, the object is just there for scenery, and you may assume that you do not need to interact with it.</paragraph>
         </item>
-        <item title="Stuff that will get you detention...">
-          <paragraph>Word Definitions: You should never hold the Ctrl key down, as this will change the color of words that have definitions. If you click on these words, you will see a popup balloon. Don't bother.</paragraph>
+        <item title="Features">
+          <paragraph>Word Definitions: You can hold the Ctrl key down and this will change the color of words that have definitions. If you click on these words, you will see a popup balloon. Try it.</paragraph>
         </item>
         <item title="Controlling the Game">
           <paragraph>
