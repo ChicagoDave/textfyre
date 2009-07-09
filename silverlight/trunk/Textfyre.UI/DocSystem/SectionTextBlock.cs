@@ -66,7 +66,7 @@ namespace Textfyre.UI.DocSystem
             _centerDone = true;
 
             _txtBlk.HorizontalAlignment = HorizontalAlignment.Center;
-            _txtBlk.Margin = new Thickness(0, 0, 35, 0);
+            _txtBlk.Margin = new Thickness(0, 0, Settings.HeadlineOffset, 0);
             
         }
 
@@ -194,7 +194,8 @@ namespace Textfyre.UI.DocSystem
             if (_currentTextFormat.IsItalic)
                 _run.FontStyle = FontStyles.Italic;
 
-
+            if (_currentTextFormat.Align == TextFormat.AlignType.Center)
+                Center();
 
             _txtBlk.Inlines.Add(_run);
         }

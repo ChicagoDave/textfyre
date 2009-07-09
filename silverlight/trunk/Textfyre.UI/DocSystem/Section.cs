@@ -183,13 +183,13 @@ namespace Textfyre.UI.DocSystem
                         break;
 
                     case FyreXml.OpCode.HeaderBegin :
+                        _fyreXmlElements.MaxWidth = _fyreXmlElements.MaxWidth - Settings.HeadlineOffset;
                         SetTextFormatToHeadline();
                         break;
 
                     case FyreXml.OpCode.HeaderEnd :
-                        if (Settings.CenterHeadline)
-                            _txtBlk.Center();
                         SetTextFormatToNormal();
+                        _fyreXmlElements.MaxWidth = _fyreXmlElements.MaxWidth + Settings.HeadlineOffset;
                         EndOfSection();
                         return _fyreXmlElements;
 
@@ -453,7 +453,7 @@ namespace Textfyre.UI.DocSystem
             _textFormat.Format = TextFormat.Formats.Headline;
             _textFormat.IsBold = false;
             _textFormat.IsItalic = false;
-            _textFormat.Align = TextFormat.AlignType.Center;
+            _textFormat.Align = Settings.CenterHeadline ? TextFormat.AlignType.Center : TextFormat.AlignType.Left;
         }
 
         private void SetTextFormatToNormal()

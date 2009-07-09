@@ -25,7 +25,7 @@ namespace Nightfall
             Textfyre.UI.Current.Application.GameAssembly = System.Reflection.Assembly.GetExecutingAssembly();
             Textfyre.UI.Current.Application.AppResources = App.Current.Resources;
 
-            StoryPage.LoadStory(GameFiles.GameFile.Nightfall_r10, "Nightfall_r10", new StoryHandle());
+            StoryPage.LoadStory(GameFiles.GameFile.Nightfall_r12, "Nightfall_r12", new StoryHandle());
         }
     }
 }

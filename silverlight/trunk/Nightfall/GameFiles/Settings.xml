@@ -18,7 +18,7 @@
   <Setting Key="BookPageInnerContentHeight" Value="470" />
   <Setting Key="BookPageInnerContentOffsetLeft" Value="20" />
   <Setting Key="BookPageInnerContentOffsetTop" Value="0" />
-  <Setting Key="VersionText" Value="25-Mar-2009-r11" />
+  <Setting Key="VersionText" Value="9-Jul-2009-r12" />
   <Setting Key="StoryID" Value="3" />
   <Setting Key="LogEnabled" Value="False" />
   <Setting Key="UseIndents" Value="True" />
@@ -31,6 +31,7 @@
   <Setting Key="PagingMechanism" Value="StaticPageCreateBackPages" />
   <Setting Key="WaitMessages" Value="Please wait.|Please wait..|Please wait..." />
   <Setting Key="CenterHeadline" Value="True" />
+  <Setting Key="HeadlineOffset" Value="35" />
   <Setting Key="UseRealPageNumbers" Value="False" />
   <Setting Key="SaveGameDirectory" Value="NightfallSaveFiles" />
   <Setting Key="TextBetweenPrologueAndStory" Value="Nightfall" />

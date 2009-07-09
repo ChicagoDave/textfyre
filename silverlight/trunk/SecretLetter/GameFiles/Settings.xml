@@ -25,6 +25,7 @@
   <Setting Key="PagingMechanism" Value="StaticPageCreateBackPages" />
   <Setting Key="WaitMessages" Value="Please wait.|Please wait..|Please wait..." />
   <Setting Key="CenterHeadline" Value="True" />
+  <Setting Key="HeadlineOffset" Value="35" />
   <Setting Key="UseRealPageNumbers" Value="True" />
   <Setting Key="SaveGameDirectory" Value="SecretLetterSaveFiles" />
   <Setting Key="TextBetweenPrologueAndStory" Value="Chapter 1" />
