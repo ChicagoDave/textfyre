@@ -47,15 +47,15 @@ To assert that/-- (T - a truth state) issuing (report - some text), critically:
 Include (-
 [ TF_Assertion T report;
 	if (~~(T)) {
-		print "[ASSERTION FAILED: ";
+		print "[ASSERTION FAILED";
 		if (metaclass(report) == String) {
-			print (string) report;
+			print ": ", (string) report;
 		} else if (metaclass(report) == Routine) {
-			report.call();
+			print ": "; report.call();
 		} else if (BlkType(report) == INDEXED_TEXT_TY) {
-			INDEXED_TEXT_TY_Say (report);
+			print ": "; INDEXED_TEXT_TY_Say (report);
 		} else {
-			print "without a printable report.";
+			print " -- without a printable report.";
 		}
 		print "]^";
 		rfalse;

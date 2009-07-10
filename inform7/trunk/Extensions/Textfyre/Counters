@@ -48,6 +48,16 @@ Part 3 - Default firing action
 Rule for firing a counter (called c):
 	do nothing.
 
+Part 4 - Deferring
+
+To defer firing (C - a counter):
+	if the internal value of C is 1:
+		change the internal value of C to the top end of C;
+
+To defer firing (T - a timer):
+	if the internal value of T is 0:
+		change the internal value of T to the top end of T;
+
 Counters ends here.
 
 ---- DOCUMENTATION ---- 
