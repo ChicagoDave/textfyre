@@ -250,7 +250,8 @@ Understand "go [supporter]" as standing on. [Not quite sure about this line, nor
 Understand "go [something]" as entering.
 Understand "go into/in/inside/through [something]" as entering.
 
-Understand the command "head" as "go".
+Understand "head [direction]" as going.
+Understand "head for/into/in/inside/through [something]" as entering.
 
 Understand the command "enter" as something new.
 Understand "enter [supporter]" as standing on.
@@ -378,10 +379,8 @@ Understand "search for [something]" as examining.
 
 Part 6 - Clothes
 
-Understand "take off [things]" as taking off when the item described is worn.
-[Understand "remove [things]" as taking off when the item described is worn.
-Understand "remove [things]" as taking.]
-Understand "disrobe [things]" as taking off when the item described is worn.
+Understand "take off [things]" as taking off.
+Understand "doff [things]" as taking off.
 
 Understand "wear [things preferably held]" as wearing.
 Understand "put on [things preferably held]" as wearing.
@@ -441,8 +440,8 @@ Rule for implicitly opening something locked (called the locked item):
 
 Before going through a closed door (called the obstacle):
 	carry out the implicitly opening activity with the obstacle;
-	if the obstacle is locked and the obstacle is closed:
-		stop the action;
+	[ if the obstacle is locked and the obstacle is closed:
+		stop the action; ]
 
 Chapter 2 - Implicitly unlocking
 
