@@ -8,12 +8,14 @@ Carry out unclustering:
 		if the number of things clustered with the item is one, say "[item]...";
 
 ]
+
 [
 Include (- Constant DEBUG; -) after "Definitions.i6t".
 ]
 
 [  Change Log
 When		Who		What
+11-July-2009 	J. Ingold	Added types of entering: is the player lying, sitting or clambering (or neither) - just for differentiating negative responses. Couple more Sa'at conversations. Added hymnals. Added hint to Lower Gears. Finished C4, mostly just adding scenery and jumping responses.
 6-July-2009		J. Ingold	Ian's C3 changes are almost all in. Added a new verb, "approaching" to cover "go to" and "follow" commands, and some (limited) support for these in the game. This will need a lot of new rules writing... Added a new kind, a "glimpse backdrop", which is a backdrop "too far away" to interact with, that can be identified (new relation) to a real game object. When approaching a glimpse, the game will take the player towards the identified item (if it has been identified with anything). Meanwhile, working through c4: the escaping Figure is a backdrop in all these rooms who you can "follow" and attempt (and fail) to talk to. fixed the penduluum sequence (counters go up after messages are printed, it seems, not before!)
 3-July-2009		J. Ingold 	Added "talk" verb, and "ask about <topic>" with no specified NPC. Began C4.
 2-July-2009		J. Ingold	Added Herb Garden location, where the player can (optionally) pick up a knife by solving a quick puzzle involving revolving flower beds. If they do, the knife & tome are removed from the Cyclical Library (in c3). Player's can't do both!
@@ -115,7 +117,7 @@ Include Textfyre Standard Backdrops by Textfyre.
 
 Book - Initialisation
 
-Use MAX_PROP_TABLE_SIZE of 400000.
+Use MAX_PROP_TABLE_SIZE of 600000.
 Use MAX_DICT_ENTRIES of 2500.
 Use MAX_OBJECTS of 1280.
 
@@ -199,6 +201,7 @@ The describe what's on scenery supporters in room descriptions rule is not liste
 Section 2 - Beating memory constraints
 
 Use MAX_STATIC_DATA of 400000;
+Use MAX_SYMBOLS of 30000;
 
 Book A - New Phrases etc
 
@@ -265,6 +268,23 @@ LibMsg <who disambiguation>	"Who do you mean, "
 LibMsg <which disambiguation>	"Which do you mean, " 
 LibMsg <whom disambiguation>	"Whom do you want[if main object is not the player] [the %][otherwise] me[end if] to [the last command]?" 
 LibMsg <what disambiguation>	"What do you want[if main object is not the player] [the %][otherwise] me[end if] to [the last command]?" 
+
+Chapter 6 - Say by index
+
+[ To print one of a list of possibilities depending on a numerical index ]
+
+To say by (N - a number) -- beginning say_by_index:
+(-
+	switch(({N} % ( {-segment-count} ))) { 0:
+-).
+
+To say or by  -- continuing say_by_index:
+(-
+	{-segment-count}:
+-).
+
+To say end -- ending say_by_index:
+	(- {-close-brace} -).
 
 Part 2 - New things to do
 
@@ -649,6 +669,32 @@ Instead of going when the player is on a pew (called the perch) (this is the aut
 	try getting off the perch;
 	if the player is not on a pew, continue the action;
 
+Instead of entering a pew when the player is lying:
+	say "This isn't the time to catch forty winks!"
+
+Instead of entering a pew when the player is clambering:
+	say "This isn't a playground!"
+
+Section 1 - Hymnal
+
+A hymnal is a kind of thing. Understand "prayer", "book", "hymn", "hymns", "hymnal", "pocket", "small", "leather", "bound", "leather-bound" as a hymnal.
+
+Does the player mean doing something with a hymnal: it is unlikely.
+
+Every pew incorporates a hymnal.
+
+After examining a pew:
+	say "In a pocket behind the pew in front is a hymnal."
+
+Instead of taking a hymnal:
+	say "I don't need one: I know all the hymns by gear."
+
+Instead of examining a hymnal:
+	say "The hymnal is a small leather-bound prayer book printed on one of the Abbey duplicators. It lists all the words for the hymns. I don't know why, since most people in this city can't read, but I suppose it must make them feel better to know there [i]are[r] words."
+
+Instead of reading or opening a hymnal:
+	say "I open the page to a random hymn: [i][one of]All Springs Bright and Beautiful[or]Onward, Machinist Solders[or]The Third Law is my Shepherd[or]Gracious Grease, Oil in Me[or]When a Knight Wound his Spurs[or]Let All the World Rejoin[or]Where Angels Fear to Thread[at random][r]."
+
 Part 9 - Cartesian controls
 
 Chapter 1 - Coordinate system
@@ -847,6 +893,9 @@ Instead of taking a Great Seal:
 
 Instead of entering a Great Seal:
 	say "I'm already standing on the seal: it's hard not to."
+
+Instead of entering a Great Seal when the player is lying:
+	say "If I lay down I couldn't touch all the sides of it - but I'm not going to, I'd look silly."
 
 part 14 - Glimpse backdrops
 
@@ -1566,17 +1615,22 @@ Check waking an asleep person:
 
 The block waking rule is not listed in any rulebook.
 
-Part 21 - Synonyms for take / drop / push
+Part 21 - Synonyms for take / drop / push / jump
+
+Understand "on to", "onto", "hold of" as "[on to]".
 
 Understand "grip [something]" as taking.
 Understand "grab [something]" as taking.
-Understand "hold on to [something]" as taking.
+Understand "grab [on to] [something]" as taking.
+Understand "hold [on to] [something]" as taking.
 
 Understand "let go of [something]" as dropping.
 
 Understand "push [something] out of the/my way" as pushing.
 Understand "push [something] out of way" as pushing.
 Understand "push through [something]" as pushing.
+
+Understand the commands "bound", "leap", "spring" as "jump".
 
 
 Part 22 - Jumping off, jumping on
@@ -1677,6 +1731,11 @@ Understand "remove [something] from [something]" as untying it from.
 Check untying something from:
 	say "[The noun] [is-are]n't tied up." instead;
 
+Rule for supplying a missing second noun when untying something from:
+	if the noun is the player, say "I'm not ";
+	else say "[The noun] isn't ";
+	say "tied to anything."
+
 Part 26 - Wrapping
 
 Wrapping it with is an action applying to two things.
@@ -1736,7 +1795,11 @@ Understand "lie on/in [something]" as lying down on.
 Understand "lie down on/in [something]" as lying down on.
 
 Carry out lying down on something:
+	now the player is lying;
 	try entering the noun instead;
+
+Instead of lying on something:
+	try lying down on the noun.
 
 Part 30 - Attacking it with
 
@@ -1745,6 +1808,10 @@ Attacking it with is an action applying to one thing and one carried thing.
 Understand "attack [something] with [something preferably held]" as attacking it with.
 Understand "bash [something]" as attacking.
 Understand "bash [something] with [something preferably held]" as attacking it with.
+Understand "kick [something]" as attacking.
+Understand "kick [something] with [something preferably held]" as attacking it with.
+Understand "wallop [something]" as attacking.
+Understand "wallop [something] with [something preferably held]" as attacking it with.
 Understand "strike [something]" as attacking.
 Understand "strike [something] with [something preferably held]" as attacking it with.
 Understand "batter [something]" as attacking.
@@ -1900,10 +1967,25 @@ Understand "sharpen [something]" as sharpening.
 Check sharpening:
 	say "That doesn't need to be sharpened." instead;
 
-Part 39 - Synonyms for enter
+Part 39 - Entering - lying down, standing on
+
+Yourself can be lying, clambering, sitting or entering-normally.
 
 Understand "go out of [something]" as entering.
+Understand "sit down on [something]" as entering.
 Understand "climb out of [something]" as getting off.
+
+Before reading a command:
+	now the player is entering-normally;
+
+Before entering:
+	if the player's command includes "lie on/down":
+		now the player is lying;
+	if the player's command includes "sit on/down":
+		now the player is sitting;
+	if the player's command includes "stand on/in":
+		now the player is clambering;
+
 
 Part 40 - Kind of action - making to leave
 
@@ -2024,8 +2106,12 @@ Approaching is an action applying to one visible thing.
 
 Understand "go to/after/toward/for/towards [something]" as approaching.
 Understand "follow [something]" as approaching.
+Understand "jump after [something]" as approaching.
 Understand "approach [something]" as approaching.
 Understand "chase [something]" as approaching.
+Understand "close on [something]" as approaching.
+Understand "close in on [something]" as approaching.
+
 Understand "go the same way as [something]" as approaching.
 Understand "go in the direction of [something]" as approaching.
 Understand "go in direction of [something]" as approaching.
@@ -2033,7 +2119,7 @@ Understand "go in direction of [something]" as approaching.
 
 
 Check approaching something (this is the block approaching rule):
-	say "[The noun] is right here already!" instead.
+	say "[The noun] [is-are] right here already!" instead.
 
 Book E - New Properties
 
@@ -5336,6 +5422,15 @@ The response text is "'Where does wax come from?' Sa'at repeats, seemingly absol
 CT_SAAT_HELP is a conversation topic. The enquiry text is "'Brother Sa'at,' I ask. 'Can you help me?'" 
 The response text is "'I think you'll find [i]you[r] are helping [i]me[r],' Sa'at replies archly. Then he steeples his fingers and adds, 'of course, what goes [i]around[r] often comes [i]back[r], does it not? I'm sure you'll learn a lot running my errands for me.'"
 
+CT_SAAT_WORKORDER is a conversation topic. The enquiry text is "'What needs to be done for this work order to be finished?' I ask."
+The response text is "'[i]Bureaucracy[r] is never [i]finished[r]. Oh, no. If it was [i]finished[r] maybe some of us could get on [i]without[r] all this looking-up-coordinates, and stamping-things-with-wax, and all this sort of [i]rot[r]. I mean, what good is a [i]stamp[r]? We've got whole rooms of [i]machines[r] stamping out everything from [i]books[r] to [i]rats[r], it's not like stamping is [i]difficult[r]. It's simply fiddly.' He pokes me in the shoulder. 'When you're bigger, you should do something [i]about[r] it, do you understand?'"
+
+CT_SAAT_NEBULA is a conversation topic. The enquiry text is "'What's this work order for?' I ask Brother Sa'at."
+The response text is "'Well, it's so I can [i]work[r],' he explains, with barely-concealed contempt. 'I know it's [i]hard[r] to believe but this orrey of mine isn't [i]complete[r]. How am I supposed to understand the [i]universe[r] when I don't know where everything [i]is[r]?'"
+
+CT_SAAT_ASTRONOMERS  is a conversation topic. The enquiry text is "'Who are the astronomers?' I ask Brother Sa'at."
+The response text is "'They're idiots,' he replies, briskly. 'They spend all day staring into telescopes at things far away and never [i]noticing[r], oh no, when someone steals their [i]sandwiches[r]. And they never see the [i]whole[r] picture.' He sighs, and looks at his Orrey with love.";
+
 The conversation table of Brother Sa'at is the table of Brother Sa'at's Conversation.
 
 Table of Brother Sa'at's Conversation
@@ -5358,10 +5453,13 @@ topic							conversation
 "[orrey]"										CT_SAAT_ORREY
 "coordinates" or "co-ordinates"					CT_SAAT_COORDINATES
 "wax" or "candle/candles" 				CT_SAAT_WAX
+"work" or "order" or "paper"				CT_SAAT_WORKORDER
+"nebula" or "map"							CT_SAAT_NEBULA
+"astronomers" or "cartographers"			CT_SAAT_ASTRONOMERS
 
 Understand "orrey" or "planets" or "sky" or "machine" or "mechanism" or "construction" or "comet" or "balls" or "ball" or "rod" or "rods" as "[orrey]".
 
-CT_SAAT_CREED is clustered with CT_SAAT_BUSINESS, CT_SAAT_CATHEDRAL, CT_SAAT_ABBOT, CT_SAAT_FIGURE, CT_SAAT_ARCHBISHOP, CT_SAAT_MONKS, CT_SAAT_DOOR, CT_SAAT_SAAT, CT_SAAT_CLOCKWORK, CT_SAAT_SAINTS, CT_SAAT_BOOKS, CT_SAAT_ORREY, CT_SAAT_ALTAR, CT_SAAT_COORDINATES, CT_SAAT_LIBRARY, CT_SAAT_WAX, CT_SAAT_HELP.
+CT_SAAT_CREED is clustered with CT_SAAT_BUSINESS, CT_SAAT_CATHEDRAL, CT_SAAT_ABBOT, CT_SAAT_FIGURE, CT_SAAT_ARCHBISHOP, CT_SAAT_MONKS, CT_SAAT_DOOR, CT_SAAT_SAAT, CT_SAAT_CLOCKWORK, CT_SAAT_SAINTS, CT_SAAT_BOOKS, CT_SAAT_ORREY, CT_SAAT_ALTAR, CT_SAAT_COORDINATES, CT_SAAT_LIBRARY, CT_SAAT_WAX, CT_SAAT_HELP, CT_SAAT_WORKORDER, CT_SAAT_NEBULA, CT_SAAT_ASTRONOMERS.
 
 Rule for firing a fired conversation topic that is clustered with CT_SAAT_CREED:
 	say "I've already asked about that." instead;
@@ -6577,11 +6675,14 @@ The escaping Figure is an animate glimpse backdrop. Understand "[figure]", "man"
 Rule for writing a paragraph about the escaping Figure:
 	now the escaping Figure is mentioned;
 
+Before answering the escaping Figure that:
+	try shouting at the escaping Figure instead.
+
 Before of asking the escaping Figure about:
 	say "The Figure isn't waiting around to talk to me. The Figure is getting away!" instead;
 
 Before shouting at the escaping Figure:
-	say "'Hey!' I holler. 'Stop where you are!'[paragraph break]Nothing." instead;
+	say "'[one of]Hey!' I holler. 'Stop where you are!'[or]'I won't let you get away with this!' I bellow.[or]'Come back here!' I shout.[cycling][line break]Nothing." instead;
 
 section 2 - the Upper reaches region
 
@@ -6602,7 +6703,7 @@ Instead of facing down when in Among the Gargoyles or in Lower Gears:
 	say "A million metres below me are monks as small as black ants crawling round the altar below the clock. They'll get the shock of their lives when I fall on them..."
 
 Instead of approaching the escaping Figure in Among the Gargoyles:
-	say "How I'm supposed to get over [i]there[r]?"
+	say "He's climbing the clock: how I'm supposed to get over [i]there[r]?"
 
 
 Chapter 2 - Scripted Events
@@ -6614,7 +6715,7 @@ After looking in Among the Gargoyles when SE_GARGOYLES1 is unfired:
 
 SE_GARGOYLES1 is a scripted event. The display text is "Steady, Wren. You're good with heights, aren't you? But maybe not with pendulums! I duck to avoid the massive penduluum of the clock as it almost knocks me clear of the ledge! I cling onto a gargoyle and I don't... look... down...".
 
-SE_GARGOYLES2 is a scripted event. The display text is "I spot the Figure, clinging to the clock's gears like a spider. The hood is turned to look back at me. For a moment he's still – then an escapement above him turns and he's scuttles away, deep into the turning wheels.".
+SE_GARGOYLES2 is a scripted event. The display text is "I spot the Figure, clinging to the clock's gears like a spider. The hood is turned to look back at me. For a moment he's still – then an escapement above him turns and he's scuttles upwards, deep into the turning wheels.".
 
 Instead of doing something with the escaping Figure when SE_GARGOYLES2 is not fired and SE_GARGOYLES1 is fired:
 	[ we're in Amongst the Gargoyles and we've not yet seen him. But we're about to! ]
@@ -6637,7 +6738,7 @@ Rule for firing the PenduluumCounter when the internal value of the PenduluumCou
 	say "[one of]The penduluum hangs still in space for a full second at the far point of its swing.[or]The penduluum coasts to a stop inside the clock.[or]The penduluum is dead still, at the far point of its swing.[or]The penduluum is far off inside the clock.[stopping]";
 
 Rule for firing the PenduluumCounter when the internal value of the PenduluumCounter is 2:
-	say "[one of]The penduluum plunges towards me, coming closer every second![or]The penduluum is picking up speed, heading right for me![or]The penduluum charges towards me![stopping]";
+	say "[one of]The penduluum careers towards me, coming closer every second![or]The penduluum is picking up speed, heading right for me![or]The penduluum charges towards me![stopping]";
 
 Rule for firing the PenduluumCounter when the internal value of the PenduluumCounter is 3:
 	say "[one of]The penduluum swings up to ledge, almost knocking me down.[or]The penduluum slows to the edge of the ledge and waits for a moment, before starting to swing away.[or]For a moment the penduluum is still beside me, then it seems to float backwards off the ledge.[or]The penduluum almost hits me as it turns.[stopping]";
@@ -6666,7 +6767,7 @@ Chapter 4 - Scenery
 
 Section 1 - Gargoyles
 
-Some gargoyles of vice are a backdrop, in Among the Gargoyles and Parapet. "The ledge is fitted with gargoyles showing the Vices of Laxity. Everything's here, from sleeping on the job (poor Doric!) through to eating with your mouth open."
+Some gargoyles of vice are a backdrop, in Among the Gargoyles and Parapet. "The ledge is fitted with gargoyles showing the Vices of Laxity. Everything's here, from sleeping on the job (poor Doric!) through to eating with your mouth open." Understand "gargoyle" as the gargoyles of vice.
 
 The printed name of the gargoyles of vice is "gargoyles".
 
@@ -6680,7 +6781,9 @@ The choir floor is a backdrop, in Among the Gargoyles, Lower Gears and Upper Gea
 Instead of doing something when the Choir Floor is physically involved:
 	say "[if the location is not Upper Gears]No thanks.[otherwise]I can't see the floor any more from this height.[end if]";
 
-Some singing monks is a backdrop, in Among the Gargoyles, Lower Gears and Upper Gears. "[if location is not Upper Gears]Far below are shining spots - the bald heads of the monks around the altar. The machine on the altar itself is a single gleaming gold dot.[else]I can't see the monks any more, only hear the whisper of their song.[end if]". Understand "altar", "gold", "dot", "gleam", "bald", "head", "heads", "chant", "chanting", "song" as the singing monks.
+Section 2b - Singing Monks
+
+Some singing monks is a backdrop, in Among the Gargoyles, Lower Gears and Upper Gears. "[if location is not Upper Gears]The shining spots far below are the bald heads of the monks around the altar. The machine on the altar itself is a single gleaming gold dot.[else]I can't see the monks any more, only hear the whisper of their song.[end if]". Understand "altar", "gold", "dot", "gleam", "bald", "head", "heads", "chant", "chanting", "song" as the singing monks.
 
 Include (- has animate, -) when defining the singing monks.
 
@@ -6690,14 +6793,17 @@ Before asking the singing monks about:
 Before shouting at the singing monks:
 	say "If I cried for help now they'd probably think it was a miracle: the Clock talking back to them." instead;
 
+Instead of listening when the singing monks are visible:
+	say "The song is soft and rhythmic and very, very far away."
+
 Instead of doing something when the singing monks are physically involved:
 	say "[if the location is not Upper Gears]No thanks.[otherwise]I can't see the monks any more from this height.[end if]";
 
 Every turn when the singing monks are visible and a random chance of 1 in 3 succeeds and SE_GARGOYLES2 is fired:
 	if the location is the Upper Gears:
-		say "[one of]The chanting is barely audible now.[or]The monk's song is lost in the tick-tock of the clock.[or][stopping]";
+		say "[one of]The chanting is barely audible now.[or]The monk's song is lost in the tick-tock of the clock.[cycling]";
 	else:
-		say "[one of]Thin singing drifts up from the floor far below.[or]The stone echo with soft chanting, regular and low, like the murmur of a shifting counterweight.[or]The monks below are just bright spots in black circles on the distant Cathedral floor.[or][stopping]"; 
+		say "[one of]Thin singing drifts up from the floor far below.[or]The stone walls echo with soft chanting, regular and low, like the murmur of a shifting counterweight.[or]The monks below are just bright spots in black circles on the distant Cathedral floor.[cycling]"; 
 	
 Section 3 - Gears
 
@@ -6705,7 +6811,7 @@ Some gearwheels are a backdrop, in Among the Gargoyles, Lower Gears, Upper Gears
 
 The printed name of the gearwheels is "gears".
 
-Understand "gear", "gears", "working", "workings", "[clockwork]", "cog", "cogs", "wheel", "wheels", "trace", "traces", "teeth", "strut", "struts", "pinion", "pinions", "scaffold", "scaffolds" as the gearwheels.
+Understand "gear", "gear-teeth", "gear-tooth", "teeth", "gears", "working", "workings", "[clockwork]", "cog", "cogs", "wheel", "wheels", "trace", "traces", "teeth", "strut", "struts", "pinion", "pinions", "scaffold", "scaffolds", "mechanism" as the gearwheels.
 
 Understand "clock", "cathedral clock" as the gearwheels when in Lower Gears or in Upper Gears or in Rafters.
 
@@ -6718,9 +6824,9 @@ Instead of doing something when in the Rafters and the gearwheels are physically
 
 Part 6 - Lower Gears
 
-Lower Gears is a room. "I'm sandwiched between two gears of the Cathedral clock, on a narrow wooden platform that winds in and out between the workings. [one of]This noise is louder than Reloh's duplicator – like an army of cooks all banging saucepans. I can barely keep straight which way is up and which way is down.[paragraph break][or][stopping]Platforms lead away to the [available platforms]."
+Lower Gears is a room. "I'm sandwiched between [the (remainder after dividing the times-moved of the Lower Gears by 4) + 2 in words] gears of the Cathedral clock, on a [by times-moved]narrow[or by]rickety[or by]unsteady[or by]worm-ridden[end] wooden [by times-moved]platform[or by]ledge[or by]plank[end] that [by times-moved]winds in and out between[or by]runs to the left of[or by]passes to the right of[or by]runs underneath[or by]bridges a gap between[end] the workings. [one of]This noise is louder than Reloh's duplicator – like an army of cooks all banging saucepans. I can barely keep straight which way is up and which way is down.[paragraph break][or][stopping]Platforms lead away to the [available platforms][if times-moved of the Lower Gears is greater than 6], and there a line of rungs disappears up[end if]."
 
-
+The Lower Gears have a number called the times-moved. The times-moved of the Lower Gears is one.
 
 Index map with Lower Gears mapped north of Among the Gargoyles.
 
@@ -6730,6 +6836,7 @@ Before going a planar direction in Lower Gears:
 		sort the available platforms in random order;
 		truncate the available platforms to 3 entries;
 		say "I worm my way between the gears.";
+		increase the times-moved of the Lower Gears by a random number between one and three;
 		move the player to Lower Gears instead; [illusion of true movement.]
 	end if;
 	say "There's no way to go that way, except into the grinder of gear-teeth themselves." instead;
@@ -6738,7 +6845,7 @@ After going up from Lower Gears:
 	say "The Figure went up so I will too. And never mind if the Cathedral clock loses a few seconds from me moving the gears as I climb. If the Cathedral loses its relics that'd be worse!";
 	continue the action;
 
-Understand "chain", "chains", "rung", "rungs", "ladder", "ladders", "hold", "holds", "ladderhold", "ladderholds", "ladder-hold", "ladder-holds"as the gearwheels when the location is Lower Gears.
+Understand "chain", "chains", "rung", "rungs", "ladder", "ladders", "hold", "holds", "ladderhold", "ladderholds", "ladder-hold", "ladder-holds" as the gearwheels when the location is Lower Gears.
 
 Instead of climbing the gearwheels when in Lower Gears:
 	try going up;
@@ -6746,14 +6853,19 @@ Instead of climbing the gearwheels when in Lower Gears:
 Instead of approaching the Escaping figure when in the Lower Gears:
 	try going up.
 
+Instead of going down when in Lower Gears:
+	try jumping instead.
+
+Instead of jumping when in Lower Gears:
+	say "There's nothing but mashing gear-teeth beneath me.";
+
 Part 7 - Upper Gears
 
-Upper Gears is a room, up from Lower Gears. "Further up now, and hanging onto a scaffold beam for dear life. Below – quite a lot of space, and the rest of the mechanism. Around, cogs grinding the rust off other cogs. And in front: a void of empty space. A gap – and then the beautiful crystal light of the rose window: the clock face itself, filling my eyes with light.[paragraph break]Way overhead, higher even still, is the shaft that turns the clock hands, reaching out from the gigantic mechanism and through the window. There's no way I can climb there. The gears here are smaller and moving too fast."
-
+Upper Gears is a room, up from Lower Gears. "[one of]Further up now, and hanging onto a scaffold beam for dear life. Below – quite a lot of space, and the rest of the mechanism. Around, cogs grinding the rust off other cogs. And in front: a void of empty space. A gap – and then the beautiful crystal light of the rose window: the clock face itself, filling my eyes with light.[paragraph break]Way overhead, higher even still, is the shaft that turns the clock hands, reaching out from the gigantic mechanism and through the window. There's no way I can climb there. The gears here are smaller and moving too fast.[or]I'm on a beam bathed in the light of the rose window. High overhead is the thick metal beam that turns the clockhands, reaching through the window, but there's no way I can climb there.[stopping]"
 
 
 Instead of approaching the escaping Figure in Upper Gears:
-	say "The Figure must have climed the gear-teeth: I can't do that! I'm just a child!"
+	say "The Figure must have climbed the gear-teeth: I can't do that! I'm just a child!"
 
 Chapter 2 - Event on entry
 
@@ -6770,9 +6882,9 @@ Chapter 3 - Objects
 
 Section 1 - Barrel
 
-A barrel is fixed in place, in the Upper Gears. "Right beside me is a barrel with a crank, from which a thick iron chain runs up to a pulley near the top of the window."
+A barrel is fixed in place, in the Upper Gears. "[if thick chain is gripped]The chain I'm holding onto runs out of the barrel beside me[else]Right beside me is a barrel with a crank, from which a thick iron chain runs up to a pulley near the top of the window[end if]. [if iron weight is low]The counterweight has fallen and the barrel must be empty of chain[else]A enormous counterweight hangs up there.[end if]."
 
-The description of the barrel is "The barrel feeds out a long iron chain to a pulley above the rose window. The barrel has a crank on front and also a release lever."
+The description of the barrel is "The barrel feeds out a long iron chain to a pulley above the rose window. The barrel has a crank on front and also a release lever. [if iron weight is low]The barrel is almost empty: the counterweight has spooled out plenty of chain.[else]The chain is stiff and taut thanks to the counterweight, high up by the beams.[end if]"
 
 Section 2 - Crank
 
@@ -6783,26 +6895,34 @@ Instead of turning the crank handle when the iron weight is high:
 
 Instead of turning the crank handle when the iron weight is low:
 	now the iron weight is high;
-	now the thick chain is not gripped;
-	say "The crank turns easily, and very slowly the weight rises up towards the pulley. Who's meant to use this machine I don't know: maybe it's left over from construction.[paragraph break]After several minutes of work, the weight is as high as it'll go.";
+	if the thick chain is gripped:
+		say "I let go of the chain first. ";
+		now the thick chain is not gripped;
+	say "The crank turns easily, and very slowly the weight rises up towards the pulley. Who's meant to use this machine I don't know: maybe it's left over from construction.[paragraph break]After several minutes of work, the weight is as high as it'll go. The release lever clicks closed.";
 
 Section 3 - Lever
 
-The release lever is part of the barrel. The printed name is "lever". The description is "The release lever on the barrel is currently closed."
+The release lever is part of the barrel. The printed name is "lever". The description is "The release lever on the barrel is currently [if the iron weight is low]open[else]closed[end if]."
 
-Instead of pulling the release lever when the iron weight is low:
-	say "I pull the lever but nothing happens. It locks back into place.";
+Instead of pulling or opening or attacking the release lever when the iron weight is low:
+	say "The lever's already open, so nothing happens.";
 
-Instead of pulling the release lever when the thick chain is not gripped:
+Instead of pulling or opening or attacking the release lever when the thick chain is not gripped and the iron weight is high:
 	now the iron weight is low;
 	say "The lever unlocks and the chain begins to spool away instantly, as the weight over the pulley plummets downwards. The links beside me wind away towards the window.";
 
-Instead of pulling the release lever:
-	say "Clinging on tight – I must have gone crazy – I kick the release with my shoe. There's a sudden jerk and then I'm shot up and across. Stomach in throat, air beneath my feet, arms screaming for mercy. Hurtling towards the pulley. How much chain is there in this thing? I've no idea. What if I hit? I watch in horror as the pulley approaches – I'm going to be knocked off – [paragraph break]- and I've no choice but to let go and I [i]fall[r] – [paragraph break]- onto a rafter below. Sweet Grease! I can barely move for shaking!";
+Instead of pulling or opening or attacking the release lever:
+	say "Clinging on tight – I must have gone crazy – I kick the release with my shoe. There's a sudden jerk and then I'm shot up and across. Stomach in throat, air beneath my feet, arms screaming for a clear explanation of exactly what do I think I'm doing? Hurtling towards the pulley. How much chain is there in this thing? I've no idea. What if I hit? I'm frozen as the pulley comes up fast – I'm going to be knocked down – [paragraph break]- and I've no choice but to let go and I [i]fall[r] – [paragraph break]- onto a rafter below. Sweet Grease! I can barely move I'm so busy shaking!";
 	move player to Rafters;
 
-Instead of pushing the release lever:
+Instead of pushing or knocking on the release lever:
 	try pulling the release lever;
+
+Instead of closing the release lever when the iron weight is high:
+	say "The lever is closed. I could pull it open."
+
+Instead of closing the release lever:
+	say "The lever won't close, presumably because the counterweight is now so low."
 
 Chapter 4 - Scenery
 
@@ -6810,6 +6930,8 @@ Section 1 - Gearwheels
 
 Instead of climbing or jumping on the gearwheels when in Upper Gears:
 	say "It's all vertical now, and the bars of the scaffold and struts of the cogs are more spaced out than the rungs of my ladder. I can't get higher.";
+
+Understand "shaft", "hands", "beam", "metal beam" as the gearwheels when the location is Upper Gears.
 
 Understand "rung", "rungs", "ladder", "ladders", "hold", "holds", "ladderhold", "ladderholds", "ladder-hold", "ladder-holds", "vertical", "pulley", "pulleys" as the gearwheels when the location is Upper Gears.
 
@@ -6820,7 +6942,41 @@ A rose window is a backdrop, in the Upper Gears, Rafters, Behind the Clock Face,
 Rule for printing the description of the rose window when in Upper Gears:
 	say "The window is above and beyond. Its stained glass covers the clock's workings in fractured colours. It's beautiful here. Light and clockwork in perfect harmony.[paragraph break]A pulley hangs at its top, attached to the long chain that feeds into the barrel by my feet.";
 
-Understand "clock", "face" as the rose window.
+Understand "clock", "face", "clockface", "clock-face", "crystal", "light", "stained", "glass" as the rose window.
+
+Before doing something when the rose window is physically involved:
+	if the location is Upper Gears or the location is Rafters:
+		say "I can't reach the window from here." instead;
+	continue the action.
+
+Instead of attacking the rose window:
+	say "It's enormous. Even if I could push a fingerhole through, no-one would ever even see. And it wouldn't help me keep up with the Figure."
+
+Instead of touching the rose window:
+	say "The glass is cold and warped; roughly made."
+
+Instead of searching or looking through the rose window:
+	say "Nothing is visible through the thick syrup colours of the glass."
+
+Section 2b - Twelve
+
+The XII is part of the rose window. Understand "numeral", "numerals", "number" as the XII.
+
+Rule for printing the name of XII when in Behind the Clock Face:
+	say "IV".
+
+Understand "xii", "twelve" as the XII when in the Rafters.
+Understand "iv", "four" as the XII when in Behind the Clock Face.
+
+Instead of doing something when the XII is physically involved:
+	if the location is the Rafters:
+		say "Almost. Not quite.";
+	else:
+		say "I can't reach the window from here."
+
+Instead of examining the XII:
+	say "The numerals are the size of my body."
+
 
 Section 3 - Chain
 
@@ -6829,7 +6985,7 @@ A thick chain is a backdrop, in the Upper Gears, the Rafters, and Behind the Clo
 Understand "pulley", "weight", "iron" as the thick chain when the location is not Upper Gears.
 
 Rule for printing the description of the thick chain when in the Upper Gears:
-	say "The thick links of the chain run up to a pulley by the window. Over the pulley is a weight, [if the iron weight is high]hoisted as high as it can go[otherwise]which dangles far below[end if].";
+	say "The thick links of the chain run up to a pulley by the window. Over the pulley is a weight, [if the iron weight is high]hoisted as high as it can go[otherwise]which dangles far below[end if]. The end near me feeds into the barrel[if the thick chain is gripped].[paragraph break]I'm holding on to the chain for dear life![else].[end if]";
 
 Instead of climbing the thick chain when in Upper Gears:
 	say "I could grip my arms around the chain but the angle's too steep – and the distance, it's pretty far! I can't just climb out. I really can't.";
@@ -6852,20 +7008,24 @@ Instead of pulling the thick chain:
 
 Section 4 - Counterweight
 
-An iron weight is scenery, in the Upper Gears. The iron weight can be high or low. The iron weight is high. The description of the iron weight is "A solid chunk of iron [if high]near the pulley[otherwise]hanging far, far below the gigantic rose window[end if]."
+An iron weight is scenery, in the Upper Gears. The iron weight can be high or low. The iron weight is high. The description of the iron weight is "A solid chunk of iron [if high]near the pulley[otherwise]hanging far, far below the gigantic rose window[end if]." Understand "counterweight", "counter-weight" as the iron weight. 
+
+Instead of doing something when the iron weight is physically involved:
+	say "The weight is far, far out of my reach, on the other end of the chain.";
 
 Part 8 - Rafters
 
 Chapter 1 - Description
 
-Rafters is a room. "I'm clinging to a rafter. Beside me is the long chain from the pulley, down past the rose window that lights up everything in vivid red, blue and green. My foot could almost reach the XII on the clock face... Below is nothing but a few more rafters, presumably used for placing the glass. Below that is a long drop, and the chanting of the monks far below.[paragraph break]By one of the rafters way below is a little door in the clock face – a pane of glass, swung open. [i]The Figure.[r]" 
-
+Rafters is a room. "I'm clinging to a rafter. Beside me is the long chain from the pulley, down past the rose window that lights up everything in vivid red, blue and green. My foot could almost reach the XII on the clock face... Below is nothing but a few more rafters, presumably used for placing and replacing the glass. And then there's nothing but a long drop for a long time, and the chanting of the monks far below.[paragraph break]By one of the rafters near the bottom of the window is a little door in the clock itself – a pane of glass, swung outward. [i]The Figure.[r]" 
 
 Instead of approaching the escaping Figure in the Rafters:
 	try going down;
 
 Instead of making to leave in the Rafters: 
 	try going down.
+
+
 
 Chapter 2 - Scenery
 
@@ -6879,6 +7039,22 @@ After going down from the Rafters:
 	say "Gingerly, I clamber down the chain and onto the rafters behind the clock face, lower down.";
 	continue the action;
 
+Section 1a - rafters
+
+Some rafter beams are a backdrop. They are in the Rafters, in the Upper Gears, in Behind the Clock Face. "The beams are so narrow I have to go one foot after the next. And they're old, and a little bent in the middle too!". Understand "rafters", "beam", "beams" as the rafter beams.
+
+Instead of dropping the rafter beams:
+	say "No way. I'm happier having something underfoot, at least!"
+
+Instead of taking the rafter beams:
+	say "Don't worry, there's no chance I'm letting go.";
+
+Instead of approaching the rafter beams in Rafters:
+	try going down;
+
+Instead of approaching the rafter beams in Behind the Clock Face:
+	try going outside;
+
 Section 1 - Rose Window
 
 Instead of doing something when the Rose Window is physically involved and the location is the Rafters:
@@ -6891,9 +7067,9 @@ Part 9 - Behind the Clock Face
 
 Chapter 1 - Description
 
-Behind the Clock Face is a room, down from the Rafters. "Like an unlucky symbol I can see the giant clock face in front of me, in reverse. The hands are turning widdershins, very slowly. The rafter I'm on extends right up to the glass panel set in the clock face, where a small square of normal light breaks the green and silver of the stained glass, near the IV.[paragraph break]The chain extends beside me, up and down."
+Behind the Clock Face is a room, down from the Rafters. "Like an unlucky symbol I can see the giant clock face in front of me, in reverse. The hands are turning widdershins, very slowly. Enough to make me shudder. The rafter I'm on extends right up to the glass panel set in the clock face, where a small square of normal light breaks the green and silver of the stained glass, near the IV.[paragraph break]The chain extends beside me, up and down."
 
-Instead of approaching the escaping Figure in the Rafters:
+Instead of approaching the escaping Figure in Behind the Clock Face:
 	try going outside;
 
 Instead of going up when in Behind the Clock Face:
@@ -6902,7 +7078,7 @@ Instead of going up when in Behind the Clock Face:
 Instead of going down when in Behind the Clock Face:
 	try going up instead;
 
-Understand "door" as the Rose Window when the location is Behind the Clock Face.
+Understand "door", "panel", "square" as the Rose Window when the location is Behind the Clock Face.
 
 Instead of entering the Rose Window when the location is Behind the Clock Face:
 	try going outside instead;
@@ -6918,6 +7094,8 @@ Chapter 2 - Scenery
 
 Section 1 - Rose Window
 
+Understand "door", "glass", "pane", "pane of glass", "little door" as rose window when the location is Behind the Clock Face or the location is the Rafters.
+
 Rule for printing the description of the rose window when in Behind the Clock Face:
 	say "Jewelled light blinds me. Only the square of blue sky – the door – looks safe.";
 
@@ -6927,10 +7105,10 @@ The Roofs of the City is a region. The Minute Hand, Parapet  are in the Roofs of
 
 Part 1 - Minute Hand
 
-Minute Hand is a room, outside from Behind the Clock Face. "It's a good thing I'm good with heights, because this is the highest I've ever been. My back's pressed against the cool glass of the rose window, and I'm standing – I'm standing on a wide metal girder. The [i]long[r] girder. The one that tells you minutes. Luckily it's between the III and the IV so I can stand here, because the metal's smooth and there's nothing to cling onto.[paragraph break]Stretched out below me is the whole of the city of St Philip. Most of it looks like it washed up here sometime when the rivers flooded. Only the Abbey looks like it was actually built instead of dropped."
+Minute Hand is a room, exterior, outside from Behind the Clock Face. "It's a good thing I'm good with heights, because this is the highest I've ever been. My back's pressed against the cool glass of the rose window, and I'm standing on a wide metal girder. The [i]long[r] girder. The one that tells you minutes. Luckily it's between the III and the IV - almost level. For now.[paragraph break]And stretched out before me is the most incredible view: the whole of the city of St Philip, a mess of buildings like it washed up when the rivers flooded. Only the Abbey looks like it was actually built instead of dropped."
 
 Instead of going inside from the Minute Hand:
-	say "It's too late. I'm frozen to the spot, not going anywhere."
+	try entering the clock face door.
 
 After looking in the Minute Hand:
 	move the escaping Figure to the Roofs of the City;
@@ -6940,15 +7118,17 @@ Instead of approaching the escaping Figure when in the Minute Hand:
 
 Index map with Minute Hand mapped east of Behind the Clock Face.
 
-After looking in Minute Hand when SE_MINHAND1 is unfired:
-	change the current script to { SE_MINHAND1, SE_MINHAND2, SE_MINHAND3 };
+After looking in Minute Hand when SE_MINHAND0 is unfired:
+	change the current script to { SE_MINHAND0, SE_MINHAND1, SE_MINHAND2, SE_MINHAND3 };
 	continue the action;
 
-SE_MINHAND1 is a scripted event. The display text is "There's a parapet of the Cathedral a good way below, but no ladders, chains or cogs this time. But somehow – the Figure. He stops to look up at me, almost as though wondering if he should stay to help. But he doesn't.".
+SE_MINHAND0 is a scripted event. 
+
+SE_MINHAND1 is a scripted event. The display text is "There's a parapet of the Cathedral a good way below, but no ladders, chains or cogs this time. But somehow – that's where the Figure is, looking my way, almost as though wondering if he should stay to help. But he doesn't, and then he's gone.".
 
 SE_MINHAND2 is a scripted event. The display text is "The metal underfoot shivers a little...".
 
-SE_MINHAND3 is a scripted event. The display text is "From behind the window there's an enormous groan like a giant waking up in there, and then the hand underneath me disappears. Just a minute further down – but it's too steep: five-seventeen I can hang onto but five-eighteen I can't. I start to slide...[paragraph break]Right off the hand – but at least at this end it isn't quite so high up... [paragraph break]Woomph!".
+SE_MINHAND3 is a scripted event. The display text is "From behind the window there's an enormous groan like a giant waking up, and then the hand underneath me simply disappears. Five-eighteen, Wren. Too steep to stop myself from sliding...[paragraph break]Woomph!".
 
 After firing SE_MINHAND3:
 	move the player to the Parapet;
@@ -6966,17 +7146,23 @@ Section 1 - Clock face / Rose Window
 Rule for printing the description of the rose window when in Minute Hand:
 	say "The gigantic clock face. It has no handholds, no rungs. Nothing.";
 
+Instead of entering the rose window when in Minute Hand:	
+	try entering the clock face door instead.
+
 Section 2 - City View
 
-A thing called the mh_distant_city_view is scenery, privately-named, in Minute Hand. "I can see the whole city, from the River Tempus on side to the quicker River Fugit on the other. It all seems small enough to pick up and fix – but only if I reached a little further out..."
+A thing called the mh_distant_city_view is scenery, privately-named, in Minute Hand. "I can see the whole city, from the River Tempus on side to the quicker River Fugit on the other. It all seems small enough to pick up and fix – but only if I reached a little further out..." The printed name is "city".
 
-Understand "city", "whole", "river", "rivers", "tempus", "fugit" as the mh_distant_city_view.
+Understand "city", "whole", "river", "rivers", "tempus", "fugit", "building", "buildings" as the mh_distant_city_view.
+
+Instead of doing something when the Abbey Roof is physically involved: say "The city is spread out before me like a painting, but it's far, far away."
+
 
 Section 3 - Minute hand
 
 An iron bar is scenery, in Minute Hand. "The minute hand is a thick bar of iron about the size of one of the Cathedral pews. But it's also smooth, and steep, and not a safe place to stay..."
 
-Understand "minute", "hand", "girder", "long" as the iron bar.
+Understand "minute", "hand", "girder", "long", "metal", "underfoot" as the iron bar.
 The printed name of the iron bar is "minute hand".
 
 Instead of dropping the iron bar:
@@ -6988,20 +7174,32 @@ The distant abbey roof is scenery, in Minute Hand. "In the Abbey roof I can see 
 
 Understand "square", "dark", "missing", "tile" as the distant abbey roof. The printed name is "Abbey roof".
 
+Instead of doing something when the Abbey Roof is physically involved: say "It's miles away."
+
+
+Section 4 - Parapet 
+
+The distant parapet is scenery, in Minute Hand. "The parapet is the top of a buttress of the Cathedral, a good twenty metres below me."
+
+Instead of doing something when the distant parapet is physically involved: say "It's far below me."
+
+Instead of jumping on or entering or approaching the distant parapet:
+	try going down.
+
 Section 5 - Clock face door
 
-The clock face door is scenery, privately-named, in Minute Hand. "The door back inside is too high up now – it wasn't a minute ago, of course."
+The clock face door is scenery, privately-named, in Minute Hand. 
+
+Instead of doing something with the clock face door:
+	say "The door back inside is too high up now – it wasn't a minute ago, of course."
 
 Understand "door" as the clock face door. The printed name is "door".
-
-Instead of opening or entering the clock face door:
-	say "The door is out of reach. And there is no way in the workings that I'm jumping."
 
 Part 2 - Parapet
 
 Chapter 1 - Description
 
-The Parapet is a room. "A narrow lead-covered walkway along the cathedral roof. How lucky can you get! It doesn't go anywhere, of course, but at least there's some gargoyles and things to stop me falling the rest of the way to the ground.[paragraph break]Off west a buttress flies out near the roof of a nearby Civil Service building."
+The Parapet is a exterior room. "[one of]I pick myself to my feet. [or][stopping]A narrow lead-covered walkway along the cathedral roof. [one of]How clockwise can you be? [or][stopping]It doesn't go anywhere, of course, but at least there're some gargoyles and things to stop me falling the rest of the way to the ground.[paragraph break]Off west a buttress flies out near the roof of a nearby Civil Service building."
 
 Index map with Parapet mapped south of Minute Hand.
 
@@ -7010,6 +7208,12 @@ Instead of going up in Parapet:
 
 Instead of going nowhere when in Parapet:
 	say "I've followed him this far. I can't give up now!";
+
+Instead of approaching the escaping Figure when in Parapet:
+	try going west.
+
+Instead of jumping when in Parapet:
+	try going west.
 
 Chapter 2 - Event on Entry
 
@@ -7024,6 +7228,9 @@ Rule for firing TRIG_PARAPET1:
 
 Chapter 3 - Scenery
 
+Instead of examining the escaping Figure when in the Parapet:
+	say "The Figure's gone - leapt clear across the street below and onto the buttress opposite!"
+
 Section 1 - Rose Window
 
 Rule for printing the description of the rose window when in Parapet:
@@ -7037,6 +7244,10 @@ Instead of doing something when the rose window is physically involved in Parape
 
 Understand "hand", "hands", "minute", "VI", "6", "number", "numeral", "numbers", "numerals", "roman numeral", "roman numerals" as the rose window when the location is Parapet.
 
+Section 1b - walkway
+
+The lead walkway is scenery, in Parapet. "The walkway is the roof of the West Apse: a mind-boggling thought."
+
 Section 2 - Gargoyles
 
 [Backdrop from Among the Gargoyles]
@@ -7044,7 +7255,7 @@ Section 2 - Gargoyles
 Understand "spire", "spires", "gable", "gables" as the gargoyles of vice when the location is Parapet.
 
 Rule for printing the description of the gargoyles of vice when in Parapet:
-	say "The edge of the roof is lines with gargoyles all ready to spit rainwater down on people in the street below.";
+	say "The edge of the roof is lines with gargoyles all poised to spit rainwater down on people in the street below.";
 
 Instead of climbing or jumping on the gargoyles of vice when in Parapet:
 	say "I'm certainly not going to let go of them! They're the only things keeping me up here!";
@@ -7056,14 +7267,14 @@ Section 3 - Flying buttress
 
 The scenery-buttress is scenery, privately-named, in the Parapet. "The flying buttress to the west is holding this wall up." The printed name is "buttress". Understand "flying", "buttress" as the scenery-buttress.
 
-Instead of climbing, jumping off, or entering the scenery-buttress:
+Instead of climbing, jumping off, jumping on, or entering the scenery-buttress:
 	try going west;
 
 Part 3 - Buttress
 
 Chapter 1 - Description
 
-Buttress is a room, west of Parapet. "I'm not on the roof anymore: I'm perched on a narrow stone arch that curves out from the wall and down to the ground. Hopefully I'm not going [i]that[r] way any time soon... This is where I saw the Figure jump across to the next roof, though now he's disappeared from sight."
+Buttress is a room, exterior, west of Parapet. "I'm not on the roof anymore: I'm perched on a narrow stone arch that curves out from the wall and down to the ground. Hopefully I'm not going [i]that[r] way any time soon... This is where I saw the Figure jump across to the next roof, though now he's disappeared from sight." 
 
 Instead of going east in Buttress:
 	say "Back off? No way. I've gotten this far. I'm not giving up.";
@@ -7092,11 +7303,20 @@ Instead of entering or climbing or jumping on the gargoyles of vice when in Butt
 
 Section 2 - Roof
 
-The slated lead roof is scenery, in the Buttress. "About five feet below – and five feet [i]away[r] – is the slated lead roof that almost touches the buttress." The printed name is "roof".
+The slated lead roof is a backdrop, in the Buttress and in the Parapet. "About five feet below – and five feet [i]away[r] – is the slated lead roof that almost touches the buttress." The printed name is "roof". Understand "civil", "service", "building", "nearby" as the slated lead roof.
+
+Before entering or jumping on or approaching the slated lead roof:
+	if the location is the Parapet:
+		try going west instead;
+	else:
+		try jumping instead.
+
+Instead of doing something when the slated lead roof is physically involved:
+	say "The building is out of reach - but not out of leap, maybe.";
 
 Part 4 - Rooftop 1 (Lightning Rods)
 
-Rooftop 1 is a room. "[one of]If the city I saw from the clock-face is a sprawl then its roofs are worse: sloping and slanting this way and that, a mess of slate and lead, like someone kicked over a house of cards. Some parts are flat and easy to walk over, others are impassably steep, or blocked with tall chimneys, extra walls or sharp lightning rods plugged into vegetable patches way below.[or]The roofs are a mess of chimneys, lightning rods, ways forward and sudden sharp drops.[stopping][paragraph break]From here, I could scramble down to the south, or hop across small gaps to the southeast or southwest. The Cathedral itself is back west."
+Rooftop 1 is a exterior room. "[one of]If the city I saw from the clock-face is a sprawl then its roofs are worse: sloping and slanting this way and that, a mess of slate and lead, like someone kicked over a house of cards. Some parts look flat and others impossibly steep, or blocked with tall chimneys, extra walls or sharp lightning rods plugged into vegetable patches way below.[or]The roofs are a mess of chimneys, lightning rods, ways forward and sudden sharp drops.[stopping][paragraph break]From here, I could scramble down to the south, or hop across small gaps to the southeast or southwest. The Cathedral itself is back west."
 
 The printed name is "Rooftop".
 
@@ -7110,16 +7330,23 @@ Chapter 2 - Scenery
 
 Section 1 - Chimneys & Rods
 
-Some chimneys are a backdrop, in Rooftop 1, Rooftop 2, Rooftop 3, Rooftop 4, Rooftop 5, Sloping Roofs, Weather Station. "Who would have thought people kept so much rubbish up here, hidden out of sight? This isn't [i]precision engineering[r], all these chimneys and lightning rods, this is a [i]great big mess of stuff[r]. It's not Right or Proper at all."
+Some chimneys are a backdrop, in Rooftop 1, Rooftop 2, Rooftop 3, Rooftop 4, Rooftop 5, Sloping Roofs, Weather Station. "Who would have thought people kept so much rubbish up here, hidden out of sight? This isn't [i]precision engineering[r], all these chimneys, this is a [i]great big mess of stuff[r]. It's not Right or Proper at all." Understand "chimney", "roofs" as the chimneys.
 
-Instead of taking the chimneys:
+Instead of attacking or pushing or taking the chimneys:
 	say "I couldn't pull this stuff apart, the lightning rods and chimneys are all solid – even if they are a mess.";
 
-Understand "roofs", "rods", "lightning rods", "lightning rod" as the chimneys.
+Section 2 - Lightning Rods
+
+Some lightning rods are a backdrop, in Rooftop 1, Rooftop 2, Rooftop 3, Rooftop 4, Rooftop 5, Sloping Roofs, Weather Station. "The lightning rods run straight into gardens and vegetables patches. Something to do with the rattling of the metal feeding the plants. I don't think I understood it when I heard it explained to me."
+
+Instead of touching or taking the lightning rods:
+	say "Touch that and you might burn: the vibrations can be that strong. Especially in thunderstorms."
+
+Understand "rod", "vegetable patches", "patch/patches", "rods", "lightning rods", "lightning rod" as the lightning rods.
 
 Part 5 - Rooftop 2 (Fallen Chimney)
 
-Rooftop 2 is a room, southwest of Rooftop 1. "This roof is almost flat, which is good, because there's empty space to the north and east of it. I could slip south, through the remains of a collapsed brick chimney, that seems to have been pushed down to make room for a wide turret, on top of which is a platform with a brass railing. Overlapping roofs create a second path to the northeast."
+Rooftop 2 is a room, exterior, southwest of Rooftop 1. "This roof is almost flat, which is good, because there's empty space to the north and east of it. I could slip south, through the remains of a collapsed brick chimney, that seems to have been pushed down to make room for a wide turret, on top of which is a platform with a brass railing. Overlapping roofs create a second path to the northeast."
 
 The printed name is "Rooftop".
 
@@ -7205,7 +7432,7 @@ Section 1 - Chimneys & Rods
 
 Part 7 - Rooftop 3 (Pipe and Board)
 
-Rooftop 3 is a room, southeast of Rooftop 1. "Half of this roof has collapsed, and whoever was repairing it clearly ran out of money only partway into the job. A pile of construction materials has been left behind[pipes-and-boards]. Some look like they could easily fall off the roof onto the street to the east. Safer ground is a short hop down to the northwest, and a bit of a scramble to the southwest."
+Rooftop 3 is a room, exterior, southeast of Rooftop 1. "Half of this roof has collapsed, and whoever was repairing it clearly ran out of money only partway into the job. A pile of construction materials has been left behind[pipes-and-boards]. Some look like they could easily fall off the roof onto the street to the east. Safer ground is a short hop down to the northwest, and a bit of a scramble to the southwest."
 
 The printed name is "Rooftop".
 
@@ -7280,7 +7507,7 @@ Part 8 - Rooftop 4 (Ornithopter & Tarp)
 
 Chapter 1 - Description
 
-Rooftop 4 is a room, south of Sloping Roofs, southwest of Rooftop 3. North of Rooftop 4 is nowhere. West of Rooftop 4 is Sloping Roofs. "I'm on the south side of a group of buildings here, with other roofs I could scramble onto east, west, and northeast of me. To the south, there's a low wall and then a gap, across an alleyway, before the next building along. The roof of that one seems to be covered in machinery, though it's hard to say for sure."
+Rooftop 4 is a room, exterior, south of Sloping Roofs, southwest of Rooftop 3. North of Rooftop 4 is nowhere. West of Rooftop 4 is Sloping Roofs. "I'm on the south side of a group of buildings here, with other roofs I could scramble onto east, west, and northeast of me. To the south, there's a low wall and then a gap, across an alleyway, before the next building along. The roof of that one seems to be covered in machinery, though it's hard to say for sure."
 
 The printed name is "Rooftop".
 
@@ -7371,7 +7598,7 @@ Part 9 - Rooftop 5 (Narrow Chimney)
 
 Chapter 1 - Description
 
-Rooftop 5 is a room, east of Rooftop 4. "This roof is surrounded on all sides by taller buildings, scalable to the west, and impossible every other way. There's a gap on to the southwest, where an alley suddenly opens up – further that way is the glitter of machinery (but it's too far to jump, I think)."
+Rooftop 5 is a room, exterior, east of Rooftop 4. "This roof is surrounded on all sides by taller buildings, scalable to the west, and impossible every other way. There's a gap on to the southwest, where an alley suddenly opens up – further that way is the glitter of machinery (but it's too far to jump, I think)."
 
 The printed name is "Rooftop".
 
@@ -7459,7 +7686,7 @@ Part 10 - Observation Platform
 
 Chapter 1 - Description
 
-The Observation Platform is a room. "I'm standing on a platform overlooking a roof covered in broken bricks to the north. A flight of metal steps lead down to the southeast, back to the weather station. A brass railing runs around the edge to stop anyone falling – I could use one of those for my bedroom."
+The Observation Platform is an exterior room. "I'm standing on a platform overlooking a roof covered in broken bricks to the north. A flight of metal steps lead down to the southeast, back to the weather station. A brass railing runs around the edge to stop anyone falling – I could use one of those for my bedroom."
 
 North from the Observation Platform is Rooftop 2.
 Down from the Observation Platform is the Weather Station.
@@ -7571,7 +7798,7 @@ Instead of turning the large crank:
 
 Part 11 - Weather Station
 
-The Weather Station is a room. "This roof is covered in meters – thermometers, barometers, precipitometers (these are just glass tubes open to catch the rain) and a zephyrgraph attached to a flight of metal stairs that lead up to a platform to the northwest. I can't see any other way off this roof, although there is a closed hatch underfoot. The wooden plank I used to get here is further off than I thought!"
+The Weather Station is an exterior room. "This roof is covered in meters – thermometers, barometers, precipitometers (these are just glass tubes open to catch the rain) and a zephyrgraph attached to a flight of metal stairs that lead up to a platform to the northwest. I can't see any other way off this roof, although there is a closed hatch underfoot. The wooden plank I used to get here is further off than I thought!"
 
 Index map with Weather Station mapped south of Rooftop 4.
 
@@ -12301,7 +12528,7 @@ The printed name of the middle of the gnomon is "Gnomon".
 
 Book W - Walkthrough Script
 
-Test jonsprogress with "test intro / test abbey / test cathedral / z/z/z/nw/z/z/sw/u".
+Test jonsprogress with "test intro / test abbey / test cathedral / test clockchase".
 
 Test walkthrough with "test intro / test abbey / test cathedral / test clockchase / test rooftops / test covalt / test countinghouse / test outsidewarehouse".
 
@@ -12315,7 +12542,7 @@ Test abbey2 with "d/e/sw/e/get cup/e/n/put cup in bracket/w/w/z/z/z/e/e/get tea/
 
 test cathedral with "w/n/e/get blue/get red/get yellow/w/n/n/w/sw/open tome/get knife/ne/e/s/s/w/put red in brazier/put blue in brazier/get purple with knife/e/n/n/e/se/take work order/nw/w/w/sw/look up principia planetaria in catalogue/test steel/test brass/test gold/pull chain/ne/e/e/se/give principia to sa'at/take order/nw/se/give wax to sa'at/get order/nw/w/n/e/give work order to doric/give work order to doric/n/lever, spring, winding key".
 
-test clockchase with "z/z/z/nw/z/z/sw/u/z/z/jump/u/hold chain/pull lever/d/out/z/z/w/jump".
+test clockchase with "z/z/z/nw/z/z/sw/u/z/z/z/z/jump/u/hold chain/pull lever/d/out/z/z/z/w/jump".
 
 test rooftops with "sw/scrape mortar with knife/get bricks/ne/se/sw/drop bricks/ne/get plank/sw/put plank in notch/put bricks in notch/ne/get pipe/sw/get tarp/e/put pipe on chimney/put tarp on chimney/turn pipe sw/w/s/nw/turn compass south/turn crank/look through telescope/se/put balloon on vent/z/z/z/z/z/z/z/z/z/z/z/z/enter balloon".
 
