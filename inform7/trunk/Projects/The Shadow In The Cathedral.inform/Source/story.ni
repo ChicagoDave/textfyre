@@ -1,20 +1,12 @@
 "The Shadow In The Cathedral" by Textfyre Inc
 
 [
-Unclustering is an action applying to nothing.
-Understand "uncluster" as unclustering.
-Carry out unclustering:
-	repeat with item running through conversation topics:
-		if the number of things clustered with the item is one, say "[item]...";
-
-]
-
-[
 Include (- Constant DEBUG; -) after "Definitions.i6t".
 ]
 
 [  Change Log
 When		Who		What
+12-July-2009	J. Ingold	Finished C5. Added roof objects. Lots of down/jump responses. Fixed descriptions of bridge/plank. Can remove tarp from chimney. Various tweaks to turning things forwards and backwards. Rewrote chapter ending text. 
 11-July-2009 	J. Ingold	Added types of entering: is the player lying, sitting or clambering (or neither) - just for differentiating negative responses. Couple more Sa'at conversations. Added hymnals. Added hint to Lower Gears. Finished C4, mostly just adding scenery and jumping responses.
 6-July-2009		J. Ingold	Ian's C3 changes are almost all in. Added a new verb, "approaching" to cover "go to" and "follow" commands, and some (limited) support for these in the game. This will need a lot of new rules writing... Added a new kind, a "glimpse backdrop", which is a backdrop "too far away" to interact with, that can be identified (new relation) to a real game object. When approaching a glimpse, the game will take the player towards the identified item (if it has been identified with anything). Meanwhile, working through c4: the escaping Figure is a backdrop in all these rooms who you can "follow" and attempt (and fail) to talk to. fixed the penduluum sequence (counters go up after messages are printed, it seems, not before!)
 3-July-2009		J. Ingold 	Added "talk" verb, and "ask about <topic>" with no specified NPC. Began C4.
@@ -120,6 +112,33 @@ Book - Initialisation
 Use MAX_PROP_TABLE_SIZE of 600000.
 Use MAX_DICT_ENTRIES of 2500.
 Use MAX_OBJECTS of 1280.
+Use MAX_ZCODE_SIZE of 60000.
+
+Chapter - Debugging and Analysing Verbs (not for release)
+
+Section - Uncluster lists unclustered conversation topics
+
+Unclustering is an action applying to nothing.
+Understand "uncluster" as unclustering.
+Carry out unclustering:
+	repeat with item running through conversation topics:
+		if the number of things clustered with the item is one, say "[item]...";
+
+Section - Check chat for tests who has conversational responses to topics
+
+Checking chat  for is an action applying to one topic.
+
+Understand "check chat for [text]" as checking chat for.
+Definition: a person is tabled if the conversation table of it is not the table of nothing to say.
+Check checking chat for:
+	repeat with item running through tabled people:
+		let flag be false;
+		say "[Item] / [conversation table of the item]: ";
+		repeat through the conversation table of the item:
+			if the topic understood matches topic entry :
+				say "Topic found.";
+				let flag be true;
+		if flag is false, say "Topic unlisted."
 
 Section 1 - Set up
 
@@ -961,10 +980,10 @@ Instead of pushing a pointer to a direction:
 	try direction-setting the noun to the second noun;
 
 Instead of pushing a pointer:
-	try turning the noun;
+	try turning the noun forwards;
 
 Instead of pulling a pointer:
-	try turning the noun;
+	try turning the noun backwards;
 
 Chapter 3 - Inspection of Clutter
 
@@ -1597,13 +1616,13 @@ Carry out knocking on:
 	do nothing;
 
 Report knocking on a closed thing:
-	say "Knock, knock!";
+	say "Knock, knock!" instead;
 
 Report knocking on a closed door:
-	say "Knock, knock!";
+	say "Knock, knock!" instead;
 
 Report knocking on:
-	say "Nothing obvious happens.";
+	say "Nothing obvious happens." instead;
 
 Part 20 - Waking
 
@@ -1623,6 +1642,9 @@ Understand "grip [something]" as taking.
 Understand "grab [something]" as taking.
 Understand "grab [on to] [something]" as taking.
 Understand "hold [on to] [something]" as taking.
+
+Understand the command "catch" as "take".
+Understand the command "collect" as "take".
 
 Understand "let go of [something]" as dropping.
 
@@ -1855,10 +1877,17 @@ Understand the command "crush" as "squeeze".
 Understand "pulverise [something]" as squeezing.
 Understand "pulverize [something]" as squeezing.
 
-Part 30c - Synonyms for take
+Part 30c - Synonyms for put
 
-Understand the command "catch" as "take".
-Understand the command "collect" as "take".
+Understand "on", "on top of", "onto" as "[onto]".
+
+Understand "load [something] [onto] [something]" as putting it on.
+Understand "weigh down [something] with [something]" as putting it on (with nouns reversed).
+Understand "balance [something] with [something]" as putting it on (with nouns reversed).
+Understand "counterbalance [something] with [something]" as putting it on (with nouns reversed).
+Understand "counterweight [something] with [something]" as putting it on (with nouns reversed).
+Understand "counter [something] with [something]" as putting it on (with nouns reversed).
+
 
 Part 31 - Running
 
@@ -1883,13 +1912,20 @@ Part 32 - Swimming & Diving
 
 Understand "swim [direction]" as going when the location is an underwater room.
 
-Part 33 - Breathing
+Part 33 - Breathing 
 
 Understand "breathe" as smelling.
 Understand "breathe [something]" as smelling.
 Understand "breathe in" as smelling.
 Understand "breathe in [something]" as smelling.
 Understand "breathe [something] in" as smelling.
+
+Part 33b - Flying
+
+Flying is an action applying to nothing.
+Understand "fly" as flying.
+Check flying:
+	say "They called me Wren, but that's only what they called me." instead.
 
 Part 34 - Tying it to
 
@@ -2098,7 +2134,7 @@ Check answering it that (this is the divert to just asking rule):
 
 
 
-Part 49 - Go To Something
+Part 49 - Go To Something, go
 
 [ currently, we implement this only for glimpsed backdrops. Ideally we extend to cover locations in the currently vicinity, however the hell we define that! ]
 
@@ -2112,14 +2148,23 @@ Understand "chase [something]" as approaching.
 Understand "close on [something]" as approaching.
 Understand "close in on [something]" as approaching.
 
+Understand "jump [direction]" as going.
+
 Understand "go the same way as [something]" as approaching.
 Understand "go in the direction of [something]" as approaching.
 Understand "go in direction of [something]" as approaching.
 
-
-
 Check approaching something (this is the block approaching rule):
 	say "[The noun] [is-are] right here already!" instead.
+
+First for supplying a missing noun when going (this is the vaguely going is going out rule):
+	change the noun to outside.
+
+Part 50 - Synonyms for wait / enter
+
+Understand "do nothing" as waiting.
+
+Understand "hop in/into/inside [something]" as entering.
 
 Book E - New Properties
 
@@ -2237,8 +2282,17 @@ Rule for emptying away the small amount of polish when in Inside Clock Case:
 	remove the small amount of polish from play;
 	say "Oh... well, then. I tip out the last of the polish onto the floor of the clock. At least that part will shine.";
 
+Instead of emptying the empty tumbler:
+	say "The tumbler's empty already."
+
+
+Instead of emptying the tumbler when Heading for the Cathedral has happened:
+	remove the small amount of polish from play;
+	say "I tip out the polish. I'm done with clock-faces for the day, that's for certain."
+
 Instead of emptying the tumbler when not in Inside Clock Case:
 	say "I'll need to save every last drop. There's twenty more clocks to do today at least!";
+
 
 Inside the tumbler is a small amount of polish. Understand "wood", "ration", "daily ration" as the small amount of polish.
 
@@ -3659,14 +3713,17 @@ topic						conversation
 "[himself]" or "[horloge]"				CT_HOR2_HORLOGE
 "gong" or "gongs" or "dinner"			CT_HOR2_GONG
 "[reloh]" 							CT_HOR2_RELOH
+"[me]"							CT_HOR2_ME
 
-CT_HOR2_KEYS is clustered with CT_HOR2_CALVINDRAKE, CT_HOR2_ABBEY, CT_HOR2_LIGHT, CT_HOR2_CATHEDRAL, CT_HOR2_ABBOT, CT_HOR2_FIGURE, CT_HOR2_TEA, CT_HOR2_COOK, CT_HOR2_OWL, CT_HOR2_BOOKS, CT_HOR2_CLOCKWORK, CT_HOR2_SAINTS, CT_HOR2_HORLOGE, CT_HOR2_GONG, CT_HOR2_RELOH.
+CT_HOR2_KEYS is clustered with CT_HOR2_CALVINDRAKE, CT_HOR2_ABBEY, CT_HOR2_LIGHT, CT_HOR2_CATHEDRAL, CT_HOR2_ABBOT, CT_HOR2_FIGURE, CT_HOR2_TEA, CT_HOR2_COOK, CT_HOR2_OWL, CT_HOR2_BOOKS, CT_HOR2_CLOCKWORK, CT_HOR2_SAINTS, CT_HOR2_HORLOGE, CT_HOR2_GONG, CT_HOR2_RELOH, CT_HOR2_ME.
 
 [These topics may only be fired once.]
 Rule for firing a fired conversation topic that is clustered with CT_HOR2_KEYS:
 	say "I've already asked about that." instead;
 
 CT_HOR2_KEYS is a conversation topic. The enquiry text is "[if Horloge's Keys are in the location]'Where are your keys?' I ask politely.[otherwise]'What are your keys for?' I ask him.[end if]". The response text is "[if Horloge's Keys are in the location]'Oh, they're around here somewhere, I'm sure,' he replies, dismissively.[otherwise]'Oh, keys are everything,' he replies, with enthusiasm. 'Every whotsit with diagrams in, at any rate.'[end if]"
+
+CT_HOR2_ME is a conversation topic. The enquiry text is "'Do you know anything about me?' I ask." The response text is "'Well, young whosit.' He looks momentarily embarrassed - of course he knows the circumstances of my being found, assuming he remembers who I am at all. 'I know you make a jolly good cup of whotsit, don't you?'"
 
 CT_HOR2_CALVINDRAKE is a conversation topic. The enquiry text is "'What do you think of Calvin and Drake? I ask.". The response text is "'Hmm? I don't know them,' he says, brow furrowing. 'We only stock the core texts, you see. You'd have to look in the library at the Cathedral for that.'"
 
@@ -4738,7 +4795,7 @@ Instead of dropping something in the Cathedral Yard:
 		do nothing instead;
 	else:
 		remove the noun from play;
-		say "I drop [the noun] and the beggars fall on it like hungry wolves, scrabbling and fighting for it. One gets it and soon both are gone, in a cloud of dust.";
+		say "I drop [the noun] and the beggars fall on it like hungry wolves, scrabbling and fighting. One gets hold and soon both are gone in a cloud of dust.";
 		now BEGGAR_YARD2 is fired;
 
 Report dropping something in the Cathedral Yard:
@@ -5431,6 +5488,8 @@ The response text is "'Well, it's so I can [i]work[r],' he explains, with barely
 CT_SAAT_ASTRONOMERS  is a conversation topic. The enquiry text is "'Who are the astronomers?' I ask Brother Sa'at."
 The response text is "'They're idiots,' he replies, briskly. 'They spend all day staring into telescopes at things far away and never [i]noticing[r], oh no, when someone steals their [i]sandwiches[r]. And they never see the [i]whole[r] picture.' He sighs, and looks at his Orrey with love.";
 
+CT_SAAT_ME is a conversation topic. The enquiry text is "'Do you know who I am?' I ask." The response text is "'Of course I don't,' he snaps. 'I don't have the [ifaintest[r] interest or clue. You're a [i]small[r] one.' Suddenly, a thought seems to strike him. His face pulls back in horror. 'Oh, Good [i]Grease[r], you're no the child of someone [i]important[r], are you, from the Council of [i]Scientists[r]?' He peers. 'Oh, [i]no[r], of course not. Someone like that wouldn't be nearly as [i]dirty[r] as you are. Never mind, then.'";
+
 The conversation table of Brother Sa'at is the table of Brother Sa'at's Conversation.
 
 Table of Brother Sa'at's Conversation
@@ -5456,10 +5515,11 @@ topic							conversation
 "work" or "order" or "paper"				CT_SAAT_WORKORDER
 "nebula" or "map"							CT_SAAT_NEBULA
 "astronomers" or "cartographers"			CT_SAAT_ASTRONOMERS
+"[me]"									CT_SAAT_ME
 
 Understand "orrey" or "planets" or "sky" or "machine" or "mechanism" or "construction" or "comet" or "balls" or "ball" or "rod" or "rods" as "[orrey]".
 
-CT_SAAT_CREED is clustered with CT_SAAT_BUSINESS, CT_SAAT_CATHEDRAL, CT_SAAT_ABBOT, CT_SAAT_FIGURE, CT_SAAT_ARCHBISHOP, CT_SAAT_MONKS, CT_SAAT_DOOR, CT_SAAT_SAAT, CT_SAAT_CLOCKWORK, CT_SAAT_SAINTS, CT_SAAT_BOOKS, CT_SAAT_ORREY, CT_SAAT_ALTAR, CT_SAAT_COORDINATES, CT_SAAT_LIBRARY, CT_SAAT_WAX, CT_SAAT_HELP, CT_SAAT_WORKORDER, CT_SAAT_NEBULA, CT_SAAT_ASTRONOMERS.
+CT_SAAT_CREED is clustered with CT_SAAT_BUSINESS, CT_SAAT_CATHEDRAL, CT_SAAT_ABBOT, CT_SAAT_FIGURE, CT_SAAT_ARCHBISHOP, CT_SAAT_MONKS, CT_SAAT_DOOR, CT_SAAT_SAAT, CT_SAAT_CLOCKWORK, CT_SAAT_SAINTS, CT_SAAT_BOOKS, CT_SAAT_ORREY, CT_SAAT_ALTAR, CT_SAAT_COORDINATES, CT_SAAT_LIBRARY, CT_SAAT_WAX, CT_SAAT_HELP, CT_SAAT_WORKORDER, CT_SAAT_NEBULA, CT_SAAT_ASTRONOMERS, CT_SAAT_ME.
 
 Rule for firing a fired conversation topic that is clustered with CT_SAAT_CREED:
 	say "I've already asked about that." instead;
@@ -6051,7 +6111,7 @@ Section 4 - Distant Doric
 
 DistantDoric is a man, in the North Clerestory. "Along the balcony to the southeast I can see a guard, standing duty." The description is "A Protectorate, of the Archbishop's personal guard. He'll be tough, strong [i]and[r] stupid." The printed name is "Doric".
 
-Instead of approaching DistantDoric:
+Instead of approaching DistantDoric when in the North Clerestory:
 	try going southeast;
 
 Understand "guard", "man", "Doric", "protectorate", "watchman" as DistantDoric.
@@ -6271,6 +6331,9 @@ Doric is a man, in the East Clerestory. "[if Doric is awake]There's another door
 
 Understand "guard", "man", "Doric", "protectorate" as Doric.
 
+Instead of approaching Doric:
+	say "The guard isn't going anywhere. I mean, seriously. He's not going [i]anywhere[r]."
+
 The description of Doric is "[DoricDescription]"
 
 To say DoricDescription:
@@ -6331,6 +6394,9 @@ CT_DOR_SEAL is a conversation topic. The enquiry text is "'Do I need this proof 
 
 CT_DOR_ME is a conversation topic. The enquiry text is "'Listen, I'm from the Abbey,' I begin, 'and...'". The response text is "'I don't much care if you're from the Moon,' Doric replies smartly. 'Either you're not comin' in or you're not comin' in, that's how I see it. And in the rare occasion that you [i]are[r] comin' in, you'll have something good enough to make me step aside. Won't you, rat?'"
 
+CT_DOR_DORIC is a conversation topic. The enquiry text is "'So, do you like being a guard?' I ask."
+The response text is "Doric puffs out his chest. 'Yeah. I mean, yeah. It's alright. The hours are good. Pension's okay. Good for the soul, all this standing around. Yeah.'[paragraph break]He doesn't look too convinced."
+
 The conversation table of Doric is the Table of Doric's Conversation.
 
 Table of Doric's Conversation
@@ -6344,13 +6410,14 @@ topic						conversation
 "archbishop"					CT_DOR_ARCHBISHOP
 "[abbeyfolk]"					CT_DOR_PEOPLE
 "door"						CT_DOR_DOOR
-"[sa'at]"				CT_DOR_SAAT
+"[sa'at]"						CT_DOR_SAAT
 "[clockwork]"					CT_DOR_CLOCKWORK
 "saints"						CT_DOR_SAINTS
-"books" or "library" or "principia" or "planetaria"	CT_DOR_BOOKS
-"[me]"					CT_DOR_ME
+"books" or "library" or "principia" or "planetaria"		CT_DOR_BOOKS
+"[me]"						CT_DOR_ME
+"[himself]" or "doric" or "guard/guards" or "swiss" or "watch"		CT_DOR_DORIC
 
-CT_DOR_FAITH is clustered with CT_DOR_BUSINESS, CT_DOR_ABBEY, CT_DOR_CATHEDRAL, CT_DOR_ABBOT, CT_DOR_ARCHBISHOP, CT_DOR_PEOPLE, CT_DOR_DOOR, CT_DOR_SAAT, CT_DOR_CLOCKWORK, CT_DOR_SAINTS, CT_DOR_BOOKS, CT_DOR_SEAL, CT_DOR_ME.
+CT_DOR_FAITH is clustered with CT_DOR_BUSINESS, CT_DOR_ABBEY, CT_DOR_CATHEDRAL, CT_DOR_ABBOT, CT_DOR_ARCHBISHOP, CT_DOR_PEOPLE, CT_DOR_DOOR, CT_DOR_SAAT, CT_DOR_CLOCKWORK, CT_DOR_SAINTS, CT_DOR_BOOKS, CT_DOR_SEAL, CT_DOR_ME, CT_DOR_DORIC.
 
 Rule for firing a fired conversation topic that is clustered with CT_DOR_FAITH:
 	say "I've already asked about that." instead;
@@ -6683,6 +6750,9 @@ Before of asking the escaping Figure about:
 
 Before shouting at the escaping Figure:
 	say "'[one of]Hey!' I holler. 'Stop where you are!'[or]'I won't let you get away with this!' I bellow.[or]'Come back here!' I shout.[cycling][line break]Nothing." instead;
+
+Instead of doing something when the escaping Figure is physically involved:
+	say "I'd have to catch him first!"
 
 section 2 - the Upper reaches region
 
@@ -7101,7 +7171,32 @@ Rule for printing the description of the rose window when in Behind the Clock Fa
 
 Book 5 - The Roofs of the City
 
-The Roofs of the City is a region. The Minute Hand, Parapet  are in the Roofs of the City.
+Cathedral Roof is a region. The Minute Hand, Parapet are in Cathedral Roof.
+
+Roofs of the City is a region. Rooftop 1, Rooftop 2,  Rooftop 3, Rooftop 4, Rooftop 5, Sloping Roofs, Weather Station, Observation Platform are in the Roofs of the City.
+
+Part 0 - the Figure
+
+After looking in the Minute Hand:
+	move the escaping Figure to the Cathedral Roof;
+
+After looking in Rooftop 1:
+	move the escaping Figure to the Roofs of the City;
+
+Instead of examining the escaping Figure in Roofs of the City:
+	say "The Figure is getting away. I've got to stop him somehow!"
+
+Instead of shouting at the escaping Figure in Roofs of the City:
+	say "Save your breath for running and jumping, Wren, that seems to be what's needed around here!"
+
+Instead of approaching the escaping Figure in Roofs of the City:
+	say "[one of]Problem is, I'm not sure which way to turn any more[or]Maybe if I look around I'll find some clue[stopping]."
+
+Instead of approaching the escaping Figure in Roofs of the City when TRIG_ROOFTOP_4 is fired:
+	say "He's escaped in an ornithopter! Either I [i]find[r] a way of following him or I give up here in despair."
+
+Instead of examining the escaping Figure in Roofs of the City when balloon spotted is true:
+	say "The Figure is a dot in the sky to the south. I need to get up there!";
 
 Part 1 - Minute Hand
 
@@ -7110,8 +7205,9 @@ Minute Hand is a room, exterior, outside from Behind the Clock Face. "It's a goo
 Instead of going inside from the Minute Hand:
 	try entering the clock face door.
 
-After looking in the Minute Hand:
-	move the escaping Figure to the Roofs of the City;
+Instead of making to leave when in the Minute Hand:
+	try jumping.
+
 
 Instead of approaching the escaping Figure when in the Minute Hand:
 	say "I can't begin to understand how he got there..."
@@ -7155,7 +7251,7 @@ A thing called the mh_distant_city_view is scenery, privately-named, in Minute H
 
 Understand "city", "whole", "river", "rivers", "tempus", "fugit", "building", "buildings" as the mh_distant_city_view.
 
-Instead of doing something when the Abbey Roof is physically involved: say "The city is spread out before me like a painting, but it's far, far away."
+Instead of doing something when the mh_distant_city_view is physically involved: say "The city is spread out before me like a painting, but it's far, far away."
 
 
 Section 3 - Minute hand
@@ -7174,7 +7270,7 @@ The distant abbey roof is scenery, in Minute Hand. "In the Abbey roof I can see 
 
 Understand "square", "dark", "missing", "tile" as the distant abbey roof. The printed name is "Abbey roof".
 
-Instead of doing something when the Abbey Roof is physically involved: say "It's miles away."
+Instead of doing something when the distant Abbey Roof is physically involved: say "It's miles away."
 
 
 Section 4 - Parapet 
@@ -7202,6 +7298,12 @@ Chapter 1 - Description
 The Parapet is a exterior room. "[one of]I pick myself to my feet. [or][stopping]A narrow lead-covered walkway along the cathedral roof. [one of]How clockwise can you be? [or][stopping]It doesn't go anywhere, of course, but at least there're some gargoyles and things to stop me falling the rest of the way to the ground.[paragraph break]Off west a buttress flies out near the roof of a nearby Civil Service building."
 
 Index map with Parapet mapped south of Minute Hand.
+
+Instead of making to leave in Parapet:
+	try going west.
+
+Instead of going inside in Parapet:
+	try climbing the rose window instead.
 
 Instead of going up in Parapet:
 	try climbing the rose window instead;
@@ -7265,16 +7367,22 @@ Instead of dropping the gargoyles of vice when in Parapet:
 
 Section 3 - Flying buttress
 
-The scenery-buttress is scenery, privately-named, in the Parapet. "The flying buttress to the west is holding this wall up." The printed name is "buttress". Understand "flying", "buttress" as the scenery-buttress.
+The scenery-buttress is a backdrop, privately-named, in the Parapet and in the Rooftop 1. "The flying buttress to the [if location is the Parapet]west is holding this wall up[else]east is holding the wall of the Cathedral up[end if]." The printed name is "buttress". Understand "flying", "buttress" as the scenery-buttress.
 
-Instead of climbing, jumping off, jumping on, or entering the scenery-buttress:
+Instead of climbing, jumping off, jumping on, or entering the scenery-buttress when the location is Parapet:
 	try going west;
+
+Instead of climbing, jumping off, jumping on, or entering the scenery-buttress when the location is Rooftop 1:
+	try going east;
 
 Part 3 - Buttress
 
 Chapter 1 - Description
 
 Buttress is a room, exterior, west of Parapet. "I'm not on the roof anymore: I'm perched on a narrow stone arch that curves out from the wall and down to the ground. Hopefully I'm not going [i]that[r] way any time soon... This is where I saw the Figure jump across to the next roof, though now he's disappeared from sight." 
+
+Instead of making to leave in the Buttress:
+	try going east.
 
 Instead of going east in Buttress:
 	say "Back off? No way. I've gotten this far. I'm not giving up.";
@@ -7286,7 +7394,7 @@ Instead of falling when in the Buttress:
 	say "After I survived that clock in there? That wouldn't just be clumsy, it'd be [i]embarrassing[r]."
 
 Instead of jumping when in the Buttress:
-	say "Heart in mouth? Check. Fingers ready to claw the roof? Ready. Then – here goes![paragraph break]I spring like a cat – like a [i]flying[r] squirrel – like a mouse hit out of the kitchen by the Cook wielding a meat-tenderizer – I [i]hurl[r] myself across the gap and thump down on to the roof beyond. Good thing this is a Council building: they make their roofs good and firm.";
+	say "Heart in mouth? Check. Fingers ready to claw the roof? Ready. Then – here goes![paragraph break]I spring like a cat – like a [i]flying[r] squirrel – like a mouse hit out of the kitchen by the Cook wielding a meat-tenderizer – I hurl myself across the gap and thump down on to the roof beyond. Good thing this is a Council building: they make their roofs good and firm.";
 	move the player to Rooftop 1;
 
 Chapter 2 - Scenery
@@ -7314,44 +7422,94 @@ Before entering or jumping on or approaching the slated lead roof:
 Instead of doing something when the slated lead roof is physically involved:
 	say "The building is out of reach - but not out of leap, maybe.";
 
+
 Part 4 - Rooftop 1 (Lightning Rods)
 
-Rooftop 1 is a exterior room. "[one of]If the city I saw from the clock-face is a sprawl then its roofs are worse: sloping and slanting this way and that, a mess of slate and lead, like someone kicked over a house of cards. Some parts look flat and others impossibly steep, or blocked with tall chimneys, extra walls or sharp lightning rods plugged into vegetable patches way below.[or]The roofs are a mess of chimneys, lightning rods, ways forward and sudden sharp drops.[stopping][paragraph break]From here, I could scramble down to the south, or hop across small gaps to the southeast or southwest. The Cathedral itself is back west."
+Rooftop 1 is a exterior room. "[one of]If the city I saw from the clock-face is a sprawl then its roofs are worse: sloping and slanting this way and that, a mess of slate and lead, like someone kicked over a house of cards. Some parts look flat and others impossibly steep, or blocked with tall chimneys, extra walls or sharp lightning rods plugged into vegetable patches way below.[or]The roofs are a mess of chimneys, lightning rods, ways forward and sudden sharp drops.[stopping][paragraph break]From here, I could scramble down to the south, or hop across small gaps to the southeast or southwest. The Cathedral itself is back east."
 
 The printed name is "Rooftop".
 
-Instead of going west in Rooftop 1:
+Instead of making to leave in Rooftop 1:
+	try going east.
+
+Instead of going down in Rooftop 1:
+	say "The street is too far to fall!"
+
+Instead of going east in Rooftop 1:
 	say "The buttress is too steep to climb back.";
 
 Instead of jumping in Rooftop 1:
-	try going west instead;
+	try going down instead;
 
 Chapter 2 - Scenery
 
 Section 1 - Chimneys & Rods
 
-Some chimneys are a backdrop, in Rooftop 1, Rooftop 2, Rooftop 3, Rooftop 4, Rooftop 5, Sloping Roofs, Weather Station. "Who would have thought people kept so much rubbish up here, hidden out of sight? This isn't [i]precision engineering[r], all these chimneys, this is a [i]great big mess of stuff[r]. It's not Right or Proper at all." Understand "chimney", "roofs" as the chimneys.
+Some chimneys are a backdrop, in Rooftop 1, Rooftop 3, Rooftop 4, Sloping Roofs. "Who would have thought people kept so much rubbish up here, hidden out of sight? This isn't [i]precision engineering[r], all these chimneys, this is a [i]great big mess of stuff[r]. It's not Right or Proper at all." Understand "chimney" as the chimneys.
 
 Instead of attacking or pushing or taking the chimneys:
 	say "I couldn't pull this stuff apart, the lightning rods and chimneys are all solid – even if they are a mess.";
 
+Instead of climbing or entering the chimneys when TRIG_ROOFTOP_4 is fired:
+	say "I can't get as high as Figure did that way."
+
+Instead of climbing or entering the chimneys:
+	say "They'd probably fall over."
+
+Does the player mean doing something with the chimneys: it is very unlikely.
+
+Section 1b - Rooftops
+
+Some tiled rooftops are a backdrop, in Roofs of the City. Understand "roofs", "roof" , "rooves", "tile", "tiles", "gutter", "tiled", "gutters", "level", "levels", "rooftop" as the rooftops. "The roofs are a mismatch of tiles and levels and different directions. At any moment I might be tipped off into the street!"
+
+Does the player mean doing something with the tiled rooftops: it is unlikely.
+Does the player mean jumping off the tiled rooftops: it is likely.
+Does the player mean getting off the tiled rooftops: it is likely.
+
+Instead of jumping off or getting off the tiled rooftops:
+	try going down instead.
+
+Instead of putting something on the tiled rooftops:
+	try dropping the noun instead.
+
+Instead of entering the rooftops:
+	say "I'm already on the rooftop (where did you [i]think[r] I was?)";
+
 Section 2 - Lightning Rods
 
-Some lightning rods are a backdrop, in Rooftop 1, Rooftop 2, Rooftop 3, Rooftop 4, Rooftop 5, Sloping Roofs, Weather Station. "The lightning rods run straight into gardens and vegetables patches. Something to do with the rattling of the metal feeding the plants. I don't think I understood it when I heard it explained to me."
+Some lightning rods are a backdrop, in the Roofs of the City. "The lightning rods run straight into gardens and vegetables patches. Something to do with the rattling of the metal feeding the plants. I don't think I understood it when I heard it explained to me."
 
 Instead of touching or taking the lightning rods:
 	say "Touch that and you might burn: the vibrations can be that strong. Especially in thunderstorms."
 
 Understand "rod", "vegetable patches", "patch/patches", "rods", "lightning rods", "lightning rod" as the lightning rods.
 
+Section 3 - streets
+
+Some streets below are a backdrop, in Roofs of the City. "There are streets below on all sides, fairly quiet now as the evening draws in." Understand "street" as the streets below.
+
+Instead of doing something when the streets below are physically involved:
+	say "I'm not at street-level and I plan to [i]stay[r] that way."
+
+Understand "alley", "alleys", "alleyway", "alleyways", "alley-ways", "alley-way" as the streets below when the location is not Rooftop 4.
+
+Instead of throwing something at the streets:
+	say "I'd have the City Guard out with bows and arrows if I started doing that."
+
 Part 5 - Rooftop 2 (Fallen Chimney)
 
-Rooftop 2 is a room, exterior, southwest of Rooftop 1. "This roof is almost flat, which is good, because there's empty space to the north and east of it. I could slip south, through the remains of a collapsed brick chimney, that seems to have been pushed down to make room for a wide turret, on top of which is a platform with a brass railing. Overlapping roofs create a second path to the northeast."
+Rooftop 2 is a room, exterior, southwest of Rooftop 1. "[one of]This roof is almost flat, which is good, because there's empty space to the north and west of it. I could slip south, through the remains of a collapsed brick chimney, that seems to have been pushed down to make room for a wide turret, on top of which is a platform with a brass railing. Overlapping roofs create a second path to the northeast.[or]A corner of a roof, with nothing to north or west. There's a safe way back northeast. South is a collapsed brick chimney topped by a platform.[stopping]"
 
 The printed name is "Rooftop".
 
 Instead of jumping in Rooftop 2:
 	say "The platform's not that high, but it's too high to jump up and grab it.";
+
+Instead of going down in Rooftop 2: 
+	say "It's too far to fall to the street below."
+
+Instead of making to leave in Rooftop 2:
+	try going northeast.
 
 Chapter 2 - Scenery
 
@@ -7363,23 +7521,29 @@ Section 2 - Platform
 
 A raised platform is scenery, in Rooftop 2. "I can't make out what's on the platform[if Observation Platform is not visited] (if anything)[end if]: but I can see it's encircled by a railing."
 
-The printed name is "platform". Understand "railing", "railings" as the raised platform.
+The printed name is "platform". Understand "brass", "railing", "railings" as the raised platform.
 
-Instead of jumping on the raised platform:
+Instead of jumping on or climbing or approaching the raised platform:
 	try jumping;
+
+Instead of doing something when the raised platform is physically involved:
+	say "The platform is a bit of a way above me."
 
 Section 3 - Fallen Chimney
 
 A fallen chimney is scenery, in Rooftop 2. "The collapsed chimney is now nothing but a few huge chunks of bricks, like the last crumbs of a cake. The mortar holding them together is crumbled and dry."
 
 Understand "huge", "chunks", "collapsed", "crumbs" as the fallen chimney.
-Understand "chunk", "brick", "bricks" as the fallen chimney when the location does not enclose the huge chunk.
+Understand "chunk", "chunk of", "brick", "bricks" as the fallen chimney when the location does not enclose the huge chunk of brick.
 
-Instead of attacking or opening the fallen chimney when the mortar is firm:
+Instead of attacking or opening or pushing the fallen chimney when the mortar is firm:
 	say "The chunks of brick are stuck with mortar. Old mortar I could easily break, but I'd need some kind of tool to do it.";
 
 Instead of taking the fallen chimney when the mortar is firm:
 	say "The smallest chunk of brick is almost as big as me. I'd need to break it up a little first if I was going to start carrying it around with me.";
+
+Instead of taking the fallen chimney when the mortar is firm for the second time:
+	try attacking the fallen chimney.
 
 Instead of taking the fallen chimney when the huge chunk is on-stage:
 	say "That chunk I took before is quite heavy enough, I think!";
@@ -7387,6 +7551,9 @@ Instead of taking the fallen chimney when the huge chunk is on-stage:
 Instead of taking the fallen chimney when the huge chunk is off-stage:
 	move the huge chunk of brick to the location;
 	try taking the huge chunk of brick;
+
+Instead of climbing or jumping on or entering the fallen chimney:
+	say "It's just a pile of rubble. It won't get me any closer to the platform than if I jumped (and I'd be [i]much[r] more likely to twist my ankle, too.)"
 
 Section 4 - Huge Chunk
 
@@ -7406,25 +7573,43 @@ Some mortar is scenery, not plural-named, in Rooftop 2. "If all the mortar in th
 
 The mortar can be firm or loose. The mortar is firm.
 
-Understand "crumbled", "dry" as the mortar.
+Understand "crumbled", "crumbling", "dry" as the mortar.
+
+Definition: a thing is scrapable if it is the knife or it is the lucky clock key or it is the small gear.
 
 Instead of attacking or scraping or taking the mortar:
 	say "My fingers are too big – and a bit too soft, even after all the cleaning I've done – to break the mortar. I'll need to use a tool of some sort."
 
-Instead of scraping the mortar with the knife:
+Instead of slicing the mortar with something:
+	try scraping the mortar with the second noun.
+
+Instead of scraping the mortar with something scrapable:
 	now the mortar is loose;
-	say "Using the knife point I work out some of the mortar, break up some more, and free up a small chunk of bricks that I can probably just about carry.";
+	say "Using the [if the second noun is the knife]knife point [else]edge of the [second noun] (and wearing it down horribly!) [end if]I work some of the mortar loose, powder some more, and free up a small chunk of brick that I can probably just about carry.";
 
 Instead of attacking the mortar with something:
 	try scraping the mortar with the second noun instead;
 
 Part 6 - Sloping Roofs
 
-Sloping Roofs is a room, south of Rooftop 1. "It's hard to keep my bearings here: below, several streets are coming together and their overhanging roofs – good for keeping the rain off – create a loose patchwork of tiles, chimneys, gaps and different levels. I can scramble up a few levels to the north, or I could probably slip away east and south, but I might get turned around in either of those directions."
+Sloping Roofs is a room, south of Rooftop 1. "[one of]It's hard to keep my bearings here: below, several streets are coming together and their overhanging roofs – good for keeping the rain off – create a patchwork of tiles, chimneys, gaps and different levels. I can scramble up a few levels to the north, or I could probably slip away east and south, but I might get turned around in either of those directions.[or]Several roofs meet here in a mess of tiles. West is impassable, but I could climb rooftiles to north, east or south.[stopping]"
 
 Sloping Roofs is south of Rooftop 2. North of Sloping Roofs is Rooftop 1. 
 
 Index map with Sloping Roofs mapped west of Rooftop 3.
+
+Instead of going down in Sloping Roofs: 
+	say "There's no way down from here, I'm in the middle of a meeting of roofs."
+
+Instead of jumping in Sloping Roofs:
+	try going down instead.
+
+
+Instead of making to leave in Sloping Roofs:
+	say "Which way - north, east or south?"
+
+Instead of going west in Sloping Roofs:
+	say "When I said impassable, I meant, I'm at an impasse."
 
 Chapter 2 - Scenery
 
@@ -7432,7 +7617,7 @@ Section 1 - Chimneys & Rods
 
 Part 7 - Rooftop 3 (Pipe and Board)
 
-Rooftop 3 is a room, exterior, southeast of Rooftop 1. "Half of this roof has collapsed, and whoever was repairing it clearly ran out of money only partway into the job. A pile of construction materials has been left behind[pipes-and-boards]. Some look like they could easily fall off the roof onto the street to the east. Safer ground is a short hop down to the northwest, and a bit of a scramble to the southwest."
+Rooftop 3 is a room, exterior, southeast of Rooftop 1. "[one of]Half of this roof has collapsed, and whoever was repairing it clearly ran out of money only partway into the job. A pile of construction materials has been left behind[pipes-and-boards]. Some look like they could easily fall off the roof onto the street to the east. Safer ground is a short hop down to the northwest, and a bit of a scramble to the southwest.[or]This roof is half-repaired and littered with construction materials[pipes-and-boards]. There's a street to the east, but I could inch along the roof to the northwest or southwest.[stopping]"
 
 The printed name is "Rooftop".
 
@@ -7447,6 +7632,19 @@ To say pipes-and-boards:
 		say " boards";
 	if the pile supports the length of piping or the pile supports the solid wooden board,
 		say ", that kind of thing";
+
+Instead of going east in Rooftop 3: say "The street is a little too far below for me to safely fall."
+
+Instead of going down in Rooftop 3: 
+	try going east instead.
+
+Instead of jumping in Rooftop 3:
+	try going east instead.
+
+
+Instead of making to leave in Rooftop 3:
+	say "Which way - northwest or southwest?"
+
 
 Chapter 2 - Scenery
 
@@ -7483,6 +7681,12 @@ The printed name is "board".
 
 Understand "plank", "long", "seven foot", "seven feet" as the solid wooden board.
 
+Rule for writing a paragraph about the solid wooden board:
+	say "Lying on the tiles is a length of wooden board";
+	if the length of piping is visible:
+		say " and a [length of piping]";	
+	say "."
+
 Rule for printing the drop event for the solid wooden board:
 	say "The board is too heavy to carry alongside anything else. It slaps down onto the roof by my feet.[paragraph break]";
 
@@ -7492,57 +7696,130 @@ Rule for printing the take event for the solid wooden board:
 Instead of putting something on the solid wooden board:
 	say "That wouldn't make carrying [the noun] any easier, would it?";
 
+After going when the solid wooden board is carried:
+	say "[one of]I drag the board along behind me[or]I pull the board along[at random].";
+	continue the action;
+
+Instead of pulling the solid wooden board:
+	if the solid wooden board is not carried:
+		try taking the solid wooden board instead;
+	say "That's exactly what I am doing."
+
+
+After looking when the solid wooden board is carried:
+	say "I'm still holding this wooden board."
+
 Section 4 - Pipe
 
-The length of piping is a heavy thing, on the pile. The description is "A curious bit of metal piping: it's about ten feet long, with two sharp bends at either end. Shaped like a gigantic staple, you might say."
+The length of piping is a heavy thing, on the pile. The description is "A curious bit of metal piping: it's about ten feet long, with two right-angle bends at either end. Shaped like a gigantic staple, you might say."
 
 The printed name is "pipe".
+
+Rule for printing the name of length of piping when taking inventory:
+	say "long and cumbersome length of piping";
+
+Rule for writing a paragraph about the length of piping:
+	say "Lying on the tiles is a length of piping";
+	if the solid wooden board is visible:
+		say " and a [solid wooden board]";	
+	say "."
+
+After looking when the length of piping is carried:
+	say "I'm still holding this length of piping."
 
 Understand "pipe", "curious", "bit", "long", "ten foot", "ten feet", "gigantic", "staple" as the length of piping.
 
 Rule for printing the drop event for the length of piping:
 	say "This pipe's too much to handle as well. I put it down.[paragraph break]";
 
+After going when the length of piping is carried:
+	say "[one of]The pipe skitters along behind me[or]The pipe booms as it rattles along[or]I drag the pipe along behind me[at random].";
+	continue the action;
+
+Instead of searching the length of piping:
+	say "The other end's in there."
+
+Instead of pulling the length of piping:
+	if the length of piping is not carried:
+		try taking the length of piping instead;
+	say "That's exactly what I am doing."
+
 Part 8 - Rooftop 4 (Ornithopter & Tarp)
 
 Chapter 1 - Description
 
-Rooftop 4 is a room, exterior, south of Sloping Roofs, southwest of Rooftop 3. North of Rooftop 4 is nowhere. West of Rooftop 4 is Sloping Roofs. "I'm on the south side of a group of buildings here, with other roofs I could scramble onto east, west, and northeast of me. To the south, there's a low wall and then a gap, across an alleyway, before the next building along. The roof of that one seems to be covered in machinery, though it's hard to say for sure."
+Rooftop 4 is a room, exterior, south of Sloping Roofs, southwest of Rooftop 3. North of Rooftop 4 is nowhere. West of Rooftop 4 is Sloping Roofs. "[one of]I'm on the south side of a group of buildings, with other roofs I could scramble onto east, west, and northeast. To the south, there's a low wall and then a gap - an alleyway - before the next roof along. And that roof looks interesting: covered in machinery, though it's hard to say for sure.[or]There are other roofs east, west and northeast. To the south is a low wall, a twelve-foot gap, and then another roof that's covered in machinery.[stopping]"
 
 The printed name is "Rooftop".
+
+Instead of jumping in Rooftop 4:
+	if the plank bridge is in location or the wooden board is in the notch:
+		say "The street is too far to fall." instead;
+	try going south instead.
+
+Instead of going down in Rooftop 4: 
+	try jumping instead;
+
+Instead of making to leave in Rooftop 4:
+	say "Which way - east, west, or northeast?";
+
+Instead of facing south when the plank bridge is on-stage and in Rooftop 4:
+	say "There's my handy bridge over the alley."
+
+Instead of facing south in Rooftop 4:
+	say "There's a twelve foot gap over an alley, and then a roof covered in machinery."
+
+
 
 Chapter 2 - Event on entry
 
 TRIG_ROOFTOP_4 is a trigger. 
+TRIG_ROOFTOP_4B is a trigger. 
 
 Rule for firing TRIG_ROOFTOP_4:
-	say "Something moves high above, and in a grey flash the Figure is before me. He nods once. 'Relentless,' he remarks. 'I admire your courage. Your persistence. You could almost be a machine.' I'm barely a foot away, and I still can't see his face. Nothing but that sleek grey suit.[paragraph break]'But this is where I leave you.' With that he whips away the tarpaulin, to reveal an ornithopter. Pausing only to wind the key beneath one of the craft's gigantic wings, he leaps inside and in a moment, has taken to the sky.[paragraph break]So, what now? There's no way I'm letting him get away; I'm going to be in so much trouble after all I've done, I'll need something to show for it. But I can't fly either. There's got to be a way. Something I can do. If the Universe is clockwork like they say it is, then it can't have left me stranded, can it?"
+	say "Something moves high above, and in a grey flash the Figure is before me. He nods once. 'Relentless,' he remarks. 'I admire your courage. Your persistence. You could almost be a machine.' I'm barely a foot away, and I still can't see his face. Nothing but that sleek grey suit.[paragraph break]'But this is where I leave you.' He whips away the tarpaulin, to reveal an ornithopter - something I've only seen in lithographs before. Pausing only to wind the key beneath one of the craft's gigantic wings, he leaps inside and in a moment, has taken to the sky.";
+
+Rule for firing TRIG_ROOFTOP_4B:
+	say "So, what now? There's no way I'm letting him get away; I'm going to be in so much trouble after all I've done, I'll need something to show for it. But I can't fly either. There's got to be a way. Something I can do. If the Universe is clockwork the way the Abbot says it is, then it can't have left me stranded, can it?"
 
 After looking in Rooftop 4 when TRIG_ROOFTOP_4 is unfired:
 	fire TRIG_ROOFTOP_4;
+
+Every turn when TRIG_ROOFTOP_4 was fired and TRIG_ROOFTOP_4B is unfired:
+	fire TRIG_ROOFTOP_4B;
+	
 
 Chapter 3 - Objects
 
 Section 1 - Tarp
 
-A large tarp is in Rooftop 4. "[one of]A large tarp is thrown over something in the middle of this space[or]A large tarp lies discarded here[stopping]." The description is "The fabric isn't familiar – it's certainly lighter and stronger and less itchy than the stuff they make my bed-sheets and tunics out of. The Figure must be pretty wealthy to leave something like this behind! Perhaps he meant it as a present: something to buy me off the chase.[paragraph break]No chance."
+A large tarp is in Rooftop 4. "[one of]A large tarp is thrown over something in the middle of this space[or]A large tarp lies discarded here[stopping]." The description is "[one of]This is expensive stuff: a fabric that's lighter and stronger and less itchy than the stuff they make my bed-sheets from, the way sunlight is different than the beady glow in a rat's eye. The Figure must be pretty wealthy to leave something like this behind! Perhaps he meant it as a present: something to buy me off the chase.[paragraph break]Not going to happen. I'm going to catch him, stop him, save the Perpetuum and go collect my reward from the Archbishop.[or]This is expensive stuff: a fabric that's light and strong. The Figure must be pretty wealthy to leave something like this behind![stopping]"
 
-Understand "tarpaulin" as the tarp. The printed name of the tarp is "tarp".
+Understand "tarpaulin", "sheet", "roll", "roll of" as the tarp. The printed name of the tarp is "tarp".
 
 After taking the tarp:
 	say "Cumbersome, but that said – it rolls up pretty small!";
 
+Rule for printing the name of the large tarp when taking inventory:
+	say "roll of tarp"
+
 Section 2 - Notch
 
-A notch is a container, fixed in place, in Rooftop 4. "The low south wall is missing a few bricks creating a gap – well, I'll call it a [i]notch[r]." The description is "The [']notch['] is a gap in the brickwork of the low south wall overlooking the alley. Maybe the missing bricks fell out down below: that would have been pretty bad!"
+A notch is a container, fixed in place, in Rooftop 4. "[if the notch contains the solid wooden board]There's a wooden board set into the notch in the wall and pushed out over the street.[else]The low south wall is missing a few bricks creating a gap – well, I'll call it a [i]notch[r].[end if]". The description is "The [']notch['] is a gap in the brickwork of the low south wall overlooking the alley[one of]. Maybe the missing bricks fell out down below: that would have been pretty bad for whoever was below![or].[stopping]".
+
+Rule for writing a paragraph about the notch when the plank bridge is on-stage:
+	say "The wooden board makes a nice plank bridge, weighed at this end with bricks."
 
 Understand "gap" as the notch.
 
 Instead of putting something on the notch:
 	try inserting the noun into the second noun;
 
+Instead of putting something on the solid wooden board when the notch contains the solid wooden board:
+	try inserting the noun into the notch instead;
+
 After inserting the solid board into the notch:
-	say "The board slides in – not perfectly, it's no clockwork but it'll do. The plank extends out over the alley to the south, almost all the way!";
+	say "The board slides in – not perfectly, it's no clockwork, but it'll do. The plank extends out over the alley to the south, almost all the way!";
 
 Instead of inserting the huge chunk of brick into the notch when the notch contains the solid wooden board:
 	remove the solid wooden board from play;
@@ -7553,8 +7830,27 @@ Instead of inserting the huge chunk of brick into the notch when the notch conta
 Instead of inserting the huge chunk of brick into the notch:
 	say "I don't have the tools to repair this wall, and anyway, whyever would I want to?";
 
-Instead of putting the huge chunk of brick on the solid wooden board when the notch contains the solid wooden board:
-	try inserting the huge chunk of brick into the notch instead;
+Instead of inserting the length of piping into the notch when the notch contains the solid wooden board:
+	move the length of piping to the location;
+	say "I dump the pipe on the end of the board to weigh it down. It stays for a moment, and then slides away."
+
+Instead of inserting the length of piping into the notch:
+	say "The pipe would probably reach from this roof over the alley to the next roof, but I wouldn't like to try and walk across it. I'm a child, not an ant!"
+
+Instead of inserting something that is not the solid wooden board into the notch:
+	say "That wouldn't do me any good, would it?"
+
+Instead of inserting something into the notch when the solid wooden board is in the notch:
+	say "That wouldn't weigh the board down by much."
+
+Instead of inserting the large tarp into the notch when the solid wooden board is in the notch:
+	say "The tarpaulin is surprisingly light - not enough to counterbalance the board."
+
+
+Instead of entering or jumping over or climbing the notch:
+	if the wooden board is in the notch or the plank bridge is on-stage:
+		say "It's a twelve-foot gap. I can't jump that!" instead;
+	try going south instead.
 
 Chapter 4 - Scenery
 
@@ -7564,25 +7860,38 @@ Section 1 - Roofs / Rods / Chimneys
 
 Section 2 - Southern Roof
 
-The southern roof is scenery, in rooftop 4. "The roof on the other side of the alley seems to be littered with glass and piping. [if Weather Station is not visited]Who knows – maybe there's another ornithopter there, or a catapult or something.[end if]"
+The southern roof is backdrop, in rooftop 4 and in rooftop 5. "The roof on the other side of the alley seems to be littered with glass and piping. [if Weather Station is not visited]Who knows – maybe there's another ornithopter there, or a catapult or something.[end if]"
 
-Understand "rooftop", "roof top" as the southern roof.
+Understand "rooftop", "southwestern", "roof top", "machinery", "machine", "machines", "piping", "glass", "equipment" as the southern roof.
+
+Rule for printing the name of the southern roof when in Rooftop 5: say "southwestern roof".
+
+Instead of doing something when the southern roof is physically involved:
+	say "The equipment is across the gap over the alleyway, out of reach."
+
+Instead of jumping on or entering or approaching the southern roof:
+	try jumping.
 
 Section 3 - 12-foot gap
 
-A twelve-foot gap is a door, scenery, privately-named, open, not openable, south of Rooftop 4. Through the twelve-foot gap is the weather station.
+A twelve-foot gap is a door, scenery, privately-named, open, not openable, south of Rooftop 4. Through the twelve-foot gap is the weather station. Understand "alley", "alley way", "alley-way", "alleyway", "twelve-foot gap", "twelve foot gap", "12 foot gap" as the twelve-foot gap. 
 
 After going through the twelve-foot gap:
-	say "I inch out over my makeshift bridge. The weight of the bricks shudders – if it slips off that board then I'm dead, in a second – but it doesn't. And from the end, it's a short spring to the roof beyond.";
+	say "I inch out over my makeshift bridge. The weight of the bricks shudders – if it slips off that board then I'm dead, in a second – but it doesn't. And from the end, it's a short [i]spring[r] to the roof beyond.";
 	continue the action;
 
 Instead of going through the twelve-foot gap when the notch contains the solid wooden board:
-	say "[one of]I inch a little way out on the board, but quickly it starts to slip from its notch. I scurry quickly back to safety. Without something to weight the other end down, this bridge is useless.[or]I'll need to weigh the other end down with something first.[stopping]";
+	say "[one of]I inch a little way out on the board, but it quickly starts to tip over, into the street. I freeze, and inch my way back. Without something to weight the other end down, this bridge is useless![or]I'll need to weigh the other end down with something first.[stopping]";
 
 Instead of going through the twelve-foot gap when the plank bridge is off-stage:
-	say "It's a twelve-foot gap. I can't jump that.";
+	say "It's a twelve-foot gap. I can't jump that!";
+
+Instead of climbing or entering or standing on the wooden board when the wooden board is in the notch:
+	try going south.
 
 Instead of jumping over the twelve-foot gap:
+	if the wooden board is in the notch or the plank bridge is on-stage:
+		say "It's a twelve-foot gap. I can't jump that!" instead;
 	try entering the twelve-foot gap;
 
 Section 4 - Plank bridge
@@ -7594,19 +7903,31 @@ Understand "brick", "bricks", "huge", "chunk", "of", "solid", "wooden", "board",
 Instead of taking the plank bridge:
 	say "No thanks. I never want to lift that weight again.";
 
+Instead of entering or climbing or approaching the plank bridge:
+	try going south instead.
+
 Part 9 - Rooftop 5 (Narrow Chimney)
 
 Chapter 1 - Description
 
-Rooftop 5 is a room, exterior, east of Rooftop 4. "This roof is surrounded on all sides by taller buildings, scalable to the west, and impossible every other way. There's a gap on to the southwest, where an alley suddenly opens up – further that way is the glitter of machinery (but it's too far to jump, I think)."
+Rooftop 5 is a room, exterior, east of Rooftop 4. "[one of]This roof is surrounded on all sides by taller buildings, scalable to the west, and impossible every other way. There's no roof at all to the southwest - the tiles look down on an alleyway  – but beyond that is the glitter of machinery (but it's too far to jump, I think).[or]This is a dead-end of high walls that I can only leave to the west. Southwest the roofs open out over an alleyway - beyond which I can see some machinery (but it's too far to jump).[stopping]"
 
 The printed name is "Rooftop".
 
 Instead of jumping in Rooftop 5:
-	say "Definitely too far to jump.";
+	say "[i]Definitely[r] too far to jump.";
 
 Instead of going southwest in Rooftop 5:
 	try jumping;
+
+Instead of going down in Rooftop 5:
+	try jumping;
+
+Instead of making to leave in Rooftop 5:
+	try going west.
+
+Instead of facing southwest when in Rooftop 5:
+	say "There's an alleyway, and then [if Weather Station has visited]the Weather Station[else]a rooftop covered in machinery[end if]."
 
 Chapter 2 - Scenery
 
@@ -7614,7 +7935,9 @@ Section 1 - Roofs / Rods
 
 [Backdrop]
 
-Section 2 - Southwestern Rooftop
+[ Use previous roof as a backdrop instead.
+
+ Section 2 - Southwestern Rooftop
 
 The southwestern roof is scenery, in rooftop 5. "The roof visible to the southwest is littered with machinery of some kind, but it's not exactly accessible from here."
 
@@ -7622,10 +7945,13 @@ Understand "rooftop", "roof top" as the southwestern roof.
 
 Instead of jumping on the southwestern roof:
 	try jumping;
+]
 
 Section 1 - Chimney Pipe
 
-A chimney pipe is fixed in place, in Rooftop 5. "By the alley is a squat iron chimney that's belching out fat slugs of smoke. The kitchen down there must be getting ready for a feast!" 
+A thing can be a hot air vent. A thing is seldom a hot air vent.
+
+A chimney pipe is fixed in place, hot air vent, in Rooftop 5. "By the alley is a squat iron chimney that's belching out fat slugs of smoke. The kitchen down there must be getting ready for a feast!" 
 
 Understand "squat", "iron", "smoke", "slugs" as the chimney pipe.
 
@@ -7637,11 +7963,25 @@ Instead of putting the length of piping on the chimney pipe:
 	move the elongated chimney to Rooftop 5;
 	say "With a bit of hefting and hauling – and a couple of burns on my arms – I get the pipe slotted over the chimney. The new, longer chimney points north, and starts getting hot and belching out steam pretty quickly.";
 
+Instead of inserting the length of piping into the chimney pipe:
+	try putting the length of piping on the chimney pipe.
+
+
+
+Instead of inserting the solid wooden board into a hot air vent:
+	say "If I blocked that chimney I might cause whatever was down there to explode!"
+
+Instead of inserting something into a hot air vent:
+	say "I'd only lose it."
+
+Instead of searching a hot air vent:
+	say "Sticking my face over it would be a sure-fire way to burn my eyebrows over. That air is hot!"
+
 Section 2 - Elongated chimney pipe
 
-The elongated chimney pipe is a pointer, fixed in place. "On one side of the roof is my odd contraption; a bent metal pipe attached to the iron chimney. It's belching smoke and steam in a generally [way of the item described]erly direction."
+The elongated chimney pipe is a pointer, hot air vent, fixed in place. "On one side of the roof is my odd contraption; a bent metal pipe attached to the iron chimney. It's belching smoke and steam in a generally [way of the item described]erly direction[if the way of the item described is southwest], across the alleyway[end if][if wrapped]. Wrapped around the near end is the sheet of tarpaulin[end if]."
 
-The description is "My odd construction: the chimney, connected to a long metal pipe, that extends out about ten feet [if the way of the item described is not southwest]across the rooftop to the [way of the item described][otherwise]over the alley to the southwest[end if]."
+The description is "My odd construction: the chimney, connected to a long metal pipe, that extends out about ten feet [if the way of the item described is not southwest]across the rooftop to the [way of the item described][otherwise]over the alley to the southwest[end if][if wrapped]. Wrapped around the near end is the sheet of tarpaulin[end if]."
 
 Understand "squat", "iron", "smoke", "slugs" as the elongated chimney pipe.
 
@@ -7654,25 +7994,40 @@ The way of the elongated chimney pipe is north.
 Instead of taking the elongated chimney pipe:
 	say "The pipe's [if unwrapped]too hot to touch with my bare hands, and it's [end if]certainly too heavy to face carrying it again.";
 
-Instead of turning the unwrapped elongated chimney pipe:
+Instead of turning or attacking the unwrapped elongated chimney pipe:
 	say "Ouch! The pipe is scalding hot!";
 
 Instead of direction-setting the unwrapped elongated chimney pipe to a direction:
 	try turning the elongated chimney pipe;
 
-Instead of putting the tarp on the elongated chimney pipe:
-	remove the tarp from play;
+Instead of putting the tarp on the unwrapped elongated chimney pipe:
+	now the tarp is part of the elongated chimney pipe; [ tarp vanishes! can we do better? ] 
 	now the elongated chimney pipe is wrapped;
 	say "I wrap the Figure's tarpaulin a couple of times around the pipe as insulation.";
 
 Instead of wrapping the elongated chimney pipe with the tarp:
 	try putting the tarp on the elongated chimney pipe;
 
-Instead of turning the elongated chimney pipe:
-	try direction-setting the chimney pipe to anticlockwise of the way of the chimney pipe;
+Instead of turning or attacking the elongated chimney pipe:
+	try turning the elongated chimney pipe backwards.
+
+Instead of turning the elongated chimney pipe backwards:
+	let the new way be the anticlockwise of the way of the elongated chimney pipe;
+	repeat with N running from 2 to the number of turns to make:
+		let the new way be the anticlockwise of the new way;
+	try direction-setting the elongated chimney pipe to the new way;
+
+Instead of turning the unwrapped elongated chimney pipe backwards:
+	say "Ouch! The pipe is scalding hot!";
+
+Instead of turning the unwrapped elongated chimney pipe forwards:
+	say "Ouch! The pipe is scalding hot!";
 
 Instead of turning the elongated chimney pipe forwards:
-	try direction-setting the chimney pipe to clockwise of the way of the chimney pipe;
+	let the new way be the clockwise of the way of the elongated chimney pipe;
+	repeat with N running from 2 to the number of turns to make:
+		let the new way be the clockwise of the new way;
+	try direction-setting the elongated chimney pipe to the new way;
 
 After direction-setting the elongated chimney pipe to a direction:
 	if the way of the elongated chimney pipe is southwest begin;
@@ -7680,13 +8035,26 @@ After direction-setting the elongated chimney pipe to a direction:
 	otherwise;
 		remove the vent from play;
 	end if;
-	say "[one of]Working hard on the hot tarpaulin, I manage to get the pipe to turn, until it's pointing [way of the elongated chimney pipe].[or]I work the pipe around in its fitting, to point [way of the elongated chimney pipe].[stopping]"
+	say "[one of]Working hard on the hot tarpaulin, I manage to get the pipe to turn, until it's pointing [way of the elongated chimney pipe].[or]I work the pipe around in its fitting, to point [way of the elongated chimney pipe][if the vent is on-stage], across the alleyway[end if].[stopping]"
+
+Section 3 - Tarp as part of the pipe
+
+Instead of taking the tarp which is incorporated by the elongated chimney pipe:
+	move the tarp to the player;
+	now the elongated chimney pipe is unwrapped;
+	say "I whip the tarp off the pipe."
+
+Instead of examining the tarp which is incorporated by the elongated chimney pipe:
+	say "The tarp is wrapped three or four times round the near end of the long bent pipe."
+
+Instead of putting the tarp on the wrapped elongated chimney pipe:
+	say "I did that already, remember?";
 
 Part 10 - Observation Platform
 
 Chapter 1 - Description
 
-The Observation Platform is an exterior room. "I'm standing on a platform overlooking a roof covered in broken bricks to the north. A flight of metal steps lead down to the southeast, back to the weather station. A brass railing runs around the edge to stop anyone falling – I could use one of those for my bedroom."
+The Observation Platform is an exterior room. "[one of]I'm standing on a platform overlooking a roof covered in broken bricks to the north. A flight of metal steps lead down to the southeast, back to the weather station. A brass railing runs around the edge to stop anyone falling (I could use one of those for my bedroom).[or]The railed platform overlooks a littered roof to the north and steps lead southeast back to the weather station.[stopping]"
 
 North from the Observation Platform is Rooftop 2.
 Down from the Observation Platform is the Weather Station.
@@ -7706,7 +8074,7 @@ The brass railing is scenery, in the Observation Platform. "The brass rail is we
 
 Understand "rail" as the railing.
 
-Instead of climbing or jumping over the brass railing:
+Instead of climbing or jumping over or entering the brass railing:
 	try going north;
 
 Section 2 - Northern Roof
@@ -7718,20 +8086,28 @@ Understand "rooftop", "roof-top", "roof top", "sloped", "lead", "lead-lined", "l
 Instead of jumping on the northern roof:
 	try going north;
 
+Section 3 - Glimpse of Weather Station
+
+The glimpse of the weather station is a glimpse backdrop in the Observation Platform. It identifies the zephyrgraph. The printed name is "weather station". "The weather station is southeast of the platform, down some steps." Understand "step", "steps", "weather", "station" as the glimpse of the weather station. Instead of entering or climbing the glimpse of the weather station, try going down.
+
 Chapter 3 - Telescope Mechanism
 
 Section 1 - The Telescope Itself
 
-The telescope is a pointer, eyeable, in the Observation Platform. "The platform's centred around a telescope fitted to a metal tripod and pointing east. The tripod has a crank at its base, much like the ones in the library and the one inside the clock's working. There must be a blacksmith somewhere who does nothing but make these cranks. I might be able to see him from here, too, since I've got a perfect view of the whole city."
+The telescope is a pointer, eyeable, in the Observation Platform. "At the platform's centre is a metal telescope on a tripod that points [way of the telescope]. The tripod has a crank at its base[one of], much like the ones in the library and the one inside the clock's working. There must be a blacksmith somewhere who does nothing but make these cranks. I might be able to see him from here, too, since I've got a perfect view of the whole city[or], and the thing is set up to give a great view of the city[stopping]."
 
-The description of the telescope is "The telescope is made of finely-moulded brass stamped with the crossed lightning of the Weather Guild. Often accused of non-mechanism – weather's just too temperamental - they tend to build machines that are overly complicated, like the ratchet-and-piston umbrella they sell in the Cathedral Yard market for nine hours a pop. So, the telescope tripod has a crank and compass on the base, which presumably do the business of pointing.[paragraph break]Still, the view must be fantastic. I could look through the telescope to see. (It's currently pointing [way of the telescope])."
+The description of the telescope is "The telescope is made of finely-moulded brass stamped with the crossed lightning of the Weather Guild. [one of]Often accused of non-mechanism – weather's just too temperamental - they tend to build machines that are overly complicated, like the ratchet-and-piston umbrella they sell in the Cathedral Yard market for nine hours a pop. So, the telescope[or]The[stopping] tripod has a crank and compass on the base, which presumably do the business of pointing.[paragraph break]Still, the view must be fantastic. I could look through the telescope to see. (It's currently pointing [way of the telescope])."
 
-Understand "tripod" as the telescope.
+Understand "tripod", "mechanism" as the telescope.
 
 The way of the telescope is east.
 
 Instead of turning the telescope:
 	say "No good trying to move it by hand. You can't back a gear against a gasket, as they say."
+
+Instead of turning the telescope forwards: try turning the telescope.
+Instead of turning the telescope backwards: try turning the telescope.
+
 
 Instead of direction-setting the telescope to a direction:
 	try turning the telescope;
@@ -7775,6 +8151,9 @@ Understand "steel", "pointer", "brass", "disc", "engraving", "engraved" as the c
 The way of the compass is west.
 
 Instead of turning the compass:
+	try turning the compass backwards.
+
+Instead of turning the compass backwards:
 	try direction-setting the compass to anticlockwise of the way of the compass;
 
 Instead of turning the compass forwards:
@@ -7790,20 +8169,31 @@ The large crank is part of the telescope. The description is "The large crank is
 Understand "handle" as the large crank.
 
 Instead of turning the large crank when the way of the telescope is the way of the compass:
-	say "The crank won't turn. Must be something wrong with the rest of the mechanism.";
+	say "The crank won't turn. Must be something wrong with the rest of the mechanism[one of].[or]. Something to do with the compass, maybe?[stopping]";
 
 Instead of turning the large crank:
 	now the way of the telescope is the way of the compass;
 	say "[one of]Am I turning the crank or is the crank turning me? After a few rotations of whichever-it-is, I find I'm on a different side of the tower with both me and telescope facing [way of the telescope].[or]The crank turns and I find myself looking [way of the telescope].[or]This time, I turn the crank and pay attention to what's going on. It's not the telescope turning – it's the whole tower itself. That's the Weather Guild for you. The only thing that doesn't turn is the compass. Now we're pointing [way of the telescope], same as it.[or]The tower rotates so the telescope is now pointing [way of the telescope].[stopping]";
 
+Section 4 - City View
+
+A thing called the op_distant_city_view is scenery, privately-named, in Observation Platform. "The view isn't quite as incredible as from the minute hand of the clock, but I can still see the jumble of buildings, dipping slightly down as it approaches the River Tempus to one side, and the River Fugit on the other." The printed name is "city".
+
+Understand "city", "whole", "river", "rivers", "tempus", "fugit", "building", "buildings" as the op_distant_city_view.
+
+Instead of doing something when the op_distant_city_view is physically involved: say "The city is a lot, lot bigger than I thought it was - and it's a lot, lot bigger than me."
+
 Part 11 - Weather Station
 
-The Weather Station is an exterior room. "This roof is covered in meters – thermometers, barometers, precipitometers (these are just glass tubes open to catch the rain) and a zephyrgraph attached to a flight of metal stairs that lead up to a platform to the northwest. I can't see any other way off this roof, although there is a closed hatch underfoot. The wooden plank I used to get here is further off than I thought!"
+The Weather Station is an exterior room. "[one of]Good Grease! This roof is like a museum of meters! [or][stopping]Thermometers, barometers, precipitometers (these are just glass tubes open to catch the rain) and a zephyrgraph attached to a flight of metal stairs that lead up to a platform to the northwest. I can't see any other way off this roof, although there is a closed hatch underfoot. The wooden plank I used to get here is further off than I thought!"
 
 Index map with Weather Station mapped south of Rooftop 4.
 
 Instead of jumping in Weather Station:
 	say "The wooden plank is too far away for me to reach now.";
+
+Instead of making to leave in Weather Station:
+	try going up.
 
 Chapter 2 - Scenery
 
@@ -7817,7 +8207,10 @@ The inaccessible board is scenery, privately-named, in the Weather Station. "The
 
 Understand "board", "bridge", "plank", "solid", "wooden", "long" as the inaccessible board. The printed name of the inaccessible board is "bridge".
 
-Instead of jumping on the inaccessible board:
+Instead of jumping on or entering the inaccessible board:
+	say "[one of]I can see myself jumping from the roof-edge onto the board, and then going down as I land, and then pausing for a moment like a penduluum at the far end of its swing, and then pushing back up into the air again and catapulting off into space... so, no thanks. I'm staying here.[or]It's just too far for me to get onto safely.[stopping]"
+
+Instead of doing something with the inaccessible board:
 	say "It's too far from the edge of the roof to reach.";
 
 Section 3 - Various meters
@@ -7851,25 +8244,39 @@ Instead of opening or entering the hatch:
 Instead of unlocking the hatch with something:
 	say "It's locked from the inside.";
 
+Instead of knocking on the hatch:
+	say "Nobody answers."
+	
+
 Section 4 - Vent
 
-The vent is scenery. "One end of the pipe I found. It's producing a steady billow of steam."
+The vent is scenery, hot air vent. "One end of the pipe I found. It's producing a steady billow of steam."
 
 Understand "pipe" as vent.
 
 Instead of taking or turning or direction-setting the vent to:
 	say "It's far too difficult to move from this end.";
 
+Instead of putting the large tarp on the vent:
+	say "I could wrap it up, but it'd be too cumbersome to move from this end anyway."
+
 Section 5 - Spigot
 
-The small spigot is a thing, fixed in place, in the Weather Station. "In one corner, a small pipe emerges with a spigot on the end; it's next to (and tied to) a[if weather balloon is inflated]n inflated[otherwise] deflated[end if] weather balloon. [If the Weather Station contains the vent]Just above is one end of my piping, pumping out hot steam and smoke.[end if]"
+The small spigot is a thing, fixed in place, in the Weather Station. "[if weather balloon is inflated]The inflated weather balloon bobs like an eager puppy beside the spigot it's tied to[else]
+In one corner, a small pipe emerges with a spigot on the end; it's next to (and tied to) a deflated weather balloon[end if]. [If the Weather Station contains the vent]Just above is one end of my piping, pumping out hot steam and smoke.[end if]"
 
 The description of the small spigot is "A pipe sticks out of the roof and ends in a small spigot. It must be used for filling the balloon. The tap on the spigot is a flat screw-head, set flush with the pipe."
 
-Understand "tap", "screw" as the small spigot.
+Understand "tap", "screw", "screwhead", "screw-head", "screw head" as the small spigot.
 
 Instead of opening, turning, or switching on the small spigot:
 	say "The screw is set flat into the upper pipe, and my fingernail doesn't seem to be enough to get it to turn.";
+
+Instead of unscrewing the small spigot with the lucky clock key:
+	say "The edge of the key is too fat for the screw."	
+
+Instead of unscrewing the small spigot with the small gear:
+	say "The teeth of the gear are much too fat for the screw."
 
 Instead of unscrewing the small spigot with the knife:
 	say "[one of]I slip the knife-blade into the screw-head and turn. There's a brief hiss – then silence. I guess the hydrogen supply is off downstairs. Maybe the Abbot has finally cut the Weather Guild's funding. I close the tap up again.[or]No point trying again.[stopping]";
@@ -7877,6 +8284,9 @@ Instead of unscrewing the small spigot with the knife:
 Section 6 - Balloon
 
 The weather balloon is scenery, in the Weather Station. "A small weather balloon. I suppose they use it to lift instruments up into the clouds – but it has a little basket underneath, and I might just be able to squeeze in. The Figure doesn't know what he's let himself in for with me, that's for certain. The balloon is currently [if inflated]full[otherwise]empty[end if], and is tied by a string to the pipe and the spigot."
+
+Rule for supplying a missing second noun when untying the weather balloon from:
+	change the second noun to the small spigot;	
 
 Understand "basket", "string" as the weather balloon.
 
@@ -7886,10 +8296,10 @@ Instead of entering the deflated weather balloon:
 	say "I try fitting myself into the basket. A squeeze – got to breathe in – but I'll just about go. I get out again, and that's nice too. So I just need to fill it up and I'm off!";
 
 Instead of entering the inflated weather balloon:
-	try untying the weather balloon from nothing instead;
+	try untying the weather balloon from the small spigot instead;
 
 Instead of taking the weather balloon:
-	say "It's much too large to carry around – not heavy, but if I gathered it up I wouldn't be able to see a thing. On these rooftops, that wouldn't be good for my health!";
+	say "The basket is bigger than my armspan already, and then there's all the mess of fabric to make the balloon - I can't possibly carry it around. I wouldn't be able to see where I was going!"
 
 Instead of putting the weather balloon on the vent:
 	try inserting the vent into the weather balloon;
@@ -7898,7 +8308,7 @@ Instead of putting the weather balloon on the small spigot:
 	try inserting the small spigot into the weather balloon;
 
 Instead of filling the weather balloon:
-	say "How? You want me to read the Abbey dictates into it until it's got enough hot air?";
+	say "How? You want me to read the Abbey dictates at it until it's had enough hot air?";
 
 Instead of inflating the weather balloon:
 	try filling the weather balloon;
@@ -7930,11 +8340,32 @@ Rule for supplying a missing second noun when untying the weather balloon from:
 Instead of untying the weather balloon from the vent:
 	try untying the weather balloon from the small spigot instead;
 
+Instead of untying the weather balloon from the weather balloon [we take this to mean "basket" from "balloon" ]:
+	say "The basket is pretty firmly connected to the balloon. I don't think I can get them apart."
+
+Instead of slicing the weather balloon with the knife:
+	say "I don't see how shredding the balloon is going to help it fly."
+
 Instead of untying the weather balloon from the small spigot:
 	abide by the ballooning rules; [i.e. stopping if a test fails]
-	say "I untie the rope but leave it looped around the pipe, and keep a tight hold while I squeeze myself into the basket. Then, with a final check of the zephyrgraph I let go. The balloon whisks up into the sky and the south wind whips me forward. Spinning around and around in my basket – the city below a whirl of colours – beginning to feel a little giddy – but making progress. The dark blot of the ornithopter is getting closer and closer. I'm gaining on him: the wind heaving me along.[paragraph break]...In a few moments I'll be alongside, close enough to demand that he takes hold of the balloon string. He couldn't leave me up here in my balloon: the air's soon going to cool, and then the balloon will sink...[paragraph break]The ornithopter starts moving higher. No. The ground is moving closer. Oh, Wren, you've done it this time, I'm thinking...[paragraph break]With a rush – there's nothing for it – I'm falling. [i]Plummeting.[no line break][r] The clutter of rooftops is rushing closer and closer. There's a smash –[paragraph break]- splintering glass –[paragraph break]- someone thumps me hard on the back. The wind is knocked from me –[paragraph break]- [i]good stuff, Wren. Just like clockwork.[no line break][r]";
+	say "I untie the rope but leave it looped around the pipe, and keep a tight hold while I squeeze myself into the basket. Then, with a final check of the zephyrgraph I let go. The balloon whisks up into the sky, the basket spinning around and around. The city below a whirl of colours, like a Newtonsday Catherine Cog firework. I'm starting to feel giddy – but I'm making progress. The south wind is behind me like a gale and the dark blot of the ornithopter is closer by the second. In a few moments I'll be alongside, close enough to grab the side of his craft and hang on![paragraph break]The Figure must have seen me. The ornithopter is tilting up - moving higher. Then it drops suddenly. Whirling blades pass by within inches of my face. [i]Tried to get me?[r] I'm thinking. [i]You'll have to try harder than that![r] I catch a glimpse of that shadowy hood behind the controls and then I realise - the Figure wasn't trying to get me. The Figure was trying to shred the balloon.[paragraph break]For a moment, I'm still going up. Then I'm hanging there, perfect equilibrium. And then gravity takes hold. There's nothing for it. I'm falling. The clutter of rooftops rushes closer and closer. [i]You've really done it this time, Wren[r][paragraph break]A smash –[paragraph break]- splintering glass –[paragraph break]- someone thumps me on the back. Drake, here? -[paragraph break]- The wind is knocked from me –[paragraph break]- [i]good stuff, Wren. Just like clockwork.[no line break][r]";
 	pause the game;
 	move the player to the feather bed;
+
+Before approaching the escaping Figure when the weather balloon is inflated and the player is in Roofs of the City:
+	if the player is in the weather balloon:
+		try untying the weather balloon from the small spigot instead;
+	say "I just need to hop in the balloon and get going!" instead.
+ 
+Before approaching the escaping Figure when the weather balloon is deflated and the Weather Station has been visited:
+	say "I need to find a way of filling that balloon." instead.
+
+Section 6b - Glimpse of weather balloon for navigation
+
+The glimpse of the weather balloon is a glimpse backdrop. It identifies the weather balloon. Understand "weather", "balloon" as the glimpse of the weather balloon. "The weather balloon is all ready to go."
+
+Every turn when balloon spotted is true and the glimpse of the weather balloon is off-stage:
+	move the glimpse of the weather balloon to the Roofs of the City.
 
 Section 7 - Zephyrgraph
 
@@ -7950,7 +8381,7 @@ Every turn when the player can see the zephyrgraph:
 	increment C_WIND_DIRECTION;
 
 Rule for firing C_WIND_DIRECTION:
-	let the available winds be {south, southeast, east, northeast};
+	let the available winds be {south, southeast, east};
 	let x be the way of the zephyrgraph;
 	remove x from the available winds, if present;
 	sort the available winds in random order;
@@ -7958,7 +8389,16 @@ Rule for firing C_WIND_DIRECTION:
 	say "[one of]The wind snaps the zephyrgraph round to point [way of the zephyrgraph].[or]The zephyrgraph moves to point [way of the zephyrgraph].[or]The zephyrgraph changes to [the way of the zephyrgraph].[at random]";
 
 After firing C_WIND_DIRECTION:
-	change the top end of C_WIND_DIRECTION to a random number from 4 to 6;
+	change the top end of C_WIND_DIRECTION to a random number from 1 to 3;
+
+Instead of setting or turning or direction-setting the zephyrgraph:
+	say "That wouldn't change the weather, but it'd be great it if did."
+
+Instead of turning the zephyrgraph forwards:
+	say "That wouldn't change the weather, but it'd be great it if did."
+
+Instead of turning the zephyrgraph backwards:
+	say "That wouldn't change the weather, but it'd be great it if did."
 
 Instead of doing something when the zephyrgraph is physically involved:
 	say "The zephyrgraph is too high up to reach.";
@@ -8685,7 +9125,8 @@ The conversation table of the Counting House guards is the table of Counting Hou
 
 Table of Counting House Guard conversation
 conversation			topic
-CT_GUARD_ENTRY		"entry"
+CT_GUARD_ENTRY		"entry" or "[me]"
+CT_GUARD_GUARDS	"[himself]" or "guard"
 CT_GUARD_PROOF		"business" or "proof"
 CT_GUARD_CATHEDRAL		"[cathedral]" or "church" or "[abbey]" or "archbishop" or "[abbot]"
 CT_GUARD_FIGURE		"[figure]"
@@ -8695,13 +9136,15 @@ CT_GUARD_COUNTINGHOUSE	"counting" or "house" or "building"
 CT_GUARD_CLOCKWORK		"[clockwork]" 
 CT_GUARD_SAINTS		"saints" or "newton" or "babbage" or "breguet" or "godel"
 
-CT_GUARD_ENTRY is clustered with CT_GUARD_PROOF, CT_GUARD_CATHEDRAL, CT_GUARD_FIGURE, CT_GUARD_PEOPLE, CT_GUARD_ENGINE, CT_GUARD_COUNTINGHOUSE, CT_GUARD_CLOCKWORK, CT_GUARD_SAINTS.
+CT_GUARD_ENTRY is clustered with CT_GUARD_PROOF, CT_GUARD_CATHEDRAL, CT_GUARD_FIGURE, CT_GUARD_PEOPLE, CT_GUARD_ENGINE, CT_GUARD_COUNTINGHOUSE, CT_GUARD_CLOCKWORK, CT_GUARD_SAINTS, CT_GUARD_GUARDS.
 
 [These topics may only be fired once.]
 Rule for firing a fired conversation topic that is clustered with CT_GUARD_ENTRY:
 	say "I've already asked about that." instead;
 
 CT_GUARD_ENTRY is a conversation topic. The enquiry text is "'You've got to let me in. I'm from the Cathedral.'". The response text is "The guards look unimpressed. 'Without proof I'm afraid you could just as well be from the cock-fighting pits, looking to see who'll win tonight.'". 
+
+CT_GUARD_GUARDS is a conversation topic. The enquiry text is "'So, is it a good job being a guard?' I ask pleasantly." The response text is "The first guard booms with laughter. 'Here that?' He pushes his mate in the arm. 'The young rat's trying to get us [i]on his side[r]. Maybe open us up, a little. How d'you like that?'[paragraph break]The second guard nods. 'No-one ever does that,' he agrees. 'Makes quite a nice change, to be honest with you.'"
 
 CT_GUARD_PROOF is a conversation topic. The enquiry text is "'What sort of proof do you need?' I ask.". The response text is "The first guard shrugs. 'Normally isn't much of an issue of what,' he says, uncertainly. 'Most people have got something with them and just show it.'[paragraph break]'We don't usually do very much,' the second guard agrees.".
 	
