@@ -60,9 +60,9 @@ namespace FyreConsoleClient {
             }
         }
         
-        internal static byte[] sl_v1_06xe {
+        internal static byte[] sl_v1_07xe {
             get {
-                object obj = ResourceManager.GetObject("sl_v1_06xe", resourceCulture);
+                object obj = ResourceManager.GetObject("sl_v1_07xe", resourceCulture);
                 return ((byte[])(obj));
             }
         }
