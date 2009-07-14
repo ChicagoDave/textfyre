@@ -60,7 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="GameFiles\sl-v1.06xe.ulx" />
+    <None Include="GameFiles\sl-v1.07xe.ulx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

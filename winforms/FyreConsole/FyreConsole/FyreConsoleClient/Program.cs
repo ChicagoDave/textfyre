@@ -25,7 +25,7 @@ namespace FyreConsoleClient {
             width = Console.BufferWidth - 4;
 
             while (true) {
-                MemoryStream fileData = new MemoryStream(Resource.sl_v1_06xe);
+                MemoryStream fileData = new MemoryStream(Resource.sl_v1_07xe);
 
                 vm = new Engine(fileData);
                 vm.OutputFilterEnabled = false;
