@@ -6,6 +6,7 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 
 [  Change Log
 When		Who		What
+13-July-2009 	J. Ingold	Added alternate solution to Chapter 2 - you can climb over the garden walls using the ladder to your bedroom. Needed a lot of extra stuff to let you carry the ladder around, have Drake take it back to position, etc. Also fixed the build (doh.)
 12-July-2009	J. Ingold	Finished C5. Added roof objects. Lots of down/jump responses. Fixed descriptions of bridge/plank. Can remove tarp from chimney. Various tweaks to turning things forwards and backwards. Rewrote chapter ending text. 
 11-July-2009 	J. Ingold	Added types of entering: is the player lying, sitting or clambering (or neither) - just for differentiating negative responses. Couple more Sa'at conversations. Added hymnals. Added hint to Lower Gears. Finished C4, mostly just adding scenery and jumping responses.
 6-July-2009		J. Ingold	Ian's C3 changes are almost all in. Added a new verb, "approaching" to cover "go to" and "follow" commands, and some (limited) support for these in the game. This will need a lot of new rules writing... Added a new kind, a "glimpse backdrop", which is a backdrop "too far away" to interact with, that can be identified (new relation) to a real game object. When approaching a glimpse, the game will take the player towards the identified item (if it has been identified with anything). Meanwhile, working through c4: the escaping Figure is a backdrop in all these rooms who you can "follow" and attempt (and fail) to talk to. fixed the penduluum sequence (counters go up after messages are printed, it seems, not before!)
@@ -140,6 +141,8 @@ Check checking chat for:
 				let flag be true;
 		if flag is false, say "Topic unlisted."
 
+Chapter - Start of Game 
+
 Section 1 - Set up
 
 Rule for printing the banner text:
@@ -186,13 +189,13 @@ When play begins:
 
 Section 3 - Random directions in Lower Gears
 
-The available platforms is a list of objects [directions] that varies.
-The available platforms is {}.
+The available-platforms is a list of objects [directions] that varies.
+The available-platforms is {}.
 
 When play begins:
-	change the available platforms to {north, northeast, east, southeast, south, southwest, west, northwest};
-	sort the available platforms in random order;
-	truncate the available platforms to 3 entries;
+	change the available-platforms to {north, northeast, east, southeast, south, southwest, west, northwest};
+	sort the available-platforms in random order;
+	truncate the available-platforms to 3 entries;
 
 Section 4 - Allow portable scenery to be taken
 
@@ -287,6 +290,12 @@ LibMsg <who disambiguation>	"Who do you mean, "
 LibMsg <which disambiguation>	"Which do you mean, " 
 LibMsg <whom disambiguation>	"Whom do you want[if main object is not the player] [the %][otherwise] me[end if] to [the last command]?" 
 LibMsg <what disambiguation>	"What do you want[if main object is not the player] [the %][otherwise] me[end if] to [the last command]?" 
+
+Chapter 5b - Altered Default Messages
+
+Table of custom library messages (continued)
+Message ID						Message Text 
+LibMsg <report player waiting>	"[one of]The Universal Clock moves onwards: time happens.[or]Tick tock.[or]A few heartbeats measure a few seconds.[or]Time moves on.[at random]"
 
 Chapter 6 - Say by index
 
@@ -2163,8 +2172,15 @@ First for supplying a missing noun when going (this is the vaguely going is goin
 Part 50 - Synonyms for wait / enter
 
 Understand "do nothing" as waiting.
+Understand "keep waiting" as waiting.
 
 Understand "hop in/into/inside [something]" as entering.
+
+Waiting for is an action applying to one topic.
+
+Understand "wait until/for/till/til [text]" as waiting for.
+
+Check waiting for: try waiting instead.
 
 Book E - New Properties
 
@@ -2876,7 +2892,24 @@ Chapter 2 - Exits
 Instead of going west from the Corridor of Contemplation during Introduction:
 	carry out the firing activity with ATTIC1;
 
-ATTIC1 is a scripted event. The display text of ATTIC1 is "[one of]I dart out of the tunnel, but when I'm stop-clocked by a depressing sight. It's Calvin and Drake, hurrying in through the Abbey's Great Entry. Their mouths are white with sugar.[paragraph break]'Hey, you!' Drake shouts. In a moment he's got me by the ear. 'What were you doing in the Abbot's room? That's not on your rota!'[paragraph break]'Yeah!' Calvin adds. 'And why are you slipping away when we told you to stay there?'[paragraph break]'Idiot,' Drake hisses. Louder – for the benefit of any passing monks – he says, 'That's it, Wren. You're consigned to your room.' For good measure, he punches me on the arm, then the two of them drag me away, heels over flagstones, right to the bottom of the ladder.[paragraph break]'Up you go,' Calvin says. 'And you're not to come down till dark!'[paragraph break]'What about dinner?' I ask.[paragraph break]'Should have thought of that, shouldn't you?' Drake says.[paragraph break]'More for us,' Calvin adds. 'Only two hours to go. I'm starved.'[paragraph break]With that, they punch me again, and wait until I scurry away up the ladder.[or]'Wren!' Drake exclaims. He wallops me on the arm. 'I thought I told you to stay in your room?' He doesn't wait for an excuse before I'm dragged off to the ladder. Then he waits – and wallops me – until I give in and climb all the way back up.[or]Drake looks like he's swallowed a bee. Not only have I disobeyed him, but I've done it [i]twice[r]. 'I'm going to have your skin,' he hisses into in my ear. 'I'm going to use it as a cloak come winter. Understand?' With that he drags me back off to my attic. This time, I can barely climb the stairs.[or]Oh, no, not again... Drake storms in and grabs me by the nose. I'm pulled off to the ladder base. 'Please,' I beg. 'I'm too tired to climb it again.' He looks at me as if I'm stupid. 'Then don't climb back down this time!' he says.[or][final attic trip][stopping]"
+ATTIC1 is a scripted event. 
+
+Rule for firing ATTIC1 when Attic Room is unvisited:
+	say "I dart out of the tunnel, but when I'm stop-clocked by a depressing sight. It's Calvin and Drake, hurrying in through the Abbey's Great Entry. Their mouths are white with sugar.[paragraph break]'Hey, you!' Drake shouts. In a moment he's got me by the ear. 'What were you doing in the Abbot's room? That's not on your rota!'[paragraph break]'Yeah!' Calvin adds. 'And why are you slipping away when we told you to stay there?'[paragraph break]'Idiot,' Drake hisses. Louder – for the benefit of any passing monks – he says, 'That's it, Wren. You're consigned to your room.' For good measure, he punches me on the arm, then the two of them drag me away, heels over flagstones, right to the bottom of the ladder.[paragraph break]'Up you go,' Calvin says. 'And you're not to come down till dark!'[paragraph break]'What about dinner?' I ask.[paragraph break]'Should have thought of that, shouldn't you?' Drake says.[paragraph break]'More for us,' Calvin adds. 'Only two hours to go. I'm starved.'[paragraph break]With that, they punch me again, and wait until I scurry away up the ladder.";
+
+Rule for firing ATTIC1 when the caretaker's ladder is carried by the player:
+	say "[one of]'Wren!' Drake exclaims. 'Where are you going with that? Think I can't send you back to your room without it, do you?' [or]'Wren!' Drake's face is boiling. 'I can't believe you've tried to steal that again? Turn it into firewood, would you?' He spells out the last few words with punches. [or]'I should take that ladder away while you're up there!' Drake exclaims, in irritation. [stopping]Then he [if the location is not the Rickety Stair][one of]marches[or]hauls[at random] me back to the corner of the hall, [end if][one of]props up[or]puts down[at random] the ladder, and [one of]punches[or]whallops[or]whackes[at random] [one of]me[or]my arm[at random] [one of]till I climb it[or]until I climb[at random].";
+	move the ladder to the Rickety Stair;
+
+Rule for firing ATTIC1 when the caretaker's ladder is carried by Drake:
+	say "'There you are!' Drake exclaims. He's carrying my ladder. 'I don't know how you got down without this, but [i]both[r] of you are going back!' With that, he [if the location is not the Rickety Stair] marches me to the corner of the hall,[end if] props up the ladder, and punches me till I climb back up.";
+	move the ladder to the Rickety Stair;
+
+
+
+Rule for firing ATTIC1:
+	say "[one of]'Wren!' Drake exclaims. He wallops me on the arm. 'I thought I told you to stay in your room?' He doesn't wait for an excuse before I'm dragged off to the ladder. Then he waits – and wallops me – until I give in and climb all the way back up.[or]Drake looks like he's swallowed a bee. Not only have I disobeyed him, but I've done it [i]twice[r]. 'I'm going to have your skin,' he hisses into in my ear. 'I'm going to use it as a cloak come winter. Understand?' With that he drags me back off to my attic. This time, I can barely climb the stairs.[or]Oh, no, not again... Drake storms in and grabs me by the nose. I'm pulled off to the ladder base. 'Please,' I beg. 'I'm too tired to climb it again.' He looks at me as if I'm stupid. 'Then don't climb back down this time!' he says.[or][final attic trip][stopping]";
+
 
 To say final attic trip:
 	say "Drake [one of]wallops[or]punches[or]hits[or]kicks[at random] me, [one of]boiling[or]shaking[or]simmering[at random] with [one of]rage[or]anger[or]fury[or]irritation[at random]. Back to the ladder, and up I go...";
@@ -2969,12 +3002,12 @@ Understand "Cathedral of Time", "clock", "great clock" as the Cathedral.
 
 Section 7 - Ladder (StaircaseTop / StaircaseBottom)
 
-The old construction ladder is an open door, scenery, down from the Attic Room, up from the Rickety Stair. "One of the old construction ladders left over from the building of the Abbey. It's a real antique. Some rungs are missing and the middle bends inwards. I can still climb it in my sleep, of course. [if in Attic]The ladder leads down all the way to ground level.[otherwise]The ladder leads up to my room.[end if]". The printed name is "ladder".
+The old construction ladder is an open door, scenery, down from the Attic Room. Through it is [, up from] the Rickety Stair. "One of the old construction ladders left over from the building of the Abbey. It's a real antique. Some rungs are missing and the middle bends inwards. I can still climb it in my sleep, of course. [if in Attic]The ladder leads down all the way to ground level.[otherwise]The ladder leads up to my room.[end if]". The printed name is "ladder".
 
 Understand "rungs", "rung" as the old construction ladder.
 
 Understand "top", "top of" as the old construction ladder when the location is the Attic Room.
-Understand "bottom", "bottom of" as the old construction ladder when the location is the Attic Room.
+[Understand "bottom", "bottom of" as the old construction ladder when the location is the Attic Room.]
 
 Before climbing up the old construction ladder in Attic Room:
 	say "The ladder only goes down from here." instead;
@@ -2988,13 +3021,17 @@ Instead of climbing the old construction ladder:
 Instead of taking the old construction ladder:
 	say "The ladder's pretty long. I couldn't carry it on my own.";
 
-After going up through the old construction ladder:
+[After going up through the old construction ladder:
 	say "I scramble up the ladder. It's a long way, and pretty exhausting.";
-	continue the action;
+	continue the action;]
 
 After going down through the old construction ladder:
 	say "I scramble quickly down the ladder.";
 	continue the action;
+
+
+
+
 
 Chapter 3 - Exits
 
@@ -3005,13 +3042,100 @@ Part 3 - Rickety Stair
 
 Chapter 1 - Description
 
-The Rickety Stair is a room. The description is "I'm in the western corner of the Great Hall, just by the foot of the ladder up to my room (the rest of the hall is east). There's a note attached to it, asking Amble the caretaker not to put it back in the shed just yet."
+The Rickety Stair is a room. The description is "I'm in the western corner of the Great Hall[if caretaker's ladder is in location], just by the foot of the ladder up to my room (the rest of the hall is east). There's a note attached to it, asking Amble the caretaker not to put it back in the shed just yet.[else]. My bedroom is somewhere overhead.[end if]"
 
-Chapter 2 - Scenery
+The printed name of Rickety Stair is "Corner of the Great Hall".
+
+Chapter 2 - Ladder 
+
+The caretaker's ladder is a thing in the Rickety Stair. 
+
+Understand "caretakers", "amble's", "ambles", "rung", "rungs", "bottom of", "wooden" as the caretaker's ladder.
+
+Before climbing down the caretaker's ladder:
+	say "The ladder only goes up from where I'm standing." instead;
+
+Section - In the Rickety Stair
+
+Rule for writing a paragraph about the caretaker's ladder when in the Rickety Stair:
+	now the caretaker's ladder is mentioned.
+	
+Instead of entering or jumping on or climbing the caretaker's ladder in the Rickety Stair:
+	try going up;
+
+Instead of going up in the Rickety Stair when the caretaker's ladder is not in location:
+	if the caretaker's ladder is carried:
+		try dropping the caretaker's ladder;
+		continue the action;
+	say "I'd need my ladder for that!"
+
+Instead of going up in Rickety Stair:
+	say "I scramble up the ladder. It's a long way, and pretty exhausting.";
+	move the player to the Attic Room;
+
+
+Section 1 - Taking
+
+Instead of taking the caretaker's ladder when the Herb Garden is unvisited:
+	say "[one of]Sure. Wandering around with a twelve foot ladder is going to help me slip through the Abbey unnoticed.[or]I think Drake might catch me, stuck in an archway somewhere.[or]How is a ladder going to help me get past Calvin?[stopping]";
+
+Report taking the caretaker's ladder:
+	say "Taken[one of]. Might just do the trick, I think...[or].[stopping]" instead;
+
+Section 2 - Dropping
+
+Instead of putting the caretaker's ladder against something portable:
+	say "I can't lean the caretaker's ladder on [the second noun]!"
+
+Instead of putting the caretaker's ladder against a person:
+	say "I don't think [the second noun] would want to hold it for me."
+
+Instead of putting the caretaker's ladder against a door:
+	say "It'd just fall through."
+
+Instead of putting the caretaker's ladder against something:
+	try dropping the caretaker's ladder;
+
+[
+Instead of dropping the caretaker's ladder when the player is carrying the caretaker's ladder and the location is not the Herb Garden and the location is not the Rickety Stair:
+	say "There's nowhere to lean the ladder here.";
+]
+
+Report dropping the caretaker's ladder when in the Rickety Stair:
+	say "I put the ladder back into position." instead;
+
+Report dropping the caretaker's ladder when in the Herb Garden:
+	say "I lean the ladder up against the wall. It clears the top by a few feet." instead;
+
+Report dropping the caretaker's ladder:
+	say "I put the ladder down on the floor and rest my arms." instead;
+
+Section 3 - Carrying between rooms
+
+A room can be too-small-for-a-ladder. A room is seldom too-small-for-a-ladder.
+
+The Scriptorium, Kitchen, Corridor of Contemplation, Library are too-small-for-a-ladder.
+
+Instead of going to a too-small-for-a-ladder room when the caretaker's ladder is carried:
+	say "[one of]I can't fit through that doorway with this ladder![or]The archway is too small for the ladder.[or]I'd need to get rid of this rust-riven ladder first.[or]If I'm going to cart the ladder around I'd better stick to the main hallways where I'll fit.[cycling]";
+
+After going when the caretaker's ladder is carried:
+	if the location is the Herb Garden:
+		say "I slip the ladder awkwardly through the doorway.";
+	else:
+		say "[one of]I stumble along with the ladder.[or]If anyone catches me running around with this ladder, I'm dead.[or]I troop onward with the ladder.[or][run paragraph on][stopping]";
+	continue the action.
+
+Section 4 - idle actions
+
+Every turn when the player is carrying the caretaker's ladder and not going and a random chance of 1 in 4 succeeds:
+	say "[one of]This ladder's getting really heavy.[or]I'm sure my arm is getting longer by the second.[or]I'm still carrying this ladder, you know.[or][run paragraph on][stopping]";
+
+Chapter 3 - Scenery
 
 Section 1 - LadderNote
 
-The note is scenery, in the Rickety Stair. The reading matter is "'Please leave. Needed for initiate until a cell is freed up by older brother. – Gubbler.'"
+The note is part of the caretaker's ladder. The reading matter is "'Please leave. Needed for initiate until a cell is freed up by older brother. – Gubbler.'"
 
 Understand "sign", "writing", "notice" as the note.
 
@@ -3769,7 +3893,7 @@ Horloge's Keys are a plural-named thing, on the wheeled table. The description i
 
 Horloge's Keys unlock the Refectory Clock.
 
-Understand "keyring" as a Horloge's Keys.
+Understand "keyring", "key" as a Horloge's Keys.
 
 Instead of taking Horloge's Keys when Horloge's Keys are on the wheeled table:
 	if Horloge is not sipping his tea begin;
@@ -3888,6 +4012,11 @@ Section 1 - Constrained Entry
 Instead of going to East Refectory during Gong Sounding:
 	say "No way. The coast is clear to get out of the Abbey and over to the Cathedral, but only so long as Calvin and Drake are distracted in there.";
 
+Section 1b- Constrained Exit
+
+Instead of going to the Abbey Herb Garden during Gong Sounding:
+	say "I've made my distraction. Time to get out of here the quick way - the front door!"
+
 Chapter 2 - Scenery
 
 [Not faffing trying to make the long tables a combination supporter / backdrop - just repeat the object definitions instead.]
@@ -3926,12 +4055,10 @@ Rule for writing a paragraph about the garden door:
 
 Instead of opening the locked Garden Door when Horloge's Keys are not carried:
 	say "It's locked.";
+	fire HORLOGEWALKTHROUGH1;
 
 Instead of opening the locked Garden Door when Horloge's Keys are carried:
 	try unlocking the Garden Door with Horloge's Keys.
-
-[Instead of unlocking the locked Garden Door with Horloge's Keys:
-	say "That door leads to the walled garden. I don't want to be trapped in here, I want to get out to the Cathedral!";]
 
 Horloge's Keys unlock the garden door.
 
@@ -3992,8 +4119,16 @@ Before clock-setting the refectory clock to during Gong Sounding:
 Last before clock-setting the refectory clock to when the Refectory Clock is closed:
 	carry out the implicitly opening activity with the refectory clock;
 
+WARN_ABOUT_SETTING_CLOCK is a trigger.
+
+Instead of clock-setting the refectory clock to when the refectory clock is open and WARN_ABOUT_SETTING_CLOCK is unfired:
+	fire WARN_ABOUT_SETTING_CLOCK;
+
+Rule for firing WARN_ABOUT_SETTING_CLOCK:
+	say "Resetting a clock is a sacred matter, part of a ritual that considers the endless push of Sad Depreciation and the holy act of Maintainance that man must perform. The Abbot has a whole sermon for it. So to do it, just like this, on a [i]whim[r]... I can feel in my stomach that it's not right, that if Clockwork is Clockwork then there must be a better way."
+
 After clock-setting the refectory clock to:
-	say "[one of]Putting a clock wrong turns my stomach... but the thought of that Figure in Grey spurs me on. So I make the sign of the Winding Key - maybe that'll buy me some forgiveness when I wind down. Then I push the hands round to [the time understood in words].[or]It's horrible to be making a habit of this. Flinching, I push the hands round to [the time understood in words].[stopping]";
+	say "[one of][if WARN_ABOUT_SETTING_CLOCK has been fired for less than three turns]But the[else]The[end if] thought of that Figure in Grey spurs me on. So I make the sign of the Winding Key - maybe that'll buy me some forgiveness when I wind down - and then I push the hands around to [the time understood in words].[or]It's horrible to be making a habit of this. Flinching, I push the hands round to [the time understood in words].[stopping]";
 	consider the scene changing rules;
 
 Instead of setting the refectory clock to when the topic understood matches "[dinner]":
@@ -4217,6 +4352,10 @@ Calvin is a man in Lower Hall. "But maybe you're starting to see what kind of lu
 Instead of going southwest from the Lower Hall in the presence of Calvin:
 	say "What, just waltz past Calvin, stop. Ask the time? He'd have me by the hair in moments. No, I need some kind of plan to get him away from there.[fire CALVINIDEA]";
 
+Instead of going southwest from the Lower Hall in the presence of Calvin when the player is carrying the ladder:
+	say "What, just slip past and pretend to be a workman? I don't think that's going to work. And it's certainly not the best use for this ladder!"
+
+
 Understand "clock" as Calvin when the location of Calvin is the Lower Hall.
 Understand "entry", "arch" as Calvin when the location of Calvin is the Lower Hall.
 
@@ -4235,7 +4374,8 @@ Rule for firing unfired CALVINIDEA:
 		Wren has an idea in one turn from now;
 
 At the time when Wren has an idea:
-	say "[i]Calvin will be guarding that door till dinner time[r], I think, angrily. And then, slow and sure as clockwork, I have an idea. Not till dinner time. Until the Refectory Clock [i]strikes five o'clock[r]... And - in times of Holy Crisis - clocks can be changed...[paragraph break]";
+	say "[i]Calvin will be guarding that door till dinner time[r], I think, angrily. So either I find a way to get him out of there, or I find some back way out of this place!"
+
 
 Part 12 - Abbot's Quarters
 
@@ -4389,7 +4529,7 @@ Section 1 - Patrol scene
 
 Drake's Patrol is a scene.
 Drake's Patrol begins when Introduction ends.
-Drake's Patrol ends when Gong Sounding begins.
+Drake's Patrol ends when Gong Sounding has happened or the Cathedral Yard is visited.
 
 When Drake's Patrol ends:
 	remove Drake from play;
@@ -4398,17 +4538,18 @@ Section 2 - Route Implementation
 
 Drake has a list of objects called the route.
 
-The route of Drake is { Central Hall, Lower Hall, Scriptorium, Library, Central Hall, West Refectory, East Refectory, Kitchen, Upper Hall }.
+The route of Drake is { Central Hall, Lower Hall, Scriptorium, Library, Central Hall, West Refectory, East Refectory, Kitchen, Upper Hall, Rickety Stair, Upper Hall }.
 
 Drake has a truth state called can-pause flag.
+Drake has a truth state called please-move flag.
 Drake has a truth state called do-pause flag.
 Drake has a truth state called escaped flag.
 
+
 Every turn during Drake's Patrol:
 	[ we give Drake a 40% chance of loitering in his location for a single turn  ]
-	[ this might well be irritating for the purposes of testing as it's randomised ]
-	[ should seed the random number generator in DEBUG mode? ]
-	if can-pause flag of Drake is true and a random chance of 4 in 10 succeeds:
+	[  except in "dead-end" locations, where frankly, the sooner he passes by the better ]	
+	if can-pause flag of Drake is true and a random chance of 4 in 10 succeeds and the location is not the Abbey Pantry and the location is not the Abbey Herb Garden and the location is not the Corridor of Contemplation and the location is not the Rickety Stair and the please-move flag of Drake is false:
 		now can-pause flag of Drake is false;
 	else if the do-pause flag of Drake is true:
 		now the do-pause flag of Drake is false;
@@ -4416,7 +4557,8 @@ Every turn during Drake's Patrol:
 		now escaped flag of Drake is false;
 		follow the warn of Drake's approach rule;
 	else:
-		move Drake one place along.
+		move Drake one place along;
+	now the please-move flag of Drake is false;
 
 To move Drake one place along:
 	now the can-pause flag of Drake is true;
@@ -4455,12 +4597,14 @@ Before going to a Drake-occupied room during Drake's Patrol:
 		[ doesn't make sense if we "hang back" and then get caught anyway, so we catch that here. ]
 		say "I walk right into Drake - no time to run away.[paragraph break]";
 		carry out the firing activity with ATTIC1 instead;
+	now the please-move flag of Drake is true;
 	say "Just in time, I see Drake's there. I hang back. He'll move on in a moment." instead;
 
 Automatically-dodging-Drake is a truth state that varies.
 
 Before going to a Drake-threatened room when automatically-dodging-Drake is false during Drake's Patrol (this is the keep the player from entering Drake's path voluntarily rule):
 	now the can-pause flag of Drake is false;
+	now the please-move flag of Drake is true;
 	say "[one of]I catch the sound of hobnailed boots from that direction. Drake's heading this way[or][one of]Drake! I'll keep out of his sight here[or]I spy Drake and pull back[cycling][stopping]. ";
 	if the location of the player is Drake's future destination:
 		now the do-pause flag of Drake is true;
@@ -4470,7 +4614,15 @@ Before going to a Drake-threatened room when automatically-dodging-Drake is fals
 		say "I'll [one of]wait and [or][stopping]let him pass." instead;
 
 After Drake going:
+	deal with Drake and the ladder;
 	abide by the warn of Drake's approach rule.
+
+To deal with Drake and the ladder:
+	if the location of Drake is the Rickety Stair and Drake is carrying the caretaker's ladder and the player is not in the Rickety Stair:
+		move the ladder to the Rickety Stair;
+	if the location of Drake is not the Rickety Stair and Drake can see the caretaker's ladder and the player is not carrying the caretaker's ladder:
+		move the caretaker's ladder to Drake;
+
 
 This is the warn of Drake's approach rule:
 	if the location of the player is Drake's future destination begin;
@@ -4479,7 +4631,15 @@ This is the warn of Drake's approach rule:
 	otherwise if the location of the player is Drake's next destination;
 		let dir be the direction Drake is coming from;
 		say "[one of]Drake's coming! [or]Looking [dir], I can see Drake. He's coming this way! [or]Drake's just off to [the dir], and he's coming this way! [or]I've got a moment before Drake spots me: he's just appeared, to [the dir]. [as decreasingly likely outcomes]";
-		say "[one of]I can escape[or]Escape lies[or]I'd better disappear[or]Time to leave: I can go[at random] [or-separated list of Drake-viable directions]." instead;
+		if the location is the Rickety Stair begin;
+			if the caretaker's ladder is in the location begin;
+				say "The only way out, is up!";
+			else;
+				say "There's nowhere to run and nowhere to hide!";
+			end if;				
+		else;
+			say "[one of]I can escape[or]Escape lies[or]I'd better disappear[or]Time to leave: I can go[at random] [or-separated list of Drake-viable directions]." instead;
+		end if;
 	otherwise if the location of the player is the location of Drake;
 		[ sometimes, we let the player escape ]
 		if a random chance of 40 in 100 succeeds
@@ -4541,6 +4701,10 @@ Instead of hiding behind something Drake-hideable when the location is not Drake
 	say "I don't need to hide. Drake's not on me quite yet.";
 	now the do-pause flag of Drake is true;
 
+Before hiding under or hiding behind or hiding inside or hiding from view when the caretaker's ladder is carried by the player: 
+	now the do-pause flag of Drake is true;
+	say "How I'm supposed to hide when I'm carrying this stupid ladder around?" instead.
+
 
 Section - Hiding and moving Drake on
 
@@ -4560,15 +4724,18 @@ Instead of hiding inside something Drake-hideable during Drake's Patrol:
 Instead of hiding behind something Drake-hideable during Drake's Patrol:
 	hide from Drake inside the noun;
 
-
 To hide from Drake inside (t - a thing):
-	say "[one of]Good thinking![paragraph break][or][stopping]I duck behind [the t], just in time! Drake marches through the room. Once he's gone, I slip back out.";
+	say "[one of]Good thinking![paragraph break][or][stopping]I duck behind [the t], just in time! Drake marches through the room. Once he's gone, I slip back out";
 	move Drake away;
+	if Drake was not carrying the caretaker's ladder and Drake is carrying the caretaker's ladder:
+		say ", to find the ladder's gone";
+	say ".";
 
 To move Drake away:
 	while Drake's previous location is not the location:
 		move Drake to Drake's next destination;
 		rotate the route of Drake backwards;
+		deal with Drake and the ladder;
 	now the do-pause flag of Drake is true;
 
 Section - Places you can't hide
@@ -4589,13 +4756,10 @@ The Abbey Region is a region. The Abbot's Quarters, Corridor of Contemplation, A
 
 Part 16 - The Herb Garden
 
-The Abbey Herb Garden is a room. "[one of]Standing in the garden is a bit like walking on tilting floorboards: every step you take has an unexpected spring to it. That's because where the ground should be there's a large metal disc with a large glass lens at its centre, on which all the soil beds are laid out like numbers on a clock. As the day goes on, the disc revolves so that the plants can follow the sunlight until at night, they've covered by the metal hood built into the south wall[or]Right now, [if the plants are day-plants]the lens in the centre of the great disc of the garden is bathed in light and the day-plants are out: basil, thyme, potatoes, other vegetables. The mushroom beds are under the metal hood on the south wall[else]the night-plants are out: mushrooms and nightcaps and fungi, and the day-plants are under the metal hood, safe from snails and birds[end if][if there is something on the large lens]. The lens is covered by [the list of things on the large lens][end if][stopping].[paragraph break]Otherwise, there are tall walls on four sides and only one door, back into the Abbey, to the west."
+The Abbey Herb Garden is a room. "[one of]Standing in the garden is a bit like walking on tilting floorboards: every step you take has an unexpected spring to it. That's because where the ground should be there's a large metal disc with a large glass lens at its centre, on which all the soil beds are laid out like numbers on a clock. As the day goes on, the disc revolves so that the plants can follow the sunlight until at night, they've covered by the metal hood built into the south wall[or]Right now, [if the plants are day-plants]the lens in the centre of the great disc of the garden is bathed in light and the day-plants are out: basil, thyme, potatoes, other vegetables. The mushroom beds are under the metal hood on the south wall[else]the night-plants are out: mushrooms and nightcaps and fungi, and the day-plants are under the metal hood, safe from snails and birds[end if][if there is something on the large lens]. The lens is covered by [the list of things on the large lens][end if][stopping].[paragraph break]Otherwise, there are tall walls on three sides and only one door, back into the Abbey, to the west."
 
 Instead of going inside when in the Abbey Herb Garden: try going west instead.
-Instead of making to leave when in the Abbey Herb Garden: try going west instead.
-
-Instead of going through the garden door to the Abbey Herb Garden during Gong Sounding:
-	say "No time for horticulture now. I need to get out of here!"
+Instead of making to leave when in the Abbey Herb Garden: try going up instead.
 
 Instead of facing west in the Abbey Herb Garden: 
 	try examining the garden door instead.
@@ -4610,18 +4774,44 @@ Rule for writing a paragraph about the garden door when in the Abbey Herb Garden
 	now the garden door is mentioned;
 
 Every turn when in the Abbey Herb Garden and a random chance of 1 in 3 succeeds:
-	say "[one of]The metal plate ticks slowly round.[or]The plants are glowing under the beautiful sunshine.[or]The sunlight makes my back prick with sweat.[or]Butterflies flit between the flowers.[or]A few insects buzz through the leaves.[or]Smells lift from the plants.[or]Birds flit by overhead.[or]Sunlight gleams off [if plants are day-plants]the lens in the centre of the garden[else]the metal floor of the garden, but doesn't hit the covered lens[end if].[at random]";
+	say "[one of]The garden underfoot ticks slowly around.[or]The plants are glowing under the beautiful sunshine.[or]The sunlight makes my back prick with sweat.[or]Butterflies flit between the flowers.[or]A few insects buzz through the leaves.[or]Smells lift from the plants.[or]Birds flit by overhead.[or]Sunlight gleams off [if plants are day-plants]the lens in the centre of the garden[else]the metal floor of the garden, but doesn't hit the covered lens[end if].[at random]";
 
 Instead of jumping in the Abbey Herb Garden:
 	say "The floor rocks a little when I land."
 
 Section 2 - scenery - walls
 
-Some garden walls are scenery in the Herb Garden. "The walls nine or ten feet of smoothed-down stone, to stop climbers and creepers, human and vegetable alike."
+Some garden walls are scenery in the Herb Garden. "The walls nine or ten feet of smoothed-down stone, to stop climbers and creepers, human and vegetable alike. (On the other side of the wall is the town.)"
 
-Instead of climbing or jumping over the garden walls: say "I'm not a frog, you know!"
+Instead of climbing the garden walls: say "I'm not a snail, you know!"
+Instead of jumping over the garden walls: say "I'm not a frog, you know!"
 
 Instead of attacking or pushing or pulling the garden walls: say "They've been built to withstand cannonfire. There's not much I can do to change that."
+
+Does the player mean doing something with the backdrop-walls when in the Herb Garden:
+	it is very unlikely.
+
+
+Section - The Ladder in the Herb Garden
+
+Rule for writing a paragraph about the caretaker's ladder when in the Herb Garden:
+	say "The caretaker's ladder is propped up against the garden wall."
+
+Instead of going up in Herb Garden when the ladder is in the Herb Garden:
+	try climbing the ladder.
+
+Instead of going up in Herb Garden when the ladder is not in the Herb Garden:
+	if the ladder is carried:
+		try dropping the ladder;
+		try climbing the ladder instead;
+	try climbing the garden walls.
+
+Instead of climbing the ladder in the Herb Garden:
+	say "In a flash, I'm up and over! It's a short fall to the alley behind the wall, then I scamper along a shadowy alleyway and out into the Cathedral Yard. I'm clear! Time to go see the Archbishop!";
+	move the player to the Cathedral Yard;
+
+Instead of climbing the garden walls when the caretaker's ladder is visible:
+	try going up.
 
 Section 3 - background animals
 
@@ -4761,10 +4951,10 @@ Chapter 1 - Description
 The Cathedral Yard is a room, exterior, in the Cathedral Space. "The Yard is where we go on Saturdays for exercise, cleaning up the muck left behind by the market (worse once a month when the horse-traders from the south come up and leave their presents for the Abbey gardens). Today it's quiet, at least, with the space between the Abbey to the east and the Cathedral to the west empty but for the usual collection of beggars, unfortunates, wretches and the disadvantaged poor.[one of][paragraph break]The Cathedral really is enormous – but it doesn't have many rooms, so finding the Archbishop shouldn't take too long. Which is lucky, because I don't know how long I've got before Gubbler – and the mysterious Figure – put their plan into action. If I warn the Archbishop too late it'll be no good. He might just blame me for whatever it is they're planning to steal![or][stopping]"
 
 Instead of going east in the Cathedral Yard:
-	say "No, I need to find the Archbishop, not get rounded up by Calvin and Drake and set to work polishing again. Besides, by the sound of the clock, it's 5pm in there, which would be far too late!"
+	say "No, I need to find the Archbishop, not get rounded up by Calvin and Drake and set to work polishing again[if Gong Sounding is happening]. Besides, by the sound of the clock, it's 5pm in there, which would be far too late![else].[end if]"
 
 Instead of entering the Abbey Doors in the Cathedral Yard:
-	say "No, I need to find the Archbishop, not get rounded up by Calvin and Drake and set to work polishing again. Besides, by the sound of the clock, it's 5pm in there, which would be far too late!"
+	try going east.
 
 Instead of examining the backdrop-sky in the Cathedral Yard:
 	say "Clouds are turning around, but only slowly."
@@ -6894,17 +7084,17 @@ Instead of doing something when in the Rafters and the gearwheels are physically
 
 Part 6 - Lower Gears
 
-Lower Gears is a room. "I'm sandwiched between [the (remainder after dividing the times-moved of the Lower Gears by 4) + 2 in words] gears of the Cathedral clock, on a [by times-moved]narrow[or by]rickety[or by]unsteady[or by]worm-ridden[end] wooden [by times-moved]platform[or by]ledge[or by]plank[end] that [by times-moved]winds in and out between[or by]runs to the left of[or by]passes to the right of[or by]runs underneath[or by]bridges a gap between[end] the workings. [one of]This noise is louder than Reloh's duplicator – like an army of cooks all banging saucepans. I can barely keep straight which way is up and which way is down.[paragraph break][or][stopping]Platforms lead away to the [available platforms][if times-moved of the Lower Gears is greater than 6], and there a line of rungs disappears up[end if]."
+Lower Gears is a room. "I'm sandwiched between [the (remainder after dividing the times-moved of the Lower Gears by 4) + 2 in words] gears of the Cathedral clock, on a [by times-moved]narrow[or by]rickety[or by]unsteady[or by]worm-ridden[end] wooden [by times-moved]platform[or by]ledge[or by]plank[end] that [by times-moved]winds in and out between[or by]runs to the left of[or by]passes to the right of[or by]runs underneath[or by]bridges a gap between[end] the workings. [one of]This noise is louder than Reloh's duplicator – like an army of cooks all banging saucepans. I can barely keep straight which way is up and which way is down.[paragraph break][or][stopping]Platforms lead away to the [available-platforms][if times-moved of the Lower Gears is greater than 6], and there a line of rungs disappears up[end if]."
 
 The Lower Gears have a number called the times-moved. The times-moved of the Lower Gears is one.
 
 Index map with Lower Gears mapped north of Among the Gargoyles.
 
 Before going a planar direction in Lower Gears:
-	if the noun is listed in the available platforms begin;
-		change the available platforms to {north, northeast, east, southeast, south, southwest, west, northwest};
-		sort the available platforms in random order;
-		truncate the available platforms to 3 entries;
+	if the noun is listed in the available-platforms begin;
+		change the available-platforms to {north, northeast, east, southeast, south, southwest, west, northwest};
+		sort the available-platforms in random order;
+		truncate the available-platforms to 3 entries;
 		say "I worm my way between the gears.";
 		increase the times-moved of the Lower Gears by a random number between one and three;
 		move the player to Lower Gears instead; [illusion of true movement.]
@@ -8039,12 +8229,12 @@ After direction-setting the elongated chimney pipe to a direction:
 
 Section 3 - Tarp as part of the pipe
 
-Instead of taking the tarp which is incorporated by the elongated chimney pipe:
+Instead of taking the tarp when the tarp is incorporated by the elongated chimney pipe:
 	move the tarp to the player;
 	now the elongated chimney pipe is unwrapped;
 	say "I whip the tarp off the pipe."
 
-Instead of examining the tarp which is incorporated by the elongated chimney pipe:
+Instead of examining the tarp when the tarp is incorporated by the elongated chimney pipe:
 	say "The tarp is wrapped three or four times round the near end of the long bent pipe."
 
 Instead of putting the tarp on the wrapped elongated chimney pipe:
@@ -8262,8 +8452,7 @@ Instead of putting the large tarp on the vent:
 
 Section 5 - Spigot
 
-The small spigot is a thing, fixed in place, in the Weather Station. "[if weather balloon is inflated]The inflated weather balloon bobs like an eager puppy beside the spigot it's tied to[else]
-In one corner, a small pipe emerges with a spigot on the end; it's next to (and tied to) a deflated weather balloon[end if]. [If the Weather Station contains the vent]Just above is one end of my piping, pumping out hot steam and smoke.[end if]"
+The small spigot is a thing, fixed in place, in the Weather Station. "[if weather balloon is inflated]The inflated weather balloon bobs like an eager puppy beside the spigot it's tied to[else]In one corner, a small pipe emerges with a spigot on the end; it's next to (and tied to) a deflated weather balloon[end if]. [If the Weather Station contains the vent]Just above is one end of my piping, pumping out hot steam and smoke.[end if]"
 
 The description of the small spigot is "A pipe sticks out of the roof and ends in a small spigot. It must be used for filling the balloon. The tap on the spigot is a flat screw-head, set flush with the pipe."
 
@@ -8364,8 +8553,12 @@ Section 6b - Glimpse of weather balloon for navigation
 
 The glimpse of the weather balloon is a glimpse backdrop. It identifies the weather balloon. Understand "weather", "balloon" as the glimpse of the weather balloon. "The weather balloon is all ready to go."
 
-Every turn when balloon spotted is true and the glimpse of the weather balloon is off-stage:
-	move the glimpse of the weather balloon to the Roofs of the City.
+Every turn when balloon spotted is true:
+	if the location is the Weather Station: [ avoid noun doubling up ]
+		remove the glimpse of the weather balloon from play;
+	else if the glimpse of the weather balloon is off-stage:
+		move the glimpse of the weather balloon to the Roofs of the City.
+
 
 Section 7 - Zephyrgraph
 
@@ -8391,8 +8584,11 @@ Rule for firing C_WIND_DIRECTION:
 After firing C_WIND_DIRECTION:
 	change the top end of C_WIND_DIRECTION to a random number from 1 to 3;
 
-Instead of setting or turning or direction-setting the zephyrgraph:
+Instead of setting or turning the zephyrgraph:
 	say "That wouldn't change the weather, but it'd be great it if did."
+
+Instead of direction-setting the zephyrgraph to:
+	try turning the zephyrgraph;
 
 Instead of turning the zephyrgraph forwards:
 	say "That wouldn't change the weather, but it'd be great it if did."
@@ -8514,7 +8710,7 @@ Rule for writing a paragraph about Covalt [other times]:
 Section 2 - Descriptions
 
 Rule for printing the description of Covalt when the state of Covalt is 1:
-	say "The giant is six-and-a bit feet of solid bone and grime. His overalls are oil-covered and in one hand he's clutching a penduluum weight heavy enough to concuss a horse.";
+	say "The giant is six-and-a bit feet of solid bone and grime. His overalls are oil-covered and in one hand he's clutching a clock-wight heavy enough to concuss a horse.";
 
 Rule for printing the description of Covalt when the state of Covalt is 2:
 	say "Covalt is eyeing me intently, demanding to know more. He's still blocking the doorway.";
@@ -12971,23 +13167,23 @@ The printed name of the middle of the gnomon is "Gnomon".
 
 Book W - Walkthrough Script
 
-Test jonsprogress with "test intro / test abbey / test cathedral / test clockchase".
+Test jonsprogress with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops".
 
-Test walkthrough with "test intro / test abbey / test cathedral / test clockchase / test rooftops / test covalt / test countinghouse / test outsidewarehouse".
+Test walkthrough with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt / test countinghouse / test outsidewarehouse".
 
 Test intro with "z/w/hide in clock/put tumbler on door/z/z/z/z/z/out/open door/w/w".
 
-Test abbey with "d/e/sw/e/hide/get cup/e/n/put cup in bracket/w/w/z/z/z/e/e/n/smell/get tea/z/z/z/z/s/x train/get gear/turn spigot/wind key/n/z/s/put tea in basket/w/z/z/z/z/sw/sw/w/get new gear/ne/z/z/z/z/e/ne/e/put new gear in train/n/z/s/pull lever/z/z/z/w/w/z/e/e/get tea/w/sw/w/put tea on table/get keys/get keys/e/e/e/unlock clock/set clock to 5:00/z/w/w/sw/sw/w/drop rag/w".
+Test abbey-garden with "d/e/sw/e/get cup/e/n/put cup in bracket/hide in pantry/s/s/smell/take leaf/s/put tea in basket /x train / get gear / turn spigot / wind key / w / sw / sw / sw / w / get new gear / ne / take keys / e / e / e / e / n / put new gear in train / pull lever / n / z / z / s / take cup of tea / w / w / w / sw/ sw / sw  /w / ne / put tea on table / get keys / get keys / e / e / e / e / up / w / n / w / w / take ladder / e / sw / e / e / e / put ladder against wall / up / w/drop rag/ w".
+
+Test abbey-clock with "d/e/sw/e/get cup/e/n/put cup in bracket/hide in pantry/s/s/smell/take leaf/s/put tea in basket /x train / get gear / turn spigot / wind key / w / sw / sw / sw / w / get new gear / ne / take keys / e / e / e / e / n / put new gear in train / pull lever / n / z / z / s / take cup of tea / w / w / w / sw/ sw / sw  /w / ne / put tea on table / get keys / get keys / e / e / e / unlock clock / open clock / set clock to 5 pm / set clock to 5 pm / w / w / sw/ sw / w / w / drop rag / w".
 
 Test abbey2 with "d/e/sw/e/get cup/e/n/put cup in bracket/w/w/z/z/z/e/e/get tea/x train/get gear/turn spigot/wind key/put tea in basket/w/sw/sw/w/get new gear/ne/e/ne/e/put new gear in train/pull lever/z/z/z/w/w/z/z/z/e/e/e/get tea/w/sw/sw/sw/w/put tea on table/get keys/get keys/e/e/e/unlock clock".
-
-[ "d/e/sw/w/z/e/ne/e/put cup in bracket/get tea/w/w/z/e/e/x train/get worn gear/turn spigot/w/sw/w/z/z/e/sw/w/get gear/e/ne/e/e/n/put gear in train/put leaves in basket/wind key/pull lever/z/w/w/z/e/e/get tea/z/w/sw/w/give tea to horloge/get keys/get keys/e/ne/z/z/sw/e/e/unlock clock/open clock/turn clock to 4:59/w/w/sw/sw/w" ]
 
 test cathedral with "w/n/e/get blue/get red/get yellow/w/n/n/w/sw/open tome/get knife/ne/e/s/s/w/put red in brazier/put blue in brazier/get purple with knife/e/n/n/e/se/take work order/nw/w/w/sw/look up principia planetaria in catalogue/test steel/test brass/test gold/pull chain/ne/e/e/se/give principia to sa'at/take order/nw/se/give wax to sa'at/get order/nw/w/n/e/give work order to doric/give work order to doric/n/lever, spring, winding key".
 
 test clockchase with "z/z/z/nw/z/z/sw/u/z/z/z/z/jump/u/hold chain/pull lever/d/out/z/z/z/w/jump".
 
-test rooftops with "sw/scrape mortar with knife/get bricks/ne/se/sw/drop bricks/ne/get plank/sw/put plank in notch/put bricks in notch/ne/get pipe/sw/get tarp/e/put pipe on chimney/put tarp on chimney/turn pipe sw/w/s/nw/turn compass south/turn crank/look through telescope/se/put balloon on vent/z/z/z/z/z/z/z/z/z/z/z/z/enter balloon".
+test rooftops with "sw/scrape mortar with knife/get bricks/ne/se/sw/drop bricks/ne/get plank/sw/put plank in notch/put bricks in notch/ne/get pipe/sw/get tarp/e/put pipe on chimney/put tarp on chimney/turn pipe sw/w/s/nw/turn compass south/turn crank/look through telescope/se/put balloon on vent/z/z/get in basket".
 
 test steel with "turn steel crank 6 times/turn steel crank backwards 9 times".
 
