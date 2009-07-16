@@ -44,6 +44,10 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(downloaderWindowWasOpened:)
 												 name:@"DownloaderOpened" object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(silverlightWantsToDownload:)
+												 name:@"KickoffSilverlight" object:nil];
+	
     // Set the WebView delegates
     [webView setFrameLoadDelegate:self];
     [webView setUIDelegate:self];
@@ -80,6 +84,10 @@
 	[window orderOut:self];
 }
 
+- (void)silverlightWantsToDownload:(NSNotification *)notification
+{
+	[self loadURL:[NSURL URLWithString:@"http://www.microsoft.com/silverlight/handlers/getsilverlight.ashx"]];
+}
 
 - (NSData *)dataRepresentationOfType:(NSString *)aType
 {

@@ -31,4 +31,9 @@
 {
 	[webController close];
 }
+
+- (WebController *)getWebController
+{
+	return webController;
+}
 @end
