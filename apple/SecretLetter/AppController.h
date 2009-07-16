@@ -10,4 +10,5 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification;
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication;
 - (void)closeWebView;
+- (WebController *)getWebController;
 @end

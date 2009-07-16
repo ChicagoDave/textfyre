@@ -59,6 +59,7 @@ static BOOL didStart;
 		ourPID, //$1 in restartScript
 		pathToUs, //$2 in the restartScript
 		nil];
+	NSLog(@"command: %@", shArgs);
 	NSTask *restartTask = [NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:shArgs];
 	[restartTask waitUntilExit]; //wait for killArg1AndOpenArg2Script to finish
 	NSLog(@"*** ERROR: %@ should have been terminated, but we are still running", pathToUs);
@@ -148,7 +149,7 @@ static BOOL didStart;
 	//NSString *foo = [NSString stringWithFormat:@"/Volumes/%@/%@.pkg", basename, basename];
 	
     [task1 setLaunchPath:@"/usr/bin/open"];
-    [task1 setArguments:[NSArray arrayWithObjects:@"-W", [NSString stringWithFormat:@"/Volumes/%@/%@.pkg", basename, basename], nil]];
+    [task1 setArguments:[NSArray arrayWithObjects:@"-W", [NSString stringWithFormat:@"/Volumes/%@.3.0/%@.3.0.pkg", basename, basename], nil]];
 	
     [[NSNotificationCenter defaultCenter] 
 	 addObserver:self 
@@ -190,7 +191,7 @@ static BOOL didStart;
 	
     task = [[NSTask alloc] init]; 
     [task setLaunchPath:@"/usr/bin/hdiutil"];
-    [task setArguments:[NSArray arrayWithObjects:@"detach", @"-force", [NSString stringWithFormat:@"/Volumes/%@", basename], nil]];
+    [task setArguments:[NSArray arrayWithObjects:@"detach", @"-force", [NSString stringWithFormat:@"/Volumes/%@.*", basename], nil]];
 	
     [[NSNotificationCenter defaultCenter] 
 	 addObserver:self 
