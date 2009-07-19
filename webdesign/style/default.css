@@ -1,0 +1,74 @@
+﻿/* Default Stylesheet */
+
+															/** BODY ELEMENTS **/
+body {
+	font-size: .75em;
+	width:70%;
+	padding-left:15%;
+	}
+
+
+															/** MAIN CONTAINERS **/
+div#container {
+	margin: 5px auto;
+	text-align: left;
+	}
+	body.fullwidth div#container { width: 100%; }
+	div#header {
+		
+		}
+		div#header-in {
+			
+			}
+	div#content-wrap {
+		
+		}
+		div.content {
+			
+			}
+			div.content-in {
+				
+				}
+	div#footer {
+		
+		}
+		div#footer-in {
+			
+			}
+
+
+
+
+															/** SUB CONTAINERS **/
+* { }
+
+
+
+
+
+
+															/** LISTS **/
+* { }
+
+
+
+
+
+
+															/** TYPOGRAPHY **/
+* { }
+
+
+
+
+
+
+															/** FORMS **/
+* { }
+
+
+
+
+
+
+															/** END **/
