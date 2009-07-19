@@ -1,0 +1,124 @@
+﻿/* Default Stylesheet */
+
+															/** BODY ELEMENTS **/
+body {
+	color: #333;
+}
+															/** MAIN CONTAINERS **/
+div#container {
+}
+
+div#header {
+	color: inherit;
+	background-color:#99CCFF;
+	height:150px;
+}
+
+div#header-in {
+	padding-right:5px;
+	height:24px;
+}
+
+div#header #header-down {
+	float:right;
+	top: 50px;
+	height:20px;
+	font-size:large;
+	padding-right:50px;
+	border: 1px red solid;
+}
+
+.menuLink {
+	padding-left:5px;
+	padding-right:5px;
+}
+.menuArea a:link {
+	text-decoration:none;
+	color:black;
+}
+.menuArea a:active {
+	text-decoration:none;
+	color:black;
+}
+.menuArea a:hover {
+	text-decoration:none;
+	color:white;
+	background-color:maroon;
+}
+.menuArea a:visited {
+	text-decoration:none;
+	color:black;
+}
+
+div#logo {
+	padding-top:5px;
+	padding-left:5px;
+	float:left;
+}
+div#login {
+	float:right;
+}
+.loginBox {
+	vertical-align:bottom;
+	width:60px;
+	height:14px;
+	font-size:xx-small;
+	font-weight:normal;
+	border: 1px black inset;
+	background-color:white;
+	border-style:inset;
+}
+.loginLabel {
+	vertical-align:middle;
+	font-size:xx-small;
+	font-weight:bold;
+}
+.loginButton {
+	text-align:center;
+	width:50px;
+	height:18px;
+	font-size:x-small;
+	font-weight:bold;
+	vertical-align:middle;
+	border: thin black solid;
+}
+
+div#content-wrap {
+}
+div.content {
+	color: inherit;
+}
+div.content-in {
+	position:relative;
+}
+
+div#footer {
+	color: inherit;
+}
+
+.footer-left {
+	text-align: left;
+	margin-top: 5px;
+	color: #666666;
+	font-size: 10px;
+	float:left;
+}
+
+.footer-right 
+{
+	text-align: right;
+	margin-top: 5px;
+	color: #666666;
+	font-size: 10px;
+	float:right;
+}
+
+															/** SUB CONTAINERS **/
+* { }
+															/** LISTS **/
+* { }
+															/** TYPOGRAPHY **/
+* { }
+															/** FORMS **/
+* { }
+															/** END **/
