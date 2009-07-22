@@ -35,7 +35,7 @@ namespace SecretLetter
                     break;
             }
 
-            StoryPage.LoadStory(GameFiles.GameFile.sl_v1_07e, "sl_v1_07e", new StoryHandle());
+            StoryPage.LoadStory(GameFiles.GameFile.sl_v1_07de, "sl_v1_07de", new StoryHandle());
         }
     }
 }

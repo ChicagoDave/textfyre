@@ -60,9 +60,9 @@ namespace SecretLetter.GameFiles {
             }
         }
         
-        public static byte[] sl_v1_07e {
+        public static byte[] sl_v1_07de {
             get {
-                object obj = ResourceManager.GetObject("sl_v1_07e", resourceCulture);
+                object obj = ResourceManager.GetObject("sl_v1_07de", resourceCulture);
                 return ((byte[])(obj));
             }
         }
