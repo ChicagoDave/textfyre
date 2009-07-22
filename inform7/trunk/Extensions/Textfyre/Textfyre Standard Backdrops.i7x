@@ -27,6 +27,12 @@ cloudy skies
 The backdrop-floor is a privately-named backdrop. The backdrop-floor is everywhere. The printed name of the backdrop-floor is "floor".
 Understand "floor", "ground" as the backdrop-floor when the location is grounded.
 
+Instead of putting something on the backdrop-floor:
+	try dropping the noun;
+
+A procedural rule when removing something from the backdrop-floor:
+	ignore the can't remove what's not inside rule;
+
 The backdrop-ceiling is a privately-named backdrop. The backdrop-ceiling is everywhere. The printed name of the backdrop-ceiling is "ceiling".
 Understand "ceiling" as the backdrop-ceiling when the location is interior.
 

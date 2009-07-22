@@ -26,9 +26,11 @@ Definition: something is physically involved:
 		yes;
 	no;
 
-To redirect the action from (this - a thing) to (that - a thing):
+To redirect the/-- action from (this - a thing) to (that - a thing), and try that:
 	if this is the noun, change the noun to that;
 	if this is the second noun, change the second noun to that;
+	if and try that:
+		try the current action;
 
 To decide whether the action is physical:
 	if the current action is listening to the location, no;
@@ -220,6 +222,75 @@ Part 1 - People vs scenery
 The can't turn people rule is listed before the can't turn what's fixed in place rule in the check turning rulebook.
 The can't push people rule is listed before the can't push what's fixed in place rule in the check pushing rulebook.
 The can't pull people rule is listed before the can't pull what's fixed in place rule in the check pulling rulebook.
+
+Part 2 - Printing descriptions activity
+
+Chapter 1 - Printing the description of something
+
+[Based on Example 296, 'Crusoe,' with additional hackery.]
+
+The fancy examining rule is listed instead of the standard examining rule in the carry out examining rules. 
+
+Printing the description of something is an activity. The printing the description activity has a truth state called the final-paragraph-break;
+
+This is the fancy examining rule:
+	carry out the printing the description activity with the noun;
+
+The examine undescribed things rule is not listed in any rulebook.
+The examine undescribed devices rule is not listed in any rulebook.
+The examine undescribed containers rule is not listed in any rulebook.
+
+First before printing the description:
+	change the final-paragraph-break to false;
+
+Rule for printing the description of a container (called item): 
+	if the item goes undescribed by source text:
+		abide by the examine undescribed containers rule instead;
+	say description of item;
+	change the final-paragraph-break to true;
+
+Rule for printing the description of a device (called item): 
+	if the item goes undescribed by source text:
+		abide by the examine undescribed devices rule instead;
+	say description of item;
+	change the final-paragraph-break to true;
+
+Rule for printing the description of a thing (called item): 
+	if the item goes undescribed by source text:
+		abide by the examine undescribed things rule instead;
+	say description of item;
+	change the final-paragraph-break to true;
+
+Last after printing the description of a thing:
+	if the final-paragraph-break is true:
+		say paragraph break;
+
+Chapter 2 - Printing the description of a room
+
+The fancy room description body text rule is listed instead of the room description body text rule in the carry out looking rules. 
+
+This is the fancy room description body text rule:
+	[copied word-for-word from the standard rules, except the last line]
+	if the visibility level count is 0:
+		if set to abbreviated room descriptions, continue the action;
+		if set to sometimes abbreviated room descriptions and
+			abbreviated form allowed is true and
+			darkness witnessed is true,
+			continue the action;
+		begin the printing the description of a dark room activity;
+		if handling the printing the description of a dark room activity,
+			issue miscellaneous library message number 17;
+		end the printing the description of a dark room activity;
+	otherwise if the visibility ceiling is the location:
+		if set to abbreviated room descriptions, continue the action;
+		if set to sometimes abbreviated room descriptions and
+			abbreviated form allowed is true and
+			the location is visited,
+			continue the action;
+		carry out the printing the description activity with the location;
+
+Rule for printing the description of a room:
+	print the location's description; [Standard Rules phrase]
 
 Book 4 - Verbs
 
@@ -627,6 +698,12 @@ Book X - Miscellany
 Chapter 1 - No swearing
 
 Understand the commands "shit", "fuck", "damn", "sod", "curses", "drat", "bother", and "darn" as something new
+
+Chapter 2 - HTMLesque Informese
+
+To say i -- running on: (- style underline; -);
+To say r -- running on: (- style roman; -);
+To say b -- running on: (- style bold; -);
 
 Volume 2A (for use without Custom Library Messages by David Fisher)
 
