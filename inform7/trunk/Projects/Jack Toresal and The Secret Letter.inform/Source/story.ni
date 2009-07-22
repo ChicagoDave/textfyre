@@ -679,7 +679,7 @@ Report buying:
 Does the player mean buying something when the player has the noun:
 	it is very unlikely;
 
-Part 28 - Fancy examining
+[Part 28 - Fancy examining
 
 [ Examining as an activity. Ganked verbatim from Example 296, "Crusoe." ]
 
@@ -704,7 +704,7 @@ Rule for printing the description of something (called item):
 
 Last after printing the description of something (called the item): 
 	unless the item goes undescribed by source text:
-		say paragraph break;
+		say paragraph break; ]
 
 Part 29 - Cutting things with tools
 
@@ -7321,7 +7321,7 @@ After going to the Lower Bailey for the first time:
 Chapter 4 - Event on exiting
 
 After going up from the Lower Bailey:
-	say "You wait, watching the nearest guard until he turns and begins walking away, then sprint lightly up the steps.";
+	say "You wait, watching the nearest guard until he turns and begins walking away, then sprint lightly up the steps. ";
 	continue the action;
 
 Instead of going northeast from the Lower Bailey during Creeping To Lord's Keep:
