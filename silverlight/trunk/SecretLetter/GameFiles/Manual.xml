@@ -125,7 +125,8 @@
       <paragraph>1.04  - Save is compressed and speedier. Unresolved memory leak effects Mac users. Unresolved Font issue on Mac.</paragraph>
       <paragraph>1.05  - Resolved Font issue on Mac. Fixed some minor game play issues. Unresolved memory leak effects Mac users.</paragraph>
       <paragraph>1.06  - 7-Jul-2009: Resolved keyboard memory leak by removing Goudy Font. Added Settings page to adjust colors and fonts. Fixed missing Chapter 10 heading. Fixed quotes getting wrapped.</paragraph>
-      <paragraph>1/07  - 14-Jul-2009: Fixed all of Alan De Smit's bugs and a few others.</paragraph>
+      <paragraph>1.07  - 14-Jul-2009: Fixed all of Alan De Smet's bugs and a few others.</paragraph>
+      <paragraph>1.07  - 16-Jul-2009: Facebook Demo.</paragraph>
     </item>
   </menu>
 </help>
