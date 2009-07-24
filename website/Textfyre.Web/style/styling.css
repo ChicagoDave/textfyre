@@ -169,18 +169,23 @@ div#menuBar {
 .menuTab 
 {
 	float:left;
-	font-size:12pt;
-	font-weight:bold;
-	color:Black;
 	padding-right:15px;
+	height:30px;
+	font-size:14pt;
+	color:black;
+	vertical-align:baseline;
+	text-decoration:none;
+	overflow:visible;
 }
 
 .menuButton A:link {
 	float:left;
 	padding-right:15px;
 	height:30px;
-	font-size:12pt;
+	font-size:14pt;
 	color:white;
+	vertical-align:baseline;
+	text-decoration:none;
 	overflow:visible;
 }
 
@@ -188,28 +193,33 @@ div#menuBar {
 	float:left;
 	padding-right:15px;
 	height:30px;
-	font-size:12pt;
+	font-size:14pt;
 	color:white;
+	vertical-align:baseline;
+	text-decoration:none;
 	overflow:visible;
 }
 
-.menuButton A:hover {
-	float:left;
-	padding-right:15px;
-	height:30px;
-	font-size:12pt;
+.menuButton A:hover
+{
+	float: left;
+	padding-right: 15px;
+	height: 30px;
+	font-size: 14pt;
 	color:black;
-	font-weight:bold;
-	text-decoration:underline;
-	overflow:visible;
+	vertical-align:baseline;
+	text-decoration: underline;
+	overflow: visible;
 }
 
 .menuButton A:active {
 	float:left;
 	padding-right:15px;
 	height:30px;
-	font-size:12pt;
+	font-size:14pt;
 	color:white;
+	vertical-align:baseline;
+	text-decoration:none;
 	overflow:visible;
 }
 
@@ -264,13 +274,3 @@ div#footer {
 	font-size: 10px;
 	float:right;
 }
-
-															/** SUB CONTAINERS **/
-* { }
-															/** LISTS **/
-* { }
-															/** TYPOGRAPHY **/
-* { }
-															/** FORMS **/
-* { }
-															/** END **/

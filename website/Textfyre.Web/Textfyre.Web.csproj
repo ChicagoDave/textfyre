@@ -64,7 +64,6 @@
     <Content Include="style\print.css" />
     <Content Include="style\reset.css" />
     <Content Include="style\styling.css" />
-    <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">
@@ -174,6 +173,7 @@
   <ItemGroup>
     <Content Include="images\david.jpg" />
     <Content Include="images\finley.jpg" />
+    <Content Include="images\slbook.png" />
     <Content Include="images\gentry.jpg" />
     <Content Include="images\ingold.jpg" />
     <Content Include="images\obrian.jpg" />
