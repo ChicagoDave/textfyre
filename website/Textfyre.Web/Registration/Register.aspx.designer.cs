@@ -302,12 +302,21 @@ namespace Textfyre.Web.Registration {
         protected global::System.Web.UI.WebControls.ValidationSummary vSummary;
         
         /// <summary>
-        /// regRegisterButton control.
+        /// regOK control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button regRegisterButton;
+        protected global::System.Web.UI.WebControls.Button regOK;
+        
+        /// <summary>
+        /// regCancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button regCancel;
     }
 }

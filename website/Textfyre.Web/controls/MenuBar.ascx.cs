@@ -14,19 +14,17 @@ using System.Xml.Linq;
 namespace Textfyre.Web.controls {
     public partial class MenuBar : System.Web.UI.UserControl {
         protected void Page_Load(object sender, EventArgs e) {
-            if (!IsPostBack) {
-                MakeMenuItem(menuHome, "Default.aspx", "Home");
-                MakeMenuItem(menuGames, "Games.aspx", "Games");
-                MakeMenuItem(menuParents, "Parents.aspx", "Parents");
-                MakeMenuItem(menuTeachers, "Teachers.aspx", "Teachers");
-                MakeMenuItem(menuLibrarians, "Librarians.aspx", "Librarians");
-                MakeMenuItem(menuAbout, "About.aspx", "About");
-            }
+            MakeMenuItem(menuHome, "Default.aspx", "Home");
+            MakeMenuItem(menuGames, "Games.aspx", "Games");
+            //MakeMenuItem(menuParents, "Parents.aspx", "Parents");
+            //MakeMenuItem(menuTeachers, "Teachers.aspx", "Teachers");
+            //MakeMenuItem(menuLibrarians, "Librarians.aspx", "Librarians");
+            MakeMenuItem(menuAbout, "About.aspx", "About");
         }
 
         private void MakeMenuItem(PlaceHolder holder, string pageName, string label) {
             bool onPage = false;
-            if (pageName == "Default.aspx" && Request.Path.EndsWith("/"))
+            if (pageName == "Default.aspx" && (Request.Path.ToLower().EndsWith(".com/") || Request.Path.ToLower().EndsWith("Default.aspx")))
                 onPage = true;
             if (Request.Path.Contains(pageName))
                 onPage = true;

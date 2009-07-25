@@ -13,9 +13,9 @@
                             <table id="homeFeatures" style="float: right;">
                                 <tr>
                                     <td style="font-size: 12pt;">
-                                        <p style="margin: 10px;">
-                                            <span style="font-weight: bold; font-size: 12pt;">Jack Toresal and The Secret Letter
-                                                is Available</span><br />
+                                        <h1 style="padding: 0 10px 0 10px;">
+                                            Jack Toresal and The Secret Letter is Available</h1>
+                                        <p style="margin: 0 10px 0 10px;">
                                             Textfyre&#39;s first commercial Interactive Fiction game was released on June 26th,
                                             2009. Set in the town of Toresal in the kingdom of Miradania, Secret Letter is an
                                             adventure about a fourteen year old orphan that everyone knows as &quot;Jack&quot;.
@@ -26,16 +26,19 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="font-size: 12pt;">
-                                        <p style="margin: 10px;">
-                                            <span style="font-weight: bold; font-size: 12pt;">Upcoming Games</span><br />
+                                    <td style="font-size: 12pt;padding-top:10px;">
+                                        <span style="font-weight:bold;padding: 0 10px 0 10px;">
+                                            Upcoming Games</span>
+                                        <p style="margin: 0 10px 0 10px;">
                                             Two more Interactive Fiction games are nearing completion, including the first story
                                             in the Klockwerk series. <i>The Shadow in the Cathedral</i>, due September 25th,
                                             begins a tale in an Edwardian world where everyone worships clocks. A young neophyte
                                             within the church is our hero and will be faced with many challenges. <i>A Gift of Empathy</i>
                                             is the first story in the Giant Leaps series and takes place on a modern day college
                                             campus. A group of gifted middle-school kids are spending their summer learning
-                                            new things, especially <asp:HyperLink ID="HyperLink1" runat="server" CssClass="articleLink" NavigateUrl="~/Games.aspx" Text=" ...more" /></p>
+                                            new things, especially
+                                            <asp:HyperLink ID="HyperLink1" runat="server" CssClass="articleLink" NavigateUrl="~/Games.aspx"
+                                                Text=" ...more" /></p>
                                     </td>
                                 </tr>
                             </table>
@@ -46,7 +49,7 @@
                                 The Textfyre Book</div>
                             <div>
                                 <p style="font-size: 12pt; padding-left: 10px; padding-right: 10px;">
-                                    <img alt="Secret Letter User Interface" src="images/secret-prologue.png" />
+                                    <asp:Image runat="server" ImageUrl="~/images/secret-prologue.png" AlternateText="Textfyre's User Interface" />
                                     Textfyre spent eighteen months developing the book interface used in our Interactive
                                     Fiction games. With the help of <a class="articleLink" href="http://willcapellaro.com/index.html">
                                         Will Capellaro</a>'s design (freelance art director) and Thomas Lynge's (Tenteo.Com)

@@ -17,6 +17,10 @@ namespace Textfyre.Web.Registration {
         protected void Page_Load(object sender, EventArgs e) {
         }
 
+        protected void regCancel_Click(object sender, EventArgs e) {
+            Server.Transfer("~/Default.aspx");
+        }
+
         protected void regRegisterButton_Click(object sender, EventArgs e) {
             MembershipCreateStatus status;
             MembershipUser newUser = Membership.CreateUser(regUsername.Text, regPassword.Text, regEmail.Text, regQuestion.Text, regAnswer.Text, false, out status);

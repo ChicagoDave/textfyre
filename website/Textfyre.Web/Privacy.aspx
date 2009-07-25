@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Privacy.aspx.cs"
-    Inherits="Textfyre.Web.Privacy" Title="Untitled Page" %>
+    Inherits="Textfyre.Web.Privacy" Title="Textfyre.Com - Privacy Policy" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
