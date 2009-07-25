@@ -6,6 +6,7 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 
 [  Change Log
 When		Who		What
+25-July-2009 	J. Ingold	Resolved file, added some missing responses.
 24-July-2009	J. Ingold	The majority of Eric Eve's two feedback scripts are dealt with. Remaining issues are one with TSR extension and some missing grammar (on my list to do!)
 23-July-2009	G. Jefferis	Eric Eve bug fixes and a few others
 22-July-2009	J. Ingold	c6 pass complete. Not entirely sure about the "difference" puzzle, really, but it'll do for now until we get some real playtesters. Some weirdness with random number fixing - Covalt's behaviour doesn't seem to be consistent?
@@ -309,6 +310,13 @@ Chapter 5b - Altered Default Messages
 Table of custom library messages (continued)
 Message ID						Message Text 
 LibMsg <report player waiting>	"[one of]The Universal Clock moves onwards: time happens.[or]Tick tock.[or]A few heartbeats measure a few seconds.[or]Time moves on.[at random]"
+
+Chapter 5c - Talking to Yourself
+
+Check asking the player about:
+	say "I'm not ready to start talking to myself quite yet." instead.
+Check telling the player about:
+	say "I'm not ready to start talking to myself quite yet." instead.
 
 Chapter 6 - Say by index
 
@@ -3394,20 +3402,38 @@ An internal gubbin is a kind of thing.
 Instead of doing something when an internal gubbin (called the bit) is physically involved:
 	say "[The bit] is central to the machine, literally. Well out of reach." instead;
 
-[[JON]: All of these could probably do with at least a description.
-
-Rule for printing the description of an internal gubbin:
-	say "...";
-
-Or individually, it's up to you.
-]
 
 The tiny sail is an internal gubbin, part of the tea-machine.
 The thread is an internal gubbin, part of the tea-machine.
 The gauze is an internal gubbin, part of the tea-machine.
 The thin metal strut is an internal gubbin, part of the tea-machine.
 The pin is an internal gubbin, part of the tea-machine.
-The belly spring is an internal gubbin, part of the tea-machine. The printed name of the belly spring is "spring"
+The belly spring is an internal gubbin, part of the tea-machine. The printed name of the belly spring is "spring".
+The flint-iron is an internal gubbin, part of the tea-machine. Understand "flint", "iron", "striker", "match" as the flint-iron.
+
+Rule for printing the description of the tiny sail:
+	say "The sail is used to lift the flint-iron and strike the light."
+
+Rule for printing the description of the thread:
+	say "The thread pulls the flint-iron up."
+
+Rule for printing the description of the gauze:
+	say "The gauze collects steam from the kettle. When there's enough steam, the gauze tilts and the kettle is taken off the heat."
+
+Rule for printing the description of the thin metal strut:
+	say "The thin metal strut is how the gauze is attached to the kettle."
+
+Rule for printing the description of the pin:
+	say "The pin is a small switcher for closing off the gas pipe."
+
+Rule for printing the description of the belly spring:
+	say "The spring is the heart of the machine. Every machine must have one - even you!"
+
+Rule for printing the description of a flint-iron:
+	say "The flint-iron is the traditional clockwork part for making flame."
+
+Rule for printing the description of an internal gubbin:
+	say "It's part of the tea machine's Holy Workings."
 
 Definition: a thing is tea-critical:
 	if it is the tea-machine lever, no; [can be pulled even when the machine is on]
@@ -3602,7 +3628,6 @@ After turning the tea-machine key:
 	say "A few turns and the spring is fully wound.";
 
 Instead of turning the wound tea-machine key:
-	[[JON]: check this refusal]
 	say "It's already wound as far as it will go.";
 
 Instead of taking the tea-machine key:
@@ -3917,6 +3942,11 @@ Rule for firing the HorlogeCounter:
 
 Section 2b - Asking for
 
+[ In future though, we might consider removing the "asking it for" action altogether, and have instead:
+	[ Understand "ask [someone] for [text]" as asking it about. ]
+
+...And dealing with whatever (hopefully lesser) problems that brings. ]
+
 Instead of asking Horloge for Horloge's Keys:
 	if Horloge's Keys are carried:
 		say "I don't need to!";
@@ -4052,17 +4082,7 @@ Horloge's Keys unlock the Refectory Clock.
 
 Understand "keyring", "key" as a Horloge's Keys.
 
-[ Here's a quick stopgap solution for this particular case of 'asking for': ]
 
-[ [JON]: You may want to do something quite different. ]
-
-Instead of asking Horloge for Horloge's Keys:
-	try taking Horloge's keys;
-
-[ In future though, we might consider removing the "asking it for" action altogether, and have instead:
-	[ Understand "ask [someone] for [text]" as asking it about. ]
-
-...And dealing with whatever (hopefully lesser) problems that brings. ]
 
 Instead of taking Horloge's Keys when Horloge's Keys are on the wheeled table:
 	if Horloge is not sipping his tea:
@@ -4981,7 +5001,7 @@ Instead of going down when in the Abbey Herb Garden:
 
 Section 2 - scenery - walls
 
-Some garden walls are scenery in the Herb Garden. "The walls are nine or ten feet of smoothed-down stone, to stop climbers and creepers, human and vegetable alike. (On the other side of the wall is the town.)"
+Some garden walls are scenery in the Herb Garden. "The walls are nine or ten feet of smoothed-down stone, to stop climbers and creepers, human and vegetable alike. (On the other side of the wall is the town.)" Understand "wall" as the garden walls.
 
 Instead of climbing the garden walls: say "I'm not a snail, you know! I can't climb a vertical wall!"
 Instead of jumping over the garden walls: say "I'm not a frog, you know!"
@@ -5082,7 +5102,7 @@ The metal hood is scenery, in the Herb Garden. Understand "cover" as the hood. "
 
 Instead of hiding under or entering or hiding behind the metal hood: say "The hood is filled with flowerbeds. There's no room for me in there!"
 
-The copper spring is scenery, part of the revolving plate. "There's a spring somewhere underneath, that expands and contracts in the heat from the lens, and drives the whole garden around." [ [JON]: Careful. This description was being treated as an initial appearance (because the copper spring was not defined to be scenery.) If in doubt, be explicit. ]
+The copper spring is scenery, part of the revolving plate. "There's a spring somewhere underneath, that expands and contracts in the heat from the lens, and drives the whole garden around." 
 
 Instead of doing something when the copper spring is physically involved:
 	say "I can't see the spring, it's underneath the garden floor.";
@@ -5182,9 +5202,14 @@ Chapter 1b - Wretches
 
 Section - Description
 
-[[JON]: These would be better off as not scenery; these two particular ones who come to pester us should stand out a bit more than the general mention in the room description. Perhaps give them an initial description, and then when they move away, do "now the poor wretches are scenery".]
 
-Some poor wretches are scenery, men in the Cathedral Yard. Understand "beggar/beggars", "unfortunates", "disadvantaged", "leper/lepers" as the poor wretches. The description of the poor wretches is "In a civilised city like St Philip there's no reason for anyone to beg. That's what the Abbot says. There's always a spring that needs winding somewhere, so no-one need be short of a coin unless they're too Vice-ridden to work... But then, I did just see the Abbot taking money for no work at all..."
+Some poor wretches are men in the Cathedral Yard. Understand "beggar/beggars", "unfortunates", "disadvantaged", "leper/lepers" as the poor wretches.  The description of the poor wretches is "In a civilised city like St Philip there's no reason for anyone to beg. That's what the Abbot says. There's always a spring that needs winding somewhere, so no-one need be short of a coin unless they're too Vice-ridden to work... But then, I did just see the Abbot taking money for no work at all..."
+
+Rule for writing a paragraph about the poor wretches:
+	if BEGGAR_YARD1 is unfired:
+		now the poor wretches are mentioned;
+	else:
+		say "Two beggars are either side of me, close enough to grasp at my arm!";
 
 Instead of giving something to the poor wretches:
 	try dropping the noun;
@@ -5192,7 +5217,6 @@ Instead of giving something to the poor wretches:
 Instead of touching or pushing or attacking the poor wretches:
 	say "I don't want to go near them. Who knows what I'll catch.";
 
-[[JON]: Be careful with instead / after - when it was 'instead' here, the player could e.g. drop the lucky clock key, never for it to be retrieved. Using 'after' solves this.]
 
 After dropping something in the Cathedral Yard when BEGGAR_YARD2 is unfired:
 	remove the noun from play;
@@ -5248,6 +5272,7 @@ Every turn when in the Cathedral Yard and BEGGAR_YARD1 is unfired:
 	fire BEGGAR_YARD1;	
 
 Rule for firing unfired BEGGAR_YARD2:
+	now the poor wretches are scenery;
 	say "Without a word, the creeping beggars lose interest in me and move away across the yard.";
 
 Every turn when in the Cathedral Yard and BEGGAR_YARD2 is fired and a random chance of 1 in 3 succeeds:
@@ -5612,15 +5637,14 @@ Instead of taking or pushing the statuettes:
 
 A miniature statuette is a kind of thing. Some miniature statuettes are defined by the table of minor saints.
 
-[[JON]: You may wish to fiddle with these as you see best.]
 
 Table of minor saints
-miniature statuette	tool (indexed text)	stance		expression
-Wainwright		"compasses"		"brandishes"	"sternly"
-Maxwell			"electronia"		"ponders"	"glumly"
-Cauchy			"dividing rod"		"holds"		"expressionlessly"
-Decartes		"set square"		"studies"	"inscrutably"
-Allan			"hexagonal key"		"clutches"	"tightly"
+miniature statuette	tool (indexed text)	stance			expression
+Wainwright		"compasses"				"brandishes"		"magnificently"
+Maxwell			"electronia"				"ponders"		"glumly"
+Cauchy			"dividing rod"			"considers"		"with fascination"
+Descartes		"set square"				"studies"		"inscrutably"
+Allan			"hexagonal key"			"clutches"		"earnestly"
 Ykea			"design manuals"		"seems to glare at"	"in frustration"
 
 When play begins:
@@ -5635,7 +5659,7 @@ Understand the tool property as describing a miniature statuette.
 Understand "st/saint wainwright", "compass" as Wainwright.
 Understand "st/saint maxwell" as Maxwell.
 Understand "st/saint cauchy", "rod" as Cauchy.
-Understand "st/saint decartes/descartes", "descartes" as Decartes. [[JON]: Unsure if typo! ]
+Understand "st/saint descartes" as Descartes.
 Understand "st/saint allan", "allan key" as Allan.
 Understand "st/saint ykea", "manuals" as Ykea.
 
@@ -6793,7 +6817,7 @@ Chapter 1 - Description
 The East Clerestory is a room, in the Cathedral Space. "[if Doric is in North Clerestory]I'm legging it from the watchman, who's only a pace behind. I could jump the rail or take the stairs down - I know which I'd prefer![otherwise if Archbishop's Meeting has not happened]This balcony, which curves to the northwest, is built right above the choir stalls. I could probably jump down onto them if I felt really brave, but it'd be easier to take the stairs, built against the east wall, just below the enormous stained glass window.[otherwise]I'm back on the balcony on the east side of the Cathedral, underneath the gigantic window depicting a winding key. Stairs lead down and the balcony curves away to the northwest.[end if]"
 
 Instead of making to leave when in the East Clerestory: try going down instead.
-Instead of going inside in the East Clerestory: try going down instead.
+Instead of going inside in the East Clerestory: try going north instead.
 
 Chapter 2 - Events on Entry
 
@@ -9817,7 +9841,7 @@ Instead of opening the clock shop door when the scrap of paper is off-stage:
 Instead of opening the clock shop door when Return to Covalt's has not happened:
 	say "'That's the place,' Covalt insists, tapping the address with a finger like a roofing mallet. 'The Difference Engine'll tell you all you want. I hope. If you can get a clear idea what you're wanting and – well, anyway.' He puffs his cheeks. 'One dead air balloon says you'll do your best.'[paragraph break]'Thanks,' I say. The first person to be nice to me – well, ever really. 'I appreciate your help.'[paragraph break]'Well, nothing's too good for a rat,' he snarls. 'And do pop back here later if you need to. I don't think. Bringing the Heretic police and that. Go on! Get out of it.' And with that, he boots me through the door and slams it with relish.";
 	pause the game;
-	say "The streets of St Philip are narrow and winding, closer to the veins on a leaf than anything mechanical. Their only Holy Function is to get me completely totally lost, and they do that so well it takes a good couple of hours to find the way to the steps of the Counting House.[paragraph break]If anyone from the Abbey saw me out here they'd have my guts for wheel-belts. Lucky then that this is a side-street off a side-street, the kind of place full of urchins who look the same as me. Anyway, all the important people here are riding in closed carriages.";
+	say "The streets of St Philip are narrow and winding, closer to the veins on a leaf than anything mechanical. Their only Holy Function is to get me completely totally lost, and they do that so well that it takes a good couple of hours to find the way to the steps of the Counting House.[paragraph break]If anyone from the Abbey saw me out here they'd have my guts for wheel-belts. Lucky then that this is a side-street off a side-street, the kind of place full of urchins who look the same as me. Anyway, all the important people here are riding in closed carriages.";
 	move the player to The Street;
 
 Chapter 5 - Covalt's reactions to going to the Bedroom
@@ -14071,7 +14095,7 @@ At the time when the figure enters:
 	fire TRIG_FIGURE_ENTERS;
 
 Rule for firing unfired TRIG_FIGURE_ENTERS:
-	say "The door opens[unless we are hiding behind the iron vault door] and I press myself quickly behind it[end if]. Darkness enters like cold night wind through a hole in the roof. It is the Figure, moving as fast as only he can.[paragraph break]He wastes no time and goes straight to the altar. It’s all I can do to keep quiet while I’m watching. He picks it up – for a moment I think the trap has failed, but then I understand that Covalt has built it better than that: delaying the sting to make certain of getting the victim.[paragraph break]There’s a [i]crack[r] as the needle springs out. The Figure stops still. That’s it, I’m thinking, I’ve got him. I’ve got him![paragraph break]Then, slowly, the Figure puts down the decoy. He pulls the needle curiously from his arm. From the tilt of his hood I can see he’s regarding it – firstly curiously, then with anger.[paragraph break]He’s completely unharmed[if the player is dishonest]. Maybe I should have made the potion properly, like Covalt told me to! Or maybe it wouldn’t have mattered[end if]. Maybe the Figure can run, and jump and climb, and can’t be harmed.[paragraph break]In a single movement like a cat with a rabbit he tears the decoy apart. Guts and gears spill everywhere. The Figure picks one up, turns it over – then dashes away.[paragraph break]At least I’ve scared him, I think. But of course, I haven’t. Covalt made the decoy well, but he made it in a hurry, using whatever parts he could find. Parts that still bear his stamp. And his name.[paragraph break]A moment later, I’ve discarded the Perpetuum and I’m racing out the door.";
+	say "The door opens[unless we are hiding behind the iron vault door] and I press myself quickly behind it[end if]. Darkness enters like cold night wind through a hole in the roof. It is the Figure, moving as fast as only he can.[paragraph break]He wastes no time and goes straight to the altar. It’s all I can do to keep quiet while I’m watching. He picks it up – for a moment I think the trap has failed, but then I understand that Covalt has built it better than that: delaying the sting to make certain of getting the victim.[paragraph break]There’s a [i]crack[r] as the needle springs out. The Figure stops still. That’s it, I’m thinking, I’ve got him. I’ve got him![paragraph break]Then, slowly, the Figure puts down the decoy. He pulls the needle curiously from his arm. From the tilt of his hood I can see he’s regarding it – firstly curiously, then with anger.[paragraph break]He’s completely unharmed[if the player is dishonest]. Maybe I should have made the potion properly, like Covalt told me to! Or maybe it wouldn’t have mattered[end if]. Maybe the Figure can run, and jump and climb, and can’t be harmed.[paragraph break]In a single movement like a cat with a rabbit he tears the decoy apart. Guts and gears spill everywhere. The Figure picks one up, turns it over – then dashes away.[paragraph break]At least I’ve scared him, I think. But of course, I haven’t. Covalt made the decoy well, but he made it in a hurry, using whatever parts he could find. Parts that still bear his stamp. And his name.[paragraph break]A moment later, I’ve got the Perpetuum under one arm and I’m racing out the door.";
 
 Section 4 - Hiding
 
@@ -14129,12 +14153,25 @@ After going to Covalt's Bedroom from the Clock Shop during Midnight:
 	change the current script to {};
 	continue the action;
 
+Instead of hiding from view in the Clock Shop during Midnight:
+	say "I can't. I've got to help him."
+
+Section 2 - Wreckage
+
+The clock shop wreckage is scenery. "The shop is reduced to rubble. No sign of Covalt though - no arms or legs sticking out."
+
+Instead of searching or turning or pushing or hiding inside or hiding under the clock shop wreckage:
+	say "Leave it, Wren. You've got to save Covalt!"
+
+When Midnight begins:
+	move the clock shop wreckage to the Clock Shop.
+
 Part 2 - Bedroom
 
 Chapter 1 - Description
 
 Rule for printing the description of Covalt's Bedroom during Midnight:
-	say "The skylight is broken. The bed is in pieces. One wall is half-rubble, and that’s where Covalt is, pinned in place by a shadow. The Figure, leaning over him, with murderous intent[one of]. [paragraph break]I can feel the clock key, cold against my chest. No-one to save you now, Wren.[or].[stopping]"
+	say "The skylight is broken. The bed is in pieces. One wall is half-rubble, and that’s where Covalt is, pinned in place by a shadow. The Figure, leaning over him, with murderous intent[one of]. [paragraph break]I can feel my lucky clock key, cold against my chest. No-one to save you now, Wren. No clockwork making it easy for you[or].[stopping]"
 
 Instead of going north from Covalt's Bedroom during Midnight:
 	say "I can’t leave him!";
@@ -14152,7 +14189,7 @@ Instead of doing something when the feather bed is physically involved during Mi
 Section 2 - Wreckage 
 
 Rule for printing the description of the wrecked skylight during Midnight:
-	say "Bits of my balloon are still hanging from the skylight like dirty moss.";
+	say "Bits of my balloon are hanging from the skylight like dirty moss.";
 
 Instead of doing something when the wrecked skylight is physically involved during Midnight:
 	say "There won’t be any help coming in that way!";
@@ -14276,8 +14313,6 @@ An unlocking rule for the winding slot:
 Instead of unlocking the winding slot with my lucky clock key:
 	try attacking the wound spring instead;
 
-[[JON]: Couple of problems here; at this point, the player is carrying the Perpetuum, so the text about Covalt "...taking the Perpetuum out from under the broken bed" is not right. Also the Figure switches back and forth between being a "he" and an "it".]
-
 Instead of inserting my lucky clock key into the winding slot:
 	try attacking the wound spring instead;
 
@@ -14286,7 +14321,7 @@ Instead of attacking the wound spring:
 	try attacking the wound spring with my lucky clock key instead;
 
 Instead of attacking the wound spring with my lucky clock key:
-	say "The winding slot on the Figure's neck is a thumb-width big. A tiny target, like fitting a tweezer's head into the cracks of a mesh-system. But precision is what clockwork’s all about. I’ve a novice. I’ve trained. And I know that the winding slot goes all the way in. Right into the Figure’s clockwork soul.[paragraph break]I grab the key from around my neck and plunge it in. The Figure doesn’t notice – it can’t feel! – until I start to turn.[paragraph break]The spring begins to coil. The Figure jerks up, releasing Covalt, who falls back to the floor. It struggles to turn, trying to make a grab for me, but the ravens on either side are battering it back. I only need another turn or two. The spring inside the neck is getting almost impossible to move and then...[paragraph break]CRACK![paragraph break]I can hear the spring spinning off inside the Figure’s chest. Hear the awful noise as it catches in a mechanism deep inside. I quickly make the sign of the Winding Key as the Figure crumples: first one leg, then the other. The floor shakes as it falls.[paragraph break]The last of his energy is enough to look up at me. 'You,' it hisses through lips that don’t move as he speaks. 'You know not what you do.'[paragraph break]And then, silence. The ravens settle, one on each of Covalt’s shoulders. The old man looks exhausted, his face the colour of bruised tomatoes.[paragraph break]'That’s the most incredible piece of clockwork I ever saw,' he says slowly, furiously, his eyes glowing with anger. 'And you just destroyed it.'[paragraph break]Can Covalt really be angry that I...[paragraph break]'That was well done, young Wren.' He coughs. 'But I tell you, when I build something like that metal man, I’m going to give him an off-switch. Stupid to have to break such a fine machine. Whoever built that... a genius.' He strokes his beard, and gets to his feet – taking the Perpetuum out from under the broken bed as he does so. He’s looking back to normal already: a sour-faced moody old man. 'A genius, and an idiot, too.'[paragraph break]'But who was it?' I demand. 'Who built it?'[paragraph break]'That’s the question,' Covalt answers, gravely. 'For every spring that’s wound on this Earth, there’s a human hand turning the key. No divine mechanics down here. We may be free of this piece of clockwork –' and he lands a kick squarely in the still automaton’s chest. 'But someone was after the Perpetuum. Someone was planning an army. We may be free of the clockwork, young Wren. But we’re not free of the clockmaker.'";
+	say "The winding slot on the Figure's neck is a thumb-width big. A tiny target, like fitting a tweezer's head into the cracks of a mesh-system. But precision is what clockwork’s all about. I’ve a novice. I’ve trained. And I know that the winding slot goes all the way in. Right into the Figure’s clockwork soul.[paragraph break]I grab the key from around my neck and plunge it in. The Figure doesn’t notice – it can’t feel! – until I start to turn.[paragraph break]The spring begins to coil. The Figure jerks up, releasing Covalt, who falls back to the floor. It struggles to turn, trying to make a grab for me, but the ravens on either side are battering it back. I only need another turn or two. The spring inside the neck is getting almost impossible to move and then...[paragraph break]CRACK![paragraph break]I can hear the spring spinning off inside the Figure’s chest. Hear the awful noise as it catches in a mechanism deep inside. I quickly make the sign of the Winding Key as the Figure crumples: first one leg, then the other. The floor shakes as it falls.[paragraph break]The last of its energy is enough to look up at me. 'You,' it hisses through lips that don’t move as it speaks. Its voice sounds almost sad. 'You know not what you do.'[paragraph break]And then, silence. The ravens settle, one on each of Covalt’s shoulders. The old man looks exhausted, his face the colour of bruised tomatoes.[paragraph break]'That’s the most incredible piece of clockwork I ever saw,' he says slowly, furiously, his eyes glowing with anger. 'And you just destroyed it.'[paragraph break]Can Covalt really be angry that I...[paragraph break]'That was well done, young Wren.' He coughs. 'But I tell you, when I build something like that metal man, I’m going to give him an off-switch. Stupid to have to break such a fine machine. Whoever built that... a genius.' He strokes his beard, and gets to his feet – taking the Perpetuum from me as he does so. He’s looking back to normal already: a sour-faced moody old man. 'A genius, and an idiot, too.'[paragraph break]'But who was it?' I demand. 'Who built it?'[paragraph break]'That’s the question,' Covalt answers, gravely. 'For every spring that’s wound on this Earth, there’s a human hand turning the key. No divine mechanics down here. We may be free of this piece of clockwork –' and he lands a kick squarely in the still automaton’s chest. 'But someone was after the Perpetuum. Someone was planning an army. We may be free of the clockwork today, young Wren. But we’re not yet free of the clockmaker.'";
 	end the game in victory;
 
 Book W - Walkthrough Script
