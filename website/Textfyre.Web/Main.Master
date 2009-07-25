@@ -5,9 +5,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Textfyre.Com</title>
-    <!-- Javascript - Fix the flash of unstyled content -->
-
-    <script type="text/javascript"></script>
 
     <!-- Stylesheets -->
     <link href="style/reset.css" media="screen" rel="stylesheet" type="text/css" />
@@ -21,7 +18,7 @@
     <meta content="public" http-equiv="cache-control" />
     <meta content="no-cache" http-equiv="pragma" />
     <meta content="never" http-equiv="expires" />
-    <meta content="en-gb" name="language" />
+    <meta content="en-us" name="language" />
     <meta content="true" name="MSSmartTagsPreventParsing" />
     <meta content="index, follow" name="robots" />
     <meta content="14 days" name="revisit-after" />
@@ -49,8 +46,7 @@
     <div id="container">
         <div id="header">
             <div id="logo">
-                <a href="/">
-                    <asp:Image ID="Image1" runat="server" AlternateText="Textfyre, Inc." ImageUrl="~/images/logo.png" /></a>
+                <asp:HyperLink runat="server" Text="" NavigateUrl="~/Default.aspx"><asp:Image ID="Image1" runat="server" AlternateText="Textfyre, Inc." ImageUrl="~/images/logo.png" /></asp:HyperLink>
             </div>
             <div id="headerOut" runat="server">
                 <table style="float:right;">

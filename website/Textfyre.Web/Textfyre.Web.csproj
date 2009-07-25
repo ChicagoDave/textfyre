@@ -58,7 +58,6 @@
     <Content Include="images\secret-prologue.gif" />
     <Content Include="images\secret.jpg" />
     <Content Include="images\shadow.jpg" />
-    <Content Include="javascript\common.js" />
     <Content Include="style\default.css" />
     <Content Include="style\print.css" />
     <Content Include="style\reset.css" />
@@ -214,6 +213,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="javascript\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

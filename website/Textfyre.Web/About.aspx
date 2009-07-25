@@ -14,11 +14,16 @@
                             <asp:Image ID="Image1" runat="server" ImageUrl="~/images/david.jpg" AlternateText="David Cornelson, Founder and President" />
                         </td>
                         <td style="vertical-align: top; padding-left: 10px;">
-                            Founded in 2007 by David Cornelson, Textfyre is the culmination of many years of
-                            passionate computer consulting work and involvement in the hobbyist Interactive
-                            Fiction community. David has been in the computer industry since 1985 and worked
-                            as a consultant for many Fortune 500 corporations. He currently lives in Illinois
-                            with his wife and five children.
+                            <h1>
+                                Founded in 2007 by David Cornelson,</h1>
+                            Textfyre is the culmination of many years of passionate computer consulting work
+                            and involvement in the hobbyist Interactive Fiction community. David has been in
+                            the computer industry since 1985 and worked as a consultant for many Fortune 500
+                            corporations. He currently lives in Illinois with his wife and five children. Textfyre&#39;s
+                            vision is to bring entertainment to the family computer that supplements reading
+                            and cognitive thinking education. By introducing logic into story-telling, we enable
+                            kids to make decisions in each game that have a real impact on the character and
+                            the setting.
                         </td>
                     </tr>
                     <tr>
@@ -30,8 +35,8 @@
                             <asp:Image ID="Image2" runat="server" ImageUrl="~/images/gentry.jpg" AlternateText="Michael Gentry, Miradania Designer and Writer" />
                         </td>
                         <td style="vertical-align: top; padding-left: 10px;">
-                            Michael Gentry is an awared winning Interactive Fiction author with his two major games,
-                            Anchorhead and Little Blue Men. He lives on the east coast.
+                            MICHAEL GENTRY is an award winning Interactive Fiction author with two major games,
+                            Anchorhead and Little Blue Men. He lives on the east coast with his wife and children.
                         </td>
                     </tr>
                     <tr>
@@ -59,7 +64,7 @@
                             <asp:Image ID="Image4" runat="server" ImageUrl="~/images/ingold.jpg" AlternateText="Jon Ingold, Klockwerk Co-Designer and Writer" />
                         </td>
                         <td style="vertical-align: top; padding-left: 10px;">
-                            Jon Ingold is from Manchester, UK. His previous Interaction Fiction has won competitions
+                            JON INGOLD is from Manchester, UK. His previous Interaction Fiction has won competitions
                             and awards, most notably All Roads (winner of the 2001 Interactive Fiction competition
                             and Best Game of the Year award, and published in the Electronic Literature Organisation's
                             first annual collection) and Dead Cities (on display in the Museum of Science Fiction
@@ -75,7 +80,7 @@
                             <asp:Image ID="Image5" runat="server" ImageUrl="~/images/obrian.jpg" AlternateText="Paul O'Brian, Giant Leaps Designer" />
                         </td>
                         <td style="vertical-align: top; padding-left: 10px;">
-                            Paul O'Brian is the only person ever to have won the Interactive Fiction Competition
+                            PAUL O'BRIAN is the only person ever to have won the Interactive Fiction Competition
                             twice, taking the top prize in 2002 and 2004 with games from his Earth And Sky series.
                             In addition to authoring games, he has written hundreds of reviews, all of which
                             are available <a id="aboutLink" href="http://spot.colorado.edu/~obrian/IF.htm">online</a>.

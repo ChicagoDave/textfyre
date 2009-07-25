@@ -2,13 +2,6 @@
     Inherits="Textfyre.Web.Registration.Register" Title="Textfyre.Com - Registration" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
-    <script language="javascript" type="text/javascript">
-        function GoHome() {
-            window.location.href = '/Default.aspx';
-        }
-    </script>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="content-wrap" class="clear">
@@ -18,10 +11,11 @@
                     <tr>
                         <td width="60%" style="padding-left: 10px; padding-right: 10px; border-left: 1px black solid;
                             border-right: 1px black solid;">
+                            <h1>Welcome to Textfyre.Com and thank you for registering.</h1>
                             <p>
-                                Welcome to Textfyre.Com and thank you for registering. In order to complete the
+                                In order to complete the
                                 registration process, we will need to gather a few pieces of information from you.
-                                Be assured that none of your personal information will be shared or sold.</br>
+                                Be assured that none of your personal information will be shared or sold.<br/>
                                 <br />
                                 <span style="font-weight: bold">If you are under 18 years old, please have a parent
                                     register for you.</span>
@@ -139,17 +133,21 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2" style="float: right;">
-                                        <input type="button" id="regCancelButton" onclick="javascript:GoHome();" value="Cancel" />
-                                        <asp:Button runat="server" ID="regRegisterButton" Text="OK" OnClick="regRegisterButton_Click" ValidationGroup="Login1" CausesValidation="true" />
+                                        <asp:Button runat="server" ID="regOK" Text="OK" OnClick="regRegisterButton_Click" ValidationGroup="Login1" CausesValidation="true" />
+                                        <asp:Button runat="server" ID="regCancel" Text="Cancel" OnClick="regCancel_Click" CausesValidation="false" />
                                     </td>
                                 </tr>
                             </table>
                         </td>
-                        <td width="40%" style="padding-left: 10px; padding-right: 10px; border-right: 1px black solid;">
+                        <td width="40%" style="padding: 0 10px 30px 10px; border-right: 1px black solid;">
                             <div style="text-align: center; font-weight: bold;">
-                                TEXTFYRE REGISTRATION</div>
-                            <p>
-                                Now is the time for all good students to come to the aid of their teachers.</p>
+                                TEXTFYRE REGISTRATION BENEFITS</div>
+                                <ul>
+                                    <li>Be the first to hear about new games</li>
+                                    <li>Play online demonstrations of current and upcoming games</li>
+                                    <li>Become involved in the development of new games</li>
+                                    <li>Receive discounts on software</li>
+                                </ul>
                         </td>
                     </tr>
                 </table>
