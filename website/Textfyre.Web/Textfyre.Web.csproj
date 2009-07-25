@@ -54,7 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\banner.jpg" />
-    <Content Include="images\logo-med.png" />
     <Content Include="images\logo.png" />
     <Content Include="images\secret-prologue.gif" />
     <Content Include="images\secret.jpg" />
@@ -72,6 +71,20 @@
     </Compile>
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CancelledSale.aspx.cs">
+      <DependentUpon>CancelledSale.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CancelledSale.aspx.designer.cs">
+      <DependentUpon>CancelledSale.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CompletedSale.aspx.cs">
+      <DependentUpon>CompletedSale.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompletedSale.aspx.designer.cs">
+      <DependentUpon>CompletedSale.aspx</DependentUpon>
     </Compile>
     <Compile Include="controls\MenuBar.ascx.cs">
       <DependentUpon>MenuBar.ascx</DependentUpon>
@@ -114,6 +127,13 @@
     </Compile>
     <Compile Include="Parents.aspx.designer.cs">
       <DependentUpon>Parents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Privacy.aspx.cs">
+      <DependentUpon>Privacy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Privacy.aspx.designer.cs">
+      <DependentUpon>Privacy.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registration\MySettings.aspx.cs">
@@ -179,13 +199,18 @@
     <Content Include="images\obrian.jpg" />
     <Content Include="images\registerdown.png" />
     <Content Include="images\registerup.png" />
+    <Content Include="Privacy.aspx" />
     <Content Include="Registration\MySettings.aspx" />
     <Content Include="Registration\Register.aspx" />
     <Content Include="Registration\ResetPassword.aspx" />
     <Content Include="Registration\Validator.aspx" />
     <Content Include="Registration\Welcome.aspx" />
-    <Content Include="Sales.html" />
     <Content Include="Web.sitemap" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CancelledSale.aspx" />
+    <Content Include="CompletedSale.aspx" />
+    <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

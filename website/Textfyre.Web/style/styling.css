@@ -138,10 +138,6 @@ div#regRightPage
 	text-decoration:underline;
 }
 
-input#regRegisterButton 
-{
-}
-
 .registerLink A:visited {
 	font-size:10pt;
 	color:black;
@@ -163,7 +159,7 @@ input#regRegisterButton
 div#menuBar {
 	position:absolute;
 	top:120px;
-	left:580px;
+	right:20%;
 }
 
 .menuTab 
