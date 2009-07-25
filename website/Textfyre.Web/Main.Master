@@ -66,7 +66,7 @@
                 </table>
             </div>
             <div id="headerIn" runat="server">
-                <div id="login">
+                <div id="login" style="padding-right:10px;">
                     <asp:Login ID="Login1" runat="server">
                         <LayoutTemplate>
                             <asp:Label CssClass="loginLabel" ID="UserNameLabel" runat="server" AssociatedControlID="UserName">User Name:</asp:Label>
@@ -78,7 +78,7 @@
                         </LayoutTemplate>
                     </asp:Login>
                 </div>
-                <div id="register" class="registerLink">
+                <div id="register" class="registerLink" style="padding-right:10px;">
                     <asp:HyperLink runat="server" ID="registerLink" Text="Register with Textfyre.Com"
                         NavigateUrl="Registration\Register.aspx" />
                 </div>
@@ -96,8 +96,8 @@
         <div class="footer-left">
             Compatible with Windows XP, Windows Vista, Windows 7, and Intel Mac OS X</div>
         <div class="footer-right">
-            <a href="privacy.html">Privacy Policy</a>&nbsp;&nbsp;&nbsp; Copyright © 2009 <a href="">
-                Textfyre, Inc.</a> All rights reserved.</div>
+            <asp:HyperLink runat="server" ID="PrivacyLink" Text="Privacy Policy" NavigateUrl="~/Privacy.aspx" />
+            <span style="padding-left:10px;">Copyright © 2009 Textfyre, Inc.</a> All rights reserved.</span></div>
     </div>
     <!-- end #footer -->
     <!-- end div#container -->
