@@ -28,7 +28,25 @@
 
   <Art ID="CreditArt" Path="Images/TitlePage.jpg" Width="280" Height="186" Margin="0,0,0,30" Fade="False" />
 
-  <!--<Art ID="CameoArt_Teisha" Path="Images/CameoArt/Teisha.png" Width="200" Height="205" Margin="0,0,0,0" />-->
+  <Art ID="CameoArt_Teisha" Path="Images/CameoArt/cameoTeisha.png" Width="140" Height="215" Margin="0,0,0,0" />
+  <Art ID="CameoArt_Germaise" Path="Images/CameoArt/cameoGermaise.png" Width="140" Height="215" Margin="0,0,0,0" />
+  <Art ID="CameoArt_OlganMinor" Path="Images/CameoArt/cameoOlganMinor.png" Width="140" Height="215" Margin="0,0,0,0" />
+  <Art ID="CameoArt_OldManHolstenoffer" Path="Images/CameoArt/cameoHolstenoffer.png" Width="140" Height="215" Margin="0,0,0,0" />
+  <Art ID="CameoArt_BaronFossville" Path="Images/CameoArt/cameoBaronFossville.png" Width="140" Height="215" Margin="0,0,0,0" />
+  <Art ID="CameoArt_Bobby" Path="Images/CameoArt/cameoBobby.png" Width="140" Height="215" Margin="0,0,0,0" />
+  <Art ID="CameoArt_Theclothier" Path="Images/CameoArt/cameoClothier.png" Width="140" Height="215" Margin="0,0,0,0" />
+  <Art ID="CameoArt_DameSandler" Path="Images/CameoArt/cameoDameSandler.png" Width="140" Height="215" Margin="0,0,0,0" />
+  <Art ID="CameoArt_Pieter" Path="Images/CameoArt/cameoPieter.png" Width="140" Height="215" Margin="0,0,0,0" />
+  <Art ID="CameoArt_ThePrinceofGravesal" Path="Images/CameoArt/cameoPrinceGravesal.png" Width="140" Height="215" Margin="0,0,0,0" />
+  <Art ID="CameoArt_TheChorusBrothers" Path="Images/CameoArt/cameoChorusBrothers.png" Width="140" Height="215" Margin="0,0,0,0" />
+  <Art ID="CameoArt_TheBaronofAmhyron" Path="Images/CameoArt/cameoLordFalton.png" Width="140" Height="215" Margin="0,0,0,0" />
+  <Art ID="CameoArt_Jacobs" Path="Images/CameoArt/cameoJacobs.png" Width="140" Height="215" Margin="0,0,0,0" />
+  <Art ID="CameoArt_JacobstheElder" Path="Images/CameoArt/cameoJacobsElder.png" Width="140" Height="215" Margin="0,0,0,0" />
+  <Art ID="CameoArt_TheEarlofBresa" Path="Images/CameoArt/cameoEarlBresa.png" Width="140" Height="215" Margin="0,0,0,0" />
+  <Art ID="CameoArt_TheDukeofInhyron" Path="Images/CameoArt/cameoDukeInhyron.png" Width="140" Height="215" Margin="0,0,0,0" />
+  <Art ID="CameoArt_Olmer" Path="Images/CameoArt/cameoOlmerDarrens.png" Width="140" Height="215" Margin="0,0,0,0" />
+  <Art ID="CameoArt_Thebald-headedman" Path="Images/CameoArt/cameoOlmerDarrens.png" Width="140" Height="215" Margin="0,0,0,0" />
+  <Art ID="CameoArt_ThePrincess" Path="Images/CameoArt/cameoPrincess.png" Width="140" Height="215" Margin="0,0,0,0" />
 
   <!-- SpotArt -->
   <Art ID="SpotArtPrologue" TextMatch="Mid-morning always sees the Grubber" ShowText="True" Path="Images/prologue.jpg" Width="280" Height="182" Align="Center" Margin="0,0,0,40" />

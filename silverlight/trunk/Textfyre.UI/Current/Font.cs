@@ -23,7 +23,8 @@ namespace Textfyre.UI.Current
             MainItalic,
             Header,
             Footer,
-            Input
+            Input,
+            Conversation
         }
         
         public class FontDefinition
@@ -327,6 +328,25 @@ namespace Textfyre.UI.Current
         }
         #endregion
 
+
+        #region :: Conversation ::
+        private static FontDefinition _conversation;
+        public static FontDefinition Conversation {
+            get {
+                if (_conversation == null) {
+                    _conversation = new FontDefinition(Storage.Settings.Get("ConversationFontDef"));
+                }
+
+                return _conversation;
+            }
+
+            set {
+                _conversation = value;
+                Storage.Settings.Set("ConversationFontDef", _conversation.GetDef());
+            }
+        }
+        #endregion
+
         #region :: ApplyFont ::
         public static void ApplyFont( FontType fontType, TextBlock textBlock )
         {
@@ -358,6 +378,9 @@ namespace Textfyre.UI.Current
                     break;
                 case FontType.Input:
                     fd = Input;
+                    break;
+                case FontType.Conversation:
+                    fd = Conversation;
                     break;
             }
 

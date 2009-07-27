@@ -61,6 +61,9 @@ namespace Textfyre.UI.Controls.UserSettings
             Current.Font.FontDefinition fdFooter = Textfyre.UI.UserSettings.FromFontDef(FPFooter.GetFontDef());
             fdFooter.Apply(FPPreview.TbFooter);
 
+            Current.Font.FontDefinition fdConversation = Textfyre.UI.UserSettings.FromFontDef(FPConversation.GetFontDef());
+            fdConversation.Apply(FPPreview.TbConversation);
+
         }
 
         void CpbBgColor_Click(object sender, EventArgs e)
@@ -79,6 +82,7 @@ namespace Textfyre.UI.Controls.UserSettings
             this.FPInput.SetFontDef(Textfyre.UI.UserSettings.FontInput);
             this.FPHeader.SetFontDef(Textfyre.UI.UserSettings.FontHeader);
             this.FPFooter.SetFontDef(Textfyre.UI.UserSettings.FontFooter);
+            this.FPConversation.SetFontDef(Textfyre.UI.UserSettings.FontConversation);
             this.CpbBgColor.SelectedBrush = Helpers.Color.SolidColorBrush(Textfyre.UI.UserSettings.PageBackgroundColor);
             DoUpdatePreview();
             this.Visibility = Visibility.Visible;
@@ -102,6 +106,7 @@ namespace Textfyre.UI.Controls.UserSettings
             Textfyre.UI.UserSettings.FontInput = this.FPInput.GetFontDef();
             Textfyre.UI.UserSettings.FontHeader = this.FPHeader.GetFontDef();
             Textfyre.UI.UserSettings.FontFooter = this.FPFooter.GetFontDef();
+            Textfyre.UI.UserSettings.FontConversation = this.FPConversation.GetFontDef();
 
             Textfyre.UI.UserSettings.PageBackgroundColor = (this.CpbBgColor.SelectedBrush as SolidColorBrush).Color.ToString();
             Hide();
@@ -115,6 +120,7 @@ namespace Textfyre.UI.Controls.UserSettings
             this.FPInput.SetFontDef(Current.Game.StoryHandle.UserSettingsDefaultFontInput());
             this.FPHeader.SetFontDef(Current.Game.StoryHandle.UserSettingsDefaultFontHeader());
             this.FPFooter.SetFontDef(Current.Game.StoryHandle.UserSettingsDefaultFontFooter());
+            this.FPConversation.SetFontDef(Current.Game.StoryHandle.UserSettingsDefaultFontConversation());
             this.CpbBgColor.SelectedBrush = Helpers.Color.SolidColorBrush(Current.Game.StoryHandle.UserSettingsDefaultPageBackgroundColor());
             DoUpdatePreview();
         }    

@@ -238,7 +238,7 @@ namespace Textfyre.UI.Controls {
             }
 
             // Fadeout
-            if (_pastElement != null) {
+            if (_pastElement != null && _pastElement != _currentElement) {
                 _currentElement.Opacity = 0d;
 
                 Storyboard fo = new Storyboard();
