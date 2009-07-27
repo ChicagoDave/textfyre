@@ -1080,7 +1080,7 @@
                                     <vsm:VisualState x:Name="Unfocused"/>
                                 </vsm:VisualStateGroup>
                             </vsm:VisualStateManager.VisualStateGroups>
-                            <TextBlock x:Name="ContentText" FontFamily="Times New Roman" FontSize="15" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" TextAlignment="Center" TextWrapping="Wrap" Text="{TemplateBinding Content}" Foreground="#FF000000"  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}"  />
+                            <TextBlock x:Name="ContentText" FontFamily="Times New Roman" FontSize="15" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" TextWrapping="Wrap" Text="{TemplateBinding Content}" Foreground="#FF000000"  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}"  />
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>

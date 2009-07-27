@@ -156,6 +156,11 @@ namespace Textfyre.UI
                     UserSettingsDefaultFontFooter();
             }
 
+            if (Textfyre.UI.UserSettings.FontConversation.FontFamily.Length == 0) {
+                Textfyre.UI.UserSettings.FontConversation =
+                    UserSettingsDefaultFontConversation();
+            }
+
             Textfyre.UI.UserSettings.SetFonts();
 
             if (Textfyre.UI.UserSettings.PageBackgroundColor.Length == 0)
@@ -180,9 +185,11 @@ namespace Textfyre.UI
         {
             return new Textfyre.UI.UserSettings.FontDef("Georgia", 14, "#FF000000", false);
         }
-        public virtual Textfyre.UI.UserSettings.FontDef UserSettingsDefaultFontFooter()
-        {
+        public virtual Textfyre.UI.UserSettings.FontDef UserSettingsDefaultFontFooter() {
             return new Textfyre.UI.UserSettings.FontDef("Georgia", 12, "#FF000000", false);
+        }
+        public virtual Textfyre.UI.UserSettings.FontDef UserSettingsDefaultFontConversation() {
+            return new Textfyre.UI.UserSettings.FontDef("Georgia", 10, "#FF000000", false);
         }
         /// <summary>
         /// We can only return the format #FFFFFFFF.

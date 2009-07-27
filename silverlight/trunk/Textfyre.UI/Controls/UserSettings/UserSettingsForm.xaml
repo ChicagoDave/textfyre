@@ -5,7 +5,7 @@
     >
     <Grid Background="#99EDD8C2">
 
-        <Grid x:Name="LayoutRoot" Width="640" Height="480" Background="#FFEDD8C2">
+        <Grid x:Name="LayoutRoot" Width="640" Height="520" Background="#FFEDD8C2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
@@ -28,8 +28,9 @@
                         <ctrl:FontPicker x:Name="FPInput" FontTitle="Input" />
                         <ctrl:FontPicker x:Name="FPHeader" FontTitle="Header" />
                         <ctrl:FontPicker x:Name="FPFooter" FontTitle="Footer" />
+                        <ctrl:FontPicker x:Name="FPConversation" FontTitle="Conversation" />
                         <StackPanel Orientation="Horizontal">
-                            <ctrl:FontsPreview x:Name="FPPreview" Margin="0,20,20,20" />
+                            <ctrl:FontsPreview x:Name="FPPreview" Margin="0,20,0,20" />
                             <StackPanel Margin="0,20,20,20">
                                 <TextBlock Text="Background Color" />
                                 <ctrl:ColorPickerButton x:Name="CpbBgColor" SelectedBrush="#00FFFFFF" />

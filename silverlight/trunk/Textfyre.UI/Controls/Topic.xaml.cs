@@ -34,7 +34,7 @@ namespace Textfyre.UI.Controls
         {
         }
 
-        public void Load( DocSystem.FyreXmlElementTopicList topics)
+        public void Load(DocSystem.FyreXmlElementTopicList topics)
         {
             // clear the existing topics...
             TopicList.Children.Clear();
@@ -42,16 +42,16 @@ namespace Textfyre.UI.Controls
             ArtHolder.Children.Clear();
             Controls.Art art = new Art();
             art.HorizontalAlignment = HorizontalAlignment.Right;
-            art.VerticalAlignment = VerticalAlignment.Top;
-            art.ID = "CameoArt_" + topics.Data;
+            art.VerticalAlignment = VerticalAlignment.Center;
+            art.ID = "CameoArt_" + topics.Data.Replace(" ","");
             ArtHolder.Children.Add(art);
 
-            TextBlock headline = new TextBlock();
-            Current.Font.ApplyFont(Textfyre.UI.Current.Font.FontType.Headline, headline);
-            headline.Text = "- " + topics.Data + " -";
-            headline.Margin = new Thickness(0, 0, 0, 20);
-            headline.HorizontalAlignment = HorizontalAlignment.Center;
-            TopicList.Children.Add(headline);
+            //TextBlock headline = new TextBlock();
+            //Current.Font.ApplyFont(Textfyre.UI.Current.Font.FontType.Headline, headline);
+            //headline.Text = "- " + topics.Data + " -";
+            //headline.Margin = new Thickness(0, 0, 0, 20);
+            //headline.HorizontalAlignment = HorizontalAlignment.Center;
+            //TopicList.Children.Add(headline);
 
             foreach (DocSystem.Topic topic in topics.Topics)
             {
@@ -61,21 +61,23 @@ namespace Textfyre.UI.Controls
 
         private void AddButton(DocSystem.Topic topic)
         {
-            //Button newButton = new Button();
-            //newButton.Style = App.Current.Resources["TopicButtonStyle"] as Style;
-
             TextButton newButton = new TextButton();
-            newButton.FontType = Textfyre.UI.Current.Font.FontType.MainItalic;
+            newButton.FontType = Textfyre.UI.Current.Font.FontType.Conversation;
 
-            //newButton.Content = topic.Text;
-            newButton.Text = topic.Text;
+            string chapter = Textfyre.UI.Current.Game.Chapter;
+            if (chapter.Contains("6") || chapter.Contains("7") || chapter.Contains("8") || chapter.Contains("9") || chapter.Contains("10") || chapter.Contains("11"))
+                newButton.Text = string.Concat("Jacqueline says, ", topic.Text);
+            else
+                newButton.Text = string.Concat("Jack says, ", topic.Text);
             newButton.DataContext = topic;
             newButton.Margin = new Thickness(0, 0, 0, 10);
-            newButton.Width = 200;
-            //newButton.Click += new RoutedEventHandler(newButton_Click);
+            newButton.Width = 280;
+            newButton.HorizontalAlignment = HorizontalAlignment.Left;
+            newButton.HorizontalContentAlignment = HorizontalAlignment.Left;
+            newButton.ButtonText.HorizontalAlignment = HorizontalAlignment.Left;
+            newButton.Width = 140;
             newButton.Click += new EventHandler(newButton_Click);
             
-            //newButton.Cursor = Cursors.Hand;
             newButton.MouseEnter += new MouseEventHandler(newButton_MouseEnter);
             newButton.MouseLeave += new MouseEventHandler(newButton_MouseLeave);
             TopicList.Children.Add(newButton);
@@ -102,18 +104,6 @@ namespace Textfyre.UI.Controls
         {
             Current.Game.IsInputFocusActive = false;
         }
-
-        //void newButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Current.Application.IsInputFocusActive = true;
-        //    if (TopicChosen != null)
-        //    {
-        //        Button clickedButton = (Button)sender;
-        //        TopicEventArgs args = new TopicEventArgs();
-        //        args.Topic = (Entities.Topic)clickedButton.DataContext;
-        //        TopicChosen(this, args);
-        //    }
-        //}
 
 	}
 }

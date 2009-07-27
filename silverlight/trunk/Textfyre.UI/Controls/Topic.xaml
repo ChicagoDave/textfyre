@@ -6,11 +6,11 @@
     xmlns:ctrl="clr-namespace:Textfyre.UI.Controls"
 	>
 
-	<Grid Width="280" x:Name="LayoutRoot">
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="ArtHolder"></Grid>
-        <StackPanel x:Name="TopicList" HorizontalAlignment="Center" VerticalAlignment="Center">
-			<Button Style="{StaticResource TopicButtonStyle}" Margin="0,0,0,10" Height="46" Width="280" Content="Now that you mention it, a bunch of mercenaries have been chasing me all over Grubber's Market!"  DataContext="1"/>
-			<Button Margin="0,0,0,10" Height="34" Width="280" Content="I need a disguise." DataContext="2"  />
+	<Grid Width="280" x:Name="LayoutRoot" HorizontalAlignment="Left">
+        <Grid HorizontalAlignment="Right" VerticalAlignment="Center" x:Name="ArtHolder"></Grid>
+        <StackPanel x:Name="TopicList" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button Style="{StaticResource TopicButtonStyle}" Margin="0,0,0,10" Height="46" Width="140" Content="Now that you mention it, a bunch of mercenaries have been chasing me all over Grubber's Market!"  DataContext="1"/>
+			<Button Margin="0,0,0,10" Height="34" Width="280" Content="I need a disguise." DataContext="2" HorizontalAlignment="Left" Style="{StaticResource TopicButtonStyle}"  />
 	    </StackPanel>
     </Grid>
 </UserControl>
