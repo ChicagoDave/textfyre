@@ -6,6 +6,7 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 
 [  Change Log
 When		Who		What
+31-July-2009	J. Ingold	Added ian's c5 feedback.
 25-July-2009 	J. Ingold	Resolved file, added some missing responses.
 24-July-2009	J. Ingold	The majority of Eric Eve's two feedback scripts are dealt with. Remaining issues are one with TSR extension and some missing grammar (on my list to do!)
 23-July-2009	G. Jefferis	Eric Eve bug fixes and a few others
@@ -1377,9 +1378,9 @@ Part 12 - Clock-setting
 ["Setting it to" is the fallback case for this action.]
 
 Clock-setting it to is an action applying to one thing and one time. The clock-setting action has a time called the adjusted time understood.
-Understand "set [clock] to [time]" as clock-setting it to.
-Understand "turn [clock] to [time]" as clock-setting it to.
-Understand "turn [clock] to [text]" as setting it to.
+Understand "set [clock] to/at [time]" as clock-setting it to.
+Understand "turn [clock] to/at [time]" as clock-setting it to.
+Understand "turn [clock] to/at [text]" as setting it to.
 
 Setting action variables for clock-setting:
 	if the time understood is before 12:00 PM or the time understood is after 11:59 PM begin;
@@ -1406,22 +1407,22 @@ Part 13 - Direction-setting
 Understand the command "flip" as "turn".
 
 Direction-setting it to is an action applying to one thing and one visible thing.
-Understand "set [pointer] to [planar direction]" as direction-setting it to.
+Understand "set [pointer] to/at [planar direction]" as direction-setting it to.
 [ Understand "set [pointer] to [text]" as setting it to. ]
-Understand "turn [pointer] to [planar direction]" as direction-setting it to.
-Understand "turn [pointer] to [text]" as setting it to.
+Understand "turn [pointer] to/at [planar direction]" as direction-setting it to.
+Understand "turn [pointer] to/at [text]" as setting it to.
 Understand "turn [pointer] [planar direction]" as direction-setting it to.
 Understand "turn [pointer] [text]" as setting it to.
-Understand "point [pointer] to [planar direction]" as direction-setting it to.
-Understand "point [pointer] to [text]" as setting it to.
+Understand "point [pointer] to/at [planar direction]" as direction-setting it to.
+Understand "point [pointer] to/at [text]" as setting it to.
 Understand "point [pointer] [planar direction]" as direction-setting it to.
 Understand "point [pointer] [text]" as setting it to.
-Understand "spin [pointer] to [planar direction]" as direction-setting it to.
-Understand "spin [pointer] to [text]" as setting it to.
-Understand "rotate [pointer] to [planar direction]" as direction-setting it to.
-Understand "rotate [pointer] to [text]" as setting it to.
-Understand "move [pointer] to [planar direction]" as direction-setting it to.
-Understand "move [pointer] to [text]" as setting it to.
+Understand "spin [pointer] to/at [planar direction]" as direction-setting it to.
+Understand "spin [pointer] to/at [text]" as setting it to.
+Understand "rotate [pointer] to/at [planar direction]" as direction-setting it to.
+Understand "rotate [pointer] to/at [text]" as setting it to.
+Understand "move [pointer] to/at [planar direction]" as direction-setting it to.
+Understand "move [pointer] to/at [text]" as setting it to.
 
 Carry out direction-setting to:
 	now the way of the noun is the second noun;
@@ -1433,12 +1434,12 @@ Part 13 B - Number-setting
 
 Number-setting it to is an action applying to one thing and one number.
 
-Understand "set [thing] to [number]" as number-setting it to.
-Understand "turn [thing] to [number]" as number-setting it to.
-Understand "dial [thing] to [number]" as number-setting it to.
-Understand "change [thing] to [number]" as number-setting it to.
-Understand "point [thing] to [number]" as number-setting it to.
-Understand "move [thing] to [number]" as number-setting it to.
+Understand "set [thing] to/at [number]" as number-setting it to.
+Understand "turn [thing] to/at [number]" as number-setting it to.
+Understand "dial [thing] to/at [number]" as number-setting it to.
+Understand "change [thing] to/at [number]" as number-setting it to.
+Understand "point [thing] to/at [number]" as number-setting it to.
+Understand "move [thing] to/at [number]" as number-setting it to.
 
 Check number-setting it to:
 	say "I can't set [the noun] to anything!" instead.
@@ -7738,6 +7739,15 @@ Cathedral Roof is a region. The Minute Hand, Parapet are in Cathedral Roof.
 
 Roofs of the City is a region. Rooftop 1, Rooftop 2,  Rooftop 3, Rooftop 4, Rooftop 5, Sloping Roofs, Weather Station, Observation Platform are in the Roofs of the City.
 
+Rule for printing the description of the backdrop-sky when in the Roofs of the City:
+	if TRIG_ROOFTOP_4 is fired:
+		say "Somewhere up there is the Figure in his ornithopter.";
+	else:
+		say "The sky is gathering with clouds."
+
+Rule for printing the description of the backdrop-clouds when in the Roofs of the City:
+	say "The skies are darkening. Growing grey."
+
 Part 0 - the Figure
 
 After looking in the Minute Hand:
@@ -8084,7 +8094,7 @@ Section 2 - Platform
 
 A raised platform is scenery, in Rooftop 2. "I can't make out what's on the platform[if Observation Platform is not visited] (if anything)[end if]: but I can see it's encircled by a railing."
 
-The printed name is "platform". Understand "brass", "railing", "railings" as the raised platform.
+The printed name is "platform". Understand "brass", "railing", "railings", "tower", "turret" as the raised platform.
 
 Instead of jumping on or climbing or approaching the raised platform:
 	try jumping;
@@ -8155,7 +8165,7 @@ Instead of attacking the mortar with something:
 
 Part 6 - Sloping Roofs
 
-Sloping Roofs is a room, south of Rooftop 1. "[one of]It's hard to keep my bearings here: below, several streets are coming together and their overhanging roofs – good for keeping the rain off – create a patchwork of tiles, chimneys, gaps and different levels. I can scramble up a few levels to the north, or I could probably slip away east and south, but I might get turned around in either of those directions.[or]Several roofs meet here in a mess of tiles. West is impassable, but I could climb rooftiles to north, east or south.[stopping]"
+Sloping Roofs is a room, exterior, south of Rooftop 1. "[one of]It's hard to keep my bearings here: below, several streets are coming together and their overhanging roofs – good for keeping the rain off – create a patchwork of tiles, chimneys, gaps and different levels. I can scramble up a few levels to the north, or I could probably slip away east and south, but I might get turned around in either of those directions.[or]Several roofs meet here in a mess of tiles. West is impassable, but I could climb rooftiles to north, east or south.[stopping]"
 
 Sloping Roofs is south of Rooftop 2. North of Sloping Roofs is Rooftop 1. 
 
@@ -8225,11 +8235,11 @@ To say verbose-pipes-and-boards:
 	if the pile supports the length of piping or the pile supports the solid wooden board,
 		say " A";
 	if the pile supports the length of piping,
-		say " length of piping";
+		say " large and hefty length of piping";
 	if the pile supports the length of piping and the pile supports the solid wooden board,
 		say ", a";
 	if the pile supports the solid wooden board,
-		say " long wooden board";
+		say " wooden board about three times my height";
 	if the pile supports the length of piping or the pile supports the solid wooden board,
 		say ". That sort of thing.[no line break]";
 
@@ -8350,30 +8360,34 @@ After looking in Rooftop 4 when TRIG_ROOFTOP_4 is unfired:
 
 Every turn when TRIG_ROOFTOP_4 was fired and TRIG_ROOFTOP_4B is unfired:
 	fire TRIG_ROOFTOP_4B;
-	
+
+Section	2b - Ornithopter object
+
+The ornithopter is a glimpse backdrop in Roofs of the City. Understand "ornithopter" as the ornithopter when TRIG_ROOFTOP_4 is fired. "The ornithopter is just a dot in the sky - with the Figure aboard!" 
+
+Instead of approaching the ornithopter: 
+	say "I need a way to get myself airborne!"
+
+Instead of doing something when the ornithopter is physically involved:
+	say "The ornithopter is moving through the clouds!"
+
 
 Chapter 3 - Objects
 
-Section 1 - Tarp
-
-A large tarp is in Rooftop 4. "[one of]A large tarp is thrown over something in the middle of this space[or]A large tarp lies discarded here[stopping]." The description is "[one of]This is expensive stuff: a fabric that's lighter and stronger and less itchy than the stuff they make my bed-sheets from, the way sunlight is different than the beady glow in a rat's eye. The Figure must be pretty wealthy to leave something like this behind! Perhaps he meant it as a present: something to buy me off the chase.[paragraph break]Not going to happen. I'm going to catch him, stop him, save the Perpetuum and go collect my reward from the Archbishop.[or]This is expensive stuff: a fabric that's light and strong. The Figure must be pretty wealthy to leave something like this behind![stopping]"
-
-Understand "tarpaulin", "sheet", "roll", "roll of" as the tarp. The printed name of the tarp is "tarp".
-
-After taking the tarp:
-	say "Cumbersome, but that said – it rolls up pretty small!";
-
-Rule for printing the name of the large tarp when taking inventory:
-	say "roll of tarp"
 
 Section 2 - Notch
 
-A notch is a container, fixed in place, in Rooftop 4. "[if the notch contains the solid wooden board]There's a wooden board set into the notch in the wall and pushed out over the street.[else]The low south wall is missing a few bricks creating a gap – well, I'll call it a [i]notch[r].[end if]". The description is "The [']notch['] is a gap in the brickwork of the low south wall overlooking the alley[one of]. Maybe the missing bricks fell out down below: that would have been pretty bad for whoever was below![or].[stopping]".
+A notch is a container, fixed in place, in Rooftop 4. The description is "The [']notch['] is a gap in the brickwork of the low south wall overlooking the alley[one of]. Maybe the missing bricks fell out down below: that would have been pretty bad for whoever was below![or].[stopping]".
+
+Rule for writing a paragraph about the notch:
+	say "[if the notch contains the solid wooden board]There's a wooden board set into the notch in the wall and pushed out over the street.[else]The low south wall is missing a few bricks creating a gap – well, I'll call it a [i]notch[r].[end if]". 
+
+
 
 Rule for writing a paragraph about the notch when the plank bridge is on-stage:
 	say "The wooden board makes a nice plank bridge, weighed at this end with bricks."
 
-Understand "gap" as the notch.
+Understand "gap", "wall", "brickwork", "brick-work" as the notch.
 
 Instead of putting something on the notch:
 	try inserting the noun into the second noun;
@@ -8415,6 +8429,19 @@ Instead of entering or jumping over or climbing the notch:
 		say "It's a twelve-foot gap. I can't jump that!" instead;
 	try going south instead.
 
+
+Section 1 - Tarp
+
+A large tarp is in Rooftop 4. "[one of]A large tarp is thrown over something in the middle of this space[or]A large tarp lies discarded here[stopping]." The description is "[one of]This is expensive stuff: a fabric that's lighter and stronger and less itchy than the stuff they make my bed-sheets from, the way sunlight is different than the beady glow in a rat's eye. The Figure must be pretty wealthy to leave something like this behind! Perhaps he meant it as a present: something to buy me off the chase.[paragraph break]Not going to happen. I'm going to catch him, stop him, save the Perpetuum and go collect my reward from the Archbishop.[or]This is expensive stuff: a fabric that's light and strong. The Figure must be pretty wealthy to leave something like this behind![stopping]"
+
+Understand "tarpaulin", "sheet", "roll", "roll of" as the tarp. The printed name of the tarp is "tarp".
+
+After taking the tarp:
+	say "Cumbersome, but that said – it rolls up pretty small!";
+
+Rule for printing the name of the large tarp when taking inventory:
+	say "roll of tarp"
+
 Chapter 4 - Scenery
 
 Section 1 - Roofs / Rods / Chimneys
@@ -8437,7 +8464,7 @@ Instead of jumping on or entering or approaching the southern roof:
 
 Section 3 - 12-foot gap
 
-A twelve-foot gap is a door, scenery, privately-named, open, not openable, south of Rooftop 4. Through the twelve-foot gap is the weather station. Understand "alley", "alley way", "alley-way", "alleyway", "twelve-foot gap", "twelve foot gap", "12 foot gap" as the twelve-foot gap. 
+A twelve-foot gap is a door, scenery, privately-named, open, not openable, south of Rooftop 4. "The alley below is far enough that a fall might knock my knees from their sprockets, and it's too wide to jump.". Through the twelve-foot gap is the weather station. Understand "alley", "alley way", "alley-way", "alleyway", "twelve-foot gap", "twelve foot gap", "12 foot gap" as the twelve-foot gap. 
 
 After going through the twelve-foot gap:
 	say "I inch out over my makeshift bridge. The weight of the bricks shudders – if it slips off that board then I'm dead, in a second – but it doesn't. And from the end, it's a short [i]spring[r] to the roof beyond.";
@@ -8538,6 +8565,15 @@ Instead of inserting something into a hot air vent:
 Instead of searching a hot air vent:
 	say "Sticking my face over it would be a sure-fire way to burn my eyebrows over. That air is hot!"
 
+Instead of touching or taking or pushing the chimney pipe:
+	say "I snatch my hand back from the chimney. It's hot!"
+
+Instead of putting the tarp on the chimney pipe:
+ 	say "I could wrap the tarp around the vent easily, but I couldn't pull it out of the ground or turn it. It's only short!"
+
+Instead of wrapping the chimney pipe with the tarp:
+	try putting the tarp on the hot air vent;
+
 Section 2 - Elongated chimney pipe
 
 The elongated chimney pipe is a pointer, hot air vent, fixed in place. "On one side of the roof is my odd contraption; a bent metal pipe attached to the iron chimney. It's belching smoke and steam in a generally [way of the item described]erly direction[if the way of the item described is southwest], across the alleyway[end if][if wrapped]. Wrapped around the near end is the sheet of tarpaulin[end if]."
@@ -8555,7 +8591,7 @@ The way of the elongated chimney pipe is north.
 Instead of taking the elongated chimney pipe:
 	say "The pipe's [if unwrapped]too hot to touch with my bare hands, and it's [end if]certainly too heavy to face carrying it again.";
 
-Instead of turning or attacking the unwrapped elongated chimney pipe:
+Instead of turning or attacking or touching the unwrapped elongated chimney pipe:
 	say "Ouch! The pipe is scalding hot!";
 
 Instead of direction-setting the unwrapped elongated chimney pipe to a direction:
@@ -8814,7 +8850,7 @@ Section 4 - Vent
 
 The vent is scenery, hot air vent. "One end of the pipe I found. It's producing a steady billow of steam."
 
-Understand "pipe" as vent.
+Understand "pipe", "steam", "smoke", "chimney" as vent.
 
 Instead of taking or turning or direction-setting the vent to:
 	say "It's far too difficult to move from this end.";
@@ -8841,6 +8877,9 @@ Instead of unscrewing the small spigot with the small gear:
 
 Instead of unscrewing the small spigot with the knife:
 	say "[one of]I slip the knife-blade into the screw-head and turn. There's a brief hiss – then silence. I guess the hydrogen supply is off downstairs. Maybe the Abbot has finally cut the Weather Guild's funding. I close the tap up again.[or]No point trying again.[stopping]";
+
+Before unlocking the small spigot with something:
+	try unscrewing the small spigot with the second noun instead.
 
 Section 6 - Balloon
 
@@ -8912,6 +8951,12 @@ Instead of untying the weather balloon from the small spigot:
 	say "I untie the rope but leave it looped around the pipe, and keep a tight hold while I squeeze myself into the basket. Then, with a final check of the zephyrgraph I let go. The balloon whisks up into the sky, the basket spinning around and around. The city below a whirl of colours, like a Newtonsday Catherine Cog firework. I'm starting to feel giddy – but I'm making progress. The south wind is behind me like a gale and the dark blot of the ornithopter is closer by the second. In a few moments I'll be alongside, close enough to grab the side of his craft and hang on![paragraph break]The Figure must have seen me. The ornithopter is tilting up - moving higher. Then it drops suddenly. Whirling blades pass by within inches of my face. [i]Tried to get me?[r] I'm thinking. [i]You'll have to try harder than that![r] I catch a glimpse of that shadowy hood behind the controls and then I realise - the Figure wasn't trying to get me. The Figure was trying to shred the balloon.[paragraph break]For a moment, I'm still going up. Then I'm hanging there, perfect equilibrium. And then gravity takes hold. There's nothing for it. I'm falling. The clutter of rooftops rushes closer and closer. [i]You've really done it this time, Wren[r][paragraph break]A smash –[paragraph break]- splintering glass –[paragraph break]- someone thumps me on the back. Drake, here? -[paragraph break]- The wind is knocked from me –[paragraph break]- [i]good stuff, Wren. Just like clockwork.[no line break][r]";
 	pause the game;
 	move the player to the feather bed;
+
+Before approaching the ornithopter when the weather balloon is inflated and the player is in Roofs of the City:
+	try approaching the escaping Figure instead.
+
+Before approaching the ornithopter when the weather balloon is deflated and the Weather Station has been visited:
+	try approaching the escaping Figure instead.
 
 Before approaching the escaping Figure when the weather balloon is inflated and the player is in Roofs of the City:
 	if the player is in the weather balloon:
