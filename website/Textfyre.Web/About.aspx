@@ -11,19 +11,35 @@
                     border-right: 1px black solid;">
                     <tr>
                         <td style="padding-top: 8px;">
-                            <asp:Image ID="Image1" runat="server" ImageUrl="~/images/david.jpg" AlternateText="David Cornelson, Founder and President" />
+                            <asp:Image ID="Image7" runat="server" ImageUrl="~/images/tflogo.jpg" AlternateText="Textfyre" />
                         </td>
                         <td style="vertical-align: top; padding-left: 10px;">
                             <h1>
-                                Founded in 2007 by David Cornelson,</h1>
-                            Textfyre is the culmination of many years of passionate computer consulting work
-                            and involvement in the hobbyist Interactive Fiction community. David has been in
-                            the computer industry since 1985 and worked as a consultant for many Fortune 500
-                            corporations. He currently lives in Illinois with his wife and five children. Textfyre&#39;s
-                            vision is to bring entertainment to the family computer that supplements reading
-                            and cognitive thinking education. By introducing logic into story-telling, we enable
-                            kids to make decisions in each game that have a real impact on the character and
-                            the setting.
+                                TEXTFYRE was founded by David Cornelson,</h1>
+                            and is the culmination of many years of planning and development. With the help of a few
+                            hobbyist authors, players, and fans, we've started something special.<br /><br />
+                            If you would like to contact us about anything:<br />
+                            Phone: +1 1 630 803 4302<br />
+                            Email: webadmin at textfyre dot com<br />
+                            Regular Mail:<br />
+                            Textfyre, Inc - 222, Suite A<br />
+                            1144 East State Street<br />
+                            Geneva, Illinois USA 60134<br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="border-bottom: 1px black solid; padding-top: 10px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 8px;">
+                            <asp:Image ID="Image1" runat="server" ImageUrl="~/images/david.jpg" AlternateText="David Cornelson, Founder and President" />
+                        </td>
+                        <td style="vertical-align: top; padding-left: 10px;">
+                            DAVID CORNELSON is a computer consultant in Chicago, Illinois and has spent many
+                            years involved in the hobbyist Interactive Fiction community. He's worked as a consultant
+                            for many Fortune 500 corporations helping them build enterprise web and windows
+                            applications. He is married with five children.
                         </td>
                     </tr>
                     <tr>
@@ -86,6 +102,21 @@
                             are available <a id="aboutLink" href="http://spot.colorado.edu/~obrian/IF.htm">online</a>.
                             He lives in Westminster, Colorado with his wife and son, and was once a counselor
                             at the camp upon which Giant Leaps is based.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="border-bottom: 1px black solid; padding-top: 10px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 8px;">
+                            <asp:Image ID="Image6" runat="server" ImageUrl="~/images/graeme.jpg" AlternateText="Graeme Jefferis, Inform 7 Programmer" />
+                        </td>
+                        <td style="vertical-align: top; padding-left: 10px;">
+                            GRAEME JEFFERIS lives in Edinburgh, Scotland. He is a BSc Hons. software engineer
+                            who has worked for companies across the UK, and for CERN in Switzerland. He plays
+                            clarinet, saxophone, and bass guitar, and his code is fuelled by hot tea, Irn Bru,
+                            and biscuits. He's done 99% of the programming on all Textfyre games.
                         </td>
                     </tr>
                 </table>
