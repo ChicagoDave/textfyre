@@ -209,6 +209,8 @@
   <ItemGroup>
     <Content Include="CancelledSale.aspx" />
     <Content Include="CompletedSale.aspx" />
+    <Content Include="images\graeme.jpg" />
+    <Content Include="images\tflogo.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

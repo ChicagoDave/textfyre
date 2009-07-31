@@ -75,16 +75,6 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <asp:Label ID="Label6" runat="server" CssClass="regLabel" Text="User Name:" />
-                                    </td>
-                                    <td>
-                                        <asp:TextBox runat="server" ID="regUsername" CssClass="regTextbox" />
-                                        <asp:RequiredFieldValidator ID="UsernameRequired" runat="server" ControlToValidate="regUsername"
-                                            ErrorMessage="User Name is required." ToolTip="User Name is required." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
                                         <asp:Label ID="Label7" runat="server" CssClass="regLabel" Text="Password:" />
                                     </td>
                                     <td>

@@ -23,7 +23,7 @@ namespace Textfyre.Web.Registration {
 
         protected void regRegisterButton_Click(object sender, EventArgs e) {
             MembershipCreateStatus status;
-            MembershipUser newUser = Membership.CreateUser(regUsername.Text, regPassword.Text, regEmail.Text, regQuestion.Text, regAnswer.Text, false, out status);
+            MembershipUser newUser = Membership.CreateUser(regEmail.Text, regPassword.Text, regEmail.Text, regQuestion.Text, regAnswer.Text, false, out status);
 
             if (newUser == null) {
                 regError.Text = GetErrorMessage(status);
@@ -50,7 +50,7 @@ namespace Textfyre.Web.Registration {
                     regError.Text = "A problem ocurred writing your registration to the database. The error has been logged and will be reviewed by our staff soon. An e-mail will be sent to you when the problem is resolved.";
                     System.Diagnostics.EventLog log = new System.Diagnostics.EventLog();
                     log.Source = "Textfyre.Com";
-                    log.WriteEntry(string.Format("Error with new account '{0}' - {1}",regUsername,se.Message));
+                    log.WriteEntry(string.Format("Error with new account '{0}' - {1}",regEmail,se.Message));
                     log.Close();
                     log.Dispose();
                     return;
@@ -74,10 +74,8 @@ namespace Textfyre.Web.Registration {
         public string GetErrorMessage(MembershipCreateStatus status) {
             switch (status) {
                 case MembershipCreateStatus.DuplicateUserName:
-                    return "Username already exists. Please enter a different user name.";
-
                 case MembershipCreateStatus.DuplicateEmail:
-                    return "A username for that e-mail address already exists. Please enter a different e-mail address.";
+                    return "Your email already exists. Please enter a different e-mail or use the password recovery page.";
 
                 case MembershipCreateStatus.InvalidPassword:
                     return "The password provided is invalid. Please enter a valid password value.";
