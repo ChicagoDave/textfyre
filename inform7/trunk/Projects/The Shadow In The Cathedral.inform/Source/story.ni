@@ -6,6 +6,7 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 
 [  Change Log
 When		Who		What
+31-July-2009	J. Ingold	Added chapter breaks in proper places and a method for doing whatever it is we're going to do with them.
 31-July-2009	J. Ingold	Added ian's c5 feedback.
 25-July-2009 	J. Ingold	Resolved file, added some missing responses.
 24-July-2009	J. Ingold	The majority of Eric Eve's two feedback scripts are dealt with. Remaining issues are one with TSR extension and some missing grammar (on my list to do!)
@@ -243,6 +244,8 @@ The player is in the Abbot's Quarters.
 The examine described devices rule is not listed in any rulebook.
 The describe what's on scenery supporters in room descriptions rule is not listed in any rulebook.
 
+
+
 Book A - New Phrases etc
 
 Part 1 - New things to say
@@ -392,6 +395,46 @@ Definition: a thing is suitable for jamming:
 Definition: a thing is unsuitable for jamming:
 	unless it is suitable for jamming, yes;
 	no;
+
+Part 3 - Chapter Break Mechanics
+
+The current game chapter is a number that varies.
+
+When play begins: 
+	now the current game chapter is 1;
+	change the right hand status line to "[location]";
+	change the left hand status line to "Chapter [current game chapter]: [current chapter name]".
+
+Table of Chapter Titles
+title						chapter
+"The Abbot's Quarters"		1
+"The Abbey of Time"			2
+"The Cathedral of Time"		3
+"The Figure in Grey"			4
+"The Rooftops of the City"		5
+"The Clockmaker"			6
+"The Counting House"		7
+"The Docklands"				8
+"Return to Covalt's"			9
+"Night at the Cathedral"		10
+"The Crypt"					11
+"Midnight"					12
+
+To say current chapter name:
+	say title corresponding to a chapter of the current game chapter in the table of Chapter Titles;
+
+
+Section 2 - Release method
+
+To end a/the chapter:
+	increase the current game chapter by 1;
+	pause the game;
+
+Section 1 - Debug method (not for release)
+
+To end a/the chapter:
+	increase the current game chapter by 1;
+	say "[paragraph break][bold type]*** CHAPTER [current game chapter]: [current chapter name] ***[roman type][paragraph break]";
 
 Book B - New Kinds
 
@@ -3012,6 +3055,7 @@ ATTIC1 is a scripted event.
 
 Rule for firing ATTIC1 when Attic Room is unvisited:
 	say "I dart out of the tunnel only to be stop-clocked by a depressing sight. It's Calvin and Drake, hurrying in through the Abbey's Great Entry. Their mouths are white with sugar.[paragraph break]'Hey, you!' Drake shouts. In a moment he's got me by the ear. 'What were you doing in the Abbot's room? That's not on your rota!'[paragraph break]'Yeah!' Calvin adds. 'And why are you slipping away when we told you to stay there?'[paragraph break]'Idiot,' Drake hisses. Louder – for the benefit of any passing monks – he says, 'That's it, Wren. You're consigned to your room.' For good measure, he punches me on the arm, then the two of them drag me away, heels over flagstones, right to the bottom of the ladder.[paragraph break]'Up you go,' Calvin says. 'And you're not to come down till dark!'[paragraph break]'What about dinner?' I ask.[paragraph break]'Should have thought of that, shouldn't you?' Drake says.[paragraph break]'More for us,' Calvin adds. 'Only two hours to go. I'm starved.'[paragraph break]With that, they punch me again until I scurry out of reach up the ladder.";
+	end the chapter;
 
 Rule for firing ATTIC1 when the caretaker's ladder is carried by the player:
 	say "[one of]'Wren!' Drake exclaims. 'Where are you going with that? Think I can't send you back to your room without it, do you?' [or]'Wren!' Drake's face is boiling. 'I can't believe you've tried to steal that again? Turn it into firewood, would you?' He spells out the last few words with punches. [or]'I should take that ladder away while you're up there!' Drake exclaims, in irritation. [stopping]Then he [if the location is not the Rickety Stair][one of]marches[or]hauls[at random] me back to the corner of the hall, [end if][one of]props up[or]puts down[at random] the ladder, and [one of]punches[or]whallops[or]whackes[at random] [one of]me[or]my arm[at random] [one of]till I climb it[or]until I climb[at random].";
@@ -4723,6 +4767,13 @@ Understand "cloisters", "cells" as the Cloister.
 Instead of going through the Cloister,
 	say "No time to waste here. Calvin will be back as soon as they turn that clock off.";
 
+Chapter 1 - Leaving and Finishing Chapter 2
+
+After going from the Entry to the Cathedral Yard for the first time:
+	say "I race through the doors. No-one's going to stop me now! The Archbishop, and my reward - here I come!";
+	end the chapter;
+	continue the action;
+
 Part 14 - Drake
 
 Chapter 1 - Description
@@ -5027,6 +5078,7 @@ Instead of going up in Herb Garden when the ladder is not in the Herb Garden:
 
 Instead of climbing the ladder when in the Herb Garden:
 	say "In a flash, I'm up and over! It's a short fall to the alley behind the wall, then I scamper along a shadowy alleyway and out into the Cathedral Yard. I'm clear! Time to go see the Archbishop!";
+	end the chapter;
 	move the player to the Cathedral Yard;
 
 Instead of climbing the garden walls when the caretaker's ladder is visible:
@@ -7155,6 +7207,7 @@ Instead of going through the Bishop's Door in the presence of awake Doric when t
 
 After going through the Bishop's Door from the East Clerestory when awake Doric is in the East Clerestory:
 	say "'In you go,' Doric says, tipping his head. 'But don't you go tellin['] him how I'm doing anything other than my job, mind. I've got to be careful. These are restless times. The Calendar says so. Always check the Calendar.'[paragraph break]The Bishop's Door – I made it!";
+	end the chapter;
 	continue the action;
 
 Section 3 - Post Doric Hints
@@ -7722,6 +7775,7 @@ Instead of exiting when the location is Behind the Clock Face:
 
 After going outside from Behind the Clock Face:
 	say "I crawl over to the door and slip through...[paragraph break]";
+	end the chapter;
 	continue the action;
 
 Chapter 2 - Scenery
@@ -8572,7 +8626,7 @@ Instead of putting the tarp on the chimney pipe:
  	say "I could wrap the tarp around the vent easily, but I couldn't pull it out of the ground or turn it. It's only short!"
 
 Instead of wrapping the chimney pipe with the tarp:
-	try putting the tarp on the hot air vent;
+	try putting the tarp on the chimney pipe;
 
 Section 2 - Elongated chimney pipe
 
@@ -8949,7 +9003,7 @@ Instead of slicing the weather balloon with the knife:
 Instead of untying the weather balloon from the small spigot:
 	abide by the ballooning rules; [i.e. stopping if a test fails]
 	say "I untie the rope but leave it looped around the pipe, and keep a tight hold while I squeeze myself into the basket. Then, with a final check of the zephyrgraph I let go. The balloon whisks up into the sky, the basket spinning around and around. The city below a whirl of colours, like a Newtonsday Catherine Cog firework. I'm starting to feel giddy – but I'm making progress. The south wind is behind me like a gale and the dark blot of the ornithopter is closer by the second. In a few moments I'll be alongside, close enough to grab the side of his craft and hang on![paragraph break]The Figure must have seen me. The ornithopter is tilting up - moving higher. Then it drops suddenly. Whirling blades pass by within inches of my face. [i]Tried to get me?[r] I'm thinking. [i]You'll have to try harder than that![r] I catch a glimpse of that shadowy hood behind the controls and then I realise - the Figure wasn't trying to get me. The Figure was trying to shred the balloon.[paragraph break]For a moment, I'm still going up. Then I'm hanging there, perfect equilibrium. And then gravity takes hold. There's nothing for it. I'm falling. The clutter of rooftops rushes closer and closer. [i]You've really done it this time, Wren[r][paragraph break]A smash –[paragraph break]- splintering glass –[paragraph break]- someone thumps me on the back. Drake, here? -[paragraph break]- The wind is knocked from me –[paragraph break]- [i]good stuff, Wren. Just like clockwork.[no line break][r]";
-	pause the game;
+	end a chapter;
 	move the player to the feather bed;
 
 Before approaching the ornithopter when the weather balloon is inflated and the player is in Roofs of the City:
@@ -9885,7 +9939,7 @@ Instead of opening the clock shop door when the scrap of paper is off-stage:
 
 Instead of opening the clock shop door when Return to Covalt's has not happened:
 	say "'That's the place,' Covalt insists, tapping the address with a finger like a roofing mallet. 'The Difference Engine'll tell you all you want. I hope. If you can get a clear idea what you're wanting and – well, anyway.' He puffs his cheeks. 'One dead air balloon says you'll do your best.'[paragraph break]'Thanks,' I say. The first person to be nice to me – well, ever really. 'I appreciate your help.'[paragraph break]'Well, nothing's too good for a rat,' he snarls. 'And do pop back here later if you need to. I don't think. Bringing the Heretic police and that. Go on! Get out of it.' And with that, he boots me through the door and slams it with relish.";
-	pause the game;
+	end the chapter;
 	say "The streets of St Philip are narrow and winding, closer to the veins on a leaf than anything mechanical. Their only Holy Function is to get me completely totally lost, and they do that so well that it takes a good couple of hours to find the way to the steps of the Counting House.[paragraph break]If anyone from the Abbey saw me out here they'd have my guts for wheel-belts. Lucky then that this is a side-street off a side-street, the kind of place full of urchins who look the same as me. Anyway, all the important people here are riding in closed carriages.";
 	move the player to The Street;
 
@@ -10804,7 +10858,7 @@ After firing SE_CAUGHT_4:
 SE_CAUGHT_5 is a scripted event. The display text is "'Oh, get this child out of here!' she snaps, irritably. 'I'll ask the machine, of course. Guards? Dump that... that thing... outside.'[paragraph break]I didn't even know my neck had a scruff until the guard's hands have grabbed me by it. I'm dragged kicking and complaining along all that beautiful carpet into an empty office. Are they going to murder me?[paragraph break]One guard opens a window and then the other raises me up like a counterweight and tosses me outside.[paragraph break]I land on a pile of junk. Pick myself up and shake myself down. Time for some answers. Am I still alive? Definitely. How do I feel? Proud. Where is the Figure? 462 Old Place, Docklands.[paragraph break]There's no time to lose.".
 
 After firing SE_CAUGHT_5:
-	pause the game;
+	end the chapter;
 	move the player to the Dank Alley;
 
 Instead of giving the punchcard to the Calculatrix Pristina when in Caught:
@@ -10938,7 +10992,7 @@ Instead of going through the subtle escape from the Office:
 
 After going through the office window:
 	say "No need to ask twice.[paragraph break]I swing my legs up onto the sill and then I’m over and out – yuk! – straight into a pile of rotting garbage. Something crawls out over my leg but I’m smart and I don’t scream, which means the guards overhead stick their heads out and then disappear again.[paragraph break]Then I’m up, brushing myself down and – once I’m two streets away – taking a deep breath. I might have survived all that but the card in my hand is only going to send me somewhere else. And if I’m following the Figure, things could get pretty hairy pretty fast.[paragraph break]The card, in a neat cog-calligraphic hand underneath the punched-out holes, reads 462 Old Place, DOCKLANDS. Not the nicest part of the city. But I’ve got to stop the Figure stealing the Perpetuum before it’s too late. And that’ll be soon. Thing about time is, it [i]always[r] is. So right now it’s time to get moving!";
-	pause the game;
+	end the chapter;
 	try looking;
 
 Chapter 4 - Scene End
@@ -12051,7 +12105,7 @@ Understand "mechanical", "men", "man" as the army of metal statues.
 
 Instead of doing something when the army of metal statues is physically involved:
 	say "With shaking fingers I open the hatch on the front of the nearest man. No surprise maybe to find he’s full of clockwork, but it’s clockwork like I’ve never seen before: cogs so small it’s like his whole body is infested with woodlice and maggots scrambling over one another. It’s like someone had taken the whole of the Difference Engine and shrunk it to fit.[paragraph break]Except there’s obviously something missing. All those cogs would need a spring about the size of the metal man’s head and it would need to be placed right in the middle where it could unwind to every part of his body. But in the perfect spot there’s nothing but a gap, like someone built this machine but never gave it a heart. What good are these men if all they do is stand in line?[paragraph break]That’s when I notice the seal. Something embossed on the inside of the chest hatch. I take a step back to see it more clearly – a winding key above an ocean wave, familiar from somewhere – and step into something firm and solid. A man out of line?[paragraph break]Then a hand grips my throat. 'Who sent you here?' demands a voice, smooth and icy. A voice I know well, that I should have been expecting. 'Who else knows about this place? Tell me before I crush every pinion in your neck.'[paragraph break]My toes are scrabbling on the ground. I try to scream but nothing comes out beyond a whisper. I can see the outline of the Figure’s cowl and beyond that, for the first time, almost make out an unhappy face.[paragraph break]'You’ll tell me or you’ll die here,' the Figure says quietly. 'You’ll die cold and alone like the rat you are.'[paragraph break]The room is getting darker. The tank for the gas lamps must be running low. Soon it’ll be me and the Figure and all these men, and no-one will ever find me or know where I’ve gone. Or is that someone? In the background? A shape, a shadow, my imagination or…[paragraph break]'Covalt?' I whisper, in desperation. 'Covalt, is that…'[paragraph break]Then the lights disappear completely. The heavy cord of the clock-key round my neck has become tangled while I was asleep. The stars are coming out. And then I’m underwater again.";
-	pause the game;
+	end the chapter;
 	fire SE_RETURN_1;
 	move Covalt to Covalt's Bedroom;
 	move the player to the feather bed;
@@ -12728,7 +12782,7 @@ Instead of giving the sleeping drug to Covalt:
 	remove the sleeping drug from play;
 	say "Covalt barely looks up from his work. 'I’m sure it’ll do,' he snaps. 'Stick it over there and don’t say anything else at any point until I’ve got all this work done.' On the bench in front of him is half a box and it doesn’t look bad – the little ball rolling down the zigzag track, the casements either side that flip-flop the surface. And on the inside is a tight spring attached to a little hammer from a bell-strike ready to the break the glass, right about a small needle.[paragraph break]Gingerly Covalt picks up the bottle, and fits it into the box. 'Don’t press the casements,' he warns. 'Or you’ll fire the needle. Don’t forget that.' With slow delicacy he clicks a panel into place.[paragraph break]'I could go to the gallows for making this,' Covalt says. 'They won’t thank me. They won’t thank either of us. They’ll be grateful and then they’ll send us up the scaffold. But we’ll face that when the hands come round for it. You ready?'[paragraph break]I nod. What else can I do?[paragraph break]'Sneak into the vaults and swap this over. So good luck and I’m not coming with you. If they ask you where you got this from you say it fell from the stars.' And then he chucks me out and slams the door.[paragraph break]And then I’m off, on my own again, back on my way to the Cathedral of Time.";
 	now the player carries the decoy Perpetuum;
-	pause the game;
+	end the chapter;
 	say "Like the lowliest ratchet in the bottom of a gear-train, I move in darkness. Through the streets of the city, sticking close to the walls. Carrying the Perpetuum – or something that looks so much like it – that I can’t afford to be seen. My only hope would be that they mistook me for a scruffy little angel.[paragraph break]Luckily it’s easy to find my way. The Cathedral’s great dome looms over all of St Phillip, blotting out stars. I head deeper into darkness until it fills the entire northeastern sky, and that’s when I’m beside the great Western door.";
 	move the player to the Public Yard;
 
@@ -14174,9 +14228,9 @@ When Midnight begins:
 	move the Figure in Grey to Covalt's Bedroom;
 	move the ravens to the bird cage;
 	now the ravens are not scenery;
-	pause the game;
+	end the chapter;
 	say "If I’ve ever run so quickly I can’t remember when. My legs are moving faster than the four-tooth that drives the millisecond hand. Empty streets blur beneath my feet. The silent city streets are empty except for the sound of my breathing – and the shadow of the Figure, disappearing round every corner, slipping into the gloom of every alley way, ahead at every turn moving as fast as nightfall.[paragraph break]And I know I can’t catch up with him. I’m tiring, getting slower, winding down...[paragraph break]And then the bells begin to ring for midnight. All over the city and all at once. A hundred voices – high screeching bells, low bells that grumble the way Cook does, and every kind of bell in between. And they’re all shouting one thing: [i]faster, Wren, faster. However fast your clock ticks, tick faster[r].[paragraph break]And I find I can. Not winding down: breaking every Law, I’m winding up, soaking energy in. By the ninth chime I’m at the top of Escapement Street. By the tenth I’m outside Covalt’s shop. The plate glass window is shattered. I dart inside.";
-	pause the game;
+	end the chapter;
 	move the player to Clock Shop;
 	change the current script to {SE_MIDNIGHT_1, SE_MIDNIGHT_2, SE_MIDNIGHT_3};
 
@@ -14389,7 +14443,7 @@ test cathedral with "w/n/e/get blue/get red/get yellow/w/n/n/w/sw/open tome/get 
 
 test clockchase with "z/z/z/nw/z/z/sw/u/z/z/z/z/jump/u/hold chain/pull lever/d/out/z/z/z/w/jump".
 
-test rooftops with "sw/scrape mortar with knife/get bricks/ne/se/sw/drop bricks/ne/get plank/sw/put plank in notch/put bricks in notch/ne/get pipe/sw/get tarp/e/put pipe on chimney/put tarp on chimney/turn pipe sw/w/s/nw/turn compass south/turn crank/look through telescope/se/put balloon on vent/z/z/get in basket / ".
+test rooftops with "sw/scrape mortar with knife/get bricks/ne/se/sw/drop bricks/ne/get plank/sw/put plank in notch/put bricks in notch/ne/get pipe/sw/get tarp/e/put pipe on chimney/put tarp on chimney/turn pipe sw/w/s/nw/turn compass south/turn crank/look through telescope/se/put balloon on vent/z/z/get in basket ".
 
 test steel with "turn steel crank 6 times/turn steel crank backwards 9 times".
 
