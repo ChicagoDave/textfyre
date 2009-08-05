@@ -32,11 +32,10 @@ To redirect the/-- action from (this - a thing) to (that - a thing), and try tha
 	if and try that:
 		try the current action;
 
-To decide whether the action is physical:
-	if the current action is listening to the location, no;
-	if the current action is smelling the location, no;
-	if the action requires a touchable noun, yes;
-	if the action requires a touchable second noun, yes;
+To decide whether the current/-- action is physical:
+	if the current action is listening to something, no;
+	if the current action is smelling something, no;
+	if the action requires a touchable noun or the action requires a touchable second noun, yes;
 	no;
 
 Part 2 - Properties of things
@@ -142,6 +141,36 @@ Definition: a direction (called D) is an exit:
 
 Understand "[something related by leading]" as a door.
 
+Assembling available exits of something is an activity.
+The viable directions is a list of objects [directions] that varies.
+
+Rule for assembling available exits of a room (called someplace):
+	change the viable directions to {north, northeast, east, southeast, south, southwest, west, northwest, up, down, inside, outside};
+	repeat with i running from 1 to 12:
+		let way be entry 1 of the viable directions;
+		if someplace exits the way:
+			rotate the viable directions backwards;
+		otherwise:
+			remove entry 1 from the viable directions;
+
+Section 3 - EXITS command
+
+Listing exits is an action out of world applying to nothing.
+
+Understand "exits" as listing exits.
+
+Carry out listing exits:
+	carry out the assembling available exits activity with the location;
+
+Report listing exits (this is the Textfyre standard listing exits rule):
+	if the viable directions is not empty:
+		if the number of entries in the viable directions is 1:
+			say "There is an exit [viable directions] from here.";
+		otherwise:
+			say "There are exits [viable directions] from here.";
+	otherwise:
+		say "There are no obvious exits from this place.";
+
 Part 3 - Activity bug fix
 
 [This is a bug with David Fisher's Custom Library Messages; a conflict with the standard rules definition for 'going on' (adj. of an activity.)]
@@ -212,7 +241,7 @@ Does the player mean opening or closing something unopenable (this is the very u
 
 Part 4 - Taking
 
-Does the player mean taking something had by the player (this is the very unlikely to mean taking possessions rule):
+Does the player mean taking something enclosed by the player (this is the very unlikely to mean taking possessions rule):
 	it is very unlikely;
 
 Book 3 - Rulebooks
@@ -462,10 +491,12 @@ Part 7 - Taking Inventory
 
 [It's unfortunately hard to jig about with the I7 list writer, and probably easier just not to bother. Thus:]
 
-Instead of taking inventory (this is the Textfyre Standard replacement inventory rule):
+This is the Textfyre Standard replacement inventory rule:
 	[The difference between this and the standard inventory style is that we do not show inventory information.]
 	say "You are carrying: [line break]";
 	list the contents of the player, with newlines, indented, including contents, with extra indentation;
+
+The Textfyre Standard Replacement Inventory rule is listed instead of the print standard inventory rule in the carry out taking inventory rulebook.
 
 After printing the name of something (called x) while taking inventory:
 	carry out the printing inventory information activity with x;
@@ -511,8 +542,8 @@ Rule for implicitly opening something locked (called the locked item):
 
 Before going through a closed door (called the obstacle):
 	carry out the implicitly opening activity with the obstacle;
-	[ if the obstacle is locked and the obstacle is closed:
-		stop the action; ]
+	if the obstacle is locked and the obstacle is closed:
+		stop the action;
 
 Chapter 2 - Implicitly unlocking
 
@@ -604,9 +635,11 @@ Understand "examine [direction]" as facing.
 
 Setting action variables for facing:
 	now the viewed item is the room-or-door noun from the location of the actor; 
-	if the viewed item is a door:
+	if the viewed item is an door:
 		change the aperture viewed through to the viewed item;
-		change the viewed item to the other side of the aperture viewed through;
+		if the aperture viewed through provides the property other side:
+			unless the other side of the aperture viewed through is nothing:
+				change the viewed item to the other side of the aperture viewed through;
 
 Check facing through something closed:
 	say "[The aperture viewed through] [is-are] closed." instead;
@@ -643,15 +676,7 @@ Before printing the name of a doorway (called the portal):
 Rule for printing the name of a doorway:
 	say "doorway";
 
-Understand "n/north/northern" as a doorway when the direction of the item described from the location is north.
-Understand "s/south/southern" as a doorway when the direction of the item described from the location is south.
-Understand "e/east/eastern" as a doorway when the direction of the item described from the location is east.
-Understand "w/west/western" as a doorway when the direction of the item described from the location is west.
-
-Understand "nw/northwest" as a doorway when the direction of the item described from the location is northwest.
-Understand "sw/southwest" as a doorway when the direction of the item described from the location is southwest.
-Understand "ne/northeast" as a doorway when the direction of the item described from the location is northeast.
-Understand "se/southeast" as a doorway when the direction of the item described from the location is southeast.
+Understand "[something related by leading]" as a doorway.
 
 Understand "doorway" as a doorway.
 Understand "doorways" as the plural of doorways.

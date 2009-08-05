@@ -1,9 +1,14 @@
 Textfyre Standard Backdrops by Textfyre begins here.
 
+"An extension providing standard floors, ceilings, walls, and sky."
+
 Include Textfyre Standard Rules by Textfyre.
 
 A room can be interior or exterior. A room is usually interior.
 A room can be grounded or aerial. A room is usually grounded.
+A room can be ceilinged or unceilinged.
+An interior room is usually ceilinged.
+An exterior room is usually unceilinged.
 
 The circadia is a kind of value. The circadias are defined by the table of times of day.
 
@@ -33,14 +38,23 @@ Instead of putting something on the backdrop-floor:
 A procedural rule when removing something from the backdrop-floor:
 	ignore the can't remove what's not inside rule;
 
+Check facing down towards nothing when the location is grounded and the player can see the backdrop-floor (this is the convert looking down at nothing into examining the floor rule):
+	try examining the backdrop-floor instead;
+
 The backdrop-ceiling is a privately-named backdrop. The backdrop-ceiling is everywhere. The printed name of the backdrop-ceiling is "ceiling".
-Understand "ceiling" as the backdrop-ceiling when the location is interior.
+Understand "ceiling" as the backdrop-ceiling when the location is ceilinged.
+
+Check facing up towards nothing when the location is ceilinged and the player can see the backdrop-ceiling (this is the convert looking up at nothing into examining the ceiling rule):
+	try examining the backdrop-ceiling instead;
 
 Some backdrop-walls are a privately-named backdrop. The backdrop-walls are everywhere. The printed name of the backdrop-walls is "walls".
 Understand "walls", "wall" as the backdrop-walls when the location is interior.
 
 The backdrop-sky is a privately-named backdrop. The backdrop-sky is everywhere. The printed name of the backdrop-sky is "sky".
 Understand "sky" as the backdrop-sky when the location is exterior.
+
+Check facing up towards nothing when the location is exterior and the location is unceilinged and the player can see the backdrop-sky (this is the convert looking up at nothing into examining the sky rule):
+	try examining the backdrop-sky instead;
 
 The backdrop-sun is privately-named, scenery. The backdrop-sun is part of the backdrop-sky. The printed name of the backdrop-sun is "sun".
 Understand "sun" as the backdrop-sun when the location is exterior and the weather is clear skies and the sunlight of the present moment is true.
@@ -61,3 +75,7 @@ Understand "southwest/sw wall" as southwest when the location is interior.
 Understand "southeast/se wall" as southeast when the location is interior.
 
 Textfyre Standard Backdrops ends here.
+
+---- DOCUMENTATION ----
+
+An extension which provides standard floors, ceilings, walls, and sky. 

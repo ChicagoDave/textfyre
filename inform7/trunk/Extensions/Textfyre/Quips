@@ -21,7 +21,7 @@ When play begins:
 The menu option currently being displayed is a number that varies;
 
 The current conversationalist is a person that varies.
-The chosen opening gambit is a quip that varies.
+The chosen opening gambit is an object that varies.
 
 A quip has a text called the menu text.
 A quip has a text called the display text.
@@ -31,7 +31,7 @@ A quip has a list of objects [quips] called the response.
 Chapter 2 - Transition quips
 
 A transitional quip is a kind of quip.
-A transitional quip has a quip called the following quip.
+A transitional quip has an object called the following quip.
 The response of a transitional quip is always {}.
 
 Chapter 3 - Firing activity
