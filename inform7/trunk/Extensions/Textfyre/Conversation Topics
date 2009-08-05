@@ -58,6 +58,11 @@ Rule for choosing the conversation topic for something (called the NPC):
 			if there is a conversation entry:
 				change the chosen conversation topic to the conversation entry;
 				rule succeeds;
+	carry out the choosing the default conversation topic activity with the NPC;
+
+Choosing the default conversation topic of something is an activity.
+
+Rule for choosing the default conversation topic for something (called the NPC):
 	change the chosen conversation topic to the default topic of the NPC;
 
 Part 2 - Actions
@@ -68,11 +73,21 @@ Instead of telling someone about something:
 Instead of answering someone that something:
 	try asking the noun about it;
 
+Talking to is an action applying to one thing.
+
+Understand "talk to [someone]" as talking to.
+Understand "chat to/with [someone]" as talking to.
+
+Report talking to someone (called the NPC):
+	carry out the choosing the conversation table activity with the NPC;
+	carry out the choosing the default conversation topic activity with the NPC;
+	carry out the speaking with activity with the NPC instead;	
+
 Part 3 - Implementation
 
 Report asking someone (called the NPC) about something:
 	carry out the choosing the conversation table activity with the NPC;
-	carry out the choosing the conversation topic activity;
+	carry out the choosing the conversation topic activity with the NPC;
 	carry out the speaking with activity with the NPC instead;	
 
 Conversation Topics ends here.
