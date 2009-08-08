@@ -92,6 +92,27 @@
     <Compile Include="controls\MenuBar.ascx.designer.cs">
       <DependentUpon>MenuBar.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Customer\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\Downloads.aspx.cs">
+      <DependentUpon>Downloads.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Downloads.aspx.designer.cs">
+      <DependentUpon>Downloads.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\OnTheInside.aspx.cs">
+      <DependentUpon>OnTheInside.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\OnTheInside.aspx.designer.cs">
+      <DependentUpon>OnTheInside.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -209,6 +230,9 @@
   <ItemGroup>
     <Content Include="CancelledSale.aspx" />
     <Content Include="CompletedSale.aspx" />
+    <Content Include="Customer\Default.aspx" />
+    <Content Include="Customer\Downloads.aspx" />
+    <Content Include="Customer\OnTheInside.aspx" />
     <Content Include="images\graeme.jpg" />
     <Content Include="images\tflogo.jpg" />
     <Content Include="Web.config" />
