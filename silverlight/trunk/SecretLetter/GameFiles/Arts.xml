@@ -46,6 +46,9 @@
   <Art ID="CameoArt_TheDukeofInhyron" Path="Images/CameoArt/cameoDukeInhyron.png" Width="140" Height="215" Margin="0,0,0,0" />
   <Art ID="CameoArt_Olmer" Path="Images/CameoArt/cameoOlmerDarrens.png" Width="140" Height="215" Margin="0,0,0,0" />
   <Art ID="CameoArt_Thebald-headedman" Path="Images/CameoArt/cameoOlmerDarrens.png" Width="140" Height="215" Margin="0,0,0,0" />
+  <Art ID="CameoArt_Theresa" Path="Images/CameoArt/cameoTheresa.png" Width="140" Height="215" Margin="0,0,0,0" />
+  <Art ID="CameoArt_Shannon" Path="Images/CameoArt/cameoShannon.png" Width="140" Height="215" Margin="0,0,0,0" />
+  <Art ID="CameoArt_Fiona" Path="Images/CameoArt/cameoFiona.png" Width="140" Height="215" Margin="0,0,0,0" />
   <Art ID="CameoArt_ThePrincess" Path="Images/CameoArt/cameoPrincess.png" Width="140" Height="215" Margin="0,0,0,0" />
 
   <!-- SpotArt -->
