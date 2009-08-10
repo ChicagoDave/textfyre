@@ -2,8 +2,6 @@
 
 [  Change Log
 When		Who		What
-
-
 08-Jul-2009	G. Jefferis	Automatic exit checks
 07-Jul-2009	G. Jefferis	De Smet bug fixes
 06-Jul-2009	D. Cornelson	Fixed Chapter 10 title change.
@@ -207,7 +205,7 @@ The story creation year is 2009.
 
 Rule for printing the banner text:
 	select the title channel;
-	say "[b][story title][r][line break]";
+	say "[b][story title] - v1.08[r][line break]";
 	select the credits channel;
 	say "[story title] by [story author][line break]";
 	say "Copyright &#169; [story creation year] by [story author][line break]";
@@ -5705,8 +5703,7 @@ Part 3 - Entrance to Maiden House
 Chapter 1 - Description 
 [ *** Code changed for Demo Version ***]
 
-[
-Purchase Full Version is southwest of the back alley. The description is "You have reached the end of the playable demonstration of [i]Jack Toresal and The Secret Letter[r]. Who is Baron Fossville? What is Bobby's plan? Why are the mercenaries chasing you? What is the Princess doing in Toresal? To find out the answer to all of these questions, you can purchase the full, downloadable, version for Windows XP, Vista, or Intel Mac OS X by surfing to www.textfyre.com."]
+[Purchase Full Version is southwest of the back alley. The description is "You have reached the end of the playable demonstration of [i]Jack Toresal and The Secret Letter[r]. Who is Baron Fossville? What is Bobby's plan? Why are the mercenaries chasing you? What is the Princess doing in Toresal? To find out the answer to all of these questions, you can purchase the full, downloadable, version for Windows XP, Windows Vista, Windows 7, or Intel Mac OS X by surfing to www.textfyre.com."]
 
 Entrance to Maiden House is southwest of the back alley. The description is "The alley dead-ends in a small courtyard surrounded by old, run-down buildings. You can return to the main part of the city to the northeast."
 
