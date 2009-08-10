@@ -6,6 +6,7 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 
 [  Change Log
 When		Who		What
+10-Aug-2009 	J. Ingold	Some of Paul's feedback + some playtesting of C7.
 5-Aug-2009	G. Jefferis	Final bug fixes from Eric
 4-Aug-2009	G. Jefferis	Bug fixes from Eric - sh-v0.61-ECSE-01 (and various others)
 3-Aug-2009	G. Jefferis	Bug fixes from Eric - sh-v0.61-ECSE-01
@@ -433,22 +434,22 @@ The current game chapter is a number that varies.
 
 When play begins: 
 	now the current game chapter is 1;
-	change the right hand status line to "[location]";
-	change the left hand status line to "Chapter [current game chapter]: [current chapter name]".
+	change the right hand status line to "[turn count]";
+	change the left hand status line to "Chapter [current game chapter]: [current chapter name] -- [location]".
 
 Table of Chapter Titles
 title						chapter
-"The Abbot's Quarters"		1
-"The Abbey of Time"			2
-"The Cathedral of Time"		3
+"Between a Rack and a Gear-Trace"		1
+"No Place to Hide"			2
+"In the Cathedral of Time"		3
 "The Figure in Grey"			4
-"The Rooftops of the City"		5
+"The Rooftops of the St Philip"		5
 "The Clockmaker"			6
 "The Counting House"		7
-"The Docklands"				8
-"Return to Covalt's"			9
-"Night at the Cathedral"		10
-"The Crypt"					11
+"The Secret in the Docklands"				8
+"Covalt's Device"			9
+"Back to the Cathedral"		10
+"Into the Crypt"					11
 "Midnight"					12
 
 To say current chapter name:
@@ -1602,6 +1603,8 @@ Understand "scrape [something]" as scraping.
 Understand "scrape [something] up/off/away" as scraping.
 Understand "scrape up/off/away [something]" as scraping.
 
+Understand the command "scratch" as "scrape".
+
 Check scraping:
 	say "I can't see a need to scrape [if the noun is plural-named]those[otherwise]that[end if]." instead;
 
@@ -1863,14 +1866,14 @@ Part 27 - Putting Against
 
 Putting it against is an action applying to one carried thing and one thing.
 
-Understand "put [something preferably held] up to/against [something]" as putting it against.
-Understand "put [something preferably held] to/against [something]" as putting it against.
+Understand "put [something preferably held] up to/against/at [something]" as putting it against.
+Understand "put [something preferably held] to/against/at [something]" as putting it against.
 
-Understand "hold [something preferably held] up to/against [something]" as putting it against.
-Understand "hold [something preferably held] to/against [something]" as putting it against.
+Understand "hold [something preferably held] up to/against/at [something]" as putting it against.
+Understand "hold [something preferably held] to/against/at [something]" as putting it against.
 
-Understand "place [something preferably held] up to/against [something]" as putting it against.
-Understand "place [something preferably held] to/against [something]" as putting it against.
+Understand "place [something preferably held] up to/against/at [something]" as putting it against.
+Understand "place [something preferably held] to/against/at [something]" as putting it against.
 
 Check putting something against something:
 	say "That doesn't seem to achieve anything.";
@@ -2095,7 +2098,6 @@ Part 40 - Kind of action - making to leave
 
 Exiting is making to leave.
 Going outside is making to leave.
-
 
 
 Part 41 - Shouting at
@@ -2364,6 +2366,10 @@ Part 20 -Synonyms for Ask for
 
 Understand "ask for [something] from [someone]" as asking it for (with nouns reversed).
 
+Part 21 - Synonyms for Looking under
+
+Understand "look behind [something]" as looking under.
+
 Book E - New Properties
 
 Part 1 - Wakefulness
@@ -2483,7 +2489,7 @@ To say my description:
 
 Chapter 2 - Wren's Possessions
 
-A thing called my lucky clock key is privately-named, worn by the player. The description is "The one thing I've had all my life. It's been there, on a string around my neck, for as long as I can remember. I keeping hoping that it's a last gift from my [i]true[r] family, and one day it'll open a treasure-chest or the door of one of the Great Houses. But then again, maybe it's just something I tried to eat as a baby. Either way, I've yet to find a lock it'll turn or a clock it'll wind." The printed name is "my lucky clock key". Understand "my", "lucky", "clock key", "key", "string" as the lucky clock key.
+A thing called my lucky clock key is privately-named, worn by the player. The description is "The one thing I've had all my life. It's been there, on a string around my neck, for as long as I can remember. I keep hoping that it's a last gift from my [i]true[r] family, and one day it'll open a treasure-chest or the door of one of the Great Houses. But then again, maybe it's just something I tried to eat as a baby. Either way, I've yet to find a lock it'll turn or a clock it'll wind." The printed name is "my lucky clock key". Understand "my", "lucky", "clock key", "key", "string" as the lucky clock key.
 
 Instead of dropping the lucky key:
 	say "What? Lose my lucky clock key? And then what would I have left?";
@@ -2736,13 +2742,15 @@ Rule for printing the description of the Abbot's Door:
 	otherwise:
 		say "It's a heavy oak door.";
 
-Rule for implicitly opening the closed Abbot's Door when Hiding in the Clock has ended:
+[Rule for implicitly opening the closed Abbot's Door when Hiding in the Clock has ended:
 	try opening the Abbot's Door;
 	consider the scene changing rules;
-	rule fails;
+	rule fails;]
 
-[ Before going through the closed Abbot's Door when Hiding in the Clock has ended:
-	try opening the Abbot's Door instead; ]
+[ The point of the following rule is to force a one move gap between exiting the clock and exiting the Abbot's Quarters, to spread out the reaction messages. Yes, this means that going out will just open the door, but I think that's okay. ] 
+
+ Before going through the closed Abbot's Door when Hiding in the Clock has ended:
+	try opening the Abbot's Door instead; 
 
 Report opening the Abbot's Door when Hiding in the Clock has ended:
 	say "I haul open the door." instead.
@@ -3180,6 +3188,9 @@ Understand "cobwebs", "floorboards" and "rafters/rafter" as the backdrop-floor w
 
 Rule for printing the description of the backdrop-floor when in the Attic Room:
 	say "[one of]There isn't a floor here, just a few rafters and a long drop on either side![or]Really. I don't have a floor, just some beams and a bed.[stopping]"
+	
+Instead of searching the backdrop-floor when in the Attic Room:
+	say "There's nothing there except a long way down."
 
 Instead of jumping when in the Attic Room:
 	say "Doesn't sound like a good idea to me!"
@@ -3304,6 +3315,14 @@ Before climbing down the caretaker's ladder:
 
 Instead of pushing the caretaker's ladder when the caretaker's ladder is in the Rickety Stair:
 	say "It wobbles, a little wave up towards the ceiling."
+	
+Instead of looking under the caretaker's ladder:
+	if the player is carrying the caretaker's ladder:
+		say "I'm there." instead;
+	say "Under the ladder is Bad Luck, whether the Abbot agrees with such beliefs or not."
+
+Instead of hiding behind the caretaker's ladder:
+	say "Standing under a ladder is like asking for the sky to fall. Bad luck."
 
 Section - In the Rickety Stair
 
@@ -3432,7 +3451,7 @@ Section 2 - Candle-tracks
 
 Some candle-tracks are a backdrop, in Upper Hall, Central Hall and Lower Hall. "The candles move in the space between floor and ceiling, the way the stars move between Earth and the Great Darkness of Heaven. They're follow winding metal tracks that cross and recross along the length of the Great Hall, and as they move, pools of light form and then dissolve, so that some parts of the chamber are brightly lit at times whilst others are quite dark. The candles move day and night, with automatic systems to replace those that burn down to the stub."
 
-Understand "candle", "candles", "track", "tracks" as the candle-tracks.
+Understand "candle", "candles", "track", "tracks", "patterns", "holy" as the candle-tracks.
 
 Before doing something when the candle-tracks are physically involved:
 	say "They're high above me, out of reach." instead.
@@ -3682,7 +3701,7 @@ Before removing something from the tea-machine when the noun is enclosed by the 
 
 Chapter 7 - Bracket
 
-The bracket is an open container, part of the tea-machine. The description is "Just below the main gear train is a semi-circular bracket made of silver [if the teacup is not in the bracket], unsurprisingly about the size of a teacup.[otherwise if the teacup is empty], in which is a tea cup waiting for tea.[otherwise] in which is a nice full cup of tea.[end if]"
+The bracket is an open container, part of the tea-machine. The description is "Just below the main gear train is a semi-circular bracket made of silver[if the teacup is not in the bracket], unsurprisingly about the size of a teacup.[otherwise if the teacup is empty], in which is a tea cup waiting for tea.[otherwise] in which is a nice full cup of tea.[end if]"
 
 Understand "silver", "semicircle", "semi-circle", "semi circle" as the bracket.
 
@@ -3710,7 +3729,7 @@ Does the player mean doing something with the gear train:
 
 Section 2 - Small, worn-down gear
 
-The small gear is part of the gear train. The description is "Half the teeth have rounded, like those of an old man, the kind that eats nothing but cabbage. I'm going to need to find a new one from somewhere."
+The small gear is part of the gear train. The description is "Half the teeth have rounded, like those of an old man, the kind that eats nothing but cabbage[if new gear is not handled]. I'm going to need to find a new one from somewhere[end if]."
 
 Understand "worn", "worn down", "worn-down", "teeth", "cog", "old gear/cog" as the small gear.
 
@@ -3807,7 +3826,7 @@ A tea-making rule:
 
 A tea-making rule:
 	if the teacup is not in the bracket,
-		say "Everything's set, certainly, except there's nowhere for the tea to go – except out of the basket, through the semi-circular bracket where the tea-cup's supposed to go, and them all over my feet." instead;
+		say "Everything's set, certainly, except there's nowhere for the tea to go – except out of the basket, through the semi-circular bracket where the tea-cup's supposed to go, and then all over my feet." instead;
 
 A tea-making rule:
 	if the tea-machine key is unwound,
@@ -4086,6 +4105,9 @@ Instead of asking Horloge for Horloge's keys:
 Instead of asking Horloge for the mechanical owl:
 	say "He'd never give me his owl. It'd be like giving me his lungs, or one of his arms."
 
+Instead of asking Horloge to try turning or switching on the mechanical owl:
+	say "I think the Brother knows how to wind a clockwork. He doesn't need [i]me[r] to tell him."
+
 Section 3 - Conversation
 
 TRIG_WHOTSIT is a trigger.
@@ -4272,7 +4294,7 @@ Chapter 2 - Scenery
 
 Section 1 - Long Table and Benches
 
-Some long tables are a supporter, Drake-hideable, enterable, in the west refectory. The description of the long tables is "Two long oak tables flanked by benches. Each monk's place is marked by an hourglass, fixed to a brass rod along the centre of the table." Understand "table", "bench", "benches", "dining", "chair", "chairs" as the long tables.
+Some long tables are a supporter, Drake-hideable, enterable, in the west refectory. The description of the long tables is "Two long oak tables flanked by benches. Each monk's place is marked by an hourglass, fixed to a brass rod along the centre of the table." Understand "table", "bench", "benches", "dining", "chair", "chairs", "seat", "seats" as the long tables.
 
 Instead of putting something on the long tables:
 	say "I shouldn't clutter the table. I only cleaned up here a few hours ago.";
@@ -4284,6 +4306,9 @@ Rule for writing a paragraph about the long tables:
 	if the teacup is on the long tables,
 		say "On the table is a single empty [teacup], left over from breakfast.";
 	now the long tables are mentioned;
+	
+Instead of looking under the long tables:
+	say "There's a lot of space there, easily enough to - say - hide from Drake."
 
 The long tables incorporate a brass rod. 
 
@@ -4349,7 +4374,7 @@ Chapter 2 - Scenery
 
 Section 1 - Long Table and Benches
 
-Some long benches are a supporter, Drake-hideable, enterable, in the east refectory. The description of the long benches is "Two long oak tables flanked by benches. Each monk's place is marked by an hourglass, fixed to a brass rod along the centre of the table." Understand "table", "tables", "bench", "dining", "chair", "chairs" as the long benches.
+Some long benches are a supporter, Drake-hideable, enterable, in the east refectory. The description of the long benches is "Two long oak tables flanked by benches. Each monk's place is marked by an hourglass, fixed to a brass rod along the centre of the table." Understand "table", "tables", "bench", "dining", "chair", "chairs", "seat", "seats" as the long benches.
 
 The printed name of the long benches is "long tables".
 
@@ -4361,6 +4386,10 @@ Instead of entering the long benches:
 
 Rule for writing a paragraph about the long benches:
 	now the long benches are mentioned;
+
+Instead of looking under the long benches:
+	say "There's a lot of space there, easily enough to - say - hide from Drake."
+
 
 The long benches incorporate a brass rod. 
 
@@ -4632,12 +4661,12 @@ Instead of closing the Cabinet of Relics:
 
 Section 2 - Press Materials
 
-Some press materials are in the Cabinet of Relics. The description is "Typesets and other items, including a full set of new brass gears[if we know about the broken gear]. One stands out; the same cut and bearing as the worn-down cog on the Tea Maker in the Kitchen[end if].".
+Some press materials are in the Cabinet of Relics. The description is "Typesets and other items, including a full set of new brass gears[if we know about the broken gear and the new gear is in the Cabinet of Relics]. One stands out; the same cut and bearing as the worn-down cog on the Tea Maker in the Kitchen[end if].".
 
 Instead of taking or searching the press materials:
 	say "'Don't touch those,' Reloh demands. So I don't touch."
 
-Understand "new", "cogs", "gears", "relics", "typesets", "typeset", "brass", "items", "other" as the press materials
+Understand "new", "cogs", "gears", "relics", "typesets", "typeset", "brass", "items", "other", "roller", "rollers" as the press materials
 
 Understand "gear", "cog" as the press materials when the player can not see the new gear and the player can not see the small gear;
 
@@ -5262,6 +5291,12 @@ Section 2 - plants
 
 Some plants are scenery in the Herb Garden. The plants can be day-plants or night-plants. The plants are day-plants.
 
+Rule for printing the description of the day-plants plants:
+	say "The day-plants are lush and verdant, thanks to the metal plate that keeps them out of the shadows of the walls."
+
+Rule for printing the description of the night-plants plants:
+	say "The night-plants look dry and withered, like old men, or the oldest of the old monks, the ones who need straws to eat."
+
 Understand "herb/herbs/plant/flower/flowers/basil/potatoes/vegetables" or "day-plants" or "day plants" as the plants when the plants are day-plants. 
 Understand "mushroom/fungi/fungus/nightcap/thyme" or "night-plants" or "night plants" as the plants when the plants are night-plants. 
 
@@ -5495,7 +5530,7 @@ Instead of closing the East Door:
 
 Section 5 - Glimpse of Altar
 
-The glimpsed Altar is a glimpse backdrop, in Cathedral Entrance, in the Lower Nave, in the Upper Nave, in the East Apse, in the West Apse, in the North Clerestory, in the Cathedral Choir, in the East Clerestory, in the West Clerestory. "The altar is surrounded by monks, softly-singing." Understand "altar" as the glimpsed Altar.
+The glimpsed Altar is a glimpse backdrop, in Cathedral Entrance, in the Lower Nave, in the Upper Nave, in the East Apse, in the West Apse, in the North Clerestory, in the Cathedral Choir, in the East Clerestory, in the West Clerestory. "The altar is surrounded by monks, softly singing." Understand "altar" as the glimpsed Altar.
 
 The glimpsed Altar identifies the iron altar.
 
@@ -6209,7 +6244,6 @@ Before asking Brother Sa'at for the work order:
 
 Before asking Brother Sa'at for the Principia Planetaria:
 	try taking the Principia Planetaria instead.
-
 
 Instead of dropping the sealed work order:
 	say "Better hang onto it. You never know when something with the seal on it might come in handy." instead;
@@ -10035,7 +10069,7 @@ Instead of opening the clock shop door when the scrap of paper is off-stage duri
 Instead of opening the clock shop door when Return to Covalt's has not happened:
 	say "'That's the place,' Covalt insists, tapping the address with a finger like a roofing mallet. 'The Difference Engine'll tell you all you want. I hope. If you can get a clear idea what you're wanting and – well, anyway.' He puffs his cheeks. 'One dead air balloon says you'll do your best.'[paragraph break]'Thanks,' I say. The first person to be nice to me – well, ever really. 'I appreciate your help.'[paragraph break]'Well, nothing's too good for a rat,' he snarls. 'And do pop back here later if you need to. I don't think. Bringing the Heretic police and that. Go on! Get out of it.' And with that, he boots me through the door and slams it with relish.";
 	end the chapter;
-	say "The streets of St Philip are narrow and winding, closer to the veins on a leaf than anything mechanical. Their only Holy Function is to get me completely totally lost, and they do that so well that it takes a good couple of hours to find the way to the steps of the Counting House.[paragraph break]If anyone from the Abbey saw me out here they'd have my guts for wheel-belts. Lucky then that this is a side-street off a side-street, the kind of place full of urchins who look the same as me. Anyway, all the important people here are riding in closed carriages.";
+	say "The streets of St Philip are narrow and winding, closer to the veins on a leaf than anything mechanical. Their only Holy Function is to get me completely and totally lost, and they do that so well that it takes a good couple of hours to find the way to the steps of the Counting House.[paragraph break]If anyone from the Abbey saw me out here they'd have my guts for wheel-belts. Lucky then that this is a side-street off a side-street, the kind of place full of urchins who look the same as me. I'd feel right at home - if I wasn't further from it than I'd ever been.";
 	move the player to The Street;
 
 Chapter 5 - Covalt's reactions to going to the Bedroom
@@ -10080,29 +10114,39 @@ Part 1 - Street
 
 Chapter 1 - Description
 
-The Street is an exterior room. "Either side, sour buildings like a council of bored old men. At least the Counting House looks different: on the northeast corner, it's more like that woman who delivers vegetables to Cook once a week. Stocky, solid and all dressed up – in this case, marble steps, pillars and two enormous brass doors."
+The Street is an exterior room. "Either side stand sour buildings like a council of bored old men. At least the Counting House looks different: on the northeast corner, it's more like the woman who delivers vegetables to Cook once a week. Stocky, solid, all dressed up - in this case, marble steps, pillars and two enormous brass doors." The printed name of the Street is "Outside the Counting House".
 
 Chapter 2 - Scenery
 
 Section 1 - Buildings
 
-Some buildings are a backdrop, in the street and the Counting House Steps. "It's a rich part of town – funny that the street is so dirty. There aren't even any lamps. By night this place is probably pitch dark." Understand "houses", "street", "streets", "dark", "town", "side-street", "side-streets", "side street/streets" as the buildings.
+Some buildings are a backdrop, in the street and the Counting House Steps. "It's a rich part of town – funny that the street is so dirty. There aren't even any lamps. By night this place is probably pitch dark." Understand "houses", "street", "streets", "dark", "town", "side-street", "side-streets", "side street/streets", "alley", "alleyway", "alley-way" as the buildings.
 
 Instead of doing something when the buildings are physically involved:
 	say "I'd better keep my mind on the Counting House. I'm not a tourist!";
 
+Instead of approaching the buildings:
+	try going down.
+
 Section 2 - Counting House
 
-The distant counting house is scenery, privately-named, in the street. "The steps are to the northeast of where I'm standing." The printed name is "Counting House". Understand "counting", "house", "marble", "steps", "stairs", "brass", "doors", "building", "different", "stocky", "solid", "enormous", "pillars" as the distant counting house.
+The distant counting house is scenery, privately-named, in the street. "The steps are to the northeast of where I'm standing." The printed name is "Counting House". Understand "counting", "house", "marble", "steps", "stairs", "brass", "doors", "door", "building", "different", "stocky", "solid", "enormous", "pillars" as the distant counting house.
 
-Instead of entering or climbing the distant counting house:
+Instead of entering or climbing or approaching the distant counting house:
 	try going northeast instead;
 
-Instead of going up in the street:
+Instead of going up when in the street:
 	try going northeast instead;
+
+Instead of going inside when in the street:
+	try going northeast instead;
+Instead of making to leave when in the Street:
+	say "There's no turning back now."
+Instead of going nowhere when in the Street:
+	say "There's no turning back now."
 
 Instead of doing something when the distant counting house is physically involved:
-	say "The Counting House itself is up the stairs.";
+	try going northeast.
 
 Chapter 3 - Event on Exit
 
@@ -10114,7 +10158,7 @@ Part 2 - Steps
 
 Chapter 1 - Description
 
-The Counting House Steps is an exterior room, northeast of the street. "The steps are wide and flat, leading up between lines of pillars to the wide brass doors of the Counting House. Either side stand two guards staring out like statues."
+The Counting House Steps is an exterior room, northeast of the street. "The steps are flat and wide, as wide as the wide brass doors of the Counting House. On either side, two wide guards stand guard with their heads cocked to one side - why'd they stand like that I don't know."
 
 Instead of going inside in the Counting House Steps: try going north.
 Instead of making to leave when in the Counting House Steps: try going southwest.
@@ -10130,7 +10174,7 @@ At the time when the player attempts to enter the counting house:
 
 TRIG_COUNTING_HOUSE is a trigger.
 Rule for firing unfired TRIG_COUNTING_HOUSE:
-	say "The guards['] spears move like well-oiled pinions to cross in front of the doors. Not like I wouldn't need their help in opening those doors anyway.[paragraph break]'This building is restricted,' the first guard says. 'I'm afraid unofficial visits aren't authorized.'[paragraph break]'Push off, street-rat,' the second guard translates. 'Beat it or we'll beat you.'[paragraph break]'I'm here on business,' I tell them, voice shaking.[paragraph break]'I'm afraid we'd need to see some verification of that,' says the first.[paragraph break]'Thief's business?' demands the second."
+	say "The guards['] spears move like well-oiled pinions to cross in front of the doors. Not like I wouldn't need their help in opening these doors anyway.[paragraph break]'This building is restricted,' the first guard says. 'I'm afraid unofficial visits aren't authorized.'[paragraph break]'Push off, street-rat,' the second guard translates. 'Beat it or we'll beat you.'[paragraph break]'I'm here on business,' I tell them, voice shaking.[paragraph break]'I'm afraid we'd need to see some verification of that,' says the first.[paragraph break]'Thief's business?' demands the second."
 
 Rule for firing fired TRIG_COUNTING_HOUSE:
 	say "'Verification,' the first guard reminds you. Their spears stay crossed.";
@@ -10144,7 +10188,7 @@ The front of the Counting House is a door, open, not openable, scenery, privatel
 Rule for printing the name of the front of the Counting House when the location is the Grand Foyer:
 	say "brass doors";
 
-Understand "counting", "house", "building", "saints", "cheese", "block", "block of cheese", "yellow", "yellowy", "gold", "golden", "oil", "oily", "luster", "saints", "saint", "babbage", "godel", "ada", "lovelace", "ada of lovelace" as the front of the Counting House when the location is the Counting House Steps.
+Understand "counting", "house", "building", "saints", "cheese", "block", "block of cheese", "yellow", "yellowy", "gold", "golden", "oil", "oily", "luster", "saints", "carvings" as the front of the Counting House when the location is the Counting House Steps.
 
 Understand "large", "brass", "doors", "door" as the front of the Counting House.
 
@@ -10156,6 +10200,38 @@ Instead of going through the front of the Counting House from the Counting House
 Instead of opening the front of the Counting House:
 	try entering the front of the Counting House instead;
 
+Section 2 - Parts of the Facade
+
+A facade-part is a kind of thing. A facade-part is scenery, proper-named.
+
+Every facade-part is part of the front of the Counting House.
+
+Instead of doing something when a facade-part is physically involved:
+	say "The carvings are just part of the Counting House."
+
+Instead of approaching or entering or hiding inside or climbing a facade-part:
+	try entering the front of the Counting House instead.
+
+Some facade-parts are defined by the Table of Counting House Facade Elements.
+
+Table of Counting House Facade Elements
+facade-part			description
+Babbage-part				"Babbage looks serene, or perhaps a little bemused."
+Godel-part				"Godel appears to be counting on his fingers: he's probably reached eleven, knowing him."
+Ada of Lovelace		"She looks quite pleased to be up there."
+pillars				"Each pillar is five times my height and not smooth, but grooved to form cog-teeth up its length."
+
+The printed name of Babbage-part is "Saint Babbage." 
+The printed name of Godel-part is "Saint Godel." 
+The pillar are plural-named.
+Babbage-part is privately-named.
+Godel-part is privately-named.
+
+Understand "st/saint babbage" as Babbage-part.
+Understand "st/saint godel" as Godel-part.
+Understand "pillar", "column", "columns" as the pillar.
+
+
 Section 3 - Atmospheric effects
 
 STEPS_COUNTER is a counter. The top end is 4. The internal value is 2.
@@ -10166,11 +10242,94 @@ Every turn when in Counting House Steps:
 Rule for firing STEPS_COUNTER:
 	say "[one of]A carriage rattles along the cobbled street behind me.[or]The guards stand as motionless as hour hands; although one seems to have an itch on his nose.[or]The sun shining off the brass doors of the Counting House is almost blinding.[or]A few pigeons scatter between the pillars of the Counting House.[at random]";
 
+The street-atmosphere is a backdrop, privately-named, in the Counting House Steps. The printed name is "street". "The street is empty once more."
+
+Understand "carriage", "carriages", "pigeon", "pigeons", "bird", "birds" as the street-atmosphere.
+
+Instead of doing something when the street-atmosphere is physically involved:
+	try going down.
+
 Chapter 3 - Guards
 
-Some Counting House guards are a person, scenery, privately-named, in the Counting House Steps. "The guards are dressed in full livery: bright red uniforms with pendulums hanging from both shoulders, embroidered cog-links and knee-high black boots tipped with metal pointers. Each one carries a flat spear: the one carried by the guard on the left is longer than the one carried by the guard on the right." The printed name is "guards".
+Some Counting House guards are a person, scenery, privately-named, in the Counting House Steps. "The guards are dressed in full livery: bright red uniforms with pendulums hanging from both shoulders, embroidered cog-links on their elbows, knee-high black boots tipped with metal pointers. Each one carries a flat spear: the one carried by the guard on the left is longer than the one carried by the guard on the right." The printed name is "guards".
 
-Understand "guard", "guards", "uniformed", "uniform", "uniforms", "livery", "spears", "flat", "on the", "left", "right" as the Counting House Guards.
+Understand "guard", "guards", "uniformed",  "on the", "left", "right", "first guard/one/man", "second guard/one/man", "man", "men"   as the Counting House Guards.
+
+Instead of attacking the guards:
+	say "I don't think I do very well in a fight against these two."
+
+Instead of attacking the guards with something:
+	say "I don't think I do very well in a fight against these two."
+
+
+
+Section 1 - Spears
+
+Some spears are carried by the Counting House guards. Understand "spear", "flat" as the spears. 
+
+Rule for printing the description of the spears:
+	say "Both the guards have got one: one's long, and the other one's short (and of course, the shorter one is the most important.)"
+
+Instead of doing something when the spears are physically involved:
+	say "I don't think the guards would let me!"
+
+Instead of asking the Counting House guards for the spears:
+	try taking the spears instead.
+
+Instead of asking the Counting House guards to try giving the spears to the player:
+	try taking the spears instead.
+
+Instead of asking the Counting House guards to try dropping the spears:
+	try taking the spears instead.
+
+Instead of pulling or taking the spears:
+	say "If I could disarm two guards single-handed then I'd be able to deal with Calvin and Drake without scurrying around chasing Grey Figures in the hope of a reward!"
+
+Section 1b - Uniforms
+
+Some uniforms are worn by the Counting House guards. Understand  "uniform", "uniforms", "livery","boots", "knee high", "knee-high", "elbow", "elbows", "coglinks", "cog links", "links", "cog-links", "button", "buttons", "pendulums/penduluum", "pendulum/penduluum", "boot" as the uniforms.
+
+Rule for printing the description of the uniforms:
+	say "The uniforms are well-pressed and sparkling. Maybe I could get a job as a 2nd Assistant Button-Polisher!"
+
+Instead of doing something when the uniforms are physically involved:
+	say "I don't think the guards would let me!"
+
+Instead of asking the Counting House guards for the uniforms:
+	try taking the uniforms instead.
+
+Instead of asking the Counting House guards to try giving the uniforms to the player:
+	try taking the uniforms instead.
+
+Instead of asking the Counting House guards to try dropping the uniforms:
+	try taking the uniforms instead.
+
+Instead of asking the Counting House guards to try taking off the uniforms:
+	try taking the uniforms instead.
+
+Instead of pulling or taking or taking off the uniforms:
+	say "I don't think I could persuade two Counting House guards to undress, however funny it would be."
+
+Instead of asking the Counting House guards to try taking off the uniforms:
+	try taking the uniforms.
+
+Section 1c - Nose
+
+A nose is part of the Counting House guards. The description is "The guard has a fine Roman nose."
+
+Understand "guards'", "guard's" as the nose.
+
+Instead of doing something when the nose is physically involved: 	
+	say "[one of]Who nose what would happen if I tried that?[or]Nose way.[cycling]"
+
+Instead of searching the nose:
+	say "From where I'm standing I can see right up it. Not much going on inside."
+
+Instead of entering the nose:
+	say "Right now, I'm the only one who in the nose about the Figure!"
+
+Instead of scraping the nose:
+	say "I don't think he'd appreciate it."
 
 Section 2 - Conversation
 
@@ -10179,7 +10338,7 @@ The conversation table of the Counting House guards is the table of Counting Hou
 Table of Counting House Guard conversation
 conversation			topic
 CT_GUARD_ENTRY		"entry" or "[me]"
-CT_GUARD_GUARDS	"[himself]" or "guard"
+CT_GUARD_GUARDS	"[himself]" or "guard" or "themselves" or "guarding" or "job" or "work"
 CT_GUARD_PROOF		"business" or "proof"
 CT_GUARD_CATHEDRAL		"[cathedral]" or "church" or "[abbey]" or "archbishop" or "[abbot]"
 CT_GUARD_FIGURE		"[figure]"
@@ -10194,6 +10353,9 @@ CT_GUARD_ENTRY is clustered with CT_GUARD_PROOF, CT_GUARD_CATHEDRAL, CT_GUARD_FI
 [These topics may only be fired once.]
 Rule for firing a fired conversation topic that is clustered with CT_GUARD_ENTRY:
 	say "I've already asked about that." instead;
+
+Rule for firing fired CT_GUARD_GUARDS:
+	say "That didn't seem to work too well before, did it?"
 
 CT_GUARD_ENTRY is a conversation topic. The enquiry text is "'You've got to let me in. I'm from the Cathedral.'". The response text is "The guards look unimpressed. 'Without proof I'm afraid you could just as well be from the cock-fighting pits, looking to see who'll win tonight.'". 
 
@@ -10217,6 +10379,29 @@ CT_GUARD_SAINTS is a conversation topic. The enquiry text is "'Which are those s
 
 Section 3 - Permit
 
+Instead of giving the Perpetuum Mobile diagram to the Counting House guards:
+	try showing the Perpetuum Mobile diagram to the Counting House guards.
+
+Instead of showing the Perpetuum Mobile diagram to the Counting House guards:
+	say "[one of]'Doesn't mean a thing to me,' the first guard remarks, after peering at the diagram.[paragraph break]'It's a blueprint, isn't it?' the second replies.[paragraph break]'Yeah, but it's a not a blueprint for anything we've got here, is it?'[paragraph break]The second guard shrugs. 'I wasn't that good at school,' he says.[paragraph break]'Me neither.' The first guard prods me with the butt of his spear. 'You take your blueprints with you. No need to show off, now, is there?'[or]It didn't seem to do much good before.[stopping]";
+
+Instead of giving the small gear to the Counting House guards:
+	try showing the small gear to the Counting House guards.
+
+Instead of showing the small gear to the Counting House guards:
+	say "[one of]'See that?' the first guard remarks, laughing. 'The wretchin's trying to [i]bribe[r] his way in!'[paragraph break]'Never gonna work,' the second guard agrees, shaking his head. 'Never gonna work.'[paragraph break]'No. Can't bribe a Counting House guard.'[paragraph break]'Can't be done,' the second agrees.[paragraph break]'No way,' the first replies.[paragraph break]'Certainly not with something as worn out as that,' the second says.[paragraph break]The first frowns at him, and both go quiet.[or]That didn't work too well before, did it?[stopping]";
+
+Instead of giving the scrap of paper to the Counting House guards:
+	try showing the scrap of paper to the Counting House guards.
+
+Instead of showing the scrap of paper to the Counting House guards:
+	say "'Look, I've been [i]sent[r] here,' I insist, holding up the address.[paragraph break]'That is our address,' the first guard says. 'I recognise the number.'[paragraph break]The second guard nods. 'Ain't ever had a wretchin try and break their way in here, either.'[paragraph break]'Don't know why you would, nor neither.' The first guard pulls his spear away. 'Get inside with you, then. But don't mess with nothing.'[paragraph break]Don't mess with nothing? I can certainly agree to [i]that[r]. The second guard opens the door and I slip inside.";
+	move the player to the Grand Foyer.
+
+
+Instead of giving the work order to the Counting House guards:
+	try showing the work order to the Counting House guards.
+
 Instead of showing the work order to the Counting House guards:
 	say "'How about this?' I try, producing Sa'at's work order.[paragraph break]The guards take one look at the seal and look deeply unimpressed. I suppose I wasn't going to fool the guards this way twice. But then the spears uncross and the first guard says, 'all right then.' The second opens the doors for me and I go inside.[paragraph break]Probably neither of them can read.";
 	move the player to the Grand Foyer;
@@ -10235,11 +10420,14 @@ Chapter 1 - Description
 
 The Grand Foyer is a room. "The hall is wide and lofty and filled with stars that shine from the sparkling brass fittings. It’s like Drake’s descriptions of the Abbot’s private bath-house: gleaming marble and a soft hazy smell. This is the foyer and it has nothing in it at all apart from two enormous staircases curving upwards to the west and the east."
 
-Instead of making to leave in the Grand Foyer: try going south.
-Instead of making to leave in the Grand Foyer: try going up.
+Instead of making to leave when in the Grand Foyer: try going south.
+Instead of going inside when in the Grand Foyer: try going up.
 
-Instead of going south in the Grand Foyer:
-	say "No thanks. I've got past those guards once, there's no reason to try it again.";
+Before going south when in the Grand Foyer:
+	say "No thanks. I've got past those guards once, there's no reason to try it again." instead;
+
+Instead of entering the front of the Counting House when in the Grand Foyer:
+	try going south;
 
 Instead of going up in the Grand Foyer:
 	say "Which way? East or west?";
@@ -10327,12 +10515,31 @@ The East Foyer Steps pair the West Foyer Steps.
 Instead of climbing or entering the west foyer steps: try going west;
 Instead of climbing or entering the east foyer steps: try going east;
 
+Instead of looking under the West Foyer Steps:
+	say "The stairs have space beneath them. They must be built into the walls for support."
+
+Instead of looking under the East Foyer Steps:
+	say "The stairs have space beneath them. They must be built into the walls for support."
+
 Section 3 - Glass Doors
 
-Some glass doors are a door, open, not openable, scenery, north of the Grand Foyer, south of the Main Platform. "[if the Calculatrix is in the Main Platform]In front of the machine I can make out two ladies, one short and dark-haired wearing a long white gown, the other elegant, thin and dressed up like a princess at a ball.[otherwise]Beyond the glass doors is the complex and intricate machine, its pinions bent by the warped glass into meaningless shapes.[end if]"
+Some glass doors are a door, open, not openable, scenery, north of the Grand Foyer, south of the Main Platform. "Beyond the glass doors is the complex and intricate machine, its pinions bent by the warped glass into meaningless shapes[if the Calculatrix Pristina is in the Main Platform]. In front of the machine I can make out two ladies, one short and dark-haired wearing a long white gown, the other elegant, thin and dressed up like a princess at a ball[end if]."
+
+Does the player mean doing something with the glass doors: it is likely.
+
+Instead of going through the glass doors when the location is the Grand Foyer and the Calculatrix Pristina is in the Main Platform and CAL_SPOTTED is unfired:
+	fire CAL_SPOTTED;
+
+Instead of examining or searching the glass doors when the location is the Grand Foyer and the Calculatrix Pristina is in the Main Platform and CAL_SPOTTED is unfired:
+	fire CAL_SPOTTED;
 
 Instead of going through the glass doors from the Grand Foyer when the Calculatrix Pristina is in the Main Platform:
-	say "[one of]My hand freezes on the door-handle as I overhear a woman's voice. 'The machine works quickly.' Peering through the door I can make out two figures on the other side, their bodies stretched and bent by the warps in the glass.[or]I don't want to get caught and even if the two women behind the door don't see me they'd be bound to [i]smell[r] me if I went inside.[stopping]";
+	say "I don't want to get caught and even if the two women behind the door don't see me they'd be bound to [i]smell[r] me if I went inside.";
+
+CAL_SPOTTED is a trigger. 
+
+Rule for firing CAL_SPOTTED:
+	say "My hand freezes on the door-handle as I overhear a woman's voice. 'The machine works quickly.' Peering through the door I can make out two figures on the other side, their bodies stretched and bent by the warps in the glass."
 
 After going through the glass doors from the Grand Foyer:
 	say "I slip through the glass doors, between the first blocks of the enormous machine and up onto the central platform.";
@@ -10341,7 +10548,18 @@ After going through the glass doors from the Grand Foyer:
 Instead of opening the glass doors:
 	try entering the glass doors;
 
-Understand "beveled/bevelled", "bubbled", "warped", "bubbles", "warps" as the glass doors.
+Understand "beveled/bevelled", "bubbled", "warped", "bubbles", "warps", "door" as the glass doors.
+
+Section 3b - glimpse of the machine
+
+The glimpse-machine is a glimpse backdrop in the Grand Foyer. The printed name is the "[if the Difference Engine is admired]Difference Engine[else]machine[end if]". Understand "machine", "pinions", "difference", "engine", "computer" as the glimpse-machine.
+
+Rule for printing the description of the glimpse-machine when in the Grand Foyer:
+	say "[if the glass doors are closed]I can't make out much through the bevelled glass[else]The machine seems vast and very complicated[end if]."
+
+The glimpse-machine identifies the sprung platform.
+
+
 
 Section 4 - Desk
 
@@ -10352,6 +10570,9 @@ Rule for writing a paragraph about the large oak desk:
 
 Understand "sturdy", "table", "wood", "wooden", "timbers" as the oak desk. The printed name is "oak desk".
 
+Instead of looking under the large oak desk:
+	say "There's nothing very interesting down there. The floor, mostly."
+
 Section 5 - Folder
 
 A leather folder is on the large oak desk. The description is "A leather folder containing a few documents. It's stamped with the Parliamentary seal of a spiked wheel."
@@ -10360,6 +10581,20 @@ The reading matter is "Inside are a few documents stamped with Parliament seals.
 
 Instead of opening or searching the leather folder:
 	try reading the leather folder instead;
+
+The Parliamentary documents are part of the leather folder. Understand "paper", "papers" as the Parliamentary documents.
+
+Instead of examining or reading the Parliamentary documents:
+	try reading the leather folder instead.
+
+Instead of taking the Parliamentary documents:
+	say "They look boring. I don't need them."
+
+The Parliamentary seal is part of the leather folder. Understand "spiked", "wheel", "stamp" as the Parliamentary seal. 
+
+Instead of examining the Parliamentary seal:
+	say "It's a cog, predictably: but a really spiky one. The kind you could roll over your enemies."
+
 
 Section 6 - Duchess and Calculatrix
 
@@ -10409,7 +10644,7 @@ Chapter 1 - Descriptions
 
 The Western Landing is a major mirror-room, northwest of the Western Stairs. 
 
-The first description is "At the top of the stairs is a grand and silent hallway, like someone took the whole of the Abbey and chucked out all the candles, icons, wax, grease, soot, echoes and mothballs. I feel dirty just breathing the air.[paragraph break]It continues north. Doors of frosted glass line up on either side, but all are closed."
+The first description is "At the top of the stairs is a grand and silent hallway, like someone took the whole of the Abbey and chucked out all the candles, icons, wax, grease, soot, echoes and mothballs. I feel dirty just breathing the air.[paragraph break]The corridor continues to the north. Doors of frosted glass line up on either side, but all are closed."
 
 The second description is "This landing is the same as the other one: a wide corridor lined by closed doors, heading north away from the stairs."
 
@@ -10459,6 +10694,21 @@ Rule for printing the description of the labeled doors when in the Eastern Landi
 Understand "label", "labelled", "labeled", "door" as the labeled doors when the player can not see the open subtle escape.
 
 Understand "closed", "frosted", "glass", "labels", "doors" as the labeled doors.
+
+Section 2b - Offices
+
+Some offices are a backdrop in the Western Landing, in the Eastern Landing.
+
+
+Understand "office of", "office", "offices", "bureau of", "archive of", "department of", "governor of" , "paradox", "rhetorical", "simplification", "unanswerable", "queries", "departmental allocation", "recursion", "dependencies" as the offices when the location is the Western Landing.
+
+Understand "office", "offices", "bureau of", "archive of", "department of", "governor of" , "logic", "prime", "roster", "conceptual", "multiplication", "efficiency", "inversing", "and inversing", "bursary", "expenses", "and expenses" as the offices when the location is the Eastern Landing.
+
+Rule for printing the description of some offices:
+	say "The door to each office is opaque, which means its hard to work out what goes on inside."
+
+Instead of entering or approaching or knocking on or attacking or pushing or searching or looking under some offices:
+	say "I don't need any officials. I need the Difference Engine itself!"
 
 Section 3 - Staircases
 
@@ -10705,6 +10955,11 @@ Section 2 - Difference Engine
 
 The Difference Engine is a backdrop, in Main Platform, The Engine Room, Western Balcony, and Eastern Balcony. 
 
+The Difference Engine can be admired or unadmired. The Difference Engine is unadmired.
+
+Every turn when the unadmired Difference Engine is visible:
+	now the Difference Engine is admired.
+
 Rule for printing the description of the Difference Engine when the location is a balcony:
 	say "The Engine is a neat cube of springs, levers and vertical rods laced with cogs, and unlike any of the clocks I've polished it's organized in a tidy and symmetric way. Each part looks the same as the parts beside it (and all the bits [i]inside[r] look the same again, only smaller). It's like looking at a sugar-crystal close up, and only the platforms and scaffolds that weave around inside break it up at all.";
 
@@ -10775,15 +11030,14 @@ Instead of pulling the clutch:
 
 Section 4 - The Duchess Du Mer
 
-Understand "tall", "taller", "tallest", "thin", "elegant", "beautiful", "woman", "tall/taller one" as the Duchess Du Mer.
-Understand "figure", "shadow", "shape" as the Duchess Du Mer when the location is the Grand Foyer.
+Understand "tall", "taller", "tallest", "thin", "elegant", "beautiful", "woman", "lady", "tall/taller one", "figure", "shadow", "shape"  as the Duchess Du Mer.
 
 Understand "Duchess", "Du", "Mer" as the Duchess Du Mer when the Duchess Du Mer is known.
 
 The Duchess Du Mer is a woman, privately-named, unknown, scenery, in the Main Platform. "One thing's sure: she's a beautiful lady. Long gleaming hair like fresh oil, cheekbones arched like pinions arms. She could be the Goddess of Klockwerk brought to life if the Church allowed such a ridiculous idea outside of the Newtonmass stories of children."
 
 Rule for printing the description of the Duchess when the location is the Grand Foyer:
-	say "I can't see a lot through the bubbled glass.";
+	say "I can't see a lot through the bubbled glass, but the tall lady seems to be leaning over the shorter one as if telling her off.";
 
 Rule for printing the name of the unknown Duchess Du Mer:
 	say "tall [if the location is the Foyer]figure[otherwise]woman[end if]";
@@ -10791,16 +11045,30 @@ Rule for printing the name of the unknown Duchess Du Mer:
 Instead of doing something when the Duchess Du Mer is physically involved:
 	say "If she or anyone else found me here, they'd have me skinned in a second and use my bones to build a whirligig machine.";
 
+Section 5b - Can't Talk
+
+Before asking the Duchess Du Mer about when the location is the Grand Foyer:
+	say "I don't want them to see I'm here!" instead;
+
+Before  telling the Duchess Du Mer about when the location is the Grand Foyer:
+	say "I don't want them to see I'm here!" instead;
+
+Before asking the Duchess Du Mer for when the location is the Grand Foyer:
+	say "I don't want them to see I'm here!" instead;
+
+Before  answering the Duchess Du Mer that when the location is the Grand Foyer:
+	say "I don't want them to see I'm here!" instead;
+
 Section 5 - Calculatrix Pristina
 
 The Calculatrix Pristina is a woman, privately-named, unknown, scenery, in the Main Platform. "The Calculatrix is short and squat, with a flop of brown hair almost covering her glasses. I've heard the monks mutter that it takes a certain kind of woman to work clockwork – what they mean, I don't know, but I guess this prim and awkward-looking woman must have it since she tends one of the most important machines in the world."
 
-Understand "short", "shorter", "shortest", "squat", "woman", "short/shorter one", "dark-haired", "dark haired", "long gown", "gown", "white gown", "long white gown" as the Calculatrix Pristina.
-Understand "figure" as the Calculatrix Pristina when the location is the Grand Foyer.
+Understand "short", "shorter", "shortest", "squat", "woman", "short/shorter one", "dark-haired", "dark haired", "long gown", "gown", "white gown", "long white gown", "lady", "figure" as the Calculatrix Pristina.
+
 Understand "Calculatrix", "Pristina" as the Calculatrix Pristina when the Calculatrix Pristina is known.
 
 Rule for printing the description of the Calculatrix when the location is the Grand Foyer:
-	say "I can't see a lot through the bubbled glass.";
+	say "I can't see a lot through the bubbled glass, but the shorter one seems to be operating the machine.";
 
 Rule for printing the description of the Calculatrix when Calculatrix Chase is happening or the location is Caught:
 	say "She's white with fury. On either side of her are guards, bristling with rage and anger.";
@@ -10813,6 +11081,20 @@ Rule for printing the name of the unknown Calculatrix while asking which do you 
 
 Instead of doing something when the Calculatrix Pristina is physically involved:
 	say "The less I have to do with [i]her[r] the better.";
+
+Section 5b - Can't Talk
+
+Before asking the Calculatrix Pristina about when the location is the Grand Foyer:
+	say "I don't want them to see I'm here!" instead;
+
+Before telling the Calculatrix Pristina about when the location is the Grand Foyer:
+	say "I don't want them to see I'm here!" instead;
+
+Before  asking the Calculatrix Pristina for when the location is the Grand Foyer:
+	say "I don't want them to see I'm here!" instead;
+
+Before answering the Calculatrix Pristina that when the location is the Grand Foyer:
+	say "I don't want them to see I'm here!" instead;
 
 Section 6 - Punchcard
 
@@ -14545,7 +14827,7 @@ Instead of attacking the wound spring with my lucky clock key:
 
 Book W - Walkthrough Script
 
-Test jonsprogress with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt".
+Test jonsprogress with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt / in / show work order to guards".
 
 Test walkthrough with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt / test countinghouse / test outsidewarehouse".
 
