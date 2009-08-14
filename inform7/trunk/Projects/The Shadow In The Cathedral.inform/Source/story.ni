@@ -6,6 +6,7 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 
 [  Change Log
 When		Who		What
+14-Aug-2009 	J. Ingold	More of Paul's feedback and some left over from Eric's script. Started on Paul's new transcripts too.
 10-Aug-2009 	J. Ingold	Some of Paul's feedback + some playtesting of C7.
 5-Aug-2009	G. Jefferis	Final bug fixes from Eric
 4-Aug-2009	G. Jefferis	Bug fixes from Eric - sh-v0.61-ECSE-01 (and various others)
@@ -202,7 +203,7 @@ Rule for printing the banner text:
 	say "Game Engine (FyreVM) by Jesse McGrew[line break]";
 	say "Inform 7 Story Programming by Graeme Jefferis[line break]";
 	say "Custom Library Messages extension by David Fisher[line break]";
-	say "Testing by Jon Ingold, Ian Finley, and Eric Eve[line break]";
+	say "Testing by Jon Ingold, Ian Finley, Paul O'Brian and Eric Eve[line break]";
 	say "User Interface Programming by Thomas Lynge[line break]";
 	say "Special thanks to Graham Nelson and Emily Short[line break]";
 	say "for all of their hard work on Inform 7.[line break]";
@@ -337,9 +338,19 @@ LibMsg <what disambiguation>	"What do you want[if main object is not the player]
 LibMsg <block jumping>			"Scared, are you?"
 LibMsg <block showing>			"Might as well show a cobweb to a clock-face."
 LibMsg <block giving>			"[one of]I've got few enough things as it is, without giving them away for no reason.[or]I'm not giving anything away.[at random]"
+LibMsg <block thinking>			"My cogs turn."
+LibMsg <block sleeping>			"Now's not the time for that!"
+LibMsg <block smelling>			"The only smell around is the one I'm most used to - it's not bath-time for another week!"
 
 Instead of attacking the player:
 	say "I'd rather hit Drake."
+
+The first-person  Textfyre Standard replacement inventory rule is listed instead of the  Textfyre Standard replacement inventory rule in the carry out taking inventory rulebook.
+
+This is the first-person Textfyre Standard replacement inventory rule:
+	[The difference between this and the standard inventory style is that we do not show inventory information.]
+	say "I'm carrying: [line break]";
+	list the contents of the player, with newlines, indented, including contents, with extra indentation;
 
 Chapter 5b - Altered Default Messages
 
@@ -456,17 +467,24 @@ To say current chapter name:
 	say title corresponding to a chapter of the current game chapter in the table of Chapter Titles;
 
 
-Section 2 - Release method
+Section 1 - Release method
 
 To end a/the chapter:
 	increase the current game chapter by 1;
 	pause the game;
 
-Section 1 - Debug method (not for release)
+Section 2 - Debug method (not for release)
 
 To end a/the chapter:
 	increase the current game chapter by 1;
 	say "[paragraph break][bold type]*** CHAPTER [current game chapter]: [current chapter name] ***[roman type][paragraph break]";
+
+[Chapter 4 - Punctuation removal
+
+[ this phrase seems to be broken ] 
+
+After reading a command:
+	resolve punctuated titles.]
 
 Book B - New Kinds
 
@@ -648,7 +666,7 @@ Instead of squeezing a candle into a wax lump:
 	say "I'd need to melt down [the noun] first somehow, it's not soft enough as [it-they] [is-are]."
 
 Instead of squeezing a candle into a candle:
-	say "I'd need to melt down the candles first somehow, they're not soft enough as they are."
+	say "I'd need to melt down the candles first somehow; they're not soft enough as they are."
 ]
 
 Part 6 - Candles
@@ -685,6 +703,9 @@ Instead of squeezing or attacking a candle:
 
 Instead of burning a candle:
 	say "There's nothing around to light it on."
+
+Instead of burning a candle when in the Calendar Shrine:
+	try inserting the noun into the brazier.
 
 Section - plurals and groups
 
@@ -1018,8 +1039,14 @@ Rule for printing the name of an matched-up glimpse backdrop (called the image):
 
 Section 2 -  Interaction
 
-Instead of doing something when a glimpse backdrop (called the far-off thing) is physically involved:
+Instead of doing something when a glimpse backdrop (called the far-off thing) is physically involved and the action is physical:
 	say "I can't reach [the far-off thing] from where I am."
+
+Instead of smelling a glimpse backdrop (called the far-off thing):
+	say "I can't smell [the far-off thing] from here."
+
+Instead of listening to a glimpse backdrop (called the far-off thing):
+	say "I can't hear [the far-off thing] from here."
 
 Section 3 - Approaching
 
@@ -1222,7 +1249,7 @@ Check polishing someone with:
 	say "I don't suppose [the noun] would care for that." instead;
 
 Check polishing something with:
-	say "That seems clean enough as it is." instead;
+	say "[The noun] seems clean enough as [it-they] [is-are]." instead;
 
 Part 2 - Hiding
 
@@ -1258,7 +1285,15 @@ Chapter 3 - Hiding Behind
 
 Hiding behind is an action with past participle hidden, applying to one thing.
 
-Understand "hide behind [something]" as hiding behind.
+Understand "behind/under/underneath/below" as "[under]".
+
+Understand "hide [under] [something]" as hiding behind.
+Understand "walk [under] [something]" as hiding behind.
+Understand "stand [under] [something]" as hiding behind.
+Understand "go [under] [something]" as hiding behind.
+Understand "get [under] [something]" as hiding behind.
+Understand "crouch [under] [something]" as hiding behind.
+Understand "creep [under] [something]" as hiding behind.
 
 Carry out hiding behind:
 	do nothing;
@@ -2153,17 +2188,26 @@ Asking no-one in particular about is an action applying to one topic.
 Telling no-one in particular about is an action applying to one topic.
 
 Understand "ask about [text]" as asking no-one in particular about.
+Understand "a [text]" as asking no-one in particular about.
 Understand "tell about [text]" as telling no-one in particular about.
+Understand "t [text]" as telling no-one in particular about.
 Understand "talk about [text]" as telling no-one in particular about.
+
+Definition: a person is a human if they are a man or they are a woman.
 
 Definition: a person is conversationally available if they are visible and they are enclosed by the location and they are not the player.
 
 Check asking no-one in particular about:
-	if the number of  conversationally available  people is zero:
+	if the number of conversationally available people is zero:
 		say "I'm not mad enough yet to talk to myself." instead;
-	if the number of conversationally available people is at least two:
-		say "I'll have to decide who to say that to: [the or-separated list of visible other people]." instead;
-	try asking a random conversationally available  person about the topic understood instead.
+	if the number of conversationally available people is one:
+		[ ask a person or animal if there's only one ]
+		try asking a random conversationally available  person about the topic understood instead;
+	if the number of conversationally available human people is one:
+		[ otherwise, if there's a human and an animal, go for the human ]
+		try asking a random conversationally available human person about the topic understood instead;
+	[otherwise, list the humans only ]
+	say "I'll have to decide who to say that to: [the or-separated list of visible human people]." instead;
 
 Check telling no-one in particular about:
 	try asking no-one in particular about the topic understood instead.
@@ -2370,6 +2414,18 @@ Part 21 - Synonyms for Looking under
 
 Understand "look behind [something]" as looking under.
 
+Part 22 - Synonyms for unlocking
+
+Understand "lever [something]" as pulling.
+Understand "pry [something]" as pulling.
+Understand "lever [something] with [something]" as unlocking it with.
+Understand "pry [something] with [something]" as unlocking it with.
+
+Part 23 - Synonyms for opening
+
+Understand "unfold [something]" as opening.
+Understand "unroll [something]" as opening.
+
 Book E - New Properties
 
 Part 1 - Wakefulness
@@ -2474,7 +2530,7 @@ Part 1 - Introduction
 When play begins:
 	select the prologue channel;
 	say "[my description][line break]";	
-	say "'[i]HEY WREN![no line break][r]'[paragraph break]Uh-oh.[paragraph break]'We've got a job for you!'[paragraph break]'Yeah, a promotion!'[paragraph break]This, coming from Drake and Calvin, means something horrible is about to happen.[paragraph break]'You've got your rag, don't you?'[paragraph break]'And your polish?'[paragraph break]'Yes,' I bleat, holding up the glass tumbler they've given me.[paragraph break]'Course you do. Well, we've got something for you to do.'[paragraph break]'Yeah,' chimes Calvin.[paragraph break]One on each arm, they march me down the hall, towards the Abbot's door. Am I in trouble? Going to be thrown out of the Cathedral?[paragraph break]'On three!' shouts Drake.[paragraph break]'Dong!' Calvin counts. 'Dong! [i]Dong![no line break][r]'[paragraph break]They shove me through the door. I fall into the Abbot's personal chamber. I might not know much about the Abbey but I do know that I [i]really[r] shouldn't be in here.[paragraph break]";
+	say "'[i]HEY WREN![no line break][r]'[paragraph break]Uh-oh.[paragraph break]'We've got a job for you!'[paragraph break]'Yeah, a promotion!'[paragraph break]This, coming from Drake and Calvin, means something horrible is about to happen.[paragraph break]'You've got your rag, don't you?'[paragraph break]'And your polish?'[paragraph break]'Yes,' I bleat, holding up the glass tumbler they've given me.[paragraph break]'Course you do. Well, we've got something for you to do.'[paragraph break]'Yeah,' chimes Calvin.[paragraph break]One on each arm, they march me down the hall, towards the Abbot's door. Am I in trouble? Going to be thrown out of the Cathedral?[paragraph break]'On three!' shouts Drake.[paragraph break]'Tick!' Calvin counts. 'Tick! [i]Tock![no line break][r]'[paragraph break]They shove me through the door. I fall into the Abbot's personal chamber. I might not know much about the Abbey but I do know that I [i]really[r] shouldn't be in here.[paragraph break]";
 	select the main channel;
 
 Part 2 - Wren
@@ -2511,6 +2567,8 @@ A rag is carried by the player. The description is "The tool of the polisher's t
 
 Understand "old", "dirty", "polishing" as the rag.
 A tumbler is a container, open, carried by the player. The description is "A small glass with all that's left of my daily wood polish ration. How I'm supposed to do all the rest of my chores after this I don't know, but Drake and Calvin didn't seem too worried about that." Understand "glass" as the tumbler. The printed name of the tumbler is "glass tumbler".
+
+Understand "cup" as the tumbler when the player cannot see the teacup.
 
 Rule for emptying away the small amount of polish when in Inside Clock Case:
 	remove the small amount of polish from play;
@@ -2793,6 +2851,9 @@ Instead of looking under the desk:
 Instead of opening the desk:
 	say "I'm not here to go rummaging around in the Abbot's papers. They'd have be thrown into prison for spying!";
 
+Instead of searching the desk:
+	try examining the geometric designs.
+
 Some geometric designs are part of the Abbot's desk. Understand "scratch", "surface", "table's/desk's/table/desk surface/top", "scratches", "design" as the geometric designs.
 
 Rule for printing the description of the geometric designs: say "Years of designers have imprinted the footprints of their thoughts into the surface of the wood itself. In another hundred years, the desk itself will be a Relic in the Cathedral Reliquary." 
@@ -2948,6 +3009,12 @@ Understand "mechanism", "workings", "brass", "holy", "blessed", "bevelled", "bev
 
 Instead of doing something when the penduluum is physically involved and the current action is physical:
 	say "To stop a clock is murder. To shift the balance... that's something worse still.";
+	
+Instead of listening to the penduluum:
+	say "A steady ticking: the heartbeat of the World."
+
+Instead of smelling the penduluum:
+	say "A smell of flax oil and brass."
 
 Section 2b - Weights
 
@@ -3210,10 +3277,18 @@ Instead of looking under my cot:
 Section 2 - Crate
 
 A crate is a container, scenery, in the Attic Room. "A laundry crate containing my spare clothes. Or my spare clothe, anyway."
-Understand "spare", "clothes", "clothe", "laundry" as the crate.
+Understand "laundry" as the crate.
 
 Instead of opening or searching or taking the crate:
 	say "Laundry day's not for at least three weeks.";
+
+A spare clothe is in the crate.  Understand "clothes", "clothing" as the spare clothe. The description is "That's my other top."
+
+Instead of smelling the spare clothe:
+	say "Clean."
+
+Instead of taking the spare clothe:
+	say "Leave it. I'll need it soon enough, when they take this top away forcibly on wash day."
 
 Section 3 - Picture
 
@@ -3294,9 +3369,9 @@ Instead of going east through the Abbot's Door during Introduction:
 
 Part 3 - Rickety Stair
 
-Chapter 1 - Description
+Chapter 1 - Description                                                                                           
 
-The Rickety Stair is a room. The description is "I'm in the western corner of the Great Hall[if caretaker's ladder is in location], just by the foot of the ladder up to my room (the rest of the hall is east). There's a note attached to it, asking Amble the caretaker not to put it back in the shed just yet.[else]. My bedroom is somewhere overhead.[end if]"
+The Rickety Stair is a room. The description is "I'm in the western corner of the Great Hall[if caretaker's ladder is in location], just by the foot of the ladder up to my room (the rest of the hall is east). There's a note attached to the third rung asking Amble the caretaker not to put the ladder back in the garden just yet.[else]. My bedroom is somewhere overhead.[end if]"
 
 After assembling available exits of the Rickety Stair:
 	if the caretaker's ladder is in the Rickety Stair:
@@ -3306,7 +3381,7 @@ The printed name of Rickety Stair is "Corner of the Great Hall".
 
 Chapter 2 - Ladder 
 
-The caretaker's ladder is a thing in the Rickety Stair. 
+The caretaker's ladder is a thing in the Rickety Stair.
 
 Understand "caretakers", "amble's", "ambles", "rung", "rungs", "bottom of", "wooden" as the caretaker's ladder.
 
@@ -3321,8 +3396,8 @@ Instead of looking under the caretaker's ladder:
 		say "I'm there." instead;
 	say "Under the ladder is Bad Luck, whether the Abbot agrees with such beliefs or not."
 
-Instead of hiding behind the caretaker's ladder:
-	say "Standing under a ladder is like asking for the sky to fall. Bad luck."
+Before hiding behind the caretaker's ladder:
+	say "Standing under a ladder is like asking for the sky to fall. Bad luck." instead.
 
 Section - In the Rickety Stair
 
@@ -3417,6 +3492,7 @@ Instead of taking the note:
 Part 4 - Upper Hall
 
 Instead of making to leave when in the Upper Hall: try going southwest.
+Understand "crane neck" as a mistake ("Honestly: I spend my whole life looking up anyway.") when the location is the Upper Hall.
 
 Chapter 1 - Description
 
@@ -3464,6 +3540,15 @@ Instead of going inside when in the Kitchen:
 Instead of making to leave when in the Kitchen:
 	say "I leave the Kitchen by the west door.";
 	try going west instead.
+
+Understand "make tea" as a mistake ("That's exactly what the tea maker's for.") when the location is the Kitchen.
+Understand "make a cup of tea" as a mistake ("That's exactly what the tea maker's for.") when the location is the Kitchen.
+Understand "make cup of tea" as a mistake ("That's exactly what the tea maker's for.") when the location is the Kitchen.
+Understand "make a brew" as a mistake ("That's exactly what the tea maker's for.") when the location is the Kitchen.
+Understand "brew tea" as a mistake ("That's exactly what the tea maker's for.") when the location is the Kitchen.
+Understand "brew a cup of tea" as a mistake ("That's exactly what the tea maker's for.") when the location is the Kitchen.
+Understand "brew cup of tea" as a mistake ("That's exactly what the tea maker's for.") when the location is the Kitchen.
+Understand "brew a brew" as a mistake ("That's exactly what the tea maker's for.") when the location is the Kitchen.
 
 Chapter 1 - Description
 
@@ -3620,7 +3705,7 @@ Before switching on the spigot when the kettle is full:
 
 Instead of switching on the spigot:
 	now the kettle is full;
-	say "The spigot releases a thin dribble of water into the kettle. Across the room, the clouds coming from the steamer suddenly thin out.[paragraph break]The Cook stops and gives me the most evil of evil stares. I turn the spigot closed again." instead;
+	say "The spigot releases a steady dribble of water into the kettle, filling it nicely. Across the room, the clouds coming from the steamer suddenly thin out.[paragraph break]The Cook stops and gives me the most evil of evil stares. I turn the spigot closed again." instead;
 
 Chapter 3 - Kettle
 
@@ -4079,6 +4164,11 @@ Section 1 - Description
 
 Horloge is a monk, scenery, in the Library. "Horloge's eyes are screwed up behind the most complicated pair of spectacles I've ever encountered. They make it hard to even see his eyes – or rather what's left of them. He's read in the darkness here in the Library for so long he's basically blind. On his shoulder sits his pet owl. Same as Brother Horloge it looks more fearsome than it actually is.[if Horloge's keys are on the wheeled table][paragraph break]By his elbow is a fat bunch of keys.[otherwise if Horloge's keys are in the location][paragraph break]On the floor by his feet is a fat bunch of keys.[end if][paragraph break][if Horloge is sipping his tea]He's sipping his tea, quite content, eyes half-closed.[otherwise]He's poring over a page of manuscript, muttering quietly to himself.[end if]"
 
+Horloge's spectacles are carried by Horloge. "Horloge was probably born wearing spectacles. They're made of bottle-glass, ground to the right thickness.  'Spectacles are either expensive,' as he's told me, 'or simply not very good.'"
+
+Before doing something when Horloge's spectacles are physically involved:
+	say "I'd better leave them be[one of]. He's blind without them[or][stopping]."
+
 Section 2 - Idle Actions
 
 The HorlogeCounter is a counter. The top end is 4. The internal value is 2. [We have the 'quest for tea' event on the first turn we enter.]
@@ -4405,6 +4495,9 @@ Section 3 - Garden Door
 
 The garden door is a locked door, east of the East Refectory and west of the Abbey Herb Garden. The description is "A low door leading out into the garden."
 
+Instead of unlocking the locked garden door with the lucky clock key:
+	say "My clock key is a clock key. It's only the right size for clocks. (And no clocks I've ever found, either.)"
+
 Understand "low", "green", "small", "herb" as the garden door.
 
 Rule for writing a paragraph about the garden door:
@@ -4527,7 +4620,7 @@ Section 6 - A backdrop object of Brother Horloge
 
 A room can be near-to-garden. A room is seldom near-to-garden. The East Refectory, West Refectory and Kitchen are near-to-garden.
 
-Horloge-backdrop is a backdrop. The printed name of Horloge-backdrop is "Brother Horloge". The Horloge-backdrop is privately-named, proper-named. Understand "brother", "horloge" as the Horloge-backdrop.
+Horloge-backdrop is a backdrop. The printed name of Horloge-backdrop is "Brother Horloge". The Horloge-backdrop is privately-named, proper-named. Understand "brother", "horloge", "keys" as the Horloge-backdrop.
 
 Before doing something with the Horloge-backdrop:
 	if approaching:
@@ -4602,6 +4695,9 @@ Chapter 1 - Description
 
 A room called the Scriptorium is southwest of the Library. "The Scriptorium is where the Copying takes place, though it's hard to believe that Copying once meant a team of monks working with carved rubber stamps. It's all done by mechanisms now, of course, like everything else except my chores. There's the massive Gutenberg press on the west wall, and everywhere else is Brother Reloh's Duplicator. Twenty-three Typewriters, all clattering away as though operated by ghosts, all connected by a single Carriage Arm that curves the length of the wall. To leave the room east or northeast I'll have to duck under it."
 
+Instead of listening when in the Scriptorium:
+	say "The noise of the Duplicator is deafening - like two hundred cooks banging saucepans."
+
 Chapter 2 - Reloh
 
 Brother Reloh is a monk, in the Scriptorium. "Reloh works on one of the keyboards of [the Duplicator], typing furiously. The hammering and punching is almost overwhelming." The printed name is "Reloh".
@@ -4616,10 +4712,16 @@ Chapter 3 - Duplicator
 
 The Duplicator is a device, in the Scriptorium. The description is "The Typewriters were designed and shipped in from the North, where they weave the finest ribbons known to man. The Carriage Arm is Reloh's own invention, however, that allows him to work here, alone.[paragraph break]The Duplicator is currently producing a long and complicated document."
 
-Understand "carriage", "arm", "typewriters" as the Duplicator.
+Understand "carriage", "arm", "typewriters", "ribbon", "ribbons" as the Duplicator.
 
 Instead of taking or switching on or switching off or typing on the Duplicator:
 	say "'Don't,' Reloh snaps. So I don't.";
+	
+Instead of slicing the Duplicator with the knife:
+	say "I think Reloh might do something similar to [i]me[r] if I tried that."
+
+Instead of attacking the Duplicator with the knife:
+	say "I think Reloh might do something similar to [i]me[r] if I tried that."
 
 Instead of reading or searching the Duplicator:
 	say "[one of]The sheets coming out of the Writers of the Great Duplicator are titled [i]'A Defense of the Faith Against the Strange Motions of the Unsettled Masses'[r]. I read a bit.[paragraph break][i]'But for the Irony, that it is Consequentialism which causes Wronged People to accept such Heresy and Bad Thought, I would declare these Bad Thinkers to be Agents of Rust itself. However, it is their Debauchery, their lacks of Precision, both in Morality and Productivity. These things have Led them into Terrible Indecision. [']When the teeth of the flock cannot chew, they shall Slip and Spin in most Lonely Individualism.['] So sayeth...'[r][line break]It doesn't half go on.[or]I'm not reading them again.[stopping]"
@@ -4916,6 +5018,9 @@ Drake's Patrol ends when Gong Sounding has happened or the Cathedral Yard is vis
 When Drake's Patrol ends:
 	remove Drake from play;
 
+Last Instead of listening during Drake's Patrol:
+	say "[one of]I strain my ears, hoping [i]not[r] to catch the sound of footsteps[or]The stones echo tiny noises - and some not so tiny ones too, like my breathing[or]I hold my breath and listen for Drake[cycling]."
+
 Section 2 - Route Implementation
 
 Drake has a list of objects called the route.
@@ -5036,7 +5141,7 @@ This is the warn of Drake's approach rule:
 		carry out the firing activity with ATTIC1 instead;
 	otherwise if the number of moves from the location to the location of Drake is greater than 1 and the number of moves from the location to Drake's previous location is 1:
 		[so he's moving away from you, and you're waiting behind him]
-		say "[one of]I hear footsteps, moving away into the Abbey[or][one of]Footsteps - moving away[or]I hear footsteps, receding[or]The stones echo departing footsteps[as decreasingly likely outcomes][stopping]." instead;		
+		say "[one of]I hear footsteps, moving away into the Abbey[or][one of]Footsteps[if location is Attic Room], downstairs[end if] - moving away[or]I hear footsteps, receding[or]The stones echo departing footsteps[as decreasingly likely outcomes][stopping]." instead;
 	continue the action;
 
 To say sound of footsteps from (d - a direction):
@@ -5056,6 +5161,8 @@ Definition: a direction (called the way) is Drake-viable:
 	if the way is outside or the way is inside or the way is up or the way is down, no;
 	let the new place be the room the way from the location;
 	if the new place is not a room, no;
+	[ is it through the garden door - specific, I know, but it'll do ]
+	if the way is east and the location is the East Refectory and the garden door is locked, no;
 	[ is he there? ]
 	if the new place is the location of Drake, no;
 	[ was he there? - stops the player swapping rooms with him ]
@@ -5128,6 +5235,21 @@ Part 15 - The Abbey, as a region
 
 The Abbey Region is a region. The Abbot's Quarters, Corridor of Contemplation, Attic Room, Rickety Stair, Upper Hall, Kitchen, Library, Central Hall, West Refectory, East Refectory, Scriptorium, Lower Hall, Abbey Pantry, Abbey Herb Garden and Abbey Entry are in the Abbey Region.
 
+The Abbey of Time is a backdrop in the Abbey Region. Understand "stones" as the Abbey of Time. "The Abbey is where I've lived all my life. It's not big when you've been around it as often as I have - but it's full of small corners."
+
+Before doing something when the backdrop-walls are involved and the Abbey of Time is visible:
+	redirect the action from the backdrop-walls to the Abbey of Time, and try that instead.
+
+Before climbing the Abbey of Time:
+	say "I'm pretty desperate to get out right now, it's true!" instead;
+
+Before doing something when the Abbey of Time is physically involved and the action is physical:
+	say "The Abbey has been here for longer than anyone can remember, and will be here for longer again." instead.
+
+
+
+
+
 Part 16 - The Herb Garden
 
 The Abbey Herb Garden is a room. "[one of]Standing in the garden is a bit like walking on tilting floorboards: every step you take has an unexpected spring to it. That's because where the ground should be there's a large metal disc with a large glass lens at its centre, on which all the soil beds are laid out like numbers on a clock. As the day goes on, the disc revolves so that the plants can follow the sunlight until at night, they've covered by the metal hood built into the south wall[or]Right now, [if the plants are day-plants]the lens in the centre of the great disc of the garden is bathed in light and the day-plants are out: basil, thyme, potatoes, other vegetables. The mushroom beds are under the metal hood on the south wall[else]the night-plants are out: mushrooms and nightcaps and fungi, and the day-plants are under the metal hood, safe from snails and birds[end if][if there is something on the large lens]. The lens is covered by [the list of things on the large lens][end if][stopping].[paragraph break]Otherwise, there are tall walls on three sides and only one door, back into the Abbey, to the west."
@@ -5157,16 +5279,20 @@ Instead of going nowhere when in the Abbey Herb Garden:
 	say "There's a high wall that way."
 
 Instead of going down when in the Abbey Herb Garden:
-	say "I can't dig my way out of the Abbey! (I don't think I can, anyway. Well, not through a solid metal plate, anyway.)"
+	say "I can't dig my way out of the Abbey! (I don't think I can, anyway. Not through a solid metal plate, anyway.)"
 
 Section 2 - scenery - walls
 
-Some garden walls are scenery in the Herb Garden. "The walls are nine or ten feet of smoothed-down stone, to stop climbers and creepers, human and vegetable alike. (On the other side of the wall is the town.)" Understand "wall" as the garden walls.
+Some garden walls are scenery in the Herb Garden. "The walls are nine or ten feet of smoothed-down stone, to stop climbers and creepers, human and vegetable alike. (Shame, since on the other side of the wall is the side of the Abbey, and that means a quick run to the Cathedral.)" Understand "wall" as the garden walls.
 
-Instead of climbing the garden walls: say "I'm not a snail, you know! I can't climb a vertical wall!"
-Instead of jumping over the garden walls: say "I'm not a frog, you know!"
+Instead of jumping over or climbing the garden walls: 
+	say "[one of]Over the walls would get me round the side of the Abbey and straight to the Cathedral... but the walls to smooth to climb and much too high to jump.[or]Getting over them - great idea[one of]. Getting over them without spring-loaded boots or a grappling line - not so likely[or][stopping].[stopping]"
 
-Instead of attacking or pushing or pulling the garden walls: say "They've been built to withstand cannonfire. There's not much I can do to change that."
+Instead of jumping when in the Abbey Herb Garden:
+	try jumping over the garden walls.
+
+Instead of attacking or pushing or pulling the garden walls: 
+	say "They've been built to withstand cannonfire. There's not much I can do to change that."
 
 The herb garden is exterior. [This hides the usual interior walls.]
 
@@ -5217,13 +5343,19 @@ Section 2 - giant lens
 
 The large lens is a supporter, part of the revolving metal plate. The description of the large lens is "The lens drives the mechanism, by collecting sunlight and using it to heat a spring of copper underneath the plate. The spring then winds and unwinds as it extends and shrinks, and the plate turns around - keeping the day-plants, herbs and vegetables, in the best sunshine possible, and at night, letting the mushrooms come out to collect the dew[if there is something on the large lens].[paragraph break]On the lens is [the list of things on large lens][end if].";
 
+Instead of looking through the large lens:
+	say "Peering through the lens I can just see the outline of the gigantic copper spring that drives the garden round and around."
+
+Instead of entering the large lens:
+	say "I can't pass through glass. Only springs of light can go through glass!"
+
+Instead of standing on the large lens:
+	say "I might break the glass. (Or get it really muddy.)";
+
 To revolve into daytime:
 	now the plants are day-plants;
 	remove the short stake from play;
 	say 	"[one of]The garden revolves back as light hits the lens once more. The herbs and vegetables come out of hiding into the sunshine! [or]The lens lights up and the day-beds revolve back out from the under the cover. [stopping][one of]The movement almost knocks me over.[or]I have to balance to stay upright as the plate turns.[or]I'm pointing [one of]north[or]south[or]east[or]west[cycling] now.[at random]";
-
-Instead of looking through the large lens:
-	say "Peering through the lens I can just see the outline of the gigantic copper spring that drives the garden round and around."
 
 To revolve into nighttime:
 	now the plants are night-plants;
@@ -5243,6 +5375,9 @@ Before doing something in the Abbey Herb Garden when something away from the len
 		if the short stake is physically involved or the plants are physically involved, stop the action;
 	continue the action;
 
+Before putting the tumbler on the large lens:
+	say "The glass wouldn't block the light. Glass doesn't block light-springs, the Abbot says so." instead.
+
 Before putting something on the large lens:
 	if the noun is not the rag:
 		say "The [noun] is tiny compared to the size of the lens." instead;
@@ -5261,9 +5396,16 @@ Section 3-  the Hood
 
 The metal hood is scenery, in the Herb Garden. Understand "cover" as the hood. "The metal hood comes up to my knees, and is snugly built for the plants to slide in underneath without being hurt. It keeps the mushrooms shady (and warm) during the day, and the vegetables protected from snails at night."
 
-Instead of hiding under or entering or hiding behind the metal hood: say "The hood is filled with flowerbeds. There's no room for me in there!"
+Instead of hiding under or entering or hiding behind the metal hood: 
+	say "The hood is filled with flowerbeds. There's no room for me in there!"
 
-The copper spring is scenery, part of the revolving plate. "There's a spring somewhere underneath, that expands and contracts in the heat from the lens, and drives the whole garden around." 
+Instead of looking under the metal hood:
+	say "Under the hood is the other half of the revolving garden."
+
+Instead of standing on the metal hood:
+	say "[one of]I clamber onto the top of the hood - slippery, and rounded, and I soon slide off again. If I'm looking for a way over the walls, I'll have to try something else.[or]I can't climb onto the hood - and even if I could, the walls are twelve feet tall and the hood's only up to my knees![or]The hood's not going to do me any good.[stopping]"
+
+The copper spring is scenery, part of the revolving plate. "There's a spring somewhere underneath, that expands and contracts in the heat from the lens, and drives the whole garden around."
 
 Instead of doing something when the copper spring is physically involved:
 	say "I can't see the spring, it's underneath the garden floor.";
@@ -5298,7 +5440,7 @@ Rule for printing the description of the night-plants plants:
 	say "The night-plants look dry and withered, like old men, or the oldest of the old monks, the ones who need straws to eat."
 
 Understand "herb/herbs/plant/flower/flowers/basil/potatoes/vegetables" or "day-plants" or "day plants" as the plants when the plants are day-plants. 
-Understand "mushroom/fungi/fungus/nightcap/thyme" or "night-plants" or "night plants" as the plants when the plants are night-plants. 
+Understand "mushroom/mushrooms/fungi/fungus/nightcap/thyme" or "night-plants" or "night plants" as the plants when the plants are night-plants. 
 
 Instead of taking or pulling or attacking the day-plants plants:
 	say "I don't think Brother Saffron would appreciate me messing with his plants."
@@ -5317,6 +5459,16 @@ Instead of searching the night-plants plants when the short stake is in the loca
 
 Instead of searching or looking under the plants:
 	say "There's nothing but soil under the [if plants are day-plants]leaves[else]caps[end if]."
+
+Section 3 - Hidden plants
+
+Some hidden plants are scenery in the Herb Garden. 
+
+Understand "herb/herbs/plant/flower/flowers/basil/potatoes/vegetables" or "day-plants" or "day plants" as the hidden plants when the plants are night-plants. 
+Understand "mushroom/mushrooms/fungi/fungus/nightcap/thyme" or "night-plants" or "night plants" as the hidden plants when the plants are day-plants. 
+
+Before doing something when the hidden plants are involved:
+	say "Those plants are out of the daylight, under the metal hood." instead.
 
 Section 5 - the stake in the ground
 
@@ -5574,7 +5726,7 @@ Part 4 - Upper Nave
 
 Chapter 1 - Description
 
-The Upper Nave is north of the Lower Nave, in the Cathedral Space. "This is the north end of the Nave, where the more important people sit during services – you can tell that because the pews either side are wider and have more legroom, and each has a little cup-holder carved into its armrest. Of course, it's also closer to the Altar to the north (and further from the draught coming up from the doors to the south).[paragraph break]A group of monks are standing around the altar, singing softly[if East Clerestory is not visited]. The Archbishop's office will be beyond and up the stairs, I think[end if]."
+The Upper Nave is north of the Lower Nave, in the Cathedral Space. "This is the north end of the Nave, where the more important people sit during services – you can tell that because the pews either side are wider and have more legroom, and each has a little cup-holder carved into its armrest. Of course, it's also closer to the Altar to the north (and further from the draught coming up from the doors to the south).[paragraph break]A group of monks are standing around the altar, singing softly[if East Clerestory is not visited]. The Archbishop's office will be beyond and up the stairs, I think[end if].[paragraph break]The floor is taken up with the Third Great Seal."
 
 Instead of making to leave when in the Upper Nave: try going south instead.
 Instead of going inside in the Upper Nave: try going north instead.
@@ -5992,6 +6144,9 @@ Instead of melting a candle on the brazier:
 Before putting something on the brazier:
 	try inserting the noun into the brazier instead.
 
+Instead of taking or pushing or pulling or turning the brazier:
+	say "It's an iron tripod the size of me; I can't lift it!"
+
 Section 2 - Wax Mixing
 
 Before inserting something into the brazier:
@@ -6077,7 +6232,7 @@ Part 11 - Orrey Hall
 
 Chapter 1 - Description
 
-The Orrey Hall is southeast of the hall door, in the Cathedral Space. "[one of]Something metal clicks and whirrs past my head, like a slow metal wasp. I barely notice it in time to dodge because of all the other levers and rods and wires and lines. Each has a little ball on the end and the whole thing is called an Orrey - I've seen pictures of it in books, but never a real life-size one like this.[or]This hall is mostly filled by a huge machine, of perfect bearing and a spooky silent grace[one of] (it reminds me of the candle tracks in the Abbey.) [or]. [stopping]It's called the 'Orrey' and it's meant to depict the movements of the heavens, though to me it looks more like the badly-mangled bicycles they dredge from the river and sell on Saturday's for scrap, and how anyone's meant to read the whirls of discs, balls, wire hoops and spindles is beyond me.[stopping]"
+The Orrey Hall is southeast of the hall door, in the Cathedral Space. "[one of]Something metal clicks and whirrs past my head, like a slow metal wasp. I barely notice it in time to dodge because of all the other levers and rods and wires and lines. Each has a little ball on the end and the whole thing is called an Orrey - I've seen pictures of it in books, but never a real life-size one like this[or]This hall is mostly filled by a huge machine, of perfect bearing and a spooky silent grace[one of] (it reminds me of the candle tracks in the Abbey.) [or]. [stopping]It's called the 'Orrey' and it's meant to depict the movements of the heavens, though to me it looks more like the badly-mangled bicycles they dredge from the river and sell on Saturday's for scrap, and how anyone's meant to read the whirls of discs, balls, wire hoops and spindles is beyond me[stopping]. The door is past a whipping meteorite to the northwest."
 
 Instead of making to leave when in the Orrey Hall: try going northwest instead.
 Instead of going inside in the Orrey Hall: try going northwest instead.
@@ -6275,7 +6430,7 @@ Chapter 5 - Papers
 
 Brother-Sa'at's papers are on Brother-Sa'at's desk. The description is "I can't make the slightest sense of any of them."
 
-Understand "pile", "pile of", "Sa'at's papers", "Brother Sa'at's papers" as Brother-Sa'at's papers.
+Understand "pile", "pile of", "note", "Sa'at's papers", "Brother Sa'at's papers" as Brother-Sa'at's papers.
 
 The printed name is "Sa'at's papers".
 
@@ -6292,6 +6447,7 @@ Chapter 6 - Orrey
 
 The Orrey Machine is a thing, scenery in the Orrey Hall. "The machine is centred around a large gold ball that's meant to look like the sun (but I've seen the sun, and not only does it change size it changes colour too – much redder after dinner, much like Brother Horloge's cheeks). Around that centre are wide hoops of thin wire which are slowly revolving, sliding and spinning over one another. Fixed to them are coloured balls – planets – and pressed brass discs bearing the symbols of the major constellations. Further off, in the very corners of the chamber, are comets, asteroids and a few galaxies."
 
+
 Instead of doing something when the Orrey Machine is physically involved and Brother Sa'at is inspecting his Orrey:
 	say "'Get away,' Sa'at insists, and pushes me back, so hard that it hurts.";
 
@@ -6305,6 +6461,16 @@ At the time when Brother Sa'at fixes the problem:
 	if the player can see Brother Sa'at begin;
 		say "Sa'at suddenly chortles with delight. With one hand he tweaks one of the wheels of the machine: nothing seems to change, but he's immediately satisfied and returns to his desk, beaming.";
 	end if;
+
+Section 2 - Parts of the Orrey machine
+
+Some parts of the Orrey are privately-named, part of the Orrey Machine. The description is "[one of]All the parts of the Orrey are lovingly crafted.[or]Sa'at must have spent a lifetime polishing these.[or]No detail is left undetailed.[cycling]".
+
+Understand "planet", "planets", "sun", "comet", "comets", "meteorites", "meteorite", "meteor", "galaxy", "galaxies", "space", "ball", "balls", "brass", "disc", "discs" as the parts of the Orrey.
+
+Instead of doing something when the parts of the Orrey are physically involved and the action is physical:
+	try taking the Orrey Machine instead.
+
 
 Part B - Bureaucracy puzzle (work order stamping)
 
@@ -6462,6 +6628,9 @@ The description is "Suspended from the centre of the ceiling the contraption is 
 Instead of doing something when the contraption is physically involved:
 	say "You'd need to be specific on which control I should use, and how.";
 
+Instead of entering or climbing the contraption:
+	say "[one of]I'd have half the Cathedral down on me in seconds if I tried that![or]No chance. I'm not looking make a distraction, here![cycling]";
+
 Some controls are part of the contraption. The description is "The controls consist of three cranks (one steel, one brass and one gold), beneath which are three rotating cylindrical dials engraved with numerals and the letters X, Y and Z, showing [i][value of X control], [value of Y control], [value of Z control][r]. Next to all this is an iron chain that runs right back up to the ceiling."
 
 Understand "tumblers", "numbers", "values", "numerals", "cranks", "cylindrical", "dials", "meters" as the controls.
@@ -6551,8 +6720,10 @@ Section 5 - Book Pulling
 
 The iron chain is scenery, in the Cyclical Library. "A long iron chain that leads up to the contraption on the ceiling. I shouldn't say this, but it looks a lot like the toilet flush that Brother Armitage has been designing." 
 
+Understand "links" as the iron chain.
+
 Instead of pulling the chain:
-	say "I pull hard on the chain[one of] and very slowly, the mechanism overhead comes to life. The walls themselves start to move! Sections of shelf seem to float upwards, creating gaps that others sidle into. It's like a basket of crabs kicked over in a market; all the books scuttling this way and that. Noisy, though. Shelves collide with thumps and groans and scrapes. The initiates look very annoyed indeed.[paragraph break][or]. Shelves move and glide around the walls of library with colossal noise! [stopping]Eventually, everything comes to a halt, and a metal plate extends down from a position above my head with a single book in place.";
+	say "I pull hard on the chain[one of] and very slowly, the mechanism overhead comes to life. The walls themselves start to move! Sections of shelf seem to float upwards, creating gaps that others sidle into. It's like a basket of crabs kicked over in a market; all the books scuttling this way and that. Noisy, though. Shelves collide with thumps and groans and scrapes. The initiates look very annoyed indeed.[paragraph break][or]. Shelves move and glide around the walls of the library with colossal noise! [stopping]Eventually, everything comes to a halt, and a metal plate extends down from a position above my head with a single book in place.";
 	abide by the book-pulling rules;
 
 The book-pulling rules are a rulebook.
@@ -6758,7 +6929,7 @@ Part 14 - North Clerestory
 
 Chapter 1 - Description
 
-The North Clerestory is a room, northeast of the West Clerestory, northwest of the East Clerestory, in the Cathedral Space. "[if Archbishop's Meeting has not happened]To the south the whole cathedral stretches away, all monks and pews and the three Great Seals on the floor. The balcony - which is the only thing to stop me breaking my neck - curves from southwest to southeast.[otherwise]The north end of the cathedral. There's the big stained window overhead and also the enormous statues of Babbage and Breguet.[end if]"
+The North Clerestory is a room, northeast of the West Clerestory, northwest of the East Clerestory, in the Cathedral Space. "[if Archbishop's Meeting has not happened]To the south the whole cathedral stretches away, all monks and pews and the three Great Seals on the floor. The balcony - which is the only thing to stop me breaking my neck - curves from southwest to southeast.[otherwise]The north end of the cathedral. There's the big stained window overhead and also the enormous statues of Babbage and Breguet. The balcony continues to the southwest.[end if]"
 
 Instead of making to leave when in the North Clerestory: try going southwest instead.
 Instead of going inside in the North Clerestory: try going southeast instead.
@@ -6958,8 +7129,11 @@ Section 3b - The Abbot, in meeting
 
 Abbot-in-meeting is a privately-named, man. Understand "abbot/abbott", "gubbler", "man" as Abbot-in-meeting. The printed name is "Abbot Gubbler". The description is "I can't see him clearly, but I know that voice anywhere. He sounds even more afraid than last time.";
 
+[Understand "hold breath" as listening when in the presence of the Abbot-in-meeting.
+Understand "hold my/your breath" as listening when in the presence of the Abbot-in-meeting.]
+
 Instead of listening in the presence of the Abbot-in-meeting:
-	say "I'm listening as hard as I can!";
+	say "I hold my breath tight...";
 
 Instead of doing something when the Abbot-in-meeting is physically involved:
 	do nothing;
@@ -6970,16 +7144,13 @@ Instead of going southeast from the North Clerestory when the player can see the
 	say "The Figure might see me!";
 
 Instead of going southeast from the North Clerestory when Overheard Conversation has happened:
-	say "Look – no-one else is going to stop this. So I better had. And I'm not going to be threatened!";
-
+	say "Look - no-one else is going to stop this. So I better had. I need to get after the Figure, and he went the other way!";
 Instead of going down from the West Clerestory when Overheard Conversation has happened:
-	say "Look – no-one else is going to stop this. So I better had. And I'm not going to be threatened!";
-
+	say "Look - no-one else is going to stop this. So I better had. I need to get after the Figure, and he went the other way!";
 Instead of going the West Stairs in the West Clerestory when Overheard Conversation has happened:
-	say "Look – no-one else is going to stop this. So I better had. And I'm not going to be threatened!";
-
+	say "Look - no-one else is going to stop this. So I better had. I need to get after the Figure, and he went the other way!";
 Instead of going northwest from the West Clerestory when Overheard Conversation has happened:
-	say "Look – no-one else is going to stop this. So I better had. And I'm not going to be threatened!";
+	say "Look - no-one else is going to stop this. So I better had. I need to get after the Figure, and he went the other way!";
 
 Instead of going southwest from the North Clerestory when the player can see the Figure in Grey:
 	do nothing;
@@ -7233,7 +7404,7 @@ After reading a command when Doric is inquisitive:
 		now the faith flag of Doric is true;
 		say "'Close enough,' Doric agrees, with an anticlimactic shrug. 'I guess y'are an Abbey rat then, like y['] said before.'";
 		if the business flag of Doric is false:
-			say "[paragraph break]He still doesn't move aside.";
+			say "[line break]But he still doesn't move aside. 'But that doesn't show you've got any business with the Archbishop, though, I'm thinking.'" instead;
 		if Doric is door-continuing:
 			try entering the Bishop's Door instead;
 		stop the action;
@@ -7264,7 +7435,11 @@ Instead of giving the work order to awake Doric when the letter state of Brother
 
 Instead of giving the work order to awake Doric:
 	change the business flag of Doric to true;
-	say "'Well.' He skims over the work order. 'Looks all in good order to me. I suppose you have business with the Archbishop after all.'"
+	say "'Well.' He skims over the work order. 'Looks all in good order to me. I suppose you have business with the Archbishop after all";
+	if the faith flag of Doric is true:
+		say ".' He nods, and tips his cap. 'Just can't be too careful, you understand.'";
+	else:
+		say ". But, of course, if you do have business with him you must be a Church bod. And then you'd know the creed.' He shrugs. 'So you see my predicament, of course. I can't let you in unless you let me let you in.' Which means - he's still blocking the doorway!";
 
 Section 6 - Other interaction
 
@@ -7638,7 +7813,7 @@ Instead of doing something when in the Rafters and the gearwheels are physically
 
 Part 6 - Lower Gears
 
-Lower Gears is a room. "I'm sandwiched between [the (remainder after dividing the times-moved of the Lower Gears by 4) + 2 in words] gears of the Cathedral clock, on a [by times-moved]narrow[or by]rickety[or by]unsteady[or by]worm-ridden[end] wooden [by times-moved]platform[or by]ledge[or by]plank[end] that [by times-moved]winds in and out between[or by]runs to the left of[or by]passes to the right of[or by]runs underneath[or by]bridges a gap between[end] the workings. [one of]This noise is louder than Reloh's duplicator – like an army of cooks all banging saucepans. I can barely keep straight which way is up and which way is down.[paragraph break][or][stopping]Platforms lead away to the [available-platforms][if times-moved of the Lower Gears is greater than 6], and there a line of rungs disappears up[end if]."
+Lower Gears is a room. "I'm sandwiched between [the (remainder after dividing the times-moved of the Lower Gears by 4) + 2 in words] gears of the Cathedral clock, on a [by times-moved]narrow[or by]rickety[or by]unsteady[or by]worm-ridden[end] wooden [by times-moved]platform[or by]ledge[or by]plank[end] that [by times-moved]winds in and out between[or by]runs to the left of[or by]passes to the right of[or by]runs underneath[or by]bridges a gap between[end] the workings. [one of]This noise is louder than Reloh's duplicator – like an army of cooks all banging saucepans. I can barely keep straight which way is up and which way is down.[paragraph break][or][stopping]Platforms lead away to the [available-platforms][if times-moved of the Lower Gears is greater than 6], and a line of rungs disappears up[end if]."
 
 The Lower Gears have a number called the times-moved. The times-moved of the Lower Gears is one.
 
@@ -7672,6 +7847,30 @@ Instead of going down when in Lower Gears:
 
 Instead of jumping when in Lower Gears:
 	say "There's nothing but mashing gear-teeth beneath me.";
+
+Section 1 - Platforms underfoot
+
+Some Clock platforms are scenery in Lower Gears. "The platforms are held together by old iron nails." Understand "platform", "ledge", "ledges", "walkway", "walkways" as the Clock platforms.
+
+Instead of approaching the Clock platforms:
+	say "Which way? Platforms lead away to the [available-platforms].";
+
+Instead of getting off the Clock platforms:
+	try going down.
+
+Instead of climbing the Clock platforms:
+	try going up.
+
+Instead of taking the Clock platforms:
+	say "I could cling on for dear life, but it wouldn't help me catch the Figure!"
+
+Instead of looking under the clock platforms: 
+	try facing down.
+
+Instead of facing down when in the Lower Gears:
+	say "There's a long drop that way..."
+
+
 
 Part 7 - Upper Gears
 
@@ -7795,6 +7994,8 @@ Section 3 - Chain
 
 A thick chain is a backdrop, in the Upper Gears, the Rafters, and Behind the Clock Face. "[if the location is the Rafters]The chain runs down from the pulley overhead to the weight below. It passes more rafters on the way.[otherwise]The thick chain extends both up and down from here.[end if]"
 
+Understand "links" as the thick chain.
+
 Understand "pulley", "weight", "iron" as the thick chain when the location is not Upper Gears.
 
 Rule for printing the description of the thick chain when in the Upper Gears:
@@ -7911,7 +8112,7 @@ Section 1 - Rose Window
 Understand "door", "glass", "pane", "pane of glass", "little door" as rose window when the location is Behind the Clock Face or the location is the Rafters.
 
 Rule for printing the description of the rose window when in Behind the Clock Face:
-	say "Jewelled light blinds me. Only the square of blue sky – the door – looks safe.";
+	say "Jewelled light blinds me. Only the square of blue sky - the door - looks safe. But that's the way the Figure went, so I know it's not...";
 
 Book 5 - The Roofs of the City
 
@@ -7936,6 +8137,9 @@ After looking in the Minute Hand:
 After looking in Rooftop 1:
 	move the escaping Figure to the Roofs of the City;
 
+Rule for printing the description of the escaping Figure when in Roofs of the City and TRIG_ROOFTOP_4 is fired:
+	say "The Figure's ornithopter is still beating its heavy bulk up into the sky."
+
 Rule for printing the description of the escaping Figure when in Roofs of the City:
 	say "The Figure is getting away. I've got to stop him somehow!"
 
@@ -7948,7 +8152,9 @@ Instead of approaching the escaping Figure in Roofs of the City:
 Instead of approaching the escaping Figure in Roofs of the City when TRIG_ROOFTOP_4 is fired:
 	say "He's escaped in an ornithopter! Either I [i]find[r] a way of following him or I give up here in despair."
 
-Understand "ornithopter", "helipcopter" as the escaping Figure when TRIG_ROOFTOP_4 is fired.
+[Added separate backdrop for these instead. ]
+[Understand "ornithopter", "helipcopter" as the escaping Figure when TRIG_ROOFTOP_4 is fired.]
+
 
 Rule for printing the description of the escaping Figure when in Roofs of the City and balloon spotted is true:
 	say "The Figure is a dot in the sky to the south. I need to get up there!";
@@ -7963,6 +8169,8 @@ Instead of going inside from the Minute Hand:
 Instead of making to leave when in the Minute Hand:
 	try jumping.
 
+Instead of going nowhere when in the Minute Hand:
+	try jumping.
 
 Instead of approaching the escaping Figure when in the Minute Hand:
 	say "I can't begin to understand how he got there..."
@@ -8004,7 +8212,7 @@ Section 2 - City View
 
 A thing called the mh_distant_city_view is scenery, privately-named, in Minute Hand. "I can see the whole city, from the River Tempus on side to the quicker River Fugit on the other. It all seems small enough to pick up and fix – but only if I reached a little further out..." The printed name is "city".
 
-Understand "city", "whole", "river", "rivers", "tempus", "fugit", "building", "buildings" as the mh_distant_city_view.
+Understand "city", "view", "whole", "river", "rivers", "tempus", "fugit", "building", "buildings" as the mh_distant_city_view.
 
 Instead of doing something when the mh_distant_city_view is physically involved: say "The city is spread out before me like a painting, but it's far, far away."
 
@@ -8351,13 +8559,21 @@ Instead of attacking the mortar with something:
 
 Part 6 - Sloping Roofs
 
-The Sloping Roofs is a rooftop-area, south of Rooftop 1. "[one of]It's hard to keep my bearings here: below, several streets are coming together and their overhanging roofs – good for keeping the rain off – create a patchwork of tiles, chimneys, gaps and different levels. I can scramble up a few levels to the north, or I could probably slip away east and south, but I might get turned around in either of those directions.[or]Several roofs meet here in a mess of tiles. West is impassable, but I could climb rooftiles to north, east or south.[stopping]"
+The Sloping Roofs is a rooftop-area, south of Rooftop 1. "[one of]It's hard to keep my bearings here: below, several streets are coming together and their overhanging roofs – good for keeping the rain off – create a patchwork of tiles, chimneys, gaps and different levels. I can scramble up a few levels to the north, or I could probably slip away west and south, but I might get turned around in either of those directions.[or]Several roofs meet here in a mess of tiles. East is impassable, but I could climb rooftiles to north, east or south.[stopping]"
 
 The printed name of the Sloping Roofs is "Sloping Roofs". [rather than "rooftop"]
 
-Sloping Roofs is south of Rooftop 2. North of Sloping Roofs is Rooftop 1. 
+Section - Bendy directions
+
+South of Rooftop 2 is west of Sloping Roofs. 
+South of Sloping Roofs is west of Rooftop 4. 
+[West of Sloping Roofs is Rooftop 2.
+West of Rooftop 4 is Sloping Roofs.]
+
 
 Index map with Sloping Roofs mapped west of Rooftop 3.
+
+Section - Moving in the Sloping Roofs
 
 Instead of going down in Sloping Roofs: 
 	say "There's no way down from here, I'm in the middle of a meeting of roofs."
@@ -8368,7 +8584,7 @@ Instead of jumping in Sloping Roofs:
 Instead of making to leave in Sloping Roofs:
 	say "Which way - north, east or south?"
 
-Instead of going west in Sloping Roofs:
+Instead of going east in Sloping Roofs:
 	say "When I said impassable, I meant, I'm at an impasse."
 
 Chapter 2 - Scenery
@@ -8428,7 +8644,7 @@ To say verbose-pipes-and-boards:
 		say ". That sort of thing.[no line break]";
 
 Instead of taking the pile:
-	say "I can't take the whole pile! One pipe or one board would be as much as I could manage! And a whole [i]army[r] of Drakes wouldn't let me take more!"
+	say "I can't take the whole pile! One pipe or one board would be as much as I could manage[one of]. And a whole [i]army[r] of Drakes punching at my arms wouldn't be able to make me take more![or].[stopping]"
 
 Section 3 - Wooden board
 
@@ -8504,7 +8720,7 @@ Part 8 - Rooftop 4 (Ornithopter & Tarp)
 
 Chapter 1 - Description
 
-The Rooftop 4 is a rooftop-area, south of Sloping Roofs, southwest of Rooftop 3. North of Rooftop 4 is nowhere. West of Rooftop 4 is Sloping Roofs. "[one of]I'm on the south side of a group of buildings, with other roofs I could scramble onto east, west, and northeast. To the south, there's a low wall and then a gap - an alleyway - before the next roof along. And that roof looks interesting: covered in machinery, though it's hard to say for sure.[or]There are other roofs east, west and northeast. To the south is a low wall, a twelve-foot gap, and then another roof that's covered in machinery.[stopping]"
+The Rooftop 4 is a rooftop-area, south of Sloping Roofs, southwest of Rooftop 3. North of Rooftop 4 is nowhere. "[one of]I'm on the south side of a group of buildings, with other roofs I could scramble onto east, west, and northeast. To the south, there's a low wall and then a gap - an alleyway - before the next roof along. And that roof looks interesting: covered in machinery, though it's hard to say for sure.[or]There are other roofs east, west and northeast. To the south is a low wall, a twelve-foot gap, and then another roof that's covered in machinery.[stopping]"
 
 Instead of jumping in Rooftop 4:
 	if the plank bridge is in location or the wooden board is in the notch:
@@ -8529,7 +8745,7 @@ TRIG_ROOFTOP_4 is a trigger.
 TRIG_ROOFTOP_4B is a trigger. 
 
 Rule for firing TRIG_ROOFTOP_4:
-	say "Something moves high above, and in a grey flash the Figure is before me. He nods once. 'Relentless,' he remarks. 'I admire your courage. Your persistence. You could almost be a machine.' I'm barely a foot away, and I still can't see his face. Nothing but that sleek grey suit.[paragraph break]'But this is where I leave you.' He whips away the tarpaulin, to reveal an ornithopter - something I've only seen in lithographs before. Pausing only to wind the key beneath one of the craft's gigantic wings, he leaps inside and in a moment, has taken to the sky.";
+	say "Something moves high above, and in a grey flash the Figure is before me. He nods once. 'Relentless,' he remarks. 'I admire your courage. Your persistence. You could almost be a machine.' I'm barely a foot away, and I still can't see his face. Nothing but that sleek grey suit.[paragraph break]'But this is where I leave you.' He whips away the tarpaulin, to reveal an ornithopter - something I've only seen in lithographs before. Pausing only to wind the key beneath one of the craft's gigantic wings, he leaps inside and in a moment, has taken to the sky! But the ornithopter is slow-moving: like a drifting leaf, drifting upwards...";
 
 Rule for firing TRIG_ROOFTOP_4B:
 	say "So, what now? There's no way I'm letting him get away; I'm going to be in so much trouble after all I've done, I'll need something to show for it. But I can't fly either. There's got to be a way. Something I can do. If the Universe is clockwork the way the Abbot says it is, then it can't have left me stranded, can it?"
@@ -8546,7 +8762,7 @@ Rule for choosing notable locale objects of Rooftop 4 when TRIG_ROOFTOP_4 is unf
 
 Section	2b - Ornithopter object
 
-The ornithopter is a glimpse backdrop in Roofs of the City. Understand "ornithopter" as the ornithopter when TRIG_ROOFTOP_4 is fired. "The ornithopter is just a dot in the sky - with the Figure aboard!" 
+The ornithopter is a glimpse backdrop in Roofs of the City. Understand "ornithopter" as the ornithopter when TRIG_ROOFTOP_4 is fired. "The ornithopter is still large in the sky. It moves like a slow, fat moth - with the Figure aboard!" Understand "helicopter" as the ornithopter.
 
 Instead of approaching the ornithopter: 
 	say "I need a way to get myself airborne!"
@@ -8604,6 +8820,8 @@ Instead of inserting something into the notch when the solid wooden board is in 
 Instead of inserting the large tarp into the notch when the solid wooden board is in the notch:
 	say "The tarpaulin is surprisingly light - not enough to counterbalance the board."
 
+Instead of tying something to the solid wooden board when the solid wooden board is in the notch:
+	try inserting the noun into the notch instead.
 
 Instead of entering or jumping over or climbing the notch:
 	if the wooden board is in the notch or the plank bridge is on-stage:
@@ -8622,6 +8840,12 @@ After taking the tarp:
 
 Rule for printing the name of the large tarp when taking inventory:
 	say "roll of tarp"
+	
+Instead of opening the tarp:
+	say "Unrolling it would make it harder to carry, and not much else. Right now it fits neatly under my arm."
+
+Instead of opening the tarp when the elongated chimney pipe is wrapped:
+	try taking the tarp instead.
 
 Chapter 4 - Scenery
 
@@ -8656,6 +8880,9 @@ Instead of going through the twelve-foot gap when the notch contains the solid w
 
 Instead of going through the twelve-foot gap when the plank bridge is off-stage:
 	say "It's a twelve-foot gap. I can't jump that!";
+	
+Last instead of going through the twelve-foot gap when the player is carrying the length of piping:
+	say "With this pipe in two I'd be too heavy to get across the plank bridge[one of]. (Even though it might help my balance!)[or].[stopping]"
 
 Instead of climbing or entering or standing on the wooden board when the wooden board is in the notch:
 	try going south.
@@ -8750,10 +8977,25 @@ Instead of touching or taking or pushing the chimney pipe:
 	say "I snatch my hand back from the chimney. It's hot!"
 
 Instead of putting the tarp on the chimney pipe:
- 	say "I could wrap the tarp around the vent easily, but I couldn't pull it out of the ground or turn it. It's only short!"
+ 	say "The tarp would make the chimney something I could handle, but it wouldn't do me any good - it's just a short chimney sticking out of the rooftop. I can't pick it up, or bend it, or anything like that - and there's nowhere to go if I tried climbing it!"
+
+Instead of unscrewing the chimney pipe with the tarp:
+	try putting the tarp on the chimney pipe.
 
 Instead of wrapping the chimney pipe with the tarp:
 	try putting the tarp on the chimney pipe;
+
+Instead of fastening the tarp to the chimney pipe:
+	try putting the tarp on the chimney pipe;
+
+Instead of putting the rag on the chimney pipe:
+	say "The rag is just a bit of cloth torn from an old shirt. It wouldn't stop the chimney from burning my hands!"
+Instead of wrapping the chimney pipe with the rag:
+	try putting the tarp on the chimney pipe;
+Instead of fastening the rag to the chimney pipe:
+	try putting the rag on the chimney pipe;
+Instead of unscrewing the chimney pipe with the rag:
+	try putting the rag on the chimney pipe.
 
 Section 2 - Elongated chimney pipe
 
@@ -8785,6 +9027,16 @@ Instead of putting the tarp on the unwrapped elongated chimney pipe:
 
 Instead of wrapping the elongated chimney pipe with the tarp:
 	try putting the tarp on the elongated chimney pipe;
+
+Instead of fastening the tarp to the elongated chimney pipe:
+	try putting the tarp on the chimney pipe;
+
+Instead of putting the rag on the elongated chimney pipe:
+	say "The rag is just a bit of cloth torn from an old shirt. It wouldn't stop the chimney from burning my hands!"
+Instead of wrapping the elongated chimney pipe with the rag:
+	try putting the tarp on the elongated chimney pipe;
+Instead of fastening the rag to the elongated chimney pipe:
+	try putting the rag on the elongated chimney pipe;
 
 Instead of unscrewing the unwrapped elongated chimney pipe with the tarp:
 	try putting the tarp on the elongated chimney pipe;
@@ -9005,6 +9257,15 @@ Understand "meters", "meter", "thermometer", "thermometers", "barometer", "barom
 Instead of doing something when the meters are physically involved:
 	say "I don't want to draw attention to myself by fiddling with them, do I?";
 
+Instead of examining the various meters when the player's command includes "barometer/barometers":
+	say "Barometers measure air pressure."
+
+Instead of examining the various meters when the player's command includes "thermometer/thermometers":
+	say "Thermometers measure air temperature."
+
+Instead of examining the various meters when the player's command includes "precipitometer/precipitometers":
+	say "Precipitometers measure rainfall."
+
 Section 4 - Metal steps
 
 Some metal steps are an open door, scenery, not openable, northwest of the Weather Station, southeast of the Observation Platform. "A flight of metal steps, leading up to a platform."
@@ -9022,20 +9283,26 @@ Section 5 - Hatch
 The hatch is a locked door, scenery, down from the Weather Station. "A locked metal hatch in the roof."
 
 Instead of opening or entering the hatch:
-	say "It's locked from the inside.";
+	say "It's locked from the inside[one of][or]. And with no keyhole[stopping].";
 
 Instead of unlocking the hatch with something:
-	say "It's locked from the inside.";
+	say "It's locked from the inside[one of][or]. And with no keyhole[stopping].";
 
 Instead of knocking on the hatch:
 	say "Nobody answers."
 	
+Instead of attacking or pulling the hatch:
+	say "The hatch doesn't even have a handle this side to yank on."
+	
+Instead of attacking the hatch with something:
+	say "The boom from that might bring someone running - and it'd be all too easy for them to throw me off from here..."
+
 
 Section 4 - Vent
 
 The vent is scenery, hot air vent. "One end of the pipe I found. It's producing a steady billow of steam."
 
-Understand "pipe", "steam", "smoke", "chimney" as vent.
+Understand "pipe", "steam", "piping", "smoke", "end", "hot steam/smoke", "chimney" as vent.
 
 Instead of taking or turning or direction-setting the vent to:
 	say "It's far too difficult to move from this end.";
@@ -9065,6 +9332,9 @@ Instead of unscrewing the small spigot with the knife:
 
 Before unlocking the small spigot with something:
 	try unscrewing the small spigot with the second noun instead.
+	
+Instead of attacking the small spigot:
+	say "That's no way to treat delicate equipment!"
 
 Section 6 - Balloon
 
@@ -9098,8 +9368,14 @@ Instead of filling the weather balloon:
 Instead of inflating the weather balloon:
 	try filling the weather balloon;
 
+Instead of tying the weather balloon to the small spigot:
+	try inserting the small spigot into the weather balloon instead.
+
 Instead of inserting the small spigot into the weather balloon:
 	say "There's no gas coming from the spigot.";
+
+Instead of tying the weather balloon to the vent:
+	try inserting the vent into the weather balloon instead.
 
 Instead of inserting the vent into the inflated weather balloon:
 	say "The balloon is already inflated, and ready for take-off!";
@@ -14833,7 +15109,7 @@ Test walkthrough with "test intro / test abbey-garden / test cathedral / test cl
 
 Test intro with "z/w/hide in clock/put tumbler on door/z/z/z/z/z/out/open door/w/w".
 
-Test abbey-garden with "d/e/sw/e/get cup/e/n/put cup in bracket/hide in pantry/s/s/smell/take leaf/s/put tea in basket /x train / get gear / turn spigot / wind key / w / sw / sw / sw / w / get new gear / ne / take keys / e / e / e / e / e / n / put new gear in train / pull lever / n / z / z / s / take cup of tea / w  / sw/ sw / sw  /w / ne / put tea on table / get keys / get keys / e / e / e / e / up / w / n / w / w / take ladder / e / sw / e / e / e / put ladder against wall / up / w/drop rag/ w".
+Test abbey-garden with "d/e/sw/e/get cup/e/n/put cup in bracket/hide in pantry/s/s/smell/take leaf/s/put tea in basket /x train / get gear / turn spigot / wind key / w / sw / sw / sw / w / get new gear / ne / take keys / e / e / e / e / e / n / put new gear in train / pull lever / n / z / z / z / s / take cup of tea / w  / sw/ sw / sw  /w / ne / put tea on table / get keys / get keys / e / e / e / e / up / w / n / w / w / take ladder / e / sw / e / e / e / put ladder against wall / up / w/drop rag/ w".
 
 Test abbey-clock with "d/e/sw/e/get cup/e/n/put cup in bracket/hide in pantry/s/s/smell/take leaf/s/put tea in basket /x train / get gear / turn spigot / wind key / w / sw / sw / sw / w / get new gear / ne / take keys / e / e / e / e / e / n / put new gear in train / pull lever / n / z / z / s / take cup of tea / w / sw / sw / z / w / ne / put tea on table / get keys / get keys / e / e / e / unlock clock / open clock / set clock to 5 pm / set clock to 5 pm / w / w / sw/ sw / w / w / drop rag / w".
 
