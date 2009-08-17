@@ -5,7 +5,8 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 ]
 
 [  Change Log
-When		Who		What
+When			Who		What
+17-Aug-2009 	J. Ingold	More of Paul's feedback, mostly missing responses. Changed TALK TO behaviour to use a prescripted list of topics (would be nice if the last of these was "What do you want to talk about?", and then hooked into the parser properly. But that might be pure sci-fi.)
 14-Aug-2009 	J. Ingold	More of Paul's feedback and some left over from Eric's script. Started on Paul's new transcripts too.
 10-Aug-2009 	J. Ingold	Some of Paul's feedback + some playtesting of C7.
 5-Aug-2009	G. Jefferis	Final bug fixes from Eric
@@ -133,7 +134,7 @@ Use MAX_PROP_TABLE_SIZE of 600000.
 Use MAX_DICT_ENTRIES of 2500.
 Use MAX_OBJECTS of 1280.
 Use MAX_SYMBOLS of 26000.
-Use MAX_ZCODE_SIZE of 60000.
+Use MAX_ZCODE_SIZE of 80000.
 
 Chapter - Debugging and Analysing Verbs (not for release)
 
@@ -768,7 +769,7 @@ Does the player mean doing something with a hymnal: it is unlikely.
 Every pew incorporates a hymnal.
 
 After examining a pew:
-	say "In a pocket behind the pew in front is a hymnal."
+	say "In a pocket behind [if player is not on a pew]each of the pews[else]the pew in front[end if] is a hymnal."
 
 Instead of taking a hymnal:
 	say "I don't need one: I know all the hymns by gear."
@@ -1229,18 +1230,7 @@ Understand "buff [something] with [something]" as polishing it with.
 Understand "clean [something] with [something]" as polishing it with.
 Understand "wipe [something] with [something]" as polishing it with.
 Understand "dust [something] with [something]" as polishing it with.
-Understand "polish [something]" as polishing it with.
-Understand "rub [something]" as polishing it with.
-Understand "dust [something]" as polishing it with.
-Understand "buff [something]" as polishing it with.
-Understand "clean [something]" as polishing it with.
-Understand "wipe [something]" as polishing it with.
 
-Rule for supplying a missing second noun while polishing:
-	if the rag is carried:
-		change the second noun to the rag;
-	otherwise:
-		say "I can't polish anything without a cloth.";
 
 Check polishing the player with:
 	say "I'm not [i]that[r] dirty, and clock polish isn't going to get me clean!" instead;
@@ -1249,7 +1239,38 @@ Check polishing someone with:
 	say "I don't suppose [the noun] would care for that." instead;
 
 Check polishing something with:
-	say "[The noun] seems clean enough as [it-they] [is-are]." instead;
+	say "[The noun] seem[s] clean enough as [it-they] [is-are]." instead;
+
+
+Part 1b - Cleaning
+
+Cleaning is an action applying to one touchable thing and requiring light.
+
+Understand "rub [something]" as cleaning.
+Understand "dust [something]" as cleaning.
+Understand "clean [something]" as cleaning.
+Understand "wipe [something]" as cleaning.
+Understand "polish [something]" as cleaning.
+Understand "buff [something]" as cleaning.
+
+Understand "wash [something]" as cleaning.
+Understand "wash [something] with/in [something]" as polishing it with.
+
+Understand "me/myself/you/yourself/wren/hair/hands/hand/self", "your/my hands/face/feet/self/hair" as "[myself]".
+
+Understand "wash" as cleaning.
+Understand "wash [myself]" as cleaning.
+Understand "clean [myself] " as cleaning.
+
+Rule for supplying a missing noun when cleaning:
+	change the noun to the player;
+
+Check cleaning:
+	say "[The noun] seem[s] clean enough as [it-they] [is-are]." instead.
+
+Check cleaning yourself:
+	say "I'm not that dirty, and anyway, wash day isn't long now."
+
 
 Part 2 - Hiding
 
@@ -1545,7 +1566,7 @@ Understand the command "flip" as "turn".
 
 Direction-setting it to is an action applying to one thing and one visible thing.
 Understand "set [pointer] to/at [planar direction]" as direction-setting it to.
-[ Understand "set [pointer] to [text]" as setting it to. ]
+Understand "set [pointer] [planar direction]" as direction-setting it to.
 Understand "turn [pointer] to/at [planar direction]" as direction-setting it to.
 Understand "turn [pointer] to/at [text]" as setting it to.
 Understand "turn [pointer] [planar direction]" as direction-setting it to.
@@ -1557,8 +1578,10 @@ Understand "point [pointer] [text]" as setting it to.
 Understand "spin [pointer] to/at [planar direction]" as direction-setting it to.
 Understand "spin [pointer] to/at [text]" as setting it to.
 Understand "rotate [pointer] to/at [planar direction]" as direction-setting it to.
+Understand "rotate [pointer] [planar direction]" as direction-setting it to.
 Understand "rotate [pointer] to/at [text]" as setting it to.
 Understand "move [pointer] to/at [planar direction]" as direction-setting it to.
+Understand "move [pointer] [planar direction]" as direction-setting it to.
 Understand "move [pointer] to/at [text]" as setting it to.
 
 Carry out direction-setting to:
@@ -2033,13 +2056,17 @@ Understand "fly" as flying.
 Check flying:
 	say "They called me Wren, but that's only what they called me." instead.
 
-Part 34 - Tying it to
+Part 34 - Tying it to is called Fastening
 
 Fastening it to is an action applying to one carried thing and one thing.
 
 Understand the command "tie" as something new.
+Understand the command "attach" as something new.
+Understand the command "fasten" as something new.
 
 Understand "tie [something preferably held] to [something]" as fastening it to.
+Understand "attach [something preferably held] to [something]" as fastening it to.
+Understand "fasten [something preferably held] to [something]" as fastening it to.
 
 Carry out fastening something to something:
 	do nothing;
@@ -2082,7 +2109,15 @@ Carry out making the sign of a clock-sign:
 Report making the sign of a clock-sign:
 	say "I quietly make the sign of the [i][noun][r]." instead;
 
+Report making the sign of a clock-sign when the player can see Doric and the faith flag of Doric is false:
+	say "I quietly make the sign of the [i][noun][r]. Doric looks unimpressed." instead;
+
 Understand "pray" as making the sign of.
+Understand "kneel" as making the sign of.
+Understand "bow" as making the sign of.
+Understand "genuflect" as making the sign of.
+
+
 Rule for supplying a missing noun for making the sign of:
 	change the noun to a random clock-sign.
 
@@ -2145,6 +2180,11 @@ Understand "shout at/to [something]" as shouting at.
 Understand "call to/at/over [something]" as shouting at.
 
 Understand the command "yell" as "shout".
+Understand the command "scream" as "shout".
+Understand the command "cry" as "shout".
+Understand the command "bellow" as "shout".
+Understand the command "wail" as "shout".
+Understand the command "yelp" as "shout".
 
 Check shouting at something which is not a person:
 	say "There's no use shouting at [a noun]." instead.
@@ -2189,8 +2229,11 @@ Telling no-one in particular about is an action applying to one topic.
 
 Understand "ask about [text]" as asking no-one in particular about.
 Understand "a [text]" as asking no-one in particular about.
+Understand "a about [text]" as asking no-one in particular about.
 Understand "tell about [text]" as telling no-one in particular about.
 Understand "t [text]" as telling no-one in particular about.
+Understand "t about [text]" as telling no-one in particular about.
+Understand "quote [text]" as telling no-one in particular about.
 Understand "talk about [text]" as telling no-one in particular about.
 
 Definition: a person is a human if they are a man or they are a woman.
@@ -2214,9 +2257,37 @@ Check telling no-one in particular about:
 
 Understand "talk to [someone] about [something worthy of inspection]" as enquiring of it about.
 Understand "talk to [someone] about [text]" as telling it about.
+Understand "quote [text] to/at [someone]" as telling it about (with nouns reversed).
 
 Check answering it that (this is the divert to just asking rule):
 	try asking the noun about the topic understood instead.
+
+Part 48b - Talk To Someone
+
+[ we implement Talk To as TELL ABOUT <a topic>, where the topic steps through a preset list of simple topics - what a dull interlocutor Wren is! Ideally, this list might be slightly randomised and/or pulled from the conversation tables, but this will probably do. In the end, anyway, we encourage the player to make their own suggestion. 
+
+The clunky implementation comes from not finding a variable type that would let me do this more generally!
+]
+
+A person has a number called the standard conversation position.
+
+Check talking to someone (called the NPC):
+	increase the standard conversation position of the NPC by 1;
+	if the standard conversation position of the NPC is:
+		-- 0:
+			say "(about clockwork)[command clarification break]";
+			try telling the NPC about "clockwork" instead;
+		-- 1:
+			say "(about me)[command clarification break]";
+			try telling the NPC about "my story" instead;
+		-- 2:
+			say "(about [him or her for the NPC]self)[command clarification break]";
+			try asking the NPC about "themselves" instead;
+		-- 3:
+			say "(about the Figure in Grey)[command clarification break]";
+			try telling the NPC about "figure" instead;
+	say "You'll have to tell me what to talk to [him or her for the NPC] about. I'm out of ideas!" instead;	
+	
 
 Part 49 - Go To Something, go
 
@@ -2224,13 +2295,14 @@ Part 49 - Go To Something, go
 
 Approaching is an action applying to one visible thing.
 
-Understand "go to/after/toward/for/towards [something]" as approaching.
+Understand "go to/after/toward/for/towards/along [something]" as approaching.
 Understand "follow [something]" as approaching.
 Understand "jump after [something]" as approaching.
 Understand "approach [something]" as approaching.
 Understand "chase [something]" as approaching.
 Understand "close on [something]" as approaching.
 Understand "close in on [something]" as approaching.
+Understand "walk after/along/towards/to/for [something]" as approaching.
 
 Understand "jump [direction]" as going.
 
@@ -2367,7 +2439,9 @@ Understand "look on [something]" as searching.
 
 Understand "dig in/through/under/up [something]" as searching.
 Understand "dig around in [something]" as searching.
-
+Understand "reach in/into/inside [something]" as searching.
+Understand "reach in/into/inside of [something]" as searching.
+Understand "reach in to [something]" as searching.
 
 Part 14 - Synonyms for Wait
 
@@ -2425,6 +2499,12 @@ Part 23 - Synonyms for opening
 
 Understand "unfold [something]" as opening.
 Understand "unroll [something]" as opening.
+
+Part 24 - Synonyms for attack
+
+Understand "stab [someone]" as attacking.
+Understand "stab [someone] with [something]" as attacking it with.
+
 
 Book E - New Properties
 
@@ -2517,8 +2597,10 @@ Understand "clockwork", "clock-work", "klockwerk", "clock work", "clocks" as "[c
 Understand "saints" or "saint" or "ykea" or "maxwell" or "newton" or "babbage" or "breguet" or "st maxwell" or "st newton" or "st ykea" or "st babbage" or "st breguet" or "designers" or "inventors" or "euclid" as "[saints]".
 
 Understand "me" or "myself" or "self" or "Wren" or "story" or "my story" as "[me]".
+Understand "themselves", "themself" as "[himself]".
 Understand "him" or "himself" as "[himself]".
 Understand "her" or "herself" as "[himself]".
+Understand "[himself]" as "[herself]". [in the interests of full equality] 
 
 Understand "perpetuum" or "mobile" as "[perpetuum]".
 Understand "stealing" or "theft" or "robbery" or "plan" or "plot" or "vault" or "vaults" or "crypt" as "[plot]".
@@ -2565,10 +2647,15 @@ Does the player mean doing something with the lucky key:
 
 A rag is carried by the player. The description is "The tool of the polisher's trade. And this old rag looks like it's been the tool of several polishers before me, too."
 
+Instead of wearing the rag:
+	say "Maybe I was small enough for that once, but now the rag would barely cover my face."
+
 Understand "old", "dirty", "polishing" as the rag.
 A tumbler is a container, open, carried by the player. The description is "A small glass with all that's left of my daily wood polish ration. How I'm supposed to do all the rest of my chores after this I don't know, but Drake and Calvin didn't seem too worried about that." Understand "glass" as the tumbler. The printed name of the tumbler is "glass tumbler".
 
 Understand "cup" as the tumbler when the player cannot see the teacup.
+
+Rule for deciding whether all includes the small amount of polish: it does not.
 
 Rule for emptying away the small amount of polish when in Inside Clock Case:
 	remove the small amount of polish from play;
@@ -2634,7 +2721,7 @@ Chapter 2 - Grandfather Clock
 
 Section 1 - The Clock Itself
 
-Gubbler's Grandfather clock is a closed door, in the Abbot's Quarters. "[if in Abbot's Quarters]St. Newton is staring at the Abbot's unpolished Grandfather clock with a severe frown.[otherwise]A little light shines in through the keyhole, which is almost covered by the Abbot's spare robe.[end if]". 
+Gubbler's Grandfather clock is a closed door, in the Abbot's Quarters. "[if in Abbot's Quarters]St. Newton is staring at the Abbot's unpolished Grandfather clock with a severe frown.[otherwise]A little light shines in through the keyhole, which is almost covered by the Abbot's spare robe.[end if]".
 
 The description is "No wonder Calvin and Drake didn't want to do this. Abbot Gubbler's Grandfather clock is enormous: the face is the size of a dinnerplate and the cabinet below is big enough to be a wardrobe. Even just polishing the doors will take half an hour. The whole thing might take all day." 
 
@@ -2645,6 +2732,18 @@ The Grandfather Clock is inside from Abbot's Quarters, outside from Inside Clock
 
 Instead of inserting something into the Grandfather Clock:
 	say "I'm not here to litter his clock up with things.";
+	
+Instead of unlocking the Grandfather Clock with something:
+	say "The door's not locked."
+
+Instead of locking the Grandfather Clock with something:
+	say "I don't have the key for it (and of course I don't, it's the Abbot's clock and I'm a Second Assistant Polisher. I shouldn't even be [i]near[r] his clock, let alone fiddling with it.)";
+
+Instead of pushing or pulling or turning the Grandfather Clock:
+	say "It's massive - much bigger than me!"
+
+Instead of attacking the Grandfather Clock:
+	say "Heresy. I'd be struck down by a counterweight where I stand!"
 
 Section 2 - Actions - Polishing
 
@@ -2653,6 +2752,14 @@ Instead of polishing the Grandfather Clock with the rag:
 
 Instead of polishing the Grandfather Clock with the rag when Voices have been Heard during the Introduction:
 	say "If you think the Abbot will come in here, and say, 'Oh, good, young Wren's polishing my clock,' then you must have come unsprung. If he finds me here doing Calvin and Drake's work he'll have me declared unmechanistical and maybe even throw me out of the Abbey!";
+
+Before cleaning the Grandfather Clock:
+	if the rag is carried:
+		say "(with [the rag])[command clarification break]";
+		try polishing the noun with the rag instead;
+	otherwise:
+		say "I can't polish anything without a cloth." instead.
+
 
 Section 3 - Actions - opening
 
@@ -2665,7 +2772,7 @@ After opening the Grandfather Clock when in Abbot's Quarters and the implicitly 
 	say "I open the clock door and peek inside. [run paragraph on]";
 	try searching the Grandfather Clock instead;
 
-Instead of opening the Grandfather Clock when in the Abbot's Quarters and AB_QUART4 is fired and the implicitly opening activity is not going on:
+Instead of opening the Grandfather Clock when in the Abbot's Quarters and AB_QUART4 is fired and the implicitly opening activity is not going on and Inside Clock Case is not visited: [only auto-enter when the player hasn't auto-entered before ]
 	try entering the Grandfather Clock instead.
 
 Instead of searching the closed Grandfather Clock when in Abbot's Quarters:
@@ -2681,7 +2788,7 @@ Before entering the closed Grandfather Clock when in Inside Clock Case:
 Instead of searching the Grandfather Clock:
 	say "For a big clock it's got a pretty small [i]penduluum[r], about the size of Calvin's fist and not as big as Drake's. There's even enough space in front of it for the Abbot to hang up one of his spare robes."
 
-Instead of opening the Grandfather Clock when Hiding in the Clock has ended and the implicitly opening activity is not going on:
+Instead of opening the Grandfather Clock when Hiding in the Clock has ended and the implicitly opening activity is not going on and the player is in Inside Clock Case:
 	now the Grandfather Clock is open;
 	try exiting instead.
 
@@ -2695,6 +2802,7 @@ After going through the Grandfather Clock from Inside Clock Case to Abbot's Quar
 
 Instead of making to leave when in Inside Clock Case:
 	try entering the grandfather clock;
+
 
 
 Section 4 - Actions - entering
@@ -2714,7 +2822,7 @@ Instead of hiding inside the Grandfather Clock when in Abbot's Quarters and Voic
 Instead of hiding behind the Grandfather Clock when in Abbot's Quarters and Voices have been heard and Hiding in the Clock has not happened:
 	say "No space behind - but plenty inside. [run paragraph on]";
 	try entering the noun instead;
-	
+
 Instead of hiding from view when Voices have been heard and the Grandfather Clock is not visited and the Introduction is happening:
 	say "Where? There's the cot, the table, but none of those seem too good..."
 
@@ -2733,8 +2841,20 @@ Instead of opening the clock-door: try opening the Grandfather Clock;
 Instead of closing the clock-door: try closing the Grandfather Clock;
 Instead of entering the clock-door: try entering the Grandfather Clock;
 
+Instead of unlocking the clock-door with something:
+	try unlocking the Grandfather Clock with the second noun instead.
+
+Instead of locking the clock-door with something:
+	try locking the Grandfather Clock with the second noun instead.
+
 Instead of polishing the clock-door with something:
 	try polishing the Grandfather Clock with the second noun;
+
+Instead of cleaning the clock-door:
+	if the player is carrying the rag:
+		try polishing the Grandfather Clock with the rag;
+	else:
+		say "I can't polish anything without my cloth."
 
 Instead of pushing the clock-door in Inside Clock Case:
 	try opening the clock-door instead;
@@ -2747,8 +2867,24 @@ A keyhole is part of the clock-door. The description of the keyhole is "[if the 
 Understand "conversation" as the keyhole when Hiding in the Clock is happening.
 Understand "gear-train", "gear", "train", "motif" as the keyhole.
 
+Instead of inserting something into the keyhole:
+	try unlocking the clock-door with the noun instead.
+
+Instead of unlocking the keyhole with something:
+	try unlocking the Grandfather Clock with the second noun instead.
+
+Instead of locking the keyhole with something:
+	try locking the Grandfather Clock with the second noun instead.
+
 Instead of polishing the keyhole with something:
-	try polishing the clock-door with the second noun;
+	try polishing the Grandfather Clock with the second noun;
+
+Instead of cleaning the keyhole:
+	if the player is carrying the rag:
+		try polishing the Grandfather Clock with the rag;
+	else:
+		say "I can't polish anything without my cloth."
+
 
 Instead of searching the keyhole:
 	try examining the keyhole instead;
@@ -2776,7 +2912,7 @@ Instead of going through the Abbot's Door when Voices have not been heard:
 	add AB_QUART3A at entry 1 in the current script; [dummy event for good timing]
 
 Instead of going through the Abbot's Door when Clock Case has not been hidden in:
-	say "The Abbot's voice is getting nearer... If he sees I've been in here, he'll have me turning the paddles in the laundry room for a month! There's nothing for it, I'll [i]have[r] to escape.";
+	say "The Abbot's voice is getting nearer... If he sees I've been in here, he'll have me turning the paddles in the laundry room for a month! There's nothing for it, I'll [i]have[r] to escape, and some other way than the door!";
 
 After going west through the Abbot's Door when Hiding in the Clock has ended during Introduction:
 	say "I'm going to have to tell someone what I just heard. A theft, from the Vaults! But if the Abbot's involved – who else might be? After all, the figure he was talking to could have been [i]anyone[r] in the Abbey!";
@@ -2819,6 +2955,9 @@ Section 1 - Cot
 
 The Abbot's cot is scenery, in the Abbot's Quarters. "The Abbot's cot is a hard wooden pallet, with no pillow and one small blanket. 'Mustn't sleep,' I can hear him saying. 'Time doesn't sleep. Sleep is our great weakness.'" Understand "bed", "pallet", "blanket" as the cot.
 
+Instead of taking the cot:
+	say "Why would I want to go wandering off with the Abbot's bed-things?"
+
 Instead of entering the cot:
 	say "No thanks. It looks horribly uncomfortable. And coming from me, considering where [i]I[r] sleep, that's really saying something."
 
@@ -2831,12 +2970,17 @@ Instead of looking under the cot when Voices have been heard during Introduction
 Instead of looking under the cot:
 	say "There's nothing of interest under the Abbot's cot. No spare polish, for example." instead;
 
+Instead of cleaning the cot:
+	say "I'm having nothing to do with it. The Abbot probably sheds his dead skins there every night."
 
 Section 2 - Desk
 
 The Abbot's desk is scenery, in the Abbot's Quarters. "Gubbler's desk is bare and old. The surface is scratched a little with geometric designs." Understand "table" as the desk.
 
 Instead of polishing the desk with the rag:
+	say "But I'm going to need all the polish I've got for the clock!";
+
+Instead of cleaning the Abbot's desk:
 	say "But I'm going to need all the polish I've got for the clock!";
 
 Instead of hiding under the desk when Voices have been heard during Introduction:
@@ -2858,15 +3002,22 @@ Some geometric designs are part of the Abbot's desk. Understand "scratch", "surf
 
 Rule for printing the description of the geometric designs: say "Years of designers have imprinted the footprints of their thoughts into the surface of the wood itself. In another hundred years, the desk itself will be a Relic in the Cathedral Reliquary." 
 
-Instead of polishing the geometric designs with the rag: say "I couldn't cover them!"
+Instead of polishing the geometric designs with the rag:
+	say "They might be important: I shouldn't just fill them over."
+
+Instead of cleaning the geometric designs:
+	say "But they might be important!"
 
 Section 3 - Bust of St Newton
 
-The Bust of St Isaac Newton is scenery, in the Abbot's Quarters. "I can feel the well-fitted eyes of St. Newton gazing right down into my workings. Quickly, I make the sign of [i]penduluum[r] and look away." The printed name is "bust of St. Newton". Understand "icon", "head", ["face", [removed - conflict with the clock face] ]"eyes", "frown", "severe", "of" as the Bust.
+The Bust of St Isaac Newton is a man, scenery, in the Abbot's Quarters. "I can feel the well-fitted eyes of St. Newton gazing right down into my workings. Quickly, I make the sign of [i]penduluum[r] and look away." The printed name is "bust of St. Newton". Understand "icon", "head", ["face", [removed - conflict with the clock face] ]"eyes", "frown", "severe", "of" as the Bust.
 Understand "saint", "st", "isaac", "newton", "the", "thinker" as the Bust.
 
-Instead of taking the bust of St Newton:
-	say "It's clear from his expression that St. Newton disapproves of that idea.";
+Before doing something when the bust of St Newton is physically involved and the action is physical:
+	say "It's clear from his expression that St. Newton disapproves of that idea." instead;
+
+Rule for speaking with the bust of St Isaac Newton:
+	say "You're losing your marbles, Wren, if you think you can talk to [i]that[r]."
 
 Section 4 - Window
 
@@ -2968,11 +3119,20 @@ Chapter 1 - Description
 
 There is an unceilinged, aerial room called Inside Clock Case.
 
-The description of Inside Clock Case is "[if the player is casually overhearing]As the phrase goes, I'm stuck between a rack and a gear-trace; except here I'm in the narrow gap between the clock case door and the heavy swinging [i]penduluum[r] behind. And if I get in the way of that, and disrupt the clock's holy timings... well, there's no way they wouldn't notice when the clock-hands stopped moving, let's just say.[otherwise]I'm leaning up against the door of the clock, with my ear pressed against the glass tumbler. The penduluum behind is like someone breathing in my ear. If I'm caught in here, I'm dead.[end if]"
+The description of Inside Clock Case is "I'm wedged inside the Abbot's Grandfather Clock, penduluum at my back. Time to go, I think!"
+
+Rule for printing the description of Inside Clock Case when the keyhole-Abbot is visible and the player is casually overhearing:
+	say "As the phrase goes, I'm stuck between a rack and a gear-trace; except here I'm in the narrow gap between the clock case door and the heavy swinging [i]penduluum[r] behind. And if I get in the way of that, and disrupt the clock's holy timings... well, there's no way they wouldn't notice when the clock-hands stopped moving, let's just say.";
+
+Rule for printing the description of Inside Clock Case when the keyhole-Abbot is visible:
+	say "I'm leaning up against the door of the clock, with my ear pressed against the glass tumbler. The penduluum behind is like someone breathing in my ear. If I'm caught in here, I'm dead."
 
 Index map with Inside Clock Case mapped east of Abbot's Quarters.
 
 Index map with Abbot's Quarters mapped east of Corridor of Contemplation.
+
+Instead of shouting at someone when in Inside Clock Case:
+	say "[one of]What? Pretend to be a ghost and hope to scare them away?[or]No chance. That would be madness.[stopping]";
 
 Chapter 2 - Scenery
 
@@ -3251,16 +3411,28 @@ Chapter 1 - Description
 
 The Attic Room is a room. "[if the player is in the Attic Room for more than the first time]Back in the attic. The Cathedral is still just as far away, visible through the hole in the ceiling above my cot. But the ladder's the only way out of here.[otherwise]This isn't really an attic. It isn't really a room either. It's a couple of floorboards laid across some roof rafters right in the ceiling of the Abbey. There's enough floor-space for a cot and a laundry crate, but I have to be careful not to roll out of bed, because if I do, the thick cobwebs all around aren't going to stop me from falling...[paragraph break]A little hole in the ceiling provides some sunlight: and when it rains, it means I can wash my hair, too. It's right above the rickety ladder down to the ground (and that means the ladder is starting to rot and bend)."
 
-Understand "cobwebs", "floorboards" and "rafters/rafter" as the backdrop-floor when in the Attic Room.
+Understand "cobwebs", "floorboards/boards/board" and "rafters/rafter" as the backdrop-floor when in the Attic Room.
 
 Rule for printing the description of the backdrop-floor when in the Attic Room:
 	say "[one of]There isn't a floor here, just a few rafters and a long drop on either side![or]Really. I don't have a floor, just some beams and a bed.[stopping]"
-	
+
 Instead of searching the backdrop-floor when in the Attic Room:
 	say "There's nothing there except a long way down."
 
+Instead of cleaning the backdrop-floor when in the Attic Room:
+	say "There's nothing I can do about the floor. The dirt is all that's holding it together."
+	
+Instead of touching or smelling or tasting or eating the backdrop-floor when in the Attic Room:
+	say "I get enough dirt on me normally without going looking for more."
+
 Instead of jumping when in the Attic Room:
 	say "Doesn't sound like a good idea to me!"
+
+Instead of sleeping when in the Attic Room:
+	say "No time for that now!"
+
+Instead of approaching the backdrop-floor when in the Attic Room:
+	say "I'm certainly not going to step off them!"
 
 Chapter 2 - Scenery
 
@@ -3273,6 +3445,18 @@ Instead of entering my cot:
 
 Instead of looking under my cot:
 	say "There's a long, long way down there."
+	
+Instead of pushing or pulling or taking my cot:
+	say "Where would it go? Down?"
+	
+Instead of attacking my cot:
+	say "Why? It's my only real friend round here."
+
+Instead of cleaning my cot:
+	say "It'll do. I don't mind."
+
+Understand "make [something]" as cleaning when the player's command matches the text "bed", case insensitively.
+Understand "make [something]" as cleaning when the player's command matches the text "cot", case insensitively.
 
 Section 2 - Crate
 
@@ -3282,6 +3466,16 @@ Understand "laundry" as the crate.
 Instead of opening or searching or taking the crate:
 	say "Laundry day's not for at least three weeks.";
 
+Instead of taking or pushing or pulling the crate:
+	try taking my cot instead.
+
+Instead of looking under the crate:
+	try looking under my cot instead.
+	
+Instead of attacking the crate:
+	say "It'll fall and break itself one of these days; I don't need to do anything."
+
+
 A spare clothe is in the crate.  Understand "clothes", "clothing" as the spare clothe. The description is "That's my other top."
 
 Instead of smelling the spare clothe:
@@ -3289,6 +3483,7 @@ Instead of smelling the spare clothe:
 
 Instead of taking the spare clothe:
 	say "Leave it. I'll need it soon enough, when they take this top away forcibly on wash day."
+
 
 Section 3 - Picture
 
@@ -5428,6 +5623,8 @@ Instead of inserting something into the soil beds:
 Instead of searching the soil beds:
 	say "I'm not a dog!"
 
+Instead of cleaning the soil beds:
+	say "Soil is pretty clean already, or so the gardener always says."
 
 Section 2 - plants
 
@@ -5643,7 +5840,7 @@ Instead of pulling the entry seal:
 
 Section 2 - Great Doors
 
-Some Great Doors are a closed door, scenery, south of the Cathedral Entrance. "The doors are covered in carvings and inscriptions, some of the Mechanists, but ever a few from the older faiths of smoke and fire. The doors lead to the city but are rarely open (Last Newtonmass I was part of a parade of children that troop to get the homeless to do some proper work, but I'll be too old for that this year.)" Understand "door", "carving", "inscription", "carvings", "inscriptions" as the Great Doors.
+Some Great Doors are a closed door, scenery, south of the Cathedral Entrance. "The doors are covered in carvings and inscriptions, some of the Mechanists, but ever a few from the older faiths of smoke and fire. The doors lead to the city but are rarely open (Last Newtonmass I was part of a parade of children that troop to get the homeless to do some proper work, but I'll be too old for that this year.)" Understand "door", "carving", "hinge", "hinges", "inscription", "carvings", "inscriptions" as the Great Doors.
 
 Instead of opening the Great Doors:
 	say "You're joking, I suppose.";
@@ -5756,6 +5953,9 @@ Instead of going inside in the Cathedral Altar: say "I'm in the heart of the Cat
 
 Instead of singing when in the Cathedral Space:
 	say "I don't think the monks would appreciate my joining in."
+	
+Instead of hiding from view when in the Cathedral Altar:
+	say "I'm already crouched as low as I can go."
 
 Chapter 2 - Scenery
 
@@ -5804,13 +6004,16 @@ Section 5 - Perpetuum Mobile
 The real Perpetuum Mobile is scenery, portable, privately-named, on the iron altar. The description is "The machine on the altar is a finely-wrought case of dark wood topped by a tilting board. Standing on tip-toes I can see a ball-bearing, wearily wending its way along a grooved path in the surface of the board. As it reaches one side, there is a loud cheer from the monks – the board tilts – and the ball continues back the other way. The effect is mesmerizing and the mechanism almost totally silent.[paragraph break]I think it's the most beautiful – most expensive thing – that I've ever seen. This isn't just a relic, clearly. This is something else."
 
 The printed name of the real perpetuum mobile is "Perpetuum Mobile".
-Understand "real", "one" as the real perpetuum mobile when the player has handled the decoy perpetuum mobile.
+
+Understand "case", "dark", "wood", "tilting", "board", "ball-bearing", "groove", "grooved", "path", "track", "gold", "brass", "ball", "ball bearing", "mechanism", "machine", "gleaming", "object" as the real Perpetuum Mobile.
+
 Understand "perpetuum", "mobile" as the real perpetuum mobile.
+
+Understand "real", "one" as the real perpetuum mobile when the player has handled the decoy perpetuum mobile.
+
 
 Rule for printing the name of the real Perpetuum Mobile when the Bishop's Library is unvisited:
 	say "gleaming object"
-
-Understand "case", "dark", "wood", "tilting", "board", "ball-bearing", "groove", "grooved", "path", "track", "gold", "brass", "ball", "ball bearing", "mechanism", "machine", "gleaming", "object" as the real Perpetuum Mobile.
 
 Instead of doing something when the real Perpetuum Mobile is physically involved and the location is the Cathedral Altar:
 	say "[fire TRIG_NOINTERFERE]";
@@ -6068,7 +6271,7 @@ Instead of opening the crypt grate when the player does not have the old iron cr
 	say "The grate is locked with a blackened chain and padlock that's about the size of my head.";
 
 Instead of unlocking the crypt grate with something when the second noun is not the old iron crypt key:
-	say "The grate is locked with a blackened chain and padlock that's about the size of my head.";
+	say "The grate is locked with a blackened chain and padlock that's about the size of my head. And believe it or not, [the second noun] [is-are] not the right key.";
 
 Before going through the crypt grate from the East Apse when Return To The Cathedral has not happened:
 	if the crypt grate is examined:
@@ -6755,7 +6958,7 @@ A book-pulling rule:
 
 Section 5 - Card Catalogue
 
-A card catalogue is in the Cyclical Library. "By the door to the northeast is a card catalogue. That'll be gone as soon as they work out how to fix up a keyboard to a decent gear mechanism."
+A card catalogue is in the Cyclical Library. "By the door to the northeast is a card catalogue. That'll be gone as soon as they work out how to do something more useful with a keyhole than just type letters onto paper."
 
 Understand "index", "cards" as the card catalogue.
 
@@ -6961,7 +7164,9 @@ Instead of taking the statues of St Breguet:
 
 Section 2 - Shadowy Gap
 
-The shadowy gap is part of the statues of St Breguet. Understand "shadows", "shadow" as the shadowy gap.
+The shadowy gap is part of the statues of St Breguet. Understand "shadows", "shadow" as the shadowy gap. The description is "Between the toes of St Breguet and St Babbage is a patch of deep shadow, perfect for hiding in!"
+
+Understand "fluff", "lice" as the shadowy gap.
 
 Instead of hiding from view when in the North Clerestory:
 	try hiding inside the shadowy gap instead.
@@ -6978,6 +7183,10 @@ Instead of hiding inside the shadowy gap when Doric is not in the East Clerestor
 
 Instead of hiding inside the shadowy gap:
 	say "That'd make a great hiding place, except that nobody's following me.";
+	
+Instead of searching the shadowy gap:
+	say "There's nothing but darkness in there."
+
 
 Section 3 - Windows
 
@@ -7010,6 +7219,13 @@ Instead of throwing a wax lump at DistantDoric when in the North Clerestory:
 	start the chase;
 	move the noun to the East Clerestory;
 	say "I lob [the noun] squarely at the side of the guard's helmet. He turns around, startled. And spots me.[paragraph break]'Why, you...' he growls. Quick, Wren: he's coming this way!"
+
+Instead of attacking DistantDoric:
+	say "He's all the way along the balcony - but I could probably throw something at him, if I dared..."
+
+Before attacking DistantDoric with something:
+	try throwing the second noun at DistantDoric instead.
+
 
 Section 5 - Chase Event
 
@@ -7119,7 +7335,10 @@ The Figure in Grey is a man, scenery. "I take a peek, but can't make out much be
 Instead of doing something when the Figure in Grey is physically involved during Overheard Conversation:
 	do nothing;
 
-Instead of examining the statues of St Breguet and St Babbage when the player can see the Figure in Grey:
+Instead of searching or approaching or examining the statues of St Breguet and St Babbage when the player can see the Figure in Grey:
+	do nothing;
+
+Instead of searching or approaching or examining the shadowy gap when the player can see the Figure in Grey:
 	do nothing;
 
 Instead of approaching the Figure in Grey:
@@ -7231,7 +7450,7 @@ To say DoricDescription:
 Doric has a truth state called the faith flag.
 Doric has a truth state called the business flag.
 The faith flag of Doric is false. The business flag of Doric is false.
-
+							  
 CHASE_COUNTER is a counter. 
 
 Doric carries a halberd. The description of the halberd is "It's like an axe on a stick.". Understand "large" as the halberd.
@@ -7257,6 +7476,12 @@ Instead of showing something to Doric:
 
 Instead of showing the knife to Doric:
 	say "[one of]'What you goin' to do with that?' Doric smirks. 'Pick your nose?'[or]'Put it away, rat,' he says, and very gently taps his halberd on the stone floor.[stopping]"
+	
+Instead of attacking Doric:
+	say "Have you not noticed his halberd?"
+
+Instead of attacking Doric with something:
+	say "Have you not noticed his halberd?"
 
 Section 3 - Conversation
 
@@ -7850,7 +8075,7 @@ Instead of jumping when in Lower Gears:
 
 Section 1 - Platforms underfoot
 
-Some Clock platforms are scenery in Lower Gears. "The platforms are held together by old iron nails." Understand "platform", "ledge", "ledges", "walkway", "walkways" as the Clock platforms.
+Some Clock platforms are scenery in Lower Gears. "The platforms are held together by old iron nails." Understand "platform", "ledge", "ledges", "walkway", "walkways", "rafters" as the Clock platforms.
 
 Instead of approaching the Clock platforms:
 	say "Which way? Platforms lead away to the [available-platforms].";
@@ -8062,6 +8287,9 @@ Instead of dropping the rafter beams:
 
 Instead of taking the rafter beams:
 	say "Don't worry, there's no chance I'm letting go.";
+
+Instead of approaching the rafter beams in Upper Gears:
+	say "The rafters can't take me anywhere from here. I need to go up!"
 
 Instead of approaching the rafter beams in Rafters:
 	try going down;
@@ -8464,7 +8692,7 @@ Instead of throwing something at the streets:
 
 Part 5 - Rooftop 2 (Fallen Chimney)
 
-The Rooftop 2 is a rooftop-area, southwest of Rooftop 1. "[one of]This roof is almost flat, which is good, because there's empty space to the north and west of it. I could slip south, through the remains of a collapsed brick chimney, that seems to have been pushed down to make room for a wide turret, on top of which is a platform with a brass railing. Overlapping roofs create a second path to the northeast.[or]A corner of a roof, with nothing to north or west. There's a safe way back northeast. South is a collapsed brick chimney topped by a platform.[stopping]"
+The Rooftop 2 is a rooftop-area, southwest of Rooftop 1. "[one of]This roof is almost flat, which is good, because there's empty space to the north and west of it. I could slip south, through the remains of a brick chimney collapsed into a whole heap of bricks. It seems to have been barged out the way to make room for a flat wide turret-top, on top of which is a glossy platform with a brass railing. Overlapping roofs create a second path to the northeast.[or]A corner of a roof, with nothing to north or west. There's a safe way back northeast. South is a fallen-down brick chimney topped by a big glossy platform that's elbowed itself some more space up here.[stopping]"
 
 Instead of jumping in Rooftop 2:
 	say "The platform's not that high, but it's too high to jump up and grab it.";
@@ -8485,7 +8713,7 @@ Section 2 - Platform
 
 A raised platform is scenery, in Rooftop 2. "I can't make out what's on the platform[if Observation Platform is not visited] (if anything)[end if]: but I can see it's encircled by a railing."
 
-The printed name is "platform". Understand "brass", "railing", "railings", "tower", "turret" as the raised platform.
+The printed name is "platform". Understand "brass", "glossy", "railing", "big", "railings", "tower", "turret" as the raised platform.
 
 Instead of jumping on or climbing or approaching the raised platform:
 	try jumping;
@@ -8498,10 +8726,13 @@ Section 3 - Fallen Chimney
 A fallen chimney is scenery, in Rooftop 2. "The collapsed chimney is now nothing but a few huge chunks of bricks, like the last crumbs of a cake. The mortar holding them together is crumbled and dry."
 
 Understand "huge", "chunks", "collapsed", "crumbs" as the fallen chimney.
-Understand "chunk", "chunk of", "brick", "bricks" as the fallen chimney when the location does not enclose the huge chunk of brick.
+Understand "chunk", "chunk of", "brick", "bricks", "rubble", "pile" as the fallen chimney when the location does not enclose the huge chunk of brick.
 
 Instead of attacking or opening or pushing the fallen chimney when the mortar is firm:
 	say "The chunks of brick are stuck with mortar. Old mortar I could easily break, but I'd need some kind of tool to do it.";
+
+Instead of pushing or attacking or opening the fallen chimney:
+	say "The chimney is just a heap of broken stones already. There's nothing more I could do to it."
 
 Instead of taking the fallen chimney when the mortar is firm:
 	say "The smallest chunk of brick is almost as big as me. I'd need to break it up a little first if I was going to start carrying it around with me.";
@@ -8517,7 +8748,8 @@ Instead of taking the fallen chimney when the huge chunk is off-stage:
 	try taking the huge chunk of brick;
 
 Instead of climbing or jumping on or entering the fallen chimney:
-	say "It's just a pile of rubble. It won't get me any closer to the platform than if I jumped (and I'd be [i]much[r] more likely to twist my ankle, too.)"
+	say "[one of]I climb halfway up the brick, but then skitter down again.[or]The chimney has fallen into a huge pile of rubble and sections of wall, pretty much unclimbable unless I was a cat. If I was on the platform, I could probably slide down it safely enough.[stopping]".
+
 
 Instead of attacking the fallen chimney with something:
 	redirect the action from the fallen chimney to the mortar, and try that instead;
@@ -8820,7 +9052,7 @@ Instead of inserting something into the notch when the solid wooden board is in 
 Instead of inserting the large tarp into the notch when the solid wooden board is in the notch:
 	say "The tarpaulin is surprisingly light - not enough to counterbalance the board."
 
-Instead of tying something to the solid wooden board when the solid wooden board is in the notch:
+Instead of fastening something to the solid wooden board when the solid wooden board is in the notch:
 	try inserting the noun into the notch instead.
 
 Instead of entering or jumping over or climbing the notch:
@@ -8955,11 +9187,34 @@ Understand "squat", "iron", "smoke", "slugs" as the chimney pipe.
 
 The description is "A narrow iron chimney. Smoke and steam puff out of it. This might not even be a kitchen, it might be one of those steam boilers the Abbot sometimes mutters about."
 
+Instead of smelling a hot air vent:
+	say "The smoke is hot, but not greasy."
+
 Instead of putting the length of piping on the chimney pipe:
 	remove the length of piping from play;
 	remove the chimney pipe from play;
 	move the elongated chimney to Rooftop 5;
 	say "With a bit of hefting and hauling – and a couple of burns on my arms – I get the pipe slotted over the chimney. The new, longer chimney points north, and starts getting hot and belching out steam pretty quickly.";
+
+
+[ Hoops to jump to get the parser to treat PUT PIPE ON PIPE as a sensible request. Bring on Disambiguation Control! ] 
+
+Does the player mean putting on the chimney pipe: 
+	it is likely.
+Does the player mean fastening to the chimney pipe: 
+	it is likely.
+Does the player mean inserting into the chimney pipe: 
+	it is likely.
+Does the player mean putting the length of piping on the chimney pipe: 
+	it is likely.
+Does the player mean fastening the length of piping to the chimney pipe: 
+	it is likely.
+Does the player mean inserting the length of piping into the chimney pipe: 
+	it is likely.
+
+
+Instead of fastening the length of piping to the chimney pipe:
+	try putting the length of piping on the chimney pipe.
 
 Instead of inserting the length of piping into the chimney pipe:
 	try putting the length of piping on the chimney pipe.
@@ -8987,6 +9242,10 @@ Instead of wrapping the chimney pipe with the tarp:
 
 Instead of fastening the tarp to the chimney pipe:
 	try putting the tarp on the chimney pipe;
+
+Instead of fastening the tarp to the chimney pipe:
+	try putting the tarp on the chimney pipe;
+
 
 Instead of putting the rag on the chimney pipe:
 	say "The rag is just a bit of cloth torn from an old shirt. It wouldn't stop the chimney from burning my hands!"
@@ -9312,7 +9571,7 @@ Instead of putting the large tarp on the vent:
 
 Section 5 - Spigot
 
-The small spigot is a thing, fixed in place, in the Weather Station. "[if weather balloon is inflated]The inflated weather balloon bobs like an eager puppy beside the spigot it's tied to[else]In one corner, a small pipe emerges with a spigot on the end; it's next to (and tied to) a deflated weather balloon[end if]. [If the Weather Station contains the vent]Just above is one end of my piping, pumping out hot steam and smoke.[end if]"
+The small spigot is a thing, fixed in place, in the Weather Station. "[if weather balloon is inflated]The inflated weather balloon bobs like an eager puppy beside the spigot it's tied to[else]In one corner, a small pipe emerges with a spigot on the end; it's next to (and tied to) a deflated weather balloon[end if]. [If the Weather Station contains the vent]Just above is my length of my piping, which is much more impressive: pumping out hot steam and smoke.[end if]"
 
 The description of the small spigot is "A pipe sticks out of the roof and ends in a small spigot. It must be used for filling the balloon. The tap on the spigot is a flat screw-head, set flush with the pipe."
 
@@ -9368,13 +9627,13 @@ Instead of filling the weather balloon:
 Instead of inflating the weather balloon:
 	try filling the weather balloon;
 
-Instead of tying the weather balloon to the small spigot:
+Instead of fastening the weather balloon to the small spigot:
 	try inserting the small spigot into the weather balloon instead.
 
 Instead of inserting the small spigot into the weather balloon:
 	say "There's no gas coming from the spigot.";
 
-Instead of tying the weather balloon to the vent:
+Instead of fastening the weather balloon to the vent:
 	try inserting the vent into the weather balloon instead.
 
 Instead of inserting the vent into the inflated weather balloon:
@@ -9554,7 +9813,7 @@ Instead of jumping on the feather bed:
 
 Section 2 - Wreckage
 
-The wrecked skylight is scenery, in Covalt's Bedroom. "Fragments of skylight have ripped the balloon into rags of cloth. Bits of basket and wire trail down. It's a state."
+The wrecked skylight is scenery, in Covalt's Bedroom. "Fragments of skylight have ripped the balloon into rags of cloth. Bits of basket and wire trail down. It's in a state."
 
 Understand "balloon", "weather balloon", "basket", "bits", "wire", "wires", "rags", "cloth", "ruined", "ruined", "window", "wreck", "wreckage" as the wrecked skylight
 
@@ -9575,7 +9834,7 @@ Instead of going up in Covalt's Bedroom:
 
 Section 3 - Ravens
 
-Some ravens are an animal, carried by Covalt. Understand "bird", "birds", "black", "crow", "crows" as the ravens.
+Some ravens are an animal, carried by Covalt. Understand "bird", "birds", "black", "crow", "crows", "hugin", "mummin", "munin" as the ravens.
 
 To say raven-blurb:
 	say "Two mechanical ravens, ink-black and beautifully crafted[one of]. Their wings are real feathers, each one fitted to the bodies by tiny, almost invisible brass joints. They are beautiful creations and move almost like real birds. Better, maybe[or][stopping]. " 
@@ -10175,7 +10434,7 @@ Section 3 - Finding the Diagram
 TRIG_DIAGRAM_FOUND is a trigger.
 
 Rule for firing unfired TRIG_DIAGRAM_FOUND:
-	say "Covalt spreads the paper out. 'The Perpetuum,' he whistles. 'Built by St. Babbage. Not drawn, you understand.' His voice has taken on a deep, reverent quality, more solemn and rich than the crackily old Abbot evers manages in any of his sermons. It's like the page itself was radiating the light of moving gear-teeth, throwing sparkles into Covalt's eyes.[paragraph break]'Drawing it came after,' Covalt continues. 'Babbage, they say, just sat down and made the machine. Cog-only knows how. Can't stop, you see. Can't start. Must have been running [i]while[r] he was putting it together. The Perpetuum is self-winding. Runs and runs without stopping. Look,' and he points to parts of the diagram. Cogs attached to other cogs that attach back to themselves. 'No spring at all,' Covalt says, wistfully. 'Nowhere for a spring to even [i]go[r]. A universe in miniature, all of its lonesome, so the books tell it. Got to keep it separate, and all is well. But your Figure, if he gets one. Well, I don't know.'[paragraph break]'What do you think the Figure wants with it?' I ask.[paragraph break]'Batters me. I don't know. I wondered that ever since he turned up asking me to build one – like I even [i]could[r] build one. I mean, this diagram, isn't a [i]full[r] diagram. It's like an aspect of the Perpetuum. Like, if you shone a light at the machine and sketched the outline of the shadow. Good for the soul of a clockworker, but your Figure? I guess he wants it [']dapted. For something else. Something quite else...' He trails off, quite suddenly, lost in thought.";
+	say "Covalt spreads the paper out. 'The Perpetuum,' he whistles. 'Built by St. Babbage. Not drawn, you understand.' His voice has taken on a deep, reverent quality, more solemn and rich than the crackly old Abbot evers manages in any of his sermons. It's like the page itself was radiating the light of moving gear-teeth, throwing sparkles into Covalt's eyes.[paragraph break]'Drawing it came after,' Covalt continues. 'Babbage, they say, just sat down and made the machine. Cog-only knows how. Can't stop, you see. Can't start. Must have been running [i]while[r] he was putting it together. The Perpetuum is self-winding. Runs and runs without stopping. Look,' and he points to parts of the diagram. Cogs attached to other cogs that attach back to themselves. 'No spring at all,' Covalt says, wistfully. 'Nowhere for a spring to even [i]go[r]. A universe in miniature, all of its lonesome, so the books tell it. Got to keep it separate, and all is well. But your Figure, if he gets one. Well, I don't know.'[paragraph break]'What do you think the Figure wants with it?' I ask.[paragraph break]'Batters me. I don't know. I wondered that ever since he turned up asking me to build one – like I even [i]could[r] build one. I mean, this diagram, isn't a [i]full[r] diagram. It's like an aspect of the Perpetuum. Like, if you shone a light at the machine and sketched the outline of the shadow. Good for the soul of a clockworker, but your Figure? I guess he wants it [']dapted. For something else. Something quite else...' He trails off, quite suddenly, lost in thought.";
 
 After firing TRIG_DIAGRAM_FOUND:
 [	now the player carries the Perpetuum Mobile diagram; ]
@@ -10300,10 +10559,10 @@ Instead of taking the strange device:
 
 The butter toffee is scenery, clutter, on the workbench. "It's toffee. Butter toffee." Understand "brown", "lump" as the butter toffee.
 
-Instead of eating or tasting the butter toffee:
-	say "[one of]I nibble a corner. Wren, you're hungry...[or]I take another bite, while Covalt isn't looking.[stopping]";
+Before eating or tasting the butter toffee:
+	say "[one of]I nibble a corner. Wren, you're hungry...[or]I take another bite, while Covalt isn't looking.[stopping]" instead;
 
-Some sketch papers are scenery, clutter, on the solid table. "The desk is covered in papers – few complete blueprints, though; they're mostly sketches. In the middle of the pile is a well-thumbed Bible, marked with several more bookmarks (more papers)." The printed name is "papers". Understand "sketches" as the papers. Understand "piles", "paper", "piles of paper/papers" as the sketch papers.
+Some sketch papers are scenery, clutter, on the solid table. "The desk is covered in papers – few complete blueprints, though; they're mostly sketches. In the middle of the pile is a well-thumbed Bible, marked with several more bookmarks (more papers)." The printed name is "papers". Understand "sketches" as the papers. Understand "piles", "paper", "piles of paper/papers", "bookmark", "bookmarks" as the sketch papers.
 
 Instead of searching the sketch papers:
 	try examining the sketch papers.
