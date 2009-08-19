@@ -120,12 +120,17 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Domain\User.cs" />
+    <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Games.aspx.cs">
       <DependentUpon>Games.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Games.aspx.designer.cs">
       <DependentUpon>Games.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Librarians.aspx.cs">
       <DependentUpon>Librarians.aspx</DependentUpon>
@@ -233,6 +238,7 @@
     <Content Include="Customer\Default.aspx" />
     <Content Include="Customer\Downloads.aspx" />
     <Content Include="Customer\OnTheInside.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="images\graeme.jpg" />
     <Content Include="images\tflogo.jpg" />
     <Content Include="Web.config" />

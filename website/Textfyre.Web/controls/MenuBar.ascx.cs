@@ -10,6 +10,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using Textfyre.Web.Domain;
 
 namespace Textfyre.Web.controls {
     public partial class MenuBar : System.Web.UI.UserControl {
@@ -19,6 +20,11 @@ namespace Textfyre.Web.controls {
             //MakeMenuItem(menuParents, "Parents.aspx", "Parents");
             //MakeMenuItem(menuTeachers, "Teachers.aspx", "Teachers");
             //MakeMenuItem(menuLibrarians, "Librarians.aspx", "Librarians");
+            if (Page.User.Identity.IsAuthenticated) {
+                if (((User)Session["User"]).IsCustomer) {
+                    MakeMenuItem(menuAbout, "Customer/", "Customers");
+                }
+            }
             MakeMenuItem(menuAbout, "About.aspx", "About");
         }
 

@@ -33,10 +33,7 @@
                                             Two more Interactive Fiction games are nearing completion, including the first story
                                             in the Klockwerk series. <i>The Shadow in the Cathedral</i>, due September 25th,
                                             begins a tale in an Edwardian world where everyone worships clocks. A young neophyte
-                                            within the church is our hero and will be faced with many challenges. <i>A Gift of Empathy</i>
-                                            is the first story in the Giant Leaps series and takes place on a modern day college
-                                            campus. A group of gifted middle-school kids are spending their summer learning
-                                            new things, especially
+                                            within the church is our hero and will be faced with many challenges.
                                             <asp:HyperLink ID="HyperLink1" runat="server" CssClass="articleLink" NavigateUrl="~/Games.aspx"
                                                 Text=" ...more" /></p>
                                     </td>

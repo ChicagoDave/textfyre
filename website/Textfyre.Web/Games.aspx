@@ -23,6 +23,14 @@
                                                 Play the online demo!</a>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td colspan="2" style="font-size:6pt; vertical-align: bottom; padding-top:20px;">
+                                            System Requirements: Microsoft Windows XP, Windows Vista, Windows 7, or an Intel
+                                            based Mac with OS X. On Windows, 32MB RAM is required and on the Mac, 512MB RAM
+                                            is required. Both systems require 15MB of free disk space. Microsoft Silverlight
+                                            2 or 3 is required and is a part of the installation process.
+                                        </td>
+                                    </tr>
                                 </table>
                             </div>
                         </td>
