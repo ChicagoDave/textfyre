@@ -6,6 +6,7 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 
 [  Change Log
 When			Who		What
+18-Aug-2009		J. Ingold	Started to play through Chapter 7. Fixed a bug(GJ, please check this!) in Textfyre Standard Rules for implicitly opening.
 17-Aug-2009 	J. Ingold	More of Paul's feedback, mostly missing responses. Changed TALK TO behaviour to use a prescripted list of topics (would be nice if the last of these was "What do you want to talk about?", and then hooked into the parser properly. But that might be pure sci-fi.)
 14-Aug-2009 	J. Ingold	More of Paul's feedback and some left over from Eric's script. Started on Paul's new transcripts too.
 10-Aug-2009 	J. Ingold	Some of Paul's feedback + some playtesting of C7.
@@ -135,6 +136,7 @@ Use MAX_DICT_ENTRIES of 2500.
 Use MAX_OBJECTS of 1280.
 Use MAX_SYMBOLS of 26000.
 Use MAX_ZCODE_SIZE of 80000.
+Use MAX_LINESPACE of 20000.
 
 Chapter - Debugging and Analysing Verbs (not for release)
 
@@ -1803,14 +1805,14 @@ The block waking rule is not listed in any rulebook.
 
 
 
-Part 22 - Jumping off, jumping on
+Part 22 - Jumping off, jumping on                
 
 Jumping off is an action applying to one thing, and requiring light.
 Jumping on is an action applying to one thing, and requiring light.
 Jumping over is an action applying to one thing, and requiring light.
 
 Understand "jump off [something]" as jumping off.
-Understand "jump on/onto [something]" as jumping on.
+Understand "jump on/onto/to [something]" as jumping on.
 Understand "jump on to [something]" as jumping on.
 Understand "jump [something]" as jumping over.
 Understand "jump over [something]" as jumping over.
@@ -1949,6 +1951,10 @@ Understand "tell [someone] [something worthy of inspection]" as enquiring of it 
 Understand "ask [someone] [something worthy of inspection]" as enquiring of it about.
 
 Understand "tell [someone] [text]" as telling it about.
+Understand "explain [text] to [someone]" as telling it about (with nouns reversed).
+Understand "explain about/that [text] to [someone]" as telling it about (with nouns reversed).
+Understand "explain to [someone] that/about [text]" as telling it about.
+Understand "explain to [someone] [text]" as telling it about.
 Understand "ask [someone] [text]" as asking it about.
 
 Report enquiring of someone about something:
@@ -2232,6 +2238,8 @@ Understand "a [text]" as asking no-one in particular about.
 Understand "a about [text]" as asking no-one in particular about.
 Understand "tell about [text]" as telling no-one in particular about.
 Understand "t [text]" as telling no-one in particular about.
+Understand "explain [text]" as telling no-one in particular about.
+Understand "explain about [text]" as telling no-one in particular about.
 Understand "t about [text]" as telling no-one in particular about.
 Understand "quote [text]" as telling no-one in particular about.
 Understand "talk about [text]" as telling no-one in particular about.
@@ -2295,14 +2303,20 @@ Part 49 - Go To Something, go
 
 Approaching is an action applying to one visible thing.
 
-Understand "go to/after/toward/for/towards/along [something]" as approaching.
+Understand "go near/to/after/toward/for/towards [something]" as approaching.
 Understand "follow [something]" as approaching.
 Understand "jump after [something]" as approaching.
 Understand "approach [something]" as approaching.
 Understand "chase [something]" as approaching.
 Understand "close on [something]" as approaching.
 Understand "close in on [something]" as approaching.
-Understand "walk after/along/towards/to/for [something]" as approaching.
+Understand "walk near/after/towards/to/for [something]" as approaching.
+Understand "walk near/over to/toward/towards [something]" as approaching.
+Understand "go near/over to/toward/towards [something]" as approaching.
+
+Understand "go along/across/over [something]" as entering.
+Understand "walk along/over/across [something]" as entering.
+
 
 Understand "jump [direction]" as going.
 
@@ -2342,9 +2356,10 @@ Understand "set [something]" as turning.
 
 Part 2 - Add something to
 
-Understand "add [something] to [container]" as inserting it into.
-Understand "add [something] to [supporter]" as putting it on.
-Understand "add [something] to [something]" as inserting it into.
+Understand "add [something preferably held] to [container]" as inserting it into.
+Understand "add [something preferably held] to [supporter]" as putting it on.
+Understand "add [something preferably held] to [something]" as inserting it into.
+Understand "extend [something] with [something preferably held]" as putting it on (with nouns reversed).
 
 Part 3 - Covering
 
@@ -2406,6 +2421,8 @@ Understand "grip [something]" as taking.
 Understand "grab [something]" as taking.
 Understand "grab [on to] [something]" as taking.
 Understand "hold [on to] [something]" as taking.
+Understand "cling to/onto [something]" as taking.
+Understand "cling on to [something]" as taking.
 
 Understand the command "catch" as "take".
 Understand the command "collect" as "take".
@@ -3427,11 +3444,14 @@ Instead of touching or smelling or tasting or eating the backdrop-floor when in 
 
 Instead of jumping when in the Attic Room:
 	say "Doesn't sound like a good idea to me!"
+	
+Before swinging the backdrop-floor when in the Attic Room:
+	try jumping instead.
 
 Instead of sleeping when in the Attic Room:
 	say "No time for that now!"
 
-Instead of approaching the backdrop-floor when in the Attic Room:
+Instead of approaching or entering the backdrop-floor when in the Attic Room:
 	say "I'm certainly not going to step off them!"
 
 Chapter 2 - Scenery
@@ -3519,9 +3539,9 @@ Instead of doing something when the distant city is physically involved:
 
 Section 6 - Cathedral Spires
 
-The cathedral spires are scenery, in the Attic Room. "Twelve spires arranged in a ring about the Great Dome, to mirror the Twelve Devotions of the Greater Rotation[one of]. Rumour among initiates has it that the Cathedral was once a sundial that marked the time by casting shadows on numerals scattered about the city, but then St Newton abolished that, tore up the numerals and hid them away.[paragraph break]They say there are twelve different numbers that used to be the first twelve but now no-one is allowed to use them. I don't believe a word of it, of course[or][stopping]." The printed name is "Cathedral"
+The cathedral spires are scenery, in the Attic Room. "Birds flit between the twelve spires of the Great Dome of the Cathedral. The spires mirror the Twelve Devotions of the Greater Rotation[one of]. Rumour among initiates has it that the Cathedral was once a sundial that marked the time by casting shadows on numerals scattered about the city, but then St Newton abolished that, tore up the numerals and hid them away.[paragraph break]They say there are twelve different numbers that used to be the first twelve but now no-one is allowed to use them. I don't believe a word of it, of course[or][stopping]." The printed name is "Cathedral"
 
-Understand "twelve spires", "dome", "great dome", "church" as the cathedral spires.
+Understand "twelve spires", "dome", "great dome", "birds", "church", "time's arrows", "arrows", "time's arrow", "times arrow", "times arrows" as the cathedral spires.
 
 Before doing something when the cathedral spires are physically involved:
 	say "It's right across the city from me!" instead;
@@ -5909,6 +5929,23 @@ Instead of sleeping in the Lower Nave:
 
 Chapter 2 - Scenery
 
+Section 0 - Heat
+
+The heat is scenery in the Lower Nave. Understand "little/gentle heat", "warmth", "hot/warm air/gust/wind" as the heat. "The heat licks in from the west."
+
+Before doing something when the heat is physically involved and the action is physical:
+	say "It's just a wisp of heat." instead.
+
+Before touching the heat:
+	say "It's only gentle, almost nothing at all."
+
+Before approaching the heat:
+	try going east instead.
+
+Before smelling the heat:
+	say "The hot air smells of wax and oil." instead.
+
+
 Section 1 - Lower Seal
 
 The Lower Seal is a Great Seal, in the Lower Nave. "This one is made of brass, all wound up into a coil. It's either a spring or one of Reloh's mechanical serpents."
@@ -6329,6 +6366,7 @@ Instead of doing anything when the Calendar Unlimited is physically involved:
 
 Instead of looking under the Calendar Unlimited:
 	say "If you're hoping to see a short man curled up operating the dials you'd be disappointed. The whole thing is just one box (full of very, very small cogs)."
+	
 
 Chapter 3 - The Brazier
 
@@ -6474,7 +6512,10 @@ Brother Sa'at can be sat at his desk or inspecting his Orrey. Brother Sa'at is [
 
 Brother Sa'at has a number called the letter state. The letter state of Brother Sa'at is 0.
 
+Brother Sa'at wears a ring. Understand "sa'at's/saats/saat's/sa'ats ring", "seal", "bronze", "nugget", "small ring/nugget" as the ring. The description of the ring is "Sa'at's ring is a small bronze nugget stamped with a seal." 
 
+Instead of doing something when the ring is physically involved and the action is physical:
+	say "Sa'at snatches his hand away[one of]. 'Don't touch me,' he snaps. 'Don't even pretend to touch me!'[or].[stopping]"
 
 Section 2 - Conversation
 
@@ -7335,10 +7376,10 @@ The Figure in Grey is a man, scenery. "I take a peek, but can't make out much be
 Instead of doing something when the Figure in Grey is physically involved during Overheard Conversation:
 	do nothing;
 
-Instead of searching or approaching or examining the statues of St Breguet and St Babbage when the player can see the Figure in Grey:
+Instead of searching or approaching or entering or examining the statues of St Breguet and St Babbage when the player can see the Figure in Grey:
 	do nothing;
 
-Instead of searching or approaching or examining the shadowy gap when the player can see the Figure in Grey:
+Instead of searching or approaching or entering or examining the shadowy gap when the player can see the Figure in Grey:
 	do nothing;
 
 Instead of approaching the Figure in Grey:
@@ -7390,6 +7431,12 @@ The East Clerestory is a room, in the Cathedral Space. "[if Doric is in North Cl
 Instead of making to leave when in the East Clerestory: try going down instead.
 Instead of going inside in the East Clerestory: try going north instead.
 
+Section 1 - Glimpse of Choir stalls
+
+The glimpsed Choir is a glimpse backdrop, in the East Clerestory, in the West Clerestory, in the North Clerestory. "The choir stalls are empty." Understand "choir", "stall", "stalls" as the glimpsed Choir.
+
+The glimpsed Choir identifies the choir stalls.
+
 Chapter 2 - Events on Entry
 
 Section 1 - Event on Entry - Doric
@@ -7432,7 +7479,7 @@ Chapter 3 - Doric
 
 Section 1 - Description
 
-Doric is a man, in the East Clerestory. "[if Doric is awake]There's another door to the north; solid oak. It may not look like much, but judging by the guard in front, that's the Archbishop's door.[otherwise]Doric is still standing guard, but his eyes seem to be closed.[end if]"
+Doric is a man, in the East Clerestory. "[if Doric is awake]There's another door to the north; solid oak. It may not look like much, but judging by the guard in front, that's the Archbishop's door[one of]. His name-badge declares him to be Doric of the Swiss Watch[or][stopping].[otherwise]Doric is still standing guard, but his eyes seem to be closed.[end if]"
 
 Understand "guard", "man", "Doric", "protectorate", "uniform" as Doric.
 
@@ -7515,6 +7562,8 @@ CT_DOR_ME is a conversation topic. The enquiry text is "'Listen, I'm from the Ab
 CT_DOR_DORIC is a conversation topic. The enquiry text is "'So, do you like being a guard?' I ask."
 The response text is "Doric puffs out his chest. 'Yeah. I mean, yeah. It's alright. The hours are good. Pension's okay. Good for the soul, all this standing around. Yeah.'[paragraph break]He doesn't look too convinced."
 
+CT_DOR_HALBERD is a conversation topic. The enquiry text is "'What's that you're carrying?' I ask, nonchalantly." The response text is "'Pain in the rear-side of anyone tryin' to slip their way past,' he replies with a toothy smile. 'You get me?'"
+
 The conversation table of Doric is the Table of Doric's Conversation.
 
 Table of Doric's Conversation
@@ -7529,11 +7578,12 @@ topic						conversation
 "[abbeyfolk]"					CT_DOR_PEOPLE
 "door"						CT_DOR_DOOR
 "[sa'at]"						CT_DOR_SAAT
-"[clockwork]"					CT_DOR_CLOCKWORK
+"[clockwork]" or "time"					CT_DOR_CLOCKWORK
 "saints"						CT_DOR_SAINTS
 "books" or "library" or "principia" or "planetaria" or "planeteria"	CT_DOR_BOOKS
 "[me]"						CT_DOR_ME
 "[himself]" or "doric" or "guard/guards" or "swiss" or "watch"		CT_DOR_DORIC
+"halberd" or "spear" or "weapon" or "blade"		CT_DOR_HALBERD
 
 CT_DOR_FAITH is clustered with CT_DOR_BUSINESS, CT_DOR_ABBEY, CT_DOR_CATHEDRAL, CT_DOR_ABBOT, CT_DOR_ARCHBISHOP, CT_DOR_PEOPLE, CT_DOR_DOOR, CT_DOR_SAAT, CT_DOR_CLOCKWORK, CT_DOR_SAINTS, CT_DOR_BOOKS, CT_DOR_SEAL, CT_DOR_ME, CT_DOR_DORIC.
 
@@ -8077,7 +8127,7 @@ Section 1 - Platforms underfoot
 
 Some Clock platforms are scenery in Lower Gears. "The platforms are held together by old iron nails." Understand "platform", "ledge", "ledges", "walkway", "walkways", "rafters" as the Clock platforms.
 
-Instead of approaching the Clock platforms:
+Instead of approaching or entering the Clock platforms:
 	say "Which way? Platforms lead away to the [available-platforms].";
 
 Instead of getting off the Clock platforms:
@@ -8229,6 +8279,9 @@ Rule for printing the description of the thick chain when in the Upper Gears:
 Instead of climbing the thick chain when in Upper Gears:
 	say "I could grip my arms around the chain but the angle's too steep – and the distance, it's pretty far! I can't just climb out. I really can't.";
 
+Before swinging the thick chain:
+	try climbing the thick chain instead.
+
 Instead of climbing the thick chain [elsewhere]:
 	try going down instead;
 
@@ -8288,13 +8341,13 @@ Instead of dropping the rafter beams:
 Instead of taking the rafter beams:
 	say "Don't worry, there's no chance I'm letting go.";
 
-Instead of approaching the rafter beams in Upper Gears:
+Instead of approaching or entering the rafter beams in Upper Gears:
 	say "The rafters can't take me anywhere from here. I need to go up!"
 
-Instead of approaching the rafter beams in Rafters:
+Instead of approaching or entering the rafter beams in Rafters:
 	try going down;
 
-Instead of approaching the rafter beams in Behind the Clock Face:
+Instead of approaching or entering the rafter beams in Behind the Clock Face:
 	try going outside;
 
 Section 1 - Rose Window
@@ -8656,6 +8709,9 @@ Section 1b - Rooftops
 
 Some tiled rooftops are a backdrop, in Roofs of the City. Understand "roofs", "roof" , "rooves", "tile", "tiles", "gutter", "tiled", "gutters", "level", "levels", "rooftop" as the rooftops. "The roofs are a mismatch of tiles and levels and different directions. At any moment I might be tipped off into the street!"
 
+Instead of taking the tiled rooftops:
+	say "I can't go wandering off with the rooftops, can I?"
+
 Does the player mean doing something with the tiled rooftops: it is unlikely.
 Does the player mean jumping off the tiled rooftops: it is likely.
 Does the player mean getting off the tiled rooftops: it is likely.
@@ -8715,7 +8771,7 @@ A raised platform is scenery, in Rooftop 2. "I can't make out what's on the plat
 
 The printed name is "platform". Understand "brass", "glossy", "railing", "big", "railings", "tower", "turret" as the raised platform.
 
-Instead of jumping on or climbing or approaching the raised platform:
+Instead of jumping on or climbing or approaching or entering the raised platform:
 	try jumping;
 
 Instead of doing something when the raised platform is physically involved:
@@ -8996,7 +9052,7 @@ Section	2b - Ornithopter object
 
 The ornithopter is a glimpse backdrop in Roofs of the City. Understand "ornithopter" as the ornithopter when TRIG_ROOFTOP_4 is fired. "The ornithopter is still large in the sky. It moves like a slow, fat moth - with the Figure aboard!" Understand "helicopter" as the ornithopter.
 
-Instead of approaching the ornithopter: 
+Instead of approaching or entering the ornithopter: 
 	say "I need a way to get myself airborne!"
 
 Instead of doing something when the ornithopter is physically involved:
@@ -9149,6 +9205,9 @@ Instead of jumping in Rooftop 5:
 
 Instead of going southwest in Rooftop 5:
 	try jumping;
+
+Instead of going southwest in Rooftop 5 when the vent is in the Weather Station:
+	try entering the elongated chimney pipe.
 
 Instead of going down in Rooftop 5:
 	try jumping;
@@ -9328,7 +9387,13 @@ After direction-setting the elongated chimney pipe to a direction:
 	otherwise;
 		remove the vent from play;
 	end if;
-	say "[one of]Working hard on the hot tarpaulin, I manage to get the pipe to turn, until it's pointing [way of the elongated chimney pipe].[or]I work the pipe around in its fitting, to point [way of the elongated chimney pipe][if the vent is on-stage], across the alleyway[end if].[stopping]"
+	say "[one of]Working hard on the hot tarpaulin, I manage to get the pipe to turn, until it's pointing [way of the elongated chimney pipe][or]I work the pipe around in its fitting, to point [way of the elongated chimney pipe][stopping][if the vent is on-stage], across the alleyway[end if]."
+
+Instead of entering the elongated chimney pipe when the vent is in the Weather Station:
+	say "The pipe goes all the way over the alley below, but it's too spindly to take my weight!"
+
+Instead of entering the elongated chimney pipe:
+	say "There's not much point walking the pipe since it doesn't go anywhere."
 
 Section 3 - Tarp as part of the pipe
 
@@ -9599,7 +9664,7 @@ Section 6 - Balloon
 
 The weather balloon is scenery, in the Weather Station. "A small weather balloon. I suppose they use it to lift instruments up into the clouds – but it has a little basket underneath, and I might just be able to squeeze in. The Figure doesn't know what he's let himself in for with me, that's for certain. The balloon is currently [if inflated]full[otherwise]empty[end if], and is tied by a string to the pipe and the spigot."
 
-Rule for supplying a missing second noun when untying the weather balloon from:
+First for supplying a missing second noun when untying the weather balloon from:
 	change the second noun to the small spigot;	
 
 Understand "basket", "string" as the weather balloon.
@@ -9611,6 +9676,9 @@ Instead of entering the deflated weather balloon:
 
 Instead of entering the inflated weather balloon:
 	try untying the weather balloon from the small spigot instead;
+
+Before fastening the weather balloon to something:
+	say "The balloon's already tied to the spigot." instead.
 
 Instead of taking the weather balloon:
 	say "The basket is bigger than my armspan already, and then there's all the mess of fabric to make the balloon - I can't possibly carry it around. I wouldn't be able to see where I was going!"
@@ -9672,10 +9740,10 @@ Instead of untying the weather balloon from the small spigot:
 	end a chapter;
 	move the player to the feather bed;
 
-Before approaching the ornithopter when the weather balloon is inflated and the player is in Roofs of the City:
+Before approaching or entering the ornithopter when the weather balloon is inflated and the player is in Roofs of the City:
 	try approaching the escaping Figure instead.
 
-Before approaching the ornithopter when the weather balloon is deflated and the Weather Station has been visited:
+Before approaching or entering the ornithopter when the weather balloon is deflated and the Weather Station has been visited:
 	try approaching the escaping Figure instead.
 
 Before approaching the escaping Figure when the weather balloon is inflated and the player is in Roofs of the City:
@@ -9775,7 +9843,7 @@ Chapter 3 - Scenery
 
 Section 1 - Feather bed
 
-A feather bed is scenery, an enterable supporter, in Covalt's Bedroom. "The large feather bed has a dent in the middle deep enough for me to disappear in. Whoever sleeps here must be seriously heavy."
+A feather bed is scenery, an enterable supporter, in Covalt's Bedroom. "The large feather bed has a dent in the middle deep enough for me to disappear in."
 
 Instead of hiding from view during Covalt's Introduction:
 	say "I cower back a little."
@@ -9905,7 +9973,7 @@ Rule for writing a paragraph about Covalt when the state of Covalt is 4:
 Section 2 - Descriptions
 
 Rule for printing the description of Covalt when the state of Covalt is 1:
-	say "The giant is six-and-a bit feet of solid bone and grime. His overalls are oil-covered and in one hand he's clutching a clock-wight heavy enough to concuss a horse. Two mechanical ravens guard his shoulders.";
+	say "The giant is six-and-a bit feet of solid bone and grime. His overalls are oil-covered and in one hand he's clutching a clock-weight heavy enough to concuss a horse. Two mechanical ravens guard his shoulders.";
 
 Rule for printing the description of Covalt when the state of Covalt is 2:
 	say "Covalt is eyeing me intently, demanding to know more. He's still blocking the doorway. His ravens are backing him up with icy glares.";
@@ -9951,7 +10019,7 @@ CT_COV_1_ARCHBISHOP		"[archbishop]"
 CT_COV_1_PEOPLE			"[abbeyfolk]" or "[sa'at]"
 CT_COV_1_COVALT			"giant" or "[himself]"
 CT_COV_1_RAVENS			"ravens" or "his ravens" or "hugin" or "mummin"
-CT_COV_1_CLOCKWORK		"[clockwork]" or "[saints]"	
+CT_COV_1_CLOCKWORK		"time" or "[clockwork]" or "[saints]"
 CT_COV_1_SORRY			"sorry" or "apologise" or "apologies"
 CT_COV_1_PERPETUUM		"[plot]" or "[perpetuum]"
 CT_COV_1_PENDULUUM	"pendulum" or "penduluum" or "weight" or "hit me" or "hurt me"
@@ -10018,7 +10086,7 @@ CT_COV_2_ABBOTFIGURE	"[abbot]" or "[figure]" or "chase"
 CT_COV_1_PEOPLE		"[calvinanddrake]" or "[horloge]" or "[reloh]" or "[sa'at]" or "cook"
 CT_COV_2_COVALT		"giant" or "[himself]"
 CT_COV_2_RAVENS		"ravens" or "his ravens" or "hugin" or "mummin"
-CT_COV_2_CLOCKWORK		"[clockwork]" or "[saints]"
+CT_COV_2_CLOCKWORK		"time" or "[clockwork]" or "[saints]"
 CT_COV_2_SORRY			"sorry" or "apologise" or "apologies"
 CT_COV_2_PERPETUUM		"[perpetuum]" or "[plot]"
 CT_COV_1_PENDULUUM	"pendulum" or "penduluum" or "weight" or "hit me" or "hurt me"
@@ -10040,7 +10108,7 @@ CT_COV_2_ARCHBISHOPCATHEDRAL is a conversation topic. The enquiry text is "'I tr
 
 CT_COV_2_COVALT is a conversation topic. The enquiry text is "'Who are you?' I demand. 'How do I know you're not with them?'". The response text is "'Whoever they are,' he spits back, 'I'm a clockmaker. That's enough for you, for now.'".
 
-CT_COV_2_RAVENS is a conversation topic. The enquiry text is "'Are your ravens real?'". The response text is "'Every tick and winding,' he replies. 'But they're nothing to do with you neither.'".
+CT_COV_2_RAVENS is a conversation topic. The enquiry text is "'Are your ravens real?'". The response text is "'You can see them, can't you?' he snaps back. 'Can't be made up then, can they?'".
 
 CT_COV_2_CLOCKWORK is a conversation topic. The enquiry text is "'Does everything here run on clockwork?'". The response text is "'The whole world's on it, that's what they say. I know everything I make does, that's enough for me.'".
 
@@ -10086,7 +10154,7 @@ CT_COV_3_FIGURE		"[figure]"
 CT_COV_1_PEOPLE		"[calvinanddrake]" or "[horloge]" or "[reloh]" or "[sa'at]" or "cook"
 CT_COV_3_COVALT		"giant" or "[himself]"
 CT_COV_3_RAVENS		"ravens" or "his ravens" or "hugin" or "mummin"
-CT_COV_3_CLOCKWORK		"[clockwork]" 
+CT_COV_3_CLOCKWORK		"time" or "[clockwork]"
 CT_COV_3_SAINTS		"[saints]"
 CT_COV_3_SORRY		"sorry" or "apologise" or "apologies"
 CT_COV_3_PERPETUUM		"[perpetuum]" or "[plot]"
@@ -10234,6 +10302,7 @@ CT_COV_4_THINKING is a conversation topic. The enquiry text is "[one of]'I...'[o
 Rule for firing CT_COV_4_DIFFERENCE while firing CT_COV_4_THINKING or firing COVALT_COUNTER:
 	[we don't want to print the enquiry text in these situations] 
 	say the response text of CT_COV_4_DIFFERENCE;
+	say run paragraph on;
 
 After firing unfired CT_COV_4_DIFFERENCE:
 	add SE_COV_COUNTING_HOUSE to the current script;
@@ -10264,7 +10333,7 @@ CT_COV_5_ARCHBISHOP		"[archbishop]"
 CT_COV_1_PEOPLE		"[calvinanddrake]" or "[horloge]" or "[reloh]" or "[sa'at]" or "cook"
 CT_COV_5_COVALT		"giant" or "covalt" or "[himself]"
 CT_COV_5_RAVENS		"his ravens" or "ravens" or "hugin" or "mummin"
-CT_COV_5_CLOCKWORK		"[clockwork]" 
+CT_COV_5_CLOCKWORK		"time" or "[clockwork]"
 CT_COV_5_SAINTS		"[saints]" 
 CT_COV_5_SORRY		"sorry" or "apologise" or "apologies"
 CT_COV_5_PERPETUUM		"[perpetuum]" or "diagram" or "blueprint"
@@ -10361,6 +10430,13 @@ Part 2 - Clock Shop
 
 Covalt's Shop Hunt is a scene. Covalt's Shop Hunt begins when the location is the Clock Shop. Covalt's Shop Hunt ends when the location is the Street. 
 
+Understand "find diagram" as a mistake ("[look for diagram]") when Covalt's Shop Hunt is happening and the state of Covalt is 3.
+Understand "look for diagram" as a mistake ("[look for diagram]") when Covalt's Shop Hunt is happening and the state of Covalt is 3.
+Understand "search for diagram" as a mistake ("[look for diagram]") when Covalt's Shop Hunt is happening and the state of Covalt is 3.
+Understand "hunt for diagram" as a mistake ("[look for diagram]") when Covalt's Shop Hunt is happening and the state of Covalt is 3.
+
+To say look for diagram:
+	say "[one of]There's lots of places to look - [if location is the Clock Shop]the desk, the shelves, the papers - I'll just have to start somewhere[else]in the main shop, as well as here[end if][or]You're going to have to think of somewhere to look, I can't see it.[stopping]. "
 
 Chapter 1 - Description
 
@@ -10374,14 +10450,17 @@ Chapter 2 - Rummaging puzzle
 
 Section 1 - Examining clutter
 
+
 After printing the description of a clutter thing (called the junk) that is remembered by Covalt when the state of Covalt is 3:
 	say paragraph break;
 	have Covalt inspect the junk;
 	[ drop the extra line break cause by the last rule in this activity. We don't need it! ]
 	now the final-paragraph-break is false;
 
-After printing the description of uninspected clutter when the player remembers at least four things and the state of Covalt is 3:
-	say " And here's his diagram too. I pull it out and hand it over to him.[paragraph break]";
+After printing the description of uninspected clutter thing (called the hiding-place) when the player remembers at least three things and the state of Covalt is 3:
+	say " And here's his diagram too";
+	if the hiding-place is the toffee, say ", underneath";
+	say ". I pull it out and hand it over to him.[paragraph break]";
 	fire TRIG_DIAGRAM_FOUND instead;
 
 After printing the description of uninspected clutter when the state of Covalt is 3:
@@ -10434,7 +10513,7 @@ Section 3 - Finding the Diagram
 TRIG_DIAGRAM_FOUND is a trigger.
 
 Rule for firing unfired TRIG_DIAGRAM_FOUND:
-	say "Covalt spreads the paper out. 'The Perpetuum,' he whistles. 'Built by St. Babbage. Not drawn, you understand.' His voice has taken on a deep, reverent quality, more solemn and rich than the crackly old Abbot evers manages in any of his sermons. It's like the page itself was radiating the light of moving gear-teeth, throwing sparkles into Covalt's eyes.[paragraph break]'Drawing it came after,' Covalt continues. 'Babbage, they say, just sat down and made the machine. Cog-only knows how. Can't stop, you see. Can't start. Must have been running [i]while[r] he was putting it together. The Perpetuum is self-winding. Runs and runs without stopping. Look,' and he points to parts of the diagram. Cogs attached to other cogs that attach back to themselves. 'No spring at all,' Covalt says, wistfully. 'Nowhere for a spring to even [i]go[r]. A universe in miniature, all of its lonesome, so the books tell it. Got to keep it separate, and all is well. But your Figure, if he gets one. Well, I don't know.'[paragraph break]'What do you think the Figure wants with it?' I ask.[paragraph break]'Batters me. I don't know. I wondered that ever since he turned up asking me to build one – like I even [i]could[r] build one. I mean, this diagram, isn't a [i]full[r] diagram. It's like an aspect of the Perpetuum. Like, if you shone a light at the machine and sketched the outline of the shadow. Good for the soul of a clockworker, but your Figure? I guess he wants it [']dapted. For something else. Something quite else...' He trails off, quite suddenly, lost in thought.";
+	say "Covalt spreads the paper out. 'The Perpetuum,' he whistles. 'Built by St. Babbage. Not drawn, you understand.' His voice has taken on a deep, reverent quality, more solemn and rich than the crackly old Abbot evers manages in any of his sermons. It's like the page itself was radiating the light of moving gear-teeth, throwing sparkles into Covalt's eyes.[paragraph break]'Drawing it came after,' Covalt continues. 'Babbage, they say, just sat down and made the machine. Cog-only knows how. Can't stop, you see. Can't start. Must have been running [i]while[r] he was putting it together. The Perpetuum is self-winding. Runs and runs without stopping. Forever. Look,' and he points to parts of the diagram. Cogs attached to other cogs that attach back to themselves. 'No spring at all,' Covalt says, wistfully. 'Nowhere for a spring to even [i]go[r]. A universe in miniature, all of its lonesome, so the books tell it. Got to keep it separate, and all is well. But your Figure, if he gets one. Well, I don't know.'[paragraph break]'What do you think the Figure wants with it?' I ask.[paragraph break]'Batters me. I don't know. I wondered that ever since he turned up asking me to build one – like I even [i]could[r] build one. I mean, this diagram, isn't a [i]full[r] diagram. It's like an aspect of the Perpetuum. Like, if you shone a light at the machine and sketched the outline of the shadow. Good for the soul of a clockworker, but your Figure? I guess he wants it [']dapted. For something else. Something quite else...' He trails off, quite suddenly, lost in thought.";
 
 After firing TRIG_DIAGRAM_FOUND:
 [	now the player carries the Perpetuum Mobile diagram; ]
@@ -10529,14 +10608,17 @@ The battery is scenery, clutter, in the Clock Shop. "This is a riddle. What's a 
 Instead of taking or touching or tasting the battery:
 	say "[one of]'Don't touch that!' Covalt barks.[or]I don't want to make him angry.[stopping]";
 
-The well-thumbed Bible is scenery, clutter, on the solid table. "A copy of the Bible. Leafing through, it looks fairly standard." 
+The well-thumbed Bible is scenery, clutter, on the solid table. "A copy of the Bible. Leafing through, it looks fairly standard."
 
 Instead of searching or opening the Bible: try examining the Bible instead.
 
 Instead of taking the Bible:
 	say "Covalt probably needs it - it lists all the Laws of Physik, all the motions of gear-wheels, and a lot of useful Constants besides."
+	
+Instead of consulting the Bible about:
+	say "I don't have time to read all the Laws right now. Besides, they won't have changed since the [i]last[r] time I read them."
 
-Some wall of pendulums is scenery, clutter, in the Clock Shop. "It's like a sword-fighter might have, only each penduluum on Covalt's wall is stubby and brass." Understand "penduluum", "penduluums", "pendulum", "stubby", "brass" as the wall of pendulums.
+Some wall of pendulums is scenery, clutter, in the Clock Shop. "Covalt has penduluums in a rack on his wall like a sword-fighter might have swords." Understand "penduluum", "penduluums", "pendulum", "stubby", "brass" as the wall of pendulums.
 
 Instead of doing something when the wall of pendulums is physically involved:
 	say "The penduluums look too heavy to shift and they're a little high up for me."
@@ -10544,7 +10626,10 @@ Instead of doing something when the wall of pendulums is physically involved:
 Instead of searching the wall of pendulums:
 	say "Standing on tip-toes I can peer between the penduluums[check in case we've found it in the noun]";
 
-The mechanical monkey is scenery, clutter, in the Clock Shop. "It's a toy, or a pet, like Gubbler's salamander (and about the same size). Right now it's wound down." Understand "toy", "pet", "head" as the mechanical monkey. 
+The mechanical monkey is scenery, clutter, in the Clock Shop. "It's a toy, or a pet, like Gubbler's salamander (and about the same size). Right now it's wound down." Understand "toy", "pet", "head" as the mechanical monkey.
+
+Instead of taking the mechanical monkey:
+	say "[one of]'Leave that,' Covalt snaps. 'It'll take your fingers off, it's mean.'[or]Covalt shakes his head. 'I'm not joking.'[stopping]";
 
 Instead of turning the mechanical monkey:
 	say "No key.";
@@ -10560,7 +10645,14 @@ Instead of taking the strange device:
 The butter toffee is scenery, clutter, on the workbench. "It's toffee. Butter toffee." Understand "brown", "lump" as the butter toffee.
 
 Before eating or tasting the butter toffee:
-	say "[one of]I nibble a corner. Wren, you're hungry...[or]I take another bite, while Covalt isn't looking.[stopping]" instead;
+	say "[one of]I nibble a corner. Wren, I'm thinking, you're hungry...[or]I take another bite, while Covalt isn't looking.[stopping]" instead;
+	
+Instead of slicing the butter toffee with the knife:
+	say "I shave off a slice of toffee and eat it. Sugar. Food. I'm hungrier than I realised!" instead.
+	
+Instead of taking the butter toffee:
+	say "'Don't take all of it,' Covalt grumbles. 'I need it to think.' So, [run paragraph on]";
+	try eating the butter toffee instead.
 
 Some sketch papers are scenery, clutter, on the solid table. "The desk is covered in papers – few complete blueprints, though; they're mostly sketches. In the middle of the pile is a well-thumbed Bible, marked with several more bookmarks (more papers)." The printed name is "papers". Understand "sketches" as the papers. Understand "piles", "paper", "piles of paper/papers", "bookmark", "bookmarks" as the sketch papers.
 
@@ -10660,7 +10752,7 @@ Some buildings are a backdrop, in the street and the Counting House Steps. "It's
 Instead of doing something when the buildings are physically involved:
 	say "I'd better keep my mind on the Counting House. I'm not a tourist!";
 
-Instead of approaching the buildings:
+Instead of approaching or entering the buildings:
 	try going down.
 
 Section 2 - Counting House
@@ -10799,7 +10891,7 @@ Instead of attacking the guards with something:
 
 
 Section 1 - Spears
-
+													 
 Some spears are carried by the Counting House guards. Understand "spear", "flat" as the spears. 
 
 Rule for printing the description of the spears:
@@ -10810,6 +10902,9 @@ Instead of doing something when the spears are physically involved:
 
 Instead of asking the Counting House guards for the spears:
 	try taking the spears instead.
+
+Instead of asking the Counting House guards to try opening the Counting House:
+	try going north.
 
 Instead of asking the Counting House guards to try giving the spears to the player:
 	try taking the spears instead.
@@ -10882,8 +10977,9 @@ CT_GUARD_ENGINE		"engine" or "difference"
 CT_GUARD_COUNTINGHOUSE	"counting" or "house" or "building"
 CT_GUARD_CLOCKWORK		"[clockwork]" 
 CT_GUARD_SAINTS		"saints" or "newton" or "babbage" or "breguet" or "godel"
+CT_GUARD_DOOR		"door" or "doors"
 
-CT_GUARD_ENTRY is clustered with CT_GUARD_PROOF, CT_GUARD_CATHEDRAL, CT_GUARD_FIGURE, CT_GUARD_PEOPLE, CT_GUARD_ENGINE, CT_GUARD_COUNTINGHOUSE, CT_GUARD_CLOCKWORK, CT_GUARD_SAINTS, CT_GUARD_GUARDS.
+CT_GUARD_ENTRY is clustered with CT_GUARD_PROOF, CT_GUARD_CATHEDRAL, CT_GUARD_FIGURE, CT_GUARD_PEOPLE, CT_GUARD_ENGINE, CT_GUARD_COUNTINGHOUSE, CT_GUARD_CLOCKWORK, CT_GUARD_SAINTS, CT_GUARD_GUARDS, CT_GUARD_DOOR.
 
 [These topics may only be fired once.]
 Rule for firing a fired conversation topic that is clustered with CT_GUARD_ENTRY:
@@ -10908,9 +11004,14 @@ CT_GUARD_ENGINE is a conversation topic. The enquiry text is "'This is where the
 
 CT_GUARD_COUNTINGHOUSE is a conversation topic. The enquiry text is "'What's the Counting House for?' I ask.". The response text is "The guards look baffled for a moment. 'Politics,' suggests the first. 'Counting,' answers the second.".
 
+CT_GUARD_DOOR is a conversation topic. The enquiry text is "'Could you open the door?' I ask, as politely as possible." The response text is "'I could,' the first guard says.[paragraph break]'Absolutely,' the second replies. 'He could.'[paragraph break]'But I'm not going to,' the first guard says.[paragraph break]'No chance,' the second agrees. 'Sorry about that.'[paragraph break]The first guard gives him a sour look, but says nothing."
+
 CT_GUARD_CLOCKWORK is a conversation topic. The enquiry text is "'But how does clockwork work?'". The response text is "The first guard shrugs. 'You're from the Abbey, aren't you? You tell us.'".
 
 CT_GUARD_SAINTS is a conversation topic. The enquiry text is "'Which are those saints on the door?' I ask.". The response text is "'The saints of no-you-can't and go-pester-someone-else,' the second guard replies. The first rolls his eyes but says nothing.".
+
+
+
 
 Section 3 - Permit
 
@@ -10919,6 +11020,12 @@ Instead of giving the Perpetuum Mobile diagram to the Counting House guards:
 
 Instead of showing the Perpetuum Mobile diagram to the Counting House guards:
 	say "[one of]'Doesn't mean a thing to me,' the first guard remarks, after peering at the diagram.[paragraph break]'It's a blueprint, isn't it?' the second replies.[paragraph break]'Yeah, but it's a not a blueprint for anything we've got here, is it?'[paragraph break]The second guard shrugs. 'I wasn't that good at school,' he says.[paragraph break]'Me neither.' The first guard prods me with the butt of his spear. 'You take your blueprints with you. No need to show off, now, is there?'[or]It didn't seem to do much good before.[stopping]";
+
+Instead of giving the knife to the Counting House guards:
+	try showing the knife to the Counting House guards. 
+
+Instead of showing the knife to the Counting House guards:
+	say "I'm not going to threaten the guards. They'd squash me in a second!"
 
 Instead of giving the small gear to the Counting House guards:
 	try showing the small gear to the Counting House guards.
@@ -10938,7 +11045,7 @@ Instead of giving the work order to the Counting House guards:
 	try showing the work order to the Counting House guards.
 
 Instead of showing the work order to the Counting House guards:
-	say "'How about this?' I try, producing Sa'at's work order.[paragraph break]The guards take one look at the seal and look deeply unimpressed. I suppose I wasn't going to fool the guards this way twice. But then the spears uncross and the first guard says, 'all right then.' The second opens the doors for me and I go inside.[paragraph break]Probably neither of them can read.";
+	say "'How about this?' I try, producing Sa'at's work order.[paragraph break]The guards take one look at the seal and look deeply unimpressed. I suppose I wasn't going to fool the guards this way twice. But then the spears uncross and the first guard says, 'All right then.' The second opens the doors for me and I go inside.[paragraph break]Probably neither of them can read.";
 	move the player to the Grand Foyer;
 
 Chapter 4 - Event on Exit
@@ -10949,7 +11056,12 @@ Instead of going southwest when in the Counting House Steps:
 Instead of going down when in the Counting House Steps:
 	try going southwest instead;
 
+
 Part 3 - Grand Foyer
+
+
+Instead of listening when the location is the Grand Foyer or the location is Main Platform or the location is Western Stairs or the location is Eastern Stairs or the location is Western Platform or the location is Eastern Platform or the location is Engine Room or the location is Western Balcony or the location is Eastern Balcony or the location is Eastern Landing or the location is Western Landing or the location is Eastern Hall or the location is Western Hall or the location is Long Hall:
+	say "The clatter of cogs: the Difference Engine is [i]moving[r]."
 
 Chapter 1 - Description
 
@@ -11130,6 +11242,13 @@ The Parliamentary seal is part of the leather folder. Understand "spiked", "whee
 Instead of examining the Parliamentary seal:
 	say "It's a cog, predictably: but a really spiky one. The kind you could roll over your enemies."
 
+The sheet of numbers is part of the Parliamentary documents. Understand "account", "accounts", "list" as the sheet of numbers. 
+
+Instead of examining the sheet of numbers:
+	say "Two columns of five-digit numbers. One is headed Action Control, the other Actor Control."
+
+Instead of taking the sheet of numbers:
+	say "It's no use to me."
 
 Section 6 - Duchess and Calculatrix
 
@@ -11142,6 +11261,11 @@ After deciding the scope of the player while in the Grand Foyer:
 Understand "women", "ladies", "voices", "women's", "bodies", "important", "people", "figures" as the Glass Doors when in the Grand Foyer.
 
 Part 4 & 5 - Eastern / Western Stairs
+
+Instead of making to leave when in the Eastern Stairs: try going down instead.
+Instead of making to leave when in the Western Stairs: try going down instead.
+Instead of going inside when in the Eastern Stairs: try going up instead.
+Instead of going inside when in the Western Stairs: try going up instead.
 
 The Western Stairs is a major mirror-room, west of the Grand Foyer.
 
@@ -11173,7 +11297,26 @@ After going west from the Eastern Stairs:
 	say "I swoop back down to the Foyer.";
 	continue the action;
 
+The long rail is a backdrop in the Western Stairs, in the Eastern Stairs. The description is "A long brass railing that swoops up the staircase." Understand "brass", "railing" as the long rail.
+
+Instead of climbing or jumping on or jumping over or entering the long rail:
+	say "I could just go down the stairs."
+
+Instead of taking the long rail:
+	say "Come on, it's not [i]that[r] exciting standing here."
+
+
+
 Part 6 & 7 - Eastern / Western Landings
+
+Instead of making to leave when in Western Landing: try going southeast.
+Instead of making to leave when in Eastern Landing: try going southwest.
+
+Instead of going down when in Western Landing: try going southeast.
+Instead of going down when in Eastern Landing: try going southwest.
+
+Instead of going inside when in Western Landing: try going north.
+Instead of going inside when in Eastern Landing: try going north.
 
 Chapter 1 - Descriptions
 
@@ -11198,6 +11341,9 @@ Instead of going southeast in Western Landing during Calculatrix Chase:
 
 Instead of going southwest in Eastern Landing during Calculatrix Chase:
 	say "Right into the arms of the guards? That wouldn't be clever – and hanging round here waiting wouldn't be, either.";
+
+Instead of smelling when in the Western Landing or in the Eastern Landing:
+	say "Mothballs and rotting offices, I suppose."
 
 Chapter 2 - Backdrops
 
@@ -11251,9 +11397,16 @@ Section 3 - Staircases
 
 Part 8 & 9 - Eastern / Western Halls
 
+Instead of making to leave when in the Eastern Hall: try going south instead.
+Instead of making to leave when in the Western Hall: try going south instead.
+Instead of going inside when in the Eastern Hall: try entering the Eastern Grille instead.
+Instead of going inside when in the Western Hall: try entering the Western Grille instead.
+
 The Western Hall is a major mirror-room, north of the Western Landing.
 
 The first description is "The hall continues, soundless and empty. It curves a little here, from south to north[east with mirroring]. Of the doors lining either side one stands out to the [east with mirroring] – instead of the usual white wood-panelling, it's a brass grille, with Parliamentary cogwheels worked into the mesh."
+
+
 
 The second description is "This hall is the same as on the other side of the building: curving from south to north[east with mirroring], with a brass grille set into the [west with mirroring] wall. Labelled doors line either wall, all closed."
 
@@ -11266,6 +11419,9 @@ Chapter 2 - Scenery
 Section 1 - Western Grille
 
 The Western Grille is a door, scenery, privately-named, east of the Western Hall, west of the Western Balcony. The printed name is "grille". Understand "brass", "grille" as the western grille. The description is "[if the location is a hallway]Through the grille comes the quiet murmur of gears and levers, like the sound of the woodworm munching through the rafters of your bedroom floor at night. It's a door, leading onto a small balcony on the inside of the building.[otherwise]The grille leads back to the corridor.[end if]"
+
+
+Understand "cogwheels", "cogwheel", "parliamentary" as Western Grille.
 
 Instead of going through Western Grille from Western Hall during Calculatrix Chase:
 	say "No good trying to hide on the balcony - I need to get out of here!";
@@ -11285,6 +11441,8 @@ Instead of listening to the Western Grille:
 Section 2 - Eastern Grille
 
 The Eastern Grille is a door, scenery, privately-named, west of the Eastern Hall, east of the Eastern Balcony. The printed name is "grille". Understand "brass", "grille" as the eastern grille. The description is "[if the location is a hallway]Through the grille comes the quiet murmur of gears and levers, like the sound of the woodworm munching through the rafters of your bedroom floor at night. It's a door, leading onto a small balcony on the inside of the building.[otherwise]The grille leads back to the corridor.[end if]"
+
+Understand "cogwheels", "cogwheel", "parliamentary" as Eastern Grille.
 
 Instead of going through Eastern Grille from Eastern Hall during Calculatrix Chase:
 	say "No good trying to hide on the balcony - I need to get out of here!";
@@ -11321,6 +11479,13 @@ Rule for printing the description of the labeled doors when in the Eastern Hall:
 
 Part 10 - Long Hall
 
+Instead of going inside when in the Long Hall and Calculatrix Chase is happening: 
+	try going east.
+Instead of going inside when in the Long Hall:
+	try entering labeled doors.
+Instead of making to leave when in the Long Hall:
+	say "Southeast or southwest?"
+
 The Long Hall is northeast of the Western Hall, northwest of the Eastern Hall. "The hallway continues here, southwest round to southeast, unless I'm just walking forwards and someone is pulling the carpet back underneath me. If I took down all the labels off the doors here and swapped them around I don't think anyone would ever find their own room again."
 
 Chapter 2 - Scenery
@@ -11330,14 +11495,21 @@ Section 1 - Doors
 Rule for printing the description of the labeled doors when in the Long Hall:
 	say "The doors have labels: Office of Indexing, Department of Information Intersection, Department of Prophecy Management and Suitable Doubt, Minister for Consolidation.";
 
+Understand "office", "offices", "bureau of", "archive of", "department of", "governor of" , "minister", "minister for", "indexing", "information", "intersection", "prophecy", "management", "suitable", "doubt", "consolidation", "management and suitable" as the offices when the location is the Long Hall.
+
 Section 2 - Phantom Door
 
 The subtle escape is a door, privately-named, east of the Long Hall, west of the Office. The description of the subtle escape is "[if the location is the Long Hall]The door's label is hidden because it's open. And right now, that's all that matters. That and the office beyond is empty.[otherwise]That door leads back to the hall, which means it leads back to the guards, and the guards’ spears. So, no thanks, I’m happy where I am for now… but not for much longer.[end if]". The printed name of the subtle escape is "door".
 
 The subtle escape is closed.
 
-Rule for implicitly opening the subtle escape:
-	say "I can't go that way." instead;
+After assembling available exits when the location is the Long Hall and Calculatrix Chase is not happening:
+	remove east from the viable directions, if present;
+	continue the action;
+
+Rule for implicitly opening the subtle escape: [ we mirror can't go behaviour here ]
+	try listing exits instead;
+[	say "I can't go that way." instead;]
 
 The initial appearance of the subtle escape is "Except for whoever it was that left their office door open, to the east. Perhaps they were scared by the sound of the guards, converging on me from both sides!" [This is used in the hallway]
 
@@ -11363,11 +11535,18 @@ After going through the subtle escape during Calculatrix Chase:
 
 Part 11 & 12 - Eastern / Western Balconys 
 
+Instead of going inside when in the Western Balcony: try going west.
+Instead of making to leave when in the Western Balcony: try going west.
+Instead of going inside when in the Eastern Balcony: try going east.
+Instead of making to leave when in the Eastern Balcony: try going east.
+
 The Western Balcony is a major mirror-room.
 
 The first description is "I'm teetering on a tiny balcony with no railing, that sticks out over a sea of machinery. Cogs within cogs: if I fell off it'd grind me to a powder. Which is why I've got my fingertips hooked through the grille to the [west with mirroring].[paragraph break]There is a ladder for going down to ground level from here. And looking across the open space of the Counting House, I can see – of course – another identical balcony on the other side."
 
 The second description is "This balcony is the same as the first one. A ladder leads down to the thrashing machinery that froths and spits like a tureen of metal soup. Pea soup, because of the green light coming through the dome overhead."
+
+
 
 The Eastern Balcony is a mirror-room. The hemisphere is east. 
 The Western Balcony mirrors the Eastern Balcony.
@@ -13095,7 +13274,7 @@ Instead of doing something when the wrecked skylight is involved during Return t
 Chapter 4 - Ravens
 
 Rule for printing the description of the ravens when the state of Covalt is 1 during Return to Covalt's:
-	say "The ravens flit around the room, on a fixed pattern. One goes, then the other. Round and round like, well, like they weren’t real ravens. Which they’re not, of course, however well-built and oiled they are.";
+	say "The ravens flit around the room, on a fixed pattern. One goes, then the other. Round and round like, well, like they weren't real ravens. Which they're not, of course, however well-built and oiled they are.";
 
 Rule for printing the description of the ravens when the state of Covalt is 2 during Return to Covalt's:
 	say "The ravens have settled, one on top of Covalt’s head and the other on his left hand.";
@@ -13144,7 +13323,7 @@ Section 1 - When Concerned
 Table of concerned Covalt conversation
 conversation			topic
 CT_COV_R1_MYSELF		"[me]"
-CT_COV_R1_BALLOON		"balloon" or "skylight" or "ceiling" or "wreckage" or "wreck" or "window" or "weather balloon" or "sorry" or "apologies" or "apologise"
+CT_COV_R1_BALLOON		"balloon" or "skylight" or "ceiling" or "wreckage" or "wreck" or "window" or "weather balloon" or "sorry" or "apologies" or "apologise" or "flight"
 CT_COV_R1_ABBEY			"[abbey]" 
 CT_COV_R1_CATHEDRAL	"[cathedral]"
 CT_COV_R1_ABBOT			"[abbot]"
@@ -13190,7 +13369,7 @@ Section 2 - When Realizing
 Table of realizing Covalt conversation
 conversation			topic
 CT_COV_R2_MYSELF		"[me]"
-CT_COV_R2_BALLOON		"balloon" or "skylight" or "ceiling" or "wreckage" or "wreck" or "window" or "weather balloon" or "sorry" or "apologies" or "apologise"
+CT_COV_R2_BALLOON		"balloon" or "skylight" or "ceiling" or "wreckage" or "wreck" or "window" or "weather balloon" or "sorry" or "apologies" or "apologise" or "flight"
 CT_COV_R2_CHURCH		"[abbey]" or "[cathedral]" or "[figure]"
 CT_COV_R2_CLERGY		"[abbot]" or "[archbishop]"
 CT_COV_R2_PEOPLE		"[abbeyfolk]" or "[sa'at]"
@@ -13256,7 +13435,7 @@ Section 3 - When figuring out what to do
 Table of planning Covalt conversation
 conversation			topic
 CT_COV_R3_MYSELF		"[me]"
-CT_COV_R3_BALLOON		"balloon" or "skylight" or "ceiling" or "wreckage" or "wreck" or "window" or "weather balloon" or "sorry" or "apologies" or "apologise"
+CT_COV_R3_BALLOON		"balloon" or "skylight" or "ceiling" or "wreckage" or "wreck" or "window" or "weather balloon" or "sorry" or "apologies" or "apologise" or "flight"
 CT_COV_R3_CHURCH		"[abbey]" or "[cathedral]" or "[abbot]" or "[archbishop]"
 CT_COV_R3_FIGURE			"[figure]"
 CT_COV_R3_PEOPLE		"[abbeyfolk]" or "[sa'at]"
@@ -13317,7 +13496,7 @@ Section 4 - When we have a plan
 Table of working Covalt conversation
 conversation			topic
 CT_COV_R4_MYSELF		"[me]" or "[abbey]"
-CT_COV_R4_BALLOON		"balloon" or "skylight" or "ceiling" or "wreckage" or "wreck" or "window" or "weather balloon"
+CT_COV_R4_BALLOON		"balloon" or "skylight" or "ceiling" or "wreckage" or "wreck" or "window" or "weather balloon"  or "flight"
 CT_COV_R4_CATHEDRAL	"[cathedral]"
 CT_COV_R4_CLERGY		"[abbot]" or "[archbishop]"
 CT_COV_R4_FIGURE			"[figure]"
