@@ -1,12 +1,12 @@
 "The Shadow In The Cathedral" by Textfyre Inc
 
-[
+
 Include (- Constant DEBUG; -) after "Definitions.i6t".
-]
 
 [  Change Log
 When			Who		What
-18-Aug-2009		J. Ingold	Started to play through Chapter 7. Fixed a bug(GJ, please check this!) in Textfyre Standard Rules for implicitly opening.
+22-Aug-2009		J. Ingold	Added multiple solutions to the Difference Engine puzzle - if anything, I've been too generous!! Couple of other minors. Added board messages to room descriptions once they've been seen - code's a bit messy to ensure paragraph breaks are correct.
+18-Aug-2009		J. Ingold	Started to play through Chapter 7. Fixed a bug(GJ, please check this!) in Textfyre Standard Rules for implicitly opening. [ Update: actually, GJ may have fixed this already? Anyway, it's gone. ]
 17-Aug-2009 	J. Ingold	More of Paul's feedback, mostly missing responses. Changed TALK TO behaviour to use a prescripted list of topics (would be nice if the last of these was "What do you want to talk about?", and then hooked into the parser properly. But that might be pure sci-fi.)
 14-Aug-2009 	J. Ingold	More of Paul's feedback and some left over from Eric's script. Started on Paul's new transcripts too.
 10-Aug-2009 	J. Ingold	Some of Paul's feedback + some playtesting of C7.
@@ -338,12 +338,6 @@ LibMsg <who disambiguation>	"Who do you mean, "
 LibMsg <which disambiguation>	"Which do you mean, " 
 LibMsg <whom disambiguation>	"Whom do you want[if main object is not the player] [the %][otherwise] me[end if] to [the last command]?" 
 LibMsg <what disambiguation>	"What do you want[if main object is not the player] [the %][otherwise] me[end if] to [the last command]?" 
-LibMsg <block jumping>			"Scared, are you?"
-LibMsg <block showing>			"Might as well show a cobweb to a clock-face."
-LibMsg <block giving>			"[one of]I've got few enough things as it is, without giving them away for no reason.[or]I'm not giving anything away.[at random]"
-LibMsg <block thinking>			"My cogs turn."
-LibMsg <block sleeping>			"Now's not the time for that!"
-LibMsg <block smelling>			"The only smell around is the one I'm most used to - it's not bath-time for another week!"
 
 Instead of attacking the player:
 	say "I'd rather hit Drake."
@@ -360,6 +354,14 @@ Chapter 5b - Altered Default Messages
 Table of custom library messages (continued)
 Message ID						Message Text 
 LibMsg <report player waiting>	"[one of]The Universal Clock moves onwards: time happens.[or]Tick tock.[or]A few heartbeats measure a few seconds.[or]Time moves on.[at random]"
+LibMsg <block jumping>			"Scared, are you?"
+LibMsg <block showing>			"Might as well show a cobweb to a clock-face."
+LibMsg <block giving>			"[one of]I've got few enough things as it is, without giving them away for no reason.[or]I'm not giving anything away.[at random]"
+LibMsg <block thinking>			"My cogs turn."
+LibMsg <block sleeping>			"Now's not the time for that!"
+LibMsg <block smelling>			"The only smell around is the one I'm most used to - it's not bath-time for another week!"
+LibMsg <block tasting>			"Eugh! Why would I do that?"
+
 
 Chapter 5c - Talking to Yourself
 
@@ -397,6 +399,7 @@ Chapter 4 - Scraping tools
 
 Definition: a thing is suitable for scraping:
 	if it is the knife, yes;
+[	if it is the tumbler, yes; - can't allow this, sadly, as we need to ensure the player has the knife ]
 	no;
 
 Definition: a thing is unsuitable for scraping:
@@ -866,13 +869,18 @@ A difference-engine model has a number called the stored value.
 A difference-engine model has an indexed text called the stored meaning.
 A difference-engine model has a table-name called the word-table.
 
+A difference-engine model can be phrase-viewed. A difference-engine model is usually not phrase-viewed.
+
 A difference-engine model can be correctly set. A difference-engine model is usually not correctly set.
 
 Chapter 2 - Controller
 
 An abacus is a kind of thing. Understand "abacus", "steel", "gears", "beads", "tiny", "thin", "keyhole", "lock", "key hole", "hole" as an abacus.
 
-Some fine chains are a kind of thing. Some fine chains are a part of every abacus. Understand "fine", "chains" as fine chains.
+Some fine chains are a kind of thing. Some fine chains are a part of every abacus. Understand "fine", "chains" as fine chains. The description of fine chains is "The chains are like woven silver. It's hard to believe they could serve any function, they're so delicate and small.".
+
+Instead of taking or pulling or tying or touching fine chains:
+	say "The chains are so delicate it might break them if I spoke too loudly in here!".
 
 The printed name of an abacus is usually "abacus".
 
@@ -898,7 +906,21 @@ A display board has a difference-engine model called the viewed model.
 
 Rule for printing the description of a display board (called db):
 	let m be the viewed model of db;
-	say "[one of]Suspended over the abacus is a painted board, a little like the one they use for recording field-Canasta scores in the summer. Painted across its surface is the following unlikely message: '[stored meaning of m]'[or]The board reads '[stored meaning of m]'[stopping] [paragraph break]";
+	now m is phrase-viewed;
+	say "[one of]Suspended over the abacus is a painted board, a little like the one they use for recording field-Canasta scores in the summer. Painted across its surface is the following unlikely message: [or]The board above the abacus reads [stopping]";
+	say italic type;
+	if db is the actor-display:
+		say "ACTOR";
+	else:
+		say "ACTION";
+	say " - '[stored meaning of m]'";
+	if db is the action display:
+		say roman type, paragraph break;
+	else:
+		say "[r].";
+
+Before reading a display board:
+	try examining the noun instead.
 
 Instead of doing something when a display board is physically involved:
 	say "It's well out of reach.";
@@ -996,12 +1018,15 @@ To decide which indexed text is the meaning calculated by (dm - a difference-eng
 		let n be n divided by 10; [ -- hence dropping the final digit from n]
 	decide on the meaning; 
 
+
+
 Section 4 - Report
 
 The correctness appraisal rules are an object-based rulebook.
 
 Report abacus-setting an abacus to:
 	say "[one of]I set the gears carefully, one by one, trying not to snap any of the tiny teeth along the bars of the frame. It’s a bit like teasing a comb through knotted hair and I don’t get much practice at that. [or]I set the gears quickly and carefully. [stopping]With a clatter, the words on the signboard overhead change. Now they read '[stored meaning of the model being adjusted]'[paragraph break]";
+	now the model being adjusted is phrase-viewed;
 	consider the correctness appraisal rules for the model being adjusted;
 	if the rule succeeded:
 		now the model being adjusted is correctly set;
@@ -1697,6 +1722,9 @@ First check slicing:
 	if the second noun is not the knife,
 		say "There's no cutting edge on that!" instead;
 	continue the action;
+
+Check slicing the player with something:
+	say "I'm not going to hurt myself!" instead.
 
 Check an actor slicing (this is the block slicing rule):
 	stop the action with library message cutting action number 1 for the noun;
@@ -2613,7 +2641,7 @@ Understand "cook", "[calvinanddrake]", "[reloh]", "[horloge]" as "[abbeyfolk]"
 Understand "clockwork", "clock-work", "klockwerk", "clock work", "clocks" as "[clockwork]".
 Understand "saints" or "saint" or "ykea" or "maxwell" or "newton" or "babbage" or "breguet" or "st maxwell" or "st newton" or "st ykea" or "st babbage" or "st breguet" or "designers" or "inventors" or "euclid" as "[saints]".
 
-Understand "me" or "myself" or "self" or "Wren" or "story" or "my story" as "[me]".
+Understand "me" or "myself" or "yourself" or "you" or "self" or "Wren" or "story" or "my story" as "[me]".
 Understand "themselves", "themself" as "[himself]".
 Understand "him" or "himself" as "[himself]".
 Understand "her" or "herself" as "[himself]".
@@ -3603,7 +3631,7 @@ Understand "caretakers", "amble's", "ambles", "rung", "rungs", "bottom of", "woo
 Before climbing down the caretaker's ladder:
 	say "The ladder only goes up from where I'm standing." instead;
 
-Instead of pushing the caretaker's ladder when the caretaker's ladder is in the Rickety Stair:
+Instead of pushing or pulling or turning the caretaker's ladder when the caretaker's ladder is in the Rickety Stair:
 	say "It wobbles, a little wave up towards the ceiling."
 	
 Instead of looking under the caretaker's ladder:
@@ -3613,6 +3641,12 @@ Instead of looking under the caretaker's ladder:
 
 Before hiding behind the caretaker's ladder:
 	say "Standing under a ladder is like asking for the sky to fall. Bad luck." instead.
+
+Instead of attacking the caretaker's ladder:
+	say "'To break something useful is to suck the stars from the sky,' so the Abbot says."
+
+Instead of touching the caretaker's ladder:
+	say "The wood is old, dry, frail - all the things you wouldn't want ladder wood to be."
 
 Section - In the Rickety Stair
 
@@ -3889,6 +3923,9 @@ Definition: a thing is tea-critical:
 Instead of doing something to a tea-critical thing when the Tea-Machine is switched on:
 	say "Don't interfere. The machine is making its right and proper supplications.";
 
+Instead of opening the Tea-Machine:
+	say "I'm a Second Assistant Clock Polisher. I'm not allowed to go poking around inside Tea Machines, their insides are far too Holy."
+
 Chapter 1 - Machine 'Chassis'
 
 The Tea-Machine is a privately-named device, scenery, in the Kitchen. The description is "[if switched off]Very complex, but robustly built and able to perform its functions a few thousand times without needing oil. It consists of a framework of arms and struts, most of which move, though there's a plate at the front to hold the primary gear-train that's between the lever and the winding key.[paragraph break]Inside the machine I can make out a kettle, a spigot, and a basket suspended over a semi-circular bracket. There's a burner somewhere, too.[otherwise]The machine is clanking, spinning, whirring and generally doing its thing.[end if]"
@@ -4013,6 +4050,9 @@ Instead of inserting something into the bracket when the noun is not the teacup:
 
 Instead of inserting the full teacup into the bracket:
 	say "The bracket's meant for empty cups, not full ones.";
+
+Before putting something on the bracket:
+	try inserting the noun into the bracket instead.
 
 Chapter 8 - Gear Train
 
@@ -5047,6 +5087,9 @@ Understand "entry", "arch" as Calvin when the location of Calvin is the Lower Ha
 Instead of examining the southwest when the location of Calvin is the Lower Hall and the location is the Lower Hall:
 	try examining Calvin instead.
 
+Before attacking Calvin when the location is the Lower Hall:
+	say "I've tried that before. [i]Lots[r] of times. I always lose." instead.
+
 Instead doing something when Calvin is physically involved and the location is the Lower Hall:
 	if we are searching, try examining Calvin instead;
 	say "I don't want to attract his attention, do I? I want to get rid of him!"
@@ -5533,6 +5576,10 @@ Instead of climbing the ladder when in the Herb Garden:
 Instead of climbing the garden walls when the caretaker's ladder is visible:
 	try going up.
 
+Instead of pushing or pulling or turning the caretaker's ladder when the caretaker's ladder is in the Herb Garden:
+	say "The ladder is firmly in place, its toes dug a little into the soil."
+
+
 Section 3 - background animals
 
 Some creatures are scenery, animals, in the Abbey Herb Garden. Understand "birds/bird/insect/insects/bee/bees/butterfly/butterflies" as the creatures. "The garden is alive with small things."
@@ -5818,6 +5865,10 @@ Understand "choir" as the Cathedral of Time when not in the Cathedral Choir.
 Understand "nave" as the Cathedral of Time.
 Understand "clerestory" as the Cathedral of Time when not in the Choir.
 
+
+Before doing something when the backdrop-walls are involved and the Cathedral of Time is visible:
+	redirect the action from the backdrop-walls to the Cathedral of Time, and try that instead.
+
 Rule for printing the description of the Cathedral of Time when in the Cathedral Yard:
 	say "The Cathedral door is open to the west, like a big mouth ready to swallow me whole."
 
@@ -5835,7 +5886,7 @@ Instead of listening when in the Cathedral Space:
 
 Instead of listening when in the Cathedral Space during Return To The Cathedral:
 	[[JON]: Up to you to provide some eerie quiet... ]
-	say "The soft sound of chanting drifts down the length of the Cathedral.";
+	say "The Cathedral is soft eerie quiet and nothing more.";
 
 Part 2 - Great Door
 
@@ -5903,7 +5954,7 @@ The glimpsed Altar is a glimpse backdrop, in Cathedral Entrance, in the Lower Na
 
 The glimpsed Altar identifies the iron altar.
 
-The glimpsed Perpetuum is a glimpse backdrop, in Cathedral Entrance, in Lower Nave, in Upper Nave, in East Apse, in West Apse, in North Clerestory, in Cathedral Choir, in East Clerestory, in West Clerestory. "I can't make out much of the gleaming object from here, except it's gold - and it's moving." Understand "object", "perpetuum", "mobile", "clock", "gleaming", "gold", "mechanism" as the glimpsed Perpetuum.
+The glimpsed Perpetuum is a glimpse backdrop, in Cathedral Entrance, in Lower Nave, in Upper Nave, in East Apse, in West Apse, in North Clerestory, in Cathedral Choir, in East Clerestory, in West Clerestory. "I can't make out much of the gleaming object from here, except it's gold - and it's moving." Understand "object", "perpetuum", "mobile", "clock", "gleaming", "gold", "mechanism", "gleaming object" as the glimpsed Perpetuum.
 
 The glimpsed Perpetuum identifies the Perpetuum Mobile.
 
@@ -6029,7 +6080,7 @@ Some chanting monks are men, scenery, in the Cathedral Altar. "This is why the A
 Instead of doing something when the chanting monks are physically involved:
 	say "[fire TRIG_NOINTERFERE]";
 
-Some glimpsed monks are a glimpse backdrop, in Great Door, in Lower Nave, in Upper Nave, in East Apse, in West Apse, in North Clerestory, in Cathedral Choir, in East Clerestory, in West Clerestory. "The monks are gathered around some gleaming object on the altar." Understand "monk/monks", "chanting", "singing" as the glimpsed Monks.
+Some glimpsed monks are a glimpse backdrop, in Cathedral Entrance, in Lower Nave, in Upper Nave, in East Apse, in West Apse, in North Clerestory, in Cathedral Choir, in East Clerestory, in West Clerestory. "The monks are gathered around some gleaming object on the altar." Understand "monk/monks", "chanting", "singing" as the glimpsed Monks.
 
 The glimpsed monks identifies the chanting Monks.
 
@@ -6100,8 +6151,8 @@ The East Stairs are an open door, not openable, scenery, east from the Cathedral
 
 The West Stairs are an open door, not openable, scenery, west from the Cathedral Choir, down from the West Clerestory. "[if the location is the Cathedral Choir]A winding stone staircase up to the west side of the Clerestory above.[otherwise if Doric is awake]The stairs spiral downwards.[otherwise]A spiral stone staircase leading down.[end if]"
 
-Understand "stair", "staircase", "staircases" as the East Stairs.
-Understand "stair", "staircase", "staircases" as the West Stairs.
+Understand "stair", "staircase", "staircases", "spiral" as the East Stairs.
+Understand "stair", "staircase", "staircases", "spiral" as the West Stairs.
 
 Instead of climbing the East Stairs:
 	try going the East Stairs;
@@ -6764,6 +6815,12 @@ To decide if we have provided Sa'at with the book:
 	if the letter state of Brother Sa'at is at least 2, yes;
 	no.
 
+Instead of putting a wax lump on the work order when the letter state of Brother Sa'at is less than 4:
+	say "I've no way of stamping it, even if I could get the wax to stick. Might as well let the Brother do it for me."
+
+Instead of putting a wax lump on the work order:
+	say "I don't need to do that any more."
+
 Instead of giving a wax lump to Brother Sa'at when the letter state of Brother Sa'at is less than 3:
 	say "'What are you waving that at me for?' Sa'at demands. 'And I hope you didn't steal it from my desk.'";
 
@@ -6838,13 +6895,17 @@ Section 1 - Initiates
 
 Some initiates are scenery, in the Cyclical Library. "Between where I am, and the monks around the altar back in the Cathedral, comes a long period with a shaved head but no dining rights. The boys here are studying hard because they're getting hungry."
 
-Understand "monk", "monks", "reader", "readers", "initiate" as the initiates.
+Understand "monk", "monks", "reader", "readers", "initiate", "boys", "kids", "guys" as the initiates.
 
 Instead of doing something when the initiates are physically involved:
 	say "I'd better not disturb them.";
 
 Before asking the initiates about:
-	say "I'm not meant to disturb them. They're deep in study."
+	say "I'm not meant to disturb them. They're deep in study." instead.
+Before telling the initiates about:
+	say "I'm not meant to disturb them. They're deep in study." instead.
+Before shouting at the initiates:
+	say "I'm not meant to disturb them. They're deep in study." instead.
 
 Section 2 - Library Tables
 
@@ -6877,7 +6938,7 @@ Instead of entering or climbing the contraption:
 
 Some controls are part of the contraption. The description is "The controls consist of three cranks (one steel, one brass and one gold), beneath which are three rotating cylindrical dials engraved with numerals and the letters X, Y and Z, showing [i][value of X control], [value of Y control], [value of Z control][r]. Next to all this is an iron chain that runs right back up to the ceiling."
 
-Understand "tumblers", "numbers", "values", "numerals", "cranks", "cylindrical", "dials", "meters" as the controls.
+Understand "tumblers", "numbers", "values", "numerals", "cranks", "cylindrical", "dials", "meters", "main controls", "three controls" as the controls.
 
 Instead of using or switching on the controls:
 	say "If I just mess about at random with these things I'll probably turn the whole library inside out. Best to be specific. Which control, which way?";
@@ -7431,6 +7492,9 @@ The East Clerestory is a room, in the Cathedral Space. "[if Doric is in North Cl
 Instead of making to leave when in the East Clerestory: try going down instead.
 Instead of going inside in the East Clerestory: try going north instead.
 
+Instead of facing east when in the East Clerestory:
+	try examining the window of the winding-key.
+
 Section 1 - Glimpse of Choir stalls
 
 The glimpsed Choir is a glimpse backdrop, in the East Clerestory, in the West Clerestory, in the North Clerestory. "The choir stalls are empty." Understand "choir", "stall", "stalls" as the glimpsed Choir.
@@ -7747,7 +7811,7 @@ Section 2 - Door
 
 The Bishop's Door is a door, open, not openable, lockable, locked, scenery, north of the East Clerestory, south of the Bishop's Library. The description is "[if Archbishop's Meeting has happened and the location is East Clerestory]The Archbishop's door. It's closed, again.[otherwise]The door is solid oak, and properly double-layered to keep out the sound of choir practice. It's definitely the Archbishop's Door.[end if]"
 
-Understand "archbishop's" as the bishop's door when the location is East Clerestory.
+Understand "archbishop's", "solid", "oak", "door" as the bishop's door when the location is East Clerestory.
 
 Instead of opening or knocking on the Bishop's Door:
 	try entering the Bishop's Door;
@@ -8019,13 +8083,14 @@ Instead of climbing or climbing up or jumping on the Cathedral Clock penduluum:
 Before taking the Cathedral Clock penduluum when the internal value of the PenduluumCounter is 1 or the internal value of the PenduluumCounter is 2:  [ that is, "sailed away" or "far point of swing" ] 
 	say "The penduluum's at the far end of its swing. [i]You can't fly, young Wren[r]." instead;
 
-Instead of taking the Cathedral Clock penduluum: 
+Instead of entering or approaching or taking the Cathedral Clock penduluum: 
 	if the internal value of the PenduluumCounter is 3: [ this is, "approaching fast" ]
 		say "Until the last moment I don't know whether I can do it... and as the penduluum slows to a halt, I wrap my arms around it. A moment later my feet are in mid-air and";
 	else:  [ this is, "up to the ledge" ]  
 		say "Every wire in my body is telling me it's too late, and that makes it even later. At the last possible moment I jump into space... I'm over the vast hall of the Cathedral... and then with an awkward crash I hit the penduluum and wrap my arms around it![paragraph break]The whole clock above seems to shiver from the extra weight and then";
 	say " I'm away, floating over space, faster and faster...[paragraph break]At the lowest point when I'm whipping through the air, I let go and drop onto a platform, surrounded by gears and windings. The penduluum is gone in a moment.";
 	move the player to Lower Gears;
+
 
 Chapter 4 - Scenery
 
@@ -8109,7 +8174,7 @@ After going up from Lower Gears:
 	say "The Figure went up so I will too. And never mind if the Cathedral clock loses a few seconds from me moving the gears as I climb. If the Cathedral loses its relics that'd be worse!";
 	continue the action;
 
-Understand "chain", "chains", "rung", "rungs", "ladder", "ladders", "hold", "holds", "ladderhold", "ladderholds", "ladder-hold", "ladder-holds" as the gearwheels when the location is Lower Gears.
+Understand "chain", "chains", "rung", "rungs", "ladder", "ladders", "hold", "holds", "ladderhold", "ladderholds", "ladder-hold", "ladder-holds", "line of" as the gearwheels when the location is Lower Gears.
 
 Instead of climbing the gearwheels when in Lower Gears:
 	try going up;
@@ -8373,7 +8438,7 @@ Instead of going up when in Behind the Clock Face:
 Instead of going down when in Behind the Clock Face:
 	try going up instead;
 
-Understand "door", "panel", "square" as the Rose Window when the location is Behind the Clock Face.
+Understand "small", "sky", "blue", "door", "panel", "square" as the Rose Window when the location is Behind the Clock Face.
 
 Instead of entering the Rose Window when the location is Behind the Clock Face:
 	try going outside instead;
@@ -8390,7 +8455,7 @@ Chapter 2 - Scenery
 
 Section 1 - Rose Window
 
-Understand "door", "glass", "pane", "pane of glass", "little door" as rose window when the location is Behind the Clock Face or the location is the Rafters.
+Understand "door", "glass", "pane", "pane of glass", "little/small door", "blue", "sky" as rose window when the location is Behind the Clock Face or the location is the Rafters.
 
 Rule for printing the description of the rose window when in Behind the Clock Face:
 	say "Jewelled light blinds me. Only the square of blue sky - the door - looks safe. But that's the way the Figure went, so I know it's not...";
@@ -9576,7 +9641,7 @@ Section 3 - Various meters
 
 Some various meters are scenery, privately-named, in the Weather Station. "Thermometers, barometers, lots of stuff I can't read. The only one I understand is the zephyrgraph, which is pointing [way of the zephyrgraph].[if balloon spotted is false] But it's not going to tell me which way the Figure went.[end if]"
 
-Understand "meters", "meter", "thermometer", "thermometers", "barometer", "barometers", "precipitometer", "precipitometers" as the various meters.
+Understand "meters", "meter", "thermometer", "thermometers", "barometer", "barometers", "precipitometer", "precipitometers", "tube", "tubes", "glass tube", "glass tubes" as the various meters.
 
 Instead of doing something when the meters are physically involved:
 	say "I don't want to draw attention to myself by fiddling with them, do I?";
@@ -9587,14 +9652,14 @@ Instead of examining the various meters when the player's command includes "baro
 Instead of examining the various meters when the player's command includes "thermometer/thermometers":
 	say "Thermometers measure air temperature."
 
-Instead of examining the various meters when the player's command includes "precipitometer/precipitometers":
+Instead of examining the various meters when the player's command includes "precipitometer/precipitometers/tube/tubes":
 	say "Precipitometers measure rainfall."
 
 Section 4 - Metal steps
 
 Some metal steps are an open door, scenery, not openable, northwest of the Weather Station, southeast of the Observation Platform. "A flight of metal steps, leading up to a platform."
 
-Understand "stair", "stairs", "stairway" as the metal steps.
+Understand "stair", "stairs", "stairway", "flight of" as the metal steps.
 
 Instead of going up in the Weather Station:
 	try entering the metal steps;
@@ -9605,6 +9670,12 @@ Instead of climbing the metal steps:
 Section 5 - Hatch	
 
 The hatch is a locked door, scenery, down from the Weather Station. "A locked metal hatch in the roof."
+
+Instead of entering the hatch when the player's command includes "stand on":
+	try jumping on the hatch.
+
+Instead of jumping on the hatch:
+	say "I'd make a racket and that might bring someone - which I don't want!"
 
 Instead of opening or entering the hatch:
 	say "It's locked from the inside[one of][or]. And with no keyhole[stopping].";
@@ -9642,6 +9713,9 @@ The description of the small spigot is "A pipe sticks out of the roof and ends i
 
 Understand "small", "pipe", "tap", "screw", "screwhead", "screw-head", "screw head" as the small spigot.
 
+Instead of touching the spigot:
+	say "It's not too hot, for whatever reason.";
+
 Instead of opening, turning, or switching on the small spigot:
 	say "The screw is set flat into the upper pipe, and my fingernail doesn't seem to be enough to get it to turn.";
 
@@ -9677,8 +9751,11 @@ Instead of entering the deflated weather balloon:
 Instead of entering the inflated weather balloon:
 	try untying the weather balloon from the small spigot instead;
 
-Before fastening the weather balloon to something:
+Before fastening the weather balloon to something when the player's command includes "tie":
 	say "The balloon's already tied to the spigot." instead.
+
+Before fastening the weather balloon to the vent:
+	try inserting the vent into the weather balloon instead.
 
 Instead of taking the weather balloon:
 	say "The basket is bigger than my armspan already, and then there's all the mess of fabric to make the balloon - I can't possibly carry it around. I wouldn't be able to see where I was going!"
@@ -9700,9 +9777,6 @@ Instead of fastening the weather balloon to the small spigot:
 
 Instead of inserting the small spigot into the weather balloon:
 	say "There's no gas coming from the spigot.";
-
-Instead of fastening the weather balloon to the vent:
-	try inserting the vent into the weather balloon instead.
 
 Instead of inserting the vent into the inflated weather balloon:
 	say "The balloon is already inflated, and ready for take-off!";
@@ -11575,6 +11649,9 @@ Instead of climbing up the balcony ladder scenery:
 Instead of climbing the balcony ladder scenery:
 	try going down;
 
+Instead of taking or pulling or pushing the balcony ladder scenery:
+	say "The ladders are bolted onto the walls of the Engine chamber."
+
 Section 2 - Duchess Du Mer and Calculatrix Pristina
 
 After deciding the scope of the player while the location is a balcony:
@@ -11583,13 +11660,23 @@ After deciding the scope of the player while the location is a balcony:
 	if the Calculatrix Pristina is in the Main Platform,
 		place the Calculatrix Pristina in scope;
 
+Before doing something when the Duchess du Mer is physically involved and the location is a balcony:
+	say "Both women are way below me." instead.
+Before doing something when the Calculatrix Pristina is physically involved and the location is a balcony:
+	say "Both women are way below me." instead.
+
+Instead of shouting at the Calculatrix Pristina:
+	say "I don't want to attract her attention! Why would I?"
+Instead of shouting at the Duchess du Mer:
+	say "I don't want to attract her attention! Why would I? (Except that she looks so kind and gentle...)"
+
 Chapter 3 - Script
 
 SE_BALCONY_1 is a scripted event. The display text is "In the middle of the machine below is a wide circular platform, on which two women are in deep discussion, their voices echoing through the domed hall.[paragraph break]'Any idea? Any at all?' the tall woman is asking.[paragraph break]'Five digits,' replies the other, smaller woman, before she pauses to push a pair of spectacles back up her nose. 'Five and five. All questions have an actor and an action, and each is a five digit number. Then it's a sort of sum we do...'[paragraph break]'How divine!' remarks the tall woman.[paragraph break]'Quite,' the other replies.".
 
 SE_BALCONY_2 is a scripted event. The display text is "The shorter woman is indicating an elaborate steel abacus by her elbow. 'The numbers are entered here, and over on the other side. St. Babbage's original was free to be used by everyone but of course, once the Government sequestered the machine...'[paragraph break]'You have a copy of the key?' the tall woman demands. Her face is familiar from somewhere, but I can't place it.[paragraph break]'Of course I do!' The shorter woman laughs, and lifts up a key on a ribbon around her neck. It is made of a brilliant red material that sparkles in the light. 'How else could I compute your answers?'[paragraph break]'Calculatrix Pristina,' the tall woman asks, very seriously. 'Did it answer my three questions? Was it capable?'".
 
-SE_BALCONY_3 is a scripted event. The display text is "The Calculatrix below is nodding. 'It can answer any question, even one's so very...' She shifts, awkwardly. 'So very incompatible.'[paragraph break]'Never mind that,' the tall woman replies with sudden fierceness. That's when I place her: the Duchess du Mer, the only woman in Parliament, who gained the place after her husband disappeared along with his boat on the Spanish Main. She's visited the Abbot before and always seemed quite kind. [paragraph break]'All I'm trying to explain,' the Calculatrix replies, voice quivering, 'is that Relativity is hard to formulate in clockwork. And the machine's answers may only be the projection of the truth onto the space of the Engine.'[paragraph break]The Duchess is waving a handful of small cards. 'But are these reliable answers?'[paragraph break]'True, yes,' the Calculatrix answers. 'But reliable? Well, relatively, perhaps...'[paragraph break]The two women walk away towards the glass doors, still in conversation.".
+SE_BALCONY_3 is a scripted event. The display text is "The Calculatrix below is nodding. 'It can answer any question, even questions so very...' She shifts, awkwardly. '[i]Incompatible[r].'[paragraph break]'Never mind that,' the tall woman replies fiercely. That's when I place her: the Duchess du Mer, the only woman in Parliament, who gained the place after her husband disappeared along with his boat on the Spanish Main. She's visited the Abbot before and always seemed quite kind. [paragraph break]'All I'm trying to explain,' the Calculatrix replies, voice shaking, 'is that this -' a whisper - 'Relativity' - she blushes - 'is hard to describe in clockwork. And the machine's answers may only be the projection of the truth through the space of the Engine.'[paragraph break]The Duchess is waving a handful of small cards. 'All I want is a yes or no,' the Duchess replies. 'Are these answers reliable?'[paragraph break]'True, yes,' the Calculatrix answers. She looks distinctly uncomfortable. 'But reliable? Well, relatively, perhaps...'[paragraph break]The two women walk away towards the glass doors, still in conversation.".
 
 SE_BALCONY_1 is clustered with SE_BALCONY_2 and SE_BALCONY_3.
 
@@ -11624,7 +11711,7 @@ Part 13 - In The Engine
 
 Engine Room is north of Main Platform. The printed name is "In The Engine". West of The Engine Room is down of the Western Balcony. East of The Engine Room is down of Eastern Balcony.
 
-The description is "I'm standing in the middle of the engine: like being a giant in a pine forest. All around are straight brass strands with cogs for branches and tiny teeth for needles that brush against those of their neighbours. It's all moving, all the time, stirred by a breeze – shivers start from the main platform to the south and across to the ladders east and west."
+The description is "I'm standing in the middle of the engine: it's like being a giant in a pine forest. All around are straight brass strands with cogs for branches and tiny teeth for needles that brush against those of their neighbours. It's all moving, all the time, stirred by a breeze – shivers start from the main platform to the south and across to the ladders east and west."
 
 Section 2 - Dials
 
@@ -11637,7 +11724,13 @@ After printing the description of the small golden dials:
 		say "[paragraph break]Sticking from one dial is a ruby-glass key. ";
 
 Instead of turning the dials:
-	say "I've no idea what they do, and if I changed any of them I'd never be able to remember how they were set before.";
+	say "[one of]I've no idea what they do, and if I changed any of them I'd never be able to remember how they were set before.[or]Seriously. I don't know what any of these do and there are thousands of them![stopping]";
+
+Instead of setting the dials to:
+	try turning the dials.
+Instead of number-setting the dials to:
+	try turning the dials.
+
 
 Instead of inserting something into the dials:
 	if the noun is the ruby key:
@@ -11687,7 +11780,7 @@ Understand "cube", "springs", "levers", "vertical rods", "rods", "cogs", "platfo
 
 The Difference Engine can be active or inactive. The Difference Engine is inactive.
 
-Instead of touching or switching on the Difference Engine:
+Instead of touching or turning or pushing or pulling or switching on the Difference Engine:
 	say "I run my fingers along one of the spindles – then snatch them back before they're stung.";
 
 Instead of doing something when the Difference Engine is physically involved and the location is a balcony:
@@ -11696,11 +11789,16 @@ Instead of doing something when the Difference Engine is physically involved and
 Instead of entering the Difference Engine when the location is a balcony:
 	try going down;
 
+Instead of setting the Difference Engine to:
+	say "The controls are over on the main platform."
+Instead of number-setting the Difference Engine to:
+	say "The controls are over on the main platform."
+
 Part 14 - Main Platform
 
 Chapter 1 - Description
 
-The Main Platform is a room. "A circular platform deep in the heart of the Engine, but the only mechanism is a single lever. It’s about the size you’d need to hold back a spring the strength of a horse. There’s also a pedestal dead centre with something like Brother Reloh’s typewriter on top. Next to that machine is a small box full of grey pamphlets.[paragraph break]To east and west thin catwalks lead towards panels fitted with controls. I could also go back north, or south towards the glass doors of the Foyer." 
+The Main Platform is a room. "A circular platform deep in the heart of the Engine, but the only mechanism is a single lever. It’s large enough to hold back a spring the size of a horse. There’s also a pedestal dead centre with something like Brother Reloh’s typewriter on top. Next to that machine is a small box full of grey pamphlets.[paragraph break]To east and west thin catwalks lead towards panels fitted with controls. I could also go back north, or south towards the glass doors of the Foyer." 
 
 Chapter 2 - Scenery
 
@@ -11710,6 +11808,11 @@ The sprung platform is a backdrop, in the main platform, the Western Platform an
 
 Instead of jumping in the main platform:
 	say "The platform bounces underfoot.";
+
+The glimpse-sprung platform is a glimpse backdrop in the Engine Room. "The engine is gathered around the base of the platform like it washed up there." The glimpse-sprung platform identifies the sprung platform. Understand "platform", "sprung", "main", "central" as the glimpse-sprung platform.
+
+Instead of approaching or jumping on or entering the glimpse-sprung platform:
+	try going south.
 
 Section 2 - Printer
 
@@ -11859,7 +11962,7 @@ table of pamphlet action words	{10, 15, 12, 10, 0}	true		true
 Table of pamphlet actor words
 p1		p2		p3		p4		p5
 "powerful"	"wanting"	"gold"		"breaking"	"universe"
-"far past"	"generous"	"above"		"going"		"giving"
+"far past"	"generous"	"worshipful"		"going"		"giving"
 "diluted"		"past"		"planning"	"flying"		"trying"
 "fire"		"cruel"		"hoping"		"present"	"below"
 "man"		"air"		"wise"		"organic"	"near future"
@@ -11982,9 +12085,17 @@ Chapter 1 - Description
 
 The Eastern Platform is a major mirror-room, east of the Main Platform. The hemisphere is east. The printed name is "East Platform". The Eastern Platform mirrors the Western Platform.
 
-The first description is "This is a small platform to the [west with mirroring] of the central dais. It surrounded on most sides by a brass rail, hooked onto which is a steel abacus that in turn is connected to the Engine by delicate silver chains like the spider-webs of my room after the rain has got in.[paragraph break]Hanging above the platform is a large wooden signboard."
+The first description is "This is a small platform to the [west with mirroring] of the central dais. It surrounded on most sides by a brass rail, hooked onto which is a steel abacus that in turn is connected to the Engine by delicate silver chains like the spider-webs of my room after the rain has got in.[paragraph break]Hanging above the platform is a large wooden signboard[if the model-at-hand is not phrase-viewed].[else][board display][end if]"
 
-The second description is "This platform is the mirror-image of the one to the [east with mirroring], except that the words on the painted signboard above the abacus are different."
+To decide which difference-engine model is the model-at-hand:
+	decide on the viewed model of a random visible display board.
+
+The second description is "This platform is the mirror-image of the one to the [east with mirroring], except that the words on the painted signboard above the abacus are different[if the model-at-hand is not phrase-viewed].[else][board display][end if]"
+
+To say board display:
+	let m be the model-at-hand;
+	say ": [i]'[stored meaning of m]'[if m is not the action-model]. [end if][r]";
+
 
 Chapter 2 - Action Display
 
@@ -12001,13 +12112,49 @@ The stored value of the action-model is 32149;
 The stored meaning of the action-model is "How much cost today immortality?";
 The word-table of the action-model is the table of action words.
 
+[ for actions we accept:
+	first - 7			- where
+	second - 8, 4, 9 - wicked, in St Phillip, lost
+	third - 3, 5 - is planning, chose
+	fourth - 2, 4 - to go, today
+	fifth - 3, 5 - ambition
+]
+
+To decide what number is the action test score for (n - a number):
+	let test-score be 0;
+	assert that n is at least 11111 and n is at most 99999 issuing "Difference engine value out of range.";
+	repeat with i running from 1 to 5:
+		let l be the remainder after dividing n by 10;
+		[l is now the least significant digit of n]
+		if i is: 
+			-- 1: 
+				if l is 3 or l is 5, increase test-score by 1;
+			-- 2: 
+				if l is 2 or l is 4, increase test-score by 1;
+			-- 3: 
+				if l is 3 or l is 5, increase test-score by 1;
+			-- 4:
+				if l is 8 or l is 4 or l is 9, increase test-score by 1;
+			-- 5: 
+				if l is 7, increase test-score by 1;
+		let n be n minus l;
+		let n be n divided by 10; [ -- hence dropping the final digit from n]
+	decide on test-score.
+
 A correctness appraisal rule for the action-model:
-	if the stored value of the action-model is 78325 or the stored value of the action-model is 78525:
-		say "My heart skips a beat. It’s my question.";
+[	if the stored value of the action-model is 78325 or the stored value of the action-model is 78525:]
+	if the action test score for the stored value of the action-model is 5:
+		say "My heart skips a beat. [i]It’s my question[r].";
 		rule succeeds;
 
-The last correctness appraisal rule::
-	say "But [one of]I can feel this isn't going to get me closer to knowing where to look for the Figure[or]I don't need a machine to tell me this isn't the question Covalt wanted me to ask[or]I want to know where the Figure in Grey is going to finish up after his ballooning, and I know this isn't going to help with that[or]it doesn't feel right[at random].";
+The last correctness appraisal rule for the action-model:
+	let l be the action test score for the stored value of the action-model;
+	if l is at most 1:
+		say "[one of]Of course, I'm meant to be asking about the Figure's plans.[or]Of course, I'm meant to be trying to track down the Figure.[cycling]";
+	else if l is at most 3:
+		say "But [one of]I can feel I'm close to knowing where to look for the Figure, but I'm not quite there[or]I don't need a machine to tell me this isn't the quite question Covalt wanted me to ask[or]I want to know where the Figure in Grey is going to finish up after his ballooning, and I know this isn't quite going to help with that[or]it doesn't quite feel right[at random].";
+	else if l is 4:
+		say "That seems very close - but not quite it!";
 
 An unlocking rule for an abacus:
 	assert that the Ruby Key is not held by the player issuing "Ruby key not held.";
@@ -12054,13 +12201,45 @@ The stored value of the actor-model is 16233.
 The stored meaning of the actor-model is "Powerful woman royal soaring honest".
 The word-table of the actor-model is the table of actor words.
 
+To decide what number is the actor test score for (n - a number):
+	let test-score be 0;
+	assert that n is at least 11111 and n is at most 99999 issuing "Difference engine value out of range.";
+	repeat with i running from 1 to 5:
+		let l be the remainder after dividing n by 10;
+		[l is now the least significant digit of n]
+		if i is: 
+			-- 5: 
+				if l is 1 or l is 6, increase test-score by 1;
+			-- 4: 
+				if l is 1 or l is 4, increase test-score by 1;
+			-- 3: 
+				if l is 9 or l is 3, increase test-score by 1;
+			-- 2:
+				if l is 3, increase test-score by 1;
+			-- 1: 
+				if l is 6, increase test-score by 1;
+		let n be n minus l;
+		let n be n divided by 10; [ -- hence dropping the final digit from n]
+	decide on test-score.
+
 A correctness appraisal rule for the actor-model:
-	if the stored value of the actor-model is 14936 or the stored value of the actor-model is 14966:
+	if the actor test score for the stored value of the actor-model is 5:
+[	if the stored value of the actor-model is 14936 or the stored value of the actor-model is 14966:]
 		say "Well, it’s not great, but it’s probably as close as I’m going to get.";
 		rule succeeds;
 
 Instead of abacus-setting the actor-control to when the actor-model is correctly set:
-	say "It’s not great, maybe, but it’s probably the best I’m going to manage.";
+	say "What I've got isn't not great, maybe, but it’s probably as close as I’m going to manage.";
+
+The last correctness appraisal rule for the actor-model:
+	let l be the actor test score for the stored value of the actor-model;
+	if l is at most 1:
+		say "[one of]Of course, I'm meant to be asking about the Figure.[or]Of course, I'm meant to be trying to track down the Figure.[cycling]";
+	else if l is at most 3:
+		say "But [one of]I can feel I'm close to asking about the Figure[or]I don't need a machine to tell me this isn't going to find the Figure[or]Last time I saw the Figure he was in his balloon - but I need to tell the machine that[or]this doesn't quite feel right[at random].";
+	else if l is 4:
+		say "That seems very close - but not quite right!";
+
 
 Chapter 4 - Word Table
 
@@ -12069,15 +12248,15 @@ table 			cell spacings		headings	row numbering
 table of actor words	{11, 12, 10, 12, 0}	true		true
 
 Table of actor words
-p1		p2		p3		p4		p5
-"powerful"	"greedy"	"yellow"		"hopeless"	"black."
-"ancient"	"giving"		"royal"		"abandoned"	"green."
-"weak"		"old"		"cautious"	"soaring"	"honest."
-"inconstant"	"cruel"		"hopeful"	"stuck"		"digging."
-"man"		"white"		"wise"		"dead"		"child."
-"sorrowful"	"woman"	"baby"		"vacant"		"grey."
-"homely"	"crazy"		"foolish"		"animal"		"brown."
-"welcoming"	"dirty"		"clean"		"benevolent"	"nurturing."
+p1			p2				p3			p4			p5
+"powerful"	"greedy"			"yellow"		"hopeless"	"black."
+"ancient"	"giving"			"royal"		"abandoned"	"green."
+"weak"		"old"			"cautious"	"soaring"	"honest."
+"inconstant"	"cruel"			"hopeful"	"stuck"		"digging."
+"human"		"white"			"wise"		"dead"		"child."
+"sorrowful"	"woman"		"baby"		"vacant"		"grey."
+"homely"	"crazy"			"foolish"		"animal"		"brown."
+"welcoming"	"dirty"			"clean"		"benevolent"	"nurturing."
 "childish"	"despondent"	"being"		"blue"		"saintly."
 
 Part 17 - Office
@@ -15536,12 +15715,14 @@ Instead of attacking the wound spring:
 	try attacking the wound spring with my lucky clock key instead;
 
 Instead of attacking the wound spring with my lucky clock key:
-	say "The winding slot on the Figure's neck is a thumb-width big. A tiny target, like fitting a tweezer's head into the cracks of a mesh-system. But precision is what clockwork’s all about. I’ve a novice. I’ve trained. And I know that the winding slot goes all the way in. Right into the Figure’s clockwork soul.[paragraph break]I grab the key from around my neck and plunge it in. The Figure doesn’t notice – it can’t feel! – until I start to turn.[paragraph break]The spring begins to coil. The Figure jerks up, releasing Covalt, who falls back to the floor. It struggles to turn, trying to make a grab for me, but the ravens on either side are battering it back. I only need another turn or two. The spring inside the neck is getting almost impossible to move and then...[paragraph break]CRACK![paragraph break]I can hear the spring spinning off inside the Figure’s chest. Hear the awful noise as it catches in a mechanism deep inside. I quickly make the sign of the Winding Key as the Figure crumples: first one leg, then the other. The floor shakes as it falls.[paragraph break]The last of its energy is enough to look up at me. 'You,' it hisses through lips that don’t move as it speaks. Its voice sounds almost sad. 'You know not what you do.'[paragraph break]And then, silence. The ravens settle, one on each of Covalt’s shoulders. The old man looks exhausted, his face the colour of bruised tomatoes.[paragraph break]'That’s the most incredible piece of clockwork I ever saw,' he says slowly, furiously, his eyes glowing with anger. 'And you just destroyed it.'[paragraph break]Can Covalt really be angry that I...[paragraph break]'That was well done, young Wren.' He coughs. 'But I tell you, when I build something like that metal man, I’m going to give him an off-switch. Stupid to have to break such a fine machine. Whoever built that... a genius.' He strokes his beard, and gets to his feet – taking the Perpetuum from me as he does so. He’s looking back to normal already: a sour-faced moody old man. 'A genius, and an idiot, too.'[paragraph break]'But who was it?' I demand. 'Who built it?'[paragraph break]'That’s the question,' Covalt answers, gravely. 'For every spring that’s wound on this Earth, there’s a human hand turning the key. No divine mechanics down here. We may be free of this piece of clockwork –' and he lands a kick squarely in the still automaton’s chest. 'But someone was after the Perpetuum. Someone was planning an army. We may be free of the clockwork today, young Wren. But we’re not yet free of the clockmaker.'";
+	say "The winding slot on the Figure's neck is a thumb-width big. A tiny target, like fitting a tweezer's head into the cracks of a mesh-system. But precision is what clockwork’s all about. I’ve a novice. I’ve trained. And I know that the winding slot goes all the way in. Right into the Figure’s clockwork soul.[paragraph break]I grab the key from around my neck and plunge it in. The Figure doesn’t notice – it can’t feel! – until I start to turn.[paragraph break]The spring begins to coil. The Figure jerks up, releasing Covalt, who falls back to the floor. It struggles to turn, trying to make a grab for me, but the ravens on either side are battering it back. I only need another turn or two. The spring inside the neck is getting almost impossible to move and then...[paragraph break]CRACK![paragraph break]I can hear the spring spinning off inside the Figure’s chest. Hear the awful noise as it catches in a mechanism deep inside. I quickly make the sign of the Winding Key as the Figure crumples: first one leg, then the other. The floor shakes as it falls.[paragraph break]The last of its energy is enough to look up at me. 'You,' it hisses through lips that don’t move as it speaks. Its voice sounds almost sad. 'You know not what you do.'[paragraph break]And then, silence. The ravens settle, one on each of Covalt’s shoulders. The old man looks exhausted, his face the colour of bruised tomatoes.[paragraph break]'That’s the most incredible piece of clockwork I ever saw,' he says slowly, furiously, his eyes glowing with anger. 'And you just destroyed it.'[paragraph break]Can Covalt really be angry that I...[paragraph break]'That was well done, young Wren.' He coughs. 'But I tell you, when I build something like that metal man, I’m going to give him an off-switch. Stupid to have to break such a fine machine. Whoever built that... a genius.' He strokes his beard, and gets to his feet – taking the Perpetuum from me as he does so. He’s looking back to normal already: a sour-faced moody old man. 'A genius, and an idiot, too.'[paragraph break]'But who was it?' I demand. 'Who built it?'[paragraph break]'That’s the question,' Covalt answers, gravely. 'For every spring that’s wound on this Earth, there’s a human hand turning the key. No divine mechanics down here. We may be free of this thing –' and he lands a kick squarely in the still automaton’s chest - 'but someone out there was behind it. Someone planning an army and after the Perpetuum. We may be free of the clockwork today, young Wren. But we’re not free of the clockmaker.'";
 	end the game in victory;
 
 Book W - Walkthrough Script
 
-Test jonsprogress with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt / in / show work order to guards".
+Test jonsprogress with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt / up / show order to guards / w / nw / n / e ".
+
+Test tochapter7 with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt".
 
 Test walkthrough with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt / test countinghouse / test outsidewarehouse".
 
