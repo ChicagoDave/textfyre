@@ -1,10 +1,11 @@
 "The Shadow In The Cathedral" by Textfyre Inc
 
-
+[
 Include (- Constant DEBUG; -) after "Definitions.i6t".
-
+]
 [  Change Log
 When			Who		What
+22-Aug-2009		J. Ingold	Finished c7 playthrough. Fleshed out chase sequence and Caught location. 
 22-Aug-2009		J. Ingold	Added multiple solutions to the Difference Engine puzzle - if anything, I've been too generous!! Couple of other minors. Added board messages to room descriptions once they've been seen - code's a bit messy to ensure paragraph breaks are correct.
 18-Aug-2009		J. Ingold	Started to play through Chapter 7. Fixed a bug(GJ, please check this!) in Textfyre Standard Rules for implicitly opening. [ Update: actually, GJ may have fixed this already? Anyway, it's gone. ]
 17-Aug-2009 	J. Ingold	More of Paul's feedback, mostly missing responses. Changed TALK TO behaviour to use a prescripted list of topics (would be nice if the last of these was "What do you want to talk about?", and then hooked into the parser properly. But that might be pure sci-fi.)
@@ -361,6 +362,7 @@ LibMsg <block thinking>			"My cogs turn."
 LibMsg <block sleeping>			"Now's not the time for that!"
 LibMsg <block smelling>			"The only smell around is the one I'm most used to - it's not bath-time for another week!"
 LibMsg <block tasting>			"Eugh! Why would I do that?"
+LibMsg <block singing>			"This doesn't feel like the moment for it, somehow."
 
 
 Chapter 5c - Talking to Yourself
@@ -897,7 +899,7 @@ Check unlocking an unlocked abacus with something:
 	say "The abacus is already unlocked. I wouldn’t want to shatter the key by turning it too hard." instead;
 
 After unlocking an abacus with something:
-	say "[one of]The abacus emits a series of tiny clicks as I turn the key: one by one, the gears are being released from the frame. They spin, then spin back, as though stretching their muscles ready for work.[or]I unlock the abacus.[stopping]";
+	say "[one of]The abacus emits a series of tiny clicks as I turn the key: one by one, the gears are released from the frame. They tick themselves off, reporting for work.[or]The gears unlock themselves, one by one, in clockwork procession.[stopping]";
 
 Chapter 3 - View
 
@@ -980,7 +982,9 @@ Check abacus-setting an abacus to:
 		say "The abacus is already set to [number understood]." instead;
 
 Check abacus-setting a locked abacus to:
-	say "[one of]I try moving the beads on the abacus but they’re all firmly fixed in place. Surely an abacus where you can’t move the beads is as much use as a clock where you have to move the hands?[or]The gears on the abacus won’t move.[stopping]" instead;
+	say "[one of]I try moving the beads on the abacus but they’re all firmly fixed in place. Surely an abacus where you can’t move the beads is as much use as a clock where you have to move the hands?[or]The gears on the abacus won’t move.[stopping]";
+	provide key-hint;
+	stop the action;
 
 Check abacus-setting an abacus to:
 	if the model being adjusted is correctly set:
@@ -1595,21 +1599,21 @@ Direction-setting it to is an action applying to one thing and one visible thing
 Understand "set [pointer] to/at [planar direction]" as direction-setting it to.
 Understand "set [pointer] [planar direction]" as direction-setting it to.
 Understand "turn [pointer] to/at [planar direction]" as direction-setting it to.
-Understand "turn [pointer] to/at [text]" as setting it to.
+Understand "turn [something] to/at [text]" as setting it to.
 Understand "turn [pointer] [planar direction]" as direction-setting it to.
-Understand "turn [pointer] [text]" as setting it to.
+Understand "turn [something] [text]" as setting it to.
 Understand "point [pointer] to/at [planar direction]" as direction-setting it to.
-Understand "point [pointer] to/at [text]" as setting it to.
+Understand "point [something] to/at [text]" as setting it to.
 Understand "point [pointer] [planar direction]" as direction-setting it to.
-Understand "point [pointer] [text]" as setting it to.
+Understand "point [something] [text]" as setting it to.
 Understand "spin [pointer] to/at [planar direction]" as direction-setting it to.
-Understand "spin [pointer] to/at [text]" as setting it to.
+Understand "spin [something] to/at [text]" as setting it to.
 Understand "rotate [pointer] to/at [planar direction]" as direction-setting it to.
 Understand "rotate [pointer] [planar direction]" as direction-setting it to.
-Understand "rotate [pointer] to/at [text]" as setting it to.
+Understand "rotate [something] to/at [text]" as setting it to.
 Understand "move [pointer] to/at [planar direction]" as direction-setting it to.
 Understand "move [pointer] [planar direction]" as direction-setting it to.
-Understand "move [pointer] to/at [text]" as setting it to.
+Understand "move [something] to/at [text]" as setting it to.
 
 Carry out direction-setting to:
 	now the way of the noun is the second noun;
@@ -1807,6 +1811,10 @@ Part 19 - Knocking
 Knocking on is an action applying to one thing, and requiring light..
 Understand "knock [something]" as knocking on.
 Understand "knock on [something]" as knocking on.
+Understand "knock over [something]" as pushing.
+Understand "tap [something]" as knocking on.
+Understand "tap on [something]" as knocking on.
+
 
 Carry out knocking on:
 	do nothing;
@@ -1840,10 +1848,17 @@ Jumping on is an action applying to one thing, and requiring light.
 Jumping over is an action applying to one thing, and requiring light.
 
 Understand "jump off [something]" as jumping off.
+Understand "jump out of [something]" as jumping off.
+
 Understand "jump on/onto/to [something]" as jumping on.
 Understand "jump on to [something]" as jumping on.
+
+Understand "jump through [something]" as jumping over.
 Understand "jump [something]" as jumping over.
 Understand "jump over [something]" as jumping over.
+Understand "swing over [something]" as jumping over.
+
+Understand "jump in to [something]" as entering.
 
 Check jumping off:
 	say "That would seem foolish.";
@@ -2345,8 +2360,8 @@ Understand "go near/over to/toward/towards [something]" as approaching.
 Understand "go along/across/over [something]" as entering.
 Understand "walk along/over/across [something]" as entering.
 
-
 Understand "jump [direction]" as going.
+
 
 Understand "go the same way as [something]" as approaching.
 Understand "go in the direction of [something]" as approaching.
@@ -2370,8 +2385,45 @@ Check researching:
 	say "There's nowhere to look that up in."
 
 
+Part 51 - Extinguishing
 
+[ This is purely because people type it - the game never needs it to work. We use "lit" to decide if the player has asked something stupid or not. ]
 
+Extinguishing it with is an action applying to two touchable things and requiring light.
+
+Understand "extinguish [something]" as extinguishing it with.
+Understand "extinguish [something] with [something]" as extinguishing it with.
+Understand the command "douse", "dowse" as "extinguish".
+Understand "put out [something]"  as extinguishing it with.
+Understand "put out [something] with [something]"  as extinguishing it with.
+Understand "blow out [something]"  as extinguishing it with.
+Understand "blow out [something] with [something]"  as extinguishing it with.
+
+Rule for supplying a missing second noun when extinguishing something with:
+	change the second noun to the player.
+
+Check extinguishing something with:
+	say "[The noun] [is-are]n't on fire." instead.
+
+Check extinguishing a lit thing with:
+	say "I don't want to put out [the noun]." instead.
+
+Part 52 - Undressing
+
+[ Another action purely for colour .]
+
+Undressing is an action applying to nothing.
+
+Understand "disrobe" as undressing.
+Understand "disrobe [me]" as undressing.
+Understand "remove clothes/clothing" as undressing.
+Understand "remove my/your clothes/clothing" as undressing.
+Understand "take off my/your clothes/clothing" as undressing.
+Understand "take my/your clothes/clothing off" as undressing.
+Understand "take clothes/clothing off" as undressing.
+
+Check undressing:
+	say "No thanks[one of]. These clothes are the best I've got (and pretty much the only, too.)[or].[stopping]" instead.
 
 Book D2 - Synonyms
 
@@ -2468,6 +2520,13 @@ Understand "push through [something]" as pushing.
 
 Understand the command "poke" as "push".
 
+Part 10b - synonyms for Pull
+
+Understand the command "yank" as "pull".
+Understand the command "tug" as "pull".
+Understand the command "haul" as "pull".
+Understand the command "heave" as "pull".
+
 Part 11 - Synonyms for Jump
 
 Understand the commands "bound", "leap", "spring" as "jump".
@@ -2507,6 +2566,11 @@ Understand "slip past/by [something]" as entering.
 Understand "go past [something]" as entering.
 Understand "dodge past [something]" as entering.
 
+Understand "slide down [something]" as entering.
+Understand "slide on [something]" as entering.
+Understand "slide down on [something]" as entering.
+
+
 Part 16 - Synonyms for Show
 
 Understand "wave [something] at [someone]" as showing it to.
@@ -2544,6 +2608,11 @@ Part 23 - Synonyms for opening
 
 Understand "unfold [something]" as opening.
 Understand "unroll [something]" as opening.
+
+Understand "throw open [something]" as opening.
+Understand "pull open [something]" as opening.
+
+
 
 Part 24 - Synonyms for attack
 
@@ -2717,10 +2786,15 @@ Instead of emptying the tumbler when Heading for the Cathedral has happened:
 Instead of emptying the tumbler when not in Inside Clock Case:
 	say "I'll need to save every last drop. There's twenty more clocks to do today at least!";
 
+Instead of attacking the tumbler:
+	say "I need it. Can't be a clock polisher if you don't have anywhere to carry your clock polish!"
 
 Inside the tumbler is a small amount of polish. Understand "wood", "ration", "daily ration" as the small amount of polish.
 
 Before examining the small amount of polish: try examining the tumbler instead.
+
+Before drinking or tasting the small amount of polish:
+	say "No way. (They say Brother Reloh did that as a boy and that's why he ended up like he did.)" instead.
 
 Before doing something when the small amount of polish is physically involved:
 	redirect the action from the small amount of polish to the tumbler, and try that instead;
@@ -3992,6 +4066,7 @@ Understand "spout", "gas", "pipe" as the burner.
 Understand "lit", "fire", "flame", "firing" as the burner when the burner is lit.
 
 Understand "unlit" as the burner when the burner is unlit.
+
 
 Chapter 5 - Flint-Iron
 
@@ -6423,7 +6498,7 @@ Chapter 3 - The Brazier
 
 Section 1 - Description
 
-The brazier is a container, open, not openable, scenery, in the Calendar Shrine. "A brass dish set over a little tripod, in the centre of which a quiet flame burns. It's meant for incense and holy oils, that kind of thing. Doesn't seem very mechanistic to me: must be a hangover from the past, like shoelaces and Laundry."
+The brazier is a container, open, not openable, scenery, lit, in the Calendar Shrine. "A brass dish set over a little tripod, in the centre of which a quiet flame burns. It's meant for incense and holy oils, that kind of thing. Doesn't seem very mechanistic to me: must be a hangover from the past, like shoelaces and Laundry."
 
 Understand "tripod", "dish", "brass dish", "flame", "quiet flame" as the brazier.
 
@@ -6438,6 +6513,9 @@ Before putting something on the brazier:
 
 Instead of taking or pushing or pulling or turning the brazier:
 	say "It's an iron tripod the size of me; I can't lift it!"
+
+Instead of extinguishing the brazier with:
+	say "[one of]I think dowsing a Holy Flame is the sort of thing that makes them throw you down a well to see how [i]you[r] like it[or]I don't think that's a good idea[stopping]."
 
 Section 2 - Wax Mixing
 
@@ -7590,6 +7668,9 @@ Instead of showing the knife to Doric:
 	
 Instead of attacking Doric:
 	say "Have you not noticed his halberd?"
+
+Instead of kissing Doric:
+	say "No way!"
 
 Instead of attacking Doric with something:
 	say "Have you not noticed his halberd?"
@@ -8757,7 +8838,7 @@ Chapter 2 - Scenery
 
 Section 1 - Chimneys & Rods
 
-Some chimneys are a backdrop, in Rooftop 1, Rooftop 3, Rooftop 4, Sloping Roofs. "Who would have thought people kept so much rubbish up here, hidden out of sight? This isn't [i]precision engineering[r], all these chimneys, this is a [i]great big mess of stuff[r]. It's not Right or Proper at all." Understand "chimney" as the chimneys.
+Some chimneys are a backdrop, in Rooftop 1, Rooftop 3, Rooftop 4, Sloping Roofs. "Who would have thought people kept so much rubbish up here, hidden out of sight? This isn't [i]precision engineering[r], all these chimneys, this is a [i]great big mess of stuff[r]. It's not Right or Proper at all." Understand "chimney", "stuff" as the chimneys.
 
 Instead of attacking or pushing or taking the chimneys:
 	say "I couldn't pull this stuff apart, the lightning rods and chimneys are all solid – even if they are a mess.";
@@ -9009,7 +9090,7 @@ Understand "plank", "long", "seven foot", "seven feet" as the solid wooden board
 
 Rule for writing a paragraph about the solid wooden board:
 	say "Lying on the tiles is a length of wooden board";
-	if the length of piping is visible:
+	if the length of piping is in the location:
 		say " and a [length of piping]";	
 	say "."
 
@@ -9045,7 +9126,7 @@ Rule for printing the name of length of piping when taking inventory:
 
 Rule for writing a paragraph about the length of piping:
 	say "Lying on the tiles is a length of piping";
-	if the solid wooden board is visible:
+	if the solid wooden board is in the location:
 		say " and a [solid wooden board]";	
 	say "."
 
@@ -9187,6 +9268,9 @@ Section 1 - Tarp
 A large tarp is in Rooftop 4. "[one of]A large tarp is thrown over something in the middle of this space[or]A large tarp lies discarded here[stopping]." The description is "[one of]This is expensive stuff: a fabric that's lighter and stronger and less itchy than the stuff they make my bed-sheets from, the way sunlight is different than the beady glow in a rat's eye. The Figure must be pretty wealthy to leave something like this behind! Perhaps he meant it as a present: something to buy me off the chase.[paragraph break]Not going to happen. I'm going to catch him, stop him, save the Perpetuum and go collect my reward from the Archbishop.[or]This is expensive stuff: a fabric that's light and strong. The Figure must be pretty wealthy to leave something like this behind![stopping]"
 
 Understand "tarpaulin", "sheet", "roll", "roll of" as the tarp. The printed name of the tarp is "tarp".
+
+Instead of slicing the tarp with the knife:
+	say "The tarp is pretty tough: the knife probably couldn't get through it (and I don't see a reason to try!)"
 
 After taking the tarp:
 	say "Cumbersome, but that said – it rolls up pretty small!";
@@ -9644,7 +9728,7 @@ Some various meters are scenery, privately-named, in the Weather Station. "Therm
 Understand "meters", "meter", "thermometer", "thermometers", "barometer", "barometers", "precipitometer", "precipitometers", "tube", "tubes", "glass tube", "glass tubes" as the various meters.
 
 Instead of doing something when the meters are physically involved:
-	say "I don't want to draw attention to myself by fiddling with them, do I?";
+	say "[one of]I don't want to draw attention to myself by fiddling with them, do I?[or]These are delicate Holy Instruments, I shouldn't play with them![or]I'm not going to fiddle the meters. That would be wrong.[cycling]";
 
 Instead of examining the various meters when the player's command includes "barometer/barometers":
 	say "Barometers measure air pressure."
@@ -10371,7 +10455,7 @@ After choosing the conversation topic when the player can see Covalt and the sta
 After firing CT_COV_4_DIFFERENCE:
 	change the state of Covalt to 5;
 
-CT_COV_4_THINKING is a conversation topic. The enquiry text is "[one of]'I...'[or]'But...'[or]'Maybe...'[or]'And...'[or]'Yes...'[or]'Where...'[or]'What...'[or]I swallow.[at random]". The response text is "[one of]He interrupts your question. 'Look, we need to work all this through. Plan it out. Let me think, don't pester me.'[or]'There's variables here. Levers left and right. We need to work out what's next to see what we do next. Something different needs to be done.'[or]'Problem solving,' Covalt interjects. 'Is clockwork, too. A different kind of clockwork, but still clockwork.'[or]'What's the difference?' he remarks to himself, not listening to me. 'That's the question.'[or]'We just need to think of some different way to go about this,' he grumbles.[or]He waves my comment away. 'No, no. Something different. Really different.'[or][fire CT_COV_4_DIFFERENCE][stopping]"
+CT_COV_4_THINKING is a conversation topic. The enquiry text is "[one of]'I...'[or]'But...'[or]'Maybe...'[or]'And...'[or]'Yes...'[or]'Where...'[or]'What...'[or]I swallow.[at random]". The response text is "[one of]He interrupts your question. 'Look, we need to work all this through. There's variables here. Levers left and right. We need to work out what's next to see what we do next. Something [i]different[r] needs to be done.'[or]'Problem solving,' Covalt interjects. 'Is clockwork, too. A [i]different[r] kind of clockwork, but still clockwork.'[or]'What's the [i]difference[r]?' he remarks to himself, not listening to me. 'That's the question.'[or][fire CT_COV_4_DIFFERENCE][stopping]"
 
 Rule for firing CT_COV_4_DIFFERENCE while firing CT_COV_4_THINKING or firing COVALT_COUNTER:
 	[we don't want to print the enquiry text in these situations] 
@@ -10673,7 +10757,7 @@ Instead of looking under the workbench:
 
 Some tools are scenery, clutter, on the workbench. "Tools of every size and denomination. This is a parliament of tools. An army. A great big heap. One is particularly odd: a smooth metal box with two flat pins sticking out the top. They're labelled + and -."
 
-Some clock parts are scenery, privately-named, clutter, on the workbench. "Springs, pistons, rods, screws – there's a whole litany of parts in here." Understand "spring", "springs", "piston", "pistons", "rod", "rods", "screw", "screws", "clock parts", "clock part" as the clock parts.
+Some clock parts are scenery, privately-named, clutter, on the workbench. "Springs, pistons, rods, screws – there's a whole litany of parts in here." Understand "spring", "springs", "piston", "pistons", "rod", "rods", "screw", "screws", "clock parts", "clock part", "teeth", "brass" as the clock parts.
 
 The water clock is scenery, privately-named, clutter, in the Clock Shop. "It works by droplets, falling onto a pan that gradually drags down on a rotating wooden tumblers. No winding and no hands!" Understand "water clock" as the water clock.
 
@@ -10956,10 +11040,10 @@ Some Counting House guards are a person, scenery, privately-named, in the Counti
 
 Understand "guard", "guards", "uniformed",  "on the", "left", "right", "first guard/one/man", "second guard/one/man", "man", "men"   as the Counting House Guards.
 
-Instead of attacking the guards:
+Instead of attacking the Counting House guards:
 	say "I don't think I do very well in a fight against these two."
 
-Instead of attacking the guards with something:
+Instead of attacking the Counting House guards with something:
 	say "I don't think I do very well in a fight against these two."
 
 
@@ -10977,7 +11061,7 @@ Instead of doing something when the spears are physically involved:
 Instead of asking the Counting House guards for the spears:
 	try taking the spears instead.
 
-Instead of asking the Counting House guards to try opening the Counting House:
+Instead of asking the Counting House guards to try opening the front of the Counting House:
 	try going north.
 
 Instead of asking the Counting House guards to try giving the spears to the player:
@@ -11041,7 +11125,7 @@ The conversation table of the Counting House guards is the table of Counting Hou
 
 Table of Counting House Guard conversation
 conversation			topic
-CT_GUARD_ENTRY		"entry" or "[me]"
+CT_GUARD_ENTRY		"entry" or "[me]" or "aside" or "move" or "way" or "away"
 CT_GUARD_GUARDS	"[himself]" or "guard" or "themselves" or "guarding" or "job" or "work"
 CT_GUARD_PROOF		"business" or "proof"
 CT_GUARD_CATHEDRAL		"[cathedral]" or "church" or "[abbey]" or "archbishop" or "[abbot]"
@@ -11134,12 +11218,26 @@ Instead of going down when in the Counting House Steps:
 Part 3 - Grand Foyer
 
 
-Instead of listening when the location is the Grand Foyer or the location is Main Platform or the location is Western Stairs or the location is Eastern Stairs or the location is Western Platform or the location is Eastern Platform or the location is Engine Room or the location is Western Balcony or the location is Eastern Balcony or the location is Eastern Landing or the location is Western Landing or the location is Eastern Hall or the location is Western Hall or the location is Long Hall:
-	say "The clatter of cogs: the Difference Engine is [i]moving[r]."
+Last Instead of listening when the location is the Grand Foyer or the location is Main Platform or the location is Western Stairs or the location is Eastern Stairs or the location is Western Platform or the location is Eastern Platform or the location is Engine Room or the location is Western Balcony or the location is Eastern Balcony or the location is Eastern Landing or the location is Western Landing or the location is Eastern Hall or the location is Western Hall or the location is Long Hall:
+	say "The clatter of cogs: [if Difference Engine is not visible]somewhere [end if]the Difference Engine is [i]moving[r]."
+
+Instead of smelling when in the Grand Foyer:
+	say "There's a soft smell of clean cloth coming from all around.";
+
+Instead of listening when the Difference Engine is active and the Difference Engine is visible:
+	say "The Engine is whirring and groaning and roaring, great winds of movement cascading from one side to the other. It's incredible!"
+
+Instead of listening when Calculatrix Chase is happening:
+	say "I've got my ears peeled for the people pelting after me!"
 
 Chapter 1 - Description
 
 The Grand Foyer is a room. "The hall is wide and lofty and filled with stars that shine from the sparkling brass fittings. It’s like Drake’s descriptions of the Abbot’s private bath-house: gleaming marble and a soft hazy smell. This is the foyer and it has nothing in it at all apart from two enormous staircases curving upwards to the west and the east."
+
+Instead of listening when in the Grand Foyer and the Calculatrix Pristina is in the Main Platform:
+	say "Voices murmur through the glass doors to the north. There are two women standing, almost in plain view but for the bevelled glass!";
+	now CAL_SPOTTED is fired.
+
 
 Instead of making to leave when in the Grand Foyer: try going south.
 Instead of going inside when in the Grand Foyer: try going up.
@@ -11204,7 +11302,7 @@ Definition: a room is a landing:
 	if it is the Western Landing or it is the Eastern Landing, yes;
 	no;
 
-Definition: a room is a balcony:
+Definition: a room is a balcony-level:
 	if it is the Western Balcony or it is the Eastern Balcony, yes;
 	no;
 
@@ -11216,10 +11314,28 @@ Definition: a room is a hallway:
 	if it is the Western Hall or it is the Eastern Hall, yes;
 	no;
 
-Definition: a room is a platform:
+Definition: a room is platform-level:
 	if it is the Western Platform or it is the Eastern Platform, yes;
 	if it is the Main Platform, yes;
 	no;
+
+The thick patterned carpet is part of the marble stairs. Understand "deep", "thickly", "cog", "cogs", "pattern" as the carpet. It has description "The carpet is patterned with intersecting cogs, but the pattern seems never to repeat, anywhere across the floor."
+
+Before doing something when the backdrop-floor is involved and the marble stairs are visible:
+	redirect the action from the backdrop-floor to the thick patterned carpet, and try that instead.
+
+Instead of putting something on the thick patterned carpet:
+	try dropping the noun instead.
+
+Instead of putting something on the marble stairs:
+	try dropping the noun instead.
+
+Instead of entering the patterned carpet when the player's command includes "stand on":
+	say "Did you think I was floating in mid-air?"
+
+Instead of entering or approaching the patterned carpet:
+	say "Which way should I go? [run paragraph on]";
+	try listing exits;
 
 Section 2 - East / West Stairs
 
@@ -11374,17 +11490,20 @@ After going west from the Eastern Stairs:
 The long rail is a backdrop in the Western Stairs, in the Eastern Stairs. The description is "A long brass railing that swoops up the staircase." Understand "brass", "railing" as the long rail.
 
 Instead of climbing or jumping on or jumping over or entering the long rail:
-	say "I could just go down the stairs."
+	say "I zoom back down to the Foyer!";
+	move the player to the Grand Foyer;
 
 Instead of taking the long rail:
 	say "Come on, it's not [i]that[r] exciting standing here."
-
 
 
 Part 6 & 7 - Eastern / Western Landings
 
 Instead of making to leave when in Western Landing: try going southeast.
 Instead of making to leave when in Eastern Landing: try going southwest.
+
+Instead of making to leave when in Western Landing during Calculatrix Chase: try going north.
+Instead of making to leave when in Eastern Landing during Calculatrix Chase: try going north.
 
 Instead of going down when in Western Landing: try going southeast.
 Instead of going down when in Eastern Landing: try going southwest.
@@ -11396,9 +11515,9 @@ Chapter 1 - Descriptions
 
 The Western Landing is a major mirror-room, northwest of the Western Stairs. 
 
-The first description is "At the top of the stairs is a grand and silent hallway, like someone took the whole of the Abbey and chucked out all the candles, icons, wax, grease, soot, echoes and mothballs. I feel dirty just breathing the air.[paragraph break]The corridor continues to the north. Doors of frosted glass line up on either side, but all are closed."
+The first description is "[one of]The opulence of the Foyer is gone. [or][stopping]At the top of the stairs is a grand and silent hallway, like someone took the whole of the Abbey and chucked out all the candles, icons, wax, grease, soot, echoes and mothballs. I feel dirty just breathing the air.[paragraph break]The corridor continues to the north. Doors of frosted glass line up on either side, but all are closed."
 
-The second description is "This landing is the same as the other one: a wide corridor lined by closed doors, heading north away from the stairs."
+The second description is "This landing is the same as the other one: a dark corridor lined by faceless closed office doors, heading endlessly north away from the stairs."
 
 The Eastern Landing is a mirror-room, northeast of the Eastern Stairs. The hemisphere is east. 
 
@@ -11450,6 +11569,9 @@ Understand "label", "labelled", "labeled", "door" as the labeled doors when the 
 
 Understand "closed", "frosted", "glass", "labels", "doors" as the labeled doors.
 
+Instead of knocking on the labeled doors:
+	say "That seems like a great way to get myself caught."
+
 Section 2b - Offices
 
 Some offices are a backdrop in the Western Landing, in the Eastern Landing.
@@ -11475,6 +11597,9 @@ Instead of making to leave when in the Eastern Hall: try going south instead.
 Instead of making to leave when in the Western Hall: try going south instead.
 Instead of going inside when in the Eastern Hall: try entering the Eastern Grille instead.
 Instead of going inside when in the Western Hall: try entering the Western Grille instead.
+Instead of making to leave when in the Eastern Hall during Calculatrix Chase: try going northwest instead.
+Instead of making to leave when in the Western Hall during Calculatrix Chase: try going northeast instead.
+
 
 The Western Hall is a major mirror-room, north of the Western Landing.
 
@@ -11555,6 +11680,8 @@ Part 10 - Long Hall
 
 Instead of going inside when in the Long Hall and Calculatrix Chase is happening: 
 	try going east.
+Instead of making to leave when in the Long Hall and Calculatrix Chase is happening: 
+	try going east.
 Instead of going inside when in the Long Hall:
 	try entering labeled doors.
 Instead of making to leave when in the Long Hall:
@@ -11625,14 +11752,14 @@ The second description is "This balcony is the same as the first one. A ladder l
 The Eastern Balcony is a mirror-room. The hemisphere is east. 
 The Western Balcony mirrors the Eastern Balcony.
 
-Instead of going down from a balcony when SE_BALCONY_3 is unfired:
+Instead of going down from a balcony-level room when SE_BALCONY_3 is unfired:
 	say "If I move, the two women would surely see me.";
 
-Instead of going down from a balcony during Calculatrix Chase:
-	say "There's one guard left down there. More than a match for me if I'm caught.";
+Instead of going down from a balcony-level room during Calculatrix Chase:
+	say "There's one guard left down there. More than a match for me if I run right into him!";
 
-After going down from a balcony:
-	say "The ladder might be thin, but unlike the one to where I sleep it's solid metal and doesn't bend like a river-reed. I'm down in a flash.";
+After going down from a balcony-level room:
+	say "[one of]The ladder might be thin, but unlike the one to where I sleep it's solid metal and doesn't bend like a river-reed. [or][stopping]I'm down in a flash.";
 	continue the action;
 
 Chapter 2 - Scenery
@@ -11654,15 +11781,15 @@ Instead of taking or pulling or pushing the balcony ladder scenery:
 
 Section 2 - Duchess Du Mer and Calculatrix Pristina
 
-After deciding the scope of the player while the location is a balcony:
+After deciding the scope of the player while the location is a balcony-level room:
 	if the Duchess Du Mer is in the Main Platform,
 		place the Duchess Du Mer in scope;
 	if the Calculatrix Pristina is in the Main Platform,
 		place the Calculatrix Pristina in scope;
 
-Before doing something when the Duchess du Mer is physically involved and the location is a balcony:
+Before doing something when the Duchess du Mer is physically involved and the location is a balcony-level room:
 	say "Both women are way below me." instead.
-Before doing something when the Calculatrix Pristina is physically involved and the location is a balcony:
+Before doing something when the Calculatrix Pristina is physically involved and the location is a balcony-level room:
 	say "Both women are way below me." instead.
 
 Instead of shouting at the Calculatrix Pristina:
@@ -11699,19 +11826,44 @@ After firing SE_BALCONY_3:
 
 Brief conversation is a scene. Brief conversation begins when SE_BALCONY_1 is fired. Brief conversation ends when SE_BALCONY_3 is fired.
 
-Instead of listening to a balcony during Brief Conversation:
+Instead of listening to a balcony-level room during Brief Conversation:
 	[[JON]: You may wish to say something here]
 	do nothing;
 
-Instead of listening to a balcony when Brief Conversation has ended and Calculatrix Chase is not happening:
+Instead of listening to a balcony-level room when Brief Conversation has ended and Calculatrix Chase is not happening:
 	[[JON]: And/or here!]
 	continue the action;
+
 
 Part 13 - In The Engine
 
 Engine Room is north of Main Platform. The printed name is "In The Engine". West of The Engine Room is down of the Western Balcony. East of The Engine Room is down of Eastern Balcony.
 
-The description is "I'm standing in the middle of the engine: it's like being a giant in a pine forest. All around are straight brass strands with cogs for branches and tiny teeth for needles that brush against those of their neighbours. It's all moving, all the time, stirred by a breeze – shivers start from the main platform to the south and across to the ladders east and west."
+The description is "[one of]I'm standing in the middle of the engine: it's like being a giant in a pine forest. All around are straight brass strands with cogs for branches and tiny teeth for needles that brush against those of their neighbours. It's all moving, all the time, stirred by a breeze – shivers start from the main platform to the south and across to the ladders east and west.[or]The machine around me moves and breathes quietly, just ticking over, cogs and stands twitching in their sleep. There's something eerie about it - and knowing this is the machine that runs the city, and maybe more... The central platform is just south of here. Two thin ladders climb the dome east and west.[stopping]"
+
+Rule for printing the description of the Engine Room during Calculatrix Chase:
+	say "The engine rises up on all sides, hopefully giving me a bit of cover from the guards on the platform. East and west the ladders rise up. Which is great: I've got [i]options[r].";
+
+Instead of going up when in the Engine Room:
+	say "Which ladder, east or west?"
+
+Instead of making to leave when in the Engine Room: try going up.
+Instead of going inside when in the Engine Room: try going south.
+
+Section 1 - Ladders 
+
+Some narrow ladders are scenery in the Engine Room. "The ladders lead up to balconies, one east and west." 
+
+Understand "east ladder", "west ladder", "ladder", "brass", "metal" as the narrow ladders.
+
+Instead of approaching or entering or climbing or taking the narrow ladders:
+[ bit of a bodge ]
+	if the player's command includes "east", try going east instead;
+	if the player's command includes "west", try going west instead;
+	try going up instead.
+
+Instead of doing something when the narrow ladders are physically involved:
+	say "The ladders are firmly built into the walls - just another part of the Engine. 'Good Maintainence  is its own Reward,' as the Abbot says."
 
 Section 2 - Dials
 
@@ -11742,7 +11894,7 @@ Section 3 - Ruby Key
 
 The ruby key is a thing. The description is "A small key of blood-coloured glass. It seems pretty fragile, but then I could probably break the engine if I sneezed on it."
 
-Understand "glass", "ruby-glass", "blood-coloured", "blood-colored", "blood", "coloured/colored" as the ruby key.
+Understand "glass", "ruby-glass", "blood-coloured", "blood-colored", "blood", "red", "coloured/colored" as the ruby key.
 
 After taking the ruby key when we have not taken the ruby key:
 	say "I reach over and pluck the key from the machine.";
@@ -11760,33 +11912,45 @@ Instead of doing something when the roof dome is physically involved:
 
 Section 2 - Difference Engine
 
-The Difference Engine is a backdrop, in Main Platform, The Engine Room, Western Balcony, and Eastern Balcony. 
+The Difference Engine is a backdrop, in Main Platform, The Engine Room, Western Balcony, and Eastern Balcony, Eastern Platform, Western Platform. 
 
 The Difference Engine can be admired or unadmired. The Difference Engine is unadmired.
 
 Every turn when the unadmired Difference Engine is visible:
 	now the Difference Engine is admired.
 
-Rule for printing the description of the Difference Engine when the location is a balcony:
-	say "The Engine is a neat cube of springs, levers and vertical rods laced with cogs, and unlike any of the clocks I've polished it's organized in a tidy and symmetric way. Each part looks the same as the parts beside it (and all the bits [i]inside[r] look the same again, only smaller). It's like looking at a sugar-crystal close up, and only the platforms and scaffolds that weave around inside break it up at all.";
+Rule for printing the description of the inactive Difference Engine when the Difference Engine has been active:
+	say "The machine has now gone quiet, all its cogs back to gentle stirring motions. Unfortunately for me, it's now the people who are all worked up!"
+
+Rule for printing the description of the Difference Engine when the location is a balcony-level room:
+	say "The Engine is a dizzying sight - the whole of the domed expanse filled with cogs and spindles and spines. This is the heart of the city, right here, or more likely it's brains. I could stare for hours - parts inside parts inside parts... Enough to make one fall and not notice till you hit one of those sharp stacks of cogwheels.";
 
 Rule for printing the description of the inactive Difference Engine:
 	say "The Engine is made of blocks, each a thicket of spindles lined with a stack of cogs, able to turn together or independently. A single breath of movement flits around the machine from one cog to another like there was a bee trapped in the workings: one moment by my feet and suddenly back over at the platform[if Calculatrix Chase has not happened]. [paragraph break]And if Covalt thinks this machine can tell me where I can find the Figure in Grey, then I guess it can[end if].";
 
 Rule for printing the description of the Difference Engine:
-	say "The machine moves like a corn-field in a thunderstorm. It seems like every cog is turning, and each spine is clunking up and down, changing the way they interlaced. It's like the mechanism could shake itself loose at any minute. I don't want to be standing in the middle when it does.";
+	say "The machine is moving like a corn-field in a thunderstorm. It seems like every cog is turning, and each spine is clunking up and down, changing the way they interlaced. It's like the mechanism could shake itself loose at any minute. I don't want to be standing in the middle when it does.";
 
-Understand "cube", "springs", "levers", "vertical rods", "rods", "cogs", "platforms", "scaffolds", "blocks", "thicket", "spindles", "stack", "breath", "single breath", "movement", "motion" as the Difference Engine.
+Understand "cube", "springs", "levers", "vertical rods", "rods", "cogs", "platforms", "scaffolds", "blocks", "thicket", "spindles", "stack", "breath", "single breath", "movement", "motion", "teeth", "tiny teeth", "brass", "stands", "stand", "straight", "spine", "machine" as the Difference Engine.
 
 The Difference Engine can be active or inactive. The Difference Engine is inactive.
 
 Instead of touching or turning or pushing or pulling or switching on the Difference Engine:
 	say "I run my fingers along one of the spindles – then snatch them back before they're stung.";
 
-Instead of doing something when the Difference Engine is physically involved and the location is a balcony:
+Instead of doing something when the Difference Engine is physically involved and the location is a balcony-level room:
 	say "The Engine is a good way below me at the foot of the thin ladder.";
 
-Instead of entering the Difference Engine when the location is a balcony:
+Instead of doing something when the Difference Engine is physically involved and the location is a platform-level room:
+	say "The Engine is below the level of this platform, behind a rail so I can't fall in."
+
+Before attacking or switching off the difference Engine:
+	say "Interesting idea. I could just move a couple of switches and then no-one would ever be able to fix it. Then they could never use it to track me down for what I'm doing now... but, if I did, how would I find out where the Figure was heading?" instead.
+
+Before attacking the difference Engine when Calculatrix Chase is happening:
+	say "No time for that now! Run!" instead.
+
+Instead of entering the Difference Engine when the location is a balcony-level room:
 	try going down;
 
 Instead of setting the Difference Engine to:
@@ -11798,21 +11962,37 @@ Part 14 - Main Platform
 
 Chapter 1 - Description
 
-The Main Platform is a room. "A circular platform deep in the heart of the Engine, but the only mechanism is a single lever. It’s large enough to hold back a spring the size of a horse. There’s also a pedestal dead centre with something like Brother Reloh’s typewriter on top. Next to that machine is a small box full of grey pamphlets.[paragraph break]To east and west thin catwalks lead towards panels fitted with controls. I could also go back north, or south towards the glass doors of the Foyer." 
+The Main Platform is a room. "The main platform rises up from the heart of the Engine and is topped by a single lever, large enough to topple a building or lift a ship from the water. Beside it is a low a pedestal of dull grey with something like Brother Reloh’s typewriter on top. Beside it is a dull grey box full of dull grey pamphlets.[paragraph break]To east and west thin catwalks lead towards panels fitted with controls. I could also go back north, or south towards the glass doors of the Foyer." 
+
+Instead of making to leave when in the Main Platform: try going south.
+Instead of going inside when in the Main Platform: try going north.
+Instead of making to leave when in the Main Platform and Calculatrix Chase is happening: try going north.
+
+After going from the Main Platform to the Engine Room during Calculatrix Chase:
+	say "I leg it off the platform and between the cog-stacks.";
+	continue the action;
 
 Chapter 2 - Scenery
 
 Section 1 - Platform
 
-The sprung platform is a backdrop, in the main platform, the Western Platform and the Eastern Platform. The description is "[if the location is the Main Platform]The platform seems to be very slightly sprung. Something to do with the lever, no doubt.[otherwise]The platform is made of delicate wrought iron and brass, and runs all along the south side of the atrium, facing the Engine. It's supported above floor level, where the driving springs are.[end if]". The printed name is "platform".
+The sprung platform is a backdrop, in the main platform, in the Western Platform in the Eastern Platform. The description is "[if the location is the Main Platform]The platform seems to be very slightly sprung. Something to do with the lever, no doubt.[otherwise]The platform is made of delicate wrought iron and brass, and runs all along the south side of the atrium, facing the Engine. It's supported above floor level, where the driving springs are.[end if]". The printed name is "platform".
 
 Instead of jumping in the main platform:
 	say "The platform bounces underfoot.";
 
 The glimpse-sprung platform is a glimpse backdrop in the Engine Room. "The engine is gathered around the base of the platform like it washed up there." The glimpse-sprung platform identifies the sprung platform. Understand "platform", "sprung", "main", "central" as the glimpse-sprung platform.
 
-Instead of approaching or jumping on or entering the glimpse-sprung platform:
+Instead of approaching or climbing or jumping on or entering the glimpse-sprung platform:
 	try going south.
+
+The platform-rail is a backdrop, privately-named, in the Main Platform, in the Western Platform, in the Eastern Platform. Understand "rail", "brass", "railing" as the platform-rail. The printed name is "brass rail". "The rail separates me from the lapping cogs of the Difference Engine." 
+
+Instead of jumping over or entering or approaching or climbing the platform-rail:
+	say "No thanks. I don't want to be number-crunched!"
+
+Instead of taking or pulling or pushing the platform-rail:
+	say "It's pretty firmly built (like everything here, I suppose.)";
 
 Section 2 - Printer
 
@@ -11821,9 +12001,12 @@ The printer is scenery, in the main platform. The printed name is "device". Unde
 Instead of doing something when the printer is physically involved:
 	say "However it works, it's part of the Engine and I certainly don't know how to use that.";
 
+Instead of typing on the printer:
+	say "It doesn't have any keys."
+
 Section 2b - Pedestal
 
-A pedestal is scenery, in the main platform. 
+A dull grey pedestal is scenery, in the main platform. "On the pedestal is this typewriter-like machine." Understand "dull", "grey" as the pedestal.
 
 Section 3 - Clutch
 
@@ -11915,23 +12098,34 @@ Before answering the Calculatrix Pristina that when the location is the Grand Fo
 
 Section 6 - Punchcard
 
-The punchcard is a thing. "[if Calculatrix Chase is happening]It's a yellow rectangle of card. Punched in are a series of holes. More than that – I don't have time to find out.[otherwise]The card is just a series of punched holes, like waterbiscuits after the mice have got to them. It doesn't mean anything![end if]"
+The punchcard is a thing. It has description "[if Calculatrix Chase is happening]It's a yellow rectangle of card. Punched in are a series of holes. More than that – I don't have time to find out.[otherwise if Calculatrix Chase ended in escape]The card has a series of punched holes and then some neat writing beneath: [i]462 Old Place, DOCKLANDS[r].[otherwise]The card is just a series of punched holes, like waterbiscuits after the mice have got to them. It doesn't mean anything![end if]"
 
 Understand "punched", "card", "punch card", "holes", "yellow", "rectangle", "series" as the punchcard.
 
 Instead of going from the Main Platform when the punchcard is not carried during Calculatrix Chase:
 	say "I'm not going anywhere till I get my answer from the machine. Without that, then all this might as well have been greasing the wheels of the Ocean for the good it'll do me."
 
-After taking the punchcard:
+After taking the punchcard when the punchcard is not handled:
 	say "I whip the card out of the typing machine.";
+
+After taking the punchcard when in Caught:
+	say "I go for the card but I'm not fast enough.";
+
+Before attacking or eating the punchcard when in Caught:
+	say "[one of]I move to threaten to eat the card. The Calculatrix laughs. 'We'll still skewer you,' she says, 'and cut the card from your stomach.' It's a pretty good argument, so I stop.[or]No good.[stopping]"
+
+Before attacking or eating the punchcard:
+	say "After all that? Never!" instead.
+
+
 
 Section 7 - A box of pamphlets
 
-A box of pamphlets is scenery, in the Main Platform. "The box is full of grey papers stamped with a Parliamentary seal. On the top of each one is written 'STRICT CONFIDENTIAL'."
+A dull grey box of pamphlets is scenery, in the Main Platform. "The box is full of grey papers stamped with a Parliamentary seal. On the top of each one is written 'STRICT CONFIDENTIAL'."
 
-Understand "grey pamphlets" as the box of pamphlets.
+Understand "grey pamphlets", "dull" as the box of pamphlets.
 
-Understand "grey", "papers", "pamphlet" as the box of pamphlets when the player can not see the grey pamphlet.
+Understand "grey", "papers", "pamphlet", "dull" as the box of pamphlets when the player can not see the grey pamphlet.
 
 After printing the description of the box of pamphlets:
 	if the grey pamphlet is off-stage:
@@ -11988,56 +12182,73 @@ Chapter 4 - Calculatrix Chase scene
 Calculatrix Chase is a scene.
 Calculatrix Chase begins when the Difference Engine is active.
 
+Instead of waiting during Calculatrix Chase:
+	if the punchcard is not handled:
+		say "The machine buzzes and groans." instead;
+	say "[one of]No time to hang about.[or]What is their to wait for, my own end?[cycling]";
+
 When Calculatrix Chase begins:
-	change the current script to {SE_CHASE_0, SE_CHASE_1, SE_CHASE_2, SE_CHASE_3, SE_CHASE_4, SE_CHASE_5, SE_CHASE_6, SE_CHASE_7, SE_CHASE_8, SE_CHASE_9 };
+	change the current script to {SE_CHASE_0, SE_CHASE_1, SE_CHASE_2, SE_CHASE_3, SE_CHASE_3B, SE_CHASE_4, SE_CHASE_4B, SE_CHASE_5, SE_CHASE_5B, SE_CHASE_6, SE_CHASE_7, SE_CHASE_8, SE_CHASE_8B, SE_CHASE_9 };
 
 SE_CHASE_0 is a scripted event. [Or rather, a scripted non-event... at any rate, it's a filler.]
+SE_CHASE_3B is a scripted event. [Or rather, a scripted non-event... at any rate, it's a filler.]
+SE_CHASE_4B is a scripted event. [Or rather, a scripted non-event... at any rate, it's a filler.]
+SE_CHASE_5B is a scripted event. [Or rather, a scripted non-event... at any rate, it's a filler.]
+SE_CHASE_8B is a scripted event. [Or rather, a scripted non-event... at any rate, it's a filler.]
+
 
 SE_CHASE_1 is a scripted event. The display text is "The doors fly open. Standing between them is the Calculatrix, staring in disbelief. 'Stop?' she wails, but the Engine doesn't listen. At just that moment, the typing machine on the pedestal whizzes up into life and punches out a card. It's the answer to my question."
 
 After firing SE_CHASE_1:
 	move the punchcard to the main platform;
+	move the official-guards  to the Main Platform;
 	move the Calculatrix Pristina to the Main Platform.
 
 Instead of going through the glass doors from the Main Platform when the Calculatrix is in the Main Platform:
 	say "There's no way past the Calculatrix and her guards.";
 
-SE_CHASE_2 is a scripted event. The display text is "Calculatrix Pristina has been joined by two guards. 'Stop that... child!' she demands. The two guards push forwards. Time to get out of here!"
+SE_CHASE_2 is a scripted event. The display text is "Calculatrix Pristina has been joined at the glass doors by two guards. 'Stop that... child!' she demands. The two guards push forwards. More guards follow. Time to get out of here!"
 
 After firing SE_CHASE_2:
 	if the player does not carry the punchcard and the player can see the punchcard:
 		try taking the punchcard;
 
-SE_CHASE_3 is a scripted event. The display text is "'Get him, you idiot!' squeals the Calculatrix. She's by the pedestal now, maybe not certain whether to ask it who I am or to try and catch and beat it out of me. But the guards aren't uncertain. They're piling into the Engine, hot on my heels!".
+SE_CHASE_3 is a scripted event. The display text is "'Get him, you idiots!' squeals the Calculatrix. She's by the pedestal now, maybe not certain whether to ask it who I am or to try and catch and beat it out of me. But the guards aren't uncertain. They're piling into the Engine, hot on my heels!".
 
 Rule for firing SE_CHASE_3 when the location is the Main Platform:
+	say "The guards swarm up onto the platform and then, that's it. I'm surrounded.";
 	fire CAUGHT_EVENT instead;
 
 SE_CHASE_4 is a scripted event. The display text is "'Back this way! The stairs!' the Calculatrix exclaims. The guards pile back through the Engine: I'm safe for now, but in a few moments I'm going to be flanked on both sides!".
 
-Rule for firing SE_CHASE_4 when the location is a platform or the location is The Engine Room:
+Rule for firing SE_CHASE_4 when the location is a platform-level room or the location is The Engine Room:
+	say "The guards swarm around me and there's nothing I can do. I'm surrounded.";
 	fire CAUGHT_EVENT instead;
 
-After firing SE_CHASE_4 when the location is not a platform:
+After firing SE_CHASE_4 when the location is not a platform-level room:
+	move the official-guards  to the Grand Foyer;
 	move the Calculatrix Pristina to the Grand Foyer;
 
 SE_CHASE_5 is a scripted event. The display text is "I can hear guards approaching on both sides. Quickly, Wren, but time's ticking!".
 
-SE_CHASE_6 is a scripted event. The display text is "I can hear them on both sides! The punch-card's in my hand, so there's got to be a way out of here! ".
+SE_CHASE_6 is a scripted event. The display text is "I can hear them on both sides! There's got to be a way out of here! ".
 
 Rule for firing SE_CHASE_6 when the location is not the Long Hall:
+	say "The guards catch up with me and back me against a wall. There's nothing I can do.";
 	fire CAUGHT_EVENT instead;
 
 SE_CHASE_7 is a scripted event. The display text is "Quickly, quickly...".
 
-SE_CHASE_8 is a scripted event. The display text is "The guards are right outside the door. I'm hardly well-hidden – time to put some distance between us!".
+SE_CHASE_8 is a scripted event. The display text is "The guards are right outside the door. I'm hardly well-hidden. I need to be gone.".
 
 Rule for firing SE_CHASE_8 when the location is not the Office:
+	say "Guards appear from both directions and there's nothing I can do.";
 	fire CAUGHT_EVENT instead;
 
 SE_CHASE_9 is a scripted event. [No display text.]
 
 Rule for firing SE_CHASE_9 when the location is the Office:
+	say "The door flies back and there they are.";
 	fire CAUGHT_EVENT instead;
 
 CAUGHT_EVENT is a trigger.
@@ -12045,7 +12256,8 @@ CAUGHT_EVENT is a trigger.
 Rule for firing the CAUGHT_EVENT:
 	move the player to Caught;
 	move the Calculatrix Pristina to Caught;
-	[ move the guards to Caught; ]
+	move the official-guards to Caught; 
+
 
 Part 15C - Caught
 
@@ -12058,7 +12270,7 @@ Caught is a room. "I'm surrounded. Five guards with five spears and I can see th
 
 SE_CAUGHT_1 is a scripted event. The display text is "'Hand it over,' she growls. The guards rattle their spears at me.".
 
-SE_CAUGHT_2 is a scripted event. The display text is "'Give me that punch-card. The Engine doesn't compute anything without proper sanctioning!' She's almost stamping her feet in fury.".
+SE_CAUGHT_2 is a scripted event. The display text is "'Give me that punch-card. The Engine doesn't compute anything without proper sanctioning!' She's almost stamping her feet with frustration.".
 
 SE_CAUGHT_3 is a scripted event. The display text is "'You.' She snaps a finger at one of her men. In a moment, he's got my arm up behind my back, higher and higher – it's nothing worse than Calvin does every day but it still makes my fingers open with the pain – and that's it, I've dropped the card!".
 
@@ -12070,20 +12282,83 @@ SE_CAUGHT_4 is a scripted event. The display text is "The Calculatrix snatches u
 After firing SE_CAUGHT_4:
 	move the punchcard to the Calculatrix Pristina;
 
-SE_CAUGHT_5 is a scripted event. The display text is "'Oh, get this child out of here!' she snaps, irritably. 'I'll ask the machine, of course. Guards? Dump that... that thing... outside.'[paragraph break]I didn't even know my neck had a scruff until the guard's hands have grabbed me by it. I'm dragged kicking and complaining along all that beautiful carpet into an empty office. Are they going to murder me?[paragraph break]One guard opens a window and then the other raises me up like a counterweight and tosses me outside.[paragraph break]I land on a pile of junk. Pick myself up and shake myself down. Time for some answers. Am I still alive? Definitely. How do I feel? Proud. Where is the Figure? 462 Old Place, Docklands.[paragraph break]There's no time to lose.".
+SE_CAUGHT_5 is a scripted event. The display text is "'Oh, get this child out of here!' she snaps, irritably. 'I'll ask the machine, of course. Guards? Dump that... that thing... outside.'[paragraph break]I didn't even know my neck had a scruff until one of the guards grabs me by it. I'm dragged kicking and complaining along all that beautiful carpet into an empty office. Are they going to murder me?[paragraph break]One guard opens a window and then the other raises me like a counterweight and tosses me outside.[paragraph break]I land on a pile of junk in an alley behind the Counting House. Pick myself up and shake myself down. Time for some answers. Am I still alive? [i]Definitely[r]. How do I feel? [i]Proud[r]. Where is the Figure? [i]462 Old Place, Docklands[r].[paragraph break]Success. Now there's no time to lose.".
 
 After firing SE_CAUGHT_5:
 	end the chapter;
+	fire ALLEY_EVENT1;
 	move the player to the Dank Alley;
+
+Section 1 - Interaction in Caught
 
 Instead of giving the punchcard to the Calculatrix Pristina when in Caught:
 	change the current script to {SE_CAUGHT_4, SE_CAUGHT_5}
 
+Instead of asking the Calculatrix Pristina about when in Caught:
+	say "[one of]She sees my mouth open and cuts me off[or]She cuts me short[stopping]. [run paragraph on]";
+
+Instead of telling the Calculatrix Pristina about when in Caught:
+	try asking the Calculatrix Pristina about "machine";
+Instead of answering the Calculatrix Pristina that when in Caught:
+	try asking the Calculatrix Pristina about "machine";
+Instead of asking the Calculatrix Pristina for when in Caught:
+	try asking the Calculatrix Pristina about "machine";
+
+Instead of going when in Caught:
+	say "The guards jostle me back. They're not letting me out any which way!"
+
+Understand "beg" as making the sign of when in Caught.
+Understand "beg for mercy" as making the sign of when in Caught.
+
+Section 2 - Chasing Guards
+
+Some official-guards are men, scenery, privately-named. "[if location is Caught]The guards surround me on all sides.[else]The guards are hot on my heels![end if]". The printed name is "guards".
+
+Instead of doing something when the official-guards are physically involved:
+	say "[one of]A jab with a spear pushes me back.[or]They're not going to let me near.[or]They're keeping me at arms length with their spears.[cycling]";
+
+Understand "guard", "guards", "five guards", "man", "men", "spears", "spear", "sharp end/ends" as the official-guards.
+
+Instead of attacking the official-guards:
+	say "I go for one with my fist. The others grab me by the shoulders and pull me back, laughing."
+Instead of attacking the official-guards with something:
+	say "I go for one with [the second noun]. The others grab me by the shoulders and pull me back, laughing."
+
+
 Part 15 - Eastern Platform
+
+Section 2b - flash of red
+
+[ We see this if we try to turn the abacus having not yet found the key ]
+
+To provide key-hint:
+	if the ruby key is off-stage:
+		move the ruby key to the small golden dials;
+		move flash-red to the location;
+		say "[line break]From somewhere in the depths of the machine, I catch a flash of red.";
+
+Carry out taking the ruby key:
+	remove the flash-red from play;
+
+The flash-red is a scenery, privately-named, thing. The description is "Something, gleaming, in the depths of the machine."  Understand "flash", "flash of", "red" as the flash-red. The printed name is "flash of red".
+
+Instead of approaching the flash-red:
+	let the way be the best route from the location to the Engine Room, using doors;
+	if the way is a direction, try going the way instead;
+	say "It's somewhere in the machine."
+
+Instead of doing something when the flash-red is physically involved:
+	say "The flash was somewhere deep in the machine."
+
+
 
 Chapter 1 - Description
 
 The Eastern Platform is a major mirror-room, east of the Main Platform. The hemisphere is east. The printed name is "East Platform". The Eastern Platform mirrors the Western Platform.
+
+Instead of making to leave when in the  Eastern Platform: try going west.
+Instead of going inside when in the  Eastern Platform: try going west.
+
 
 The first description is "This is a small platform to the [west with mirroring] of the central dais. It surrounded on most sides by a brass rail, hooked onto which is a steel abacus that in turn is connected to the Engine by delicate silver chains like the spider-webs of my room after the rain has got in.[paragraph break]Hanging above the platform is a large wooden signboard[if the model-at-hand is not phrase-viewed].[else][board display][end if]"
 
@@ -12130,7 +12405,7 @@ To decide what number is the action test score for (n - a number):
 			-- 1: 
 				if l is 3 or l is 5, increase test-score by 1;
 			-- 2: 
-				if l is 2 or l is 4, increase test-score by 1;
+				if l is 2 or l is 4 or l is 5, increase test-score by 1;
 			-- 3: 
 				if l is 3 or l is 5, increase test-score by 1;
 			-- 4:
@@ -12186,6 +12461,10 @@ Chapter 1 - Description
 
 The Western Platform is a mirror-room, west of the Main Platform. The printed name is "West Platform". 
 
+Instead of making to leave when in the Western Platform: try going east.
+Instead of going inside when in the  Western Platform: try going east.
+
+
 Chapter 2 - Actor Display
 
 The actor-display is a display board, scenery, in the Western Platform. The viewed model of the actor-display is the actor-model.
@@ -12225,7 +12504,7 @@ To decide what number is the actor test score for (n - a number):
 A correctness appraisal rule for the actor-model:
 	if the actor test score for the stored value of the actor-model is 5:
 [	if the stored value of the actor-model is 14936 or the stored value of the actor-model is 14966:]
-		say "Well, it’s not great, but it’s probably as close as I’m going to get.";
+		say "I step back and take a look. Well, it’s not great. But it’s probably as close as I’m going to get.";
 		rule succeeds;
 
 Instead of abacus-setting the actor-control to when the actor-model is correctly set:
@@ -12263,11 +12542,19 @@ Part 17 - Office
 
 Chapter 1 - Description
 
-The Office is a room. " This is a grey office, a lot like a monks cell. Whoever was in it probably rushed out because of the guards clattering towards them. Either that or this is where the Calculatrix herself works."
+The Office is a room. "This is a grey office, dull as a Brother's cell. Whoever was in it probably rushed out because of the guards clattering this way. Either that or this is where the Calculatrix [i]herself[r] works."
 
-The office window is an open door, east of the office. "Foolishly, they’ve left the window wide open. Shame this is the second floor!".
+The office window is an closed, unlocked, door, east of the office. "Anyway, whoever my benefactor is, they’ve left the window clearly unlocked. Shame this is the second floor!".
 
 The description of the office window is "The window overlooks one of the grubby streets outside. There’s a faintly filthy smell drifting in." Through the office window is the Dank Alley.
+
+Instead of making to leave when in the Office: try going east.
+Instead of going inside when in the Office: try going east.
+
+Instead of jumping over or jumping off or climbing or getting off the office window: try going east.
+
+Report opening the office window:
+	say "I throw open the window." instead.
 
 Chapter 2 - Scenery
 
@@ -12282,8 +12569,9 @@ Instead of going through the subtle escape from the Office:
 	say "No chance. The guards are coming!";
 
 After going through the office window:
-	say "No need to ask twice.[paragraph break]I swing my legs up onto the sill and then I’m over and out – yuk! – straight into a pile of rotting garbage. Something crawls out over my leg but I’m smart and I don’t scream, which means the guards overhead stick their heads out and then disappear again.[paragraph break]Then I’m up, brushing myself down and – once I’m two streets away – taking a deep breath. I might have survived all that but the card in my hand is only going to send me somewhere else. And if I’m following the Figure, things could get pretty hairy pretty fast.[paragraph break]The card, in a neat cog-calligraphic hand underneath the punched-out holes, reads 462 Old Place, DOCKLANDS. Not the nicest part of the city. But I’ve got to stop the Figure stealing the Perpetuum before it’s too late. And that’ll be soon. Thing about time is, it [i]always[r] is. So right now it’s time to get moving!";
+	say "No need to ask twice.[paragraph break]I swing my legs up onto the sill and then I’m over and out – yuk! – straight into a pile of rotting garbage. Something crawls out over my leg but I’m smart and I don’t scream, which means the guards overhead stick their heads out and then disappear again.[paragraph break]Then I’m up, brushing myself down and – once I’m two streets away – taking a deep breath. I might have survived all that but the card in my hand is only going to send me somewhere else. And if I’m following the Figure, things could get pretty hairy pretty fast.[paragraph break]The card, in a neat cog-calligraphic hand underneath the punched-out holes reads: [i]462 Old Place, DOCKLANDS[r]. Not the nicest part of the city. But I’ve got to stop the Figure stealing the Perpetuum before it’s too late. And that’ll be soon.[paragraph break]Thing about time is, it [i]always[r] is. So right now it’s time to get moving!";
 	end the chapter;
+	fire ALLEY_EVENT1;
 	try looking;
 
 Chapter 4 - Scene End
@@ -12318,11 +12606,15 @@ Section 3 - Exits
 
 Instead of going up in the Dank Alley:
 	try going north;
+Instead of going inside in the Dank Alley:
+	try going north.
+Instead of making to leave in the Dank Alley:
+	say "There's no turning back."
 
 Chapter 2 - Event on Entry
 
-After looking in the Dank Alley when ALLEY_EVENT1 is unfired:
-	fire ALLEY_EVENT1
+[After looking in the Dank Alley when ALLEY_EVENT1 is unfired:
+	fire ALLEY_EVENT1]
 
 ALLEY_EVENT1 is a trigger. 
 
@@ -12471,6 +12763,9 @@ Instead of entering the River Thymes:
 
 Instead of going a direction in the presence of the River Thymes when the noun is due west:
 	try entering the River Thymes instead;
+
+Instead of undressing in the presence of the River Thymes:
+	say "What's the point? If I'm going to go swimming I might as well stay as warm as I can."
 
 Chapter 2 - Scenery
 
@@ -15720,7 +16015,9 @@ Instead of attacking the wound spring with my lucky clock key:
 
 Book W - Walkthrough Script
 
-Test jonsprogress with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt / up / show order to guards / w / nw / n / e ".
+Test jonsprogress with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt / up / show order to guards / w / nw / n / e / z / z / d / x dials / get key / s / w / unlock abacus / set abacus to 14936 / e / e / unlock abacus / set abacus to 78325 / w / pull lever ".
+
+test cheat7 with "test intro / gonear street / purloin work order".
 
 Test tochapter7 with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt".
 
