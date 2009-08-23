@@ -3,8 +3,10 @@
 [
 Include (- Constant DEBUG; -) after "Definitions.i6t".
 ]
+
 [  Change Log
 When			Who		What
+23-Aug-2009		J. Ingold	New kind - locative glimpse backdrop - these "localise" a location and auto- navigate towards it. I've populated the Abbey with some to ease the player around.
 22-Aug-2009		J. Ingold	Finished c7 playthrough. Fleshed out chase sequence and Caught location. 
 22-Aug-2009		J. Ingold	Added multiple solutions to the Difference Engine puzzle - if anything, I've been too generous!! Couple of other minors. Added board messages to room descriptions once they've been seen - code's a bit messy to ensure paragraph breaks are correct.
 18-Aug-2009		J. Ingold	Started to play through Chapter 7. Fixed a bug(GJ, please check this!) in Textfyre Standard Rules for implicitly opening. [ Update: actually, GJ may have fixed this already? Anyway, it's gone. ]
@@ -1069,6 +1071,12 @@ A glimpse backdrop is usually privately-named.
 Rule for printing the name of an matched-up glimpse backdrop (called the image):
 	say "[true representation of the image]";
 
+[Understand "[something related by identification]" as a glimpse backdrop.]
+
+[The Refectory-Glimpse is a glimpse backdrop, in the Kitchen, identifying the East Refectory. Instead of smelling the Refectory-Glimpse: say "It doesn't smell anything like as much as the kitchen does."]
+
+[ This doesn't work because "matched-up" tests for things not rooms.... ]
+
 Section 2 -  Interaction
 
 Instead of doing something when a glimpse backdrop (called the far-off thing) is physically involved and the action is physical:
@@ -1105,6 +1113,33 @@ Instead of asking an animate glimpse backdrop (called the far-off guy) about:
 Section 5 - Does the player mean doing something with a glimpse backdrop - no
 
 Does the player mean doing something with a glimpse backdrop: it is unlikely.
+
+
+Section 6 - Locative Glimpse Backdrops
+
+An locative glimpse backdrop is a kind of glimpse backdrop.
+
+Localisation relates various locative glimpse backdrops to one room (called the true location). The verb to localise (he localises, they localise, he localised, it is localised, he is localising) implies the localisation relation.
+
+Definition: a locative glimpse backdrop is matched-to if there is a room localised by it.
+
+Rule for printing the name of an matched-to locative glimpse backdrop (called the image):
+	say "[true location of the image]";
+
+Understand "[something related by localisation]" as a locative glimpse backdrop.
+
+Instead of approaching or entering an matched-to locative glimpse backdrop (called the far-off thing):
+	let the way be the best route from the location to the true location of the far-off thing, using doors;
+	if the way is a direction, try going the way instead;
+	continue the action;
+
+Instead of examining a matched-to locative glimpse backdrop (called far-off thing):
+	let the way be the best route from the location to the true location of the far-off thing, using doors;
+	if the way is a direction, say "[The far-off thing] [is-are] [way] from here." instead;
+	continue the action;
+
+Instead of doing something when a glimpse backdrop (called the far-off thing) is physically involved and the action is physical:
+	say "I could hardly do that."
 
 Part 15 - Brass rods on table
 
@@ -3855,6 +3890,15 @@ Understand "candle", "candles", "track", "tracks", "patterns", "holy" as the can
 Before doing something when the candle-tracks are physically involved:
 	say "They're high above me, out of reach." instead.
 
+Section 3 - Floorboards
+
+Some floorboards_glimpse is a glimpse backdrop in the Upper Hall. Understand "floorboard", "floorboards", "floor board/boards", "rafter", "rafters" as the floorboards_glimpse. The printed name is "floorboards". The description is "That's my room up there."
+
+Understand "ladder" as the floorboards_glimpse when the caretaker's ladder is in the Rickety Stair.
+
+Instead of approaching the floorboards_glimpse:
+	try going west.
+
 Part 5 - Kitchen
 
 Instead of going inside when in the Kitchen:
@@ -4737,7 +4781,7 @@ Section 2 - Hourglasses
 
 Some hourglasses are part of the long tables. The description is "Little polished hourglasses, each with a name inscribed at the base. They run on a metal bar so they can be easily flipped. 'There is time for eating,' so they say, 'but only the right amount of time.'[if the teacup is on the long tables] Next to Horloge's hourglass is an empty tea cup.[end if]"
 
-
+Understand "brother horloge's", "horloge's", "hourglass", "glasses" as the hourglasses.
 
 Instead of turning the hourglasses: say "The hourglasses tell the monks how long they have to eat before prayer. It's a holy Measure and not something I should play with."
 
@@ -4766,6 +4810,10 @@ Instead of drinking or tasting the full teacup:
 
 Instead of dropping the full teacup:
 	say "I didn't go to all that hassle to just put it down and have some hurrying monk knock it over!"
+
+Section 4 - Refectory Clock Glimpse
+
+The Ref_clock_glimpse is a glimpse backdrop in the West Refectory, identifying the Refectory Clock. Understand "refectory clock", "clock" as the Ref_clock_glimpse. The description is "The Refectory Clock is at the other end of the refectory."
 
 Part 9 - East Refectory
 
@@ -4818,6 +4866,8 @@ Section 2 - Hourglasses
 Some polished hourglasses are part of the long benches. The description is "Little polished hourglasses, each with a name inscribed at the base. They run on a metal bar so they can be easily flipped. 'There is time for eating,' so they say, 'but only the right amount of time.'"
 
 The printed name of the polished hourglasses is "hourglasses".
+
+Understand "glasses" as the polished hourglasses.
 
 Instead of turning the polished hourglasses: say "The hourglasses tell the monks how long they have to eat before prayer. It's a holy Measure and not something I should play with."
 
@@ -5157,7 +5207,7 @@ Instead of going southwest from the Lower Hall in the presence of Calvin when th
 
 
 Understand "clock" as Calvin when the location of Calvin is the Lower Hall.
-Understand "entry", "arch" as Calvin when the location of Calvin is the Lower Hall.
+[Understand "entry", "arch" as Calvin when the location of Calvin is the Lower Hall.]
 
 Instead of examining the southwest when the location of Calvin is the Lower Hall and the location is the Lower Hall:
 	try examining Calvin instead.
@@ -5661,6 +5711,27 @@ Some creatures are scenery, animals, in the Abbey Herb Garden. Understand "birds
 
 Instead of taking the creatures: say "They're busy. So, remember, am I."
 
+Part 17 - Locative glimpse backdrops to navigate by
+
+The Refectory-Glimpse is a locative glimpse backdrop, in the Kitchen, localising the East Refectory. 
+
+Instead of smelling the Refectory-Glimpse: say "It doesn't smell anything like as much as the kitchen does."
+
+The CC_glimpse is a locative glimpse backdrop in the Lower Hall, localising the Corridor of Contemplation.
+
+The UHALL_glimpse is a locative glimpse backdrop in the Kitchen, localising the Upper Hall.
+
+The HALL_glimpse is a locative glimpse backdrop in the Library, in the Rickety Stair, in the Attic Room, in the East Refectory, in the West Refectory, in the Abbey Herb Garden, in the Entry, in the Corridor of Contemplation, in the Abbot's Quarters, localising the Central Hall.
+
+The LHALL_glimpse is a locative glimpse backdrop in the Scriptorium, localising the Lower Hall.
+
+The KITCHEN_glimpse is a locative glimpse backdrop in the Library, in the Scriptorium, in the Central Hall, in the Lower Hall, in the Upper Hall, in the Rickety Stair, in the Attic Room, in the East Refectory, in the West Refectory, in the Abbey Herb Garden, in the Entry, in the Corridor of Contemplation, in the Abbot's Quarters, localising the Kitchen.
+
+The SCRIPT_glimpse is a locative glimpse backdrop in the Library, in the Kitchen, in the Central Hall, in the Lower Hall, in the Upper Hall, in the Rickety Stair, in the Attic Room, in the East Refectory, in the West Refectory, in the Abbey Herb Garden, in the Entry, in the Corridor of Contemplation, in the Abbot's Quarters, localising the Scriptorium.
+
+The ABBEYLIBRARY_glimpse is a locative glimpse backdrop in the Kitchen, in the Scriptorium, in the Central Hall, in the Lower Hall, in the Upper Hall, in the Rickety Stair, in the Attic Room, in the East Refectory, in the West Refectory, in the Abbey Herb Garden, in the Entry, in the Corridor of Contemplation, in the Abbot's Quarters, localising the Library.
+
+The ENTRY_glimpse is a locative glimpse backdrop  in the Library, in the Scriptorium, in the Central Hall, in the Lower Hall, in the Upper Hall, in the Rickety Stair, in the Attic Room, in the East Refectory, in the West Refectory, in the Abbey Herb Garden, in the Kitchen, in the Corridor of Contemplation, in the Abbot's Quarters, localising the Entry.
 
 Chapter 2 - The Machinery
 
@@ -7946,6 +8017,15 @@ Rule for firing unfired BISH_DOOR_AFTEREVENT1:
 			say "Brother Sa'at. Maybe Brother Sa'at can help.";
 		otherwise:
 			say "look around, Wren. Look around.";
+
+Part 16 - Locative Glimpse Backdrops to Navigate by
+
+The CSHRINE_glimpse is a locative glimpse backdrop in the Cathedral Entrance, in the Lower Nave, in the Upper Nave, in the Cathedral Altar, in the Cathedral Choir, in the East Apse, in the West Apse, localising the Calendar Shrine.
+
+The SSHRINE_glimpse is a locative glimpse backdrop in the Cathedral Entrance, in the Lower Nave, in the Upper Nave, in the Cathedral Altar, in the Cathedral Choir, in the East Apse, in the West Apse, localising the Shrine of the Saints.
+
+The BLIBRARY_glimpse is a locative glimpse backdrop in the Cathedral Entrance, in the Lower Nave, in the Upper Nave, in the Cathedral Altar, in the Cathedral Choir, in the East Apse, in the West Apse, in the East Clerestory, in the West Clerestory, in the North Clerestory, localising the Bishop's Library.
+
 
 
 Book 4 - The Cathedral Of Time (Continued)
@@ -16082,4 +16162,9 @@ Report unxyzzying:
 Book Y - Not For Release - Alpha Testing
 
 test quarters with "x desk / x designs / x scratches / x cot / x blanket / x bust / x window / x door / x pendulum / x weights / x weight of precision / x counterweight / x counterweight of slapdashery / x figure / x abbot";
+
+
+
+
+
 
