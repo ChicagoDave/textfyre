@@ -3,6 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Textfyre.Web", "Textfyre.Web.csproj", "{0BF52109-E594-4D54-9EBE-DABFCFF9DC80}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Textfyre.Web.Domain", "..\Textfyre.Web.Domain\Textfyre.Web.Domain.csproj", "{160AA445-CE6F-4312-B101-8BDD5638FBDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Textfyre.Common.DataLayer", "..\..\middleware\Textfyre.Common.DataLayer\Textfyre.Common.DataLayer.csproj", "{7382DF78-E434-48C7-B87E-D31CC526F9C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Textfyre.Common.Utilities", "..\..\middleware\Textfyre.Common.Utilities\Textfyre.Common.Utilities.csproj", "{68061321-A3F0-481C-A827-65D29B1B5DA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Textfyre.Common.BusinessLayer", "..\..\middleware\Textfyre.Common.BusinessLayer\Textfyre.Common.BusinessLayer.csproj", "{F5552D50-0E89-4FF7-9FC3-219840493CCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Textfyre.Common.Logging", "..\..\middleware\Textfyre.Common.Logging\Textfyre.Common.Logging.csproj", "{2F986E56-8D6D-425E-958C-605C982EBBE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +23,26 @@ Global
 		{0BF52109-E594-4D54-9EBE-DABFCFF9DC80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BF52109-E594-4D54-9EBE-DABFCFF9DC80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BF52109-E594-4D54-9EBE-DABFCFF9DC80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{160AA445-CE6F-4312-B101-8BDD5638FBDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{160AA445-CE6F-4312-B101-8BDD5638FBDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{160AA445-CE6F-4312-B101-8BDD5638FBDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{160AA445-CE6F-4312-B101-8BDD5638FBDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7382DF78-E434-48C7-B87E-D31CC526F9C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7382DF78-E434-48C7-B87E-D31CC526F9C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7382DF78-E434-48C7-B87E-D31CC526F9C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7382DF78-E434-48C7-B87E-D31CC526F9C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68061321-A3F0-481C-A827-65D29B1B5DA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68061321-A3F0-481C-A827-65D29B1B5DA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68061321-A3F0-481C-A827-65D29B1B5DA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68061321-A3F0-481C-A827-65D29B1B5DA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5552D50-0E89-4FF7-9FC3-219840493CCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5552D50-0E89-4FF7-9FC3-219840493CCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5552D50-0E89-4FF7-9FC3-219840493CCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5552D50-0E89-4FF7-9FC3-219840493CCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F986E56-8D6D-425E-958C-605C982EBBE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F986E56-8D6D-425E-958C-605C982EBBE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F986E56-8D6D-425E-958C-605C982EBBE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F986E56-8D6D-425E-958C-605C982EBBE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

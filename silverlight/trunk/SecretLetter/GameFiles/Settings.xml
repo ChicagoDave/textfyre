@@ -6,7 +6,7 @@
   <Setting Key="BookPageHeight" Value="538" />
   <Setting Key="BookPageOffsetLeft" Value="31" />
   <Setting Key="BookPageOffsetTop" Value="33" />
-  <Setting Key="VersionText" Value="Version: 1.07.20090725" />
+  <Setting Key="VersionText" Value="Version: 1.08.20090809" />
   <Setting Key="StoryID" Value="1" />
   <Setting Key="LogEnabled" Value="False" />
   <Setting Key="UseIndents" Value="True" />
@@ -14,7 +14,7 @@
   <Setting Key="ScrollSpeed" Value="100" />
   <Setting Key="AutoOpenBookCover" Value="False" />
   <Setting Key="PageGripSize" Value="40" />
-  <Setting Key="TOCs" Value="Introduction|Map|Hints|Transcript|Settings|Quit" />
+  <Setting Key="TOCs" Value="Map|Hints|Transcript|Settings|Quit" />
   <Setting Key="ResizingEnabled" Value="True" />
   <Setting Key="BookPageInnerContentWidth" Value="350" />
   <Setting Key="AdditionalWidthForTextLines" Value="25" />

@@ -1,24 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Settings>
-  <Setting Key="BackgroundColor" Value="#FFF9EAD6" />
-  <Setting Key="BookPageWidth" Value="353" />
-  <Setting Key="BookPageHeight" Value="557" />
-  <Setting Key="BookPageOffsetLeft" Value="42" />
-  <Setting Key="BookPageOffsetTop" Value="19" />
-  <Setting Key="VersionText" Value="12-Dec-2008" />
+  <Setting Key="BackgroundColor" Value="#FFFFFFFF" />
+  <Setting Key="BookWidth" Value="825" />
+  <Setting Key="BookPageWidth" Value="381" />
+  <Setting Key="BookPageHeight" Value="538" />
+  <Setting Key="BookPageOffsetLeft" Value="31" />
+  <Setting Key="BookPageOffsetTop" Value="33" />
+  <Setting Key="VersionText" Value="Version: 0.62.20090823" />
   <Setting Key="StoryID" Value="2" />
-  <Setting Key="LogEnabled" Value="True" />
+  <Setting Key="LogEnabled" Value="False" />
   <Setting Key="UseIndents" Value="True" />
   <Setting Key="UseNewLineAfterParagraph" Value="False" />
-  <Setting Key="ScrollSpeed" Value="50" />
-  <Setting Key="AutoOpenBookCover" Value="True" />
+  <Setting Key="ScrollSpeed" Value="100" />
+  <Setting Key="AutoOpenBookCover" Value="False" />
   <Setting Key="PageGripSize" Value="40" />
-  <Setting Key="TOCs" Value="Introduction|Map|Hints|Help|Transcript|Credits|Quit" />
+  <Setting Key="TOCs" Value="Map|Hints|Transcript|Settings|Quit" />
+  <Setting Key="ResizingEnabled" Value="True" />
+  <Setting Key="BookPageInnerContentWidth" Value="350" />
+  <Setting Key="AdditionalWidthForTextLines" Value="25" />
+  <Setting Key="BookPageInnerContentHeight" Value="470" />
+  <Setting Key="BookPageInnerContentOffsetLeft" Value="20" />
+  <Setting Key="BookPageInnerContentOffsetTop" Value="0" />
+  <Setting Key="PrologueNewLines" Value="0" />
+  <Setting Key="PagingMechanism" Value="StaticPageCreateBackPages" />
   <Setting Key="WaitMessages" Value="Please wait.|Please wait..|Please wait..." />
   <Setting Key="CenterHeadline" Value="True" />
-  <Setting Key="UseRealPageNumbers" Value="False" />
+  <Setting Key="HeadlineOffset" Value="35" />
+  <Setting Key="UseRealPageNumbers" Value="True" />
   <Setting Key="SaveGameDirectory" Value="ShadowSaveFiles" />
   <Setting Key="TextBetweenPrologueAndStory" Value="Chapter 1" />
   <Setting Key="QuitUrl" Value="http://www.textfyre.com" />
-
+  <Setting Key="Profile" Value="False" />
 </Settings>

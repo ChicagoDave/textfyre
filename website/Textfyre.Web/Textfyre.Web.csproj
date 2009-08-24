@@ -85,6 +85,13 @@
     <Compile Include="CompletedSale.aspx.designer.cs">
       <DependentUpon>CompletedSale.aspx</DependentUpon>
     </Compile>
+    <Compile Include="controls\Downloads.ascx.cs">
+      <DependentUpon>Downloads.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\Downloads.ascx.designer.cs">
+      <DependentUpon>Downloads.ascx</DependentUpon>
+    </Compile>
     <Compile Include="controls\MenuBar.ascx.cs">
       <DependentUpon>MenuBar.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -99,19 +106,26 @@
     <Compile Include="Customer\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Customer\Downloads.aspx.cs">
-      <DependentUpon>Downloads.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Customer\Downloads.aspx.designer.cs">
-      <DependentUpon>Downloads.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Customer\OnTheInside.aspx.cs">
       <DependentUpon>OnTheInside.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Customer\OnTheInside.aspx.designer.cs">
       <DependentUpon>OnTheInside.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\TF99ReceiptData.aspx.cs">
+      <DependentUpon>TF99ReceiptData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\TF99ReceiptData.aspx.designer.cs">
+      <DependentUpon>TF99ReceiptData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\TF99Tester.aspx.cs">
+      <DependentUpon>TF99Tester.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\TF99Tester.aspx.designer.cs">
+      <DependentUpon>TF99Tester.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -120,7 +134,9 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Domain\User.cs" />
+    <Compile Include="DomainOld\Transaction.cs" />
+    <Compile Include="DomainOld\TransactionItem.cs" />
+    <Compile Include="DomainOld\User.cs" />
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Games.aspx.cs">
       <DependentUpon>Games.aspx</DependentUpon>
@@ -235,13 +251,33 @@
   <ItemGroup>
     <Content Include="CancelledSale.aspx" />
     <Content Include="CompletedSale.aspx" />
+    <Content Include="controls\Downloads.ascx" />
     <Content Include="Customer\Default.aspx" />
-    <Content Include="Customer\Downloads.aspx" />
     <Content Include="Customer\OnTheInside.aspx" />
+    <Content Include="Customer\TF99ReceiptData.aspx" />
+    <Content Include="Customer\TF99Tester.aspx" />
     <Content Include="Global.asax" />
     <Content Include="images\graeme.jpg" />
     <Content Include="images\tflogo.jpg" />
     <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\middleware\Textfyre.Common.BusinessLayer\Textfyre.Common.BusinessLayer.csproj">
+      <Project>{F5552D50-0E89-4FF7-9FC3-219840493CCA}</Project>
+      <Name>Textfyre.Common.BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\middleware\Textfyre.Common.DataLayer\Textfyre.Common.DataLayer.csproj">
+      <Project>{7382DF78-E434-48C7-B87E-D31CC526F9C2}</Project>
+      <Name>Textfyre.Common.DataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\middleware\Textfyre.Common.Logging\Textfyre.Common.Logging.csproj">
+      <Project>{2F986E56-8D6D-425E-958C-605C982EBBE3}</Project>
+      <Name>Textfyre.Common.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\middleware\Textfyre.Common.Utilities\Textfyre.Common.Utilities.csproj">
+      <Project>{68061321-A3F0-481C-A827-65D29B1B5DA3}</Project>
+      <Name>Textfyre.Common.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
