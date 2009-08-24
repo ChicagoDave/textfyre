@@ -43,7 +43,7 @@ Rule for firing an unfired quip (called q):
 Rule for firing a fired quip (called q):
 	if the repeat text of q is not "":
 		say the repeat text of q, paragraph break;
-	otherwise:
+	otherwise if the display text of q is not "":
 		say the display text of q, paragraph break;
 
 Chapter 4 - Conversation Initiation
