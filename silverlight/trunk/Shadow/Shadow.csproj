@@ -72,6 +72,7 @@
       <DependentUpon>Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StoryHandle.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -88,15 +89,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Fonts\GOUDOSSC.TTF" />
-    <EmbeddedResource Include="Fonts\GOUDR.TTF" />
-    <EmbeddedResource Include="Fonts\GOUDRI.TTF" />
-    <EmbeddedResource Include="Fonts\GOUDYMER.TTF" />
     <EmbeddedResource Include="GameFiles\GameFile.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>GameFile.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="GameFiles\shadow-r1.ulx" />
+    <None Include="GameFiles\sh-v0.62e.ulx" />
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +119,30 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="GameFiles\Arts.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="GameFiles\Fonts.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BookCover.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TitlePage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\leftpage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\openbook.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\prologue.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\rightpage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Fonts\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\v3.0\Microsoft.Silverlight.CSharp.targets" Condition="" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

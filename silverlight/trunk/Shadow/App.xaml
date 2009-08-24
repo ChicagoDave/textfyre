@@ -1,11 +1,29 @@
 ﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
              x:Class="Shadow.App"
-             mc:Ignorable="d"
+             xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
              >
     <Application.Resources>
+        <!-- Font Styles -->
+        <Style x:Name="MainText" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Georgia"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="FontStyle" Value="Normal"></Setter>
+        </Style>
+        <Style x:Name="LoadingText" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Georgia"></Setter>
+            <Setter Property="FontSize" Value="17"></Setter>
+            <Setter Property="FontStyle" Value="Normal"></Setter>
+            <Setter Property="Foreground" Value="#FFF0F0F0" />
+        </Style>
+        <Style x:Name="CreditsText" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Georgia"></Setter>
+            <Setter Property="FontSize" Value="12"></Setter>
+            <Setter Property="FontStyle" Value="Normal"></Setter>
+            <Setter Property="Foreground" Value="#FF333333" />
+        </Style>
+        <!-- Font Styles -->
+
         <!-- TEXTBOX INPUT -->
         <Style x:Key="TextBoxStyle1" TargetType="TextBox">
             <Setter Property="Template">
@@ -50,61 +68,61 @@
                             <Grid.Resources>
                                 <ControlTemplate x:Key="RepeatButtonTemplate" TargetType="RepeatButton">
                                     <Grid x:Name="Root" Background="Transparent">
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup x:Name="CommonStates">
-                                                <VisualState x:Name="Normal"/>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
+                                        <vsm:VisualStateManager.VisualStateGroups>
+                                            <vsm:VisualStateGroup x:Name="CommonStates">
+                                                <vsm:VisualState x:Name="Normal"/>
+                                            </vsm:VisualStateGroup>
+                                        </vsm:VisualStateManager.VisualStateGroups>
                                     </Grid>
                                 </ControlTemplate>
                                 <ControlTemplate x:Key="HorizontalIncrementTemplate" TargetType="RepeatButton">
                                     <Grid x:Name="Root" Background="#00000000">
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup x:Name="CommonStates">
-                                                <VisualStateGroup.Transitions>
-                                                    <VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver"/>
-                                                </VisualStateGroup.Transitions>
-                                                <VisualState x:Name="Normal"/>
-                                                <VisualState x:Name="MouseOver">
+                                        <vsm:VisualStateManager.VisualStateGroups>
+                                            <vsm:VisualStateGroup x:Name="CommonStates">
+                                                <vsm:VisualStateGroup.Transitions>
+                                                    <vsm:VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver"/>
+                                                </vsm:VisualStateGroup.Transitions>
+                                                <vsm:VisualState x:Name="Normal"/>
+                                                <vsm:VisualState x:Name="MouseOver">
                                                     <Storyboard>
                                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="ButtonVisual" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
                                                             <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF557E9A"/>
                                                         </ColorAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                                <VisualState x:Name="Disabled">
+                                                </vsm:VisualState>
+                                                <vsm:VisualState x:Name="Disabled">
                                                     <Storyboard>
                                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ButtonVisual" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                             <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.6"/>
                                                         </DoubleAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                            <VisualStateGroup x:Name="FocusStates">
-                                                <VisualState x:Name="Focused">
+                                                </vsm:VisualState>
+                                            </vsm:VisualStateGroup>
+                                            <vsm:VisualStateGroup x:Name="FocusStates">
+                                                <vsm:VisualState x:Name="Focused">
                                                     <Storyboard>
                                                         <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Visibility">
                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                    <Visibility>Visible</Visibility>
+                                                                    <vsm:Visibility>Visible</vsm:Visibility>
                                                                 </DiscreteObjectKeyFrame.Value>
                                                             </DiscreteObjectKeyFrame>
                                                         </ObjectAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                                <VisualState x:Name="Unfocused">
+                                                </vsm:VisualState>
+                                                <vsm:VisualState x:Name="Unfocused">
                                                     <Storyboard>
                                                         <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Visibility">
                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                    <Visibility>Collapsed</Visibility>
+                                                                    <vsm:Visibility>Collapsed</vsm:Visibility>
                                                                 </DiscreteObjectKeyFrame.Value>
                                                             </DiscreteObjectKeyFrame>
                                                         </ObjectAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
+                                                </vsm:VisualState>
+                                            </vsm:VisualStateGroup>
+                                        </vsm:VisualStateManager.VisualStateGroups>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="35*"/>
                                             <ColumnDefinition Width="30*"/>
@@ -125,52 +143,52 @@
                                 </ControlTemplate>
                                 <ControlTemplate x:Key="HorizontalDecrementTemplate" TargetType="RepeatButton">
                                     <Grid x:Name="Root" Background="#00000000">
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup x:Name="CommonStates">
-                                                <VisualStateGroup.Transitions>
-                                                    <VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver"/>
-                                                </VisualStateGroup.Transitions>
-                                                <VisualState x:Name="Normal"/>
-                                                <VisualState x:Name="MouseOver">
+                                        <vsm:VisualStateManager.VisualStateGroups>
+                                            <vsm:VisualStateGroup x:Name="CommonStates">
+                                                <vsm:VisualStateGroup.Transitions>
+                                                    <vsm:VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver"/>
+                                                </vsm:VisualStateGroup.Transitions>
+                                                <vsm:VisualState x:Name="Normal"/>
+                                                <vsm:VisualState x:Name="MouseOver">
                                                     <Storyboard>
                                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="ButtonVisual" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
                                                             <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF557E9A"/>
                                                         </ColorAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                                <VisualState x:Name="Disabled">
+                                                </vsm:VisualState>
+                                                <vsm:VisualState x:Name="Disabled">
                                                     <Storyboard>
                                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ButtonVisual" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                             <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.6"/>
                                                         </DoubleAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                            <VisualStateGroup x:Name="FocusStates">
-                                                <VisualState x:Name="Focused">
+                                                </vsm:VisualState>
+                                            </vsm:VisualStateGroup>
+                                            <vsm:VisualStateGroup x:Name="FocusStates">
+                                                <vsm:VisualState x:Name="Focused">
                                                     <Storyboard>
                                                         <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Visibility">
                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                    <Visibility>Visible</Visibility>
+                                                                    <vsm:Visibility>Visible</vsm:Visibility>
                                                                 </DiscreteObjectKeyFrame.Value>
                                                             </DiscreteObjectKeyFrame>
                                                         </ObjectAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                                <VisualState x:Name="Unfocused">
+                                                </vsm:VisualState>
+                                                <vsm:VisualState x:Name="Unfocused">
                                                     <Storyboard>
                                                         <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Visibility">
                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                    <Visibility>Collapsed</Visibility>
+                                                                    <vsm:Visibility>Collapsed</vsm:Visibility>
                                                                 </DiscreteObjectKeyFrame.Value>
                                                             </DiscreteObjectKeyFrame>
                                                         </ObjectAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
+                                                </vsm:VisualState>
+                                            </vsm:VisualStateGroup>
+                                        </vsm:VisualStateManager.VisualStateGroups>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="35*"/>
                                             <ColumnDefinition Width="30*"/>
@@ -191,52 +209,52 @@
                                 </ControlTemplate>
                                 <ControlTemplate x:Key="VerticalIncrementTemplate" TargetType="RepeatButton">
                                     <Grid x:Name="Root" Background="#00000000">
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup x:Name="CommonStates">
-                                                <VisualStateGroup.Transitions>
-                                                    <VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver"/>
-                                                </VisualStateGroup.Transitions>
-                                                <VisualState x:Name="Normal"/>
-                                                <VisualState x:Name="MouseOver">
+                                        <vsm:VisualStateManager.VisualStateGroups>
+                                            <vsm:VisualStateGroup x:Name="CommonStates">
+                                                <vsm:VisualStateGroup.Transitions>
+                                                    <vsm:VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver"/>
+                                                </vsm:VisualStateGroup.Transitions>
+                                                <vsm:VisualState x:Name="Normal"/>
+                                                <vsm:VisualState x:Name="MouseOver">
                                                     <Storyboard>
                                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="ButtonVisual" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
                                                             <SplineColorKeyFrame KeyTime="00:00:00" Value="#FFEEDDBB"/>
                                                         </ColorAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                                <VisualState x:Name="Disabled">
+                                                </vsm:VisualState>
+                                                <vsm:VisualState x:Name="Disabled">
                                                     <Storyboard>
                                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ButtonVisual" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                             <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.6"/>
                                                         </DoubleAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                            <VisualStateGroup x:Name="FocusStates">
-                                                <VisualState x:Name="Focused">
+                                                </vsm:VisualState>
+                                            </vsm:VisualStateGroup>
+                                            <vsm:VisualStateGroup x:Name="FocusStates">
+                                                <vsm:VisualState x:Name="Focused">
                                                     <Storyboard>
                                                         <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Visibility">
                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                    <Visibility>Visible</Visibility>
+                                                                    <vsm:Visibility>Visible</vsm:Visibility>
                                                                 </DiscreteObjectKeyFrame.Value>
                                                             </DiscreteObjectKeyFrame>
                                                         </ObjectAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                                <VisualState x:Name="Unfocused">
+                                                </vsm:VisualState>
+                                                <vsm:VisualState x:Name="Unfocused">
                                                     <Storyboard>
                                                         <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Visibility">
                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                    <Visibility>Collapsed</Visibility>
+                                                                    <vsm:Visibility>Collapsed</vsm:Visibility>
                                                                 </DiscreteObjectKeyFrame.Value>
                                                             </DiscreteObjectKeyFrame>
                                                         </ObjectAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
+                                                </vsm:VisualState>
+                                            </vsm:VisualStateGroup>
+                                        </vsm:VisualStateManager.VisualStateGroups>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="25*"/>
                                             <ColumnDefinition Width="50*"/>
@@ -257,52 +275,52 @@
                                 </ControlTemplate>
                                 <ControlTemplate x:Key="VerticalDecrementTemplate" TargetType="RepeatButton">
                                     <Grid x:Name="Root" Background="#00000000">
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup x:Name="CommonStates">
-                                                <VisualStateGroup.Transitions>
-                                                    <VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver"/>
-                                                </VisualStateGroup.Transitions>
-                                                <VisualState x:Name="Normal"/>
-                                                <VisualState x:Name="MouseOver">
+                                        <vsm:VisualStateManager.VisualStateGroups>
+                                            <vsm:VisualStateGroup x:Name="CommonStates">
+                                                <vsm:VisualStateGroup.Transitions>
+                                                    <vsm:VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver"/>
+                                                </vsm:VisualStateGroup.Transitions>
+                                                <vsm:VisualState x:Name="Normal"/>
+                                                <vsm:VisualState x:Name="MouseOver">
                                                     <Storyboard>
                                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="ButtonVisual" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
                                                             <SplineColorKeyFrame KeyTime="00:00:00" Value="#FFEEDDBB"/>
                                                         </ColorAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                                <VisualState x:Name="Disabled">
+                                                </vsm:VisualState>
+                                                <vsm:VisualState x:Name="Disabled">
                                                     <Storyboard>
                                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ButtonVisual" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                             <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.6"/>
                                                         </DoubleAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                            <VisualStateGroup x:Name="FocusStates">
-                                                <VisualState x:Name="Focused">
+                                                </vsm:VisualState>
+                                            </vsm:VisualStateGroup>
+                                            <vsm:VisualStateGroup x:Name="FocusStates">
+                                                <vsm:VisualState x:Name="Focused">
                                                     <Storyboard>
                                                         <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Visibility">
                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                    <Visibility>Visible</Visibility>
+                                                                    <vsm:Visibility>Visible</vsm:Visibility>
                                                                 </DiscreteObjectKeyFrame.Value>
                                                             </DiscreteObjectKeyFrame>
                                                         </ObjectAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                                <VisualState x:Name="Unfocused">
+                                                </vsm:VisualState>
+                                                <vsm:VisualState x:Name="Unfocused">
                                                     <Storyboard>
                                                         <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Visibility">
                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                    <Visibility>Collapsed</Visibility>
+                                                                    <vsm:Visibility>Collapsed</vsm:Visibility>
                                                                 </DiscreteObjectKeyFrame.Value>
                                                             </DiscreteObjectKeyFrame>
                                                         </ObjectAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
+                                                </vsm:VisualState>
+                                            </vsm:VisualStateGroup>
+                                        </vsm:VisualStateManager.VisualStateGroups>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="25*"/>
                                             <ColumnDefinition Width="50*"/>
@@ -334,24 +352,24 @@
                                             <Color x:Key="HoverLinearBevelDarkStartColor">#FFEEDDBB</Color>
                                             <Color x:Key="HoverLinearBevelDarkEndColor">#FFEEDDBB</Color>
                                         </Grid.Resources>
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup x:Name="CommonStates">
-                                                <VisualStateGroup.Transitions>
-                                                    <VisualTransition GeneratedDuration="0:0:0.1" To="MouseOver"/>
-                                                </VisualStateGroup.Transitions>
-                                                <VisualState x:Name="Normal"/>
-                                                <VisualState x:Name="MouseOver">
+                                        <vsm:VisualStateManager.VisualStateGroups>
+                                            <vsm:VisualStateGroup x:Name="CommonStates">
+                                                <vsm:VisualStateGroup.Transitions>
+                                                    <vsm:VisualTransition GeneratedDuration="0:0:0.1" To="MouseOver"/>
+                                                </vsm:VisualStateGroup.Transitions>
+                                                <vsm:VisualState x:Name="Normal"/>
+                                                <vsm:VisualState x:Name="MouseOver">
                                                     <Storyboard/>
-                                                </VisualState>
-                                                <VisualState x:Name="Disabled">
+                                                </vsm:VisualState>
+                                                <vsm:VisualState x:Name="Disabled">
                                                     <Storyboard>
                                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ThumbVisual" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                             <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.6"/>
                                                         </DoubleAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
+                                                </vsm:VisualState>
+                                            </vsm:VisualStateGroup>
+                                        </vsm:VisualStateManager.VisualStateGroups>
                                         <Grid x:Name="ThumbVisual">
                                             <Rectangle Margin="5,0,5,0" x:Name="rectangle" Stroke="#FF777777" StrokeThickness="0" RadiusX="4" RadiusY="4">
                                                 <Rectangle.Fill>
@@ -377,13 +395,13 @@
                                             <Color x:Key="HoverLinearBevelDarkStartColor">#D8FFFFFF</Color>
                                             <Color x:Key="HoverLinearBevelDarkEndColor">#4CFFFFFF</Color>
                                         </Grid.Resources>
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup x:Name="CommonStates">
-                                                <VisualStateGroup.Transitions>
-                                                    <VisualTransition GeneratedDuration="0:0:0.1" To="MouseOver"/>
-                                                </VisualStateGroup.Transitions>
-                                                <VisualState x:Name="Normal"/>
-                                                <VisualState x:Name="MouseOver">
+                                        <vsm:VisualStateManager.VisualStateGroups>
+                                            <vsm:VisualStateGroup x:Name="CommonStates">
+                                                <vsm:VisualStateGroup.Transitions>
+                                                    <vsm:VisualTransition GeneratedDuration="0:0:0.1" To="MouseOver"/>
+                                                </vsm:VisualStateGroup.Transitions>
+                                                <vsm:VisualState x:Name="Normal"/>
+                                                <vsm:VisualState x:Name="MouseOver">
                                                     <Storyboard>
                                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
                                                             <SplineColorKeyFrame KeyTime="00:00:00" Value="{StaticResource HoverLinearBevelLightEndColor}"/>
@@ -398,16 +416,16 @@
                                                             <SplineColorKeyFrame KeyTime="00:00:00" Value="{StaticResource HoverLinearBevelDarkEndColor}"/>
                                                         </ColorAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                                <VisualState x:Name="Disabled">
+                                                </vsm:VisualState>
+                                                <vsm:VisualState x:Name="Disabled">
                                                     <Storyboard>
                                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ThumbVisual" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                             <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.6"/>
                                                         </DoubleAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
+                                                </vsm:VisualState>
+                                            </vsm:VisualStateGroup>
+                                        </vsm:VisualStateManager.VisualStateGroups>
                                         <Grid x:Name="ThumbVisual">
                                             <Rectangle Margin=".5,2.5,.5,2.5" x:Name="Background" Fill="{StaticResource Background}" RadiusX="2.5" RadiusY="2.5"/>
                                             <Rectangle Margin="0,2,0,2" x:Name="rectangle" Stroke="#FF777777" StrokeThickness="1" RadiusX="2.5" RadiusY="2.5">
@@ -425,19 +443,19 @@
                                     </Grid>
                                 </ControlTemplate>
                             </Grid.Resources>
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal"/>
-                                    <VisualState x:Name="MouseOver"/>
-                                    <VisualState x:Name="Disabled">
+                            <vsm:VisualStateManager.VisualStateGroups>
+                                <vsm:VisualStateGroup x:Name="CommonStates">
+                                    <vsm:VisualState x:Name="Normal"/>
+                                    <vsm:VisualState x:Name="MouseOver"/>
+                                    <vsm:VisualState x:Name="Disabled">
                                         <Storyboard>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Root" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                 <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.5"/>
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
+                                    </vsm:VisualState>
+                                </vsm:VisualStateGroup>
+                            </vsm:VisualStateManager.VisualStateGroups>
                             <Grid x:Name="HorizontalRoot">
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
@@ -506,11 +524,11 @@
                             <Grid.Resources>
                                 <ControlTemplate x:Key="RepeatButtonTemplate" TargetType="RepeatButton">
                                     <Grid x:Name="Root" Background="Transparent">
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup x:Name="CommonStates">
-                                                <VisualState x:Name="Normal"/>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
+                                        <vsm:VisualStateManager.VisualStateGroups>
+                                            <vsm:VisualStateGroup x:Name="CommonStates">
+                                                <vsm:VisualState x:Name="Normal"/>
+                                            </vsm:VisualStateGroup>
+                                        </vsm:VisualStateManager.VisualStateGroups>
                                     </Grid>
                                 </ControlTemplate>
                                 <ControlTemplate x:Key="HorizontalIncrementTemplate" TargetType="RepeatButton">
@@ -525,52 +543,52 @@
                                             <RowDefinition Height="50*"/>
                                             <RowDefinition Height="25*"/>
                                         </Grid.RowDefinitions>
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup x:Name="CommonStates">
-                                                <VisualStateGroup.Transitions>
-                                                    <VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver"/>
-                                                </VisualStateGroup.Transitions>
-                                                <VisualState x:Name="Normal"/>
-                                                <VisualState x:Name="MouseOver">
+                                        <vsm:VisualStateManager.VisualStateGroups>
+                                            <vsm:VisualStateGroup x:Name="CommonStates">
+                                                <vsm:VisualStateGroup.Transitions>
+                                                    <vsm:VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver"/>
+                                                </vsm:VisualStateGroup.Transitions>
+                                                <vsm:VisualState x:Name="Normal"/>
+                                                <vsm:VisualState x:Name="MouseOver">
                                                     <Storyboard>
                                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="ButtonVisual" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
                                                             <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF557E9A"/>
                                                         </ColorAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                                <VisualState x:Name="Disabled">
+                                                </vsm:VisualState>
+                                                <vsm:VisualState x:Name="Disabled">
                                                     <Storyboard>
                                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ButtonVisual" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                             <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.6"/>
                                                         </DoubleAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                            <VisualStateGroup x:Name="FocusStates">
-                                                <VisualState x:Name="Focused">
+                                                </vsm:VisualState>
+                                            </vsm:VisualStateGroup>
+                                            <vsm:VisualStateGroup x:Name="FocusStates">
+                                                <vsm:VisualState x:Name="Focused">
                                                     <Storyboard>
                                                         <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Visibility">
                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                    <Visibility>Visible</Visibility>
+                                                                    <vsm:Visibility>Visible</vsm:Visibility>
                                                                 </DiscreteObjectKeyFrame.Value>
                                                             </DiscreteObjectKeyFrame>
                                                         </ObjectAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                                <VisualState x:Name="Unfocused">
+                                                </vsm:VisualState>
+                                                <vsm:VisualState x:Name="Unfocused">
                                                     <Storyboard>
                                                         <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Visibility">
                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                    <Visibility>Collapsed</Visibility>
+                                                                    <vsm:Visibility>Collapsed</vsm:Visibility>
                                                                 </DiscreteObjectKeyFrame.Value>
                                                             </DiscreteObjectKeyFrame>
                                                         </ObjectAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
+                                                </vsm:VisualState>
+                                            </vsm:VisualStateGroup>
+                                        </vsm:VisualStateManager.VisualStateGroups>
                                         <Path x:Name="ButtonVisual" Grid.Column="1" Grid.Row="1" Stretch="Fill" Data="F1 M 511.047,352.682L 511.047,342.252L 517.145,347.467L 511.047,352.682 Z ">
                                             <Path.Fill>
                                                 <SolidColorBrush Color="#FF313131" x:Name="ButtonColor"/>
@@ -591,52 +609,52 @@
                                             <RowDefinition Height="50*"/>
                                             <RowDefinition Height="25*"/>
                                         </Grid.RowDefinitions>
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup x:Name="CommonStates">
-                                                <VisualStateGroup.Transitions>
-                                                    <VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver"/>
-                                                </VisualStateGroup.Transitions>
-                                                <VisualState x:Name="Normal"/>
-                                                <VisualState x:Name="MouseOver">
+                                        <vsm:VisualStateManager.VisualStateGroups>
+                                            <vsm:VisualStateGroup x:Name="CommonStates">
+                                                <vsm:VisualStateGroup.Transitions>
+                                                    <vsm:VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver"/>
+                                                </vsm:VisualStateGroup.Transitions>
+                                                <vsm:VisualState x:Name="Normal"/>
+                                                <vsm:VisualState x:Name="MouseOver">
                                                     <Storyboard>
                                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="ButtonVisual" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
                                                             <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF557E9A"/>
                                                         </ColorAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                                <VisualState x:Name="Disabled">
+                                                </vsm:VisualState>
+                                                <vsm:VisualState x:Name="Disabled">
                                                     <Storyboard>
                                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ButtonVisual" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                             <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.6"/>
                                                         </DoubleAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                            <VisualStateGroup x:Name="FocusStates">
-                                                <VisualState x:Name="Focused">
+                                                </vsm:VisualState>
+                                            </vsm:VisualStateGroup>
+                                            <vsm:VisualStateGroup x:Name="FocusStates">
+                                                <vsm:VisualState x:Name="Focused">
                                                     <Storyboard>
                                                         <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Visibility">
                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                    <Visibility>Visible</Visibility>
+                                                                    <vsm:Visibility>Visible</vsm:Visibility>
                                                                 </DiscreteObjectKeyFrame.Value>
                                                             </DiscreteObjectKeyFrame>
                                                         </ObjectAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                                <VisualState x:Name="Unfocused">
+                                                </vsm:VisualState>
+                                                <vsm:VisualState x:Name="Unfocused">
                                                     <Storyboard>
                                                         <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Visibility">
                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                    <Visibility>Collapsed</Visibility>
+                                                                    <vsm:Visibility>Collapsed</vsm:Visibility>
                                                                 </DiscreteObjectKeyFrame.Value>
                                                             </DiscreteObjectKeyFrame>
                                                         </ObjectAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
+                                                </vsm:VisualState>
+                                            </vsm:VisualStateGroup>
+                                        </vsm:VisualStateManager.VisualStateGroups>
                                         <Path x:Name="ButtonVisual" Grid.Column="1" Grid.Row="1" Stretch="Fill" Data="F1 M 110.692,342.252L 110.692,352.682L 104.594,347.467L 110.692,342.252 Z ">
                                             <Path.Fill>
                                                 <SolidColorBrush Color="#FF313131" x:Name="ButtonColor"/>
@@ -657,52 +675,52 @@
                                             <RowDefinition Height="30*"/>
                                             <RowDefinition Height="35*"/>
                                         </Grid.RowDefinitions>
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup x:Name="CommonStates">
-                                                <VisualStateGroup.Transitions>
-                                                    <VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver"/>
-                                                </VisualStateGroup.Transitions>
-                                                <VisualState x:Name="Normal"/>
-                                                <VisualState x:Name="MouseOver">
+                                        <vsm:VisualStateManager.VisualStateGroups>
+                                            <vsm:VisualStateGroup x:Name="CommonStates">
+                                                <vsm:VisualStateGroup.Transitions>
+                                                    <vsm:VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver"/>
+                                                </vsm:VisualStateGroup.Transitions>
+                                                <vsm:VisualState x:Name="Normal"/>
+                                                <vsm:VisualState x:Name="MouseOver">
                                                     <Storyboard>
                                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="ButtonVisual" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
                                                             <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF557E9A"/>
                                                         </ColorAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                                <VisualState x:Name="Disabled">
+                                                </vsm:VisualState>
+                                                <vsm:VisualState x:Name="Disabled">
                                                     <Storyboard>
                                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ButtonVisual" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                             <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.6"/>
                                                         </DoubleAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                            <VisualStateGroup x:Name="FocusStates">
-                                                <VisualState x:Name="Focused">
+                                                </vsm:VisualState>
+                                            </vsm:VisualStateGroup>
+                                            <vsm:VisualStateGroup x:Name="FocusStates">
+                                                <vsm:VisualState x:Name="Focused">
                                                     <Storyboard>
                                                         <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Visibility">
                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                    <Visibility>Visible</Visibility>
+                                                                    <vsm:Visibility>Visible</vsm:Visibility>
                                                                 </DiscreteObjectKeyFrame.Value>
                                                             </DiscreteObjectKeyFrame>
                                                         </ObjectAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                                <VisualState x:Name="Unfocused">
+                                                </vsm:VisualState>
+                                                <vsm:VisualState x:Name="Unfocused">
                                                     <Storyboard>
                                                         <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Visibility">
                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                    <Visibility>Collapsed</Visibility>
+                                                                    <vsm:Visibility>Collapsed</vsm:Visibility>
                                                                 </DiscreteObjectKeyFrame.Value>
                                                             </DiscreteObjectKeyFrame>
                                                         </ObjectAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
+                                                </vsm:VisualState>
+                                            </vsm:VisualStateGroup>
+                                        </vsm:VisualStateManager.VisualStateGroups>
                                         <Path x:Name="ButtonVisual" Grid.Column="1" Grid.Row="1" Stretch="Fill" Data="F1 M 531.107,321.943L 541.537,321.943L 536.322,328.042L 531.107,321.943 Z ">
                                             <Path.Fill>
                                                 <SolidColorBrush Color="#FF313131" x:Name="ButtonColor"/>
@@ -723,52 +741,52 @@
                                             <RowDefinition Height="30*"/>
                                             <RowDefinition Height="35*"/>
                                         </Grid.RowDefinitions>
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup x:Name="CommonStates">
-                                                <VisualStateGroup.Transitions>
-                                                    <VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver"/>
-                                                </VisualStateGroup.Transitions>
-                                                <VisualState x:Name="Normal"/>
-                                                <VisualState x:Name="MouseOver">
+                                        <vsm:VisualStateManager.VisualStateGroups>
+                                            <vsm:VisualStateGroup x:Name="CommonStates">
+                                                <vsm:VisualStateGroup.Transitions>
+                                                    <vsm:VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver"/>
+                                                </vsm:VisualStateGroup.Transitions>
+                                                <vsm:VisualState x:Name="Normal"/>
+                                                <vsm:VisualState x:Name="MouseOver">
                                                     <Storyboard>
                                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="ButtonVisual" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
                                                             <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF557E9A"/>
                                                         </ColorAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                                <VisualState x:Name="Disabled">
+                                                </vsm:VisualState>
+                                                <vsm:VisualState x:Name="Disabled">
                                                     <Storyboard>
                                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ButtonVisual" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                             <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.6"/>
                                                         </DoubleAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                            <VisualStateGroup x:Name="FocusStates">
-                                                <VisualState x:Name="Focused">
+                                                </vsm:VisualState>
+                                            </vsm:VisualStateGroup>
+                                            <vsm:VisualStateGroup x:Name="FocusStates">
+                                                <vsm:VisualState x:Name="Focused">
                                                     <Storyboard>
                                                         <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Visibility">
                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                    <Visibility>Visible</Visibility>
+                                                                    <vsm:Visibility>Visible</vsm:Visibility>
                                                                 </DiscreteObjectKeyFrame.Value>
                                                             </DiscreteObjectKeyFrame>
                                                         </ObjectAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                                <VisualState x:Name="Unfocused">
+                                                </vsm:VisualState>
+                                                <vsm:VisualState x:Name="Unfocused">
                                                     <Storyboard>
                                                         <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Visibility">
                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                    <Visibility>Collapsed</Visibility>
+                                                                    <vsm:Visibility>Collapsed</vsm:Visibility>
                                                                 </DiscreteObjectKeyFrame.Value>
                                                             </DiscreteObjectKeyFrame>
                                                         </ObjectAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
+                                                </vsm:VisualState>
+                                            </vsm:VisualStateGroup>
+                                        </vsm:VisualStateManager.VisualStateGroups>
                                         <Path x:Name="ButtonVisual" Grid.Column="1" Grid.Row="1" Stretch="Fill" Data="F1 M 541.537,173.589L 531.107,173.589L 536.322,167.49L 541.537,173.589 Z ">
                                             <Path.Fill>
                                                 <SolidColorBrush Color="#FF313131" x:Name="ButtonColor"/>
@@ -790,13 +808,13 @@
                                             <Color x:Key="HoverLinearBevelDarkStartColor">#D8FFFFFF</Color>
                                             <Color x:Key="HoverLinearBevelDarkEndColor">#4CFFFFFF</Color>
                                         </Grid.Resources>
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup x:Name="CommonStates">
-                                                <VisualStateGroup.Transitions>
-                                                    <VisualTransition GeneratedDuration="0:0:0.1" To="MouseOver"/>
-                                                </VisualStateGroup.Transitions>
-                                                <VisualState x:Name="Normal"/>
-                                                <VisualState x:Name="MouseOver">
+                                        <vsm:VisualStateManager.VisualStateGroups>
+                                            <vsm:VisualStateGroup x:Name="CommonStates">
+                                                <vsm:VisualStateGroup.Transitions>
+                                                    <vsm:VisualTransition GeneratedDuration="0:0:0.1" To="MouseOver"/>
+                                                </vsm:VisualStateGroup.Transitions>
+                                                <vsm:VisualState x:Name="Normal"/>
+                                                <vsm:VisualState x:Name="MouseOver">
                                                     <Storyboard>
                                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
                                                             <SplineColorKeyFrame KeyTime="00:00:00" Value="{StaticResource HoverLinearBevelLightEndColor}"/>
@@ -811,16 +829,16 @@
                                                             <SplineColorKeyFrame KeyTime="00:00:00" Value="{StaticResource HoverLinearBevelDarkEndColor}"/>
                                                         </ColorAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                                <VisualState x:Name="Disabled">
+                                                </vsm:VisualState>
+                                                <vsm:VisualState x:Name="Disabled">
                                                     <Storyboard>
                                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ThumbVisual" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                             <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.6"/>
                                                         </DoubleAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
+                                                </vsm:VisualState>
+                                            </vsm:VisualStateGroup>
+                                        </vsm:VisualStateManager.VisualStateGroups>
                                         <Grid x:Name="ThumbVisual">
                                             <Rectangle Margin="2.5,.5,2.5,.5" x:Name="Background" Fill="{StaticResource Background}" RadiusX="2.5" RadiusY="2.5"/>
                                             <Rectangle Margin="2,0,2,0" x:Name="rectangle" Stroke="#FF777777" StrokeThickness="1" RadiusX="2.5" RadiusY="2.5">
@@ -850,13 +868,13 @@
                                             <Color x:Key="HoverLinearBevelDarkStartColor">#D8FFFFFF</Color>
                                             <Color x:Key="HoverLinearBevelDarkEndColor">#4CFFFFFF</Color>
                                         </Grid.Resources>
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup x:Name="CommonStates">
-                                                <VisualStateGroup.Transitions>
-                                                    <VisualTransition GeneratedDuration="0:0:0.1" To="MouseOver"/>
-                                                </VisualStateGroup.Transitions>
-                                                <VisualState x:Name="Normal"/>
-                                                <VisualState x:Name="MouseOver">
+                                        <vsm:VisualStateManager.VisualStateGroups>
+                                            <vsm:VisualStateGroup x:Name="CommonStates">
+                                                <vsm:VisualStateGroup.Transitions>
+                                                    <vsm:VisualTransition GeneratedDuration="0:0:0.1" To="MouseOver"/>
+                                                </vsm:VisualStateGroup.Transitions>
+                                                <vsm:VisualState x:Name="Normal"/>
+                                                <vsm:VisualState x:Name="MouseOver">
                                                     <Storyboard>
                                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
                                                             <SplineColorKeyFrame KeyTime="00:00:00" Value="{StaticResource HoverLinearBevelLightEndColor}"/>
@@ -871,16 +889,16 @@
                                                             <SplineColorKeyFrame KeyTime="00:00:00" Value="{StaticResource HoverLinearBevelDarkEndColor}"/>
                                                         </ColorAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                                <VisualState x:Name="Disabled">
+                                                </vsm:VisualState>
+                                                <vsm:VisualState x:Name="Disabled">
                                                     <Storyboard>
                                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ThumbVisual" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                             <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.6"/>
                                                         </DoubleAnimationUsingKeyFrames>
                                                     </Storyboard>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
+                                                </vsm:VisualState>
+                                            </vsm:VisualStateGroup>
+                                        </vsm:VisualStateManager.VisualStateGroups>
                                         <Grid x:Name="ThumbVisual">
                                             <Rectangle Margin=".5,2.5,.5,2.5" x:Name="Background" Fill="{StaticResource Background}" RadiusX="2.5" RadiusY="2.5"/>
                                             <Rectangle Margin="0,2,0,2" x:Name="rectangle" Stroke="#FF777777" StrokeThickness="1" RadiusX="2.5" RadiusY="2.5">
@@ -898,19 +916,19 @@
                                     </Grid>
                                 </ControlTemplate>
                             </Grid.Resources>
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal"/>
-                                    <VisualState x:Name="MouseOver"/>
-                                    <VisualState x:Name="Disabled">
+                            <vsm:VisualStateManager.VisualStateGroups>
+                                <vsm:VisualStateGroup x:Name="CommonStates">
+                                    <vsm:VisualState x:Name="Normal"/>
+                                    <vsm:VisualState x:Name="MouseOver"/>
+                                    <vsm:VisualState x:Name="Disabled">
                                         <Storyboard>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Root" Storyboard.TargetProperty="(UIElement.Opacity)">
                                                 <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.5"/>
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
+                                    </vsm:VisualState>
+                                </vsm:VisualStateGroup>
+                            </vsm:VisualStateManager.VisualStateGroups>
                             <Grid x:Name="HorizontalRoot">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -1029,38 +1047,40 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Grid d:IsLocked="True">
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal">
+                        <Grid>
+                            <vsm:VisualStateManager.VisualStateGroups>
+                                <vsm:VisualStateGroup x:Name="CommonStates">
+                                    <vsm:VisualState x:Name="Normal">
                                         <Storyboard>
                                             <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ContentText" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
                                                 <SplineColorKeyFrame KeyTime="00:00:00.1" Value="#FF000000"/>
                                             </ColorAnimationUsingKeyFrames>
                                         </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="MouseOver">
+                                    </vsm:VisualState>
+                                    <vsm:VisualState x:Name="MouseOver">
                                         <Storyboard>
                                             <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ContentText" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
                                                 <SplineColorKeyFrame KeyTime="00:00:00.1" Value="#FF917549"/>
                                             </ColorAnimationUsingKeyFrames>
                                         </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Pressed">
+                                    </vsm:VisualState>
+                                    <vsm:VisualState x:Name="Pressed">
                                         <Storyboard>
                                             <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ContentText" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
                                                 <SplineColorKeyFrame KeyTime="00:00:00.1" Value="#FFFF7549"/>
                                             </ColorAnimationUsingKeyFrames>
                                         </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Disabled"/>
-                                </VisualStateGroup>
-                                <VisualStateGroup x:Name="FocusStates">
-                                    <VisualState x:Name="Focused"/>
-                                    <VisualState x:Name="Unfocused"/>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                            <TextBlock x:Name="ContentText" FontFamily="Times New Roman" FontSize="15" Height="{TemplateBinding Height}" TextWrapping="Wrap" Foreground="#FF000000" Margin="3"  HorizontalAlignment="Left" d:IsLocked="True"  ><Run Text="Jack says, &quot;Now is the time for all good men to come to the aid of their country.&quot;"/><LineBreak/><Run Text=""/></TextBlock>
+                                    </vsm:VisualState>
+                                    <vsm:VisualState x:Name="Disabled">
+                                    </vsm:VisualState>
+                                </vsm:VisualStateGroup>
+                                <vsm:VisualStateGroup x:Name="FocusStates">
+                                    <vsm:VisualState x:Name="Focused">
+                                    </vsm:VisualState>
+                                    <vsm:VisualState x:Name="Unfocused"/>
+                                </vsm:VisualStateGroup>
+                            </vsm:VisualStateManager.VisualStateGroups>
+                            <TextBlock x:Name="ContentText" FontFamily="Times New Roman" FontSize="15" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" TextWrapping="Wrap" Text="{TemplateBinding Content}" Foreground="#FF000000"  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}"  />
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -1087,9 +1107,9 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Grid>
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal">
+                            <vsm:VisualStateManager.VisualStateGroups>
+                                <vsm:VisualStateGroup x:Name="CommonStates">
+                                    <vsm:VisualState x:Name="Normal">
                                         <Storyboard>
                                             <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
                                                 <SplineColorKeyFrame KeyTime="00:00:00" Value="#FFF1D9C1"/>
@@ -1098,8 +1118,8 @@
                                                 <SplineColorKeyFrame KeyTime="00:00:00" Value="#C6F1D9C1"/>
                                             </ColorAnimationUsingKeyFrames>
                                         </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="MouseOver">
+                                    </vsm:VisualState>
+                                    <vsm:VisualState x:Name="MouseOver">
                                         <Storyboard>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundAnimation" Storyboard.TargetProperty="Opacity">
                                                 <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
@@ -1120,8 +1140,8 @@
                                                 <SplineColorKeyFrame KeyTime="00:00:00" Value="#FFC59662"/>
                                             </ColorAnimationUsingKeyFrames>
                                         </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Pressed">
+                                    </vsm:VisualState>
+                                    <vsm:VisualState x:Name="Pressed">
                                         <Storyboard>
                                             <ColorAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
                                                 <SplineColorKeyFrame KeyTime="0" Value="#FF6DBDD1"/>
@@ -1148,26 +1168,26 @@
                                                 <SplineColorKeyFrame KeyTime="00:00:00" Value="#FFC19566"/>
                                             </ColorAnimationUsingKeyFrames>
                                         </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Disabled">
+                                    </vsm:VisualState>
+                                    <vsm:VisualState x:Name="Disabled">
                                         <Storyboard>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DisabledVisualElement" Storyboard.TargetProperty="Opacity">
                                                 <SplineDoubleKeyFrame KeyTime="0" Value=".55"/>
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                                <VisualStateGroup x:Name="FocusStates">
-                                    <VisualState x:Name="Focused">
+                                    </vsm:VisualState>
+                                </vsm:VisualStateGroup>
+                                <vsm:VisualStateGroup x:Name="FocusStates">
+                                    <vsm:VisualState x:Name="Focused">
                                         <Storyboard>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FocusVisualElement" Storyboard.TargetProperty="Opacity">
                                                 <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Unfocused"/>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
+                                    </vsm:VisualState>
+                                    <vsm:VisualState x:Name="Unfocused"/>
+                                </vsm:VisualStateGroup>
+                            </vsm:VisualStateManager.VisualStateGroups>
                             <Border x:Name="Background" Background="White" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3">
                                 <Grid Margin="1" Background="{TemplateBinding Background}">
                                     <Border x:Name="BackgroundAnimation" Opacity="0" Background="#FF448DCA"/>
@@ -1201,9 +1221,11 @@
                     <RotateTransform CenterX="0.332165" CenterY="-0.105809" Angle="81.8658"/>
                 </TransformGroup>
             </LinearGradientBrush.RelativeTransform>
-        	<GradientStop Color="#FFFFFFFF" Offset="0"/>
-        	<GradientStop Color="#FEFFFFFF" Offset="0.616438"/>
-        	<GradientStop Color="#FFD2E6ED" Offset="1"/>
+            <LinearGradientBrush.GradientStops>
+                <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                <GradientStop Color="#FEFFFFFF" Offset="0.616438"/>
+                <GradientStop Color="#FFD2E6ED" Offset="1"/>
+            </LinearGradientBrush.GradientStops>
         </LinearGradientBrush>
         <Style x:Key="SpeechBubble" TargetType="Path">
             <Setter Property="Fill" Value="{StaticResource SpeechBubbleBrush}" />
@@ -1225,11 +1247,7 @@
         </Style>
         <!-- SpeechBubble Style End -->
 
-        <!-- LoadingText -->
-        <Style x:Key="LoadingText" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="#FFFFFFFF" />
-        </Style>
-        <!-- LoadingText -->
+
 
 
     </Application.Resources>

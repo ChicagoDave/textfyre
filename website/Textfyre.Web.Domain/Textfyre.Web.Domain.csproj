@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{160AA445-CE6F-4312-B101-8BDD5638FBDE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Textfyre.Web.Domain</RootNamespace>
+    <AssemblyName>Textfyre.Web.Domain</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="aspnet_Applications.cs" />
+    <Compile Include="aspnet_Membership.cs" />
+    <Compile Include="aspnet_Paths.cs" />
+    <Compile Include="aspnet_PersonalizationAllUsers.cs" />
+    <Compile Include="aspnet_PersonalizationPerUser.cs" />
+    <Compile Include="aspnet_Profile.cs" />
+    <Compile Include="aspnet_Roles.cs" />
+    <Compile Include="aspnet_SchemaVersions.cs" />
+    <Compile Include="aspnet_Users.cs" />
+    <Compile Include="aspnet_UsersInRoles.cs" />
+    <Compile Include="aspnet_WebEvent_Events.cs" />
+    <Compile Include="Contribution.cs" />
+    <Compile Include="Contributor.cs" />
+    <Compile Include="Download.cs" />
+    <Compile Include="Generated\aspnet_ApplicationsBase.cs" />
+    <Compile Include="Generated\aspnet_ApplicationsCollection.cs" />
+    <Compile Include="Generated\aspnet_ApplicationsDataBase.cs" />
+    <Compile Include="Generated\aspnet_ApplicationsFields.cs" />
+    <Compile Include="Generated\aspnet_ApplicationsParameterFactory.cs" />
+    <Compile Include="Generated\aspnet_ApplicationsRecordsetBase.cs" />
+    <Compile Include="Generated\aspnet_MembershipBase.cs" />
+    <Compile Include="Generated\aspnet_MembershipCollection.cs" />
+    <Compile Include="Generated\aspnet_MembershipDataBase.cs" />
+    <Compile Include="Generated\aspnet_MembershipFields.cs" />
+    <Compile Include="Generated\aspnet_MembershipParameterFactory.cs" />
+    <Compile Include="Generated\aspnet_MembershipRecordsetBase.cs" />
+    <Compile Include="Generated\aspnet_PathsBase.cs" />
+    <Compile Include="Generated\aspnet_PathsCollection.cs" />
+    <Compile Include="Generated\aspnet_PathsDataBase.cs" />
+    <Compile Include="Generated\aspnet_PathsFields.cs" />
+    <Compile Include="Generated\aspnet_PathsParameterFactory.cs" />
+    <Compile Include="Generated\aspnet_PathsRecordsetBase.cs" />
+    <Compile Include="Generated\aspnet_PersonalizationAllUsersBase.cs" />
+    <Compile Include="Generated\aspnet_PersonalizationAllUsersCollection.cs" />
+    <Compile Include="Generated\aspnet_PersonalizationAllUsersDataBase.cs" />
+    <Compile Include="Generated\aspnet_PersonalizationAllUsersFields.cs" />
+    <Compile Include="Generated\aspnet_PersonalizationAllUsersParameterFactory.cs" />
+    <Compile Include="Generated\aspnet_PersonalizationAllUsersRecordsetBase.cs" />
+    <Compile Include="Generated\aspnet_PersonalizationPerUserBase.cs" />
+    <Compile Include="Generated\aspnet_PersonalizationPerUserCollection.cs" />
+    <Compile Include="Generated\aspnet_PersonalizationPerUserDataBase.cs" />
+    <Compile Include="Generated\aspnet_PersonalizationPerUserFields.cs" />
+    <Compile Include="Generated\aspnet_PersonalizationPerUserParameterFactory.cs" />
+    <Compile Include="Generated\aspnet_PersonalizationPerUserRecordsetBase.cs" />
+    <Compile Include="Generated\aspnet_ProfileBase.cs" />
+    <Compile Include="Generated\aspnet_ProfileCollection.cs" />
+    <Compile Include="Generated\aspnet_ProfileDataBase.cs" />
+    <Compile Include="Generated\aspnet_ProfileFields.cs" />
+    <Compile Include="Generated\aspnet_ProfileParameterFactory.cs" />
+    <Compile Include="Generated\aspnet_ProfileRecordsetBase.cs" />
+    <Compile Include="Generated\aspnet_RolesBase.cs" />
+    <Compile Include="Generated\aspnet_RolesCollection.cs" />
+    <Compile Include="Generated\aspnet_RolesDataBase.cs" />
+    <Compile Include="Generated\aspnet_RolesFields.cs" />
+    <Compile Include="Generated\aspnet_RolesParameterFactory.cs" />
+    <Compile Include="Generated\aspnet_RolesRecordsetBase.cs" />
+    <Compile Include="Generated\aspnet_SchemaVersionsBase.cs" />
+    <Compile Include="Generated\aspnet_SchemaVersionsCollection.cs" />
+    <Compile Include="Generated\aspnet_SchemaVersionsDataBase.cs" />
+    <Compile Include="Generated\aspnet_SchemaVersionsFields.cs" />
+    <Compile Include="Generated\aspnet_SchemaVersionsParameterFactory.cs" />
+    <Compile Include="Generated\aspnet_SchemaVersionsRecordsetBase.cs" />
+    <Compile Include="Generated\aspnet_UsersBase.cs" />
+    <Compile Include="Generated\aspnet_UsersCollection.cs" />
+    <Compile Include="Generated\aspnet_UsersDataBase.cs" />
+    <Compile Include="Generated\aspnet_UsersFields.cs" />
+    <Compile Include="Generated\aspnet_UsersInRolesBase.cs" />
+    <Compile Include="Generated\aspnet_UsersInRolesCollection.cs" />
+    <Compile Include="Generated\aspnet_UsersInRolesDataBase.cs" />
+    <Compile Include="Generated\aspnet_UsersInRolesFields.cs" />
+    <Compile Include="Generated\aspnet_UsersInRolesParameterFactory.cs" />
+    <Compile Include="Generated\aspnet_UsersInRolesRecordsetBase.cs" />
+    <Compile Include="Generated\aspnet_UsersParameterFactory.cs" />
+    <Compile Include="Generated\aspnet_UsersRecordsetBase.cs" />
+    <Compile Include="Generated\aspnet_WebEvent_EventsBase.cs" />
+    <Compile Include="Generated\aspnet_WebEvent_EventsCollection.cs" />
+    <Compile Include="Generated\aspnet_WebEvent_EventsDataBase.cs" />
+    <Compile Include="Generated\aspnet_WebEvent_EventsFields.cs" />
+    <Compile Include="Generated\aspnet_WebEvent_EventsParameterFactory.cs" />
+    <Compile Include="Generated\aspnet_WebEvent_EventsRecordsetBase.cs" />
+    <Compile Include="Generated\ContributionBase.cs" />
+    <Compile Include="Generated\ContributionCollection.cs" />
+    <Compile Include="Generated\ContributionDataBase.cs" />
+    <Compile Include="Generated\ContributionFields.cs" />
+    <Compile Include="Generated\ContributionParameterFactory.cs" />
+    <Compile Include="Generated\ContributionRecordsetBase.cs" />
+    <Compile Include="Generated\ContributorBase.cs" />
+    <Compile Include="Generated\ContributorCollection.cs" />
+    <Compile Include="Generated\ContributorDataBase.cs" />
+    <Compile Include="Generated\ContributorFields.cs" />
+    <Compile Include="Generated\ContributorParameterFactory.cs" />
+    <Compile Include="Generated\ContributorRecordsetBase.cs" />
+    <Compile Include="Generated\DownloadBase.cs" />
+    <Compile Include="Generated\DownloadCollection.cs" />
+    <Compile Include="Generated\DownloadDataBase.cs" />
+    <Compile Include="Generated\DownloadFields.cs" />
+    <Compile Include="Generated\DownloadParameterFactory.cs" />
+    <Compile Include="Generated\DownloadRecordsetBase.cs" />
+    <Compile Include="Generated\ProductBase.cs" />
+    <Compile Include="Generated\ProductCollection.cs" />
+    <Compile Include="Generated\ProductDataBase.cs" />
+    <Compile Include="Generated\ProductFields.cs" />
+    <Compile Include="Generated\ProductParameterFactory.cs" />
+    <Compile Include="Generated\ProductRecordsetBase.cs" />
+    <Compile Include="Generated\ProfileBase.cs" />
+    <Compile Include="Generated\ProfileCollection.cs" />
+    <Compile Include="Generated\ProfileDataBase.cs" />
+    <Compile Include="Generated\ProfileFields.cs" />
+    <Compile Include="Generated\ProfileParameterFactory.cs" />
+    <Compile Include="Generated\ProfileRecordsetBase.cs" />
+    <Compile Include="Generated\RawDataBase.cs" />
+    <Compile Include="Generated\RawDataCollection.cs" />
+    <Compile Include="Generated\RawDataDataBase.cs" />
+    <Compile Include="Generated\RawDataFields.cs" />
+    <Compile Include="Generated\RawDataParameterFactory.cs" />
+    <Compile Include="Generated\RawDataRecordsetBase.cs" />
+    <Compile Include="Generated\TeamBase.cs" />
+    <Compile Include="Generated\TeamCollection.cs" />
+    <Compile Include="Generated\TeamDataBase.cs" />
+    <Compile Include="Generated\TeamFields.cs" />
+    <Compile Include="Generated\TeamParameterFactory.cs" />
+    <Compile Include="Generated\TeamRecordsetBase.cs" />
+    <Compile Include="Generated\TransactionBase.cs" />
+    <Compile Include="Generated\TransactionCollection.cs" />
+    <Compile Include="Generated\TransactionDataBase.cs" />
+    <Compile Include="Generated\TransactionFields.cs" />
+    <Compile Include="Generated\TransactionItemBase.cs" />
+    <Compile Include="Generated\TransactionItemCollection.cs" />
+    <Compile Include="Generated\TransactionItemDataBase.cs" />
+    <Compile Include="Generated\TransactionItemFields.cs" />
+    <Compile Include="Generated\TransactionItemParameterFactory.cs" />
+    <Compile Include="Generated\TransactionItemRecordsetBase.cs" />
+    <Compile Include="Generated\TransactionParameterFactory.cs" />
+    <Compile Include="Generated\TransactionRecordsetBase.cs" />
+    <Compile Include="Product.cs" />
+    <Compile Include="Profile.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RawData.cs" />
+    <Compile Include="SubClasses\aspnet_ApplicationsData.cs" />
+    <Compile Include="SubClasses\aspnet_ApplicationsRecordset.cs" />
+    <Compile Include="SubClasses\aspnet_MembershipData.cs" />
+    <Compile Include="SubClasses\aspnet_MembershipRecordset.cs" />
+    <Compile Include="SubClasses\aspnet_PathsData.cs" />
+    <Compile Include="SubClasses\aspnet_PathsRecordset.cs" />
+    <Compile Include="SubClasses\aspnet_PersonalizationAllUsersData.cs" />
+    <Compile Include="SubClasses\aspnet_PersonalizationAllUsersRecordset.cs" />
+    <Compile Include="SubClasses\aspnet_PersonalizationPerUserData.cs" />
+    <Compile Include="SubClasses\aspnet_PersonalizationPerUserRecordset.cs" />
+    <Compile Include="SubClasses\aspnet_ProfileData.cs" />
+    <Compile Include="SubClasses\aspnet_ProfileRecordset.cs" />
+    <Compile Include="SubClasses\aspnet_RolesData.cs" />
+    <Compile Include="SubClasses\aspnet_RolesRecordset.cs" />
+    <Compile Include="SubClasses\aspnet_SchemaVersionsData.cs" />
+    <Compile Include="SubClasses\aspnet_SchemaVersionsRecordset.cs" />
+    <Compile Include="SubClasses\aspnet_UsersData.cs" />
+    <Compile Include="SubClasses\aspnet_UsersInRolesData.cs" />
+    <Compile Include="SubClasses\aspnet_UsersInRolesRecordset.cs" />
+    <Compile Include="SubClasses\aspnet_UsersRecordset.cs" />
+    <Compile Include="SubClasses\aspnet_WebEvent_EventsData.cs" />
+    <Compile Include="SubClasses\aspnet_WebEvent_EventsRecordset.cs" />
+    <Compile Include="SubClasses\ContributionData.cs" />
+    <Compile Include="SubClasses\ContributionRecordset.cs" />
+    <Compile Include="SubClasses\ContributorData.cs" />
+    <Compile Include="SubClasses\ContributorRecordset.cs" />
+    <Compile Include="SubClasses\DownloadData.cs" />
+    <Compile Include="SubClasses\DownloadRecordset.cs" />
+    <Compile Include="SubClasses\ProductData.cs" />
+    <Compile Include="SubClasses\ProductRecordset.cs" />
+    <Compile Include="SubClasses\ProfileData.cs" />
+    <Compile Include="SubClasses\ProfileRecordset.cs" />
+    <Compile Include="SubClasses\RawDataData.cs" />
+    <Compile Include="SubClasses\RawDataRecordset.cs" />
+    <Compile Include="SubClasses\TeamData.cs" />
+    <Compile Include="SubClasses\TeamRecordset.cs" />
+    <Compile Include="SubClasses\TransactionData.cs" />
+    <Compile Include="SubClasses\TransactionItemData.cs" />
+    <Compile Include="SubClasses\TransactionItemRecordset.cs" />
+    <Compile Include="SubClasses\TransactionRecordset.cs" />
+    <Compile Include="Team.cs" />
+    <Compile Include="Transaction.cs" />
+    <Compile Include="TransactionItem.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\middleware\Textfyre.Common.BusinessLayer\Textfyre.Common.BusinessLayer.csproj">
+      <Project>{F5552D50-0E89-4FF7-9FC3-219840493CCA}</Project>
+      <Name>Textfyre.Common.BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\middleware\Textfyre.Common.DataLayer\Textfyre.Common.DataLayer.csproj">
+      <Project>{7382DF78-E434-48C7-B87E-D31CC526F9C2}</Project>
+      <Name>Textfyre.Common.DataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\middleware\Textfyre.Common.Logging\Textfyre.Common.Logging.csproj">
+      <Project>{2F986E56-8D6D-425E-958C-605C982EBBE3}</Project>
+      <Name>Textfyre.Common.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\middleware\Textfyre.Common.Utilities\Textfyre.Common.Utilities.csproj">
+      <Project>{68061321-A3F0-481C-A827-65D29B1B5DA3}</Project>
+      <Name>Textfyre.Common.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
