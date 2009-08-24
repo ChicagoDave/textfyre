@@ -26,7 +26,7 @@ Definition: something is physically involved:
 		yes;
 	no;
 
-To redirect the/-- action from (this - a thing) to (that - a thing), and try that:
+To redirect the/-- action from (this - an object) to (that - an object), and try that:
 	if this is the noun, change the noun to that;
 	if this is the second noun, change the second noun to that;
 	if and try that:
@@ -189,6 +189,10 @@ To decide which direction is the quick best route from (here - a room) to (there
 			if the room d from here is there:
 				decide on d;
 	decide on the best route from here to there, using even locked doors;
+
+Part 5 - Properties of things
+
+Definition: a thing is apparent if the player can see it.
 
 Book 2 - Disambiguations and (Mis)-understandings
 
@@ -493,7 +497,8 @@ Part 7 - Taking Inventory
 
 This is the Textfyre Standard replacement inventory rule:
 	[The difference between this and the standard inventory style is that we do not show inventory information.]
-	say "You are carrying: [line break]";
+	issue library message taking inventory action number 2;
+	say ":[line break]";
 	list the contents of the player, with newlines, indented, including contents, with extra indentation;
 
 The Textfyre Standard Replacement Inventory rule is listed instead of the print standard inventory rule in the carry out taking inventory rulebook.
