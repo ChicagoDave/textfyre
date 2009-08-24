@@ -77,6 +77,15 @@ Understand "execute [any unit test]" as unit test executing.
 Carry out unit test executing:
 	abide by the unit test rules for the noun;
 
+Part 3 - Bugs
+
+To bug (X - some text):
+	say "[b]****[bracket]BUG[close bracket]: [X]****[r][paragraph break]";
+	say "[one of](Don't panic. See if you can continue to play.)[paragraph break][or][stopping]";
+
+To placeholder (X - some text):
+	say "[bracket]placeholder text: '[X]'[close bracket][paragraph break]";
+
 Chapter 2 - Stopping abruptly (For use without Basic Screen Effects by Emily Short)
 
 To stop the/-- game abruptly:
