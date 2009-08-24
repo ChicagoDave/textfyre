@@ -16,7 +16,7 @@ A person has a table-name called the conversation table.
 The conversation table of a person is usually the table of nothing to say.
 
 The chosen conversation table is a table-name that varies. The chosen conversation table is the table of nothing to say.
-The chosen conversation topic is a conversation topic that varies. The chosen conversation topic is CONV_DEFAULT.
+The chosen conversation topic is an object that varies. The chosen conversation topic is CONV_DEFAULT.
 
 Table of nothing to say
 topic			conversation
@@ -67,11 +67,15 @@ Rule for choosing the default conversation topic for something (called the NPC):
 
 Part 2 - Actions
 
+Section 1 - Convert Telling and Answering to Asking
+
 Instead of telling someone about something:
 	try asking the noun about it;
 
 Instead of answering someone that something:
 	try asking the noun about it;
+
+Section 2 - Talking to action (for use without Quips by Textfyre)
 
 Talking to is an action applying to one thing.
 
