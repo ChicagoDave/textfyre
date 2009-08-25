@@ -1,11 +1,12 @@
 "The Shadow In The Cathedral" by Textfyre Inc
 
-[
-Include (- Constant DEBUG; -) after "Definitions.i6t".
+
+[Include (- Constant DEBUG; -) after "Definitions.i6t".
 ]
 
 [  Change Log
 When			Who		What
+25-Aug-2009		J. Ingold	First pass at C8. Outside locations, synonyms and objects, in/out, jumping in water and swimming. Then I got stuck - apparently there's a wrench somewhere? This needs some cluing or something... (Oh, god, was I supposed to MOVE DEBRIS? C'mon...)
 23-Aug-2009		J. Ingold	New kind - locative glimpse backdrop - these "localise" a location and auto- navigate towards it. I've populated the Abbey with some to ease the player around.
 22-Aug-2009		J. Ingold	Finished c7 playthrough. Fleshed out chase sequence and Caught location. 
 22-Aug-2009		J. Ingold	Added multiple solutions to the Difference Engine puzzle - if anything, I've been too generous!! Couple of other minors. Added board messages to room descriptions once they've been seen - code's a bit messy to ensure paragraph breaks are correct.
@@ -448,6 +449,14 @@ Definition: a thing is suitable for jamming:
 Definition: a thing is unsuitable for jamming:
 	unless it is suitable for jamming, yes;
 	no;
+	
+Chapter 9 - Water-destructible items
+
+Definition: a thing is water-destructible:
+	if it is the work order, yes;
+	if it is the scrap of paper, yes;
+	if it is the punchcard, yes;
+	no.
 
 Part 3 - Chapter Break Mechanics
 
@@ -1151,6 +1160,25 @@ Instead of examining a brass rod: say "The rod runs the length of the table, and
 
 Instead of doing something when the brass rod is physically involved:
 	say "The brass rod is fixed securely into the tabletop."
+
+Part 16 - Floor Substitutes
+
+[ not actually a kind, but has some rules associated so it's a bit like one. ]
+
+A thing can be a floor-substitute.
+
+Instead of putting something on a floor-substitute thing:
+	try dropping the noun instead.
+
+Instead of entering or climbing or approaching a floor-substitute thing:
+	say "I'm already on [the noun] (where did you [i]think[r] I was?)";
+
+Instead of searching a floor-substitute thing:
+	say "Well, I'm standing on [the noun]."
+
+Instead of looking under a floor-substitute thing:
+	say "I can't really do that, can I?"
+
 
 Book C - New Relations
 
@@ -2381,16 +2409,18 @@ Part 49 - Go To Something, go
 
 Approaching is an action applying to one visible thing.
 
-Understand "go near/to/after/toward/for/towards [something]" as approaching.
+Understand "go near/to/after/toward/for/towards/round/around [something]" as approaching.
 Understand "follow [something]" as approaching.
+Understand "follow [something] round/around" as approaching.
 Understand "jump after [something]" as approaching.
 Understand "approach [something]" as approaching.
 Understand "chase [something]" as approaching.
 Understand "close on [something]" as approaching.
 Understand "close in on [something]" as approaching.
-Understand "walk near/after/towards/to/for [something]" as approaching.
+Understand "walk near/after/towards/to/for/around/round [something]" as approaching.
 Understand "walk near/over to/toward/towards [something]" as approaching.
 Understand "go near/over to/toward/towards [something]" as approaching.
+Understand "slip around/round [something]" as approaching.
 
 Understand "go along/across/over [something]" as entering.
 Understand "walk along/over/across [something]" as entering.
@@ -2543,6 +2573,9 @@ Understand the command "catch" as "take".
 Understand the command "collect" as "take".
 Understand the command "pluck" as "take".
 
+Understand "lift [something]" as taking.
+Understand "raise [something]" as taking.
+
 Part 9 - Synonyms for drop
 
 Understand "let go of [something]" as dropping.
@@ -2615,6 +2648,7 @@ Understand "intimidate [someone] with [something]" as showing it to (with nouns 
 Part 17 - Synonyms for Exit
 
 Understand the command "escape" as "go".
+Understand "climb out" as exiting.
 
 Part 18 -Synonyms for Consulting
 
@@ -2800,7 +2834,13 @@ Instead of wearing the rag:
 	say "Maybe I was small enough for that once, but now the rag would barely cover my face."
 
 Understand "old", "dirty", "polishing" as the rag.
-A tumbler is a container, open, carried by the player. The description is "A small glass with all that's left of my daily wood polish ration. How I'm supposed to do all the rest of my chores after this I don't know, but Drake and Calvin didn't seem too worried about that." Understand "glass" as the tumbler. The printed name of the tumbler is "glass tumbler".
+
+A tumbler is a container, open, carried by the player. The description is "A small glass with all that's left of my daily wood polish ration. How I'm supposed to do all the rest of my chores after this I don't know, but Drake and Calvin didn't seem too worried about that." 
+
+Understand "glass tumbler" as the tumbler. 
+Understand "glass" as the tumbler when the number of visible windows is zero.
+
+The printed name of the tumbler is "glass tumbler".
 
 Understand "cup" as the tumbler when the player cannot see the teacup.
 
@@ -2813,7 +2853,6 @@ Rule for emptying away the small amount of polish when in Inside Clock Case:
 Instead of emptying the empty tumbler:
 	say "The tumbler's empty already."
 
-
 Instead of emptying the tumbler when Heading for the Cathedral has happened:
 	remove the small amount of polish from play;
 	say "I tip out the polish. I'm done with clock-faces for the day, that's for certain."
@@ -2823,6 +2862,12 @@ Instead of emptying the tumbler when not in Inside Clock Case:
 
 Instead of attacking the tumbler:
 	say "I need it. Can't be a clock polisher if you don't have anywhere to carry your clock polish!"
+
+Instead of cleaning the tumbler when in the Kitchen for the first time:
+	say "I'll never get a glass that's had clock-polish in it clean enough to drink from, if that's what you're thinking..."
+
+Instead of cleaning the tumbler:
+	say "The tumbler's had polish in it. In a way, it's the cleanest thing I've got. In another way, it'll never really be clean ever again. 'Serving your function is the only functional way to serve,' as the Abbot might say."
 
 Inside the tumbler is a small amount of polish. Understand "wood", "ration", "daily ration" as the small amount of polish.
 
@@ -2948,6 +2993,9 @@ Instead of opening the Grandfather Clock when Hiding in the Clock has ended and 
 
 Instead of opening the Grandfather Clock during Hiding in the Clock:
 	say "You've got a spring missing if you think I can slip out, unnoticed, or come up with a decent excuse as to why I've been hiding in the Abbot's grandfather. No, I'm staying put and hoping nothing happens to make the old man need to change his clothes.";
+
+Instead of going nowhere when the location is Inside Clock case during Hiding in the clock:
+	try opening the Grandfather Clock.
 
 After going through the Grandfather Clock from Inside Clock Case to Abbot's Quarters during Introduction:
 	now the player is casually overhearing;
@@ -6143,6 +6191,22 @@ Before smelling the heat:
 	say "The hot air smells of wax and oil." instead.
 
 
+Section 0b - View of Doors
+
+The glimpse-doors are a glimpse backdrop in the Lower Nave, in the Upper Nave, in the Cathedral Altar, identifying the Great Doors. "The Doors frame the entrance to the Cathedral in shadow." Understand "doors", "great" as the glimpse-doors.
+
+Section 1b - Shrines
+
+Some shrines are a glimpse backdrop in the Lower Nave, in the Upper Nave, in the Cathedral Entrance, in the Cathedral Altar, in the East Apse, in the West Apse. Understand "shrines" as the shrines. "There are two shrines - the Calendar Shrine and the Shrine of the Saints."
+
+Instead of approaching or entering the shrines when the location is the Lower Nave:
+	say "There are two shrines - east and west of here."
+
+Instead of approaching or entering the shrines:
+	let the way be the best route from the location to the Lower Nave, using doors;
+	if the way is a direction, try going the way instead;
+	continue the action;
+
 Section 1 - Lower Seal
 
 The Lower Seal is a Great Seal, in the Lower Nave. "This one is made of brass, all wound up into a coil. It's either a spring or one of Reloh's mechanical serpents."
@@ -8933,7 +8997,7 @@ Does the player mean doing something with the chimneys: it is very unlikely.
 
 Section 1b - Rooftops
 
-Some tiled rooftops are a backdrop, in Roofs of the City. Understand "roofs", "roof" , "rooves", "tile", "tiles", "gutter", "tiled", "gutters", "level", "levels", "rooftop" as the rooftops. "The roofs are a mismatch of tiles and levels and different directions. At any moment I might be tipped off into the street!"
+Some tiled rooftops are a backdrop, floor-substitute, in Roofs of the City. Understand "roofs", "roof" , "rooves", "tile", "tiles", "gutter", "tiled", "gutters", "level", "levels", "rooftop" as the rooftops. "The roofs are a mismatch of tiles and levels and different directions. At any moment I might be tipped off into the street!"
 
 Instead of taking the tiled rooftops:
 	say "I can't go wandering off with the rooftops, can I?"
@@ -8945,11 +9009,8 @@ Does the player mean getting off the tiled rooftops: it is likely.
 Instead of jumping off or getting off the tiled rooftops:
 	try going down instead.
 
-Instead of putting something on the tiled rooftops:
-	try dropping the noun instead.
 
-Instead of entering the rooftops:
-	say "I'm already on the rooftop (where did you [i]think[r] I was?)";
+
 
 Section 2 - Lightning Rods
 
@@ -9657,21 +9718,32 @@ Chapter 2 - Scenery
 
 Section 1 - Brass Railing
 
-The brass railing is scenery, in the Observation Platform. "The brass rail is well-polished and set about shoulder-height. I could easily climb over it to the roof below."
+The OP_brass-railing is scenery, privately-named, in the Observation Platform. "The brass rail is well-polished and set about shoulder-height. I could easily climb over it to the roof below." The printed name is "brass railing".
 
-Understand "rail" as the railing.
+Understand "rail", "brass", "railing" as the OP_brass-railing.
 
-Instead of climbing or jumping over or entering the brass railing:
+Instead of climbing or jumping over or entering the OP_brass-railing:
 	try going north;
+
+Instead of taking or pulling or attacking the OP_brass-railing:
+	say "It's pretty firmly built into the platform (and if I could get it free, the whole place might unspiral like a sprung watch.)";
+
 
 Section 2 - Northern Roof
 
 The northern roof is scenery, in the Observation Platform. "The roof to the north is gently sloped and lead-lined. It's been littered with clumps of brick by whoever built this tower."
 
-Understand "rooftop", "roof-top", "roof top", "sloped", "lead", "lead-lined", "lined" as the northern roof.
+Understand "rooftop", "roof-top", "roof top", "sloped", "lead", "lead-lined", "lined", "littered" as the northern roof.
 
-Instead of jumping on the northern roof:
+Instead of jumping on or entering or approaching the northern roof:
 	try going north;
+
+Section 2b - Platform
+
+The ob_platform is privately-named, floor-substitute, scenery, in the Observation Platform. Understand "platform", "observation" as the ob_platform. The printed name is "platform". "The platform is surrounded by a rail and fitted with a large, rather fine telescope."
+
+Instead of getting off or jumping off the ob_platform:
+	say "I could climb the steps back to the weather station - or I could try my luck jumping the railing!"
 
 Section 3 - Glimpse of Weather Station
 
@@ -9782,6 +9854,9 @@ Instead of jumping in Weather Station:
 
 Instead of making to leave in Weather Station:
 	try going up.
+
+After assembling available exits when in the Weather Station:
+	remove {down} from the viable directions, if present;
 
 Chapter 2 - Scenery
 
@@ -12663,24 +12738,58 @@ When Calculatrix Chase ends in escape:
 
 Book 8 - The Docklands
 
+The Docklands Space is a region. The Dank Alley, the Front Door, the Ledge, the Dock, the North Side, the South Side are in the Docklands Space.
+
+Instead of smelling when in the Docklands Space:
+	say "Dead fish and stagnant water... this place smells like a flooded tomb."
+
 Part 1 - Dank Alley
 
 Chapter 1 - Description
 
 The Dank Alley is a room. "Tall brick walls either side are dripping with damp moss, crawling with rats, filled with the smell of rotting fish. In the distance I can hear the hiss of the River and after that the endless shouts of the dockhands who seem to work through the night like machines."
 
+Section 1 - scenery
+
+Instead of examining the backdrop-walls when in the Dank Alley:
+	say "The walls drip with moss."
+Instead of climbing or entering the backdrop-walls when in the Dank Alley:
+	try going up.
+
+Instead of going up when in the Dank Alley:
+	say "My way is forward, not up."
+
+Some moss is scenery in the Dank Alley. Understand "damp", "ooze" as the moss. "The moss is wet and oozing."
+
+Before eating the moss: say "I'd make myself sick." instead.
+Instead of taking or pulling or climbing the moss: 
+	say "[one of]Clumps come away in my hand and turn to mud in my palm. I let them go.[or]No more.  No more.[stopping]"
+
+Some rats are a backdrop in the Dank Alley, in the North Side, in the Ledge. "Just movement, along the edges of the stones. But I'm used to rats from my bedroom, and working in the Abbey cellars where they run around all day." Understand "rat", "mice", "mouse", "vermin" as the rats.
+
+Instead of doing something when the rats are physically involved:
+	say "I'm going to leave them be - and hope they leave [i]me[r] be in return."
+
+The alley_backdrop is a locative glimpse backdrop in the Dank Alley, in the South Side, localising the Dank Alley. The description is "The alley leads [if the location is the Dank Alley]north, towards[else]south, away from[end if] the warehouse[if the location is the Dank Alley], straight as an arrow in a bad dream[end if].";
+
+Instead of approaching or entering the alley_backdrop when in the Dank Alley:
+	try going north.
+
 Section 2 - Gas Light
 
 A gaslight is a backdrop, not scenery, in the Dank Alley and in the South Side.
 
-The initial appearance of the gaslight is "[if the location is the Dank Alley]At the end of this alley is a gaslight on the wall of a warehouse that gives out a tiny patch of warmth.[otherwise]On the wall above me is a gaslight casting a warm glow that's nice to stand in but only makes the shadows to east and west even deeper. The Figure might be standing there, watching, for all I know. Best not to hang around.[end if]"
+The initial appearance of the gaslight is "[if the location is the Dank Alley]At the north end of this alley is a gaslight on the wall of a warehouse that gives out a tiny patch of warmth.[otherwise]A gaslight casts a warm glow that only makes the shadows to east and west even deeper[one of]. The Figure might be standing there, watching, for all I know. Best not to hang around[or][stopping].[end if]"
 
 The description of the gaslight is "The light is flickering like it might go out at any moment. There's just enough light to read the number on the warehouse wall."
 
 Understand "lamp", "gas", "light", "flickering", "warm", "warmth" as the gaslight.
 
 Instead of doing something when the gaslight is physically involved:
-	say "The gaslight is fixed to the wall, too high to reach.";
+	say "The gaslight is aloof, out of my reach.";
+
+Instead of extinguishing the gaslight with:
+	say "No thanks. It's almost the only light there is."
 
 Section 3 - Exits
 
@@ -12690,6 +12799,20 @@ Instead of going inside in the Dank Alley:
 	try going north.
 Instead of making to leave in the Dank Alley:
 	say "There's no turning back."
+
+Section 4 - River backdrop
+
+The river_glimpse is a glimpse backdrop, in the Dank Alley, in the South Side, in the Front Door, in the North Side. The printed name is "River Thymes". Understand "river", "stream", "water", "thymes" as the river_glimpse. The description is "The River [one of]whispers and wriggles[or]is deep and dark[at random].".
+
+Instead of approaching the river_glimpse:
+	let the way be the best route from the location to the Dock, using doors;
+	if the way is a direction, try going the way instead;
+	continue the action;
+
+Instead of listening in the presence of the river_glimpse:
+	say "The River laps and murmurs like a sleeping dragon."
+
+
 
 Chapter 2 - Event on Entry
 
@@ -12705,9 +12828,9 @@ Chapter 3 - Scenery
 
 The distant warehouse is privately-named, scenery, in the Dank Alley. The printed name is "warehouse". The description is "White paint on the brickwork reads IV:VI:II.".
 
-Understand "warehouse", "wall", "number", "numbers", "white", "paint", "bricks", "brick", "brickwork", "brick work", "ware house" as the distant warehouse.
+Understand "warehouse", "wall", "number", "numbers", "white", "paint", "bricks", "brick", "brickwork", "brick work", "ware house",  "roman", "numerals", "IV", "VI", "II" as the distant warehouse.
 
-Instead of entering the distant warehouse:
+Instead of approaching or entering the distant warehouse:
 	try going north;
 
 Instead of climbing the distant warehouse:
@@ -12715,11 +12838,46 @@ Instead of climbing the distant warehouse:
 
 Part 2 - South Side
 
+Instead of waiting when in the South Side:
+	say "[one of]Hoping to get a knife in my side? No way. I want to keep moving.[or]It's all right for [i]you[r]. I'm the one stuck out here![or]Let's get a move on, please.[stopping]"
+
 Chapter 1 - Description
 
-The South Side is north of the Dank Alley. "The cobbles end here, replaced by wooden boards that crack and creak underfoot. The whole warehouse to the north must be built over the water: maybe they load things in from underneath."
+The South Side is north of the Dank Alley. "The cobbles end here, replaced by wooden boards that crack and creak underfoot. The whole warehouse to the north must be built over the water: maybe they load things in from underneath." The printed name is "South Side of Warehouse".
+
+Instead of going north in the South Side:
+	try entering the warehouse walls.
+Instead of making to leave when in the South Side:
+	try going south.
 
 [Initial appearance of gaslight object above.]
+
+Section 1  - Scenery
+
+Some creaking wooden boards are a backdrop, floor-substitute, in the South Side, in the Front Door, in the Dock. Understand "board" as the creaking wooden boards. "The boards are laid out over the river, and run around the side of the warehouse east and west."
+
+Instead of jumping on the creaking wooden boards:
+	try jumping.
+Instead of looking under the creaking wooden boards:
+	say "That's where the water is, I suppose."
+Instead of taking or pulling or attacking or pushing or turning or hiding behind the creaking wooden boards:
+	say "The boards are tightly nailed down (I hope!)"
+
+Instead of jumping when the creaking wooden boards are visible:
+	say "I don't want to fall straight through."
+
+Some cobbles are scenery in the South Side. 
+
+Before doing something with the cobbles:
+	say "The cobbles are back to the south. Here there are just wooden boards running east-west."
+
+Some deep shadows are scenery in the South Side. "The shadows fall deeply east and west, right to the corners of the warehouse."
+
+Instead of doing something when the deep shadows are physically involved:
+	say "They're just insubstantial shadows - until something leaps out of them and tries to take my head off, anyway."
+
+Instead of entering or approaching the deep shadows:
+	say "Which way - east or west?"
 
 Section 2 - Exits
 
@@ -12728,7 +12886,7 @@ Instead of going south in South Side:
 
 Chapter 2 - Scenery
 
-Some warehouse walls are a backdrop, in the South Side, the Front Door, the North Side.
+Some warehouse walls are a backdrop, in the South Side, in the Front Door, in the North Side, in the Ledge.
 
 Understand "corrugated", "iron", "nails", "rusty", "brick", "metal", "slick" as the warehouse walls.
 
@@ -12736,40 +12894,58 @@ Understand "white", "paint", "roman", "numerals", "IV", "VI", "II" as the wareho
 
 Rule for printing the description of the warehouse walls:
 	say "The warehouse walls are made of corrugated iron riveted by rusted nails into brick. ";
-
-First after printing the description of the warehouse walls when the location does not enclose a door:
-	say "There's no door on this side. ";
-
-After printing the description of the warehouse walls when in the South Side:
-	say "White paint on the brickwork reads IV:VI:II. ";
-
-[ Last after printing the description of the warehouse walls:
-	say paragraph break; ]
+	if the location does not enclose a door:
+		say "There's no door on this side. ";
+	if the location is the South Side:
+		say "White paint on the brickwork reads IV:VI:II. ";
+	say paragraph break; 
 
 Instead of climbing the warehouse walls:
 	say "The metal is too slick to climb.";
 
+Instead of going inside in the presence of the warehouse:
+	try entering the warehouse.
+
 Instead of entering the warehouse when the location does not enclose a door:
 	say "There's no door on this side. I'll have to go around.";
+	
+	
+Instead of approaching the warehouse walls when in the South Side or in the North Side:
+	say "Which way - east or west?"
+
+Instead of approaching the warehouse walls when in the Ledge or in the Front Door:
+	say "Which way - north or south?"
+
+
 
 Part 3 - Front Door of Warehouse
 
 Chapter 1 - Description
 
-Front Door is a room. South of the Front Door is east of South Side. The description of Front Door is "The front door of the warehouse has a sign: '462 Old Place. Pellagiac Holdings Corp, &c &n, Storage and Wares'. This is the place but I can't see any way in – the door's locked by an iron bar I probably couldn't lift even if I could get the padlock off. Whatever's behind that must be worth a lot of money – but of course, I know what's inside. This cold and murky place is the lair of the Figure in Grey."
+Front Door is a room. South of the Front Door is east of South Side. The description of Front Door is "The front door of the warehouse has a sign: [i]462 Old Place. Pellagiac Holdings Corp, &c &n, Storage and Wares[r]. This is the place but I can't see any way in – the door's locked by an iron bar I probably couldn't lift even if I could get the padlock off. Whatever's behind that must be worth a lot of money[one of]. (Of course, I know what's inside. According to the Difference Engine this cold and murky place is the lair of the Figure in Grey.)[or].[stopping]".
 
-Instead of going inside in Front Door: try going west;
+Instead of going inside in Front Door: 
+	try going west.
 
 Instead of going a direction in Front Door when the noun is due east:
 	say "There's a wall that way. This alley goes north-south.";
+
+Instead of making to leave when in the Front Door:
+	try going south.
 
 Chapter 2 - Door
 
 A door called the huge iron door is locked, not open, west of the Front Door. "This side of the warehouse is right up against the side wall of another: I could slip around to north or south."
 
-The description of the huge iron door is "The door is made of thick metal – it's amazing the boards below don't break from the weight. It's locked with a huge iron bar and a padlock. It's almost like it's talking to me saying, Wren, you need to find another way in."
+The description of the huge iron door is "[one of]The door is made of thick metal – it's amazing the boards below don't break from the weight. It's locked with a huge iron bar and a padlock. It's almost like it's saying to me, Wren, you need to find another way in.[or]The door is closed, locked and impenetrable.[stopping]"
 
-Instead of going through the huge iron door from the Front Door:
+Instead of entering the warehouse walls when in the Front Door:
+	try going west.
+
+Instead of entering the huge iron door when in the Front Door:
+	try going west.
+
+Before going west when in the Front Door:
 	try examining the huge iron door instead;
 
 Instead of opening, pushing, pulling or turning the huge iron door:
@@ -12779,10 +12955,13 @@ Instead of unlocking the huge iron door with the wrench:
 	try attacking the huge iron door with the wrench;
 
 Instead of unlocking the huge iron door with something:
-	say "I don't have a key to this door.";
+	say "I don't have a key anything like big enough for this door." instead;
+	
+Instead of climbing the huge iron door:
+	say "The iron bar across the door is level with my neck - I can't even get started.";
 
 Instead of attacking the huge iron door:
-	say "If I had a thousand years to scratch away at that padlock with my clock key – or maybe only a hundred with something better – I might be able to get through that iron bar. But what's forged lasts, as the Abbot says, and I wasn't forged.";
+	say "[one of]If I had a thousand years to scratch away at that padlock with my clock key – or maybe only a hundred with something better – I might be able to get through that iron bar. But what's forged lasts, as the Abbot says, and I wasn't forged.[or]The door is too solid for me to batter, or even dent.[or]I can't.[stopping]";
 
 Instead of attacking the huge iron door with the wrench:
 	say "It might be a good wrench but I can hardly batter my way through iron with it, can I? A boot's no good for a butter-knife, as they say.";
@@ -12791,25 +12970,53 @@ Instead of attacking the huge iron door with something:
 	try attacking the huge iron door;
 
 Rule for supplying a missing second noun when the noun is the huge iron door while unlocking:
-	say "I don't have a key to this door." instead;
+	say "I don't have a key anything like big enough for this door." instead;
+
+The solid iron padlock is part of the huge iron door. The description is "The padlock is built of old anchors and the funnels of the great spring-powered Ocean liners. It would take a key the size of my arm to open it."
+
+Instead of taking or pulling or attacking or pushing the solid iron padlock:
+	try attacking the huge iron door.
+	
+Instead of unlocking the solid iron padlock with:
+	try unlocking the huge iron door with the second noun.
+
+Instead of opening the solid iron padlock:
+	say "It's locked, as firmly as a crocodiles jaw once it's gotten a child by the leg."
+
+The massive iron bar is part of the huge iron door. The description is "The bar is fixed with a padlock the size of a bull's head (and probably just as thick).". Understand "huge bar", "huge iron bar" as the massive iron bar.
+
+Instead of taking the massive iron bar:
+	say "I can't lift it - it's locked down with a padlock. And even if it wasn't, I'm sure I still couldn't lift it."
+	
+Instead of pulling or attacking or pushing the massive iron bar:
+	try attacking the huge iron door.
+
+Instead of climbing the massive iron bar:
+	try climbing the huge iron door.
 
 Part 4 - North Side
 
 Chapter 1 - Description
 
-North Side is a room. East of the North Side is north of the Front Door. "The north side of the warehouse is wooden boards covered with rubble as far as I can see, like the warehouse to the south had been built on the ruins of some older larger building. Skirting round the warehouse to east or west will mean picking my way through clumps of brick and razor-sharp cement and in the scrappy moonlight I can barely see my own feet.[paragraph break]Which all means, if they unleash the dogs on me, this'd be a terrible place to try and run."
+North Side is a room. East of the North Side is north of the Front Door. "The wooden boards are gone - this is just an island of rubble and sheet metal, as though the warehouse to the south had been built from the ruins of some older, larger building. Rats skim across the pools of water. Skirting round the warehouse to east or west will mean picking my way over unsteady piles of brick and in the scrappy moonlight I can barely see my own feet.[paragraph break]Which all means, if they unleash the dogs on me, this'd be a terrible place to try and run." The printed name is "North Side of Warehouse".
 
-Rule for supplying a missing noun when running in the North Side:
-	say "A terrible place.";
+Before running outside when in the North Side:
+	say "A terrible place." instead.
 
 Instead of going north when in the North Side:
 	say "The rubble gets thicker and higher in that direction[one of][or]. There's no way past[stopping].";
+
+Instead of going south in the North Side:
+	try entering the warehouse walls.
+
+Instead of making to leave when in the North Side:
+	try going east.
 
 Chapter 2 - Scenery
 
 Section 1 - Junk
 
-The rubble is scenery in the North Side. "'Without order there is tardiness,' they say: well, this place is so tardy that by the time it got here it was a ruin. Dark shadows and broken bricks[if the Wrench is not handled]. And a gleam of metal – looking closer I spy a good quality wrench[end if]."
+The rubble is scenery in the North Side. "'Without order there is tardiness,' they say: well, this place is so tardy that by the time it got here it was a ruin. Dark shadows and broken bricks[if the Wrench is not handled]. And a gleam of metal – looking closer I spy a good quality wrench[end if]."  Understand "brick", "bricks", "unsteady", "pile/piles of", "pile/piles", "sheet", "metal", "island/islands of", "island", "islands" as the rubble.
 
 Section 2 - Wrench
 
@@ -12827,6 +13034,12 @@ Chapter 1 - Description
 
 The Dock is a room. North of the Dock is west of the North Side. South of the Dock is the Ledge. "The west side of the warehouse is built out over the water, where a few plank boards form a small dock for boats. The warehouse has a[if Front Door is visited]nother[end if] door here but of course it's closed – solid iron and locked with a metal bar.[paragraph break]I could skirt the building to the north and south so long as I kept my balance. The water looks like ink and it's bubbling slightly. There's probably a crocodile down there, watching me right now."
 
+Instead of going inside when in the Dock:
+	try going east;
+Instead of making to leave when in the Dock:
+	try going south;
+
+
 The River Thymes is a backdrop, in the Dock and the Ledge. "The wide River Thymes disappears into the darkness like someone had knocked a water-glass over a map of the town. On the other side are bright lights and fine buildings: that's Palatine Hill built right by the springs[if the location is the Dock]. The river is bubbling slightly here[end if]."
 
 Understand "bubbling", "bubbles", "bubble" as the River Thymes when in the Dock.
@@ -12841,11 +13054,37 @@ Instead of entering the River Thymes:
 	if the location is the Ledge:
 		move the player to River 1;
 
-Instead of going a direction in the presence of the River Thymes when the noun is due west:
+Before going inside when in the Dock:
+	if the player has been underwater:
+		try going west instead;
+	say "Open the door - or did you mean the jumping in the water?" instead.
+
+Understand "swim" as jumping when the River Thymes is visible.
+Understand "dive" as jumping when the River Thymes is visible.
+Understand "jump in" as jumping when the River Thymes is visible.
+Understand "dive in" as jumping when the River Thymes is visible.
+Understand "jump back in" as jumping when the River Thymes is visible.
+Understand "dive back in" as jumping when the River Thymes is visible.
+
+Understand "swim in/into/through [something]" as entering when the River Thymes is visible.
+Understand "dive in/into [something]" as entering when the River Thymes is visible.
+
+Before jumping when the River Thymes is visible:
+	try entering the River Thymes instead.
+
+[The Before going inside in the presence of the River Thymes:
+	try entering the River Thymes instead.]
+
+Before going a direction in the presence of the River Thymes when the noun is due west:
 	try entering the River Thymes instead;
 
 Instead of undressing in the presence of the River Thymes:
 	say "What's the point? If I'm going to go swimming I might as well stay as warm as I can."
+
+Palatine Hill is a backdrop, in the Dock, in the Ledge. "Palatine Hill is where the gentry live, the kind that come to the Abbey once a year for Newtonmass, pass a few gold coins around and then pat you on the head. The lights shine out across the river, brighter than the stars."
+
+Instead of doing something when Palatine Hill is physically involved:
+	say "It's far, far away, across the river."
 
 Chapter 2 - Scenery
 
@@ -12885,6 +13124,28 @@ Part 6 - Ledge
 
 The Ledge is south of the Dock. South of the Ledge is west of South Side. "This is a narrow plank walkway on the west side of the warehouse, that gives me barely a hand-span between the brick wall and the dark water of the River Thymes. I could scurry north or south like a rat, but hanging around here might be a bad idea."
 
+Instead of making to leave when in the Ledge:
+	try going south.
+
+The first before going inside when in the Ledge:
+	if the player has been underwater:
+		try going west;
+	else:
+		now jump-jump-now is true;
+		say "You don't mean jumping in the river, do you?" instead.
+
+
+Jump-jump-now is a truth state that varies. [for you b5 fans out there.]
+Before reading a command when jump-jump-now has been true for exactly two turns:
+	now jump-jump-now is false.
+
+Instead of saying yes when jump-jump-now is true:
+	try going west.
+Instead of saying no when jump-jump-now is true:
+	say "Good. I'm glad to hear it!"
+
+
+
 Part 7 & 8 - Two Rivers
 
 An underwater room is a kind of room.
@@ -12894,12 +13155,14 @@ Definition: a room is overground:
 	yes;
 
 Instead of smelling the location when the location is an underwater room:
-	say "But I'd drown!";
+	say "That'd make for an easy way to drown.";
 
 Understand "swim" as jumping when the location is an underwater room.
 
-Instead of jumping when the location is an underwater room:
-	say "I thrash wildly about, only managing to raise a cloud of bubbles and muck.";
+Instead of jumping when in River 1:
+	try going north;
+Instead of jumping when in River 2:
+	try going south;
 
 Instead of dropping something when the location is an underwater room:
 	say "I'd only lose [if the noun is plural-named]them[otherwise]it[end if].";
@@ -12915,9 +13178,46 @@ To decide whether the player has not been underwater:
 Rule for printing the description of the Perpetuum Mobile diagram when the player has been underwater:
 	say "The diagram’s bedraggled but still clear enough to read.";
 
+Section - the Water
+
+The freezing cold water is a backdrop, in the River 1, in the River 2. "The water is ice-cold."
+
+Before touching the freezing water:
+	try examining the freezing water instead.
+
+Instead of doing something when the freezing cold water is physically involved:
+	say "I'm trashing around in it pretty good already!";
+
+Instead of eating or drinking or tasting or smelling the freezing cold water:
+	say "I keep getting mouthfuls, I don't need any more!"
+
+Instead of entering the freezing cold water when in River 1:
+	try going north.
+Instead of entering the freezing cold water when in River 2:
+	try going north.
+
+Understand "river", "thymes" as the freezing water.
+
+Instead of getting off the freezing cold water:
+	try going east.
+
+Understand "swim in/through [something]" as entering when the freezing cold water is visible and the player's command matches the text "water/river".
+
+Understand "my/your breath", "breath" as "[breath]".
+
+Understand "hold [breath]" as a mistake ("What do you think I'm doing?") when the freezing cold water is visible.
+
+
 Chapter 1 - River 1 Description
 
 River 1 is an underwater room, west of the Ledge. The printed name is "Underwater". "I feel like a drowning dog, splashing around in the freezing cold water. No-one teaches clock-polishers to swim! But at least all that oil teaches you to hold your breath, and whatever it is I'm doing with my legs seem to be keeping me just below the surface.[paragraph break]I could clamber back onto the planks to the east, or follow them northwards. But I'd better not put my feet down because who knows what's down there..."
+
+Understand "put feet down" as a mistake ("Sorry, I'm not doing it. I'll have to insist on this one.") while the location is River 1.
+
+Instead of making to leave when in River 1:
+	try going east.
+Instead of going inside when in River 1:
+	say "I'm already in it as far as I can go!";
 
 After going north in River 1:
 	say "I paddle my way along.";
@@ -12932,6 +13232,11 @@ Instead of going in River 1 when the noun is due south or the noun is northeast:
 Chapter 2 - River 2 Description
 
 River 2 is an underwater room, west of the Dock, north of River 1. The printed name is "Underwater, by the Dock". "This is like being in one of Chef's trifles: black jelly sheet above and mucky custard below. I'm holding my breath and trying to see through the muck. The ramp back up to the dock is to the east, which is a relief: below it, a fat pipe sticks out from somewhere and disappears into the depths of the river. Beside it is some kind of drain built into the earth under the dock."
+
+Instead of making to leave when in River 2:
+	try going east.
+Instead of going inside when in River 2:
+	say "I'm already in it as far as I can go!";
 
 After going south in River 2:
 	say "I paddle my way through the water.";
@@ -12956,9 +13261,13 @@ TRIG_RIVER is a trigger.
 
 Rule for firing unfired TRIG_RIVER:
 	say "Grabbing onto one of the poles supporting the dock I pull myself back up.";
+	destroy wet things, with leading break;
+
 
 Rule for firing TRIG_RIVER:
 	say "I pull myself back out, [one of]teeth chattering[or]dripping[or]spitting water[or]shivering[at random].";
+	destroy wet things, with leading break;;
+
 
 Chapter 4 - Breathing difficulties
 
@@ -12970,13 +13279,32 @@ After going to an underwater room from an overground room:
 Every turn when the location is an underwater room:
 	increment BREATH_COUNTER;
 
-Rule for firing BREATH_COUNTER when the internal value of BREATH_COUNTER is 3:
+Rule for firing BREATH_COUNTER when the internal value of BREATH_COUNTER is the top end of the BREATH_COUNTER minus one:
 	say "It's getting harder to hold my breath down here...", paragraph break;
 
-Rule for firing BREATH_COUNTER when the internal value of BREATH_COUNTER is 4:
+Rule for firing BREATH_COUNTER when the internal value of BREATH_COUNTER is the top end of the BREATH_COUNTER:
 	say "[one of]My lungs are getting fully-wound: kicking and flailing I get up to the surface and drag myself out.[or]I need to breathe again, so I pull myself back up.[stopping]";
 	if the location is River 1, move the player to Ledge;
 	if the location is River 2, move the player to Dock;
+	[  we subtly extend the player's breathing time every time this happens, so it doesn't get too annoying... ]
+	increase the top end of the BREATH_COUNTER by 2;
+	destroy wet things;
+
+To destroy wet things, with leading break:
+	if the player is carrying water-destructible things:
+		if with leading break, say line break;
+		say "[The list of water-destructible things carried by the player] ";
+		[ yuk to the following: yeah, I7 can do better, but for now I'm going down a minimum-research route! ]
+		if the number of water-destructible things carried by the player is greater than 1:
+			say "have turned to pulp - I throw them";
+		else:
+			say "has turned to a pulp - I throw it";
+		say " away into the water[if the player is carrying the Perpetuum Mobile diagram]. The Perpetuum diagram still seems readable, however[end if].";
+		repeat with item running through water-destructible things carried by the player:
+			remove item from play;
+
+Instead of examining a water-destructible thing when the player is in an underwater room:
+	say "It's looking pretty ruined by the water."
 
 Chapter 5 - Bubbling pipeline
 
@@ -12986,6 +13314,21 @@ Understand "fat", "cracked", "broken", "pipe", "hairline", "bubbling", "bubbles"
 
 Instead of smelling the bubbling pipeline:
 	say "It'll be gas, not air!";
+
+Instead of opening the pipeline:
+	say "It's just a hairline crack, nothing more."
+
+Instead of searching the pipeline:
+	say "[one of]It's the thinnest of cracks, and the bubbles get in the way. But then, I suppose t[or]T[stopping]here's nothing in it but gas."
+
+Instead of slicing the pipeline with the knife:
+	say "I open the crack a fraction but nothing good comes of it - a few more bubbles escaping, maybe, that obscure my view of the drain below."
+
+Instead of unlocking the pipeline with the knife:
+	try slicing the pipeline with the knife.
+
+Instead of unlocking the pipeline with something:
+	say "[The second noun] isn't going to lever the crack."
 
 Chapter 6 - Drain cover
 
@@ -13011,16 +13354,16 @@ Instead of going through the closed drain entrance:
 	say "The drain cover is closed.";
 
 Instead of opening the closed drain entrance:
-	say "I can't turn bolts with my bare hands.";
+	say "I can't turn bolts with my bare hands!";
 
 Instead of unlocking the drain entrance with something when the second noun is not a key:
 	try unscrewing the bolts with the second noun;
 
 Rule for supplying a missing second noun while unscrewing the bolts with:
-	say "I can't turn bolts with my bare hands.";
+	say "I can't turn bolts with my bare hands!";
 
 Rule for supplying a missing second noun while unscrewing the drain entrance with:
-	say "I can't turn bolts with my bare hands.";
+	say "I can't turn bolts with my bare hands!";
 
 Instead of unscrewing the bolts with the wrench:
 	decrease the count of the bolts by 1;
@@ -13057,6 +13400,12 @@ Chapter 1 - Description
 
 The Drain Pipe is a room. The printed name is "Drain". The description is "The drain's heading upwards and I've found air above me, a little pocket of it, like I was an ant trapped inside a spirit level. [if the air pocket is unexamined]But I'm breathing, so either there's some kind of grate above me or the air will eventually turn as stale as prisoner's bread.[otherwise]Above me is a grate.[end if]"
 
+Instead of making to leave when in the Drain Pipe:
+	try going southwest. 
+
+Instead of going inside when in the Drain Pipe:
+	try going up;
+
 Chapter 2 - Scenery
 
 Section 1 - Air pocket, Grate, Drain
@@ -13092,6 +13441,14 @@ Part 10 - Loading Bay
 Chapter 1 - Description
 
 The Loading Bay is a room. "I'm inside the warehouse but there's no sign of the Figure. Or anyone else. Or anything. The warehouse may be massive but it seems to be completely empty, [if the warehouse door is open]just that crate blocking the drain[otherwise]just one huge crate wrapped all round with thick iron chains[end if] and some piles of debris like those outside. There's enough floor space for a game of clockball, continuing off to the south.[paragraph break]About halfway down is the large metal door I saw from the dock. Above it a fat pipe crosses from wall to wall. The drain I came up from is by the north wall.". The printed name is "Loading".
+
+Instead of making to leave when in the Loading Bay:
+	try going down.
+Instead of going north when in the Loading Bay:
+	try going down.
+
+Instead of going inside when in the Loading Bay:
+	try going south.
 
 Chapter 2 - Scenery
 
@@ -13573,9 +13930,16 @@ Storage Bay is a room, south of the Loading Bay. "This is the south end of the e
 
 The south pipe is a warehouse pipe, in the Storage Bay. "The pipe's a fair few feet up the wall. What it's for is anyone's guess." 
 
+Instead of making to leave when in the Storage Bay:
+	try going north.
+Instead of going inside when in the Storage Bay:
+	try going east.
+
 Chapter 2 - Warehouse Door
 
 The warehouse door is a door, not open, not openable, not locked, not lockable, east of the Storage Bay, west of Gas Platform. "The enormous warehouse continues back to the north towards the drain I came up by. There’s a second fat pipe crossing the room here." The description is "The door is designed to slide up into the ceiling and in the centre of it is an iron ring for lifting. Presumably the Figure can just slide it up, but I certainly can’t.[If the Warehouse Door is suspended and the warehouse door is closed] The rope I’ve got tied to it might help though[otherwise if the warehouse door is open] Instead I’ve got the rope tied to it, and my pulley system has lifted the whole thing about two feet from the floor[end if]."
+
+
 
 Instead of opening, pulling or pushing the closed warehouse door:
 	say "It’s far heavier than me. There’s no way I can move it unaided.";
@@ -13592,6 +13956,11 @@ Part 12 - Gas Platform
 Chapter 1 - Description
 
 Gas Platform is a room.
+
+Instead of going inside when in the Gas Platform:
+	try going down.
+Instead of making to leave when in the Gas Platform:
+	try going west.
 
 Gas Platform can be murky or bright. Gas Platform is murky.
 
@@ -13753,6 +14122,11 @@ Rule for printing the description of the shiny wrench:
 Part 13 - Warehouse
 
 The Warehouse Basement is a room. "I’m standing in a forest of eyes, and arms, and hands. There are metal men all around me, on every side, all slightly different. The flickering gas-lights make it look and sound like they’re breathing. Any one might be about to reach out a hand and grab my shoulder… I need to work out the Figure’s plan as quickly as possible and then get out of here. In one piece!"
+
+Instead of going inside when in the Warehouse Basement:
+	say "I'm far enough in for my liking already!".
+Instead of making to leave when in the Warehouse Basement:
+	try going up.
 
 The printed name of the Warehouse Basement is "Warehouse"
 
@@ -16095,7 +16469,7 @@ Instead of attacking the wound spring with my lucky clock key:
 
 Book W - Walkthrough Script
 
-Test jonsprogress with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt / up / show order to guards / w / nw / n / e / z / z / d / x dials / get key / s / w / unlock abacus / set abacus to 14936 / e / e / unlock abacus / set abacus to 78325 / w / pull lever ".
+Test jonsprogress with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt / test countinghouse".
 
 test cheat7 with "test intro / gonear street / purloin work order".
 
