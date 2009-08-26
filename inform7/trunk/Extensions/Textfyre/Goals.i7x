@@ -4,16 +4,19 @@ A goal is a kind of thing.
 A goal can be achieved or unachieved. A goal is unachieved.
 
 The current goals is a list of objects that varies.
+The current goals is {}.
 
 The recently achieved goals is a list of objects that varies.
+The recently achieved goals is {}.
 
-The current goals is {}.
+Last turn's goals is a list of objects that varies.
+Last turn's goals is {}.
 
 The goal-scoring rules are an object-based rulebook.
 
 The goal-scoring rules have outcomes goal achieved (success), goal not yet achieved (failure - the default), and goal thwarted (failure).
 
-Every turn:
+Every turn (this is the goal assessment rule):
 	let the goals achieved this turn be a list of objects;
 	let the goals thwarted this turn be a list of objects;
 	repeat with G running through the current goals:
@@ -29,6 +32,21 @@ Every turn:
 	let n be the number of entries in the goals achieved this turn;
 	if n is at least 1:
 		say "[bracket]You achieved [if n is 1]a[otherwise][n in words][end if] goal[if n is not 1]s[end if]! ([the goals achieved this turn])[close bracket][paragraph break]";
+
+Last when play begins:
+	change last turn's goals to the current goals;
+
+Every turn (this is the new goal notification rule):
+	if the turn count is 1:
+		rule fails;
+	let the goal sieve be the current goals;
+	remove last turn's goals from the goal sieve;
+	change last turn's goals to the current goals;
+	let n be the number of entries in the goal sieve;
+	if n is 1:
+		say "[bracket]A new goal was added: [the goal sieve][close bracket][paragraph break]";
+	otherwise if n is at least 1:
+		say "[bracket]New goals were added. Type GOALS to see them all[close bracket][paragraph break]";
 
 To list the player's goals:
 	if the recently achieved goals is not empty:
