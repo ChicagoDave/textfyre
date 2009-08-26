@@ -137,8 +137,9 @@ Rule for populating a quip (called q) (this is the standard quip-populating rule
 
 Last after populating a transitional quip (called tq) (this is the standard quip-transitioning rule):
 	let the real destination be the following quip of tq;
-	carry out the firing activity with the real destination;
-	carry out the populating activity with the real destination;
+	if the real destination is not nothing:
+		carry out the firing activity with the real destination;
+		carry out the populating activity with the real destination;
 
 Chapter 2 - Viewing the menu
 
