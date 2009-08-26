@@ -6,6 +6,8 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 
 [  Change Log
 When		Who		What
+26-Aug-2009	G. Jefferis	Chapter 3 mostly done - Maelstrom maze.
+25-Aug-2009	G. Jefferis	Chapter 2 mostly done.
 24-Aug-2009	G. Jefferis	Chapter 2 begun: FOCUS command, conversations with Stacy & Ava, chat with Lucian.
 17-Aug-2009	G. Jefferis	Chapter 1 tidied up and now solvable
 03-Aug-2009	G. Jefferis	Conversation points
@@ -27,6 +29,7 @@ Include Textfyre Standard Rules by Textfyre.
 Include Textfyre Standard Backdrops by Textfyre.
 Include Triggers by Textfyre.
 Include Quips by Textfyre.
+Include Counters by Textfyre.
 Include Conversation Topics by Textfyre.
 Include Scripted Events by Textfyre.
 Include Goals by Textfyre.
@@ -94,9 +97,14 @@ Chapter 1 - Description
 
 Chapter 2 - Belongings
 
-The player carries the list of items for the scavenger hunt.
+The player carries the items list for the scavenger hunt.
 
-A list of items for the Scavenger Hunt is a thing. The description is "A newspaper[line break]A feather[line break]A flag[line break]A star[line break]A dinosaur[line break]A hat[line break]Something that was once alive"
+The items list for the Scavenger Hunt is a thing. The description is "A newspaper[line break]A feather[line break]A flag[line break]A star[line break]A dinosaur[line break]A hat[line break]Something that was once alive"
+
+Understand "item", "of items" as the items list for the Scavenger Hunt.
+
+Rule for printing the name of the items list for the Scavenger Hunt:
+	say "list of items for the Scavenger Hunt";
 
 The player carries some dollar notes. The indefinite article of the dollar notes is "a few".
 
@@ -110,7 +118,7 @@ Part 3 - Introduction
 The time of day is 7:05 PM.
 
 When play begins:
-	say "It's your second year at the LEAP summer camp, and so far it's been as great as you remember last year to have been.  Ava Winters and Stacy Alexander, whom you met last year (and whom your brother Aidan calls 'your girlfriends', much to your embarrassment) are here again.  You spent yesterday catching up on the news in between options and classes, and now you're settling in with the smug sensation of not being a raw newbie any more.[paragraph break]The LEAP summer camp isn't quite the same as most summer camps.  LEAP is an acronym for 'Learning Enrichment Activity Programme'; the brainchild of world-renowned educator Professor Damon Rose, it is housed on the campus of the University of Colorado at Valmont, and was created for Gifted and Talented Kids (gosh, that sounds impressive) to expand their horizons and encourage them to stretch their mental capabilities.[paragraph break]Whatever. That's all in the promotional flyers. You just know that you're in for two weeks of the sort of interesting classes you don't get in school, and a bunch of fun options with which to fill up the free time after classes.  This evening, for instance, you've signed up for a scavenger hunt...";
+	say "It's your second year at the LEAP summer camp, and so far it's been as great as you remember last year to have been.  Ava Winters and Stacy Alexander, whom you met last year (and whom your brother Aidan calls 'your girlfriends', much to your embarrassment) are here again.  You spent yesterday catching up on the news in between options and classes, and now you're settling in with the smug sensation of not being a raw newbie any more.[paragraph break]The LEAP summer camp isn't quite the same as most summer camps.  LEAP is an acronym for 'Learning Enrichment Activity Programme'; the brainchild of world-renowned educator Professor Damon Rose, it is housed on the campus of the University of Colorado at Valmont, and was created for Gifted and Talented Kids (gosh, that sounds impressive) to expand their horizons and encourage them to stretch their mental capabilities.[paragraph break]Whatever. That's all in the promotional flyers. You just know that you're in for two weeks of the sort of interesting classes you don't get in school, and a bunch of fun options with which to fill up the free time after classes.  This evening, for instance, you've signed up for a scavenger hunt....";
 	pause the game;
 	say "LEAP, Day 2.  Evening.[paragraph break]'Okay, kids!' Michelle, the counselor in charge of the scavenger hunt option waves her hands to settle the crowd around you, before finally remembering her whistle.  A brief [i]fweep[r] sweeps through the room.  'Okay, does everyone have their list?  Everyone good?  Okay!  You have until 8:25 pm to find everything on your lists, return here, and show me your lists so I can check them.  So synchronise your watches... are we all in sync?  Good!  Your time starts... now!'[paragraph break]Michelle's whistle gives another sharp fweep, and the room practically empties as everyone else runs off to begin their hunt.";
 
@@ -152,45 +160,6 @@ Check knocking on:
 Book - Definitions
 
 Part 1 - Scavenger Hunt
-
-Scavenger Hunting is a scene. Scavenger Hunting begins when play begins.
-
-Scavenger Hunting ends naturally when the time of day is 8:25 PM.
-Scavenger Hunting ends victoriously when every scavenger hunt goal is achieved and the player can see Michelle.
-
-When Scavenger Hunting ends naturally:
-	say "8:25!  Time's up!  You hurry back to the starting point with your list[if the player has something that fulfills a goal] and everything you've found so far[end if]...";
-	move the player to First Floor Lobby West;
-	if every scavenger hunt goal is achieved:
-		say "Michelle takes your list, then searches about herself for a pencil (completely missing the one behind her ear and the two pens in her pocket) before finally pulling out a magic marker.  She nods as she ticks off the items from the list.  'Nice going, Daniel,' she says, smiling, 'that's everything on the list.  You win!'  She slaps a blue ribbon on your chest and turns to address the next camper.[paragraph break]The numb sensation in the side of your head takes a few moments to clear completely.";
-	otherwise if at least one scavenger hunt goal is achieved:
-		say "Michelle scans your list, looks over your findings, and shakes her head.  'Well, it was a[if most of the scavenger hunt goals are achieved]n excellent effort[else] good try[end if], Daniel, but I'm afraid you haven't [if almost all of the scavenger hunt goals are achieved]quite [end if]found everything.  Better luck next time!'[paragraph break]It takes you a few moments to realize that 'the bitter taste of defeat' is, in this case, not a figure of speech: the air literally does taste bitter.";
-	otherwise:
-		bug "The player hasn't found anything.";
-		placeholder "Michelle shakes her head.  'None of the items on the list? Better luck next time!'[paragraph break]It takes you a few moments to realize that 'the bitter taste of defeat' is, in this case, not a figure of speech: the air literally does taste bitter.";
-	pause the game;
-
-When Scavenger Hunting ends victoriously:
-	say "Michelle takes your list, then searches about herself for a pencil (completely missing the one behind her ear and the two pens in her pocket) before finally pulling out a magic marker.  She nods as she ticks off the items from the list.  'Nice going, Daniel,' she says, smiling, 'that's everything on the list.  You win!'  She slaps a blue ribbon on your chest and turns to address the next camper.[paragraph break]The numb sensation in the side of your head takes a few moments to clear completely.";
-	pause the game;
-
-GOAL_SCAV_HUNT is an achieved goal.
-
-Rule for printing the name of GOAL_SCAV_HUNT when every scavenger hunt goal is achieved:
-	say "winning the scavenger hunt";
-
-Rule for printing the name of GOAL_SCAV_HUNT when almost all scavenger hunt goals are achieved:
-	say "runner up in the scavenger hunt";
-
-Rule for printing the name of GOAL_SCAV_HUNT when most scavenger hunt goals are achieved:
-	say "doing well in the scavenger hunt";
-
-Rule for printing the name of GOAL_SCAV_HUNT :
-	say "participating in the scavenger hunt";
-
-When Scavenger Hunting ends:
-	change the current goals to {};
-	change the recently achieved goals to { GOAL_SCAV_HUNT  };
 
 A scavenger hunt goal is a kind of goal. Some scavenger hunt goals are defined by the table of scavenger-hunt-goals.
 
@@ -418,7 +387,29 @@ Report focussing on a room:
 
 The focussing rules are an object-based rulebook.
 
-Book 1 - Jacobs Hall
+Part 8 - Known / Unknown
+
+[This is to do with "real names".]
+
+A thing can be known or unknown. A thing is usually known.
+
+Part 9 - Major and minor Goals
+
+A goal can be major or minor. A goal is usually minor.
+
+The goal-tidying rules are a rulebook.
+
+A goal-tidying rule (this is the tidy recently achieved goals rule):
+	remove the list of minor goals from the recently achieved goals;
+
+A goal-tidying rule (this is the tidy current goals rule):
+	remove the list of minor goals from the current goals;
+
+Part 10 - Availability of Quips
+
+A quip can be available or unavailable. A quip is usually available.
+
+Book 0 - Jacobs Hall Map
 
 Part 1 - Lobby West
 
@@ -707,6 +698,8 @@ Calvin Field North is a room, north of Calvin Field South, east of Info Desk. "C
 Rule for printing the description of the backdrop-grass when in Calvin Field North:
 	say "It's green, which means it's not quite dead yet, despite the best efforts of the Myth Tag players.";
 
+Chapter 2 - Scenery
+
 The Myth Tag option is an option, scenery, in Calvin Field North. "It's sort of like normal tag, except you can declare yourself 'safe' by crouching down and naming a mythological creature.  No repeats, though: one of the counsellors is keeping track of what's been named so far."
 
 Claremont Hall is a university building, in Calvin Field North. "Claremont Hall looks very grand, standing on a rise at the north end of Calvin Field.  It's a red sandstone building with rounded arches and red shingles, and a huge clock tower right over the door."
@@ -714,8 +707,6 @@ Claremont Hall is a university building, in Calvin Field North. "Claremont Hall 
 A huge clock tower is scenery, part of Claremont Hall. "The Claremont Hall clock tower has never told the right time, not since it was built.  Someone told you last year that it's haunted, but that's the sort of thing people always tell kids on their first summer at camp."
 
 A fountain is scenery, in Calvin Field North. "The fountain consists of a wide, shallow basin and a modern sculpture that, to you, looks a lot like Big Foot taking a shower.  It's not running right now."
-
-Chapter 2 - Scenery
 
 Part 7 - Front Lawn
 
@@ -860,6 +851,16 @@ Aidan's door is a door, scenery, closed, locked, north of First Floor Rooms West
 Instead of opening Aidan's Door during Scavenger Hunting:
 	say "Aidan isn't in right now, and you shouldn't be poking around in his room while he's gone.  Even if he is your brother.  Especially if he's your brother.  And anyway, the door is locked.";
 
+Aidan's bed is a supporter, enterable, scenery, in Aidan's room. "Your father is a naval officer, and Aidan seems to take this fact rather more seriously than you do.  His bed is perfectly ship-shape, with shoes and boots lined up for inspection beside it.  You happen to know that Aidan also keeps a guitar stashed away under his bed, behind those perfect shoes and boots."
+
+Aidan's boots are scenery, in Aidan's room. "If you kept your shoes and boots in such perfect order, you wouldn't have to hunt about for them every morning.  You'd also freak out your roommate... which Aidan no doubt has already done, seeing as how whats-his-name never seems to be around."
+
+Aidan's guitar is scenery, in Aidan's room. "It's in its case, for now.  Aidan's quite good, though he doesn't practice as much as he really should.  You sometimes wonder where he finds the time to practice at all."
+
+Aidan's desk is scenery, a supporter, in Aidan's room.
+
+Aidan's laptop is scenery, on Aidan's desk.
+
 Part 11 - First Floor Rooms, East
 
 Chapter 1 - Description
@@ -879,6 +880,51 @@ Rule for printing the description of the view of Calvin Field:
 	say "There seems to be an awful lot of running around over Calvin Field today.";
 
 Understand "running", "around", "runners", "students", "campers", "myth tag", "tag", "game", "calvin field", "calvin field north", "field north" as the view of Calvin Field.
+
+Part 11 B - Hank & Joe's Room
+
+Hank's Room is a dorm room. "The less said about the mess in this room, the better.  The exit is back to the north."
+
+Hank's door is a door, scenery, improper-named, locked, south of First Floor Rooms East, north of Hank's Room.
+
+Rule for printing the name of Hank's room:
+	say "Room";
+
+Before printing the name of Hank's room:
+	if Joe is known and Hank is known:
+		say "Joe and Hank's ";
+	otherwise if Joe is known:
+		say "Joe's ";
+	otherwise if Hank is known:
+		say "Hank's ";
+	otherwise:
+		say "Dorm ";
+
+Rule for printing the name of Hank's door:
+	say "door";
+
+Before printing the name of the proper-named Hank's door when Joe is known or Hank is known:
+	if Joe is known and Hank is known:
+		say "Joe and Hank's ";
+	otherwise if Joe is known:
+		say "Joe's ";
+	otherwise:
+		say "Hank's ";
+
+Hank is a man, unknown, improper-named, in Hank's room.
+Joe is a man, unknown, improper-named, in Hank's room.
+
+Rule for printing the name of unknown Hank:
+	say "boy";
+
+Rule for printing the name of unknown Joe:
+	say "boy";
+
+Before listing contents of Hank's room:
+	group unknown men together;
+
+Rule for grouping together unknown men when in Hank's Room:
+	say "[listing group size in words] older boys";
 
 Part 12 - Pits Stairwell
 
@@ -964,7 +1010,26 @@ Lucian's Room is a dorm room. "It's another dorm room, not much different from y
 To say SONG:
 	say "[bracket]SONG[close bracket]";
 
+Chapter 2 - Scenery
+
+Section 1 - Door
+
 Lucian's door is a door, scenery, closed, locked, north of Lucian's Room, south of Pits West.
+
+Section 2 - Beds
+
+Lucian's bed is scenery, enterable, a supporter, in Lucian's room. "Standard, regulation LEAP beds."
+
+Lucian's desk is scenery, a supporter, in Lucian's room. "Standard, regulation LEAP desks, littered with the odd personal items that save them from complete anonymity."
+
+Lucian's photographs are scenery, on Lucian's desk. "There are two of them.  One appears to be a class photograph taken a year or two ago: there's an older man, maybe in his fifties, surrounded by a bunch of kids, in front of a blackboard.  The other is much older, judging by the clothes and hair, and shows a cheerful little old lady sitting on a bench in a colorful flower garden."
+
+After examining Lucian's photographs during Chatting to Lucian:
+	try asking Lucian about "photographs";
+
+Lucian's CD player is scenery, on Lucian's desk. "How many times can one person listen to [SONG] at one go?"
+
+Chapter 3 - Lucian
 
 Lucian is a man, in Lucian's Room. The description is "Lucian's a little shrimp of a newbie.  He looks rather pale and colorless, with thin white-blonde hair plastered close to his scalp.  In short, he's rather typical bully-bait."
 
@@ -973,6 +1038,8 @@ Instead of attacking Lucian:
 
 Instead of kissing Lucian:
 	say "Not on your life.";
+
+
 
 Part 14 - Pits East
 
@@ -1345,7 +1412,7 @@ The response of Q_AIDAN_0 is {Q_AIDAN_0a, Q_AIDAN_0b}.
 The response of Q_AIDAN_1 is {Q_AIDAN_1a, Q_AIDAN_1b}.
 The response of Q_AIDAN_2 is {Q_AIDAN_2a, Q_AIDAN_2b, Q_AIDAN_2c}.
 
-Last before firing a quip (called Q):
+Last before firing a quip (called Q) (this is the print menu text as part of conversation rule):
 	unless the menu text of Q is empty:
 		say the menu text of Q, paragraph break;
 
@@ -1518,11 +1585,59 @@ Rule for firing unfired TRIG_EGGDROP:
 Rule for firing fired TRIG_EGGDROP:
 	say "There's that dizzy feeling again; this time you're ready for it.  As it fades away, you almost swear you taste something vaguely sour in the air.";
 
+Book 1 - Scavenger Hunt
+
+Scavenger Hunting is a scene. Scavenger Hunting begins when play begins.
+
+Scavenger Hunting ends naturally when the time of day is 8:25 PM.
+Scavenger Hunting ends victoriously when every scavenger hunt goal is achieved and the player can see Michelle.
+
+When Scavenger Hunting ends naturally:
+	say "8:25!  Time's up!  You hurry back to the starting point with your list[if the player has something that fulfills a goal] and everything you've found so far[end if]....";
+	move the player to First Floor Lobby West;
+	if every scavenger hunt goal is achieved:
+		say "Michelle takes your list, then searches about herself for a pencil (completely missing the one behind her ear and the two pens in her pocket) before finally pulling out a magic marker.  She nods as she ticks off the items from the list.  'Nice going, Daniel,' she says, smiling, 'that's everything on the list.  You win!'  She slaps a blue ribbon on your chest and turns to address the next camper.[paragraph break]The numb sensation in the side of your head takes a few moments to clear completely.";
+	otherwise if at least one scavenger hunt goal is achieved:
+		say "Michelle scans your list, looks over your findings, and shakes her head.  'Well, it was a[if most of the scavenger hunt goals are achieved]n excellent effort[else] good try[end if], Daniel, but I'm afraid you haven't [if almost all of the scavenger hunt goals are achieved]quite [end if]found everything.  Better luck next time!'[paragraph break]It takes you a few moments to realize that 'the bitter taste of defeat' is, in this case, not a figure of speech: the air literally does taste bitter.";
+	otherwise:
+		bug "The player hasn't found anything.";
+		placeholder "Michelle shakes her head.  'None of the items on the list? Better luck next time!'[paragraph break]It takes you a few moments to realize that 'the bitter taste of defeat' is, in this case, not a figure of speech: the air literally does taste bitter.";
+	pause the game;
+
+When Scavenger Hunting ends victoriously:
+	say "Michelle takes your list, then searches about herself for a pencil (completely missing the one behind her ear and the two pens in her pocket) before finally pulling out a magic marker.  She nods as she ticks off the items from the list.  'Nice going, Daniel,' she says, smiling, 'that's everything on the list.  You win!'  She slaps a blue ribbon on your chest and turns to address the next camper.[paragraph break]The numb sensation in the side of your head takes a few moments to clear completely.";
+	pause the game;
+
+When Scavenger Hunting ends (this is the clear the player's inventory of scavenger hunt items rule):
+	remove the items list for the Scavenger Hunt from play;
+	repeat with treasure running through things which fulfill a scavenger hunt goal:
+		if the player has the treasure:
+			remove the treasure from play;
+
+GOAL_SCAVENGER_HUNT is a goal, major, achieved.
+
+Rule for printing the name of GOAL_SCAVENGER_HUNT when every scavenger hunt goal is achieved:
+	say "winning the scavenger hunt";
+
+Rule for printing the name of GOAL_SCAVENGER_HUNT when almost all scavenger hunt goals are achieved:
+	say "runner up in the scavenger hunt";
+
+Rule for printing the name of GOAL_SCAVENGER_HUNT when most scavenger hunt goals are achieved:
+	say "doing well in the scavenger hunt";
+
+Rule for printing the name of GOAL_SCAVENGER_HUNT :
+	say "participating in the scavenger hunt";
+
+When Scavenger Hunting ends:
+	add GOAL_SCAVENGER_HUNT to the recently achieved goals, if absent;
+	consider the goal-tidying rules;
+
 Book 2 - Lucian's Secret
 
 Part 1 - Introduction
 
 Lucian's Secret is a scene. Lucian's Secret begins when Scavenger Hunting ends.
+Lucian's Secret ends when Crystal Return ends.
 
 GOAL_AVA_STACY is a goal.
 
@@ -1540,6 +1655,7 @@ When Lucian's Secret begins:
 	say "Well, that was odd.[paragraph break]Those sudden flashes of sensory hallucination (what else would you call them?) seem to die down over the course of the next day.  The headaches and dizzy spells are so mild now as to be practically gone, but on the other hand, the frequency seems to be increasing.  It's all somewhere in the back of your head: if you focus, you can almost always find... something.  A smell, or a sound that isn't there.  A peculiar flavour hanging in the air.[paragraph break]Even so, you're not entirely sure you want to speak to a doctor.  I mean, it's not as if it's laying you flat on your back on anything like that.  You could talk to Aidan, but he'd probably just march you straight up to the hospital.  He'd even carry you there if he had to.  So where does that leave you?[paragraph break]";
 	pause the game;
 	say "[paragraph break]LEAP, Day 3 (Tuesday) - Dorm Time[paragraph break]Your roommate, Jeremy, went off with some friends after dinner, which leaves you alone for now.  It's dorm time, which means you have maybe a couple of hours or so before lights-out, all to yourself.  Some people spend the time reading, or listening to music, or visiting friends.  Which reminds you, maybe talking to Stacy and Ava about this would be the best thing to do.  Maybe they'll tell you it's all part of being eleven years old, or something.[paragraph break]Yeah.  You can hope.";
+	consider the new goal notification rule;
 	move the player to Your Room;
 	repeat with opt running through options:
 		remove opt from play;
@@ -1564,8 +1680,8 @@ Chapter 2 - Conversation
 
 Q_STACY_AVA_0 is a quip. The display text is "Stacy looks up from her desk, where a few hundred tiny electronic parts are scattered.  'We were just talking about how lately you seem distracted all the time.  Is something wrong?'[paragraph break]Ava looks a little embarrassed.  'We're just concerned.  You know.'"
 
-Q_STACY_AVA_0A is a menu quip. The following quip is Q_STACY_AVA_1. The menu text is "'I don't know what's happening...'".
-Q_STACY_AVA_0B is a menu quip. The following quip is Q_STACY_AVA_1. The menu text is "'Well, I'm getting these headaches...'".
+Q_STACY_AVA_0A is a menu quip. The following quip is Q_STACY_AVA_1. The menu text is "'I don't know what's happening....'".
+Q_STACY_AVA_0B is a menu quip. The following quip is Q_STACY_AVA_1. The menu text is "'Well, I'm getting these headaches....'".
 Q_STACY_AVA_0C is a menu quip. The following quip is Q_STACY_AVA_9. The menu text is "'There's nothing wrong.  Can't a guy visit his friends every now and then?'".
 
 Q_STACY_AVA_1 is a quip. The display text is "You tell Ava and Stacy about the headaches, the dizzy spells, and the hallucinations.  Only of course you don't call them hallucinations, because they'd think you're going nuts for sure.  Ava says, 'that sounds serious.  Maybe you should see a doctor.'"
@@ -1635,16 +1751,16 @@ Rule for firing relevant TRIG_FOCUS_HINT:
 	say "'Daniel,' says Ava, 'Daniel, you're getting that funny look again.  Is whatever-it-is somewhere around here?'[paragraph break]'Try to focus,' says Stacy. ";
 
 A focussing rule for the lachrymose trail when in Info Desk:
-	say "Concentrating on the flavour, you sense an undercurrent of something salty as well, like tears.  You can also tell that this is all definitely part of a trail of some sort, going off to the east and the north.";
+	say "Concentrating on the flavour, you sense an undercurrent of something salty as well, like tears.  You can also tell that this is all definitely part of a trail of some sort, going off to the east and the north. [paragraph break]";
 
 A focussing rule for the lachrymose trail when in First Floor Midpoint:
-	say "Concentrating on the flavour, you sense an undercurrent of salt tears.  Both sour and salt seem to form a line between the Info Desk and the stairs going down."
+	say "Concentrating on the flavour, you sense an undercurrent of salt tears.  Both sour and salt seem to form a line between the Info Desk and the stairs going down. [paragraph break]"
 
 A focussing rule for the lachrymose trail when in Pits Stairwell:
-	say "Concentrating on the flavour, you sense an undercurrent of salt tears.  Both sour and salt seem to trail off to the west and to the stairs going up."
+	say "Concentrating on the flavour, you sense an undercurrent of salt tears.  Both sour and salt seem to trail off to the west and to the stairs going up. [paragraph break]"
 
 A focussing rule for the lachrymose trail when in Pits West:
-	say "Concentrating on the flavour, you sense an undercurrent of salt tears.  They trail off to the east, but seem strongest around one of the doors to the south.";
+	say "Concentrating on the flavour, you sense an undercurrent of salt tears.  They trail off to the east, but seem strongest around one of the doors to the south. [paragraph break]";
 
 Last focussing rule for the lachrymose trail:
 	fire TRIG_TRAIL;
@@ -1652,16 +1768,16 @@ Last focussing rule for the lachrymose trail:
 TRIG_TRAIL is a trigger.
 
 Rule for firing unfired TRIG_TRAIL when in Info Desk:
-	say "[paragraph break]'It's a trail,' you say.  'It runs off that way, outside, and that way, back to the dorms.'[paragraph break]'Well,' says Stacy, 'we can't very well leave the building at this time of the night.  We'd best investigate the other direction.'";
+	say "'It's a trail,' you say.  'It runs off that way, outside, and that way, back to the dorms.'[paragraph break]'Well,' says Stacy, 'we can't very well leave the building at this time of the night.  We'd best investigate the other direction.'";
 
 Rule for firing unfired TRIG_TRAIL when in First Floor Midpoint:
-	say "[paragraph break]'It's a trail,' you say.  'It goes down the stairs and back to the Info Desk.'[paragraph break]'I know we said we'd go look around the Info Desk,' says Stacy, 'but if this is a trail of some sort, I wonder where it leads.'[paragraph break]Ava shrugs.  'Up to you, Daniel.  Off to the Info Desk, or down the stairs?'";
+	say "'It's a trail,' you say.  'It goes down the stairs and back to the Info Desk.'[paragraph break]'I know we said we'd go look around the Info Desk,' says Stacy, 'but if this is a trail of some sort, I wonder where it leads.'[paragraph break]Ava shrugs.  'Up to you, Daniel.  Off to the Info Desk, or down the stairs?'";
 
 Rule for firing unfired TRIG_TRAIL when in Pits Stairwell:
-	say "[paragraph break]'It's a trail,' you say.  'It goes up the stairs and that way down the hall.'[paragraph break]'I know we said we'd go look around the Info Desk,' says Stacy, 'but if this is a trail of some sort, I wonder where it leads.'[paragraph break]'I'm guessing the trail up the stairs goes back to the Info Desk.'  Ava shrugs.  'Up to you, Daniel.  Off to the Info Desk, or do we see what's at the end of the hall?'";
+	say "'It's a trail,' you say.  'It goes up the stairs and that way down the hall.'[paragraph break]'I know we said we'd go look around the Info Desk,' says Stacy, 'but if this is a trail of some sort, I wonder where it leads.'[paragraph break]'I'm guessing the trail up the stairs goes back to the Info Desk.'  Ava shrugs.  'Up to you, Daniel.  Off to the Info Desk, or do we see what's at the end of the hall?'";
 
 Rule for firing TRIG_TRAIL when in Pits West:
-	say "[paragraph break]'Whatever it is, it's strongest around that door.'[paragraph break]Ava and Stacy exchange glances, and before you can stop her, Stacy is knocking on the door.  'We've come this far.  I want to know what's at the end of --'[paragraph break]Stacy quickly shuts up when the door opens a crack, and a rather timid little guy peeks out at you.  He fairly reeks of that mysterious sour-salty air.  And now you think you can hear some sort of twittering in the background, too[if the eggdrop-option has been apparent].  It occurs to you that you remember seeing him up at the egg-drop option yesterday, though he certainly wasn't giving off this... whatever it is... back then[end if].[paragraph break]'Hi,' says Ava, who seems to recognise the guy.  'Lucian, isn't it?  We met yesterday at the sign-ups.  Anyway, these are my friends Daniel and Stacy.  May we come in for a moment?'[paragraph break]Lucian lets the door swing half-open and sighs resignedly.  'Sure, if you want,' he says, retreating back into the room.  The three of you follow him inside.";
+	say "'Whatever it is, it's strongest around that door.'[paragraph break]Ava and Stacy exchange glances, and before you can stop her, Stacy is knocking on the door.  'We've come this far.  I want to know what's at the end of --'[paragraph break]Stacy quickly shuts up when the door opens a crack, and a rather timid little guy peeks out at you.  He fairly reeks of that mysterious sour-salty air.  And now you think you can hear some sort of twittering in the background, too[if the eggdrop-option has been apparent].  It occurs to you that you remember seeing him up at the egg-drop option yesterday, though he certainly wasn't giving off this... whatever it is... back then[end if].[paragraph break]'Hi,' says Ava, who seems to recognise the guy.  'Lucian, isn't it?  We met yesterday at the sign-ups.  Anyway, these are my friends Daniel and Stacy.  May we come in for a moment?'[paragraph break]Lucian lets the door swing half-open and sighs resignedly.  'Sure, if you want,' he says, retreating back into the room.  The three of you follow him inside.";
 	now Lucian's Door is open;
 	move the player to Lucian's Room;
 
@@ -1669,9 +1785,17 @@ Part 4 - Conversation with Lucian
 
 Chatting to Lucian is a scene. Chatting to Lucian begins when Trailing Lucian ends. Chatting to Lucian ends when SE_LUCIAN_1 is fired.
 
+When Chatting to Lucian begins:
+	add GOAL_LUCIAN to the current goals, if absent;
+
+GOAL_LUCIAN is a goal. The printed name is "find out what happened to Lucian".
+
+A goal-scoring rule for GOAL_LUCIAN:
+	if Q_LUCIAN_EARTH_CRYSTAL is fired:
+		goal achieved;
+
 When Chatting to Lucian ends:
 	now the lachrymose trail taints nothing;
-	now the player can not sense the lachrymose trail;
 	now the player can sense nothing;
 
 Chapter 1 - Conversation Table
@@ -1680,22 +1804,22 @@ Rule for choosing the conversation table of Lucian during Lucian's Secret:
 	change the chosen conversation table to the Table of Lucian's conversation
 
 Table of Lucian's conversation
-conversation			available		topic
-Q_LUCIAN_FAMILY		true		"himself" or "his family/father/mother" or "family/father/mother"
-Q_LUCIAN_SONG		true		"CD" or "song" or "music" or "record" or "compact" or "disc"
-Q_LUCIAN_PHOTOS		true		"framed" or "photos" or "photographs"
-Q_LUCIAN_EGGDROP		true		"eggdrop" or "egg drop" or "egg-drop" or "option" or "options"
-Q_LUCIAN_LEAP		true		"LEAP" or "camp" or "school" or "here" or "dorm" or "room" or "his dorm/room"
-Q_LUCIAN_BULLIES		false		"bullies"
-Q_LUCIAN_GRANDMOTHER	false		"grandmother" or "gran" or "granny" or "grannie" or "grandma" or "granma" or "gramps" or "grandparent" or "grandparents" or "old lady"
-Q_LUCIAN_PETER		false		"peter" or "school" or "teacher" or "class" or "class photo"
-Q_LUCIAN_EARTH_CRYSTAL	false		"earth crystal" or "crystal"
+conversation			topic
+Q_LUCIAN_FAMILY		"himself" or "his family/father/mother" or "family/father/mother"
+Q_LUCIAN_SONG		"CD" or "song" or "music" or "record" or "compact" or "disc"
+Q_LUCIAN_PHOTOS		"framed" or "photos" or "photographs"
+Q_LUCIAN_EGGDROP		"eggdrop" or "egg drop" or "egg-drop" or "option" or "options"
+Q_LUCIAN_LEAP			"LEAP" or "camp" or "school" or "here" or "dorm" or "room" or "his dorm/room"
+Q_LUCIAN_BULLIES		"bullies"
+Q_LUCIAN_GRANDMOTHER	"grandmother" or "gran" or "granny" or "grannie" or "grandma" or "granma" or "gramps" or "grandparent" or "grandparents" or "old lady"
+Q_LUCIAN_PETER		"peter" or "school" or "teacher" or "class" or "class photo"
+Q_LUCIAN_EARTH_CRYSTAL	"earth crystal" or "crystal"
 
 Rule for choosing the conversation topic for Lucian:
 	repeat through the chosen conversation table:
 		if the topic understood includes topic entry:
-			if the available entry is true:
-				if there is a conversation entry:
+			if there is a conversation entry:
+				if the conversation entry is available:
 					change the chosen conversation topic to the conversation entry;
 					rule succeeds;
 	carry out the choosing the default conversation topic activity with Lucian;
@@ -1714,27 +1838,24 @@ Section 1 - Song
 Q_LUCIAN_SONG is a quip. The display text is "Lucian shrugs.  'I just like the song.  It makes me feel better when I'm feeling unhappy.'"
 
 Q_LUCIAN_1A is a menu quip. The following quip is Q_LUCIAN_2. The menu text is "'Are you feeling very unhappy?'"
-Q_LUCIAN_1B is a menu quip. The following quip is Q_LUCIAN_3. The menu text is "'It's a nice song...'" 
+Q_LUCIAN_1B is a menu quip. The following quip is Q_LUCIAN_3. The menu text is "'It's a nice song....'" 
+
+The response of Q_LUCIAN_SONG is { Q_LUCIAN_1A, Q_LUCIAN_1B }.
 
 Q_LUCIAN_2 is a quip. The display text is "'I don't know anybody here and I'm all alone.  Why shouldn't I be unhappy?  Let's talk about something else.'"
 
 Q_LUCIAN_3 is a quip. The display text is "'It was my grandmother's favourite song.  She used to sing it to me when I was little.'  Lucian's glance strays to one of the photographs on his desk, of an old lady in her garden."
 
 After firing Q_LUCIAN_3:
-	choose a row with a conversation of Q_LUCIAN_GRANDMOTHER in the table of Lucian's conversation;
-	change the available entry to true;
-
-The response of Q_LUCIAN_SONG is { Q_LUCIAN_1A, Q_LUCIAN_1B }.
+	now Q_LUCIAN_GRANDMOTHER is available;
 
 Section 2 - Photos
 
 Q_LUCIAN_PHOTOS is a quip. The display text is "You look at the two photographs.  There's one of a little old lady in a garden.  The other is a class photograph.";
 
 After firing Q_LUCIAN_PHOTOS:
-	choose a row with a conversation of Q_LUCIAN_GRANDMOTHER in the table of Lucian's conversation;
-	change the available entry to true;
-	choose a row with a conversation of Q_LUCIAN_PETER in the table of Lucian's conversation;
-	change the available entry to true;
+	now Q_LUCIAN_GRANDMOTHER is available;
+	now Q_LUCIAN_PETER is available;
 
 Q_LUCIAN_PHOTOS_A is a menu quip. The following quip is Q_LUCIAN_PETER. The menu text is "'Is that your class picture?  What was your teacher like?'"
 Q_LUCIAN_PHOTOS_B is a menu quip. The following quip is Q_LUCIAN_GRANDMOTHER. The menu text is "'Who's the lady in that picture?  Is she your grandmother?'"
@@ -1754,13 +1875,13 @@ Q_LUCIAN_EGGDROP_B is a menu quip. The following quip is Q_LUCIAN_7. The menu te
 Q_LUCIAN_6 is a quip. The display text is "'No.'  It looks like Lucian's not going to say anything more, but just when you're about to move on, he says, 'people are so mean.  Peter said that there wouldn't be any bullies here, but I should have known better.'"
 
 After firing Q_LUCIAN_6:
-	choose a row with a conversation of Q_LUCIAN_BULLIES in the table of Lucian's conversation;
-	change the available entry to true;
-	choose a row with a conversation of Q_LUCIAN_PETER in the table of Lucian's conversation;
-	change the available entry to true;
+	now Q_LUCIAN_BULLIES is available;
+	now Q_LUCIAN_PETER is available;
 
 Q_LUCIAN_6A is a menu quip. The following quip is Q_LUCIAN_8. The menu text is "'Who's Peter?'". 
 Q_LUCIAN_6B is a menu quip. The following quip is Q_LUCIAN_9. The menu text is "'Bullies?  Has someone here been giving you a hard time?'".
+
+The response of Q_LUCIAN_6 is { Q_LUCIAN_6A, Q_LUCIAN_6B };
 
 Q_LUCIAN_7 is a quip. The display text is "Lucian shrugs.  'Yeah, whatever.'"
 
@@ -1772,57 +1893,59 @@ Section 4 - LEAP
 
 Q_LUCIAN_LEAP is a quip. The display text is "'It's just school pretending to be camp, isn't it?  I suppose it's more interesting than normal school, but I think I'd rather be home for the summer.  I don't have to worry about bullies when I'm at home.'".
 
-Q_LUCIAN_LEAPA is a quip. The menu text is "'Bullies?  Has someone here been giving you a hard time?'"
-Q_LUCIAN_LEAPB is a quip. The menu text is "'Aren't you having fun, then?'"
+Q_LUCIAN_LEAP_A is a menu quip. The following quip is Q_LUCIAN_9. The menu text is "'Bullies?  Has someone here been giving you a hard time?'"
+Q_LUCIAN_LEAP_B is a menu quip. The following quip is Q_LUCIAN_6.  The menu text is "'Aren't you having fun, then?'"
 
-Rule for firing Q_LUCIAN_LEAPA:
-	fire Q_LUCIAN_9;
+The response of Q_LUCIAN_LEAP is { Q_LUCIAN_LEAP_A, Q_LUCIAN_LEAP_B }.
 
-Rule for firing Q_LUCIAN_LEAPB:
-	fire Q_LUCIAN_6;
+After firing Q_LUCIAN_LEAP:
+	now Q_LUCIAN_BULLIES is available;
 
 Section 5 - Bullies
 
-Q_LUCIAN_BULLIES is a quip.
+Q_LUCIAN_BULLIES is an unavailable transitional quip.
 
-Rule for firing Q_LUCIAN_BULLIES:
-	if Q_LUCIAN_11 is unfired:
-		fire Q_LUCIAN_10 instead; [10 -> 11]
-	otherwise:
-		say "'I don't want to talk about that any more.'";
+The following quip of Q_LUCIAN_BULLIES is Q_LUCIAN_10.
+
+Rule for firing fired Q_LUCIAN_BULLIES:
+	change the following quip of Q_LUCIAN_BULLIES to nothing;
+	say "'I don't want to talk about that any more.'";
 
 Section 5 - Grandmother
 
-Q_LUCIAN_GRANDMOTHER is a quip. The display text is "'Yeah.  She died.'  The sour taste in the air is almost overwhelmed by a different, marshy sort of smell, yet you somehow know that the two sensations are somehow related.  Ava is instantly consoling Lucian, and finding all the right words that you can't think of.[paragraph break]'Was she a gardener?' asks Ava.  'That's a beautiful garden she's in.'[paragraph break]'Yeah, yeah she was.  She was an environmentalist.  That's why she....'  Lucian stops.  'Never mind.'".
+Q_LUCIAN_GRANDMOTHER is an unavailable quip. The display text is "'Yeah.  She died.'  The sour taste in the air is almost overwhelmed by a different, marshy sort of smell, yet you somehow know that the two sensations are somehow related.  Ava is instantly consoling Lucian, and finding all the right words that you can't think of.[paragraph break]'Was she a gardener?' asks Ava.  'That's a beautiful garden she's in.'[paragraph break]'Yeah, yeah she was.  She was an environmentalist.  That's why she....'  Lucian stops.  'Never mind.'".
 
 Q_LUCIAN_GRANDMOTHER_A is a menu quip. The following quip is Q_LUCIAN_10. The menu text is "'Why what?'".
 
 The response of Q_LUCIAN_GRANDMOTHER is { Q_LUCIAN_GRANDMOTHER_A }.
+
+Section 6 - Goal
 
 Q_LUCIAN_10 is a transitional quip. The following quip is Q_LUCIAN_11. The display text is "Lucian shakes his head.  Stacy looks a little annoyed and says, 'you know, if you don't tell us what's upsetting you, we can't help you.  So why don't you just spit it out and get it over with?'"
 
 Q_LUCIAN_11 is a quip. The display text is "Lucian looks a little angry and says, 'stop picking on me!  You're just like those bullies at dinner!  They made me give them my grandmother's earth crystal and I bet you want me to pay some sort of fine for being a loser.  Well I've had it.  Just go away and leave me alone!'"
 
 After firing Q_LUCIAN_11:
-	choose a row with a conversation of Q_LUCIAN_BULLIES in the table of Lucian's conversation;
-	change the available entry to true;
-	choose a row with a conversation of Q_LUCIAN_EARTH_CRYSTAL in the table of Lucian's conversation;
-	change the available entry to true;
+	now Q_LUCIAN_BULLIES is available;
+	now Q_LUCIAN_EARTH_CRYSTAL is available;
 
 Section 6 - Peter
 
-Q_LUCIAN_PETER is a quip. The display text is "Lucian picks up the class photo.  'That's Peter,' he says, pointing to the teacher smiling up from one side of the group.  For a moment, the sour taste in the air disappears.  'He lets us call him by his first name, and he's the most awesome teacher ever.'  Then Lucian looks sad again.  'He's the one who said I was smart enough to come here, and he went and pulled all sorts of strings.  I should be grateful, I suppose.'".
+Q_LUCIAN_PETER is an unavailable quip. The display text is "Lucian picks up the class photo.  'That's Peter,' he says, pointing to the teacher smiling up from one side of the group.  For a moment, the sour taste in the air disappears.  'He lets us call him by his first name, and he's the most awesome teacher ever.'  Then Lucian looks sad again.  'He's the one who said I was smart enough to come here, and he went and pulled all sorts of strings.  I should be grateful, I suppose.'".
 
 Q_LUCIAN_PETER_A is a menu quip. The following quip is Q_LUCIAN_2. The menu text is "'But you're not?  Why?'".
 
+The response of Q_LUCIAN_PETER is { Q_LUCIAN_PETER_A }.
+
 Section 7 - Earth Crystal
 
-Q_LUCIAN_EARTH_CRYSTAL is a quip.
+Q_LUCIAN_EARTH_CRYSTAL is an unavailable quip.
 
 Rule for firing Q_LUCIAN_EARTH_CRYSTAL:
-	say "'It's a crystal cube with a 3-D image of the earth etched inside it.  My grandmother gave it to me just before she died, so it means a lot to me.  Those bullies didn't care, though, they just took it.  I don't know how to get it back, I mean, I don't want to go crying to the camp counselors like a little crybaby.'  Lucian sniffles and wipes his sleeve across his nose, then reaches over to the CD player to turn the volume up.";
+	say "'It's a crystal cube with a 3-D image of the earth etched inside it.  My grandmother gave it to me just before she died, so it means a lot to me.  Those bullies didn't care, though, they just took it.  I don't know how to get it back, I mean, I don't want to go crying to the camp counselors like a little crybaby.'  Lucian sniffles and wipes his sleeve across his nose, then reaches over to the CD player to turn the volume up. ";
 	if Q_LUCIAN_SONG is unfired:
-		say "'Isn't it loud enough for you already?' asks Stacy pointedly.  'It's not even a very good song!  Ava says it makes her sick.'[paragraph break]Ava turns bright red.  'Only because I had to sing it in my voice lessons over and over again,' she says quickly.";
+		say "[paragraph break]'Isn't it loud enough for you already?' asks Stacy pointedly.  'It's not even a very good song!  Ava says it makes her sick.'[paragraph break]Ava turns bright red.  'Only because I had to sing it in my voice lessons over and over again,' she says quickly. ";
+	say paragraph break;
 
 Last after populating Q_LUCIAN_EARTH_CRYSTAL when Q_LUCIAN_SONG is unfired:
 	fire Q_LUCIAN_SONG;
@@ -1839,7 +1962,22 @@ Rule for firing SE_LUCIAN_1:
 
 Part 5 - Reclaiming the Crystal
 
-Crystal quest is a scene. Crystal quest begins when Chatting to Lucian ends. 
+Crystal quest is a scene. Crystal quest begins when Chatting to Lucian ends. Crystal Quest ends when the player has the Earth Crystal.
+
+When Crystal Quest begins:
+	now Hank's door is open;
+
+When Crystal Quest begins:
+	add GOAL_CRYSTAL to the current goals, if absent;
+	consider the new goal notification rule;
+
+GOAL_CRYSTAL is a goal. The printed name is "[if the Earth Crystal is not handled]retrieve Lucian's crystal[otherwise]give Lucian back his crystal[end if]".
+
+A goal-scoring rule for GOAL_CRYSTAL:
+	if the player can see Lucian and the player has the Earth Crystal:
+		goal achieved;
+
+Chapter 1 - New trail
 
 Instead of focussing on a room during Crystal Quest:
 	say "Now that you think about it, there are so many alien sensations swirling around, most of them so faint you're not sure if you're just imagining them.  You really don't know which sensation you really want.";
@@ -1853,15 +1991,418 @@ The oily trail is an emotional residue. The oily trail taints Info Desk, First F
 Understand "burnt", "stench", "engine oil", "oil", "monkey's chatter", "chatter", "path" as the oily trail.
 
 A focussing rule for the oily trail when in Info Desk:
-	say "[one of]You close your eyes and stand near the door to Calvin Field.  You know Lucian's trail begins just outside this door.  Concentrating on the area in question, you[or]You[stopping] sense the beginning of another trail, one that smells of burnt engine oil and sounds like a monkey's chatter dropped several octaves and sped up.  It traces the same path back towards the dorms to the north.";
+	say "[one of]You close your eyes and stand near the door to Calvin Field.  You know Lucian's trail begins just outside this door.  Concentrating on the area in question, you[or]You[stopping] sense the beginning of another trail, one that smells of burnt engine oil and sounds like a monkey's chatter dropped several octaves and sped up.  It traces the same path back towards the dorms to the north. [paragraph break]";
 
 A focussing rule for the oily trail when in First Floor Midpoint:
-	say "That unpleasant smell, and its accompanying sound, seems to trace a path from the Info Desk to the eastern end of the hallway.";
+	say "That unpleasant smell, and its accompanying sound, seems to trace a path from the Info Desk to the eastern end of the hallway. [paragraph break]";
 
 A focussing rule for the oily trail when in First Floor Rooms East:
-	say "You can trace that unpleasant smell, and its accompanying sound, to one of the rooms to the south.  The door is open on an already messy room, and with a shock you realise that you are not sensing that burnt-oil smell with your nose at all: it's just registering in your mind as a smell.  Same goes for the sound of low-pitched chattering.";
+	say "You can trace that unpleasant smell, and its accompanying sound, to one of the rooms to the south.  The door is open on an already messy room, and with a shock you realise that you are not sensing that burnt-oil smell with your nose at all: it's just registering in your mind as a smell.  Same goes for the sound of low-pitched chattering. [paragraph break]";
+
+Chapter 2 - Bullies
+
+Section 1 - Initial encounter
+
+Last focussing rule for the oily trail when in First Floor Rooms East and TRIG_BULLIES is unfired during Crystal Quest:
+	fire TRIG_BULLIES;
+
+TRIG_BULLIES is a trigger.
+
+Rule for firing unfired TRIG_BULLIES:
+	move Joe to the location;
+	start conversation with Joe on Q_JOE_0;
+
+Q_JOE_0 is a quip. The display text is "One of the boys inside the room notices you gawking outside the door, and comes out.  'Yeah, what do you want?'"
+
+Q_JOE_0A is a menu quip. The following quip is Q_JOE_1. The menu text is "'Uh.  Nothing in particular....'". 
+Q_JOE_0B is a menu quip. The following quip is Q_JOE_1. The menu text is "'I was following this, uh, smell, and I was wondering....'". 
+Q_JOE_0C is a menu quip. The following quip is Q_JOE_2. The menu text is "'Um, Have you seen an earth crystal -- sort of like a glass cube, about so big, with the earth etched inside...?'". 
+
+The response of Q_JOE_0 is { Q_JOE_0A, Q_JOE_0B, Q_JOE_0C }.
+
+Q_JOE_1 is a quip. The display text is "'Shove off before I dunk you in the toilet, loserboy.'  The boy retreats into the room to resume his conversation with his roommate."
+
+Q_JOE_2 is a quip. The display text is "'Oh, that?  Hey, Hank, loserboy here wants to know about the world cube.'[paragraph break]The other boy, Hank, comes to the door and sneers at you.  'Yeah? Too bad, it's ours now.  Ain't it, Joe?  So you can just go home and ask your mommy to kiss you and make it all better.  Now shove off.'  Hank and Joe retreat back into the room to resume their conversation."
+
+After firing Q_JOE_1:
+	move Joe to Hank's Room;
+
+After firing Q_JOE_2:
+	now Hank is known; now Hank is proper-named;
+	now Joe is known; now Joe is proper-named;
+	now Hank's door is proper-named;
+	move Joe to Hank's Room;
+
+Instead of going from First Floor Rooms East to Hank's Room when Joe is the current conversationalist:
+	placeholder "The boy is blocking the door.";
+
+First after going from First Floor Rooms East when Joe is the current conversationalist:
+	fire Q_JOE_1;
+	continue the action;
+
+Section 2 - In Joe & Hank's Room
+
+After going to Hank's Room during Crystal Quest:
+	try looking;
+	start conversation with Hank on Q_HANK_0;
+
+Q_HANK_0 is a quip. The display text is "'Hey, Joe, did we give loserboy permission to enter our room?'[paragraph break]'Why no, Hank, I don't believe we did.  Maybe we'll have to make him pay a fine.'[paragraph break]'Aw, but that would be mean!  We shouldn't make little loserboys give us stuff for trespassing.  I think we should punish them instead.'"
+
+After firing Q_HANK_0:
+	now Hank is known; now Hank is proper-named;
+	now Joe is known; now Joe is proper-named;
+	now Hank's door is proper-named;
+	move Joe to Hank's Room;
+
+Q_HANK_0A is a menu quip. The following quip is Q_HANK_1. The menu text is "'Um, about that earth crystal....'".
+Q_HANK_0B is a menu quip. The following quip is Q_HANK_3. The menu text is "'What, a fine?'". 
+Q_HANK_0C is a menu quip. The following quip is Q_HANK_4. The menu text is "'What do you mean, [']punish them[']?'".
+
+The response of Q_HANK_0 is { Q_HANK_0A, Q_HANK_0B, Q_HANK_0C }
+
+Q_HANK_1 is a quip. The display text is "Joe smirks.  'It's yours if you can take us both in a fair fight with both hands tied behind you and a blindfold on.'"
+
+Q_HANK_1A is a menu quip. The following quip is Q_HANK_2. The menu text is "'That's not a fair fight!'".
+Q_HANK_1B is a menu quip. The following quip is Q_HANK_5. The menu text is "'Sounds fair enough.'". 
+Q_HANK_1C is a menu quip. The following quip is Q_HANK_6. The menu text is "'It's not yours to begin with!'".
+
+The response of Q_HANK_1 is { Q_HANK_1A, Q_HANK_1B, Q_HANK_1C }
+
+First before firing Q_HANK_1B:
+	change the menu text of Q_HANK_1B to ""; [We don't really say that.]
+
+Q_HANK_2 is a quip. The display text is "'Too bad, so sad.  Now get lost.'"
+
+Q_HANK_3 is a quip. The display text is "'Yeah.  You came here uninvited, so now you got to give us something.  To compensate us for the distress of having to breathe the same air as you.'  Joe looks at Hank.  'What d'you think?'[paragraph break]'I think I could use a nice laptop computer.'[paragraph break]'Sounds about right.  So what're you waiting for, loserboy?  Scram!'"
+
+Q_HANK_4 is a quip. The display text is "'I signed up for boxing classes and I need to practice.'  Hank flexes his fists.  'So why don't you make yourself useful and stand where I can reach you for, oh, half an hour or so?'  You backpedal out of the room before either of them decides they're being serious.'"
+
+Q_HANK_5 is a quip. The display text is "You open your mouth to say something phenomenally stupid, but visions of yourself missing out on the rest of the LEAP camp, due to being in traction, stop you.  Hank and Joe snicker, but say nothing further."
+
+Q_HANK_6 is a quip. The display text is "'Yeah?  Possession is nine-tenths of the law, loserboy.  That means that if we possess it, as we do, then it's 90% ours.  You think your 10% stake is gonna do anything?  Shove off.'"
+
+Section 3 - Timeouts and triggers
+
+After terminating conversation with Hank when the location is Hank's Room during Crystal Quest:
+	now Hank's door is open;
+	try going north;
+	fire TRIG_NEED_HELP;
+
+TRIG_NEED_HELP is a trigger.
+
+Rule for firing unfired TRIG_NEED_HELP:
+	say "Ava shakes her head.  'I think we need help, Daniel.  Should we call a counselor?'[paragraph break]You shake your head.  'No way.  We'll be called snitches and rats until the day we die.'";
+
+TIMER_KICKOUT is a repeating timer. The top end is 3.
+
+After going to Hank's Room during Crystal Quest:
+	change the internal value of TIMER_KICKOUT to 0;
+	continue the action;
+
+Last every turn when in Hank's Room during Crystal Quest:
+	increment TIMER_KICKOUT;
+
+Rule for firing TIMER_KICKOUT:
+	say "'Are you still here?' Joe says.  'Get out and go bother somebody else!'  The two bullies hustle you to the door and send you sprawling in the hallway outside.";
+	now Hank's door is open;
+	try going north;
+	fire TRIG_NEED_HELP;
+
+Section 4 - The Earth Crystal
+
+The Earth Crystal is scenery, in Hank's room. "This is a rather heavy cube of pure crystal, with an image of the earth etched into its interior.  Though it appears clear when you look down at it, it seems to glow slightly violet when you hold it up to the light."
+
+The indefinite article of the Earth Crystal is "Lucian's".
+
+Rule for printing the description of the Earth Crystal when the Earth Crystal is in Hank's Room:
+	try taking the Earth Crystal instead;
+
+Instead of doing something when the Earth Crystal is involved and the Earth Crystal is in Hank's Room:
+	say "The bullies snatch the crystal out of your reach, laugh in your face, and hustle you out of the room.";
+	now Hank's door is open;
+	try going north;
+
+Section 5 - Help from Aidan
+
+Instead of knocking on Aidan's door when Hank's room is visited during Crystal Quest:
+	say "Aidan opens the door.  'Hey, Daniel!  What's up?'  He ushers you into the room and sits down at his desk.  'Sorry if I'm a little distracted.  We just had our first class on old-school text adventures today, and I'm kind of caught up in the homework.  Seriously, this is kind of cool.'  Turning back to his laptop, he begins typing away.";
+	now Aidan's door is open;
+	move the player to Aidan's room;
+
+Rule for choosing the conversation table of Aidan during Crystal Quest:
+	change the chosen conversation table to the Table of help needed from Aidan;
+
+Table of help needed from Aidan
+conversation			topic
+CT_AIDAN_HELP			"help" or "bullies" or "joe" or "hank" or "lucian" or "crystal" or "earth crystal" or "hank and joe" or "joe and hank"
+
+CT_AIDAN_HELP is a quip. The display text is "'Hank and Joe up to their old tricks again, huh?  I'll deal with them.'  Aidan gets up from his desk (he doesn't even hit 'pause'!  What kind of game doesn't need to be paused when you leave it?) and sets off down the hallway."
+
+Aidan's warpath is a scene. Aidan's warpath begins when CT_AIDAN_HELP is fired. Aidan's warpath ends when the number of entries in the warpath of Aidan is 0.
+
+Every turn during Aidan's warpath:
+	let X be entry 1 of the warpath of Aidan;
+	if the location of Aidan is Aidan's room:
+		move Aidan to X;
+	otherwise:
+		let d be the quick best route from the location of Aidan to X;
+		try Aidan going d;
+	remove entry 1 from the warpath of Aidan;
+
+Aidan has a list of objects called the warpath.
+
+The warpath of Aidan is {First Floor Rooms West, First Floor Midpoint, First Floor Rooms East, Hank's Room}.
+
+When Aidan's warpath ends:
+	if the location is First Floor Rooms East or the location is First Floor Midpoint:
+		say "'Yo, Hank!  Joe!'  Aidan strides into the bullies['] room as if he owned the place[if the location is First Floor Rooms East] and perches on the edge of a desk[end if].  'I hear you've been bothering the younger campers again.'[paragraph break]Hank looks out the door, sees you, and gives you the evil eye.  'So?'[paragraph break]'So I figure you gotta either pay a fine or get yourselves ratted out to the counselors.  Me, I don't like ratting on people, so I figure it's gonna be the fine for you guys[if the location is First Floor Rooms East].'  He picks up the earth crystal.  '[otherwise].  [end if]This will do nicely, especially since I gather you took it from one of the younger campers to begin with.'[paragraph break]'Shove off, Aidan.  Unless you want a mouthful of knuckles.'[paragraph break]Aidan gives a short bark of laughter.  'Dude.  My dad chews out Navy SEALs for a living, remember?  They taught me how to kill jerks like you with a pencil when I was five.'  Catching Hank glaring out the door at you, he adds, 'that's my little brother, in case you're wondering.  Only reason he hasn't whupped your sorry asses to hell and back is because he takes the whole [']only pick on people who can fight back['] thing a lot more seriously than I do.'[paragraph break][if the location is First Floor Rooms East]Joe looks like he's about to call Aidan's bluff, but Aidan stares him down.  The two bullies finally look away, muttering something rude.  [end if]Aidan swaggers out of the room and pulls the door shut behind him.  He grins and passes the earth crystal to you.  'There you go.  Problem solved.  Now, I better get back to Zork.'";
+	otherwise:
+		say "'Hey, Daniel!'  Aidan jogs up to you and holds up the earth crystal, grinning.  'This the crystal thingy you told me about?  Here, problem solved.  Hank and Joe are a couple of pushovers, once you convince them you're tougher than both of them put together.  After camp, I'm asking Dad to enroll you in some martial arts classes or something.  I've already told Hank and Joe you're a black belt.'[paragraph break]'Er, thanks.'[paragraph break]'Anytime, bro.'  Aidan musses up your hair and [if the location is not Aidan's room]strolls back to his room[otherwise]settles back in front of his computer[end if].";
+	now the player carries the Earth Crystal;
+	move Aidan to Aidan's room;
+	now Hank's door is closed;
+	now Hank's door is locked;
+
+Part 6 - Returning the Crystal
+
+Crystal Return is a scene. Crystal return begins when Crystal Quest ends. Crystal Return ends when the player can see Lucian and the player has the Earth Crystal.
+
+When Crystal Return ends:
+	say "Lucian looks up from his desk as you enter the room, and his mouth drops open when he sees the earth crystal in your hands.  'You did it!  You got it back!'  He leaps from his chair and throws his arms around you -- the room glows mauve for an instant, and something stabs in the back of your eye.  You vaguely hear Stacy telling Lucian to take it easy, and you feel Ava's arms catching you as you stumble back, off-balance, from Lucian.[paragraph break]'I don't know if we're any closer to figuring out what's going on,' you say to the girls as you leave Lucian's room.  'I mean, so now I'm some sort of psychic bloodhound?  Why me?'[paragraph break]'It could turn out useful,' says Stacy.  'Just think of the things you could do now!'[paragraph break]Ava doesn't say anything.  She just looks worried.";
+	consider the goal assessment rule;
+	add GOAL_HELP_LUCIAN to the recently achieved goals, if absent;
+	consider the goal-tidying rules;
+	remove the Earth Crystal from play;
+	now the oily trail taints nothing;
+	now the player can sense nothing;
+	pause the game;
+
+GOAL_HELP_LUCIAN is a major goal, achieved.
+
+Rule for printing the name of GOAL_HELP_LUCIAN:
+	say "helping Lucian retrieve his crystal";
+
+Book 3 - Here Comes The Flood
+
+Part 1 - Scene set-up
+
+Here Comes The Flood is a scene.
+
+Here Comes The Flood begins when Lucian's Secret ends.
+
+When Here Comes The Flood begins:
+	say "The headaches are now nothing more than a faint but constant pressure in the back of your skull.  The dizzy spells are gone, and in their place is a vague sense of unease.  The last time you felt perfectly normal would have to be shortly before falling asleep last night.[paragraph break]If you concentrate even a little bit, you can conjure up those unreal sensations around everybody you meet.  And you're beginning to notice a definite relationship between what you sense and how everybody feels.  This is definitely some sort of empathic thing that's waking up inside you.  You'll have to discuss this with Ava and Stacy and Aidan later tonight.";
+	pause the game;
+	say "LEAP, Day 4 (Wednesday) - Dinner[paragraph break]You usually have your meals with Ava and Stacy, but they're in a different time slot for dinner today.  Aidan's with his own friends at the other end of the dining hall, which leaves you alone with your readings for your class on satirical writing.  Hopefully Aristophanes and Moliere will be enough to distract you from the rather unpleasant substances on your plate pretending to be meat and potatoes.";
+	change the current term day to Day 4;
+	change the time of day to 5:08 PM;
+	now the player carries the readings for your Satirical Writing class;
+	move the player to the Dining Hall;
+	move Aidan to the Dining Hall;
+	add GOAL_DINNER to the current goals;
+	Lucian appears in two turns from now;
+
+Some readings for your Satirical Writing class are a thing. The description is "Aristophanes, Rabelais, Moliere... if you didn't find this sort of thing as fascinating as you do, you'd be comatose after the first page."
+
+Rule for printing the description of Aidan during Here Comes The Flood:
+	say "He's sitting with a crowd of older campers, at the other side of the hall.  You're not so insecure that you absolutely have to sit beside him at every meal.  Not now that you're a mature second-year camper, anyway.";
+
+Instead of doing something when Aidan is physically involved during Here Comes The Flood:
+	placeholder "Aidan's away with his friends on the other side of the hall." instead;
+
+GOAL_DINNER is a goal. The printed name is "eat dinner in peace".
+
+Part 2 - Dining Hall
+
+The Dining Hall is east of Calvin Field North. "The dining hall is a large room lined with long tables and chairs.  It is crowded with campers discussing just about everything under the sun."
+
+After printing the description of the Dining Hall during Here Comes The Flood:
+	say "You are alone at the southeast corner of the room, with a few readings for your satirical writing class.  You can see Aidan somewhere off to the west, eating with his friends.";
+
+A plural-named thing called some dining tables and chairs are scenery, in the dining hall.
+
+Your dining table is scenery, in the dining hall.
+Your dinner is scenery, on your dining table.
+
+Before printing the description of your dinner:
+	display the boxed quotation
+		"Don't eat school dinners, just toss them aside!
+		A lot of kids didn't, a lot of kids died!
+		The meat is of metal, the spuds are of steel,
+		And if they don't kill you, the pudding will!";
+
+The description of your dinner is "Seriously, the food's about the only down side to the LEAP camp.  It looks okay, but there's this sickly sweet aftertaste, like they used fake sugar in everything.";
+
+Before eating your dinner:
+	say "You shovel another forkful of your dinner into your mouth and swallow it as quickly as you can.  Unfortunately, you still don't quite manage to escape the aftertaste." instead;
+
+Instead of smelling your dinner:
+	say "It smells innocent enough, anyway.  But smells can be deceiving.";
+
+Part 2 - Lucian Again
+
+At the time when Lucian appears:
+	move Lucian to the dining hall;
+	start conversation with Lucian on Q_LUCIAN2_0;
+
+Chapter 1 - Conversation
+
+Q_LUCIAN2_0 is a quip. The display text is "'Hi, Daniel!'  It's Lucian, looking a lot more chipper than he did yesterday.  'Hey, where are Ava and Stacy?  Are you sitting alone?  Can I sit with you?'".
+
+Q_LUCIAN2_0A is a menu quip. The following quip is Q_LUCIAN2_1. The menu text is "'Sure....'".
+Q_LUCIAN2_0B is a menu quip. The following quip is Q_LUCIAN2_7. The menu text is "'No.'".
+Q_LUCIAN2_0C is a menu quip. The following quip is Q_LUCIAN2_1. The menu text is "'Uh....'".
+
+The response of Q_LUCIAN2_0 is { Q_LUCIAN2_0A, Q_LUCIAN2_0B, Q_LUCIAN2_0C }.
+
+Q_LUCIAN2_1 is a quip. The display text is "'Really?  You're so cool!  Hey, I don't know what you said to those bullies yesterday, but you have to tell me how you did it!  Is there a special class for dealing with bullies?  They have all sorts of classes here... hey, maybe you could teach me!'".
+
+Q_LUCIAN2_1A is a menu quip. The following quip is Q_LUCIAN2_5. The menu text is "'Uh....'".
+Q_LUCIAN2_1B is a menu quip. The following quip is Q_LUCIAN2_6. The menu text is "'Actually, I asked my brother Aidan....'".
+Q_LUCIAN2_1C is a menu quip. The following quip is Q_LUCIAN2_4. The menu text is "'You really need to settle down.'".
+Q_LUCIAN2_1D is a menu quip. The following quip is Q_LUCIAN2_5. The menu text is "'There's nothing to teach.'".
+
+The response of Q_LUCIAN2_1 is { Q_LUCIAN2_1A, Q_LUCIAN2_1B, Q_LUCIAN2_1C , Q_LUCIAN2_1D }.
+
+Q_LUCIAN2_2 is a quip. The display text is "Hey, we should hang out!  We can play checkers.  Do you play checkers?  I bet you're really good at it.  We can play tonight, during dorm time!  How about it, Daniel?  Will you come play checkers with me?'".
+
+Q_LUCIAN2_2A is a menu quip. The following quip is Q_LUCIAN2_3. The menu text is "'I'm sorta busy tonight....'".
+Q_LUCIAN2_2B is a menu quip. The following quip is Q_LUCIAN2_4. The menu text is "'For goodness['] sakes, settle down!'".
+Q_LUCIAN2_2C is a menu quip. The following quip is Q_LUCIAN2_7. The menu text is "'No, you're really creeping me out here.'".
+Q_LUCIAN2_2D is a menu quip. The following quip is Q_LUCIAN2_8. The menu text is "'Uh, sure, why not....'".
+Q_LUCIAN2_2E is a menu quip. The following quip is Q_LUCIAN2_8. The menu text is "'I love checkers!'".
+
+The response of Q_LUCIAN2_2 is { Q_LUCIAN2_2A, Q_LUCIAN2_2B, Q_LUCIAN2_2C, Q_LUCIAN2_2D, Q_LUCIAN2_2E }.
+
+Q_LUCIAN2_3 is a quip. The display text is "'Oh, well I guess that's true.  You've got all these things to read.  Gosh, you must be smart.  How about tomorrow, huh?  I've got nothing to do tomorrow, we can hang out then!  How's that sound?'".
+
+Q_LUCIAN2_3A is a menu quip. The following quip is Q_LUCIAN2_8. The menu text is "'That sounds nice....'".
+Q_LUCIAN2_3B is a menu quip. The following quip is Q_LUCIAN2_7. The menu text is "'That sounds slightly nicer than being dunked in battery acid.  Stop bothering me!'".
+
+The response of Q_LUCIAN2_3 is { Q_LUCIAN2_3A, Q_LUCIAN2_3B }.
+
+Q_LUCIAN2_4 is a quip. The display text is "'Peter, my teacher back in school, used to say the same thing.  I'm just happy to have made friends!  You ARE going to be my friend, right?'".
+
+Q_LUCIAN2_4A is a menu quip. The following quip is Q_LUCIAN2_8. The menu text is "'Are you out of your mind?'".
+Q_LUCIAN2_4B is a menu quip. The following quip is Q_LUCIAN2_7. The menu text is "'Friends ... uh, sure....'".
+
+The response of Q_LUCIAN2_4 is { Q_LUCIAN2_4A, Q_LUCIAN2_4B }.
+
+Q_LUCIAN2_5 is a transitional quip. The following quip is Q_LUCIAN2_2.
+
+Rule for firing Q_LUCIAN2_5:
+	say "'See, you're just that awesome.  [run paragraph on]";
+
+Q_LUCIAN2_6 is a transitional quip. The following quip is Q_LUCIAN2_2.
+
+Rule for firing Q_LUCIAN2_6:
+	say "'Oh?  Who's he?  Nah, I still think you're the coollest.  [run paragraph on]";
+
+Q_LUCIAN2_7 is a quip. The display text is "Lucian's eyes nearly fall out of their sockets.  'But... but... I thought we were going to be friends!'  You try to respond but at that moment you hear a little snicker from somewhere -- no doubt one of the other first-years of Lucian's acquaintance -- and Lucian, absolutely mortified, leaves his tray on the table and makes a break for the dining hall doors.  You try to stand but are knocked back into your seat by a wave of bitterness and a strange, slick feeling that makes your skin crawl.  The headache, which you thought was all but gone, throbs to life and the room seems to whirl into a maelstrom of sound and colour and smell and flavour and touch.  You're vaguely aware of Aidan, somewhere off to the west, getting to his feet before he disappears into a complicated flurry of woodwinds."
+
+Q_LUCIAN2_8 is a quip. The display text is "Lucian's eyes light up.  'I knew you were different from the others!'  He goes on about his delight at making a friend, but you can't hear him: you've been nearly bowled out of your seat by a wall of fluttering mauve butterfly wings exploding from Lucian.  You fight to regain your balance, but the explosion of colour drives you reeling away from the table.  All around you, colours and sounds and smells and flavours and disconcerting sensations thrilling along your skin all erupt into being, leaving you unable to see what's actually there.  You are vaguely aware of Aidan, somewhere off to the west, getting to his feet before you lose him to a complicated flurry of woodwinds."
+
+After firing Q_LUCIAN2_7:
+	move the player to the Maelstrom;
+
+After firing Q_LUCIAN2_8:
+	move the player to the Maelstrom;
+
+Part 3 - Emotional Maelstrom
+
+Lost in the Maelstrom is a scene. Lost in the Maelstrom begins when the location is the Maelstrom. Lost in the Maelstrom ends when the x part of the coordinate of the Maelstrom is at least 4.
+
+When Lost In The Maelstrom ends:
+	say "You finally stumble into the edge of what looks like a long, sustained note played on an oboe and sounds like a cone of bright, white light.  It leaps about you, and you feel someone catch hold of you -- it takes you a moment to realise that this is real, and not a product of your out-of-control senses.  It's Aidan, you can hear his voice over the buzzing of all the other sounds that aren't really there.  The relief is overwhelming, and you finally allow yourself to collapse.[paragraph break]Just as you lose consciousness, you are startled by the appearance of something ominously black and alien, spinning about in the centre of the whiteness surrounding you....";
+	pause the game;
+
+A coordinate is a kind of value. (100, 100) specifies a coordinate with parts x (without leading zeros) and y (without leading zeros).
+
+Maelstrom is a room.
+Maelstrom has a coordinate. The coordinate of Maelstrom is (1, 1). 
+Maelstrom has a coordinate called the boundary. The boundary of the Maelstrom is (4, 4).
+
+Emotional impression is a kind of thing. The emotional impressions are defined by the table of overwhelming emotions.
+
+Table of overwhelming emotions
+emotional impression	short description
+doorbells		"seems to be a wall of excitedly jangling doorbells"
+songbirds		"sounds like a crowd of chattering songbirds"
+swamp			"smells like a swamp, all sulphur and mud and wet"
+burnt engine oil		"smells too strongly of burnt engine oil for anyone's tastes"
+dazzling blaze		"is a blaze of dazzling, gaily swirling oranges and reds"
+drunken singing		"is a whirl of blues and greens, and you think you hear drunken singing there as well"
+spicy flavours		"seems to taste sour and bitter and spicy all at once"
+sweet flavour		"has an uncomfortably too-sweet taste in the air"
+prickly sensation		"feels inexplicably, well, prickly"
+electrical buzz		"feels electrically charged, you can almost hear the buzz"
+
+The Maelstrom has a list of objects called the accessible directions.
+The Maelstrom has a list of objects called the blocked directions.
+
+Before printing the description of the Maelstrom:
+	let the potential directions be the list of orthogonal directions;
+	if the x part of the coordinate of the Maelstrom is 1:
+		remove east from the potential directions, if present;
+	if the y part of the coordinate of the Maelstrom is 1:
+		remove south from the potential directions, if present;
+	if the x part of the coordinate of the Maelstrom is the x part of the boundary of the Maelstrom:
+		remove west from the potential directions, if present;
+	if the y part of the coordinate of the Maelstrom is the y part of the boundary of the Maelstrom:
+		remove north from the potential directions, if present;
+	change the accessible directions of the Maelstrom to the potential directions;
+	sort the potential directions in random order;
+	remove entry 1 from the potential directions;
+	sort the potential directions;
+	change the blocked directions of the Maelstrom to the potential directions;
+
+Rule for printing the description of the Maelstrom:
+	say "You are lost in a swirl of sensory stimuli. ";
+	repeat with D running through the blocked directions of the Maelstrom:
+		say "[The D] [short description of the feeling of D]. ";
+	say paragraph break;
+	say "Somewhere off to the west, above the noise and colour and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.";
+
+Rule for printing the description of the Maelstrom when the x part of the coordinate of the Maelstrom is 4:
+	do nothing instead;
+
+Before going an orthogonal direction in Maelstrom:
+	if the noun is not listed in the accessible directions of the Maelstrom:
+		say "There's a wall in that direction, isn't there?  You stop before you hurt yourself; there is a brief burst of [one of]low-pitched woodwinds[or]songbird chatter[purely at random] nearby, which is quickly lost in the maelstrom." instead;
+	otherwise if the noun is listed in the blocked directions of the Maelstrom:
+		say "You take a step in that direction but are almost overwhelmed by the sensations." instead;
+	otherwise:
+		consider the emotion-setting rule;
+		consider the coordinate-updating rule;
+		move the player to the Maelstrom instead; [illusion of true movement]
+
+Emotionally-impressing relates one emotional impression (called the feeling) to one direction. The verb to feel (he feels, they feel) implies the reversed emotionally-impressing relation.
+
+When play begins:
+	consider the emotion-setting rule;
+
+This is the emotion-setting rule:
+	let the emotions be the list of emotional impressions;
+	let the ways be the list of orthogonal directions;
+	sort the emotions in random order;
+	repeat with i running from 1 to 4:
+		now entry 1 of the ways feels entry 1 of the emotions;
+		remove entry 1 from the ways;
+		remove entry 1 from the emotions;
+
+This is the coordinate-updating rule:
+	let XX be the x part of the coordinate of the Maelstrom;
+	let YY be the y part of the coordinate of the Maelstrom;
+	if the noun is:
+		-- north: increment YY by 1;
+		-- south: decrease YY by 1;
+		-- west: increment XX by 1;
+		-- east: decrease XX by 1;
+	change the coordinate of the Maelstrom to the coordinate with x part XX y part YY;
 
 Book W - Walkthrough
 
 Test hunt with "e/get dinosaur/nw/get change/n/u/u/u/get feather/get cloth/get stick/glue cloth to stick/d/get cutout/d/d/s/w/put change in machine/get paper/ne/get grass/se/w/s/fold paper".
+
+Test lucian with "n/u/u/knock/1/2/1/1/s/d/d/w/w/focus/ask lucian about leap/ask lucian about bullies/ask lucian about crystal/2/n/e/u/s/focus/n/e/s/3/w/w/knock/aidan, help/s/e/e/w/w/d/s".
 
