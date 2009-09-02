@@ -1,11 +1,12 @@
 "The Shadow In The Cathedral" by Textfyre Inc
 
-
-[Include (- Constant DEBUG; -) after "Definitions.i6t".
+[
+Include (- Constant DEBUG; -) after "Definitions.i6t".
 ]
 
 [  Change Log
 When			Who		What
+2-Sep-2009              J. Ingold       Finished C8. A few rope tweaks, some synonyms for placing the ladder.
 25-Aug-2009		J. Ingold	First pass at C8. Outside locations, synonyms and objects, in/out, jumping in water and swimming. Then I got stuck - apparently there's a wrench somewhere? This needs some cluing or something... (Oh, god, was I supposed to MOVE DEBRIS? C'mon...)
 23-Aug-2009		J. Ingold	New kind - locative glimpse backdrop - these "localise" a location and auto- navigate towards it. I've populated the Abbey with some to ease the player around.
 22-Aug-2009		J. Ingold	Finished c7 playthrough. Fleshed out chase sequence and Caught location. 
@@ -1318,12 +1319,12 @@ Understand the command "wipe" as something new.
 
 Polishing it with is an action applying to one thing and one carried thing and requiring light.
 
-Understand "polish [something] with [something]" as polishing it with.
-Understand "rub [something] with [something]" as polishing it with.
-Understand "buff [something] with [something]" as polishing it with.
-Understand "clean [something] with [something]" as polishing it with.
-Understand "wipe [something] with [something]" as polishing it with.
-Understand "dust [something] with [something]" as polishing it with.
+Understand "polish [something] with/using [something]" as polishing it with.
+Understand "rub [something] with/using [something]" as polishing it with.
+Understand "buff [something] with/using [something]" as polishing it with.
+Understand "clean [something] with/using [something]" as polishing it with.
+Understand "wipe [something] with/using [something]" as polishing it with.
+Understand "dust [something] with/using [something]" as polishing it with.
 
 
 Check polishing the player with:
@@ -1516,7 +1517,7 @@ Filling is an action applying to one thing.
 Understand "fill [something]" as filling.
 Understand "fill up [something]" as filling.
 Understand "fill [something] up" as filling.
-Understand "fill [something] with [other things]" as inserting it into (with nouns reversed).
+Understand "fill [something] with/using [other things]" as inserting it into (with nouns reversed).
 Understand "fill [something] up with water" as filling.
 Understand "fill up [something] with water" as filling.
 Understand "fill [something] with water" as filling.
@@ -1542,7 +1543,7 @@ Understand "inflate [something]" as inflating.
 Understand "blow up [something]" as inflating.
 Understand "blow into [something]" as inflating.
 Understand "blow [something] up" as inflating.
-Understand "inflate [something] with [something]" as inserting it into (with nouns reversed).
+Understand "inflate [something] with/using [something]" as inserting it into (with nouns reversed).
 
 Check inflating:
 	say "That doesn't seem to readily inflate." instead;
@@ -1617,12 +1618,16 @@ Understand "repair [something]" as repairing.
 Understand "fix [something]" as repairing.
 Understand "mend [something]" as repairing.
 
+Understand "fix [something] with [something preferably held]" as fastening it to (with nouns reversed).
+Understand "repair [something] with [something preferably held]" as fastening it to (with nouns reversed).
+Understand "mend [something] with [something preferably held]" as fastening it to (with nouns reversed).
+
 Check repairing:
 	say "That doesn't need to be repaired." instead;
 
 Part 10B - Replacing
 
-Understand "replace [something] with [something]" as putting it on (with nouns reversed).
+Understand "replace [something] with/using [something]" as putting it on (with nouns reversed).
 
 
 Part 12 - Clock-setting
@@ -1770,12 +1775,12 @@ Check scraping something with something unsuitable for scraping:
 Check scraping something with:
 	say "I can't see a need to scrape [if the noun is plural-named]those[otherwise]that[end if]." instead;
 
-Understand "get [something] with [something preferably held]" as scraping it with.
-Understand "scrape [something] with [something preferably held]" as scraping it with.
-Understand "scrape [something] up/off/away with [something preferably held]" as scraping it with.
-Understand "scrape up/off/away [something] with [something preferably held]" as scraping it with.
+Understand "get [something] with/using [something preferably held]" as scraping it with.
+Understand "scrape [something] with/using [something preferably held]" as scraping it with.
+Understand "scrape [something] up/off/away with/using [something preferably held]" as scraping it with.
+Understand "scrape up/off/away [something] with/using [something preferably held]" as scraping it with.
 
-Understand "take [something] with [something]" as scraping it with.
+Understand "take [something] with/using [something]" as scraping it with.
 
 Part 17 - Cutting it with
 
@@ -1783,7 +1788,7 @@ Understand the command "cut" as something new.
 
 Slicing it with is an action applying to one thing and one carried thing, and requiring light.
 
-Understand "cut [something] with [something preferably held]" as slicing it with.
+Understand "cut [something] with/using [something preferably held]" as slicing it with.
 
 First check slicing:
 	if the second noun is not the knife,
@@ -1952,10 +1957,10 @@ Understand the command "unscrew" as something new.
 
 Screwing it in with is an action applying to one thing and one carried thing.
 
-Understand "screw [something] in with [something preferably held]" as screwing it in with.
-Understand "screw in [something] with [something preferably held]" as screwing it in with.
-Understand "screw [something] with [something preferably held]" as screwing it in with.
-Understand "tighten [something] with [something preferably held]" as screwing it in with.
+Understand "screw [something] in with/using [something preferably held]" as screwing it in with.
+Understand "screw in [something] with/using [something preferably held]" as screwing it in with.
+Understand "screw [something] with/using [something preferably held]" as screwing it in with.
+Understand "tighten [something] with/using [something preferably held]" as screwing it in with.
 Understand "screw [something]" as screwing it in with.
 Understand "screw in [something]" as screwing it in with.
 Understand "screw [something] in" as screwing it in with.
@@ -1971,16 +1976,16 @@ Chapter 2 - Unscrewing
 
 Unscrewing it with is an action applying to one thing and one carried thing.
 
-Understand "unscrew [something] with [something preferably held]" as unscrewing it with.
-Understand "untighten [something] with [something preferably held]" as unscrewing it with.
-Understand "loosen [something] with [something preferably held]" as unscrewing it with.
-Understand "undo [something] with [something preferably held]" as unscrewing it with.
+Understand "unscrew [something] with/using [something preferably held]" as unscrewing it with.
+Understand "untighten [something] with/using [something preferably held]" as unscrewing it with.
+Understand "loosen [something] with/using [something preferably held]" as unscrewing it with.
+Understand "undo [something] with/using [something preferably held]" as unscrewing it with.
 Understand "unscrew [something]" as unscrewing it with.
 Understand "untighten [something]" as unscrewing it with.
 Understand "loosen [something]" as unscrewing it with.
 Understand "undo [something]" as unscrewing it with.
 
-Understand "turn [something] with [something preferably held]" as unscrewing it with.
+Understand "turn [something] with/using [something preferably held]" as unscrewing it with.
 
 Check unscrewing something with something unsuitable for screwing:
 	say "That's not much use for loosening things with." instead;
@@ -2018,9 +2023,9 @@ Part 26 - Wrapping
 
 Wrapping it with is an action applying to two things.
 
-Understand "wrap [something] with [something]" as wrapping it with.
+Understand "wrap [something] with/using [something]" as wrapping it with.
 Understand "wrap [something] around [something]" as wrapping it with (with nouns reversed).
-Understand "cover [something] with [something]" as wrapping it with.
+Understand "cover [something] with/using [something]" as wrapping it with.
 
 Check wrapping something with something unsuitable for wrapping:
 	say "[The second noun] [is-are] not much use for wrapping things with." instead;
@@ -2037,6 +2042,12 @@ Understand "put [something preferably held] to/against/at [something]" as puttin
 
 Understand "hold [something preferably held] up to/against/at [something]" as putting it against.
 Understand "hold [something preferably held] to/against/at [something]" as putting it against.
+
+Understand "stand [something preferably held] up to/against/at [something]" as putting it against.
+Understand "stand [something preferably held] to/against/at [something]" as putting it against.
+
+Understand "lean [something preferably held] up to/against/at [something]" as putting it against.
+Understand "lean [something preferably held] to/against/at [something]" as putting it against.
 
 Understand "place [something preferably held] up to/against/at [something]" as putting it against.
 Understand "place [something preferably held] to/against/at [something]" as putting it against.
@@ -2086,44 +2097,44 @@ Part 30 - Attacking it with
 
 Attacking it with is an action applying to one thing and one carried thing.
 
-Understand "attack [something] with [something preferably held]" as attacking it with.
+Understand "attack [something] with/using [something preferably held]" as attacking it with.
 Understand "bash [something]" as attacking.
-Understand "bash [something] with [something preferably held]" as attacking it with.
+Understand "bash [something] with/using [something preferably held]" as attacking it with.
 Understand "kick [something]" as attacking.
-Understand "kick [something] with [something preferably held]" as attacking it with.
+Understand "kick [something] with/using [something preferably held]" as attacking it with.
 Understand "wallop [something]" as attacking.
-Understand "wallop [something] with [something preferably held]" as attacking it with.
+Understand "wallop [something] with/using [something preferably held]" as attacking it with.
 Understand "strike [something]" as attacking.
-Understand "strike [something] with [something preferably held]" as attacking it with.
+Understand "strike [something] with/using [something preferably held]" as attacking it with.
 Understand "batter [something]" as attacking.
-Understand "batter [something] with [something preferably held]" as attacking it with.
+Understand "batter [something] with/using [something preferably held]" as attacking it with.
 Understand "batter down/through [something]" as attacking.
-Understand "batter down/through [something] with [something preferably held]" as attacking it with.
+Understand "batter down/through [something] with/using [something preferably held]" as attacking it with.
 Understand "batter [something] down" as attacking.
 Understand "batter [something] down with [something preferably held]" as attacking it with.
 Understand "stop [something]" as attacking.
-Understand "stop [something] with [something preferably held]" as attacking it with.
-Understand "beat [something] with [something preferably held]" as attacking it with.
-Understand "beat down [something] with [something preferably held]" as attacking it with.
-Understand "beat [something] down with [something preferably held]" as attacking it with.
-Understand "break [something] with [something preferably held]" as attacking it with.
-Understand "break down/up [something] with [something preferably held]" as attacking it with.
+Understand "stop [something] with/using [something preferably held]" as attacking it with.
+Understand "beat [something] with/using [something preferably held]" as attacking it with.
+Understand "beat down [something] with/using [something preferably held]" as attacking it with.
+Understand "beat [something] down with/using [something preferably held]" as attacking it with.
+Understand "break [something] with/using [something preferably held]" as attacking it with.
+Understand "break down/up [something] with/using [something preferably held]" as attacking it with.
 Understand "break [something] down/up with [something preferably held]" as attacking it with.
-Understand "destroy [something] with [something preferably held]" as attacking it with.
-Understand "hit [something] with [something preferably held]" as attacking it with.
-Understand "pound [something] with [something preferably held]" as attacking it with.
-Understand "pummel [something] with [something preferably held]" as attacking it with.
-Understand "punch [something] with [something preferably held]" as attacking it with.
-Understand "smash [something] with [something preferably held]" as attacking it with.
-Understand "smash down/up/through [something] with [something preferably held]" as attacking it with.
+Understand "destroy [something] with/using [something preferably held]" as attacking it with.
+Understand "hit [something] with/using [something preferably held]" as attacking it with.
+Understand "pound [something] with/using [something preferably held]" as attacking it with.
+Understand "pummel [something] with/using [something preferably held]" as attacking it with.
+Understand "punch [something] with/using [something preferably held]" as attacking it with.
+Understand "smash [something] with/using [something preferably held]" as attacking it with.
+Understand "smash down/up/through [something] with/using [something preferably held]" as attacking it with.
 Understand "smash [something] down/up with [something preferably held]" as attacking it with.
-Understand "thump [something] with [something preferably held]" as attacking it with.
+Understand "thump [something] with/using [something preferably held]" as attacking it with.
 
-Understand "beat up [person] with [something preferably held]" as attacking it with.
-Understand "beat [person] up with [something preferably held]" as attacking it with.
-Understand "kill [person] with [something preferably held]" as attacking it with.
-Understand "murder [person] with [something preferably held]" as attacking it with.
-Understand "maim [person] with [something preferably held]" as attacking it with.
+Understand "beat up [person] with/using [something preferably held]" as attacking it with.
+Understand "beat [person] up with/using [something preferably held]" as attacking it with.
+Understand "kill [person] with/using [something preferably held]" as attacking it with.
+Understand "murder [person] with/using [something preferably held]" as attacking it with.
+Understand "maim [person] with/using [something preferably held]" as attacking it with.
 
 Check attacking something with:
 	say "Violence breaks clocks, but rarely fixes them." instead;
@@ -2309,8 +2320,8 @@ Check shouting at someone:
 
 Part 42 - Jamming
 
-Understand "jam [something] with [something preferably held]" as inserting it into (with nouns reversed).
-Understand "stop [something] with [something preferably held]" as inserting it into (with nouns reversed).
+Understand "jam [something] with/using [something preferably held]" as inserting it into (with nouns reversed).
+Understand "stop [something] with/using [something preferably held]" as inserting it into (with nouns reversed).
 Understand "jam [something]" as attacking.
 Understand "stop [enormous penduluum]" as attacking.
 
@@ -2457,12 +2468,12 @@ Part 51 - Extinguishing
 Extinguishing it with is an action applying to two touchable things and requiring light.
 
 Understand "extinguish [something]" as extinguishing it with.
-Understand "extinguish [something] with [something]" as extinguishing it with.
+Understand "extinguish [something] with/using [something]" as extinguishing it with.
 Understand the command "douse", "dowse" as "extinguish".
 Understand "put out [something]"  as extinguishing it with.
-Understand "put out [something] with [something]"  as extinguishing it with.
+Understand "put out [something] with/using [something]"  as extinguishing it with.
 Understand "blow out [something]"  as extinguishing it with.
-Understand "blow out [something] with [something]"  as extinguishing it with.
+Understand "blow out [something] with/using [something]"  as extinguishing it with.
 
 Rule for supplying a missing second noun when extinguishing something with:
 	change the second noun to the player.
@@ -2504,7 +2515,7 @@ Part 2 - Add something to
 Understand "add [something preferably held] to [container]" as inserting it into.
 Understand "add [something preferably held] to [supporter]" as putting it on.
 Understand "add [something preferably held] to [something]" as inserting it into.
-Understand "extend [something] with [something preferably held]" as putting it on (with nouns reversed).
+Understand "extend [something] with/using [something preferably held]" as putting it on (with nouns reversed).
 
 Part 3 - Covering
 
@@ -2516,9 +2527,9 @@ Understand "cover [something] up" as closing.
 
 Understand "hand/hands", "my/your/one/both hand/hands" as "[hands]".
 
-Understand "cover [something] with [hands]" as touching.
+Understand "cover [something] with/using [hands]" as touching.
 
-Understand "cover [something] with [something]" as putting it on (with nouns reversed).
+Understand "cover [something] with/using [something]" as putting it on (with nouns reversed).
 
 Understand "put [hands] on/over [something]" as touching.
 
@@ -2546,17 +2557,25 @@ Understand the command "crush" as "squeeze".
 Understand "pulverise [something]" as squeezing.
 Understand "pulverize [something]" as squeezing.
 
-Part 7 - Synonyms for put
+Part 7 - Synonyms for put it on
 
-Understand "on", "on top of", "onto" as "[onto]".
+Understand "on", "on top of", "onto", "over" as "[onto]".
 
 Understand "load [something] [onto] [something]" as putting it on.
-Understand "weigh down [something] with [something]" as putting it on (with nouns reversed).
-Understand "balance [something] with [something]" as putting it on (with nouns reversed).
-Understand "counterbalance [something] with [something]" as putting it on (with nouns reversed).
-Understand "counterweight [something] with [something]" as putting it on (with nouns reversed).
-Understand "counter [something] with [something]" as putting it on (with nouns reversed).
+Understand "weigh down [something] with/using [something]" as putting it on (with nouns reversed).
+Understand "balance [something] with/using [something]" as putting it on (with nouns reversed).
+Understand "counterbalance [something] with/using [something]" as putting it on (with nouns reversed).
+Understand "counterweight [something] with/using [something]" as putting it on (with nouns reversed).
+Understand "counter [something] with/using [something]" as putting it on (with nouns reversed).
 
+Understand "throw [something] [onto] [something]" as putting it on.
+Understand "pull [something] [onto] [something]" as putting it on.
+Understand "push [something] [onto] [something]" as putting it on.
+
+Part 7b - Synonyms for insert into
+
+Understand "put [something] under/through/behind [something]" as inserting it into.
+Understand "push [something] under/through/behind/into [something]" as inserting it into.
 
 Part 8 - Synonyms for take
 
@@ -2572,6 +2591,9 @@ Understand "cling on to [something]" as taking.
 Understand the command "catch" as "take".
 Understand the command "collect" as "take".
 Understand the command "pluck" as "take".
+
+Understand "coil [something]" as taking.
+Understand "coil up [something]" as taking.
 
 Understand "lift [something]" as taking.
 Understand "raise [something]" as taking.
@@ -2594,6 +2616,8 @@ Understand the command "yank" as "pull".
 Understand the command "tug" as "pull".
 Understand the command "haul" as "pull".
 Understand the command "heave" as "pull".
+
+Understand "pull [something] along/around/round" as pulling.
 
 Part 11 - Synonyms for Jump
 
@@ -2642,8 +2666,8 @@ Understand "slide down on [something]" as entering.
 Part 16 - Synonyms for Show
 
 Understand "wave [something] at [someone]" as showing it to.
-Understand "threaten [someone] with [something]" as showing it to (with nouns reversed).
-Understand "intimidate [someone] with [something]" as showing it to (with nouns reversed).
+Understand "threaten [someone] with/using [something]" as showing it to (with nouns reversed).
+Understand "intimidate [someone] with/using [something]" as showing it to (with nouns reversed).
 
 Part 17 - Synonyms for Exit
 
@@ -2670,8 +2694,8 @@ Part 22 - Synonyms for unlocking
 
 Understand "lever [something]" as pulling.
 Understand "pry [something]" as pulling.
-Understand "lever [something] with [something]" as unlocking it with.
-Understand "pry [something] with [something]" as unlocking it with.
+Understand "lever [something] with/using [something]" as unlocking it with.
+Understand "pry [something] with/using [something]" as unlocking it with.
 
 Part 23 - Synonyms for opening
 
@@ -2686,8 +2710,18 @@ Understand "pull open [something]" as opening.
 Part 24 - Synonyms for attack
 
 Understand "stab [someone]" as attacking.
-Understand "stab [someone] with [something]" as attacking it with.
+Understand "stab [someone] with/using [something]" as attacking it with.
+Understand "tear [something]" as attacking.
 
+Part 25 -  Synonyms for Pull a direction
+
+Understand "pull [something] [direction]" as pushing it to.
+
+
+Part 26 - Synonyms for Eat
+
+Understand "chew [something]" as eating.
+Understand "chew through [something]" as eating.
 
 Book E - New Properties
 
@@ -13012,11 +13046,39 @@ Instead of going south in the North Side:
 Instead of making to leave when in the North Side:
 	try going east.
 
+Understand "swim" as jumping when the location is the North Side.
+Understand "dive" as jumping when the location is the North Side.
+Understand "swim in/into [something]" as entering when the location is the North Side.
+Understand "dive in" as jumping when the location is the North Side.
+Understand "dive in/into [something]" as entering when the location is the North Side.
+
+
+Instead of jumping when in North Side:
+	say "[one of]I might dash myself on the bricks if I tried.[or]If I wanted to swim - which I [i]don't[r] - then there might be clearer water to the west.[stopping]"
+
+Instead of entering or approaching the river_glimpse when in the North Side:
+	try jumping.
+
+Instead of going down when in the North Side:
+	try jumping.
+
 Chapter 2 - Scenery
 
 Section 1 - Junk
 
-The rubble is scenery in the North Side. "'Without order there is tardiness,' they say: well, this place is so tardy that by the time it got here it was a ruin. Dark shadows and broken bricks[if the Wrench is not handled]. And a gleam of metal – looking closer I spy a good quality wrench[end if]."  Understand "brick", "bricks", "unsteady", "pile/piles of", "pile/piles", "sheet", "metal", "island/islands of", "island", "islands" as the rubble.
+The rubble is scenery in the North Side. "'Without order there is tardiness,' they say: well, this place is so tardy that by the time it got here it was a ruin. Dark shadows and broken bricks[if the Wrench is not handled]. And a gleam of metal – looking closer I spy a good quality wrench[end if]."  Understand "brick", "bricks", "unsteady", "pile/piles of", "rubble-pile", "pile/piles", "sheet", "metal", "island/islands of", "island", "islands" as the rubble.
+
+Instead of searching or looking under or pushing or pulling or turning or attacking the rubble:
+	say "There's nothing but more rubble in the rubble, and then there's the water."
+
+Instead of searching or looking under or pushing or pulling or turning or attacking the rubble when the Wrench is not handled:
+	say "In the midst of the rubble is a good-looking wrench. I pick it out. [run paragraph on]";
+	try taking the wrench.
+
+Every turn when the Wrench is not handled and the location is the North Side and the player has been in the North Side for exactly two turns and the rubble is unexamined:
+	say "There's a flash of metal from the rubble-pile."
+
+Understand "flash/gleam", "metal", "flash/gleam of" as the Wrench when the Wrench is not handled.
 
 Section 2 - Wrench
 
@@ -13039,6 +13101,8 @@ Instead of going inside when in the Dock:
 Instead of making to leave when in the Dock:
 	try going south;
 
+Before going down when in the Dock:
+	try jumping instead.
 
 The River Thymes is a backdrop, in the Dock and the Ledge. "The wide River Thymes disappears into the darkness like someone had knocked a water-glass over a map of the town. On the other side are bright lights and fine buildings: that's Palatine Hill built right by the springs[if the location is the Dock]. The river is bubbling slightly here[end if]."
 
@@ -13094,7 +13158,7 @@ Section 1 - Loading Bay Door
 
 The loading-bay door is a locked door, privately-named, scenery, closed, east of the Dock, west of Loading Bay. "The door is made of heavy iron plates. It might slide up towards the roof if it wasn't locked down and about as heavy as the crescent moon."
 
-The printed name of the loading-bay door is "massive door". Understand "heavy", "iron", "plates", "plated", "sliding", "door", "lock", "bar", "padlock", "massive" as the loading-bay door.
+The printed name of the loading-bay door is "massive door". Understand "heavy", "iron", "plates", "plated", "sliding", "door", "lock", "bar", "padlock", "massive", "huge", "metal", "solid" as the loading-bay door.
 
 Instead of opening, pushing, pulling or turning the loading-bay door:
 	say "The iron door is firmly locked.";
@@ -13120,12 +13184,22 @@ Understand "dock", "loading", "ramp", "planking", "small" as the mooring posts.
 Instead of putting something on the mooring posts:
 	try dropping the noun instead;
 
+Section 3 - Crocodile
+
+A crocodile is scenery in the Dock. The description is "I can't see him, but I'm sure that [i]he[r] can see [i]me[r]."
+
+Before doing something when the crocodile is physically involved:
+	try examining the crocodile instead.
+
 Part 6 - Ledge
 
 The Ledge is south of the Dock. South of the Ledge is west of South Side. "This is a narrow plank walkway on the west side of the warehouse, that gives me barely a hand-span between the brick wall and the dark water of the River Thymes. I could scurry north or south like a rat, but hanging around here might be a bad idea."
 
 Instead of making to leave when in the Ledge:
 	try going south.
+
+Before going down when in the Ledge:
+	try jumping instead.
 
 The first before going inside when in the Ledge:
 	if the player has been underwater:
@@ -13210,13 +13284,13 @@ Understand "hold [breath]" as a mistake ("What do you think I'm doing?") when th
 
 Chapter 1 - River 1 Description
 
-River 1 is an underwater room, west of the Ledge. The printed name is "Underwater". "I feel like a drowning dog, splashing around in the freezing cold water. No-one teaches clock-polishers to swim! But at least all that oil teaches you to hold your breath, and whatever it is I'm doing with my legs seem to be keeping me just below the surface.[paragraph break]I could clamber back onto the planks to the east, or follow them northwards. But I'd better not put my feet down because who knows what's down there..."
+River 1 is an underwater room, west of the Ledge. The printed name is "Underwater". "I feel like a drowning dog[one of], splashing around in the freezing cold water. No-one teaches clock-polishers to swim! But at least all that oil teaches you to hold your breath, and[or]. But[stopping] whatever it is I'm doing with my legs seem to be keeping me just below the surface.[paragraph break]I could clamber back onto the planks to the east, or follow them northwards. But I'd better not put my feet down because who knows what's down there..."
 
-Understand "put feet down" as a mistake ("Sorry, I'm not doing it. I'll have to insist on this one.") while the location is River 1.
+Understand "put feet down" as a mistake ("No, I insist. I'm not doing it.") while the location is River 1.
 
-Instead of making to leave when in River 1:
+Instead of making to leave when the location is River 1:
 	try going east.
-Instead of going inside when in River 1:
+Instead of going inside when the location is River 1:
 	say "I'm already in it as far as I can go!";
 
 After going north in River 1:
@@ -13233,10 +13307,10 @@ Chapter 2 - River 2 Description
 
 River 2 is an underwater room, west of the Dock, north of River 1. The printed name is "Underwater, by the Dock". "This is like being in one of Chef's trifles: black jelly sheet above and mucky custard below. I'm holding my breath and trying to see through the muck. The ramp back up to the dock is to the east, which is a relief: below it, a fat pipe sticks out from somewhere and disappears into the depths of the river. Beside it is some kind of drain built into the earth under the dock."
 
-Instead of making to leave when in River 2:
+Instead of making to leave when the location is River 2:
 	try going east.
-Instead of going inside when in River 2:
-	say "I'm already in it as far as I can go!";
+Instead of going inside when the location is River 2:
+	try entering the drain entrance.
 
 After going south in River 2:
 	say "I paddle my way through the water.";
@@ -13275,6 +13349,7 @@ BREATH_COUNTER is a busy counter. The top end is 4. The internal value is 1.
 
 After going to an underwater room from an overground room:
 	change the internal value of the BREATH_COUNTER to 1;
+	continue the action;
 
 Every turn when the location is an underwater room:
 	increment BREATH_COUNTER;
@@ -13353,17 +13428,32 @@ Understand "bolt" as the bolts.
 Instead of going through the closed drain entrance:
 	say "The drain cover is closed.";
 
+To turn bolts:
+	if count of the bolts is less than 5 and the wrench is visible:
+		try unlocking the drain entrance with the wrench;
+	else:
+		say "I can't turn bolts with my bare hands!";
+
+Instead of turning the bolts:
+	turn bolts;
+
 Instead of opening the closed drain entrance:
-	say "I can't turn bolts with my bare hands!";
+	turn bolts;
 
 Instead of unlocking the drain entrance with something when the second noun is not a key:
 	try unscrewing the bolts with the second noun;
 
 Rule for supplying a missing second noun while unscrewing the bolts with:
-	say "I can't turn bolts with my bare hands!";
+	if count of the bolts is less than 5 and the wrench is visible:
+		change the second noun to the wrench;
+	else:
+		say "I can't turn bolts with my bare hands!";
 
 Rule for supplying a missing second noun while unscrewing the drain entrance with:
-	say "I can't turn bolts with my bare hands!";
+	if count of the bolts is less than 5 and the wrench is visible:
+		change the second noun to the wrench;
+	else:
+		say "I can't turn bolts with my bare hands!";
 
 Instead of unscrewing the bolts with the wrench:
 	decrease the count of the bolts by 1;
@@ -13394,13 +13484,17 @@ After going through the drain entrance from River 2:
 	say "I squirm my way inside. It's narrow, not enough room to turn round. That doesn't seem like a problem until I remember that I'm underwater and the second hand's ticking till I run out of air. I push forwards: there's just me, the metal walls and the pounding of my heart like a massive drum.[paragraph break]Luckily the drain tilts up a little. My lips break the surface and I'm so relieved I feel like crying.";
 	continue the action;
 
+After going through the drain entrance from the Drain Pipe:
+	say "I squirm my way back into the river.";
+	continue the action.
+
 Part 8 - Drain
 
 Chapter 1 - Description
 
 The Drain Pipe is a room. The printed name is "Drain". The description is "The drain's heading upwards and I've found air above me, a little pocket of it, like I was an ant trapped inside a spirit level. [if the air pocket is unexamined]But I'm breathing, so either there's some kind of grate above me or the air will eventually turn as stale as prisoner's bread.[otherwise]Above me is a grate.[end if]"
 
-Instead of making to leave when in the Drain Pipe:
+Instead of making to leave when the location is the Drain Pipe:
 	try going southwest. 
 
 Instead of going inside when in the Drain Pipe:
@@ -13438,9 +13532,21 @@ Instead of going through the air pocket from the Loading Bay when the warehouse 
 
 Part 10 - Loading Bay
 
+Chapter 0 - Inside the Warehouse rooms
+
+Definition: a room is warehouse-interior:
+	if it is the Loading Bay or it is the Storage Bay or it is the Gas Platform or it is the Warehouse Basement, yes;
+	no;
+
+Instead of listening when the location is  a warehouse-interior room:
+	say "Drip... drip... drip... (but don't mind that, it's just me.)";
+
+Instead of smelling when the location is a warehouse-interior room:
+	say "The dank air reeks of fish and engine oil[one of] (what do they keep in this place, mechanised sharks?)[or].[stopping]"
+
 Chapter 1 - Description
 
-The Loading Bay is a room. "I'm inside the warehouse but there's no sign of the Figure. Or anyone else. Or anything. The warehouse may be massive but it seems to be completely empty, [if the warehouse door is open]just that crate blocking the drain[otherwise]just one huge crate wrapped all round with thick iron chains[end if] and some piles of debris like those outside. There's enough floor space for a game of clockball, continuing off to the south.[paragraph break]About halfway down is the large metal door I saw from the dock. Above it a fat pipe crosses from wall to wall. The drain I came up from is by the north wall.". The printed name is "Loading".
+The Loading Bay is a room. "[one of]I'm inside the warehouse but there's no sign of the Figure. Or anyone else. Or anything. [or][stopping]This warehouse may be massive but it seems completely empty, [if the warehouse door is open]just that crate blocking the drain,[otherwise]just one huge crate wrapped all round with thick iron chains,[end if] and some piles of debris like those outside. There's enough floor space for a game of clockball, continuing off to the south.[paragraph break]About halfway down is the large metal door I saw from the dock. Above it a fat pipe crosses from wall to wall. The drain I came up from is by the north wall.". The printed name is "Loading".
 
 Instead of making to leave when in the Loading Bay:
 	try going down.
@@ -13449,6 +13555,8 @@ Instead of going north when in the Loading Bay:
 
 Instead of going inside when in the Loading Bay:
 	try going south.
+
+Understand "play clockball" as a mistake ("I'd need a team of ten. But it's just me here right now. Just Wren... and maybe the Figure, too.") when the location is the Loading Bay.
 
 Chapter 2 - Scenery
 
@@ -13475,6 +13583,9 @@ After printing the description of the debris when the long ladder is in the Load
 Last after printing the description of the debris:
 	say paragraph break;
 
+Before searching or pushing or pulling or looking under the debris:
+	try examining the debris instead.
+
 Instead of taking or turning the debris:
 	say "Clearing up in here isn't going to help me stop the Figure.";
 
@@ -13495,10 +13606,17 @@ Rule for writing a paragraph about the long ladder:
 	say "[if placed]A long ladder leans against the wall below the pipe.[otherwise if stuck]The ladder leads from the platform to the earth floor below.[otherwise]There's a long ladder here.[end if]";
 
 Instead of climbing the long ladder when the long ladder is not placed and the long ladder is not stuck:
+	if the player is carrying the long ladder:
+		say "But I'm carrying it!" instead;
 	say "The ladder doesn't exactly go anywhere at the moment.";
 
+[
 Instead of climbing the placed long ladder:
 	say "The ladder puts me in reach of the pipe.";
+]
+
+Before going up when the long ladder is placed and the long ladder is visible:
+	try climbing the long ladder instead.
 
 Instead of taking the stuck long ladder:
 	say "The ladder has dropped almost out of reach. There's no way I could get it back up here.";
@@ -13511,14 +13629,103 @@ After taking the long ladder:
 TRIG_LADDER_PIPE is a trigger.
 
 Rule for firing unfired TRIG_LADDER_PIPE:
-	say "Waving this ladder around is like trying to repair a differentiator in a pocket water with nine foot wooden arms. I'm all over the place and only after making a noise louder than the midday chimes do I get it up against the wall, by the pipe.[paragraph break]If the Figure is here somewhere then I might as well have rung a doorbell.";
+	say "Waving this ladder around is like trying to repair a differentiator in a pocket watch with nine foot wooden arms. I'm all over the place and only after making a noise louder than the midday chimes do I get it against the wall, by the pipe.[paragraph break]If the Figure is here somewhere then I might as well have pulled the doorbell.";
 
 Rule for firing fired TRIG_LADDER_PIPE:
 	say "I get the ladder into place under the pipe.";
 
+Instead of putting the long ladder against the backdrop-walls when a warehouse pipe (called the pipe-aimed-for) is visible:
+	try putting the long ladder against pipe-aimed-for.
+
+Instead of putting the long ladder on a scenery thing:
+	try putting the long ladder against the second noun.
+
+Section 3b - Standing on the Ladder
+
+Yourself can be atop the ladder. Yourself is not atop the ladder.
+
+After printing the name of the location when the player is atop the ladder and we are looking:
+	say ", up the ladder".
+
+Rule for writing a paragraph about the long ladder when the player is atop the ladder and the long ladder is placed:
+	say "I'm standing on top of the ladder, which is leaning against the pipe."
+
+Definition: a thing is below the ladder:
+	if it is enclosed by the player, no;
+	if it is the long ladder:
+		if taking, yes;
+		if the player is atop the ladder, no;
+		yes;
+	if it is a warehouse pipe, no;
+	yes;
+
+Definition: a thing is above the ladder:
+	if it is enclosed by the player, no;
+	if it is the long ladder:
+		if taking, no;
+		if the player is atop the ladder, yes;
+		no;
+	if it is a warehouse pipe, yes;
+	no;
+
+Instead of climbing the placed long ladder:
+	now the player is atop the ladder;
+	say "I scramble [one of]to the top of the ladder. I'm now in reach of the pipe[or]back up the ladder[stopping].";
+
+Instead of doing something when something below the ladder is physically involved and the player is atop the ladder:
+	auto-go down the ladder;
+	continue the action.
+
+Before going when the player is atop the ladder:
+	auto-go down the ladder;
+	continue the action;
+
+To auto-go down the ladder:
+	say "I climb back down the ladder.";
+	now the player is not atop the ladder;
+
+To auto-go up the ladder:
+	say "I climb back up the ladder.";
+	now the player is atop the ladder;
+
+Before getting off when the player is atop the ladder:
+	auto-go down the ladder instead.
+Before going down when the player is atop the ladder:
+	try getting off the long ladder instead.
+Before going outside when the player is atop the ladder:
+	try getting off the long ladder instead.
+
+Instead of doing something when something above the ladder is physically involved and the player is not atop the ladder and the long ladder is placed and the long ladder is visible:
+	auto-go up the ladder;
+	continue the action.
+
+Before dropping something when the player is atop the ladder:
+	auto-go down the ladder;
+	continue the action.
+
+[ What if one thing is up the ladder and the other is down? We catch this and cope with it first. ]
+
+First instead of doing something when something above the ladder is physically involved and something below the ladder is physically involved and the long ladder is placed and the long ladder is visible:
+	let the top-thing be a random above the ladder thing which is physically involved;
+	let the bottom-thing be a random below the ladder thing which is physically involved;
+	if the top-thing is a warehouse pipe and the bottom-thing is a rope segment:
+		[ in this case, does the player need to go get the rope from below? ]	
+		if fastening something to:
+			if the player is atop the ladder, auto-go down the ladder;
+		continue the action;
+		[ because the actual "rope & pipe" instead routines will kick in before the auto-up/down rules above by law of Specificity ] 
+	else:
+		say "But [the top-thing] [is-are] up [if the player is atop the ladder]here with me[else]there[end if] and [the bottom-thing] [is-are] down [if the player is atop the ladder]there[else]here with me[end if], so I don't see how I could.";
+
 Section 4 - North Pipe
 
-A warehouse pipe is a kind of thing. A warehouse pipe is usually scenery, privately-named. The printed name of a  warehouse pipe is usually "pipe". Understand "pipe" as a warehouse pipe.
+A warehouse pipe is a kind of thing. A warehouse pipe is usually scenery, privately-named. The printed name of a  warehouse pipe is usually "pipe". Understand "pipe", "fat" as a warehouse pipe.
+
+Instead of jumping when the location contains a warehouse pipe:
+	say "The pipe is too high to reach like that, if that's what you're thinking";
+	if the long ladder is not handled and the location is the Loading Bay:
+		say " - but the ladder sticking out of the pile of debris might help";
+	say "."
 
 The north pipe is a warehouse pipe, in the Loading Bay. "The pipe's a fair few feet up the wall. What it's for is anyone's guess." 
 
@@ -13530,18 +13737,25 @@ Instead of standing the long ladder up when the player can see a warehouse pipe:
 	move the long ladder to the location;
 	now the long ladder is placed;
 
-Instead of putting the middle of the rope on a warehouse pipe:
+Before putting a rope segment on a warehouse pipe:
 	try fastening the noun to the second noun instead;
+
+Before removing a rope segment from a warehouse pipe:
+	try untying the noun from the second noun instead;
+
 
 Before doing something when a warehouse pipe is physically involved:
 	unless the long ladder is placed and the long ladder is in the location:
 		unless we are putting the long ladder against the second noun or we are fastening a rope segment to the second noun or we are untying a rope segment from the second noun:
+			if we are putting a rope segment on the second noun:
+				say "[one of]I toss the end of the rope up towards the pipe, but don't even get close.[or]I lob the rope again, but it's too heavy to get anywhere near the pipe.[or]I can't do it from down here - it's too far![stopping]" instead;
 			say "The pipe's out of my reach." instead;
 
 Section 5 - Sliding Door
 
 Rule for printing the description of the loading-bay door when in the Loading Bay:
-	say "The huge metal door is made of sliding iron bars that could be lifted up if, say, I was a twelve foot Hotlands warrior.";
+	say "The huge metal door is made of solid iron that could be lifted up if, say, I was a twelve-foot Hotlands warrior.";
+
 
 An unlocking rule for the loading-bay door when the location is the Loading Bay:
 	say "I don't have a key." instead;
@@ -13555,14 +13769,34 @@ Instead of opening, pushing, pulling or turning the loading-bay door:
 Instead of attacking the loading-bay door when the location is the Loading Bay:
 	say "I don't stand a chance.";
 
+Instead of fastening a rope segment to the loading-bay door:
+	say "The door is sheer - there's nothing to tie the rope onto."
+
 Section 6 - Crate
 
 An enormous packing crate is scenery, in the Loading Bay. "An enormous packing crate. Whatever’s inside must be important because its wrapped around with iron security chains, almost like they were afraid of whatever’s inside breaking out[if the north end of the rope is tied to the packing crate]. The rope is tied to the crate[end if]."
+
+Understand "chains", "chain", "iron chain/chains", "security", "iron security chain/chains" as the enormous packing crate.
 
 Rule for printing the description of the enormous packing crate when the warehouse door is open:
 	say "The crate has dropped into the drain, blocking my way out!";
 
 The printed name of the enormous packing crate is "crate".
+
+Instead of opening the enormous packing crate:
+	say "There's no way I could get that open. It's locked up tighter than Brother Reloh's sympathy."
+
+Instead of unlocking the enormous packing crate with something:
+	try opening the noun.
+
+Instead of attacking the enormous packing crate:
+	say "I couldn't break into it[one of]. It'd be like a mayfly trying to break straight through the Abbey walls[or][stopping]."
+
+Instead of slicing the enormous packing crate with the knife:
+	say "The knife can't cut the chains, any more than I could chew through them."
+
+Instead of eating the enormous packing crate:
+	say "I'd be here for years, several thousand or so."
 
 Instead of taking the packing crate:
 	say "The crate is far too big and heavy for me to carry, I’d need to be a giant to even get my arms around it! But I could probably push it along the floor a little if I needed to.";
@@ -13575,20 +13809,23 @@ Rule for supplying a missing second noun when pushing the packing crate to:
 
 Understand "push [enormous packing crate] down/into/through/in/to [air pocket]" as pushing it to. [Not a totally smart thing to do - i.e. the parser never normally generates such a command - but good enough for what we need]
 
+Before inserting the enormous packing crate into the air pocket:
+	try pushing the enormous packing crate to the air pocket instead.
+
 Instead of pushing the enormous packing crate to a direction (called d):
 	if d is down or d is north:
 		try pushing the noun to the air pocket;
 	otherwise if d is south:
 		say "I put my shoulderblades to the side of the crate and dig my heels in and get it to move maybe an inch... not much further. Another look at the room is enough to convince me there’s no way I can push the crate all the way over there." instead;
 	otherwise:
-		continue the action; [[BUG]: new response required here]
+		say "[one of]I give the crate a little shove and it moves, but t[or]T[stopping]here's nowhere for it to go in that direction.";
 
 Instead of pushing the enormous packing crate to the air pocket:
 	abide by the crate pushing rules;
 	assert that the south end of the rope is tied to the warehouse door issuing "Rope is tied to door.";
 	assert that the north end of the rope is tied to the enormous crate issuing "Rope is tied to crate.";
 	assert that exactly two rope segments are coiled issuing "Two rope segments coiled.";
-	say "Putting my shoulderblades to the side of the crate and digging my heels into the floorboards, I manage to move the crate a tiny inch towards the drain. Every inch after that is easier as more and more of the crate is out of contact with the floor, until suddenly it’s moving and I nearly fall backwards with it. The crate tumbles away into the drain. The rope goes taut. And across the hall there’s the sound of moving metal...";
+	say "Putting my shoulderblades to the side of the crate and digging my heels into the floorboards, I manage to move the crate a tiny inch towards the drain. Every inch after that is easier as more and more of the crate is out of contact with the floor, until suddenly it’s moving and I nearly fall backwards with it.[paragraph break]The crate tumbles away into the drain. The rope goes taut. And across the hall there’s the sound of moving metal...";
 	now the warehouse door is open;
 
 The crate pushing rules are a rulebook.
@@ -13639,9 +13876,14 @@ To decide which rope segment is the rope nearby:
 	otherwise if the location is the Storage Bay:
 		decide on the south end of the rope;
 
-The north end of the rope is a rope segment, privately-named, in the Loading Bay. "An enormous coil of rope, maybe enough to cross the Thymes and back."
+The north end of the rope is a rope segment, privately-named, in the Loading Bay. 
 
-Understand "rope" as the north end of the rope. The printed name of the north end of the rope is "rope".
+Rule for printing the description of the north end of the rope:
+	say "An enormous coil of rope, maybe enough to cross the Thymes and back."
+
+Understand "rope", "end", "end of", "end of the" as the north end of the rope. The printed name of the north end of the rope is "rope".
+
+Section 6.0 - Printing Rope
 
 Rule for printing the description of a rope segment (called the segment):
 	say "An enormous coil of rope, maybe enough to cross the Thymes and back. ";
@@ -13660,7 +13902,7 @@ Rule for writing a paragraph about a rope segment (called the segment):
 		[end if]
 		say "of a long rope. ";
 	otherwise:
-		say "There's a length of rope here. ";
+		say "There's a length of rope [if the player is atop the ladder]on the floor [end if]here. ";
 	[end if]
 	say the room description details of the segment;
 
@@ -13671,20 +13913,30 @@ To say the room description details of (the segment - a rope segment):
 	if the segment is coiled:
 		say " is looped over a pipe near the ceiling and";
 	if the middle of the rope is not held and the other end of the segment is off-stage and the segment is unanchored and the segment is not coiled:
-		say " is coiled up on the ground and";
+		say " is coiled up in loops and";
 	[end if]
 	if the other end of the segment is on-stage:
-		if the other end of the segment is coiled:
+		if the segment is coiled:
+			if the other end of the segment is coiled:
+				say " passes over the second pipe to the [if the segment is the north end of the rope]south[otherwise]north[end if]. It";
+			else:
+				say " slopes down to the [if the segment is the north end of the rope]south[otherwise]north[end if] at a sharp angle up towards the floor. It";
+		else if the other end of the segment is coiled:
 			say " disappears to the [if the segment is the north end of the rope]south[otherwise]north[end if] at a sharp angle up towards the roof. It";
 		otherwise:
 			say " snakes away to the [if the segment is the north end of the rope]south[otherwise]north[end if]. It";
 		[end if]
 	[end if]
-	say " looks far too heavy for me to carry, but I could probably drag it around.";
+	if the other end of the segment is tied to something and the segment is tied to something:
+		say " is tied tightly at both ends.";
+	else if the number of handled rope segments is zero:
+		say " looks far too heavy for me to carry, but I could probably drag it around.";
+	else:
+		say " is too heavy for me to lift the whole thing, but I'm managing to drag it around.";
 
-The south end of the rope is a rope segment, privately-named. The south end of the rope is terminated at the north end of the rope. The printed name is "rope". Understand "rope" as the south end of the rope.
+The south end of the rope is a rope segment, privately-named. The south end of the rope is terminated at the north end of the rope. The printed name is "rope". Understand "rope", "end", "end of", "end of the" as the south end of the rope.
 
-The middle of the rope is a rope segment, privately-named. The printed name is "rope". Understand "rope" as the middle of the rope.
+The middle of the rope is a rope segment, privately-named. The printed name is "rope". Understand "rope", "middle", "middle of" as the middle of the rope.
 
 Rule for printing the name of a rope segment (called r) while clarifying the parser's choice of something:
 	if r is the middle of the rope:
@@ -13703,13 +13955,41 @@ Rule for implicitly taking a rope segment (called r):
 	assert that the player carries the middle of the rope issuing "Player segment carried.";
 	redirect the action from r to the middle of the rope;
 
+Before dropping a rope segment when the player is carrying the middle of the rope:
+	if the noun is the middle of the rope, continue the action;
+	try dropping the middle of the rope instead.
+
+Section 6.05 - Non-interactions with Rope
+
+Instead of slicing a rope segment with the knife:
+	say "The rope's too thick to get through with this knife."
+
+Instead of slicing a rope segment with the knife when the warehouse door is open:
+	say "That'd cut off my last chance to get inside this place. I won't do it. There's too much at stake."
+
+Instead of climbing a rope segment:
+	say "[one of]I've never been much good with ropes - ladders, yes, ropes no. I wouldn't make it as a sailor.[or]I'm not a monkey.[stopping]".
+
+Instead of attacking a rope segment:
+	say "The rope's too fat to tear into pieces."
+	
+Instead of burning a rope segment:
+	say "The rope is [one of]soaked to its core from every time this place has flooded. It [or][stopping]wouldn't burn even if I [i]had[r] something to light it with."
+
+Instead of pushing a rope segment to a direction:
+	if the player is not carrying a rope segment:
+		carry out the implicitly taking activity with the noun;
+	try going the second noun.
+		
+
 Section 6.1 - Taking Rope
 
 Instead of taking a rope segment when the player has the middle of the rope and the noun is unanchored and the noun is not coiled and the other end of the noun is off-stage:
 	say "I couldn't carry the whole rope. It's the size of two of me!";
 
 Instead of taking a rope segment when the player has the middle of the rope:
-	try pulling the middle of the rope instead;
+	say "I'm already holding the rope (I could give it a yank to coil it up, if that's what you meant.)";
+[	try pulling the middle of the rope instead;]
 
 Carry out taking a rope segment:
 	now the player carries the middle of the rope instead;
@@ -13729,7 +14009,8 @@ The main warehouse is a region. The Loading Bay and Storage Bay are in the main 
 
 Check going when the player carries the middle of the rope:
 	unless the room gone to is in the main warehouse:
-		say "The rope's too bulky for that!" instead;
+		try dropping the middle of the rope;
+ 		continue the action;
 
 After going when the player carries the middle of the rope:
 	consider the rope movement rules;
@@ -13741,7 +14022,7 @@ A rope movement rule:
 	if the room gone to contains a rope segment and the room gone from contains an rope segment (called r):
 		if r is coiled or r is anchored:
 			remove the middle of the rope from play;
-			say "First I let go of the rope." instead;
+			say "I let go of this part of the rope." instead;
 
 A rope movement rule:
 	if the room gone from contains an unanchored rope segment (called the loose end) and the room gone to contains a rope segment:
@@ -13771,7 +14052,7 @@ Carry out dropping a rope segment:
 	assert that the location contains a rope segment issuing "Location contains a rope segment.";
 
 Report dropping a rope segment:
-	say "I let go of the rope." instead;
+	say "I let go of the rope[if the player is atop the ladder] and it falls to the floor[end if]." instead;
 
 Section 6.4 - Looping Rope
 
@@ -13795,7 +14076,12 @@ Instead of fastening a rope segment to a warehouse pipe:
 	assert that the long ladder is in the location and the long ladder is placed issuing "The player can reach the rope.";
 	let x be the rope nearby;
 	now x is coiled;
-	say "[one of]I scramble a few rungs up the ladder with the end of the rope looped around my neck – not very safe, I know, but I’m working as fast as I can. Once I’m up high enough I chuck the rope over the pipe. Great. It’s now hanging down like a pulley![or]I scramble up the ladder and toss the rope over the piping.[stopping]";
+	if the player is not atop the ladder:
+		now the player is atop the ladder;
+		say "[one of]I scramble a few rungs up the ladder with the end of the rope looped around my neck – not very safe, I know, but I’m working as fast as I can. Once I’m up high enough I[or]I scramble up the ladder and[stopping]";
+	else:
+		say "I";
+	say " [one of]chuck the rope over the pipe. Great. It’s now hanging down like a pulley![or]toss the rope over the piping.[stopping]";
 
 Section 6.5 - Tying rope
 
@@ -13815,6 +14101,9 @@ A rope-fastening rule for something unsuspended when the rope nearby is anchored
 Instead of fastening a rope segment to a cleat:
 	abide by the rope-fastening rules for the second noun;
 	now the rope nearby is tied to the second noun;
+[ 
+	c8TODO: Depends - if the other end of the rope is free and with me, I should stay holding it.
+]
 	remove the middle of the rope from play;
 	continue the action;
 
@@ -13903,17 +14192,17 @@ A rope-pulling rule when at least two on-stage rope segments are anchored:
 	say "I tug one way and the other. Both ends of this rope are firmly tied." instead;
 
 A rope-pulling rule when the rope nearby is anchored and the other end of the rope nearby is off-stage:
-	say "This end is firmly tied." instead;
+	say "I heave my weight on the rope to check the knot: quite firm." instead;
 
 A rope-pulling rule when the other end of the rope nearby is off-stage and the rope nearby is coiled:
 	now the rope nearby is not coiled;
-	say "I pull the rope clear from the pipe. It whips the floor with a vengeance." instead;
+	say "I pull the rope clear from the pipe. The end whips [if the player is atop the ladder]down to [end if]the floor with a vengeance." instead;
 
 A rope-pulling rule when the other end of the rope nearby is off-stage:
-	say "The free end of the rope waggles around the floor." instead;
+	say "The rope uncoils a little." instead;
 
 A rope-pulling rule when the other end of the rope nearby is anchored:
-	say "The other end of the rope is firmly tied." instead;
+	say "I heave my weight on the rope to the check the knots in the other end: firm." instead;
 
 A rope-pulling rule when the other end of the rope nearby is coiled:
 	now the other end of the rope nearby is not coiled;
@@ -13926,7 +14215,7 @@ A rope-pulling rule:
 
 Part 11 - Storage
 
-Storage Bay is a room, south of the Loading Bay. "This is the south end of the enormous room but it has another door to the east: this one less formidable-looking than the others and labeled with a sign: KEEP OUT. Sounds promising, even though from what I saw of the warehouse on the outside, there really can't be much more to the building at all. Perhaps this is the cupboard where the Figure sleeps." The printed name is "Storage".
+Storage Bay is a room, south of the Loading Bay. "The south end of the enormous room. There's another door to the east: less formidable than the others except for a sign that says KEEP OUT. Sounds promising - perhaps this is the cupboard where the Figure sleeps." The printed name is "Storage".
 
 The south pipe is a warehouse pipe, in the Storage Bay. "The pipe's a fair few feet up the wall. What it's for is anyone's guess." 
 
@@ -13935,14 +14224,22 @@ Instead of making to leave when in the Storage Bay:
 Instead of going inside when in the Storage Bay:
 	try going east.
 
+Section 1 - Drain scenery
+
+The drain_glimpse is a glimpse backdrop in Storage. The printed name is "drain". Understand "drain" as the drain_glimpse. The description is "The wide drain is to the north."
+
+Instead of approaching or entering the drain_glimpse: try going north.
+
+
 Chapter 2 - Warehouse Door
 
 The warehouse door is a door, not open, not openable, not locked, not lockable, east of the Storage Bay, west of Gas Platform. "The enormous warehouse continues back to the north towards the drain I came up by. There’s a second fat pipe crossing the room here." The description is "The door is designed to slide up into the ceiling and in the centre of it is an iron ring for lifting. Presumably the Figure can just slide it up, but I certainly can’t.[If the Warehouse Door is suspended and the warehouse door is closed] The rope I’ve got tied to it might help though[otherwise if the warehouse door is open] Instead I’ve got the rope tied to it, and my pulley system has lifted the whole thing about two feet from the floor[end if]."
 
-
+Rule for writing a paragraph about the open warehouse door:
+	say "The enormous iron door has lifted just a couple of handspans from the floor."
 
 Instead of opening, pulling or pushing the closed warehouse door:
-	say "It’s far heavier than me. There’s no way I can move it unaided.";
+	say "It’s far heavier than me. I tug as best I can on the iron ring in the centre of the door, but there’s no way I can move it unaided.";
 
 Instead of opening, closing, pulling or pushing the open warehouse door:
 	say "It was hard enough getting it this far! I shouldn’t be ungrateful!";
@@ -13950,6 +14247,33 @@ Instead of opening, closing, pulling or pushing the open warehouse door:
 After going through the warehouse door:
 	say "[one of]Lying on my belly I pull myself through the gap into darkness. Halfway through I have a sudden horrible image: the Figure, standing by the crate in the drain with a candle to the rope that’s holding the enormous door above me. As quick as I can I pull myself through[or]I crawl under the door[stopping][if the player carries the long ladder]. Then I reach back through the gap and pull the ladder after me[end if].";
 	continue the action;
+
+Understand "gap" as the warehouse door when the warehouse door is open.
+
+Section 2b - a Narrow Gap for passing things through
+
+Instead of inserting a rope segment into the open warehouse door:
+	say "There's no slack to push the rope anywhere."
+
+Instead of inserting something carried by the player into the open warehouse door:
+	move the noun to the Gas Platform;
+	say "I push [the noun] through the crack under the door."
+
+Instead of inserting something into the open warehouse door:
+	say "I can't fit [the noun] through the gap under the door!"
+	
+The KEEP OUT sign is part of the warehouse door. "It says KEEP OUT."
+
+Instead of doing something when the KEEP OUT sign is physically involved:
+	say "I can't reach the sign, and anyway, it's clear enough."
+ 
+The iron ring is part of the warehouse door. "The ring is set in the middle of the door."
+
+Instead of pulling or taking the iron ring:
+	say "The door is way too heavy for me to lift (maybe if I was an army of a hundred men, I could do it. Maybe.)"
+
+Instead of fastening something to the iron ring:
+	try fastening the noun to the warehouse door instead.
 
 Part 12 - Gas Platform
 
@@ -13977,6 +14301,16 @@ Rule for writing a paragraph about the warehouse door when in the Gas Platform:
 	now the warehouse door is mentioned;
 	do nothing;
 
+Some monsters are animals, scenery, in the Gas Platform. Understand "octopus", "octopuses", "water-camels", "water camel/camels", "water-camel", "serpent", "serpents" as the monsters. 
+
+Before doing something with the monsters:
+	say "I can't see them, but I'm sure they're there." instead.
+
+Instead of jumping when in the Gas Platform and the Gas Platform is murky:
+	say "I'd break my neck."
+Instead of jumping when in the Gas Platform and the Gas Platform is bright:
+	say "No chance! I'd twist my ankle at the bottom of this pit and I don't see those statues lifting me back up!"
+
 Chapter 2 - Staircase
 
 Section 1 - Staircase
@@ -13996,7 +14330,7 @@ The broken staircase can be fixed. The broken staircase is not fixed.
 
 Instead of going through the broken staircase from the Gas Platform when the broken staircase is not fixed:
 	if the Gas Platform is murky:
-		say "[one of]I feel my way down the first few steps: then the metal underfoot starts to rock and sway. Perhaps all this is built on the water and is floating – or perhaps the supports have rotted and the staircase is about to fall. Terrified, I race back up to the safety of the platform.[or]I’m not going down that staircase in the dark. There’s something wrong about it.[stopping]";
+		say "[one of]I feel my way down the first few steps: then the metal underfoot starts to rock and sway. Perhaps all this is built on the water and is floating – or perhaps the supports have rotted and the staircase is about to fall. Terrified, I race back up to the safety of the platform.[or]I’m not going down that staircase in the dark. There’s something [i]wrong[r] about it.[stopping]";
 	otherwise:
 		say "The staircase ends halfway to the ground, in midair with nothing holding it up.";
 
@@ -14005,6 +14339,19 @@ After going through the broken staircase from the Gas Platform:
 	continue the action;
 
 Section 2 - Ladder
+
+Instead of dropping the long ladder when in the Gas Platform:
+	try standing the long ladder up;
+
+Instead of putting the long ladder on the broken staircase when in the Gas Platform:
+	try standing the long ladder up;
+
+Instead of fastening the long ladder to the broken staircase when in the Gas Platform:
+	try standing the long ladder up;
+
+Instead of going down when in the Gas Platform and the player is carrying the long ladder and the gas Platform is bright:
+	try standing the long ladder up;
+	continue the action;
 
 Instead of standing the long ladder up when in the Gas Platform:
 	if the Gas Platform is murky:
@@ -14019,10 +14366,18 @@ Chapter 3 - Gas controls
 
 Section 1 - Control Panel
 
-Some gas controls are scenery, in the Gas Platform. "[if the Gas Platform is murky]There might be more controls out there in the dark but what’s visible are a button below a large lever, and a red-painted bolt.[otherwise]These are the controls for the gas-lights. There must be a big tank under the platform or something.[end if]"
+Some gas controls are scenery, in the Gas Platform. "[if the Gas Platform is murky]There may be more controls out there in the dark but what’s visible is a button, a large lever, and a red-painted bolt.[otherwise]These are the controls for the gas-lights. There must be a big tank under the platform or something.[end if]"
 
 Instead of switching on the gas controls:
 	say "I don’t know what they do, let alone how to make them work. There’s nothing for it, Wren, but to guess and hope you don’t break anything!";
+
+Rule for writing a paragraph about the gas controls when the ignition button is ignited and the Gas Platform is murky:
+	say "I'm surrounded by a ring of tiny blue stars.";
+
+A ring of tiny stars is a thing. The description is "Tiny points of gentle blue light, all around me, the size of pinheads. They're close enough to touch except for some reason I can't touch them (or they're infinitely far away, there's no way I can be sure.)". Understand "blue" as the ring of tiny stars.
+
+Instead of doing something when the ring of tiny stars are physically involved:
+	say "[one of]The stars seem to be just a fraction beyond wherever I think they are, like they were slowly growing and moving away at the same time.[or]I can't seem to reach them.[stopping]";
 
 Section 2 - Ignition Bolt
 
@@ -14030,8 +14385,21 @@ An ignition bolt is part of the gas controls. The description of the ignition bo
 
 The ignition bolt has a number called the setting. The setting of the ignition bolt is 1.
 
-Instead of turning or opening the ignition bolt:
+Instead of smelling when in the Gas Platform and the setting of the ignition bolt is greater than 0 and the Gas Platform is murky:
+	say "There's a strong smell of something strange - almost metallic - filling the air around me."
+
+Instead of listening when in the Gas Platform and the setting of the ignition bolt is greater than 0 and the Gas Platform is murky:
+	say "Hissing: steady, incessant, deadly."
+
+
+Instead of turning or opening the ignition bolt for the first time:
 	say "I can’t turn it with just my hands. Which might even be lucky.";
+
+Instead of turning or opening the ignition bolt when the player is not carrying the wrench:
+	say "I can’t turn it with just my hands. Which might even be lucky.";
+
+Instead of turning or opening the ignition bolt:
+	try unscrewing the ignition bolt with the wrench.
 
 Instead of unscrewing the ignition bolt with the wrench:
 	abide by the bolt-turning rules;
@@ -14060,7 +14428,9 @@ A bolt-turning rule when the ignition button is not ignited:
 
 A bolt-turning rule when the ignition button is ignited:
 	now the Gas Platform is bright;
-	say "I heave the bolt around and the stars on the wall erupt into flame, filling the chamber with light! And what a chamber – deep and wide – this is like standing inside the clock of the Cathedral all over again. The room below must be carved out of the rock below the riverbed, and its wall are crisscrossed with pipes which are now providing light.[paragraph break]And the room is full of people. Men, standing in rows and staring at me. I try not to move – hoping they won’t see me. They’re doing the same. Its like the room was filled with mirrors reflecting my image. I wave a hand but nothing happens. Nothing at all. They’re statues – in full armour – gleaming metal statues, more than I could count without growing thirty or forty more hands.[paragraph break]Whatever they are they must be connected to the Figure. There’s nothing for it, Wren, but to get a closer look somehow..." instead;
+	remove the monsters from play;
+	remove the ring of tiny stars from play;
+	say "I heave the bolt around and the stars on the wall erupt into flame, filling the chamber with light! And what a chamber – deep and wide. This is like standing inside the clock of the Cathedral all over again. The room below must be carved out of the rock below the riverbed, and its wall are crisscrossed with pipes which are now providing light.[paragraph break]And the room is full of people. Men, standing in rows and staring at me. I freeze myself to the spot. They do the same. It's like the room was filled with mirrors reflecting my image. I wave a hand but nothing happens. Nothing at all. Then I realise that they’re statues – statues in full armour – gleaming metal statues, more than I could count without growing thirty or forty more hands.[paragraph break]Whatever they are they must be connected to the Figure. There’s nothing for it, Wren, but to get a closer look somehow..." instead;
 
 Section 3 - Lever
 
@@ -14101,6 +14471,7 @@ An ignition rule when the setting of the ignition bolt is 1:
 
 An ignition rule when the setting of the ignition bolt is 2:
 	now the ignition button is ignited;
+	move the ring of tiny stars to the Gas Platform;
 	now the long lever is not armed;
 	say "I push the button. The lever drops back suddenly almost taking my arm off! At the same time, the room is filled by a snapping noise and suddenly the darkness is full of stars! A whole sky of blue points. Where am I now? Outside? It’s a huge space, wherever it is. The hissing noise has stopped, too." instead;
 
@@ -14117,7 +14488,7 @@ After going to the Gas Platform when the wrench is rusty and the player does not
 	continue the action;
 
 Rule for printing the description of the shiny wrench:
-	say "This must be why whoever-it-was threw away that other wrench. It’s lighter, stronger and shinier, the same way the Archbishop’s teeth compare to mine.";
+	say "This must be why whoever-it-was threw away that other wrench. This one's lighter, stronger and shinier, the same way the Archbishop’s teeth compare to mine.";
 
 Part 13 - Warehouse
 
@@ -14139,12 +14510,12 @@ Rule for printing the description of the broken staircase when in the Warehouse 
 Instead of going through the broken staircase from the Warehouse Basement:
 	say "I’m not running till I’ve worked out what the Figure’s up to. Once I know that, [i]then[r] I’m running.";
 
-The army of metal statues is scenery, in the Warehouse Basement. "Each man is made of fine steel and brass and stands upright, about six foot tall. Their faces are bare faceplates with tiny glass eyes, but they all look like they’re crying because of deep channels for rain run-off that run from forehead to chin. Each one has a small hatch in the middle of their chest, a tiny fraction ajar."
+The army of metal statues is scenery, in the Warehouse Basement. "Each man is made of fine steel and brass and stands upright, six foot tall. Their faces are bare faceplates with tiny glass eyes, but they all look like they’re crying because of deep channels for rain run-off that run from forehead to chin. Each one has a small hatch in the middle of their chest, a tiny fraction ajar."
 
 Understand "mechanical", "men", "man" as the army of metal statues.
 
 Instead of doing something when the army of metal statues is physically involved:
-	say "With shaking fingers I open the hatch on the front of the nearest man. No surprise maybe to find he’s full of clockwork, but it’s clockwork like I’ve never seen before: cogs so small it’s like his whole body is infested with woodlice and maggots scrambling over one another. It’s like someone had taken the whole of the Difference Engine and shrunk it to fit.[paragraph break]Except there’s obviously something missing. All those cogs would need a spring about the size of the metal man’s head and it would need to be placed right in the middle where it could unwind to every part of his body. But in the perfect spot there’s nothing but a gap, like someone built this machine but never gave it a heart. What good are these men if all they do is stand in line?[paragraph break]That’s when I notice the seal. Something embossed on the inside of the chest hatch. I take a step back to see it more clearly – a winding key above an ocean wave, familiar from somewhere – and step into something firm and solid. A man out of line?[paragraph break]Then a hand grips my throat. 'Who sent you here?' demands a voice, smooth and icy. A voice I know well, that I should have been expecting. 'Who else knows about this place? Tell me before I crush every pinion in your neck.'[paragraph break]My toes are scrabbling on the ground. I try to scream but nothing comes out beyond a whisper. I can see the outline of the Figure’s cowl and beyond that, for the first time, almost make out an unhappy face.[paragraph break]'You’ll tell me or you’ll die here,' the Figure says quietly. 'You’ll die cold and alone like the rat you are.'[paragraph break]The room is getting darker. The tank for the gas lamps must be running low. Soon it’ll be me and the Figure and all these men, and no-one will ever find me or know where I’ve gone. Or is that someone? In the background? A shape, a shadow, my imagination or…[paragraph break]'Covalt?' I whisper, in desperation. 'Covalt, is that…'[paragraph break]Then the lights disappear completely. The heavy cord of the clock-key round my neck has become tangled while I was asleep. The stars are coming out. And then I’m underwater again.";
+	say "With shaking fingers I open the hatch on the front of the nearest man. No surprise maybe to find he’s full of clockwork, but it’s clockwork like I’ve never seen before: cogs so small it’s like his whole body is infested with woodlice and scrambling maggots. It’s like someone had taken the whole of the Difference Engine and shrunk it to fit.[paragraph break]Except there’s obviously something missing. All those cogs would need a spring about the size of the metal man’s head and it would need to be placed right in the middle where it could unwind to every part of his body. But in the perfect spot there’s nothing but a gap, like someone built this machine but forgot to give it a heart. What good are these men if all they do is stand in line?[paragraph break]That’s when I notice the seal. Something embossed on the inside of the chest hatch. I take a step back to see it more clearly – a winding key above an ocean wave, familiar from somewhere – and step into something firm and solid. A man out of line?[paragraph break]A hand grips my throat. 'Who sent you here?' demands a voice, smooth and icy. A voice I know well, that I should have expected. 'Who else knows about this place? Tell me before I crush every pinion in your neck.'[paragraph break]My toes are scrabbling on - off - the ground. I try to scream but nothing comes out beyond a whisper. I can see the outline of the Figure’s cowl and beyond that, for the first time, almost make out an unhappy face underneath.[paragraph break]'You’ll tell me or you’ll die here,' the Figure says ever-so-softly. 'You’ll die cold and alone like the rat you are.'[paragraph break]The room is getting darker. The tank for the gas lamps must be running low. Soon it’ll be me and the Figure and all these men, and no-one will ever find me or know where I’ve gone. Or is that someone? In the background? A shape, a shadow, my imagination or…[paragraph break]'Covalt?' I whisper, in desperation. 'Covalt, is that…'[paragraph break]Then the lights disappear completely. The heavy cord of the clock-key round my neck has become tangled while I was asleep. The stars are coming out. I’m underwater again.";
 	end the chapter;
 	fire SE_RETURN_1;
 	move Covalt to Covalt's Bedroom;
@@ -16469,7 +16840,7 @@ Instead of attacking the wound spring with my lucky clock key:
 
 Book W - Walkthrough Script
 
-Test jonsprogress with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt / test countinghouse".
+Test jonsprogress with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt / test countinghouse / test outsidewarehouse".
 
 test cheat7 with "test intro / gonear street / purloin work order".
 
