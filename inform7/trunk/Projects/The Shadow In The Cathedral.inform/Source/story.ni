@@ -5,30 +5,50 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 ]
 
 [  Change Log
-When			Who		What
-2-Sep-2009              J. Ingold       Finished C8. A few rope tweaks, some synonyms for placing the ladder.
-25-Aug-2009		J. Ingold	First pass at C8. Outside locations, synonyms and objects, in/out, jumping in water and swimming. Then I got stuck - apparently there's a wrench somewhere? This needs some cluing or something... (Oh, god, was I supposed to MOVE DEBRIS? C'mon...)
-23-Aug-2009		J. Ingold	New kind - locative glimpse backdrop - these "localise" a location and auto- navigate towards it. I've populated the Abbey with some to ease the player around.
-22-Aug-2009		J. Ingold	Finished c7 playthrough. Fleshed out chase sequence and Caught location. 
-22-Aug-2009		J. Ingold	Added multiple solutions to the Difference Engine puzzle - if anything, I've been too generous!! Couple of other minors. Added board messages to room descriptions once they've been seen - code's a bit messy to ensure paragraph breaks are correct.
-18-Aug-2009		J. Ingold	Started to play through Chapter 7. Fixed a bug(GJ, please check this!) in Textfyre Standard Rules for implicitly opening. [ Update: actually, GJ may have fixed this already? Anyway, it's gone. ]
-17-Aug-2009 	J. Ingold	More of Paul's feedback, mostly missing responses. Changed TALK TO behaviour to use a prescripted list of topics (would be nice if the last of these was "What do you want to talk about?", and then hooked into the parser properly. But that might be pure sci-fi.)
-14-Aug-2009 	J. Ingold	More of Paul's feedback and some left over from Eric's script. Started on Paul's new transcripts too.
-10-Aug-2009 	J. Ingold	Some of Paul's feedback + some playtesting of C7.
+When		Who		What
+06-Sep-2009	D Cornelson	Fixed description.
+02-Sep-2009          	J. Ingold		Finished C8. A few rope tweaks, some synonyms for placing the ladder.
+25-Aug-2009	J. Ingold		First pass at C8. Outside locations, synonyms and objects, in/out, jumping in water and swimming.
+				Then I got stuck - apparently there's a wrench somewhere? This needs some cluing or something...
+				(Oh, god, was I supposed to MOVE DEBRIS? C'mon...)
+23-Aug-2009	J. Ingold		New kind - locative glimpse backdrop - these "localise" a location and auto- navigate towards it.
+				I've populated the Abbey with some to ease the player around.
+22-Aug-2009	J. Ingold		Finished c7 playthrough. Fleshed out chase sequence and Caught location. 
+22-Aug-2009	J. Ingold		Added multiple solutions to the Difference Engine puzzle - if anything, I've been too generous!!
+				Couple of other minors. Added board messages to room descriptions once they've been seen
+				 - code's a bit messy to ensure paragraph breaks are correct.
+18-Aug-2009	J. Ingold		Started to play through Chapter 7. Fixed a bug(GJ, please check this!) in Textfyre Standard Rules
+				for implicitly opening. [ Update: actually, GJ may have fixed this already? Anyway, it's gone. ]
+17-Aug-2009 	J. Ingold		More of Paul's feedback, mostly missing responses. Changed TALK TO behaviour to use a
+				prescripted list of topics (would be nice if the last of these was "What do you want to talk
+				about?", and then hooked into the parser properly. But that might be pure sci-fi.)
+14-Aug-2009 	J. Ingold		More of Paul's feedback and some left over from Eric's script. Started on Paul's new transcripts too.
+10-Aug-2009 	J. Ingold		Some of Paul's feedback + some playtesting of C7.
 5-Aug-2009	G. Jefferis	Final bug fixes from Eric
 4-Aug-2009	G. Jefferis	Bug fixes from Eric - sh-v0.61-ECSE-01 (and various others)
 3-Aug-2009	G. Jefferis	Bug fixes from Eric - sh-v0.61-ECSE-01
-31-July-2009	J. Ingold	Added chapter breaks in proper places and a method for doing whatever it is we're going to do with them.
-31-July-2009	J. Ingold	Added ian's c5 feedback.
-25-July-2009 	J. Ingold	Resolved file, added some missing responses.
-24-July-2009	J. Ingold	The majority of Eric Eve's two feedback scripts are dealt with. Remaining issues are one with TSR extension and some missing grammar (on my list to do!)
+31-July-2009	J. Ingold		Added chapter breaks in proper places and a method for doing whatever it is we're going to do
+				with them.
+31-July-2009	J. Ingold		Added ian's c5 feedback.
+25-July-2009 	J. Ingold		Resolved file, added some missing responses.
+24-July-2009	J. Ingold		The majority of Eric Eve's two feedback scripts are dealt with. Remaining issues are one with
+				TSR extension and some missing grammar (on my list to do!)
 23-July-2009	G. Jefferis	Eric Eve bug fixes and a few others
-22-July-2009	J. Ingold	c6 pass complete. Not entirely sure about the "difference" puzzle, really, but it'll do for now until we get some real playtesters. Some weirdness with random number fixing - Covalt's behaviour doesn't seem to be consistent?
-20-July-2009	J. Ingold	Ian's C4 changes in. Added a few more routes through Covalt's Bedroom scene. Started on the Clock Shop rummaging scene.
-14-July-2009	J. Ingold	Fixed test script.
-13-July-2009 	J. Ingold		Added alternate solution to Chapter 2 - you can climb over the garden walls using the ladder to your bedroom. Needed a lot of extra stuff to let you carry the ladder around, have Drake take it back to position, etc. Also fixed the build (doh.)
-12-July-2009	J. Ingold		Finished C5. Added roof objects. Lots of down/jump responses. Fixed descriptions of bridge/plank. Can remove tarp from chimney. Various tweaks to turning things forwards and backwards. Rewrote chapter ending text. 
-11-July-2009 	J. Ingold		Added types of entering: is the player lying, sitting or clambering (or neither) - just for differentiating negative responses. Couple more Sa'at conversations. Added hymnals. Added hint to Lower Gears. Finished C4, mostly just adding scenery and jumping responses.
+22-July-2009	J. Ingold		c6 pass complete. Not entirely sure about the "difference" puzzle, really, but it'll do for now
+				until we get some real playtesters. Some weirdness with random number fixing - Covalt's
+				behaviour doesn't seem to be consistent?
+20-July-2009	J. Ingold		Ian's C4 changes in. Added a few more routes through Covalt's Bedroom scene. Started on
+				the Clock Shop rummaging scene.
+14-July-2009	J. Ingold		Fixed test script.
+13-July-2009 	J. Ingold		Added alternate solution to Chapter 2 - you can climb over the garden walls using the ladder to
+				your bedroom. Needed a lot of extra stuff to let you carry the ladder around, have Drake take it
+				back to position, etc. Also fixed the build (doh.)
+12-July-2009	J. Ingold		Finished C5. Added roof objects. Lots of down/jump responses. Fixed descriptions of bridge/plank.
+				Can remove tarp from chimney. Various tweaks to turning things forwards and backwards.
+				Rewrote chapter ending text. 
+11-July-2009 	J. Ingold		Added types of entering: is the player lying, sitting or clambering (or neither) - just for
+				differentiating negative responses. Couple more Sa'at conversations. Added hymnals. Added hint
+				to Lower Gears. Finished C4, mostly just adding scenery and jumping responses.
 8-Jul-2009	G. Jefferis	Fight with Covalt
 7-Jul-2009	G. Jefferis	Inner Vault and arrival of the figure
 6-Jul-2009	G. Jefferis	Henge and Brass Head
@@ -3180,7 +3200,7 @@ Rule for printing the description of the Abbot's Door:
 [ The point of the following rule is to force a one move gap between exiting the clock and exiting the Abbot's Quarters, to spread out the reaction messages. Yes, this means that going out will just open the door, but I think that's okay. ] 
 
  Before going through the closed Abbot's Door when Hiding in the Clock has ended:
-	try opening the Abbot's Door instead; 
+	try opening the Abbot's Door instead.
 
 Report opening the Abbot's Door when Hiding in the Clock has ended:
 	say "I haul open the door." instead.
@@ -4272,13 +4292,13 @@ Section 2 - Small, worn-down gear
 
 The small gear is part of the gear train. The description is "Half the teeth have rounded, like those of an old man, the kind that eats nothing but cabbage[if new gear is not handled]. I'm going to need to find a new one from somewhere[end if]."
 
-Understand "worn", "worn down", "worn-down", "teeth", "cog", "old gear/cog" as the small gear.
+Understand "worn", "worn down", "worn-down", "teeth", "cog", "old gear","bad gear","worn gear" as the small gear.
 
 Understand "central" as the small gear when the small gear is part of the gear train.
 
 Instead of taking the small gear when the small gear is part of the gear train:
 	now the player carries the small gear;
-	say "While the Cook is distracted – the Cook is [i]always[r] distracted – I pluck the out the worn down gear. Not the sort of repair a clock polisher should be doing!";
+	say "While the Cook is distracted – the Cook is [i]always[r] distracted – I pluck out the worn down gear. Not the sort of repair a clock polisher should be doing!";
 
 Instead of sharpening the small gear:
 	say "I don't have the skills or grace to sharpen a cog probably. I'm going to need to find a new one instead.";
