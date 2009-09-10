@@ -4785,11 +4785,16 @@ East Commerce Street is east of Commerce Street. "The east end of Commerce Stree
 
 Understand "upper", "class", "residential", "neighborhood" as East Commerce Street.
 
-After going south to East Commerce Street when the player is clean:
+After going south to East Commerce Street when the player is clean and TRIG_SANDLER_HINT is unfired:
 	say "[command clarification break]";
 	try looking;
+	fire TRIG_SANDLER_HINT;
 	update the character list;
-	say "[first time]'I suppose we should go see Mrs. Sandler now,' Shannon says.[only]";
+
+TRIG_SANDLER_HINT is a trigger.
+
+Rule for firing unfired TRIG_SANDLER_HINT:
+	say "'I suppose we should go see Mrs. Sandler now,' Shannon says.";
 
 The distant description of East Commerce Street is "East Commerce Street lies just [if location is Commerce Street]east[otherwise if location is Lords Market]west[otherwise]south[end if] of here."
 
@@ -4813,6 +4818,8 @@ Instead of opening, knocking on, or entering Black Gate Estate, say "The servant
 Section 2 - Red Gate Estate
 
 Red Gate Estate is an estatefront, openable, north of East Commerce Street. The description is "This is where the Duke and former Lord of Toresal lived, until his death several years ago. Now it stands empty, slowly crumbling. No one has ever made an attempt to claim the property, and the Baron seems content to let it remain vacant." Understand "front", "gates" as Red Gate Estate.
+
+Understand "lock" as Red Gate Estate when the location is East Commerce Street.
 
 The matching key of Red Gate Estate is the large brass key.
 
@@ -5714,6 +5721,8 @@ Instead of facing south while in Entrance to Maiden House, try examining the woo
 
 Rule for printing the distant description of the Hallway while in Entrance to Maiden House:
 	say "You'll have to to go inside to get a better look at that. ";
+
+The distant description of Entrance to Maiden House is "A darkened courtyard lies to [the quick best route from the location to Entrance to Maiden House].".
 
 The dead-end description of Entrance to Maiden House is "[description of run-down buildings]".
 
@@ -8337,8 +8346,8 @@ Instead of entering the drain hole:
 	move the player to the sewer;
 	update the character list;
 
-Rule for listing available exits of the Drain Room:
-	say "There is an exit northeast from here[if the metal grate is moved], or [first time](though you can hardly imagine it) [only]down through the drain[end if]."
+Report listing exits when in the Drain Room:
+	say "There is an exit northeast from here[if the metal grate is moved], or [first time](though you can hardly imagine it) [only]down through the drain[end if]." instead;
 
 Chapter 4 - Event on entering
 
@@ -9736,7 +9745,7 @@ Chapter 4 - Cutting through the park
 Instead of going northeast from Behind Maiden House during Shannon's Company:
 	say "Shannon lays a hand on your elbow. 'Wait, Jacqueline,' she whispers. 'The mercenaries will be watching the entrance. We'd best cut through the park. I'll help you climb the wall.'"
 
-Instead of climbing the mortar wall during Shannon's Company:
+Instead of climbing the mortar wall when in Behind Maiden House during Shannon's Company:
 	say "Shannon laces her fingers together and gives you a boost up to the top of the wall; then you reach down and help pull her up. You both drop down onto the grass on the other side, and then it's a quick sprint across the open space of the park. Fortunately, no one is about after the awful spectacle in Lord's Market, and you make it to the relative safety of East Commerce Street without anyone spotting you.";
 	move Shannon to East Commerce Street;
 	move the player to East Commerce Street;
@@ -9758,6 +9767,8 @@ When Shannon's Company ends:
 	remove Widow Shannon from play;
 	say "'Well,' says Shannon, 'I've seen you safely to Dame Sandler. I'd better get back to Maiden House; the Baron's men might get suspicious if I'm gone too long. Take care, Jacqueline.' She hugs you tightly, sniffling a little, and then hurries off to the south.";
 	update the character list;
+
+
 
 Chapter 6 - Red Gate Estate, as a region
 
@@ -11865,6 +11876,8 @@ Test Intro with "u/z/z/z/z/d/se/s/s/ne/ne"
 Test Market with "xyzzy/e/steal banana/unxyzzy/sw/se/n/n/u/give banana to monkey/d/s/give necklace to teisha/n/u/slide down northeast cable with gray cloak/get cloak/wear silk cloak/s/e"
 
 Test meeting with "e/e/s/1/1/2/sw/s/nw/sleep/se/sw/climb through window/ne/ne/n/w/w/w"
+
+Test meeting2 with "e/e/e/2/1/1/4/2/w/ne/talk to clothier/sw/se/talk to brothers/nw/e/talk to sandler/1/w/s/1/1/2/sw/s/nw/sleep/se/sw/climb through window/ne/ne/n/w/w/w"
 
 Test adventure with "n/e/n/xyzzy/n/unxyzzy/n/d/n/n/sw/u/n/listen at slit/listen to slit/s/d/ne/s/s/u"
 
