@@ -4,6 +4,7 @@
 
 [  Change Log
 When			Who		What
+8-Sep-2009			J. Ingold	Started on C10. Synonyms for lighting a candle. In and out of locations. Touching the brazier. The secret passage.
 8-Sep-2009			J. Ingold	 Finished C9 playthrough. A few additional responses, some more text for dishonest players (a reward!). 
 6-Sep-2009			D. Cornelson	Fixed description.
 2-Sep-2009              J. Ingold       Finished C8. A few rope tweaks, some synonyms for placing the ladder.
@@ -1792,6 +1793,8 @@ Understand the command "cut" as something new.
 Slicing it with is an action applying to one thing and one carried thing, and requiring light.
 
 Understand "cut [something] with/using [something preferably held]" as slicing it with.
+Understand the command "trim" as "cut".
+
 
 First check slicing:
 	if the second noun is not the knife,
@@ -6124,7 +6127,7 @@ The Cathedral of Time is backdrop, in the Cathedral Space.  Understand "church" 
 Understand "door/doors" as the Cathedral of Time when in the Cathedral Yard.
 Understand "choir" as the Cathedral of Time when not in the Cathedral Choir.
 Understand "nave" as the Cathedral of Time.
-Understand "clerestory" as the Cathedral of Time when not in the Choir.
+Understand "clerestory" as the Cathedral of Time when the location is not the Cathedral Choir.
 
 
 Before doing something when the backdrop-walls are involved and the Cathedral of Time is visible:
@@ -6148,6 +6151,9 @@ Instead of listening when in the Cathedral Space:
 Instead of listening when in the Cathedral Space during Return To The Cathedral:
 	[[JON]: Up to you to provide some eerie quiet... ]
 	say "The Cathedral is soft eerie quiet and nothing more.";
+
+Instead of listening when in the Cathedral Space and Calvin Cutscene is happening during Return To The Cathedral:
+	say "[one of]My breath is hammering in my ears.[or]I crouch as close as I can.[or]Their voices are quiet.[cycling]".
 
 Part 2 - Great Door
 
@@ -6209,15 +6215,7 @@ Instead of entering the East Door:
 Instead of closing the East Door:
 	say "It's not for me to go round shutting doors in this place.";
 
-Section 5 - Glimpse of Altar
 
-The glimpsed Altar is a glimpse backdrop, in Cathedral Entrance, in the Lower Nave, in the Upper Nave, in the East Apse, in the West Apse, in the North Clerestory, in the Cathedral Choir, in the East Clerestory, in the West Clerestory. "The altar is surrounded by monks, softly singing." Understand "altar" as the glimpsed Altar.
-
-The glimpsed Altar identifies the iron altar.
-
-The glimpsed Perpetuum is a glimpse backdrop, in Cathedral Entrance, in Lower Nave, in Upper Nave, in East Apse, in West Apse, in North Clerestory, in Cathedral Choir, in East Clerestory, in West Clerestory. "I can't make out much of the gleaming object from here, except it's gold - and it's moving." Understand "object", "perpetuum", "mobile", "clock", "gleaming", "gold", "mechanism", "gleaming object" as the glimpsed Perpetuum.
-
-The glimpsed Perpetuum identifies the Perpetuum Mobile.
 
 Part 3 - Lower Nave
 
@@ -6233,7 +6231,7 @@ Instead of smelling in the Lower Nave:
 
 Section 2 - Idle actions
 
-Every turn when in the Lower Nave and a random chance of 1 in 3 succeeds and not smelling:
+Every turn when in the Lower Nave and a random chance of 1 in 3 succeeds and not smelling and the heat is not the noun:
 	say "A little heat licks in from the west.";
 
 Instead of sleeping in the Lower Nave:
@@ -8157,7 +8155,17 @@ The SSHRINE_glimpse is a locative glimpse backdrop in the Cathedral Entrance, in
 
 The BLIBRARY_glimpse is a locative glimpse backdrop in the Cathedral Entrance, in the Lower Nave, in the Upper Nave, in the Cathedral Altar, in the Cathedral Choir, in the East Apse, in the West Apse, in the East Clerestory, in the West Clerestory, in the North Clerestory, localising the Bishop's Library.
 
-The CRYPT_glimpse is a locative glimpse backdrop in the Cathedral Entrance, in the Lower Nave, in the Upper Nave, in the Cathedral Altar, in the Cathedral Choir,  in the West Apse, in the East Clerestory, in the West Clerestory, in the North Clerestory, localising the East Apse.
+The CRYPT_glimpse is a locative glimpse backdrop in the Cathedral Entrance, in the Lower Nave, in the Upper Nave, in the Cathedral Altar, in the Cathedral Choir,  in the West Apse, in the East Clerestory, in the West Clerestory, in the North Clerestory, localising the East Apse. Understand "crypt", "gate" as the CRYPT_glimpse. The printed name is "crypt".
+
+Section 2 - Glimpse of Altar
+
+The glimpsed Altar is a glimpse backdrop, in Cathedral Entrance, in the Lower Nave, in the Upper Nave, in the East Apse, in the West Apse, in the North Clerestory, in the Cathedral Choir, in the East Clerestory, in the West Clerestory, in the Shrine of the Saints, in the Calendar Shrine. "The altar is surrounded by monks, softly singing." Understand "altar" as the glimpsed Altar.
+
+The glimpsed Altar identifies the iron altar.
+
+The glimpsed Perpetuum is a glimpse backdrop, in Cathedral Entrance, in Lower Nave, in Upper Nave, in East Apse, in West Apse, in North Clerestory, in Cathedral Choir, in East Clerestory, in West Clerestory, in the Shrine of the Saints, in the Calendar Shrine. "I can't make out much of the gleaming object from here, except it's gold - and it's moving." Understand "object", "perpetuum", "mobile", "clock", "gleaming", "gold", "mechanism", "gleaming object" as the glimpsed Perpetuum.
+
+The glimpsed Perpetuum identifies the Perpetuum Mobile.
 
 Book 4 - The Cathedral Of Time (Continued)
 
@@ -15062,7 +15070,7 @@ Rule for printing the description of the silver coins when the player is dishone
 	say "One silver minute. Mine, to cover the cost of the bumps, the scrapes, the knocking's out, the water, the running, the jumping and all the rest of it I've had today. It doesn't seem unfair, does it?"
 
 Instead of turning the silver coins:
-	say "I toss one of the coins. [one of]Threads[or]Rails[at random]."
+	say "I toss [if the count of silver coins is one]the coin[else]one of the coins[end if]. [one of]Threads[or]Rails[at random]."
 
 Instead of turning the silver coins when the player is dishonest and the player can see Covalt:
 	say "In front of Covalt. No way.";
@@ -15515,7 +15523,7 @@ Instead of approaching the West Door:
 	try going east.
 
 After going through the West Door from the Public Yard during Return To The Cathedral:
-	say "I slip into the dark.";
+	say "I slip inside.";
 	continue the action;
 
 Instead of closing the open West Door during Return To The Cathedral:
@@ -15530,7 +15538,7 @@ Rule for printing the description of the Cathedral Entrance during Return To The
 	say "The Cathedral to the north is almost pitch dark, with a few false stars – candles, reflecting off the polished brass and the windows. The huge doors east and south are sealed fast: the door west should have been but it’s been left open[one of]. [paragraph break]I need to get down to the Crypt, to plant the decoy. And fast – before the Figure beats me to it.[or].[stopping]";
 
 Rule for printing the description of the entry seal during Return To The Cathedral:
-	say "I can barely see the seal in the half-light.";
+	say "The seal is just a circle in the half-light.";
 
 Instead of doing something when the Great Doors are physically involved during Return To The Cathedral:
 	say "The doors are shut fast.";
@@ -15566,10 +15574,10 @@ Instead of doing something when the false-stars are physically involved:
 Part 3 - Lower Nave
 
 Rule for printing the description of the Lower Nave during Return To The Cathedral:
-	say "Oak pews are sleeping either side of the aisle. I can barely see the shrines to east and west. Past the second seal to the north, the nave continues.";
+	say "Oak pews are sleeping either side of the aisle. I can barely see the shrines either side: a little orange leaks in from the west. Past the second seal to the north, the nave continues.";
 
 Rule for printing the description of the lower seal during Return To The Cathedral:
-	say "I can barely see the seal in the half-light.";
+	say "The seal is just a circle in the half-light.";
 
 Instead of going south from the Lower Nave during Return To The Cathedral:
 	say "I can’t run away now.";
@@ -15586,6 +15594,14 @@ After going north from the Lower Nave during Return To The Cathedral:
 	say "I creep further in.";
 	continue the action;
 
+An orange-light is a privately-named, scenery thing. Understand "orange", "light", "little" as the orange-light. "The light comes from the Shrine of the Saints, ever so faintly."  The printed name is "orange light".
+
+Instead of doing something when the orange-light is physically involved:
+	say "It's just light, and thin light too."
+
+Before approaching or entering the orange-light:
+	try going east instead.
+
 Chapter 2 - Pews
 
 Rule for printing the description of a pew during Return To The Cathedral:
@@ -15596,7 +15612,7 @@ Instead of entering or hiding inside or hiding under or hiding behind a pew when
 
 Instead of hiding from view during Calvin's Patrol:
 	if the player can see a pew (called the hiding place):
-		try entering the hiding place;
+		try entering the hiding place instead;
 	say "I can't see anywhere to hide!"
 
 Instead of entering or standing on or sitting on or hiding inside or hiding under or hiding behind a pew (called the hiding place) during Calvin's Patrol:
@@ -15612,7 +15628,7 @@ Rule for printing the description of the Upper Nave during Return To The Cathedr
 	say "The nave is wider here, wider than to the south and with more tightly-packed pews on either side. But right now only shadows are bowing their heads. To the north is the altar, still gleaming.";
 
 Rule for printing the description of the upper seal during Return To The Cathedral:
-	say "I can barely see the seal in the half-light.";
+	say "The seal is just a circle in the half-light.";
 
 Section 1 - Calvin and Drake are overheard
 
@@ -15676,6 +15692,13 @@ Instead of taking the ebony dice:
 Before dropping the ebony dice: [ to catch "throw dice" ]
 	try taking the ebony dice instead.
 
+Understand "play dice" as a mistake ("No time for games now.") when the ebony dice are visible.
+
+Section 3 - Clock
+
+Rule for printing the description of the cathedral clock machinery during Return to the Cathedral:
+	say "The clock-workings loom over me like a dark moon."
+
 Part 6 - Choir
 
 Part 1 - Description
@@ -15705,8 +15728,19 @@ After going through the west stairs from the Cathedral Choir during Return To Th
 
 Part 3 - Choir Stalls
 
+Rule for writing a paragraph about the choir stalls during Return to the Cathedral:
+	say "The choir stalls are like trolls in the dark. Their carvings are tattoos.";
+
+Rule for writing a paragraph about the choir stalls when the decoy Perpetuum is in the Cathedral Choir and TRIG_LOST_DECOY is not primed [ so when lost, it's actually lost! ] during Return to the Cathedral:
+	say "By the base of the choir stalls is a tiny gleam of gold, almost completely hidden. It is the decoy Perpetuum."
+
+Understand "tattoos", "tattoo" as the choir stalls when Return to the Cathedral is happening.
+
+Rule for writing a paragraph about the choir stalls when the secret panel is open during Return to the Cathedral:
+	say "The choir stalls have broken open, to reveal a dark opening inside."
+
 Rule for printing the description of the Choir Stalls during Return To The Cathedral:
-	say "The stalls are like trolls in the dark. Their carvings are tattoos.";
+	say "Carvings etch the wood, deeply, painfully.";
 
 After printing the description of the Choir Stalls during Return To The Cathedral:
 	if TRIG_SECRET_PASSAGE is fired:
@@ -15734,6 +15768,9 @@ Instead of touching the Choir Stalls when the Secret Panel is closed during Retu
 Instead of touching the Choir Stalls when the Secret Panel is open during Return To The Cathedral:
 	say "One panel swings open revealing a dark passage beyond.";
 
+Instead of closing the Choir Stalls when the secret panel is open:
+	say "[one of]I don't know how to close it. Another carving - but which one? I have no idea.[or]I can't. But it doesn't matter now.[stopping]".
+
 Instead of going through the secret panel when the player carries the decoy Perpetuum:
 	fire TRIG_SECRET_PANEL;
 
@@ -15742,7 +15779,11 @@ TRIG_SECRET_PANEL is a trigger.
 Rule for firing TRIG_SECRET_PANEL:
 	say "The false Perpetuum is too wide to carry into the gap. I’m going to have to leave it here.";
 
-A secret panel is a door, privately-named, scenery, closed, inside from the Cathedral Choir, outside from the Secret Stair.
+A secret panel is a door, privately-named, scenery, closed, inside from the Cathedral Choir, outside from the Secret Stair. "The narrow passage leads away into molten dark."
+
+Understand "secret", "panel", "passage", "dark", "opening", "door" as the secret panel when the secret panel is open. 
+
+Instead of approaching the secret panel: try entering the secret panel instead.
 
 Rule for deciding the concealed possessions of the Cathedral Choir:
 	if the particular possession is the closed secret panel:
@@ -15751,7 +15792,7 @@ Rule for deciding the concealed possessions of the Cathedral Choir:
 Part 7 - Shrine of the Saints
 
 Rule for printing the description of the Shrine of the Saints during Return To The Cathedral:
-	say "East of the nave, the shrine is lit by a single shaded lantern. From the walls, the eyes of statuettes glitter like rat faces. I can barely see the stand of candles in the middle.";
+	say "East of the nave, the shrine is lit by a single shaded lantern. From the walls, the eyes of statuettes glitter like rat faces. The stand of candles is like a blasted blackened tree stump.";
 
 Part 2 - Scenery
 
@@ -15761,9 +15802,18 @@ Rule for printing the description of the statuettes during Return To The Cathedr
 Instead of taking or pushing the statuettes during Return To The Cathedral:
 	say "The statues are holy relics. I’m not here to steal relics – except, of course, I am. Only not these ones. More important ones.";
 
-A devotional oil lamp is scenery, in the Shrine of the Saints. "An oil lamp in a brass band. It flickers with a deep amber glow."
+A devotional oil lamp is scenery, in the Shrine of the Saints. "An oil lamp held by a brass band. It flickers with a deep amber glow."
 
-Understand "deep", "amber", "flickering", "flicker", "glowing", "glow", "oil", "lantern", "lamp", "in", "in a", "brass", "band" as the devotional lamp.
+Instead of opening the devotional oil lamp:
+	say "The lantern is a frame with several holes, for the air to get in, and for people to trim the wick when needed."
+
+Understand "deep", "amber", "flickering", "flicker", "glowing", "glow", "oil", "lantern", "lamp", "in", "in a", "brass", "band", "wick", "light" as the devotional lamp.
+
+Instead of slicing the devotional lamp with the knife:
+	say "It doesn't need trimming: the flame inside is still strong."
+
+Every turn when the player is in Shrine of the Saints and a random chance of 1 in 4 succeeds during Return to the Cathedral:
+	say "[one of]The light from the lantern wavers a little[or]The lantern-light flickers[or]The lantern emits a tiny thread of heat[or]The lantern light dims, then rises once more[cycling].";
 
 Part 3 - More candles
 
@@ -15797,6 +15847,9 @@ When Return To The Cathedral begins:
 		while the player has a candle:
 			remove a random candle had by the player from play;
 		now the player carries the single-candle;
+	move the orange-light to the Lower Nave; 
+	remove the heat from play;
+	
 
 Rule for printing the description of a candle during Return To The Cathedral:
 	say "[if unlit]It’s too dark to tell what colour the wax is. Not that it matters, now.[otherwise]The narrow candle throws out a circle of light.[end if]";
@@ -15804,7 +15857,14 @@ Rule for printing the description of a candle during Return To The Cathedral:
 Instead of dropping the unlit single-candle:
 	say "If I put it down I would lose it in the darkness.";
 
-Instead of inserting the single-candle into the brazier:
+Before melting something on the devotional oil lamp:
+	try inserting the noun into the devotional oil lamp instead.
+
+Before burning something when the devotional oil lamp is visible during Return to the Cathedral:
+	try inserting the noun into the devotional oil lamp instead.
+	
+
+Instead of inserting the single-candle into the brazier during Return to the Cathedral:
 	say "All that seems like weeks ago now.";
 
 Instead of inserting a candle into the devotional oil lamp during Return To The Cathedral:
@@ -15880,8 +15940,11 @@ Instead of doing something when the Calendar Unlimited is physically involved du
 Rule for printing the description of the Brazier during Return To The Cathedral:
 	say "The brazier is cold.";
 
-Before inserting something into the Brazier during Return To The Cathedral:
-	say "No time to play now.";
+Instead of touching the brazier during Return To The Cathedral:
+	say "The brazier is cold, like it was never alight.";
+
+Instead of inserting something into the Brazier during Return To The Cathedral:
+	say "No time to play now." instead.
 
 Part 11 - West Clerestory
 
@@ -15910,7 +15973,10 @@ Rule for printing the description of the statues of St Breguet and St Babbage du
 TRIG_SECRET_PASSAGE is a trigger. 
 
 Rule for firing unfired TRIG_SECRET_PASSAGE:
-	say "Wait. Something the Abbott said, before, when talking to the Figure, about secret doors...[paragraph break][i]'Six? The only one I know is the one from the Choir to the Bishop’s Library! Where there’s a drill...'[run paragraph on][r][paragraph break]Where there’s a drill, Wren. Where there’s a drill – there’s a way...";
+	say "Wait. Something the Abbott said, before, when talking to the Figure, about secret doors...[paragraph break][i]'Six? The only one I know is the one from the Choir to the Bishop’s Library! Where there’s a drill...'[r][paragraph break]";
+
+Every turn when TRIG_SECRET_PASSAGE has been fired for exactly one turn:
+	say "Where there’s a drill, Wren. [i]Where there’s a drill – there’s a way..![r][paragraph break]";
 
 Part 13 - Calvin's Patrol
 
@@ -15963,10 +16029,10 @@ A detection rule when TRIG_CAL_DETECT is unfired:
 	move the player to Public Yard instead;
  
 Rule for firing TRIG_CAL_DETECT:
-	say "For a moment it looks like Calvin will look straight through me, but then he looks straight [i]at[r] me. For a moment he’s silent. I can see the belting coming a mile off: he’s winding up his anger, getting it ready to let loose...[paragraph break]'Wren?' he hisses, under his breath. 'What are you [i]doing[r] here? If Drake finds you he’d [i]string you up![run paragraph on][r]' His voice is shaking. I’ve never heard him so angry. Or not angry – afraid. The whites of his eyes have turned yellow. 'You’ve got to go. [i]This isn’t a game![r]'[paragraph break]He grabs my arm as he speaks – here it comes, I’m thinking – then he drags me away through the nave of the church, hissing at me to stay quiet, all the way to the front gate. 'Go. All right? Please. Don’t tell anyone.'[paragraph break]Then he – and his feeble candle – have disappeared back inside.";
+	say "For a moment it looks like Calvin will look straight through me, but then he looks straight [i]at[r] me. For a moment he’s silent. I can see the belting coming a mile off: he’s winding up his anger, getting it ready to let loose...[paragraph break]'Wren?' he hisses, under his breath. 'What are you [i]doing[r] here? If Drake finds you he’d [i]string you up![run paragraph on][r]' His voice is shaking. I’ve never heard him so angry. Or not angry – afraid. The whites of his eyes have turned yellow. 'You’ve got to go. [i]This isn’t a game![r]'[line break][paragraph break]He grabs my arm as he speaks – here it comes, I’m thinking – then he drags me away through the nave of the church, hissing at me to stay quiet, all the way to the front gate. 'Go. All right? Please. Don’t tell anyone.'[paragraph break]Then he – and his feeble candle – have disappeared back inside.";
 
 A detection rule:
-	say "[one of]'Wren, please!' Calvin hisses. He looks awful, almost sick. 'Don't stay here. You stupid [i]novice[r]. And if you do stay here, [i]hide[r]. Whatever you do. [i]Hide![run paragraph on][r]'[paragraph break]And then, just like that, he moves away.[or]Calvin doesn’t seem to see me. Just passes straight through.[stopping]";
+	say "[one of]'Wren, please!' Calvin hisses. He looks awful, almost sick. 'Don't stay here. You stupid [i]novice[r]. And if you do stay here, [i]hide[r]. Whatever you do. [i]Hide![run paragraph on][r]'[line break][paragraph break]And then, just like that, he moves away.[or]Calvin doesn’t seem to see me. Just passes straight through.[stopping]";
 	anonymously abide by the Calvin movement rule;
 
 Book 11 - Bishop's Library
@@ -15975,23 +16041,33 @@ Part 1 - Secret Stair
 
 The Secret Stair is a room. "This is nothing but a tiny gap between the stones, maybe built for insulation or for the rats to build their nests. It winds upwards as it curves around the clerestory. A staircase."
 
+Instead of going inside when in the Secret Stair: 	try going up.
+
+
 After going up from the Secret Stair:
-	say "I creep my way up the stairs."; continue the action;
+	say "I squeeze my way up the stairs."; continue the action;
 
 After going outside from the Secret Stair:
 	say "I slip out, grateful for the space to breath."; continue the action;
 
 The sloping floor is scenery, in the Secret Stair. "The floor itself tilts upwards."
 
-Understand "staircase", "stairs", "steps", "stair", "stair case", "step", "sloping", "tilting", "slope", "tilt", "sloped", "tilted", "floor", "itself" as the sloping floor.
+Understand "staircase", "stairs", "steps", "stair", "stair case", "step", "sloping", "tilting", "slope", "tilt", "sloped", "tilted", "floor", "itself", "stone", "stones" as the sloping floor.
+
+Instead of entering or approaching the sloping floor:
+	try going up.
 
 Up from the Secret Stair is the Ancient Landing.
 
 Part 2 - Ancient Landing
 
-The Ancient Landing is a room. "Dusty wooden floorboards fill this tiny space between the walls - the stairs have emerged onto a landing, with a banister rail along one side. Perhaps this was once part of a larger room: now its just a missing piece, that ends to the south in solid stone...[paragraph break]...and to the east, ends in a wooden door carved with a clock."
+The Ancient Landing is a room. "Dusty wooden floorboards. This is a tiny space between the walls. The stairs emerge onto a landing, with a banister rail along one side. The rail is half buried in the stone. Maybe this was a larger room once: now it is only a piece, that ends to the west in solid stone...[paragraph break]...and to the east, ends [if the secret Clock Door is closed]in a wooden door carved with a clock[else]in the workings of a beautiful Grandfather clock[end if]."
 
-Instead of going south in the Ancient Landing:
+Instead of going inside when in the Ancient Landing: 	try going east.
+Instead of making to leave when in the Ancient Landing: try going down.
+
+
+Instead of going west in the Ancient Landing:
 	say "It's solid stone.";
 
 After going down from the Ancient Landing:
@@ -16008,12 +16084,13 @@ A banister is scenery, in the Ancient Landing. "The wood is ancient and drilled 
 
 Chapter 1 - Clock Door
 
-The secret Clock Door is a door, privately-named, scenery, closed, openable, not lockable, east of the Ancient Landing, west of the Bishop's Library. "A wood panel door carved with the single image of a clock face. It seems solid enough."
+The secret clock door is a door, privately-named, scenery, closed, openable, not lockable, east of the Ancient Landing, west of the Bishop's Library. "A wood panel door carved with the single image of a clock face. It seems solid enough."
 
 Understand "secret", "clock", "door", "wood", "panel", "carved", "face" as the secret clock door when Return To The Cathedral has happened.
 
+
 Rule for printing the description of the open secret Clock Door:
-	say "The door has slid back to reveal the inside of a Grandfather clock. Beyond the penduluum is moonlight, and the Library.";
+	say "The door has slid back to reveal the inside of a Grandfather clock. Beyond the penduluum is moonlight, and the Library. ";
 	if the enormous penduluum is ticking:
 		say "The penduluum strikes backwards and forward past the door.";
 	otherwise:
@@ -16026,7 +16103,7 @@ Instead of opening the open secret Clock Door:
 	say "The panel has slid away into the wall.";
 
 After opening the secret Clock Door:
-	say "Getting my fingers in at six o’clock and eleven I heave with all my might – and almost fall. The wooden panel moves easily, drawing aside into the wall to reveal shining clock working, weights, and a beating penduluum like a heart… It’s the inside of a Grandfather clock. And beyond the workings I can see the Library.";
+	say "Getting my fingers in at six o’clock and eleven I heave with all my might – and almost fall. The wooden panel moves easily, drawing aside into the wall to reveal a real clock's workings: weights, and a beating penduluum like a heart… Once again, I'm inside a Grandfather clock. And beyond the workings is the Bishop's Library.";
 
 Instead of closing the closed secret Clock Door:
 	say "The panel is already closed.";
@@ -16041,11 +16118,17 @@ After going through the secret Clock Door from the Ancient Landing:
 	say "I slip around the side of the penduluum, through the glass doors and out into the Library.";
 	continue the action;
 
+Instead of taking or attacking the open secret Clock Door:
+	try attacking the enormous penduluum.
+
+Instead of taking or attacking the closed secret Clock Door:
+	try opening the secret Clock Door.
+
 Chapter 2 - Inner Workings
 
 Section 1 - Penduluum
 
-The Clock Workings is a room.
+The Clock Workings is a privately-named room.
 
 After deciding the scope of the player when the secret Clock Door is open in the Ancient Landing:
 	place the clock workings in scope;
@@ -16054,7 +16137,10 @@ A rule for reaching inside the clock workings:
 	if the secret Clock Door is open:
 		allow access;
 
-The enormous penduluum is scenery, in the clock workings. "The Penduluum is enormous. [if stopped]It hangs lifeless as a cow from a butcher’s hook.[otherwise]It beats heavy time, side to side, driving the workings of the clock, driven by enormous counterweights on either side.[end if]"
+The enormous penduluum is scenery, in the clock workings. "The Penduluum is enormous. [if stopped]It hangs lifeless as a cow from a butcher’s hook.[otherwise]It beats heavy time, side to side, driving the workings of the clock, driven in turn by enormous counterweights on either side.[end if]". 
+
+Rule for writing a paragraph about the stopped enormous penduluum:
+	say "The penduluum hangs completely still."
 
 The enormous penduluum can be ticking or stopped. The enormous penduluum is ticking.
 
@@ -16068,12 +16154,14 @@ Section 2 - Weights
 
 Some heavy brass weights are scenery, in the clock workings. "Two heavy brass cylinders that drive the clock, inch by weighty inch[if removed]. They are side by side on the bottom of the clock case[end if]."
 
+Understand "counter-weights", "counter", "counterweight" as the heavy brass weights.
+
 The heavy brass weights can be present or removed. The heavy brass weights are present.
 
 Instead of taking the removed heavy brass weights:
 	say "The weights are too heavy to carry, or to put back.";
 
-Instead of taking the present heavy brass weights:
+Instead of taking or attacking or pulling or pushing the present heavy brass weights:
 	say "I wrap my whole body round the weight on the left-hand side and heave upwards, trying to slip it from its hook[if the enormous penduluum is ticking]. The giant penduluum comes so close to my head that it bellows in my ear, once, twice, three times[end if]. My muscles are straining so hard I can feel my shoulder-ball lifting from its socket.[paragraph break]And then suddenly the weight is free, and it drops the ground. Drake must have heard that, I think. Have to hope the Bishop locks his door.[paragraph break][if the enormous penduluum is ticking]The penduluum winds to a stop. [fire TRIG_JAMMED_CLOCK][end if]";
 	now the heavy brass weights are removed;	
 	now the enormous penduluum is stopped;
@@ -16083,7 +16171,7 @@ COUNTER_WEIGHTS [ha!] is a counter. The internal value is 2. The top end is 2.
 Every turn when the player can see the present heavy brass weights:
 	increment COUNTER_WEIGHTS;
 
-Rule for firing COUNTER_WEIGHTS:
+Rule for firing COUNTER_WEIGHTS when the player can see the present heavy brass weights:
 	if the perfect clockwork workings are not jammed:
 		say "The weights of the Penduluum ratchet one notch lower[one of].[or].[or]. If only I wait another three hours they might reach the base.[or].[stopping]";
 
@@ -16094,7 +16182,7 @@ TRIG_JAMMED_CLOCK is a trigger.
 Rule for firing unfired TRIG_JAMMED_CLOCK:
 	say "[i]This is what will happen if the Perpetuum is taken[r], I try to tell myself. [i]Only not just here. Everywhere[r].";
 
-Some perfect clockwork workings are a container, scenery, in the clock workings.  "The clockwork of the Bishop’s clock is perfect: carved with precision, fitted with reverence, tuned by blind masters with hearing that prevents them sleeping in the same rooms as moths or ants or woodworm[if jammed]. And I’ve jammed the workings[end if]."
+Some perfect clockwork workings are a container, scenery, in the clock workings.  "The clockwork of the Bishop’s clock is perfect: carved with precision, fitted with reverence, tuned by blind masters with hearing that prevents them sleeping in the same rooms as moths or ants or woodworm[if jammed]. And I’ve jammed the workings[end if]." Understand "beautiful", "grandfather", "clock", "mechanism" as the perfect clockwork workings.
 
 Rule for printing the name of the perfect clockwork workings:
 	say "workings";
@@ -16107,6 +16195,11 @@ Instead of inserting something unsuitable for jamming into the perfect clockwork
 After inserting something suitable for jamming into the perfect clockwork workings:
 	now the perfect clockwork workings are jammed;
 	say "Clockwork – the movement of tick after tock – is the engine that drives the whole universe, every star, every planet, every leaf on every tree. It is unstoppable, unquestionable, unjudging, fair, precise and orderly. Clockwork continues, as the Abbott says: it defeats us all.[paragraph break]But then the Abbott has never plunged [a noun] into the gear trace of a clock and watched the gears scream and shake and choke in fury. It is an ultimate heresy: the sound must be the sound of the demons that have come to take my springs.[paragraph break][if the enormous penduluum is ticking][paragraph break]The penduluum swings to a stop. There is sudden, terrible silence. [fire TRIG_JAMMED_CLOCK][end if]";
+
+Instead of attacking the perfect clockwork workings:
+	if the player is carrying something suitable for jamming (called the chock):
+		try inserting the chock into the perfect clockwork workings instead;
+	say "I don't have anything good to jam the clockwork with. Maybe I can the clock to stop another way."
 
 After removing something from the perfect clockwork workings:
 	now the perfect clockwork workings are running smoothly;
@@ -16193,8 +16286,9 @@ Part 4 - Choir
 
 Chapter 1 - Lost Perpetuum trick
 
-Last after going to the Cathedral Choir from the Secret Stair during Return To The Cathedral:
+Last after going to the Cathedral Choir from the Secret Stair when the player is carrying the old iron crypt key during Return To The Cathedral:
 	if TRIG_LOST_DECOY is unfired:
+		now TRIG_LOST_DECOY is primed;
 		try looking;
 		fire TRIG_LOST_DECOY;
 	otherwise:
@@ -16202,7 +16296,7 @@ Last after going to the Cathedral Choir from the Secret Stair during Return To T
 
 The decoy perpetuum can be lost. The decoy perpetuum is not lost.
 
-TRIG_LOST_DECOY is a trigger.
+TRIG_LOST_DECOY is a trigger. TRIG_LOST_DECOY can be primed. TRIG_LOST_DECOY is not primed.
 
 Rule for firing TRIG_LOST_DECOY:
 	now the decoy perpetuum is lost;
@@ -16211,6 +16305,7 @@ Rule for firing TRIG_LOST_DECOY:
 After reading a command when the decoy perpetuum is lost:
 	now the decoy perpetuum is not lost;
 	now the player carries the decoy perpetuum;
+	now TRIG_LOST_DECOY is not primed;
 	say "Oh, no. There it is. I just didn’t see it in the dark.[paragraph break]I quickly pick it up.";
 	reject the player's command;
 
@@ -17162,7 +17257,7 @@ Instead of attacking the wound spring with my lucky clock key:
 
 Book W - Walkthrough Script
 
-Test jonsprogress with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt / test countinghouse / test outsidewarehouse".
+Test jonsprogress with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt / test countinghouse / test outsidewarehouse / test insidewarehouse / test covaltreturn / e/n/e/put candle in lantern / w / n / z / z / n / e / ne / w / n / e / x carvings / in / drop perpetuum / in / u / open door".
 
 test cheat7 with "test intro / gonear street / purloin work order".
 
