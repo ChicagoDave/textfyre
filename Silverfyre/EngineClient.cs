@@ -5,7 +5,7 @@ using Textfyre.VM;
 using System.IO.IsolatedStorage;
 using System.Collections.Generic;
 
-namespace Cjc.SilverGlulxe
+namespace Cjc.SilverFyre
 {
 	public class EngineClient
 	{

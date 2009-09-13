@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Cjc.SilverGlulxe
+namespace Cjc.SilverFyre
 {
 	public sealed class BooleanToVisibilityConverter : IValueConverter
 	{

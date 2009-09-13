@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Cjc.SilverGlulxe
+namespace Cjc.SilverFyre
 {
 	public static class ExtensionMethods
 	{

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-namespace Cjc.SilverGlulxe
+namespace Cjc.SilverFyre
 {
 	/// <summary>
 	/// Implements the Quetzal saved-game file specification by holding a list of

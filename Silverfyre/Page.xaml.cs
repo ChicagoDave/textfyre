@@ -18,7 +18,7 @@ using System.Xml.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Cjc.SilverGlulxe
+namespace Cjc.SilverFyre
 {
 	public partial class Page : UserControl, INotifyPropertyChanged
 	{

@@ -10,7 +10,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Browser;
 
-namespace Cjc.SilverGlulxe
+namespace Cjc.SilverFyre
 {
 	// Code ported by Pete blois from Javascript version at http://adomas.org/javascript-mouse-wheel/
 	public class MouseWheelEventArgs : EventArgs
