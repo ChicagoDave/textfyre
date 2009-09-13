@@ -117,13 +117,13 @@
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FyreVM\FyreVMSS_SL.csproj">
-      <Project>{E2A08C96-97D0-4DFA-86B8-194CC67E5B0F}</Project>
-      <Name>FyreVMSS_SL</Name>
-    </ProjectReference>
+    <None Include="Properties\OutOfBrowserSettings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\OutOfBrowserSettings.xml" />
+    <ProjectReference Include="..\silverlight\trunk\Textfyre.VM\Textfyre.VM.csproj">
+      <Project>{77B7C61A-8DD3-4E8A-A3FD-B90D1AE47C41}</Project>
+      <Name>Textfyre.VM</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\v3.0\Microsoft.Silverlight.CSharp.targets" Condition="" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
