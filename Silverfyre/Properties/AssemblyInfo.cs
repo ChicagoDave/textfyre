@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle( "Cjc.SilverGlulxe" )]
+[assembly: AssemblyTitle( "Cjc.SilverFyre" )]
 [assembly: AssemblyDescription( "Glulx Engine for Silverlight" )]
 [assembly: AssemblyConfiguration( "" )]
 [assembly: AssemblyCompany( "Chris Cavanagh" )]
-[assembly: AssemblyProduct( "SilverGlulxe" )]
+[assembly: AssemblyProduct( "SilverFyre" )]
 [assembly: AssemblyCopyright( "Copyright © Chris Cavanagh 2009" )]
 [assembly: AssemblyTrademark( "" )]
 [assembly: AssemblyCulture( "" )]

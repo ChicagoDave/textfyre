@@ -2,7 +2,7 @@
 using System.Net;
 using System.IO;
 
-namespace Cjc.SilverGlulxe
+namespace Cjc.SilverFyre
 {
 	public class AsyncLoader
 	{

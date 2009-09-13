@@ -14,7 +14,7 @@ using Textfyre.VM;
 using System.Xml.Linq;
 using System.Xml;
 
-namespace Cjc.SilverGlulxe
+namespace Cjc.SilverFyre
 {
 	public class StoryHistoryItem
 	{

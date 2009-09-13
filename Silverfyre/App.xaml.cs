@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace Cjc.SilverGlulxe
+namespace Cjc.SilverFyre
 {
 	public partial class App : Application
 	{

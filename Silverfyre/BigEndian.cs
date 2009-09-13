@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-namespace Cjc.SilverGlulxe
+namespace Cjc.SilverFyre
 {
     /// <summary>
     /// Provides utility functions for working with big-endian numbers.

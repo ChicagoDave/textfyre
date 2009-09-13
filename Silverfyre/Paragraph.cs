@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Documents;
 
-namespace Cjc.SilverGlulxe
+namespace Cjc.SilverFyre
 {
 	public class Paragraph
 	{

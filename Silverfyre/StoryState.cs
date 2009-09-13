@@ -10,7 +10,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Textfyre.VM;
 
-namespace Cjc.SilverGlulxe
+namespace Cjc.SilverFyre
 {
 	public class StoryState
 	{

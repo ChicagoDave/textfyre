@@ -12,7 +12,7 @@ using System.IO;
 using System.Windows.Threading;
 using System.Threading;
 
-namespace Cjc.SilverGlulxe
+namespace Cjc.SilverFyre
 {
 	public class DeferredMemoryStream : MemoryStream
 	{

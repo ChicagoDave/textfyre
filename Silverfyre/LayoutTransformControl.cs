@@ -12,7 +12,7 @@ using System.IO;
 using System.Text;
 #endif
 
-namespace Cjc.SilverGlulxe
+namespace Cjc.SilverFyre
 {
     /// <summary>
     /// Control that implements support for transformations as if applied by
