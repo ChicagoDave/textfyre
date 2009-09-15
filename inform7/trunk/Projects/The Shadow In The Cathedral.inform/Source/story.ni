@@ -4,6 +4,7 @@
 
 [  Change Log
 When			Who		What
+14-Sep-2009                    J. Ingold        halfway through c11, lots of synonyms. Not sure about the turning the pedestal to midnight, though it's kinda cool.
 13-Sep-2009			J. Ingold	Added explanation of "penduluum" spelling (!). Finished off c10 with alternate solutions for the desk drawer. Begun looking at Chapter 11... Nearly there!!!
 12-Sep-2009			J. Ingold	Clock workings, which were a bit of a mess... New substition, "one of", "once only", which prints once only (code change -> [once only] replaces where I've written [or][stopping]. If this breaks stuff, it can be easily Ctrl+H'd back!!
 8-Sep-2009			J. Ingold	Started on C10. Synonyms for lighting a candle. In and out of locations. Touching the brazier. The secret passage.
@@ -145,6 +146,7 @@ Use MAX_OBJECTS of 1280.
 Use MAX_SYMBOLS of 26000.
 Use MAX_ZCODE_SIZE of 80000.
 Use MAX_LINESPACE of 20000.
+Use ALLOC_CHUNK_SIZE of 20000.
 
 Chapter - Debugging and Analysing Verbs (not for release)
 
@@ -370,6 +372,7 @@ LibMsg <block sleeping>			"Now's not the time for that!"
 LibMsg <block smelling>			"The only smell around is the one I'm most used to - it's not bath-time for another week!"
 LibMsg <block tasting>			"Eugh! Why would I do that?"
 LibMsg <block singing>			"This doesn't feel like the moment for it, somehow."
+LibMsg <cannot take something already taken>		"I'm carrying [the noun] already."	
 
 
 Chapter 5c - Talking to Yourself
@@ -446,7 +449,7 @@ Chapter 6 - Wrapping tools
 
 Definition: a thing is suitable for wrapping:
 	if it is the tarp, yes;
-	if it is the linen cloth, yes;
+	if it is the linen strip, yes;
 	no;
 
 Definition: a thing is unsuitable for wrapping:
@@ -1169,6 +1172,10 @@ Instead of examining a matched-to locative glimpse backdrop (called far-off thin
 
 Instead of doing something when a glimpse backdrop (called the far-off thing) is physically involved and the action is physical:
 	say "I could hardly do that."
+
+Does the player mean approaching a locative glimpse backdrop:
+	it is likely.
+
 
 Part 15 - Brass rods on table
 
@@ -2047,9 +2054,9 @@ Part 26 - Wrapping
 
 Wrapping it with is an action applying to two things.
 
-Understand "wrap [something] with/using [something]" as wrapping it with.
-Understand "wrap [something] around [something]" as wrapping it with (with nouns reversed).
-Understand "cover [something] with/using [something]" as wrapping it with.
+Understand "wrap [something] with/using [something preferably held]" as wrapping it with.
+Understand "wrap [something preferably held] around/over [something]" as wrapping it with (with nouns reversed).
+Understand "cover [something] with/using [something preferably held]" as wrapping it with.
 
 Check wrapping something with something unsuitable for wrapping:
 	say "[The second noun] [is-are] not much use for wrapping things with." instead;
@@ -2624,7 +2631,10 @@ Understand "slide [something preferably held] into/in [something]" as inserting 
 Understand "slide [something preferably held] in to [something]" as inserting it into.
 Understand "slip [something preferably held] into/in [something]" as inserting it into.
 Understand "slip [something preferably held] in to [something]" as inserting it into.
-
+Understand "dip [something preferably held] into/in [something]" as inserting it into.
+Understand "dip [something preferably held] in to [something]" as inserting it into.
+Understand "dunk [something preferably held] into/in [something]" as inserting it into.
+Understand "dunk [something preferably held] in to [something]" as inserting it into.
 
 Part 8 - Synonyms for take
 
@@ -8202,8 +8212,6 @@ The BLIBRARY_glimpse is a locative glimpse backdrop in the Cathedral Entrance, i
 
 The CRYPT_glimpse is a locative glimpse backdrop in the Cathedral Entrance, in the Lower Nave, in the Upper Nave, in the Cathedral Altar, in the Cathedral Choir,  in the West Apse, in the East Clerestory, in the West Clerestory, in the North Clerestory, localising the East Apse. Understand "crypt", "gate" as the CRYPT_glimpse. The printed name is "crypt".
 
-Does the player mean approaching a locative glimpse backdrop:
-	it is likely.
 
 Section 2 - Glimpse of Altar
 
@@ -16415,10 +16423,10 @@ Understand "words", "word", "proverb" as the blotter when the blotter is on the 
 Rule for writing a paragraph about the blotter when the blotter is not handled:
 	now the blotter is mentioned;
 
-Instead of looking under the blotter when the blotter is on the Archbishop's Desk:
+Instead of looking under or pushing the blotter when the blotter is on the Archbishop's Desk:
 	say "There's nothing there."
 
-Instead of looking under the blotter when the blotter is on the Archbishop's Desk and the blotter is not handled [ not been picked up ever! ] and the single drawer has not been unlocked [ and we need a key ] and the desk drawer key is off-stage:
+Instead of looking under or pushing the blotter when the blotter is on the Archbishop's Desk and the blotter is not handled [ not been picked up ever! ] and the single drawer has not been unlocked [ and we need a key ] and the desk drawer key is off-stage:
 	move the desk drawer key to the player;
 	say "I lift up a corner of the blotter. Underneath is a desk drawer key. I slip it free."
 	
@@ -16525,10 +16533,13 @@ Instead of listening when in the Cathedral Crypt:
 Instead of smelling when in the Cathedral Crypt:
 	say "The walls smell of dead things and old dirt."
 
-Understand "crypt wall/walls", "stone wall/walls", "old", "ancient", "dust", "trickle of", "cold wind", "damp" as the backdrop-walls when in the Cathedral Crypt.
+Understand "crypt wall/walls", "stone wall/walls", "old", "ancient", "dust", "trickle of", "cold wind", "damp", "wind" as the backdrop-walls when in the Cathedral Crypt.
 
 Instead of examining the backdrop-walls when in the Cathedral Crypt:
 	say "The walls are old stone blocks, each the size of a man."
+
+Instead of climbing the backdrop-walls when in the Cathedral Crypt:
+	say "The only way out of here is with the real Perpetuum in my hands."
 
 Part 1 - Crypt Stairs
 
@@ -16541,7 +16552,7 @@ The printed name of the Crypt Stairs is "Staircase".
 
 After going to the Crypt Stairs from the East Apse:
 	now the crypt grate is closed; now the crypt grate is locked;
-	say "From the window of my tiny room in the rafters I’ve often watched the shadow of the Cathedral of Time as it races round the streets of St Philip – leaping up with the dawn and not stopping for breath until nightfall.[paragraph break]Today I saw another shadow, grey instead of black, and inside the Cathedral not upon it. I followed that shadow all the way across the day.[paragraph break]And now night has fallen and I am a shadow myself. A shadow in the Cathedral: a darkness moving through the deeper darkness of the crypts. There are stairs leading down: I can smell them, cold air from far underground, with a hint of grease, a touch of the sweetness of lamps and beeswax.[paragraph break]Like a shadow, all the light is behind me.[paragraph break]Like a shadow, I cannot stop moving till the day is done.";
+	say "From the window of my tiny room in the rafters I’ve often watched the shadow of the Cathedral of Time as it races round the streets of St Philip – leaping up with the dawn and not stopping for breath until nightfall.[paragraph break]Today I saw another shadow, grey instead of black, and inside the Cathedral not upon it. I followed that shadow all the way across the day.[paragraph break]And now night has fallen and I am a shadow myself. A shadow in the Cathedral: a darkness moving through the deeper darkness of the crypts. There are stairs leading down: I can smell them, cold air from far underground, with a hint of grease, a touch of the sweetness of lamps and beeswax.[paragraph break]Like a shadow, all the light is behind me.[paragraph break]Like a shadow, I won't stop moving till the day is done.";
 	continue the action;
 
 Instead of going southwest when in the Crypt Stairs:
@@ -16616,12 +16627,30 @@ Section 3 - Bodies
 
 The bodies of dead monks are scenery, in the Ossuary. "They’re all Brothers, still robed, though some of the robes are only so much dust and cobweb."
 
-Understand "dusty", "robed", "skeleton", "skeletons", "heads", "sunken", "piles", "piles of", "bone", "bones", "skull", "skulls", "knees", "robe", "robes" as the bodies of dead monks. The printed name of the bodies of dead monks is "skeletons".
+Understand "dusty", "robed", "skeleton", "skeletons", "heads", "sunken", "piles", "piles of",  "bones", "skull", "skulls", "knees", "robe", "robes" as the bodies of dead monks. The printed name of the bodies of dead monks is "skeletons".
+
+Understand "bone" as the bodies of dead monks when the arm bone is not visible.
+
+Before removing the bodies of dead monks from the bodies of dead monks [this covers "take bone from skeleton]:
+	try taking the bodies of dead monks instead.
+
+Before fastening the linen strip to the bodies of dead monks when the arm bone is off-stage and the dowel handle is not on-stage:
+	try taking the bodies of dead monks;
+	if the player is not carrying the arm bone, stop the action;
+	try fastening the linen strip to the arm bone instead;
+
+
+Before fastening the linen strip to the bodies of dead monks when the dowel handle is on-stage:
+	say "Maybe I could use the dowel rod instead, that would be less icky." instead.
+
+Before fastening the linen strip to the bodies of dead monks when the arm bone is off-stage:
+	say "That's a horrible idea." instead.
+
 
 Instead of taking or searching the bodies of dead monks:
-	if the linen cloth has been held and the dowel handle is not on-stage:
+	if the linen strip has been held and the dowel handle is not on-stage:
 		now the player carries the arm bone;
-		say "I pick out the oldest-looking bone I can, and hold it by one end, trying not to squirm. I can feel the ghost reaching down the length of it to hold me back.";
+		say "I pick out the oldest-looking bone I can, and hold it by one end, trying not to squirm. I can feel the ghost's hand holding me right back.";
 	otherwise:
 		continue the action;
 
@@ -16634,7 +16663,7 @@ Section 4 - Deathwatches
 
 Some deathwatches are scenery, in the Ossuary. "[one of]The deathwatch is a small round dial tied to the forehead of each Brother by a wire band. At first glance they seem still but really they are moving: the minute hand pushing forward then juddering back, as though the springs were too spent to get the hand around the dial.[paragraph break]But they aren’t – these springs will run until the soul has gone. Instead the watches themselves have been cobbled: for how could the watch move beyond the moment of death when their owners couldn’t?[or]The deathwatches tick endlessly over the moment of death, obsessing on it until the last of the soul is spent.[stopping]"
 
-Understand "wire", "band", "minute hand" as the deathwatches.
+Understand "wire", "band", "minute hand", "death watch", "watch" as the deathwatches.
 
 Instead of taking the deathwatches:
 	say "It’s not my time for one. Not yet.";
@@ -16664,6 +16693,12 @@ Chapter 1 - Description
 
 The Crypt Landing is a room, south of the Ossuary. "[one of]Light! [once only]The tunnel from the north opens out here into a vaulted chamber and there are four iron torches burning in each corner. East and west are arched doorways like lidded eyes. By the south wall, a missing flagstone leads further down into more darkness. Why is I'm so certain that's the way I need to go?"
 
+Before making to leave when in the Crypt Landing: try going north instead.
+Before going inside when in the Crypt Landing: say "East or west ... or did you mean down?" instead.
+Before going down when in the Crypt Landing: try going south instead.
+Before going up when in the Crypt Landing: try going north instead.
+
+
 The printed name of the Crypt Landing is "Main Chamber".
 
 After going from the Ossuary to the Crypt Landing:
@@ -16682,48 +16717,62 @@ Section 2 - Archways
 
 Some carved archways are scenery in the Crypt Landing. "Each arch is topping by a carving: a skull on its side, the eye-sockets forming an hourglass."
 
-Instead of entering the carved archways:
+Instead of approaching or taking or entering the carved archways:
+	if the player's command includes "east/e", try going east instead;
+	if the player's command includes "west/w", try going west instead;
 	say "Which way, Wren? East or west?";
 
-Understand "skull", "skulls", "arch", "archway", "arches", "carvings", "eye", "sockets", "hourglass", "hourglasses", "hour glass", "hour glasses" as the carved archways.
+Understand "skull", "skulls", "arch", "archway", "arches", "carvings", "eye", "sockets", "hourglass", "hourglasses", "hour glass", "hour glasses", "east/e arch/archway", "west/w arch/archway" as the carved archways.
 
 Section 3 - Lanterns
 
-Some iron torches are scenery, in the Crypt Landing. "The torches are inlaid with carvings of the crescent moon. Their rope wicks burn slightly blue: fuel must be running into them through channels in the stone, but what kind of fuel it is that burns forever I can’t think[one of]. [i]Maybe it’s dead men’s breath. That’d certainly explain the smell[r].[or].[stopping]"
+Some iron torches are scenery, in the Crypt Landing. "The torches are inlaid with carvings of the crescent moon. Their rope wicks burn slightly blue: fuel must be running into them through channels in the stone, but what kind of fuel it is that burns forever I can’t think[one of]. Maybe it’s dead men’s breath. That’d certainly explain the smell[once only]."
 
 Understand "crescent", "moon", "rope", "wicks", "blue", "fire", "fires", "smelly", "light", "lights", "burning", "lantern", "lanterns" as the iron torches.
 
 Understand "torch" as the iron torches when the player can not see the makeshift torch.
 
 Instead of taking the iron torches:
-	say "The torches are fixed to the wall[one of] – and if they’re fed from inside, they’d be no good removed anyway[once only]."
+	say "The torches are fixed to the wall[one of] – and if they’re fed from inside, they’d be no good removed anyway[or] and burn forever - I can't take them with me[or] forever[stopping]."
 
 Part 4 - Upper Vault
 
-The Upper Vault is a room, west of the Crypt Landing. "[one of]I catch my breath as I enter. [once only]This room is a vault of ancient pagan relics: torchlight from the arch back east gleams over water-clocks and candle-clocks and stranger devices I can’t even name, made of wood and bone. There’s no brass here, no cogs, no bearings, no blown glass. It should have all been destroyed.[paragraph break]As if I needed to add, the Perpetuum is [i]not[r] here[if sundial on shelf]. The only metal thing at all is the plate of a large sundial, resting on a shelf[end if]."
+The Upper Vault is a room, west of the Crypt Landing. "[one of]I catch my breath as I enter. [once only]This room is a vault of ancient pagan relics: [if the player is carrying the lit makeshift torch]my torchlight[else]torchlight from the arch back east[end if] gleams over water-clocks and candle-clocks and stranger devices I can’t even name, made of wood and bone. There’s no brass here, no cogs, no bearings, no blown glass. It should have all been destroyed.[paragraph break]As if I needed to add, the Perpetuum is [i]not[r] here[if sundial on shelf]. The only metal thing at all is the plate of a large sundial, resting on a shelf[end if]."
+
+Before making to leave when in the Upper Vault: try going east instead.
+Before going inside when in the Upper Vault: try going east instead.
 
 An eastern arch is scenery, in the upper vault. "The arch leads back to the landing." Understand "east", "archway" as the eastern arch.
 
 Instead of entering the eastern arch:
 	try going east instead;
 
-Some pagan relics are scenery, in the upper vault. 
+Some pagan relics are scenery, in the upper vault. Understand "candle", "clock/clocks", "water", "water-clock", "water-clocks", "candle-clock", "candle-clocks", "bone", "wood", "relic", "ancient", "device", "devices" as the pagan relics.
 
 Instead of doing something when the pagan relics are involved:
-	say "[one of]In the days before St Newton people had been ignorant of Penduluums and the Simple Approximation of Sine, and had been forced to use all sorts of foolish things to measure time. None of them worked, of course – water slides and marked candles and so forth. Brother Reloh says that without a True understanding of Time, Time cannot exist.[paragraph break]Looking at all the things here I feel sorry for those primitive people, who must have always been waking up to find the day was over, or enduring nights that went on forever without any breakfast.[or]Leave them be. Their time is finally done.[stopping]"
+	say "[one of]In the days before St Newton people had been ignorant of Penduluums and the Simple Approximation of the Small Sine, and were forced to use all sorts of foolish things to measure time. None of them worked, of course – water slides and marked candles and so forth. As Brother Reloh says, without a True understanding of Time, Time cannot [i]be[r]; just as without an understanding of Good, Good cannot.[paragraph break]Looking at all the things here I feel sorry for those primitive people, who must have always been waking up to find the day was over, or enduring nights that went on forever without any breakfast.[or]Leave them be. Their time is finally done.[stopping]"
 
-A dusty shelf is scenery, in the upper vault. The printed name is "shelf".
+A dusty shelf is scenery, in the upper vault. The printed name is "shelf". The description is "A stone shelf holding a few relics[if the plate sundial is on the dusty shelf], including a brass sundial[end if]."
 
-A plate sundial is on the dusty shelf. "The plate sundial is made of dark, lusty gold, and would probably be worth a packet if anyone could be demon-happy enough to buy it in the markets of the town. The gnomon is razor sharp still but the underside is worn away, with a series of strange indentations."
+Instead of searching the dusty shelf:
+	try examining the dusty shelf.
 
-After taking the plate sundial:
-	say "The plate is heavier than it looks.";
+A plate sundial is on the dusty shelf. The description is "The plate sundial is made of dark, lusty gold, and would probably be worth a packet if anyone could be demon-happy enough to buy it in the markets of the town. The gnomon is razor sharp still but the underside is worn away, with a series of strange indentations."
 
-Understand "dark", "lusty", "gold", "razor", "sharp", "gnomon", "worn", "underside", "series", "series of", "strange", "indentations" as the plate sundial.
+After taking the plate sundial for the first time:
+	say "I take the plate from the shelf - it's heavier than it looks.";
+
+Understand "dark", "lusty", "gold", "razor", "sharp", "gnomon", "worn", "underside", "series", "series of", "strange", "indentations", "sun dial", "dial" as the plate sundial.
 
 Part 5 - Mortuary
 
-The Mortuary is a room, east from the Crypt Landing. "[one of]The back of my neck starts prickling and I’m only one step inside. [i]Don’t be a fool, Wren. No ghosts in these machines[r]. But that doesn’t stop all sort of things from making people dead, so that they end up in rooms like this one.[paragraph break][once only]The stone walls are cold, and wet with the last breath of all the bodies that have been prepared down here. When they come they lie down on the large stone slab in the centre of the room. Blown-glass tubes lead out from it on either side with another at one end. Their insides are the colour of burnt bacon.[paragraph break]By the arch to the west is a shelf carved out of the rock. On it are the tools of the trade: spices, cloth, dowels, oil. At least there’s no lathe or whetstone or screws."
+The Mortuary is a room, east from the Crypt Landing. "[one of]The back of my neck starts prickling when I’m only a step inside. [i]Don’t be a fool, Wren. No ghosts in the machines down here[r]. No live ones anyway - this place is purely for the dead.[paragraph break][once only]The stone walls are cold, wet with the last breath of all the bodies that have been prepared on the large stone slab in the centre of the room. That's where they lie down. Blown-glass tubes lead from it either side, a third at the head end. The insides of the tubes are the colour of burnt bacon.[paragraph break]By the arch to the west is a shelf carved out of the rock. On it are the tools of the trade: spices, cloth, oil, so forth. At least there’s no lathe or whetstone or screws."
+
+Before making to leave when in the Mortuary: try going west instead.
+Before going inside when in the Mortuary: try entering the slab instead.
+
+Instead of sleeping when in the Mortuary:
+	say "No chance. My eyes are staying wide open."
 
 Instead of smelling the Mortuary:
 	say "The room is heavy with death, like an October night heavy with rain.";
@@ -16744,12 +16793,21 @@ Section 2 - Slab
 
 A slab is scenery, in the Mortuary. "The slab is a bit larger than a man, a bit wider than a man, and has a shallow impression in the shape of a man, with his legs together and wrists by the blown-glass tubes."
 
-Instead of entering the slab:
+Instead of entering or approaching the slab for the first time:
+	say "I can imagine myself getting on, lying down. Feet together, arms spread wide, wrists beside the two glass tubes leading away into the floor. Feeling myself falling asleep, the smell of cinnamon and anise in my nose. My eyes wide open. I can imagine it, as if the room was [i]making[r] me imagine it. As if the room was trying to [i]eat[r] me.[paragraph break]I take a step back from the stone slab. It's nothing, Wren. Just a big old block of rock. There's nothing to see here.";
+
+Instead of entering or approaching the slab:
 	say "You must think I’m crazy! The ghosts would eat my bones for breakfast!";
+
+Instead of looking under, pushing or pulling or turning or taking the slab:
+	say "It's an altar's worth of solid stone. It was never moved: the room was carved in around it."
+
 
 Section 3 - Shelf
 
-A rock shelf is scenery, in the Mortuary. "The shelf is hewn from the rock itself, to hold the bandages and the oil. On one side is a stack of wooden dowels."
+A rock shelf is scenery, in the Mortuary. "The shelf is hewn from the rock itself, to hold the bandages and the oil. A rack of spices, and behind that, a stack of wooden dowels."
+
+Understand "tools", "tools of the trade" as the rock shelf.
 
 Instead of entering the rock shelf:
 	say "It’s too small for me to hide.";
@@ -16757,11 +16815,14 @@ Instead of entering the rock shelf:
 Instead of putting something on the rock shelf:
 	say "I’m not here to tidy things away.";
 
+Instead of searching the rock shelf:
+	try examining the rock shelf instead;
+
 Section 4 - Spices
 
 Some jars of spices are scenery, on the rock shelf. "The shelves are lined with the spices of death: cinnamon, cardamom, mace and star anise. They sit in jars between the rolls of bandages and the bowl of oil.";
 
-Understand "jar of", "jar", "cinnamon", "cardamom", "mace", "star anise", "of death", "death" as the jars of spices.
+Understand "jar of", "jar", "cinnamon", "cardamom", "mace", "star anise", "anise", "of death", "death" as the jars of spices.
 
 Instead of taking the jars of spices for the first time:
 	say "I don’t think Cook would like me adding those to the Abbey soup.";
@@ -16769,9 +16830,35 @@ Instead of taking the jars of spices for the first time:
 Instead of taking the jars of spices:
 	try smelling the jars of spices;
 
-Instead of smelling, tasting, eating the jars of spices:
-	say "The smell is enough to make me feel ill.";
+Instead of looking under the jars of spices:
+	say "There's a small pile of dowels on the shelf behind the jars."
 
+Instead of inserting something into the jars of spices:
+	say "I don't want to be carrying that smell around with me."
+
+Instead of smelling, tasting, eating, pushing, searching, opening the jars of spices:
+	if the player's command includes "cinnamon":
+		say "[smell-text in row 1 of the Table of Spice Smells]";
+	else if the player's command includes "cardamon":
+		say "[smell-text in row 2 of the Table of Spice Smells]";
+	else if the player's command includes "mace":
+		say "[smell-text in row 3 of the Table of Spice Smells]";
+	else if the player's command includes "anise":
+		say "[smell-text in row 4 of the Table of Spice Smells]";
+	else:
+		say "The smell is enough to make me feel ill.";
+
+Table of spice smells
+smell-text
+"Cinnamon: a smell like an empty pit, the dust disappearing under my shoes at the edge."
+"Cardamon: a smell like dizziness, or losing consciousness in water." 
+"Mace: a smell like a rock, thumping down on my skull." 
+"Anise: a smell like a strong wind, pulling me away into the air." 
+
+Instead of smelling when in the Mortuary:
+	choose a random row in the Table of Spice Smells;
+	say "[smell-text entry][paragraph break]";
+	
 Section 5 - Oils
 
 A bowl of thick black oil is scenery, on the rock shelf. "At one end of the shelf is a wide shallow bowl, thick with dark black oil."
@@ -16790,40 +16877,62 @@ Instead of touching, tasting, drinking, eating the bowl of black oil:
 
 Section 6 - Bandages
 
-Some bandages are scenery, on the rock shelf. "Long rolls of cloth fill half the shelf – dry cloth, the same colour as bone and as dry as bone[if the linen cloth is off-stage]. One end of the roll hangs loose, like a lolling tongue[end if]."
+Some bandages are scenery, on the rock shelf. "Long rolls of cloth fill half the shelf – dry cloth, the same colour as bone and as dry as bone[if the linen strip is off-stage]. One end of the roll hangs loose, like a lolling tongue[end if]."
 
-Some linen cloth is a thing. The description is "[if oiled]A strip of linen, gleaming smugly with oil.[else]I’ve torn a strip of linen from the bandage roll, about the length of my arm.[end if]"
+Understand "bandage" as the bandages when the linen strip is not visible.
+Understand "roll/rolls", "cloth", "roll/rolls of", "dry bandages"  as the bandages.
 
-The linen cloth can be oiled or unoiled. The linen cloth is unoiled.
+A linen strip is a thing. The description is "[if oiled]A strip of linen, gleaming smugly with oil.[else]I’ve torn a strip of linen from the bandage roll, about the length of my arm.[end if]"
 
-Understand "dry" as the linen cloth when the linen cloth is unoiled.
+The linen strip can be oiled or unoiled. The linen strip is unoiled.
 
-Instead of taking the bandages when the linen cloth is off-stage:
+Understand "bandage", "cloth" as the linen strip.
+Understand "dry", "bone dry", "bone-dry" as the linen strip when the linen strip is unoiled.
+Understand "wet", "soaking", "dripping", "oiled", "oil soaked", "soaked", "oil-soaked" as the linen strip when the linen strip is oiled.
+
+Instead of attacking the bandages:
+	try taking the bandages.
+Instead of attacking the bandages with something:
+	try taking the bandages.
+Instead of slicing the bandages with something:
+	try taking the bandages.
+
+Instead of taking the bandages when the linen strip is off-stage:
 	say "I tear away a strip of the dry linen cloth.";
-	now the linen cloth is unoiled;
-	now the player carries the linen cloth;
+	now the linen strip is unoiled;
+	now the player carries the linen strip;
 
 Instead of taking the bandages:
 	say "I’ve already got enough. I’m not here to wrap myself up – or anyone else.";
 
-Instead of inserting the oiled linen cloth into the bowl of black oil:
+Instead of inserting the oiled linen strip into the bowl of black oil:
 	say "It’s already soaked through with oil.";
 
-Instead of inserting the unoiled linen cloth into the bowl of black oil:
+Instead of inserting the unoiled linen strip into the bowl of black oil:
+	now the linen strip is oiled;
 	say "[one of]I dip the linen strip once, twice in the bowl of oil. It comes out gleaming.[or]I soak the linen strip.[stopping]"
+
+Rule for printing the name of the oiled linen strip:
+	say "oil-soaked linen strip";
+
+
+Rule for printing the name of the unoiled linen strip:
+	say "bone-dry linen strip";
 
 Section 7 - Dowels
 
 Some dowels are scenery, on the rock shelf. "There’s a pile of stocky wooden dowels on the shelf. I don’t even want to think what they’re for."
 
+Understand "dowel", "rod" as the dowels when the dowel handle is not visible.
+
 Instead of taking the dowels when the dowel handle is off-stage:
 	now the player carries the dowel handle;
-	say "I pick up a dowel. It’s a good length, but far too light to use as a cudgel. (And I’m too much of a wimp to use one, too.)"
+	say "I pick up a dowel. It’s a good length, but far too light to use as a cudgel. (And I’m too much of a wimp to use is as one, too.)"
 
 Instead of taking the dowels:
 	say "I’ve already got one.";
 
-The dowel handle is a thing. "It’s a good length, the size and shape of my forearm." The printed name is "handle".
+The dowel handle is a thing. "It’s a good length, the size and shape of my forearm." The printed name is "handle". Understand "rod" as the dowel handle.
 
 Chapter 3 - Making a torch
 
@@ -16833,17 +16942,23 @@ A thing can be a torch stick.
 The dowel handle is a torch stick.
 The bone is a torch stick.
 
-Instead of wrapping a torch stick thing (called the stick) with the linen cloth:
+Instead of wrapping a torch stick thing (called the stick) with the linen strip:
 	remove the noun from play;
 	remove the second noun from play;
 	now the stick is part of the makeshift torch;
-	now the linen cloth is part of the makeshift torch;
+	now the linen strip is part of the makeshift torch;
 	now the player carries the makeshift torch;
-	say "I roll the [if the linen cloth is oiled]oozing [end if]linen around the end of the [if the stick is a dowel handle]wooden handle[else]bone[end if], once, twice, until it's tight. I’m left holding something that looks a lot like a [if the linen cloth is unoiled]dry torch[else]torch, ready to be lit[end if]."
+	say "I roll the [if the linen strip is oiled]oozing [end if]linen around the end of the [if the stick is a dowel handle]wooden handle[else]bone[end if], once, twice, until it's tight. I’m left holding something that looks a lot like a [if the linen strip is unoiled]dry torch[else]torch, ready to be lit[end if]."
+
+Before putting the linen strip on a torch stick thing (called the stick):
+	try wrapping the stick with the linen strip instead.
+Before fastening the linen strip to a torch stick thing (called the stick):
+	try wrapping the stick with the linen strip instead.
+
 
 Section 2 - Description
 
-The makeshift torch is a thing. The description of the makeshift torch is "It’s the best I can do for a torch: cloth wrapped around a handle [if the arm bone is part of the makeshift torch]that once held a hand of its own[end if]."
+The makeshift torch is a thing. The description of the makeshift torch is "It’s the best I can do for a torch: cloth wrapped around a handle.[if the arm bone is part of the makeshift torch] that once held a hand of its own[end if]. [if the linen strip is oiled]The cloth drips black oil[else]The cloth head is dry[end if]."
 
 Rule for printing the description of the lit makeshift torch:
 	say "Clockwork can do a lot of things: tell the time, move the wheels of a cart, operate pistons and machines, move the stars and the Earth, even predict the weather. But clockwork can’t make Light. Only Fire makes Light – and that’s what I’ve got. I’m a Second Assistant Clock Polisher, and I’ve got fire on a stick.";
@@ -16851,29 +16966,53 @@ Rule for printing the description of the lit makeshift torch:
 Rule for printing the name of the lit makeshift torch:
 	say "brightly burning torch";
 
+Understand "handle" as the makeshift torch.
+
 Section 3 - Oiling
 
 Instead of inserting the lit makeshift torch into the bowl of black oil:
 	say "No chance. It might explode.";
 
-Instead of inserting the unlit makeshift torch into the bowl of black oil when the linen cloth is oiled:
+Instead of inserting the unlit makeshift torch into the bowl of black oil when the linen strip is oiled:
 	say "The torch is already soaked with oil. Any more and it might blow up!";
 
 Instead of inserting the unlit makeshift torch into the bowl of black oil:
-	now the linen cloth is oiled;
+	now the linen strip is oiled;
 	say "I dip the head of the torch into the oil until it gleams.";
 
 Section 4 - Lighting
 
-Instead of inserting the unlit makeshift torch into the iron torches when the linen cloth is oiled:
+Before burning the makeshift torch when in the Crypt Landing:
+	try inserting the makeshift torch into iron torches instead.
+
+Instead of burning the makeshift torch:
+	say "I can't make the torch ignite just by looking at it."
+
+Before putting the makeshift torch on iron torches:
+	try inserting the makeshift torch into iron torches instead.
+
+Before melting the makeshift torch on iron torches:
+	try inserting the makeshift torch into iron torches instead.
+
+Instead of inserting the lit makeshift torch into the iron torches:
+	say "My torch is already burning fiercely."	
+
+Instead of inserting the unlit makeshift torch into the iron torches when the linen strip is oiled:
 	now the makeshift torch is lit;
 	say "I lift the head of the torch up to the flame – and it catches in a second. The walls around me leap with light!";
 
-Instead of inserting the unlit makeshift torch into the iron torches when the linen cloth is unoiled:
-	remove the linen cloth from play;
+Instead of inserting the unlit makeshift torch into the iron torches when the linen strip is unoiled:
+	remove the linen strip from play;
 	remove the makeshift torch from play;
 	now the player carries everything that is part of the makeshift torch;
 	say "[one of]I reach up to light the linen head of the torch. It ignites and begins to glower with flame. Then ashes break off, and soon the whole thing has burned to nothing.[or]I burn the linen on the torch-head to nothing. It’s no good without fuel![stopping]";
+
+Before removing something torch-part from the makeshift torch:
+	say "A torch is a useful thing to have down here. I'm keeping it!" instead.
+Before untying something torch-part from the makeshift torch:
+	say "A torch is a useful thing to have down here. I'm keeping it!" instead.
+Before taking the linen strip when the linen strip is a torch-part:
+	say "A torch is a useful thing to have down here. I'm keeping it!" instead.
 
 Before doing something when a torch-part is involved:
 	if the noun is a torch-part:
@@ -16890,7 +17029,16 @@ Part 6 - Dark Stair
 
 Chapter 1 - Description
 
-The Dark Stair is a room, south from the Crypt Landing, down from the Crypt Landing. "The stairs down from the landing end in midair. Everything beyond is darkness."
+The Dark Stair is a room, south from the Crypt Landing. "The stairs down from the landing end in midair. Everything beyond is darkness."
+
+Before going up when in the Dark Stair: try going north instead.
+Before making to leave when in the Dark Stair: try going north instead.
+Before going inside when in the Dark Stair: try going down instead.
+Before going south when in the Dark Stair: try going down instead.
+
+After going from the Dark Stair to the Crypt Landing when the lit makeshift torch was not visible:
+	say "I climb gratefully back out of the darkness.";
+	continue the action.
 
 Rule for printing the description of the Dark Stair when the player can see the lit makeshift torch:
 	if the gnomon tip is in the location:
@@ -16906,7 +17054,7 @@ After going from the Crypt Landing to the Dark Stair when TRIG_DARK_STAIR is unf
 TRIG_DARK_STAIR is a trigger.
 
 Rule for firing unfired TRIG_DARK_STAIR when the player has the lit makeshift torch:
-	say "The stairs disappear downwards. I must be lower than the Abbey well by now, maybe even lower than the spring of St Philip itself. My hands are running over stone bricks – then slick rock seamed with rough minerals.[paragraph break]Then, quite suddenly, the stairs come to an end in mid-air. Below them is empty space: my torch is like the scratch of a fingernail on the Polar Ice. It’s as though the world was hollow and I had reached the rotten core.";
+	say "The stairs disappear downwards. I must be lower than the Abbey well by now, maybe even lower than the spring of St Philip itself. My hands are running over stone bricks – then slick rock seamed with rough minerals.[paragraph break]Then, quite suddenly, the stairs come to an end in mid-air. Below them is empty space: my torch is like the scratch of a fingernail on the Polar Ice. It’s as though the world was hollow and I had reached its rotten core.";
 
 Rule for firing unfired TRIG_DARK_STAIR:
 	say "Total darkness. I’m feeling my way – one step, then another, like I was coming down the ladder from my room. Then just as I’m getting the hang of it, the deep step gets deeper and deeper and I realise my foot is heading out into nothingness because the stairs have stopped… with no time to pull back I sit down, sharply. Below me is empty air – could be a handspan, could be the height of a tower. The air is still, and cold. The darkness around could be the size of the night.";
@@ -16923,7 +17071,22 @@ Rule for deciding the concealed possessions of the Dark Stair:
 
 Section 1 - Staircase
 
-A dangling stair is scenery, in the Dark Stair. "Each step is a carved stone block, dangling from the block before. In the end they’re all supported by nothing. Only darkness lies below." 
+A dangling stair is scenery, in the Dark Stair. "[if the player can see the gnomon tip]The stairs have joined to a smooth stone slope that slides downward into the dark[else]Each step is a carved stone block, dangling from the block before. In the end they’re all supported by nothing. Only darkness lies below[end if]."  Understand "staircase", "stairs" as the dangling stair.
+
+Before ascending or climbing the dangling stair:
+	try going up instead.
+
+Before descending the dangling stair:
+	try going down instead.
+
+Instead of entering or approaching or taking the dangling stair:
+	try going up instead.
+
+Instead of entering or approaching or taking the dangling stair when the player can see the gnomon tip:
+	try going down instead.
+
+Instead of jumping off the dangling stair:
+	try jumping instead.
 
 Section 2 - Sconce
 
@@ -16935,14 +17098,14 @@ Instead of taking the sconce:
 Understand "solid", "wrought", "iron", "pike", "bracket", "sun", "rays", "holder" as the sconce.
 
 After inserting the lit makeshift torch into the sconce:
-	say "I slow the torch neatly into the sconce. Light pours down over the pedestal opposite.";
+	say "I slot the torch neatly into the sconce. Light pours down over the pedestal opposite.";
 
 After taking the lit makeshift torch when the makeshift torch was in the sconce:
 	say "I lift the torch back out of the sconce.";
 
 Section 3 - Pedestal
 
-A granite column is scenery, a supporter, in the Dark Stair. "A granite column, waist-high to a man which means nose-height to me. The surface is marked with ridges and slots in some kind of design – maybe there used to be something here, some kind of treasure that was ripped away – or a goblin – or a heretical device powered by water or the movement of ants."
+A granite column is scenery, a supporter, in the Dark Stair. "A granite column, waist-high on a man which means chin-height to me. The surface is marked with ridges and slots in some kind of design – maybe there used to be something here, some kind of treasure that was ripped away – or a goblin – or a heretical device powered by water or the movement of ants."
 
 The printed name of the granite column is "pedestal". Understand "pedestal" as the granite column.
 
@@ -16952,6 +17115,12 @@ Instead of pushing, pulling the granite column:
 After putting the plate sundial on the granite column:
 	now the plate sundial is part of the granite column;
 	say "The sundial fits the pedestal-top precisely, almost as if the ancients who built it were capable of engineering. But primitives had no Mechanics. It was St Newton who brought us out of the dark."
+
+Instead of putting something on the granite column:
+	if the noun is the plate sundial, continue the action;
+	if the noun is the decoy Perpetuum Mobile:
+		say "I need to replace the [i]real[r] Perpetuum - otherwise the Figure will know it's a trap!";
+	say "I don't think [the noun] [is-are] meant to fit the pedestal."
 
 Section 4 - Gnomon Control (Assembled Pedestal)
 
@@ -16973,8 +17142,8 @@ Instead of taking the assembled granite column:
 Rule for printing the description of the assembled granite column:
 	say "The sundial sits on the granite pedestal, slotted neatly into place. [if the lit makeshift torch is in the sconce]The torchlight casts a needlepoint shadow: the time is [shadow setting of the granite column in words][otherwise]The light of my torch is making the time leap like crazy, as though the Earth had come loose from its bearing and was rolling end over end past the sun[end if]."
 
-Instead of rotating when the noun is the assembled granite column and the player carries the makeshift torch:
-	say "If I’m going to shift this pedestal around I’ll need my hands free. The torch is in the way!";
+Before rotating when the noun is the assembled granite column and the player carries the makeshift torch:
+	say "If I’m going to shift this pedestal around I’ll need my hands free. I can't do it holding this torch." instead;
 
 Instead of turning the assembled granite column:
 	let n be the shadow setting of the granite column + 1;
@@ -17015,11 +17184,12 @@ A gnomon rule when the shadow setting of the granite column is 1 or the shadow s
 	say "The shadow settles at [shadow setting of the granite column in words] o’clock[one of]. In the darkness, I hear something grumble and groan in response, like there was a giant trapped down there and the sundial was the lock on its cage.[or]. Whatever’s down there is right by me![or].[stopping]" instead;
 
 A gnomon rule:
-	say "The shadow moves to [shadow setting of the granite column in words].[paragraph break][one of]In the dark, something whispers and mutters.[or]Whatever’s down there in the darkness grumbles again, like it was dragging gigantic feet.[or]The grumbling thing is louder now.[or]Something is definitely moving down there, in the dark, and by the sound of it, it’s the size of the Cathedral itself.[or]The machinery responds, huge and awful.[stopping]" instead;
+	say "The shadow moves to [shadow setting of the granite column in words] o'clock. [one of]In the dark, something whispers and mutters.[or]Whatever’s down there in the darkness grumbles again, like it was dragging gigantic feet.[or]The grumbling is louder now.[or]Something is definitely moving down there, in the dark, and by the sound of it, it’s the size of the Cathedral itself.[or]The machinery responds, huge and awful.[stopping]" instead;
 
 Section 5 - Gnomon Tip
 
-The gnomon tip is scenery.
+The gnomon tip is privately-named, scenery. 
+Understand "smooth", "slope", "stone slope" as the dangling stair when the player can see the gnomon tip.
 
 Instead of going down from the Dark Stair when the player can not see the gnomon tip:
 	say "There’s nothing but space there! I’m not jumping!";
@@ -17029,12 +17199,19 @@ Instead of jumping in the Dark Stair:
 
 Part 7 - Gnomon
 
-The Middle of the Gnomon is a room, down from the Dark Stair. "The light from above quickly disappears. I’m left in darkness, worse than before. There aren’t even any walls to hang on to. I can feel the stone underfoot getting thinner and thinner, until I’m standing on a wire..."
+After going from the Dark Stair to the Middle of the Gnomon:
+	say "I make my way, one foot after another, down the narrow slope of stone...";
+	continue the action;
+
+The Middle of the Gnomon is a room, down from the Dark Stair. "The light from above quickly disappears. I’m left [if the player can see the lit makeshift torch]with just my torch[else]in darkness, worse than before[end if]. There aren’t even any walls to hang on to. I can feel the stone underfoot getting thinner and thinner, until I’m standing on a wire..."
 
 The printed name of the middle of the gnomon is "Gnomon".
 
 After deciding the scope of the player when in the middle of the gnomon:
 	place the contents of the Henge in scope;
+
+Instead of jumping when in Middle of Gnomon:
+	say "Are you mad? The drop out there could go on forever!"
 
 Part 8 - Henge
 
@@ -17053,7 +17230,7 @@ Instead of entering the giant stones:
 
 Section 2 - Gnomon
 
-The stone slope is a door, scenery, open, not openable, up from the Henge, down from the middle of the gnomon.
+The stone slope is a door, scenery, open, not openable, up from the Henge, down from the middle of the gnomon. Understand "step", "steps", "stair", "stairs", "staircase" as the stone slope.
 
 Rule for printing the description of the stone slope when in the middle of the gnomon:
 	say "It must have taken a million footsteps from a thousand people to wear these steps into the stone.";
@@ -17061,9 +17238,17 @@ Rule for printing the description of the stone slope when in the middle of the g
 Rule for printing the description of the stone slope when in the Henge:
 	say "The gnomon of the sundial climbs away into the darkness overhead.";
 
+Instead of taking or approaching or climbing the stone slope:
+	try entering the stone slope.
+
+Instead of jumping off the stone slope when in the Middle of the Gnomon:
+	try jumping instead.
+
 Section 3 - Sundial
 
 The face of the sundial is scenery, in the Henge. "The dial must be the work of a king, built by slaves for the worship of masses. It must have been ground level once, in full sunlight, maybe between a river and the sea. Now the whole of St Philip lies above it. Every bog, spring and screw, built on top of this: a clock that runs by the sun. All that machinery, Wren, built above a [i]lie[r]."
+
+Understand "dial" as the face of the sundial.
 
 The printed name of the face of the sundial is "sundial".
 
@@ -17290,6 +17475,18 @@ Instead of hiding behind the steel altar when in the Inner Vault and TRIG_FIGURE
 
 Instead of hiding behind the steel altar when in the Inner Vault and TRIG_FIGURE_ARRIVAL is fired:
 	say "Great idea – except he’ll walk straight over to it and there I’ll be. [i]With[r] the real Perpetuum.";
+
+Part 11 - Locative Glimpse Backdrops to navigate by
+
+Ossuary_glimpse is a locative glimpse backdrop, in the Crypt Landing, in the dark Stair, in the Upper Vault, in the Mortuary, localising the Ossuary. Understand "bones", "skeleton", "skeletons" as the ossuary_glimpse.
+
+Dark_Stair_glimpse is a locative glimpse backdrop, in the Crypt Landing, in the Ossuary, in the Upper Vault, in the Mortuary, localising the  dark Stair. Understand "stairs", "staircase", "pedestal" as the dark_stair_glimpse.
+
+Mortuary_glimpse is a locative glimpse backdrop, in the Crypt Landing, in the Ossuary, in the Upper Vault, in the  dark Stair, localising the Mortuary.
+
+MainChamber_glimpse is a locative glimpse backdrop,  in the Mortuary, in the Ossuary, in the Upper Vault, in the  dark Stair, localising the Crypt Landing. Understand "chamber", "main chamber", "torches" as the MainChamber_glimpse.
+
+Vault_glimpse is a locative glimpse backdrop,  in the Mortuary, in the Ossuary, in the Crypt Landing, in the  dark Stair, localising the Upper Vault.
 
 Book 13 - Midnight
 
