@@ -12,11 +12,11 @@ namespace Textfyre.TextfyreWeb.DataLayer {
     /// is generated once and is not over-written by the code generation tool.
     /// </summary>
     [DataSource("TextfyreWeb", "TextfyreWebErrors"),Serializable()]
-    public class ProfileData : Textfyre.TextfyreWeb.DataLayer.ProfileDataBase {
+    public class CustomerDownloadData : Textfyre.TextfyreWeb.DataLayer.CustomerDownloadDataBase {
         /// <summary>
         /// Empty default constructor.
         /// </summary>
-        public ProfileData() : base() {
+        public CustomerDownloadData() : base() {
         }
     }
 }

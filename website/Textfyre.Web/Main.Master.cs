@@ -10,7 +10,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
-using Textfyre.Web.Domain;
+using Textfyre.TextfyreWeb.BusinessLayer;
 
 namespace Textfyre.Web {
     public partial class Main : System.Web.UI.MasterPage {
@@ -31,7 +31,7 @@ namespace Textfyre.Web {
             if (Membership.ValidateUser(username, password)) {
                 MembershipUser member = Membership.GetUser(username);
 
-                Session["User"] = new User((Guid)member.ProviderUserKey, member.Email);
+                Session["User"] = new Textfyre.TextfyreWeb.BusinessLayer.Customer((Guid)member.ProviderUserKey);
 
                 FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,username,DateTime.Now,DateTime.Now.AddDays(14),true,username,"textfyre");
                 string encTicket = FormsAuthentication.Encrypt(ticket);

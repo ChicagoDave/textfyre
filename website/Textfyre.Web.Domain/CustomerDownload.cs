@@ -6,25 +6,25 @@ using System.ComponentModel;
 namespace Textfyre.TextfyreWeb.BusinessLayer { 
 
     /// <summary>
-    /// Starter Product domain class. This class is only generated the first time and will not
+    /// Starter CustomerDownload domain class. This class is only generated the first time and will not
     /// be over-written by the code generation tool.
     /// </summary>
     [Serializable()]
-    public class Product : ProductBase, IEditableObject {
+    public class CustomerDownload : CustomerDownloadBase, IEditableObject {
         
         /// <summary>
         /// Empty default constructor.
         /// </summary>
-        public Product() : base() {
+        public CustomerDownload() : base() {
         }
 
-        public Product(Int32 ProductId) : base(ProductId) {
+        public CustomerDownload(Guid UserId, Int32 ProductId) : base(UserId, ProductId) {
 		}        
 
         /// <summary>
-        /// Empty constructor that accepts a Productrecordset object.
+        /// Empty constructor that accepts a CustomerDownloadrecordset object.
         /// </summary>
-        public Product(ProductRecordset Recordset) : base(Recordset) {
+        public CustomerDownload(CustomerDownloadRecordset Recordset) : base(Recordset) {
         }
 
         #region "IEditableObject Interface" 
@@ -48,12 +48,12 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
         /// <summary>
         /// IEditableObject: Cancel Add New delegate.
         /// </summary>
-        public delegate void CancelAddNewEventHandler(Product sender, bool Remove);
+        public delegate void CancelAddNewEventHandler(CustomerDownload sender, bool Remove);
         
         /// <summary>
         /// IEditableObject: New object constructor.
         /// </summary>
-        public Product(bool IsAddNew) : this(0) { 
+        public CustomerDownload(bool IsAddNew) : this(Guid.NewGuid(), 0) { 
             _IsAddNew = IsAddNew; 
         } 
         

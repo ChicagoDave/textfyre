@@ -19,10 +19,10 @@ using Textfyre.TextfyreWeb.BusinessLayer;
 namespace Textfyre.TextfyreWeb.DataLayer {
 
     /// <summary>
-    /// Data Factory class that handles all database interaction for the Profile table.
+    /// Data Factory class that handles all database interaction for the Platform table.
     /// </summary>
     [Serializable()]
-    public abstract class ProfileDataBase {
+    public abstract class PlatformDataBase {
 
         #region Members
         /// <summary>
@@ -38,9 +38,9 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         private DBController _errorDBController;
 
         /// <summary>
-        /// Instance of the parameter factory class for the Profile table.
+        /// Instance of the parameter factory class for the Platform table.
         /// </summary>
-        private Textfyre.TextfyreWeb.DataLayer.ProfileParameterFactory _parameterFactory;
+        private Textfyre.TextfyreWeb.DataLayer.PlatformParameterFactory _parameterFactory;
 
         /// <summary>
         /// Instance of the cache manager.
@@ -53,25 +53,25 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         private string _cacheExpiration;
 
         /// <summary>
-        /// String constant containing 'Profile'.
+        /// String constant containing 'Platform'.
         /// </summary>
-        private const string TABLE_NAME = "Profile";
+        private const string TABLE_NAME = "Platform";
 
         #endregion        
 
         /// <summary> 
         /// Empty default constructor. 
         /// </summary> 
-        public ProfileDataBase() {
+        public PlatformDataBase() {
             GetDBControllers();
             GetCacheManager();
-            _parameterFactory = new ProfileParameterFactory();
+            _parameterFactory = new PlatformParameterFactory();
         }
 
         /// <summary>
         /// Protected property for the parameter factory.
         /// </summary>
-        protected Textfyre.TextfyreWeb.DataLayer.ProfileParameterFactory ParameterFactory {
+        protected Textfyre.TextfyreWeb.DataLayer.PlatformParameterFactory ParameterFactory {
             get { return _parameterFactory; }
         }
 
@@ -158,21 +158,21 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// <sumamry>
         /// Get all records in the table.
         /// </summary>
-        public virtual List<Textfyre.TextfyreWeb.BusinessLayer.ProfileRecordset> GetAllProfile() {
-            return ExecuteSqlGetCollection("SELECT [UserId], [FirstName], [LastName], [City], [State], [School], [IsCustomer], [OwnsSecretLetter], [OwnsShadow], [OwnsEmpathy], [ValidationId], [LastActivityDate] FROM Profile", null);
+        public virtual List<Textfyre.TextfyreWeb.BusinessLayer.PlatformRecordset> GetAllPlatform() {
+            return ExecuteSqlGetCollection("SELECT [PlatformId], [Description] FROM Platform", null);
         }
 
         /// <summary>
         /// Get a single record in the table.
         /// </summary>
-        public virtual Textfyre.TextfyreWeb.BusinessLayer.ProfileRecordset GetProfileById(Guid UserId) {
-            if (UserId == Guid.Empty)
+        public virtual Textfyre.TextfyreWeb.BusinessLayer.PlatformRecordset GetPlatformById(Int32 PlatformId) {
+            if (PlatformId < 1)
                 return null;
 
-            string sql = "SELECT [UserId], [FirstName], [LastName], [City], [State], [School], [IsCustomer], [OwnsSecretLetter], [OwnsShadow], [OwnsEmpathy], [ValidationId], [LastActivityDate] FROM Profile WHERE [UserId] = @UserId";
+            string sql = "SELECT [PlatformId], [Description] FROM Platform WHERE [PlatformId] = @PlatformId";
             List<SqlParameter> parameters = new List<SqlParameter>();
             
-			parameters.Add(ParameterFactory.GetParameter(ProfileFields.UserId, UserId));            
+			parameters.Add(ParameterFactory.GetParameter(PlatformFields.PlatformId, PlatformId));            
 
             return ExecuteSqlGetRecord(sql, parameters);
         }
@@ -180,125 +180,31 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// <summary>
         /// Insert a record into the table.
         /// </summary>
-        public virtual Guid InsertProfile(Textfyre.TextfyreWeb.BusinessLayer.ProfileRecordset record) {
-            string sql = "INSERT INTO Profile([FirstName], [LastName], [City], [State], [School], [IsCustomer], [OwnsSecretLetter], [OwnsShadow], [OwnsEmpathy], [ValidationId], [LastActivityDate]) VALUES (@FirstName, @LastName, @City, @State, @School, @IsCustomer, @OwnsSecretLetter, @OwnsShadow, @OwnsEmpathy, @ValidationId, @LastActivityDate); SELECT SCOPE_IDENTITY() as ID;";
+        public virtual Int32 InsertPlatform(Textfyre.TextfyreWeb.BusinessLayer.PlatformRecordset record) {
+            string sql = "INSERT INTO Platform([Description]) VALUES (@Description); SELECT SCOPE_IDENTITY() as ID;";
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-			if(record.FirstName != null)
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.FirstName, record.FirstName));
+			if(record.Description != null)
+				parameters.Add(ParameterFactory.GetParameter(PlatformFields.Description, record.Description));
 			else
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.FirstName, DBNull.Value));
-
-			if(record.LastName != null)
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.LastName, record.LastName));
-			else
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.LastName, DBNull.Value));
-
-			if(record.City != null)
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.City, record.City));
-			else
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.City, DBNull.Value));
-
-			if(record.State != null)
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.State, record.State));
-			else
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.State, DBNull.Value));
-
-			if(record.School != null)
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.School, record.School));
-			else
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.School, DBNull.Value));
-
-			if(record.IsCustomer.HasValue)
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.IsCustomer, record.IsCustomer.Value));
-			else
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.IsCustomer, DBNull.Value));
-
-			if(record.OwnsSecretLetter.HasValue)
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.OwnsSecretLetter, record.OwnsSecretLetter.Value));
-			else
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.OwnsSecretLetter, DBNull.Value));
-
-			if(record.OwnsShadow.HasValue)
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.OwnsShadow, record.OwnsShadow.Value));
-			else
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.OwnsShadow, DBNull.Value));
-
-			if(record.OwnsEmpathy.HasValue)
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.OwnsEmpathy, record.OwnsEmpathy.Value));
-			else
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.OwnsEmpathy, DBNull.Value));
-
-			if(record.ValidationId != null)
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.ValidationId, record.ValidationId));
-			else
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.ValidationId, DBNull.Value));
-
-			parameters.Add(ParameterFactory.GetParameter(ProfileFields.LastActivityDate, record.LastActivityDate));
+				parameters.Add(ParameterFactory.GetParameter(PlatformFields.Description, DBNull.Value));
 
             
-			return (Guid)(ExecuteSqlGetScalar(sql, parameters));
+			return Convert.ToInt32(ExecuteSqlGetScalar(sql, parameters));
         }
 
         /// <summary>
         /// Update a record in the table.
         /// </summary>
-        public virtual int UpdateProfile(Textfyre.TextfyreWeb.BusinessLayer.ProfileRecordset record) {
-            string sql = "UPDATE Profile SET [FirstName] = @FirstName, [LastName] = @LastName, [City] = @City, [State] = @State, [School] = @School, [IsCustomer] = @IsCustomer, [OwnsSecretLetter] = @OwnsSecretLetter, [OwnsShadow] = @OwnsShadow, [OwnsEmpathy] = @OwnsEmpathy, [ValidationId] = @ValidationId, [LastActivityDate] = @LastActivityDate WHERE [UserId] = @UserId";
+        public virtual int UpdatePlatform(Textfyre.TextfyreWeb.BusinessLayer.PlatformRecordset record) {
+            string sql = "UPDATE Platform SET [Description] = @Description WHERE [PlatformId] = @PlatformId";
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-			parameters.Add(ParameterFactory.GetParameter(ProfileFields.UserId, record.UserId));
-			if(record.FirstName != null)
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.FirstName, record.FirstName));
+			parameters.Add(ParameterFactory.GetParameter(PlatformFields.PlatformId, record.PlatformId));
+			if(record.Description != null)
+				parameters.Add(ParameterFactory.GetParameter(PlatformFields.Description, record.Description));
 			else
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.FirstName, DBNull.Value));
-
-			if(record.LastName != null)
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.LastName, record.LastName));
-			else
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.LastName, DBNull.Value));
-
-			if(record.City != null)
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.City, record.City));
-			else
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.City, DBNull.Value));
-
-			if(record.State != null)
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.State, record.State));
-			else
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.State, DBNull.Value));
-
-			if(record.School != null)
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.School, record.School));
-			else
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.School, DBNull.Value));
-
-			if(record.IsCustomer.HasValue)
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.IsCustomer, record.IsCustomer.Value));
-			else
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.IsCustomer, DBNull.Value));
-
-			if(record.OwnsSecretLetter.HasValue)
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.OwnsSecretLetter, record.OwnsSecretLetter.Value));
-			else
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.OwnsSecretLetter, DBNull.Value));
-
-			if(record.OwnsShadow.HasValue)
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.OwnsShadow, record.OwnsShadow.Value));
-			else
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.OwnsShadow, DBNull.Value));
-
-			if(record.OwnsEmpathy.HasValue)
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.OwnsEmpathy, record.OwnsEmpathy.Value));
-			else
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.OwnsEmpathy, DBNull.Value));
-
-			if(record.ValidationId != null)
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.ValidationId, record.ValidationId));
-			else
-				parameters.Add(ParameterFactory.GetParameter(ProfileFields.ValidationId, DBNull.Value));
-
-			parameters.Add(ParameterFactory.GetParameter(ProfileFields.LastActivityDate, record.LastActivityDate));
+				parameters.Add(ParameterFactory.GetParameter(PlatformFields.Description, DBNull.Value));
 
             
             return ExecuteSqlGetNonScalar(sql, parameters);
@@ -307,11 +213,11 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// <summary>
         /// Delete a record in the table.
         /// </summary>
-        public virtual int DeleteProfile(Guid UserId) {
-            string sql = "DELETE FROM Profile WHERE [UserId] = @UserId";
+        public virtual int DeletePlatform(Int32 PlatformId) {
+            string sql = "DELETE FROM Platform WHERE [PlatformId] = @PlatformId";
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-			parameters.Add(ParameterFactory.GetParameter(ProfileFields.UserId, UserId));
+			parameters.Add(ParameterFactory.GetParameter(PlatformFields.PlatformId, PlatformId));
 
             
             return ExecuteSqlGetNonScalar(sql, parameters);
@@ -480,26 +386,26 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// <summary>
         /// Execute a query stored by name in the web.config file and return a strongly typed recordset.
         /// </summary>
-        public Textfyre.TextfyreWeb.BusinessLayer.ProfileRecordset ExecuteQueryNameGetRecord(string QueryName, List<SqlParameter> Parameters) {
+        public Textfyre.TextfyreWeb.BusinessLayer.PlatformRecordset ExecuteQueryNameGetRecord(string QueryName, List<SqlParameter> Parameters) {
             return ExecuteGetRecord(_mainDBController.SqlText(QueryName), Parameters);
         }
 
         /// <summary>
         /// Execute a direct SQL statement and return a strongly typed recordset.
         /// </summary>
-        public Textfyre.TextfyreWeb.BusinessLayer.ProfileRecordset ExecuteSqlGetRecord(string SqlText, List<SqlParameter> Parameters) {
+        public Textfyre.TextfyreWeb.BusinessLayer.PlatformRecordset ExecuteSqlGetRecord(string SqlText, List<SqlParameter> Parameters) {
             return ExecuteGetRecord(SqlText, Parameters);
         }        
 
         /// <summary>
         /// Private method that executes a sql command and returns a strongly typed recordset.
         /// </summary>
-        private Textfyre.TextfyreWeb.BusinessLayer.ProfileRecordset ExecuteGetRecord(string CmdText, List<SqlParameter> Parameters) {
-            List<Textfyre.TextfyreWeb.BusinessLayer.ProfileRecordset> newProfileRecordsetList = ExecuteReader(CmdText, Parameters, false);
-            if(newProfileRecordsetList.Count == 0)
+        private Textfyre.TextfyreWeb.BusinessLayer.PlatformRecordset ExecuteGetRecord(string CmdText, List<SqlParameter> Parameters) {
+            List<Textfyre.TextfyreWeb.BusinessLayer.PlatformRecordset> newPlatformRecordsetList = ExecuteReader(CmdText, Parameters, false);
+            if(newPlatformRecordsetList.Count == 0)
                 return null;
 
-            return newProfileRecordsetList[0];
+            return newPlatformRecordsetList[0];
         }        
         #endregion
 
@@ -508,7 +414,7 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// Execute a query stored by name in the web.config file and return
         /// a strongly typed collection of recordsets.
         /// </summary>
-        public List<Textfyre.TextfyreWeb.BusinessLayer.ProfileRecordset> ExecuteQueryNameGetCollection(string QueryName, List<SqlParameter> Parameters) {
+        public List<Textfyre.TextfyreWeb.BusinessLayer.PlatformRecordset> ExecuteQueryNameGetCollection(string QueryName, List<SqlParameter> Parameters) {
             return ExecuteReader(_mainDBController.SqlText(QueryName), Parameters, false);
         }
 
@@ -516,7 +422,7 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// Execute a direct SQL statement and return
         /// a strongly typed collection of recordsets.
         /// </summary>
-        public List<Textfyre.TextfyreWeb.BusinessLayer.ProfileRecordset> ExecuteSqlGetCollection(string SqlText, List<SqlParameter> Parameters) {
+        public List<Textfyre.TextfyreWeb.BusinessLayer.PlatformRecordset> ExecuteSqlGetCollection(string SqlText, List<SqlParameter> Parameters) {
             return ExecuteReader(SqlText, Parameters, false);
         }
 
@@ -524,7 +430,7 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// Execute a stored procedure and return
         /// a strongly typed collection of recordsets.
         /// </summary>
-        protected List<Textfyre.TextfyreWeb.BusinessLayer.ProfileRecordset> ExecuteSPGetCollection(string StoredProcedureName, List<SqlParameter> Parameters) {
+        protected List<Textfyre.TextfyreWeb.BusinessLayer.PlatformRecordset> ExecuteSPGetCollection(string StoredProcedureName, List<SqlParameter> Parameters) {
             return ExecuteReader(StoredProcedureName, Parameters, true);
         }
 
@@ -535,125 +441,65 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// <summary> 
         /// Load Items collection with data. 
         /// </summary> 
-        /// <param name="drProfile"></param> 
-        private List<Textfyre.TextfyreWeb.BusinessLayer.ProfileRecordset> LoadItems(SqlDataReader drProfile) {           
+        /// <param name="drPlatform"></param> 
+        private List<Textfyre.TextfyreWeb.BusinessLayer.PlatformRecordset> LoadItems(SqlDataReader drPlatform) {           
 
-            List<Textfyre.TextfyreWeb.BusinessLayer.ProfileRecordset> newProfileRecordsetList = new List<Textfyre.TextfyreWeb.BusinessLayer.ProfileRecordset>();
+            List<Textfyre.TextfyreWeb.BusinessLayer.PlatformRecordset> newPlatformRecordsetList = new List<Textfyre.TextfyreWeb.BusinessLayer.PlatformRecordset>();
             bool namesMapped = false;
             Dictionary<string, int> fieldMap = null;
 
             // read through datareader, add items 
-            while (drProfile.Read()) {
+            while (drPlatform.Read()) {
 
                 if (!namesMapped) {
                     //Map field name to ordinal position
                     fieldMap = new Dictionary<string, int>();
-                    for (int i = 0; i < drProfile.FieldCount; i++)
-                        fieldMap.Add(drProfile.GetName(i), i);
+                    for (int i = 0; i < drPlatform.FieldCount; i++)
+                        fieldMap.Add(drPlatform.GetName(i), i);
 
                     namesMapped = true;
                 }
 
-                Textfyre.TextfyreWeb.BusinessLayer.ProfileRecordset newProfileRecordset = new Textfyre.TextfyreWeb.BusinessLayer.ProfileRecordset();
+                Textfyre.TextfyreWeb.BusinessLayer.PlatformRecordset newPlatformRecordset = new Textfyre.TextfyreWeb.BusinessLayer.PlatformRecordset();
                 object o = null;
 
-				if (fieldMap.ContainsKey("UserId")) {
-					o = drProfile[fieldMap["UserId"]];
+				if (fieldMap.ContainsKey("PlatformId")) {
+					o = drPlatform[fieldMap["PlatformId"]];
 					if (o != DBNull.Value)
-						newProfileRecordset.UserId = (Guid)o;
+						newPlatformRecordset.PlatformId = (Int32)o;
 				}
 
-				if (fieldMap.ContainsKey("FirstName")) {
-					o = drProfile[fieldMap["FirstName"]];
+				if (fieldMap.ContainsKey("Description")) {
+					o = drPlatform[fieldMap["Description"]];
 					if (o != DBNull.Value)
-						newProfileRecordset.FirstName = ((string)o).Trim();
-				}
-
-				if (fieldMap.ContainsKey("LastName")) {
-					o = drProfile[fieldMap["LastName"]];
-					if (o != DBNull.Value)
-						newProfileRecordset.LastName = ((string)o).Trim();
-				}
-
-				if (fieldMap.ContainsKey("City")) {
-					o = drProfile[fieldMap["City"]];
-					if (o != DBNull.Value)
-						newProfileRecordset.City = ((string)o).Trim();
-				}
-
-				if (fieldMap.ContainsKey("State")) {
-					o = drProfile[fieldMap["State"]];
-					if (o != DBNull.Value)
-						newProfileRecordset.State = ((string)o).Trim();
-				}
-
-				if (fieldMap.ContainsKey("School")) {
-					o = drProfile[fieldMap["School"]];
-					if (o != DBNull.Value)
-						newProfileRecordset.School = ((string)o).Trim();
-				}
-
-				if (fieldMap.ContainsKey("IsCustomer")) {
-					o = drProfile[fieldMap["IsCustomer"]];
-					if (o != DBNull.Value)
-						newProfileRecordset.IsCustomer = (bool)o;
-				}
-
-				if (fieldMap.ContainsKey("OwnsSecretLetter")) {
-					o = drProfile[fieldMap["OwnsSecretLetter"]];
-					if (o != DBNull.Value)
-						newProfileRecordset.OwnsSecretLetter = (bool)o;
-				}
-
-				if (fieldMap.ContainsKey("OwnsShadow")) {
-					o = drProfile[fieldMap["OwnsShadow"]];
-					if (o != DBNull.Value)
-						newProfileRecordset.OwnsShadow = (bool)o;
-				}
-
-				if (fieldMap.ContainsKey("OwnsEmpathy")) {
-					o = drProfile[fieldMap["OwnsEmpathy"]];
-					if (o != DBNull.Value)
-						newProfileRecordset.OwnsEmpathy = (bool)o;
-				}
-
-				if (fieldMap.ContainsKey("ValidationId")) {
-					o = drProfile[fieldMap["ValidationId"]];
-					if (o != DBNull.Value)
-						newProfileRecordset.ValidationId = ((string)o).Trim();
-				}
-
-				if (fieldMap.ContainsKey("LastActivityDate")) {
-					o = drProfile[fieldMap["LastActivityDate"]];
-					if (o != DBNull.Value)
-						newProfileRecordset.LastActivityDate = (DateTime)o;
+						newPlatformRecordset.Description = ((string)o).Trim();
 				}
 
 
-                newProfileRecordset.IsDirty = false;
-                newProfileRecordsetList.Add(newProfileRecordset);
+                newPlatformRecordset.IsDirty = false;
+                newPlatformRecordsetList.Add(newPlatformRecordset);
             }
             
-            return newProfileRecordsetList;
+            return newPlatformRecordsetList;
         }
 
         /// <summary>
-        /// Private method that returns a List<T> of ProfileRecordset
+        /// Private method that returns a List<T> of PlatformRecordset
         /// </summary>
-        private List<Textfyre.TextfyreWeb.BusinessLayer.ProfileRecordset> ExecuteReader(string CmdText, List<SqlParameter> Parameters, bool isStoredProcedure) {
+        private List<Textfyre.TextfyreWeb.BusinessLayer.PlatformRecordset> ExecuteReader(string CmdText, List<SqlParameter> Parameters, bool isStoredProcedure) {
             SqlDataReader selectReader                                                           = null;
-            List<Textfyre.TextfyreWeb.BusinessLayer.ProfileRecordset> newProfileRecordsetList = null;
+            List<Textfyre.TextfyreWeb.BusinessLayer.PlatformRecordset> newPlatformRecordsetList = null;
             string cacheKey                                                                      = null;
 
             if (_cacheManager != null) {
                 cacheKey = _cacheManager.CreateCacheKey(TABLE_NAME, Parameters);
 
                 if (_cacheManager.Exists2(cacheKey)) {
-                    newProfileRecordsetList = _cacheManager.Get2< List<Textfyre.TextfyreWeb.BusinessLayer.ProfileRecordset> >(cacheKey);
+                    newPlatformRecordsetList = _cacheManager.Get2< List<Textfyre.TextfyreWeb.BusinessLayer.PlatformRecordset> >(cacheKey);
                 }
             }
 
-            if (newProfileRecordsetList == null) {
+            if (newPlatformRecordsetList == null) {
                 try {
                     if (!_mainDBController.HasTransaction)
                         _mainDBController.CurrentConnection.Open();
@@ -661,7 +507,7 @@ namespace Textfyre.TextfyreWeb.DataLayer {
                     SqlCommand sqlCmd = CreateCommand(CmdText, Parameters, isStoredProcedure);
                     selectReader = sqlCmd.ExecuteReader();
 
-                    newProfileRecordsetList = LoadItems(selectReader);
+                    newPlatformRecordsetList = LoadItems(selectReader);
                     sqlCmd.Parameters.Clear();
                 } catch (SqlException sqlEx) {
                     LogSqlException("ExecuteReader", sqlEx);
@@ -680,11 +526,11 @@ namespace Textfyre.TextfyreWeb.DataLayer {
                 }
 
                 if (_cacheManager != null) {
-                    _cacheManager.Set2(cacheKey, newProfileRecordsetList, _cacheExpiration);
+                    _cacheManager.Set2(cacheKey, newPlatformRecordsetList, _cacheExpiration);
                 }
             }
 
-            return newProfileRecordsetList;
+            return newPlatformRecordsetList;
         }
 
         /// <summary>
@@ -692,13 +538,13 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// </summary>
         private void LogSqlException(string methodName, SqlException sqlEx) {            
             if (sqlEx.Class >= 20) {
-                Logger.LogMessage(typeof(ProfileDataBase).FullName, methodName, sqlEx,
+                Logger.LogMessage(typeof(PlatformDataBase).FullName, methodName, sqlEx,
                                   Severity.FATAL, LogLocation.ALL);
             } else if ((sqlEx.Class >= 11) && (sqlEx.Class < 20)) {
-                Logger.LogMessage(typeof(ProfileDataBase).FullName, methodName, sqlEx,
+                Logger.LogMessage(typeof(PlatformDataBase).FullName, methodName, sqlEx,
                                   Severity.ERROR, LogLocation.ALL);
             } else if (sqlEx.Class < 11) {
-                Logger.LogMessage(typeof(ProfileDataBase).FullName, methodName, sqlEx,
+                Logger.LogMessage(typeof(PlatformDataBase).FullName, methodName, sqlEx,
                                   Severity.INFO, LogLocation.ALL);
             }
         }
@@ -707,7 +553,7 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// Private method to log and handle general exceptions.
         /// </summary>
         private void LogGenericException(string methodName, Exception ex) {
-            Logger.LogMessage(typeof(ProfileDataBase).FullName, methodName, ex,
+            Logger.LogMessage(typeof(PlatformDataBase).FullName, methodName, ex,
                               Severity.ERROR, LogLocation.ALL);
         }
 

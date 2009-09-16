@@ -27,6 +27,10 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
         public Download(DownloadRecordset Recordset) : base(Recordset) {
         }
 
+        public DownloadCollection LoadByUserId(Guid UserId) {
+            return DataLayer.DownloadData.LoadByUserId(UserId);
+        }
+
         #region "IEditableObject Interface" 
         /// <summary>
         /// IEditableObject: Original data container.

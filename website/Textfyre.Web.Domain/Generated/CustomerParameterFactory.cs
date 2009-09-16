@@ -15,91 +15,112 @@ namespace Textfyre.TextfyreWeb.DataLayer {
     /// Factory class that auto-builds SqlParameters.
     /// </summary>
     [Serializable()]
-    public class ProfileParameterFactory {
+    public class CustomerParameterFactory {
         /// <summary>
         /// GetParameter method returns a SqlParameter.
         /// </summary>
-        public SqlParameter GetParameter(Textfyre.TextfyreWeb.DataLayer.ProfileFields FieldIdentity, object FieldValue) { 
+        public SqlParameter GetParameter(Textfyre.TextfyreWeb.DataLayer.CustomerFields FieldIdentity, object FieldValue) { 
             SqlParameter param = null;
             switch (FieldIdentity) {
-				case ProfileFields.UserId:
+				case CustomerFields.UserId:
 					param = new SqlParameter("@UserId", SqlDbType.UniqueIdentifier);
 					param.Value = FieldValue;
 					param.Direction = ParameterDirection.Input;
 					param.IsNullable = false;
 					param.SourceColumn = "UserId";
 					break;
-				case ProfileFields.FirstName:
-					param = new SqlParameter("@FirstName", SqlDbType.NVarChar, 50);
-					param.Value = FieldValue;
-					param.Direction = ParameterDirection.Input;
-					param.IsNullable = true;
-					param.SourceColumn = "FirstName";
-					break;
-				case ProfileFields.LastName:
-					param = new SqlParameter("@LastName", SqlDbType.NVarChar, 50);
-					param.Value = FieldValue;
-					param.Direction = ParameterDirection.Input;
-					param.IsNullable = true;
-					param.SourceColumn = "LastName";
-					break;
-				case ProfileFields.City:
-					param = new SqlParameter("@City", SqlDbType.NVarChar, 50);
-					param.Value = FieldValue;
-					param.Direction = ParameterDirection.Input;
-					param.IsNullable = true;
-					param.SourceColumn = "City";
-					break;
-				case ProfileFields.State:
-					param = new SqlParameter("@State", SqlDbType.Char, 2);
-					param.Value = FieldValue;
-					param.Direction = ParameterDirection.Input;
-					param.IsNullable = true;
-					param.SourceColumn = "State";
-					break;
-				case ProfileFields.School:
+				case CustomerFields.School:
 					param = new SqlParameter("@School", SqlDbType.NVarChar, 100);
 					param.Value = FieldValue;
 					param.Direction = ParameterDirection.Input;
 					param.IsNullable = true;
 					param.SourceColumn = "School";
 					break;
-				case ProfileFields.IsCustomer:
-					param = new SqlParameter("@IsCustomer", SqlDbType.Bit);
+				case CustomerFields.FirstName:
+					param = new SqlParameter("@FirstName", SqlDbType.NVarChar, 50);
 					param.Value = FieldValue;
 					param.Direction = ParameterDirection.Input;
 					param.IsNullable = true;
-					param.SourceColumn = "IsCustomer";
+					param.SourceColumn = "FirstName";
 					break;
-				case ProfileFields.OwnsSecretLetter:
-					param = new SqlParameter("@OwnsSecretLetter", SqlDbType.Bit);
+				case CustomerFields.LastName:
+					param = new SqlParameter("@LastName", SqlDbType.NVarChar, 50);
 					param.Value = FieldValue;
 					param.Direction = ParameterDirection.Input;
 					param.IsNullable = true;
-					param.SourceColumn = "OwnsSecretLetter";
+					param.SourceColumn = "LastName";
 					break;
-				case ProfileFields.OwnsShadow:
-					param = new SqlParameter("@OwnsShadow", SqlDbType.Bit);
+				case CustomerFields.Address1:
+					param = new SqlParameter("@Address1", SqlDbType.NVarChar, 50);
 					param.Value = FieldValue;
 					param.Direction = ParameterDirection.Input;
 					param.IsNullable = true;
-					param.SourceColumn = "OwnsShadow";
+					param.SourceColumn = "Address1";
 					break;
-				case ProfileFields.OwnsEmpathy:
-					param = new SqlParameter("@OwnsEmpathy", SqlDbType.Bit);
+				case CustomerFields.Address2:
+					param = new SqlParameter("@Address2", SqlDbType.NVarChar, 50);
 					param.Value = FieldValue;
 					param.Direction = ParameterDirection.Input;
 					param.IsNullable = true;
-					param.SourceColumn = "OwnsEmpathy";
+					param.SourceColumn = "Address2";
 					break;
-				case ProfileFields.ValidationId:
+				case CustomerFields.City:
+					param = new SqlParameter("@City", SqlDbType.NVarChar, 50);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "City";
+					break;
+				case CustomerFields.State:
+					param = new SqlParameter("@State", SqlDbType.Char, 2);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "State";
+					break;
+				case CustomerFields.PostalCode:
+					param = new SqlParameter("@PostalCode", SqlDbType.NVarChar, 15);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "PostalCode";
+					break;
+				case CustomerFields.CountryCode:
+					param = new SqlParameter("@CountryCode", SqlDbType.Char, 3);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "CountryCode";
+					break;
+				case CustomerFields.PhoneNumber:
+					param = new SqlParameter("@PhoneNumber", SqlDbType.NVarChar, 20);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "PhoneNumber";
+					break;
+				case CustomerFields.MobileNumber:
+					param = new SqlParameter("@MobileNumber", SqlDbType.NVarChar, 20);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "MobileNumber";
+					break;
+				case CustomerFields.HasDownloads:
+					param = new SqlParameter("@HasDownloads", SqlDbType.Bit);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = false;
+					param.SourceColumn = "HasDownloads";
+					break;
+				case CustomerFields.ValidationId:
 					param = new SqlParameter("@ValidationId", SqlDbType.NVarChar, 50);
 					param.Value = FieldValue;
 					param.Direction = ParameterDirection.Input;
 					param.IsNullable = true;
 					param.SourceColumn = "ValidationId";
 					break;
-				case ProfileFields.LastActivityDate:
+				case CustomerFields.LastActivityDate:
 					param = new SqlParameter("@LastActivityDate", SqlDbType.DateTime);
 					param.Value = FieldValue;
 					param.Direction = ParameterDirection.Input;

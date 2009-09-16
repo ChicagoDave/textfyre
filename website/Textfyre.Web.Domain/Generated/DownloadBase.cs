@@ -179,22 +179,22 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 			}
 		}
 
-		public virtual string ItemNumber {
-			get { return _recordset.ItemNumber; }
+		public virtual Int32? ProductId {
+			get { return _recordset.ProductId; }
 			set {
-				if (_recordset.ItemNumber != value) {
-					_recordset.ItemNumber = value;
-					NotifyPropertyChanged("ItemNumber");
+				if (_recordset.ProductId != value) {
+					_recordset.ProductId = value;
+					NotifyPropertyChanged("ProductId");
 				}
 			}
 		}
 
-		public virtual string ItemDescription {
-			get { return _recordset.ItemDescription; }
+		public virtual Int32? PlatformId {
+			get { return _recordset.PlatformId; }
 			set {
-				if (_recordset.ItemDescription != value) {
-					_recordset.ItemDescription = value;
-					NotifyPropertyChanged("ItemDescription");
+				if (_recordset.PlatformId != value) {
+					_recordset.PlatformId = value;
+					NotifyPropertyChanged("PlatformId");
 				}
 			}
 		}
@@ -225,6 +225,166 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 				if (_recordset.IsLocked != value) {
 					_recordset.IsLocked = value;
 					NotifyPropertyChanged("IsLocked");
+				}
+			}
+		}
+
+		public virtual bool? IntelMac {
+			get { return _recordset.IntelMac; }
+			set {
+				if (_recordset.IntelMac != value) {
+					_recordset.IntelMac = value;
+					NotifyPropertyChanged("IntelMac");
+				}
+			}
+		}
+
+		public virtual bool? PowerPCMac {
+			get { return _recordset.PowerPCMac; }
+			set {
+				if (_recordset.PowerPCMac != value) {
+					_recordset.PowerPCMac = value;
+					NotifyPropertyChanged("PowerPCMac");
+				}
+			}
+		}
+
+		public virtual bool? WindowsXP {
+			get { return _recordset.WindowsXP; }
+			set {
+				if (_recordset.WindowsXP != value) {
+					_recordset.WindowsXP = value;
+					NotifyPropertyChanged("WindowsXP");
+				}
+			}
+		}
+
+		public virtual bool? WindowsVista {
+			get { return _recordset.WindowsVista; }
+			set {
+				if (_recordset.WindowsVista != value) {
+					_recordset.WindowsVista = value;
+					NotifyPropertyChanged("WindowsVista");
+				}
+			}
+		}
+
+		public virtual bool? Windows7 {
+			get { return _recordset.Windows7; }
+			set {
+				if (_recordset.Windows7 != value) {
+					_recordset.Windows7 = value;
+					NotifyPropertyChanged("Windows7");
+				}
+			}
+		}
+
+		public virtual bool? Linux {
+			get { return _recordset.Linux; }
+			set {
+				if (_recordset.Linux != value) {
+					_recordset.Linux = value;
+					NotifyPropertyChanged("Linux");
+				}
+			}
+		}
+
+		public virtual bool? Unix {
+			get { return _recordset.Unix; }
+			set {
+				if (_recordset.Unix != value) {
+					_recordset.Unix = value;
+					NotifyPropertyChanged("Unix");
+				}
+			}
+		}
+
+		public virtual bool? WindowsMobile {
+			get { return _recordset.WindowsMobile; }
+			set {
+				if (_recordset.WindowsMobile != value) {
+					_recordset.WindowsMobile = value;
+					NotifyPropertyChanged("WindowsMobile");
+				}
+			}
+		}
+
+		public virtual bool? iPhone {
+			get { return _recordset.iPhone; }
+			set {
+				if (_recordset.iPhone != value) {
+					_recordset.iPhone = value;
+					NotifyPropertyChanged("iPhone");
+				}
+			}
+		}
+
+		public virtual bool? ScreenReader {
+			get { return _recordset.ScreenReader; }
+			set {
+				if (_recordset.ScreenReader != value) {
+					_recordset.ScreenReader = value;
+					NotifyPropertyChanged("ScreenReader");
+				}
+			}
+		}
+
+		public virtual bool? RequiresSilverlight {
+			get { return _recordset.RequiresSilverlight; }
+			set {
+				if (_recordset.RequiresSilverlight != value) {
+					_recordset.RequiresSilverlight = value;
+					NotifyPropertyChanged("RequiresSilverlight");
+				}
+			}
+		}
+
+		public virtual bool? RequiresFlash {
+			get { return _recordset.RequiresFlash; }
+			set {
+				if (_recordset.RequiresFlash != value) {
+					_recordset.RequiresFlash = value;
+					NotifyPropertyChanged("RequiresFlash");
+				}
+			}
+		}
+
+		public virtual bool? RequiresDotNet {
+			get { return _recordset.RequiresDotNet; }
+			set {
+				if (_recordset.RequiresDotNet != value) {
+					_recordset.RequiresDotNet = value;
+					NotifyPropertyChanged("RequiresDotNet");
+				}
+			}
+		}
+
+		public virtual string DotNetVersion {
+			get { return _recordset.DotNetVersion; }
+			set {
+				if (_recordset.DotNetVersion != value) {
+					_recordset.DotNetVersion = value;
+					NotifyPropertyChanged("DotNetVersion");
+				}
+			}
+		}
+
+		public virtual bool? RequiresMono {
+			get { return _recordset.RequiresMono; }
+			set {
+				if (_recordset.RequiresMono != value) {
+					_recordset.RequiresMono = value;
+					NotifyPropertyChanged("RequiresMono");
+				}
+			}
+		}
+
+		public virtual bool? RequiresMoonlight {
+			get { return _recordset.RequiresMoonlight; }
+			set {
+				if (_recordset.RequiresMoonlight != value) {
+					_recordset.RequiresMoonlight = value;
+					NotifyPropertyChanged("RequiresMoonlight");
 				}
 			}
 		}
@@ -304,29 +464,29 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 						return Nullable.Compare<Int32>(o2.DownloadId, o1.DownloadId);
 					};
 
-			public static Comparison<Download> ItemNumberColumnASC =
-				delegate(Download o1, Download o2)
-				{
-					return o1.ItemNumber.CompareTo(o2.ItemNumber);
-				};
+			public static Comparison<Download> ProductIdColumnASC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<Int32>(o1.ProductId, o2.ProductId);
+					};
 
-			public static Comparison<Download> ItemNumberColumnDESC =
-				delegate(Download o1, Download o2)
-				{
-					return o2.ItemNumber.CompareTo(o1.ItemNumber);
-				};
+			public static Comparison<Download> ProductIdColumnDESC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<Int32>(o2.ProductId, o1.ProductId);
+					};
 
-			public static Comparison<Download> ItemDescriptionColumnASC =
-				delegate(Download o1, Download o2)
-				{
-					return o1.ItemDescription.CompareTo(o2.ItemDescription);
-				};
+			public static Comparison<Download> PlatformIdColumnASC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<Int32>(o1.PlatformId, o2.PlatformId);
+					};
 
-			public static Comparison<Download> ItemDescriptionColumnDESC =
-				delegate(Download o1, Download o2)
-				{
-					return o2.ItemDescription.CompareTo(o1.ItemDescription);
-				};
+			public static Comparison<Download> PlatformIdColumnDESC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<Int32>(o2.PlatformId, o1.PlatformId);
+					};
 
 			public static Comparison<Download> VersionColumnASC =
 				delegate(Download o1, Download o2)
@@ -362,6 +522,198 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 					delegate(Download o1, Download o2)
 					{
 						return Nullable.Compare<bool>(o2.IsLocked, o1.IsLocked);
+					};
+
+			public static Comparison<Download> IntelMacColumnASC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o1.IntelMac, o2.IntelMac);
+					};
+
+			public static Comparison<Download> IntelMacColumnDESC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o2.IntelMac, o1.IntelMac);
+					};
+
+			public static Comparison<Download> PowerPCMacColumnASC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o1.PowerPCMac, o2.PowerPCMac);
+					};
+
+			public static Comparison<Download> PowerPCMacColumnDESC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o2.PowerPCMac, o1.PowerPCMac);
+					};
+
+			public static Comparison<Download> WindowsXPColumnASC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o1.WindowsXP, o2.WindowsXP);
+					};
+
+			public static Comparison<Download> WindowsXPColumnDESC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o2.WindowsXP, o1.WindowsXP);
+					};
+
+			public static Comparison<Download> WindowsVistaColumnASC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o1.WindowsVista, o2.WindowsVista);
+					};
+
+			public static Comparison<Download> WindowsVistaColumnDESC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o2.WindowsVista, o1.WindowsVista);
+					};
+
+			public static Comparison<Download> Windows7ColumnASC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o1.Windows7, o2.Windows7);
+					};
+
+			public static Comparison<Download> Windows7ColumnDESC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o2.Windows7, o1.Windows7);
+					};
+
+			public static Comparison<Download> LinuxColumnASC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o1.Linux, o2.Linux);
+					};
+
+			public static Comparison<Download> LinuxColumnDESC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o2.Linux, o1.Linux);
+					};
+
+			public static Comparison<Download> UnixColumnASC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o1.Unix, o2.Unix);
+					};
+
+			public static Comparison<Download> UnixColumnDESC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o2.Unix, o1.Unix);
+					};
+
+			public static Comparison<Download> WindowsMobileColumnASC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o1.WindowsMobile, o2.WindowsMobile);
+					};
+
+			public static Comparison<Download> WindowsMobileColumnDESC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o2.WindowsMobile, o1.WindowsMobile);
+					};
+
+			public static Comparison<Download> iPhoneColumnASC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o1.iPhone, o2.iPhone);
+					};
+
+			public static Comparison<Download> iPhoneColumnDESC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o2.iPhone, o1.iPhone);
+					};
+
+			public static Comparison<Download> ScreenReaderColumnASC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o1.ScreenReader, o2.ScreenReader);
+					};
+
+			public static Comparison<Download> ScreenReaderColumnDESC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o2.ScreenReader, o1.ScreenReader);
+					};
+
+			public static Comparison<Download> RequiresSilverlightColumnASC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o1.RequiresSilverlight, o2.RequiresSilverlight);
+					};
+
+			public static Comparison<Download> RequiresSilverlightColumnDESC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o2.RequiresSilverlight, o1.RequiresSilverlight);
+					};
+
+			public static Comparison<Download> RequiresFlashColumnASC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o1.RequiresFlash, o2.RequiresFlash);
+					};
+
+			public static Comparison<Download> RequiresFlashColumnDESC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o2.RequiresFlash, o1.RequiresFlash);
+					};
+
+			public static Comparison<Download> RequiresDotNetColumnASC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o1.RequiresDotNet, o2.RequiresDotNet);
+					};
+
+			public static Comparison<Download> RequiresDotNetColumnDESC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o2.RequiresDotNet, o1.RequiresDotNet);
+					};
+
+			public static Comparison<Download> DotNetVersionColumnASC =
+				delegate(Download o1, Download o2)
+				{
+					return o1.DotNetVersion.CompareTo(o2.DotNetVersion);
+				};
+
+			public static Comparison<Download> DotNetVersionColumnDESC =
+				delegate(Download o1, Download o2)
+				{
+					return o2.DotNetVersion.CompareTo(o1.DotNetVersion);
+				};
+
+			public static Comparison<Download> RequiresMonoColumnASC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o1.RequiresMono, o2.RequiresMono);
+					};
+
+			public static Comparison<Download> RequiresMonoColumnDESC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o2.RequiresMono, o1.RequiresMono);
+					};
+
+			public static Comparison<Download> RequiresMoonlightColumnASC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o1.RequiresMoonlight, o2.RequiresMoonlight);
+					};
+
+			public static Comparison<Download> RequiresMoonlightColumnDESC =
+					delegate(Download o1, Download o2)
+					{
+						return Nullable.Compare<bool>(o2.RequiresMoonlight, o1.RequiresMoonlight);
 					};
 
 

@@ -6,25 +6,25 @@ using System.ComponentModel;
 namespace Textfyre.TextfyreWeb.BusinessLayer { 
 
     /// <summary>
-    /// Starter Profile domain class. This class is only generated the first time and will not
+    /// Starter Platform domain class. This class is only generated the first time and will not
     /// be over-written by the code generation tool.
     /// </summary>
     [Serializable()]
-    public class Profile : ProfileBase, IEditableObject {
+    public class Platform : PlatformBase, IEditableObject {
         
         /// <summary>
         /// Empty default constructor.
         /// </summary>
-        public Profile() : base() {
+        public Platform() : base() {
         }
 
-        public Profile(Guid UserId) : base(UserId) {
+        public Platform(Int32 PlatformId) : base(PlatformId) {
 		}        
 
         /// <summary>
-        /// Empty constructor that accepts a Profilerecordset object.
+        /// Empty constructor that accepts a Platformrecordset object.
         /// </summary>
-        public Profile(ProfileRecordset Recordset) : base(Recordset) {
+        public Platform(PlatformRecordset Recordset) : base(Recordset) {
         }
 
         #region "IEditableObject Interface" 
@@ -48,12 +48,12 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
         /// <summary>
         /// IEditableObject: Cancel Add New delegate.
         /// </summary>
-        public delegate void CancelAddNewEventHandler(Profile sender, bool Remove);
+        public delegate void CancelAddNewEventHandler(Platform sender, bool Remove);
         
         /// <summary>
         /// IEditableObject: New object constructor.
         /// </summary>
-        public Profile(bool IsAddNew) : this(Guid.NewGuid()) { 
+        public Platform(bool IsAddNew) : this(0) { 
             _IsAddNew = IsAddNew; 
         } 
         

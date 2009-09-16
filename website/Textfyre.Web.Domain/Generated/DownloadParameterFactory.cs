@@ -29,19 +29,19 @@ namespace Textfyre.TextfyreWeb.DataLayer {
 					param.IsNullable = false;
 					param.SourceColumn = "DownloadId";
 					break;
-				case DownloadFields.ItemNumber:
-					param = new SqlParameter("@ItemNumber", SqlDbType.NVarChar, 5);
+				case DownloadFields.ProductId:
+					param = new SqlParameter("@ProductId", SqlDbType.Int);
 					param.Value = FieldValue;
 					param.Direction = ParameterDirection.Input;
 					param.IsNullable = true;
-					param.SourceColumn = "ItemNumber";
+					param.SourceColumn = "ProductId";
 					break;
-				case DownloadFields.ItemDescription:
-					param = new SqlParameter("@ItemDescription", SqlDbType.NVarChar, 200);
+				case DownloadFields.PlatformId:
+					param = new SqlParameter("@PlatformId", SqlDbType.Int);
 					param.Value = FieldValue;
 					param.Direction = ParameterDirection.Input;
 					param.IsNullable = true;
-					param.SourceColumn = "ItemDescription";
+					param.SourceColumn = "PlatformId";
 					break;
 				case DownloadFields.Version:
 					param = new SqlParameter("@Version", SqlDbType.NVarChar, 10);
@@ -63,6 +63,118 @@ namespace Textfyre.TextfyreWeb.DataLayer {
 					param.Direction = ParameterDirection.Input;
 					param.IsNullable = true;
 					param.SourceColumn = "IsLocked";
+					break;
+				case DownloadFields.IntelMac:
+					param = new SqlParameter("@IntelMac", SqlDbType.Bit);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "IntelMac";
+					break;
+				case DownloadFields.PowerPCMac:
+					param = new SqlParameter("@PowerPCMac", SqlDbType.Bit);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "PowerPCMac";
+					break;
+				case DownloadFields.WindowsXP:
+					param = new SqlParameter("@WindowsXP", SqlDbType.Bit);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "WindowsXP";
+					break;
+				case DownloadFields.WindowsVista:
+					param = new SqlParameter("@WindowsVista", SqlDbType.Bit);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "WindowsVista";
+					break;
+				case DownloadFields.Windows7:
+					param = new SqlParameter("@Windows7", SqlDbType.Bit);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "Windows7";
+					break;
+				case DownloadFields.Linux:
+					param = new SqlParameter("@Linux", SqlDbType.Bit);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "Linux";
+					break;
+				case DownloadFields.Unix:
+					param = new SqlParameter("@Unix", SqlDbType.Bit);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "Unix";
+					break;
+				case DownloadFields.WindowsMobile:
+					param = new SqlParameter("@WindowsMobile", SqlDbType.Bit);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "WindowsMobile";
+					break;
+				case DownloadFields.iPhone:
+					param = new SqlParameter("@iPhone", SqlDbType.Bit);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "iPhone";
+					break;
+				case DownloadFields.ScreenReader:
+					param = new SqlParameter("@ScreenReader", SqlDbType.Bit);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "ScreenReader";
+					break;
+				case DownloadFields.RequiresSilverlight:
+					param = new SqlParameter("@RequiresSilverlight", SqlDbType.Bit);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "RequiresSilverlight";
+					break;
+				case DownloadFields.RequiresFlash:
+					param = new SqlParameter("@RequiresFlash", SqlDbType.Bit);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "RequiresFlash";
+					break;
+				case DownloadFields.RequiresDotNet:
+					param = new SqlParameter("@RequiresDotNet", SqlDbType.Bit);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "RequiresDotNet";
+					break;
+				case DownloadFields.DotNetVersion:
+					param = new SqlParameter("@DotNetVersion", SqlDbType.Char, 10);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "DotNetVersion";
+					break;
+				case DownloadFields.RequiresMono:
+					param = new SqlParameter("@RequiresMono", SqlDbType.Bit);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "RequiresMono";
+					break;
+				case DownloadFields.RequiresMoonlight:
+					param = new SqlParameter("@RequiresMoonlight", SqlDbType.Bit);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "RequiresMoonlight";
 					break;
             }
 

@@ -6,13 +6,12 @@ using System.Web;
 using System.Data.SqlClient;
 using System.Web.Security;
 using System.Web.SessionState;
-using Textfyre.Web.Domain;
+using Textfyre.TextfyreWeb.BusinessLayer;
 
 namespace Textfyre.Web {
     public class Global : System.Web.HttpApplication {
 
         protected void Application_Start(object sender, EventArgs e) {
-
         }
 
         protected void Session_Start(object sender, EventArgs e) {
@@ -21,7 +20,7 @@ namespace Textfyre.Web {
                 MembershipUser member = Membership.GetUser(username);
 
                 // bring the user profile into the session...
-                Session["User"] = new User((Guid)member.ProviderUserKey, member.Email);
+                Session["User"] = new Textfyre.TextfyreWeb.BusinessLayer.Customer((Guid)member.ProviderUserKey);
             }
         }
 

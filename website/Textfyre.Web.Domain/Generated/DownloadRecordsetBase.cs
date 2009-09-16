@@ -21,13 +21,13 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 			/// </summary>
 			private Int32 _DownloadId;
 			/// <summary>
-			/// ItemNumber field.
+			/// ProductId field.
 			/// </summary>
-			private string _ItemNumber;
+			private Int32? _ProductId = null;
 			/// <summary>
-			/// ItemDescription field.
+			/// PlatformId field.
 			/// </summary>
-			private string _ItemDescription;
+			private Int32? _PlatformId = null;
 			/// <summary>
 			/// Version field.
 			/// </summary>
@@ -40,6 +40,70 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 			/// IsLocked field.
 			/// </summary>
 			private bool? _IsLocked = null;
+			/// <summary>
+			/// IntelMac field.
+			/// </summary>
+			private bool? _IntelMac = null;
+			/// <summary>
+			/// PowerPCMac field.
+			/// </summary>
+			private bool? _PowerPCMac = null;
+			/// <summary>
+			/// WindowsXP field.
+			/// </summary>
+			private bool? _WindowsXP = null;
+			/// <summary>
+			/// WindowsVista field.
+			/// </summary>
+			private bool? _WindowsVista = null;
+			/// <summary>
+			/// Windows7 field.
+			/// </summary>
+			private bool? _Windows7 = null;
+			/// <summary>
+			/// Linux field.
+			/// </summary>
+			private bool? _Linux = null;
+			/// <summary>
+			/// Unix field.
+			/// </summary>
+			private bool? _Unix = null;
+			/// <summary>
+			/// WindowsMobile field.
+			/// </summary>
+			private bool? _WindowsMobile = null;
+			/// <summary>
+			/// iPhone field.
+			/// </summary>
+			private bool? _iPhone = null;
+			/// <summary>
+			/// ScreenReader field.
+			/// </summary>
+			private bool? _ScreenReader = null;
+			/// <summary>
+			/// RequiresSilverlight field.
+			/// </summary>
+			private bool? _RequiresSilverlight = null;
+			/// <summary>
+			/// RequiresFlash field.
+			/// </summary>
+			private bool? _RequiresFlash = null;
+			/// <summary>
+			/// RequiresDotNet field.
+			/// </summary>
+			private bool? _RequiresDotNet = null;
+			/// <summary>
+			/// DotNetVersion field.
+			/// </summary>
+			private string _DotNetVersion;
+			/// <summary>
+			/// RequiresMono field.
+			/// </summary>
+			private bool? _RequiresMono = null;
+			/// <summary>
+			/// RequiresMoonlight field.
+			/// </summary>
+			private bool? _RequiresMoonlight = null;
       /// <summary>
       /// _isDirty field.
       /// </summary>
@@ -67,22 +131,22 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 			}
 		}
 
-		public string ItemNumber {
-			get { return _ItemNumber; }
+		public Int32? ProductId {
+			get { return _ProductId; }
 			set {
-				if(_ItemNumber != value) {
+				if(_ProductId != value) {
 					_isDirty = true;
-					_ItemNumber = value;
+					_ProductId = value;
 				}
 			}
 		}
 
-		public string ItemDescription {
-			get { return _ItemDescription; }
+		public Int32? PlatformId {
+			get { return _PlatformId; }
 			set {
-				if(_ItemDescription != value) {
+				if(_PlatformId != value) {
 					_isDirty = true;
-					_ItemDescription = value;
+					_PlatformId = value;
 				}
 			}
 		}
@@ -113,6 +177,166 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 				if(_IsLocked != value) {
 					_isDirty = true;
 					_IsLocked = value;
+				}
+			}
+		}
+
+		public bool? IntelMac {
+			get { return _IntelMac; }
+			set {
+				if(_IntelMac != value) {
+					_isDirty = true;
+					_IntelMac = value;
+				}
+			}
+		}
+
+		public bool? PowerPCMac {
+			get { return _PowerPCMac; }
+			set {
+				if(_PowerPCMac != value) {
+					_isDirty = true;
+					_PowerPCMac = value;
+				}
+			}
+		}
+
+		public bool? WindowsXP {
+			get { return _WindowsXP; }
+			set {
+				if(_WindowsXP != value) {
+					_isDirty = true;
+					_WindowsXP = value;
+				}
+			}
+		}
+
+		public bool? WindowsVista {
+			get { return _WindowsVista; }
+			set {
+				if(_WindowsVista != value) {
+					_isDirty = true;
+					_WindowsVista = value;
+				}
+			}
+		}
+
+		public bool? Windows7 {
+			get { return _Windows7; }
+			set {
+				if(_Windows7 != value) {
+					_isDirty = true;
+					_Windows7 = value;
+				}
+			}
+		}
+
+		public bool? Linux {
+			get { return _Linux; }
+			set {
+				if(_Linux != value) {
+					_isDirty = true;
+					_Linux = value;
+				}
+			}
+		}
+
+		public bool? Unix {
+			get { return _Unix; }
+			set {
+				if(_Unix != value) {
+					_isDirty = true;
+					_Unix = value;
+				}
+			}
+		}
+
+		public bool? WindowsMobile {
+			get { return _WindowsMobile; }
+			set {
+				if(_WindowsMobile != value) {
+					_isDirty = true;
+					_WindowsMobile = value;
+				}
+			}
+		}
+
+		public bool? iPhone {
+			get { return _iPhone; }
+			set {
+				if(_iPhone != value) {
+					_isDirty = true;
+					_iPhone = value;
+				}
+			}
+		}
+
+		public bool? ScreenReader {
+			get { return _ScreenReader; }
+			set {
+				if(_ScreenReader != value) {
+					_isDirty = true;
+					_ScreenReader = value;
+				}
+			}
+		}
+
+		public bool? RequiresSilverlight {
+			get { return _RequiresSilverlight; }
+			set {
+				if(_RequiresSilverlight != value) {
+					_isDirty = true;
+					_RequiresSilverlight = value;
+				}
+			}
+		}
+
+		public bool? RequiresFlash {
+			get { return _RequiresFlash; }
+			set {
+				if(_RequiresFlash != value) {
+					_isDirty = true;
+					_RequiresFlash = value;
+				}
+			}
+		}
+
+		public bool? RequiresDotNet {
+			get { return _RequiresDotNet; }
+			set {
+				if(_RequiresDotNet != value) {
+					_isDirty = true;
+					_RequiresDotNet = value;
+				}
+			}
+		}
+
+		public string DotNetVersion {
+			get { return _DotNetVersion; }
+			set {
+				if(_DotNetVersion != value) {
+					_isDirty = true;
+					_DotNetVersion = value;
+				}
+			}
+		}
+
+		public bool? RequiresMono {
+			get { return _RequiresMono; }
+			set {
+				if(_RequiresMono != value) {
+					_isDirty = true;
+					_RequiresMono = value;
+				}
+			}
+		}
+
+		public bool? RequiresMoonlight {
+			get { return _RequiresMoonlight; }
+			set {
+				if(_RequiresMoonlight != value) {
+					_isDirty = true;
+					_RequiresMoonlight = value;
 				}
 			}
 		}
@@ -157,11 +381,27 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
       public virtual DownloadRecordset Clone() {
           DownloadRecordset newDownloadRS = new DownloadRecordset(); 
           newDownloadRS.DownloadId = _DownloadId;
-					newDownloadRS.ItemNumber = _ItemNumber;
-					newDownloadRS.ItemDescription = _ItemDescription;
+					newDownloadRS.ProductId = _ProductId;
+					newDownloadRS.PlatformId = _PlatformId;
 					newDownloadRS.Version = _Version;
 					newDownloadRS.AvailableDate = _AvailableDate;
 					newDownloadRS.IsLocked = _IsLocked;
+					newDownloadRS.IntelMac = _IntelMac;
+					newDownloadRS.PowerPCMac = _PowerPCMac;
+					newDownloadRS.WindowsXP = _WindowsXP;
+					newDownloadRS.WindowsVista = _WindowsVista;
+					newDownloadRS.Windows7 = _Windows7;
+					newDownloadRS.Linux = _Linux;
+					newDownloadRS.Unix = _Unix;
+					newDownloadRS.WindowsMobile = _WindowsMobile;
+					newDownloadRS.iPhone = _iPhone;
+					newDownloadRS.ScreenReader = _ScreenReader;
+					newDownloadRS.RequiresSilverlight = _RequiresSilverlight;
+					newDownloadRS.RequiresFlash = _RequiresFlash;
+					newDownloadRS.RequiresDotNet = _RequiresDotNet;
+					newDownloadRS.DotNetVersion = _DotNetVersion;
+					newDownloadRS.RequiresMono = _RequiresMono;
+					newDownloadRS.RequiresMoonlight = _RequiresMoonlight;
 					
           newDownloadRS.IsDirty = _isDirty;
           newDownloadRS.IsDeleted = _isDeleted;

@@ -2,14 +2,14 @@ using System;
 
 namespace Textfyre.TextfyreWeb.BusinessLayer {
     /// <summary>
-    /// ProfileRecordset class.
+    /// PlatformRecordset class.
     /// </summary>
     [Serializable()]
-    public class ProfileRecordset : Textfyre.TextfyreWeb.BusinessLayer.ProfileRecordsetBase { 
+    public class PlatformRecordset : Textfyre.TextfyreWeb.BusinessLayer.PlatformRecordsetBase { 
         /// <summary>
         /// Empty default construct.
         /// </summary>
-        public ProfileRecordset() {
+        public PlatformRecordset() {
         }
     } 
 } 
