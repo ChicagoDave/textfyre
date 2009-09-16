@@ -14,7 +14,9 @@ using System.Xml.Linq;
 namespace Textfyre.Web.Customer {
     public partial class Default : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
-
+            if (!Page.User.Identity.IsAuthenticated) {
+                Response.Redirect("~/Default.aspx");
+            }
         }
     }
 }

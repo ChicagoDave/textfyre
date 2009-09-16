@@ -13,10 +13,26 @@ namespace Textfyre.TextfyreWeb.DataLayer {
     public enum DownloadFields {
         
 		DownloadId,
-		ItemNumber,
-		ItemDescription,
+		ProductId,
+		PlatformId,
 		Version,
 		AvailableDate,
-		IsLocked
+		IsLocked,
+		IntelMac,
+		PowerPCMac,
+		WindowsXP,
+		WindowsVista,
+		Windows7,
+		Linux,
+		Unix,
+		WindowsMobile,
+		iPhone,
+		ScreenReader,
+		RequiresSilverlight,
+		RequiresFlash,
+		RequiresDotNet,
+		DotNetVersion,
+		RequiresMono,
+		RequiresMoonlight
     }
 }

@@ -22,19 +22,19 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         public SqlParameter GetParameter(Textfyre.TextfyreWeb.DataLayer.ProductFields FieldIdentity, object FieldValue) { 
             SqlParameter param = null;
             switch (FieldIdentity) {
-				case ProductFields.ItemId:
-					param = new SqlParameter("@ItemId", SqlDbType.Int);
+				case ProductFields.ProductId:
+					param = new SqlParameter("@ProductId", SqlDbType.Int);
 					param.Value = FieldValue;
 					param.Direction = ParameterDirection.Input;
 					param.IsNullable = false;
-					param.SourceColumn = "ItemId";
+					param.SourceColumn = "ProductId";
 					break;
-				case ProductFields.ItemNumber:
-					param = new SqlParameter("@ItemNumber", SqlDbType.NVarChar, 5);
+				case ProductFields.ProductCode:
+					param = new SqlParameter("@ProductCode", SqlDbType.NVarChar, 50);
 					param.Value = FieldValue;
 					param.Direction = ParameterDirection.Input;
 					param.IsNullable = true;
-					param.SourceColumn = "ItemNumber";
+					param.SourceColumn = "ProductCode";
 					break;
 				case ProductFields.Description:
 					param = new SqlParameter("@Description", SqlDbType.NVarChar, 100);
@@ -56,6 +56,20 @@ namespace Textfyre.TextfyreWeb.DataLayer {
 					param.Direction = ParameterDirection.Input;
 					param.IsNullable = true;
 					param.SourceColumn = "TeamId";
+					break;
+				case ProductFields.GLNumber:
+					param = new SqlParameter("@GLNumber", SqlDbType.NVarChar, 20);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "GLNumber";
+					break;
+				case ProductFields.SystemRequirements:
+					param = new SqlParameter("@SystemRequirements", SqlDbType.NVarChar, 1000);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "SystemRequirements";
 					break;
             }
 

@@ -134,9 +134,9 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DomainOld\Transaction.cs" />
-    <Compile Include="DomainOld\TransactionItem.cs" />
-    <Compile Include="DomainOld\User.cs" />
+    <None Include="DomainOld\Transaction.cs" />
+    <None Include="DomainOld\TransactionItem.cs" />
+    <None Include="DomainOld\User.cs" />
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Games.aspx.cs">
       <DependentUpon>Games.aspx</DependentUpon>
@@ -277,6 +277,10 @@
     <ProjectReference Include="..\..\middleware\Textfyre.Common.Utilities\Textfyre.Common.Utilities.csproj">
       <Project>{68061321-A3F0-481C-A827-65D29B1B5DA3}</Project>
       <Name>Textfyre.Common.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Textfyre.Web.Domain\Textfyre.Web.Domain.csproj">
+      <Project>{160AA445-CE6F-4312-B101-8BDD5638FBDE}</Project>
+      <Name>Textfyre.Web.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

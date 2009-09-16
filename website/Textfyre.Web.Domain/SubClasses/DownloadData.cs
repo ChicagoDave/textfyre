@@ -18,5 +18,17 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// </summary>
         public DownloadData() : base() {
         }
+
+        public static DownloadCollection LoadByUserId(Guid UserId) {
+            DownloadCollection returnDownloads = new DownloadCollection();
+            List<SqlParameter> parameterList = new List<SqlParameter>();
+            parameterList.Add(new SqlParameter("@UserId", UserId));
+            DownloadData downloadData = new DownloadData();
+            List<DownloadRecordset> downloads = downloadData.ExecuteQueryNameGetCollection("GetDownloadList", parameterList);
+            foreach (DownloadRecordset download in downloads) {
+                returnDownloads.Add(download.Clone());
+            }
+            return returnDownloads;
+        }
     }
 }

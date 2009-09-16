@@ -70,17 +70,17 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 					else
 						Sort(Download.SortBy.DownloadIdColumnASC);
 					break;
-				case DataLayer.DownloadFields.ItemNumber:
+				case DataLayer.DownloadFields.ProductId:
 					if (sortDirection == SortDirection.Descending)
-						Sort(Download.SortBy.ItemNumberColumnDESC);
+						Sort(Download.SortBy.ProductIdColumnDESC);
 					else
-						Sort(Download.SortBy.ItemNumberColumnASC);
+						Sort(Download.SortBy.ProductIdColumnASC);
 					break;
-				case DataLayer.DownloadFields.ItemDescription:
+				case DataLayer.DownloadFields.PlatformId:
 					if (sortDirection == SortDirection.Descending)
-						Sort(Download.SortBy.ItemDescriptionColumnDESC);
+						Sort(Download.SortBy.PlatformIdColumnDESC);
 					else
-						Sort(Download.SortBy.ItemDescriptionColumnASC);
+						Sort(Download.SortBy.PlatformIdColumnASC);
 					break;
 				case DataLayer.DownloadFields.Version:
 					if (sortDirection == SortDirection.Descending)
@@ -99,6 +99,102 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 						Sort(Download.SortBy.IsLockedColumnDESC);
 					else
 						Sort(Download.SortBy.IsLockedColumnASC);
+					break;
+				case DataLayer.DownloadFields.IntelMac:
+					if (sortDirection == SortDirection.Descending)
+						Sort(Download.SortBy.IntelMacColumnDESC);
+					else
+						Sort(Download.SortBy.IntelMacColumnASC);
+					break;
+				case DataLayer.DownloadFields.PowerPCMac:
+					if (sortDirection == SortDirection.Descending)
+						Sort(Download.SortBy.PowerPCMacColumnDESC);
+					else
+						Sort(Download.SortBy.PowerPCMacColumnASC);
+					break;
+				case DataLayer.DownloadFields.WindowsXP:
+					if (sortDirection == SortDirection.Descending)
+						Sort(Download.SortBy.WindowsXPColumnDESC);
+					else
+						Sort(Download.SortBy.WindowsXPColumnASC);
+					break;
+				case DataLayer.DownloadFields.WindowsVista:
+					if (sortDirection == SortDirection.Descending)
+						Sort(Download.SortBy.WindowsVistaColumnDESC);
+					else
+						Sort(Download.SortBy.WindowsVistaColumnASC);
+					break;
+				case DataLayer.DownloadFields.Windows7:
+					if (sortDirection == SortDirection.Descending)
+						Sort(Download.SortBy.Windows7ColumnDESC);
+					else
+						Sort(Download.SortBy.Windows7ColumnASC);
+					break;
+				case DataLayer.DownloadFields.Linux:
+					if (sortDirection == SortDirection.Descending)
+						Sort(Download.SortBy.LinuxColumnDESC);
+					else
+						Sort(Download.SortBy.LinuxColumnASC);
+					break;
+				case DataLayer.DownloadFields.Unix:
+					if (sortDirection == SortDirection.Descending)
+						Sort(Download.SortBy.UnixColumnDESC);
+					else
+						Sort(Download.SortBy.UnixColumnASC);
+					break;
+				case DataLayer.DownloadFields.WindowsMobile:
+					if (sortDirection == SortDirection.Descending)
+						Sort(Download.SortBy.WindowsMobileColumnDESC);
+					else
+						Sort(Download.SortBy.WindowsMobileColumnASC);
+					break;
+				case DataLayer.DownloadFields.iPhone:
+					if (sortDirection == SortDirection.Descending)
+						Sort(Download.SortBy.iPhoneColumnDESC);
+					else
+						Sort(Download.SortBy.iPhoneColumnASC);
+					break;
+				case DataLayer.DownloadFields.ScreenReader:
+					if (sortDirection == SortDirection.Descending)
+						Sort(Download.SortBy.ScreenReaderColumnDESC);
+					else
+						Sort(Download.SortBy.ScreenReaderColumnASC);
+					break;
+				case DataLayer.DownloadFields.RequiresSilverlight:
+					if (sortDirection == SortDirection.Descending)
+						Sort(Download.SortBy.RequiresSilverlightColumnDESC);
+					else
+						Sort(Download.SortBy.RequiresSilverlightColumnASC);
+					break;
+				case DataLayer.DownloadFields.RequiresFlash:
+					if (sortDirection == SortDirection.Descending)
+						Sort(Download.SortBy.RequiresFlashColumnDESC);
+					else
+						Sort(Download.SortBy.RequiresFlashColumnASC);
+					break;
+				case DataLayer.DownloadFields.RequiresDotNet:
+					if (sortDirection == SortDirection.Descending)
+						Sort(Download.SortBy.RequiresDotNetColumnDESC);
+					else
+						Sort(Download.SortBy.RequiresDotNetColumnASC);
+					break;
+				case DataLayer.DownloadFields.DotNetVersion:
+					if (sortDirection == SortDirection.Descending)
+						Sort(Download.SortBy.DotNetVersionColumnDESC);
+					else
+						Sort(Download.SortBy.DotNetVersionColumnASC);
+					break;
+				case DataLayer.DownloadFields.RequiresMono:
+					if (sortDirection == SortDirection.Descending)
+						Sort(Download.SortBy.RequiresMonoColumnDESC);
+					else
+						Sort(Download.SortBy.RequiresMonoColumnASC);
+					break;
+				case DataLayer.DownloadFields.RequiresMoonlight:
+					if (sortDirection == SortDirection.Descending)
+						Sort(Download.SortBy.RequiresMoonlightColumnDESC);
+					else
+						Sort(Download.SortBy.RequiresMoonlightColumnASC);
 					break;
 
             }

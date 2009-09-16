@@ -68,8 +68,8 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
             _dataFactory = new ProductData();
         }
 
-        public ProductBase(Int32 ItemId) : this() {
-				Load(ItemId);
+        public ProductBase(Int32 ProductId) : this() {
+				Load(ProductId);
 		}                     
         
         /// <summary> 
@@ -86,8 +86,8 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
         /// <summary>
         /// Load method that retrieves a record from the Product table by the primary key id.
         /// </summary>
-        public Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset Load(Int32 ItemId) {
-            _recordset = DataFactory.GetProductById(ItemId);
+        public Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset Load(Int32 ProductId) {
+            _recordset = DataFactory.GetProductById(ProductId);
             return _recordset;
         }
 
@@ -131,9 +131,9 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
             newPrimaryKey = -1;
             
             if (_recordset.IsDeleted) {
-                ReturnValue = DataFactory.DeleteProduct(_recordset.ItemId);                
+                ReturnValue = DataFactory.DeleteProduct(_recordset.ProductId);                
             } else {
-                if (_recordset.ItemId == -1) {
+                if (_recordset.ProductId == -1) {
                     newPrimaryKey = _dataFactory.InsertProduct(_recordset);
 					if (newPrimaryKey != -1)
 						ReturnValue = -1;
@@ -169,22 +169,22 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
         #region Properties
 
 
-		public virtual Int32 ItemId {
-			get { return _recordset.ItemId; }
+		public virtual Int32 ProductId {
+			get { return _recordset.ProductId; }
 			set {
-				if (_recordset.ItemId != value) {
-					_recordset.ItemId = value;
-					NotifyPropertyChanged("ItemId");
+				if (_recordset.ProductId != value) {
+					_recordset.ProductId = value;
+					NotifyPropertyChanged("ProductId");
 				}
 			}
 		}
 
-		public virtual string ItemNumber {
-			get { return _recordset.ItemNumber; }
+		public virtual string ProductCode {
+			get { return _recordset.ProductCode; }
 			set {
-				if (_recordset.ItemNumber != value) {
-					_recordset.ItemNumber = value;
-					NotifyPropertyChanged("ItemNumber");
+				if (_recordset.ProductCode != value) {
+					_recordset.ProductCode = value;
+					NotifyPropertyChanged("ProductCode");
 				}
 			}
 		}
@@ -215,6 +215,26 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 				if (_recordset.TeamId != value) {
 					_recordset.TeamId = value;
 					NotifyPropertyChanged("TeamId");
+				}
+			}
+		}
+
+		public virtual string GLNumber {
+			get { return _recordset.GLNumber; }
+			set {
+				if (_recordset.GLNumber != value) {
+					_recordset.GLNumber = value;
+					NotifyPropertyChanged("GLNumber");
+				}
+			}
+		}
+
+		public virtual string SystemRequirements {
+			get { return _recordset.SystemRequirements; }
+			set {
+				if (_recordset.SystemRequirements != value) {
+					_recordset.SystemRequirements = value;
+					NotifyPropertyChanged("SystemRequirements");
 				}
 			}
 		}
@@ -282,28 +302,28 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
         /// </summary>
         public class SortBy
         {
-			public static Comparison<Product> ItemIdColumnASC =
+			public static Comparison<Product> ProductIdColumnASC =
 					delegate(Product o1, Product o2)
 					{
-						return Nullable.Compare<Int32>(o1.ItemId, o2.ItemId);
+						return Nullable.Compare<Int32>(o1.ProductId, o2.ProductId);
 					};
 
-			public static Comparison<Product> ItemIdColumnDESC =
+			public static Comparison<Product> ProductIdColumnDESC =
 					delegate(Product o1, Product o2)
 					{
-						return Nullable.Compare<Int32>(o2.ItemId, o1.ItemId);
+						return Nullable.Compare<Int32>(o2.ProductId, o1.ProductId);
 					};
 
-			public static Comparison<Product> ItemNumberColumnASC =
+			public static Comparison<Product> ProductCodeColumnASC =
 				delegate(Product o1, Product o2)
 				{
-					return o1.ItemNumber.CompareTo(o2.ItemNumber);
+					return o1.ProductCode.CompareTo(o2.ProductCode);
 				};
 
-			public static Comparison<Product> ItemNumberColumnDESC =
+			public static Comparison<Product> ProductCodeColumnDESC =
 				delegate(Product o1, Product o2)
 				{
-					return o2.ItemNumber.CompareTo(o1.ItemNumber);
+					return o2.ProductCode.CompareTo(o1.ProductCode);
 				};
 
 			public static Comparison<Product> DescriptionColumnASC =
@@ -341,6 +361,30 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 					{
 						return Nullable.Compare<Int32>(o2.TeamId, o1.TeamId);
 					};
+
+			public static Comparison<Product> GLNumberColumnASC =
+				delegate(Product o1, Product o2)
+				{
+					return o1.GLNumber.CompareTo(o2.GLNumber);
+				};
+
+			public static Comparison<Product> GLNumberColumnDESC =
+				delegate(Product o1, Product o2)
+				{
+					return o2.GLNumber.CompareTo(o1.GLNumber);
+				};
+
+			public static Comparison<Product> SystemRequirementsColumnASC =
+				delegate(Product o1, Product o2)
+				{
+					return o1.SystemRequirements.CompareTo(o2.SystemRequirements);
+				};
+
+			public static Comparison<Product> SystemRequirementsColumnDESC =
+				delegate(Product o1, Product o2)
+				{
+					return o2.SystemRequirements.CompareTo(o1.SystemRequirements);
+				};
 
 
         }

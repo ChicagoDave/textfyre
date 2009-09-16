@@ -159,7 +159,7 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// Get all records in the table.
         /// </summary>
         public virtual List<Textfyre.TextfyreWeb.BusinessLayer.DownloadRecordset> GetAllDownload() {
-            return ExecuteSqlGetCollection("SELECT [DownloadId], [ItemNumber], [ItemDescription], [Version], [AvailableDate], [IsLocked] FROM Download", null);
+            return ExecuteSqlGetCollection("SELECT [DownloadId], [ProductId], [PlatformId], [Version], [AvailableDate], [IsLocked], [IntelMac], [PowerPCMac], [WindowsXP], [WindowsVista], [Windows7], [Linux], [Unix], [WindowsMobile], [iPhone], [ScreenReader], [RequiresSilverlight], [RequiresFlash], [RequiresDotNet], [DotNetVersion], [RequiresMono], [RequiresMoonlight] FROM Download", null);
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace Textfyre.TextfyreWeb.DataLayer {
             if (DownloadId < 1)
                 return null;
 
-            string sql = "SELECT [DownloadId], [ItemNumber], [ItemDescription], [Version], [AvailableDate], [IsLocked] FROM Download WHERE [DownloadId] = @DownloadId";
+            string sql = "SELECT [DownloadId], [ProductId], [PlatformId], [Version], [AvailableDate], [IsLocked], [IntelMac], [PowerPCMac], [WindowsXP], [WindowsVista], [Windows7], [Linux], [Unix], [WindowsMobile], [iPhone], [ScreenReader], [RequiresSilverlight], [RequiresFlash], [RequiresDotNet], [DotNetVersion], [RequiresMono], [RequiresMoonlight] FROM Download WHERE [DownloadId] = @DownloadId";
             List<SqlParameter> parameters = new List<SqlParameter>();
             
 			parameters.Add(ParameterFactory.GetParameter(DownloadFields.DownloadId, DownloadId));            
@@ -181,18 +181,18 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// Insert a record into the table.
         /// </summary>
         public virtual Int32 InsertDownload(Textfyre.TextfyreWeb.BusinessLayer.DownloadRecordset record) {
-            string sql = "INSERT INTO Download([ItemNumber], [ItemDescription], [Version], [AvailableDate], [IsLocked]) VALUES (@ItemNumber, @ItemDescription, @Version, @AvailableDate, @IsLocked); SELECT SCOPE_IDENTITY() as ID;";
+            string sql = "INSERT INTO Download([ProductId], [PlatformId], [Version], [AvailableDate], [IsLocked], [IntelMac], [PowerPCMac], [WindowsXP], [WindowsVista], [Windows7], [Linux], [Unix], [WindowsMobile], [iPhone], [ScreenReader], [RequiresSilverlight], [RequiresFlash], [RequiresDotNet], [DotNetVersion], [RequiresMono], [RequiresMoonlight]) VALUES (@ProductId, @PlatformId, @Version, @AvailableDate, @IsLocked, @IntelMac, @PowerPCMac, @WindowsXP, @WindowsVista, @Windows7, @Linux, @Unix, @WindowsMobile, @iPhone, @ScreenReader, @RequiresSilverlight, @RequiresFlash, @RequiresDotNet, @DotNetVersion, @RequiresMono, @RequiresMoonlight); SELECT SCOPE_IDENTITY() as ID;";
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-			if(record.ItemNumber != null)
-				parameters.Add(ParameterFactory.GetParameter(DownloadFields.ItemNumber, record.ItemNumber));
+			if(record.ProductId.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.ProductId, record.ProductId.Value));
 			else
-				parameters.Add(ParameterFactory.GetParameter(DownloadFields.ItemNumber, DBNull.Value));
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.ProductId, DBNull.Value));
 
-			if(record.ItemDescription != null)
-				parameters.Add(ParameterFactory.GetParameter(DownloadFields.ItemDescription, record.ItemDescription));
+			if(record.PlatformId.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.PlatformId, record.PlatformId.Value));
 			else
-				parameters.Add(ParameterFactory.GetParameter(DownloadFields.ItemDescription, DBNull.Value));
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.PlatformId, DBNull.Value));
 
 			if(record.Version != null)
 				parameters.Add(ParameterFactory.GetParameter(DownloadFields.Version, record.Version));
@@ -208,6 +208,86 @@ namespace Textfyre.TextfyreWeb.DataLayer {
 				parameters.Add(ParameterFactory.GetParameter(DownloadFields.IsLocked, record.IsLocked.Value));
 			else
 				parameters.Add(ParameterFactory.GetParameter(DownloadFields.IsLocked, DBNull.Value));
+
+			if(record.IntelMac.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.IntelMac, record.IntelMac.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.IntelMac, DBNull.Value));
+
+			if(record.PowerPCMac.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.PowerPCMac, record.PowerPCMac.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.PowerPCMac, DBNull.Value));
+
+			if(record.WindowsXP.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.WindowsXP, record.WindowsXP.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.WindowsXP, DBNull.Value));
+
+			if(record.WindowsVista.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.WindowsVista, record.WindowsVista.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.WindowsVista, DBNull.Value));
+
+			if(record.Windows7.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.Windows7, record.Windows7.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.Windows7, DBNull.Value));
+
+			if(record.Linux.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.Linux, record.Linux.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.Linux, DBNull.Value));
+
+			if(record.Unix.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.Unix, record.Unix.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.Unix, DBNull.Value));
+
+			if(record.WindowsMobile.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.WindowsMobile, record.WindowsMobile.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.WindowsMobile, DBNull.Value));
+
+			if(record.iPhone.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.iPhone, record.iPhone.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.iPhone, DBNull.Value));
+
+			if(record.ScreenReader.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.ScreenReader, record.ScreenReader.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.ScreenReader, DBNull.Value));
+
+			if(record.RequiresSilverlight.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.RequiresSilverlight, record.RequiresSilverlight.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.RequiresSilverlight, DBNull.Value));
+
+			if(record.RequiresFlash.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.RequiresFlash, record.RequiresFlash.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.RequiresFlash, DBNull.Value));
+
+			if(record.RequiresDotNet.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.RequiresDotNet, record.RequiresDotNet.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.RequiresDotNet, DBNull.Value));
+
+			if(record.DotNetVersion != null)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.DotNetVersion, record.DotNetVersion));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.DotNetVersion, DBNull.Value));
+
+			if(record.RequiresMono.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.RequiresMono, record.RequiresMono.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.RequiresMono, DBNull.Value));
+
+			if(record.RequiresMoonlight.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.RequiresMoonlight, record.RequiresMoonlight.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.RequiresMoonlight, DBNull.Value));
 
             
 			return Convert.ToInt32(ExecuteSqlGetScalar(sql, parameters));
@@ -217,19 +297,19 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// Update a record in the table.
         /// </summary>
         public virtual int UpdateDownload(Textfyre.TextfyreWeb.BusinessLayer.DownloadRecordset record) {
-            string sql = "UPDATE Download SET [ItemNumber] = @ItemNumber, [ItemDescription] = @ItemDescription, [Version] = @Version, [AvailableDate] = @AvailableDate, [IsLocked] = @IsLocked WHERE [DownloadId] = @DownloadId";
+            string sql = "UPDATE Download SET [ProductId] = @ProductId, [PlatformId] = @PlatformId, [Version] = @Version, [AvailableDate] = @AvailableDate, [IsLocked] = @IsLocked, [IntelMac] = @IntelMac, [PowerPCMac] = @PowerPCMac, [WindowsXP] = @WindowsXP, [WindowsVista] = @WindowsVista, [Windows7] = @Windows7, [Linux] = @Linux, [Unix] = @Unix, [WindowsMobile] = @WindowsMobile, [iPhone] = @iPhone, [ScreenReader] = @ScreenReader, [RequiresSilverlight] = @RequiresSilverlight, [RequiresFlash] = @RequiresFlash, [RequiresDotNet] = @RequiresDotNet, [DotNetVersion] = @DotNetVersion, [RequiresMono] = @RequiresMono, [RequiresMoonlight] = @RequiresMoonlight WHERE [DownloadId] = @DownloadId";
             List<SqlParameter> parameters = new List<SqlParameter>();
 
 			parameters.Add(ParameterFactory.GetParameter(DownloadFields.DownloadId, record.DownloadId));
-			if(record.ItemNumber != null)
-				parameters.Add(ParameterFactory.GetParameter(DownloadFields.ItemNumber, record.ItemNumber));
+			if(record.ProductId.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.ProductId, record.ProductId.Value));
 			else
-				parameters.Add(ParameterFactory.GetParameter(DownloadFields.ItemNumber, DBNull.Value));
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.ProductId, DBNull.Value));
 
-			if(record.ItemDescription != null)
-				parameters.Add(ParameterFactory.GetParameter(DownloadFields.ItemDescription, record.ItemDescription));
+			if(record.PlatformId.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.PlatformId, record.PlatformId.Value));
 			else
-				parameters.Add(ParameterFactory.GetParameter(DownloadFields.ItemDescription, DBNull.Value));
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.PlatformId, DBNull.Value));
 
 			if(record.Version != null)
 				parameters.Add(ParameterFactory.GetParameter(DownloadFields.Version, record.Version));
@@ -245,6 +325,86 @@ namespace Textfyre.TextfyreWeb.DataLayer {
 				parameters.Add(ParameterFactory.GetParameter(DownloadFields.IsLocked, record.IsLocked.Value));
 			else
 				parameters.Add(ParameterFactory.GetParameter(DownloadFields.IsLocked, DBNull.Value));
+
+			if(record.IntelMac.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.IntelMac, record.IntelMac.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.IntelMac, DBNull.Value));
+
+			if(record.PowerPCMac.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.PowerPCMac, record.PowerPCMac.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.PowerPCMac, DBNull.Value));
+
+			if(record.WindowsXP.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.WindowsXP, record.WindowsXP.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.WindowsXP, DBNull.Value));
+
+			if(record.WindowsVista.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.WindowsVista, record.WindowsVista.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.WindowsVista, DBNull.Value));
+
+			if(record.Windows7.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.Windows7, record.Windows7.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.Windows7, DBNull.Value));
+
+			if(record.Linux.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.Linux, record.Linux.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.Linux, DBNull.Value));
+
+			if(record.Unix.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.Unix, record.Unix.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.Unix, DBNull.Value));
+
+			if(record.WindowsMobile.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.WindowsMobile, record.WindowsMobile.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.WindowsMobile, DBNull.Value));
+
+			if(record.iPhone.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.iPhone, record.iPhone.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.iPhone, DBNull.Value));
+
+			if(record.ScreenReader.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.ScreenReader, record.ScreenReader.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.ScreenReader, DBNull.Value));
+
+			if(record.RequiresSilverlight.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.RequiresSilverlight, record.RequiresSilverlight.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.RequiresSilverlight, DBNull.Value));
+
+			if(record.RequiresFlash.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.RequiresFlash, record.RequiresFlash.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.RequiresFlash, DBNull.Value));
+
+			if(record.RequiresDotNet.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.RequiresDotNet, record.RequiresDotNet.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.RequiresDotNet, DBNull.Value));
+
+			if(record.DotNetVersion != null)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.DotNetVersion, record.DotNetVersion));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.DotNetVersion, DBNull.Value));
+
+			if(record.RequiresMono.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.RequiresMono, record.RequiresMono.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.RequiresMono, DBNull.Value));
+
+			if(record.RequiresMoonlight.HasValue)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.RequiresMoonlight, record.RequiresMoonlight.Value));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.RequiresMoonlight, DBNull.Value));
 
             
             return ExecuteSqlGetNonScalar(sql, parameters);
@@ -509,16 +669,16 @@ namespace Textfyre.TextfyreWeb.DataLayer {
 						newDownloadRecordset.DownloadId = (Int32)o;
 				}
 
-				if (fieldMap.ContainsKey("ItemNumber")) {
-					o = drDownload[fieldMap["ItemNumber"]];
+				if (fieldMap.ContainsKey("ProductId")) {
+					o = drDownload[fieldMap["ProductId"]];
 					if (o != DBNull.Value)
-						newDownloadRecordset.ItemNumber = ((string)o).Trim();
+						newDownloadRecordset.ProductId = (Int32)o;
 				}
 
-				if (fieldMap.ContainsKey("ItemDescription")) {
-					o = drDownload[fieldMap["ItemDescription"]];
+				if (fieldMap.ContainsKey("PlatformId")) {
+					o = drDownload[fieldMap["PlatformId"]];
 					if (o != DBNull.Value)
-						newDownloadRecordset.ItemDescription = ((string)o).Trim();
+						newDownloadRecordset.PlatformId = (Int32)o;
 				}
 
 				if (fieldMap.ContainsKey("Version")) {
@@ -537,6 +697,102 @@ namespace Textfyre.TextfyreWeb.DataLayer {
 					o = drDownload[fieldMap["IsLocked"]];
 					if (o != DBNull.Value)
 						newDownloadRecordset.IsLocked = (bool)o;
+				}
+
+				if (fieldMap.ContainsKey("IntelMac")) {
+					o = drDownload[fieldMap["IntelMac"]];
+					if (o != DBNull.Value)
+						newDownloadRecordset.IntelMac = (bool)o;
+				}
+
+				if (fieldMap.ContainsKey("PowerPCMac")) {
+					o = drDownload[fieldMap["PowerPCMac"]];
+					if (o != DBNull.Value)
+						newDownloadRecordset.PowerPCMac = (bool)o;
+				}
+
+				if (fieldMap.ContainsKey("WindowsXP")) {
+					o = drDownload[fieldMap["WindowsXP"]];
+					if (o != DBNull.Value)
+						newDownloadRecordset.WindowsXP = (bool)o;
+				}
+
+				if (fieldMap.ContainsKey("WindowsVista")) {
+					o = drDownload[fieldMap["WindowsVista"]];
+					if (o != DBNull.Value)
+						newDownloadRecordset.WindowsVista = (bool)o;
+				}
+
+				if (fieldMap.ContainsKey("Windows7")) {
+					o = drDownload[fieldMap["Windows7"]];
+					if (o != DBNull.Value)
+						newDownloadRecordset.Windows7 = (bool)o;
+				}
+
+				if (fieldMap.ContainsKey("Linux")) {
+					o = drDownload[fieldMap["Linux"]];
+					if (o != DBNull.Value)
+						newDownloadRecordset.Linux = (bool)o;
+				}
+
+				if (fieldMap.ContainsKey("Unix")) {
+					o = drDownload[fieldMap["Unix"]];
+					if (o != DBNull.Value)
+						newDownloadRecordset.Unix = (bool)o;
+				}
+
+				if (fieldMap.ContainsKey("WindowsMobile")) {
+					o = drDownload[fieldMap["WindowsMobile"]];
+					if (o != DBNull.Value)
+						newDownloadRecordset.WindowsMobile = (bool)o;
+				}
+
+				if (fieldMap.ContainsKey("iPhone")) {
+					o = drDownload[fieldMap["iPhone"]];
+					if (o != DBNull.Value)
+						newDownloadRecordset.iPhone = (bool)o;
+				}
+
+				if (fieldMap.ContainsKey("ScreenReader")) {
+					o = drDownload[fieldMap["ScreenReader"]];
+					if (o != DBNull.Value)
+						newDownloadRecordset.ScreenReader = (bool)o;
+				}
+
+				if (fieldMap.ContainsKey("RequiresSilverlight")) {
+					o = drDownload[fieldMap["RequiresSilverlight"]];
+					if (o != DBNull.Value)
+						newDownloadRecordset.RequiresSilverlight = (bool)o;
+				}
+
+				if (fieldMap.ContainsKey("RequiresFlash")) {
+					o = drDownload[fieldMap["RequiresFlash"]];
+					if (o != DBNull.Value)
+						newDownloadRecordset.RequiresFlash = (bool)o;
+				}
+
+				if (fieldMap.ContainsKey("RequiresDotNet")) {
+					o = drDownload[fieldMap["RequiresDotNet"]];
+					if (o != DBNull.Value)
+						newDownloadRecordset.RequiresDotNet = (bool)o;
+				}
+
+				if (fieldMap.ContainsKey("DotNetVersion")) {
+					o = drDownload[fieldMap["DotNetVersion"]];
+					if (o != DBNull.Value)
+						newDownloadRecordset.DotNetVersion = ((string)o).Trim();
+				}
+
+				if (fieldMap.ContainsKey("RequiresMono")) {
+					o = drDownload[fieldMap["RequiresMono"]];
+					if (o != DBNull.Value)
+						newDownloadRecordset.RequiresMono = (bool)o;
+				}
+
+				if (fieldMap.ContainsKey("RequiresMoonlight")) {
+					o = drDownload[fieldMap["RequiresMoonlight"]];
+					if (o != DBNull.Value)
+						newDownloadRecordset.RequiresMoonlight = (bool)o;
 				}
 
 

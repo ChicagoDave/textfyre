@@ -10,16 +10,20 @@ using System;
 
 namespace Textfyre.TextfyreWeb.BusinessLayer {   
     /// <summary>
-    /// ProfileRecordsetBase class.
+    /// CustomerRecordsetBase class.
     /// </summary>
     [Serializable()]
-    public abstract class ProfileRecordsetBase { 
+    public abstract class CustomerRecordsetBase { 
       #region Members
 
 			/// <summary>
 			/// UserId field.
 			/// </summary>
 			private Guid _UserId = Guid.Empty;
+			/// <summary>
+			/// School field.
+			/// </summary>
+			private string _School;
 			/// <summary>
 			/// FirstName field.
 			/// </summary>
@@ -29,6 +33,14 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 			/// </summary>
 			private string _LastName;
 			/// <summary>
+			/// Address1 field.
+			/// </summary>
+			private string _Address1;
+			/// <summary>
+			/// Address2 field.
+			/// </summary>
+			private string _Address2;
+			/// <summary>
 			/// City field.
 			/// </summary>
 			private string _City;
@@ -37,25 +49,25 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 			/// </summary>
 			private string _State;
 			/// <summary>
-			/// School field.
+			/// PostalCode field.
 			/// </summary>
-			private string _School;
+			private string _PostalCode;
 			/// <summary>
-			/// IsCustomer field.
+			/// CountryCode field.
 			/// </summary>
-			private bool? _IsCustomer = null;
+			private string _CountryCode;
 			/// <summary>
-			/// OwnsSecretLetter field.
+			/// PhoneNumber field.
 			/// </summary>
-			private bool? _OwnsSecretLetter = null;
+			private string _PhoneNumber;
 			/// <summary>
-			/// OwnsShadow field.
+			/// MobileNumber field.
 			/// </summary>
-			private bool? _OwnsShadow = null;
+			private string _MobileNumber;
 			/// <summary>
-			/// OwnsEmpathy field.
+			/// HasDownloads field.
 			/// </summary>
-			private bool? _OwnsEmpathy = null;
+			private bool _HasDownloads;
 			/// <summary>
 			/// ValidationId field.
 			/// </summary>
@@ -91,6 +103,16 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 			}
 		}
 
+		public string School {
+			get { return _School; }
+			set {
+				if(_School != value) {
+					_isDirty = true;
+					_School = value;
+				}
+			}
+		}
+
 		public string FirstName {
 			get { return _FirstName; }
 			set {
@@ -107,6 +129,26 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 				if(_LastName != value) {
 					_isDirty = true;
 					_LastName = value;
+				}
+			}
+		}
+
+		public string Address1 {
+			get { return _Address1; }
+			set {
+				if(_Address1 != value) {
+					_isDirty = true;
+					_Address1 = value;
+				}
+			}
+		}
+
+		public string Address2 {
+			get { return _Address2; }
+			set {
+				if(_Address2 != value) {
+					_isDirty = true;
+					_Address2 = value;
 				}
 			}
 		}
@@ -131,52 +173,52 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 			}
 		}
 
-		public string School {
-			get { return _School; }
+		public string PostalCode {
+			get { return _PostalCode; }
 			set {
-				if(_School != value) {
+				if(_PostalCode != value) {
 					_isDirty = true;
-					_School = value;
+					_PostalCode = value;
 				}
 			}
 		}
 
-		public bool? IsCustomer {
-			get { return _IsCustomer; }
+		public string CountryCode {
+			get { return _CountryCode; }
 			set {
-				if(_IsCustomer != value) {
+				if(_CountryCode != value) {
 					_isDirty = true;
-					_IsCustomer = value;
+					_CountryCode = value;
 				}
 			}
 		}
 
-		public bool? OwnsSecretLetter {
-			get { return _OwnsSecretLetter; }
+		public string PhoneNumber {
+			get { return _PhoneNumber; }
 			set {
-				if(_OwnsSecretLetter != value) {
+				if(_PhoneNumber != value) {
 					_isDirty = true;
-					_OwnsSecretLetter = value;
+					_PhoneNumber = value;
 				}
 			}
 		}
 
-		public bool? OwnsShadow {
-			get { return _OwnsShadow; }
+		public string MobileNumber {
+			get { return _MobileNumber; }
 			set {
-				if(_OwnsShadow != value) {
+				if(_MobileNumber != value) {
 					_isDirty = true;
-					_OwnsShadow = value;
+					_MobileNumber = value;
 				}
 			}
 		}
 
-		public bool? OwnsEmpathy {
-			get { return _OwnsEmpathy; }
+		public bool HasDownloads {
+			get { return _HasDownloads; }
 			set {
-				if(_OwnsEmpathy != value) {
+				if(_HasDownloads != value) {
 					_isDirty = true;
-					_OwnsEmpathy = value;
+					_HasDownloads = value;
 				}
 			}
 		}
@@ -231,31 +273,34 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
       /// <summary>
       /// Empty constructor.
       /// </summary>
-      public ProfileRecordsetBase() {
+      public CustomerRecordsetBase() {
       } 
 
       /// <summary>
       /// Returns a new instance of the current recordset.
       /// </summary>
       /// <returns></returns>
-      public virtual ProfileRecordset Clone() {
-          ProfileRecordset newProfileRS = new ProfileRecordset(); 
-          newProfileRS.UserId = _UserId;
-					newProfileRS.FirstName = _FirstName;
-					newProfileRS.LastName = _LastName;
-					newProfileRS.City = _City;
-					newProfileRS.State = _State;
-					newProfileRS.School = _School;
-					newProfileRS.IsCustomer = _IsCustomer;
-					newProfileRS.OwnsSecretLetter = _OwnsSecretLetter;
-					newProfileRS.OwnsShadow = _OwnsShadow;
-					newProfileRS.OwnsEmpathy = _OwnsEmpathy;
-					newProfileRS.ValidationId = _ValidationId;
-					newProfileRS.LastActivityDate = _LastActivityDate;
+      public virtual CustomerRecordset Clone() {
+          CustomerRecordset newCustomerRS = new CustomerRecordset(); 
+          newCustomerRS.UserId = _UserId;
+					newCustomerRS.School = _School;
+					newCustomerRS.FirstName = _FirstName;
+					newCustomerRS.LastName = _LastName;
+					newCustomerRS.Address1 = _Address1;
+					newCustomerRS.Address2 = _Address2;
+					newCustomerRS.City = _City;
+					newCustomerRS.State = _State;
+					newCustomerRS.PostalCode = _PostalCode;
+					newCustomerRS.CountryCode = _CountryCode;
+					newCustomerRS.PhoneNumber = _PhoneNumber;
+					newCustomerRS.MobileNumber = _MobileNumber;
+					newCustomerRS.HasDownloads = _HasDownloads;
+					newCustomerRS.ValidationId = _ValidationId;
+					newCustomerRS.LastActivityDate = _LastActivityDate;
 					
-          newProfileRS.IsDirty = _isDirty;
-          newProfileRS.IsDeleted = _isDeleted;
-          return newProfileRS; 
+          newCustomerRS.IsDirty = _isDirty;
+          newCustomerRS.IsDeleted = _isDeleted;
+          return newCustomerRS; 
       }
 
       /// <summary>

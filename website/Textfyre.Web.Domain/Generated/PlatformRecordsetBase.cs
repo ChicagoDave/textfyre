@@ -10,40 +10,20 @@ using System;
 
 namespace Textfyre.TextfyreWeb.BusinessLayer {   
     /// <summary>
-    /// ProductRecordsetBase class.
+    /// PlatformRecordsetBase class.
     /// </summary>
     [Serializable()]
-    public abstract class ProductRecordsetBase { 
+    public abstract class PlatformRecordsetBase { 
       #region Members
 
 			/// <summary>
-			/// ProductId field.
+			/// PlatformId field.
 			/// </summary>
-			private Int32 _ProductId;
-			/// <summary>
-			/// ProductCode field.
-			/// </summary>
-			private string _ProductCode;
+			private Int32 _PlatformId;
 			/// <summary>
 			/// Description field.
 			/// </summary>
 			private string _Description;
-			/// <summary>
-			/// PublishDate field.
-			/// </summary>
-			private DateTime? _PublishDate = null;
-			/// <summary>
-			/// TeamId field.
-			/// </summary>
-			private Int32? _TeamId = null;
-			/// <summary>
-			/// GLNumber field.
-			/// </summary>
-			private string _GLNumber;
-			/// <summary>
-			/// SystemRequirements field.
-			/// </summary>
-			private string _SystemRequirements;
       /// <summary>
       /// _isDirty field.
       /// </summary>
@@ -61,22 +41,12 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
       #region Properties
         
 
-		public Int32 ProductId {
-			get { return _ProductId; }
+		public Int32 PlatformId {
+			get { return _PlatformId; }
 			set {
-				if(_ProductId != value) {
+				if(_PlatformId != value) {
 					_isDirty = true;
-					_ProductId = value;
-				}
-			}
-		}
-
-		public string ProductCode {
-			get { return _ProductCode; }
-			set {
-				if(_ProductCode != value) {
-					_isDirty = true;
-					_ProductCode = value;
+					_PlatformId = value;
 				}
 			}
 		}
@@ -87,46 +57,6 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 				if(_Description != value) {
 					_isDirty = true;
 					_Description = value;
-				}
-			}
-		}
-
-		public DateTime? PublishDate {
-			get { return _PublishDate; }
-			set {
-				if(_PublishDate != value) {
-					_isDirty = true;
-					_PublishDate = value;
-				}
-			}
-		}
-
-		public Int32? TeamId {
-			get { return _TeamId; }
-			set {
-				if(_TeamId != value) {
-					_isDirty = true;
-					_TeamId = value;
-				}
-			}
-		}
-
-		public string GLNumber {
-			get { return _GLNumber; }
-			set {
-				if(_GLNumber != value) {
-					_isDirty = true;
-					_GLNumber = value;
-				}
-			}
-		}
-
-		public string SystemRequirements {
-			get { return _SystemRequirements; }
-			set {
-				if(_SystemRequirements != value) {
-					_isDirty = true;
-					_SystemRequirements = value;
 				}
 			}
 		}
@@ -161,26 +91,21 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
       /// <summary>
       /// Empty constructor.
       /// </summary>
-      public ProductRecordsetBase() {
+      public PlatformRecordsetBase() {
       } 
 
       /// <summary>
       /// Returns a new instance of the current recordset.
       /// </summary>
       /// <returns></returns>
-      public virtual ProductRecordset Clone() {
-          ProductRecordset newProductRS = new ProductRecordset(); 
-          newProductRS.ProductId = _ProductId;
-					newProductRS.ProductCode = _ProductCode;
-					newProductRS.Description = _Description;
-					newProductRS.PublishDate = _PublishDate;
-					newProductRS.TeamId = _TeamId;
-					newProductRS.GLNumber = _GLNumber;
-					newProductRS.SystemRequirements = _SystemRequirements;
+      public virtual PlatformRecordset Clone() {
+          PlatformRecordset newPlatformRS = new PlatformRecordset(); 
+          newPlatformRS.PlatformId = _PlatformId;
+					newPlatformRS.Description = _Description;
 					
-          newProductRS.IsDirty = _isDirty;
-          newProductRS.IsDeleted = _isDeleted;
-          return newProductRS; 
+          newPlatformRS.IsDirty = _isDirty;
+          newPlatformRS.IsDeleted = _isDeleted;
+          return newPlatformRS; 
       }
 
       /// <summary>
@@ -188,7 +113,7 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
       /// </summary>
       /// <param name="IdentityValue"></param>
 		public void SetIdentity(Int32 IdentityValue) {
-			_ProductId = IdentityValue;
+			_PlatformId = IdentityValue;
 		}
 
     } 

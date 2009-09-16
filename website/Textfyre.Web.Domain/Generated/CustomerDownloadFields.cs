@@ -8,16 +8,12 @@
  */
 namespace Textfyre.TextfyreWeb.DataLayer {
     /// <summary>
-    /// Enumeration of Product fields for use with database properties.
+    /// Enumeration of CustomerDownload fields for use with database properties.
     /// </summary>
-    public enum ProductFields {
+    public enum CustomerDownloadFields {
         
+		UserId,
 		ProductId,
-		ProductCode,
-		Description,
-		PublishDate,
-		TeamId,
-		GLNumber,
-		SystemRequirements
+		PurchaseDateTime
     }
 }

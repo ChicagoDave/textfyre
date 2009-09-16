@@ -8,21 +8,11 @@
  */
 namespace Textfyre.TextfyreWeb.DataLayer {
     /// <summary>
-    /// Enumeration of Profile fields for use with database properties.
+    /// Enumeration of Platform fields for use with database properties.
     /// </summary>
-    public enum ProfileFields {
+    public enum PlatformFields {
         
-		UserId,
-		FirstName,
-		LastName,
-		City,
-		State,
-		School,
-		IsCustomer,
-		OwnsSecretLetter,
-		OwnsShadow,
-		OwnsEmpathy,
-		ValidationId,
-		LastActivityDate
+		PlatformId,
+		Description
     }
 }

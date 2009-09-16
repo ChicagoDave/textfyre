@@ -15,10 +15,10 @@ using Textfyre.Common.BusinessLayer;
 namespace Textfyre.TextfyreWeb.BusinessLayer {
 
     /// <summary>
-    /// Collection class for Product domain class.
+    /// Collection class for CustomerDownload domain class.
     /// </summary>
     [Serializable()]
-    public class ProductCollection : List<Textfyre.TextfyreWeb.BusinessLayer.Product> {
+    public class CustomerDownloadCollection : List<Textfyre.TextfyreWeb.BusinessLayer.CustomerDownload> {
         /// <summary>
         /// Flag identifies when collection has been modified (updated record, added record, deleted record).
         /// </summary>
@@ -31,80 +31,56 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
         /// <summary>
         /// Add method to add a new record to the collection by passing a domain object.
         /// </summary>
-        new public void Add(Textfyre.TextfyreWeb.BusinessLayer.Product Product) {
-            base.Add(Product);
+        new public void Add(Textfyre.TextfyreWeb.BusinessLayer.CustomerDownload CustomerDownload) {
+            base.Add(CustomerDownload);
             _isCollectionDirty = true;
         }
 
         /// <summary>
         /// Add method to add a new record to the collection by passing a recordset.
         /// </summary>
-        public void Add(Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset recordset) {
-            this.Add(new Product(recordset));
+        public void Add(Textfyre.TextfyreWeb.BusinessLayer.CustomerDownloadRecordset recordset) {
+            this.Add(new CustomerDownload(recordset));
         }
 
         /// <summary>
         /// Remove method to remove a record from the collection by passing a domain object.
         /// </summary>
-        new public void Remove(Textfyre.TextfyreWeb.BusinessLayer.Product Product) {
-            base.Remove(Product);
+        new public void Remove(Textfyre.TextfyreWeb.BusinessLayer.CustomerDownload CustomerDownload) {
+            base.Remove(CustomerDownload);
             _isCollectionDirty = true;
         }
 
         /// <summary>
         /// Fill a recordset with cloned objects from internal recordset.
         /// </summary>
-        public void Fill(List<Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset> ProductRecs) {
+        public void Fill(List<Textfyre.TextfyreWeb.BusinessLayer.CustomerDownloadRecordset> CustomerDownloadRecs) {
             this.Clear();            
-            foreach (Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset rec in ProductRecs)
-                Add((Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset)rec.Clone());
+            foreach (Textfyre.TextfyreWeb.BusinessLayer.CustomerDownloadRecordset rec in CustomerDownloadRecs)
+                Add((Textfyre.TextfyreWeb.BusinessLayer.CustomerDownloadRecordset)rec.Clone());
         }
 
-        public void Sort(Textfyre.TextfyreWeb.DataLayer.ProductFields sortField, SortDirection sortDirection)
+        public void Sort(Textfyre.TextfyreWeb.DataLayer.CustomerDownloadFields sortField, SortDirection sortDirection)
         {
             switch (sortField)
             {
-				case DataLayer.ProductFields.ProductId:
+				case DataLayer.CustomerDownloadFields.UserId:
 					if (sortDirection == SortDirection.Descending)
-						Sort(Product.SortBy.ProductIdColumnDESC);
+						Sort(CustomerDownload.SortBy.UserIdColumnDESC);
 					else
-						Sort(Product.SortBy.ProductIdColumnASC);
+						Sort(CustomerDownload.SortBy.UserIdColumnASC);
 					break;
-				case DataLayer.ProductFields.ProductCode:
+				case DataLayer.CustomerDownloadFields.ProductId:
 					if (sortDirection == SortDirection.Descending)
-						Sort(Product.SortBy.ProductCodeColumnDESC);
+						Sort(CustomerDownload.SortBy.ProductIdColumnDESC);
 					else
-						Sort(Product.SortBy.ProductCodeColumnASC);
+						Sort(CustomerDownload.SortBy.ProductIdColumnASC);
 					break;
-				case DataLayer.ProductFields.Description:
+				case DataLayer.CustomerDownloadFields.PurchaseDateTime:
 					if (sortDirection == SortDirection.Descending)
-						Sort(Product.SortBy.DescriptionColumnDESC);
+						Sort(CustomerDownload.SortBy.PurchaseDateTimeColumnDESC);
 					else
-						Sort(Product.SortBy.DescriptionColumnASC);
-					break;
-				case DataLayer.ProductFields.PublishDate:
-					if (sortDirection == SortDirection.Descending)
-						Sort(Product.SortBy.PublishDateColumnDESC);
-					else
-						Sort(Product.SortBy.PublishDateColumnASC);
-					break;
-				case DataLayer.ProductFields.TeamId:
-					if (sortDirection == SortDirection.Descending)
-						Sort(Product.SortBy.TeamIdColumnDESC);
-					else
-						Sort(Product.SortBy.TeamIdColumnASC);
-					break;
-				case DataLayer.ProductFields.GLNumber:
-					if (sortDirection == SortDirection.Descending)
-						Sort(Product.SortBy.GLNumberColumnDESC);
-					else
-						Sort(Product.SortBy.GLNumberColumnASC);
-					break;
-				case DataLayer.ProductFields.SystemRequirements:
-					if (sortDirection == SortDirection.Descending)
-						Sort(Product.SortBy.SystemRequirementsColumnDESC);
-					else
-						Sort(Product.SortBy.SystemRequirementsColumnASC);
+						Sort(CustomerDownload.SortBy.PurchaseDateTimeColumnASC);
 					break;
 
             }
@@ -119,12 +95,12 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
                 return pageCount + 1;
         }
 
-        public List<Textfyre.TextfyreWeb.BusinessLayer.Product> GetPage(int pageSize, int pageNumber)
+        public List<Textfyre.TextfyreWeb.BusinessLayer.CustomerDownload> GetPage(int pageSize, int pageNumber)
         {
             int beginIndex = ((pageNumber - 1) * pageSize); // start at 0 so pages are offset -1
             int endIndex = beginIndex + pageSize - 1;
 
-            List<Textfyre.TextfyreWeb.BusinessLayer.Product> returnCollection = new List<Textfyre.TextfyreWeb.BusinessLayer.Product>();
+            List<Textfyre.TextfyreWeb.BusinessLayer.CustomerDownload> returnCollection = new List<Textfyre.TextfyreWeb.BusinessLayer.CustomerDownload>();
 
             for (int row = beginIndex; row < endIndex; row++)
             {

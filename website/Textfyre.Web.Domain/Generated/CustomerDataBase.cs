@@ -19,10 +19,10 @@ using Textfyre.TextfyreWeb.BusinessLayer;
 namespace Textfyre.TextfyreWeb.DataLayer {
 
     /// <summary>
-    /// Data Factory class that handles all database interaction for the Product table.
+    /// Data Factory class that handles all database interaction for the Customer table.
     /// </summary>
     [Serializable()]
-    public abstract class ProductDataBase {
+    public abstract class CustomerDataBase {
 
         #region Members
         /// <summary>
@@ -38,9 +38,9 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         private DBController _errorDBController;
 
         /// <summary>
-        /// Instance of the parameter factory class for the Product table.
+        /// Instance of the parameter factory class for the Customer table.
         /// </summary>
-        private Textfyre.TextfyreWeb.DataLayer.ProductParameterFactory _parameterFactory;
+        private Textfyre.TextfyreWeb.DataLayer.CustomerParameterFactory _parameterFactory;
 
         /// <summary>
         /// Instance of the cache manager.
@@ -53,25 +53,25 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         private string _cacheExpiration;
 
         /// <summary>
-        /// String constant containing 'Product'.
+        /// String constant containing 'Customer'.
         /// </summary>
-        private const string TABLE_NAME = "Product";
+        private const string TABLE_NAME = "Customer";
 
         #endregion        
 
         /// <summary> 
         /// Empty default constructor. 
         /// </summary> 
-        public ProductDataBase() {
+        public CustomerDataBase() {
             GetDBControllers();
             GetCacheManager();
-            _parameterFactory = new ProductParameterFactory();
+            _parameterFactory = new CustomerParameterFactory();
         }
 
         /// <summary>
         /// Protected property for the parameter factory.
         /// </summary>
-        protected Textfyre.TextfyreWeb.DataLayer.ProductParameterFactory ParameterFactory {
+        protected Textfyre.TextfyreWeb.DataLayer.CustomerParameterFactory ParameterFactory {
             get { return _parameterFactory; }
         }
 
@@ -158,21 +158,21 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// <sumamry>
         /// Get all records in the table.
         /// </summary>
-        public virtual List<Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset> GetAllProduct() {
-            return ExecuteSqlGetCollection("SELECT [ProductId], [ProductCode], [Description], [PublishDate], [TeamId], [GLNumber], [SystemRequirements] FROM Product", null);
+        public virtual List<Textfyre.TextfyreWeb.BusinessLayer.CustomerRecordset> GetAllCustomer() {
+            return ExecuteSqlGetCollection("SELECT [UserId], [School], [FirstName], [LastName], [Address1], [Address2], [City], [State], [PostalCode], [CountryCode], [PhoneNumber], [MobileNumber], [HasDownloads], [ValidationId], [LastActivityDate] FROM Customer", null);
         }
 
         /// <summary>
         /// Get a single record in the table.
         /// </summary>
-        public virtual Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset GetProductById(Int32 ProductId) {
-            if (ProductId < 1)
+        public virtual Textfyre.TextfyreWeb.BusinessLayer.CustomerRecordset GetCustomerById(Guid UserId) {
+            if (UserId == Guid.Empty)
                 return null;
 
-            string sql = "SELECT [ProductId], [ProductCode], [Description], [PublishDate], [TeamId], [GLNumber], [SystemRequirements] FROM Product WHERE [ProductId] = @ProductId";
+            string sql = "SELECT [UserId], [School], [FirstName], [LastName], [Address1], [Address2], [City], [State], [PostalCode], [CountryCode], [PhoneNumber], [MobileNumber], [HasDownloads], [ValidationId], [LastActivityDate] FROM Customer WHERE [UserId] = @UserId";
             List<SqlParameter> parameters = new List<SqlParameter>();
             
-			parameters.Add(ParameterFactory.GetParameter(ProductFields.ProductId, ProductId));            
+			parameters.Add(ParameterFactory.GetParameter(CustomerFields.UserId, UserId));            
 
             return ExecuteSqlGetRecord(sql, parameters);
         }
@@ -180,81 +180,149 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// <summary>
         /// Insert a record into the table.
         /// </summary>
-        public virtual Int32 InsertProduct(Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset record) {
-            string sql = "INSERT INTO Product([ProductCode], [Description], [PublishDate], [TeamId], [GLNumber], [SystemRequirements]) VALUES (@ProductCode, @Description, @PublishDate, @TeamId, @GLNumber, @SystemRequirements); SELECT SCOPE_IDENTITY() as ID;";
+        public virtual Guid InsertCustomer(Textfyre.TextfyreWeb.BusinessLayer.CustomerRecordset record) {
+            string sql = "INSERT INTO Customer([School], [FirstName], [LastName], [Address1], [Address2], [City], [State], [PostalCode], [CountryCode], [PhoneNumber], [MobileNumber], [HasDownloads], [ValidationId], [LastActivityDate]) VALUES (@School, @FirstName, @LastName, @Address1, @Address2, @City, @State, @PostalCode, @CountryCode, @PhoneNumber, @MobileNumber, @HasDownloads, @ValidationId, @LastActivityDate); SELECT SCOPE_IDENTITY() as ID;";
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-			if(record.ProductCode != null)
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.ProductCode, record.ProductCode));
+			if(record.School != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.School, record.School));
 			else
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.ProductCode, DBNull.Value));
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.School, DBNull.Value));
 
-			if(record.Description != null)
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.Description, record.Description));
+			if(record.FirstName != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.FirstName, record.FirstName));
 			else
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.Description, DBNull.Value));
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.FirstName, DBNull.Value));
 
-			if(record.PublishDate.HasValue)
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.PublishDate, record.PublishDate.Value));
+			if(record.LastName != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.LastName, record.LastName));
 			else
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.PublishDate, DBNull.Value));
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.LastName, DBNull.Value));
 
-			if(record.TeamId.HasValue)
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.TeamId, record.TeamId.Value));
+			if(record.Address1 != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.Address1, record.Address1));
 			else
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.TeamId, DBNull.Value));
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.Address1, DBNull.Value));
 
-			if(record.GLNumber != null)
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.GLNumber, record.GLNumber));
+			if(record.Address2 != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.Address2, record.Address2));
 			else
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.GLNumber, DBNull.Value));
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.Address2, DBNull.Value));
 
-			if(record.SystemRequirements != null)
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.SystemRequirements, record.SystemRequirements));
+			if(record.City != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.City, record.City));
 			else
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.SystemRequirements, DBNull.Value));
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.City, DBNull.Value));
+
+			if(record.State != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.State, record.State));
+			else
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.State, DBNull.Value));
+
+			if(record.PostalCode != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.PostalCode, record.PostalCode));
+			else
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.PostalCode, DBNull.Value));
+
+			if(record.CountryCode != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.CountryCode, record.CountryCode));
+			else
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.CountryCode, DBNull.Value));
+
+			if(record.PhoneNumber != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.PhoneNumber, record.PhoneNumber));
+			else
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.PhoneNumber, DBNull.Value));
+
+			if(record.MobileNumber != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.MobileNumber, record.MobileNumber));
+			else
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.MobileNumber, DBNull.Value));
+
+			parameters.Add(ParameterFactory.GetParameter(CustomerFields.HasDownloads, record.HasDownloads));
+
+			if(record.ValidationId != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.ValidationId, record.ValidationId));
+			else
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.ValidationId, DBNull.Value));
+
+			parameters.Add(ParameterFactory.GetParameter(CustomerFields.LastActivityDate, record.LastActivityDate));
 
             
-			return Convert.ToInt32(ExecuteSqlGetScalar(sql, parameters));
+			return (Guid)(ExecuteSqlGetScalar(sql, parameters));
         }
 
         /// <summary>
         /// Update a record in the table.
         /// </summary>
-        public virtual int UpdateProduct(Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset record) {
-            string sql = "UPDATE Product SET [ProductCode] = @ProductCode, [Description] = @Description, [PublishDate] = @PublishDate, [TeamId] = @TeamId, [GLNumber] = @GLNumber, [SystemRequirements] = @SystemRequirements WHERE [ProductId] = @ProductId";
+        public virtual int UpdateCustomer(Textfyre.TextfyreWeb.BusinessLayer.CustomerRecordset record) {
+            string sql = "UPDATE Customer SET [School] = @School, [FirstName] = @FirstName, [LastName] = @LastName, [Address1] = @Address1, [Address2] = @Address2, [City] = @City, [State] = @State, [PostalCode] = @PostalCode, [CountryCode] = @CountryCode, [PhoneNumber] = @PhoneNumber, [MobileNumber] = @MobileNumber, [HasDownloads] = @HasDownloads, [ValidationId] = @ValidationId, [LastActivityDate] = @LastActivityDate WHERE [UserId] = @UserId";
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-			parameters.Add(ParameterFactory.GetParameter(ProductFields.ProductId, record.ProductId));
-			if(record.ProductCode != null)
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.ProductCode, record.ProductCode));
+			parameters.Add(ParameterFactory.GetParameter(CustomerFields.UserId, record.UserId));
+			if(record.School != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.School, record.School));
 			else
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.ProductCode, DBNull.Value));
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.School, DBNull.Value));
 
-			if(record.Description != null)
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.Description, record.Description));
+			if(record.FirstName != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.FirstName, record.FirstName));
 			else
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.Description, DBNull.Value));
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.FirstName, DBNull.Value));
 
-			if(record.PublishDate.HasValue)
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.PublishDate, record.PublishDate.Value));
+			if(record.LastName != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.LastName, record.LastName));
 			else
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.PublishDate, DBNull.Value));
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.LastName, DBNull.Value));
 
-			if(record.TeamId.HasValue)
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.TeamId, record.TeamId.Value));
+			if(record.Address1 != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.Address1, record.Address1));
 			else
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.TeamId, DBNull.Value));
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.Address1, DBNull.Value));
 
-			if(record.GLNumber != null)
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.GLNumber, record.GLNumber));
+			if(record.Address2 != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.Address2, record.Address2));
 			else
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.GLNumber, DBNull.Value));
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.Address2, DBNull.Value));
 
-			if(record.SystemRequirements != null)
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.SystemRequirements, record.SystemRequirements));
+			if(record.City != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.City, record.City));
 			else
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.SystemRequirements, DBNull.Value));
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.City, DBNull.Value));
+
+			if(record.State != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.State, record.State));
+			else
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.State, DBNull.Value));
+
+			if(record.PostalCode != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.PostalCode, record.PostalCode));
+			else
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.PostalCode, DBNull.Value));
+
+			if(record.CountryCode != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.CountryCode, record.CountryCode));
+			else
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.CountryCode, DBNull.Value));
+
+			if(record.PhoneNumber != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.PhoneNumber, record.PhoneNumber));
+			else
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.PhoneNumber, DBNull.Value));
+
+			if(record.MobileNumber != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.MobileNumber, record.MobileNumber));
+			else
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.MobileNumber, DBNull.Value));
+
+			parameters.Add(ParameterFactory.GetParameter(CustomerFields.HasDownloads, record.HasDownloads));
+
+			if(record.ValidationId != null)
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.ValidationId, record.ValidationId));
+			else
+				parameters.Add(ParameterFactory.GetParameter(CustomerFields.ValidationId, DBNull.Value));
+
+			parameters.Add(ParameterFactory.GetParameter(CustomerFields.LastActivityDate, record.LastActivityDate));
 
             
             return ExecuteSqlGetNonScalar(sql, parameters);
@@ -263,11 +331,11 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// <summary>
         /// Delete a record in the table.
         /// </summary>
-        public virtual int DeleteProduct(Int32 ProductId) {
-            string sql = "DELETE FROM Product WHERE [ProductId] = @ProductId";
+        public virtual int DeleteCustomer(Guid UserId) {
+            string sql = "DELETE FROM Customer WHERE [UserId] = @UserId";
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-			parameters.Add(ParameterFactory.GetParameter(ProductFields.ProductId, ProductId));
+			parameters.Add(ParameterFactory.GetParameter(CustomerFields.UserId, UserId));
 
             
             return ExecuteSqlGetNonScalar(sql, parameters);
@@ -436,26 +504,26 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// <summary>
         /// Execute a query stored by name in the web.config file and return a strongly typed recordset.
         /// </summary>
-        public Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset ExecuteQueryNameGetRecord(string QueryName, List<SqlParameter> Parameters) {
+        public Textfyre.TextfyreWeb.BusinessLayer.CustomerRecordset ExecuteQueryNameGetRecord(string QueryName, List<SqlParameter> Parameters) {
             return ExecuteGetRecord(_mainDBController.SqlText(QueryName), Parameters);
         }
 
         /// <summary>
         /// Execute a direct SQL statement and return a strongly typed recordset.
         /// </summary>
-        public Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset ExecuteSqlGetRecord(string SqlText, List<SqlParameter> Parameters) {
+        public Textfyre.TextfyreWeb.BusinessLayer.CustomerRecordset ExecuteSqlGetRecord(string SqlText, List<SqlParameter> Parameters) {
             return ExecuteGetRecord(SqlText, Parameters);
         }        
 
         /// <summary>
         /// Private method that executes a sql command and returns a strongly typed recordset.
         /// </summary>
-        private Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset ExecuteGetRecord(string CmdText, List<SqlParameter> Parameters) {
-            List<Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset> newProductRecordsetList = ExecuteReader(CmdText, Parameters, false);
-            if(newProductRecordsetList.Count == 0)
+        private Textfyre.TextfyreWeb.BusinessLayer.CustomerRecordset ExecuteGetRecord(string CmdText, List<SqlParameter> Parameters) {
+            List<Textfyre.TextfyreWeb.BusinessLayer.CustomerRecordset> newCustomerRecordsetList = ExecuteReader(CmdText, Parameters, false);
+            if(newCustomerRecordsetList.Count == 0)
                 return null;
 
-            return newProductRecordsetList[0];
+            return newCustomerRecordsetList[0];
         }        
         #endregion
 
@@ -464,7 +532,7 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// Execute a query stored by name in the web.config file and return
         /// a strongly typed collection of recordsets.
         /// </summary>
-        public List<Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset> ExecuteQueryNameGetCollection(string QueryName, List<SqlParameter> Parameters) {
+        public List<Textfyre.TextfyreWeb.BusinessLayer.CustomerRecordset> ExecuteQueryNameGetCollection(string QueryName, List<SqlParameter> Parameters) {
             return ExecuteReader(_mainDBController.SqlText(QueryName), Parameters, false);
         }
 
@@ -472,7 +540,7 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// Execute a direct SQL statement and return
         /// a strongly typed collection of recordsets.
         /// </summary>
-        public List<Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset> ExecuteSqlGetCollection(string SqlText, List<SqlParameter> Parameters) {
+        public List<Textfyre.TextfyreWeb.BusinessLayer.CustomerRecordset> ExecuteSqlGetCollection(string SqlText, List<SqlParameter> Parameters) {
             return ExecuteReader(SqlText, Parameters, false);
         }
 
@@ -480,7 +548,7 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// Execute a stored procedure and return
         /// a strongly typed collection of recordsets.
         /// </summary>
-        protected List<Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset> ExecuteSPGetCollection(string StoredProcedureName, List<SqlParameter> Parameters) {
+        protected List<Textfyre.TextfyreWeb.BusinessLayer.CustomerRecordset> ExecuteSPGetCollection(string StoredProcedureName, List<SqlParameter> Parameters) {
             return ExecuteReader(StoredProcedureName, Parameters, true);
         }
 
@@ -491,95 +559,143 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// <summary> 
         /// Load Items collection with data. 
         /// </summary> 
-        /// <param name="drProduct"></param> 
-        private List<Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset> LoadItems(SqlDataReader drProduct) {           
+        /// <param name="drCustomer"></param> 
+        private List<Textfyre.TextfyreWeb.BusinessLayer.CustomerRecordset> LoadItems(SqlDataReader drCustomer) {           
 
-            List<Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset> newProductRecordsetList = new List<Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset>();
+            List<Textfyre.TextfyreWeb.BusinessLayer.CustomerRecordset> newCustomerRecordsetList = new List<Textfyre.TextfyreWeb.BusinessLayer.CustomerRecordset>();
             bool namesMapped = false;
             Dictionary<string, int> fieldMap = null;
 
             // read through datareader, add items 
-            while (drProduct.Read()) {
+            while (drCustomer.Read()) {
 
                 if (!namesMapped) {
                     //Map field name to ordinal position
                     fieldMap = new Dictionary<string, int>();
-                    for (int i = 0; i < drProduct.FieldCount; i++)
-                        fieldMap.Add(drProduct.GetName(i), i);
+                    for (int i = 0; i < drCustomer.FieldCount; i++)
+                        fieldMap.Add(drCustomer.GetName(i), i);
 
                     namesMapped = true;
                 }
 
-                Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset newProductRecordset = new Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset();
+                Textfyre.TextfyreWeb.BusinessLayer.CustomerRecordset newCustomerRecordset = new Textfyre.TextfyreWeb.BusinessLayer.CustomerRecordset();
                 object o = null;
 
-				if (fieldMap.ContainsKey("ProductId")) {
-					o = drProduct[fieldMap["ProductId"]];
+				if (fieldMap.ContainsKey("UserId")) {
+					o = drCustomer[fieldMap["UserId"]];
 					if (o != DBNull.Value)
-						newProductRecordset.ProductId = (Int32)o;
+						newCustomerRecordset.UserId = (Guid)o;
 				}
 
-				if (fieldMap.ContainsKey("ProductCode")) {
-					o = drProduct[fieldMap["ProductCode"]];
+				if (fieldMap.ContainsKey("School")) {
+					o = drCustomer[fieldMap["School"]];
 					if (o != DBNull.Value)
-						newProductRecordset.ProductCode = ((string)o).Trim();
+						newCustomerRecordset.School = ((string)o).Trim();
 				}
 
-				if (fieldMap.ContainsKey("Description")) {
-					o = drProduct[fieldMap["Description"]];
+				if (fieldMap.ContainsKey("FirstName")) {
+					o = drCustomer[fieldMap["FirstName"]];
 					if (o != DBNull.Value)
-						newProductRecordset.Description = ((string)o).Trim();
+						newCustomerRecordset.FirstName = ((string)o).Trim();
 				}
 
-				if (fieldMap.ContainsKey("PublishDate")) {
-					o = drProduct[fieldMap["PublishDate"]];
+				if (fieldMap.ContainsKey("LastName")) {
+					o = drCustomer[fieldMap["LastName"]];
 					if (o != DBNull.Value)
-						newProductRecordset.PublishDate = (DateTime)o;
+						newCustomerRecordset.LastName = ((string)o).Trim();
 				}
 
-				if (fieldMap.ContainsKey("TeamId")) {
-					o = drProduct[fieldMap["TeamId"]];
+				if (fieldMap.ContainsKey("Address1")) {
+					o = drCustomer[fieldMap["Address1"]];
 					if (o != DBNull.Value)
-						newProductRecordset.TeamId = (Int32)o;
+						newCustomerRecordset.Address1 = ((string)o).Trim();
 				}
 
-				if (fieldMap.ContainsKey("GLNumber")) {
-					o = drProduct[fieldMap["GLNumber"]];
+				if (fieldMap.ContainsKey("Address2")) {
+					o = drCustomer[fieldMap["Address2"]];
 					if (o != DBNull.Value)
-						newProductRecordset.GLNumber = ((string)o).Trim();
+						newCustomerRecordset.Address2 = ((string)o).Trim();
 				}
 
-				if (fieldMap.ContainsKey("SystemRequirements")) {
-					o = drProduct[fieldMap["SystemRequirements"]];
+				if (fieldMap.ContainsKey("City")) {
+					o = drCustomer[fieldMap["City"]];
 					if (o != DBNull.Value)
-						newProductRecordset.SystemRequirements = ((string)o).Trim();
+						newCustomerRecordset.City = ((string)o).Trim();
+				}
+
+				if (fieldMap.ContainsKey("State")) {
+					o = drCustomer[fieldMap["State"]];
+					if (o != DBNull.Value)
+						newCustomerRecordset.State = ((string)o).Trim();
+				}
+
+				if (fieldMap.ContainsKey("PostalCode")) {
+					o = drCustomer[fieldMap["PostalCode"]];
+					if (o != DBNull.Value)
+						newCustomerRecordset.PostalCode = ((string)o).Trim();
+				}
+
+				if (fieldMap.ContainsKey("CountryCode")) {
+					o = drCustomer[fieldMap["CountryCode"]];
+					if (o != DBNull.Value)
+						newCustomerRecordset.CountryCode = ((string)o).Trim();
+				}
+
+				if (fieldMap.ContainsKey("PhoneNumber")) {
+					o = drCustomer[fieldMap["PhoneNumber"]];
+					if (o != DBNull.Value)
+						newCustomerRecordset.PhoneNumber = ((string)o).Trim();
+				}
+
+				if (fieldMap.ContainsKey("MobileNumber")) {
+					o = drCustomer[fieldMap["MobileNumber"]];
+					if (o != DBNull.Value)
+						newCustomerRecordset.MobileNumber = ((string)o).Trim();
+				}
+
+				if (fieldMap.ContainsKey("HasDownloads")) {
+					o = drCustomer[fieldMap["HasDownloads"]];
+					if (o != DBNull.Value)
+						newCustomerRecordset.HasDownloads = (bool)o;
+				}
+
+				if (fieldMap.ContainsKey("ValidationId")) {
+					o = drCustomer[fieldMap["ValidationId"]];
+					if (o != DBNull.Value)
+						newCustomerRecordset.ValidationId = ((string)o).Trim();
+				}
+
+				if (fieldMap.ContainsKey("LastActivityDate")) {
+					o = drCustomer[fieldMap["LastActivityDate"]];
+					if (o != DBNull.Value)
+						newCustomerRecordset.LastActivityDate = (DateTime)o;
 				}
 
 
-                newProductRecordset.IsDirty = false;
-                newProductRecordsetList.Add(newProductRecordset);
+                newCustomerRecordset.IsDirty = false;
+                newCustomerRecordsetList.Add(newCustomerRecordset);
             }
             
-            return newProductRecordsetList;
+            return newCustomerRecordsetList;
         }
 
         /// <summary>
-        /// Private method that returns a List<T> of ProductRecordset
+        /// Private method that returns a List<T> of CustomerRecordset
         /// </summary>
-        private List<Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset> ExecuteReader(string CmdText, List<SqlParameter> Parameters, bool isStoredProcedure) {
+        private List<Textfyre.TextfyreWeb.BusinessLayer.CustomerRecordset> ExecuteReader(string CmdText, List<SqlParameter> Parameters, bool isStoredProcedure) {
             SqlDataReader selectReader                                                           = null;
-            List<Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset> newProductRecordsetList = null;
+            List<Textfyre.TextfyreWeb.BusinessLayer.CustomerRecordset> newCustomerRecordsetList = null;
             string cacheKey                                                                      = null;
 
             if (_cacheManager != null) {
                 cacheKey = _cacheManager.CreateCacheKey(TABLE_NAME, Parameters);
 
                 if (_cacheManager.Exists2(cacheKey)) {
-                    newProductRecordsetList = _cacheManager.Get2< List<Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset> >(cacheKey);
+                    newCustomerRecordsetList = _cacheManager.Get2< List<Textfyre.TextfyreWeb.BusinessLayer.CustomerRecordset> >(cacheKey);
                 }
             }
 
-            if (newProductRecordsetList == null) {
+            if (newCustomerRecordsetList == null) {
                 try {
                     if (!_mainDBController.HasTransaction)
                         _mainDBController.CurrentConnection.Open();
@@ -587,7 +703,7 @@ namespace Textfyre.TextfyreWeb.DataLayer {
                     SqlCommand sqlCmd = CreateCommand(CmdText, Parameters, isStoredProcedure);
                     selectReader = sqlCmd.ExecuteReader();
 
-                    newProductRecordsetList = LoadItems(selectReader);
+                    newCustomerRecordsetList = LoadItems(selectReader);
                     sqlCmd.Parameters.Clear();
                 } catch (SqlException sqlEx) {
                     LogSqlException("ExecuteReader", sqlEx);
@@ -606,11 +722,11 @@ namespace Textfyre.TextfyreWeb.DataLayer {
                 }
 
                 if (_cacheManager != null) {
-                    _cacheManager.Set2(cacheKey, newProductRecordsetList, _cacheExpiration);
+                    _cacheManager.Set2(cacheKey, newCustomerRecordsetList, _cacheExpiration);
                 }
             }
 
-            return newProductRecordsetList;
+            return newCustomerRecordsetList;
         }
 
         /// <summary>
@@ -618,13 +734,13 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// </summary>
         private void LogSqlException(string methodName, SqlException sqlEx) {            
             if (sqlEx.Class >= 20) {
-                Logger.LogMessage(typeof(ProductDataBase).FullName, methodName, sqlEx,
+                Logger.LogMessage(typeof(CustomerDataBase).FullName, methodName, sqlEx,
                                   Severity.FATAL, LogLocation.ALL);
             } else if ((sqlEx.Class >= 11) && (sqlEx.Class < 20)) {
-                Logger.LogMessage(typeof(ProductDataBase).FullName, methodName, sqlEx,
+                Logger.LogMessage(typeof(CustomerDataBase).FullName, methodName, sqlEx,
                                   Severity.ERROR, LogLocation.ALL);
             } else if (sqlEx.Class < 11) {
-                Logger.LogMessage(typeof(ProductDataBase).FullName, methodName, sqlEx,
+                Logger.LogMessage(typeof(CustomerDataBase).FullName, methodName, sqlEx,
                                   Severity.INFO, LogLocation.ALL);
             }
         }
@@ -633,7 +749,7 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// Private method to log and handle general exceptions.
         /// </summary>
         private void LogGenericException(string methodName, Exception ex) {
-            Logger.LogMessage(typeof(ProductDataBase).FullName, methodName, ex,
+            Logger.LogMessage(typeof(CustomerDataBase).FullName, methodName, ex,
                               Severity.ERROR, LogLocation.ALL);
         }
 

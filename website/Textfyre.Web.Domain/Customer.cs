@@ -6,25 +6,41 @@ using System.ComponentModel;
 namespace Textfyre.TextfyreWeb.BusinessLayer { 
 
     /// <summary>
-    /// Starter Product domain class. This class is only generated the first time and will not
+    /// Starter Customer domain class. This class is only generated the first time and will not
     /// be over-written by the code generation tool.
     /// </summary>
     [Serializable()]
-    public class Product : ProductBase, IEditableObject {
+    public class Customer : CustomerBase, IEditableObject {
+
+        private DownloadCollection _downloads;
         
         /// <summary>
         /// Empty default constructor.
         /// </summary>
-        public Product() : base() {
+        public Customer() : base() {
         }
 
-        public Product(Int32 ProductId) : base(ProductId) {
+        public Customer(Guid UserId) : base(UserId) {
 		}        
 
         /// <summary>
-        /// Empty constructor that accepts a Productrecordset object.
+        /// Empty constructor that accepts a Customerrecordset object.
         /// </summary>
-        public Product(ProductRecordset Recordset) : base(Recordset) {
+        public Customer(CustomerRecordset Recordset) : base(Recordset) {
+        }
+
+        public DownloadCollection Downloads {
+            get {
+                if (_downloads == null && UserId != null) {
+                    Download download = new Download();
+                    _downloads = download.LoadByUserId(UserId);
+                }
+
+                return _downloads;
+            }
+            set {
+                _downloads = value;
+            }
         }
 
         #region "IEditableObject Interface" 
@@ -48,12 +64,12 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
         /// <summary>
         /// IEditableObject: Cancel Add New delegate.
         /// </summary>
-        public delegate void CancelAddNewEventHandler(Product sender, bool Remove);
+        public delegate void CancelAddNewEventHandler(Customer sender, bool Remove);
         
         /// <summary>
         /// IEditableObject: New object constructor.
         /// </summary>
-        public Product(bool IsAddNew) : this(0) { 
+        public Customer(bool IsAddNew) : this(Guid.NewGuid()) { 
             _IsAddNew = IsAddNew; 
         } 
         
