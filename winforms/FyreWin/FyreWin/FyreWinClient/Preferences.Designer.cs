@@ -33,15 +33,22 @@
             this.HFFont = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.BackgroundColorBox = new System.Windows.Forms.TextBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.ColorButton = new System.Windows.Forms.Button();
+            this.BackgroundColorBox = new System.Windows.Forms.TextBox();
+            this.TextColorButton = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.HeaderColorButton = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.HeaderBackgroundColorButton = new System.Windows.Forms.Button();
+            this.HeaderColorBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(12, 133);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 0;
@@ -49,7 +56,7 @@
             // 
             // CurrentFontTextBox
             // 
-            this.CurrentFontTextBox.Location = new System.Drawing.Point(15, 25);
+            this.CurrentFontTextBox.Location = new System.Drawing.Point(15, 149);
             this.CurrentFontTextBox.Name = "CurrentFontTextBox";
             this.CurrentFontTextBox.ReadOnly = true;
             this.CurrentFontTextBox.Size = new System.Drawing.Size(280, 20);
@@ -57,7 +64,7 @@
             // 
             // ChangeFontButton
             // 
-            this.ChangeFontButton.Location = new System.Drawing.Point(298, 24);
+            this.ChangeFontButton.Location = new System.Drawing.Point(298, 148);
             this.ChangeFontButton.Name = "ChangeFontButton";
             this.ChangeFontButton.Size = new System.Drawing.Size(25, 20);
             this.ChangeFontButton.TabIndex = 2;
@@ -88,7 +95,7 @@
             // 
             // HFButton
             // 
-            this.HFButton.Location = new System.Drawing.Point(298, 63);
+            this.HFButton.Location = new System.Drawing.Point(298, 21);
             this.HFButton.Name = "HFButton";
             this.HFButton.Size = new System.Drawing.Size(25, 20);
             this.HFButton.TabIndex = 7;
@@ -98,7 +105,7 @@
             // 
             // HFFont
             // 
-            this.HFFont.Location = new System.Drawing.Point(15, 64);
+            this.HFFont.Location = new System.Drawing.Point(15, 22);
             this.HFFont.Name = "HFFont";
             this.HFFont.ReadOnly = true;
             this.HFFont.Size = new System.Drawing.Size(280, 20);
@@ -107,7 +114,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 48);
+            this.label2.Location = new System.Drawing.Point(12, 6);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 13);
             this.label2.TabIndex = 5;
@@ -116,26 +123,15 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 87);
+            this.label3.Location = new System.Drawing.Point(12, 200);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 13);
             this.label3.TabIndex = 8;
             this.label3.Text = "Background Color";
             // 
-            // BackgroundColorBox
-            // 
-            this.BackgroundColorBox.BackColor = System.Drawing.Color.White;
-            this.BackgroundColorBox.ForeColor = System.Drawing.Color.Black;
-            this.BackgroundColorBox.Location = new System.Drawing.Point(15, 103);
-            this.BackgroundColorBox.Name = "BackgroundColorBox";
-            this.BackgroundColorBox.ReadOnly = true;
-            this.BackgroundColorBox.Size = new System.Drawing.Size(280, 20);
-            this.BackgroundColorBox.TabIndex = 9;
-            this.BackgroundColorBox.Text = "The lazy fox jumped over the brown grue.";
-            // 
             // ColorButton
             // 
-            this.ColorButton.Location = new System.Drawing.Point(298, 103);
+            this.ColorButton.Location = new System.Drawing.Point(110, 196);
             this.ColorButton.Name = "ColorButton";
             this.ColorButton.Size = new System.Drawing.Size(25, 20);
             this.ColorButton.TabIndex = 10;
@@ -143,11 +139,97 @@
             this.ColorButton.UseVisualStyleBackColor = true;
             this.ColorButton.Click += new System.EventHandler(this.ColorButton_Click);
             // 
+            // BackgroundColorBox
+            // 
+            this.BackgroundColorBox.BackColor = System.Drawing.Color.White;
+            this.BackgroundColorBox.ForeColor = System.Drawing.Color.Black;
+            this.BackgroundColorBox.Location = new System.Drawing.Point(15, 174);
+            this.BackgroundColorBox.Name = "BackgroundColorBox";
+            this.BackgroundColorBox.ReadOnly = true;
+            this.BackgroundColorBox.Size = new System.Drawing.Size(280, 20);
+            this.BackgroundColorBox.TabIndex = 9;
+            this.BackgroundColorBox.Text = "The lazy fox jumped over the brown grue.";
+            // 
+            // TextColorButton
+            // 
+            this.TextColorButton.Location = new System.Drawing.Point(110, 221);
+            this.TextColorButton.Name = "TextColorButton";
+            this.TextColorButton.Size = new System.Drawing.Size(25, 20);
+            this.TextColorButton.TabIndex = 12;
+            this.TextColorButton.Text = "...";
+            this.TextColorButton.UseVisualStyleBackColor = true;
+            this.TextColorButton.Click += new System.EventHandler(this.TextColorButton_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 225);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Text Color";
+            // 
+            // HeaderColorButton
+            // 
+            this.HeaderColorButton.Location = new System.Drawing.Point(110, 94);
+            this.HeaderColorButton.Name = "HeaderColorButton";
+            this.HeaderColorButton.Size = new System.Drawing.Size(25, 20);
+            this.HeaderColorButton.TabIndex = 17;
+            this.HeaderColorButton.Text = "...";
+            this.HeaderColorButton.UseVisualStyleBackColor = true;
+            this.HeaderColorButton.Click += new System.EventHandler(this.HeaderColorButton_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 98);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 13);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Text Color";
+            // 
+            // HeaderBackgroundColorButton
+            // 
+            this.HeaderBackgroundColorButton.Location = new System.Drawing.Point(110, 69);
+            this.HeaderBackgroundColorButton.Name = "HeaderBackgroundColorButton";
+            this.HeaderBackgroundColorButton.Size = new System.Drawing.Size(25, 20);
+            this.HeaderBackgroundColorButton.TabIndex = 15;
+            this.HeaderBackgroundColorButton.Text = "...";
+            this.HeaderBackgroundColorButton.UseVisualStyleBackColor = true;
+            this.HeaderBackgroundColorButton.Click += new System.EventHandler(this.HeaderBackgroundColorButton_Click);
+            // 
+            // HeaderColorBox
+            // 
+            this.HeaderColorBox.BackColor = System.Drawing.Color.White;
+            this.HeaderColorBox.ForeColor = System.Drawing.Color.Black;
+            this.HeaderColorBox.Location = new System.Drawing.Point(15, 47);
+            this.HeaderColorBox.Name = "HeaderColorBox";
+            this.HeaderColorBox.ReadOnly = true;
+            this.HeaderColorBox.Size = new System.Drawing.Size(280, 20);
+            this.HeaderColorBox.TabIndex = 14;
+            this.HeaderColorBox.Text = "The lazy fox jumped over the brown grue.";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 73);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(92, 13);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Background Color";
+            // 
             // Preferences
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(337, 310);
+            this.Controls.Add(this.HeaderColorButton);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.HeaderBackgroundColorButton);
+            this.Controls.Add(this.HeaderColorBox);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.TextColorButton);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.ColorButton);
             this.Controls.Add(this.BackgroundColorBox);
             this.Controls.Add(this.label3);
@@ -179,8 +261,15 @@
         private System.Windows.Forms.TextBox HFFont;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox BackgroundColorBox;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button ColorButton;
+        private System.Windows.Forms.TextBox BackgroundColorBox;
+        private System.Windows.Forms.Button TextColorButton;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button HeaderColorButton;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button HeaderBackgroundColorButton;
+        private System.Windows.Forms.TextBox HeaderColorBox;
+        private System.Windows.Forms.Label label6;
     }
 }

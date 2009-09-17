@@ -8,11 +8,17 @@
     <Setting Name="HeaderFooterFont" Type="System.Drawing.Font" Scope="User">
       <Value Profile="(Default)">Goudy Mediaeval, 11.999999pt</Value>
     </Setting>
-    <Setting Name="WindowBackColor" Type="System.Drawing.Color" Scope="User">
+    <Setting Name="MainBackColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">White</Value>
     </Setting>
-    <Setting Name="FontColor" Type="System.Drawing.Color" Scope="User">
+    <Setting Name="MainForeColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="HeaderBackColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="HeaderForeColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

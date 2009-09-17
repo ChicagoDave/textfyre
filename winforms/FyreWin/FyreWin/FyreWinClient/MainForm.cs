@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using Textfyre.VM;
@@ -19,7 +20,15 @@ namespace FyreWinClient {
         private bool lineWanted = false;
         private bool keyWanted = false;
         private string inputLine = null;
+        private string textLine = null;
         private string[] channelText = new string[18];
+        private string chapter = "";
+        private string location = "";
+        private string time = "";
+        private string score = "";
+        private string prompt = "> ";
+        List<string> history = new List<string>();
+        int historyIndex = 0;
 
         public MainForm() {
             InitializeComponent();
@@ -29,13 +38,21 @@ namespace FyreWinClient {
         }
 
         private void SetPreferences() {
+            Header.Font = Properties.Settings.Default.HeaderFooterFont;
+            Header.Font = Properties.Settings.Default.HeaderFooterFont;
+            Header.ForeColor = Properties.Settings.Default.HeaderForeColor;
+            Header.BackColor = Properties.Settings.Default.HeaderBackColor;
+
+            ScoreTime.Font = Properties.Settings.Default.HeaderFooterFont;
+            ScoreTime.Font = Properties.Settings.Default.HeaderFooterFont;
+            ScoreTime.ForeColor = Properties.Settings.Default.HeaderForeColor;
+            ScoreTime.BackColor = Properties.Settings.Default.HeaderBackColor;
+
+            tableLayoutPanel2.BackColor = Properties.Settings.Default.HeaderBackColor;
+
             TextWindow.Font = Properties.Settings.Default.GameFont;
-            UpperLeft.Font = Properties.Settings.Default.HeaderFooterFont;
-            UpperRight.Font = Properties.Settings.Default.HeaderFooterFont;
-            LowerLeft.Font = Properties.Settings.Default.HeaderFooterFont;
-            LowerRight.Font = Properties.Settings.Default.HeaderFooterFont;
-            TextWindow.BackColor = Properties.Settings.Default.WindowBackColor;
-            TextWindow.ForeColor = Properties.Settings.Default.FontColor;
+            TextWindow.BackColor = Properties.Settings.Default.MainBackColor;
+            TextWindow.ForeColor = Properties.Settings.Default.MainForeColor;
         }
 
         private void StartGame() {
@@ -45,10 +62,7 @@ namespace FyreWinClient {
                 vmThread.Join();
             }
 
-            UpperLeft.Text = "";
-            UpperRight.Text = "";
-            LowerLeft.Text = "";
-            LowerRight.Text = "";
+            Header.Text = "";
             TextWindow.Clear();
 
             MemoryStream fileData = new MemoryStream(Properties.Resource.sl_v1_05xe);
@@ -65,6 +79,7 @@ namespace FyreWinClient {
             vmThread = new Thread(VMThreadProc);
             vmThread.IsBackground = true;
             vmThread.Start();
+
         }
 
         private void MenuSave_Click(object sender, EventArgs e) {
@@ -83,47 +98,123 @@ namespace FyreWinClient {
             lineWanted = true;
             keyWanted = false;
 
-            InputText.Enabled = true;
-            InputText.Focus();
+            TextWindow.Enabled = true;
+            TextWindow.AppendText(String.Concat("\n", prompt, " "));
+            textLine = "";
+            inputLine = "";
+            TextWindow.Focus();
         }
 
         private void RequestKey() {
             lineWanted = false;
             keyWanted = true;
 
-            InputText.Enabled = true;
-            InputText.Focus();
+            TextWindow.Enabled = true;
+            textLine = "";
+            inputLine = "";
+            TextWindow.Focus();
         }
 
-        private void InputText_KeyPress(object sender, KeyPressEventArgs e) {
+        private void TextWindow_KeyPress(object sender, KeyPressEventArgs e) {
+            int promptLength = prompt.Length + 1;
             if (keyWanted) {
                 GotInput(new string(e.KeyChar, 1));
                 e.Handled = true;
-            } else if (e.KeyChar == '\r' || e.KeyChar == '\n') {
-                // already handled in KeyDown
+            } else
+                if (e.KeyChar == '\r' || e.KeyChar == '\n') {
                 e.Handled = true;
+            }
+
+            if (e.KeyChar == '\b') {
+                if (textLine == "") {
+                    e.Handled = true;
+                    return;
+                }
+                if (textLine.Length > 0) {
+                    textLine = textLine.Substring(0, textLine.Length - 1);
+                }
+            } else {
+                textLine += e.KeyChar.ToString();
+                //TextWindow.AppendText(e.KeyChar.ToString());
             }
         }
 
-        private void InputText_KeyDown(object sender, KeyEventArgs e) {
+        private void TextWindow_KeyDown(object sender, KeyEventArgs e) {
+
+            if (e.KeyCode == Keys.Up) {
+                e.Handled = true;
+                if (history.Count > 0) {
+                    if (historyIndex > 0) {
+                        historyIndex--;
+                        ShowHistoryCommand();
+                    }
+                }
+            }
+
+            if (e.KeyCode == Keys.Down) {
+                e.Handled = true;
+                if (historyIndex < (history.Count - 1)) {
+                    historyIndex++;
+                    ShowHistoryCommand();
+                }
+            }
+
+            if (e.KeyCode == Keys.Escape) {
+                e.Handled = true;
+                RemoveCommand();
+            }
+
             if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Return) {
                 e.Handled = true;
 
                 if (keyWanted) {
                     GotInput("\n");
                 } else if (lineWanted) {
-                    GotInput(InputText.Text);
-                    InputText.Clear();
+                    GotInput(textLine);
                 }
+            }
+
+            if (e.KeyCode == Keys.Back && textLine == "")
+                e.Handled = true;
+
+            if (e.KeyCode != Keys.PageUp && e.KeyCode != Keys.PageDown)
+                TextWindow.SelectionStart = TextWindow.Text.Length;
+        }
+
+        /// <summary>
+        /// carat = > position
+        /// erase everything after carat
+        /// add command
+        /// </summary>
+        private void ShowHistoryCommand() {
+            RemoveCommand();
+            InputText.Text = history[historyIndex];
+            TextWindow.AppendText(history[historyIndex]);
+            textLine = history[historyIndex];
+        }
+
+        private void RemoveCommand() {
+            int carat = TextWindow.Text.Length - 1;
+            if (TextWindow.Text.Substring(carat - 1, 1) != ">") {
+                for (int position = carat; position > -1; position--) {
+                    if (TextWindow.Text[position] == '>') {
+                        carat = position + 2; // include space
+                        break;
+                    }
+                }
+                TextWindow.Text = TextWindow.Text.Remove(carat);
+                textLine = "";
             }
         }
 
         private void GotInput(string line) {
             TextWindow.SelectionFont = new Font(Properties.Settings.Default.GameFont, FontStyle.Bold);
-            TextWindow.AppendText(String.Format("\r\n> {0}\r\n", InputText.Text));
+            TextWindow.AppendText("\r\n");
             TextWindow.SelectionFont = new Font(Properties.Settings.Default.GameFont, FontStyle.Regular);
-            InputText.Enabled = false;
-            inputLine = line;
+            inputLine = textLine;
+            textLine = "";
+            history.Add(inputLine);
+            historyIndex = history.Count;
             inputReadyEvent.Set();
         }
 
@@ -157,19 +248,19 @@ namespace FyreWinClient {
             if (package.TryGetValue(OutputChannel.Location, out text)) {
                 channelText[(int)OutputChannel.Location] = text.Trim();
 
-                UpperRight.Text = text;
+                location = text;
             }
 
             if (package.TryGetValue(OutputChannel.Score, out text)) {
                 channelText[(int)OutputChannel.Score] = text.Trim();
 
-                //LowerRight.Text = String.Format("Score: {0}", text);
+                score = String.Format("Score: {0}", text);
             }
 
             if (package.TryGetValue(OutputChannel.Time, out text)) {
                 channelText[(int)OutputChannel.Time] = text.Trim();
 
-                LowerLeft.Text = String.Format("Turns: {0}", text);
+                time = String.Format("Turns: {0}", text);
             }
 
             if (package.TryGetValue(OutputChannel.Hints, out text)) {
@@ -194,6 +285,8 @@ namespace FyreWinClient {
 
             if (package.TryGetValue(OutputChannel.Prompt, out text)) {
                 channelText[(int)OutputChannel.Prompt] = text.Trim();
+
+                prompt = text;
             }
 
             if (package.TryGetValue(OutputChannel.Conversation, out text)) {
@@ -219,12 +312,15 @@ namespace FyreWinClient {
             if (package.TryGetValue(OutputChannel.Chapter, out text)) {
                 channelText[(int)OutputChannel.Chapter] = text.Trim();
 
-                UpperLeft.Text = text;
+                chapter = text;
             }
 
             if (package.TryGetValue(OutputChannel.Death, out text)) {
                 channelText[(int)OutputChannel.Death] = text.Trim();
             }
+
+            Header.Text = String.Format("{0} - {1}", chapter, location);
+            ScoreTime.Text = String.Format("{0} - {1}", score, time);
 
             TextWindow.ScrollToCaret();
         }
@@ -258,6 +354,7 @@ namespace FyreWinClient {
         }
 
         private void GameFinished() {
+            this.Close();
         }
 
         #region VM Thread
@@ -305,6 +402,10 @@ namespace FyreWinClient {
                 SetPreferences();
                 Properties.Settings.Default.Save();
             }
+        }
+
+        private void TextWindow_LinkClicked(object sender, LinkClickedEventArgs e) {
+            System.Diagnostics.Process.Start(e.LinkText);
         }
 
     }
