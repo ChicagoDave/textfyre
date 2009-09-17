@@ -4,7 +4,7 @@
 
 [  Change Log
 When			Who		What
-14-Sep-2009                    J. Ingold        halfway through c11, lots of synonyms. Not sure about the turning the pedestal to midnight, though it's kinda cool.
+17-Sep-2009			J. Ingold 	I'm done!!
 13-Sep-2009			J. Ingold	Added explanation of "penduluum" spelling (!). Finished off c10 with alternate solutions for the desk drawer. Begun looking at Chapter 11... Nearly there!!!
 12-Sep-2009			J. Ingold	Clock workings, which were a bit of a mess... New substition, "one of", "once only", which prints once only (code change -> [once only] replaces where I've written [or][stopping]. If this breaks stuff, it can be easily Ctrl+H'd back!!
 8-Sep-2009			J. Ingold	Started on C10. Synonyms for lighting a candle. In and out of locations. Touching the brazier. The secret passage.
@@ -1654,10 +1654,18 @@ Understand "mend [something] with [something preferably held]" as fastening it t
 Check repairing:
 	say "That doesn't need to be repaired." instead;
 
-Part 10B - Replacing
+Part 11 - Replacing
 
-Understand "replace [something] with/using [something]" as putting it on (with nouns reversed).
+Replacing it with is an action applying to two visible things.
 
+Understand "replace [something] with/using/by [something]" as replacing it with.
+Understand "switch [something] with/for [something]" as replacing it with.
+
+Check replacing a scenery thing with something:
+	say "I can't replace [the noun] with anything!" instead.
+
+Check replacing something with:
+	say "[The second noun] isn't a good replacement for [the noun]." instead.
 
 Part 12 - Clock-setting
 
@@ -2226,10 +2234,10 @@ Understand the command "tie" as something new.
 Understand the command "attach" as something new.
 Understand the command "fasten" as something new.
 
-Understand "tie [something preferably held] to [something]" as fastening it to.
-Understand "attach [something preferably held] to [something]" as fastening it to.
-Understand "fasten [something preferably held] to [something]" as fastening it to.
-Understand "knot [something preferably held] to [something]" as fastening it to.
+Understand "tie [something preferably held] to/around [something]" as fastening it to.
+Understand "attach [something preferably held] to/around [something]" as fastening it to.
+Understand "fasten [something preferably held] to/around [something]" as fastening it to.
+Understand "knot [something preferably held] to/around [something]" as fastening it to.
 
 Understand "tie [something] up with [something preferably held]" as fastening it to (with nouns reversed).
 Understand "tie up [something] with [something preferably held]" as fastening it to (with nouns reversed).
@@ -2608,18 +2616,24 @@ Understand "pulverize [something]" as squeezing.
 
 Part 7 - Synonyms for put it on
 
-Understand "on", "on top of", "onto", "over" as "[onto]".
-
-Understand "load [something preferably held] [onto] [something]" as putting it on.
+Understand "load [something preferably held] on top of [something]" as putting it on.
+Understand "load [something preferably held] on/onto/over [something]" as putting it on.
 Understand "weigh down [something] with/using [something preferably held]" as putting it on (with nouns reversed).
 Understand "balance [something] with/using [something preferably held]" as putting it on (with nouns reversed).
 Understand "counterbalance [something] with/using [something preferably held]" as putting it on (with nouns reversed).
 Understand "counterweight [something] with/using [something preferably held]" as putting it on (with nouns reversed).
 Understand "counter [something] with/using [something preferably held]" as putting it on (with nouns reversed).
 
-Understand "throw [something preferably held] [onto] [something]" as putting it on.
-Understand "pull [something preferably held] [onto] [something]" as putting it on.
-Understand "push [something preferably held] [onto] [something]" as putting it on.
+Understand "throw [something preferably held] on top of [something]" as putting it on.
+Understand "pull [something preferably held] on top of [something]" as putting it on.
+Understand "push [something preferably held] ontop of [something]" as putting it on.
+Understand "throw [something preferably held] on/onto/over [something]" as putting it on.
+Understand "pull [something preferably held] on/onto/over [something]" as putting it on.
+Understand "push [something preferably held] on/onto/over [something]" as putting it on.
+
+
+Understand "position [something preferably held] on/onto/over [something]" as putting it on.
+
 
 Part 7b - Synonyms for insert into
 
@@ -2770,7 +2784,15 @@ Part 24 - Synonyms for attack
 
 Understand "stab [someone]" as attacking.
 Understand "stab [someone] with/using [something]" as attacking it with.
+
+Understand "snap [someone]" as attacking.
+Understand "snap [someone] with/using [something]" as attacking it with.
+
 Understand "tear [something]" as attacking.
+Understand "tear away/up [something]" as attacking.
+Understand "tear [something] away/up" as attacking.
+Understand "pull free/off [something]" as attacking.
+Understand "pull [something] off/free" as attacking.
 
 Part 25 -  Synonyms for Pull a direction
 
@@ -2908,7 +2930,8 @@ To say my description:
 
 Chapter 2 - Wren's Possessions
 
-A thing called my lucky clock key is privately-named, worn by the player. The description is "The one thing I've had all my life. It's been there, on a string around my neck, for as long as I can remember. I keep hoping that it's a last gift from my [i]true[r] family, and one day it'll open a treasure-chest or the door of one of the Great Houses. But then again, maybe it's just something I tried to eat as a baby. Either way, I've yet to find a lock it'll turn or a clock it'll wind." The printed name is "my lucky clock key". Understand "my", "lucky", "clock key", "key", "string" as the lucky clock key.
+A thing called my lucky clock key is privately-named, worn by the player. The description is "The one thing I've had all my life. It's been there, on a string around my neck, for as long as I can remember. I keep hoping that it's a last gift from my [i]true[r] family, and one day it'll open a treasure-chest or the door of one of the Great Houses. But then again, maybe it's just something I tried to eat as a baby. Either way, I've yet to find a lock it'll turn or a clock it'll wind." The printed name is "my lucky clock key". Understand "my", "lucky", "clock key", "lucky clock key", "key", "string" as the lucky clock key. 
+
 
 Instead of dropping the lucky key:
 	say "What? Lose my lucky clock key? And then what would I have left?";
@@ -4373,7 +4396,19 @@ Instead of repairing the small gear:
 
 Section 3 - Making repairs
 
-Instead of putting the new gear on the small gear when the small gear is part of the gear train:
+Instead of replacing the small gear with the new gear:
+	try inserting the new gear into the gear train instead.
+
+Instead of replacing the new gear with the small gear:
+	try inserting the new gear into the gear train instead.
+
+Instead of putting the new gear on the gear train:
+	try inserting the new gear into the gear train instead.
+
+Instead of putting the new gear on the Tea-Machine:
+	try inserting the new gear into the gear train instead.
+
+Instead of inserting the new gear into the Tea-Machine:
 	try inserting the new gear into the gear train instead.
 
 Instead of inserting the new gear into the gear train when the small gear is part of the gear train:
@@ -10349,7 +10384,7 @@ Section 3 - Ravens
 Some ravens are an animal, carried by Covalt. Understand "bird", "birds", "black", "crow", "crows", "hugin", "mummin", "munin" as the ravens.
 
 To say raven-blurb:
-	say "Two mechanical ravens, ink-black and beautifully crafted[one of]. Their wings are real feathers, each one fitted to the bodies by tiny, almost invisible brass joints. They are beautiful creations and move almost like real birds. Better, maybe[once only]. " 
+	say "Two mechanical ravens, ink-black and beautifully crafted[one of]. Their wings are real feathers, each one fitted to the bodies by tiny, almost invisible brass joints. They are beautiful creations and move almost like real birds. Better, maybe[once only]. "
 
 Rule for printing the description of the ravens when the state of Covalt is 1:
 	say "[raven-blurb] The ravens sit one to a shoulder and eye me viciously.";
@@ -15559,7 +15594,7 @@ After dropping the decoy Perpetuum:
 
 Part 1 - Public Yard
 
-Return to the Cathedral is a scene. Return To The Cathedral begins when Return to Covalt's ends. Return To The Cathedral ends when TRIG_FIGURE_ENTERS is fired.
+Return to the Cathedral is a scene. Return To The Cathedral begins when Return to Covalt's ends. Return To The Cathedral ends when TRIG_FIGURE_NOT_HURT is fired.
 
 Instead of making to leave when in the Public Yard: try going east.
 Instead of going inside when in the Public Yard: try going east.
@@ -16582,6 +16617,11 @@ Before entering or taking or climbing or approaching the worn stone stairs:
 
 Part 2 - Ossuary
 
+After going from the Crypt Stairs to the Ossuary when the player can see a lit candle:
+	now every visible lit candle is not lit;
+	say "A gust of icy wind blows out my candle, but I am not in the dark.";
+	continue the action;
+
 Chapter 1 - Description
 
 The Ossuary is a room, down from the Crypt Stairs. "[one of]A few years ago, before I got to clock polishing, when I was still just coiling wire for my dinner, one of the Brothers died. His name was Brother Wilmslow but Calvin and Drake called him Brother Weak-slow because he was so old he couldn’t move any faster than a shuffle and had trouble lifting his fork. I don’t think I ever spoke to him and he was so near-blind he probably never saw me at all.[paragraph break]I don’t think he can see me now, either, even though that’s him, propped up in a stone niche in the wall of the tunnel to the south.[or]The walls are smooth stones but into some are built triangular niches. Can’t I just tell you about the niches? Do I have to tell you about the skeletons and bodies sitting up inside them?[paragraph break]Round the head of each is tied a small round dial – a deathwatch. They make no sound at all.[paragraph break]The tunnel goes south. So will I, once I gather the courage.[stopping]"
@@ -16633,6 +16673,13 @@ Understand "bone" as the bodies of dead monks when the arm bone is not visible.
 
 Before removing the bodies of dead monks from the bodies of dead monks [this covers "take bone from skeleton]:
 	try taking the bodies of dead monks instead.
+
+Before putting the linen strip on the bodies of dead monks:
+	try fastening the linen strip to the bodies of dead monks instead.
+
+
+Before wrapping the bodies of dead monks with the linen strip :
+	try fastening the linen strip to the bodies of dead monks instead.
 
 Before fastening the linen strip to the bodies of dead monks when the arm bone is off-stage and the dowel handle is not on-stage:
 	try taking the bodies of dead monks;
@@ -16713,6 +16760,16 @@ Some steep stairs are scenery, in the Crypt Landing. "Steep stairs – so steep 
 
 Understand "darkness", "steps", "staircase" as the steep stairs.
 
+A missing flagstone is scenery, in the Crypt Landing. "A flagstone has been removed to reveal a dark stair leading down."
+
+Understand "flag stone", "flag-stone" as the missing flagstone.
+
+Before entering or approaching or hiding under or taking the missing flagstone:
+	try going down instead.
+
+Instead of doing something when the missing flagstone is physically involved:
+	say "It's just a gap, leading into the dark."
+
 Section 2 - Archways
 
 Some carved archways are scenery in the Crypt Landing. "Each arch is topping by a carving: a skull on its side, the eye-sockets forming an hourglass."
@@ -16728,7 +16785,7 @@ Section 3 - Lanterns
 
 Some iron torches are scenery, in the Crypt Landing. "The torches are inlaid with carvings of the crescent moon. Their rope wicks burn slightly blue: fuel must be running into them through channels in the stone, but what kind of fuel it is that burns forever I can’t think[one of]. Maybe it’s dead men’s breath. That’d certainly explain the smell[once only]."
 
-Understand "crescent", "moon", "rope", "wicks", "blue", "fire", "fires", "smelly", "light", "lights", "burning", "lantern", "lanterns" as the iron torches.
+Understand "crescent", "moon", "rope", "wicks", "blue", "fire", "fires", "flame", "flames", "smelly", "light", "lights", "burning", "lantern", "lanterns" as the iron torches.
 
 Understand "torch" as the iron torches when the player can not see the makeshift torch.
 
@@ -16918,6 +16975,9 @@ Rule for printing the name of the oiled linen strip:
 
 Rule for printing the name of the unoiled linen strip:
 	say "bone-dry linen strip";
+	
+Instead of attacking the linen strip:
+	say "I could shred it in moments, but it wouldn't do me any good."
 
 Section 7 - Dowels
 
@@ -17006,6 +17066,30 @@ Instead of inserting the unlit makeshift torch into the iron torches when the li
 	remove the makeshift torch from play;
 	now the player carries everything that is part of the makeshift torch;
 	say "[one of]I reach up to light the linen head of the torch. It ignites and begins to glower with flame. Then ashes break off, and soon the whole thing has burned to nothing.[or]I burn the linen on the torch-head to nothing. It’s no good without fuel![stopping]";
+
+Section 5 - Lighting the strip without a handle
+
+Before burning the linen strip when in the Crypt Landing:
+	try inserting the linen strip into iron torches instead.
+
+Instead of burning the linen strip:
+	say "I can't make the cloth ignite just by looking at it."
+
+Before putting the linen strip on iron torches:
+	try inserting the linen strip into iron torches instead.
+
+Before melting the linen strip on iron torches:
+	try inserting the linen strip into iron torches instead.
+
+Instead of inserting the oiled linen strip into iron torches:
+	remove the linen strip from play;
+	say "The oil ignites quickly, and starts to burn my fingers! I drop it and stamp it to ashes on the floor."
+
+Instead of inserting the unoiled linen strip into iron torches:
+	remove the linen strip from play;
+	say "The strip crackles into fire in seconds and burns away." instead;
+
+Section 6 - Disassembling
 
 Before removing something torch-part from the makeshift torch:
 	say "A torch is a useful thing to have down here. I'm keeping it!" instead.
@@ -17119,7 +17203,7 @@ After putting the plate sundial on the granite column:
 Instead of putting something on the granite column:
 	if the noun is the plate sundial, continue the action;
 	if the noun is the decoy Perpetuum Mobile:
-		say "I need to replace the [i]real[r] Perpetuum - otherwise the Figure will know it's a trap!";
+		say "I need to replace the [i]real[r] Perpetuum - otherwise the Figure will know it's a trap!" instead;
 	say "I don't think [the noun] [is-are] meant to fit the pedestal."
 
 Section 4 - Gnomon Control (Assembled Pedestal)
@@ -17143,10 +17227,18 @@ Rule for printing the description of the assembled granite column:
 	say "The sundial sits on the granite pedestal, slotted neatly into place. [if the lit makeshift torch is in the sconce]The torchlight casts a needlepoint shadow: the time is [shadow setting of the granite column in words][otherwise]The light of my torch is making the time leap like crazy, as though the Earth had come loose from its bearing and was rolling end over end past the sun[end if]."
 
 Before rotating when the noun is the assembled granite column and the player carries the makeshift torch:
-	say "If I’m going to shift this pedestal around I’ll need my hands free. I can't do it holding this torch." instead;
+	say "If I'm going to shift this pedestal around I’ll need my hands free. I can't do it holding this torch." instead;
 
 Instead of turning the assembled granite column:
-	let n be the shadow setting of the granite column + 1;
+	[ We rig turning forwards to go a bit faster towards 12 o'clock, for those who do things the brute force way. ]
+	let time to midnight be 12 - the shadow setting of the granite column;
+	if time to midnight is greater than 1:
+		if time to midnight is greater than 4:
+			let time to midnight be 4;
+		let turn distance be a random number between 1 and the time to midnight;
+	else:
+		let turn distance be 1;
+	let n be the shadow setting of the granite column + turn distance;
 	while n is greater than 12:
 		change n to n - 12; [13 becomes 1]
 	try number-setting the noun to n;
@@ -17215,9 +17307,21 @@ Instead of jumping when in Middle of Gnomon:
 
 Part 8 - Henge
 
+After going from the Middle of Gnomon to the Henge:
+	say "Another few minutes and I reach the bottom.";
+	continue the action;
+
 Chapter 1 - Description
 
-The Henge is a room. "I’m standing at the base of the gnomon in a cavern that rivals the dome of the sky for its size. Around its perimeter are twelve stones: twelve giants, staring down at me. All are in shadow. There is no sun to cast a time across the dial. Water drips from the ceiling. The air is cold.[paragraph break]Between two of the stones is a door of dark iron. It’s almost invisible to the west."
+The Henge is a room. "I’m standing at the base of the gnomon in a cavern that rivals the dome of the sky for its size. Around its perimeter are twelve stones: twelve giants, staring down at me. This is a sundial, all in shadow, with no sun to cast a time. Water drips from the ceiling. The air is cold[if the giant stones are explored].[paragraph break]Between two of the stones is a door of dark iron. It’s almost invisible to the west[end if]."
+
+Before making to leave when in the Henge: try going up instead.
+Before going inside when in the Henge:
+	if the giant stones are explored, try going west instead;
+	say "I walk around the rim of the Henge. [run paragraph on]";
+	try entering the giant stones instead;
+Before going down when in the Henge:
+	try going inside instead..
 
 Chapter 2 - Scenery
 
@@ -17225,12 +17329,25 @@ Section 1 - Stones
 
 Some giant stones are scenery, in the Henge. "Twelve stones, one for every hour, with the tallest to the twelve."  Understand "twelve", "tallest", "stone", "rock", "rocks", "hour", "hours" as the giant stones.
 
-Instead of entering the giant stones:
-	say "There is nothing but shadow between the stones, except for the stones that flank the door.";
+The giant stones can be explored. The giant stones are not explored.
+
+Before entering or approaching the giant stones when the giant stones are explored:
+       try going west instead.
+
+Instead of entering, pushing, pulling, turning, approaching, searching the giant stones:
+        now the giant stones are explored;
+	say "Between two stones is a shadow and that shadow is a door, to the west.";
+
+Instead of examining the giant stones when the giant stones are not explored:
+        try entering the giant stones instead.
+        
+The iron_door_glimpse is a glimpse backdrop, in the Henge, identifying the Iron Vault Door. Understand "iron", "door", "dark" as the iron_door_glimpse. The printed name is "iron door". The description is "A squat door of iron lies like a shadow between two stones to the west."
+
+Instead of entering the iron_door_glimpse: try going west instead.
 
 Section 2 - Gnomon
 
-The stone slope is a door, scenery, open, not openable, up from the Henge, down from the middle of the gnomon. Understand "step", "steps", "stair", "stairs", "staircase" as the stone slope.
+The stone slope is a door, scenery, open, not openable, up from the Henge, down from the middle of the gnomon. Understand "step", "steps", "stair", "stairs", "staircase", "gnomon" as the stone slope.
 
 Rule for printing the description of the stone slope when in the middle of the gnomon:
 	say "It must have taken a million footsteps from a thousand people to wear these steps into the stone.";
@@ -17246,7 +17363,7 @@ Instead of jumping off the stone slope when in the Middle of the Gnomon:
 
 Section 3 - Sundial
 
-The face of the sundial is scenery, in the Henge. "The dial must be the work of a king, built by slaves for the worship of masses. It must have been ground level once, in full sunlight, maybe between a river and the sea. Now the whole of St Philip lies above it. Every bog, spring and screw, built on top of this: a clock that runs by the sun. All that machinery, Wren, built above a [i]lie[r]."
+The face of the sundial is scenery, in the Henge. "[one of]The dial must be the work of a king, built by slaves for the worship of masses. It must have been ground level once, in full sunlight, maybe between a river and the sea. Now the whole of St Philip lies above it. Every bog, spring and screw, built on top of this: a clock that runs by the sun. All that machinery, Wren, built above a [i]lie[r].[or]The sundial is vast, stopped with twelve giant standing stones.[stopping]"
 
 Understand "dial" as the face of the sundial.
 
@@ -17256,19 +17373,29 @@ Part 9 - Iron Door
 
 Chapter 1 - Description
 
-A room called the Iron Entry is west of the Henge. "The iron door is closed, hung between two stones as though it was just a curtain of metal and not a door at all. On its surface is embossed the Winding Key, but it looks small and feeble with the great gnomon behind.[paragraph break]Above the door is a head carved in brass. The Head’s eyes are watching me."
+A room called the Iron Entry is west of the Henge. "[if the Iron Vault Door is closed]The iron door is closed, hung between two stones as though it was just a curtain of metal and not a door at all. On its surface is embossed the Winding Key, but it looks small and feeble with the great gnomon behind[else]The great iron door has swung open. Time for me to go inside[end if].[paragraph break]Above the door is a head carved in brass. The Head’s eyes are watching me."
 
 The printed name of the Iron Entry is "Iron Door".
 
 Instead of waiting in the Iron Entry for the first time:
-	say "It doesn’t do any good.";
+	say "It doesn't do any good.";
 
 Instead of waiting in the Iron Entry:
-	say "[one of]It doesn’t do any good.[or]Still nothing.[purely at random]";
+	say "[one of]It doesn't do any good.[or]Still nothing.[purely at random]";
+
+Before going inside when in Iron Entry:
+	try going west instead;
+
+Before going up when in Iron Entry:
+	try going east instead.
+
+Before making to leave when in Iron Entry:
+	try going east instead;
 
 Chapter 2 - Scenery - Iron Door
 
-The Iron Vault Door is a door, scenery, west of the Iron Entry, east of the Inner Vault. The Iron Door is closed and locked.
+The Iron Vault Door is a door, scenery, west of the Iron Entry, east of the Inner Vault. The Iron Door is closed and locked. The description is "[if closed]The door is solid iron and closed as solidly as iron can be. The Head looms over it, eyes staring[else]The door is open. Beyond is some kind of chamber[end if].".
+
 
 The printed name of the iron vault door is "iron door".
 
@@ -17285,6 +17412,15 @@ Instead of opening the locked Iron Vault Door:
 After going through the iron vault door from the iron entry:
 	say "I step through into the vault, expecting sudden stinging death any second.";
 	continue the action;
+	
+Instead of opening the open Iron vault Door:
+	say "I don't need to - the Brass Head has opened it for me.".
+	
+Instead of closing the open Iron Vault Door when the Inner Vault is not visited:
+	say "[one of]Why? I need to go in. [once only]There's no turning back, not any more."
+
+
+Understand "chamber" as the Iron Vault Door when the Iron Vault Door is open.
 
 Chapter 3 - Scenery - Brass Head
 
@@ -17296,17 +17432,20 @@ Section 2 - Script
 
 The solid brass head has a number called the loop count. The loop count of the solid brass head is 0.
 
-SE_BRASSHEAD_1 is a scripted event. The display text is "[one of]Then, with a terrible silence, the eyelids of the Brass Head slide open. It’s so smooth I don’t notice until it’s already staring at me. [once only]The Head opens its mouth and speaks. 'Time. Is.'".
+SE_BRASSHEAD_1 is a scripted event. The display text is "[one of]Then, with a terrible silence, the eyelids of the Brass Head slide open. The moment is so smooth I don't notice until it's already staring at me. [once only]The Head opens its mouth and speaks. 'Time. Is.'".
 
 SE_BRASSHEAD_2 is a scripted event. The display text is "[one of]The Brass Head says nothing more. It’s eyes are watching me. It’s waiting.[or]The Brass Head is waiting.[stopping]".
 
-SE_BRASSHEAD_3 is a scripted event. The display text is "The Brass Head speaks again. 'Time. Was.'".
+SE_BRASSHEAD_3 is a scripted event. The display text is "The Brass Head speaks again[from-distance]. 'Time. Was.'".
 
 SE_BRASSHEAD_4 is a scripted event. The display text is "The Head waits again[one of]. For me to prove myself, although I can’t think how[once only].".
 
-SE_BRASSHEAD_5 is a scripted event. The display text is "The Brass head speaks. 'Time. Past.'".
+SE_BRASSHEAD_5 is a scripted event. The display text is "The Brass head speaks[from-distance]. 'Time. Past.'".
 
 SE_BRASSHEAD_6 is a scripted event. The display text is "The eyes above the door snap closed. The chamber is silent once more.".
+
+To say from-distance:
+	if the location is not the Iron Entry, say " [one of]from across the Henge[or]voice booming across the sundial[cycling]";
 
 Section 3 - Script loop count
 
@@ -17339,8 +17478,42 @@ After firing SE_BRASSHEAD_5 when the loop count of the brass head is 3:
 
 Section 4 - Interaction
 
+Instead of talking to the solid brass head when SE_BRASSHEAD_1 is unfired:
+	say "It's just a statue. It can't hear me." instead.
+
+Instead of talking to the solid brass head when the current script is empty:
+	say "'Hello there?'[paragraph break]But the Head is lifeless.";
+
+Instead of talking to the solid brass head:
+	fire CT_HEAD_HELLO.
+
+Instead of waking the solid brass head when SE_BRASSHEAD_1 is unfired:
+	say "It's just a statue.";
+
+Instead of waking the solid brass head when the current script is empty:
+	say "It seems lifeless. Completely inert. ";
+	if the Iron Vault Door is open:
+		say "Almost like it never moved.";
+	else:
+		say run paragraph on;
+		try opening the Iron Vault Door;
+
+Instead of waking the solid brass head:
+	say "The Head is awake... if the Head is awake at all."
+	
+Instead of giving something to the solid brass head:
+	try showing the noun to the solid brass head.
+
+Instead of showing something to the solid brass head:
+	if SE_BRASSHEAD_1 is unfired:
+		try waking the solid brass head instead;
+	if the current script is empty:
+		say "The Head appears lifeless now." instead;
+	say "The Head doesn't appear to notice [the noun]. It's still staring at my eyes. Perhaps that's all it knows how to see."
+
+
 Rule for speaking with the solid brass head when SE_BRASSHEAD_1 is unfired:
-	say "It’s a statue of a Head. It can’t hear me!" instead;
+	say "It’s a statue of a Head. It can't hear me!" instead;
 
 Rule for speaking with the solid brass head when the current script is empty:
 	say "Nothing. [one of]The Head is totally lifeless. It’s not listening any more than the stones of the Henge listened to me whimpering on the way down the Gnomon. [once only]Maybe I only dreamt that it moved." instead;
@@ -17350,6 +17523,7 @@ The conversation table of the solid brass head is the table of brass head conver
 Table of brass head conversation
 topic			conversation
 "patience"		CT_HEAD_PATIENCE
+"hi" or "hello" or "hiya" or "open" or "sesame"	CT_HEAD_HELLO
 
 The default topic of the solid brass head is CT_HEAD_WRONG
 
@@ -17363,11 +17537,24 @@ Rule for firing CT_HEAD_PATIENCE:
 
 CT_HEAD_WRONG is a conversation topic. The response text is "[one of]The Head raises a single eyebrow. 'No,' it intones.[or]The Head’s mouth arches down at the edges.[or]The Head rolls dull eyes.[or]'No,' the Head intones.[stopping]".
 
+CT_HEAD_HELLO is a conversation topic. The enquiry text is "[one of]'Hello?'[or]'Can you open, please?'[or]'Is there anyone there?'[cycling]". The response text is "[one of]The Head looks back, expressionlessly. 'No.'[or]'No,' the Head intones.[cycling]".
+
+
+
 Part 10 - Inner Vault
 
 Chapter 1 - Description
 
-The Inner Vault is a room. "[one of]I woke up this morning a Second Assistant Clock Polisher, who would have been on slops-duty if I’d touched any mechanisms deeper in that the face. Now, somehow I don’t understand, through some kind of horrible accident – the kind that shouldn’t happen in a world that runs on clockwork – I’m in here, in the Inner Vaults of the Cathedral of Time.[paragraph break]The door swings shut behind me. Now I must be a relic too.[or]This room is completely bare, except for a steel altar like a fallen brick. Ticking quietly to itself on top is the Perpetuum[if the steel altar supports the decoy perpetuum mobile]. Or so it seems..[end if].[stopping]"
+The Inner Vault is a room. "[one of]I woke up this morning a Second Assistant Clock Polisher, who would have been on slops-duty if I’d touched any mechanisms. Now, through some kind of horrible accident – the kind that shouldn’t happen in a clockwork world – I’m here, in the Inner Vaults of the Cathedral of Time.[paragraph break]The door swings shut behind me. I guess now I'm a relic too.[paragraph break][once only]This room is completely bare, except for a steel altar like a fallen brick. Ticking quietly to itself on top is the Perpetuum[if the steel altar supports the decoy perpetuum mobile]. Or so it seems..[end if]."
+
+Before making to leave when in the Inner Vault:
+	try going east instead.
+
+Before going up when in the Inner Vault:
+	try going east instead.
+
+Before going inside when in the Inner Vault:
+	say "There's no further I can go." instead.
 
 Chapter 2 - Scenery
 
@@ -17385,8 +17572,7 @@ Rule for deciding the concealed possessions of the iron vault door when in the i
 		yes;
 	no;
 
-Rule for implicitly opening the iron vault door when in the Inner Vault:
-	do nothing;
+
 
 Section 2 - Steel Altar
 
@@ -17396,6 +17582,12 @@ Rule for printing the description of the real Perpetuum Mobile when the Inner Va
 	say "It’s more beautiful than I remember. The rolling bearing across its surface is like the sun on a hazing winter evening. Watching it is hypnotic.";
 
 Instead of putting the decoy perpetuum mobile on the steel altar:
+	try taking the real perpetuum mobile;
+
+Instead of replacing the decoy perpetuum mobile with the real perpetuum mobile:
+	try taking the real perpetuum mobile;
+
+Instead of replacing the real perpetuum mobile with the decoy perpetuum mobile:
 	try taking the real perpetuum mobile;
 
 Does the player mean putting the decoy perpetuum on the steel altar:
@@ -17427,7 +17619,23 @@ After taking the real perpetuum mobile when the real perpetuum mobile was on the
 Instead of taking the decoy perpetuum mobile when the decoy perpetuum mobile was on the steel altar:
 	say "Testing the trap on myself could be a very costly mistake!";
 
+Last Instead of putting something on the steel altar:
+	try dropping the noun;
+	
+Last Instead of putting something on the steel altar:
+  say "I mustn't leave any clues for the Figure. If this trap is going to work it must be perfect - like clockwork!"
+
+Instead of dropping the real Perpetuum Mobile:
+	say "I didn't come all this way to leave it behind!"
+
 Section 3 - Arrival of the Figure
+
+
+[ NOT SURE what this was meant to do? But it prints blank responses!!
+
+Rule for implicitly opening the iron vault door when in the Inner Vault:
+	do nothing;
+]
 
 Instead of opening the iron vault door when in the Inner Vault and the real perpetuum mobile is on the steel altar:
 	say "I can't go yet!";
@@ -17436,7 +17644,10 @@ Instead of opening the iron vault door when in the Inner Vault and the decoy per
 	fire TRIG_FIGURE_ARRIVAL;
 
 Instead of opening the iron vault door when in the Inner Vault:
-	say "He’s right outside! I’ll never slip past him!";
+	say "The Figure is right outside! I'll never slip past him, it's impossible! I'm [i]trapped[r]!";
+
+Instead of listening when TRIG_FIGURE_ARRIVAL is fired and TRIG_FIGURE_ENTERS is not fired:
+	say "I can hear him, outside the door, his low voice murmuring to the Brass Head.";
 
 TRIG_FIGURE_ARRIVAL is a trigger.
 
@@ -17445,7 +17656,7 @@ At the time when the figure comes:
 
 Rule for firing unfired TRIG_FIGURE_ARRIVAL:
 	the figure enters in two turns from now;
-	say "That’s when I hear it. The voice of the Brass Head.[paragraph break]'Time. Is.'[paragraph break]It must be the Figure. Outside the door.";
+	say "That's when I hear it. The voice of the Brass Head.[paragraph break]'Time. Is.'[paragraph break]It must be the Figure. Outside the door.";
 
 TRIG_FIGURE_ENTERS is a trigger.
 
@@ -17453,28 +17664,38 @@ At the time when the figure enters:
 	fire TRIG_FIGURE_ENTERS;
 
 Rule for firing unfired TRIG_FIGURE_ENTERS:
-	say "The door opens[unless we are hiding behind the iron vault door] and I press myself quickly behind it[end if]. Darkness enters like cold night wind through a hole in the roof. It is the Figure, moving as fast as only he can.[paragraph break]He wastes no time and goes straight to the altar. It’s all I can do to keep quiet while I’m watching. He picks it up – for a moment I think the trap has failed, but then I understand that Covalt has built it better than that: delaying the sting to make certain of getting the victim.[paragraph break]There’s a [i]crack[r] as the needle springs out. The Figure stops still. That’s it, I’m thinking, I’ve got him. I’ve got him![paragraph break]Then, slowly, the Figure puts down the decoy. He pulls the needle curiously from his arm. From the tilt of his hood I can see he’s regarding it – firstly curiously, then with anger.[paragraph break]He’s completely unharmed[if the player is dishonest]. Maybe I should have made the potion properly, like Covalt told me to! Or maybe it wouldn’t have mattered[end if]. Maybe the Figure can run, and jump and climb, and can’t be harmed.[paragraph break]In a single movement like a cat with a rabbit he tears the decoy apart. Guts and gears spill everywhere. The Figure picks one up, turns it over – then dashes away.[paragraph break]At least I’ve scared him, I think. But of course, I haven’t. Covalt made the decoy well, but he made it in a hurry, using whatever parts he could find. Parts that still bear his stamp. And his name.[paragraph break]A moment later, I’ve got the Perpetuum under one arm and I’m racing out the door.";
+	say "The door opens[unless we are hiding behind the iron vault door] and I press myself quickly behind it[end if]. Darkness enters like cold night wind through a hole in the roof. It is the Figure, moving as fast as only he can.[paragraph break]He wastes no time and goes straight to the altar. It’s all I can do to keep quiet while I’m watching. He picks it up – for a moment I think the trap has failed, but then I understand that Covalt has built it better than that: delaying the sting to make certain of getting the victim.[paragraph break]There’s a [i]crack[r] as the needle springs out. The Figure stops still. That’s it, I’m thinking, I’ve got him. I’ve got him!";
+
+TRIG_FIGURE_NOT_HURT is a trigger;
+
+After reading a command when TRIG_FIGURE_ENTERS is fired and TRIG_FIGURE_NOT_HURT is unfired:
+	fire TRIG_FIGURE_NOT_HURT;
+	consider the scene changing rules;
+	reject the player's command;
+
+Rule for firing unfired TRIG_FIGURE_NOT_HURT:
+	say "I'm frozen to the spot as, slowly, the Figure puts down the decoy. He pulls the needle curiously from his arm. From the tilt of his hood I can see he’s regarding it – firstly curiously, then with anger.[paragraph break]He is completely unaffected[if the player is dishonest]. Maybe I should have made the potion properly, like Covalt told me to! Or maybe it wouldn't have mattered. Maybe[else]. It seems[end if]the Figure can run and jump and climb, and can't be hurt at all. He's perfect.[paragraph break]In a single movement like a cat with a rabbit he tears the decoy apart. Guts and gears spill everywhere. The Figure picks one up, turns it over – then dashes away.[paragraph break]At least I’ve scared him, I think. But of course, I haven’t. Covalt made the decoy well, but he made it in a hurry, using whatever parts he could find. Parts that still bear his stamp. And his name.[paragraph break]A moment later, I’ve got the Perpetuum under one arm and I’m racing out the door.";
 
 Section 4 - Hiding
 
 Instead of hiding from view in the Inner Vault when TRIG_FIGURE_ARRIVAL is unfired:
-	say "I don’t need to hide, I need to [if the decoy perpetuum is not on the steel altar]switch the Perpetuums and [end if]leave!";
+	say "I don't need to hide, I need to [if the decoy perpetuum is not on the steel altar]switch the Perpetuums and [end if]leave!";
 
 Instead of hiding from view in the Inner Vault when TRIG_FIGURE_ARRIVAL is fired:
-	say "Where? There’s nowhere!";
+	say "Where? There's nowhere!";
 
 Instead of hiding behind the iron vault door when in the Inner Vault and TRIG_FIGURE_ARRIVAL is unfired:
 	try hiding from view instead;
 
 Instead of hiding behind the iron vault door when in the Inner Vault and TRIG_FIGURE_ARRIVAL is fired:
-	say "It’s the best I can do: I flatten myself against the wall, behind the door.";
+	say "It's the best I can do: I flatten myself against the wall, behind the door.[paragraph break]";
 	fire TRIG_FIGURE_ENTERS;
 
 Instead of hiding behind the steel altar when in the Inner Vault and TRIG_FIGURE_ARRIVAL is unfired:
 	try hiding from view instead;
 
 Instead of hiding behind the steel altar when in the Inner Vault and TRIG_FIGURE_ARRIVAL is fired:
-	say "Great idea – except he’ll walk straight over to it and there I’ll be. [i]With[r] the real Perpetuum.";
+	say "Great idea – except he'll walk straight over to it and there I'll be. [i]With[r] the real Perpetuum.";
 
 Part 11 - Locative Glimpse Backdrops to navigate by
 
@@ -17503,18 +17724,30 @@ When Midnight begins:
 	move the Figure in Grey to Covalt's Bedroom;
 	move the ravens to the bird cage;
 	now the ravens are not scenery;
+	remove junk from play;
+	[ we trim the player's inventory silently, to keep the pace going ... ]
+	remove the ruby key from play;
+	remove the old iron crypt key from play;
+	remove Horloge's keys from play;
+	remove the small gear from play;
+	[ and end the chapter ... ]
 	end the chapter;
-	say "If I’ve ever run so quickly I can’t remember when. My legs are moving faster than the four-tooth that drives the millisecond hand. Empty streets blur beneath my feet. The silent city streets are empty except for the sound of my breathing – and the shadow of the Figure, disappearing round every corner, slipping into the gloom of every alley way, ahead at every turn moving as fast as nightfall.[paragraph break]And I know I can’t catch up with him. I’m tiring, getting slower, winding down...[paragraph break]And then the bells begin to ring for midnight. All over the city and all at once. A hundred voices – high screeching bells, low bells that grumble the way Cook does, and every kind of bell in between. And they’re all shouting one thing: [i]faster, Wren, faster. However fast your clock ticks, tick faster[r].[paragraph break]And I find I can. Not winding down: breaking every Law, I’m winding up, soaking energy in. By the ninth chime I’m at the top of Escapement Street. By the tenth I’m outside Covalt’s shop. The plate glass window is shattered. I dart inside.";
-	end the chapter;
+	say "If I’ve ever run so fast I can’t remember when. My legs are moving like the four-tooth that drives the millisecond hand. Empty streets blur beneath my feet. The silent city streets are empty except for the sound of my breathing – and the shadow of the Figure, disappearing round every corner, slipping into the gloom of every alley way, ahead at every turn moving as fast as nightfall.[paragraph break]And I know I can’t catch up with him. I’m tiring, getting slower, winding down...[paragraph break]And then the bells ring out for midnight. All over the city and all at once. A hundred voices – screeching bells, low bells that grumble the way Cook does, beautiful bells, angry bells - and all are shouting one thing: [i]faster, Wren, faster. However fast your clock ticks, tick faster[r].[paragraph break]And with the City behind me I can. Not winding down: breaking every Law, I’m winding up, soaking energy in. By the ninth chime I’m at the top of Escapement Street. By the tenth I’m outside Covalt’s shop. The plate glass window is shattered. I dart inside.";
 	move the player to Clock Shop;
 	change the current script to {SE_MIDNIGHT_1, SE_MIDNIGHT_2, SE_MIDNIGHT_3};
 
 Part 1 - Clock Shop
 
 Rule for printing the description of the Clock Shop during Midnight:
-	say "The main room of the clock shop has been turned upside down, almost literally. There is nothing but wreckage.";
+	say "The main room of the clock shop has been turned upside down, almost literally. There is nothing but wreckage. The bedroom door is shattered.";
 
-SE_MIDNIGHT_1 is a scripted event. The display text is "The eleventh chime barely covers an inhuman scream from the door to the south."
+Instead of listening during Midnight:
+	say "Struggles, screams, ruination..."
+
+Before making to leave in the Clock Shop during Midnight:
+	try going south instead.
+
+SE_MIDNIGHT_1 is a scripted event. The display text is "The eleventh chime barely covers an inhuman scream coming through the door to the south."
 
 SE_MIDNIGHT_2 is a scripted event. The display text is "From the south comes a louder cry: something strangling, something else weeping.".
 
@@ -17530,25 +17763,53 @@ After going to Covalt's Bedroom from the Clock Shop during Midnight:
 Instead of hiding from view in the Clock Shop during Midnight:
 	say "I can't. I've got to help him."
 
+Instead of going from Clock Shop to Escapement St during Midnight:
+	say "I can't just leave him!"
+
 Section 2 - Wreckage
 
-The clock shop wreckage is scenery. "The shop is reduced to rubble. No sign of Covalt though - no arms or legs sticking out."
+The clock shop wreckage is scenery. "The shop is reduced to rubble. No sign of Covalt though - no arms or legs sticking out." Understand "door", "shattered", "bedroom door" as the clock shop wreckage.
+
+Does the player mean doing something with the wreckage during Midnight:
+	it is likely.
 
 Instead of searching or turning or pushing or hiding inside or hiding under the clock shop wreckage:
 	say "Leave it, Wren. You've got to save Covalt!"
 
+Instead of entering the clock shop wreckage [ we take this to be "enter door" ]:
+	try going south.
+
 When Midnight begins:
+	move covalt_glimpse to the Clock Shop;
 	move the clock shop wreckage to the Clock Shop.
+
+Section 2b - Covalt glimpse
+
+Covalt_glimpse is privately-named scenery. The printed name is "Covalt". Understand "covalt", "figure", "grey", "scream", "cry", "bedroom", "weeping" as the Covalt_glimpse. 
+
+Instead of entering or approaching or attacking or talking to or shouting at the Covalt_glimpse:
+	try going south.
 
 Part 2 - Bedroom
 
 Chapter 1 - Description
 
 Rule for printing the description of Covalt's Bedroom during Midnight:
-	say "The skylight is broken. The bed is in pieces. One wall is half-rubble, and that’s where Covalt is, pinned in place by a shadow. The Figure, leaning over him, with murderous intent[one of]. [paragraph break]I can feel my lucky clock key, cold against my chest. No-one to save you now, Wren. No clockwork making it easy for you[or].[stopping]"
+	say "The skylight is broken. The bed is in pieces. One wall is half-rubble, and that’s where Covalt is, pinned in place by a shadow. The Figure, leaning over him, with murderous intent[one of]. [paragraph break]I can feel my lucky clock key, cold against my chest. No-one to save you now, Wren. No clockwork making it easy for you[once only]."
 
 Instead of going north from Covalt's Bedroom during Midnight:
-	say "I can’t leave him!";
+	say "I can't leave him!";
+	
+Section 1 - Hiding
+
+Instead of hiding from view when in the Bedroom during Midnight:
+	say "I can't hide from this. It's happening, right in front of me."
+
+Instead of hiding under something when in the Bedroom during Midnight:
+	try hiding from view instead.
+
+Instead of hiding behind something when in the Bedroom during Midnight:
+	try hiding from view instead.
 
 Chapter 2 - Scenery
 
@@ -17559,6 +17820,9 @@ Rule for printing the description of the feather bed during Midnight:
 
 Instead of doing something when the feather bed is physically involved during Midnight:
 	say "This is not time for sleeping!";
+
+Instead of looking under the feather bed during Midnight:
+	say "Nothing there is going to help me!"
 
 Section 2 - Wreckage 
 
@@ -17577,6 +17841,7 @@ Rule for printing a locale paragraph about the bird cage during Midnight:
 
 Rule for printing a locale paragraph about the Ravens during Midnight:
 	say "The ravens circle the Figure, blinding him!";
+	now the ravens are mentioned;
 
 Rule for printing the description of the Ravens during Midnight:
 	if the third-state of Covalt is 1:
@@ -17584,19 +17849,52 @@ Rule for printing the description of the Ravens during Midnight:
 	otherwise if the third-state of Covalt is at most 3:
 		say "The ravens are circling the inhuman Figure, clawing and pecking at his iron face!"; 
 
+Instead of doing something when the ravens are physically involved during Midnight:
+	if the bird cage is closed:
+		say "The birds are going mad inside the cage!" instead;
+	say "The birds are all over the room like an angry crowd of claws and feathers and eyes." instead.
+
+Before opening the ravens during Midnight:
+	try opening the bird cage instead.
+
+Understand "free [something]" as opening when Midnight is happening.
+Understand "release [something]" as opening when Midnight is happening.
+
 Section 4 - Cage
 
-The bird cage is a closed transparent container, openable, scenery, in Covalt's Bedroom. "[if the bird cage is closed]The cage is closed with a small hook.[otherwise]The cage has sprung open.";
+The bird cage is a closed transparent container, openable, scenery, in Covalt's Bedroom. "[if the bird cage is closed]The cage is closed with a small hook.[otherwise]The cage has sprung open."; 
+
+Understand "hook", "small hook" as the bird cage.
 
 After opening the bird cage when the third-state of Covalt is 1 during Midnight:
 	change the third-state of Covalt to 2;
 	move the ravens to Covalt's bedroom;
-	say "I throw the latch on the cage and the birds explode out, filling the room with gigantic black wings. If the Figure is a shadow then these creatures are the night itself, and they’re too fast for him to catch! One keeps him busy, flailing his arms, while the other goes for his hood pulling it back.[paragraph break]Covalt gasps. So do I. The Figure’s head is not a head at all, but a moulding of brass like the one in the crypt, held by a thin rod from shoulders of steel.[paragraph break]'You’re an automaton!' Covalt cries. 'I didn’t know it was possible...'[paragraph break]The Figure is still too busy fighting off the birds to reply. That’s when I see it: a dark crack in the back of its neck. The winding slot, where his key must go. No wonder it always wore that hood.";
+	say "I throw the latch on the cage and the birds explode out, filling the room with gigantic black wings. If the Figure is a shadow then these creatures are the night itself, and they’re too fast for him to catch! One keeps him busy, flailing his arms, while the other goes for his hood pulling it back.[paragraph break]Covalt gasps. So do I. The Figure’s head is not a head at all, but a moulding of brass like the one in the crypt, held by a thin rod from shoulders of steel.[paragraph break]'You’re an automaton!' Covalt cries. 'I didn’t know it were possible...'[paragraph break]The Figure is still too busy fighting off the birds to reply. That’s when I see it: a dark crack in the back of its neck. The winding slot, where his key must go. No wonder it always wore that hood.";
+
+Instead of closing the open bird cage:
+	say "Enough tidying up - save Covalt!"
 
 Section 5 - Covalt
 
+Understand "help [something]" as approaching when Midnight is happening.
+Understand "save [something]" as approaching when Midnight is happening.
+Understand "rescue [something]" as approaching when Midnight is happening.
+
+Before talking to Covalt during Midnight:
+	say "He's obviously in trouble, I don't need to ask!" instead.
+
+Instead of approaching Covalt:
+	say "He's in the Figure's grasp - I need to bring the Figure to a halt!"
+
+Before asking Covalt about during Midnight:
+	try talking to Covalt instead.
+Before telling Covalt about during Midnight:
+	try talking to Covalt instead.
+
 Rule for printing the description of Covalt when the third-state of Covalt is 1 during Midnight:
-	say "Covalt is held tight against the wall by the Figure!";
+	say "Covalt is held tight against the wall by the Figure![paragraph break]His eyes are on something behind me - the bird cage?";
+
+
 
 Rule for printing the description of Covalt when the third-state of Covalt is 2 during Midnight:
 	say "The ravens are keeping the Figure busy, but it’s still not enough for Covalt to break free. He needs my help!";
@@ -17623,7 +17921,18 @@ Every turn when in Covalt's Bedroom and the third-state of Covalt is 1 during Mi
 	say "[one of]The Figure seems taller again in the darkness. One gloved hand holds Covalt by the neck, a little way off the ground. 'Give me the Perpetuum,' he hisses. 'Be assured, I will kill you for it!'[or]Covalt’s eyes move – he’s seen me. But he doesn’t cry out. Then I realize: the Figure doesn’t know I’m here. I’ve got a chance to surprise him![or]Covalt moves his eyes away from me, maybe so the Figure won’t catch my reflection in them.[or][desperately thinking loop][stopping]";
 
 To say desperately thinking loop:
-	say "[one of]Think, Wren, think![or]Or if thinking doesn’t work, just do something![or]No time to lose![cycling]";
+	say "[one of][or]Covalt is looking past toward the corner of the room, where the birds are kept. [or]The birds in the cage are screeching manically. [cycling][one of]Think, Wren, think![or]If thinking doesn’t work, Wren, then do something![or]No time to lose![cycling]";
+
+Instead of thinking when the third-state of Covalt is 1 during Midnight:
+	say "I can't think - the birds are screaming in their cage so loudly."
+
+Every turn when in Covalt's Bedroom and the third-state of Covalt is 2 during Midnight:
+	fire TRIG_COVALT_FIGURE_2A;
+
+TRIG_COVALT_FIGURE_2A is a trigger.
+
+Rule for firing unfired TRIG_COVALT_FIGURE_2A:
+	say "Covalt is struggling, but I can the fight coming into his eyes. The Figure is clockwork, and Covalt [i]knows[r] about clockwork..."
 
 Every turn when in Covalt's Bedroom and the third-state of Covalt is 2 during Midnight:
 	fire TRIG_COVALT_FIGURE_2;
@@ -17645,11 +17954,25 @@ Rule for firing fired TRIG_COVALT_FIGURE_3:
 
 Section 6 - Figure
 
-The winding slot is part of the Figure in Grey.
-The wound spring is part of the winding slot.
+Instead of talking to the Figure Grey during Midnight:
+	say "I stay silent. For now, he hasn't seen me..."
+
+Before asking the Figure Grey about during Midnight:
+	try talking to the Figure Grey instead.
+Before telling the Figure Grey about during Midnight:
+	try talking to the Figure Grey instead.
+
+The winding slot is part of the Figure Grey. 
+
+Understand "crack", "dark crack" as the winding slot.
+Understand "neck", "figure's neck", "figures neck", "back of" as the winding slot.
+
+The wound spring is part of the winding slot, privately-named. [ you can't just attack ]
+
+The description of the winding slot is "A weak point in every device. A way straight in to the heart of the clockwork. The imperfection needed to jam a perfect mechanism..."
 
 Rule for deciding the concealed possessions of the figure in grey:
-	if the particular possession is the winding slot: 
+	if the particular possession is the winding slot:
 		if Midnight is happening and the third-state of Covalt is not 1:
 			no; [winding slot has been revealed by the ravens...]
 		yes; [...otherwise it is concealed...]
@@ -17658,25 +17981,72 @@ Rule for deciding the concealed possessions of the figure in grey:
 Rule for printing the description of the figure in grey when the third-state of Covalt is 1 during Midnight:
 	say "The Figure looms over Covalt like a gigantic rearing slug.";
 
-Rule for printing the description of the figure in grey when the third-state of Covalt is 2 during Midnight:
+Rule for printing the description of the figure in grey when the third-state of Covalt is greater than 1 during Midnight:
 	say "It’s almost impossible to believe: all that speed, all the strength, that voice... all in a machine...";
 
 Rule for printing the description of the figure in grey during Midnight:
 	say "The ravens are keeping the Figure busy but not busy enough. He’ll never tire!";
 
-Instead of attacking the figure in grey during Midnight:
-	say "The Figure is more powerful than me. I’ve got the element of surprise on my side... and nothing else.";
 
-Instead of unlocking the figure in grey with something when the player can see the winding slot:
+Understand "winding key" as the lucky clock key when Midnight is happening.
+
+Section - Attack Figure
+
+Instead of turning [winding] the Figure Grey during Midnight:
+	try attacking the winding slot;
+
+Instead of turning [winding] the winding slot during Midnight:
+	try attacking the winding slot;
+
+Instead of attacking the Figure Grey when Midnight is happening:
+	say "[one of]The Figure is more powerful than me. I’ve got the element of surprise on my side... and nothing else![or]He's too strong to attack directly...[or]I need to find his weakness, and I need to find it now![or]Maybe clockwork guide my hand... and until it does, I don't stand a chance![stopping]";
+		
+Instead of attacking the Figure Grey when Midnight is happening and the third-state of Covalt is greater than 1:
+	try attacking the winding slot instead.
+
+Instead of attacking the winding slot when Midnight is happening and the third-state of Covalt is greater than 1 for the first time:
+	say "I could jam his winding slot, but with what?"
+
+Instead of attacking the winding slot when Midnight is happening and the third-state of Covalt is greater than 1 for the second time:
+	try unlocking the winding slot with the lucky clock key.
+
+Section - Attack Figure with 
+
+Instead of attacking the figure grey with something when the player can see the winding slot:
+	try unlocking the winding slot with the second noun;
+
+Instead of attacking the winding slot with something when the player can see the winding slot:
+	try unlocking the winding slot with the second noun;
+
+Section - Insert into Figure
+
+Before inserting something into the Figure Grey when the player can see the winding slot during Midnight:
+	try unlocking the winding slot with the noun instead;
+
+Before inserting something into the winding slot during Midnight:
+	try unlocking the winding slot with the noun instead;
+
+Section - Insert into Figure
+
+Before unscrewing the Figure Grey with something when the player can see the winding slot during Midnight:
+	try unlocking the winding slot with the second noun instead;
+
+Before unscrewing the winding slot with something during Midnight:
+	try unlocking the winding slot with the second noun instead;
+
+Section - Failed Attempts
+
+Section - Successfull Attempt
+
+Instead of unlocking the figure grey with something when the player can see the winding slot:
 	redirect the action from the figure in grey to the winding slot, and try that instead;
 
-An unlocking rule for the figure in grey:
+An unlocking rule for the figure grey:
 	if the player can see the winding slot and the player can see my lucky clock key:
 		rule succeeds with result my lucky clock key;
 	otherwise:
 		rule fails;
 
-Section 7 - Game end
 
 An unlocking rule for the winding slot:
 	if the player can see my lucky clock key:
@@ -17687,20 +18057,34 @@ An unlocking rule for the winding slot:
 Instead of unlocking the winding slot with my lucky clock key:
 	try attacking the wound spring instead;
 
-Instead of inserting my lucky clock key into the winding slot:
-	try attacking the wound spring instead;
+Instead of unlocking the winding slot with something:
+	if the second noun is the knife:
+		say "The knife, my trusted weapon, is too big for the tiny keyhole of the winding slot..." instead;
+	if the second noun is the wrench:
+		say "The wrench is a huge tool - if the Figure was a man, I could maybe cudgel him - but it would merely glance his neck and bounce away...";
+
+
+Every turn when in Covalt's Bedroom and the player can see the winding slot and the third-state of Covalt is 4:
+	say "[one of]The Figure's fingers are closing on Covalt's neck - but his own neck is exposed...[or]The Figure's winding slot is open...[or]The winding slot on the back of the Figure's neck is right in front of me...[cycling]";
+
+Section 7 - Game end - attacking the wound spring
+
 
 Instead of attacking the wound spring:
 	now the player wears my lucky clock key;
 	try attacking the wound spring with my lucky clock key instead;
 
 Instead of attacking the wound spring with my lucky clock key:
-	say "The winding slot on the Figure's neck is a thumb-width big. A tiny target, like fitting a tweezer's head into the cracks of a mesh-system. But precision is what clockwork’s all about. I’ve a novice. I’ve trained. And I know that the winding slot goes all the way in. Right into the Figure’s clockwork soul.[paragraph break]I grab the key from around my neck and plunge it in. The Figure doesn’t notice – it can’t feel! – until I start to turn.[paragraph break]The spring begins to coil. The Figure jerks up, releasing Covalt, who falls back to the floor. It struggles to turn, trying to make a grab for me, but the ravens on either side are battering it back. I only need another turn or two. The spring inside the neck is getting almost impossible to move and then...[paragraph break]CRACK![paragraph break]I can hear the spring spinning off inside the Figure’s chest. Hear the awful noise as it catches in a mechanism deep inside. I quickly make the sign of the Winding Key as the Figure crumples: first one leg, then the other. The floor shakes as it falls.[paragraph break]The last of its energy is enough to look up at me. 'You,' it hisses through lips that don’t move as it speaks. Its voice sounds almost sad. 'You know not what you do.'[paragraph break]And then, silence. The ravens settle, one on each of Covalt’s shoulders. The old man looks exhausted, his face the colour of bruised tomatoes.[paragraph break]'That’s the most incredible piece of clockwork I ever saw,' he says slowly, furiously, his eyes glowing with anger. 'And you just destroyed it.'[paragraph break]Can Covalt really be angry that I...[paragraph break]'That was well done, young Wren.' He coughs. 'But I tell you, when I build something like that metal man, I’m going to give him an off-switch. Stupid to have to break such a fine machine. Whoever built that... a genius.' He strokes his beard, and gets to his feet – taking the Perpetuum from me as he does so. He’s looking back to normal already: a sour-faced moody old man. 'A genius, and an idiot, too.'[paragraph break]'But who was it?' I demand. 'Who built it?'[paragraph break]'That’s the question,' Covalt answers, gravely. 'For every spring that’s wound on this Earth, there’s a human hand turning the key. No divine mechanics down here. We may be free of this thing –' and he lands a kick squarely in the still automaton’s chest - 'but someone out there was behind it. Someone planning an army and after the Perpetuum. We may be free of the clockwork today, young Wren. But we’re not free of the clockmaker.'";
+	say "The winding slot on the Figure's neck is a thumb-width big. A tiny target, like fitting a tweezer's head into the cracks of a mesh-system. But precision is what clockwork’s all about. I’ve a novice. I’ve trained. And I know that the winding slot goes all the way in. Right into the Figure’s clockwork soul.[paragraph break]I grab the key from around my neck and plunge it in. The Figure doesn’t notice – it can’t feel! – until I start to turn.[paragraph break]The spring begins to coil. The Figure jerks up, releasing Covalt, who falls back to the floor. It struggles to turn, trying to make a grab for me, but the ravens on either side are battering it back. I only need another turn or two. The spring inside the neck is getting almost impossible to move and then...[paragraph break]CRACK![paragraph break]I can hear the spring spinning off inside the Figure’s chest. Hear the awful noise as it catches in a mechanism deep inside. I quickly make the sign of the Winding Key as the Figure crumples: first one leg, then the other. The floor shakes as it falls.[paragraph break]The last of its energy is enough to look up at me. 'You,' it hisses through lips that don’t move as it speaks. Its voice sounds almost sad. 'You know not what you do.'[paragraph break]And then, silence. The ravens settle, one on each of Covalt’s shoulders. The old man looks exhausted, his face the colour of bruised tomatoes.";
+	now the third-state of Covalt is 10;
+
+After reading a command when the third-state of Covalt is 10:
+	say "'That’s the most incredible piece of clockwork I ever saw,' he says slowly, furiously, his eyes glowing with anger. 'And you just destroyed it.'[paragraph break]Can Covalt really be angry that I...[paragraph break]'That was well done, young Wren.' He coughs. 'But I tell you, when I build something like that metal man, I’m going to give him an off-switch. Stupid to have to break such a fine machine. Whoever built that... a genius.' He strokes his beard, and gets to his feet – taking the Perpetuum from me as he does so. He’s looking back to normal already: a sour-faced moody old man. 'A genius, and an idiot, too.'[paragraph break]'But who was it?' I demand. 'Who built it?'[paragraph break]'That’s the question,' Covalt answers, gravely. 'For every spring that’s wound on this Earth, there’s a human hand turning the key. No divine mechanics down here. We may be free of this thing –' and he lands a kick squarely in the still automaton’s chest - 'but someone out there was behind it. Someone planning an army and after the Perpetuum. We may be free of the clockwork today, young Wren. But we’re not free of the clockmaker.'";
 	end the game in victory;
 
 Book W - Walkthrough Script
 
-Test jonsprogress with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt / test countinghouse / test outsidewarehouse / test insidewarehouse / test covaltreturn / test returncathedral / d".
+Test jonsprogress with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt / test countinghouse / test outsidewarehouse / test insidewarehouse / test covaltreturn / test returncathedral / d / s / w / take dial / out / e / take cloth / put cloth in oil / take dowel / tie cloth to dowel / out / light torch on torches / d / put dial on pedestal / put torch in sconce / set pedestal to 12 / d / d ".
 
 test cheat7 with "test intro / gonear street / purloin work order".
 
@@ -17772,9 +18156,10 @@ Book Y - Not For Release - Alpha Testing
 test quarters with "x desk / x designs / x scratches / x cot / x blanket / x bust / x window / x door / x pendulum / x weights / x weight of precision / x counterweight / x counterweight of slapdashery / x figure / x abbot";
 
 
-
 [
+
 Include (- Constant DEBUG; -) after "Definitions.i6t".
 ]
+
 
 
