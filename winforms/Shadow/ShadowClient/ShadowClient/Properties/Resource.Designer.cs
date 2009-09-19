@@ -60,15 +60,8 @@ namespace FyreWinClient.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap Gallows {
-            get {
-                object obj = ResourceManager.GetObject("Gallows", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         /// <summary>
-        ///   Looks up a localized string similar to sl-v1.05xe.ulx.
+        ///   Looks up a localized string similar to sh-v1.0xe.ulx.
         /// </summary>
         internal static string GameFile {
             get {
@@ -76,71 +69,15 @@ namespace FyreWinClient.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap GrubbersChase {
+        internal static byte[] sh_v0_90e {
             get {
-                object obj = ResourceManager.GetObject("GrubbersChase", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap InJail {
-            get {
-                object obj = ResourceManager.GetObject("InJail", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap JackInBallGown {
-            get {
-                object obj = ResourceManager.GetObject("JackInBallGown", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap JackInDisguise {
-            get {
-                object obj = ResourceManager.GetObject("JackInDisguise", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap JackInSimpleDress {
-            get {
-                object obj = ResourceManager.GetObject("JackInSimpleDress", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap MaidenHouse {
-            get {
-                object obj = ResourceManager.GetObject("MaidenHouse", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap MeetingBobby {
-            get {
-                object obj = ResourceManager.GetObject("MeetingBobby", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap rightpage {
-            get {
-                object obj = ResourceManager.GetObject("rightpage", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static byte[] sl_v1_05xe {
-            get {
-                object obj = ResourceManager.GetObject("sl_v1_05xe", resourceCulture);
+                object obj = ResourceManager.GetObject("sh_v0_90e", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jack Toresal and The Secret Letter.
+        ///   Looks up a localized string similar to The Shadow in the Cathedral.
         /// </summary>
         internal static string Title {
             get {
@@ -149,7 +86,7 @@ namespace FyreWinClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Version: 1.05.20090702.
+        ///   Looks up a localized string similar to Version: 1.0.20090925Std.
         /// </summary>
         internal static string Version {
             get {

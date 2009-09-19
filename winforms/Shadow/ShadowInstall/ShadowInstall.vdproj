@@ -3,7 +3,7 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:SecretLetterInstaller"
+"ProjectName" = "8:ShadowInstaller"
 "LanguageId" = "3:1033"
 "CodePage" = "3:1252"
 "UILanguageId" = "3:1033"
@@ -15,25 +15,19 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_0034458F343C42D2B8590F9E57CDD879"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3594CEF3E792449DB05BE2D651ED750B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_368F00C02C274722A08C1EF2C8694430"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_3B2849D86C547BD1ED592A1972FE0F34"
+        "OwnerKey" = "8:_4E5E0BCED6294D549F288C71102078B5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_450562822D2F4022AE1D4F46CE4492A1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_46DFA0FB3E0B4D89BF72378A03DDCABD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -45,25 +39,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5DD02C06DABF770FE9BADECEC561404E"
-        "OwnerKey" = "8:_4E5E0BCED6294D549F288C71102078B5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_68DBDCFCA0C9459D87773D31299D3931"
+        "MsmKey" = "8:_8D11958132DA40CBB993235DFB40A74F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_D0E87A254C9144EE844BADA8B914DFA0"
+        "MsmKey" = "8:_B740523225C140D1A0E66F22049ED74C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_D9C7A7E346414B2A8A0DFDCD2EDEA7CC"
+        "MsmKey" = "8:_EA522CED13914375AE0233A996F2663E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -76,7 +64,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5DD02C06DABF770FE9BADECEC561404E"
+        "OwnerKey" = "8:_3B2849D86C547BD1ED592A1972FE0F34"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -87,7 +75,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\SecretLetter-1.07Std.msi"
+        "OutputFilename" = "8:Debug\\Shadow-1.0Std.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -124,7 +112,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\SecretLetter-1.07Std.msi"
+        "OutputFilename" = "8:Release\\ShadowInstall-1.0Std.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -184,94 +172,14 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0034458F343C42D2B8590F9E57CDD879"
-            {
-            "SourcePath" = "8:Jack Toresal and The Secret Letter Map.pdf"
-            "TargetName" = "8:Jack Toresal and The Secret Letter Map.pdf"
-            "Tag" = "8:"
-            "Folder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3594CEF3E792449DB05BE2D651ED750B"
-            {
-            "SourcePath" = "8:secretletter3.ico"
-            "TargetName" = "8:secretletter3.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_368F00C02C274722A08C1EF2C8694430"
-            {
-            "SourcePath" = "8:miradania_secret_front.jpg"
-            "TargetName" = "8:miradania_secret_front.jpg"
-            "Tag" = "8:"
-            "Folder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_450562822D2F4022AE1D4F46CE4492A1"
-            {
-            "SourcePath" = "8:uninstall.bat"
-            "TargetName" = "8:uninstall.bat"
-            "Tag" = "8:"
-            "Folder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5DD02C06DABF770FE9BADECEC561404E"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3B2849D86C547BD1ED592A1972FE0F34"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:TextfyreVM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_5DD02C06DABF770FE9BADECEC561404E"
+                    "_3B2849D86C547BD1ED592A1972FE0F34"
                     {
                     "Name" = "8:TextfyreVM.dll"
                     "Attributes" = "3:512"
@@ -295,10 +203,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_68DBDCFCA0C9459D87773D31299D3931"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_450562822D2F4022AE1D4F46CE4492A1"
             {
-            "SourcePath" = "8:Introduction to Secret Letter.pdf"
-            "TargetName" = "8:Introduction to Secret Letter.pdf"
+            "SourcePath" = "8:uninstall.bat"
+            "TargetName" = "8:uninstall.bat"
             "Tag" = "8:"
             "Folder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
             "Condition" = "8:"
@@ -315,10 +223,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D0E87A254C9144EE844BADA8B914DFA0"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_46DFA0FB3E0B4D89BF72378A03DDCABD"
             {
-            "SourcePath" = "8:SECRETLETTER_EULA.pdf"
-            "TargetName" = "8:SECRETLETTER_EULA.pdf"
+            "SourcePath" = "8:shbanner.jpg"
+            "TargetName" = "8:shbanner.jpg"
             "Tag" = "8:"
             "Folder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
             "Condition" = "8:"
@@ -335,10 +243,50 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D9C7A7E346414B2A8A0DFDCD2EDEA7CC"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8D11958132DA40CBB993235DFB40A74F"
             {
-            "SourcePath" = "8:SECRETLETTER_EULA.rtf"
-            "TargetName" = "8:SECRETLETTER_EULA.rtf"
+            "SourcePath" = "8:SHADOW_EULA.pdf"
+            "TargetName" = "8:SHADOW_EULA.pdf"
+            "Tag" = "8:"
+            "Folder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B740523225C140D1A0E66F22049ED74C"
+            {
+            "SourcePath" = "8:SHADOW_EULA.rtf"
+            "TargetName" = "8:SHADOW_EULA.rtf"
+            "Tag" = "8:"
+            "Folder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EA522CED13914375AE0233A996F2663E"
+            {
+            "SourcePath" = "8:shadow.ico"
+            "TargetName" = "8:shadow.ico"
             "Tag" = "8:"
             "Folder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
             "Condition" = "8:"
@@ -381,7 +329,7 @@
                         {
                             "{9EF0B969-E518-4E46-987F-47570745A589}:_133C879849E6444E89813AA8E7FE446F"
                             {
-                            "Name" = "8:Jack Toresal and The Secret Letter"
+                            "Name" = "8:The Shadow in the Cathedral"
                             "AlwaysCreate" = "11:FALSE"
                             "Condition" = "8:"
                             "Transitive" = "11:FALSE"
@@ -432,19 +380,19 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Jack Toresal and The Secret Letter - Standard"
-        "ProductCode" = "8:{0E8A5BC1-0185-48D7-975A-DC9EDBD25BBC}"
-        "PackageCode" = "8:{E4E9969B-F489-49B7-BD58-D4144CF13A23}"
-        "UpgradeCode" = "8:{174B1C6D-FE6A-4DD0-94C0-731FBB23C838}"
+        "ProductName" = "8:The Shadow in the Cathedral - Standard"
+        "ProductCode" = "8:{A934AB0A-1DA7-4845-BB97-BB48921DBB74}"
+        "PackageCode" = "8:{0932D43B-2225-41D8-8BAF-D0367E7A96A4}"
+        "UpgradeCode" = "8:{E7162DE9-8A4A-41B1-9403-E3C1D5CB49A0}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.7"
+        "ProductVersion" = "8:1.0"
         "Manufacturer" = "8:Textfyre, Inc."
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:Jack Toresal and The Secret Letter - Standard"
+        "Title" = "8:The Shadow in the Cathedral - Standard"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Textfyre, Inc."
         "Keywords" = "8:"
@@ -553,37 +501,9 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0E640F4919124B3587F906D54496EE36"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_1D6E9794A4AD45FCBFE4C9E605871E0A"
             {
-            "Name" = "8:Introduction to Secret Letter (Adobe PDF)"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_68DBDCFCA0C9459D87773D31299D3931"
-            "Folder" = "8:_133C879849E6444E89813AA8E7FE446F"
-            "WorkingFolder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_6DC9C50BCB1142249D0B2CE0EC40E8C0"
-            {
-            "Name" = "8:Jack Toresal and The Secret Letter Map (Adobe PDF)"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_0034458F343C42D2B8590F9E57CDD879"
-            "Folder" = "8:_133C879849E6444E89813AA8E7FE446F"
-            "WorkingFolder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7CFF4AA66F084FC48782CF74F7B47842"
-            {
-            "Name" = "8:Jack Toresal and The Secret Letter - Standard"
+            "Name" = "8:The Shadow in the Cathedral - Standard"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -592,32 +512,32 @@
             "Target" = "8:_4E5E0BCED6294D549F288C71102078B5"
             "Folder" = "8:_133C879849E6444E89813AA8E7FE446F"
             "WorkingFolder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
-            "Icon" = "8:_3594CEF3E792449DB05BE2D651ED750B"
+            "Icon" = "8:_EA522CED13914375AE0233A996F2663E"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B0E3A8B1C98C4A50AB412092B594D9F2"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_ABA527560BE74F3488654F87A7B45D0A"
             {
-            "Name" = "8:SECRETLETTER_EULA (Adobe PDF)"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_D0E87A254C9144EE844BADA8B914DFA0"
-            "Folder" = "8:_133C879849E6444E89813AA8E7FE446F"
-            "WorkingFolder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D01D5476197D49B68ECD1F1EF7A69D06"
-            {
-            "Name" = "8:Uninstall Secret Letter Standard.bat"
+            "Name" = "8:Uninstall The Shadow in the Cathedral"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
             "Target" = "8:_450562822D2F4022AE1D4F46CE4492A1"
+            "Folder" = "8:_133C879849E6444E89813AA8E7FE446F"
+            "WorkingFolder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_EEB49F186BF24970BF189E49A0B33E79"
+            {
+            "Name" = "8:The Shadow in the Cathedral End User License Agreement (Adobe PDF)"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_8D11958132DA40CBB993235DFB40A74F"
             "Folder" = "8:_133C879849E6444E89813AA8E7FE446F"
             "WorkingFolder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
             "Icon" = "8:"
@@ -651,7 +571,7 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:2"
-                            "Value" = "8:_368F00C02C274722A08C1EF2C8694430"
+                            "Value" = "8:_46DFA0FB3E0B4D89BF72378A03DDCABD"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "ShowProgress"
@@ -696,7 +616,7 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:2"
-                            "Value" = "8:_368F00C02C274722A08C1EF2C8694430"
+                            "Value" = "8:_46DFA0FB3E0B4D89BF72378A03DDCABD"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "CopyrightWarning"
@@ -721,7 +641,7 @@
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
                             "Setting" = "3:2"
-                            "Value" = "8: "
+                            "Value" = "8: The installer will guide you through the steps required to install [ProductName] on your computer."
                             "DefaultValue" = "8:#1203"
                             "UsePlugInResources" = "11:TRUE"
                             }
@@ -745,7 +665,7 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:2"
-                            "Value" = "8:_368F00C02C274722A08C1EF2C8694430"
+                            "Value" = "8:_46DFA0FB3E0B4D89BF72378A03DDCABD"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -768,7 +688,7 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:2"
-                            "Value" = "8:_368F00C02C274722A08C1EF2C8694430"
+                            "Value" = "8:_46DFA0FB3E0B4D89BF72378A03DDCABD"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "InstallAllUsersVisible"
@@ -804,7 +724,7 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:2"
-                            "Value" = "8:_368F00C02C274722A08C1EF2C8694430"
+                            "Value" = "8:_46DFA0FB3E0B4D89BF72378A03DDCABD"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "EulaText"
@@ -816,7 +736,7 @@
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
                             "Setting" = "3:2"
-                            "Value" = "8:_D9C7A7E346414B2A8A0DFDCD2EDEA7CC"
+                            "Value" = "8:_B740523225C140D1A0E66F22049ED74C"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "Sunken"
@@ -860,7 +780,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_46DFA0FB3E0B4D89BF72378A03DDCABD"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "CopyrightWarning"
@@ -893,7 +814,7 @@
                     }
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_96A0248176AE44CFBE0D33F7E41545A0"
                     {
-                    "Sequence" = "3:200"
+                    "Sequence" = "3:300"
                     "DisplayName" = "8:Installation Folder"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
@@ -908,14 +829,63 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_46DFA0FB3E0B4D89BF72378A03DDCABD"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_A1ABA72F50E94746B38AFEA67505928C"
+                    {
+                    "Sequence" = "3:200"
+                    "DisplayName" = "8:License Agreement"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminLicenseDlg.wid"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:2"
+                            "Value" = "8:_46DFA0FB3E0B4D89BF72378A03DDCABD"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "EulaText"
+                            {
+                            "Name" = "8:EulaText"
+                            "DisplayName" = "8:#1008"
+                            "Description" = "8:#1108"
+                            "Type" = "3:6"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:2"
+                            "Value" = "8:_B740523225C140D1A0E66F22049ED74C"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Sunken"
+                            {
+                            "Name" = "8:Sunken"
+                            "DisplayName" = "8:#1007"
+                            "Description" = "8:#1107"
+                            "Type" = "3:5"
+                            "ContextData" = "8:4;True=4;False=0"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:0"
+                            "Value" = "3:4"
+                            "DefaultValue" = "3:4"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
                     }
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_DEC9792246BE4CCF9887B453C506C4B3"
                     {
-                    "Sequence" = "3:300"
+                    "Sequence" = "3:400"
                     "DisplayName" = "8:Confirm Installation"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
@@ -930,7 +900,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_46DFA0FB3E0B4D89BF72378A03DDCABD"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -961,7 +932,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_46DFA0FB3E0B4D89BF72378A03DDCABD"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -998,7 +970,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_46DFA0FB3E0B4D89BF72378A03DDCABD"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "ShowProgress"
@@ -1049,7 +1022,7 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:2"
-                            "Value" = "8:_368F00C02C274722A08C1EF2C8694430"
+                            "Value" = "8:_46DFA0FB3E0B4D89BF72378A03DDCABD"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "UpdateText"
@@ -1077,7 +1050,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4E5E0BCED6294D549F288C71102078B5"
             {
-            "SourcePath" = "8:..\\FyreWin\\FyreWinClient\\obj\\Release\\SecretLetterStd.exe"
+            "SourcePath" = "8:..\\ShadowClient\\ShadowClient\\obj\\Debug\\ShadowStd.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"

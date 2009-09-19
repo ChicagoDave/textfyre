@@ -258,6 +258,7 @@
     <Content Include="Customer\TF99Tester.aspx" />
     <Content Include="Global.asax" />
     <Content Include="images\graeme.jpg" />
+    <Content Include="images\secretletter-std.jpg" />
     <Content Include="images\tflogo.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
