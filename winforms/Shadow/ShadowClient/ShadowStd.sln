@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecretLetter", "FyreWinClient\SecretLetter.csproj", "{5454CFB3-E4EC-4837-936A-3C343E47B771}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecretLetter", "ShadowClient\Shadow.csproj", "{5454CFB3-E4EC-4837-936A-3C343E47B771}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextfyreVM", "..\..\..\sharedsource\trunk\fyrevmss-windows\TextfyreVM.csproj", "{61B1E1B1-82B8-42F7-9600-F57B0F254638}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SecretLetterInstaller", "..\SecretLetterWinFyreInstall\SecretLetterWinFyreInstall.vdproj", "{4D48CF96-CC2B-4B6A-830E-17A97BCF5148}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ShadowInstaller", "..\ShadowInstall\ShadowInstall.vdproj", "{4D48CF96-CC2B-4B6A-830E-17A97BCF5148}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

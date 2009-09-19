@@ -24,11 +24,18 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2" style="font-size:6pt; vertical-align: bottom; padding-top:20px;">
-                                            System Requirements: Microsoft Windows XP, Windows Vista, Windows 7, or an Intel
-                                            based Mac with OS X. On Windows, 32MB RAM is required and on the Mac, 512MB RAM
-                                            is required. Both systems require 15MB of free disk space. Microsoft Silverlight
-                                            2 or 3 is required and is a part of the installation process.
+                                        <td colspan="2" style="font-size: 6pt; vertical-align: bottom; padding-top: 20px;">
+                                            Deluxe System Requirements: Microsoft Windows XP, Windows Vista, Windows 7, or an
+                                            Intel based Mac with OS X. On Windows, 32MB RAM is required and on the Mac, 512MB
+                                            RAM is required. Both systems require 15MB of free disk space. Microsoft Silverlight
+                                            2 or 3 is required and is a part of the installation process.<br />
+                                            <br />
+                                            Standard System Requirements: Microsoft Windows XP, Windows Vista, or Windows 7
+                                            with 16MB RAM and 10MB disk space. The Microsoft .NET Framework is required and
+                                            is a part of the installation process.<br />
+                                            <br />
+                                            <b style="font-size:8pt;">Standard version of Secret Letter</b><br />
+                                            <asp:Image ID="Image2" runat="server" ImageUrl="~/images/secretletter-std.jpg" AlternateText="Standard UI" Width="240" /><br/><br/>
                                         </td>
                                     </tr>
                                 </table>
@@ -45,19 +52,42 @@
                             Teisha lends a hand along the way, as does Bobby, the mysterious boy always lurking
                             in Lord&#39;s Market. The ladies at Maiden House are helpful, but can sometimes
                             be a bit overbearing. The shopkeepers are always willing to chat about the latest
-                            gossip. Jack, he just wants to sit down and eat an apple.
+                            gossip. Jack, he just wants to sit down and eat an apple.<br />
+                            <br />
+                            The Deluxe version is a Microsoft Silverlight application that runs in a browser. It includes
+                            a book-like user interface that allows you to turn pages, has artist renderings of all of the
+                            characters in the game as well as a full color map and hints.<br />
+                            <br />
+                            The Standard version is a Microsoft .NET Windows application that displays a text window, similar
+                            to the old Infocom style. There are no hints available in the Standard version.<br />
+                            <br />
+                            Both versions include an introduction, map, and end user license agreement.
                         </td>
                         <td style="padding-left: 5px; border-left: 1px black solid; font-size: 10pt; vertical-align: top;
                             width: 200px;">
-                            Price: $24.95<br />
+                            Deluxe Version Price: $24.95<br />
                             <br />
-                            Purchase via PayPal<br />
+                            Purchase the Deluxe Version via PayPal<br />
                             <a href="https://www.e-junkie.com/ecom/gb.php?i=280404&c=single&cl=74327">
                                 <img src="http://www.e-junkie.com/ej/x-click-butcc.gif" border="0" alt="Buy Now" /></a>
                             <br />
                             <br />
-                            Purchase via Google Checkout</b><br />
+                            Purchase the Deluxe Version via Google Checkout<br />
                             <a href="https://www.e-junkie.com/ecom/gb.php?i=280404&c=gc&cl=74327&ejc=4">
+                                <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&w=160&h=43&style=trans&variant=text&loc=en_US"
+                                    border="0" alt="Buy Now" /></a>
+                            <br />
+                            <br />
+                            Standard Version Price: $9.95<br />
+                            <br />
+                            Purchase the Standard Version (Windows Only) via PayPal<br />
+                            <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-standard&c=single&cl=74327"
+                                target="ejejcsingle">
+                                <img src="http://www.e-junkie.com/ej/x-click-butcc.gif" border="0" alt="Buy Now" /></a>
+                            <br />
+                            <br />
+                            Purchase the Standard Version (Windows Only) via Google Checkout<br />
+                            <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-standard&c=gc&cl=74327&ejc=4">
                                 <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&w=160&h=43&style=trans&variant=text&loc=en_US"
                                     border="0" alt="Buy Now" /></a>
                         </td>

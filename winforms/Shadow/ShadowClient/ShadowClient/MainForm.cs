@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -30,13 +29,10 @@ namespace FyreWinClient {
         private Size saveSize;
         private Point saveLocation;
         private FormBorderStyle saveBorder;
-        //private string prologue = "";
-        //private string credits = "";
         bool isFullScreen = false;
         bool resetPreferences = false;
         List<string> history = new List<string>();
         int historyIndex = 0;
-        //int saveTotalLines = 0;
 
         public MainForm() {
             InitializeComponent();
@@ -73,7 +69,7 @@ namespace FyreWinClient {
             Header.Text = "";
             TextWindow.Clear();
 
-            MemoryStream fileData = new MemoryStream(Properties.Resource.sl_v1_05xe);
+            MemoryStream fileData = new MemoryStream(Properties.Resource.sh_v0_90e);
 
             vm = new Engine(fileData);
             vm.OutputFilterEnabled = false;
@@ -236,25 +232,6 @@ namespace FyreWinClient {
             inputReadyEvent.Set();
         }
 
-        private int VisibleLines() {
-
-            RichTextBox temp = new RichTextBox();
-            temp.Height = TextWindow.Height;
-            temp.Width = TextWindow.Width;
-            temp.Font = TextWindow.Font;
-            for (int w=0; w < 1000; w++)
-                temp.AppendText("12ABW ");
-
-            //Get the height of the text area.
-            int height = TextRenderer.MeasureText(temp.Text, temp.Font).Height;
-
-            //rate = visible height / Total height.
-            float rate = (1.0f * temp.Height) / height;
-
-            //Get visible lines.
-            return (int)(temp.Lines.Length * rate);
-        }
-
         private void HandleOutput(Dictionary<OutputChannel, string> package) {
             string text;
 
@@ -265,48 +242,18 @@ namespace FyreWinClient {
             if (package.TryGetValue(OutputChannel.Prologue, out text)) {
                 channelText[(int)OutputChannel.Prologue] = text.Trim();
 
-                //prologue = String.Format("{0}\r\n", text);
                 TextWindow.AppendText(String.Format("{0}\r\n", text));
             }
 
             if (package.TryGetValue(OutputChannel.Credits, out text)) {
                 channelText[(int)OutputChannel.Credits] = text.Trim();
 
-                //credits = String.Concat(text.Replace("&#169;", "@"), "\r\n");
-                TextWindow.AppendText(String.Concat(text.Replace("&#169;","@"),"\r\n"));
+                TextWindow.AppendText(String.Concat(text.Trim().Replace("&#169;","@"),"\r\n\r\n"));
             }
 
             if (package.TryGetValue(OutputChannel.Main, out text)) {
                 channelText[((int)OutputChannel.Main)] = text;
 
-                //string allText;
-                //if (prologue != "")
-                //    allText = string.Concat(prologue, credits, text);
-                //else
-                //    allText = text;
-
-                //char[] characters = allText.ToCharArray();
-                //saveTotalLines = TextWindow.Lines.Length;
-                //int visLines = VisibleLines()-1;
-
-                //foreach (char letter in characters) {
-                //    TextWindow.AppendText(letter.ToString());
-
-                //    //TextRenderer.MeasureText(
-
-                //    if (TextWindow.Lines.Length == (saveTotalLines + visLines)) {
-                //        int selStart = TextWindow.Text.Length;
-                //        TextWindow.AppendText("\n(more)");
-                //        int readKey = -1;
-                //        while (readKey >= 0) {
-                //            readKey = System.Console.Read();
-                //        }
-                //        TextWindow.SelectionStart = selStart;
-                //        TextWindow.SelectionLength = 8;
-                //        TextWindow.Cut();
-                //        saveTotalLines = TextWindow.Lines.Length;
-                //    }
-                //}
                 TextWindow.AppendText(String.Concat(text.Trim(),"\r\n"));
             }
 
@@ -393,6 +340,14 @@ namespace FyreWinClient {
             }
             TextWindow.ScrollToCaret();
         }
+
+        /// <summary>
+        /// Handle large text...pause for each page
+        /// </summary>
+        /// <param name="text"></param>
+        //private void More(string text) {
+            
+        //}
 
         private void ArrangeInput(object sender, EventArgs e) {
             // we don't care about the > prompt in the WinForms version...
@@ -512,10 +467,6 @@ namespace FyreWinClient {
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
             AboutForm about = new AboutForm();
             about.ShowDialog();
-        }
-
-        private void TextWindow_TextChanged(object sender, EventArgs e) {
-
         }
 
     }
