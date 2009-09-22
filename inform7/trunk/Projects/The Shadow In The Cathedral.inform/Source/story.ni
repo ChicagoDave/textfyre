@@ -4,6 +4,7 @@
 
 [  Change Log
 When			Who		What
+22-Sep-2009			J. Ingold	Fix to Standard Rule bug to do with unlocking rules? Needs testing!!
 21-Sep-2009			J. Ingold	Most of Eric Eve's feedback. Removed some items from the player when they crash through Covalt's ceiling to streamline the Crypt sequence and prevent complicated multiple solutions.
 17-Sep-2009			J. Ingold 	I'm done!!
 13-Sep-2009			J. Ingold	Added explanation of "penduluum" spelling (!). Finished off c10 with alternate solutions for the desk drawer. Begun looking at Chapter 11... Nearly there!!!
@@ -531,6 +532,25 @@ To end a/the chapter:
 
 After reading a command:
 	resolve punctuated titles.]
+
+Part 4 - Fixing unlockin
+
+Last unlocking rule:
+	say "I don't have a key.";
+	rule fails.
+
+First for implicitly opening something locked (called the locked item):
+	consider the unlocking rules for the locked item;
+	if the rule succeeded:
+		let the chosen key be the result of the rule;
+		say "(first unlocking [the locked item] with [the chosen key])[command clarification break]";
+		try silently unlocking the locked item with the chosen key;
+		if the locked item is unlocked and the locked item is closed:
+			try silently opening the locked item;
+[	otherwise:
+		say "(first opening [the locked item])[command clarification break]";
+		try silently opening the locked item;]
+
 
 Book B - New Kinds
 
@@ -5156,8 +5176,8 @@ Instead of opening the locked Garden Door when Horloge's keys are not carried:
 [ Instead of opening the locked Garden Door when Horloge's keys are carried:
 	try unlocking the Garden Door with Horloge's keys. ]
 
-An unlocking rule for the Garden Door:
-	rule fails;
+[An unlocking rule for the Garden Door:
+	rule fails;]
 
 Horloge's keys unlock the garden door.
 
@@ -17598,8 +17618,8 @@ The Iron Vault Door is a door, scenery, west of the Iron Entry, east of the Inne
 
 The printed name of the iron vault door is "iron door".
 
-An unlocking rule for the iron vault door:
-	rule fails;
+[An unlocking rule for the iron vault door:
+	rule fails;]
 
 Instead of opening the locked Iron Vault Door when the current script is empty:
 	say "I try the door. It’s locked, of course.";
@@ -18238,18 +18258,16 @@ Section - Successfull Attempt
 Instead of unlocking the figure grey with something when the player can see the winding slot:
 	redirect the action from the figure in grey to the winding slot, and try that instead;
 
-An unlocking rule for the figure grey:
-	if the player can see the winding slot and the player can see my lucky clock key:
-		rule succeeds with result my lucky clock key;
-	otherwise:
-		rule fails;
+An unlocking rule for the figure grey when the player can see the winding slot and the player can see my lucky clock key:
+	rule succeeds with result my lucky clock key;
+[	otherwise:
+		rule fails;]
 
 
-An unlocking rule for the winding slot:
-	if the player can see my lucky clock key:
-		rule succeeds with result my lucky clock key;
-	otherwise:
-		rule fails;
+An unlocking rule for the winding slot when the player can see my lucky clock key:
+	rule succeeds with result my lucky clock key;
+[	otherwise:
+		rule fails;]
 
 Instead of unlocking the winding slot with my lucky clock key:
 	try attacking the wound spring instead;
