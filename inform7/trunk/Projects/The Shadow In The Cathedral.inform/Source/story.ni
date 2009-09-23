@@ -408,11 +408,12 @@ Chapter 7 - Say once only
 
 [ format is [one of][once only].  We use one of to save us having to write a new top substitution! ]
 
+[Quick fix so that multiples do get cycled through.]
 
 Include (-
 [ I7_SOO_OO oldval count;
-	if (oldval == 0) return 1;
-	return 100; ! if 
+	oldval++; if (oldval > 0 && oldval <= count) return oldval;
+	return -1; ! if 
 ];
 -).
 
@@ -492,7 +493,7 @@ The current game chapter is a number that varies.
 
 When play begins: 
 	now the current game chapter is 1;
-	change the right hand status line to "[turn count]";
+	change the right hand status line to "";
 	change the left hand status line to "Chapter [current game chapter]: [current chapter name] -- [location]".
 
 Table of Chapter Titles
@@ -501,7 +502,7 @@ title						chapter
 "No Place to Hide"			2
 "In the Cathedral of Time"		3
 "The Figure in Grey"			4
-"The Rooftops of the St Philip"		5
+"The Rooftops of St Philip"		5
 "The Clockmaker"			6
 "The Counting House"		7
 "The Secret in the Docklands"				8
@@ -1376,15 +1377,18 @@ Understand "clean [something] with/using [something]" as polishing it with.
 Understand "wipe [something] with/using [something]" as polishing it with.
 Understand "dust [something] with/using [something]" as polishing it with.
 
-
 Check polishing the player with:
 	say "I'm not [i]that[r] dirty, and clock polish isn't going to get me clean!" instead;
 
 Check polishing someone with:
 	say "I don't suppose [the noun] would care for that." instead;
 
-Check polishing something with:
-	say "[The noun] seem[s] clean enough as [it-they] [is-are]." instead;
+Check polishing something with something:
+	if the second noun is not the rag:
+		placeholder "I can't polish anything with [that or those for the second noun]!";
+
+Carry out polishing something with:
+	try cleaning the noun instead;
 
 
 Part 1b - Cleaning
@@ -1404,6 +1408,8 @@ Understand "wash [something] with/in [something]" as polishing it with.
 Understand "me/myself/you/yourself/wren/hair/hands/hand/self", "your/my hands/face/feet/self/hair" as "[myself]".
 
 Understand "wash" as cleaning.
+Understand "get clean" as cleaning.
+Understand "clean up" as cleaning.
 Understand "wash [myself]" as cleaning.
 Understand "clean [myself] " as cleaning.
 
@@ -1415,7 +1421,6 @@ Check cleaning:
 
 Check cleaning yourself:
 	say "I'm not that dirty, and anyway, wash day isn't long now." instead.
-
 
 Part 2 - Hiding
 
@@ -4676,7 +4681,7 @@ Rule for writing a paragraph about the pantry-shelves when SMELLPANTRY is fired:
 Rule for writing a paragraph about the pantry-shelves:
 	now the pantry-shelves are mentioned instead;
 
-Understand "shelf/shelves", "jars", "canisters", "containers", "herb", "herbs", "spice", "spices" as the pantry-shelves.
+Understand "shelf/shelves", "jars", "canisters", "containers", "herb", "herbs", "spice", "spices", "oil", "oils" as the pantry-shelves.
 
 Instead of putting something on the pantry-shelves:
 	say "I'm an Assistant Clock-polisher, not a shelf-stacker!";
@@ -4697,7 +4702,7 @@ Understand "tea", "leaf", "leaves" as the jar of tea leaves when the location do
 Understand "glass", "apothecary", "jar", "jar of", "tea", "leaves", "leaf" as the jar of tea leaves when the player's command matches the text "jar", case insensitively.
 
 Instead of taking the jar of tea leaves:
-	now SMELLPANTRY is fired;
+	fire SMELLPANTRY;
 	if the player carries the handful of tea leaves:
 		say "I take a couple more leaves.";
 	otherwise:
@@ -4751,10 +4756,19 @@ Instead of inserting the handful of tea leaves into something:
 	try dropping the handful of tea leaves instead;
 
 Instead of inserting the handful of tea leaves into the kettle:
-	say "Come off it, Wren! There's this whole mechanism built with Holy Precision just to stop bits of tea-leaf ending up in the tea, and you want to just dunk the whole lot it?"
+	say "Come off it, Wren! There's this whole mechanism built with Holy Precision just to stop bits of tea-leaf ending up in the tea, and you want to just dunk the whole lot in?"
 
 Instead of putting the handful of tea leaves on the kettle:
 	try inserting the handful of tea leaves into the kettle.
+
+Instead of inserting the handful of tea leaves into the teacup:
+	if the teacup is in the bracket:
+		redirect the action from the teacup to the kettle, and try that instead;
+	otherwise:
+		placeholder "What, and have tea leaves all swimming about in the tea?";
+
+Instead of putting the handful of tea leaves on the teacup:
+	try inserting the handful of tea leaves into the teacup.
 
 Part 6 - Library
 
@@ -4829,6 +4843,8 @@ Horloge's spectacles are carried by Horloge. "Horloge was probably born wearing 
 Before doing something when Horloge's spectacles are physically involved:
 	say "I'd better leave them be[one of]. He's blind without them[once only]."
 
+Understand "glasses", "bottle glass", "bottle-glass", "lenses" as Horloge's spectacles.
+
 Section 2 - Idle Actions
 
 The HorlogeCounter is a counter. The top end is 4. The internal value is 2. [We have the 'quest for tea' event on the first turn we enter.]
@@ -4847,7 +4863,7 @@ Section 2b - Asking for
 ...And dealing with whatever (hopefully lesser) problems that brings. ]
 
 Instead of asking Horloge for Horloge's keys:
-	if Horloge's keys are carried:
+	if the player has Horloge's keys:
 		say "I don't need to!";
 	else:
 		try taking Horloge's keys.
@@ -4936,7 +4952,7 @@ Rule for firing a fired conversation topic that is clustered with CT_HOR2_KEYS:
 
 CT_HOR2_KEYS is a conversation topic. The enquiry text is "[if Horloge's keys are in the location]'Where are your keys?' I ask politely.[otherwise]'What are your keys for?' I ask him.[end if]". The response text is "[if Horloge's keys are in the location]'Oh, they're around here somewhere, I'm sure,' he replies, dismissively.[otherwise]'Oh, keys are everything,' he replies, with enthusiasm. 'Every whotsit with diagrams in, at any rate.'[end if]"
 
-CT_HOR2_ME is a conversation topic. The enquiry text is "'Do you know anything about me?' I ask." The response text is "'Well, young whosit.' He looks momentarily embarrassed - of course he knows the circumstances of my being found, assuming he remembers who I am at all. 'I know you make a jolly good cup of whotsit, don't you?'"
+CT_HOR2_ME is a conversation topic. The enquiry text is "'Do you know anything about me?' I ask." The response text is "'Well, young whotsit.' He looks momentarily embarrassed - of course he knows the circumstances of my being found, assuming he remembers who I am at all. 'I know you make a jolly good cup of whotsit, don't you?'"
 
 CT_HOR2_CALVINDRAKE is a conversation topic. The enquiry text is "'What do you think of Calvin and Drake? I ask.". The response text is "'Hmm? I don't know them,' he says, brow furrowing. 'We only stock the core texts, you see. You'd have to look in the library at the Cathedral for that.'"
 
@@ -5108,7 +5124,7 @@ Chapter 1 - Description
 A room called the East Refectory is east of the West Refectory, south from the Kitchen. "[if Gong Sounding is not happening]The eastern end of the long Refectory is given over in part to the tables lined with brass hourglasses, but in the other half there's nothing but the enormous Refectory Clock. It's an impressive thing, so big because it only needs winding once a year, despite all the gongs, cymbals, tubes and bells that strike when dinner time comes around. Right now, the clock is showing the time at just after [the face value of the refectory clock to the nearest five minutes in words].[otherwise]The refectory booms with the sound of the clock, striking the dining hour on a hundred bells, cymbals and organ pipes. I can retreat down the length of the dining tables to the west, or north into the kitchen.[end if]"
 
 Instead of smelling the location when the location is the Upper Hall or the location is the East Refectory:
-	say "Food, rot, cheese, mould, damp and the ever-present scent of grease-oil, coming through the archway to [the best route from the location to the Kitchen].";
+	say "Food, rot, cheese, mould, damp and the ever-present scent of grease-oil, coming through the archway to [the quick best route from the location to the Kitchen].";
 
 Section 1 - Constrained Entry
 
@@ -5718,7 +5734,7 @@ Every turn during Drake's Patrol:
 
 To move Drake one place along:
 	now the can-pause flag of Drake is true;
-	let d be the best route from the location of Drake to Drake's next destination;
+	let d be the quick best route from the location of Drake to Drake's next destination;
 	rotate the route of Drake backwards;
 	try Drake going d;
 
@@ -5823,7 +5839,7 @@ To decide which direction is the direction Drake is coming from:
 	otherwise if the location of the player is Drake's future destination;
 		now x is the Drake's next destination;
 	end if;
-	decide on the best route from the location of the player to x;
+	decide on the quick best route from the location of the player to x;
 
 Definition: a direction (called the way) is Drake-viable:
 	[ We find directions that Drake isn't at, ignoring inside and outside, up and down because they're ugly ]
@@ -5961,7 +5977,7 @@ Section 2 - scenery - walls
 Some garden walls are scenery in the Herb Garden. "The walls are nine or ten feet of smoothed-down stone, to stop climbers and creepers, human and vegetable alike. (Shame, since on the other side of the wall is the side of the Abbey, and that means a quick run to the Cathedral.)" Understand "wall" as the garden walls.
 
 Instead of jumping over or climbing the garden walls: 
-	say "[one of]Over the walls would get me round the side of the Abbey and straight to the Cathedral... but the walls to smooth to climb and much too high to jump.[or]Getting over them - great idea[one of]. Getting over them without spring-loaded boots or a grappling line - not so likely[once only].[stopping]"
+	say "[one of]Over the walls would get me round the side of the Abbey and straight to the Cathedral... but the wall's too smooth to climb and much too high to jump.[or]Getting over them - great idea[one of]. Getting over them without spring-loaded boots or a grappling line - not so likely[once only].[stopping]"
 
 Instead of jumping when in the Abbey Herb Garden:
 	try jumping over the garden walls.
@@ -6576,8 +6592,8 @@ First before going inside in the Cathedral Choir:
 		try going south instead;
 	continue the action;
 
-Rule for implicitly opening the secret panel:
-	do nothing;
+[ Rule for implicitly opening the secret panel:
+	do nothing; ]
 
 Instead of going up in the Cathedral Choir:
 	say "East or west?"
@@ -8524,8 +8540,6 @@ SE_GARGOYLES2 is a scripted event. The display text is "I spot the Figure, cling
 Instead of doing something with the escaping Figure when SE_GARGOYLES2 is not fired and SE_GARGOYLES1 is fired:
 	[ we're in Amongst the Gargoyles and we've not yet seen him. But we're about to! ]
 	do nothing;
-
-
 
 Chapter 3 - Pendulum
 
@@ -12782,8 +12796,6 @@ Instead of approaching the flash-red:
 Instead of doing something when the flash-red is physically involved:
 	say "The flash was somewhere deep in the machine."
 
-
-
 Chapter 1 - Description
 
 The Eastern Platform is a major mirror-room, east of the Main Platform. The hemisphere is east. The printed name is "East Platform". The Eastern Platform mirrors the Western Platform.
@@ -12864,7 +12876,6 @@ The last correctness appraisal rule for the action-model:
 		say "That seems very close - but not quite it!";
 
 An unlocking rule for an abacus:
-	assert that the Ruby Key is not held by the player issuing "Ruby key not held.";
 	say "I’d need some kind of key, surely." instead;
 
 Chapter 4 - Word Table
@@ -13406,10 +13417,10 @@ The loading-bay door is a locked door, privately-named, scenery, closed, east of
 
 The printed name of the loading-bay door is "massive door". Understand "heavy", "iron", "plates", "plated", "sliding", "door", "lock", "bar", "padlock", "massive", "huge", "metal", "solid" as the loading-bay door.
 
-Instead of opening, pushing, pulling or turning the loading-bay door:
+Instead of opening, pushing, pulling or turning the loading-bay door when in the Dock:
 	say "The iron door is firmly locked.";
 
-Rule for supplying a missing second noun when the noun is the loading-bay door while unlocking:
+An unlocking rule for the loading-bay door when in the Dock:
 	say "I don't have a key. A key for this door would be massive. I probably couldn't even carry the key if I had it." instead;
 
 Instead of attacking the loading-bay door:
@@ -14011,7 +14022,6 @@ Section 5 - Sliding Door
 Rule for printing the description of the loading-bay door when in the Loading Bay:
 	say "The huge metal door is made of solid iron that could be lifted up if, say, I was a twelve-foot Hotlands warrior.";
 
-
 An unlocking rule for the loading-bay door when the location is the Loading Bay:
 	say "I don't have a key." instead;
 
@@ -14063,6 +14073,8 @@ Rule for supplying a missing second noun when pushing the packing crate to:
 	say "Where should I push the crate?";
 
 Understand "push [enormous packing crate] down/into/through/in/to [air pocket]" as pushing it to. [Not a totally smart thing to do - i.e. the parser never normally generates such a command - but good enough for what we need]
+Understand "push [enormous packing crate] down/through/in/to through/into/in/to [air pocket]" as pushing it to. [e.g. > push crate down into drain]
+[ Understand "push [enormous packing crate] down/through in to [air pocket]" as pushing it to. [probable overkill] ]
 
 Before inserting the enormous packing crate into the air pocket:
 	try pushing the enormous packing crate to the air pocket instead.
@@ -15732,7 +15744,7 @@ When Return to the Cathedral begins:
 
 The decoy Perpetuum Mobile is a thing. The description is "Covalt's done an incredible job. I only caught a glimpse of the Perpetuum before, but this is exactly like it. The board on top, with the track for the ball-bearing, and a few tiny levers sticking from the sides like ant's legs. And everything else (and in this case, [i]nothing[r] else) hidden away inside."
 
-Understand "dummy", "tiny levers/lever", "levers", "bearing", "case", "dark", "wood", "tilting", "board", "ball-bearing", "groove", "grooved", "path", "track", "gold", "brass", "ball", "ball bearing", "mechanism", "fake", "false" as the decoy perpetuum mobile.
+Understand "dummy", "tiny levers/lever", "levers", "bearing", "case", "dark wood", "wood", "tilting", "board", "ball-bearing", "groove", "grooved", "path", "track", "gold", "brass", "ball", "ball bearing", "mechanism", "fake", "false" as the decoy perpetuum mobile.
 
 Instead of dropping the decoy Perpetuum when TRIG_SECRET_PANEL is unfired:
 	say "I need it. I can’t afford to lose it in the dark.";
@@ -15741,8 +15753,6 @@ Instead of dropping the decoy Perpetuum when TRIG_SECRET_PANEL is fired and the 
 	say "I want to keep it as near me as I can.";
 
 After dropping the decoy Perpetuum:
-	assert that TRIG_SECRET_PANEL is fired issuing "Secret Panel has been entered?";
-	assert that the location is Cathedral Choir issuing "In Cathedral Choir.";
 	now the decoy Perpetuum is scenery;
 	say "I tuck the Perpetuum into the shadows by the stalls. Barely visible to anyone – I hope." instead;
 
@@ -16014,7 +16024,10 @@ Instead of touching the Choir Stalls when the Secret Panel is closed during Retu
 Instead of touching the Choir Stalls when the Secret Panel is open during Return To The Cathedral:
 	say "One panel swings open revealing a dark passage beyond.";
 
-Instead of closing the Choir Stalls when the secret panel is open:
+Instead of closing the choir stalls when the secret panel is open:
+	redirect the action from the choir stalls to the secret panel, and try that;
+
+Instead of closing the secret panel when the secret panel is open:
 	say "[one of]I don't know how to close it. Another carving - but which one? I have no idea.[or]I can't. But it doesn't matter now.[stopping]".
 
 Instead of going through the secret panel when the player carries the decoy Perpetuum:
@@ -16152,21 +16165,20 @@ Before opening the Hall Door during Return to the Cathedral:
 Before unlocking the Hall Door with during Return to the Cathedral:
 	try knocking on the hall door instead.
 
-
 Instead of knocking on the Hall Door during Return To The Cathedral:
 	say "I don’t want to wake anyone[one of]. Sa’at’s probably still in there, working through his endless papers, putting each one he finishes to the bottom of his stack to do again[once only].";
 
 Rule for printing the description of the crypt grate during Return To The Cathedral:
 	say "This is the grate to the crypt. It’s smaller than a man – dating from a time before the Cathedral, before even the City. Perfect size for a Wren. Or a stooping Figure.";
 
-Instead of opening the crypt grate when the player does not have the old iron crypt key during Return To The Cathedral:
+Instead of opening the locked crypt grate when the player does not have the old iron crypt key during Return To The Cathedral:
 	fire TRIG_CRYPT_GRATE instead;
 
-Instead of unlocking the crypt grate with something when the player does not have the old iron crypt key during Return To The Cathedral:
+Instead of unlocking the locked crypt grate with something when the player does not have the old iron crypt key during Return To The Cathedral:
 	fire TRIG_CRYPT_GRATE instead;
 
 First unlocking rule for the Crypt Grate when the player does not have the old iron crypt key during Return To The Cathedral:
-	fire TRIG_CRYPT_GRATE instead;
+	fire TRIG_CRYPT_GRATE;
 
 TRIG_CRYPT_GRATE is a trigger.
 
@@ -16239,7 +16251,7 @@ Rule for firing unfired TRIG_SECRET_PASSAGE:
 	say "Wait. Something the Abbott said, before, when talking to the Figure, about secret doors...[paragraph break][i]'Six? The only one I know is the one from the Choir to the Bishop’s Library! Where there’s a drill...'[r][paragraph break]";
 
 Every turn when TRIG_SECRET_PASSAGE has been fired for exactly one turn:
-	say "Where there’s a drill, Wren. [i]Where there’s a drill – there’s a way..![r][paragraph break]";
+	say "Where there’s a drill, Wren. [i]Where there’s a drill – there’s a way...![r][paragraph break]";
 
 Part 13 - Calvin's Patrol
 
@@ -16877,7 +16889,7 @@ Section 4 - Deathwatches
 
 Some deathwatches are scenery, in the Ossuary. "[one of]The deathwatch is a small round dial tied to the forehead of each Brother by a wire band. At first glance they seem still but really they are moving: the minute hand pushing forward then juddering back, as though the springs were too spent to get the hand around the dial.[paragraph break]But they aren’t – these springs will run until the soul has gone. Instead the watches themselves have been cobbled: for how could the watch move beyond the moment of death when their owners couldn’t?[or]The deathwatches tick endlessly over the moment of death, obsessing on it until the last of the soul is spent.[stopping]"
 
-Understand "wire", "band", "minute hand", "death watch", "watch" as the deathwatches.
+Understand "small round", "round", "dial", "dials", "wire", "wires", "band", "bands", "minute hand", "death watch", "watch" as the deathwatches.
 
 Instead of taking the deathwatches:
 	say "It’s not my time for one. Not yet.";
@@ -16946,7 +16958,7 @@ Instead of approaching or taking or entering the carved archways:
 	if the player's command includes "west/w", try going west instead;
 	say "Which way, Wren? East or west?";
 
-Understand "skull", "skulls", "arch", "archway", "arches", "carvings", "eye", "sockets", "hourglass", "hourglasses", "hour glass", "hour glasses", "east/e arch/archway", "west/w arch/archway" as the carved archways.
+Understand "skull", "skulls", "arch", "archway", "arches", "archways", "doorway", "doorways", "carvings", "eye", "sockets", "hourglass", "hourglasses", "hour glass", "hour glasses", "east/e arch/archway/doorway", "west/w arch/archway/doorway" as the carved archways.
 
 Section 3 - Lanterns
 
@@ -17554,13 +17566,13 @@ Before entering or approaching the giant stones when the giant stones are explor
        try going west instead.
 
 Instead of entering, pushing, pulling, turning, approaching, searching the giant stones:
-        now the giant stones are explored;
+	now the giant stones are explored;
 	say "Between two stones is a shadow and that shadow is a door, to the west.";
 
 Instead of examining the giant stones when the giant stones are not explored:
-        try entering the giant stones instead.
+	try entering the giant stones instead.
         
-The iron_door_glimpse is a glimpse backdrop, in the Henge, identifying the Iron Vault Door. Understand "iron", "door", "dark" as the iron_door_glimpse. The printed name is "iron door". The description is "A squat door of iron lies like a shadow between two stones to the west."
+The iron_door_glimpse is a glimpse backdrop, in the Henge, identifying the Iron Vault Door. Understand "iron", "door", "dark", "shadow" as the iron_door_glimpse. The printed name is "iron door". The description is "A squat door of iron lies like a shadow between two stones to the west."
 
 Instead of entering the iron_door_glimpse: try going west instead.
 
@@ -17615,11 +17627,10 @@ Chapter 2 - Scenery - Iron Door
 
 The Iron Vault Door is a door, scenery, west of the Iron Entry, east of the Inner Vault. The Iron Door is closed and locked. The description is "[if closed]The door is solid iron and closed as solidly as iron can be. The Head looms over it, eyes staring[else]The door is open. Beyond is some kind of chamber[end if].".
 
-
 The printed name of the iron vault door is "iron door".
 
-[An unlocking rule for the iron vault door:
-	rule fails;]
+First unlocking rule for the iron vault door:
+	rule fails;
 
 Instead of opening the locked Iron Vault Door when the current script is empty:
 	say "I try the door. It’s locked, of course.";
@@ -17637,7 +17648,6 @@ Instead of opening the open Iron vault Door:
 	
 Instead of closing the open Iron Vault Door when the Inner Vault is not visited:
 	say "[one of]Why? I need to go in. [once only]There's no turning back, not any more."
-
 
 Understand "chamber" as the Iron Vault Door when the Iron Vault Door is open.
 
@@ -18309,7 +18319,7 @@ Test walkthrough with "test intro / test abbey-garden / test cathedral / test cl
 
 Test intro with "z/w/hide in clock/put tumbler on door/z/z/z/z/z/out/open door/w/w".
 
-Test abbey-garden with "d/e/sw/e/get cup/e/n/put cup in bracket/hide in pantry/s/s/smell/take leaf/s/put tea in basket /x train / get gear / turn spigot / wind key / w / sw / sw / sw / w / get new gear / ne / take keys / e / e / e / e / e / n / put new gear in train / pull lever / n / z / z / z / s / take cup of tea / w  / sw/ sw / sw  /w / ne / put tea on table / get keys / get keys / e / e / e / e / up / w / n / w / w / take ladder / e / sw / e / e / e / put ladder against wall / up / w/drop rag/ w".
+Test abbey-garden with "d/e/sw/e/get cup/e/n/put cup in bracket/hide in pantry/s/s/smell/take leaf/s/put tea in basket /x train / get gear / turn spigot / wind key / w / sw / sw / sw / w / get new gear / ne / take keys / e / e / e / e / e / n / put new gear in train / pull lever / n / z / z / z / s / take cup of tea / w  / sw/ sw / sw  /w / ne / put tea on table / get keys / get keys / e / e / e / unlock door with keys / e / up / w / n / w / w / take ladder / e / sw / e / e / e / put ladder against wall / up / w/drop rag/ w".
 
 Test abbey-clock with "d/e/sw/e/get cup/e/n/put cup in bracket/hide in pantry/s/s/smell/take leaf/s/put tea in basket /x train / get gear / turn spigot / wind key / w / sw / sw / sw / w / get new gear / ne / take keys / e / e / e / e / e / n / put new gear in train / pull lever / n / z / z / s / take cup of tea / w / sw / sw / z / w / ne / put tea on table / get keys / get keys / e / e / e / unlock clock / open clock / set clock to 5 pm / set clock to 5 pm / w / w / sw/ sw / w / w / drop rag / w".
 
