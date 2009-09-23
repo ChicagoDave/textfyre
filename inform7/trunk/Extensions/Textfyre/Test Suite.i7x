@@ -79,9 +79,27 @@ Carry out unit test executing:
 
 Part 3 - Bugs
 
+Section 1 - For Release
+
+To bug (X - some text):
+	do nothing;
+
+To warning (X - some text):
+	do nothing;
+
+To placeholder (X - some text):
+	say X;
+
+Section 2 - Not For Release
+
+[By placing these second in the source, we ensure that the previous definitions are overridden.]
+
 To bug (X - some text):
 	say "[b]****[bracket]BUG[close bracket]: [X]****[r][paragraph break]";
-	say "[one of](Don't panic. See if you can continue to play.)[paragraph break][or][stopping]";
+	say "[one of](Don't panic.)[paragraph break][or][stopping]";
+
+To warning (X - some text):
+	say "[bracket][b]WARNING[r][close bracket]: [X][paragraph break]";
 
 To placeholder (X - some text):
 	say "[bracket]placeholder text: '[X]'[close bracket][paragraph break]";

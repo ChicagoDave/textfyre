@@ -537,13 +537,14 @@ Rule for implicitly opening something locked (called the locked item):
 	consider the unlocking rules for the locked item;
 	if the rule succeeded:
 		let the chosen key be the result of the rule;
-		say "(first unlocking [the locked item] with [the chosen key])[command clarification break]";
-		try silently unlocking the locked item with the chosen key;
-		if the locked item is unlocked and the locked item is closed:
+		if the chosen key is not nothing:
+			say "(first unlocking [the locked item] with [the chosen key])[command clarification break]";
+			try silently unlocking the locked item with the chosen key;
+			if the locked item is unlocked and the locked item is closed:	
+				try silently opening the locked item;
+		otherwise:
+			say "(first opening [the locked item])[command clarification break]";
 			try silently opening the locked item;
-	otherwise:
-		say "(first opening [the locked item])[command clarification break]";
-		try silently opening the locked item;
 
 Before going through a closed door (called the obstacle):
 	carry out the implicitly opening activity with the obstacle;
@@ -552,21 +553,26 @@ Before going through a closed door (called the obstacle):
 
 Chapter 2 - Implicitly unlocking
 
-The unlocking rules are an object-based rulebook.
+The unlocking rules are an object-based rulebook. The unlocking rules have default failure.
 
-First unlocking rule for something lockable (called l) (this is the matching key rule):
+An unlocking rule for something lockable (called l) (this is the matching key rule):
 	if the player carries something (called k) that fits l:
 		rule succeeds with result k;
+	continue the activity;
+
+Last unlocking rule (this is the no matching key found rule):
+	rule succeeds;
 
 Rule for supplying a missing second noun while unlocking something (called the locked item) with:
 	consider the unlocking rules for the locked item;
 	if the rule succeeded:
 		let the chosen key be the result of the rule;
-		begin the clarifying the parser's choice activity with the chosen key;
-		if handling the clarifying the parser's choice activity with the chosen key:
-			say "(with [the chosen key])[command clarification break]";
-		end the clarifying the parser's choice activity with the chosen key;
-		change the second noun to the chosen key;
+		if the chosen key is not nothing:
+			begin the clarifying the parser's choice activity with the chosen key;
+			if handling the clarifying the parser's choice activity with the chosen key:
+				say "(with [the chosen key])[command clarification break]";
+			end the clarifying the parser's choice activity with the chosen key;
+			change the second noun to the chosen key;
 
 Chapter 3 - Locking and unlocking
 
@@ -777,4 +783,38 @@ Textfyre Standard Rules ends here.
 ---- DOCUMENTATION ----
 
 This extension is in no way meant as a replacement for the Standard Rules, but really just as a collection of tweaks, refinements and best practices that can eventually be shared across Textfyre games to allow a degree of uniformity and robustness. At the moment, though, it's incomplete, incorrect, and laughably trivial.
+
+Chapter: Doors
+
+In interactive fiction, we generally endeavour to make uninteresting hassles, such as the correct use of doors, as transparent to the player as possible. However, locked doors still remain an important obstacle to the player's progress.
+
+Section: Unlocking
+
+The unlocking rules are called during the "supplying a missing second noun" stage of action processing. They should either suggest an appropriate key to try (not necessarily the correct one, just a reasonable one,) or fail with some text. 
+
+	The red key unlocks the red door.
+
+	An unlocking rule for the red door:
+		if the player has the red key:
+			rule succeeds with result the red key;
+		if the player has the blue key:
+			rule succeeds with result the blue key;
+		say "You don't have any keys to try on this door.";
+
+Unlocking rules should not fail silently: that leads to embarrassing and mysterious silences where a response is expected.
+
+Section: Implicit opening
+
+We aim to ensure that the player's attempts to pass through doors go unimpeded. Before going through a closed door, an opening action is generated implicitly. Before opening a locked door, an unlocking action is generated. This is all handled by the "implicitly opening" activity.
+
+In the case of doors which are simply closed, the activity is correspondingly simple:
+
+	Rule for implicitly opening something (called the unopened item):
+		say "(first opening [the unopened item])[command clarification break]";
+		try silently opening the unopened item; 
+
+Section: Implicit opening and unlocking
+
+Implicitly unlocking doors is more complicated. Firstly, the unlocking rulebook is called to determine an appropriate key. If none is found, the action goes no further. If one is suggested, we make an attempt to unlock the door, and if that succeeds, we go ahead with opening it. Finally, if the door is open, we may pass through it.
+
 
