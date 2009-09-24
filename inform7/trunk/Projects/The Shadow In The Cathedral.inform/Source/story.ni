@@ -4,6 +4,8 @@
 
 [  Change Log
 When			Who		What
+24-Sep-2009			J. Ingold	More fixes
+24-Sep-2009			J. Ingold	Nicer message for unlocking the garden door
 24-Sep-2009			J. Ingold	More of Eric's feedback. 
 22-Sep-2009			J. Ingold	More of Eric's feedback - missing responses and items.
 22-Sep-2009			J. Ingold	Fix to Standard Rule bug to do with unlocking rules? Needs testing!!
@@ -2478,9 +2480,9 @@ Part 44 - Melting
 
 Melting it on is an action applying to two things.
 
-Understand "melt [something] on [something]" as melting it on.
-Understand "light [something] from/on/with [something]" as melting it on.
-Understand "burn [something] on/with [something]" as melting it on.
+Understand "melt [something] on/in [something]" as melting it on.
+Understand "light [something] from/on/with/in [something]" as melting it on.
+Understand "burn [something] on/with/in [something]" as melting it on.
 
 Check melting it on:
 	say "I can't melt [the noun]!" instead.
@@ -2616,6 +2618,8 @@ Understand "go along/across/over [something]" as entering.
 Understand "walk along/over/across [something]" as entering.
 
 Understand "jump [direction]" as going.
+Understand "creep [direction]" as going.
+Understand "hurry [direction]" as going.
 
 
 Understand "go the same way as [something]" as approaching.
@@ -2968,7 +2972,7 @@ Book F - General changes to the world model
 Last unlocking rule when the player has Horloge's keys:
 	rule succeeds with result Horloge's keys;
 
-Last unlocking rule when the player encloses my lucky clock key:
+Last unlocking rule when the player has my lucky clock key:
 	rule succeeds with result my lucky clock key;
 
 Part 1 - Unexamined / Examined
@@ -4433,6 +4437,9 @@ Instead of switching on the switched on tea-machine:
 	try pulling the tea-machine lever instead;
 	[ resulting in 'The machine is working already.' ]
 
+Instead of turning the tea-machine [ winding ]:
+	try turning the tea-machine key instead.
+
 Chapter 2 - Spigot
 
 The spigot is a device, part of the tea-machine. The description is "[one of]The spigot is a short tube [if the tea-machine is switched off]above the kettle [end if]with a hook-shaped valve halfway up that can be opened. Somewhere in the other corner of the Kitchen it's plumbed into the water tank, which in turn is fed by ducts from the ceiling, into which water is loaded by thirsty initiates – and so on it goes; a Great Rotation.[or]Basically, it's a tap over the kettle.[stopping]".
@@ -5301,8 +5308,9 @@ Instead of opening the locked Garden Door when Horloge's keys are not carried:
 [ Instead of opening the locked Garden Door when Horloge's keys are carried:
 	try unlocking the Garden Door with Horloge's keys. ]
 
-[An unlocking rule for the Garden Door:
-	rule fails;]
+An unlocking rule for the Garden Door when the player does not have Horloge's Keys:
+	say "It's locked - and they don't give initiates the keys to the Abbey, normally.";
+	fire HORLOGEWALKTHROUGH1;
 
 Horloge's keys unlock the garden door.
 
@@ -8076,14 +8084,14 @@ The Figure in Grey is a man, scenery. "I take a peek, but can't make out much be
 Instead of doing something when the Figure in Grey is physically involved during Overheard Conversation:
 	do nothing;
 
-Instead of searching or approaching or entering or examining the statues of St Breguet and St Babbage when the player can see the Figure in Grey:
-	do nothing;
+Instead of searching or approaching or entering or examining or hiding behind the statues of St Breguet and St Babbage when the player can see the Figure in Grey:
+	say "I stay pressed into the shadows...";
 
-Instead of searching or approaching or entering or examining the shadowy gap when the player can see the Figure in Grey:
-	do nothing;
+Instead of searching or approaching or entering or examining or hiding inside the shadowy gap when the player can see the Figure in Grey:
+	say "I stay pressed into the shadows...";
 
 Instead of approaching the Figure in Grey:
-	do nothing;
+	say "I stay pressed into the shadows...";
 
 Section 3b - The Abbot, in meeting
 
@@ -10426,6 +10434,13 @@ Instead of attacking the hatch with something:
 Section 4 - Vent
 
 The vent is scenery, hot air vent. "One end of the pipe I found. It's producing a steady billow of steam."
+
+Does the player mean fastening the weather balloon to the vent:
+	it is likely.
+Does the player mean inserting the vent into the weather balloon:
+	it is likely.
+Does the player mean putting the weather balloon on the vent:
+	it is likely.
 
 Understand "pipe", "steam", "piping", "smoke", "end", "hot steam/smoke", "chimney" as vent.
 
@@ -13549,7 +13564,7 @@ Chapter 2 - Scenery
 
 Section 1 - Junk
 
-The rubble is scenery in the North Side. "'Without order there is tardiness,' they say: well, this place is so tardy that by the time it got here it was a ruin. Dark shadows and broken bricks[if the Wrench is not handled]. And a gleam of metal – looking closer I spy a good quality wrench[end if]."  Understand "brick", "bricks", "unsteady", "pile/piles of", "rubble-pile", "pile/piles", "sheet", "metal", "island/islands of", "island", "islands" as the rubble.
+The rubble is scenery in the North Side. "'Without order there is tardiness,' they say: well, this place is so tardy that by the time it got here it was a ruin. Dark shadows and broken bricks[if the Wrench is not handled]. And a gleam of metal – looking closer I spy a good quality wrench[end if]."  Understand "brick", "bricks", "unsteady", "pile/piles of", "rubble-pile", "pile/piles", "sheet", "metal", "pool", "pools", "pools of water", "island/islands of", "island", "islands" as the rubble.
 
 Instead of searching or looking under or pushing or pulling or turning or attacking the rubble:
 	say "There's nothing but more rubble in the rubble, and then there's the water."
@@ -14303,7 +14318,7 @@ Instead of taking the packing crate:
 	say "The crate is far too big and heavy for me to carry, I’d need to be a giant to even get my arms around it! But I could probably push it along the floor a little if I needed to.";
 
 Instead of pushing the packing crate:
-	try pushing the noun to nothing;
+	try pushing the noun to north. [ helping hand! ] 
 
 Rule for supplying a missing second noun when pushing the packing crate to:
 	say "Where should I push the crate?";
@@ -15018,7 +15033,7 @@ Rule for printing the description of the shiny wrench:
 
 Chapter 5 - Glimpse of the Men
 
-Some glimpse_men are people. Understand "men", "man", "statue", "statues", "armour", "full", "in full", "gleaming", "metal", "army", "rows", "row" as the glimpse_men. The printed name is "gleaming metal statues". The description is "Row on row of metal men, all staring straight ahead like unwound hour-hands."
+Some glimpse_men are scenery, people. Understand "men", "man", "statue", "statues", "armour", "full", "in full", "gleaming", "metal", "army", "rows", "row" as the glimpse_men. The printed name is "gleaming metal statues". The description is "Row on row of metal men, all staring straight ahead like unwound hour-hands."
 
 Instead of entering or approaching the glimpse_men:
 	try going down instead.
@@ -15055,7 +15070,7 @@ Instead of going through the broken staircase from the Warehouse Basement:
 
 The army of metal statues is scenery, in the Warehouse Basement. "Each man is made of fine steel and brass and stands upright, six foot tall. Their faces are bare faceplates with tiny glass eyes, but they all look like they’re crying because of deep channels for rain run-off that run from forehead to chin. Each one has a small hatch in the middle of their chest, a tiny fraction ajar."
 
-Understand "mechanical", "men", "man" as the army of metal statues.
+Understand "mechanical", "men", "man", "chest", "hatch", "small hatch" as the army of metal statues.
 
 Instead of doing something when the army of metal statues is physically involved:
 	say "With shaking fingers I open the hatch on the front of the nearest man. No surprise maybe to find he’s full of clockwork, but it’s clockwork like I’ve never seen before: cogs so small it’s like his whole body is infested with woodlice and scrambling maggots. It’s like someone had taken the whole of the Difference Engine and shrunk it to fit.[paragraph break]Except there’s obviously something missing. All those cogs would need a spring about the size of the metal man’s head and it would need to be placed right in the middle where it could unwind to every part of his body. But in the perfect spot there’s nothing but a gap, like someone built this machine but forgot to give it a heart. What good are these men if all they do is stand in line?[paragraph break]That’s when I notice the seal. Something embossed on the inside of the chest hatch. I take a step back to see it more clearly – a winding key above an ocean wave, familiar from somewhere – and step into something firm and solid. A man out of line?[paragraph break]A hand grips my throat. 'Who sent you here?' demands a voice, smooth and icy. A voice I know well, that I should have expected. 'Who else knows about this place? Tell me before I crush every pinion in your neck.'[paragraph break]My toes are scrabbling on - off - the ground. I try to scream but nothing comes out beyond a whisper. I can see the outline of the Figure’s cowl and beyond that, for the first time, almost make out an unhappy face underneath.[paragraph break]'You’ll tell me or you’ll die here,' the Figure says ever-so-softly. 'You’ll die cold and alone like the rat you are.'[paragraph break]The room is getting darker. The tank for the gas lamps must be running low. Soon it’ll be me and the Figure and all these men, and no-one will ever find me or know where I’ve gone. Or is that someone? In the background? A shape, a shadow, my imagination or…[paragraph break]'Covalt?' I whisper, in desperation. 'Covalt, is that…'[paragraph break]Then the lights disappear completely. The heavy cord of the clock-key round my neck has become tangled while I was asleep. The stars are coming out. I’m underwater again.";
@@ -15554,7 +15569,7 @@ Some silver coins are a proper-named thing. The silver coins have a number calle
 Understand "1", "one" as the silver coins.
 Understand "2", "two" as the silver coins when the count of the silver coins is at least 2.
 Understand "3", "three" as the silver coins when the count of the silver coins is at least 3.
-Understand "silver", "coin", "minute", "minutes" as the silver coins.
+Understand "silver", "coin", "minute", "minutes", "money", "cash" as the silver coins.
 Understand "last" as the silver coins when the count of the silver coins is 1.
 
 Before printing the name of the silver coins:
@@ -16131,7 +16146,7 @@ Rule for printing the description of the upper seal during Return To The Cathedr
 
 Section 1 - Calvin and Drake are overheard
 
-Calvin_and_Drake are privately-named, proper-named, plural-named, men. Understand "calvin", "drake", "boy", "boys", "men", "calvin and drake", "drake and calvin" as Calvin_and_Drake. "The two are hunched together, talking in tiny voices." The printed name is "Calvin and Drake".
+Calvin_and_Drake are privately-named, proper-named, plural-named, men. Understand "calvin", "drake", "boy", "boys", "men", "calvin and drake", "drake and calvin" as Calvin_and_Drake. The description is "The two are hunched together, talking in tiny voices." The printed name is "Calvin and Drake".
 
 After going to the Upper Nave during Return To The Cathedral:
 	if Calvin Cutscene has not happened:
@@ -16234,7 +16249,7 @@ Rule for writing a paragraph about the choir stalls during Return to the Cathedr
 Rule for writing a paragraph about the choir stalls when the decoy Perpetuum is in the Cathedral Choir and TRIG_LOST_DECOY is not primed [ so when lost, it's actually lost! ] during Return to the Cathedral:
 	say "By the base of the choir stalls is a tiny gleam of gold, almost completely hidden. It is the decoy Perpetuum."
 
-Understand "tattoos", "tattoo" as the choir stalls when Return to the Cathedral is happening.
+Understand "tattoos", "tattoo", "engravings" as the choir stalls when Return to the Cathedral is happening.
 
 Rule for writing a paragraph about the choir stalls when the secret panel is open during Return to the Cathedral:
 	say "The choir stalls have broken open, to reveal a dark opening inside."
@@ -17741,6 +17756,12 @@ Instead of number-setting the assembled granite column to:
 	say "[one of]I grab the edges of the pedestal and heave. To my surprise, it turns without trouble, like some great weight had been quietly counterbalanced away.[or]I put both hands on the pedestal and drag it round.[or]I haul on the pedestal.[stopping]";
 	consider the gnomon rules;
 
+Instead of setting the assembled granite column to "midnight/noon":
+	try number-setting the granite column to 12 instead.
+
+Instead of setting the assembled granite column to:
+	say "The sundial is labelled with numbers, from one to midnight."
+
 The gnomon rules are a rulebook.
 
 A gnomon rule when the shadow setting of the granite column is 12:
@@ -17780,13 +17801,13 @@ After deciding the scope of the player when in the middle of the gnomon:
 Instead of jumping when in Middle of Gnomon:
 	say "Are you mad? The drop out there could go on forever!"
 	
-Before going north from the Middle of the Gnomon:
+Before going north in the Middle of the Gnomon:
 	try going up instead.
-Before going south from the Middle of the Gnomon:
+Before going south in the Middle of the Gnomon:
 	try going down instead.
 Before making to leave when in the Middle of the Gnomon:
 	try going up instead.
-Before going inside from the Middle of the Gnomon:
+Before going inside in the Middle of the Gnomon:
 	try going down instead.
 
 Part 8 - Henge
@@ -18604,7 +18625,7 @@ test cathedral with "w/n/e/get blue/get red/get yellow/w/n/n/w/sw/open tome/get 
 
 test clockchase with "z/z/z/nw/z/z/sw/u/z/z/z/z/jump/u/hold chain/pull lever/d/out/z/z/z/w/jump".
 
-test rooftops with "sw/scrape mortar with knife/get bricks/ne/se/sw/drop bricks/ne/get plank/sw/put plank in notch/put bricks in notch/ne/get pipe/sw/get tarp/e/put pipe on chimney/put tarp on chimney/turn pipe sw/w/s/nw/turn compass south/turn crank/look through telescope/se/put balloon on vent/z/z/z/z/get in basket ".
+test rooftops with "sw/scrape mortar with knife/get bricks/ne/se/sw/drop bricks/ne/get plank/sw/put plank in notch/put bricks in notch/ne/get pipe/sw/get tarp/e/put pipe on chimney/put tarp on chimney/turn pipe sw/w/s/nw/turn compass south/turn crank/look through telescope/se/put balloon on pipe/z/z/z/z/get in basket ".
 
 test steel with "turn steel crank 6 times/turn steel crank backwards 9 times".
 
@@ -18618,7 +18639,7 @@ test countinghouse with "up / show order to guards / w / nw / n / e / z / z / d 
 
 test outsidewarehouse with "n/e/n/x rubble/get wrench/w/w/unscrew bolts with wrench/unscrew bolts with wrench/unscrew bolts with wrench/w/unscrew bolts with wrench/unscrew bolts with wrench/enter drain/drop wrench/u".
 
-test insidewarehouse with "x junk / get ladder / put ladder against pipe / get rope / put rope on pipe / tie rope to crate / get ladder / get rope / s / put ladder against pipe / put rope on pipe / tie rope to door / n / push crate down drain / s / get ladder / e / pull lever / turn bolt with wrench / push button / pull lever / turn bolt with wrench / stand ladder / down / open men".
+test insidewarehouse with "x junk / get ladder / put ladder against pipe / get rope / put rope on pipe / tie rope to crate / get ladder / get rope / s / put ladder against pipe / put rope on pipe / tie rope to door / n / push crate down drain / s / get ladder / e / pull lever / turn bolt with wrench / push button / pull lever / turn bolt with wrench / stand ladder / down / open hatch".
 
 test covaltreturn with "ask covalt about me / tell covalt about dockyard / tell covalt about me / tell covalt about himself / no / x diagram / sw / nw / buy b2 / buy a4 / buy c2 / no / put poppy seeds in press / pull lever / put tincture in press / put oil in press / pull lever / se / ne / give drug to covalt"
 
