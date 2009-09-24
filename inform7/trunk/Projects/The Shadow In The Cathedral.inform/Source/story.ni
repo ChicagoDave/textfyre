@@ -1,7 +1,6 @@
 "The Shadow In The Cathedral" by Textfyre Inc
 
 
-
 [  Change Log
 When			Who		What
 24-Sep-2009			J. Ingold	More fixes
@@ -18596,8 +18595,11 @@ Instead of attacking the wound spring with my lucky clock key:
 
 After reading a command when the third-state of Covalt is 10:
 	say "'That’s the most incredible piece of clockwork I ever saw,' he says slowly, furiously, his eyes glowing with anger. 'And you just destroyed it.'[paragraph break]Can Covalt really be angry that I...[paragraph break]'That was well done, young Wren.' He coughs. 'But I tell you, when I build something like that metal man, I’m going to give him an off-switch. Stupid to have to break such a fine machine. Whoever built that... a genius.' He strokes his beard, and gets to his feet – taking the Perpetuum from me as he does so. He’s looking back to normal already: a sour-faced moody old man. 'A genius, and an idiot, too.'[paragraph break]'But who was it?' I demand. 'Who built it?'[paragraph break]'That’s the question,' Covalt answers, gravely. 'For every spring that’s wound on this Earth, there’s a human hand turning the key. No divine mechanics down here. We may be free of this thing –' and he lands a kick squarely in the still automaton’s chest - 'but someone out there was behind it. Someone planning an army and after the Perpetuum.'[paragraph break]Covalt grunts, and scratches his chest with a thick finger. He seems almost to be falling asleep.[paragraph break]'There's clockwork, Wren,' he remarks. 'But then again, there's [i]clockmakers[r].'";
+[ Bodge: it seems in debug you can win the game in this activity, but in release you can't. So we fix the player's command to something safe... ]
+	replace the player's command with "look";
 	end the game in victory;
 
+[ ... and then ignore it to end the game ]
 First before when the third-state of Covalt is 10: [ this is absurd, I'm just trying to get the game to stop! ] 
 	do nothing instead.
 
