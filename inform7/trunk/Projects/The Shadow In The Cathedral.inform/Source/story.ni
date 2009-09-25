@@ -3,6 +3,7 @@
 
 [  Change Log
 When			Who		What
+25-Sep-2009			J. Ingold	Added chapter channel
 24-Sep-2009			J. Ingold	More fixes
 24-Sep-2009			J. Ingold	Nicer message for unlocking the garden door
 24-Sep-2009			J. Ingold	More of Eric's feedback. 
@@ -551,9 +552,19 @@ To say current chapter name:
 
 Section 1 - Release method
 
+When play begins:
+	state chapter;
+
 To end a/the chapter:
 	increase the current game chapter by 1;
+	state chapter;
 	pause the game;
+
+To state chapter:
+	select the chapter channel;
+	say "Chapter [current game chapter]: [current chapter name]";
+	select the main channel;
+
 
 Section 2 - Debug method (not for release)
 
