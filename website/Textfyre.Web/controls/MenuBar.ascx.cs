@@ -17,8 +17,8 @@ namespace Textfyre.Web.controls {
         protected void Page_Load(object sender, EventArgs e) {
             MakeMenuItem(menuHome, "Default.aspx", "Home");
             MakeMenuItem(menuGames, "Games.aspx", "Games");
-            //MakeMenuItem(menuParents, "Parents.aspx", "Parents");
-            //MakeMenuItem(menuTeachers, "Teachers.aspx", "Teachers");
+            MakeMenuItem(menuParents, "Parents.aspx", "Parents");
+            MakeMenuItem(menuTeachers, "Teachers.aspx", "Teachers");
             //MakeMenuItem(menuLibrarians, "Librarians.aspx", "Librarians");
             if (Page.User.Identity.IsAuthenticated) {
                 if (((Textfyre.TextfyreWeb.BusinessLayer.Customer)Session["User"]).HasDownloads == true) {

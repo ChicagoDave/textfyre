@@ -26,14 +26,14 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="font-size: 12pt;padding-top:10px;">
-                                        <span style="font-weight:bold;padding: 0 10px 0 10px;">
-                                            Upcoming Games</span>
+                                    <td style="font-size: 12pt; padding-top: 10px;">
+                                        <span style="font-weight: bold; padding: 0 10px 0 10px;">Upcoming Games</span>
                                         <p style="margin: 0 10px 0 10px;">
                                             Two more Interactive Fiction games are nearing completion, including the first story
-                                            in the Klockwerk series. <i>The Shadow in the Cathedral</i>, due September 25th,
-                                            begins a tale in an Edwardian world where everyone worships clocks. A young neophyte
-                                            within the church is our hero and will be faced with many challenges.
+                                            in the Klockwerk series. <i>The Shadow in the Cathedral</i>, due November 6th (delayed
+                                            mostly due to the IF Competition), begins a tale in an Edwardian world where everyone
+                                            worships clocks. A young neophyte within the church is our hero and will be faced
+                                            with many challenges.
                                             <asp:HyperLink ID="HyperLink1" runat="server" CssClass="articleLink" NavigateUrl="~/Games.aspx"
                                                 Text=" ...more" /></p>
                                     </td>
@@ -51,7 +51,7 @@
                                     Fiction games. With the help of <a class="articleLink" href="http://willcapellaro.com/index.html">
                                         Will Capellaro</a>'s design (freelance art director) and Thomas Lynge's (Tenteo.Com)
                                     <a class="articleLink" href="http://www.silverlight.net">Silverlight</a> programming
-                                    skills, we were able to create a user experience that emerses the game player into
+                                    skills, we were able to create a user experience that immerses the game player into
                                     the story, much like a book.</p>
                             </div>
                         </td>

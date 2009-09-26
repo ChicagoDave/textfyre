@@ -152,9 +152,9 @@
     <value>Jack Toresal and The Secret Letter</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version: 1.05.20090702</value>
+    <value>Version: 1.07.20090923 DEMO</value>
   </data>
-  <data name="sl_v1_05xe" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GameFiles\sl-v1.05xe.ulx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="sl_v1_07xe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\GameFiles\sl-v1.07xe.ulx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
