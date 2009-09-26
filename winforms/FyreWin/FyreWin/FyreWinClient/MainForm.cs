@@ -73,7 +73,7 @@ namespace FyreWinClient {
             Header.Text = "";
             TextWindow.Clear();
 
-            MemoryStream fileData = new MemoryStream(Properties.Resource.sl_v1_05xe);
+            MemoryStream fileData = new MemoryStream(Properties.Resource.sl_v1_07xe);
 
             vm = new Engine(fileData);
             vm.OutputFilterEnabled = false;

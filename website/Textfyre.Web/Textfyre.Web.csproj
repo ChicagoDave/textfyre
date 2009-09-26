@@ -257,8 +257,13 @@
     <Content Include="Customer\TF99ReceiptData.aspx" />
     <Content Include="Customer\TF99Tester.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="images\chrishuang.jpg" />
     <Content Include="images\graeme.jpg" />
+    <Content Include="images\parents1.jpg" />
+    <Content Include="images\parents2.jpg" />
     <Content Include="images\secretletter-std.jpg" />
+    <Content Include="images\students.jpg" />
+    <Content Include="images\teacherkids.jpg" />
     <Content Include="images\tflogo.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>

@@ -16,8 +16,9 @@
                         <td style="vertical-align: top; padding-left: 10px;">
                             <h1>
                                 TEXTFYRE was founded by David Cornelson,</h1>
-                            and is the culmination of many years of planning and development. With the help of a few
-                            hobbyist authors, players, and fans, we've started something special.<br /><br />
+                            and is the culmination of many years of planning and development. With the help
+                            of a few hobbyist authors, players, and fans, we've started something special.<br />
+                            <br />
                             If you would like to contact us about anything:<br />
                             Phone: +1 1 630 803 4302<br />
                             Email: webadmin at textfyre dot com<br />
@@ -102,6 +103,22 @@
                             are available <a id="aboutLink" href="http://spot.colorado.edu/~obrian/IF.htm">online</a>.
                             He lives in Westminster, Colorado with his wife and son, and was once a counselor
                             at the camp upon which Giant Leaps is based.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="border-bottom: 1px black solid; padding-top: 10px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 8px;">
+                            <asp:Image ID="Image8" runat="server" ImageUrl="~/images/chrishuang.jpg" AlternateText="Chris Huang, Giant Leaps Writer" />
+                        </td>
+                        <td style="vertical-align: top; padding-left: 10px;">
+                            Christopher Huang lives in a pleasant little condo in the state of Complacency and
+                            is in a committed relationship with his internet connection. He enjoys National
+                            Novel Writing Month, taking second place in the annual IFcomp, pretending to be
+                            a pirate, attending Mass, and wearing waistcoats. When not doing any of the above,
+                            he can usually be found working in an architecture firm in downtown Montreal.
                         </td>
                     </tr>
                     <tr>

@@ -197,10 +197,6 @@ sub
 {
 	vertical-align: sub;
 }
-sup
-{
-	vertical-align: sup;
-}
 u
 {
 	text-decoration: underline;

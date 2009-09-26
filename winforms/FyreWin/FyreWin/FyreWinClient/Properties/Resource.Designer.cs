@@ -132,9 +132,9 @@ namespace FyreWinClient.Properties {
             }
         }
         
-        internal static byte[] sl_v1_05xe {
+        internal static byte[] sl_v1_07xe {
             get {
-                object obj = ResourceManager.GetObject("sl_v1_05xe", resourceCulture);
+                object obj = ResourceManager.GetObject("sl_v1_07xe", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -149,7 +149,7 @@ namespace FyreWinClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Version: 1.05.20090702.
+        ///   Looks up a localized string similar to Version: 1.07.20090923 DEMO.
         /// </summary>
         internal static string Version {
             get {

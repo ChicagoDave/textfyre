@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fyrp", "Fyrp\Fyrp.csproj", "{5454CFB3-E4EC-4837-936A-3C343E47B771}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FyrpInstaller", "FyrpInstaller\FyrpInstaller.vdproj", "{1882A332-4A2C-48B4-BE01-A2BCFE8C1379}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextfyreVM", "FyrpVM\TextfyreVM.csproj", "{61B1E1B1-82B8-42F7-9600-F57B0F254638}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5454CFB3-E4EC-4837-936A-3C343E47B771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5454CFB3-E4EC-4837-936A-3C343E47B771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5454CFB3-E4EC-4837-936A-3C343E47B771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5454CFB3-E4EC-4837-936A-3C343E47B771}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1882A332-4A2C-48B4-BE01-A2BCFE8C1379}.Debug|Any CPU.ActiveCfg = Debug
+		{1882A332-4A2C-48B4-BE01-A2BCFE8C1379}.Release|Any CPU.ActiveCfg = Release
+		{61B1E1B1-82B8-42F7-9600-F57B0F254638}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61B1E1B1-82B8-42F7-9600-F57B0F254638}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61B1E1B1-82B8-42F7-9600-F57B0F254638}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61B1E1B1-82B8-42F7-9600-F57B0F254638}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

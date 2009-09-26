@@ -15,16 +15,16 @@
                             <div style="text-align: center; margin-top: 20px;">
                                 <table>
                                     <tr>
-                                        <td>
-                                            <asp:Image ID="Image1" runat="server" ImageUrl="~/images/slbook.png" AlternateText="Jack Toresal and The Secret Letter Online Demo" />
-                                        </td>
                                         <td style="vertical-align: middle;">
                                             <a href="http://textfyre.com/sldemo/" style="text-decoration: underline;" target="_blank">
-                                                Play the online demo!</a>
+                                                Play a demo of the Deluxe version online!</a><br />
+                                                <br />
+                                            <a href="http://textfyre.com/demos/SecretLetter-1.07StdDemo.msi" style="text-decoration: underline;">
+                                            Download a demo of the Standard version (Windows only).</a>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2" style="font-size: 6pt; vertical-align: bottom; padding-top: 20px;">
+                                        <td style="font-size: 6pt; vertical-align: bottom; padding-top: 20px;">
                                             Deluxe System Requirements: Microsoft Windows XP, Windows Vista, Windows 7, or an
                                             Intel based Mac with OS X. On Windows, 32MB RAM is required and on the Mac, 512MB
                                             RAM is required. Both systems require 15MB of free disk space. Microsoft Silverlight
@@ -34,14 +34,14 @@
                                             with 16MB RAM and 10MB disk space. The Microsoft .NET Framework is required and
                                             is a part of the installation process.<br />
                                             <br />
-                                            <b style="font-size:8pt;">Standard version of Secret Letter</b><br />
+                                            <b style="font-size:8pt; text-align: center;">Standard version of Secret Letter</b><br />
                                             <asp:Image ID="Image2" runat="server" ImageUrl="~/images/secretletter-std.jpg" AlternateText="Standard UI" Width="240" /><br/><br/>
                                         </td>
                                     </tr>
                                 </table>
                             </div>
                         </td>
-                        <td style="vertical-align: top; padding-left: 10px; padding-right: 10px; padding-bottom: 15px;">
+                        <td style="vertical-align: top; padding-left: 10px; padding-right: 10px; padding-bottom: 15px; border-left-style: solid; border-left-width: 1px; border-left-color: #000000;">
                             <h1>
                                 Textfyre&#39;s first commercial Interactive Fiction game</h1>
                             was released on June 26th, 2009. Set in the town of Toresal in the kingdom of Miradania,
@@ -56,7 +56,7 @@
                             <br />
                             The Deluxe version is a Microsoft Silverlight application that runs in a browser. It includes
                             a book-like user interface that allows you to turn pages, has artist renderings of all of the
-                            characters in the game as well as a full color map and hints.<br />
+                            characters in the game as well as a full color map and hints. The Standard version is included.<br />
                             <br />
                             The Standard version is a Microsoft .NET Windows application that displays a text window, similar
                             to the old Infocom style. There are no hints available in the Standard version.<br />
@@ -69,13 +69,13 @@
                             <br />
                             Purchase the Deluxe Version via PayPal<br />
                             <a href="https://www.e-junkie.com/ecom/gb.php?i=280404&c=single&cl=74327">
-                                <img src="http://www.e-junkie.com/ej/x-click-butcc.gif" border="0" alt="Buy Now" /></a>
+                                <img src="http://www.e-junkie.com/ej/x-click-butcc.gif" alt="Buy Now" /></a>
                             <br />
                             <br />
                             Purchase the Deluxe Version via Google Checkout<br />
                             <a href="https://www.e-junkie.com/ecom/gb.php?i=280404&c=gc&cl=74327&ejc=4">
                                 <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&w=160&h=43&style=trans&variant=text&loc=en_US"
-                                    border="0" alt="Buy Now" /></a>
+                                    alt="Buy Now" /></a>
                             <br />
                             <br />
                             Standard Version Price: $9.95<br />
@@ -83,13 +83,13 @@
                             Purchase the Standard Version (Windows Only) via PayPal<br />
                             <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-standard&c=single&cl=74327"
                                 target="ejejcsingle">
-                                <img src="http://www.e-junkie.com/ej/x-click-butcc.gif" border="0" alt="Buy Now" /></a>
+                                <img src="http://www.e-junkie.com/ej/x-click-butcc.gif" alt="Buy Now" /></a>
                             <br />
                             <br />
                             Purchase the Standard Version (Windows Only) via Google Checkout<br />
                             <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-standard&c=gc&cl=74327&ejc=4">
                                 <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&w=160&h=43&style=trans&variant=text&loc=en_US"
-                                    border="0" alt="Buy Now" /></a>
+                                    alt="Buy Now" /></a>
                         </td>
                     </tr>
                     <tr>
@@ -101,7 +101,7 @@
                         <td style="padding-left: 10px; padding-top: 8px;">
                             <asp:Image runat="server" AlternateText="The Shadow in the Cathedral" ImageUrl="images/shadow.jpg" />
                         </td>
-                        <td style="vertical-align: top; padding-left: 10px; padding-right: 10px; padding-bottom: 15px;">
+                        <td style="vertical-align: top; padding-left: 10px; padding-right: 10px; padding-bottom: 15px; border-left-style: solid; border-left-width: 1px; border-left-color: #000000;">
                             The Shadow in the Cathedral, Textfyre&#39;s second game, will be released on September
                             25th, 2009. The first episode in the Klockwerk Series; Shadow begins an adventure
                             in a world of clocks, gears and ornithopters. You are Wren, 2nd assistant clock-polisher.
@@ -112,8 +112,7 @@
                             weeks.
                         </td>
                         <td style="padding-left: 5px; border-left: 1px black solid; font-size: 10pt; vertical-align: top;">
-                            Available September 25th, 2009.
-                        </td>
+                            Available November 6th, 2009.</td>
                     </tr>
                     <tr>
                         <td colspan="3" style="background-color: silver; margin-top: 5px;">

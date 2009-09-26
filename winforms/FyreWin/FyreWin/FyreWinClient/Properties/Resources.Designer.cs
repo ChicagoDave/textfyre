@@ -59,5 +59,12 @@ namespace FyreWinClient.Properties {
                 resourceCulture = value;
             }
         }
+        
+        internal static byte[] sl_v1_07e {
+            get {
+                object obj = ResourceManager.GetObject("sl_v1_07e", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
