@@ -659,19 +659,19 @@ Check facing towards nothing:
 	say "You see nothing of interest in that direction." instead;
 
 Report facing up towards a room:
-	say "[The viewed item] lies above.";
+	say "[The viewed item] lies above." instead;
 
 Report facing down towards a room:
-	say "[The viewed item] lies below.";
+	say "[The viewed item] lies below." instead;
 
 Report facing inside towards a room:
-	say "[The viewed item] lies inwards.";
+	say "[The viewed item] lies inwards." instead;
 
 Report facing outside towards a room:
-	say "[The viewed item] lies outwards.";
+	say "[The viewed item] lies outwards." instead;
 
 Report facing towards a room:
-	say "[The viewed item] lies to [the noun].";
+	say "[The viewed item] lies to [the noun]." instead;
 
 Book 5 - Kinds
 
