@@ -3,6 +3,7 @@
 
 [  Change Log
 When			Who		What
+26-Sep-2009			J. Ingold	Paul's feedback
 25-Sep-2009			J. Ingold	Added chapter channel
 24-Sep-2009			J. Ingold	More fixes
 24-Sep-2009			J. Ingold	Nicer message for unlocking the garden door
@@ -853,6 +854,9 @@ Report entering  a pew:
 Report standing on  a pew:
 	say "I perch myself down on the wood, and bow my head a little."
 
+Instead of looking under a pew:
+	say "You are a curious type, aren't you?";
+
 
 Section 1 - Hymnal
 
@@ -1564,6 +1568,7 @@ Understand "pour out/away [something]" as emptying.
 
 Understand "pour [something] into/to/in [something]" as inserting it into.
 Understand "pour [something] in to [something]" as inserting it into.
+Understand "pour [something] on/onto [something]" as putting it on.
 
 Emptying away something is an activity.
 
@@ -2000,6 +2005,9 @@ Report knocking on a closed thing:
 
 Report knocking on a closed door:
 	say "Knock, knock!" instead;
+
+Check knocking on someone:
+	try attacking the noun instead.
 
 Report knocking on:
 	say "Nothing obvious happens." instead;
@@ -2799,6 +2807,7 @@ Understand "grab [on to] [something]" as taking.
 Understand "hold [on to] [something]" as taking.
 Understand "cling to/onto [something]" as taking.
 Understand "cling on to [something]" as taking.
+Understand "pick [something]" as taking.
 
 Understand the command "catch" as "take".
 Understand the command "collect" as "take".
@@ -3145,6 +3154,9 @@ Inside the tumbler is a small amount of polish. Understand "wood", "ration", "da
 
 Before examining the small amount of polish: try examining the tumbler instead.
 
+Before putting the small amount of polish on something:
+	try polishing the second noun with the small amount of polish instead.
+
 Before drinking or tasting or eating the small amount of polish:
 	say "No way. (They say Brother Reloh did that as a boy and that's why he ended up like he did.)" instead.
 
@@ -3240,7 +3252,7 @@ Instead of attacking the Grandfather Clock:
 Section 2 - Actions - Polishing
 
 Instead of polishing the Grandfather Clock with the rag:
-	say "I whisper the correct mantra against the evils of Friction and Dust, and start polishing. This'll take forever!";
+	say "[one of]I whisper the correct mantra against the evils of Friction and Dust, and start polishing. This'll take forever![or]I polish a little more. I'm not getting anywhere![stopping]";
 
 Instead of polishing the Grandfather Clock with the rag when Voices have been Heard during the Introduction:
 	say "If you think the Abbot will come in here, and say, 'Oh, good, young Wren's polishing my clock all the time that [i]I[r] thought I was on my own in here,' then you must have come unsprung. If he finds me here now he'll have me declared unmechanistical and maybe even throw me out of the Abbey!";
@@ -3459,6 +3471,8 @@ Instead of entering the cot:
 	say "No thanks. It looks horribly uncomfortable. And coming from me, considering where [i]I[r] sleep, that's really saying something."
 
 Instead of hiding under the cot when Voices have been heard during Introduction:
+	if Inside Clock Case is visited:
+		say "I don't want to hide, I want to get out of here!" instead;
 	say "The space under the cot is too small for me! Somewhere else, and quick!" instead;
 
 Instead of looking under the cot when Voices have been heard during Introduction:
@@ -3630,10 +3644,10 @@ There is an unceilinged, aerial room called Inside Clock Case.
 
 The description of Inside Clock Case is "I'm wedged inside the Abbot's Grandfather Clock, [penduluum] at my back. Time to go, I think!"
 
-Rule for printing the description of Inside Clock Case when the keyhole-Abbot is visible and the player is casually overhearing:
+Rule for printing the description of Inside Clock Case when Hiding in the Clock has not ended and the player is casually overhearing:
 	say "As the phrase goes, I'm stuck between a rack and a gear-trace; except here I'm in the narrow gap between the clock case door and the heavy swinging [i][penduluum][r] behind. And if I get in the way of that, and disrupt the clock's holy timings... well, there's no way they wouldn't notice when the clock-hands stopped moving, let's just say.";
 
-Rule for printing the description of Inside Clock Case when the keyhole-Abbot is visible:
+Rule for printing the description of Inside Clock Case when Hiding in the Clock has not ended:
 	say "I'm leaning up against the door of the clock, with my ear pressed against the glass tumbler. The [penduluum] behind is like someone breathing in my ear. If I'm caught in here, I'm dead."
 
 Index map with Inside Clock Case mapped east of Abbot's Quarters.
@@ -3657,7 +3671,7 @@ Before searching the spare robe when in Inside Clock Case:
 	say "I peek into the pockets looking for an ear-trumpet to use on the door... but don't find one there." instead.
 
 Before searching the spare robe:
-	say "I can't go peeking into the Abbot's things!";
+	say "I can't go peeking into the Abbot's things!" instead.
 
 Before doing something when the spare robe is physically involved:
 	say "Better not. My fingers are all greasy with polish." instead;
@@ -3753,6 +3767,9 @@ Instead of listening [without the tumbler] to the keyhole during Hiding in the C
 Before putting the tumbler on the clock-door:
 	try listening with the tumbler to the clock-door instead;
 
+Before putting the tumbler on the Gubbler's Grandfather clock when Inside Clock Case:
+	try listening with the tumbler to the clock-door instead;
+
 Before putting the tumbler on the keyhole:
 	try listening with the tumbler to the clock-door instead;
 
@@ -3785,6 +3802,9 @@ Instead of listening with the tumbler to Inside Clock Case:
 
 Instead of listening to clock-door:
 	try listening to the keyhole instead;
+
+Before listening to Gubbler's Grandfather clock when in Inside Clock Case:
+	try listening with the tumbler to the clock-door instead;
 
 Chapter 5 - Scripted Events
 
@@ -3820,7 +3840,7 @@ To decide if Clock Case has not been hidden in:
 
 Section 2 - Scripted dialogue
 
-CCASE2 is a scripted event. The display text is "Oh, no... That click outside was the sound of the Abbot closing the door. Looks like he – and the grey figure I glimpsed with him – are going to be here for a while... And if they find me here, I'm toast!"
+CCASE2 is a scripted event. The display text is "Oh, no... That click outside was the sound of the Abbot closing the door. Looks like he – and the grey figure I glimpsed with him – are going to be here for a while... And if they find me here, I'll be unwound!"
 
 After firing CCASE2:
 	now the Abbot's Door is closed;
@@ -3975,7 +3995,7 @@ Section 1 - Cot
 A supporter called my cot is enterable, scenery, in the Attic Room. "My cot is made of pinewood – flimsy stuff that you'd never make a clock from. At least the bedframe has edges, so I can find it in the dark. I'd love to have a more solid bed – a horsehair mattress and everything – but it'd be so heavy it'd go straight through my floorboards. 'You'd better not grow,' Drake's told me before. 'Or you'll go straight through yourself.'[paragraph break]Beside the cot is a pencil sketch of my family." Understand "pine", "pinewood", "bedframe", "frame", "wood", "wooden", "bed" as my cot.
 
 Instead of entering my cot:
-	say "[one of]Stretching out on the cot gives me a good view through my window. I can see the spires of the Cathedral, tipping with Time's Arrows and flocked with birds. The Archbishop would listen, I'm thinking. If only I could reach him.[or]There's no time for that, Wren![stopping]"
+	say "[one of]Stretching out on the cot gives me a good view through my window. I can see the spires of the Cathedral, tipping with Time's Arrows and flocked with birds. The Archbishop would listen, I'm thinking. If only I could reach him.[paragraph break]I'll just have to try. I get back to my feet.[or]There's no time for that, Wren![stopping]";
 
 Instead of searching my cot:
 	say "There's nothing on my bed (and not much [i]to[r] it, either).";
@@ -4118,7 +4138,7 @@ The printed name of Rickety Stair is "Corner of the Great Hall".
 
 Chapter 2 - Ladder 
 
-The caretaker's ladder is a thing in the Rickety Stair.
+The caretaker's ladder is a thing in the Rickety Stair. The description is "The ladder is about twelve feet long[if the caretaker's ladder is in Rickety Stair], leading up to the attic room[else if the caretaker's ladder is in Herb Garden], and clears the wall with ease[end if]."
 
 Understand "caretakers", "amble's", "ambles", "rung", "rungs", "bottom of", "wooden" as the caretaker's ladder.
 
@@ -4239,7 +4259,7 @@ Understand "crane neck" as a mistake ("Honestly: I spend my whole life looking u
 
 Chapter 1 - Description
 
-A room called the Upper Hall is east of the Rickety Stair. "[one of]The Great Hall of the Abbey is the biggest room I've seen in my life, running from this end all the way southwest (and it is all the way, I'm never allowed any further than the Great Doors and the Yard outside). [once only]If I crane my neck I can see the dark square of the floorboards of my room[if caretaker's ladder is in Rickety Stair] – the ladder snakes down from one side[else] above the darkest corner of the hall[end if], west of here. Lights move in and out overhead, from the candles moving on their Holy Tracks. Strong smells float through an archway to the east.[paragraph break]From their niches, the Three Major Saints are watching sternly, keen that I should [one of]get[or]head southwest[stopping] out of the Cathedral and see the Archbishop as quickly as possible."
+A room called the Upper Hall is east of the Rickety Stair. "[one of]The Great Hall of the Abbey is the biggest room I've seen in my life, running from this end all the way southwest to the other end of the Hall (and it is all the way - I'm never allowed any further than the Great Doors and the Yard outside). [once only]If I crane my neck I can see the dark square of the floorboards of my room[if caretaker's ladder is in Rickety Stair] – the ladder snakes down from one side[else] above the darkest corner of the hall[end if], west of here. Lights move in and out overhead, from the candles moving on their Holy Tracks. Strong smells float through an archway to the east.[paragraph break]From their niches, the Three Major Saints are watching sternly, keen that I should [one of]get[or]head southwest[stopping] out of the Cathedral and see the Archbishop as quickly as possible."
 
 Chapter 2 - Scenery
 
@@ -4270,7 +4290,7 @@ Section 2 - Candle-tracks
 
 Some candle-tracks are a backdrop, in Upper Hall, Central Hall and Lower Hall. "The candles move in the space between floor and ceiling, the way the stars move between Earth and the Great Darkness of Heaven. They're follow winding metal tracks that cross and recross along the length of the Great Hall, and as they move, pools of light form and then dissolve, so that some parts of the chamber are brightly lit at times whilst others are quite dark. The candles move day and night, with automatic systems to replace those that burn down to the stub."
 
-Understand "candle", "candles", "track", "tracks", "patterns", "holy" as the candle-tracks.
+Understand "candle", "candles", "track", "tracks", "patterns", "holy", "light", "lights" as the candle-tracks.
 
 Before doing something when the candle-tracks are physically involved:
 	say "They're high above me, out of reach." instead.
@@ -4336,6 +4356,9 @@ The Cook is a man, scenery, in the Kitchen. "[if Gong Sounding is not happening]
 Rule for speaking with the cook:
 	say "The Cook doesn't waste time trying to lip-read. He picks me up, puts me to one side, and gets back to [one of]walloping the toaster[or]scooping soot from the grill[or]injecting steam through a waxed cloth pipe into a pot[or]cooking[or]plugging holes in a hot-water pipe with bread dough[or]setting dials on the furnaces[or]stirring a pan using a three-foot spoon[at random]." instead.
 
+Instead of knocking on the cook:
+	say "He's too busy buried in his cooking equipment to notice me."
+
 Section 2 - Idle actions
 
 Every turn when the player can see the Cook and a random chance of 1 in 3 succeeds:
@@ -4350,7 +4373,7 @@ Section 1 - Machines
 
 Some machines are scenery, in the Kitchen. The description is "Pipes run like cobwebs between a hundred fantastic devices. One entire corner is given over to automatic egg-boiling: 'A Holy Problem of Timing,' Gubbler once said. Other wires, pulleys, ducts and cog-teeth cross the floor and ceiling, and the Cook is constantly sweeping muck and crumbs out from the mechanisms in a desperate attempt to keep them in good order.[paragraph break]The one machine I'm allowed to use is the Tea Maker, which is a whole world of gears and baskets and spigots in itself."
 
-Understand "pipes", "devices", "wires", "pulleys", "ducts", "cog-teeth", "whisker", "grater", "cooker", "boiler", "crumb sucker", "steamer", "masher", "broiler", "oven", "crumb-sucker" as the machines.
+Understand "pipes", "devices", "wires", "pulleys", "ducts", "cog-teeth", "whisker", "grater", "cooker", "boiler", "crumb sucker", "steamer", "masher", "broiler", "oven", "crumb-sucker", "shelf", "shelves" as the machines.
 
 Instead of doing something when the machines are physically involved:
 	say "[one of]The Cook hurtles over and beats me away with a towel.[or]The Cook scowls and slaps me away.[or]I might lose a finger if I tried that![at random]";
@@ -4432,7 +4455,26 @@ Instead of opening the Tea-Machine:
 
 Chapter 1 - Machine 'Chassis'
 
-The Tea-Machine is a privately-named device, scenery, in the Kitchen. The description is "[if switched off]Very complex, but robustly built and able to perform its functions a few thousand times without needing oil. It consists of a framework of arms and struts, most of which move, though there's a plate at the front to hold the primary gear-train that's between the lever and the winding key.[paragraph break]Inside the machine I can make out a kettle, a spigot, and a basket suspended over a semi-circular bracket. There's a burner somewhere, too.[otherwise]The machine is clanking, spinning, whirring and generally doing its thing.[end if]"
+The Tea-Machine is a privately-named device, scenery, in the Kitchen. 
+
+Rule for printing the description of the Tea-Machine when the Tea-Machine is switched off:
+	say "Very complex, but robustly built and able to perform its functions a few thousand times without needing oil. ";
+	if the new gear is part of the gear train:
+		say "There's a shiny new gear in place in the gear train";
+	else:
+		say "It consists of a framework of arms and struts, most of which move, though there's a plate at the front to hold the primary gear-train that's between the lever and the winding key";	
+	say ".[paragraph break]Inside the machine I can make out a [if the kettle is full]filled [end if]kettle, a spigot, and a basket [if the basket is full]filled with tea-leaves [end if]suspended over a semi-circular bracket";
+	if the teacup is in the bracket:
+		say ", containing a tea cup";
+	say ". There's a burner somewhere, too";
+	if the tea-machine key is wound:
+		say ", and the spring is fully wound";
+	say "."
+
+
+Rule for printing the description of the Tea-Machine:
+	say "The machine is clanking, spinning, whirring and generally doing its thing.";
+
 
 Instead of taking the Tea-Machine:
 	say "The machine is plumbed, weighted, counter-balanced, sprung and assembled with all the Holy Engineering that the Abbey can spare for its kitchens. I can't just walk off with it even if I [i]could[r] pick it up."
@@ -4868,6 +4910,9 @@ Before inserting the handful of tea leaves into the tumbler:
 Before inserting the handful of tea leaves into the teacup:
 	say "[one of]I can't just skip the whole machine part[or]That's not the right place for them to go[stopping]." instead;
 
+Before smelling the handful of tea leaves:
+	say "The tea smells sharp, like ink or copper." instead.
+
 Before tasting or eating the handful of tea leaves:
 	say "I touch them with my tongue. Bitter, with a taste like metal." instead.
 
@@ -4934,6 +4979,9 @@ Instead of researching when in the Library:
 Instead of consulting the books about when in the Library:
 	try taking the books.
 
+Instead of smelling the books:
+	say "They smell of dust and damp and animal skin."
+
 Section 3 - Stained Glass Window
 
 The library astrolabe window is a stained glass window, scenery, in the Library. "The glass panels are stained to depict a watch escapement, an astrolabe and below them both, the wide-spread arms of a beatific orrey. Not much light gets through them at all."
@@ -4964,7 +5012,7 @@ Section 1 - Description
 
 Horloge is a monk, scenery, in the Library. "Horloge's eyes are screwed up behind the most complicated pair of spectacles I've ever encountered. They make it hard to even see his eyes – or rather what's left of them. He's read in the darkness here in the Library for so long he's basically blind. On his shoulder sits his pet owl. Same as Brother Horloge it looks more fearsome than it actually is.[if Horloge's keys are on the wheeled table][paragraph break]By his elbow is a fat bunch of keys.[otherwise if Horloge's keys are in the location][paragraph break]On the floor by his feet is a fat bunch of keys.[end if][paragraph break][if Horloge is sipping his tea]He's sipping his tea, quite content, eyes half-closed.[otherwise]He's poring over a page of manuscript, muttering quietly to himself.[end if]"
 
-Horloge's spectacles are carried by Horloge. "Horloge was probably born wearing spectacles. They're made of bottle-glass, ground to the right thickness.  'Spectacles are either expensive,' as he's told me, 'or simply not very good.'"
+Horloge's spectacles are carried by Horloge. The description is "Horloge was probably born wearing spectacles. They're made of bottle-glass, ground to the right thickness.  'Spectacles are either expensive,' as he's told me, 'or simply not very good.'"
 
 Before doing something when Horloge's spectacles are physically involved:
 	say "I'd better leave them be[one of]. He's blind without them[once only]."
@@ -5052,6 +5100,7 @@ Section 5 - Further Conversation
 
 Table of Horloge's Further Conversation
 topic						conversation 
+"books" or "book" or "texts" or "key texts"		CT_HOR2_BOOKS
 "keys" or "key"					CT_HOR2_KEYS
 "[calvinanddrake]"				CT_HOR2_CALVINDRAKE
 "[abbey]"						CT_HOR2_ABBEY
@@ -5062,7 +5111,6 @@ topic						conversation
 "tea"						CT_HOR2_TEA
 "cook"						CT_HOR2_COOK
 "owl" or "rachael" or "his owl"			CT_HOR2_OWL
-"books" or "book" or "texts" or "key texts"		CT_HOR2_BOOKS
 "[clockwork]"					CT_HOR2_CLOCKWORK
 "[saints]"								CT_HOR2_SAINTS
 "[himself]" or "[horloge]"				CT_HOR2_HORLOGE
@@ -5339,7 +5387,7 @@ Rule for printing the description of the Refectory Clock when Gong Sounding is h
 
 The description is "[one of]Housed in a case made of oak and glass, the inner workings of the Refectory Clock are visible, for the purpose of contemplation over dinner. In one corner is the colossal spring, about the size of an Oliphant, which powers the clock for over a year and reminds us that we need little to do much. Almost all the rest of the clock is given over to bells, hammers, whistles, gongs, organ pipes, cymbals, and other devices designed to bring even the deafest monk to dinner.[paragraph break][or]It's mostly bells. [stopping]The clock is currently set to [the face value of the refectory clock in words][if the face value of the refectory clock is before 5:00 PM]. Still a while till five o'clock, and dinner[end if].".
 
-Understand "case/oak/wood/wooden/glass/inner/workings/spring/bells/hammers/whistles/gongs/pipes/organ/cymbals" as the Refectory Clock.
+Understand "case/oak/wood/wooden/glass/inner/workings/spring/bells/hammers/whistles/gongs/pipes/organ/cymbals/tube/tubes" as the Refectory Clock.
 
 The matching key of the refectory clock is Horloge's keys.
 
@@ -5981,6 +6029,8 @@ Definition: a direction (called the way) is Drake-viable:
 	if the new place is not a room, no;
 	[ is it through the garden door - specific, I know, but it'll do ]
 	if the way is east and the location is the East Refectory and the garden door is locked, no;
+	[is the player trying to go through the Entry ]
+	if the way is southwest and the location is the Lower Hall, no;
 	[ is he there? ]
 	if the new place is the location of Drake, no;
 	[ was he there? - stops the player swapping rooms with him ]
@@ -6207,7 +6257,7 @@ Instead of standing on the large lens:
 To revolve into daytime:
 	now the plants are day-plants;
 	remove the short stake from play;
-	say 	"[one of]The garden revolves back as light hits the lens once more. The herbs and vegetables come out of hiding into the sunshine! [or]The lens lights up and the day-beds revolve back out from the under the cover. [stopping][one of]The movement almost knocks me over.[or]I have to balance to stay upright as the plate turns.[or]I'm pointing [one of]north[or]south[or]east[or]west[cycling] now.[at random]";
+	say 	"[one of]The garden revolves back as light hits the lens once more. The herbs and vegetables come out of hiding into the sunshine! [or]The lens lights up and the day-beds revolve back out from the under the cover[stopping][one of]. The movement almost knocks me over[or]. I have to balance to stay upright as the plate turns[or][cycling].";
 
 To revolve into nighttime:
 	now the plants are night-plants;
@@ -6249,12 +6299,14 @@ Section 3-  the Hood
 The metal hood is scenery, in the Herb Garden. Understand "cover", "low cover" as the hood. "The metal hood comes up to my knees, and is snugly built for the plants to slide in underneath without being hurt. It keeps the mushrooms shady (and warm) during the day, and the vegetables protected from snails at night."
 
 Instead of hiding under or entering or hiding behind the metal hood: 
+	[ a bit rubbish attempt to distinguish "on" and "in" ]
+	if the player is clambering or the player's command includes "on", try climbing the metal hood instead;
 	say "The hood is filled with flowerbeds. There's no room for me in there!"
 
 Instead of looking under the metal hood:
 	say "Under the hood is the other half of the revolving garden."
 
-Instead of standing on the metal hood:
+Instead of standing on or climbing the metal hood:
 	say "[one of]I clamber onto the top of the hood - slippery, and rounded, and I soon slide off again. If I'm looking for a way over the walls, I'll have to try something else.[or]I can't climb onto the hood - and even if I could, the walls are twelve feet tall and the hood's only up to my knees![or]The hood's not going to do me any good.[stopping]"
 
 The copper spring is scenery, part of the revolving plate. "There's a spring somewhere underneath, that expands and contracts in the heat from the lens, and drives the whole garden around."
@@ -6389,6 +6441,7 @@ Instead of touching or pushing or attacking the poor wretches:
 
 After dropping something in the Cathedral Yard when BEGGAR_YARD2 is unfired:
 	remove the noun from play;
+	now the poor wretches are scenery;
 	say "I drop [the noun] and the beggars fall on it like hungry wolves, scrabbling and fighting. One gets hold and soon both are gone in a cloud of dust.";
 	now BEGGAR_YARD2 is fired;
 
@@ -6823,6 +6876,9 @@ Instead of singing in the Cathedral Choir:
 Instead of touching the choir stalls:
 	say "The wood is soft and old."
 
+Instead of looking under the choir stalls:
+	say "The stalls are flush with the floor."
+
 Section 4 - Balcony above
 
 The balcony-Clerestory is a glimpse backdrop in the Cathedral Choir. "The balcony is overhead, encircling this space."
@@ -6961,7 +7017,7 @@ Chapter 2 - Crypt Grate
 
 The crypt grate is a door, closed, locked, scenery, northeast of the East Apse, southwest of the Crypt Stairs. "The iron grate is made of metal a foot thick and it's locked with a gigantic padlock. I doubt I could manage to turn the lock even if I had the key for it, which I don't. Behind this is the Cathedral Vault: the one Gubbler was talking about breaking into! I guess they haven't tried yet..."
 
-Understand "metal", "iron", "padlock", "lock", "chain", "blackened", "black" as the crypt grate.
+Understand "metal", "iron", "padlock", "lock", "chain", "blackened", "black", "gate" as the crypt grate.
 
 Instead of opening the crypt grate when the player does not have the old iron crypt key:
 	say "The grate is locked with a blackened chain and padlock that's about the size of my head.";
@@ -7160,7 +7216,7 @@ Instead of scraping a molten wax lump with something unsuitable for scraping:
 Instead of scraping a molten wax lump with something suitable for scraping:
 	let r be a random wax lump in the brazier;
 	move r to the player;
-	say "I scrape the wax up into a ball using [the second noun].";
+	say "I scrape the wax up into a ball using [the second noun] and take it.";
 
 Section 4 - Wax-squishing
 
@@ -7418,7 +7474,7 @@ Section 2 - Parts of the Orrey machine
 
 Some parts of the Orrey are privately-named, part of the Orrey Machine. The description is "[one of]All the parts of the Orrey are lovingly crafted.[or]Sa'at must have spent a lifetime polishing these.[or]No detail is left undetailed.[cycling]".
 
-Understand "planet", "planets", "sun", "comet", "comets", "meteorites", "meteorite", "meteor", "galaxy", "galaxies", "space", "ball", "balls", "brass", "disc", "discs" as the parts of the Orrey.
+Understand "planet", "planets", "sun", "comet", "comets", "meteorites", "meteorite", "meteor", "galaxy", "galaxies", "space", "ball", "balls", "brass", "disc", "discs", "earth", "mars", "venus" as the parts of the Orrey.
 
 Instead of doing something when the parts of the Orrey are physically involved and the action is physical:
 	try taking the Orrey Machine instead.
@@ -7719,7 +7775,7 @@ Section 5 - Card Catalogue
 
 A card catalogue is in the Cyclical Library. "By the door to the northeast is a card catalogue. That'll be gone as soon as they work out how to do something more useful with a keyhole than just type letters onto paper."
 
-Understand "index", "cards" as the card catalogue.
+Understand "index", "cards", "catalog" as the card catalogue.
 
 The description is "It's a box of index cards, filed alphabetically. Easy to use, unlike the contraption that controls the shelves! I just need to look up whatever title I'm after."
 
@@ -8515,7 +8571,7 @@ Instead of giving something to awake Doric when BISH_DOOR_EVENT1 is unfired:
 BISH_DOOR_EVENT1 is a trigger.
 
 Rule for firing unfired BISH_DOOR_EVENT1:
-	say "I approach the guard, wearing my best Abbey-servant voice. 'Excuse me,' I begin. 'I'm here to see the Archbishop.'[paragraph break]'Are you, Squirt?' the guard replies easily. Ah. Not such a pushover, then. 'Got an appointment, do you? I suppose you must, [']cos you know what a waste of time it'd be to turn up wanting to see a man like the Archbishop with no appointment. Like a bald man at a barbers. Waste of time. So you've an appointment, don't you?'[paragraph break]'I'm on Abbey business,' I say.[paragraph break]'If you were on Abbey business,' the guard replies with a smile, 'and I'm not saying you're not, I aint calling you a liar. But if you were, you'd be carrying one of them documents they give to people to prove they're on Abbey business. Church Accreditation, I believe it's called. And it you [i]were[r] on business and not, say,' – he pauses for effect – 'some scruff of a street-rat fallen in here from the street...'[paragraph break]I start to protest but he cuts me off with a poke of his halberd.[paragraph break]'Then sure as my name's Doric – which it is – sure as that you'd be able to quote me a bit of the creed. Wouldn't you, now? That's how it'd be, I fathom, if you were here on business. Real Church business.' He looks at you firmly. 'So are you going to tell me the creed, then? Go right ahead.' He starts waiting. He's good at that, clearly.";
+	say "I approach the guard, wearing my best Abbey-servant voice. 'Excuse me,' I begin. 'I'm here to see the Archbishop.'[paragraph break]'Are you, Squirt?' the guard replies easily. Ah. Not such a pushover, then. 'Got an appointment, do you? I suppose you must, [']cos you know what a waste of time it'd be to turn up wanting to see a man like the Archbishop with no appointment. Like a bald man at a barbers. Waste of time. So you've an appointment, don't you?'[paragraph break]'I'm on Abbey business,' I say.[paragraph break]'If you were on Abbey business,' the guard replies with a smile, 'and I'm not saying you're not, I ain't calling you a liar. But if you were, you'd be carrying one of them documents they give to people to prove they're on Abbey business. Church Accreditation, I believe it's called. And it you [i]were[r] on business and not, say,' – he pauses for effect – 'some scruff of a street-rat fallen in here from the street...'[paragraph break]I start to protest but he cuts me off with a poke of his halberd.[paragraph break]'Then sure as my name's Doric – which it is – sure as that you'd be able to quote me a bit of the creed. Wouldn't you, now? That's how it'd be, I fathom, if you were here on business. Real Church business.' He looks at you firmly. 'So are you going to tell me the creed, then? Go right ahead.' He starts waiting. He's good at that, clearly.";
 
 Instead of going through the Bishop's Door when the player can not see Doric:
 	say "The door's unguarded. Excellent! I put my hand on the handle and... it's locked! Not fair!";
@@ -9087,7 +9143,8 @@ Instead of approaching the escaping Figure in the Rafters:
 Instead of making to leave in the Rafters: 
 	try going down.
 
-
+Instead of taking the thick chain when in the Rafters:
+	try going down.
 
 Chapter 2 - Scenery
 
@@ -9425,7 +9482,7 @@ Instead of entering or climbing or jumping on the gargoyles of vice when in Butt
 
 Section 2 - Roof
 
-The slated lead roof is a backdrop, in the Buttress and in the Parapet. "About five feet below – and five feet [i]away[r] – is the slated lead roof that almost touches the buttress." The printed name is "roof". Understand "civil", "service", "building", "nearby" as the slated lead roof.
+The slated lead roof is a backdrop, in the Buttress and in the Parapet. "About five feet below – and five feet [i]away[r] – is the slated lead roof that almost touches the buttress." The printed name is "roof". Understand "civil", "service", "building", "nearby", "slate" as the slated lead roof.
 
 Before entering or jumping on or approaching the slated lead roof:
 	if the location is the Parapet:
@@ -9959,7 +10016,7 @@ After going through the twelve-foot gap:
 	continue the action;
 
 Instead of going through the twelve-foot gap when the notch contains the solid wooden board:
-	say "[one of]I inch a little way out on the board, but it quickly starts to tip over, into the street. I freeze, and inch my way back. Without something to weight the other end down, this bridge is useless![or]I'll need to weigh the other end down with something first.[stopping]";
+	say "[one of]I inch a little way out on the board, but it quickly starts to tip over, into the street. I freeze, and inch my way back. Without something to weigh the other end down, this bridge is useless![or]I'll need to weigh the other end down with something first.[stopping]";
 
 Instead of going through the twelve-foot gap when the plank bridge is off-stage:
 	say "It's a twelve-foot gap. I can't jump that!";
