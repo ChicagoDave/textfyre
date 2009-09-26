@@ -222,14 +222,14 @@ Rule for printing the banner text:
 	say "[b][story title][r][line break]";
 	select the credits channel;
 	say "[story title] by [story author][line break]";
+	say "Version .93.20090926";
 	say "Copyright [story creation year] by [story author][line break]";
 	say "Designed by Ian Finley[line break]";
 	say "Written by Jon Ingold[line break]";
 	say "Game Engine (FyreVM) by Jesse McGrew[line break]";
-	say "Inform 7 Story Programming by Graeme Jefferis[line break]";
+	say "Inform 7 Story Programming by Graeme Jefferis and Jon Ingold[line break]";
 	say "Custom Library Messages extension by David Fisher[line break]";
 	say "Testing by Jon Ingold, Ian Finley, Paul O'Brian and Eric Eve[line break]";
-	say "User Interface Programming by Thomas Lynge[line break]";
 	say "Special thanks to Graham Nelson and Emily Short[line break]";
 	say "for all of their hard work on Inform 7.[line break]";
 	say "All rights reserved[line break]";
