@@ -3,6 +3,7 @@
 
 [  Change Log
 When			Who		What
+26-Sep-2009			J. Ingold	Eric's feedback.
 26-Sep-2009			J. Ingold	Paul's feedback
 25-Sep-2009			J. Ingold	Added chapter channel
 24-Sep-2009			J. Ingold	More fixes
@@ -274,7 +275,7 @@ Instead of cleaning the backdrop-floor:
 Instead of entering the backdrop-floor:
 	say "Floors are where things go when nothing else wants them. That's one of the Laws of Logic, the Abbot says, on which the whole world is run."
 
-The backdrop-sun2 is a privately-named thing, part of the backdrop-clouds. Understand "sun" as the backdrop-sun2. The printed name is "sun". The description is "The Sun is... well, it's the sun."
+The backdrop-sun2 is a privately-named thing, part of the backdrop-clouds. Understand "sun" as the backdrop-sun2 when the location is exterior. The printed name is "sun". The description is "The Sun is... well, it's the sun."
 
 Instead of doing something when the backdrop-clouds is physically involved:
 	say "I can't reach the clouds, how could I?"
@@ -2287,6 +2288,7 @@ Carry out running:
 Part 32 - Swimming & Diving
 
 Understand "swim [direction]" as going when the location is an underwater room.
+Understand "swim" as a mistake ("There's no water here.") when the location is not an underwater room and the River Thymes is not visible and the location is not the North Side.
 
 Part 33 - Breathing 
 
@@ -6735,12 +6737,12 @@ Instead of doing something when the cathedral clock machinery is physically invo
 
 Section 4 - Monks
 
-Some chanting monks are men, scenery, in the Cathedral Altar. "This is why the Abbey is so quiet, then. All the brothers are here, singing and chanting at the altar." Understand "monk", "lead" as the chanting monks.
+Some chanting monks are men, scenery, in the Cathedral Altar. "This is why the Abbey is so quiet, then. All the brothers are here, singing and chanting at the altar." Understand "monk", "lead", "group of" as the chanting monks.
 
 Instead of doing something when the chanting monks are physically involved:
 	say "[fire TRIG_NOINTERFERE]";
 
-Some glimpsed monks are a glimpse backdrop, in Cathedral Entrance, in Lower Nave, in Upper Nave, in East Apse, in West Apse, in North Clerestory, in Cathedral Choir, in East Clerestory, in West Clerestory. "The monks are gathered around some gleaming object on the altar." Understand "monk/monks", "chanting", "singing" as the glimpsed Monks.
+Some glimpsed monks are a glimpse backdrop, in Cathedral Entrance, in Lower Nave, in Upper Nave, in East Apse, in West Apse, in North Clerestory, in Cathedral Choir, in East Clerestory, in West Clerestory. "The monks are gathered around some gleaming object on the altar." Understand "monk/monks", "chanting", "singing", "group of" as the glimpsed Monks.
 
 The glimpsed monks identifies the chanting Monks.
 
@@ -7017,9 +7019,9 @@ Chapter 2 - Crypt Grate
 
 The crypt grate is a door, closed, locked, scenery, northeast of the East Apse, southwest of the Crypt Stairs. "The iron grate is made of metal a foot thick and it's locked with a gigantic padlock. I doubt I could manage to turn the lock even if I had the key for it, which I don't. Behind this is the Cathedral Vault: the one Gubbler was talking about breaking into! I guess they haven't tried yet..."
 
-Understand "metal", "iron", "padlock", "lock", "chain", "blackened", "black", "gate" as the crypt grate.
+Understand "metal", "iron", "padlock", "lock", "chain", "blackened", "black", "gate", "gigantic" as the crypt grate.
 
-Instead of opening the crypt grate when the player does not have the old iron crypt key:
+Instead of opening or pulling or attacking the crypt grate when the player does not have the old iron crypt key:
 	say "The grate is locked with a blackened chain and padlock that's about the size of my head.";
 
 Instead of unlocking the crypt grate with something when the second noun is not the old iron crypt key:
@@ -7158,6 +7160,9 @@ Before inserting something into the brazier:
 	if the noun is not a candle and the noun is not a wax lump,
 		say "The brazier's pretty hot. I don't want to damage [the noun]." instead;
 
+Instead of burning something when the brazier is visible and the noun is not a candle and the noun is not a wax lump:
+	try inserting the noun into the brazier.
+
 Instead of inserting something into the brazier:
 	consider the wax-mixing rules for the noun;
 
@@ -7202,6 +7207,9 @@ A wax-mixing rule for a wax lump (called w) when the brazier contains a wax lump
 	rule succeeds;
 
 Section 3 - Knife-scraping
+
+Does the player mean scraping a molten wax lump which is in the brazier:
+	it is likely.
 
 Instead of scraping a molten wax lump when the player carries the knife:
 	say "(using the knife)[command clarification break]";
@@ -7422,7 +7430,7 @@ Instead of dropping the work order in the Orrey Hall:
 
 Chapter 4 - Desk
 
-The Brother-Sa'at's desk is a supporter, in the Orrey Hall. The description is "The desk is covered in paper, covered in scribbles."
+The Brother-Sa'at's desk is a supporter, in the Orrey Hall. The description is "The desk is covered in paper, covered in scribbles." Understand "table" as Brother-Sa'at's desk.
 
 The printed name is "desk".
 
@@ -7474,10 +7482,37 @@ Section 2 - Parts of the Orrey machine
 
 Some parts of the Orrey are privately-named, part of the Orrey Machine. The description is "[one of]All the parts of the Orrey are lovingly crafted.[or]Sa'at must have spent a lifetime polishing these.[or]No detail is left undetailed.[cycling]".
 
-Understand "planet", "planets", "sun", "comet", "comets", "meteorites", "meteorite", "meteor", "galaxy", "galaxies", "space", "ball", "balls", "brass", "disc", "discs", "earth", "mars", "venus" as the parts of the Orrey.
+Understand "space", "ball", "balls", "brass", "disc", "discs" as the parts of the Orrey.
 
 Instead of doing something when the parts of the Orrey are physically involved and the action is physical:
 	try taking the Orrey Machine instead.
+
+An Orrey-part is a kind of thing. Every orrey-part is part of the Orrey Machine. An orrey-part is privately-named.
+
+Instead of doing something when an orrey-part is physically involved and the action is physical:
+	try taking the Orrey Machine instead.
+Instead of doing something when an orrey-part is physically involved:
+	say "The parts of the orrey are polished brass."
+
+Some orrey-parts are defined by the Table of Orrey Components.
+
+Table of Orrey Components
+orrey-part			printed name		description
+op-galaxy			"galaxies"				"The galaxies are pressed discs like coins."
+op-sun				"sun"				"The sun is a solid gold ball."
+op-comet			"comets"				"The Orrey has three comets, built on strange elliptical axes."
+op-planet			"planets"				"Each planet is lovingly etched with land-masses, volcanoes and seas."
+op-wire				"thin wires"			"The wires hold the planets and galaxies on their axes"
+op-gear				"gears"				"The Orrey is run by finally wrought gears."
+
+Understand "galaxy", "galaxies" as op-galaxy.
+Understand "sun", "gold/golden ball", "large gold/golden ball" as op-sun.
+Understand "comet", "comets", "meteor", "meteors", "meteorites", "whipping" as op-comet.
+Understand "planet", "planets", "earth", "mars", "venus", "jupiter", "saturn", "mercury", "neptune", "pluto", "uranus", "land-masses", "land masses", "land", "volcano", "volcanoes", "sea", "seas", "coloured", "ball", "balls" as op-planet.
+Understand "wire", "wires", "thin", "axis", "axes" as op-wire.
+Understand "gear", "gears" as op-gear.
+
+The op-galaxy, op-comet, op-wire, op-gear and op-planet are plural-named.
 
 
 Part B - Bureaucracy puzzle (work order stamping)
@@ -7606,7 +7641,10 @@ Chapter 2 - Scenery
 
 Section 1 - Initiates
 
-Some initiates are scenery, in the Cyclical Library. "Between where I am, and the monks around the altar back in the Cathedral, comes a long period with a shaved head but no dining rights. The boys here are studying hard because they're getting hungry."
+Some initiates are people, in the Cyclical Library. "Between where I am, and the monks around the altar back in the Cathedral, comes a long period with a shaved head but no dining rights. The boys here are studying hard because they're getting hungry."
+
+Rule for writing a paragraph about the initiates:
+	now the initiates are mentioned.
 
 Understand "monk", "monks", "reader", "readers", "initiate", "boys", "kids", "guys" as the initiates.
 
@@ -7624,7 +7662,10 @@ Section 2 - Library Tables
 
 Some library tables are a supporter, scenery, in the cyclical library. "A few long tables for working."
 
-Understand "table", "desks", "desk" as the library tables.
+Understand "table", "desks", "desk", "long tables" as the library tables.
+
+Instead of searching the library tables when the gigantic tome is visible:
+	say "On one of the tables is a gigantic Tome."
 
 Section 3 - Bookshelves
 
@@ -7644,6 +7685,7 @@ Understand "chandelier", "machine" as the contraption.
 The description is "Suspended from the centre of the ceiling the contraption is covered in controls. Somehow what you select down here on ground level gets fed into the mechanism that controls the walls. There must be wires running up inside the tubes and turning cogs overhead. "
 
 Instead of doing something when the contraption is physically involved:
+	if attacking, say "I'd get in trouble if I did that." instead;
 	say "You'd need to be specific on which control I should use, and how.";
 
 Instead of entering or climbing the contraption:
@@ -7652,6 +7694,10 @@ Instead of entering or climbing the contraption:
 Some controls are part of the contraption. The description is "The controls consist of three cranks (one steel, one brass and one gold), beneath which are three rotating cylindrical dials engraved with numerals and the letters X, Y and Z, showing [i][value of X control], [value of Y control], [value of Z control][r]. Next to all this is an iron chain that runs right back up to the ceiling."
 
 Understand "tumblers", "numbers", "values", "numerals", "cranks", "cylindrical", "dials", "meters", "main controls", "three controls" as the controls.
+
+Instead of doing something when the controls is physically involved:
+	if attacking, say "I'd get in trouble if I did that." instead;
+	say "You'd need to be specific on which control I should use, and how.";
 
 Instead of using or switching on the controls:
 	say "If I just mess about at random with these things I'll probably turn the whole library inside out. Best to be specific. Which control, which way?";
@@ -7775,7 +7821,7 @@ Section 5 - Card Catalogue
 
 A card catalogue is in the Cyclical Library. "By the door to the northeast is a card catalogue. That'll be gone as soon as they work out how to do something more useful with a keyhole than just type letters onto paper."
 
-Understand "index", "cards", "catalog" as the card catalogue.
+Understand "index", "cards", "catalog", "box of" as the card catalogue.
 
 The description is "It's a box of index cards, filed alphabetically. Easy to use, unlike the contraption that controls the shelves! I just need to look up whatever title I'm after."
 
@@ -7916,7 +7962,7 @@ Instead of going west in the presence of the secret ladder:
 Instead of going inside in the presence of the secret ladder:
 	try climbing the secret ladder;
 
-Instead of climbing the secret ladder:
+Instead of climbing or entering the secret ladder:
 	say "I scurry up the rungs of the ladder. A few squeak and bend but none of them break.[paragraph break]And then I'm out on a narrow ledge, high up near the Cathedral's roof! Mustn't look down!";
 	move the player to Among the Gargoyles;
 
@@ -8864,6 +8910,9 @@ The printed name of the gargoyles of vice is "gargoyles".
 Instead of climbing the gargoyles of vice:
 	say "I'm not going to let go of them, am I? I don't fancy keeping my balance up here.";
 
+Instead of touching the gargoyles of vice:
+	say "The gargoyles are as crisply carved as the day they were made."
+
 Section 2 - Choir Floor
 
 The choir floor is a backdrop, in Among the Gargoyles, Lower Gears and Upper Gears. "[if the location is not Upper Gears]The floor looks hard and very far away. Great.[otherwise]I can't see the floor any more from this height.[end if]"
@@ -8910,6 +8959,9 @@ Instead of climbing the gearwheels when in Among the Gargoyles:
 
 Instead of doing something when in the Rafters and the gearwheels are physically involved:
 	say "They're back across the space from me.";
+
+Instead of turning or pushing or pulling or taking or touching the gearwheels:
+	say "They'd take my hand off without a second thought."
 
 
 Part 6 - Lower Gears
@@ -8995,7 +9047,7 @@ Chapter 3 - Objects
 
 Section 1 - Barrel
 
-A barrel is fixed in place, in the Upper Gears. "[if thick chain is gripped]The chain I'm holding onto runs out of the barrel beside me[else]Right beside me is a barrel with a crank, from which a thick iron chain runs up to a pulley near the top of the window[end if]. [if iron weight is low]The counterweight has fallen and the barrel must be empty of chain[else]A enormous counterweight hangs up there.[end if]."
+A barrel is fixed in place, in the Upper Gears. "[if thick chain is gripped]The chain I'm holding onto runs out of the barrel beside me[else]Right beside me is a barrel with a crank, from which a thick iron chain runs up to a pulley near the top of the window[end if]. [if iron weight is low]The counterweight has fallen and the barrel must be empty of chain[else]A enormous counterweight hangs up there[end if]."
 
 The description of the barrel is "The barrel feeds out a long iron chain to a pulley above the rose window. The barrel has a crank on front and also a release lever. [if iron weight is low]The barrel is almost empty: the counterweight has spooled out plenty of chain.[else]The chain is stiff and taut thanks to the counterweight, high up by the beams.[end if]"
 
@@ -9046,7 +9098,7 @@ Instead of climbing or jumping on the gearwheels when in Upper Gears:
 
 Understand "shaft", "hands", "beam", "metal beam" as the gearwheels when the location is Upper Gears.
 
-Understand "rung", "rungs", "ladder", "ladders", "hold", "holds", "ladderhold", "ladderholds", "ladder-hold", "ladder-holds", "vertical", "pulley", "pulleys" as the gearwheels when the location is Upper Gears.
+Understand "rung", "rungs", "ladder", "ladders", "hold", "holds", "ladderhold", "ladderholds", "ladder-hold", "ladder-holds", "vertical", "pulley", "pulleys", "chains" as the gearwheels when the location is Upper Gears.
 
 Section 2 - Rose Window
 
@@ -9224,7 +9276,7 @@ Rule for printing the description of the rose window when in Behind the Clock Fa
 
 Book 5 - The Roofs of the City
 
-Cathedral Roof is a region. The Minute Hand, Parapet are in Cathedral Roof.
+Cathedral Roof is a region. The Minute Hand, Parapet, Buttress are in Cathedral Roof.
 
 Roofs of the City is a region. Rooftop 1, Rooftop 2,  Rooftop 3, Rooftop 4, Rooftop 5, Sloping Roofs, Weather Station, Observation Platform are in the Roofs of the City.
 
@@ -9304,7 +9356,10 @@ Instead of going down in Minute Hand:
 	try jumping.
 
 Instead of jumping in Minute Hand:
-	say "No chance. It's too far. I'd have my neck in pieces before my feet hit the stone.";
+	say "If the Figure can do it, then so can I. And if the Figure can [i]survive[r] it, well, maybe I can too... I step off the metal bar...";
+	change the current script to {};
+	move the player to the Parapet;
+[	say "No chance. It's too far. I'd have my neck in pieces before my feet hit the stone.";]
 
 Chapter 2 - Scenery
 
@@ -9337,12 +9392,27 @@ Instead of dropping the iron bar:
 
 Section 4 - Abbey Roof
 
-The distant abbey roof is scenery, in Minute Hand. "In the Abbey roof I can see the single dark square of a missing tile."
+The distant abbey roof is a privately-named, backdrop, in Cathedral Roof, in Roofs of the City. "In the Abbey roof I can see the single dark square of a missing tile." The printed name is "Abbey roof".
 
-Understand "square", "dark", "missing", "tile" as the distant abbey roof. The printed name is "Abbey roof".
+Understand "square", "dark", "missing", "tile", "abbey roof", "abbey" as the distant abbey roof. 
 
-Instead of doing something when the distant Abbey Roof is physically involved: say "It's miles away."
+Instead of doing something when the distant Abbey Roof is physically involved: 
+	say "It's far away."
 
+Instead of approaching the distant Abbey Roof:
+	try entering the distant Abbey roof instead.
+
+Section 4b - Cathedral Roof
+
+The distant cathedral roof is a privately-named, backdrop, in Cathedral Roof, in Roofs of the City. "The dome of the Cathedral dominates the skyline." The printed name is "Cathedral dome".
+
+Understand "cathedral", "dome", "cathedral roof" as the distant cathedral roof.
+
+Instead of doing something when the distant cathedral Roof is physically involved: 
+	say "It's out of reach."
+
+Instead of approaching the distant cathedral Roof:
+	try entering the distant cathedral roof instead.
 
 Section 4 - Parapet 
 
@@ -9450,6 +9520,10 @@ Part 3 - Buttress
 
 Chapter 1 - Description
 
+After going from the Parapet to the Buttress:
+	say "I hurl myself in pursuit!";
+	continue the action;
+
 Buttress is a room, exterior, west of Parapet. "I'm not on the roof anymore: I'm perched on a narrow stone arch that curves out from the wall and down to the ground. Hopefully I'm not going [i]that[r] way any time soon... This is where I saw the Figure jump across to the next roof, though now he's disappeared from sight." 
 
 Instead of making to leave in the Buttress:
@@ -9467,6 +9541,9 @@ Instead of falling when in the Buttress:
 Instead of jumping when in the Buttress:
 	say "Heart in mouth? Check. Fingers ready to claw the roof? Ready. Then – here goes![paragraph break]I spring like a cat – like a [i]flying[r] squirrel – like a mouse hit out of the kitchen by the Cook wielding a meat-tenderizer – I hurl myself across the gap and thump down on to the roof beyond. Good thing this is a Council building: they make their roofs good and firm.";
 	move the player to Rooftop 1;
+
+Instead of approaching the escaping Figure when in the Buttress:
+	try jumping.
 
 Chapter 2 - Scenery
 
@@ -9519,7 +9596,7 @@ Chapter 2 - Scenery
 
 Section 1 - Chimneys & Rods
 
-Some chimneys are a backdrop, in Rooftop 1, Rooftop 3, Rooftop 4, Sloping Roofs. "Who would have thought people kept so much rubbish up here, hidden out of sight? This isn't [i]precision engineering[r], all these chimneys, this is a [i]great big mess of stuff[r]. It's not Right or Proper at all." Understand "chimney", "stuff" as the chimneys.
+Some chimneys are a backdrop, in Rooftop 1, Rooftop 3, Rooftop 4, Sloping Roofs. "Who would have thought people kept so much rubbish up here, hidden out of sight? This isn't [i]precision engineering[r], all these chimneys, this is a [i]great big mess of stuff[r]. It's not Right or Proper at all." Understand "chimney", "stuff", "tall chimneys" as the chimneys.
 
 Instead of attacking or pushing or taking the chimneys:
 	say "I couldn't pull this stuff apart, the lightning rods and chimneys are all solid – even if they are a mess.";
@@ -9972,6 +10049,12 @@ A large tarp is in Rooftop 4. "[one of]A large tarp is thrown over something in 
 
 Understand "tarpaulin", "sheet", "roll", "roll of" as the tarp. The printed name of the tarp is "tarp".
 
+Instead of touching the tarp:
+	say "It's smooth as metal."
+
+Instead of wearing the tarp:
+	say "It's just a big square of tarpaulin, there are no holes or anything."
+
 Instead of slicing the tarp with the knife:
 	say "The tarp is pretty tough: the knife probably couldn't get through it (and I don't see a reason to try!)"
 
@@ -10022,7 +10105,7 @@ Instead of going through the twelve-foot gap when the plank bridge is off-stage:
 	say "It's a twelve-foot gap. I can't jump that!";
 	
 Last instead of going through the twelve-foot gap when the player is carrying the length of piping:
-	say "With this pipe in two I'd be too heavy to get across the plank bridge[one of]. (Even though it might help my balance!)[or].[stopping]"
+	say "With this pipe in tow I'd be too heavy to get across the plank bridge[one of]. (Even though it might help my balance!)[or].[stopping]"
 
 Instead of climbing or entering or standing on the wooden board when the wooden board is in the notch:
 	try going south.
@@ -10382,6 +10465,9 @@ Instead of turning the compass backwards:
 Instead of turning the compass forwards:
 	try direction-setting the compass to clockwise of the way of the compass;
 
+Instead of direction-setting the compass to the way of the compass:
+	say "The compass points [way of the compass] already.";
+
 After direction-setting the compass to a direction:
 	say "I flip the compass-pointer round to [way of the compass][one of]. It moves easily: well-oiled is well-placed, as they say.[or].[stopping]";
 
@@ -10412,8 +10498,10 @@ The Weather Station is an exterior room. "[one of]Good Grease! This roof is like
 
 Index map with Weather Station mapped south of Rooftop 4.
 
+Before going north in Weather Station:
+	try entering the inaccessible board instead.
 Instead of jumping in Weather Station:
-	say "The wooden plank is too far away for me to reach now.";
+	try entering the inaccessible board instead.
 
 Instead of making to leave in Weather Station:
 	try going up.
@@ -10427,14 +10515,15 @@ Section 1 - Chimneys
 
 [Backdrop]
 
+
 Section 2 - Rooftop / Bridge
 
 The inaccessible board is scenery, privately-named, in the Weather Station. "The board sticks out over the alley below. It doesn't go half as far across as I thought it did when I took my jump. I'm glad I made it in one piece!"
 
-Understand "board", "bridge", "plank", "solid", "wooden", "long" as the inaccessible board. The printed name of the inaccessible board is "bridge".
+Understand  "solid", "wooden", "plank", "long", "board", "bridge" as the inaccessible board. The printed name of the inaccessible board is "bridge".
 
-Instead of jumping on or entering the inaccessible board:
-	say "[one of]I can see myself jumping from the roof-edge onto the board, and then going down as I land, and then pausing for a moment like a penduluum at the far end of its swing, and then pushing back up into the air again and catapulting off into space... so, no thanks. I'm staying here.[or]It's just too far for me to get onto safely.[stopping]"
+Before jumping on or entering or approaching the inaccessible board:
+	say "[one of]I can see myself jumping from the roof-edge onto the board, and then going down as I land, and then pausing for a moment like a penduluum at the far end of its swing, and then pushing back up into the air again and catapulting off into space... so, no thanks. I'm staying here.[or]The wooden plank is just too far away for me to get to safely.[stopping]" instead.
 
 Instead of doing something with the inaccessible board:
 	say "It's too far from the edge of the roof to reach.";
@@ -10449,13 +10538,13 @@ Instead of doing something when the meters are physically involved:
 	say "[one of]I don't want to draw attention to myself by fiddling with them, do I?[or]These are delicate Holy Instruments, I shouldn't play with them![or]I'm not going to fiddle the meters. That would be wrong.[cycling]";
 
 Instead of examining the various meters when the player's command includes "barometer/barometers":
-	say "Barometers measure air pressure."
+	say "The air here is heavy, apparently, though I can't feel it."
 
 Instead of examining the various meters when the player's command includes "thermometer/thermometers":
-	say "Thermometers measure air temperature."
+	say "They disagree, depending on how much shade they're in."
 
 Instead of examining the various meters when the player's command includes "precipitometer/precipitometers/tube/tubes":
-	say "Precipitometers measure rainfall."
+	say "'Precipitometer' is a fancy name for 'thin bucket'."
 
 Section 4 - Metal steps
 
@@ -10471,7 +10560,7 @@ Instead of climbing or approaching the metal steps:
 
 Section 5 - Hatch	
 
-The hatch is a locked door, scenery, down from the Weather Station. "A locked metal hatch in the roof."
+The hatch is a locked door, scenery, down from the Weather Station. "A locked metal hatch in the roof." Understand "metal", "locked", "closed" as the hatch.
 
 Instead of entering the hatch when the player's command includes "stand on":
 	try jumping on the hatch.
@@ -10509,7 +10598,10 @@ Does the player mean inserting the vent into the weather balloon:
 Does the player mean putting the weather balloon on the vent:
 	it is likely.
 
-Understand "pipe", "steam", "piping", "smoke", "end", "hot steam/smoke", "chimney" as vent.
+Understand "pipe", "steam", "piping", "smoke", "end", "hot steam/smoke", "chimney", "length of", "my length of" as vent.
+
+Instead of touching or cleaning the vent:
+	say "It's hot!"
 
 Instead of taking or turning or direction-setting the vent to:
 	say "It's far too difficult to move from this end.";
@@ -10517,9 +10609,13 @@ Instead of taking or turning or direction-setting the vent to:
 Instead of putting the large tarp on the vent:
 	say "I could wrap it up, but it'd be too cumbersome to move from this end anyway."
 
+Instead of listening when the vent is in the location:
+	say "The pipe is producing a steady puffing sound."
+
+
 Section 5 - Spigot
 
-The small spigot is a thing, fixed in place, in the Weather Station. "[if weather balloon is inflated]The inflated weather balloon bobs like an eager puppy beside the spigot it's tied to[else]In one corner, a small pipe emerges with a spigot on the end; it's next to (and tied to) a deflated weather balloon[end if]. [If the Weather Station contains the vent]Just above is my length of my piping, which is much more impressive: pumping out hot steam and smoke.[end if]"
+The small spigot is a thing, fixed in place, in the Weather Station. "[if weather balloon is inflated]The inflated weather balloon bobs like an eager puppy beside the spigot it's tied to[else]In one corner, a small pipe emerges with a spigot on the end; it's next to (and tied to) a deflated weather balloon[end if]. [If the Weather Station contains the vent]Just above is my length of piping, which is much more impressive: pumping out hot steam and smoke.[end if]"
 
 The description of the small spigot is "A pipe sticks out of the roof and ends in a small spigot. It must be used for filling the balloon. The tap on the spigot is a flat screw-head, set flush with the pipe."
 
@@ -10554,6 +10650,9 @@ First for supplying a missing second noun when untying the weather balloon from:
 	change the second noun to the small spigot;	
 
 Understand "basket", "string" as the weather balloon.
+
+Understand "deflated" as the weather balloon when the weather balloon is deflated.
+Understand "inflated" as the weather balloon when the weather balloon is inflated.
 
 The weather balloon can be inflated or deflated. The weather balloon is deflated.
 
@@ -13599,6 +13698,8 @@ Chapter 1 - Description
 
 North Side is a room. East of the North Side is north of the Front Door. "The wooden boards are gone - this is just an island of rubble and sheet metal, as though the warehouse to the south had been built from the ruins of some older, larger building. Rats skim across the pools of water. Skirting round the warehouse to east or west will mean picking my way over unsteady piles of brick and in the scrappy moonlight I can barely see my own feet.[paragraph break]Which all means, if they unleash the dogs on me, this'd be a terrible place to try and run." The printed name is "North Side of Warehouse".
 
+Understand "swim" as jumping when the location is the North Side.
+
 Before running outside when in the North Side:
 	say "A terrible place." instead.
 
@@ -14972,10 +15073,23 @@ Instead of switching on the gas controls:
 Rule for writing a paragraph about the gas controls when the ignition button is ignited and the Gas Platform is murky:
 	say "I'm surrounded by a ring of tiny blue stars.";
 
+Section 1b - Some fires, little and large
+
 A ring of tiny stars is a thing. The description is "Tiny points of gentle blue light, all around me, the size of pinheads. They're close enough to touch except for some reason I can't touch them (or they're infinitely far away, there's no way I can be sure.)". Understand "blue" as the ring of tiny stars.
 
 Instead of doing something when the ring of tiny stars are physically involved:
 	say "[one of]The stars seem to be just a fraction beyond wherever I think they are, like they were slowly growing and moving away at the same time.[or]I can't seem to reach them.[stopping]";
+
+Some gas flames are a backdrop. The description is "Blue flames burn all around the walls of this cavernous space, gleaming off the sides of the men[if the location is the gas Platform] below[end if]."  
+
+Understand "gas-lamps", "lamp", "light", "lights", "gas-light", "gas-lights", "gaslamps", "gaslamp", "gaslight", "gaslights", "lamps", "carved/earth walls", "carved earth walls", "hundred" as the gas flames.
+
+Before doing something when the backdrop-walls are involved and the gas flames are visible:
+	redirect the action from the backdrop-walls to the gas flames, and try that instead.
+
+Instead of doing something when the gas flames are physically involved:
+	say "They're well out of my reach."
+
 
 Section 2 - Ignition Bolt
 
@@ -15036,8 +15150,14 @@ A bolt-turning rule when the ignition button is ignited:
 	now the Gas Platform is bright;
 	remove the monsters from play;
 	remove the ring of tiny stars from play;
+	move the gas flames backdrop to all gas-lit warehouse rooms;
 	move glimpse_men to the Gas Platform;
 	say "I heave the bolt around and the stars on the wall erupt into flame, filling the chamber with light! And what a chamber – deep and wide. This is like standing inside the clock of the Cathedral all over again. The room below must be carved out of the rock below the riverbed, and its wall are crisscrossed with pipes which are now providing light.[paragraph break]And the room is full of people. Men, standing in rows and staring at me. I freeze myself to the spot. They do the same. It's like the room was filled with mirrors reflecting my image. I wave a hand but nothing happens. Nothing at all. Then I realise that they're statues - statues in full armour - gleaming metal statues, more than I could count without growing thirty or forty more hands.[paragraph break]Whatever they are they must be connected to the Figure. There’s nothing for it, Wren, but to get a closer look somehow..." instead;
+
+Definition: a room is gas-lit warehouse:
+	if it is the Warehouse Basement, yes;
+	if it is the Gas Platform, yes;
+	no.
 
 Section 3 - Lever
 
