@@ -3,6 +3,7 @@
 
 [  Change Log
 When			Who		What
+27-Sep-2009			J. Ingold	Eric's feedback.
 27-Sep-2009			j. ingold		Paul's #5. Fixed a few showstoppers. Some minor additions still outstanding, but I've got a list of them.
 26-Sep-2009			J. Ingold	Eric's feedback.
 26-Sep-2009			J. Ingold	Paul's feedback
@@ -383,6 +384,7 @@ LibMsg <who disambiguation>	"Who do you mean, "
 LibMsg <which disambiguation>	"Which do you mean, " 
 LibMsg <whom disambiguation>	"Whom do you want[if main object is not the player] [the %][otherwise] me[end if] to [the last command]?" 
 LibMsg <what disambiguation>	"What do you want[if main object is not the player] [the %][otherwise] me[end if] to [the last command]?" 
+LibMsg <block kissing>			"You should keep your mind on the game."
 
 [ Fix tiny bug in CLM: ]
 To say that would be less than courteous:
@@ -7433,13 +7435,13 @@ Before asking Brother Sa'at for the work order:
 Before asking Brother Sa'at for the Principia Planetaria:
 	try taking the Principia Planetaria instead.
 
-Instead of dropping the sealed work order:
+Instead of dropping the sealed work order when the Dank Alley is not visited:
 	say "Better hang onto it. You never know when something with the seal on it might come in handy." instead;
 
-Instead of putting the sealed work order on something:
+Instead of putting the sealed work order on something when the Dank Alley is not visited:
 	say "Better hang onto it. You never know when something with the seal on it might come in handy." instead;
 
-Instead of inserting the sealed work order into something:
+Instead of inserting the sealed work order into something when the Dank Alley is not visited:
 	say "Better hang onto it. You never know when something with the seal on it might come in handy." instead;
 
 Instead of dropping the work order in the Orrey Hall:
@@ -11336,7 +11338,7 @@ The scrap of paper is a thing. The description of the scrap of paper is "'The Co
 
 Understand "address" as the scrap of paper.
 
-Instead of attacking or eating or dropping the scrap of paper:
+Instead of attacking or eating or dropping the scrap of paper when the Grand Foyer is not visited:
 	say "Don't. I might need it, in case my memory springs a sprocket."
 
 Section 5 - When enthusiastic
@@ -11587,7 +11589,7 @@ Instead of giving the Perpetuum Mobile diagram to Covalt:
 Chapter 3 - Clutter
 
 The junk is privately-named, scenery, clutter, in the Clock Shop. "Clutter is assorted stuff filling up space. It'd be better to say this room has 'gaps', one of which I'm standing in and another I'm using to breathe. The rest is filled by the workbench, the wall of pendulums of all shapes and sizes, and, everywhere else, clocks and clock parts."
-Understand "assorted", "clutter", "junk", "stuff", "mess", "things", "gaps", "parts", "shop", "workshop", "room", "junk-pile" as the junk.
+Understand "assorted", "clutter", "junk", "stuff", "mess", "things", "gaps", "parts", "shop", "workshop", "room", "junk-pile", "junk-piles" as the junk.
 
 Understand "scrap" as the junk when the scrap of paper is not visible.
 
@@ -11612,6 +11614,12 @@ Instead of looking under the solid table:
 
 
 Some assorted clocks are scenery, privately-named, clutter, in the Clock Shop. "The clocks are every shape and size (including one with an oval dial whose hands extend and shrink as they go round; it's creepy to watch). A water clock keeps time by dripping water through a tiny hole. And at the back, there's a small mechanical monkey and a strange device made of wires and metal plates." Understand "clock", "clocks" as the assorted clocks. The printed name is "clocks".
+
+Instead of taking or pushing or pulling or attacking the assorted clocks:
+	say "There are about a hundred of them, but only a few really stand out."
+
+Instead of turning the assorted clocks:
+	say "There are about a hundred, with a hundred winding keys."
 
 The workbench is scenery, a supporter, clutter, in the Clock Shop. "The workbench is fitted with tools, with more tools piled on top. It's then dusted over with clock parts, some so careful and delicate they deserve individual felt cushion – this Covalt is clearly a lunatic, scattering them about like this. In one corner of the workbench, there's also a strange brown lump." Understand "bench" as the workbench.
 
@@ -11650,7 +11658,7 @@ Instead of doing something when the wall of pendulums is physically involved:
 Instead of searching the wall of pendulums:
 	say "Standing on tip-toes I can peer between the penduluums[check in case we've found it in the noun]";
 
-The mechanical monkey is scenery, clutter, in the Clock Shop. "It's a toy, or a pet, like Gubbler's salamander (and about the same size). Right now it's wound down." Understand "toy", "pet", "head" as the mechanical monkey.
+The mechanical monkey is scenery, clutter, in the Clock Shop. "It's a toy, or a pet, like Gubbler's salamander (and about the same size). Right now it's wound down." Understand "small", "toy", "pet", "head" as the mechanical monkey.
 
 Instead of taking the mechanical monkey:
 	say "[one of]'Leave that,' Covalt snaps. 'It'll take your fingers off, it's mean.'[or]Covalt shakes his head. 'I'm not joking.'[stopping]";
@@ -11774,7 +11782,7 @@ Chapter 2 - Scenery
 
 Section 1 - Buildings
 
-Some buildings are a backdrop, in the street and the Counting House Steps. "It's a rich part of town – funny that the street is so dirty. There aren't even any lamps. By night this place is probably pitch dark." Understand "houses", "street", "streets", "dark", "town", "side-street", "side-streets", "side street/streets", "alley", "alleyway", "alley-way" as the buildings.
+Some buildings are a backdrop, in the street and the Counting House Steps. "It's a rich part of town – funny that the street is so dirty. There aren't even any lamps. By night this place is probably pitch dark." Understand "sour", "houses", "street", "streets", "dark", "town", "side-street", "side-streets", "side street/streets", "alley", "alleyway", "alley-way" as the buildings.
 
 Instead of doing something when the buildings are physically involved:
 	say "I'd better keep my mind on the Counting House. I'm not a tourist!";
@@ -11837,12 +11845,12 @@ Chapter 2 - Scenery
 
 Section 1 - Counting House
 
-The front of the Counting House is a door, open, not openable, scenery, privately-named, north of the Counting House Steps, south of the Grand Foyer. "[if the location is the Counting House Steps]The Counting House is shaped like a big block of hard cheese, all straight edges and smooth surfaces. Even the brass doors have a yellowy luster that might be gold or might be oil. They've engraved, of course, Babbage, Godel and Ada of Lovelace, who I'm quite sure isn't a real saint even though she's got the cog-wheel over head like all the others.[otherwise]The large brass doors to the street are padded on this side with thick red leather.[end if]". The printed name is "Counting House".
+The front of the Counting House is a door, open, not openable, scenery, privately-named, north of the Counting House Steps, south of the Grand Foyer. "[if the location is the Counting House Steps]The Counting House is shaped like a big block of hard cheese, all straight edges and smooth surfaces. Even the brass doors have a yellowy luster that might be gold or might be oil. They've engraved, of course, Babbage, Godel and Ada of Lovelace, who I'm quite sure isn't a real saint even though she's got the cog-wheel over her head like all the others.[otherwise]The large brass doors to the street are padded on this side with thick red leather.[end if]". The printed name is "Counting House".
 
 Rule for printing the name of the front of the Counting House when the location is the Grand Foyer:
 	say "brass doors";
 
-Understand "counting", "house", "building", "saints", "cheese", "block", "block of cheese", "yellow", "yellowy", "gold", "golden", "oil", "oily", "luster", "saints", "carvings" as the front of the Counting House when the location is the Counting House Steps.
+Understand "counting", "house", "building", "saints", "cheese", "block", "block of cheese", "yellow", "yellowy", "gold", "golden", "oil", "oily", "luster", "saints", "carvings", "steps", "step" as the front of the Counting House when the location is the Counting House Steps.
 
 Understand "large", "brass", "doors", "door" as the front of the Counting House.
 
@@ -11851,7 +11859,7 @@ Understand "south", "padded", "thick", "red", "leather" as the front of the Coun
 Instead of going through the front of the Counting House from the Counting House Steps:
 	fire TRIG_COUNTING_HOUSE;
 
-Instead of opening the front of the Counting House:
+Instead of climbing or opening the front of the Counting House:
 	try entering the front of the Counting House instead;
 
 Section 2 - Parts of the Facade
@@ -11907,9 +11915,9 @@ Chapter 3 - Guards
 
 Some Counting House guards are a person, scenery, privately-named, in the Counting House Steps. "The guards are dressed in full livery: bright red uniforms with pendulums hanging from both shoulders, embroidered cog-links on their elbows, knee-high black boots tipped with metal pointers. Each one carries a flat spear: the one carried by the guard on the left is longer than the one carried by the guard on the right." The printed name is "guards".
 
-Understand "guard", "guards", "uniformed",  "on the", "left", "right", "first guard/one/man", "second guard/one/man", "man", "men"   as the Counting House Guards.
+Understand "wide",  "uniformed",   "first guard/one/man", "second guard/one/man",  "guard", "guards", "man", "men", "on the", "left", "right"   as the Counting House Guards.
 
-Instead of attacking the Counting House guards:
+Instead of attacking or pushing or pulling or turning the Counting House guards:
 	say "I don't think I do very well in a fight against these two."
 
 Instead of attacking the Counting House guards with something:
@@ -12005,8 +12013,10 @@ CT_GUARD_COUNTINGHOUSE	"counting" or "house" or "building"
 CT_GUARD_CLOCKWORK		"[clockwork]" 
 CT_GUARD_SAINTS		"saints" or "newton" or "babbage" or "breguet" or "godel"
 CT_GUARD_DOOR		"door" or "doors"
+CT_GUARD_COVALT		"covalt"
+CT_GUARD_PERPETUUM	"[perpetuum]"
 
-CT_GUARD_ENTRY is clustered with CT_GUARD_PROOF, CT_GUARD_CATHEDRAL, CT_GUARD_FIGURE, CT_GUARD_PEOPLE, CT_GUARD_ENGINE, CT_GUARD_COUNTINGHOUSE, CT_GUARD_CLOCKWORK, CT_GUARD_SAINTS, CT_GUARD_GUARDS, CT_GUARD_DOOR.
+CT_GUARD_ENTRY is clustered with CT_GUARD_PROOF, CT_GUARD_CATHEDRAL, CT_GUARD_FIGURE, CT_GUARD_PEOPLE, CT_GUARD_ENGINE, CT_GUARD_COUNTINGHOUSE, CT_GUARD_CLOCKWORK, CT_GUARD_SAINTS, CT_GUARD_GUARDS, CT_GUARD_DOOR, CT_GUARD_COVALT, CT_GUARD_PERPETUUM.
 
 [These topics may only be fired once.]
 Rule for firing a fired conversation topic that is clustered with CT_GUARD_ENTRY:
@@ -12037,7 +12047,9 @@ CT_GUARD_CLOCKWORK is a conversation topic. The enquiry text is "'But how does c
 
 CT_GUARD_SAINTS is a conversation topic. The enquiry text is "'Which are those saints on the door?' I ask.". The response text is "'The saints of no-you-can't and go-pester-someone-else,' the second guard replies. The first rolls his eyes but says nothing.".
 
+CT_GUARD_COVALT is a conversation topic. The enquiry text is "They won't know him. And the less they know [i]about[r] him the better."
 
+CT_GUARD_PERPETUUM is a conversation topic. The enquiry text is "I don't want to tell them about that! They'll have me arrested!"
 
 
 Section 3 - Permit
@@ -12204,9 +12216,17 @@ Instead of putting something on the marble stairs:
 Instead of entering the patterned carpet when the player's command includes "stand on":
 	say "Did you think I was floating in mid-air?"
 
+Instead of entering the patterned carpet when the player is sitting or the player is lying:
+	say "Sounds like a great way to get myself caught."
+
 Instead of entering or approaching the patterned carpet:
 	say "Which way should I go? [run paragraph on]";
 	try listing exits;
+
+Some sparkly brass fittings are scenery in the Grand Foyer. "The whole place seems to have been built out of polished-up parts." Understand "sparkling", "stars", "parts", "part", "fitting" as the sparkly brass fittings.
+
+Instead of doing something when the sparkly brass fittings are physically involved:
+	say "I'd leave grubby fingerprints behind.".
 
 Section 2 - East / West Stairs
 
@@ -12261,6 +12281,9 @@ After going through the glass doors from the Grand Foyer:
 
 Instead of opening the glass doors:
 	try entering the glass doors;
+
+Instead of attacking the glass doors:
+	say "I'm not here to damage anything - I just need to find out where the Figure is, and go!"
 
 Understand "beveled/bevelled", "bubbled", "warped", "bubbles", "warps", "door" as the glass doors.
 
@@ -12448,11 +12471,15 @@ Rule for printing the description of the labeled doors when in the Western Landi
 Rule for printing the description of the labeled doors when in the Eastern Landing:
 	say "The doors have labels: Governor of Logic, Prime Roster, Department of Conceptual Multiplication, Department of Efficiency and Inversing, Bursary and Expenses...";
 
+Instead of listening to the labeled doors:
+	say "The voices are murmuring quietly."
+
 Understand "label", "labelled", "labeled", "door" as the labeled doors when the player can not see the open subtle escape.
 
-Understand "closed", "frosted", "glass", "labels", "doors" as the labeled doors.
+Understand "closed", "frosted", "glass", "labels", "doors", "voice", "voices" as the labeled doors.
 
-Instead of knocking on the labeled doors:
+
+Instead of attacking or knocking on the labeled doors:
 	say "That seems like a great way to get myself caught."
 
 Section 2b - Offices
@@ -12750,7 +12777,7 @@ Instead of doing something when the narrow ladders are physically involved:
 
 Section 2 - Dials
 
-Some small golden dials are a container, open, not openable, in the Engine Room. "On top of each brass spine is a small golden dial fitted with a pointer no thicker than a hair." The description is "[if we have taken the ruby key]Every spindle is topped by a tiny dial.[otherwise]Every spindle is topped by a tiny dial, marked with tiny numbers 0 to 9, along with a question mark, an exclamation mark and an ampersand.[end if]". The printed name is "dials". Understand "gold", "brass", "spindles", "spines", "dial", "spine", "spindle", "pointers", "pointer", "tiny", "mark", "marks", "question", "exclamation", "ampersand", "ampersands" as the small golden dials.
+Some small golden dials are a container, open, not openable, in the Engine Room. "On top of each brass spine is a small golden dial fitted with a pointer no thicker than a hair." The description is "[if we have taken the ruby key]Every spindle is topped by a tiny dial.[otherwise]Every spindle is topped by a tiny dial, marked with tiny numbers 0 to 9, along with a question mark, an exclamation mark and an ampersand.[end if]". The printed name is "dials". Understand "gold", "brass", "spindles", "spines", "dial", "spine", "spindle", "pointers", "pointer", "tiny", "mark", "marks", "question", "exclamation", "ampersand", "ampersands", "strands" as the small golden dials.
 
 After printing the description of the small golden dials:
 	if the ruby key is off-stage:
@@ -13194,6 +13221,9 @@ Instead of giving the punchcard to the Calculatrix Pristina when in Caught:
 Instead of asking the Calculatrix Pristina about when in Caught:
 	say "[one of]She sees my mouth open and cuts me off[or]She cuts me short[stopping]. [run paragraph on]";
 
+Instead of kissing the Calculatrix Pristina:
+	say "I don't think I'll get around her like [i]that[r]!"
+
 Instead of telling the Calculatrix Pristina about when in Caught:
 	try asking the Calculatrix Pristina about "machine";
 Instead of answering the Calculatrix Pristina that when in Caught:
@@ -13510,6 +13540,8 @@ Part 18 - Locative glimpse backdrops
 
 The foyer_glimpse is a locative glimpse backdrop, localising the Grand Foyer, in the Main Platform, in the Eastern Platform, in the Western Platform, in the Engine Room, in the Western Stairs, in the Eastern Stairs, in the Western Balcony, in the Eastern Balcony, in the Western Landing, in the Eastern Landing, in the Eastern Hall, in the Western Hall, in the Long Hall.
 
+The platform_glimpse is a locative glimpse backdrop, localising the Main Platform, in the Eastern Balcony, in the Western Balcony. The printed name is the "platform". The description is "The platform sits amidst the spindles of the machine." Understand "wide", "circular", "platform" as the platform_glimpse.
+
 Book 8 - The Docklands
 
 The Docklands Space is a region. The Dank Alley, the Front Door, the Ledge, the Dock, the North Side, the South Side are in the Docklands Space.
@@ -13525,7 +13557,7 @@ The Dank Alley is a room. "Tall brick walls either side are dripping with damp m
 
 Section 1 - scenery
 
-Understand "brick" , "wall", "walls" as the backdrop-walls when in the Dank Alley. 
+Understand "tall", "brick" , "wall", "walls" as the backdrop-walls when in the Dank Alley. 
 
 Instead of examining the backdrop-walls when in the Dank Alley:
 	say "The walls drip with moss."
@@ -13645,7 +13677,7 @@ Instead of jumping when the creaking wooden boards are visible:
 Some cobbles are scenery in the South Side. 
 
 Before doing something with the cobbles:
-	say "The cobbles are back to the south. Here there are just wooden boards running east-west."
+	say "The cobbles are back to the south. Here there are just wooden boards running east-west." instead.
 
 Some deep shadows are scenery in the South Side. "The shadows fall deeply east and west, right to the corners of the warehouse."
 
@@ -13664,9 +13696,9 @@ Chapter 2 - Scenery
 
 Some warehouse walls are a backdrop, in the South Side, in the Front Door, in the North Side, in the Ledge.
 
-Understand "corrugated", "iron", "nails", "rusty", "metal", "slick" as the warehouse walls.
+Understand "corrugated", "iron", "rusty", "rusted", "nails", "metal", "slick" as the warehouse walls.
 
-Understand "white", "paint", "roman", "numerals", "IV", "VI", "II" as the warehouse walls when in the South Side.
+Understand "brickwork", "white", "paint", "roman", "numerals", "IV", "VI", "II" as the warehouse walls when in the South Side.
 
 Rule for printing the description of the warehouse walls:
 	say "The warehouse walls are made of corrugated iron riveted by rusted nails into brick. ";
@@ -13709,7 +13741,7 @@ Instead of going a direction in Front Door when the noun is due east:
 Instead of making to leave when in the Front Door:
 	try going south.
 
-Understand "brick", "wall", "side", "walls" as the backdrop-walls when in the front door. 
+Understand "brick", "side", "walls", "wall"  as the backdrop-walls when in the front door. 
 
 Rule for printing the name of the backdrop-walls when in the front door:
 	say "brick walls"
@@ -13724,6 +13756,8 @@ Instead of climbing the backdrop-walls when in the Front Door:
 Chapter 2 - Door
 
 A door called the huge iron door is locked, not open, west of the Front Door. "This side of the warehouse is right up against the side wall of another: I could slip around to north or south."
+
+Understand "thick", "metal", "front", "door" as the huge iron door.
 
 The description of the huge iron door is "[one of]The door is made of thick metal – it's amazing the boards below don't break from the weight. It's locked with a huge iron bar and a padlock. It's almost like it's saying to me, Wren, you need to find another way in.[or]The door is closed, locked and impenetrable.[stopping]"
 
@@ -13745,7 +13779,7 @@ Instead of unlocking the huge iron door with the wrench:
 Instead of unlocking the huge iron door with something:
 	say "I don't have a key anything like big enough for this door." instead;
 	
-Instead of climbing the huge iron door:
+Instead of climbing or entering or standing on the huge iron door:
 	say "The iron bar across the door is level with my neck - I can't even get started.";
 
 Instead of attacking the huge iron door:
@@ -13830,6 +13864,9 @@ The rubble is scenery in the North Side. "'Without order there is tardiness,' th
 Instead of searching or looking under or pushing or pulling or turning or attacking the rubble:
 	say "There's nothing but more rubble in the rubble, and then there's the water."
 
+Instead of taking the rubble:
+	say "I'm not here to go wandering off with the ruins of an old warehouse."
+
 Instead of searching or looking under or pushing or pulling or turning or attacking the rubble when the Wrench is not handled:
 	say "In the midst of the rubble is a good-looking wrench. I pick it out. [run paragraph on]";
 	try taking the wrench.
@@ -13869,6 +13906,9 @@ Before going down when in the Dock:
 The River Thymes is a backdrop, in the Dock and the Ledge. "The wide River Thymes disappears into the darkness like someone had knocked a water-glass over a map of the town. On the other side are bright lights and fine buildings: that's Palatine Hill built right by the springs[if the location is the Dock]. The river is bubbling slightly here[end if]."
 
 Understand "bubbling", "bubbles", "bubble" as the River Thymes when in the Dock.
+
+Instead of tasting or drinking the River Thymes:
+	say "I'm not drinking river-water! I'm not quite a drowned rat yet!"
 
 Understand "wet", "dark water", "water", "wide river" as the River Thymes.
 
@@ -13942,7 +13982,7 @@ Section 1 - Loading Bay Door
 
 The loading-bay door is a locked door, privately-named, scenery, closed, east of the Dock, west of Loading Bay. "The door is made of heavy iron plates. It might slide up towards the roof if it wasn't locked down and about as heavy as the crescent moon."
 
-The printed name of the loading-bay door is "massive door". Understand "heavy", "iron", "plates", "plated", "sliding", "door", "lock", "bar", "padlock", "massive", "huge", "metal", "solid" as the loading-bay door.
+The printed name of the loading-bay door is "massive door". Understand "heavy", "massive", "solid", "large", "huge", "metal", "iron", "plates", "plated", "sliding", "door", "lock", "bar", "padlock" as the loading-bay door.
 
 Instead of opening, pushing, pulling or turning the loading-bay door when in the Dock:
 	say "The iron door is firmly locked.";
@@ -14000,7 +14040,7 @@ Before going down when in the Ledge:
 Before going inside when in the Ledge:
 	say "There's no door in the warehouse this side... unless you meant jumping in the water...";
 
-Understand "brick", "wall", "walls" as the backdrop-walls when in the Ledge.
+Understand "brick", "side", "wall", "walls" as the backdrop-walls when in the Ledge.
 
 Rule for printing the name of the backdrop-walls when in the Ledge:
 	say "brick walls"
@@ -14113,6 +14153,17 @@ Instead of going in River 2 when the noun is due west or the noun is north:
 
 Instead of going southeast in River 2:
 	say "That way would take me under the dock, which would hardly be safe, would it?";
+
+Section 1 - Planks from Underwater
+
+The dock planks are a backdrop, in River 1, in River 2. Understand "ramp", "board", "boards", "plank" as the dock planks. "The wooden boards are just shadows above the water."
+
+Instead of doing something when the dock planks are physically involved:
+	say "The planks are out of the water."
+
+Before approaching or climbing or standing on or entering the dock planks:
+	try exiting instead.
+
 
 Chapter 3 - Exiting to Dock
 
@@ -14348,7 +14399,7 @@ Instead of examining the backdrop-walls when the location is warehouse-interior:
 
 Chapter 1 - Description
 
-The Loading Bay is a room. "[one of]I'm inside the warehouse but there's no sign of the Figure. Or anyone else. Or anything. [once only]This warehouse may be massive but it seems completely empty, [if the warehouse door is open]just that crate blocking the drain,[otherwise]just one huge crate wrapped all round with thick iron chains,[end if] and some piles of debris like those outside. There's enough floor space for a game of clockball, continuing off to the south.[paragraph break]About halfway down is the large metal door I saw from the dock. Above it a fat pipe crosses from wall to wall. The drain I came up from is by the north wall.". The printed name is "Loading".
+The Loading Bay is a room. "[one of]I'm inside the warehouse but there's no sign of the Figure. Or anyone else. Or anything. [once only]This warehouse may be massive but it seems completely empty, [if the warehouse door is open]just that crate blocking the drain,[otherwise]just one huge crate wrapped all round with thick iron chains,[end if] and some piles of debris like those outside. There's enough floor space continuing off to the south for a game of clockball.[paragraph break]About halfway down is the large metal door I saw from the dock. Above it a fat pipe crosses from wall to wall. The drain I came up from is by the north wall.". The printed name is "Loading".
 
 Instead of making to leave when in the Loading Bay:
 	try going down.
@@ -14370,7 +14421,7 @@ Section 2 - Junk
 
 Some debris [we have 'junk' in the clock shop and 'rubble' outside the warehouse...] is scenery, privately-named, in the Loading Bay. 
 
-The printed name of the debris is "junk". Understand "junk", "debris", "rubble", "stone/stones", "broken", "beam/beams", "wood", "wooden", "pile/piles", "pile/piles of", "tile/tiles", "ceramic", "guttering", "gutter/gutters" as the debris. 
+The printed name of the debris is "junk". Understand "broken", "ceramic", "wood", "wooden", "junk", "debris", "rubble", "stone/stones", "beam/beams",  "pile/piles", "pile/piles of", "tile/tiles", "guttering", "gutter/gutters" as the debris. 
 
 Rule for printing the description of the debris:
 	say "Broken stone, wooden beams, piles of ceramic tile and guttering, things like that. ";
@@ -14601,7 +14652,7 @@ Section 6 - Crate
 
 An enormous packing crate is scenery, in the Loading Bay. "An enormous packing crate. Whatever’s inside must be important because its wrapped around with iron security chains, almost like they were afraid of whatever’s inside breaking out[if the north end of the rope is tied to the packing crate]. The rope is tied to the crate[end if]."
 
-Understand "chains", "chain", "iron chain/chains", "security", "iron security chain/chains" as the enormous packing crate.
+Understand "huge", "thick", "chains", "chain", "iron chain/chains", "security", "iron security chain/chains" as the enormous packing crate.
 
 Rule for printing the description of the enormous packing crate when the warehouse door is open:
 	say "The crate has dropped into the drain, blocking my way out!";
@@ -14716,6 +14767,8 @@ Rule for printing the description of the north end of the rope:
 
 Understand "rope", "end", "end of", "end of the" as the north end of the rope. The printed name of the north end of the rope is "rope".
 
+Rule for printing the name of the rope while taking inventory:
+	say "part of the rope";
 
 Section 6.0 - Printing Rope
 
@@ -14817,6 +14870,9 @@ Instead of pushing a rope segment to a direction:
 
 Instead of turning a rope segment:
 	try pulling the noun instead;
+
+Instead of touching a rope segment:
+	say "The rope is thick and fibrous."
 		
 
 Section 6.1 - Taking Rope
@@ -14838,7 +14894,7 @@ Report taking a rope segment when the noun is anchored and the other end of the 
 	say "I've picked up the other end of the long rope." instead;
 
 Report taking a rope segment:
-	say "I take hold of the middle of the rope." instead;
+	say "I take hold of the rope." instead;
 
 Section 6.2 Going with Rope
 
@@ -14926,6 +14982,9 @@ Definition: a thing is a cleat:
 	if it is the enormous packing crate, yes;
 	if it is the warehouse door, yes;
 	no;
+
+Instead of fastening a rope segment to a long ladder:
+	say "[one of]That sounds like it would make things [i]very[r] complicated, and won't achieve anything either![or]I can't usefully tie the rope to that.[stopping]".
 
 Instead of tangling a rope segment:
 	say "I could tie it to something - and probably more usefully than just tying it to itself!"
@@ -15087,10 +15146,12 @@ Instead of opening, closing, pulling or pushing the open warehouse door:
 	say "It was hard enough getting it this far! I shouldn’t be ungrateful!";
 
 After going through the warehouse door:
-	say "[one of]Lying on my belly I pull myself through the gap into darkness. Halfway through I have a sudden horrible image: the Figure, standing by the crate in the drain with a candle to the rope that’s holding the enormous door above me. As quick as I can I pull myself through[or]I crawl under the door[stopping][if the player carries the long ladder]. Then I reach back through the gap and pull the ladder after me[end if].";
+	say "[one of]Lying on my belly I pull myself through the gap into darkness. Halfway through I have a sudden horrible mental image: the Figure, standing by the crate in the drain with a candle to the rope that’s holding the enormous door above me. As quick as I can I pull myself through[or]I crawl under the door[stopping][if the player carries the long ladder]. Then I reach back through the gap and pull the ladder after me[end if].";
 	continue the action;
 
-Understand "gap" as the warehouse door when the warehouse door is open.
+Understand "gap" , "crack" as the warehouse door when the warehouse door is open.
+Understand "crack of light", "light" as the warehouse door when the warehouse door is open and the location is the Gas Platform.
+
 
 Section 2b - a Narrow Gap for passing things through
 
@@ -17721,7 +17782,7 @@ Section 3 - Shelf
 
 A rock shelf is scenery, in the Mortuary. "The shelf is hewn from the rock itself, to hold the bandages and the oil. A rack of spices, and behind that, a stack of wooden dowels."
 
-Understand "tools", "tools of the trade" as the rock shelf.
+Understand  "tools", "tools of the trade" as the rock shelf.
 
 Instead of entering the rock shelf:
 	say "It’s too small for me to hide.";
@@ -19046,7 +19107,7 @@ Instead of attacking the wound spring with my lucky clock key:
 	now the third-state of Covalt is 10;
 
 After reading a command when the third-state of Covalt is 10:
-	say "'That’s the most incredible piece of clockwork I ever saw,' he says slowly, furiously, his eyes glowing with anger. 'And you just destroyed it.'[paragraph break]Can Covalt really be angry that I...[paragraph break]'That was well done, young Wren.' He coughs. 'But I tell you, when I build something like that metal man, I’m going to give him an off-switch. Stupid to have to break such a fine machine. Whoever built that... a genius.' He strokes his beard, and gets to his feet – taking the Perpetuum from me as he does so. He’s looking back to normal already: a sour-faced moody old man. 'A genius, and an idiot, too.'[paragraph break]'But who was it?' I demand. 'Who built it?'[paragraph break]'That’s the question,' Covalt answers, gravely. 'For every spring that’s wound on this Earth, there’s a human hand turning the key. No divine mechanics down here. We may be free of this thing –' and he lands a kick squarely in the still automaton’s chest - 'but someone out there was behind it. Someone planning an army and after the Perpetuum.'[paragraph break]Covalt grunts, and scratches his chest with a thick finger. He seems almost to be falling asleep.[paragraph break]'There's clockwork, Wren,' he remarks. 'But then again, there's [i]clockmakers[r].'";
+	say "'That’s the most incredible piece of clockwork I ever saw,' he says slowly, furiously, his eyes glowing with anger. 'And you just destroyed it.'[paragraph break]Can Covalt really be angry that I...[paragraph break]'That was well done, young Wren.' He coughs. 'But I tell you, when I build something like that metal man, I’m going to give him an off-switch. Stupid to have to break such a fine machine. Whoever built that... a genius.' He strokes his beard, and gets to his feet – taking the Perpetuum from me as he does so. He’s looking back to normal already: a sour-faced moody old man. 'A genius, and an idiot, too.'[paragraph break]'But who was it?' I demand. 'Who built it?'[paragraph break]'That’s the question,' Covalt answers, gravely. 'For every spring that’s wound on this Earth, there’s a human hand turning the key. No divine mechanics down here. We may be free of this thing –' and he lands a kick squarely in the still automaton’s chest - 'but someone out there was behind it. Someone planning an army and after the Perpetuum.'[paragraph break]Covalt grunts, and scratches his chest with a thick finger. He seems almost to be falling asleep.[paragraph break]'There's clockwork, Wren,' he says. 'But then again, there's [i]clockmakers[r].'";
 [ Bodge: it seems in debug you can win the game in this activity, but in release you can't. So we fix the player's command to something safe... ]
 	replace the player's command with "look";
 	end the game in victory;
