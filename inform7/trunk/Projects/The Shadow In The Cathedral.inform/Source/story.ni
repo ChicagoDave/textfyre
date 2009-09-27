@@ -3,7 +3,7 @@
 
 [  Change Log
 When			Who		What
-
+27-Sep-2009			j. ingold		Paul's #5. Fixed a few showstoppers. Some minor additions still outstanding, but I've got a list of them.
 26-Sep-2009			J. Ingold	Eric's feedback.
 26-Sep-2009			J. Ingold	Paul's feedback
 25-Sep-2009			J. Ingold	Added chapter channel
@@ -12893,7 +12893,7 @@ A dull grey pedestal is scenery, in the main platform. "On the pedestal is this 
 
 Section 3 - Clutch
 
-The clutch is scenery, in the main platform. Understand "lever" as the clutch. "To quote the Abbott, this lever might be big enough to move the whole World. At any rate, if it can power every cog of the Engine then it must be holding back a lot of force."
+The clutch is scenery, in the main platform. Understand "lever" as the clutch. "To quote the Abbot, this lever might be big enough to move the whole World. At any rate, if it can power every cog of the Engine then it must be holding back a lot of force."
 
 Instead of pushing the clutch:
 	try pulling the clutch;
@@ -13353,7 +13353,7 @@ The last correctness appraisal rule for the action-model:
 	if l is at most 1:
 		say "[one of]Of course, I'm meant to be asking about the Figure's plans.[or]Of course, I'm meant to be trying to track down the Figure.[cycling]";
 	else if l is at most 3:
-		say "But [one of]I can feel I'm close to knowing where to look for the Figure, but I'm not quite there[or]I don't need a machine to tell me this isn't the quite question Covalt wanted me to ask[or]I want to know where the Figure in Grey is going to finish up after his ballooning, and I know this isn't quite going to help with that[or]it doesn't quite feel right[at random].";
+		say "But [one of]I can feel I'm close to knowing where to look for the Figure, but I'm not quite there[or]I don't need a machine to tell me this isn't the quite question Covalt wanted me to ask[or]I want to know where the Figure in Grey is going in his ornithopter, and I know this isn't quite going to help with that[or]it doesn't quite feel right[at random].";
 	else if l is 4:
 		say "That seems very close - but not quite it!";
 
@@ -16346,7 +16346,7 @@ Instead of giving the sleeping drug to Covalt:
 	say "Covalt barely looks up from his work. 'I’m sure it’ll do,' he snaps. 'Stick it over there and don’t say anything else at any point until I’ve got all this work done.' On the bench in front of him is half a box and it doesn’t look bad – the little ball rolling down the zigzag track, the casements either side that flip-flop the surface. And on the inside is a tight spring attached to a little hammer from a bell-strike ready to the break the glass, right about a small needle.[paragraph break]Gingerly Covalt picks up the bottle, and fits it into the box. 'Don’t press the casements,' he warns. 'Or you’ll fire the needle. Don’t forget that.' With slow delicacy he clicks a panel into place.[paragraph break]'I could go to the gallows for making this,' Covalt says. 'They won’t thank me. They won’t thank either of us. They’ll be grateful and then they’ll send us up the scaffold. But we’ll face that when the hands come round for it. You ready?'[paragraph break]I nod. What else can I do?[paragraph break]'Sneak into the vaults and swap this over. So good luck and I’m not coming with you. If they ask you where you got this from you say it fell from the stars.' And then he chucks me out and slams the door.[paragraph break]And then I’m off, on my own again, back on my way to the Cathedral of Time.";
 	now the player carries the decoy Perpetuum;
 	end the chapter;
-	say "Like the lowliest ratchet in the bottom of a gear-train, I move in darkness. Through the streets of the city, sticking close to the walls. Carrying the Perpetuum – or something that looks so much like it – that I can’t afford to be seen. My only hope would be that they mistook me for a scruffy little angel.[paragraph break]Lucky it’s easy to find my way. The Cathedral’s great dome looms over all of St Phillip, blotting out stars. I head deeper into darkness until it fills the entire northeastern sky, and that’s when I’m beside the great Western door.";
+	say "Like the lowliest ratchet in the bottom of a gear-train, I move in darkness. Through the streets of the city, sticking close to the walls. Carrying the Perpetuum – or something that looks so much like it that I can’t afford to be seen. My only hope would be that they mistook me for a scruffy little angel.[paragraph break]Lucky it’s easy to find my way. The Cathedral’s great dome looms over all of St Phillip, blotting out stars. I head deeper into darkness until it fills the entire northeastern sky, and that’s when I’m beside the great Western door.";
 	move the player to the Public Yard;
 
 Book 10 - Return to the Cathedral
@@ -16513,7 +16513,7 @@ After going to the Upper Nave during Return To The Cathedral:
 
 SE_CALVIN_1 is a scripted event. The display text is "There are two figures sitting at its base, with a single candle between them. When I recognize Calvin I duck immediately behind a pew. How am I supposed to get past those two?[paragraph break]They’re playing dice. They must have been here some time."
 
-SE_CALVIN_2 is a scripted event. The display text is "'How are we meant to tell if someone’s grey in this light?' Calvin complains. He’s whispering. 'Why couldn’t the old man have given us a password to ask for or something?'[paragraph break]Drake is more boisterous. By the look on his face he’s just rolled eleven. 'If the Abbott says to keep people out, we keep people out. Maybe even people in grey... Unless they're the right person.'".
+SE_CALVIN_2 is a scripted event. The display text is "'How are we meant to tell if someone’s grey in this light?' Calvin complains. He’s whispering. 'Why couldn’t the old man have given us a password to ask for or something?'[paragraph break]Drake is more boisterous. By the look on his face he’s just rolled eleven. 'If the Abbot says to keep people out, we keep people out. Maybe even people in grey... Unless they're the right person.'".
 
 SE_CALVIN_3 is a scripted event. The display text is "'What’s that?' Calvin is up, suddenly, looking around. 'I heard something.'[paragraph break]'Better get to our places,' Drake says, sounding a little more nervous now. 'I’ll guard the Bishop's Room. You’re on patrol.'[paragraph break]'Me? Why...'[paragraph break]'Get on with it,' Drake snaps. The candles move out into darkness, one west and one north, then in and out of sight up a set of winding stairs.".
 
@@ -16857,7 +16857,7 @@ Rule for printing the description of the West Stairs during Return To The Cathed
 Part 12 - North Clerestory
 
 Rule for printing the description of the North Clerestory during Return To The Cathedral:
-	say "The clerestory curves here, from southwest to southeast, and that’s where Drake is standing with his candle: right outside the Bishop’s Library[one of]. [paragraph break]Who are they supposed to be guarding it from? Surely not the Figure? And then I realize. The Abbott’s set them to guard it from me – or anyone like me. Anyone who might get into the Library and somehow stop the Figure from reaching the crypt[once only].";
+	say "The clerestory curves here, from southwest to southeast, and that’s where Drake is standing with his candle: right outside the Bishop’s Library[one of]. [paragraph break]Who are they supposed to be guarding it from? Surely not the Figure? And then I realize. The Abbot’s set them to guard it from me – or anyone like me. Anyone who might get into the Library and somehow stop the Figure from reaching the crypt[once only].";
 
 Instead of going to the East Clerestory from the North Clerestory during Return To The Cathedral:
 	say "I can’t let Drake find me[if TRIG_CRYPT_GRATE is fired]. There has to be another way[end if].";
@@ -16871,7 +16871,7 @@ Rule for printing the description of the statues of St Breguet and St Babbage du
 TRIG_SECRET_PASSAGE is a trigger. 
 
 Rule for firing unfired TRIG_SECRET_PASSAGE:
-	say "Wait. Something the Abbott said, before, when talking to the Figure, about secret doors...[paragraph break][i]'Six? The only one I know is the one from the Choir to the Bishop’s Library! Where there’s a drill...'[r][paragraph break]";
+	say "Wait. Something the Abbot said, before, when talking to the Figure, about secret doors...[paragraph break][i]'Six? The only one I know is the one from the Choir to the Bishop’s Library! Where there’s a drill...'[r][paragraph break]";
 
 Every turn when TRIG_SECRET_PASSAGE has been fired for exactly one turn:
 	say "Where there’s a drill, Wren. [i]Where there’s a drill – there’s a way...![r][paragraph break]";
@@ -17165,7 +17165,7 @@ Instead of inserting something suitable for jamming into the perfect clockwork w
 After inserting something suitable for jamming into the perfect clockwork workings for the first time:
 	now the perfect clockwork workings are jammed;
 	now the enormous penduluum is stopped;
-	say "Clockwork – the movement of tick after tock – is the engine that drives the whole universe, every star, every planet, every leaf on every tree. It is unstoppable, unquestionable, unjudging, fair, precise and orderly. Clockwork continues, as the Abbott says: it defeats us all.[paragraph break]But then the Abbott has never plunged [a noun] into the gear trace of a clock and watched the gears scream and shake and choke in fury. It is an ultimate heresy: the sound must be the sound of the demons that have come to take my springs.[paragraph break][if the enormous penduluum is ticking]The penduluum swings to a stop. There is sudden, terrible silence. [fire TRIG_JAMMED_CLOCK][end if]";
+	say "Clockwork – the movement of tick after tock – is the engine that drives the whole universe, every star, every planet, every leaf on every tree. It is unstoppable, unquestionable, unjudging, fair, precise and orderly. Clockwork continues, as the Abbot says: it defeats us all.[paragraph break]But then the Abbot has never plunged [a noun] into the gear trace of a clock and watched the gears scream and shake and choke in fury. It is an ultimate heresy: the sound must be the sound of the demons that have come to take my springs.[paragraph break][if the enormous penduluum is ticking]The penduluum swings to a stop. There is sudden, terrible silence. [fire TRIG_JAMMED_CLOCK][end if]";
 
 After inserting something suitable for jamming into the perfect clockwork workings:
 	now the perfect clockwork workings are jammed;
@@ -17246,7 +17246,7 @@ Before inserting something suitable for catch-slipping into the locked single dr
 	try unlocking the single drawer with the noun instead.
 
 Instead of unlocking the locked single drawer with something suitable for catch-slipping during Return To The Cathedral:
-	say "I slide [the second noun] across the top of the drawer until it finds the catch. It shouldn’t be this easy – but it seems that the luck the Abbott is always saying doesn’t exist is with me. The lock turns over.";
+	say "I slide [the second noun] across the top of the drawer until it finds the catch. It shouldn’t be this easy – but it seems that the luck the Abbot is always saying doesn’t exist is with me. The lock turns over.";
 	now the single drawer is unlocked;
 
 Instead of opening or pulling or attacking the locked single drawer during Return To The Cathedral:
@@ -18043,7 +18043,7 @@ Rule for printing the description of the Dark Stair when the player can see the 
 		say "There’s a gap, between the end of the stairs, and the start of the smooth stone slope that disappears downwards into the dark. It’s no staircase, but there are worn-down depressions down its length. It’s a handspan wide and no more.[paragraph break]";
 	otherwise:
 		say "I’m at the bottom of a staircase with nothing but the dark below.[paragraph break]";
-	say "The step before the last step is wider than the others: on the left a metal sconce is fixed to the wall. On the right is a low stone pedestal. If I started to fall I could grab onto either!"
+	say "The step before the last step is wider than the others: on the left a metal sconce is fixed to the wall[if the makeshift torch is in the sconce], holding my torch proudly[end if]. On the right is a low stone pedestal. If I started to fall I could grab onto either!"
 
 After going from the Crypt Landing to the Dark Stair when TRIG_DARK_STAIR is unfired:
 	fire TRIG_DARK_STAIR;
@@ -18193,7 +18193,7 @@ Instead of number-setting the assembled granite column to when the number unders
 	say "The shadow is already pointing at [shadow setting of the granite column in words].";
 
 Instead of number-setting the assembled granite column to when the shadow setting of the granite column is 12:
-	say "I can’t get the gnomon to turn any more[one of]. Maybe the Abbott was hoping the Figure would simply run off this stair into the dark. And instead, I’ve saved him...[or].[stopping]";
+	say "I can’t get the gnomon to turn any more[one of]. Maybe the Abbot was hoping the Figure would simply run off this stair into the dark. And instead, I’ve saved him...[or].[stopping]";
 
 Instead of number-setting the assembled granite column to:
 	change the shadow setting of the granite column to the number understood;
@@ -18420,10 +18420,10 @@ Before firing SE_BRASSHEAD_1:
 	increment the loop count of the brass head by 1;
 
 After firing SE_BRASSHEAD_4 when the loop count of the brass head is 1:
-	say "If this door is the vault and the Head is a lock, then the Figure must know a way through. There’s no keyhole. No mechanism to be undone. Nothing the Abbott could have given him to get by, except perhaps a word.[paragraph break]But what word would serve as a key to the vaults?";
+	say "If this door is the vault and the Head is a lock, then the Figure must know a way through. There’s no keyhole. No mechanism to be undone. Nothing the Abbot could have given him to get by, except perhaps a word.[paragraph break]But what word would serve as a key to the vaults?";
 
 After firing SE_BRASSHEAD_6 when the loop count of the brass head is 1:
-	say "This is where it ends then, Wren: this is how far you get. To the final door, where I’ll wait, Perpetuum in hand, until the Figure finds me and kills me, down here in the dark where no-one will ever find my body. If I’m really lucky he’ll fill me up with oil and spices and leave next to Brother Wilmslow.[paragraph break]I’m try to think of something comforting. All the Abbott’s old phrases. Covalt’s rough manner. The Archbishop – who spoke to me, a polisher! – and told me to be calm. Patience, he’d said. Patience is the key.[paragraph break]So I’d better be patient. The Figure will come, soon enough.";
+	say "This is where it ends then, Wren: this is how far you get. To the final door, where I’ll wait, Perpetuum in hand, until the Figure finds me and kills me, down here in the dark where no-one will ever find my body. If I’m really lucky he’ll fill me up with oil and spices and leave next to Brother Wilmslow.[paragraph break]I’m try to think of something comforting. All the Abbot’s old phrases. Covalt’s rough manner. The Archbishop – who spoke to me, a polisher! – and told me to be calm. Patience, he’d said. Patience is the key.[paragraph break]So I’d better be patient. The Figure will come, soon enough.";
 
 After firing SE_BRASSHEAD_1 when the loop count of the brass head is 2:
 	say "'Patience is the key.' The Brass Head is nothing but patient. For a crazy moment I wonder if I could somehow escape the Figure when he finds me here by pretending to be a machine, by standing as still – as patient – as the Head itself.[paragraph break]But it wouldn’t work. My arms are shaking. I’m tired. I’m sweating. I’m no machine. I’m just a fledgling. I don’t even know how I [i]got[r] here.";
