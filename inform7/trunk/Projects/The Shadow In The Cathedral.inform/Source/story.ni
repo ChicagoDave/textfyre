@@ -3,6 +3,7 @@
 
 [  Change Log
 When			Who		What
+2-Oct-2009			J. Ingold	Eric's feedback on C10.
 27-Sep-2009			J. Ingold	Eric's feedback.
 27-Sep-2009			j. ingold		Paul's #5. Fixed a few showstoppers. Some minor additions still outstanding, but I've got a list of them.
 26-Sep-2009			J. Ingold	Eric's feedback.
@@ -149,7 +150,7 @@ Book - Initialisation
 
 Section 0 - Beating memory constraints
 
-Use MAX_STATIC_DATA of 400000;
+Use MAX_STATIC_DATA of 450000;
 Use MAX_PROP_TABLE_SIZE of 600000.
 Use MAX_DICT_ENTRIES of 2500.
 Use MAX_OBJECTS of 1280.
@@ -12696,16 +12697,31 @@ After deciding the scope of the player while the location is a balcony-level roo
 		place the Duchess Du Mer in scope;
 	if the Calculatrix Pristina is in the Main Platform,
 		place the Calculatrix Pristina in scope;
+	if the Duchess Du Mer is in the Main Platform and the Calculatrix Pristina is in the Main Platform:
+		place the women-glimpse in scope;
 
 Before doing something when the Duchess du Mer is physically involved and the location is a balcony-level room:
+	if listening, do nothing instead;
 	say "Both women are way below me." instead.
 Before doing something when the Calculatrix Pristina is physically involved and the location is a balcony-level room:
+	if listening, do nothing instead;
 	say "Both women are way below me." instead.
 
 Instead of shouting at the Calculatrix Pristina:
 	say "I don't want to attract her attention! Why would I?"
 Instead of shouting at the Duchess du Mer:
 	say "I don't want to attract her attention! Why would I? (Except that she looks so kind and gentle...)"
+
+
+Some women-glimpse are a person. Understand "women", "two women" as women-glimpse. The printed name is "women". The description is "The two women - tall and short - stand beside the machine, talking."
+
+Instead of shouting at the women-glimpse:
+	say "I don't want to attract their attention! Why would I?"
+Before doing something when the women-glimpse are physically involved and the location is a balcony-level room:
+	if listening, do nothing instead;
+	say "Both women are way below me." instead.
+Before approaching the women-glimpse when the location is a balcony-level room:
+	try going down instead.
 
 Chapter 3 - Script
 
@@ -14392,7 +14408,7 @@ Instead of listening when the location is  a warehouse-interior room:
 	say "Drip... drip... drip... (but don't mind that, it's just me.)";
 
 Instead of smelling when the location is a warehouse-interior room:
-	say "The dank air reeks of fish and engine oil[one of] (what do they keep in this place, mechanised sharks?)[or].[stopping]"
+	say "The dank air reeks of fish and clock oil[one of] (what do they keep in this place, mechanised sharks?)[or].[stopping]"
 
 Instead of examining the backdrop-walls when the location is warehouse-interior:
 	say "The walls are wet up to a foot or so of depth."
@@ -14448,6 +14464,12 @@ A long ladder is portable scenery, in the Loading Bay. "A long wooden ladder, th
 
 The long ladder can be placed. The long ladder is not placed.
 The long ladder can be stuck. The long ladder is not stuck.
+
+Instead of pushing or pulling or turning the long ladder:
+	if the long ladder is handled:
+		say "There's plenty of manhandling when I carry this thing around, it's enormous.";
+	else:
+		say "They'll be plenty of manhandling if I carry this thing around, it's enormous.";
 
 After printing the description of the placed long ladder:
 	say "The ladder's propped underneath the pipe. ";
@@ -15203,7 +15225,7 @@ Rule for printing the description of the Gas Platform:
 	if the Gas Platform is murky:
 		say "I’m on some kind of metal platform in the dark. The crack of light below the door is enough to make out a few controls beside me and a set of stairs leading down to the north. Down seems an odd way to be going since we’re above the river. There’s probably serpents down there, or octopuses, or water-camels.";
 	otherwise:
-		say "I’m on a metal platform that sticks out over an impossibly large space, twice the size of the warehouse I’m in at least. The room below is deep: the original staircase to the north gives up halfway down[if the long ladder is stuck]. Beyond that there’s the ladder[end if].[paragraph break]In the light of a hundred gas-lamps I can see the carved earth walls. This whole place has been scooped clean out of the rock and it’s filled with rows upon rows of silent metal men: a whole army of statues. Perhaps somewhere amongst them is the Figure.";
+		say "I’m on a metal platform that sticks out over an impossibly large space, at least twice the size of the warehouse back west. The room below is deep: the original staircase to the north gives up halfway down[if the long ladder is stuck]. Beyond that there’s the ladder[end if].[paragraph break]In the light of a hundred gas-lamps I can see the carved earth walls. This whole place has been scooped clean out of the rock and it’s filled with rows upon rows of silent metal men: a whole army of statues. Perhaps somewhere amongst them is the Figure.";
 
 Rule for writing a paragraph about the warehouse door when in the Gas Platform:
 	now the warehouse door is mentioned;
@@ -15223,7 +15245,7 @@ Chapter 2 - Staircase
 
 Section 1 - Staircase
 
-The broken staircase is a door, open, not openable, scenery, down from the Gas Platform, up from the Warehouse Basement, north from the Gas Platform. Understand "stair", "stairs", "step", "steps" as the broken staircase.
+The broken staircase is a door, open, not openable, scenery, down from the Gas Platform, up from the Warehouse Basement, north from the Gas Platform. Understand "set of", "stair", "stairs", "step", "steps" as the broken staircase.
 
 Rule for printing the name of the broken staircase when in the Gas Platform:
 	say "staircase";
@@ -15235,6 +15257,9 @@ Rule for printing the description of the broken staircase when in the Gas Platfo
 		say "The staircase gives up halfway to the floor. It’s like the platform was sticking its tongue out at the army below. It’s probably them who chopped it in half."
 
 The broken staircase can be fixed. The broken staircase is not fixed.
+
+Instead of climbing the broken staircase:
+	try going down.
 
 Instead of going through the broken staircase from the Gas Platform when the broken staircase is not fixed:
 	if the Gas Platform is murky:
@@ -15262,6 +15287,9 @@ Instead of putting the long ladder on the broken staircase when in the Gas Platf
 Instead of fastening the long ladder to the broken staircase when in the Gas Platform:
 	try standing the long ladder up;
 
+Instead of climbing the long ladder when the long ladder is in the Gas Platform:
+	try going down.
+
 Instead of going down when in the Gas Platform and the player is carrying the long ladder and the gas Platform is bright:
 	try standing the long ladder up;
 	continue the action;
@@ -15273,7 +15301,7 @@ Instead of standing the long ladder up when in the Gas Platform:
 		move the long ladder to the location;
 		now the long ladder is stuck;
 		now the broken staircase is fixed;
-		say "It takes a lot of fiddling to get the ladder over the side and pointing down towards the floor. That's when I fumble it and let go. It lands with a crash - the top disappears into the dark - then swings back, settling against the platform. I exhale a long breath.[paragraph break]None of the metal men react.";
+		say "It takes a lot of awkwardness to get the ladder over the side and pointing down towards the floor. That's when I fumble it and let go. It lands with a crash - the top disappears into the dark - then swings back, settling against the platform. I exhale a long breath.[paragraph break]None of the metal men react.";
 
 Chapter 3 - Gas controls
 
@@ -15291,7 +15319,7 @@ Rule for writing a paragraph about the gas controls when the ignition button is 
 
 Section 1b - Some fires, little and large
 
-A ring of tiny stars is a thing. The description is "Tiny points of gentle blue light, all around me, the size of pinheads. They're close enough to touch except for some reason I can't touch them (or they're infinitely far away, there's no way I can be sure.)". Understand "blue" as the ring of tiny stars.
+A ring of tiny stars is a thing. The description is "Tiny points of gentle blue light, all around me, the size of pinheads. They're close enough to touch except for some reason I can't touch them (or they're infinitely far away, there's no way I can be sure.)". Understand "tiny", "points", "points of", "gentle", "blue", "light" as the ring of tiny stars. 
 
 Instead of doing something when the ring of tiny stars are physically involved:
 	say "[one of]The stars seem to be just a fraction beyond wherever I think they are, like they were slowly growing and moving away at the same time.[or]I can't seem to reach them.[stopping]";
@@ -15306,17 +15334,24 @@ Before doing something when the backdrop-walls are involved and the gas flames a
 Instead of doing something when the gas flames are physically involved:
 	say "They're well out of my reach."
 
+Before smelling the gas flames:
+	say "I can't smell them now they're lit." instead.
+
+Before listening to the gas flames:
+	say "They make a low noise, like breathing." instead.
 
 Section 2 - Ignition Bolt
 
-An ignition bolt is part of the gas controls. The description of the ignition bolt is "[if the Gas Platform is bright or the ignition button is ignited]Around the bolt is engraved HI, OFF and IGN. Whatever that means.[otherwise]The bolt’s just a bolt, but knowing my luck I’ll turn it and find it was the only thing holding this platform up.[end if]"
+An ignition bolt is part of the gas controls. The description of the ignition bolt is "[if the Gas Platform is bright or the ignition button is ignited]Around the bolt is engraved HI, OFF and IGN. Whatever that means.[otherwise]The bolt’s just a bolt, but knowing my luck I’ll turn it and find it was the only thing holding this platform up.[end if]".
+
+Understand "red", "red-painted", "red painted", "painted", "bolt" as the ignition bolt.
 
 The ignition bolt has a number called the setting. The setting of the ignition bolt is 1.
 
 Instead of smelling when in the Gas Platform and the setting of the ignition bolt is greater than 1 and the Gas Platform is murky:
-	say "There's a strong smell of something strange - almost metallic - filling the air around me."
+	say "There's a strong smell, almost metallic, filling the air."
 	
-Instead of smelling when in the Gas Platform and setting of the ignition bolt is not 1 and setting of the ignition bolt has been 1 and the Gas Platform is murky:
+Instead of smelling when in the Gas Platform and setting of the ignition bolt is 1 and setting of the ignition bolt has been 2 and the Gas Platform is murky:
 	say "That strange smell has gone now."
 
 Instead of listening when in the Gas Platform and the setting of the ignition bolt is greater than 1 and the Gas Platform is murky:
@@ -15325,8 +15360,8 @@ Instead of listening when in the Gas Platform and the setting of the ignition bo
 Instead of listening when in the Gas Platform and setting of the ignition bolt is not 1 and setting of the ignition bolt has been 1 and the Gas Platform is murky:
 	say "The room is quiet again."
 
-Instead of pushing the ignition bolt:
-	say "Bolts are for turning, not for pushing[one of] ([i]To each its function, to none diversity[r], as the Abbot would say)[once only]."
+Instead of pushing or pulling the ignition bolt:
+	say "Bolts are for turning, not for [if pushing]pushing[else]pulling[end if][one of] ([i]To each its function, to none diversity[r], as the Abbot would say)[once only]."
 
 CANT_TURN_WITH_HANDS is a trigger. 
 
@@ -15386,21 +15421,25 @@ A long lever is part of the gas controls. The description of the long lever is "
 
 The long lever can be armed. The long lever is not armed.
 
-Instead of pushing the long lever:
-	say "The lever doesn’t push.";
+Instead of pushing or turning the long lever:
+	say "Levers are for pulling[one of] (well, levers like this one are, anyway.)[or].[stopping]";
+
 
 Instead of pulling or taking or switching on the armed long lever:
 	say "The lever’s already pulled up as far as possible.";
 
 Instead of pulling or taking or switching on the long lever:
 	now the long lever is armed;
-	say "Pulling the lever takes all the strength I’ve got left (which isn’t too much). In reply from the darkness comes the sound of a thousand tiny clicks.";
+	say "[one of]Pulling the lever takes all the strength I’ve got left (which isn’t too much). In reply f[or]The lever moves more easily this time. F[stopping]rom the darkness comes the sound of a thousand tiny clicks.";
 
 Section 4 - Ignition
 
 An ignition button is part of the gas controls. The description of the ignition button is "[if the Gas Platform is bright]A large brass button labeled IGN.[otherwise]Just underneath the lever is a large brass button. I can just make out three letters, side-by-side: I, G and N.[end if]"
 
 The ignition button can be ignited. The ignition button is not ignited.
+
+Instead of pulling or turning the ignition button:
+	say "Buttons are for pressing." 
 
 Instead of pushing or switching on the ignition button:
 	abide by the ignition rules;	
@@ -15441,7 +15480,7 @@ Rule for printing the description of the shiny wrench:
 
 Chapter 5 - Glimpse of the Men
 
-Some glimpse_men are scenery, people. Understand "men", "man", "statue", "statues", "armour", "full", "in full", "gleaming", "metal", "army", "rows", "row" as the glimpse_men. The printed name is "gleaming metal statues". The description is "Row on row of metal men, all staring straight ahead like unwound hour-hands."
+Some glimpse_men are scenery, people. Understand "army of", "silent", "gleaming", "metal", "men", "man", "statue", "statues",  "army", "rows", "row" , "full", "in full", "armour" as the glimpse_men. The printed name is "gleaming metal statues". The description is "Row on row of metal men, all staring straight ahead like unwound hour-hands."
 
 Instead of entering or approaching the glimpse_men:
 	try going down instead.
@@ -15476,11 +15515,17 @@ Rule for printing the description of the broken staircase when in the Warehouse 
 Instead of going through the broken staircase from the Warehouse Basement:
 	say "I’m not running till I’ve worked out what the Figure’s up to. Once I know that, [i]then[r] I’m running.";
 
+Before listening when in the Warehouse Basement:
+	say "The fuzz from the gas flames echoes between the soldiers like a whisper." instead.
+
 The army of metal statues is scenery, in the Warehouse Basement. "Each man is made of fine steel and brass and stands upright, six foot tall. Their faces are bare faceplates with tiny glass eyes, but they all look like they’re crying because of deep channels for rain run-off that run from forehead to chin. Each one has a small hatch in the middle of their chest, a tiny fraction ajar."
 
 
 
-Understand "mechanical", "men", "man", "chest", "hatch", "small hatch", "hatches", "figures", "faceplate", "channels" as the army of metal statues.
+Understand "steel", "brass", "mechanical", "men", "man", "chest", "hatch", "small hatch", "hatches", "figures", "faceplate", "channels", "hands",  "arms", "faces", "faceplates", "tiny", "glass", "eyes", "chests" as the army of metal statues.
+
+Before smelling or listening to the army of metal statues:
+	say "They are silent, lifeless metal. Aren't they?" instead.
 
 Instead of doing something when the army of metal statues is physically involved:
 	say "With shaking fingers I open the hatch on the front of the nearest man. No surprise maybe to find he’s full of clockwork, but it’s clockwork like I’ve never seen before: cogs so small it’s like his whole body is infested with woodlice and scrambling maggots. It’s like someone had taken the whole of the Difference Engine and shrunk it to fit.[paragraph break]Except there’s obviously something missing. All those cogs would need a spring about the size of the metal man’s head and it would need to be placed right in the middle where it could unwind to every part of his body. But in the perfect spot there’s nothing but a gap, like someone built this machine but forgot to give it a heart. What good are these men if all they do is stand in line?[paragraph break]That’s when I notice the seal. Something embossed on the inside of the chest hatch. I take a step back to see it more clearly – a winding key above an ocean wave, familiar from somewhere – and step into something firm and solid. A man out of line?[paragraph break]A hand grips my throat. 'Who sent you here?' demands a voice, smooth and icy. A voice I know well, that I should have expected. 'Who else knows about this place? Tell me before I crush every pinion in your neck.'[paragraph break]My toes are scrabbling on - off - the ground. I try to scream but nothing comes out beyond a whisper. I can see the outline of the Figure’s cowl and beyond that, for the first time, almost make out an unhappy face underneath.[paragraph break]'You’ll tell me or you’ll die here,' the Figure says ever-so-softly. 'You’ll die cold and alone like the rat you are.'[paragraph break]The room is getting darker. The tank for the gas lamps must be running low. Soon it’ll be me and the Figure and all these men, and no-one will ever find me or know where I’ve gone. Or is that someone? In the background? A shape, a shadow, my imagination or…[paragraph break]'Covalt?' I whisper, in desperation. 'Covalt, is that…'[paragraph break]Then the lights disappear completely. The heavy cord of the clock-key round my neck has become tangled while I was asleep. The stars are coming out. I’m underwater again.";
@@ -15528,6 +15573,20 @@ SE_RETURN_2 is a scripted event. The display text is "'Found this with you,' Cov
 After firing SE_RETURN_1:
 	change the second-state of Covalt to 1;
 
+After firing SE_RETURN_2:
+	move the second-scrap to Covalt.
+
+The second-scrap is a privately-named thing. The printed name is "scrap of paper". Understand "scrap", "scrap of", "paper" as the second-scrap. 
+
+Before asking Covalt for the second-scrap:
+	try asking Covalt about "note" instead.
+
+Before taking or examining the second-scrap:
+	try asking Covalt about "note" instead.
+
+Instead of doing something when the second-scrap is physically involved:
+	say "Covalt's holding it." 
+
 Chapter 3 - Scenery
 
 Rule for printing the description of the feather bed during Return to Covalt's:
@@ -15546,7 +15605,7 @@ Rule for printing the description of the wrecked skylight during Return to Coval
 	say "The bits and pieces of my balloon, piled up on one side.";
 
 Instead of doing something when the wrecked skylight is involved during Return to Covalt's:
-	say "They’re as broken as the springs that hold my brain in my place. Oh, my head!";
+	say "The skylight is as broken as the springs that hold my brain in my place. Oh, my head!";
 
 Chapter 4 - Ravens
 
@@ -15616,7 +15675,7 @@ CT_COV_R1_CLOCKWORK	"[clockwork]"
 CT_COV_R1_PERPETUUM		"[perpetuum]" or "[plot]"
 CT_COV_R1_DIFFERENCEENGINE	"difference" or "engine" or "machine" or "knowing machine"
 CT_COV_R1_ARMY		"docks" or "dockyard" or "warehouse" or "docklands" or "old place" or "army" or "metal" or "mechanical" or "men" or "statues" or "machines" or "soldiers"
-CT_COV_R1_NOTE			"note" or "paper" or "scrap of paper" or "message"
+CT_COV_R1_NOTE			"scrap" or "note" or "paper" or "scrap of paper" or "message"
 
 Rule for choosing the conversation table of Covalt when the second-state of Covalt is 1 during Return to Covalt's:
 	change the chosen conversation table to the table of concerned Covalt conversation;
@@ -15657,10 +15716,10 @@ CT_COV_R2_CLERGY		"[abbot]" or "[archbishop]"
 CT_COV_R2_PEOPLE		"[abbeyfolk]" or "[sa'at]"
 CT_COV_R2_COVALT		"giant" or "covalt" or "[himself]"
 CT_COV_R2_RAVENS		"ravens" or "raven" or "his ravens" or "hugin" or "mummin"
-CT_COV_R2_PERPETUUM		"[perpetuum]" or "[plot]"
+CT_COV_R2_PERPETUUM		"guess" or "[perpetuum]" or "[plot]"
 CT_COV_R2_DIFFERENCEENGINE	"difference" or "engine" or "machine" or "knowing machine"
 CT_COV_R2_ARMY		"docks" or "dockyard" or "warehouse" or "docklands" or "old place" or "[clockwork]" or "army" or "metal" or "mechanical" or "men" or "statues" or "machines" or "soldiers"
-CT_COV_R2_NOTE			"note" or "paper" or "scrap of paper" or "message"
+CT_COV_R2_NOTE			"scrap" or "note" or "paper" or "scrap of paper" or "message"
 
 
 Rule for choosing the conversation table of Covalt when the second-state of Covalt is 2 during Return to Covalt's:
@@ -15739,7 +15798,7 @@ CT_COV_R3_SAINTS			"[saints]"
 CT_COV_R3_DIFFERENCEENGINE	"difference" or "engine" or "machine" or "knowing machine"
 CT_COV_R3_PERPETUUM		"[perpetuum]" or "[plot]"
 CT_COV_R3_TRAP			"trap" or "bait" or "lure" or "trick"
-CT_COV_R3_NOTE			"note" or "paper" or "scrap of paper" or "message"
+CT_COV_R3_NOTE			"scrap" or "note" or "paper" or "scrap of paper" or "message"
 
 
 Rule for choosing the conversation table of Covalt when the second-state of Covalt is 3 during Return to Covalt's:
@@ -15942,9 +16001,26 @@ Instead of approaching or entering the street-backdrop:
 Instead of searching the street-backdrop:
 	try examining the street-backdrop.
 
-The autopothecary shopfront is scenery, in Escapement St. "The Autopothecary is a machine set behind some expensive plate glass. OPEN ALL NIGHT, reads the sign. FOR WINDING-UP AND WINDING-DOWN AT ALL HOURS OF THE WATCH." Understand "booth", "chemist", "chemists", "plate", "glass", "sign" as the autopothecary shopfront.
+The autopothecary shopfront is a backdrop, in Escapement St, in the Autopothecary Booth. "The Autopothecary is a machine set behind some expensive plate glass. OPEN ALL NIGHT, reads the sign. FOR WINDING-UP AND WINDING-DOWN AT ALL HOURS OF THE WATCH." Understand "glass wall/walls", "plate glass wall/walls", "booth", "chemist", "chemists", "plate", "glass" as the autopothecary shopfront.
 
-Instead of entering or approaching the autopothecary shopfront:
+Before doing something when the backdrop-walls are involved and the autopothecary shopfront is visible:
+	redirect the action from the backdrop-walls to the autopothecary shopfront, and try that instead.
+
+Understand "sign" as the  autopothecary shopfront when the location is Escapement St.
+
+Before throwing something at the autopothecary shopfront:
+	try attacking the autopothecary shopfront instead.
+
+Before inserting something into the autopothecary shopfront:
+	try attacking the autopothecary shopfront instead.
+
+Before putting something on the autopothecary shopfront:
+	try attacking the autopothecary shopfront instead.
+
+Instead of attacking the autopothecary shopfront:
+	say "I'd bring the guard in seconds (glass this is expensive is [i]always[r] counterweighted to a whole array of bells and clappers)."
+
+Instead of entering or approaching the autopothecary shopfront when the location is Escapement St:
 	try going northwest;
 
 Instead of going north in Escapement St:
@@ -16082,7 +16158,7 @@ Section - Doors and Slots
 
 Some tiny-doors are a privately-named, scenery, thing in the Autopothecary Booth. "Each door’s about big enough for a mouse, but if I put my coins in and only get a mouse in return I’ll be spitting screws until the thirteenth stroke. The doors are all labeled but not with what they sell, only with codes: B3 or D2, that sort of thing."
 
-Understand "tiny doors", "doors", "controls", "slots", "coin slots", "machine", "autopothecary" as the tiny-doors.
+Understand "little/tiny doors", "doors", "controls", "slots", "coin slots", "machine", "autopothecary" as the tiny-doors.
 
 Instead of opening or searching the tiny-doors:
 	say "Each door has a coin slot. ";
@@ -16101,7 +16177,7 @@ Rule for printing the description of a tiny door:
 	choose row with a tiny door of the noun in the Table of Autopothecary Vending Machine Slots;
 	say "[label entry]: [product entry], [effect entry].";
 
-Understand "tiny", "door", "slot" as a tiny door.
+Understand "tiny/little", "door", "slot" as a tiny door.
 
 Understand "buy [a tiny door] from [tiny-doors]" as removing it from.
 
@@ -16276,7 +16352,7 @@ The autopothecary press is a container, scenery, in the Autopothecary Booth. "Th
 
 The reading matter of the autopothecary press is "The little tin disc above the machine displays '[press status message]'[paragraph break]";
 
-Understand "lever", "tin", "disc" as the autopothecary press.
+Understand "neat", "little", "lever", "tin", "disc" as the autopothecary press.
 
 The autopothecary press has a number called the state. The state of the autopothecary press is 1.
 
@@ -16387,7 +16463,9 @@ Every turn when the player is in the Autopothecary Booth and the sleeping drug h
 
 Section 4 - A Sleeping Drug
 
-The sleeping drug is medicine. The description is "A little bottle of a murky grey coloured liquid. Perfect for the Figure[if weak].  I only hope it’s strong enough[end if]."
+The sleeping drug is medicine. The description is "A little bottle of a murky grey coloured liquid. Perfect for the Figure[if weak].  I only hope it’s strong enough[end if]." 
+
+Understand "bottle", "bottle of" as the sleeping drug.
 
 The sleeping drug can be weak or strong. The sleeping drug is weak.
 
