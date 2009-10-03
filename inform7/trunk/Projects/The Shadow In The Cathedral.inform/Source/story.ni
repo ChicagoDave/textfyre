@@ -19218,6 +19218,9 @@ Instead of unscrewing the Figure Grey with something during Midnight:
 Instead of inserting something into the Figure grey during Midnight:
 	try attacking the Figure Grey with the noun.
 
+Instead of attacking the Figure Grey with something during Midnight:
+	say "[The second noun] isn't much of a weapon. I need to confuse him somehow!"
+
 Section - Successfull Attempt
 
 Instead of unlocking the figure grey with something when the player can see the winding slot:
