@@ -3,6 +3,7 @@
 
 [  Change Log
 When			Who		What
+3-Oct-2009			J. Ingold	Eric's remaining feedback. 
 2-Oct-2009			J. Ingold	Eric's feedback on C10.
 27-Sep-2009			J. Ingold	Eric's feedback.
 27-Sep-2009			j. ingold		Paul's #5. Fixed a few showstoppers. Some minor additions still outstanding, but I've got a list of them.
@@ -160,6 +161,7 @@ Use MAX_LINESPACE of 20000.
 Use ALLOC_CHUNK_SIZE of 20000.
 Use MAX_SYMBOLS of 30000.
 Use MAX_VERBS of 300.
+Use MAX_NUM_STATIC_STRINGS of 25000.
 
 Chapter - Debugging and Analysing Verbs (not for release)
 
@@ -2650,6 +2652,7 @@ Understand "go along/across/over [something]" as entering.
 Understand "walk along/over/across [something]" as entering.
 
 Understand "jump [direction]" as going.
+Understand "dash [direction]" as going.
 Understand "creep [direction]" as going.
 Understand "hurry [direction]" as going.
 
@@ -6374,7 +6377,7 @@ Instead of eating or tasting the day-plants plants:
 	say "Some need cooking before they're edible: some the leaves are tough as leather and only what's below the surface is any good. And I'm a 2nd Assistant Clock Polisher, so I certainly don't know tick from tock."
 
 Instead of eating or tasting or touching or taking or pulling or attacking the night-plants plants:
-	say "Plenty of these mushrooms are grown for the Apothecary. Some might drive you mad, or blind, or worse. I'm not touching any."
+	say "Plenty of these mushrooms are grown for the Apothecary. Some might drive you mad, or blind, or worse. I'm not touching any." 
 
 Instead of smelling in the Herb Garden:
 	say "There's a whole range of smells, from sweet to spicy."
@@ -6409,7 +6412,7 @@ Instead of taking or pulling or looking under or pushing the short stake:
 	say "I pull the stake free of the soil, only to find it's the handle of a gardener's knife! Someone must have left it here by accident. Still, could be useful if I meet any Grey Figures..."
 
 Understand "short", "stake" as the knife when the knife is a garden-knife.
-Understand "handle" as the knife when the player cannot see the dowel handle.
+Understand "handle" as the knife when the player cannot see the dowel handle and the player cannot see the makeshift torch.
 
 Book 3 - The Cathedral Of Time
 
@@ -6579,7 +6582,7 @@ Instead of pulling the entry seal:
 
 Section 2 - Great Doors
 
-Some Great Doors are a closed door, scenery, south of the Cathedral Entrance. "The doors are covered in carvings and inscriptions, some of the Mechanists, but ever a few from the older faiths of smoke and fire. The doors lead to the city but are rarely open (Last Newtonmass I was part of a parade of children that troop to get the homeless to do some proper work, but I'll be too old for that this year.)" Understand "door", "carving", "hinge", "hinges", "inscription", "carvings", "inscriptions" as the Great Doors.
+Some Great Doors are a closed door, scenery, south of the Cathedral Entrance. "The doors are covered in carvings and inscriptions, some of the Mechanists, but ever a few from the older faiths of smoke and fire. The doors lead to the city but are rarely open (Last Newtonmass I was part of a parade of children that troop to get the homeless to do some proper work, but I'll be too old for that this year.)" Understand "huge", "door", "carving", "hinge", "hinges", "inscription", "carvings", "inscriptions" as the Great Doors.
 
 Instead of opening the Great Doors:
 	say "You're joking, I suppose.";
@@ -6632,8 +6635,8 @@ Instead of smelling in the Lower Nave:
 
 Section 2 - Idle actions
 
-Every turn when in the Lower Nave and a random chance of 1 in 3 succeeds and not smelling and the heat is not the noun:
-	say "A little heat licks in from the west.";
+Every turn when in the Lower Nave and a random chance of 1 in 3 succeeds and not looking and not going and not smelling and the heat is not the noun:
+	say "A little heat licks in from the east.";
 
 Instead of sleeping in the Lower Nave:
 	say "I'm not trying that again."
@@ -6878,6 +6881,9 @@ After going through the west stairs from the West Clerestory when Calvin's Patro
 Section 3 - Choir Stalls
 
 Some choir stalls are a supporter, enterable, in the Cathedral Choir. "During normal services the choir sit in the stalls on the ground level by the east staircase. They're covered in carvings just like those on the Abbey doors, but lit up in brilliant colours from the stained glass all around."
+
+Before inserting something into the choir stalls:
+	try putting the noun on the choir stalls instead.
 
 Understand "carving", "carvings" as the choir stalls.
 
@@ -7896,7 +7902,7 @@ Section 7 - Knife
 
 A knife is a thing. The description is "A short steel letter-opener, sharp enough to slice through paper but probably not much good for fending off Calvin."
 
-Understand "short", "sharp", "handle" as the knife.
+Understand "short", "sharp", "knife" as the knife.
 Understand "letter-opener", "letter opener" as the knife when the knife is not a garden-knife.
 Understand "gardener's", "gardeners" as the knife when the knife is a garden-knife.
 
@@ -11460,6 +11466,13 @@ Understand "hunt for diagram" as a mistake ("[look for diagram]") when Covalt's 
 
 To say look for diagram:
 	say "[one of]There's lots of places to look - [if location is the Clock Shop]the desk, the shelves, the papers - I'll just have to start somewhere[else]in the main shop, as well as here[end if][or]You're going to have to think of somewhere to look, I can't see it.[stopping]. "
+
+The sunlight-shadows are scenery, privately-named, in the Clock Shop. The printed name is "sunlight". Understand "sunlight", "shadow", "shadows" as the sunlight-shadows. The description is "Sunlight makes brass gleams, shadows are for things to get lost in."
+
+Instead of doing something when the sunlight-shadows are physically involved:
+	say "Sunlight and shadows are intangible."
+
+
 
 Chapter 1 - Description
 
@@ -15977,7 +15990,7 @@ After going through the clock shop door from Escapement St when the player is di
 
 Part 3 - Escapement Street
 
-Escapement St is a room. "[if the sleeping drug is off-stage]It’s night. Gaslight webs the shining edges of the cobblestones. All the shops are closed except for Covalt’s back northeast. The streets are empty of people, no boys running around or girls weaving cats-cradle between their hands.[paragraph break]But the Autopothecary to the northwest is still open. It never closes.[else]I'm standing on one edge of the street, holding the precious sleeping drug gingerly in my hands. There are no carriages about but if one swoops round the corner that's it, all our plans are over! It's a short dash back to Covalt's, to the northeast.[end if]".
+Escapement St is a room. "[if the sleeping drug is off-stage]It’s night. Gaslight webs the shining edges of the cobblestones. All the shops are closed except for Covalt’s back northeast. The streets are empty of people, no boys running around or girls weaving cats-cradle between their hands.[paragraph break]But the Autopothecary to the northwest is still open. It never closes.[else]I'm standing on one edge of the street, holding the precious sleeping drug gingerly in my hands. There are no carriages about but if one swoops round the corner, hits me and smashes the bottle, that's it, all our plans are over! It's a short dash back to Covalt's, to the northeast.[end if]".
 
 Instead of going inside when in Escapement St:
 	if the player does not have the sleeping drug:
@@ -16158,7 +16171,7 @@ Section - Doors and Slots
 
 Some tiny-doors are a privately-named, scenery, thing in the Autopothecary Booth. "Each door’s about big enough for a mouse, but if I put my coins in and only get a mouse in return I’ll be spitting screws until the thirteenth stroke. The doors are all labeled but not with what they sell, only with codes: B3 or D2, that sort of thing."
 
-Understand "little/tiny doors", "doors", "controls", "slots", "coin slots", "machine", "autopothecary" as the tiny-doors.
+Understand "little/tiny doors", "doors", "controls", "slots", "coin slots/slot", "machine", "autopothecary" as the tiny-doors.
 
 Instead of opening or searching the tiny-doors:
 	say "Each door has a coin slot. ";
@@ -16465,7 +16478,9 @@ Section 4 - A Sleeping Drug
 
 The sleeping drug is medicine. The description is "A little bottle of a murky grey coloured liquid. Perfect for the Figure[if weak].  I only hope it’s strong enough[end if]." 
 
-Understand "bottle", "bottle of" as the sleeping drug.
+Understand "little", "bottle", "bottle of" as the sleeping drug.
+Understand "murky", "grey", "gray", "coloured/colored", "liquid" as the sleeping drug.
+
 
 The sleeping drug can be weak or strong. The sleeping drug is weak.
 
@@ -16494,7 +16509,9 @@ When Return to the Cathedral begins:
 	now the West Door [public entrance to the Cathedral] is unlocked;
 	now the West Door is open;
 	remove the glimpsed monks from play;
+	remove the glimpsed Perpetuum from play;
 	remove the Chanting Monks from play;
+	move the great-engine to the Cathedral Choir;
 	remove the secret construction ladder from play;
 	move the real Perpetuum Mobile to the Steel Altar; [in the Inner Vault]
 
@@ -16524,6 +16541,12 @@ The Public Yard is a room. "The public square where the people come to hear the 
 The silhouetted Cathedral of Time is scenery, in the Public Yard. "The Cathedral raises spires like pins in a pin-cushion, only just visible as gaps in the stars. The glowing face of the rose window clock puts the time as a quarter to midnight. The door to the Cathedral is open.". The printed name of the silhouetted Cathedral is "Cathedral". Understand "church" as the silhouetted Cathedral of Time.
 
 The statue of St Isaac Newton is scenery, in the Public Yard. "Newton stands, apple in one hand, skull in the other. If he let go of either one I’d be crushed like a beetle in Drake’s bunkroom.". The printed name of the statue of St Isaac Newton is "statue of St Newton".
+
+Instead of climbing the statue of St Isaac Newton:
+	say "It's tall enough to be quite a climb - but I've done enough climbing today (hopefully).";
+
+Instead of pushing or pulling or turning St Isaac Newton:
+	say "He's enormous. I can't go pushing him around (and he's a Saint, so I shouldn't, either.)";
 
 Understand "apple", "skull" as the statue of St Isaac Newton.
 
@@ -16572,9 +16595,11 @@ Instead of making to leave when in the Cathedral Entrance during Return to the C
 Instead of going from the Cathedral Entrance to the Public Yard during Return to the Cathedral:
 	say "The east door is now closed. I can't get back to the Abbey."
 
+
+
 Section 1 - Stars and Candles
 
-Some false-stars are privately-named, scenery in the Cathedral Entrance. Understand "candle", "light", "lights", "candles", "star" as the false-stars. "They gleam from the depths of the dark Cathedral." The printed name is "candle lights".
+Some false-stars are privately-named, scenery, in the Cathedral Entrance. Understand "candle", "light", "lights", "candles", "star",  "polished brass", "brass", "windows", "false stars", "stars" as the false-stars when Return to the Cathedral is happening. "They gleam from the depths of the dark Cathedral." The printed name is "candle lights".
 
 Instead of approaching the false-stars: try going north.
 
@@ -16585,7 +16610,7 @@ Instead of doing something when the false-stars are physically involved:
 Part 3 - Lower Nave
 
 Rule for printing the description of the Lower Nave during Return To The Cathedral:
-	say "Oak pews are sleeping either side of the aisle. I can barely see the shrines either side: a little orange leaks in from the west. Past the second seal to the north, the nave continues.";
+	say "Oak pews are sleeping either side of the aisle. I can barely see the shrines either side: a little orange light leaks in from the west. Past the second seal to the north, the nave continues.";
 
 Rule for printing the description of the lower seal during Return To The Cathedral:
 	say "The seal is just a circle in the half-light.";
@@ -16781,13 +16806,13 @@ Instead of touching the Choir Stalls when the Secret Panel is closed during Retu
 	say "I lean in close to examine the carvings but can’t make out any of the details. There are hundreds of figures – if there’s a catch here, it could be anywhere![paragraph break]Without a decent light, I’ll never find it (and with a decent light, Drake will certainly find [i]me[r].)";
 
 Instead of touching the Choir Stalls when the Secret Panel is open during Return To The Cathedral:
-	say "One panel swings open revealing a dark passage beyond.";
+	try closing the Secret Panel.
 
 Instead of closing the choir stalls when the secret panel is open:
 	redirect the action from the choir stalls to the secret panel, and try that;
 
 Instead of closing the secret panel when the secret panel is open:
-	say "[one of]I don't know how to close it. Another carving - but which one? I have no idea.[or]I can't. But it doesn't matter now.[stopping]".
+	say "[one of]I don't know how to close it. Another carving - but which one? I have no idea.[or]I can't close it. But maybe it doesn't matter.[stopping]".
 
 Instead of going through the secret panel when the player carries the decoy Perpetuum:
 	fire TRIG_SECRET_PANEL;
@@ -16799,13 +16824,18 @@ Rule for firing TRIG_SECRET_PANEL:
 
 A secret panel is a door, privately-named, scenery, closed, inside from the Cathedral Choir, outside from the Secret Stair. "The narrow passage leads away into molten dark."
 
-Understand "secret", "panel", "passage", "dark", "opening", "door" as the secret panel when the secret panel is open. 
+Understand "secret", "narrow",  "dark", "opening", "door", "passage", "panel" as the secret panel when the secret panel is open. 
 
 Instead of approaching the secret panel: try entering the secret panel instead.
 
 Rule for deciding the concealed possessions of the Cathedral Choir:
 	if the particular possession is the closed secret panel:
 		yes;
+
+The great-engine is privately-named, scenery. The printed name is "Cathedral clock". Understand "great engine", "engine", "clock", "cathedral clock", "great engine of the clock", "engine of the clock" as the great-engine. The description is "I know it too well now."
+
+Instead of doing something when the great-engine is physically involved:
+	say "It's high above me."
 
 Part 7 - Shrine of the Saints
 
@@ -17050,7 +17080,7 @@ A patrolling rule for Calvin:
 
 A patrolling rule for Calvin:
 	if entry 3 of the patrol of Calvin is the location:
-		say "I can hear footsteps approaching from [the best route from the location to the location of Calvin]." instead;
+		say "I can hear footsteps approaching from somewhere to [the best route from the location to the location of Calvin]." instead;
 
 Before listening when Return to the Cathedral is happening and the location is entry 3 of the patrol of Calvin:
 	say "Calvin is approaching from the darkness." instead;
@@ -17075,7 +17105,7 @@ A detection rule when TRIG_CAL_DETECT is unfired:
 	move the player to Public Yard instead;
  
 Rule for firing TRIG_CAL_DETECT:
-	say "For a moment it looks like Calvin will look straight through me, but then he looks straight [i]at[r] me. For a moment he’s silent. I can see the belting coming a mile off: he’s winding up his anger, getting it ready to let loose...[paragraph break]'Wren?' he hisses, under his breath. 'What are you [i]doing[r] here? If Drake finds you he’d [i]string you up![run paragraph on][r]' His voice is shaking. I’ve never heard him so angry. Or not angry – afraid. The whites of his eyes have turned yellow. 'You’ve got to go. [i]This isn’t a game![r]'[line break][paragraph break]He grabs my arm as he speaks – here it comes, I’m thinking – then he drags me away through the nave of the church, hissing at me to stay quiet, all the way to the front gate. 'Go. All right? Please. Don’t tell anyone.'[paragraph break]Then he – and his feeble candle – have disappeared back inside.";
+	say "Calvin is suddenly right in front of me. For a moment he’s silent. I can see the belting coming a mile off: he’s winding up his anger, getting it ready to let loose...[paragraph break]'Wren?' he hisses, under his breath. 'What are you [i]doing[r] here? If Drake finds you he’d [i]string you up![run paragraph on][r]' His voice is shaking. I’ve never heard him so angry. Or not angry – afraid. The whites of his eyes have turned yellow. 'You’ve got to go. [i]This isn’t a game![r]'[line break][paragraph break]He grabs my arm as he speaks – here it comes, I’m thinking – then he drags me away through the nave of the church, hissing at me to stay quiet, all the way to the front gate. 'Go. All right? Please. Don’t tell anyone.'[paragraph break]Then he – and his feeble candle – have disappeared back inside.";
 
 A detection rule:
 	say "[one of]'Wren, please!' Calvin hisses. He looks awful, almost sick. 'Don't stay here. You stupid [i]novice[r]. And if you do stay here, [i]hide[r]. Whatever you do. [i]Hide![run paragraph on][r]'[line break][paragraph break]And then, just like that, he moves away.[or]Calvin doesn’t seem to see me. Just passes straight through.[stopping]";
@@ -17123,7 +17153,11 @@ Part 2 - Ancient Landing
 The Ancient Landing is a room. "Dusty wooden floorboards. This is a tiny space between the walls. The stairs emerge onto a landing, with a banister rail along one side. The rail is half buried in the stone. Maybe this was a larger room once: now it is only a piece, that ends to the west in solid stone...[paragraph break]...and to the east, ends [if the secret Clock Door is closed]in a wooden door carved with a clock[else if the enormous penduluum is ticking]in the workings of a beautiful Grandfather clock[else]with the stalled workings of the Bishop's clock[end if]."
 
 Instead of going inside when in the Ancient Landing: 	try going east.
-Instead of making to leave when in the Ancient Landing: try going down.
+Instead of making to leave when in the Ancient Landing: 
+	if the player is carrying the iron crypt key:
+		try going down;
+	else:
+		try going east. 
 
 Instead of smelling when in the Ancient Landing:
 	say "The dust in here must be hundreds of years old."
@@ -17150,18 +17184,28 @@ Understand "staircase", "stairs", "steps", "stair", "stair case", "step", "slopi
 Instead of entering the gap in the stonework:
 	try going down;
 
-A banister rail is scenery, in the Ancient Landing. "The wood is ancient and drilled with termite holes. In place to aid an old man, maybe, if he came through here to hide." Understand "bannister" as the banister rail.
+A banister rail is scenery, in the Ancient Landing. "The wood is ancient and drilled with termite holes. In place to aid an old man, maybe, if he came through here to hide." Understand "bannister", "rail" as the banister rail.
+
+Instead of pulling the banister rail:
+	say "It's only just staying in place on its own. I don't want to break it."
 
 Understand "floorboards", "landing" as the backdrop-floor when in the Ancient Landing.
 
 Rule for printing the description of the backdrop-floor when in the Ancient Landing:
 	say "It could give way any minute."
 
+The solid-stone is privately-named scenery in the Ancient Landing. The printed name is "solid stone wall". Understand "solid stone wall", "stone wall", "stone", "solid stone" as the solid-stone. The description is "The landing has been bricked over."
+
+Instead of doing something when the solid-stone is physically involved:
+	say "I can't do anything to the walls themselves, can I?"
+
 Chapter 1 - Clock Door
 
 The secret clock door is a door, privately-named, scenery, closed, openable, not lockable, east of the Ancient Landing, west of the Bishop's Library. "A wood panel door carved with the single image of a clock face. It seems solid enough."
 
-Understand "secret", "clock door", "door", "wood", "wooden", "panel", "carved", "face" as the secret clock door when Return To The Cathedral has happened.
+Understand "wood", "wooden", "secret",  "carved", "clock door",  "panel",  "door","face" as the secret clock door when Return To The Cathedral has happened.
+
+Understand "clock face", "image of clock face" as the secret clock door when Return To The Cathedral has happened.
 
 Understand "clock" as the secret clock door when the perfect workings are not visible.
 
@@ -17206,7 +17250,7 @@ Section 1 - Penduluum
 
 The Clock Workings is a privately-named room.
 
-After deciding the scope of the player when the secret Clock Door is open in the Ancient Landing:
+After deciding the scope of the player when the secret Clock Door is open and the player is in the Ancient Landing:
 	place the clock workings in scope;
 
 A rule for reaching inside the clock workings:
@@ -17233,7 +17277,7 @@ Section 2 - Weights
 
 Some heavy brass weights are scenery, in the clock workings. "Two heavy brass cylinders that drive the clock, inch by weighty inch[if removed]. They are side by side on the bottom of the clock case[end if]."
 
-Understand "counter-weights", "counter", "counterweight" as the heavy brass weights.
+Understand "counter-weights", "counter", "counterweight", "weight" as the heavy brass weights.
 
 The heavy brass weights can be present or removed. The heavy brass weights are present.
 
@@ -17388,11 +17432,18 @@ Instead of unlocking the locked single drawer with something suitable for catch-
 	say "I slide [the second noun] across the top of the drawer until it finds the catch. It shouldn’t be this easy – but it seems that the luck the Abbot is always saying doesn’t exist is with me. The lock turns over.";
 	now the single drawer is unlocked;
 
-Instead of opening or pulling or attacking the locked single drawer during Return To The Cathedral:
+Instead of opening or attacking the locked single drawer during Return To The Cathedral:
 	say "[one of]I try and heave the drawer, but it’s locked. Not very securely, perhaps, but locked all the same[or]I heave and struggle on the drawer - nothing. There's a catch closed inside[stopping].";
 
 Instead of pushing the locked single drawer during Return to the Cathedral:
 	say "I can't get my fingers in the gap between the drawer and the desk to move the catch."
+
+Before pulling the single drawer:
+	try opening the single drawer instead.
+Before pushing the single drawer:
+	try closing the single drawer instead.
+
+
 
 After opening the unlocked single drawer during Return To The Cathedral:
 	say "I slide open the drawer.";
@@ -17523,7 +17574,7 @@ Instead of listening when in the Cathedral Crypt:
 Instead of smelling when in the Cathedral Crypt:
 	say "The walls smell of dead things and old dirt."
 
-Understand "crypt wall/walls", "stone wall/walls", "old", "ancient", "dust", "trickle of", "cold wind", "damp", "wind" , "foot" as the backdrop-walls when in the Cathedral Crypt.
+Understand "crypt wall/walls", "stone wall/walls", "old", "ancient", "block/blocks", "stone block/blocks", "dust", "trickle of", "cold wind", "damp", "wind" , "foot" as the backdrop-walls when in the Cathedral Crypt.
 
 Instead of examining the backdrop-walls when in the Cathedral Crypt:
 	say "The walls are old stone blocks, each the size of a man."
@@ -17584,7 +17635,7 @@ Chapter 1 - Description
 The Ossuary is a room, down from the Crypt Stairs. "[one of]A few years ago, before I got to clock polishing, when I was still just coiling wire for my dinner, one of the Brothers died. His name was Brother Wilmslow but Calvin and Drake called him Brother Weak-slow because he was so old he couldn’t move any faster than a shuffle and had trouble lifting his fork. I don’t think I ever spoke to him and he was so near-blind he probably never saw me at all.[paragraph break]I don’t think he can see me now, either, even though that’s him, propped up in a stone niche in the wall of the tunnel to the south.[or]The walls are smooth stones but into some are built triangular niches. Can’t I just tell you about the niches? Do I have to tell you about the skeletons and bodies sitting up inside them?[paragraph break]Round the head of each is tied a small round dial – a deathwatch. They make no sound at all.[paragraph break]The tunnel goes south[if the Crypt Landing is unvisited]. So will I, once I gather the courage[end if].[stopping]"
 
 Instead of listening to the Ossuary:
-	say "None of the bodies are making any noise. They must be praying, counting seconds or reciting the Tangent.";
+	say "The bodies are silent. They must be praying, counting seconds or reciting the Tangent.";
 
 Before going inside when in the Ossuary:
 	try going south instead.
@@ -17847,8 +17898,8 @@ Instead of looking under, pushing or pulling or turning or taking the slab:
 
 Some blown-glass tubes are part of the slab. The description is "A tube runs from the top and bottom of the table. Two more run down on either side. Their colour is like rust." Understand "blown glass", "glass", "tube", "rust", "brown" as the blown-glass tubes.
 
-Instead of taking or attacking or touching or cleaning the blown-glass tubes:
-	say "They might shatter if I so much as touched them."
+Instead of pushing or pulling or turning or taking or attacking or touching or cleaning the blown-glass tubes:
+	say "[one of]They might shatter if I so much as touched them. And who knows what ghosts that might let free?[or]Honestly, I'm too scared to touch them, whatever else![stopping]".
 	
 Instead of tasting or inflating the blown-glass tubes:
 	say "I don't dare find out what they taste of."
@@ -17860,7 +17911,7 @@ Section 3 - Shelf
 
 A rock shelf is scenery, in the Mortuary. "The shelf is hewn from the rock itself, to hold the bandages and the oil. A rack of spices, and behind that, a stack of wooden dowels."
 
-Understand  "tools", "tools of the trade" as the rock shelf.
+Understand  "tools", "tools of the trade", "shelves" as the rock shelf.
 
 Instead of entering the rock shelf:
 	say "It’s too small for me to hide.";
@@ -17875,7 +17926,7 @@ Section 4 - Spices
 
 Some jars of spices are scenery, on the rock shelf. "The shelves are lined with the spices of death: cinnamon, cardamom, mace and star anise. They sit in jars between the rolls of bandages and the bowl of oil.";
 
-Understand "jar of", "jar", "cinnamon", "cardamom", "mace", "star anise", "anise", "of death", "death" as the jars of spices.
+Understand "jar of", "jar", "cinnamon", "cardamon", "mace", "star anise", "anise", "of death", "death" as the jars of spices.
 
 Instead of taking the jars of spices for the first time:
 	say "I don’t think Cook would like me adding those to the Abbey soup.";
@@ -17899,7 +17950,8 @@ Instead of smelling, tasting, eating, pushing, searching, opening the jars of sp
 	else if the player's command includes "anise":
 		say "[smell-text in row 4 of the Table of Spice Smells]";
 	else:
-		say "The smell is enough to make me feel ill.";
+		say "The smell is enough to make me feel ill." instead;
+	say paragraph break;
 
 Table of spice smells
 smell-text
@@ -17914,7 +17966,7 @@ Instead of smelling when in the Mortuary:
 
 Section 5 - Oils
 
-A bowl of thick black oil is scenery, on the rock shelf. "At one end of the shelf is a wide shallow bowl, thick with dark black oil."
+A bowl of thick black oil is scenery, on the rock shelf. "At one end of the shelf is a wide shallow bowl, thick with dark black oil." Understand "dark black oil", "dark oil" as the bowl of black oil.
 
 Instead of taking the bowl of black oil for the first time:
 	say "I try lifting the bowl, only to find that it isn’t a bowl: it’s a carved part of the shelf."
@@ -17928,8 +17980,8 @@ Instead of attacking or pulling or turning the bowl of black oil:
 Instead of touching, tasting, searching, drinking, eating the bowl of black oil:
 	say "The oil is as thick as slug-slime and as black as death. Who knows what it’s made from?";
 	
-Instead of smelling the oil:
-	say "The oil is sweet, and thick, and smells of long darkness."
+Before smelling the oil:
+	say "The oil is sweet, and thick, and smells of long darkness." instead.
 
 Section 6 - Bandages
 
@@ -17984,7 +18036,8 @@ Section 7 - Dowels
 
 Some dowels are scenery, on the rock shelf. "There’s a pile of stocky wooden dowels on the shelf. I don’t even want to think what they’re for."
 
-Understand "dowel", "rod" as the dowels when the dowel handle is not visible.
+Understand "stocky", "wooden", "dowel", "rod" as the dowels when the dowel handle is not visible.
+Understand "wooden dowels", "stocky dowels", "stock wooden dowels" as the dowels when the dowel handle is visible.
 
 Instead of taking the dowels when the dowel handle is off-stage:
 	now the player carries the dowel handle;
@@ -17994,7 +18047,7 @@ Instead of taking the dowels when the dowel handle is off-stage:
 Instead of taking the dowels:
 	say "I’ve already got one.";
 
-The dowel handle is a thing. The description is "It’s a good length, the size and shape of my forearm." The printed name is "handle". Understand "rod" as the dowel handle.
+The dowel handle is a thing. The description is "It’s a good length, the size and shape of my forearm." The printed name is "handle". Understand "wooden handle", "wooden dowel", "rod", "wooden rod" as the dowel handle.
 
 Instead of slicing the dowel handle with the knife:
 	say "The dowel is a just a stick of wood. I could whittle it, maybe, but it wouldn't make a good weapon."
@@ -18031,7 +18084,7 @@ Before fastening the linen strip to a torch stick thing (called the stick):
 
 Section 2 - Description
 
-The makeshift torch is a thing. The description of the makeshift torch is "It’s the best I can do for a torch: cloth wrapped around a handle.[if the arm bone is part of the makeshift torch] that once held a hand of its own[end if]. [if the linen strip is oiled]The cloth drips black oil[else]The cloth head is dry[end if]."
+The makeshift torch is a thing. The description of the makeshift torch is "It’s the best I can do for a torch: cloth wrapped around a handle[if the arm bone is part of the makeshift torch] that once held a hand of its own[end if]. [if the linen strip is oiled]The cloth drips black oil[else]The cloth head is dry[end if]."
 
 Rule for printing the description of the lit makeshift torch:
 	say "Clockwork can do a lot of things: tell the time, move the wheels of a cart, operate pistons and machines, move the stars and the Earth, even predict the weather. But clockwork can’t make Light. Only Fire makes Light – and that’s what I’ve got. I’m a Second Assistant Clock Polisher, and I’ve got fire on a stick.";
@@ -18039,7 +18092,7 @@ Rule for printing the description of the lit makeshift torch:
 Rule for printing the name of the lit makeshift torch:
 	say "brightly burning torch";
 
-Understand "handle" as the makeshift torch.
+Understand "handle" as the makeshift torch when the bone is part of the makeshift torch.
 
 Section 3 - Oiling
 
@@ -18145,11 +18198,11 @@ Instead of melting the oiled linen strip on a lit candle:
 Section 6 - Disassembling
 
 Before removing something torch-part from the makeshift torch:
-	say "A torch is a useful thing to have down here. I'm keeping it!" instead.
+	say "A torch is a useful thing to have down here. I'm keeping it intact, not taking it apart!" instead.
 Before untying something torch-part from the makeshift torch:
-	say "A torch is a useful thing to have down here. I'm keeping it!" instead.
+	say "A torch is a useful thing to have down here. I'm keeping it intact, not taking it apart!" instead.
 Before taking the linen strip when the linen strip is a torch-part:
-	say "A torch is a useful thing to have down here. I'm keeping it!" instead.
+	say "A torch is a useful thing to have down here. I'm keeping it intact, not taking it apart!" instead.
 
 Before doing something when a torch-part is involved:
 	if the noun is a torch-part:
@@ -18194,12 +18247,16 @@ Rule for firing unfired TRIG_DARK_STAIR when the player has the lit makeshift to
 	say "The stairs disappear downwards. I must be lower than the Abbey well by now, maybe even lower than the spring of St Philip itself. My hands are running over stone bricks – then slick rock seamed with rough minerals.[paragraph break]Then, quite suddenly, the stairs come to an end in mid-air. Below them is empty space: my torch is like the scratch of a fingernail on the Polar Ice. It’s as though the world was hollow and I had reached its rotten core.";
 
 Rule for firing unfired TRIG_DARK_STAIR:
-	say "Total darkness. I’m feeling my way – one step, then another, like I was coming down the ladder from my room. Then just as I’m getting the hang of it, the deep step gets deeper and deeper and I realise my foot is heading out into nothingness because the stairs have stopped… with no time to pull back I sit down, sharply. Below me is empty air – could be a handspan, could be the height of a tower. The air is still, and cold. The darkness around could be the size of the night.";
+	if the player can see a lit candle:
+		say "Almost total darkness. I'm taking it one step at a time, like I was climbing a ladder. Then just as I'm getting used to the pace, the next step gets deeper and deeper and I look down to see nothing, not the slightest glimmer of stone beneath my weight... ";
+	else:
+		say "Total darkness. I’m feeling my way – one step, then another, like I was coming down the ladder from my room. Then just as I’m getting the hang of it, the deep step gets deeper and deeper and I realise my foot is heading out into nothingness because the stairs have stopped… ";
+	say "with no time to pull back I sit down, sharply. Below me is empty air – could be a handspan, could be the height of a tower. The air is still, and cold. The darkness around could be the size of the night.";
 
 Instead of dropping something in the Dark Stair:
 	say "I can’t risk it rolling and disappearing into space.";
 
-Instead of examining the lit candle in the Dark Stair:
+Instead of examining the lit candle in the Dark Stair when the player cannot see the lit makeshift torch:
 	say "The candle throws out a circle of light; nothing like enough to fill this cavernous space."
 
 Chapter 2 - Scenery
@@ -18241,10 +18298,10 @@ Instead of taking the sconce:
 Instead of climbing the sconce:
 	say "If I want to go back up I'm going to run back up the stairs, not up the wall."
 
-Instead of pushing or pulling or turning the sconce:
+Instead of pushing or pulling or turning or attacking the sconce:
 	say "[one of]It's been here for centuries. It takes more than the likes of me to move something like that[or]It's fixed into the stones[stopping]."
 
-Understand "solid", "wrought", "iron", "pike", "bracket", "sun", "rays", "holder" as the sconce.
+Understand "solid", "wrought", "iron", "metal", "sconce", "pike", "bracket", "sun", "rays", "holder" as the sconce.
 
 After inserting the lit makeshift torch into the sconce:
 	say "I slot the torch neatly into the sconce. Light pours down over the pedestal opposite.";
@@ -18256,7 +18313,7 @@ Section 3 - Pedestal
 
 A granite column is scenery, a supporter, in the Dark Stair. "A granite column, waist-high on a man which means chin-height to me. The surface is marked with ridges and slots in some kind of design – maybe there used to be something here, some kind of treasure that was ripped away – or a goblin – or a heretical device powered by water or the movement of ants." 
 
-The printed name of the granite column is "pedestal". Understand "pedestal" as the granite column.
+The printed name of the granite column is "pedestal". Understand "low", "stone", "pedestal" as the granite column.
 
 Instead of pushing, pulling the granite column:
 	try turning the noun instead;
@@ -18360,7 +18417,7 @@ A gnomon rule:
 Section 5 - Gnomon Tip
 
 The gnomon tip is privately-named, scenery. 
-Understand "smooth", "slope", "stone slope" as the dangling stair when the player can see the gnomon tip.
+Understand "smooth", "slope", "stone slope", "wire" as the dangling stair when the player can see the gnomon tip.
 
 Instead of going down from the Dark Stair when the player can not see the gnomon tip:
 	say "There’s nothing but space there! I’m not jumping!";
@@ -18394,6 +18451,9 @@ Before going inside in the Middle of the Gnomon:
 	try going down instead.
 
 Part 8 - Henge
+
+Instead of listening when in the Henge:
+	say ""
 
 After going from the Middle of Gnomon to the Henge:
 	say "Another few minutes and I reach the bottom.";
@@ -18532,7 +18592,7 @@ Chapter 3 - Scenery - Brass Head
 
 Section 1 - Description
 
-A solid brass head is a person, scenery, in the Iron Entry. "The head is solid brass. Its dull eye-sockets stare right back at me. The expression could skin a cat.".
+A solid brass head is a person, scenery, in the Iron Entry. "The head is solid brass. Its dull eye-sockets [if the current script is empty]have opened[else]stare right back at me[end if]. The expression could skin a cat.". Understand "dull", "open eyes", "eye sockets", "eyes", "eye-sockets", "eye-socket", "eye socket" as the solid brass head.
 
 Section 2 - Script
 
@@ -18651,7 +18711,7 @@ Part 10 - Inner Vault
 
 Chapter 1 - Description
 
-The Inner Vault is a room. "[one of]I woke up this morning a Second Assistant Clock Polisher, who would have been on slops-duty if I’d touched any mechanisms. Now, through some kind of horrible accident – the kind that shouldn’t happen in a clockwork world – I’m here, in the Inner Vaults of the Cathedral of Time.[paragraph break]The door swings shut behind me. I guess now I'm a relic too.[paragraph break][once only]This room is completely bare, except for a steel altar like a fallen brick. Ticking quietly to itself on top is the Perpetuum[if the steel altar supports the decoy perpetuum mobile]. Or so it seems..[end if]."
+The Inner Vault is a room. "[one of]I woke up this morning a Second Assistant Clock Polisher, who would have been on slops-duty if I’d touched any mechanisms. Now, through some kind of horrible accident – the kind that shouldn’t happen in a clockwork world – I’m here, in the Inner Vaults of the Cathedral of Time.[paragraph break]The door swings shut behind me. I guess now I'm a relic too.[paragraph break][once only]This room is completely bare, except for a steel altar like a fallen brick. Ticking quietly to itself on top is the Perpetuum[if the steel altar supports the decoy perpetuum mobile]. Or so it seems..[end if]. The door is back east."
 
 Before making to leave when in the Inner Vault:
 	try going east instead.
@@ -18705,6 +18765,9 @@ Does the player mean putting the decoy perpetuum on the steel altar:
 
 Does the player mean taking the real perpetuum when the steel altar supports the real perpetuum:
 	it is very likely;
+
+Does the player mean taking the decoy perpetuum when the player is carrying the decoy perpetuum:
+	it is very unlikely.
 
 Does the player mean taking the decoy perpetuum when the steel altar supports the decoy perpetuum:
 	it is very likely;
@@ -18972,7 +19035,7 @@ Section 4 - Cage
 
 The bird cage is a closed transparent container, openable, scenery, in Covalt's Bedroom. "[if the bird cage is closed]The cage is closed with a small hook.[otherwise]The cage has sprung open."; 
 
-Understand "hook", "small hook" as the bird cage.
+Understand "hook", "small hook", "bars" as the bird cage.
 
 After opening the bird cage when the third-state of Covalt is 1 during Midnight:
 	change the third-state of Covalt to 2;
@@ -19062,6 +19125,11 @@ Rule for firing fired TRIG_COVALT_FIGURE_3:
 
 Section 6 - Figure
 
+Understand "surprise figure" as a mistake ("Great idea, but [i]how[r]?") when the location is the Bedroom and Midnight is happening.
+
+Instead of giving the real perpetuum mobile to the Figure in grey during Midnight:
+	say "I'm not giving up now!"
+
 Instead of talking to the Figure Grey during Midnight:
 	say "I stay silent. For now, he hasn't seen me..."
 
@@ -19142,7 +19210,13 @@ Before unscrewing the Figure Grey with something when the player can see the win
 Before unscrewing the winding slot with something during Midnight:
 	try unlocking the winding slot with the second noun instead;
 
-Section - Failed Attempts
+
+Section - Pre-emptive Attempts
+
+Instead of unscrewing the Figure Grey with something during Midnight:
+	try attacking the Figure Grey with the second noun.
+Instead of inserting something into the Figure grey during Midnight:
+	try attacking the Figure Grey with the noun.
 
 Section - Successfull Attempt
 
@@ -19188,17 +19262,20 @@ After reading a command when the third-state of Covalt is 10:
 	say "'That’s the most incredible piece of clockwork I ever saw,' he says slowly, furiously, his eyes glowing with anger. 'And you just destroyed it.'[paragraph break]Can Covalt really be angry that I...[paragraph break]'That was well done, young Wren.' He coughs. 'But I tell you, when I build something like that metal man, I’m going to give him an off-switch. Stupid to have to break such a fine machine. Whoever built that... a genius.' He strokes his beard, and gets to his feet – taking the Perpetuum from me as he does so. He’s looking back to normal already: a sour-faced moody old man. 'A genius, and an idiot, too.'[paragraph break]'But who was it?' I demand. 'Who built it?'[paragraph break]'That’s the question,' Covalt answers, gravely. 'For every spring that’s wound on this Earth, there’s a human hand turning the key. No divine mechanics down here. We may be free of this thing –' and he lands a kick squarely in the still automaton’s chest - 'but someone out there was behind it. Someone planning an army and after the Perpetuum.'[paragraph break]Covalt grunts, and scratches his chest with a thick finger. He seems almost to be falling asleep.[paragraph break]'There's clockwork, Wren,' he says. 'But then again, there's [i]clockmakers[r].'";
 [ Bodge: it seems in debug you can win the game in this activity, but in release you can't. So we fix the player's command to something safe... ]
 	replace the player's command with "look";
-	end the game in victory;
+	end the game saying "To Be Continued...";
 
 [ ... and then ignore it to end the game ]
 First before when the third-state of Covalt is 10: [ this is absurd, I'm just trying to get the game to stop! ] 
 	do nothing instead.
-
+	
 	
 
 Book W - Walkthrough Script
 
-Test wholegame with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt / test countinghouse / test outsidewarehouse / test insidewarehouse / test covaltreturn / test returncathedral / d / s / w / take dial / out / e / take cloth / put cloth in oil / take dowel / tie cloth to dowel / out / light torch on torches / d / put dial on pedestal / put torch in sconce / set pedestal to 12 / d / d / search stones / in / open door / say patience / in / swap fake for real / out / out / hide behind door / z / z / in / open bird cage / i / put lucky clock key in winding slot / z".
+Test wholegame with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt / test countinghouse / test outsidewarehouse / test insidewarehouse / test covaltreturn / test returncathedral / test crypt / in / open bird cage / i / put lucky clock key in winding slot / z".
+
+Test crypt with " d / s / w / take dial / out / e / take cloth / put cloth in oil / take dowel / tie cloth to dowel / out / light torch on torches / d / put dial on pedestal / put torch in sconce / set pedestal to 12 / d / d / search stones / in / open door / say patience / in / take perpetuum / out / out / hide behind door / z / z".
+
 
 test cheat7 with "test intro / gonear street / purloin work order".
 
@@ -19241,7 +19318,7 @@ test dishonestcovaltreturn with "ask coalt about me / tell covalt about dockyard
 
 test returncathedral with "e/n/e/put candle in lantern / w / n / z / z / n / e / ne / w / n / e / x carvings / in / drop perpetuum / in / u / open door / get weights / e / open drawer with knife / open drawer / get key / w / d / out / s / s / e / ne"
 
-test crypt with "d"
+
 
 Book X - Not For Release - Fixing the RNG
 
