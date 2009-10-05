@@ -16,10 +16,9 @@
                             <asp:Image ID="Image2" runat="server" ImageUrl="~/images/students.jpg" AlternateText="Students using a school computer." />
                             <br />
                             <br />
-                            <asp:Image ID="Image3" runat="server" ImageUrl="~/images/tflogo.jpg" 
-                                AlternateText="Textfyre.Com" />
+                            <asp:Image ID="Image3" runat="server" ImageUrl="~/images/tflogo.jpg" AlternateText="Textfyre.Com" />
                         </td>
-                        <td style="width: 100%; padding: 5px 5px 5px 5px;border-left:solid 1px black;">
+                        <td style="width: 100%; padding: 5px 5px 5px 5px; border-left: solid 1px black;">
                             <p>
                                 Welcome to Textfyre.Com!
                             </p>
@@ -48,17 +47,19 @@
                                 kick everything in the game!
                             </p>
                             <p>
-                                <b>Play the Demo!</b><br />
+                                <b>Play the Deluxe Edition Demo!</b><br />
                                 When you play the demo of Secret Letter, try holding down the Ctrl key on your keyboard.
                                 You'll see some of the words display in red. Each of these words has a built-in
                                 pop-up definition. If you click a red word, a balloon displays the definition. It's
                                 features like this that you'll never find in a regular book.
                             </p>
                             <p>
-                                <b>* * * * SPECIAL OFFER * * * *</b><br />
-                                Since we're just getting started, we have a special offer to all teachers and schools.
-                                If you license any of our products, we'll donate 25% of the licensing fee to your
-                                PTA or PTO each year. Call us at 630 803 4302 for more information.
+                                <b>Classroom Edition Coming Soon</b><br />
+                                We're putting the finishing touches on the new Classroom Edition. This edition will
+                                focus on allowing teachers to purchase and setup student access as well as letting
+                                students log in anonymously. Teachers will be able to view reports on each student's
+                                progress and students will see their progress in the number of hurdles they've crossed.
+                                The Classroom Edition will be available online through the Textfyre.Com website.
                             </p>
                         </td>
                     </tr>

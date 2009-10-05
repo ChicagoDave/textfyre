@@ -23,7 +23,7 @@
                                 Dear Parents,</p>
                             <p>
                                 My name is David Cornelson and I created Textfyre for you and your kids. I have
-                                five children of my own and I know how hard it is to keep them entertained in today's
+                                children of my own and I know how hard it is to keep them entertained in today's
                                 world. The battle over the television, the computer, the game console, the Nintendo
                                 DS and Leapster games is non-stop. As parents we're always fretting over whether
                                 allowing our kids access to these outlets is good for them.</p>
