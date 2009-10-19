@@ -1,0 +1,50 @@
+<publishData>
+  <publishTarget publishUrl="\\65.166.200.208\d$\websites\btr\chris\SilverGlulxe\">
+    <file relUrl="SilverGlulxeTestPage.html" publishTime="03/24/2009 13:36:30" />
+    <file relUrl="bin/zh-Hans/System.Web.Silverlight.resources.dll" publishTime="10/05/2008 03:53:18" />
+    <file relUrl="ClientBin/Cjc.SilverGlulxe.xap" publishTime="04/16/2009 03:34:14" />
+    <file relUrl="bin/de/System.Web.Silverlight.resources.dll" publishTime="10/05/2008 03:53:18" />
+    <file relUrl="Transcript.aspx" publishTime="03/31/2009 03:07:33" />
+    <file relUrl="bin/SilverGlulxe.Web.pdb" publishTime="04/16/2009 03:34:13" />
+    <file relUrl="Web.config" publishTime="03/22/2009 20:32:51" />
+    <file relUrl="bin/fr/System.Web.Silverlight.resources.dll" publishTime="10/05/2008 03:53:18" />
+    <file relUrl="Transcript.xslt" publishTime="04/16/2009 03:30:36" />
+    <file relUrl="bin/it/System.Web.Silverlight.resources.dll" publishTime="10/05/2008 03:53:18" />
+    <file relUrl="SilverGlulxeTestPage.aspx" publishTime="03/25/2009 00:57:36" />
+    <file relUrl="ChocolateFreak.ulx" publishTime="03/26/2009 22:46:44" />
+    <file relUrl="bin/SilverGlulxe.Web.dll" publishTime="04/16/2009 03:34:13" />
+    <file relUrl="UploadTranscript.ashx" publishTime="03/28/2009 01:04:33" />
+    <file relUrl="bin/zh-Hant/System.Web.Silverlight.resources.dll" publishTime="10/05/2008 03:53:18" />
+    <file relUrl="bin/ja/System.Web.Silverlight.resources.dll" publishTime="10/05/2008 03:53:18" />
+    <file relUrl="bin/ko/System.Web.Silverlight.resources.dll" publishTime="10/05/2008 03:53:18" />
+    <file relUrl="TranscriptXml.ashx" publishTime="03/31/2009 01:44:39" />
+    <file relUrl="Default.aspx" publishTime="03/22/2009 13:29:02" />
+    <file relUrl="bin/System.Web.Silverlight.dll" publishTime="10/05/2008 03:53:18" />
+    <file relUrl="Lowell's Paradise.ulx" publishTime="03/22/2009 20:02:33" />
+    <file relUrl="Silverlight.js" publishTime="03/22/2009 13:29:08" />
+    <file relUrl="Server.ashx" publishTime="03/24/2009 00:55:53" />
+    <file relUrl="bin/es/System.Web.Silverlight.resources.dll" publishTime="10/05/2008 03:53:18" />
+  </publishTarget>
+  <publishTarget publishUrl="\\65.166.200.208\d$\websites\btr\chris\SilverGlulxe_ChocolateFreak\">
+    <file relUrl="SilverGlulxeTestPage.html" publishTime="03/24/2009 13:36:30" />
+    <file relUrl="bin/zh-Hans/System.Web.Silverlight.resources.dll" publishTime="10/05/2008 03:53:18" />
+    <file relUrl="ClientBin/Cjc.SilverGlulxe.xap" publishTime="03/26/2009 22:48:26" />
+    <file relUrl="bin/de/System.Web.Silverlight.resources.dll" publishTime="10/05/2008 03:53:18" />
+    <file relUrl="bin/SilverGlulxe.Web.pdb" publishTime="03/26/2009 22:55:03" />
+    <file relUrl="bin/ja/System.Web.Silverlight.resources.dll" publishTime="10/05/2008 03:53:18" />
+    <file relUrl="Web.config" publishTime="03/22/2009 20:32:51" />
+    <file relUrl="bin/it/System.Web.Silverlight.resources.dll" publishTime="10/05/2008 03:53:18" />
+    <file relUrl="SilverGlulxeTestPage.aspx" publishTime="03/25/2009 00:57:36" />
+    <file relUrl="ChocolateFreak.ulx" publishTime="03/26/2009 22:46:44" />
+    <file relUrl="bin/SilverGlulxe.Web.dll" publishTime="03/26/2009 22:55:03" />
+    <file relUrl="bin/fr/System.Web.Silverlight.resources.dll" publishTime="10/05/2008 03:53:18" />
+    <file relUrl="bin/zh-Hant/System.Web.Silverlight.resources.dll" publishTime="10/05/2008 03:53:18" />
+    <file relUrl="Silverlight.js" publishTime="03/22/2009 13:29:08" />
+    <file relUrl="bin/ko/System.Web.Silverlight.resources.dll" publishTime="10/05/2008 03:53:18" />
+    <file relUrl="Default.aspx" publishTime="03/22/2009 13:29:02" />
+    <file relUrl="bin/System.Web.Silverlight.dll" publishTime="10/05/2008 03:53:18" />
+    <file relUrl="Lowell's Paradise.ulx" publishTime="03/22/2009 20:02:33" />
+    <file relUrl="Server.ashx" publishTime="03/24/2009 00:55:53" />
+    <file relUrl="bin/es/System.Web.Silverlight.resources.dll" publishTime="10/05/2008 03:53:18" />
+  </publishTarget>
+</publishData>
