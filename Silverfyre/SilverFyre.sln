@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverFyre", "SilverFyre.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Textfyre.VM", "..\silverlight\trunk\Textfyre.VM\Textfyre.VM.csproj", "{77B7C61A-8DD3-4E8A-A3FD-B90D1AE47C41}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverFyre.Web", "Silverfyre.Web\SilverFyre.Web.csproj", "{846A1CC5-282B-46E7-B432-A7CAB2D34493}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,12 @@ Global
 		{77B7C61A-8DD3-4E8A-A3FD-B90D1AE47C41}.Release|Any CPU.Build.0 = Release|Any CPU
 		{77B7C61A-8DD3-4E8A-A3FD-B90D1AE47C41}.Silverlight Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77B7C61A-8DD3-4E8A-A3FD-B90D1AE47C41}.Silverlight Release|Any CPU.Build.0 = Release|Any CPU
+		{846A1CC5-282B-46E7-B432-A7CAB2D34493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{846A1CC5-282B-46E7-B432-A7CAB2D34493}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{846A1CC5-282B-46E7-B432-A7CAB2D34493}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{846A1CC5-282B-46E7-B432-A7CAB2D34493}.Release|Any CPU.Build.0 = Release|Any CPU
+		{846A1CC5-282B-46E7-B432-A7CAB2D34493}.Silverlight Release|Any CPU.ActiveCfg = Silverlight Release|Any CPU
+		{846A1CC5-282B-46E7-B432-A7CAB2D34493}.Silverlight Release|Any CPU.Build.0 = Silverlight Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

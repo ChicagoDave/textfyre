@@ -104,7 +104,7 @@ namespace Cjc.SilverFyre
 			if ( App.Current.Resources.Contains( "story" ) ) return Uri.EscapeUriString( App.Current.Resources[ "story" ].ToString() );
 			if ( HtmlPage.Document.QueryString.ContainsKey( "s" ) ) return Uri.EscapeUriString( HtmlPage.Document.QueryString[ "s" ] );
 
-			return "Lowell's Paradise.ulx";
+            return "sl-v1.07u.ulx";
 		}
 
 		public ObservableCollection<StoryHistoryItem> History { get; private set; }
