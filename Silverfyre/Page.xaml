@@ -1,7 +1,13 @@
 ﻿<UserControl
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:local="clr-namespace:Cjc.SilverFyre" xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls" x:Class="Cjc.SilverFyre.Page"
+	xmlns:local="clr-namespace:Cjc.SilverFyre"
+	xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+	xmlns:sd="clr-namespace:Divelements.SandDock;assembly=Divelements.SandDock"
+	x:Class="Cjc.SilverFyre.Page"
+	Width="1400"
+	Height="700"
+	HorizontalAlignment="Center"
     >
 
 	<UserControl.Resources>
@@ -99,118 +105,121 @@
 
 	<Grid x:Name="LayoutRoot" Background="White">
 		
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="200"/>
-			<ColumnDefinition Width="Auto"/>
-			<ColumnDefinition Width="Auto"/>
-			<ColumnDefinition Width="Auto"/>
-			<ColumnDefinition Width="200"/>			
-		</Grid.ColumnDefinitions>
-				
-		<Grid x:Name="LeftPanel" Grid.Column="0">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="Auto"/>
-			</Grid.ColumnDefinitions>
-		</Grid>
-		
-		<Grid x:Name="RightPanel" Grid.Column="4">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="Auto"/>
-			</Grid.ColumnDefinitions>
-		</Grid>
-	
-		<controls:GridSplitter Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="5"/>
-		<controls:GridSplitter Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="5"/>
+		<sd:DockSite Name="dockSite">
+		    <sd:DockedSplitContainer Dock="Left" ContentSize="300"> 
+		        <sd:WindowGroup>
+		            <sd:ToolWindow Title="Student" TabText="Student" AllowClose="False" IsPinned="False" /> 
+		            <sd:ToolWindow Title="Converse" TabText="Converse" AllowClose="False" IsPinned="False" /> 
+		            <sd:ToolWindow Title="Map" TabText="Map" AllowClose="False" IsPinned="False" /> 
+		            <sd:ToolWindow Title="Hints" TabText="Hints" AllowClose="False" IsPinned="False" /> 
+		        </sd:WindowGroup> 
+		    </sd:DockedSplitContainer>
+			
+		    <sd:DockedSplitContainer Dock="Right" ContentSize="300"> 
+		        <sd:WindowGroup>
+		            <sd:ToolWindow Title="Hurdles" TabText="Hurdles" AllowClose="False" IsPinned="False" /> 
+		            <sd:ToolWindow Title="Notes" TabText="Notes" AllowClose="False" IsPinned="False" /> 
+		            <sd:ToolWindow Title="Help" TabText="Help" AllowClose="False" IsPinned="False" /> 
+		            <sd:ToolWindow Title="Settings" TabText="Settings" AllowClose="False" IsPinned="False" /> 
+		        </sd:WindowGroup> 
+		    </sd:DockedSplitContainer>
+		    <sd:DocumentContainer> 
+		        <sd:WindowGroup> 
+		            <sd:DocumentWindow Title="Jack Toresal and The Secret Letter" AllowClose="False" Background="Wheat" TabText="Jack Toresal and The Secret Letter">
 
-		<Grid x:Name="GameWindow" Background="White" Grid.Column="2">
+						<Grid x:Name="GameWindow" Background="White">
 
-			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition/>
-				<RowDefinition Height="Auto"/>
-			</Grid.RowDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition/>
+								<RowDefinition Height="Auto"/>
+							</Grid.RowDefinitions>
 
-			<Border x:Name="statusBar" Grid.Row="0" Background="#505050" Padding="10">
+							<Border x:Name="statusBar" Grid.Row="0" Background="#505050" Padding="10">
 
-				<Grid>
+								<Grid>
 
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition/>
-						<ColumnDefinition Width="Auto"/>
-					</Grid.ColumnDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto"/>
+										<ColumnDefinition/>
+										<ColumnDefinition Width="Auto"/>
+									</Grid.ColumnDefinitions>
 
-					<TextBlock Grid.Column="0" Text="{Binding Location}" Style="{StaticResource statusText}"/>
+									<TextBlock Grid.Column="0" Text="{Binding Location}" Style="{StaticResource statusText}"/>
 
-					<StackPanel Orientation="Horizontal" Grid.Column="2">
-						<TextBlock Text="{Binding Time}" Style="{StaticResource statusText}"/>
-						<TextBlock Text=" / " Style="{StaticResource statusText}"/>
-						<TextBlock Text="{Binding Score}" Style="{StaticResource statusText}"/>
-					</StackPanel>
+									<StackPanel Orientation="Horizontal" Grid.Column="2">
+										<TextBlock Text="{Binding Time}" Style="{StaticResource statusText}"/>
+										<TextBlock Text=" / " Style="{StaticResource statusText}"/>
+										<TextBlock Text="{Binding Score}" Style="{StaticResource statusText}"/>
+									</StackPanel>
 
-				</Grid>
+								</Grid>
 
-			</Border>
+							</Border>
 
-			<ScrollViewer Grid.Row="1" x:Name="storyScroll" BorderThickness="0" Background="Transparent">
+							<ScrollViewer Grid.Row="1" x:Name="storyScroll" BorderThickness="0" Background="Transparent">
 
-				<local:LayoutTransformControl x:Name="layoutTransform" x:FieldModifier="private">
+								<local:LayoutTransformControl x:Name="layoutTransform" x:FieldModifier="private">
 
-					<StackPanel Margin="5">
+									<StackPanel Margin="5">
 
-						<ItemsControl x:Name="story" ItemTemplate="{StaticResource storyItemTemplate}"/>
+										<ItemsControl x:Name="story" ItemTemplate="{StaticResource storyItemTemplate}"/>
 
-						<TextBlock x:Name="pleaseWait" Style="{StaticResource historyText}" Opacity="0"><Run Text="Please wait..."/></TextBlock>
+										<TextBlock x:Name="pleaseWait" Style="{StaticResource historyText}" Opacity="0"><Run Text="Please wait..."/></TextBlock>
 
-						<Grid>
+										<Grid>
 
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="Auto"/>
-								<ColumnDefinition/>
-								<ColumnDefinition Width="Auto"/>
-							</Grid.ColumnDefinitions>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="Auto"/>
+												<ColumnDefinition/>
+												<ColumnDefinition Width="Auto"/>
+											</Grid.ColumnDefinitions>
 
-							<TextBlock Grid.Column="0" Text="{Binding Prompt}" VerticalAlignment="Center" Style="{StaticResource promptText}"/>
-							<TextBox x:Name="commandBox" Grid.Column="1" VerticalAlignment="Center" BorderThickness="0" KeyDown="OnCommandKey"
-									 FontStyle="Italic" Style="{StaticResource commandText}" IsTabStop="True" TabIndex="0"/>
+											<TextBlock Grid.Column="0" Text="{Binding Prompt}" VerticalAlignment="Center" Style="{StaticResource promptText}"/>
+											<TextBox x:Name="commandBox" Grid.Column="1" VerticalAlignment="Center" BorderThickness="0" KeyDown="OnCommandKey"
+												FontStyle="Italic" Style="{StaticResource commandText}" IsTabStop="True" TabIndex="0"/>
+
+										</Grid>
+
+									</StackPanel>
+
+								</local:LayoutTransformControl>
+
+							</ScrollViewer>
+
+							<Grid x:Name="loading" Grid.Row="1" Opacity="0">
+								<Grid.Background>
+									<RadialGradientBrush>
+										<GradientStop Offset="0" Color="#FFFFFFFF"/>
+										<GradientStop Offset="1" Color="#00FFFFFF"/>
+									</RadialGradientBrush>
+								</Grid.Background>
+								<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"><Run Text="Loading..."/></TextBlock>
+							</Grid>
+
+							<Grid Grid.Row="2" Margin="5">
+
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto"/>
+									<ColumnDefinition/>
+									<ColumnDefinition Width="Auto"/>
+									<ColumnDefinition Width="0.2*" MinWidth="100"/>
+								</Grid.ColumnDefinitions>
+
+								<TextBlock Grid.Column="0" Text="SilverFyre by Chris Cavanagh" VerticalAlignment="Bottom" FontSize="8" Foreground="#A0A0A0"/>
+								<HyperlinkButton Grid.Column="1" Content="Transcript" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Transcript"/>
+								<TextBlock Grid.Column="2" Text="Scale" Margin="0,0,5,0" VerticalAlignment="Center"/>
+								<Slider Grid.Column="3" x:Name="scaleSlider" x:FieldModifier="private" Minimum="0.5" Maximum="3" Value="1" VerticalAlignment="Center"/>
+
+							</Grid>
+
+							<local:SaveLoadPopup x:Name="saveLoadPopup" x:FieldModifier="private" Grid.Row="1" Visibility="Collapsed" Opacity="0"
+								ItemSelected="OnSaveLoadItemSelected" Cancelled="OnSaveLoadCancelled"/>
 
 						</Grid>
-
-					</StackPanel>
-
-				</local:LayoutTransformControl>
-
-			</ScrollViewer>
-
-			<Grid x:Name="loading" Grid.Row="1" Opacity="0">
-				<Grid.Background>
-					<RadialGradientBrush>
-						<GradientStop Offset="0" Color="#FFFFFFFF"/>
-						<GradientStop Offset="1" Color="#00FFFFFF"/>
-					</RadialGradientBrush>
-				</Grid.Background>
-				<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"><Run Text="Loading..."/></TextBlock>
-			</Grid>
-
-			<Grid Grid.Row="2" Margin="5">
-
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto"/>
-					<ColumnDefinition/>
-					<ColumnDefinition Width="Auto"/>
-					<ColumnDefinition Width="0.2*" MinWidth="100"/>
-				</Grid.ColumnDefinitions>
-
-				<TextBlock Grid.Column="0" Text="SilverFyre by Chris Cavanagh" VerticalAlignment="Bottom" FontSize="8" Foreground="#A0A0A0"/>
-				<HyperlinkButton Grid.Column="1" Content="Transcript" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Transcript"/>
-				<TextBlock Grid.Column="2" Text="Scale" Margin="0,0,5,0" VerticalAlignment="Center"/>
-				<Slider Grid.Column="3" x:Name="scaleSlider" x:FieldModifier="private" Minimum="0.5" Maximum="3" Value="1" VerticalAlignment="Center"/>
-
-			</Grid>
-
-			<local:SaveLoadPopup x:Name="saveLoadPopup" x:FieldModifier="private" Grid.Row="1" Visibility="Collapsed" Opacity="0"
-								 ItemSelected="OnSaveLoadItemSelected" Cancelled="OnSaveLoadCancelled"/>
-
-		</Grid>
+					</sd:DocumentWindow> 
+		        </sd:WindowGroup> 
+		    </sd:DocumentContainer> 
+		</sd:DockSite>
 	</Grid>
 </UserControl>

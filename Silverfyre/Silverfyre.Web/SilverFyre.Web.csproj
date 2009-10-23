@@ -63,7 +63,6 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Default.aspx" />
     <Content Include="SilverFyreTestPage.aspx" />
     <Content Include="SilverFyreTestPage.html" />
     <Content Include="Silverlight.js" />
@@ -71,8 +70,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Default.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -114,7 +113,28 @@
     <Content Include="Transcript.xslt" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Default.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClientBin\System.Windows.Controls.zip" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="ClientBin\System.Xml.Linq.zip" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClientBin\System.Windows.Data.zip" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClientBin\System.Windows.Controls.Data.Input.zip" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClientBin\System.Windows.Controls.Data.zip" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClientBin\System.ComponentModel.DataAnnotations.zip" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sl-v1.07u.ulx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
