@@ -17,8 +17,13 @@ p, li {
 }
 li {
     list-style-type:disc;
-    list-style-position:inside;
+    list-style-position:outside;
 }
+
+ul {
+    padding-left:3em;
+}
+
 em 
 {    
     font-style:normal;
@@ -46,13 +51,8 @@ div#footer {
 	clear:both;
 	text-align: center;
 	margin:0 3em 3em 3em;
-}
-
-span.footer-text 
-{
 	font-size:7pt;
 }
-
 
 div#header {
 	color: inherit;
@@ -332,13 +332,6 @@ div.col-right{
 	width: 49%;
 	float:right;
 }
-
-div#footer {
-	clear:both;
-	text-align: center;
-	margin:0 3em 3em 3em;
-}
-
 
 div#content img {
 	display:block;
