@@ -10,7 +10,7 @@ body
 }
 
 
-/** MAIN CONTAINERS **/
+/** MAIN CONTAINERS 
 div#container
 {
 	margin: 5px auto;
@@ -20,6 +20,10 @@ body.fullwidth div#container
 {
 	width: 100%;
 }
+
+**/
+
+
 div#header
 {
 }
