@@ -92,7 +92,7 @@
             </asp:ContentPlaceHolder>
         </div>
         <div id="footer">
-                Compatible with Windows XP, Windows Vista, Windows 7, and Intel Mac OS X - </span>
+                Compatible with Windows XP, Windows Vista, Windows 7, and Intel Mac OS X - 
                 <asp:HyperLink runat="server" ID="PrivacyLink" Text="Privacy Policy" NavigateUrl="~/Privacy.aspx" />
                  - Copyright © 2009 Textfyre, Inc. All rights reserved.
         </div>            
