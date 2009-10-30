@@ -58,8 +58,8 @@
             <div class="col-left">
                 <img src="images/shadow.jpg" alt="The Shadow of the Cathedral" width="240" height="120" />
                 <h2>The Shadow in the Cathedral</h2>
-                <p>The Shadow in the Cathedral, Textfyre&#39;s second game, will be released on September
-                    25th, 2009. The first episode in the Klockwerk Series; Shadow begins an adventure
+                <p>The Shadow in the Cathedral, Textfyre&#39;s second game, will be released on November
+                    6th, 2009. The first episode in the Klockwerk Series; Shadow begins an adventure
                     in a world of clocks, gears and ornithopters. You are Wren, 2nd assistant clock-polisher.
                     It&#39;s not a very important job, but it offers a place to sleep and bread to eat.
                     You just wish you could someday make it to 1st assistant clock-polisher. Before
