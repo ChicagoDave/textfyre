@@ -8,7 +8,6 @@
 
     <!-- Stylesheets -->
     <link href="style/reset.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="style/default.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="style/styling.css" media="screen" rel="stylesheet" type="text/css" />
     <!-- Print Stylesheet -->
     <link href="style/print.css" media="print" rel="stylesheet" type="text/css" />
@@ -42,6 +41,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    <a class="hidden" href="#content">Skip to content</a>
     <form id="form1" runat="server">
     <div id="container">
         <div id="header">
@@ -49,7 +49,7 @@
                 <asp:HyperLink runat="server" Text="" NavigateUrl="~/Default.aspx"><asp:Image ID="Image1" runat="server" AlternateText="Textfyre, Inc." ImageUrl="~/images/logo.png" /></asp:HyperLink>
             </div>
             <div id="headerOut" runat="server">
-                <table style="float:right;">
+                <table class="rfloat">
                     <tr>
                         <td>
                             <asp:Label runat="server" ID="LoggedInName" CssClass="loggedInName"></asp:Label>
@@ -62,7 +62,7 @@
                 </table>
             </div>
             <div id="headerIn" runat="server">
-                <div id="login" style="padding-right:10px;">
+                <div id="login">
                     <asp:Login ID="Login1" runat="server">
                         <LayoutTemplate>
                             <asp:Label CssClass="loginLabel" ID="UserNameLabel" runat="server" AssociatedControlID="UserName">User Name:</asp:Label>
@@ -74,28 +74,32 @@
                         </LayoutTemplate>
                     </asp:Login>
                 </div>
-                <div id="register" class="registerLink" style="padding-right:10px;">
-                    <asp:HyperLink runat="server" ID="registerLink" Text="Register with Textfyre.Com"
-                        NavigateUrl="Registration\Register.aspx" />
+                <div id="register" class="registerLink">
+                    <asp:HyperLink runat="server" ID="registerLink" Text="Register&nbsp;with&nbsp;Textfyre.Com"
+                        NavigateUrl="Registration/Register.aspx" />
                 </div>
             </div>
             <!-- end #header-in -->
             <div id="menuSpacer">
                 <uc1:MenuBar ID="MenuBar1" runat="server" />
             </div>
+
         </div>
         <!-- end #header -->
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        </asp:ContentPlaceHolder>
+        <div id="content">
+            <a name="startcontent"></a>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div id="footer">
+            <div class="footer-left">
+                Compatible with Windows XP, Windows Vista, Windows 7, and Intel Mac OS X</div>
+            <div class="footer-right">
+                <asp:HyperLink runat="server" ID="PrivacyLink" Text="Privacy Policy" NavigateUrl="~/Privacy.aspx" />
+                <span>Copyright © 2009 Textfyre, Inc. All rights reserved.</span></div>
+        </div>            
+        <!-- end #footer -->
     </div>
-    <div id="footer">
-        <div class="footer-left">
-            Compatible with Windows XP, Windows Vista, Windows 7, and Intel Mac OS X</div>
-        <div class="footer-right">
-            <asp:HyperLink runat="server" ID="PrivacyLink" Text="Privacy Policy" NavigateUrl="~/Privacy.aspx" />
-            <span style="padding-left:10px;">Copyright © 2009 Textfyre, Inc.</a> All rights reserved.</span></div>
-    </div>
-    <!-- end #footer -->
     <!-- end div#container -->
     <!-- end of content, starting some javascript... -->
     <!-- common functions -->
@@ -111,7 +115,7 @@ qacct:"p-73fx_puOEQzIg"
 </script>
 <script type="text/javascript" src="http://edge.quantserve.com/quant.js"></script>
 <noscript>
-<img src="http://pixel.quantserve.com/pixel/p-73fx_puOEQzIg.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/>
+<img src="http://pixel.quantserve.com/pixel/p-73fx_puOEQzIg.gif" class="hidden" border="0" height="1" width="1" alt="Quantcast"/>
 </noscript>
 <!-- End Quantcast tag -->
 </body>
