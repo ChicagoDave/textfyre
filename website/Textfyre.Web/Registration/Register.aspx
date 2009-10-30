@@ -118,8 +118,8 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <asp:Button runat="server" ID="regOK" Text="OK" OnClick="regRegisterButton_Click" ValidationGroup="Login1" CausesValidation="true" />
-                    <asp:Button runat="server" ID="regCancel" Text="Cancel" OnClick="regCancel_Click" CausesValidation="false" />
+                    <asp:Button runat="server" ID="regOK" Text="Submit registration" OnClick="regRegisterButton_Click" ValidationGroup="Login1" CausesValidation="true" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button runat="server" ID="regCancel" Text="Cancel" OnClick="regCancel_Click" CausesValidation="false" />
                 </td>
             </tr>
         </table>
