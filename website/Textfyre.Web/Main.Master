@@ -94,7 +94,7 @@
         <div id="footer">
                 <span class="footer-text">Compatible with Windows XP, Windows Vista, Windows 7, and Intel Mac OS X - </span>
                 <asp:HyperLink runat="server" ID="PrivacyLink" Text="Privacy Policy" NavigateUrl="~/Privacy.aspx" Font-Size="7pt" />
-                <span class="footer-text"> - Copyright © 2009 Textfyre, Inc. All rights reserved.</span></div>
+                <span class="footer-text"> - Copyright © 2009 Textfyre, Inc. All rights reserved.</span>
         </div>            
         <!-- end #footer -->
     </div>
