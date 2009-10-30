@@ -18,9 +18,9 @@
                     gossip. Jack, he just wants to sit down and eat an apple. </p>
             </div>
             <div class="col-right">
-                <p><a href="http://textfyre.com/sldemo/" target="_blank"><br />Play a demo of the Deluxe version online!</a><br />
+                <p><a href="https://textfyre.com/sldemo/" target="_blank"><br />Play a demo of the Deluxe version online!</a><br />
                     <br />
-                    <a href="http://textfyre.com/demos/SecretLetter-1.07StdDemo.msi"> Download a demo of the Standard version<br />(Windows only).</a></p>
+                    <a href="https://textfyre.com/demos/SecretLetter-1.07StdDemo.msi"> Download a demo of the Standard version<br />(Windows only).</a></p>
                 <table summary="This table provides links to online payment sites">
                     <tr>
                         <th>Deluxe Version Price:</th>
@@ -28,7 +28,7 @@
                     </tr>
                     <tr>
                         <td>Purchase the Deluxe Version via PayPal or Credit Card</td>
-                        <td><a href="https://www.e-junkie.com/ecom/gb.php?i=280404&amp;c=single&amp;cl=74327"><img src="http://www.e-junkie.com/ej/x-click-butcc.gif" alt="Buy Now" /></a></td>
+                        <td><a href="https://www.e-junkie.com/ecom/gb.php?i=280404&amp;c=single&amp;cl=74327"><img src="https://www.e-junkie.com/ej/x-click-butcc.gif" alt="Buy Now" /></a></td>
                     </tr>
                     <tr>
                         <td>Purchase the Deluxe Version via Google Checkout </td>
@@ -41,7 +41,7 @@
                     <tr>
                         <td>Purchase the Standard Version (Windows Only) via PayPal or Credit Card</td>
                         <td><a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-standard&amp;c=single&amp;cl=74327"
-                                target="ejejcsingle"><img src="http://www.e-junkie.com/ej/x-click-butcc.gif" alt="Buy Now" /></a></td>
+                                target="ejejcsingle"><img src="https://www.e-junkie.com/ej/x-click-butcc.gif" alt="Buy Now" /></a></td>
                     </tr>
                     <tr>
                         <td>Purchase the Standard Version (Windows Only) via Google Checkout</td>
