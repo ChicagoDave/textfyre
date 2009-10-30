@@ -291,10 +291,11 @@ div#rightArticle {
 div#container {
 	margin: 5px auto 5px auto;
 	font-size: .75em;
-	background-color:#fff;
+	background-color:#fff;	
 	max-width:900px;
 	min-width:740px;
-	width: 70%;
+	_width: expression(document.body.clientWidth < 742? "740px" : document.body.clientWidth > 900? "900px" : "auto");  
+	
 }
 
 
