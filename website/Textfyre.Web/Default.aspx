@@ -18,7 +18,7 @@
                 <a class="articleLink" href="http://www.silverlight.net">Silverlight</a> programming 
                     skills, creates a user experience that immerses the game player right inside the 
                     story.<br />
-                    <a href="http://textfyre.com/sldemo/" target="_blank"><br />Try our interface 
+                    <a href="https://www.textfyre.com/sldemo/" target="_blank"><br />Try our interface 
                         in your browser online!</a></p>
             </div>
             <div class="col-right">
@@ -37,7 +37,7 @@
                     story in the Klockwerk series. <i>The Shadow in the Cathedral</i>, due November 
                     6th, begins a tale in an Edwardian world where everyone worships clocks. A young 
                     neophyte within the church is our hero and will be faced with many challenges. <br />
-                    <a id="ctl00_ContentPlaceHolder1_HyperLink1" class="articleLink" href="Games.html">
+                    <a id="ctl00_ContentPlaceHolder1_HyperLink1" class="articleLink" href="Games.aspx">
                     Find out more...</a></p>
                 
                 </div>

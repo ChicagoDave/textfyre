@@ -339,6 +339,10 @@ div#footer {
 	margin:0 3em 3em 3em;
 }
 
+span.footer-text 
+{
+	font-size:6pt;
+}
 
 div#content img {
 	display:block;

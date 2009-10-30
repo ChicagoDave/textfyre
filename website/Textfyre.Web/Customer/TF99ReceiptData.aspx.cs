@@ -18,7 +18,7 @@ namespace Textfyre.Web.Customer {
             }
 
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["TFWebLocalDB"].ConnectionString)) {
-                string insert = "insert into aspnet_RawData (RawData) VALUES (@RawData)";
+                string insert = "insert into RawData (RawData) VALUES (@RawData)";
                 SqlCommand command = new SqlCommand(insert, conn);
                 command.Parameters.Add(new SqlParameter("@RawData", rawData ));
                 try {
