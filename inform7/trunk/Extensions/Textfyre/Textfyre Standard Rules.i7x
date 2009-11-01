@@ -133,7 +133,7 @@ Chapter 6 - Availability of Exits
 
 Exiting relates a room (called R) to a direction (called D-wards) when the room-or-door D-wards from R is not nothing. The verb to exit (it exits, they exit, it exited, it is exited, it is exiting) implies the exiting relation.
 
-Leading relates a door (called X) to a direction (called D-wards) when the room-or-door D-wards from the location is X. The verb to lead (he leads, they lead, he led) implies the leading relation.
+Leading relates a door (called X) to a direction (called D-wards) when the room-or-door D-wards from the location is X and D-wards is not inside and D-wards is not outside. The verb to lead (he leads, they lead, he led) implies the leading relation.
 
 Definition: a direction (called D) is an exit:
 	if the location exits D, yes;
