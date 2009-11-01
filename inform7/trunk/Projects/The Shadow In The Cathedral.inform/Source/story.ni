@@ -577,15 +577,17 @@ To end a/the chapter:
 	pause the game;
 
 To state chapter:
-	select the chapter channel;
-	say "Chapter [current game chapter]: [current chapter name]";
-	select the main channel;
+	if XML is in use:
+		select the chapter channel;
+		say "Chapter [current game chapter]: [current chapter name]";
+		select the main channel;
 
 
 Section 2 - Debug method (not for release)
 
 To end a/the chapter:
 	increase the current game chapter by 1;
+	send hints for current game chapter;
 	say "[paragraph break][bold type]*** CHAPTER [current game chapter]: [current chapter name] ***[roman type][paragraph break]";
 
 [Chapter 4 - Punctuation removal
@@ -3297,6 +3299,9 @@ Instead of pushing or pulling or turning the Grandfather Clock:
 Instead of attacking the Grandfather Clock:
 	say "Heresy. I'd be struck down by a counterweight where I stand!"
 
+Instead of touching the Grandfather Clock:
+	say "The wood is smooth and venerable and old. A bit like the Abbot, only he's not so much venerable as veiny."
+
 Section 2 - Actions - Polishing
 
 Instead of polishing the Grandfather Clock with the rag:
@@ -3777,7 +3782,7 @@ Section 4 - Figure in Grey (through the keyhole)
 
 The keyhole-figure is a man, privately-named, scenery. [initially out of play] "The glimpse I caught earlier was a tall – man? – wearing a suit of grey leather and a long flowing cape. Now I can't see him at all – it's almost as though he knows I'm hiding, and he's avoiding the keyhole's line of sight." The printed name is "figure in grey".
 
-Understand "man", "men", "person", "people", "figure", "in", "grey", "gray", "cape", "leather", "suit" as the keyhole-figure.
+Understand "figure in", "man in", "grey", "gray", "man", "men", "person", "people", "figure", "cape", "leather", "suit" as the keyhole-figure.
 
 Before listening to the keyhole-figure:
 	try listening to the clock-door instead.
@@ -17015,7 +17020,7 @@ A devotional oil lamp is scenery, in the Shrine of the Saints. "An oil lamp held
 Instead of opening the devotional oil lamp:
 	say "The lantern is a frame with several holes, for the air to get in, and for people to trim the wick when needed."
 
-Understand "deep", "amber", "flickering", "flicker", "glowing", "glow", "oil", "lantern", "lamp", "in", "in a", "brass", "band", "wick", "light" as the devotional lamp.
+Understand "deep", "amber", "flickering", "flicker", "glowing", "glow", "oil", "lantern", "lamp", "brass", "band", "wick", "light" as the devotional lamp.
 
 Instead of taking the devotional oil lamp:
 	say "The lamp is attached securely to the wall[one of] (and anyway, it's much brighter than I'd want to be, sneaking around in here!)[or].[stopping]".
