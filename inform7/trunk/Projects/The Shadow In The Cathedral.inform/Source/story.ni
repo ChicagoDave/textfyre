@@ -2,7 +2,10 @@
 
 
 [  Change Log
-When			Who		What
+
+When				Who		What
+
+1-Nov-2009			J. Ingold	Hints are in the game, tied to chapters for ease.
 20-Oct-2009			J. Ingold	Most of PBerman's feedback
 3-Oct-2009			J. Ingold	Eric's remaining feedback. 
 2-Oct-2009			J. Ingold	Eric's feedback on C10.
@@ -147,6 +150,8 @@ Include Grid Layout by Textfyre.
 Include Test Suite by Textfyre.
 Include Parse List by Textfyre.
 Include Textfyre Standard Backdrops by Textfyre.
+Include Shadow Hints by Textfyre.
+Include Xml Output Toggling by Textfyre.
 
 Book - Initialisation
 
@@ -228,7 +233,7 @@ Rule for printing the banner text:
 	say "[b][story title][r][line break]";
 	select the credits channel;
 	say "[story title] by [story author][line break]";
-	say "Version .93.20090926";
+	say "Version .93.20090926[line break]";
 	say "Copyright [story creation year] by [story author][line break]";
 	say "Designed by Ian Finley[line break]";
 	say "Written by Jon Ingold[line break]";
@@ -537,6 +542,7 @@ The current game chapter is a number that varies.
 
 When play begins: 
 	now the current game chapter is 1;
+	send hints for 1;
 	change the right hand status line to "";
 	change the left hand status line to "Chapter [current game chapter]: [current chapter name] -- [location]".
 
@@ -566,6 +572,7 @@ When play begins:
 
 To end a/the chapter:
 	increase the current game chapter by 1;
+	send hints for current game chapter;
 	state chapter;
 	pause the game;
 
@@ -1415,7 +1422,10 @@ Understand the command "wipe" as something new.
 
 Polishing it with is an action applying to one thing and one carried thing and requiring light.
 
+
+
 Understand "polish [something] with/using [something]" as polishing it with.
+Understand "shine [something] with/using [something]" as polishing it with.
 Understand "rub [something] with/using [something]" as polishing it with.
 Understand "buff [something] with/using [something]" as polishing it with.
 Understand "clean [something] with/using [something]" as polishing it with.
@@ -3232,7 +3242,7 @@ To say penduluum:
 
 Every turn when EXPLAIN_PENDULUUM is fired and EXPLAIN_PENDULUUM is primed:
 	now EXPLAIN_PENDULUUM is not primed;
-	say "(I should probably explain: there are pendulums and penduluums. A weight on a string, that's a pendulum. Once it's put into a clock it is sanctified by the clockwork, it becomes a [i]penduluum[r]. Anyone can make or swing or polish a pendulum. Only the most holy can touch a penduluum.)";
+	say "(I should probably explain: there are pendulums and penduluums. A weight on a string, that's a pendulum. Once it's put into a clock it is sanctified by the clockwork, it becomes a [i]penduluum[r]. Anyone can make or swing or polish a pendulum. Only the most holy can touch a [i]penduluum[r].)";
 
 
 
@@ -3263,7 +3273,7 @@ Chapter 2 - Grandfather Clock
 
 Section 1 - The Clock Itself
 
-Gubbler's Grandfather clock is a closed door, in the Abbot's Quarters. "[if in Abbot's Quarters]St. Newton is staring at the Abbot's unpolished Grandfather clock with a severe frown.[otherwise]A little light shines in through the keyhole, which is almost covered by the Abbot's spare robe hanging inside the casec.[end if]".
+Gubbler's Grandfather clock is a closed door, in the Abbot's Quarters. "[if in Abbot's Quarters]St. Newton is staring at the Abbot's unpolished Grandfather clock with a severe frown.[otherwise]A little light shines in through the keyhole, which is almost covered by the Abbot's spare robe hanging inside the case.[end if]".
 
 The description is "No wonder Calvin and Drake didn't want to do this. Abbot Gubbler's Grandfather clock is enormous: the face is the size of a dinnerplate and the cabinet below is big enough to be a wardrobe. Even just polishing the doors will take half an hour. The whole thing might take all day." 
 
@@ -4420,7 +4430,7 @@ Section 2 - a pantry to hide in
 
 A pantry-ghost is scenery, privately-named, in the Kitchen. The description is "The pantry is a dark recess to the north[one of]. Strong smells wander out like labourers from a beer break[once only]."
 
-Understand "pantry" as the pantry-ghost.
+Understand "pantry" as the pantry-ghost. The printed name of the pantry-ghost is "pantry".
 
 Instead of smelling the pantry-ghost:
 	say "I pop my head inside...";
@@ -5239,6 +5249,9 @@ When the Quest For Tea ends:
 	change the default topic of Horloge to CT_HOR2_DEFAULT;
 	change the conversation table of Horloge to the table of Horloge's Further Conversation;
 
+Instead of giving the handful of tea leaves to Horloge:
+	say "He smiles at me benevolently. 'I can't drink them like that, now can I, young whot-sit?' Then he waves me away."
+
 Instead of giving the full teacup to Horloge:
 	try putting the noun on the wheeled table;
 
@@ -5317,6 +5330,7 @@ After taking the teacup for the first time:
 
 Instead of giving the empty teacup to Horloge:
 	say "Horloge peers at the cup - peers at me - peers at the cup again. His brow creases like scrumpled paper.[paragraph break]'Well, what good's that?' he demands. 'That's whotsit without the whotsit, like a whotsit with no whotsit!' He seem positively enraged.";
+
 
 Instead of drinking or tasting the empty teacup:
 	say "I mime sipping tea, like I was a real monk and not just a two-tooth initiate."
@@ -6347,6 +6361,9 @@ Instead of hiding under or entering or hiding behind the metal hood:
 	if the player is clambering or the player's command includes "on", try climbing the metal hood instead;
 	say "The hood is filled with flowerbeds. There's no room for me in there!"
 
+Instead of opening the metal hood:
+	say "It's fixed and solid, not something I could move."
+
 Instead of looking under the metal hood:
 	say "Under the hood is the other half of the revolving garden."
 
@@ -6412,13 +6429,13 @@ Instead of searching or looking under the plants:
 
 Section 3 - Hidden plants
 
-Some hidden plants are scenery in the Herb Garden. 
+Some hidden plants are privately-named, scenery in the Herb Garden.  The printed name is "hidden plants".
 
 Understand "herb/herbs/plant/flower/flowers/basil/potatoes/vegetables" or "day-plants" or "day plants" as the hidden plants when the plants are night-plants. 
 Understand "mushroom/mushrooms/fungi/fungus/nightcap/thyme" or "night-plants" or "night plants" as the hidden plants when the plants are day-plants. 
 
 Before doing something when the hidden plants are involved:
-	say "Those plants are out of the daylight, under the metal hood." instead.
+	say "Those plants are out of the daylight and out of reach, underneath the metal hood." instead.
 
 Section 5 - the stake in the ground
 
