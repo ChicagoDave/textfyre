@@ -69,7 +69,7 @@ namespace FyreWinClient {
             Header.Text = "";
             TextWindow.Clear();
 
-            MemoryStream fileData = new MemoryStream(Properties.Resource.sh_v0_90e);
+            MemoryStream fileData = new MemoryStream(Properties.Resource.sh_v1_0e);
 
             vm = new Engine(fileData);
             vm.OutputFilterEnabled = false;
@@ -467,6 +467,12 @@ namespace FyreWinClient {
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
             AboutForm about = new AboutForm();
             about.ShowDialog();
+        }
+
+        private void hintMenuItem_Click(object sender, EventArgs e) {
+            HintForm hints = new HintForm();
+
+            hints.ShowDialog();
         }
 
     }

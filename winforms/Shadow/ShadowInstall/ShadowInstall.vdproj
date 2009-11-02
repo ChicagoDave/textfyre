@@ -15,12 +15,6 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_3B2849D86C547BD1ED592A1972FE0F34"
-        "OwnerKey" = "8:_4E5E0BCED6294D549F288C71102078B5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_450562822D2F4022AE1D4F46CE4492A1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -33,7 +27,25 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_4A1D47EFF4704F39B4390897CBAEF0E2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4E5E0BCED6294D549F288C71102078B5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5DD02C06DABF770FE9BADECEC561404E"
+        "OwnerKey" = "8:_4E5E0BCED6294D549F288C71102078B5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_666CCA75AF574C36B5166D5BF5E83F7C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -64,7 +76,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3B2849D86C547BD1ED592A1972FE0F34"
+        "OwnerKey" = "8:_5DD02C06DABF770FE9BADECEC561404E"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -112,7 +124,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\ShadowInstall-1.0Std.msi"
+        "OutputFilename" = "8:Release\\ShadowStd-1.0.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -172,37 +184,6 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3B2849D86C547BD1ED592A1972FE0F34"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TextfyreVM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_3B2849D86C547BD1ED592A1972FE0F34"
-                    {
-                    "Name" = "8:TextfyreVM.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:TextfyreVM.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_450562822D2F4022AE1D4F46CE4492A1"
             {
             "SourcePath" = "8:uninstall.bat"
@@ -227,6 +208,77 @@
             {
             "SourcePath" = "8:shbanner.jpg"
             "TargetName" = "8:shbanner.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4A1D47EFF4704F39B4390897CBAEF0E2"
+            {
+            "SourcePath" = "8:Shadow in the Cathedral Hints.html"
+            "TargetName" = "8:Shadow in the Cathedral Hints.html"
+            "Tag" = "8:"
+            "Folder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5DD02C06DABF770FE9BADECEC561404E"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:TextfyreVM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_5DD02C06DABF770FE9BADECEC561404E"
+                    {
+                    "Name" = "8:TextfyreVM.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:TextfyreVM.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_666CCA75AF574C36B5166D5BF5E83F7C"
+            {
+            "SourcePath" = "8:Introduction to Shadow in the Cathedral.pdf"
+            "TargetName" = "8:Introduction to Shadow in the Cathedral.pdf"
             "Tag" = "8:"
             "Folder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
             "Condition" = "8:"
@@ -382,7 +434,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:The Shadow in the Cathedral - Standard"
         "ProductCode" = "8:{A934AB0A-1DA7-4845-BB97-BB48921DBB74}"
-        "PackageCode" = "8:{0932D43B-2225-41D8-8BAF-D0367E7A96A4}"
+        "PackageCode" = "8:{60B78E56-17CC-4CF8-8EE8-97C325869989}"
         "UpgradeCode" = "8:{E7162DE9-8A4A-41B1-9403-E3C1D5CB49A0}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
@@ -529,6 +581,20 @@
             "Icon" = "8:"
             "Feature" = "8:"
             }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_AE40521CABA44695AD21C801F6E56E65"
+            {
+            "Name" = "8:Introduction to Shadow in the Cathedral"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_666CCA75AF574C36B5166D5BF5E83F7C"
+            "Folder" = "8:_133C879849E6444E89813AA8E7FE446F"
+            "WorkingFolder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_EEB49F186BF24970BF189E49A0B33E79"
             {
             "Name" = "8:The Shadow in the Cathedral End User License Agreement (Adobe PDF)"
@@ -538,6 +604,20 @@
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
             "Target" = "8:_8D11958132DA40CBB993235DFB40A74F"
+            "Folder" = "8:_133C879849E6444E89813AA8E7FE446F"
+            "WorkingFolder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_FED60A2AF52C438EB0E16DABCE3D7EF4"
+            {
+            "Name" = "8:Shadow in the Cathedral Hints"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_4A1D47EFF4704F39B4390897CBAEF0E2"
             "Folder" = "8:_133C879849E6444E89813AA8E7FE446F"
             "WorkingFolder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
             "Icon" = "8:"
@@ -1050,7 +1130,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4E5E0BCED6294D549F288C71102078B5"
             {
-            "SourcePath" = "8:..\\ShadowClient\\ShadowClient\\obj\\Debug\\ShadowStd.exe"
+            "SourcePath" = "8:..\\ShadowClient\\ShadowClient\\obj\\Release\\ShadowStd.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"

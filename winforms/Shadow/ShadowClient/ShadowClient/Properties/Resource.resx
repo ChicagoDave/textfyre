@@ -118,16 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="GameFile" xml:space="preserve">
-    <value>sh-v1.0xe.ulx</value>
+    <value>sh-v1.0e.ulx</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="sh_v1_0e" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\GameFiles\sh-v1.0e.ulx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>The Shadow in the Cathedral</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version: 1.0.20090925Std</value>
+    <value>Version: 1.0.20091030Std</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="sh_v0_90e" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GameFiles\sh-v0.90e.ulx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="hints" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\GameFiles\hints.xml;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
 </root>
