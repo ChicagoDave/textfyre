@@ -61,7 +61,7 @@ namespace FyreWinClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to sh-v1.0xe.ulx.
+        ///   Looks up a localized string similar to sh-v1.0e.ulx.
         /// </summary>
         internal static string GameFile {
             get {
@@ -69,9 +69,30 @@ namespace FyreWinClient.Properties {
             }
         }
         
-        internal static byte[] sh_v0_90e {
+        /// <summary>
+        ///   Looks up a localized string similar to 		&lt;hints title=&quot;Trouble in Grubbers&quot;&gt;
+        ///			&lt;topic title=&quot;What do I do?&quot;&gt;
+        ///				&lt;hint id=&quot;1&quot;&gt;You hear voices nearby.&lt;/hint&gt;
+        ///				&lt;hint id=&quot;2&quot;&gt;Listen to the voices.&lt;/hint&gt;
+        ///				&lt;hint id=&quot;3&quot;&gt;You need to get a better angle.&lt;/hint&gt;
+        ///				&lt;hint id=&quot;4&quot;&gt;Notice those crates?&lt;/hint&gt;
+        ///				&lt;hint id=&quot;5&quot;&gt;Climb up the crates to get to the roof.&lt;/hint&gt;
+        ///			&lt;/topic&gt;
+        ///			&lt;topic title=&quot;How do I escape the mercenaries?&quot;&gt;
+        ///				&lt;hint id=&quot;1&quot;&gt;Run!&lt;/hint&gt;
+        ///			&lt;/topic&gt;
+        ///			&lt;topic title=&quot;There&apos;s nowhere to go!&quot;&gt;
+        ///				&lt;hint id=&quot;1&quot;&gt;You ca [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string hints {
             get {
-                object obj = ResourceManager.GetObject("sh_v0_90e", resourceCulture);
+                return ResourceManager.GetString("hints", resourceCulture);
+            }
+        }
+        
+        internal static byte[] sh_v1_0e {
+            get {
+                object obj = ResourceManager.GetObject("sh_v1_0e", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -86,7 +107,7 @@ namespace FyreWinClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Version: 1.0.20090925Std.
+        ///   Looks up a localized string similar to Version: 1.0.20091030Std.
         /// </summary>
         internal static string Version {
             get {

@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>The Shadow in the Cathedral - Game Hints</title>
+
+<style type="text/css">
+
+hide {
+	display:block;
+}
+
+show {
+	display:none;
+}
+
+</style>
+
+<script type="text/javascript">
+
+	var skipToggle = 0;
+
+	<!--
+	
+	function toggleQuestion(answers) {
+	
+		var a = document.getElementById(answers.id);
+
+		if (skipToggle == 0) {
+			if (a.style.display == 'none') {
+				a.style.display = 'block';
+			} else {
+				a.style.display = 'none';
+			}
+		}
+				
+		skipToggle = 0;
+	}
+	
+	function showHint(mungedText, hintText) {
+		mungedText.style.display = 'none';
+		hintText.style.display = 'block';
+		skipToggle = 1;
+	}
+	//-->
+
+</script>
+
+</head>
+
+<body>
+
+	<ol>Trouble in Grubbers
+		<li onclick="toggleQuestion(a1);">What do I do?
+			<ol id="a1" style="display:block;">
+				<li><span onclick="javascript:showHint(h11,s11)" id="h11" style="display:block;">foo bore dogman yellow.</span><span id="s11" style="display:none;">You hear voices nearby.</span></li>
+				<li><span onclick="javascript:showHint(h12,s12)" id="h12" style="display:block;">junker al hen dogman.</span><span id="s12" style="display:none;">Listen to the voices.</span></li>
+				<li><span onclick="javascript:showHint(h13,s13)" id="h13" style="display:block;">foo jeez al not i danger henry.</span><span id="s13" style="display:none;">You need to get a better angle.</span></li>
+				<li><span onclick="javascript:showHint(h14,s14)" id="h14" style="display:block;">angler enter monkey?</span><span id="s14" style="display:none;">Notice those crates?</span></li>
+				<li><span onclick="javascript:showHint(h15,s15)" id="h15" style="display:block;">slump or hen monkey al not al hen more.</span><span id="s15" style="display:none;">Climb up the crates to get to the roof.</span></li>
+			</ol>
+		</li>
+		<li onclick="toggleQuestion(a2);">How do I escape the mercenaries?
+			<ol id="a2" style="display:none;">
+				<li><span onclick="javascript:showHint(h21,s21)" id="h21" style="display:block;">lin!</span><span id="s21" style="display:none;">Run!</span></li>
+			</ol>
+		</li>
+		<li onclick="toggleQuestion(a3);">There's nowhere to go!
+			<ol id="a3" style="display:none;">
+				<li><span onclick="javascript:showHint(h31,s31)" id="h31" style="display:block;">foo mar fix al yarn term me hen fumblebunny.</span><span id="s31" style="display:none;">You can try to lose them in the marketplace.</span></li>
+				<li><span onclick="javascript:showHint(h32,s32)" id="h32" style="display:block;">gar into lamb ogre foo gear barn.</span><span id="s32" style="display:none;">But they know what you look like.</span></li>
+			</ol>
+		</li>
+	</ol>
+</body>
+
+</html>
