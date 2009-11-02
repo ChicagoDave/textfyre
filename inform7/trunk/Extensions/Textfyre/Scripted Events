@@ -52,7 +52,7 @@ To fire the next event:
 To clear the current script:
 	now the current script is {};
 
-Chapter 5 - Not for release - Debugging
+Chapter 5 - Debugging - Not for release
 
 When play begins:
 	unless FyreVM is present:
