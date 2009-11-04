@@ -2,6 +2,25 @@ Test Suite by Textfyre begins here.
 
 Part 1 - Assertions
 
+Chapter 1 - Stubs - For Release
+
+To assert the/-- equality of (m - a thing) and (n - a thing), critically:
+	do nothing;
+
+To assert the/-- equality of (m - a number) and (n - a number), critically:
+	do nothing;
+
+To assert the/-- inequality of (m - a thing) and (n - a thing), critically:
+	do nothing;
+
+To assert that/-- (C - a condition) issuing (report - indexed text), critically:
+	do nothing
+
+To assert that/-- (T - a truth state) issuing (report - some text), critically:
+	do nothing;
+
+Chapter 2 - Definitions - Not For Release
+
 To assert the/-- equality of (m - a thing) and (n - a thing), critically:
 	let the failure be indexed text;
 	let the failure be "[m] == [n].";
@@ -39,10 +58,12 @@ To assert that/-- (C - a condition) issuing (report - indexed text), critically:
 
 To assert that/-- (T - a truth state) issuing (report - some text), critically:
 	if T is false:
-		say "[bracket][bold type][if critically]CRITICAL [end if]ASSERTION FAILED: [report][roman type][close bracket][paragraph break]";
+		bug "[bracket]ASSERTION FAILURE[close bracket]: [report]";
 		if critically:
 			stop the game abruptly;
 		rule fails;
+	otherwise:
+		warning "[bracket]assertion passed[close bracket]: [report]";
 
 Include (-
 [ TF_Assertion T report;
@@ -66,10 +87,14 @@ Include (-
 
 Part 2 - Unit tests
 
+Chapter 1 - Definitions - For Release
+
 A unit test is a kind of thing.
 
 The unit test rules are an object-based rulebook.
 The unit test rules have default success.
+
+Chapter 2 - Implementation - Not For Release
 
 Unit test executing is an action applying to one visible thing.
 Understand "execute [any unit test]" as unit test executing.
@@ -77,36 +102,97 @@ Understand "execute [any unit test]" as unit test executing.
 Carry out unit test executing:
 	abide by the unit test rules for the noun;
 
-Part 3 - Bugs
+Part 3 - Bugs, Warnings, Placeholders
 
-Section 1 - For Release
+Section 1 - Stubs - For Release
 
-To bug (X - some text):
+To bug (X - indexed text):
 	do nothing;
 
-To warning (X - some text):
+To warning (X - indexed text):
 	do nothing;
 
-To placeholder (X - some text):
+To placeholder (X - indexed text):
 	say X;
+
+To debug (X - indexed text):
+	do nothing;
 
 Section 2 - Not For Release
 
 [By placing these second in the source, we ensure that the previous definitions are overridden.]
 
-To bug (X - some text):
+To bug (X - indexed text):
 	say "[b]****[bracket]BUG[close bracket]: [X]****[r][paragraph break]";
 	say "[one of](Don't panic.)[paragraph break][or][stopping]";
 
-To warning (X - some text):
-	say "[bracket][b]WARNING[r][close bracket]: [X][paragraph break]";
+To warning (X - indexed text):
+	if warning-display is true:
+		say "[bracket][b]WARNING[r][close bracket]: [X][paragraph break]";
+	otherwise:
+		do nothing;
 
-To placeholder (X - some text):
+[This one won't compile in release mode - deliberately so!]
+To placeholder:
+	say "[bracket]placeholder: please fill this gap with some text![close bracket][paragraph break]";
+
+To placeholder (X - indexed text):
 	say "[bracket]placeholder text: '[X]'[close bracket][paragraph break]";
 
-Chapter 2 - Stopping abruptly (For use without Basic Screen Effects by Emily Short)
+To debug (X - indexed text):
+	say "[bracket]debug[close bracket] [X][paragraph break]";
+
+Section 3 - Not For Release
+
+Warning-display is a truth state that varies. Warning-display is false.
+
+Toggling warnings is an action out of world applying to nothing. Understand "warnings" as toggling warnings.
+
+Carry out toggling warnings:
+	change warning-display to whether or not warning-display is false;
+
+Report toggling warnings:
+	say "[bracket]Warnings will [if warning-display is true]now[otherwise]not[end if] be displayed[close bracket][paragraph break]";
+
+
+
+Part X - Stopping abruptly (For use without Basic Screen Effects by Emily Short)
 
 To stop the/-- game abruptly:
 	(- quit; -)
 				
 Test Suite ends here.
+
+---- DOCUMENTATION ----
+
+A tentative step towards providing development tools to assist in assuring correct implementation.
+
+Chapter: Bugs, Warnings and Placeholder Text
+
+The extension provides three means by which programmers can indicate areas where the code is in need of attention. These are made apparent when they occur during gameplay in a debug build, but pass silently by in release builds.
+
+Section: Bugs
+
+Bugs can be marked in the text thus:
+
+	bug "This is a bug.";
+
+Bugs can be used to keep track of areas where there are implementation details which are unanticipated in the design, and also to ensure that assumptions about program structure are correct.
+
+Section: Warnings
+
+Warnings are a lesser category of bugs, but they are treated in a similar way. They are never normally output at all, but their output can be turned on and off by an in-game command available only in development builds.
+
+	warning "You have been warned.";
+
+Section: Placeholder Text
+
+Placeholders indicate where a textual response needs to be output, but one is not available. These are indicated by a "[placeholder text]" tag during gameplay in development builds, but output as plain text in release builds.
+
+	placeholder "This is placeholder text for some action.";
+
+Or even just:
+
+	placeholder;
+
+...which prints a generic message calling for more text to be provided. Be advised that this is a drastic measure indicating severe incompleteness, and as such, games using this phrase will not successfully compile for release!
