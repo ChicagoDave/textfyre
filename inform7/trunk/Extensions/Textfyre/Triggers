@@ -1,7 +1,6 @@
 Version 1 of Triggers by Textfyre begins here.
 
-"A design pattern shared by several other Textfyre extensions including Quips,
-Scripted Events, Conversation Topics and Counters."
+"A design pattern shared by several other Textfyre extensions including Quips, Scripted Events, Conversation Topics and Counters."
 
 Use authorial modesty.
 
@@ -13,7 +12,7 @@ A trigger can be fired or unfired. A trigger is usually unfired.
 
 Firing something is an activity.
 
-Last after firing something (called the certain trigger):
+Last after firing something (called the certain trigger) (this is the default trigger firing rule):
 	now the certain trigger is fired;
 
 To fire (t - a trigger):

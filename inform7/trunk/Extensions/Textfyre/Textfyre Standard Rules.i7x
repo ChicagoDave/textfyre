@@ -8,6 +8,8 @@ Include Pronouns by Textfyre.
 
 Volume 1 - For universal use
 
+Use DICT_WORD_SIZE of 16.
+
 Book 1 - Definitions
 
 Part 1 - Properties of actions
@@ -131,9 +133,13 @@ To decide if (that way - a direction) is due (bearing - a direction):
 
 Chapter 6 - Availability of Exits
 
-Exiting relates a room (called R) to a direction (called D-wards) when the room-or-door D-wards from R is not nothing. The verb to exit (it exits, they exit, it exited, it is exited, it is exiting) implies the exiting relation.
+Exiting relates a room (called R) to a direction (called D-wards) when the room-or-door D-wards from R is not nothing.
+The verb to exit (it exits, they exit, it exited, it is exited, it is exiting) implies the exiting relation.
 
 Leading relates a door (called X) to a direction (called D-wards) when the room-or-door D-wards from the location is X and D-wards is not inside and D-wards is not outside. The verb to lead (he leads, they lead, he led) implies the leading relation.
+
+Leading-into relates a direction (called D-wards) to a room (called R) when the room-or-door D-wards from the location is R.
+The verb to be headed towards implies the leading-into relation.
 
 Definition: a direction (called D) is an exit:
 	if the location exits D, yes;
@@ -152,24 +158,6 @@ Rule for assembling available exits of a room (called someplace):
 			rotate the viable directions backwards;
 		otherwise:
 			remove entry 1 from the viable directions;
-
-Section 3 - EXITS command
-
-Listing exits is an action out of world applying to nothing.
-
-Understand "exits" as listing exits.
-
-Carry out listing exits:
-	carry out the assembling available exits activity with the location;
-
-Report listing exits (this is the Textfyre standard listing exits rule):
-	if the viable directions is not empty:
-		if the number of entries in the viable directions is 1:
-			say "There is an exit [viable directions] from here.";
-		otherwise:
-			say "There are exits [viable directions] from here.";
-	otherwise:
-		say "There are no obvious exits from this place.";
 
 Part 3 - Activity bug fix
 
@@ -299,6 +287,43 @@ Last after printing the description of a thing:
 		say paragraph break;
 
 Chapter 2 - Printing the description of a room
+
+Section 1 - Customisable headings
+
+The fancy room description heading rule is listed instead of the room description heading rule in the carry out looking rules. 
+
+Carry out looking (this is the fancy room description heading rule):
+	say bold type;
+	if the visibility level count is 0:
+		begin the printing the name of a dark room activity;
+		if handling the printing the name of a dark room activity,
+			issue miscellaneous library message number 71;
+		end the printing the name of a dark room activity;
+	otherwise if the visibility ceiling is the location:
+		say "[visibility ceiling]";
+	otherwise:
+		say "[The visibility ceiling]";
+	say roman type;
+	let intermediate level be the visibility-holder of the actor;
+	repeat with intermediate level count running from 2 to the visibility level count:
+		[ issue library message looking action number 8 for the intermediate level; ]
+		carry out the printing the room description heading details activity with the intermediate level;
+		let the intermediate level be the visibility-holder of the intermediate level;
+	say line break;
+	say run paragraph on with special look spacing.
+
+Printing the room description heading details of something is an activity.
+
+Before printing the room description heading details of something (this is the printing a space between the room name and the heading details rule):
+	say " ";
+
+Rule for printing the room description heading details of a supporter (called x1):
+	say "(on [the x1])";
+
+Rule for printing the room description heading details of a thing (called x1):
+	say "(in [the x1])";
+
+Section 2 - Customisable body text
 
 The fancy room description body text rule is listed instead of the room description body text rule in the carry out looking rules. 
 
@@ -457,6 +482,16 @@ Check descending when the noun is down: [e.g. > DESCEND ]
 
 Carry out descending something: try climbing the noun instead.
 Carry out ascending something: try climbing the noun instead.
+
+Instead of climbing an enterable supporter when the player is on the noun:
+	try getting off the noun instead;
+
+Instead of climbing an enterable supporter when the player is not on the noun:
+	try entering the noun instead;
+
+Before going down when the player is on an enterable supporter (called the particular platform):
+	if the room-or-door down from the location is nothing:
+		try getting off the particular platform instead;
 
 Part 3 - Eating
 
@@ -643,6 +678,8 @@ The facing action has an object called the aperture viewed through (matched as "
 
 Understand "look [direction]" as facing. 
 Understand "examine [direction]" as facing. 
+Understand "look through/towards/into/to [direction]" as facing. 
+Understand "search [direction]" as facing. 
 
 Setting action variables for facing:
 	now the viewed item is the room-or-door noun from the location of the actor; 
@@ -672,6 +709,52 @@ Report facing outside towards a room:
 
 Report facing towards a room:
 	say "[The viewed item] lies to [the noun]." instead;
+
+Part 11 - Taking
+
+Understand "reach [something]" as taking.
+Understand "reach for/to/towards [something]" as taking.
+Understand "reach out for/to/towards [something]" as taking.
+
+Part 12 - EXITS command
+
+Listing exits is an action out of world applying to nothing.
+
+Understand "exits" as listing exits.
+
+Carry out listing exits:
+	carry out the assembling available exits activity with the location;
+
+Report listing exits (this is the Textfyre standard listing exits rule):
+	if the viable directions is not empty:
+		if the number of entries in the viable directions is 1:
+			say "There is an exit [viable directions] from here.";
+		otherwise:
+			say "There are exits [viable directions] from here.";
+	otherwise:
+		say "There are no obvious exits from this place.";
+
+Part 13 - Pushing and Pulling
+
+Chapter 1 - Push
+
+Understand "rock [something]" as pushing.
+Understand "tilt [something]" as pushing.
+
+Understand "push [someone] over" as attacking.
+Understand "knock [someone] over" as attacking.
+Understand "push over [someone]" as attacking.
+Understand "knock over [someone]" as attacking.
+
+Understand "push [something] over" as pushing.
+Understand "roll [something] over" as pushing.
+Understand "knock [something] over" as pushing.
+Understand "push over [something]" as pushing.
+Understand "knock over [something]" as pushing.
+
+Chapter 2 - Pull
+
+Understand "stretch [something]" as pulling.
 
 Book 5 - Kinds
 
@@ -801,7 +884,7 @@ The unlocking rules are called during the "supplying a missing second noun" stag
 			rule succeeds with result the blue key;
 		say "You don't have any keys to try on this door.";
 
-Unlocking rules should not fail silently: that leads to embarrassing and mysterious silences where a response is expected.
+Unlocking rules should not fail silently: that may lead to embarrassing and mysterious silences where a response is expected.
 
 Section: Implicit opening
 

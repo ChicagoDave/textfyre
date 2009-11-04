@@ -15,8 +15,9 @@ Chapter 1 - Standard quips
 A quip is a kind of trigger.
 
 The current conversation is a list of objects [quips] that varies.
+
 When play begins:
-	now the current conversation is {}.
+	now the current conversation is {};
 
 The menu option currently being displayed is a number that varies;
 
