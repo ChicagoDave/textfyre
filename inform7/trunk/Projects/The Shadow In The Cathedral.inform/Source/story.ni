@@ -13995,7 +13995,9 @@ Chapter 2 - Scenery
 
 Section 1 - Junk
 
-The rubble is scenery in the North Side. "'Without order there is tardiness,' they say: well, this place is so tardy that by the time it got here it was a ruin. Dark shadows and broken bricks[if the Wrench is not handled]. And a gleam of metal – looking closer I spy a good quality wrench[end if]."  Understand "brick", "bricks", "unsteady", "pile/piles of", "rubble-pile", "pile/piles", "sheet", "metal", "pool", "pools", "pools of water", "island/islands of", "island", "islands" as the rubble.
+The rubble is scenery in the North Side. "'Without order there is tardiness,' they say: well, this place is so tardy that by the time it got here it was a ruin. Dark shadows and broken bricks[if the Wrench is not handled]. And a gleam of metal – looking closer I spy a good quality wrench[end if]."  
+
+Understand "brick", "bricks", "unsteady", "pile/piles of", "rubble-pile", "pile/piles", "sheet", "metal",  "rock", "rocks", "pool", "pools", "pools of water", "island/islands of", "island", "islands" as the rubble.
 
 Instead of searching or looking under or pushing or pulling or turning or attacking the rubble:
 	say "There's nothing but more rubble in the rubble, and then there's the water."
@@ -19521,7 +19523,7 @@ test returncathedral with "e/n/e/put candle in lantern / w / n / z / z / n / e /
 
 
 
-Book X - Not For Release - Fixing the RNG
+Book X  - Fixing the RNG - Not For Release
 
 When play begins:
 	seed the random-number generator with 1234;
@@ -19543,7 +19545,7 @@ Carry out unxyzzying:
 Report unxyzzying:
 	say "A hollow voice whispers 'oorg.'";
 
-Book Y - Not For Release - Alpha Testing
+Book Y  - Alpha Testing - Not For Release
 
 test quarters with "x desk / x designs / x scratches / x cot / x blanket / x bust / x window / x door / x pendulum / x weights / x weight of precision / x counterweight / x counterweight of slapdashery / x figure / x abbot";
 
