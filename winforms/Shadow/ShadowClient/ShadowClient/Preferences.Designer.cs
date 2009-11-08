@@ -1,4 +1,4 @@
-﻿namespace FyreWinClient {
+﻿namespace Textfyre {
     partial class Preferences {
         /// <summary>
         /// Required designer variable.

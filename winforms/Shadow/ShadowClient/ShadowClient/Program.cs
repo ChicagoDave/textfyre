@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace FyreWinClient {
+namespace Textfyre {
     static class Program {
         /// <summary>
         /// The main entry point for the application.

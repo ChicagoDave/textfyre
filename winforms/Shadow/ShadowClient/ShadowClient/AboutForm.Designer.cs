@@ -1,4 +1,4 @@
-﻿namespace FyreWinClient {
+﻿namespace Textfyre {
     partial class AboutForm {
         /// <summary>
         /// Required designer variable.

@@ -32,22 +32,39 @@ namespace Textfyre.VM
     /// </remarks>
     public sealed class OutputFilterTags
     {
-        private string startParaTag = "<Paragraph>";
-        private string endParaTag = "</Paragraph>\n";
-        private string lineBreakTag = "<LineBreak/>\n";
-        private string leftAngleTag = "&lt;";
-        private string rightAngleTag = "&gt;";
-        private string ampersandTag = "&amp;";
-        private string leftDblQuoteTag = "&#8220;";
-        private string rightDblQuoteTag = "&#8221;";
-        private string leftQuoteTag = "&#8216;";
-        private string rightQuoteTag = "&#8217;";
-        private string startFixedTag = "<Span FontFamily=\"Courier New\">";
-        private string endFixedTag = "</Span>";
-        private string startItalicTag = "<Italic>";
-        private string endItalicTag = "</Italic>";
-        private string startBoldTag = "<Bold>";
-        private string endBoldTag = "</Bold>";
+        //private string startParaTag = "<Paragraph>";
+        //private string endParaTag = "</Paragraph>\n";
+        //private string lineBreakTag = "<LineBreak/>\n";
+        //private string leftAngleTag = "&lt;";
+        //private string rightAngleTag = "&gt;";
+        //private string ampersandTag = "&amp;";
+        //private string leftDblQuoteTag = "&#8220;";
+        //private string rightDblQuoteTag = "&#8221;";
+        //private string leftQuoteTag = "&#8216;";
+        //private string rightQuoteTag = "&#8217;";
+        //private string startFixedTag = "<Span FontFamily=\"Courier New\">";
+        //private string endFixedTag = "</Span>";
+        //private string startItalicTag = "<Italic>";
+        //private string endItalicTag = "</Italic>";
+        //private string startBoldTag = "<Bold>";
+        //private string endBoldTag = "</Bold>";
+
+        private string startParaTag = "\n";
+        private string endParaTag = "\n";
+        private string lineBreakTag = "\n";
+        private string leftAngleTag = "<";
+        private string rightAngleTag = ">";
+        private string ampersandTag = "&";
+        private string leftDblQuoteTag = "\"";
+        private string rightDblQuoteTag = "\"";
+        private string leftQuoteTag = "'";
+        private string rightQuoteTag = "'";
+        private string startFixedTag = "";
+        private string endFixedTag = "";
+        private string startItalicTag = "<i>";
+        private string endItalicTag = "</i>";
+        private string startBoldTag = "<b>";
+        private string endBoldTag = "</b>";
 
         internal OutputFilterTags()
         {
@@ -209,7 +226,7 @@ namespace Textfyre.VM
         private bool mainIsBold, mainIsItalic, mainIsFixed, mainParaOpen, mainBreakPending;
         private bool mainRightQuote;
         private bool filtering = true;
-        private bool overrideFiltering = false;
+        private bool overrideFiltering = true;
         private OutputFilterTags filterTags = new OutputFilterTags();
 
         /// <summary>

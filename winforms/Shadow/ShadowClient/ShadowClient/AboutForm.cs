@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace FyreWinClient {
+namespace Textfyre {
     public partial class AboutForm : Form {
         public AboutForm() {
             InitializeComponent();

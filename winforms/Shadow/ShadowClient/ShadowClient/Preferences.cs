@@ -6,31 +6,31 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace FyreWinClient {
+namespace Textfyre {
     public partial class Preferences : Form {
         public Preferences() {
             InitializeComponent();
         }
 
         private void Preferences_Load(object sender, EventArgs e) {
-            CurrentFontTextBox.Text = FyreWinClient.Properties.Settings.Default.GameFont.FontFamily.Name + " " + FyreWinClient.Properties.Settings.Default.GameFont.Size.ToString();
-            HFFont.Text = FyreWinClient.Properties.Settings.Default.HeaderFooterFont.FontFamily.Name + " " + FyreWinClient.Properties.Settings.Default.HeaderFooterFont.Size.ToString();
-            BackgroundColorBox.BackColor = FyreWinClient.Properties.Settings.Default.MainBackColor;
-            BackgroundColorBox.ForeColor = FyreWinClient.Properties.Settings.Default.MainForeColor;
-            HeaderColorBox.BackColor = FyreWinClient.Properties.Settings.Default.HeaderBackColor;
-            HeaderColorBox.ForeColor = FyreWinClient.Properties.Settings.Default.HeaderForeColor;
+            CurrentFontTextBox.Text = Textfyre.Properties.Settings.Default.GameFont.FontFamily.Name + " " + Textfyre.Properties.Settings.Default.GameFont.Size.ToString();
+            HFFont.Text = Textfyre.Properties.Settings.Default.HeaderFooterFont.FontFamily.Name + " " + Textfyre.Properties.Settings.Default.HeaderFooterFont.Size.ToString();
+            BackgroundColorBox.BackColor = Textfyre.Properties.Settings.Default.MainBackColor;
+            BackgroundColorBox.ForeColor = Textfyre.Properties.Settings.Default.MainForeColor;
+            HeaderColorBox.BackColor = Textfyre.Properties.Settings.Default.HeaderBackColor;
+            HeaderColorBox.ForeColor = Textfyre.Properties.Settings.Default.HeaderForeColor;
         }
 
         private void ChangeFontButton_Click(object sender, EventArgs e) {
             fontDialog1.ShowApply = false;
             fontDialog1.ShowColor = true;
             fontDialog1.ShowEffects = false;
-            fontDialog1.Font = FyreWinClient.Properties.Settings.Default.GameFont;
+            fontDialog1.Font = Textfyre.Properties.Settings.Default.GameFont;
             DialogResult result = fontDialog1.ShowDialog();
 
             if (result == DialogResult.OK) {
-                FyreWinClient.Properties.Settings.Default.GameFont = fontDialog1.Font;
-                CurrentFontTextBox.Text = FyreWinClient.Properties.Settings.Default.GameFont.FontFamily.Name + " " + FyreWinClient.Properties.Settings.Default.GameFont.Size.ToString();
+                Textfyre.Properties.Settings.Default.GameFont = fontDialog1.Font;
+                CurrentFontTextBox.Text = Textfyre.Properties.Settings.Default.GameFont.FontFamily.Name + " " + Textfyre.Properties.Settings.Default.GameFont.Size.ToString();
             }
         }
 
@@ -38,7 +38,7 @@ namespace FyreWinClient {
             fontDialog1.ShowApply = false;
             fontDialog1.ShowColor = true;
             fontDialog1.ShowEffects = false;
-            fontDialog1.Font = FyreWinClient.Properties.Settings.Default.HeaderFooterFont;
+            fontDialog1.Font = Textfyre.Properties.Settings.Default.HeaderFooterFont;
             DialogResult result = DialogResult.Cancel;
             try {
                 result = fontDialog1.ShowDialog();
@@ -47,8 +47,8 @@ namespace FyreWinClient {
             }
 
             if (result == DialogResult.OK) {
-                    FyreWinClient.Properties.Settings.Default.HeaderFooterFont = fontDialog1.Font;
-                    HFFont.Text = FyreWinClient.Properties.Settings.Default.HeaderFooterFont.FontFamily.Name + " " + FyreWinClient.Properties.Settings.Default.HeaderFooterFont.Size.ToString();
+                    Textfyre.Properties.Settings.Default.HeaderFooterFont = fontDialog1.Font;
+                    HFFont.Text = Textfyre.Properties.Settings.Default.HeaderFooterFont.FontFamily.Name + " " + Textfyre.Properties.Settings.Default.HeaderFooterFont.Size.ToString();
             }
         }
 
@@ -61,7 +61,7 @@ namespace FyreWinClient {
 
             if (result == DialogResult.OK) {
                 BackgroundColorBox.BackColor = colorDialog1.Color;
-                FyreWinClient.Properties.Settings.Default.MainBackColor = colorDialog1.Color;
+                Textfyre.Properties.Settings.Default.MainBackColor = colorDialog1.Color;
             }
         }
 
@@ -70,7 +70,7 @@ namespace FyreWinClient {
 
             if (result == DialogResult.OK) {
                 BackgroundColorBox.ForeColor = colorDialog1.Color;
-                FyreWinClient.Properties.Settings.Default.MainForeColor = colorDialog1.Color;
+                Textfyre.Properties.Settings.Default.MainForeColor = colorDialog1.Color;
             }
         }
 
@@ -79,7 +79,7 @@ namespace FyreWinClient {
 
             if (result == DialogResult.OK) {
                 HeaderColorBox.BackColor = colorDialog1.Color;
-                FyreWinClient.Properties.Settings.Default.HeaderBackColor = colorDialog1.Color;
+                Textfyre.Properties.Settings.Default.HeaderBackColor = colorDialog1.Color;
             }
         }
 
@@ -88,7 +88,7 @@ namespace FyreWinClient {
 
             if (result == DialogResult.OK) {
                 HeaderColorBox.ForeColor = colorDialog1.Color;
-                FyreWinClient.Properties.Settings.Default.HeaderForeColor = colorDialog1.Color;
+                Textfyre.Properties.Settings.Default.HeaderForeColor = colorDialog1.Color;
             }
         }
 
