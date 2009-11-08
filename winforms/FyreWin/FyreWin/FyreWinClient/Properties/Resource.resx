@@ -154,7 +154,13 @@
   <data name="Version" xml:space="preserve">
     <value>Version: 1.07.20090923 DEMO</value>
   </data>
-  <data name="sl_v1_07xe" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GameFiles\sl-v1.07xe.ulx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="hints" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\GameFiles\hints.xml;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="hintTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\GameFiles\hintTemplate.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="sl_v2_0e" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\GameFiles\sl-v2.0e.ulx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

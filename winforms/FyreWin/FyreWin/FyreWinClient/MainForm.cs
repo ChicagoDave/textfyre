@@ -73,7 +73,7 @@ namespace FyreWinClient {
             Header.Text = "";
             TextWindow.Clear();
 
-            MemoryStream fileData = new MemoryStream(Properties.Resource.sl_v1_07xe);
+            MemoryStream fileData = new MemoryStream(Properties.Resource.sl_v2_0e);
 
             vm = new Engine(fileData);
             vm.OutputFilterEnabled = false;
@@ -233,7 +233,11 @@ namespace FyreWinClient {
             textLine = "";
             history.Add(inputLine);
             historyIndex = history.Count;
-            inputReadyEvent.Set();
+            if (inputLine == "hint" || inputLine == "hints") {
+                hintMenuItem_Click(this, null);
+                RequestLine();
+            } else
+                inputReadyEvent.Set();
         }
 
         private int VisibleLines() {
@@ -265,49 +269,19 @@ namespace FyreWinClient {
             if (package.TryGetValue(OutputChannel.Prologue, out text)) {
                 channelText[(int)OutputChannel.Prologue] = text.Trim();
 
-                //prologue = String.Format("{0}\r\n", text);
-                TextWindow.AppendText(String.Format("{0}\r\n", text));
+                RTFWriter(String.Format("{0}\r\n", text));
             }
 
             if (package.TryGetValue(OutputChannel.Credits, out text)) {
                 channelText[(int)OutputChannel.Credits] = text.Trim();
 
-                //credits = String.Concat(text.Replace("&#169;", "@"), "\r\n");
-                TextWindow.AppendText(String.Concat(text.Replace("&#169;","@"),"\r\n"));
+                RTFWriter(String.Concat(text.Trim().Replace("&#169;", "@"), "\r\n\r\n"));
             }
 
             if (package.TryGetValue(OutputChannel.Main, out text)) {
                 channelText[((int)OutputChannel.Main)] = text;
 
-                //string allText;
-                //if (prologue != "")
-                //    allText = string.Concat(prologue, credits, text);
-                //else
-                //    allText = text;
-
-                //char[] characters = allText.ToCharArray();
-                //saveTotalLines = TextWindow.Lines.Length;
-                //int visLines = VisibleLines()-1;
-
-                //foreach (char letter in characters) {
-                //    TextWindow.AppendText(letter.ToString());
-
-                //    //TextRenderer.MeasureText(
-
-                //    if (TextWindow.Lines.Length == (saveTotalLines + visLines)) {
-                //        int selStart = TextWindow.Text.Length;
-                //        TextWindow.AppendText("\n(more)");
-                //        int readKey = -1;
-                //        while (readKey >= 0) {
-                //            readKey = System.Console.Read();
-                //        }
-                //        TextWindow.SelectionStart = selStart;
-                //        TextWindow.SelectionLength = 8;
-                //        TextWindow.Cut();
-                //        saveTotalLines = TextWindow.Lines.Length;
-                //    }
-                //}
-                TextWindow.AppendText(String.Concat(text.Trim(),"\r\n"));
+                RTFWriter(String.Concat(text.Trim(), "\r\n"));
             }
 
             if (package.TryGetValue(OutputChannel.Location, out text)) {
@@ -359,7 +333,7 @@ namespace FyreWinClient {
                 channelText[(int)OutputChannel.Conversation] = text.Trim();
 
                 if (text.Length > 0) {
-                    string[] delim = new string[] {"\n"};
+                    string[] delim = new string[] { "\n" };
                     string[] clines = text.Split(delim, StringSplitOptions.RemoveEmptyEntries);
 
                     int num = 0;
@@ -392,6 +366,88 @@ namespace FyreWinClient {
                 SetPreferences();
             }
             TextWindow.ScrollToCaret();
+        }
+
+        /// <summary>
+        /// Process bold and italcs.
+        /// </summary>
+        /// <param name="text"></param>
+        private void RTFWriter(string text) {
+
+            int begMarkup = text.IndexOf("<");
+            int start = 0;
+
+            if (begMarkup == -1) {
+                TextWindow.AppendText(text); // no markup here
+                return;
+            }
+
+            string tag = GetTag(text, begMarkup);
+
+            if (begMarkup > 0)
+                TextWindow.AppendText(text.Substring(0, begMarkup)); // write the initial plain text
+
+            System.Drawing.Font currentFont = TextWindow.SelectionFont;
+
+            while (begMarkup > -1) {
+                int endMarkup = text.Length;
+
+                if (tag != "") {
+                    if (tag == "<b>") {
+                        endMarkup = text.IndexOf("</b>", begMarkup + 3);
+
+                        int bt = TextWindow.TextLength;
+                        TextWindow.AppendText(text.Substring(begMarkup + 3, endMarkup - begMarkup - 3));
+                        TextWindow.Select(bt, endMarkup - begMarkup - 3);
+                        TextWindow.SelectionFont = new Font(currentFont.FontFamily, currentFont.Size, FontStyle.Bold);
+                        TextWindow.Select(TextWindow.TextLength, 0);
+                        TextWindow.SelectionFont = currentFont;
+
+                        start = endMarkup + 4;
+                    } else {
+                        endMarkup = text.IndexOf("</i>", begMarkup + 3);
+
+                        int bt = TextWindow.TextLength;
+                        TextWindow.AppendText(text.Substring(begMarkup + 3, endMarkup - begMarkup - 3));
+                        TextWindow.Select(bt, endMarkup - begMarkup - 3);
+                        TextWindow.SelectionFont = new Font(currentFont.FontFamily, currentFont.Size, FontStyle.Italic);
+                        TextWindow.Select(TextWindow.TextLength, 0);
+                        TextWindow.SelectionFont = currentFont;
+
+                        start = endMarkup + 4;
+                    }
+
+                    if (start >= text.Length)
+                        return; // no more text
+
+                    begMarkup = text.IndexOf("<", start);
+                    tag = GetTag(text, begMarkup);
+
+                    if (begMarkup > 0)
+                        TextWindow.AppendText(text.Substring(endMarkup + 4, begMarkup - endMarkup - 4)); // write plain text
+
+                } else
+                    start = begMarkup + 1;
+
+                if (start >= text.Length) return; // no more text
+            }
+
+            TextWindow.AppendText(text.Substring(start, text.Length - start)); // write the end of the text
+        }
+
+        private string GetTag(string text, int startTag) {
+
+            string style = text.Substring(startTag + 1, 1);
+            string postStyle = text.Substring(startTag + 2, 1);
+
+            if (postStyle == ">")
+                return String.Concat("<", style, ">");
+
+            if (postStyle == "/")
+                return String.Concat("</", style, ">");
+
+            return ""; // not a tag - move on.
+
         }
 
         private void ArrangeInput(object sender, EventArgs e) {
@@ -514,8 +570,16 @@ namespace FyreWinClient {
             about.ShowDialog();
         }
 
-        private void TextWindow_TextChanged(object sender, EventArgs e) {
+        private void hintMenuItem_Click(object sender, EventArgs e) {
+            if (channelText[(int)OutputChannel.Hints] == "" || channelText[(int)OutputChannel.Hints] == null) {
+                MessageBox.Show("There are no hints for this section of the game.");
+                return;
+            }
 
+            HintForm hints = new HintForm();
+            hints.HintXML = channelText[(int)OutputChannel.Hints];
+
+            hints.ShowDialog();
         }
 
     }

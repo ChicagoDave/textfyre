@@ -1,28 +1,50 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecretLetter", "ShadowClient\Shadow.csproj", "{5454CFB3-E4EC-4837-936A-3C343E47B771}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shadow", "ShadowClient\Shadow.csproj", "{5454CFB3-E4EC-4837-936A-3C343E47B771}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextfyreVM", "..\..\..\sharedsource\trunk\fyrevmss-windows\TextfyreVM.csproj", "{61B1E1B1-82B8-42F7-9600-F57B0F254638}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ShadowInstaller", "..\ShadowInstall\ShadowInstall.vdproj", "{4D48CF96-CC2B-4B6A-830E-17A97BCF5148}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowRelease", "ShadowRelease\ShadowRelease.csproj", "{A362A0B5-3192-4C0E-A2C2-AAAAAEF99B06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowDemo", "ShadowDemo\ShadowDemo.csproj", "{7EC78168-AA56-4ABE-BAE5-6C603BD7A9D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Demo|Any CPU = Demo|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5454CFB3-E4EC-4837-936A-3C343E47B771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5454CFB3-E4EC-4837-936A-3C343E47B771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5454CFB3-E4EC-4837-936A-3C343E47B771}.Demo|Any CPU.ActiveCfg = Demo|Any CPU
+		{5454CFB3-E4EC-4837-936A-3C343E47B771}.Demo|Any CPU.Build.0 = Demo|Any CPU
 		{5454CFB3-E4EC-4837-936A-3C343E47B771}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5454CFB3-E4EC-4837-936A-3C343E47B771}.Release|Any CPU.Build.0 = Release|Any CPU
 		{61B1E1B1-82B8-42F7-9600-F57B0F254638}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{61B1E1B1-82B8-42F7-9600-F57B0F254638}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61B1E1B1-82B8-42F7-9600-F57B0F254638}.Demo|Any CPU.ActiveCfg = Demo|Any CPU
+		{61B1E1B1-82B8-42F7-9600-F57B0F254638}.Demo|Any CPU.Build.0 = Demo|Any CPU
 		{61B1E1B1-82B8-42F7-9600-F57B0F254638}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61B1E1B1-82B8-42F7-9600-F57B0F254638}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4D48CF96-CC2B-4B6A-830E-17A97BCF5148}.Debug|Any CPU.ActiveCfg = Debug
+		{4D48CF96-CC2B-4B6A-830E-17A97BCF5148}.Demo|Any CPU.ActiveCfg = Demo
 		{4D48CF96-CC2B-4B6A-830E-17A97BCF5148}.Release|Any CPU.ActiveCfg = Release
+		{A362A0B5-3192-4C0E-A2C2-AAAAAEF99B06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A362A0B5-3192-4C0E-A2C2-AAAAAEF99B06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A362A0B5-3192-4C0E-A2C2-AAAAAEF99B06}.Demo|Any CPU.ActiveCfg = Demo|Any CPU
+		{A362A0B5-3192-4C0E-A2C2-AAAAAEF99B06}.Demo|Any CPU.Build.0 = Demo|Any CPU
+		{A362A0B5-3192-4C0E-A2C2-AAAAAEF99B06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A362A0B5-3192-4C0E-A2C2-AAAAAEF99B06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EC78168-AA56-4ABE-BAE5-6C603BD7A9D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EC78168-AA56-4ABE-BAE5-6C603BD7A9D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EC78168-AA56-4ABE-BAE5-6C603BD7A9D9}.Demo|Any CPU.ActiveCfg = Demo|Any CPU
+		{7EC78168-AA56-4ABE-BAE5-6C603BD7A9D9}.Demo|Any CPU.Build.0 = Demo|Any CPU
+		{7EC78168-AA56-4ABE-BAE5-6C603BD7A9D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EC78168-AA56-4ABE-BAE5-6C603BD7A9D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

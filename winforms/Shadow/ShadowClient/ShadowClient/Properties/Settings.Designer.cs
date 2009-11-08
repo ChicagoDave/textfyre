@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FyreWinClient.Properties {
+namespace Textfyre.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -73,6 +73,7 @@ namespace FyreWinClient.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
         public global::System.Drawing.Color HeaderBackColor {
             get {
                 return ((global::System.Drawing.Color)(this["HeaderBackColor"]));
@@ -84,6 +85,7 @@ namespace FyreWinClient.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
         public global::System.Drawing.Color HeaderForeColor {
             get {
                 return ((global::System.Drawing.Color)(this["HeaderForeColor"]));

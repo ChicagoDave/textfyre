@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FyreWinClient.Properties {
+namespace Textfyre.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace FyreWinClient.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FyreWinClient.Properties.Resource", typeof(Resource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Textfyre.Properties.Resource", typeof(Resource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -70,23 +70,35 @@ namespace FyreWinClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 		&lt;hints title=&quot;Trouble in Grubbers&quot;&gt;
-        ///			&lt;topic title=&quot;What do I do?&quot;&gt;
-        ///				&lt;hint id=&quot;1&quot;&gt;You hear voices nearby.&lt;/hint&gt;
-        ///				&lt;hint id=&quot;2&quot;&gt;Listen to the voices.&lt;/hint&gt;
-        ///				&lt;hint id=&quot;3&quot;&gt;You need to get a better angle.&lt;/hint&gt;
-        ///				&lt;hint id=&quot;4&quot;&gt;Notice those crates?&lt;/hint&gt;
-        ///				&lt;hint id=&quot;5&quot;&gt;Climb up the crates to get to the roof.&lt;/hint&gt;
-        ///			&lt;/topic&gt;
-        ///			&lt;topic title=&quot;How do I escape the mercenaries?&quot;&gt;
-        ///				&lt;hint id=&quot;1&quot;&gt;Run!&lt;/hint&gt;
-        ///			&lt;/topic&gt;
-        ///			&lt;topic title=&quot;There&apos;s nowhere to go!&quot;&gt;
-        ///				&lt;hint id=&quot;1&quot;&gt;You ca [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+        ///&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+        ///
+        ///&lt;head&gt;
+        ///&lt;meta content=&quot;text/html; charset=utf-8&quot; http-equiv=&quot;Content-Type&quot; /&gt;
+        ///&lt;title&gt;The Shadow in the Cathedral - Game Hints&lt;/title&gt;
+        ///
+        ///&lt;style type=&quot;text/css&quot;&gt;
+        ///
+        ///body {
+        ///	background-image:url(&quot;GameFiles/parchment.jpg&quot;);
+        ///}
+        ///
+        ///ul
+        ///{
+        ///	list-style-type: none;
+        ///	padding: 0;
+        ///	margin-left: 1em;
+        ///}
+        ///
+        ///.padme {
+        ///	margin-right: 1em;
+        ///}
+        ///
+        ///.float [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string hints {
+        internal static string hintTemplate {
             get {
-                return ResourceManager.GetString("hints", resourceCulture);
+                return ResourceManager.GetString("hintTemplate", resourceCulture);
             }
         }
         

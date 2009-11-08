@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_40923512887E48B8978F34CF2CDF3A0C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_450562822D2F4022AE1D4F46CE4492A1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -27,7 +33,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_4A1D47EFF4704F39B4390897CBAEF0E2"
+        "MsmKey" = "8:_4B188275ED9F4E1A84640BE12282CF82"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -63,7 +69,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_E6DB341D337D4AB5B2F8610246FCAD85"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_EA522CED13914375AE0233A996F2663E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FD78B84265BD4B70ADD57AF47569DE99"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -88,6 +106,43 @@
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
         "OutputFilename" = "8:Debug\\Shadow-1.0Std.msi"
+        "PackageFilesAs" = "3:2"
+        "PackageFileSize" = "3:-2147483648"
+        "CabType" = "3:1"
+        "Compression" = "3:2"
+        "SignOutput" = "11:FALSE"
+        "CertificateFile" = "8:"
+        "PrivateKeyFile" = "8:"
+        "TimeStampServer" = "8:"
+        "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5.SP1"
+                    {
+                    "Name" = "8:.NET Framework 3.5 SP1"
+                    "ProductCode" = "8:Microsoft.Net.Framework.3.5.SP1"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
+        }
+        "Demo"
+        {
+        "DisplayName" = "8:Demo"
+        "IsDebugOnly" = "11:FALSE"
+        "IsReleaseOnly" = "11:FALSE"
+        "OutputFilename" = "8:Demo\\ShadowInstall.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -184,6 +239,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_40923512887E48B8978F34CF2CDF3A0C"
+            {
+            "SourcePath" = "8:gearclock.jpg"
+            "TargetName" = "8:gearclock.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_F1CCBFCD30AB41CDB6B3A40DB678B8CC"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_450562822D2F4022AE1D4F46CE4492A1"
             {
             "SourcePath" = "8:uninstall.bat"
@@ -224,12 +299,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4A1D47EFF4704F39B4390897CBAEF0E2"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4B188275ED9F4E1A84640BE12282CF82"
             {
-            "SourcePath" = "8:Shadow in the Cathedral Hints.html"
-            "TargetName" = "8:Shadow in the Cathedral Hints.html"
+            "SourcePath" = "8:parchment.jpg"
+            "TargetName" = "8:parchment.jpg"
             "Tag" = "8:"
-            "Folder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
+            "Folder" = "8:_F1CCBFCD30AB41CDB6B3A40DB678B8CC"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -335,12 +410,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E6DB341D337D4AB5B2F8610246FCAD85"
+            {
+            "SourcePath" = "8:question.jpg"
+            "TargetName" = "8:question.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_F1CCBFCD30AB41CDB6B3A40DB678B8CC"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EA522CED13914375AE0233A996F2663E"
             {
             "SourcePath" = "8:shadow.ico"
             "TargetName" = "8:shadow.ico"
             "Tag" = "8:"
             "Folder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FD78B84265BD4B70ADD57AF47569DE99"
+            {
+            "SourcePath" = "8:checkmark.png"
+            "TargetName" = "8:checkmark.png"
+            "Tag" = "8:"
+            "Folder" = "8:_F1CCBFCD30AB41CDB6B3A40DB678B8CC"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -404,6 +519,17 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_F1CCBFCD30AB41CDB6B3A40DB678B8CC"
+                    {
+                    "Name" = "8:GameFiles"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_98E5F27DA82047E784BCBDC5A6852985"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_D67E72A92C2F48F3A0DBA1B5A2B44A69"
@@ -434,7 +560,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:The Shadow in the Cathedral - Standard"
         "ProductCode" = "8:{A934AB0A-1DA7-4845-BB97-BB48921DBB74}"
-        "PackageCode" = "8:{60B78E56-17CC-4CF8-8EE8-97C325869989}"
+        "PackageCode" = "8:{1ADC13ED-3C6D-4BC6-B806-5B961EA3B0A2}"
         "UpgradeCode" = "8:{E7162DE9-8A4A-41B1-9403-E3C1D5CB49A0}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
@@ -604,20 +730,6 @@
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
             "Target" = "8:_8D11958132DA40CBB993235DFB40A74F"
-            "Folder" = "8:_133C879849E6444E89813AA8E7FE446F"
-            "WorkingFolder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_FED60A2AF52C438EB0E16DABCE3D7EF4"
-            {
-            "Name" = "8:Shadow in the Cathedral Hints"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_4A1D47EFF4704F39B4390897CBAEF0E2"
             "Folder" = "8:_133C879849E6444E89813AA8E7FE446F"
             "WorkingFolder" = "8:_6F28E408810D4287A7D01F566E6CF6F4"
             "Icon" = "8:"

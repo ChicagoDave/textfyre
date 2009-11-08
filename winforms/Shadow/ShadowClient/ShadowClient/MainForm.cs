@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reflection;
+using System.Configuration;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +12,7 @@ using System.Threading;
 using System.Windows.Forms;
 using Textfyre.VM;
 
-namespace FyreWinClient {
+namespace Textfyre {
     public partial class MainForm : Form {
         private Engine vm;
         private Thread vmThread;
@@ -43,11 +45,9 @@ namespace FyreWinClient {
 
         private void SetPreferences() {
             Header.Font = Properties.Settings.Default.HeaderFooterFont;
-            Header.Font = Properties.Settings.Default.HeaderFooterFont;
             Header.ForeColor = Properties.Settings.Default.HeaderForeColor;
             Header.BackColor = Properties.Settings.Default.HeaderBackColor;
 
-            ScoreTime.Font = Properties.Settings.Default.HeaderFooterFont;
             ScoreTime.Font = Properties.Settings.Default.HeaderFooterFont;
             ScoreTime.ForeColor = Properties.Settings.Default.HeaderForeColor;
             ScoreTime.BackColor = Properties.Settings.Default.HeaderBackColor;
@@ -69,7 +69,14 @@ namespace FyreWinClient {
             Header.Text = "";
             TextWindow.Clear();
 
-            MemoryStream fileData = new MemoryStream(Properties.Resource.sh_v1_0e);
+            string gameAssemblyName = ConfigurationManager.AppSettings["gameFile"].ToString();
+
+            Assembly gameAssembly = Assembly.LoadFile(String.Concat(Application.StartupPath, "\\", gameAssemblyName, ".dll"));
+            string resourceName = gameAssembly.GetManifestResourceNames()[0];
+            Stream resourceStream = gameAssembly.GetManifestResourceStream(resourceName);
+            byte[] buffer = new byte[resourceStream.Length];
+            int result = resourceStream.Read(buffer,0,(int)resourceStream.Length);
+            MemoryStream fileData = new MemoryStream(buffer);
 
             vm = new Engine(fileData);
             vm.OutputFilterEnabled = false;
@@ -229,7 +236,11 @@ namespace FyreWinClient {
             textLine = "";
             history.Add(inputLine);
             historyIndex = history.Count;
-            inputReadyEvent.Set();
+            if (inputLine == "hint" || inputLine == "hints") {
+                hintMenuItem_Click(this, null);
+                RequestLine();
+            } else
+                inputReadyEvent.Set();
         }
 
         private void HandleOutput(Dictionary<OutputChannel, string> package) {
@@ -242,19 +253,19 @@ namespace FyreWinClient {
             if (package.TryGetValue(OutputChannel.Prologue, out text)) {
                 channelText[(int)OutputChannel.Prologue] = text.Trim();
 
-                TextWindow.AppendText(String.Format("{0}\r\n", text));
+                RTFWriter(String.Format("{0}\r\n", text));
             }
 
             if (package.TryGetValue(OutputChannel.Credits, out text)) {
                 channelText[(int)OutputChannel.Credits] = text.Trim();
 
-                TextWindow.AppendText(String.Concat(text.Trim().Replace("&#169;","@"),"\r\n\r\n"));
+                RTFWriter(String.Concat(text.Trim().Replace("&#169;","@"),"\r\n\r\n"));
             }
 
             if (package.TryGetValue(OutputChannel.Main, out text)) {
                 channelText[((int)OutputChannel.Main)] = text;
 
-                TextWindow.AppendText(String.Concat(text.Trim(),"\r\n"));
+                RTFWriter(String.Concat(text.Trim(),"\r\n"));
             }
 
             if (package.TryGetValue(OutputChannel.Location, out text)) {
@@ -342,12 +353,86 @@ namespace FyreWinClient {
         }
 
         /// <summary>
-        /// Handle large text...pause for each page
+        /// Process bold and italcs.
         /// </summary>
         /// <param name="text"></param>
-        //private void More(string text) {
-            
-        //}
+        private void RTFWriter(string text) {
+
+            int begMarkup = text.IndexOf("<");
+            int start = 0;
+
+            if (begMarkup == -1) {
+                TextWindow.AppendText(text); // no markup here
+                return;
+            }
+
+            string tag = GetTag(text, begMarkup);
+
+            if (begMarkup > 0)
+                TextWindow.AppendText(text.Substring(0,begMarkup)); // write the initial plain text
+
+            System.Drawing.Font currentFont = TextWindow.SelectionFont;
+
+            while (begMarkup > -1) {
+                int endMarkup = text.Length;
+
+                if (tag != "") {
+                    if (tag == "<b>") {
+                        endMarkup = text.IndexOf("</b>", begMarkup + 3);
+
+                        int bt = TextWindow.TextLength;
+                        TextWindow.AppendText(text.Substring(begMarkup + 3, endMarkup - begMarkup - 3));
+                        TextWindow.Select(bt, endMarkup - begMarkup - 3);
+                        TextWindow.SelectionFont = new Font(currentFont.FontFamily, currentFont.Size, FontStyle.Bold);
+                        TextWindow.Select(TextWindow.TextLength, 0);
+                        TextWindow.SelectionFont = currentFont;
+
+                        start = endMarkup + 4;
+                    } else {
+                        endMarkup = text.IndexOf("</i>", begMarkup + 3);
+
+                        int bt = TextWindow.TextLength;
+                        TextWindow.AppendText(text.Substring(begMarkup + 3, endMarkup - begMarkup - 3));
+                        TextWindow.Select(bt, endMarkup - begMarkup - 3);
+                        TextWindow.SelectionFont = new Font(currentFont.FontFamily, currentFont.Size, FontStyle.Italic);
+                        TextWindow.Select(TextWindow.TextLength, 0);
+                        TextWindow.SelectionFont = currentFont;
+
+                        start = endMarkup + 4;
+                    }
+
+                    if (start >= text.Length)
+                        return; // no more text
+
+                    begMarkup = text.IndexOf("<", start);
+                    tag = GetTag(text, begMarkup);
+
+                    if (begMarkup > 0)
+                        TextWindow.AppendText(text.Substring(endMarkup + 4, begMarkup - endMarkup - 4)); // write plain text
+
+                } else
+                    start = begMarkup + 1;
+
+                if (start >= text.Length) return; // no more text
+            }
+
+            TextWindow.AppendText(text.Substring(start, text.Length - start)); // write the end of the text
+        }
+
+        private string GetTag(string text, int startTag) {
+
+            string style = text.Substring(startTag + 1, 1);
+            string postStyle = text.Substring(startTag + 2, 1);
+
+            if (postStyle == ">")
+                return String.Concat("<", style, ">");
+
+            if (postStyle == "/")
+                return String.Concat("</", style, ">");
+
+            return ""; // not a tag - move on.
+
+        }
 
         private void ArrangeInput(object sender, EventArgs e) {
             // we don't care about the > prompt in the WinForms version...
@@ -470,7 +555,13 @@ namespace FyreWinClient {
         }
 
         private void hintMenuItem_Click(object sender, EventArgs e) {
+            if (channelText[(int)OutputChannel.Hints] == "" || channelText[(int)OutputChannel.Hints] == null) {
+                MessageBox.Show("There are no hints for this section of the game.");
+                return;
+            }
+
             HintForm hints = new HintForm();
+            hints.HintXML = channelText[(int)OutputChannel.Hints];
 
             hints.ShowDialog();
         }
