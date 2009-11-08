@@ -311,6 +311,7 @@ namespace Cjc.SilverFyre
 				default:
 					{
 						selectedCommandIndex = null;
+						if ( engine != null ) engine.SendKey( (char)( e.PlatformKeyCode ) );
 						break;
 					}
 			}
