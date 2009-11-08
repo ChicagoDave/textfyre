@@ -85,8 +85,10 @@ namespace SilverFyre.Web
 				{
 					message.Attachments.Add( new Attachment( stream, "Transcript.xml", "text/xml" ) );
 
-					var client = new SmtpClient( "65.166.200.181" );
-					client.Credentials = new NetworkCredential( "cjcavanagh", "cjcavanagh1" );
+					throw new ApplicationException( "TODO: SMTP not configured!" );
+
+					var client = new SmtpClient( "65.166.200.181" /* SMTP server address */ );
+					client.Credentials = new NetworkCredential( /* Credentials... */ );
 					client.Send( message );
 				}
 
