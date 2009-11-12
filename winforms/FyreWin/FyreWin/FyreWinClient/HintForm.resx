@@ -117,31 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="richTextBox1.Text" xml:space="preserve">
-    <value>The Shadow in the Cathedral
-
-Version 1.0 Standard
-
-Published by Textfyre, Inc - Copyright © 2009 - All Rights Reserved. 
-
-Designed by Ian Finley and Jon Ingold
-
-Written by Jon Ingold
-
-Inform 7 by Graham Nelson, with several useful extensions by Emily Short and Graeme Jefferis. 
-
-System programming by Jesse McGrew. 
-
-Game programming by Graeme Jefferis. 
-
-Testing by: Eric Eve, Paul O'Brian, Peter Berman, and Gunther Schmidl.
-
-All photographs are from IStockPhoto.Com.
-
-The maps were drawn by Jennifer Montes.
-
-A special thanks goes out to Graham Nelson and Emily Short, without whom Textfyre would not have existed. Their dedication to Interactive Fiction and to the Inform 7 development tools is simply astounding.
-
-We also want to thank everyone in the Interactive Fiction hobbyist community for their support.</value>
-  </data>
 </root>
