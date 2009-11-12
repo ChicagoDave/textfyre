@@ -124,9 +124,6 @@
   <data name="hintTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\GameFiles\hintTemplate.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="sh_v1_0e" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\GameFiles\sh-v1.0e.ulx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="Title" xml:space="preserve">
     <value>The Shadow in the Cathedral</value>
   </data>

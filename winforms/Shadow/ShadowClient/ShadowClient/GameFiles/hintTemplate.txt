@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>The Shadow in the Cathedral - Game Hints</title>
+
+<style type="text/css">
+
+body {
+	background-image:url("GameFiles/parchment.jpg");
+}
+
+ul
+{
+	list-style-type: none;
+	padding: 0;
+	margin-left: 1em;
+}
+
+.padme {
+	margin-right: 1em;
+}
+
+.floatright
+{
+	float: right;
+	margin: 0 0 10px 10px;
+	border: 1px solid #666;
+	padding: 2px;
+}
+
+.hint {
+	color:black;
+}
+
+.mung {
+	color:brown:
+}
+
+</style>
+
+<script type="text/javascript">
+
+	var skipToggle = 0;
+
+	<!--
+	
+	function toggleQuestion(answers) {
+	
+		var a = document.getElementById(answers.id);
+
+		if (skipToggle == 0) {
+			if (a.style.display == 'none') {
+				a.style.display = 'block';
+			} else {
+				a.style.display = 'none';
+			}
+		}
+				
+		skipToggle = 0;
+	}
+	
+	function showHint(mungedText, hintText) {
+		mungedText.style.display = 'none';
+		hintText.style.display = 'block';
+		skipToggle = 1;
+	}
+	//-->
+
+</script>
+
+</head>
+
+<body>
+<div>
+<h1>The Shadow in the Cathedral</h1>
+<p><img class="floatright" src="GameFiles/gearclock.jpg" height="70px" width="104px"/>Within each section of the game you will be offered a relative set of hints. Each topic is listed and within each topic there
+is a list of hints. Initially, each hint is "hidden" with nonsense words. If you click on the lines with a <img src="GameFiles/question.jpg"/> and nonsense words, the hint is revealed with a <img src="GameFiles/checkmark.png"/>.
+You can come back to the hints for each section anytime you wish and click any or all of the hints.</p>
+</div>
+<div>
+#content#
+</div>
+</body>
+
+</html>

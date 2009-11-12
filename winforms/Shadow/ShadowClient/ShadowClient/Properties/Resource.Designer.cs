@@ -102,13 +102,6 @@ namespace Textfyre.Properties {
             }
         }
         
-        internal static byte[] sh_v1_0e {
-            get {
-                object obj = ResourceManager.GetObject("sh_v1_0e", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
         /// <summary>
         ///   Looks up a localized string similar to The Shadow in the Cathedral.
         /// </summary>
