@@ -162,7 +162,7 @@ To Send hints for (x - a number):
 		say "				<hint id=[quotation mark]2[quotation mark]>There's a big chain. Pull!</hint>";
 		say "			</topic>";
 		say "			<topic title=[quotation mark]What now? Brother Sa'at wants it stamped![quotation mark]>";
-		say "				<hint id=[quotation mark]1[quotation mark]>He needs to put his seal on it. A seal is a blob of molten wax into which a ring is pressed. It shows who sealed the letter, and that it hasn’t been opened by anyone else.</hint>";
+		say "				<hint id=[quotation mark]1[quotation mark]>He needs to put his seal on it. A seal is a blob of molten wax into which a ring is pressed. It shows who sealed the letter, and that it hasnt been opened by anyone else.</hint>";
 		say "				<hint id=[quotation mark]2[quotation mark]>Luckily, Sa'at will do all of that for you, so long as you can get him some wax.</hint>";
 		say "				<hint id=[quotation mark]3[quotation mark]>Some purple wax, that is.</hint>";
 		say "			</topic>";

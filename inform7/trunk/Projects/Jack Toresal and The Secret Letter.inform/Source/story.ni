@@ -206,13 +206,15 @@ Include Image Output by Textfyre.
 Include Secret Letter Hints by Textfyre.
 Include Xml Output Toggling by Textfyre.
 
+Include Basic Help by David Cornelson.
+
 Use no scoring, American dialect and full-length room descriptions.
 Use authorial modesty.
 The story creation year is 2009.
 
 Rule for printing the banner text:
 	select the title channel;
-	say "[b][story title] - v1.08[r][line break]";
+	say "[b][story title] - v2.0.20091112Glx[r][line break]";
 	select the credits channel;
 	say "[story title] by [story author][line break]";
 	say "Copyright &#169; [story creation year] by [story author][line break]";
@@ -255,6 +257,7 @@ Use MAX_EXPRESSION_NODES of 300.
 
 When play begins:
 	change the time of day to 1:00 AM;
+	change menu option number display to true;
 
 Part 2 - Index Map Tweaking
 
