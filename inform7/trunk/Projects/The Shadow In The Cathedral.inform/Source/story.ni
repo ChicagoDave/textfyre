@@ -152,14 +152,15 @@ Include Parse List by Textfyre.
 Include Textfyre Standard Backdrops by Textfyre.
 Include Shadow Hints by Textfyre.
 Include Xml Output Toggling by Textfyre.
+Include Basic Help by David Cornelson.
 
 Book - Initialisation
 
 Section 0 - Beating memory constraints
 
-Use MAX_STATIC_DATA of 450000;
+Use MAX_STATIC_DATA of 450000.
 Use MAX_PROP_TABLE_SIZE of 600000.
-Use MAX_DICT_ENTRIES of 2500.
+Use MAX_DICT_ENTRIES of 4000.
 Use MAX_OBJECTS of 1280.
 Use MAX_SYMBOLS of 26000.
 Use MAX_ZCODE_SIZE of 80000.
@@ -233,14 +234,14 @@ Rule for printing the banner text:
 	say "[b][story title][r][line break]";
 	select the credits channel;
 	say "[story title] by [story author][line break]";
-	say "Version .93.20090926[line break]";
+	say "Version 1.0.20091105Std[line break]";
 	say "Copyright [story creation year] by [story author][line break]";
 	say "Designed by Ian Finley[line break]";
 	say "Written by Jon Ingold[line break]";
 	say "Game Engine (FyreVM) by Jesse McGrew[line break]";
 	say "Inform 7 Story Programming by Graeme Jefferis and Jon Ingold[line break]";
 	say "Custom Library Messages extension by David Fisher[line break]";
-	say "Testing by Jon Ingold, Ian Finley, Paul O'Brian and Eric Eve[line break]";
+	say "Testing by Jon Ingold, Ian Finley, Paul O'Brian,[line break]Eric Eve, and Peter Berman[line break]";
 	say "Special thanks to Graham Nelson and Emily Short[line break]";
 	say "for all of their hard work on Inform 7.[line break]";
 	say "All rights reserved[line break]";
@@ -5907,10 +5908,15 @@ Instead of going through the Cloister,
 
 Chapter 1 - Leaving and Finishing Chapter 2
 
+[this is where we'll cut off the demo]
+
 After going from the Entry to the Cathedral Yard for the first time:
 	say "I race through the doors. No-one's going to stop me now! The Archbishop, and my reward - here I come!";
 	end the chapter;
-	continue the action;
+	now the player is in the Demo Room.
+	[continue the action;]
+
+The Demo Room is a room. "You have reached the end of the demonstration version for The Shadow in the Cathedral. Please visit www.textfyre.com to purchase the complete version."
 
 Part 14 - Drake
 
@@ -6247,7 +6253,8 @@ Instead of going up in Herb Garden when the ladder is not in the Herb Garden:
 Instead of climbing the ladder when in the Herb Garden:
 	say "In a flash, I'm up and over! It's a short fall to the alley behind the wall, then I scamper along a shadowy alleyway and out into the Cathedral Yard. I'm clear! Time to go see the Archbishop!";
 	end the chapter;
-	move the player to the Cathedral Yard;
+	move the player to the Demo Room;
+	[ changed for demo move the player to the Cathedral Yard;]
 
 Instead of climbing the garden walls when the caretaker's ladder is visible:
 	try going up.
@@ -19479,6 +19486,9 @@ Test wholegame with "test intro / test abbey-garden / test cathedral / test cloc
 
 Test crypt with " d / s / w / take dial / out / e / take cloth / put cloth in oil / take dowel / tie cloth to dowel / out / light torch on torches / d / put dial on pedestal / put torch in sconce / set pedestal to 12 / d / d / search stones / in / open door / say patience / in / take perpetuum / out / out / hide behind door / z / z".
 
+Test demo with "test intro / test abbey-garden".
+
+Test demo2 with "test intro / test abbey-clock".
 
 test cheat7 with "test intro / gonear street / purloin work order".
 

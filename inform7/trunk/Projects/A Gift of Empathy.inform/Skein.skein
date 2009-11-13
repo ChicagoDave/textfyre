@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Skein rootNode="node-0x01201988" xmlns="http://www.logicalshift.org.uk/IF/Skein">
+<Skein rootNode="node-0x04A746A0" xmlns="http://www.logicalshift.org.uk/IF/Skein">
   <generator>Inform 7 for Windows</generator>
-  <activeNode nodeId="node-0x0121B4F0"/>
-  <item nodeId="node-0x01201988">
+  <activeNode nodeId="node-0x02175D50"/>
+  <item nodeId="node-0x04A746A0">
     <command xml:space="preserve">- start -</command>
     <result xml:space="preserve">It's your second year at the LEAP summer camp, and so far it's been as great as you remember last year to have been.  Ava Winters and Stacy Alexander, whom you met last year (and whom your brother Aidan calls "your girlfriends", much to your embarrassment) are here again.  You spent yesterday catching up on the news in between options and classes, and now you're settling in with the smug sensation of not being a raw newbie any more.&#x000A;&#x000A;The LEAP summer camp isn't quite the same as most summer camps.  LEAP is an acronym for "Learning Enrichment Activity Programme"; the brainchild of world-renowned educator Professor Damon Rose, it is housed on the campus of the University of Colorado at Valmont, and was created for Gifted and Talented Kids (gosh, that sounds impressive) to expand their horizons and encourage them to stretch their mental capabilities.&#x000A;&#x000A;Whatever. That's all in the promotional flyers. You just know that you're in for two weeks of the sort of interesting classes you don't get in school, and a bunch of fun options with which to fill up the free time after classes.  This evening, for instance, you've signed up for a scavenger hunt...&#x000A;&#x000A;&#x000A;Please press SPACE to continue.</result>
     <commentary xml:space="preserve"></commentary>
@@ -10,11 +10,11 @@
     <changed>YES</changed>
     <temporary score="0">NO</temporary>
     <children>
-      <child nodeId="node-0x01201A28"/>
-      <child nodeId="node-0x0120B6A0"/>
+      <child nodeId="node-0x04A74710"/>
+      <child nodeId="node-0x02172000"/>
     </children>
   </item>
-  <item nodeId="node-0x01201A28">
+  <item nodeId="node-0x04A74710">
     <command xml:space="preserve">[down]</command>
     <result xml:space="preserve"></result>
     <commentary xml:space="preserve"></commentary>
@@ -22,11 +22,11 @@
     <changed>NO</changed>
     <temporary score="0">YES</temporary>
     <children>
-      <child nodeId="node-0x01201AB8"/>
-      <child nodeId="node-0x0120A630"/>
+      <child nodeId="node-0x04A74780"/>
+      <child nodeId="node-0x02171E40"/>
     </children>
   </item>
-  <item nodeId="node-0x01201AB8">
+  <item nodeId="node-0x04A74780">
     <command xml:space="preserve"> </command>
     <result xml:space="preserve">LEAP, Day 2.  Evening.&#x000A;&#x000A;"Okay, kids!" Michelle, the counselor in charge of the scavenger hunt option waves her hands to settle the crowd around you, before finally remembering her whistle.  A brief fweep sweeps through the room.  "Okay, does everyone have their list?  Everyone good?  Okay!  You have until 8:25 pm to find everything on your lists, return here, and show me your lists so I can check them.  So synchronise your watches ... are we all in sync?  Good!  Your time starts ... now!"&#x000A;&#x000A;Michelle's whistle gives another sharp fweep, and the room practically empties as everyone else runs off to begin their hunt.&#x000A;&#x000A;A Gift of Empathy&#x000A;A Gift of Empathy by Textfyre&#x000A;Copyright 2009 by Textfyre&#x000A;Designed by Ian Finley&#x000A;Written by Jon Ingold&#x000A;Game Engine (FyreVM) by Jesse McGrew&#x000A;Inform 7 Story Programming by Graeme Jefferis&#x000A;Testing by ____&#x000A;User Interface Programming by Thomas Lynge&#x000A;Special thanks to Graham Nelson and Emily Short&#x000A;for all of their hard work on Inform 7.&#x000A;All rights reserved&#x000A;&#x000A;First Floor Lobby West&#x000A;This used to be the living room, back when Alexander Quaverley Jacobs, the eccentric old coot who donated this place to the university was still alive and the university was just starting up.  It's got a huge fireplace, and a big bay window looking out onto the front lawn.  It's also been painted completely white from floor to ceiling, so thickly that you're not sure if some of the molding is not actually just bubbles under the paint.  The info desk is back through the arch to the north, and the lobby continues, through another arch, to the west.&#x000A;&#x000A;A large brass plaque has been fixed into the space over the fireplace.&#x000A;&#x000A;&gt;</result>
     <commentary xml:space="preserve"></commentary>
@@ -34,10 +34,10 @@
     <changed>YES</changed>
     <temporary score="0">YES</temporary>
     <children>
-      <child nodeId="node-0x01201B90"/>
+      <child nodeId="node-0x02171C10"/>
     </children>
   </item>
-  <item nodeId="node-0x01201B90">
+  <item nodeId="node-0x02171C10">
     <command xml:space="preserve">l</command>
     <result xml:space="preserve">First Floor Lobby West&#x000A;This used to be the living room, back when old AQJ was still alive and the university was just starting up.  It's got a huge fireplace, and a big bay window looking out onto the front lawn.  It's also been painted completely white from floor to ceiling, so thickly that you're not sure if some of the molding is not actually just bubbles under the paint.  The info desk is back through the arch to the north, and the lobby continues, through another arch, to the west.&#x000A;&#x000A;A large brass plaque has been fixed into the space over the fireplace.&#x000A;&#x000A;&gt;</result>
     <commentary xml:space="preserve"></commentary>
@@ -45,10 +45,10 @@
     <changed>YES</changed>
     <temporary score="0">YES</temporary>
     <children>
-      <child nodeId="node-0x01206958"/>
+      <child nodeId="node-0x02171C80"/>
     </children>
   </item>
-  <item nodeId="node-0x01206958">
+  <item nodeId="node-0x02171C80">
     <command xml:space="preserve">x plaque</command>
     <result xml:space="preserve">It's shaped like a shield, and commemorates the memory of Damon Rose, one of the founders of LEAP.  You remember him quite well from last year.  It was quite a shock to hear about the accident, and there was some question as to whether LEAP could go on without him.  His wife, Claudia Rose, is in charge of LEAP now, and making sure that the good work goes on.  She seems like a nice lady, but she's just not quite as present as old Damon Rose used to be.&#x000A;&#x000A;&gt;</result>
     <commentary xml:space="preserve"></commentary>
@@ -56,10 +56,10 @@
     <changed>YES</changed>
     <temporary score="0">YES</temporary>
     <children>
-      <child nodeId="node-0x012069E8"/>
+      <child nodeId="node-0x02171CF0"/>
     </children>
   </item>
-  <item nodeId="node-0x012069E8">
+  <item nodeId="node-0x02171CF0">
     <command xml:space="preserve">read plaque</command>
     <result xml:space="preserve">It's shaped like a shield, and commemorates the memory of Damon Rose, one of the founders of LEAP.  You remember him quite well from last year.  It was quite a shock to hear about the accident, and there was some question as to whether LEAP could go on without him.  His wife, Claudia Rose, is in charge of LEAP now, and making sure that the good work goes on.  She seems like a nice lady, but she's just not quite as present as old Damon Rose used to be.&#x000A;&#x000A;&gt;</result>
     <commentary xml:space="preserve"></commentary>
@@ -67,10 +67,10 @@
     <changed>YES</changed>
     <temporary score="0">YES</temporary>
     <children>
-      <child nodeId="node-0x01206AD0"/>
+      <child nodeId="node-0x02171D60"/>
     </children>
   </item>
-  <item nodeId="node-0x01206AD0">
+  <item nodeId="node-0x02171D60">
     <command xml:space="preserve">x window</command>
     <result xml:space="preserve">Normally you can see all of the front lawn spread out from here, but right now there've been temporary walls set up all over the lawn.&#x000A;&#x000A;&gt;</result>
     <commentary xml:space="preserve"></commentary>
@@ -78,10 +78,10 @@
     <changed>YES</changed>
     <temporary score="0">YES</temporary>
     <children>
-      <child nodeId="node-0x0120A578"/>
+      <child nodeId="node-0x02171DD0"/>
     </children>
   </item>
-  <item nodeId="node-0x0120A578">
+  <item nodeId="node-0x02171DD0">
     <command xml:space="preserve">look through window</command>
     <result xml:space="preserve">You find nothing of interest.&#x000A;&#x000A;&gt;</result>
     <commentary xml:space="preserve"></commentary>
@@ -89,7 +89,7 @@
     <changed>YES</changed>
     <temporary score="0">YES</temporary>
   </item>
-  <item nodeId="node-0x0120A630">
+  <item nodeId="node-0x02171E40">
     <command xml:space="preserve">[down]</command>
     <result xml:space="preserve"></result>
     <commentary xml:space="preserve"></commentary>
@@ -97,10 +97,10 @@
     <changed>NO</changed>
     <temporary score="0">YES</temporary>
     <children>
-      <child nodeId="node-0x0120A710"/>
+      <child nodeId="node-0x02171EB0"/>
     </children>
   </item>
-  <item nodeId="node-0x0120A710">
+  <item nodeId="node-0x02171EB0">
     <command xml:space="preserve">[down]</command>
     <result xml:space="preserve"></result>
     <commentary xml:space="preserve"></commentary>
@@ -108,10 +108,10 @@
     <changed>NO</changed>
     <temporary score="0">YES</temporary>
     <children>
-      <child nodeId="node-0x0120A7F0"/>
+      <child nodeId="node-0x02171F20"/>
     </children>
   </item>
-  <item nodeId="node-0x0120A7F0">
+  <item nodeId="node-0x02171F20">
     <command xml:space="preserve">[up]</command>
     <result xml:space="preserve"></result>
     <commentary xml:space="preserve"></commentary>
@@ -119,10 +119,10 @@
     <changed>NO</changed>
     <temporary score="0">YES</temporary>
     <children>
-      <child nodeId="node-0x0120A8D0"/>
+      <child nodeId="node-0x02171F90"/>
     </children>
   </item>
-  <item nodeId="node-0x0120A8D0">
+  <item nodeId="node-0x02171F90">
     <command xml:space="preserve"> </command>
     <result xml:space="preserve">LEAP, Day 2.  Evening.&#x000A;&#x000A;"Okay, kids!" Michelle, the counselor in charge of the scavenger hunt option waves her hands to settle the crowd around you, before finally remembering her whistle.  A brief fweep sweeps through the room.  "Okay, does everyone have their list?  Everyone good?  Okay!  You have until 8:25 pm to find everything on your lists, return here, and show me your lists so I can check them.  So synchronise your watches ... are we all in sync?  Good!  Your time starts ... now!"&#x000A;&#x000A;Michelle's whistle gives another sharp fweep, and the room practically empties as everyone else runs off to begin their hunt.&#x000A;&#x000A;A Gift of Empathy&#x000A;A Gift of Empathy by Textfyre&#x000A;Copyright 2009 by Textfyre&#x000A;Designed by Chris Huang&#x000A;Written by Paul O'Brien&#x000A;Game Engine (FyreVM) by Jesse McGrew&#x000A;Inform 7 Story Programming by Graeme Jefferis&#x000A;Testing by ____&#x000A;User Interface Programming by Thomas Lynge&#x000A;Special thanks to Graham Nelson and Emily Short&#x000A;for all of their hard work on Inform 7.&#x000A;All rights reserved&#x000A;&#x000A;First Floor Lobby, West&#x000A;This used to be the living room, back when Alexander Quaverley Jacobs, the eccentric old coot who donated this place to the university was still alive and the university was just starting up.  It's got a huge fireplace, and a big bay window looking out onto the front lawn.  It's also been painted completely white from floor to ceiling, so thickly that you're not sure if some of the molding is not actually just bubbles under the paint.  The info desk is back through the arch to the north, and the lobby continues, through another arch, to the west.&#x000A;&#x000A;A large brass plaque has been fixed into the space over the fireplace.&#x000A;&#x000A;&gt;</result>
     <commentary xml:space="preserve"></commentary>
@@ -130,7 +130,7 @@
     <changed>YES</changed>
     <temporary score="0">YES</temporary>
   </item>
-  <item nodeId="node-0x0120B6A0">
+  <item nodeId="node-0x02172000">
     <command xml:space="preserve"> </command>
     <result xml:space="preserve">LEAP, Day 2.  Evening.&#x000A;&#x000A;"Okay, kids!" Michelle, the counselor in charge of the scavenger hunt option waves her hands to settle the crowd around you, before finally remembering her whistle.  A brief fweep sweeps through the room.  "Okay, does everyone have their list?  Everyone good?  Okay!  You have until 8:25 pm to find everything on your lists, return here, and show me your lists so I can check them.  So synchronise your watches ... are we all in sync?  Good!  Your time starts ... now!"&#x000A;&#x000A;Michelle's whistle gives another sharp fweep, and the room practically empties as everyone else runs off to begin their hunt.&#x000A;&#x000A;A Gift of Empathy&#x000A;A Gift of Empathy by Textfyre&#x000A;Copyright 2009 by Textfyre&#x000A;Designed by Paul O'Brian&#x000A;Written by Christopher Huang&#x000A;Game Engine (FyreVM) by Jesse McGrew&#x000A;Inform 7 Story Programming by Graeme Jefferis&#x000A;Testing by ____&#x000A;User Interface Programming by Thomas Lynge&#x000A;Special thanks to Graham Nelson and Emily Short&#x000A;for all of their hard work on Inform 7.&#x000A;All rights reserved&#x000A;&#x000A;First Floor Lobby, West&#x000A;This used to be the living room, back when Alexander Quaverley Jacobs, the eccentric old coot who donated this place to the university was still alive and the university was just starting up.  It's got a huge fireplace, and a big bay window looking out onto the front lawn.  It's also been painted completely white from floor to ceiling, so thickly that you're not sure if some of the molding is not actually just bubbles under the paint.  The info desk is back through the arch to the north, and the lobby continues, through another arch, to the west.&#x000A;&#x000A;A large brass plaque has been fixed into the space over the fireplace.&#x000A;&#x000A;&gt;</result>
     <commentary xml:space="preserve"></commentary>
@@ -138,12 +138,12 @@
     <changed>YES</changed>
     <temporary score="0">YES</temporary>
     <children>
-      <child nodeId="node-0x0120C470"/>
-      <child nodeId="node-0x00B75CF8"/>
-      <child nodeId="node-0x012213B8"/>
+      <child nodeId="node-0x02172070"/>
+      <child nodeId="node-0x021722A0"/>
+      <child nodeId="node-0x02172380"/>
     </children>
   </item>
-  <item nodeId="node-0x0120C470">
+  <item nodeId="node-0x02172070">
     <command xml:space="preserve">e</command>
     <result xml:space="preserve">First Floor Lobby East&#x000A;This used to be a rather large dining room, once upon a time, and it still has a low-hanging chandelier right in the middle of the ceiling.  A piano's been pushed under the chandelier so that nobody accidentally gets a head full of crystal walking blindly around, and the place is generally used as a kind of music room now.  The info desk is back to the northwest, and to the west is the rest of the first floor lobby.  Wide picture windows looks out on the front lawn and on the southern part of Calvin Field.&#x000A;&#x000A;&gt;</result>
     <commentary xml:space="preserve"></commentary>
@@ -151,11 +151,11 @@
     <changed>YES</changed>
     <temporary score="0">YES</temporary>
     <children>
-      <child nodeId="node-0x0120C998"/>
-      <child nodeId="node-0x0120CA70"/>
+      <child nodeId="node-0x021720E0"/>
+      <child nodeId="node-0x02172150"/>
     </children>
   </item>
-  <item nodeId="node-0x0120C998">
+  <item nodeId="node-0x021720E0">
     <command xml:space="preserve">w</command>
     <result xml:space="preserve">You can't go that way.&#x000A;&#x000A;&gt;</result>
     <commentary xml:space="preserve"></commentary>
@@ -163,7 +163,7 @@
     <changed>YES</changed>
     <temporary score="0">YES</temporary>
   </item>
-  <item nodeId="node-0x0120CA70">
+  <item nodeId="node-0x02172150">
     <command xml:space="preserve">nw</command>
     <result xml:space="preserve">You can't go that way.&#x000A;&#x000A;&gt;</result>
     <commentary xml:space="preserve"></commentary>
@@ -171,10 +171,10 @@
     <changed>YES</changed>
     <temporary score="0">YES</temporary>
     <children>
-      <child nodeId="node-0x0120CB98"/>
+      <child nodeId="node-0x021721C0"/>
     </children>
   </item>
-  <item nodeId="node-0x0120CB98">
+  <item nodeId="node-0x021721C0">
     <command xml:space="preserve">ne</command>
     <result xml:space="preserve">Info Desk&#x000A;The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.&#x000A;&#x000A;&gt;</result>
     <commentary xml:space="preserve"></commentary>
@@ -182,10 +182,10 @@
     <changed>YES</changed>
     <temporary score="0">YES</temporary>
     <children>
-      <child nodeId="node-0x0120D0F8"/>
+      <child nodeId="node-0x02172230"/>
     </children>
   </item>
-  <item nodeId="node-0x0120D0F8">
+  <item nodeId="node-0x02172230">
     <command xml:space="preserve">s</command>
     <result xml:space="preserve">First Floor Lobby, West&#x000A;This used to be the living room, back when old AQJ was still alive and the university was just starting up.  It's got a huge fireplace, and a big bay window looking out onto the front lawn.  It's also been painted completely white from floor to ceiling, so thickly that you're not sure if some of the molding is not actually just bubbles under the paint.  The info desk is back through the arch to the north, and the lobby continues, through another arch, to the west.&#x000A;&#x000A;A large brass plaque has been fixed into the space over the fireplace.&#x000A;&#x000A;&gt;</result>
     <commentary xml:space="preserve"></commentary>
@@ -193,7 +193,7 @@
     <changed>YES</changed>
     <temporary score="0">YES</temporary>
   </item>
-  <item nodeId="node-0x00B75CF8">
+  <item nodeId="node-0x021722A0">
     <command xml:space="preserve">x list</command>
     <result xml:space="preserve">A newspaper&#x000A;A feather&#x000A;A flag&#x000A;A star&#x000A;A dinosaur&#x000A;A hat&#x000A;Something that was once alive&#x000A;&#x000A;&gt;</result>
     <commentary xml:space="preserve"></commentary>
@@ -201,10 +201,10 @@
     <changed>YES</changed>
     <temporary score="0">YES</temporary>
     <children>
-      <child nodeId="node-0x0120C398"/>
+      <child nodeId="node-0x02172310"/>
     </children>
   </item>
-  <item nodeId="node-0x0120C398">
+  <item nodeId="node-0x02172310">
     <command xml:space="preserve">inv</command>
     <result xml:space="preserve">You are carrying: &#x000A;  a list of items for the Scavenger Hunt&#x000A;&#x000A;&gt;</result>
     <commentary xml:space="preserve"></commentary>
@@ -212,7 +212,7 @@
     <changed>YES</changed>
     <temporary score="0">YES</temporary>
   </item>
-  <item nodeId="node-0x012213B8">
+  <item nodeId="node-0x02172380">
     <command xml:space="preserve">x dollar</command>
     <result xml:space="preserve">You see nothing special about the few dollar notes.&#x000A;&#x000A;&gt;</result>
     <commentary xml:space="preserve"></commentary>
@@ -220,10 +220,10 @@
     <changed>YES</changed>
     <temporary score="0">YES</temporary>
     <children>
-      <child nodeId="node-0x0121B4F0"/>
+      <child nodeId="node-0x02175D50"/>
     </children>
   </item>
-  <item nodeId="node-0x0121B4F0">
+  <item nodeId="node-0x02175D50">
     <command xml:space="preserve">inv</command>
     <result xml:space="preserve">You are carrying: &#x000A;  a list of items for the Scavenger Hunt&#x000A;  a few dollar notes&#x000A;&#x000A;&gt;</result>
     <commentary xml:space="preserve"></commentary>
