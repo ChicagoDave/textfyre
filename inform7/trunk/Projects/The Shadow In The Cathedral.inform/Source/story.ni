@@ -4,7 +4,7 @@
 [  Change Log
 
 When				Who		What
-
+14-Nov-2009			J. Ingold	Missing ladder in Loading! Emily's bugs. (Except for one: removing rope from pipe, which I don't understand.)
 1-Nov-2009			J. Ingold	Hints are in the game, tied to chapters for ease.
 20-Oct-2009			J. Ingold	Most of PBerman's feedback
 3-Oct-2009			J. Ingold	Eric's remaining feedback. 
@@ -5565,7 +5565,7 @@ Chapter 3 - Gong Sounding
 
 Gong sounding is a scene.
 
-Gong sounding begins when the face value of the Refectory Clock is 5:00 PM. 
+Gong sounding begins when the face value of the Refectory Clock is 5:00 PM and the Public Yard is not visited [ if you get out via the ladder, this scene should never play ]. 
 
 When Gong Sounding begins:
 	now the Refectory Clock is closed;
@@ -14013,6 +14013,7 @@ Instead of taking the rubble:
 	say "I'm not here to go wandering off with the ruins of an old warehouse."
 
 Instead of searching or looking under or pushing or pulling or turning or attacking the rubble when the Wrench is not handled:
+	now the wrench is not scenery;
 	say "In the midst of the rubble is a good-looking wrench. I pick it out. [run paragraph on]";
 	try taking the wrench.
 
@@ -14028,7 +14029,7 @@ Section 2 - Wrench
 
 The wrench is portable scenery, not fixed in place, privately-named, in the North Side. "A wrench. Not a holy tool but a pretty good one all the same. Why anyone would leave it out here to rust is beyond me. I can't help checking the top for bloodstains but of course it's been out in the rain..."
 
-Understand "good", "quality", "weighty", "wrench", "metal", "tool", "mighty", "spanner" as the wrench when we have examined the rubble.
+Understand "good", "quality", "weighty", "wrench", "metal", "tool", "mighty", "spanner" as the wrench when we have examined the rubble or the wrench is not scenery.
 
 After taking the wrench:
 	now the wrench is not scenery;
@@ -14559,6 +14560,30 @@ Instead of going inside when in the Loading Bay:
 
 Understand "play clockball" as a mistake ("I'd need a team of ten. But it's just me here right now. Just Wren... and maybe the Figure, too.") when the location is the Loading Bay.
 
+Section 1 - glimpses of the ladder
+
+After going south from the Loading Bay to Storage Bay when the long ladder is scenery:
+	now the long ladder is not scenery;
+	say "I trip over the rung of a ladder lying on the floor, pick myself up, and continue walking.";
+	continue the action.
+
+The ladder-glimpse is a privately-named glimpse backdrop, in the Loading Bay, in Storage Bay. The printed name is "long ladder". Understand "long ladder", "ladder" as the ladder-glimpse when the ladder is over there.
+
+Before approaching the ladder-glimpse when in the Loading Bay:
+	try going south instead.
+
+Before approaching the ladder-glimpse when in the Storage Bay:
+	try going north instead.
+
+Instead of doing something with the ladder-glimpse:
+	say "The ladder is in the [if location is Loading Bay]south[else]north[end if] end of the warehouse."
+
+To decide if the ladder is over there:
+	if the location is Storage Bay and the long ladder is in the Loading Bay, yes;
+	if the location is the Loading Bay and the long ladder is in the Storage Bay, yes;
+	no.
+
+
 Chapter 2 - Scenery
 
 Section 1 - Drain
@@ -14577,7 +14602,7 @@ Rule for printing the description of the debris:
 After printing the description of the debris when the north end of the rope is in the Loading Bay and the middle of the rope is not handled:
 	say "A massive coil of rope. ";
 
-After printing the description of the debris when the long ladder is in the Loading Bay and the long ladder is not scenery:
+After printing the description of the debris when the long ladder is in the Loading Bay and the long ladder is scenery:
 	now the long ladder is not scenery;
 	say "A long ladder. ";
 
