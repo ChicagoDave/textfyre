@@ -2189,6 +2189,7 @@ Understand "put [something preferably held] up to/against/at [something]" as put
 Understand "put [something preferably held] to/against/at [something]" as putting it against.
 
 Understand "hold [something preferably held] up to/against/at [something]" as putting it against.
+Understand "hold up [something preferably held] to/against/at [something]" as putting it against.
 Understand "hold [something preferably held] to/against/at [something]" as putting it against.
 
 Understand "stand [something preferably held] up to/against/at [something]" as putting it against.
@@ -3821,10 +3822,16 @@ Instead of listening [without the tumbler] to the keyhole during Hiding in the C
 Before putting the tumbler on the clock-door:
 	try listening with the tumbler to the clock-door instead;
 
-Before putting the tumbler on the Gubbler's Grandfather clock when Inside Clock Case:
+Before putting the tumbler on the Gubbler's Grandfather clock when the location is Inside Clock Case:
 	try listening with the tumbler to the clock-door instead;
 
 Before putting the tumbler on the keyhole:
+	try listening with the tumbler to the clock-door instead;
+
+Before putting the tumbler on Gubbler's Grandfather clock when the location is Inside Clock Case:
+	try listening with the tumbler to the clock-door instead;
+
+Before putting the tumbler against Gubbler's Grandfather clock when the location is Inside Clock Case:
 	try listening with the tumbler to the clock-door instead;
 
 Before putting the tumbler against the clock-door:
