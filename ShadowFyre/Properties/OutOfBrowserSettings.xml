@@ -1,0 +1,12 @@
+<OutOfBrowserSettings ShortName="Shadow" EnableGPUAcceleration="False" ShowInstallMenuItem="True">
+  <OutOfBrowserSettings.Blurb>This is the Silverlight demonstration version of The Shadow in the Cathedral.</OutOfBrowserSettings.Blurb>
+  <OutOfBrowserSettings.WindowSettings>
+    <WindowSettings Title="The Shadow in the Cathedral" Height="768" Width="1024" />
+  </OutOfBrowserSettings.WindowSettings>
+  <OutOfBrowserSettings.Icons>
+    <Icon Size="16,16">GameFiles/shadow-16.png</Icon>
+    <Icon Size="32,32">GameFiles/shadow-32.png</Icon>
+    <Icon Size="48,48">GameFiles/shadow-48.png</Icon>
+    <Icon Size="128,128">GameFiles/shadow-128.png</Icon>
+  </OutOfBrowserSettings.Icons>
+</OutOfBrowserSettings>

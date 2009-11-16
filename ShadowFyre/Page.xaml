@@ -4,9 +4,9 @@
 	xmlns:local="clr-namespace:Cjc.SilverFyre"
 	xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
 	x:Class="Cjc.SilverFyre.Page"
-	Width="1400"
-	Height="700"
-	HorizontalAlignment="Center"
+	Width="auto"
+	Height="auto"
+	HorizontalAlignment="Stretch"
     >
 
     <UserControl.Resources>
