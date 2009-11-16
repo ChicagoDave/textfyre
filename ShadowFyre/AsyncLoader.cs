@@ -9,6 +9,11 @@ namespace Cjc.SilverFyre
 		private Action<Stream> onLoaded;
 		private Action<Exception> onError;
 
+        public static void LoadResource(string resourceName, Action<Stream> OnLoaded) {
+            Stream resourceStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
+            OnLoaded(resourceStream);
+        }
+
 		/// <summary>
 		/// Loads from the specified URL.
 		/// </summary>

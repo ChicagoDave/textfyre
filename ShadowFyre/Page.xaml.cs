@@ -32,7 +32,7 @@ namespace Cjc.SilverFyre
 		private bool pinnedToEnd = false;
 
 		private string baseUrl;
-		private string storyUrl;
+		//private string storyUrl;
 
 		public Page()
 		{
@@ -56,11 +56,15 @@ namespace Cjc.SilverFyre
 				layoutTransform.Transform = new ScaleTransform { ScaleX = scaleSlider.Value, ScaleY = scaleSlider.Value };
 			};
 
-			storyUrl = GetStoryUrl();
+			//storyUrl = GetStoryUrl();
 
-			AsyncLoader.Load(
-				storyUrl.Contains( ':' ) ? string.Format( "Server.ashx?u={0}", storyUrl ) : storyUrl,
-				OnLoaded );
+            //AsyncLoader.LoadResource(
+            //    storyUrl,
+            //    OnLoaded );
+
+            Stream gameStream = new MemoryStream(Cjc.SilverFyre.Resources.shadow);
+
+            OnLoaded(gameStream);
 
 			new MouseWheelHelper( storyScroll ).Moved += delegate( object sender, MouseWheelEventArgs e )
 			{
@@ -96,7 +100,7 @@ namespace Cjc.SilverFyre
 				commandBox.Focus();
 			};
 
-			FindStoryboard( "showLoading" ).Begin();
+			//FindStoryboard( "showLoading" ).Begin();
 		}
 
 		private string GetStoryUrl()
@@ -311,7 +315,8 @@ namespace Cjc.SilverFyre
 				default:
 					{
 						selectedCommandIndex = null;
-                        if (engine != null) engine.SendKey((char)(e.PlatformKeyCode)); 
+                        if (engine != null)
+                            engine.SendKey((char)(e.PlatformKeyCode)); 
                         break;
 					}
 			}
@@ -381,7 +386,7 @@ namespace Cjc.SilverFyre
 //							writer.WriteProcessingInstruction( "xml-stylesheet", "type=\"text/xsl\" encoding=\"UTF-8\" href=\"Transcript.xslt\" version=\"1.0\"" );
 
 							writer.WriteStartElement( "Transcript" );
-							writer.WriteAttributeString( "storyUrl", Uri.UnescapeDataString( storyUrl ) );
+							writer.WriteAttributeString( "storyUrl", Uri.UnescapeDataString( "ShadowDemo" ) );
 
 							foreach ( var item in transcript )
 							{
