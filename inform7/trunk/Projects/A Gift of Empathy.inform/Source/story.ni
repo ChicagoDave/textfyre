@@ -1,4 +1,4 @@
-"A Gift of Empathy" by Textfyre
+"The Empath's Gift" by Textfyre
 
 [
 Include (- Constant DEBUG; -) after "Definitions.i6t".
@@ -6,6 +6,8 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 
 [  Change Log
 When		Who		What
+1-Sep-2009	G. Jefferis	Wandering orderly
+31-Aug-2009	G. Jefferis	Chapter 4 - Hospital scene
 26-Aug-2009	G. Jefferis	Chapter 3 mostly done - Maelstrom maze.
 25-Aug-2009	G. Jefferis	Chapter 2 mostly done.
 24-Aug-2009	G. Jefferis	Chapter 2 begun: FOCUS command, conversations with Stacy & Ava, chat with Lucian.
@@ -29,6 +31,7 @@ Include Textfyre Standard Rules by Textfyre.
 Include Textfyre Standard Backdrops by Textfyre.
 Include Triggers by Textfyre.
 Include Quips by Textfyre.
+Include Basic Followers by Textfyre.
 Include Counters by Textfyre.
 Include Conversation Topics by Textfyre.
 Include Scripted Events by Textfyre.
@@ -55,6 +58,8 @@ Index map with Info Desk mapped north of First Floor Lobby West.
 
 Part 1 - Set up
 
+Use numbered rules.
+
 Chapter 1 - Banner Text
 
 Rule for printing the banner text:
@@ -72,7 +77,6 @@ Rule for printing the banner text:
 	say "Special thanks to Graham Nelson and Emily Short[line break]";
 	say "for all of their hard work on Inform 7.[line break]";
 	say "All rights reserved[line break]";
-	select the main channel;
 
 Chapter 2 - Passage of Time
 
@@ -93,7 +97,8 @@ Part 2 - The player
 
 Chapter 1 - Description
 
-[...]
+Rule for printing the description of yourself:
+	placeholder "A description of the player.";
 
 Chapter 2 - Belongings
 
@@ -156,6 +161,44 @@ Instead of attacking a door:
 
 Check knocking on:
 	placeholder "Knock knock.[paragraph break]No reply.";
+
+Part 3 - Shouting
+
+Section 1 - Shouting at
+
+Shouting at is an action applying to one visible thing.
+
+Understand the command "shout" as something new.
+Understand "shout" as shouting at.
+Understand "shout at/to [someone]" as shouting at.
+Understand "call to/at/over [someone]" as shouting at.
+[Understand "shout at/to [something]" as shouting at.
+Understand "call to/at/over [something]" as shouting at.]
+
+Understand "shout [text] at/to [someone]" as answering it that (with nouns reversed).
+Understand "call [text] to [someone]" as answering it that (with nouns reversed).
+
+Understand the command "yell" as "shout".
+Understand the command "scream" as "shout".
+Understand the command "cry" as "shout".
+Understand the command "bellow" as "shout".
+Understand the command "wail" as "shout".
+Understand the command "yelp" as "shout".
+
+Rule for supplying a missing noun when shouting at:
+	change the noun to the location;
+
+Check shouting at something which is not a person:
+	placeholder "There's no use shouting at [the noun]." instead.
+
+Check shouting at yourself:
+	placeholder "Must you berate yourself?" instead;
+
+Check shouting at the location:
+	placeholder "Must you draw attention to yourself?" instead;
+
+Check shouting at someone:
+	placeholder "Must you draw attention to yourself?" instead;
 
 Book - Definitions
 
@@ -371,7 +414,7 @@ Focussing on is an action applying to one visible thing.
 
 Understand "focus" as focussing on when the player has been aware of an emotional residue.
 Understand "feel" as focussing on when the player has been aware of an emotional residue.
-Understand "sense" as focussing on when the player has been aware of an emotional residue.
+Understand the command "sense" as "focus".
 
 Rule for supplying a missing noun when focussing on:
 	if there is a salient emotional residue:
@@ -387,11 +430,17 @@ Report focussing on a room:
 
 The focussing rules are an object-based rulebook.
 
-Part 8 - Known / Unknown
+Part 8 - Identified / Unidentified
 
 [This is to do with "real names".]
 
-A thing can be known or unknown. A thing is usually known.
+A thing can be identified or unidentified. A thing is usually identified.
+
+An unidentified thing is usually improper-named.
+
+To identify (x - a thing):
+	now x is identified;
+	now x is proper-named;
 
 Part 9 - Major and minor Goals
 
@@ -408,6 +457,28 @@ A goal-tidying rule (this is the tidy current goals rule):
 Part 10 - Availability of Quips
 
 A quip can be available or unavailable. A quip is usually available.
+
+Part 11 - Headaches
+
+A headache is a kind of trigger.
+
+Part 12 - Friendliness
+
+Friendship relates various people to each other.
+The verb to be friends with implies the friendship relation.
+
+Yourself is friends with Stacy Alexander.
+Yourself is friends with Ava Winters.
+Ava Winters is friends with Stacy Alexander.
+
+Definition: a person is friends:
+	decide on whether or not the player is friends with them;
+
+Before listing contents of a room:
+	group friends together;
+
+Before grouping together friends:
+	say "your friends ";
 
 Book 0 - Jacobs Hall Map
 
@@ -438,12 +509,17 @@ A plaque shaped like a shield is scenery, in the First Floor Lobby West. "It's s
 
 Chapter 3 - Michelle
 
-Michelle Close is a woman, in the First Floor Lobby West. The description of Michelle Close is "Michelle Close is one of the counselors.  She's slightly untidy-looking, with a big explosion of curly black hair and a pencil tucked behind one ear."
+Counselor Michelle Close is a woman, in the First Floor Lobby West. The description of Michelle Close is "Michelle Close is one of the counselors.  She's slightly untidy-looking, with a big explosion of curly black hair and a pencil tucked behind one ear."
+
+Understand "Counsellor" as Michelle Close.
 
 Rule for printing the name of Michelle Close:
 	say "Michelle";
 
 Michelle Close wears Michelle's whistle.
+
+Rule for writing a paragraph about Michelle Close:
+	placeholder "Room description text about [Michelle Close].";
 
 Michelle's whistle is improper-named. The printed name of Michelle's whistle is "whistle".
 
@@ -536,19 +612,25 @@ After going to somewhere rocking during Scavenger Hunting:
 	try looking;
 	fire TRIG_SCHOOLOFROCK;
 
-TRIG_SCHOOLOFROCK is a trigger.
+TRIG_SCHOOLOFROCK is a headache. 
 
-Rule for firing unfired TRIG_SCHOOLOFROCK:
-	do nothing;
+TRIG_SCHOOLOFROCK can be primed or unprimed. TRIG_SCHOOLOFROCK is unprimed.
 
-Rule for firing fired TRIG_SCHOOLOFROCK:
-	say "[one of]Someone takes a complicated trombone solo, and you are suddenly seized by a dizzy spell.  For a moment, everything seems to glow red and orange, and then, just as suddenly, everything snaps back to normal.[or]As you approach the musicians, you once again get that odd sense of vertigo.  The feeling passes within seconds.[stopping]";
+Last after firing unprimed TRIG_SCHOOLOFROCK:
+	now TRIG_SCHOOLOFROCK is primed;
+	now TRIG_SCHOOLOFROCK is unfired;
+
+Rule for firing primed unfired TRIG_SCHOOLOFROCK:
+	say "Someone takes a complicated trombone solo, and you are suddenly seized by a dizzy spell.  For a moment, everything seems to glow red and orange, and then, just as suddenly, everything snaps back to normal.";
+
+Rule for firing primed fired TRIG_SCHOOLOFROCK:
+	say "As you approach the musicians, you once again get that odd sense of vertigo.  The feeling passes within seconds.";
 
 Chapter 3 - Purple Plastic Diplodocus
 
 Section 1 - Dinosaur Pile
 
-Some plastic dinosaurs are a dispenser, scenery, in the first floor lobby east. "Rarrr.  They're all very lifelike, despite being small, plastic, and a variety of colours unlikely to be found in nature."
+Some plastic dinosaurs are a dispenser, scenery, in the first floor lobby east. "Rarrr.  They're all very lifelike, despite being small, plastic, and a variety of colors unlikely to be found in nature."
 The indefinite article of the plastic dinosaurs is "a pile of".
 
 Understand "pile", "pile of" as the plastic dinosaurs.
@@ -564,7 +646,7 @@ The plastic dinosaurs vend the purple diplodocus.
 
 Section 2 - Dinosaur
 
-A purple diplodocus is a thing. The description is "You can't really get more generic, as far as dinosaurs go, as a diplodocus.  Never mind that there were thousands of other species of giant lizards roaming the earth once upon a time.  The purple colour of this little plastic diplodocus is probably an example of artistic licence, however."
+A purple diplodocus is a thing. The description is "You can't really get more generic, as far as dinosaurs go, as a diplodocus.  Never mind that there were thousands of other species of giant lizards roaming the earth once upon a time.  The purple color of this little plastic diplodocus is probably an example of artistic licence, however."
 
 The purple diplodocus fulfills the dinosaur-goal.
 
@@ -621,6 +703,7 @@ Rule for printing the description of the newspaper when the newspaper is in the 
 The newspaper fulfills the newspaper-goal.
 
 Understand "paper" as the newspaper.
+Understand "from [something related by reversed containment]" as the newspaper when the newspaper is in the vending machine.
 
 Before buying the newspaper when the newspaper is in the vending machine and the player has loose change:
 	try inserting the loose change into the vending machine instead;
@@ -717,7 +800,7 @@ The Front Lawn is a room, west of Calvin Field South, southeast of Second Avenue
 Chapter 2 - Scenery
 
 Rule for printing the description of the backdrop-grass when in Front Lawn:
-	say "It's green, which probably means someone with a can of green spraypaint has been colouring outside the lines."
+	say "It's green, which probably means someone with a can of green spraypaint has been coloring outside the lines."
 
 The graffiti option is an option, scenery, in Front Lawn. "Some of it is actually pretty good.  But is it Art?"
 
@@ -891,11 +974,11 @@ Rule for printing the name of Hank's room:
 	say "Room";
 
 Before printing the name of Hank's room:
-	if Joe is known and Hank is known:
+	if Joe is identified and Hank is identified:
 		say "Joe and Hank's ";
-	otherwise if Joe is known:
+	otherwise if Joe is identified:
 		say "Joe's ";
-	otherwise if Hank is known:
+	otherwise if Hank is identified:
 		say "Hank's ";
 	otherwise:
 		say "Dorm ";
@@ -903,28 +986,34 @@ Before printing the name of Hank's room:
 Rule for printing the name of Hank's door:
 	say "door";
 
-Before printing the name of the proper-named Hank's door when Joe is known or Hank is known:
-	if Joe is known and Hank is known:
+Before printing the name of the proper-named Hank's door when Joe is identified or Hank is identified:
+	if Joe is identified and Hank is identified:
 		say "Joe and Hank's ";
-	otherwise if Joe is known:
+	otherwise if Joe is identified:
 		say "Joe's ";
 	otherwise:
 		say "Hank's ";
 
-Hank is a man, unknown, improper-named, in Hank's room.
-Joe is a man, unknown, improper-named, in Hank's room.
+Hank is a man, unidentified, improper-named, in Hank's room.
+Joe is a man, unidentified, improper-named, in Hank's room.
 
-Rule for printing the name of unknown Hank:
+Rule for printing the name of unidentified Hank:
 	say "boy";
 
-Rule for printing the name of unknown Joe:
+Rule for printing the name of unidentified Joe:
 	say "boy";
 
 Before listing contents of Hank's room:
-	group unknown men together;
+	group unidentified men together;
 
-Rule for grouping together unknown men when in Hank's Room:
+Rule for grouping together unidentified men when in Hank's Room:
 	say "[listing group size in words] older boys";
+
+Rule for writing a paragraph about Hank:
+	placeholder "Room description text about [Hank].";
+
+Rule for writing a paragraph about Joe:
+	placeholder "Room description text about [Joe].";
 
 Part 12 - Pits Stairwell
 
@@ -1039,7 +1128,8 @@ Instead of attacking Lucian:
 Instead of kissing Lucian:
 	say "Not on your life.";
 
-
+Rule for writing a paragraph about Lucian:
+	placeholder "Room description text about [Lucian].";
 
 Part 14 - Pits East
 
@@ -1102,7 +1192,7 @@ Understand "table", "tennis", "game" as the ping pong tables.
 Before doing something when the ping pong tables are involved and TRIG_TABLETENNIS is unfired and the player's command matches the text "table tennis tables":
 	fire TRIG_TABLETENNIS;
 
-TRIG_TABLETENNIS is a trigger.
+TRIG_TABLETENNIS is a headache.
 
 Rule for firing unfired TRIG_TABLETENNIS:
 	say "(It does sound redundant, doesn't it?)[command clarification break]";
@@ -1128,21 +1218,33 @@ Chapter 3 - Ava
 
 Section 1 - Description
 
-Ava is a woman, in the Pits Lobby East. The description of Ava is "You met Ava last year, here at LEAP.  She's a rosy-cheeked girl with long, brown pigtails; since last year, she's also acquired a pair of glasses that, she claims, make her look like a young Nana Mouskouri."
+Ava Winters is a woman, in the Pits Lobby East. The description of Ava is "You met Ava last year, here at LEAP.  She's a rosy-cheeked girl with long, brown pigtails; since last year, she's also acquired a pair of glasses that, she claims, make her look like a young Nana Mouskouri."
 
-Rule for printing a locale paragraph about Ava:
+Rule for printing the name of Ava Winters:
+	say "Ava";
+
+Rule for printing a locale paragraph about Ava Winters during Scavenger Hunting:
 	now Ava is mentioned;
+
+[ Rule for writing a paragraph about Ava Winters:
+	placeholder "Room description text about [Ava Winters]."; ]
 
 Chapter 4 - Stacy
 
 Section 1 - Description
 
-Stacy is a woman in the Pits Lobby East. The description of Stacy is "You met Stacy last year, here at LEAP.  She's a skinny blonde girl with freckles and rather prominent front teeth.  She likes playing with gadgets, and is so full of nervous energy she could probably swallow an elephant and not gain an ounce of weight[if Stacy wears the little straw hat].  She's also wearing a neat little straw hat with a pink ribbon trailing behind[end if]."
+Stacy Alexander is a woman in the Pits Lobby East. The description of Stacy is "You met Stacy last year, here at LEAP.  She's a skinny blonde girl with freckles and rather prominent front teeth.  She likes playing with gadgets, and is so full of nervous energy she could probably swallow an elephant and not gain an ounce of weight[if Stacy wears the little straw hat].  She's also wearing a neat little straw hat with a pink ribbon trailing behind[end if]."
+
+Rule for printing the name of Stacy Alexander:
+	say "Stacy";
 
 Stacy wears a little straw hat. A pink ribbon is part of the little straw hat. The little straw hat fulfills the hat-goal.
 
-Rule for printing a locale paragraph about Stacy:
+Rule for printing a locale paragraph about Stacy Alexander during Scavenger Hunting:
 	now Stacy is mentioned;
+
+[ Rule for writing a paragraph about Stacy Alexander:
+	placeholder "Room description text about [Stacy Alexander]."; ]
 
 Section 2 - Conversation
 
@@ -1318,6 +1420,17 @@ Understand "Ava and", "Stacy and", "Ava's", "Stacy's" as Stacy's door.
 Instead of opening Stacy's door during Scavenger Hunting:
 	say "Ava and Stacy aren't in right now, and it wouldn't be right to go poking around in other people's rooms while they're gone.  And anyway, the door is locked.";
 
+The poster for Casablanca is scenery, in Stacy's Room.
+The printed name of the poster for Casablanca is "poster for 'Casablanca'". 
+
+Ava's desk is scenery, in Stacy's Room.
+Ava's CD player is scenery, on Ava's desk.
+Ava's CDs are scenery, plural-named, on Ava's desk.
+A few of Ava's books are scenery, plural-named, on Ava's desk.
+
+Stacy's desk is scenery, in Stacy's Room.
+A few broken gadgets are scenery, plural-named, on Stacy's desk.
+
 Part 22 - Third Floor Lobby
 
 Chapter 1 - Description
@@ -1371,7 +1484,7 @@ After going to somewhere rapping during Scavenger Hunting:
 	try looking;
 	fire TRIG_RAPSESSION;
 
-TRIG_RAPSESSION is a trigger.
+TRIG_RAPSESSION is a headache.
 
 Rule for firing unfired TRIG_RAPSESSION:
 	say "As you enter the area, you experience a momentary headache and the urge to sneeze.  The feeling disappears quickly, but evidently not quickly enough because Aidan clearly seems to have noticed something wrong.  He breaks away from the rest of his option and comes up to you. [paragraph break]";
@@ -1383,12 +1496,12 @@ Rule for firing fired TRIG_RAPSESSION:
 
 Chapter 4 - Conversation with Aidan
 
-Aidan is a person. The description of Aidan is "Aidan is your big brother.  He looks quite a lot like you, only taller and broader.  He's pretty cool; he just turned 15 a couple of months ago, but hasn't gotten too cool to be seen with you yet.  On the other hand, if your secret plot to grow up just like him works out, he'll never get too cool for you."
+Aidan is a man. The description of Aidan is "Aidan is your big brother.  He looks quite a lot like you, only taller and broader.  He's pretty cool; he just turned 15 a couple of months ago, but hasn't gotten too cool to be seen with you yet.  On the other hand, if your secret plot to grow up just like him works out, he'll never get too cool for you."
 
 Understand "big bro/brother", "bro/brother", "taller", "broader" as Aidan.
 
-Rule for printing a locale paragraph about Aidan:
-	now Aidan is mentioned;
+Rule for writing a paragraph about Aidan:
+	say "Room description text about [Aidan].";
 
 Q_AIDAN_0 is a quip. The display text is "'Hey, Daniel, you okay?'". 
 
@@ -1509,7 +1622,10 @@ After taking the lots of green cloth:
 Instead of taking the lots of green cloth when the small square of green fabric is handled:
 	say "You've already helped yourself to some of that cloth.  No sense in taking any more.";
 
-Understand "glue [something] to [something]" as tying it to when the player can see the large bottle of white glue.
+Understand "glue [something] to/on/onto [something]" as tying it to when the player can see the large bottle of white glue.
+Understand "glue [something] on to [something]" as tying it to when the player can see the large bottle of white glue.
+Understand "stick [something] to/on/onto [something]" as tying it to when the player can see the large bottle of white glue.
+Understand "stick [something] on to [something]" as tying it to when the player can see the large bottle of white glue.
 
 Instead of tying the small square of green fabric to the wooden stick when the player can see the large bottle of white glue:
 	try tying the second noun to the noun instead;
@@ -1577,7 +1693,7 @@ After going to Jacobs Hall Rooftop during Scavenger Hunting:
 	try looking;
 	fire TRIG_EGGDROP;
 
-TRIG_EGGDROP is a trigger.
+TRIG_EGGDROP is a headache.
 
 Rule for firing unfired TRIG_EGGDROP:
 	say "As you emerge into the sunlight, you feel a momentary dizziness that makes you almost want to hurl.  The feeling is gone very quickly, but your heart is left pumping as though you'd just run a couple of miles.";
@@ -1634,10 +1750,12 @@ When Scavenger Hunting ends:
 
 Book 2 - Lucian's Secret
 
-Part 1 - Introduction
-
 Lucian's Secret is a scene. Lucian's Secret begins when Scavenger Hunting ends.
 Lucian's Secret ends when Crystal Return ends.
+
+Part 1 - Introduction
+
+Visiting Stacy-and-Ava is a scene. Visiting Stacy-and-Ava begins when Lucian's Secret begins. Visiting Stacy-and-Ava ends when the location is Stacy's room.
 
 GOAL_AVA_STACY is a goal.
 
@@ -1662,21 +1780,33 @@ When Lucian's Secret begins:
 	remove Michelle Close from play;
 	move Ava to Stacy's Room;
 	move Stacy to Stacy's Room;
+	now Ava is not scenery;
+	now Stacy is not scenery;
+	if Stacy wears the little straw hat:
+		remove the little straw hat from play;
 	now Stacy's door is unlocked;
 	move Aidan to Aidan's room;
 
 Part 2 - Stacy & Ava's Room
 
-Instead of opening Stacy's door when in Second Floor Rooms East during Lucian's Secret:
+Instead of opening Stacy's door when in Second Floor Rooms East during Visiting Stacy-and-Ava:
 	say "You don't think either of the girls would appreciate you just barging in on them like that.";
 
-Instead of knocking on Stacy's door when in Second Floor Rooms East during Lucian's Secret:
+Instead of knocking on Stacy's door when in Second Floor Rooms East during Visiting Stacy-and-Ava:
 	now Stacy's door is open;
 	say "Ava peeks out and breaks into a smile when she sees you.  'Hey, Daniel!'  She pulls you inside.  'What's up?'";
 	move the player to Stacy's Room;
 	start conversation with Ava on Q_STACY_AVA_0;
 
+Rule for printing a locale paragraph about Stacy Alexander when in Stacy's Room during Visiting Stacy-and-Ava:
+	now Stacy is mentioned;
+
+Rule for printing a locale paragraph about Ava Winters when in Stacy's Room during Visiting Stacy-and-Ava:
+	now Ava is mentioned;
+
 Chapter 2 - Conversation
+
+Stacy-and-Ava Dorm Chat is a scene. Stacy-and-Ava Dorm Chat begins when Visiting Stacy-and-Ava ends. Stacy-and-Ava Dorm Chat ends when Q_STACY_AVA_10 is fired.
 
 Q_STACY_AVA_0 is a quip. The display text is "Stacy looks up from her desk, where a few hundred tiny electronic parts are scattered.  'We were just talking about how lately you seem distracted all the time.  Is something wrong?'[paragraph break]Ava looks a little embarrassed.  'We're just concerned.  You know.'"
 
@@ -1722,17 +1852,27 @@ The response of Q_STACY_AVA_4 is { Q_STACY_AVA_4A, Q_STACY_AVA_4B }.
 The response of Q_STACY_AVA_5 is { Q_STACY_AVA_5A, Q_STACY_AVA_5B }.
 The response of Q_STACY_AVA_8 is { Q_STACY_AVA_8A, Q_STACY_AVA_8B }.
 
+After firing Q_STACY_AVA_10:
+	now Stacy Alexander wears a deerstalker cap;
+
 Instead of going from Stacy's Room when the current conversationalist is Ava:
 	placeholder "The player shouldn't be able to leave until this conversation is over.";
 
+The deerstalker cap is a thing. Understand "hat" as the deerstalker cap.
+
+Rule for printing the description of the deerstalker cap:
+	placeholder "Description of the deerstalker.";
+
 Part 3 - Trailing Lucian
 
-Trailing Lucian is a scene. Trailing Lucian begins when Q_STACY_AVA_10 is fired. Trailing Lucian ends when the location is Lucian's room.
+Trailing Lucian is a scene. Trailing Lucian begins when Stacy-and-Ava Dorm Chat ends. Trailing Lucian ends when the location is Lucian's room.
 
 The lachrymose trail is an emotional residue. The lachrymose trail taints Pits West, Pits Stairwell, the First Floor Midpoint, and the Info Desk. The description of the lachrymose trail is "There is a sour, vaguely nauseating taste in the air. "
 
 When Trailing Lucian begins:
 	now the player can sense the lachrymose trail;
+	now Stacy Alexander follows the player;
+	now Ava Winters follows the player;
 	add GOAL_FOCUS to the current goals, if absent;
 
 GOAL_FOCUS is a goal. The printed name is "investigate odd sensations".
@@ -1780,6 +1920,10 @@ Rule for firing TRIG_TRAIL when in Pits West:
 	say "'Whatever it is, it's strongest around that door.'[paragraph break]Ava and Stacy exchange glances, and before you can stop her, Stacy is knocking on the door.  'We've come this far.  I want to know what's at the end of --'[paragraph break]Stacy quickly shuts up when the door opens a crack, and a rather timid little guy peeks out at you.  He fairly reeks of that mysterious sour-salty air.  And now you think you can hear some sort of twittering in the background, too[if the eggdrop-option has been apparent].  It occurs to you that you remember seeing him up at the egg-drop option yesterday, though he certainly wasn't giving off this... whatever it is... back then[end if].[paragraph break]'Hi,' says Ava, who seems to recognise the guy.  'Lucian, isn't it?  We met yesterday at the sign-ups.  Anyway, these are my friends Daniel and Stacy.  May we come in for a moment?'[paragraph break]Lucian lets the door swing half-open and sighs resignedly.  'Sure, if you want,' he says, retreating back into the room.  The three of you follow him inside.";
 	now Lucian's Door is open;
 	move the player to Lucian's Room;
+
+When Trailing Lucian ends:
+	now Stacy Alexander follows no-one;
+	now Ava Winters follows no-one;
 
 Part 4 - Conversation with Lucian
 
@@ -2028,9 +2172,8 @@ After firing Q_JOE_1:
 	move Joe to Hank's Room;
 
 After firing Q_JOE_2:
-	now Hank is known; now Hank is proper-named;
-	now Joe is known; now Joe is proper-named;
-	now Hank's door is proper-named;
+	identify Hank; identify Joe;
+	identify Hank's Door;
 	move Joe to Hank's Room;
 
 Instead of going from First Floor Rooms East to Hank's Room when Joe is the current conversationalist:
@@ -2049,9 +2192,8 @@ After going to Hank's Room during Crystal Quest:
 Q_HANK_0 is a quip. The display text is "'Hey, Joe, did we give loserboy permission to enter our room?'[paragraph break]'Why no, Hank, I don't believe we did.  Maybe we'll have to make him pay a fine.'[paragraph break]'Aw, but that would be mean!  We shouldn't make little loserboys give us stuff for trespassing.  I think we should punish them instead.'"
 
 After firing Q_HANK_0:
-	now Hank is known; now Hank is proper-named;
-	now Joe is known; now Joe is proper-named;
-	now Hank's door is proper-named;
+	identify Hank; identify Joe;
+	identify Hank's door;
 	move Joe to Hank's Room;
 
 Q_HANK_0A is a menu quip. The following quip is Q_HANK_1. The menu text is "'Um, about that earth crystal....'".
@@ -2190,6 +2332,8 @@ Here Comes The Flood is a scene.
 
 Here Comes The Flood begins when Lucian's Secret ends.
 
+Here Comes The Flood ends when Lost In The Maelstrom ends.
+
 When Here Comes The Flood begins:
 	say "The headaches are now nothing more than a faint but constant pressure in the back of your skull.  The dizzy spells are gone, and in their place is a vague sense of unease.  The last time you felt perfectly normal would have to be shortly before falling asleep last night.[paragraph break]If you concentrate even a little bit, you can conjure up those unreal sensations around everybody you meet.  And you're beginning to notice a definite relationship between what you sense and how everybody feels.  This is definitely some sort of empathic thing that's waking up inside you.  You'll have to discuss this with Ava and Stacy and Aidan later tonight.";
 	pause the game;
@@ -2211,6 +2355,10 @@ Instead of doing something when Aidan is physically involved during Here Comes T
 	placeholder "Aidan's away with his friends on the other side of the hall." instead;
 
 GOAL_DINNER is a goal. The printed name is "eat dinner in peace".
+
+A goal-scoring rule for GOAL_DINNER:
+	if Lost In The Maelstrom is happening:
+		goal thwarted;
 
 Part 2 - Dining Hall
 
@@ -2283,8 +2431,8 @@ The response of Q_LUCIAN2_3 is { Q_LUCIAN2_3A, Q_LUCIAN2_3B }.
 
 Q_LUCIAN2_4 is a quip. The display text is "'Peter, my teacher back in school, used to say the same thing.  I'm just happy to have made friends!  You ARE going to be my friend, right?'".
 
-Q_LUCIAN2_4A is a menu quip. The following quip is Q_LUCIAN2_8. The menu text is "'Are you out of your mind?'".
-Q_LUCIAN2_4B is a menu quip. The following quip is Q_LUCIAN2_7. The menu text is "'Friends ... uh, sure....'".
+Q_LUCIAN2_4A is a menu quip. The following quip is Q_LUCIAN2_7. The menu text is "'Are you out of your mind?'".
+Q_LUCIAN2_4B is a menu quip. The following quip is Q_LUCIAN2_8. The menu text is "'Friends ... uh, sure....'".
 
 The response of Q_LUCIAN2_4 is { Q_LUCIAN2_4A, Q_LUCIAN2_4B }.
 
@@ -2298,9 +2446,9 @@ Q_LUCIAN2_6 is a transitional quip. The following quip is Q_LUCIAN2_2.
 Rule for firing Q_LUCIAN2_6:
 	say "'Oh?  Who's he?  Nah, I still think you're the coollest.  [run paragraph on]";
 
-Q_LUCIAN2_7 is a quip. The display text is "Lucian's eyes nearly fall out of their sockets.  'But... but... I thought we were going to be friends!'  You try to respond but at that moment you hear a little snicker from somewhere -- no doubt one of the other first-years of Lucian's acquaintance -- and Lucian, absolutely mortified, leaves his tray on the table and makes a break for the dining hall doors.  You try to stand but are knocked back into your seat by a wave of bitterness and a strange, slick feeling that makes your skin crawl.  The headache, which you thought was all but gone, throbs to life and the room seems to whirl into a maelstrom of sound and colour and smell and flavour and touch.  You're vaguely aware of Aidan, somewhere off to the west, getting to his feet before he disappears into a complicated flurry of woodwinds."
+Q_LUCIAN2_7 is a quip. The display text is "Lucian's eyes nearly fall out of their sockets.  'But... but... I thought we were going to be friends!'  You try to respond but at that moment you hear a little snicker from somewhere -- no doubt one of the other first-years of Lucian's acquaintance -- and Lucian, absolutely mortified, leaves his tray on the table and makes a break for the dining hall doors.  You try to stand but are knocked back into your seat by a wave of bitterness and a strange, slick feeling that makes your skin crawl.  The headache, which you thought was all but gone, throbs to life and the room seems to whirl into a maelstrom of sound and color and smell and flavour and touch.  You're vaguely aware of Aidan, somewhere off to the west, getting to his feet before he disappears into a complicated flurry of woodwinds."
 
-Q_LUCIAN2_8 is a quip. The display text is "Lucian's eyes light up.  'I knew you were different from the others!'  He goes on about his delight at making a friend, but you can't hear him: you've been nearly bowled out of your seat by a wall of fluttering mauve butterfly wings exploding from Lucian.  You fight to regain your balance, but the explosion of colour drives you reeling away from the table.  All around you, colours and sounds and smells and flavours and disconcerting sensations thrilling along your skin all erupt into being, leaving you unable to see what's actually there.  You are vaguely aware of Aidan, somewhere off to the west, getting to his feet before you lose him to a complicated flurry of woodwinds."
+Q_LUCIAN2_8 is a quip. The display text is "Lucian's eyes light up.  'I knew you were different from the others!'  He goes on about his delight at making a friend, but you can't hear him: you've been nearly bowled out of your seat by a wall of fluttering mauve butterfly wings exploding from Lucian.  You fight to regain your balance, but the explosion of color drives you reeling away from the table.  All around you, colors and sounds and smells and flavours and disconcerting sensations thrilling along your skin all erupt into being, leaving you unable to see what's actually there.  You are vaguely aware of Aidan, somewhere off to the west, getting to his feet before you lose him to a complicated flurry of woodwinds."
 
 After firing Q_LUCIAN2_7:
 	move the player to the Maelstrom;
@@ -2310,17 +2458,39 @@ After firing Q_LUCIAN2_8:
 
 Part 3 - Emotional Maelstrom
 
+Chapter 1 - Scene setting
+
 Lost in the Maelstrom is a scene. Lost in the Maelstrom begins when the location is the Maelstrom. Lost in the Maelstrom ends when the x part of the coordinate of the Maelstrom is at least 4.
 
-When Lost In The Maelstrom ends:
-	say "You finally stumble into the edge of what looks like a long, sustained note played on an oboe and sounds like a cone of bright, white light.  It leaps about you, and you feel someone catch hold of you -- it takes you a moment to realise that this is real, and not a product of your out-of-control senses.  It's Aidan, you can hear his voice over the buzzing of all the other sounds that aren't really there.  The relief is overwhelming, and you finally allow yourself to collapse.[paragraph break]Just as you lose consciousness, you are startled by the appearance of something ominously black and alien, spinning about in the centre of the whiteness surrounding you....";
-	pause the game;
+Chapter 2 - Goals
+
+When Lost in the Maelstrom begins:
+	add GOAL_ESCAPE to the current goals, if absent;
+
+GOAL_ESCAPE is a goal. The printed name is "escape from Lucian's emotions".
+
+A goal-scoring rule for GOAL_ESCAPE:
+	if the x part of the coordinate of the Maelstrom is not 1 or the y part of the coordinate of the Maelstrom is not 1:
+		add GOAL_ESCAPE_2 to the current goals;
+		goal achieved;
+
+GOAL_ESCAPE_2 is a goal. The printed name is "find your way to Aidan".
+
+A goal-scoring rule for GOAL_ESCAPE_2:
+	if the x part of the coordinate of the Maelstrom is 4:
+		goal achieved;
+
+Chapter 3 - Definitions
+
+Section 1 - Coordinate system
 
 A coordinate is a kind of value. (100, 100) specifies a coordinate with parts x (without leading zeros) and y (without leading zeros).
 
 Maelstrom is a room.
 Maelstrom has a coordinate. The coordinate of Maelstrom is (1, 1). 
 Maelstrom has a coordinate called the boundary. The boundary of the Maelstrom is (4, 4).
+
+Section 2 - Some emotional impressions
 
 Emotional impression is a kind of thing. The emotional impressions are defined by the table of overwhelming emotions.
 
@@ -2332,10 +2502,65 @@ swamp			"smells like a swamp, all sulphur and mud and wet"
 burnt engine oil		"smells too strongly of burnt engine oil for anyone's tastes"
 dazzling blaze		"is a blaze of dazzling, gaily swirling oranges and reds"
 drunken singing		"is a whirl of blues and greens, and you think you hear drunken singing there as well"
-spicy flavours		"seems to taste sour and bitter and spicy all at once"
+spicy flavour		"seems to taste sour and bitter and spicy all at once"
 sweet flavour		"has an uncomfortably too-sweet taste in the air"
 prickly sensation		"feels inexplicably, well, prickly"
 electrical buzz		"feels electrically charged, you can almost hear the buzz"
+
+Understand "sound of", "wall of", "excited", "excitedly", "jangling", "jangle", "door", "bells", "bell", "doorbell", "noise", "sound", "noises", "sounds" as the doorbells.
+
+Understand "crowd", "crowd of", "chatter", "chattering", "song", "birds", "bird", "songbird", "swooping", "shadow", "shadow", "noises", "sounds", "singing" as the songbirds.
+
+Understand "smell", "aroma", "stench", "stink", "perfume", "smell of", "aroma of", "stench of", "stink of", "swamps", "mud", "sulphur", "sulphurous", "muddy", "wet", "smelly", "smells", "aromas" as the swamp.
+
+Understand "strong", "smell", "smell of", "smells", "aromas" as the burnt engine oil.
+
+Understand "gay", "festive", "gaily", "swirling", "orange", "oranges", "red", "reds", "color/colour", "colors", "colours" as the dazzling blaze.
+
+Understand "whirl", "whirl of", "blue", "green", "blues", "greens", "mock-german", "german", "images", "images of", "people dancing", "dancing people", "dancing", "around", "song", "colors", "colours", "noises", "sounds" as the drunken singing.
+
+Understand "sour", "bitter", "taste", "flavor", "tastes", "flavors", "flavours" as the spicy flavour.
+
+Understand "sweet", "pink", "too-sweet", "too sweet", "taste", "flavor", "tastes", "flavors", "flavours" as the sweet flavour.
+
+Understand "feeling", "sensation", "feelings", "sensations" as the prickly sensation.
+
+Understand "electric", "electricity", "charge", "charged", "charged air", "feeling", "sensation", "buzzing", "sound", "noise", "tastes", "flavors", "flavours", "sounds", "noises" as the electrical buzz.
+
+Rule for printing the description of doorbells:
+	say "You can't see them, but you can hear them jangling and buzzing in a cacophony of excitement and anticipation.";
+
+Rule for printing the description of songbirds:
+	say "They're accompanied by swooping shadows, and seem to be leaping from one curiosity to another.";
+
+Rule for printing the description of swamp:
+	bug "This response is wrong.";
+	say "They're accompanied by swooping shadows, and seem to be leaping from one curiosity to another.";
+
+Rule for printing the description of burnt engine oil:
+	say "The air there is black and menacing.";
+
+Rule for printing the description of dazzling blaze:
+	say "They're very gay and festive, but more than you can take right now.";
+
+Rule for printing the description of drunken singing:
+	say "It sounds vaguely mock-german, and conjures images of people dancing around in circles.";
+
+Rule for printing the description of spicy flavour:
+	say "You can taste it in the air, like storm warnings.";
+
+Rule for printing the description of sweet flavour:
+	say "It's even worse than the dining hall food.  Somehow you know it's pink and hiding something unpleasant underneath.";
+
+Rule for printing the description of prickly sensation:
+	say "You just know you'll get an awful case of pins and needles if you head off in that direction.";
+
+Rule for printing the description of electrical buzz:
+	say "It seems to keep bouncing between two sources, growing or changing with each bounce.";
+
+Chapter 4 - Maze Implementation
+
+Section 1 - Available exits
 
 The Maelstrom has a list of objects called the accessible directions.
 The Maelstrom has a list of objects called the blocked directions.
@@ -2361,7 +2586,7 @@ Rule for printing the description of the Maelstrom:
 	repeat with D running through the blocked directions of the Maelstrom:
 		say "[The D] [short description of the feeling of D]. ";
 	say paragraph break;
-	say "Somewhere off to the west, above the noise and colour and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.";
+	say "Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.";
 
 Rule for printing the description of the Maelstrom when the x part of the coordinate of the Maelstrom is 4:
 	do nothing instead;
@@ -2376,6 +2601,8 @@ Before going an orthogonal direction in Maelstrom:
 		consider the coordinate-updating rule;
 		move the player to the Maelstrom instead; [illusion of true movement]
 
+Section 2 - Exits have an impression
+
 Emotionally-impressing relates one emotional impression (called the feeling) to one direction. The verb to feel (he feels, they feel) implies the reversed emotionally-impressing relation.
 
 When play begins:
@@ -2386,9 +2613,36 @@ This is the emotion-setting rule:
 	let the ways be the list of orthogonal directions;
 	sort the emotions in random order;
 	repeat with i running from 1 to 4:
-		now entry 1 of the ways feels entry 1 of the emotions;
-		remove entry 1 from the ways;
-		remove entry 1 from the emotions;
+		now entry i of the ways feels entry i of the emotions;
+
+Definition: a direction is maelstrom-blocked:
+	if it is listed in the blocked directions of the Maelstrom, yes;
+	no;
+
+Definition: a direction is maelstrom-accessible:
+	if it is listed in the accessible directions of the Maelstrom, yes;
+	no;
+
+Understand "[something related by reversed emotionally-impressing]" as a direction when the location is the Maelstrom and the item described is maelstrom-blocked.
+
+Understand "focus [direction]" as facing when the location is the Maelstrom.
+
+Instead of facing a planar direction when in the Maelstrom:
+	carry out the printing the description activity with the noun instead;
+
+Rule for printing the description of a maelstrom-blocked direction (called d) when in the Maelstrom:
+	carry out the printing the description activity with the feeling of d;
+
+Rule for printing the description of a maelstrom-accessible direction when in the Maelstrom:
+	placeholder "You sense nothing significant in that direction.";
+
+Rule for printing the description of an orthogonal direction when in the Maelstrom:
+	placeholder "There's a wall in that direction, isn't there?";
+
+Rule for printing the description of a planar direction when in the Maelstrom:
+	placeholder "You sense nothing significant in that direction.";
+
+Section 3 - Movement
 
 This is the coordinate-updating rule:
 	let XX be the x part of the coordinate of the Maelstrom;
@@ -2400,9 +2654,660 @@ This is the coordinate-updating rule:
 		-- east: decrease XX by 1;
 	change the coordinate of the Maelstrom to the coordinate with x part XX y part YY;
 
+Chapter 5 - End
+
+When Lost In The Maelstrom ends:
+	say "You finally stumble into the edge of what looks like a long, sustained note played on an oboe and sounds like a cone of bright, white light.  It leaps about you, and you feel someone catch hold of you -- it takes you a moment to realise that this is real, and not a product of your out-of-control senses.  It's Aidan, you can hear his voice over the buzzing of all the other sounds that aren't really there.  The relief is overwhelming, and you finally allow yourself to collapse.";
+	consider the goal assessment rule;
+	say "Just as you lose consciousness, you are startled by the appearance of something ominously black and alien, spinning about in the centre of the whiteness surrounding you....";
+	pause the game;
+
+Book 4 - Hospital
+
+Hospital is a scene. Hospital begins when Here Comes The Flood ends.
+
+When Hospital begins:
+	say "The first thing you try to do when you regain consciousness is open your eyes.  This fails because they're already open.  You're in absolute darkness, and there's this smell -- not that you can really trust your senses anymore -- like disinfectant.[paragraph break]Rather more alarmingly, for some odd reason, is the fact that you feel perfectly fine.  When was the last time you felt that way?";
+	pause the game;
+	say "Location unknown, Day unknown - Time un-- you know it's entirely possible that you're dead, right?[paragraph break]You are in darkness.";
+	move the player to the coffin case, without printing a room description;
+	change the current term day to Day 5;
+	change the left hand status line to "Day ??: ??";
+	change the right hand status line to "??:??";
+	add GOAL_FIND_OUT_ABOUT_YOU to the current goals, if absent;
+
+GOAL_FIND_OUT_ABOUT_YOU is a goal. The printed name is "find out what's happened to you".
+
+Rule for printing the announcement of darkness when in the coffin case:
+	do nothing;
+
+Part 1 - Inside Case
+
+Hospital Room is a room. "You are in a hospital room, equipped with a single bizarre-looking coffin-case thing attached to a bewildering wall of medical equipment.  The walls are painted a sterile white.  Huge windows look out to the south, while a pale green door, equipped with a small viewing window, is to the north."
+
+The coffin case is an enterable container, openable, closed, in the Hospital Room.
+
+Cased In is a scene.
+Cased In begins when the player is in the coffin case.
+Cased In ends eventually when the time since Cased In began is 10 minutes.
+Cased In ends prematurely when the coffin case is open.
+
+When Cased In ends:
+	fire TRIG_EXIT_CASE;
+	change left hand status line to "Day ??: [location]";
+
+Instead of shouting at the location during Cased In:
+	now the coffin case is open;
+
+TRIG_EXIT_CASE is a trigger.
+
+Rule for firing unfired TRIG_EXIT_CASE:
+	now the coffin case is open;
+	say "The top of the coffin flies open, and you're momentarily blinded by a flood of bright light.  As you try to blink away the spots, a face swims into view -- it takes you a few moments to register the curly white hair, the rosy cheeks and the clear blue eyes, and the fact that said face is talking to you.";
+	move the player to the Hospital Room, without printing a room description;
+	start conversation with Doctor Claudia Rose on Q_DOC_ROSE_0;
+
+Part 2 - Conversation with Doctor Rose
+
+Chapter 1 - Doctor Rose
+
+Doc Rose Chat is a scene. Doc Rose Chat begins when Cased In ends. Doc Rose chat ends when Q_DOC_ROSE_14 is fired.
+
+Doctor Claudia Rose is an unidentified woman, improper-named, in the Hospital Room.
+
+Rule for writing a paragraph about Doctor Claudia Rose:
+	placeholder "Room description text about [the Doctor Rose].";
+
+Rule for printing the name of unidentified Doctor Claudia Rose:
+	say "doctor";
+
+Rule for printing the name of identified Doctor Claudia Rose:
+	say "Dr Rose";
+
+Chapter 2 - Conversation
+
+Q_DOC_ROSE_0 is a quip. The display text is "'Hullo, Daniel.  My goodness, you gave us a scare.  How are you feeling?'"
+
+Q_DOC_ROSE_0A is a menu quip. The following quip is Q_DOC_ROSE_1. The menu text is "'I'm alive, I think.'".
+Q_DOC_ROSE_0B is a menu quip. The following quip is Q_DOC_ROSE_2. The menu text is "'What just happened?'".
+Q_DOC_ROSE_0C is a menu quip. The following quip is Q_DOC_ROSE_3. The menu text is "'What the hell just happened?'".
+Q_DOC_ROSE_0D is a menu quip. The following quip is Q_DOC_ROSE_3. The menu text is "'I just woke up in a coffin!  I thought I was being buried alive!  How do you think I feel?'".
+
+The response of Q_DOC_ROSE_0 is { Q_DOC_ROSE_0A, Q_DOC_ROSE_0B, Q_DOC_ROSE_0C, Q_DOC_ROSE_0D }.
+
+Q_DOC_ROSE_1 is a transitional quip. The following quip is Q_DOC_ROSE_5. The display text is "'That's the spirit!'  The face breaks into a smile, complete with dimples."
+
+Q_DOC_ROSE_2 is a transitional quip. The following quip is Q_DOC_ROSE_5. The display text is "'Now, then, that's a rather complicated question.  Let's see if I can make the answer a little less complicated.'  The face pauses thoughtfully before continuing."
+
+Q_DOC_ROSE_3 is a quip. The display text is "'Tsk tsk, I do know you're upset, but I do think it best if you try to calm down and consider that this sort of stress might be what put you here in the first place.'"
+
+Q_DOC_ROSE_3A is a menu quip. The following quip is Q_DOC_ROSE_4. The menu text is "'Where am I?'".
+Q_DOC_ROSE_3B is a menu quip. The following quip is Q_DOC_ROSE_5. The menu text is "'Okay, fine, I'll calm down.  See?  All calmed down.  Now this had better be good.'".
+
+The response of Q_DOC_ROSE_3 is { Q_DOC_ROSE_3A, Q_DOC_ROSE_3B }.
+
+Q_DOC_ROSE_4 is a quip. The display text is "'You're in the university hospital, dear, and I'm Dr Claudia Rose.  We've had you and your brother under observation all night, and I really hope you'll both be well enough to return to the camp today.  You should be, if nothing goes wrong.'"
+
+Q_DOC_ROSE_4A is a menu quip. The following quip is Q_DOC_ROSE_7. The menu text is "'Aidan's under observation?  Whatever for?'".
+Q_DOC_ROSE_4B is a menu quip. The following quip is Q_DOC_ROSE_6. The menu text is "'What do you mean, [']if nothing goes wrong[']?  What's happening?'".
+
+After firing Q_DOC_ROSE_4:
+	identify Doctor Claudia Rose;
+
+The response of Q_DOC_ROSE_4 is { Q_DOC_ROSE_4A, Q_DOC_ROSE_4B }.
+
+Q_DOC_ROSE_5 is a quip. The display text is "'Here, sit up.  I'm Dr Claudia Rose, by the way, and you and your brother are very lucky that your particular condition happens to be a specialty of mine.'"
+
+Q_DOC_ROSE_5A is a menu quip. The following quip is Q_DOC_ROSE_6. The menu text is "'Condition?  What condition?'".
+Q_DOC_ROSE_5B is a menu quip. The following quip is Q_DOC_ROSE_7. The menu text is "'What... has something happened to Aidan?'".
+
+After firing Q_DOC_ROSE_5:
+	identify Doctor Claudia Rose;
+
+The response of Q_DOC_ROSE_5 is { Q_DOC_ROSE_5A, Q_DOC_ROSE_5B }.
+
+Q_DOC_ROSE_6 is a quip. The display text is "'You're developing some rather unique abilities, Daniel.  As far as I can tell, based on what your friends have told me, you are gaining the ability to sense the emotions of the people around you.  At the moment, your brain is trying to cope with the influx of these new senses and trying to interpret them using the template of the other five; before long, you should start recognising emotions for what they are, rather than sensing them as flavours or colours or smells.'"
+
+Q_DOC_ROSE_6A is a menu quip. The following quip is Q_DOC_ROSE_9. The menu text is "'So ... what, I'm going to be some sort of mind-reader?'"
+Q_DOC_ROSE_6B is a menu quip. The following quip is Q_DOC_ROSE_10. The menu text is "'So what DID happen at dinner?'"
+Q_DOC_ROSE_6C is a menu quip. The following quip is Q_DOC_ROSE_10. The menu text is "'So I've got to avoid people now or I'll wind up here again?'"
+Q_DOC_ROSE_6D is a menu quip. The following quip is Q_DOC_ROSE_11. The menu text is "'That sounds kind of cool, actually....'"
+
+The response of Q_DOC_ROSE_6 is { Q_DOC_ROSE_6A, Q_DOC_ROSE_6B, Q_DOC_ROSE_6C, Q_DOC_ROSE_6D }.
+
+Q_DOC_ROSE_7 is a quip. The display text is "'Your brother Aidan carried you here after you collapsed at dinner last night.'  Dr Rose pauses.  'A distance of about a mile, running at 30 miles an hour, he was here before anyone at the camp could fully explain over the phone what had happened.'"
+
+Q_DOC_ROSE_7A is a menu quip. The following quip is Q_DOC_ROSE_12. The menu text is "'Where is he?  I want to see him.'"
+Q_DOC_ROSE_7B is a menu quip. The following quip is Q_DOC_ROSE_10. The menu text is "'So what DID happen?'"
+
+The response of Q_DOC_ROSE_7 is { Q_DOC_ROSE_7A, Q_DOC_ROSE_7B }.
+
+Q_DOC_ROSE_8 is a transitional quip. The following quip is Q_DOC_ROSE_14. The display text is "Dr Rose nods.  'This sort of thing must be expected as you're first getting used to your new abilities, I suppose.  In the meantime, I've set up this device here to help you out.'  She indicates what appears to be a steampunk salon hair dryer.  'This is a cranial crown.  It will flood your brain with an electromagnetic frequency that should dampen the new sensory stimulus going to your brain, giving it a rest and allowing it to recuperate enough so it doesn't go out of control again.  You'll have to undergo this treatment at least once a week, I'd say.'"
+
+Q_DOC_ROSE_9 is a transitional quip. The following quip is Q_DOC_ROSE_11. The display text is "Dr Rose chuckles.  'If you want to put it that way.  You won't be reading minds, exactly, but otherwise it's not such a bad analogy.'"
+
+Q_DOC_ROSE_10 is a quip. The display text is "'What happened at dinner was a sensory overload.  Too many people, too many emotions, not enough experience.  You should develop the ability to handle this sort of thing, with time, but in the meantime it is absolutely vital that you come back here once a week for ... well, this device here.'  Dr Rose waves a hand at what appears to be a steampunk salon hair dryer.  'This is a cranial crown that will flood your brain with an electromagnetic frequency that should dampen the new sensory stimulus going to your brain -- giving it a rest, as it were -- and prevent it from going out of control again.'"
+
+Q_DOC_ROSE_10A is a menu quip. The following quip is Q_DOC_ROSE_13. The menu text is "'It's not going to also give me a hair helmet, is it?'"
+Q_DOC_ROSE_10B is a menu quip. The following quip is Q_DOC_ROSE_11. The menu text is "'Well, that's a drag.  I suppose there's nothing I can do about it, is there?'"
+
+The response of Q_DOC_ROSE_10 is { Q_DOC_ROSE_10A, Q_DOC_ROSE_10B }.
+
+Q_DOC_ROSE_11 is a quip. The display text is "'Your friends tell me you've been able to track people using the emotional debris they leave in their wake.  That's really quite impressive.  You should also be able to get an idea of how a person feels by examining them, and possibly more if you focus on those emotions.  Eventually, I think you might even be able to amplify or muffle whatever emotion you find, though right now that ability may only manifest in times of extreme stress, as it was with the manifestation of Aidan's abilities.'"
+
+Q_DOC_ROSE_11A is a menu quip. The following quip is Q_DOC_ROSE_7. The menu text is "'Aidan's abilities?  What do you mean?'"
+Q_DOC_ROSE_11B is a menu quip. The following quip is Q_DOC_ROSE_12. The menu text is "'Can I see Aidan?'"
+Q_DOC_ROSE_11C is a menu quip. The following quip is Q_DOC_ROSE_8. The menu text is "'I guess that sort of went out of control at dinner....'"
+
+The response of Q_DOC_ROSE_11 is { Q_DOC_ROSE_11A, Q_DOC_ROSE_11B, Q_DOC_ROSE_11C }.
+
+After populating Q_DOC_ROSE_11:
+	if Q_DOC_ROSE_7 is fired:
+		remove Q_DOC_ROSE_11A from the current conversation;
+	if Q_DOC_ROSE_12 is fired:
+		remove Q_DOC_ROSE_11B from the current conversation;
+	if Q_DOC_ROSE_8 is fired:
+		remove Q_DOC_ROSE_11C from the current conversation;
+	if the current conversation is empty:
+		carry out the firing activity with Q_DOC_ROSE_14;
+		carry out the populating activity with Q_DOC_ROSE_14;
+
+Q_DOC_ROSE_12 is a quip. The display text is "'Your conditions are quite delicate, Daniel, and I don't want you to experience a relapse or anything of the sort.  The exertion may be too much, and I don't want you to excite yourself.  So please stay in your room, refrain from exerting yourself, and wait until I'm sure that your condition is stable.'"
+
+Q_DOC_ROSE_12A is a menu quip. The following quip is Q_DOC_ROSE_11. The menu text is "'What exactly is my condition, anyway?'"
+
+The response of Q_DOC_ROSE_12 is { Q_DOC_ROSE_12A  }.
+
+After populating Q_DOC_ROSE_12:
+	if Q_DOC_ROSE_11 is fired:
+		remove Q_DOC_ROSE_12A from the current conversation;
+	if the current conversation is empty:
+		carry out the firing activity with Q_DOC_ROSE_14;
+		carry out the populating activity with Q_DOC_ROSE_14;
+
+Q_DOC_ROSE_13 is a quip. The display text is "'A hair helmet?'  Dr Rose looks at the cranial crown again.  'Oh!  I suppose it does rather look like a salon hair dryer, doesn't it?  Well, function before form, I suppose.  The important thing is that it will allow your abilities to develop without overwhelming you in the process.'"
+
+Q_DOC_ROSE_13A is a menu quip. The following quip is Q_DOC_ROSE_11. The menu text is "'My abilities?'"
+
+The response of Q_DOC_ROSE_13 is { Q_DOC_ROSE_13A  }.
+
+Q_DOC_ROSE_14 is a quip. The display text is "'I have spoken to your parents, by the way, and explained everything to them.  As you know, they're overseas and cannot return at the moment, at least not on such short notice.  In the meantime, they've left me in charge of your health and welfare.  So, Daniel, if anything bothers you at all, I hope you will tell me about it.  I'll do anything I can to make sure you're safe.'[paragraph break]Dr Rose pats you on the shoulder and is about to say something more when there's a resounding crash from somewhere else in the hospital.  At the same time, the pager on Dr Rose's belt goes off.  You catch a glimpse of a number, R15, flashing on its face as Dr Rose looks down at it.  She frowns.  'I'm sorry to have to cut our little chat short, Daniel, but it seems I'm urgently needed elsewhere.  Remember, stay where you are, and don't exert yourself.'  With that, she hurries out of the room, leaving a cloud of apprehension (or is it anxiety?) in her wake.[paragraph break]As the door closes behind her, Ava and Stacy slip into the room.  'Daniel!' says Ava, 'what happened?  Are you going to be okay?'[paragraph break]'Ava, stop worrying and let him answer already.'  Stacy's eye wanders over to the cranial crown contraption.  You don't need super emo-detector powers to see that her curiosity is piqued.";
+
+When Doc Rose Chat ends:
+	remove Doctor Claudia Rose from play;
+	move Ava to the location;
+	move Stacy to the location;
+
+Part 3 - Conversation with Ava and Stacy
+
+Chapter 1 - Scene
+
+Hospital chat is a scene. Hospital chat begins when Doc Rose chat ends.
+
+Hospital Chat ends when Q_AVA_HO_2 is fired or Q_AVA_HO_3 is fired or Q_AVA_HO_4 is fired.
+
+Rule for choosing the conversation table of Ava during Hospital chat:
+	change the chosen conversation table to the Table of Ava and Stacy's hospital conversation;
+
+Rule for choosing the conversation table of Stacy during Hospital chat:
+	change the chosen conversation table to the Table of Ava and Stacy's hospital conversation;
+
+Before printing the name of Stacy while constructing the status line during Hospital Chat:
+	say "Ava and ";
+
+After printing the name of Ava while constructing the status line during Hospital Chat:
+	say " and Stacy";
+
+Understand "ava and stacy" as ava when the player can see Ava and the player can see Stacy.
+Understand "stacy and ava" as ava when the player can see Ava and the player can see Stacy.
+
+Chapter 2 - Conversation
+
+Table of Ava and Stacy's hospital conversation
+conversation		topic
+CT_AVA_HOSP_CROWN	"cranial" or "crown" or "helmet" or "contraption" or "machine" or "device"
+CT_AVA_HOSP_AIDAN	"aidan" or "my brother/bro" or "brother/bro"
+CT_AVA_HOSP_CRASH	"crashing" or "crash" or "smash" or "noise" or "sound"
+Q_AVA_HOSP_R15	"R15" or "room 15" or "room r15"
+
+CT_AVA_HOSP_CROWN is a conversation topic. The response text is "You tell Stacy about the cranial crown and the need for regular treatments.  'Sorry to hear that,' Stacy says, still peering at the cranial crown and not sounding very convincing, 'that sort of thing always sucks.'"
+
+CT_AVA_HOSP_AIDAN is a conversation topic. 
+
+Rule for firing CT_AVA_HOSP_AIDAN:
+	start conversation with Ava on Q_AVA_HO_0;
+
+CT_AVA_HOSP_CRASH is a conversation topic. 
+
+Q_AVA_HOSP_R15 is a transitional quip. The following quip is Q_AVA_HO_10.
+
+Q_AVA_HO_0 is a quip. The display text is "'Ava went to look in on him while we were waiting to see you,' says Stacy.  'He's somewhere on this floor too, isn't he?'[paragraph break]'They wouldn't let me in to see him, either,' Ava says, 'and it's not as if anything had happened to him or anything.  He's in room R15.'"
+
+Q_AVA_HO_0_A is a menu quip. The following quip is Q_AVA_HO_1. The menu text is "'R15?  That's the number I saw flashing on Dr Rose's pager!'"
+
+First before firing Q_AVA_HO_0_A:
+	change the menu text of Q_AVA_HO_0_A to ""; [We don't really say it.]
+
+The response of Q_AVA_HO_0 is { Q_AVA_HO_0_A }.
+
+Q_AVA_HO_1 is a quip. The display text is "'Something must have happened,' you say, 'I'll bet it has something to do with that crash I heard ... I've got to see what's going on!'[paragraph break]'No, wait,' Ava says, 'you're supposed to be resting!'"
+
+Q_AVA_HO_1_A is a menu quip. The following quip is Q_AVA_HO_2. The menu text is "'I'll rest after I've checked in on Aidan!'"
+Q_AVA_HO_1_B is a menu quip. The following quip is Q_AVA_HO_3. The menu text is "'I feel fine!'"
+Q_AVA_HO_1_C is a menu quip. The following quip is Q_AVA_HO_4. The menu text is "'I suppose you're right.  Someone will tell me if it's something to do with Aidan.'"
+
+The response of Q_AVA_HO_1 is { Q_AVA_HO_1_A, Q_AVA_HO_1_B, Q_AVA_HO_1_C }.
+
+Q_AVA_HO_2 is a quip. The display text is "Ava tries to stop you, but you push past her to the door.  You don't stop to look back as you slip out onto the corridor.[paragraph break]For a moment, you feel a bit lost as you realise that you have no idea where room R15 might be, but then you sense Stacy and Ava joining you.  'Aidan's room is that way,' Ava says quietly, pointing off to the northwest."
+
+Q_AVA_HO_3 is a quip. The display text is "'Well you don't know that you actually are fine!'  Ava moves to block your way.[paragraph break]'I'd like to know what that noise was, too,' Stacy says, 'and, come on, aren't you the least bit concerned?  It might have something to do with Aidan!'[paragraph break]Ava looks anxious and uncertain, then finally backs down.  'Okay, fine, but we better not get caught.'[paragraph break]Stacy opens the door, and you all slip out into the corridor.  Ava points off to the northwest.  'Aidan's room is that way.'"
+
+Q_AVA_HO_4 is a quip. The display text is "Stacy frowns.  'Maybe.  But I want to know what that crash was.  I mean, it's not the sort of thing you want to hear in a hospital.'  She goes to the door and prepares to step out.  'Ava, are you coming?  You're the one who knows where room R15 is.'[paragraph break]Ava glances at you, and hesitates.  Stacy rolls her eyes and says, 'come on, Daniel, don't you want to find out if your brother is all right?'[paragraph break]You don't need that much encouragement.  Half a second later, the three of you are in the corridor.  Ava points off to the northwest.  'Aidan's room is that way.'"
+
+Q_AVA_HO_10 is a quip. The display text is "'That's Aidan's room,' says Ava, 'I tried to drop in on him earlier.  You don't think...?'[paragraph break]'That something's happened to Aidan?'  It's an alarming thought.  'I'd better go find out.'[paragraph break]'But Daniel, you're supposed to be resting!'"
+
+The response of Q_AVA_HO_10 is [reusing the Quip 1 responses:] { Q_AVA_HO_1_A, Q_AVA_HO_1_B, Q_AVA_HO_1_C }.
+
+Part 4 - Hospital Map
+
+A hospital corridor is a kind of room.
+
+[ A hospital door is a kind of door. A viewing window is a kind of thing.
+A viewing window is part of every hospital door.
+
+Instead of searching a hospital door (called the portal):
+	redirect the action from the portal to a random viewing window which is part of the portal, and try that instead; ]
+
+South T-intersection is a hospital corridor, north of Hospital Room. "You are in a featureless hospital corridor stretching from east to west.  Another corridor goes off to the north.  The door to your hospital room is to the south."
+
+Southwest Corner is a hospital corridor, west of South T-intersection.  "The corridor makes a bend here, going east and north.  There are hospital rooms, apparently empty, to the west and south."
+
+Southeast Corner is a hospital corridor, east of South T-intersection. "The corridor makes a bend here, going west and north.  There are hospital rooms, apparently empty, to the east and south."
+
+West T-intersection is a hospital corridor, north of Southwest Corner. "You are in a featureless hospital corridor stretching north and south.  Another corridor goes off to the east.  A door marked 'EXIT' is to the west."
+
+Crossroads is a hospital corridor, east of West T-intersection, north of South T-intersection. "This is the heart of this particular wing of the hospital, with corridors running off in all four cardinal directions."
+
+East T-intersection is a hospital corridor, east of Crossroads, north of Southeast corner. "You are in a featureless hospital corridor stretching north and south.  Another corridor goes off to the west.  A pair of elevator doors are set into the east wall."
+
+Northwest Corner is a hospital corridor, north of West T-intersection.  "The corridor makes a bend here, going east and south.  There are hospital rooms to the west and north, although the sounds coming from the north suggest that that particular hospital room is not quite as empty as all the others have been."
+
+North T-intersection is a hospital corridor, east of Northwest Corner, north of Crossroads.  "You are in a featureless hospital corridor stretching north and south.  Another corridor goes off to the south."
+
+Northeast Corner is a hospital corridor, east of North T-intersection, north of East T-intersection.  "The corridor makes a bend here, going west and south.  There are hospital rooms, apparently empty, to the east and north."
+
+A hospital ward is a kind of room.
+
+Ward-A is a hospital ward, north of North T-intersection.
+Ward-B is a hospital ward, north of Northeast Corner.
+Ward-C is a hospital ward, west of Northwest Corner.
+Ward-D is a hospital ward, east of Northeast Corner.
+Ward-E is a hospital ward, east of East T-intersection.
+Ward-F is a hospital ward, west of Southwest Corner.
+Ward-G is a hospital ward, east of Southeast Corner.
+Ward-H is a hospital ward, south of Southwest Corner.
+Ward-I is a hospital ward, south of Southeast Corner.
+
+Instead of facing towards a hospital ward:
+	say "A glance through the viewing windows shows that the rooms beyond are quite unoccupied.";
+
+Understand "door", "doors", "viewing window", "view", "window" as a direction when the item described is headed towards a hospital ward.
+
+After printing the name of a direction that is headed towards a hospital ward:
+	say " door";
+
+Before searching a direction that is headed towards a hospital ward:
+	try facing the noun instead;
+
+Part 5 - Wandering (Dis)Orderly
+
+Wandering Disorderly is a scene. Wandering Disorderly begins when Hospital Chat ends.
+
+The wandering orderly is a person. The wandering orderly is in North T-intersection.
+The wandering orderly can be stopped. The wandering orderly is not stopped.
+
+The wandering orderly has a room called the previous location. The previous location of the wandering orderly is North T-intersection.
+
+The wandering orderly can be wandering-freely or capturing. The wandering orderly is wandering-freely.
+
+Every turn during Wandering Disorderly (this is the wandering disorderly rule):
+	abide by the disorderly decision rules;
+	consider the disorderly movement rules;
+
+The disorderly decision rules are a rulebook.
+
+A disorderly decision rule when the wandering orderly was stopped:
+	now the wandering orderly is not stopped instead;
+
+A disorderly decision rule when the wandering orderly is stopped:
+	rule fails;
+
+A disorderly decision rule when the wandering orderly is in a hospital ward:
+	if a random chance of 3 in 8 succeeds:
+		unless the location of the wandering orderly is adjacent:
+			rule fails;
+
+The disorderly movement rules are a rulebook.
+
+First disorderly movement rule when the wandering orderly is in an adjacent room and the wandering orderly is capturing (this is the wandering orderly capture rule):
+	let x be the location of the wandering orderly;
+	let d be the quick best route from x to the location of the player;
+	change the previous location of the wandering orderly to x;
+	try the wandering orderly trying going d;
+	rule fails;
+
+A disorderly movement rule (this is the disorderly wandering rule):
+	now the wandering orderly is wandering-freely;
+	let the proposed directions be { north, south, east, west };
+	sort the proposed directions in random order;
+	repeat with dir running through the proposed directions:
+		let x be the room dir from the location of the wandering orderly;
+		if x is a room:
+			consider the disorderly motion rules for x;
+			if the rule succeeded:
+				change the previous location of the wandering orderly to the location of the wandering orderly;
+				try the wandering orderly trying going the result of the rule;
+				rule succeeds;
+
+The disorderly motion rules are an object-based rulebook.
+
+A disorderly motion rule for the Northwest Corner:
+	rule fails;
+
+A disorderly motion rule for the Hospital Room:
+	rule fails;
+
+A disorderly motion rule for a room (called r) when the wandering orderly is in a Hospital Ward and r is not the location:
+	rule succeeds with result the quick best route from the location of the wandering orderly to r;
+
+A disorderly motion rule for a room (called r) when r is not the location:
+	if r is not the previous location of the wandering orderly:
+		rule succeeds with result the quick best route from the location of the wandering orderly to r;
+
+After the wandering orderly trying going to an adjacent hospital corridor (called R) from a room that is not the location:
+	now the wandering orderly is capturing;
+	say "You notice an orderly pushing a gurney out into the corridor, off to the [quick best route from the location to R].  It looks like he's about to head this way!" instead;
+
+After the wandering orderly trying going:
+	if the room gone to is the location:
+		placeholder "A gurney is pushed right into you by an orderly who, though surprised, is not too surprised to immediately sound the alarm.  Within seconds, Ava and Stacy have been bundled out of the hospital and you're locked into your room.  It's a couple of hours before Dr Rose comes back, frowning in a very concerned manner.";
+		fire TRIG_DR_ROSE_DEATH;
+
+After going to a hospital corridor:
+	if the room gone to contains the capturing wandering orderly:
+		placeholder "You run right into an orderly who, though surprised, is not too surprised to immediately sound the alarm.  Within seconds, Ava and Stacy have been bundled out of the hospital and you're locked into your room.  It's a couple of hours before Dr Rose comes back, frowning in a very concerned manner.";
+		fire TRIG_DR_ROSE_DEATH;
+	otherwise if the room gone to contains the wandering orderly:
+		consider the disorderly wandering rule;
+	continue the action;
+
+Instead of going to a hospital ward:
+	if the room gone to contains the wandering orderly:
+		say "You open the door and run right into an orderly who, though surprised, is not too surprised to immediately sound the alarm.  Within seconds, Ava and Stacy have been bundled out of the hospital and you're locked into your room.  It's a couple of hours before Dr Rose comes back, frowning in a very concerned manner.";
+		fire TRIG_DR_ROSE_DEATH;
+	otherwise if the wandering orderly is in an adjacent room (called R):
+		let x be a random adjacent hospital corridor;
+		while x is the location of the wandering orderly:
+			change x to a random adjacent hospital corridor;
+		let d be the quick best route from the location to x;
+		move the wandering orderly to x;
+		change the previous location of the wandering orderly to the location;
+		now the wandering orderly is stopped;
+		now the wandering orderly is wandering-freely;
+		say "You quickly duck into the empty hospital room as an orderly [if R is a Hospital Ward]comes out of the other room[otherwise]approaches[end if].  You wait until the footsteps fade away to [the d] before emerging again into the corridor.";
+	otherwise:
+		say "You quickly duck into the empty hospital room.  After a few moments, when nothing happens, you creep back out again.";
+
+TRIG_DR_ROSE_DEATH is a trigger.
+
+Rule for firing TRIG_DR_ROSE_DEATH:
+	say "'I do wish you wouldn't insist on running around unsupervised, Daniel.  You need your rest, we need to monitor your condition, and this last adventure of yours might very possibly have interfered terribly with ... well, with everything.  The data may have been compromised.  I'm afraid we'll have to keep you under observation a little longer.'  She shakes her head sadly. 'Believe me, Daniel, I'd have liked to let you go back to the camp every bit as much as you would, but under the circumstances, I'm afraid it just can't be done.'";
+	end the game saying "The story is over.";
+
+Part 6 - Finding Aidan
+
+Outward Journey is a scene. Outward Journey begins when Hospital Chat ends. Outward Journey ends when the location is Northwest Corner.
+
+Return Journey is a scene. Return Journey begins when Outward Journey ends. Return Journey ends when the location is Hospital Room.
+
+When Outward Journey begins:
+	now Stacy Alexander follows the player;
+	now Ava Winters follows the player;
+	move the player to South T-Intersection;
+
+Last report going to Northwest Corner when TRIG_FOUND_R15 is unfired during Outward Journey:
+	fire TRIG_FOUND_R15;
+
+TRIG_FOUND_R15 is a trigger.
+
+Rule for firing unfired TRIG_FOUND_R15:
+	say "'Here we are,' whispers Ava, pointing to a door to the north.  'That's room R15.  Aidan's in there.'";
+
+The room R15 door is a door, scenery, north of Northwest Corner, south of Ward R15.
+
+Rule for printing the name of the room R15 door:
+	say "door to R15";
+
+Understand "window", "viewing window", "view", "ward" as the room R15 door.
+
+Instead of searching the room R15 door:
+	try going the room R15 door;
+
+Instead of opening the room R15 door:
+	fire TRIG_FOUND_AIDAN;
+
+TRIG_FOUND_AIDAN is a trigger.
+
+Rule for firing unfired TRIG_FOUND_AIDAN:
+	say "Looking through the window, you see a room equipped in much the same way your room was, complete with the silvery, high-tech coffin thing.  That's where the resemblance ends.  The lid of the coffin thing has been broken off and lies at the far end of the room, a huge crack down its middle, and smoke billows out from one broken monitor.  Aidan himself is lying near the coffin, unconscious, while a bunch of orderlies stand at a very safe distance away from him.[paragraph break]Fear, shock, whatever, it's thick in the air and feels like you just snorted hot salsa up your nose.[paragraph break]In the middle of all this is Dr Rose.  You can't hear what she's saying but ... oh, well, it looks like she's done lecturing the orderlies and now she's heading for the door.  You pull back before she sees you.  You've got to get back to your room before she notices you're gone, but you're in a corner and there's no way to know which way she'll turn when she comes out, and if you hide in the empty room to the west Dr Rose will almost certainly get to your room before you.[paragraph break]'Go that way,' Stacy whispers, shoving you eastwards.  'I'll distract them.'  Before you can say anything, Stacy has run off to the south.";
+
+Rule for firing fired TRIG_FOUND_AIDAN:
+	fire TRIG_DR_ROSE_DEATH2;
+
+TRIG_DR_ROSE_DEATH2 is a trigger.
+
+Rule for firing TRIG_DR_ROSE_DEATH2:
+	say "'Daniel Wayne!' Dr Rose catches you by the collar and frowns, clearly disappointed.  'What are you doing out of your room?  Come on, back you go.'  She marches you back to your room, where she proceeds to put you through a battery of seemingly unnecessary tests.  Pursing her lips as she reads the data scrolling by on the monitors, she says, [run paragraph on]";
+	fire TRIG_DR_ROSE_DEATH;
+
+Hospital ends when Return Journey ends.
+
+When Hospital ends:
+	say "And not a moment too soon.  When Dr Rose comes bustling in, you and Ava are sitting beside the coffin thing, looking as if you'd just spent the past half hour talking about the weather.  Dr Rose frowns a bit when she checks the readouts on the various monitors, but no-one can look as innocent as Ava when she has to, and in the end Dr Rose decides that nothing suspicious has been going on after all.[paragraph break]Aidan, she says, is still undergoing observation of some kind, but you're free to go back to camp.  Brad picks you up after lunch (it turns out that the hospital food tastes just as nasty as the camp food) and you're back in time for your afternoon classes.  It's dinner time before Aidan is back at camp; and whatever it was that happened to him in the hospital, he either doesn't remember, or doesn't want to tell you.";
+	pause the game;
+	
+Book 5 - Robotics Class
+
+Robot Fun is a scene. Robot Fun begins when Hospital ends.
+
+When Robot Fun begins:
+	change the current term day to day 3;
+	change the time of day to 10:25 PM;
+	say "Things settle down, more or less, over the next day or so.  People are trying very hard to not give you funny looks when they see you, which pretty much comes to the same thing, really.  Aidan's probably going through the same sort of thing too.  He's certainly rather a bit more moody than he used to be.[paragraph break]LEAP, Day 6 (Friday) - Class Period 2[paragraph break]Robotics class, the wave of the future, because everyone knows that some day we're going to have giant killer robots laying waste to downtown Tokyo or something like that, and it would be a good thing to know how to deal with them.  No-one's really capable of making a giant killer robot: right now, you're all just doing a basic project to program a robot to do a certain simple task.  Except Stacy, who seems to be dead set on making a midget killer robot she calls the 'Stacy Alexander Robot Guy', or SARG for short.";
+	move the player to Robotics Class;
+	move Stacy Alexander to Robotics Class;
+	move Aidan to Robotics Class;
+	remove Ava Winters from play;
+
+Robotics Class is a room. "You are sitting at a table in a perfectly ordinary classroom, surrounded by electronic parts.  Antonia Long, your Robotics instructor, has been cornered elsewhere by students with issues, leaving you to your own electronic, robotic devices.  Stacy is sitting beside you with her own robot project, SARG, while Aidan is at another table with the older students."
+
+Part 1 - The Robot
+
+Your robot is in Robotics Class. 
+
+Part 2 - Logic Blocks
+
+A logic block is a kind of thing, improper-named. Some logic blocks in Robotics Class are defined by the table of robot logic blocks.
+
+Understand "programming", "logic block", "code", "block" as a logic block.
+
+Before listing contents:
+	group logic blocks together;
+
+After printing the name of a logic block while not grouping together:
+	say " logic block";
+
+Before grouping together logic blocks:
+	say "some programming logic blocks, all different colors: "
+
+Table of robot logic blocks
+logic block		braces	pseudocode
+a copper-colored		-1	"[tab][tab][tab][tab]last used = left;[line break][tab][tab][tab]}"
+a royal purple		0	"[tab][tab][tab][tab]pick_up_with_left;"
+a hot pink		-1	"[tab]}[line break]end loop"
+a scarlet			-1	"[tab][tab]}[line break][tab]} else {"
+a saffron			1	"[tab][tab][tab]turn_to_destination_basket;[line break][tab][tab]} else {[line break][tab][tab][tab]if (last_used == left) {[line break][tab][tab][tab][tab]pick_up_with_right;"
+a golden			-1	"[tab][tab]}[line break][tab][tab]turn_to_source_basket;"
+a mint green		2	"begin loop[line break][tab]if (facing_source_basket) {[line break][tab][tab]if (holding_marble) {[line break]"
+a magenta		1	"[tab][tab]if (holding_marble) {[line break][tab][tab][tab]drop_marble_in_basket;"
+a baby blue		0	"[tab][tab][tab]holding_marble = true;[line break][tab][tab][tab]turn_to_destination_basket;"
+a forest green		0	"[tab][tab][tab][tab]last_used = right;[line break][tab][tab][tab]} else {"
+
+To say tab:
+	say "    ";
+
+Rule for printing the description of a logic block (called X):
+	placeholder "[The X] is labeled with the program logic it contains, in pseudo-code form. This one reads:[paragraph break]";
+	say fixed letter spacing;
+	say "[pseudocode of X]";
+	say variable letter spacing;
+	say paragraph break;
+
+Understand "copper", "copper-coloured" as the copper-colored.
+Understand "red" as the scarlet.
+Understand "orange" as the saffron.
+Understand "gold", "yellow" as the golden.
+
+Part 2 - Slots
+
+A slot is a kind of container. Some slots are defined by the table of programming slots.
+
+When play begins:
+	now every slot is part of your robot.
+
+Table of programming slots
+slot		running order
+slot 1		1
+slot 2		2
+slot 3		3		
+slot 4		4
+slot 5		5
+slot 6		6
+slot 7		7
+slot 8		8
+slot 9		9
+slot 10		10
+
+Definition: a slot is plugged if it contains a logic block.
+Definition: a logic block is placed if it is in a slot.
+
+A procedural rule when inserting a logic block into a slot:
+	ignore the can't insert what's not held rule;
+
+Instead of inserting something into a slot when the noun is not a logic block:
+	placeholder "The slots are designed to each hold one logic block[if the second noun is plugged]. Besides, that one is already full[end if].";
+
+Instead of inserting something into a plugged slot:
+	placeholder "That slot is full.";
+
+After inserting something into a slot:
+	placeholder "Ker-chunk[one of]! [The noun] fills the slot snugly.[or]. Another block fits neatly into place.[or]. You put [the noun] in the slot.[or].[or].[or] - isn't this fun?[or].[stopping]";
+
+Part 4 - The program
+
+The program is part of your robot. Understand "slots" as the program.
+
+Rule for printing the description of the program when every slot is not plugged:
+	placeholder "All the program slots are empty.";
+
+Rule for printing the description of the program:
+	placeholder "Reading down the slots, the program reads as follows:[line break]";
+	say fixed letter spacing;
+	repeat with B running through the current program:
+		say line break, pseudocode of B;
+	say variable letter spacing, paragraph break;
+
+Instead of entering the program [that is to say, by > RUN PROGRAM or similar...!]:
+	consider the robotic rulebook;
+
+The robotic rules is a rulebook.
+
+[ First robotic rule when a slot is not plugged:
+	placeholder "That can't be right. You need every single one of these blocks."; ]
+
+A robotic rule:
+	unless braces are matched:
+		placeholder "Your robot buzzes and whirrs sadly[one of]. Stacy peers over. 'That's no good,' she says. 'Your braces don't match. Every opening brace needs a closing one.'[or].[or][if a random chance of 1 in 4 succeeds]. 'Braces!' calls Stacy helpfully.[otherwise].[end if][stopping]" instead;
+
+To decide which number is the position of (b - a logic block):
+	if b is in a slot (called the holster):
+		decide on the running order of the holster;
+	otherwise:
+		decide on -1;
+
+To decide which list of objects is the current program:
+	let zblocks be a list of objects;
+	repeat with i running from 1 to 10:
+		if a logic block (called B) is in position i:
+			add B to zblocks;
+	decide on zblocks;
+
+Block-ordering relates a logic block (called X) to a number (called Y) when the position of X is Y. The verb to be in position implies the block-ordering relation.
+
+To decide whether braces are matched:
+	let the brace count be 0;
+	repeat with B running through the current program:
+		let the temporary adjustment be 0;
+		increment the brace count by the braces of B; 
+		if B is:
+			-- scarlet: change the temporary adjustment to -1;
+			-- saffron: change the temporary adjustment to -1;
+			-- forest green: change the temporary adjustment to -1;
+		increment the brace count by the temporary adjustment;
+		if the brace count is less than 0:
+			decide no;
+		decrement the brace count by the temporary adjustment;
+	decide on whether or not the brace count is 0;
+
+To decide whether loop is matched:
+	let the brace count be 0;
+	repeat with B running through the current program:
+		let the temporary adjustment be 0;
+		increment the brace count by the braces of B; 
+		if B is:
+			-- scarlet: change the temporary adjustment to -1;
+			-- saffron: change the temporary adjustment to -1;
+			-- forest green: change the temporary adjustment to -1;
+		increment the brace count by the temporary adjustment;
+		if the brace count is less than 0:
+			decide no;
+		decrement the brace count by the temporary adjustment;
+	decide on whether or not the brace count is 0;
+
 Book W - Walkthrough
 
 Test hunt with "e/get dinosaur/nw/get change/n/u/u/u/get feather/get cloth/get stick/glue cloth to stick/d/get cutout/d/d/s/w/put change in machine/get paper/ne/get grass/se/w/s/fold paper".
 
 Test lucian with "n/u/u/knock/1/2/1/1/s/d/d/w/w/focus/ask lucian about leap/ask lucian about bullies/ask lucian about crystal/2/n/e/u/s/focus/n/e/s/3/w/w/knock/aidan, help/s/e/e/w/w/d/s".
+
+Test maelstrom with "random/eat dinner/g/1/3/2/w/l/l/w/l/l/l/w".
+
+Book X - Not For Release - Fixing the RNG
+
+Xyzzying is an action out of world.
+Unxyzzying is an action out of world.
+Understand "xyzzy" as xyzzying.
+Understand "unxyzzy" as unxyzzying.
+
+Carry out xyzzying:
+	seed the random-number generator with 1234;
+
+Report xyzzying:
+	say "A hollow voice whispers 'groo.'";
+
+Carry out unxyzzying:
+	seed the random-number generator with 0;
+
+Report unxyzzying:
+	say "A hollow voice whispers 'oorg.'";
 
