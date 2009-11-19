@@ -2,6 +2,8 @@
 
 [  Change Log
 When		Who		What
+19-Nov-2009	G. Jefferis	Eric's Transcript
+17-Nov-2009	G. Jefferis	Eric's Transcript
 29-Oct-2009	G. Jefferis	DD2.0 - War Room
 22-Oct-2009	G. Jefferis	DD2.0 - War Room
 19-Oct-2009	G. Jefferis	DD2.0 - Red Gate Estate
@@ -1338,16 +1340,24 @@ Chapter 3 - Clothing
 
 Section 1 - Some baggy old clothes
 
-The player wears a thing called your baggy threadbare clothes. The description of the baggy threadbare clothes is "Your clothing is baggy and threadbare." The printed name of the baggy threadbare clothes is "your clothes". 
+The baggy threadbare clothes are a thing. The player wears the baggy threadbare clothes. The description of the baggy threadbare clothes is "Your clothing is baggy and threadbare." The printed name of the baggy threadbare clothes is "clothes". The baggy threadbare clothes are plural-named.
 
 Understand "baggy", "patchy", "threadbare", "clothing", "pants", "shirt" as the baggy clothes.
 
 Instead of taking off the baggy clothes:
 	say "This isn't the time or place for getting undressed!";
 
+Include (-
+	with articles "Your" "your" "your",
+-) when defining the baggy threadbare clothes.
+
 Section 2 - A gray cloth cloak
 
-The player wears a gray cloak. The gray cloak is proper-named. The description of the cloak is "Your cloak is made of undyed wool, stained and patched in several places. You wear it in the masculine style, fastened on the side and thrown back over your right shoulder." Understand "grey", "gray", "old", "masculine", "wool/woolen/woollen", "undyed", "stained", "patched", "patchy", "patch", "patches", "stain", "stains", "my" as the cloak. The printed name of the cloak is "your old gray cloak". 
+The player wears a gray cloak. [The gray cloak is proper-named.] The description of the cloak is "Your cloak is made of undyed wool, stained and patched in several places. You wear it in the masculine style, fastened on the side and thrown back over your right shoulder." Understand "grey", "gray", "old", "masculine", "wool/woolen/woollen", "undyed", "stained", "patched", "patchy", "patch", "patches", "stain", "stains", "my" as the cloak. The printed name of the cloak is "old gray cloak". 
+
+Include (-
+	with articles "Your" "your" "your",
+-) when defining the gray cloak.
 
 Chapter 4 - A cloth satchel
 
@@ -1355,7 +1365,7 @@ The player carries a cloth satchel. The satchel is a player's holdall. The descr
 
 Include (-
 	with articles "Your" "your" "your",
--) when defining the cloth satchel
+-) when defining the cloth satchel.
 
 The satchel is open, openable, transparent. The satchel is not wearable.
 
@@ -1376,6 +1386,10 @@ After inserting something into the satchel: say "You stuff [the noun] into your 
 Chapter 5 - A woolen hat
 
 The player wears a thing called your woolen hat. The description of the woolen hat is "Your woolen cap is patchy and stained, like the rest of you. You usually keep your hair stuffed up under it." Understand "woolen/woollen", "wool", "cap", "patched", "patchy", "patch", "patches", "stained", "stain", "stains", "my" as the hat. 
+
+Include (-
+	with articles "Your" "your" "your",
+-) when defining the woolen hat.
 
 The printed name of the woolen hat is "your hat".
 
@@ -1415,6 +1429,10 @@ Does the player mean taking the woolen hat:
 Chapter 6 - Bodily parts
 
 Your body is part of the player. [Your body is an inform library animate object.] Understand "body", "build", "physique", "head", "face", "hair", "arms", "arm", "shoulders", "shoulder", "elbows", "elbow", "wrists", "wrist", "hands", "hand", "fingers", "finger", "fingernails", "fingernail", "chest", "stomach", "belly", "torso", "back", "waist", "hips", "hip", "legs", "leg", "knees", "knee", "thighs", "thigh", "shins", "shin", "ankles", "ankle", "feet", "foot", "toes", "toe", "toenails", "toenail", "mouth", "nose", "eye", "eyes", "ear", "ears", "face", "left", "right" as the body.
+
+Include (-
+	with articles "Your" "your" "your",
+-) when defining your body.
 
 The indefinite article of your body is "your".
 
@@ -3037,6 +3055,7 @@ Chapter 3 - The silk cloak
 
 The green silk cloak is wearable, merchandise. The description is "It comes down to your ankles, a simple drape of soft, dusky green with silver trim and a voluminous hood[if the silk cloak is worn]. You're wearing it in the feminine style, forward over both shoulders and clasped under your chin, and the hood drawn up[end if]."
 Understand "drape", "silver", "trim" as the green silk cloak.
+Understand "new" as the green silk cloak when the green silk cloak is handled.
 
 The hood is part of the green silk cloak. The description is "The hood is part of the cloak and has the same silver trim[if the green silk cloak is worn]. It covers your head completely, casting your face in shadow[end if]." Understand "my" as the hood.
 
@@ -4254,13 +4273,15 @@ After going to Commerce Street when Commerce Street is unvisited:
 Chapter 4 - Exiting
 
 Before going west in Commerce Street:
-	if it is day begin;
+	if it is day:
 		say "It would be a good idea to lay low for a while before returning to Grubber's Market." instead;
-	end if.
 
 Before going from Commerce Street:
 	if the player is disguised as a girl and the player is still dirty and Escape Through the Sewer has not happened:
-		say "You'd better put your hat on — most of the merchants on this street know you as Jack. Keeping your hair stuffed up and hidden helps the disguise." instead;
+		if Meeting Bobby has happened and Bobby's Adventure has not happened:
+			say "You'd better put your hat on - Bobby thinks you're one of the boys, and if he sees your long hair out it'll blow your disguise." instead;
+		otherwise:
+			say "You'd better put your hat on — most of the merchants on this street know you as Jack. Keeping your hair stuffed up and hidden helps the disguise." instead;
 
 Instead of going to the armory shop when the player is scared of Olgan Minor:
 	say "The way your last conversation went, you're not sure you're ready to face Olgan Minor again.";
@@ -4586,7 +4607,7 @@ HO14 is a quip. The display text is "'Say, Jack,' says Holstenoffer suddenly, 'I
 
 HO15 is a quip. The menu text is "'She's fine; she's just been busy.'". The display text is "'Oh, everything's fine at Maiden House,' you say, while thinking to yourself, [i]and boring as ever[r]. 'Widow Shannon's just been busy; she hasn't had time to do the shopping.'[paragraph break]'Well, tell her I've been savin['] some choice cuts for her next time she comes down here. Good meat, better than she'll get in Grubber's, and cheaper too. Those orphans need to eat healthy.' He grins. 'And I need to convince Widow Shannon that I'd make her a good husband.'"
 
-HO16 is a quip. The menu text is "'I try to stay away from Maiden House.'". The display text is "You try to stifle a groan. 'To tell you the truth, Holstenoffer, I try to stay away from Maiden House whenever I can.'[paragraph break]Holstenoffer smiles knowingly. 'The widows breathin['] down yer neck a bit, eh? Well, I know all about that. Plenty a['] times I sneaked outta the bedroom window when I was a wee lad stayin['] with me aunty. Still,' he waves his cleaver at you admonishingly, and you step back quickly to avoid a deep facial scar. 'Still, Maiden House is a good place for urchins like yerself. Keeps yeh outta trouble. And the widows are a fine bunch of women. [i]Especially[r] that Shannon,' he adds, with a wistful look in his eye."
+HO16 is a quip. The menu text is "'I try to stay away from Maiden House.'". The display text is "You try to stifle a groan. 'To tell you the truth, Holstenoffer, I try to stay away from Maiden House whenever I can.'[paragraph break]Holstenoffer smiles knowingly. 'The Widows breathin['] down yer neck a bit, eh? Well, I know all about that. Plenty a['] times I sneaked outta the bedroom window when I was a wee lad stayin['] with me aunty. Still,' he waves his cleaver at you admonishingly, and you step back quickly to avoid a deep facial scar. 'Still, Maiden House is a good place for urchins like yerself. Keeps yeh outta trouble. And the widows are a fine bunch of women. [i]Especially[r] that Shannon,' he adds, with a wistful look in his eye."
 
 HO17 is a quip. The menu text is "'She's just not into you, Holstenoffer.'". The display text is "You sigh. 'You know, I've told you before, Widow Shannon isn't looking for a husband. It's nothing against you personally, I think she just likes devoting all her time to the orphans.'[paragraph break]Holstenoffer just smiles. 'Oh, I know, Jack, that's what she [i]says[r]. But old Holstenoffer knows a few tricks too, yeh know.' He waves his cleaver in the air nonchalantly; a bit of bloody gristle dangles from the blade's tip. 'You just get her down here, and let Holstenoffer work his charm.'[paragraph break]You know from past experience that there's no use arguing with him about this, so you just smile and nod. 'I'll let her know,' you say."
 
@@ -5067,6 +5088,12 @@ Instead of kissing the clothier, say "You should probably get to know the clothi
 Instead of taking the lovely clothes:
 	try buying the lovely clothes;
 
+Instead of giving the purse to the clothier when the player does not wear the ball gown:
+	try buying the lovely clothes;
+
+Instead of giving the purse to the clothier when the player wears the ball gown:
+	say "You've already paid the clothier.";
+
 Before buying the lovely clothes when the player is still dirty:
 	say "The clothier is not likely to sell anything to a dirty urchin such as yourself. Besides, you're only interested in the dresses, and it would raise awkward questions if you asked him to sell you one." instead;
 
@@ -5084,7 +5111,7 @@ After buying the lovely clothes when the player has the purse and the player doe
 	remove the daydress from play;
 	now the player carries the ball gown;
 	now the player wears the ball gown;
-	say "After several agonizing minutes of indecision, you point to the dress you want.[paragraph break]The clothier flutters his hands and practically giggles, 'Oh, a [i]splendid[r] choice! You'll look like a princess!' He dances around you, taking measurements with his cord and muttering numbers to himself as he goes. Then he takes the dress off its dummy and retreats with it into the back of his shop. 'This will be [i]just[r] a moment,' he calls over his shoulder.[paragraph break]You look at Pieter and shrug.[paragraph break]'Er, I'll wait outside,' he says.[paragraph break]And afterwards, as you look at yourself in the full-length mirror while the clothier kneels at your feet, tugging, plucking, pinning, making adjustments, you realize that he was right — you [i]do[r] look like a princess.";
+	say "After several agonizing minutes of indecision, you point to the dress you want, and hand over several coins.[paragraph break]The clothier flutters his hands and practically giggles, 'Oh, a [i]splendid[r] choice! You'll look like a princess!' He dances around you, taking measurements with his cord and muttering numbers to himself as he goes. Then he takes the dress off its dummy and retreats with it into the back of his shop. 'This will be [i]just[r] a moment,' he calls over his shoulder.[paragraph break]You look at Pieter and shrug.[paragraph break]'Er, I'll wait outside,' he says.[paragraph break]And afterwards, as you look at yourself in the full-length mirror while the clothier kneels at your feet, tugging, plucking, pinning, making adjustments, you realize that he was right — you [i]do[r] look like a princess.";
 	update the character list;
 
 Chapter 6 - Conversation
@@ -5453,13 +5480,13 @@ CB1 is a quip. The display text is "A moment after you enter, two faces suddenly
 
 CB2 is a quip. The menu text is "'I have a question.'". The display text is "'I have a question,' you tell the two brothers.[paragraph break]They nod in perfect, synchronized unison. 'Allow us to answer...' says one.[paragraph break]'...to the best of our ability,' finishes the other."
 
-CB3 is a transitional quip. The menu text is "'I need a loan.'". The display text is "'I, er... I need a loan,' you say, not at all sure how this sort of business is conducted. 'You know, money.'" The following quip of CB3 is CB4.
+CB3 is a transitional quip. The menu text is "'I need a loan.'". The display text is "[one of]'I, er... I need a loan,' you say, not at all sure how this sort of business is conducted. 'You know, money.'[or]'I need a loan,' you say again.[stopping]". The following quip of CB3 is CB4.
 
 CB4 is a quip. The display text is "[first time]A pair of condescending smiles, perfectly identical and simultaneous, appear on the brothers['] faces.[paragraph break]'My dear,' begins one, 'you certainly [i]look[r] respectable, but without...'[paragraph break]'...some form of credentials...' adds the other.[paragraph break]'...our hands are tied,' finishes the first.[subsequently]'Like we said,' they say, 'you need credentials.'[only]"
 
 CB5 is a quip. The menu text is "'What kind of credentials do you need?'". The display text is "[first time]'What counts as credentials?' you ask. 'What do you need to see?'[paragraph break]'Ah, well then,' says one, 'some form of collateral perhaps, or someone to act as surety...'[paragraph break]'...even a letter, establishing your social standing. In short, anything that...'[paragraph break]'...would help assure us that we were making...'[paragraph break]'...a sound [i]investment[r].'[subsequently]'As we told you before,' they say, 'there are many different sorts. But a letter would be most ideal.'[only]"
 
-CB6 is a quip. The display text is "The two brothers lean forward eagerly, as though they've been waiting for you to ask.[paragraph break]'We would be [i]delighted[r] to extend to you...'[paragraph break]'...our most prestigious line of credit!'[paragraph break]Over the next few minutes they hand you dozens of sheets of paper covered in dense, tiny script, full of bizarre words like [i]amortization[r], [i]compound interest[r], and [i]escrow[r]. Pieter tries to read some of it, with his brow furrowed up and his lips moving slightly; eventually he shakes his head and mutters, 'Just sign all of them.' You dutifully write your name where the brothers show you.[paragraph break]After it's all done, they sweep all the papers into a slim leather folder, and place a small purse of coins on the counter. 'That's [i]it?[r]' complains Pieter, but when you tug open the drawstring, you see the sunlight gleam of gold.[paragraph break]'When you have secured your position, please remember us...' says one brother.[paragraph break]'...not merely as your creditors...'[paragraph break]'...but as your [i]friends[r].'[paragraph break]And both brothers smile in unison, revealing two sets of wide, white teeth."
+CB6 is a quip. The display text is "The two brothers lean forward eagerly, as though they've been waiting for you to ask.[paragraph break]'We would be [i]delighted[r] to extend to you...'[paragraph break]'...our most prestigious line of credit!'[paragraph break]Over the next few minutes they hand you dozens of sheets of paper covered in dense, tiny script, full of bizarre words like [i]amortization[r], [i]dividends[r], [i]compound interest[r], [i]escrow[r]. Pieter tries to read some of it, with his brow furrowed up and his lips moving slightly; eventually he shakes his head and mutters, 'Just sign all of them.' You dutifully write your name where the brothers show you.[paragraph break]After it's all done, they sweep all the papers into a slim leather folder, and place a small purse of coins on the counter. 'That's [i]it?[r]' complains Pieter, but when you tug open the drawstring, you see the sunlight gleam of gold.[paragraph break]'When you have secured your position, please remember us...' says one brother.[paragraph break]'...not merely as your creditors...'[paragraph break]'...but as your [i]friends[r].'[paragraph break]And both brothers smile in unison, revealing two sets of wide, white teeth."
 
 CB7 is a quip. The menu text is "'What was Fossville doing here yesterday?'". The display text is "[first time]Suddenly you remember running into Baron Fossville — literally — yesterday morning. 'I saw Baron Fossville leaving here yesterday,' you mention casually. 'He seemed pretty upset. Was there some problem with [i]his[r] credentials?'[paragraph break]One of the brothers makes a show of inspecting his fingernails while the other clears his throat. 'We have the utmost...' one of them begins.[paragraph break]'...[no line break][i]respect[r] for Baron Fossville,' continues the other. 'However, he presents certain...'[paragraph break]'...[no line break][i]liabilities[r]. Let us leave it at that.'[subsequently]They shake their heads. 'We're afraid it would not be proper for us to discuss our other clients['] financial matters.'[only]"
 
@@ -5777,6 +5804,8 @@ Chapter 1 - Description
 
 The Hallway is a room. The description is "The main hallway runs through the center of Maiden House, with several doorways leading to rooms on either side. To the southeast and southwest are the laundry and privy, respectively; to the northeast lies the kitchen; and to the northwest is the dormitory where you and the other orphans sleep."
 
+West of the hallway is nowhere. East of the hallway is nowhere.
+
 Understand "main", "center", "Maiden", "House", "hall", "corridor", "passage", "passageway" as the Hallway.
 
 The distant description of the Hallway is "The main hallway lies just to the [quick best route from the location to the Hallway]."
@@ -5821,6 +5850,15 @@ Instead of kissing Widow Theresa:
 
 Instead of attacking or kicking Widow Theresa:
 	say "As much as you'd love to, that would only compound your problems.";
+
+Instead of opening the wooden door when in the hallway and Widow Theresa is in the hallway:
+	say "'Don't trouble yourself, Jacqueline,' sneers Widow Theresa. 'It's after curfew, and the door will stay locked.'";
+
+Rule for implicitly opening the wooden door when in the hallway and Widow Theresa is in the hallway:
+	try opening the wooden door;
+
+An unlocking rule for the wooden door when in the hallway and Bobby's Adventure has not happened:
+	say "It's no use. Widow Theresa keeps the only key, and in fourteen years you've never managed to steal it from her.";
 
 Section 2 - Conversation
 
@@ -5912,6 +5950,8 @@ Chapter 1 - Description
 
 The Dormitory is northwest of the Hallway. "A long room lined with rough bunks, where the children sleep and, if they are too young to run about the city on their own, play. The main hallway lies southeast."
 
+East of the dormitory is the hallway.
+
 Understand "dorm", "dormitories", "dorms" as the dormitory. The distant description of the dormitory is "The dormitory is northwest of here."
 
 Before going when in the dormitory:
@@ -5932,7 +5972,10 @@ A bunk bed is a supporter, scenery, enterable, in the dormitory. The printed nam
 Instead of sleeping in the presence of the bunk bed when the player is not on the bunk bed:
 	try entering the bunk bed;
 
-First instead of entering the bunk bed when Widow Theresa is in the Hallway:
+Instead of going by name to the bunk bed when in the dormitory [ie > GO TO BED]:
+	try sleeping;
+
+First instead of boarding when the noun is the bunk bed and Widow Theresa is in the Hallway:
 	say "Grumbling, you climb into your bunk and make yourself as comfortable as you can on the lumpy mattress. The other children eventually lie down and fall quiet, and Widow Fiona stops in to blow out the light. Soon all you can hear are the soft snores of children and the occasional creaking of a floorboard. You are determined to keep your eyes open until you are sure Theresa has left the hallway, but soon your muscles, tense from the day's chase, are unknotting... your breath is coming slower, heavier...[paragraph break]You snap awake, heart pounding. How long were you asleep? It seems like it couldn't have been that long, but the thought of missing your rendez-vous with Bobby is agonizing.[paragraph break]As quietly as you can, you slip out of bed.";
 	remove Widow Theresa from play;
 	remove Widow Shannon from play;
@@ -5962,7 +6005,7 @@ Chapter 4 - Other orphans
 Some orphans are a person in the Dormitory. The orphans can be asleep or awake. The orphans are awake. Understand "orphan", "child", "children", "childish", "kids", "kid", "urchins", "urchin", "young", "younger", "boys", "girls", "boy", "girl" as the orphans. The description of the orphans is "The kids are mostly younger than you. Some of them you saw earlier with Bobby. They sit up in their beds, whispering secrets to each other, showing off the childish treasures they found during the day: pebbles, pennies, bits of string. It almost makes you wish you could be that young again. Your life was so much less complicated then." The initial appearance of the orphans is "Most of the other orphans are in here, playing and talking before bedtime."
 
 Instead of talking to the awake orphans:
-	say "You're not really in the mood for a chat. As you've gotten older, you find you have less in common with the other kids than you once did.";
+	say "You're not really in the mood for a chat. As you've gotten older, and the other kids your age have drifted away from the orphanage, you find you have little in common with the younger children.";
 
 Instead of talking to the asleep orphans:
 	try waking the orphans;
@@ -5979,6 +6022,8 @@ Chapter 1 - Description and scenery
 
 The Kitchen is northeast of the Hallway. "A low-ceilinged room with a fire pit at one end for cooking, a basin at the other end for washing, and rows upon rows of pots and pans hanging from the rafters. The long table at the side of the room is where the children take their meals. You can leave to the southwest."
 
+West of the dormitory is the hallway.
+
 Before going when in the kitchen:
 	if the noun is west or the noun is outside:
 		try going southwest instead;
@@ -5992,7 +6037,10 @@ The table is a supporter, and scenery, in the Kitchen. The description of the ta
 
 [ "The pots and pans are scenery, here" annoyingly gives us a pots object and a pans object.
 ]
-Some pans are scenery, in the Kitchen. The description of the pans is "Dozens of them, and you are familiar with each and every one. Scullery duty is not exactly your favorite day of the week." The printed name is "pots and pans". Understand "pots" as the pans.
+Some pans are scenery, in the Kitchen. The description of the pans is "Dozens of them, and you are familiar with each and every one. Scullery duty is not exactly your favorite day of the week." The printed name is "pots and pans". Understand "pots", "pot", "pan" as the pans.
+
+Instead of taking the pans:
+	say "You're not about to cook anything and they don't need cleaning, so you might as well leave the pots and pans alone.";
 
 The fire pit is scenery, in the Kitchen. The description of the fire pit is "The logs are down to glowing embers now." Understand "fireplace", "log", "logs", "ember", "embers" as the fire pit.
 
@@ -6011,9 +6059,9 @@ Section 1 - Basin and plates
 
 The basin is a container and scenery, in the Kitchen. The description is "The basin is filled with grayish, greasy water. It's not clear whether it's making the dishes more or less dirty."
 
-In the basin is some dishwater. It is fixed in place. Instead of examining the dishwater, try examining the basin instead. Understand "water" as the dishwater.
+In the basin is the dishwater. It is singular-named, fixed in place. Instead of examining the dishwater, try examining the basin instead. Understand "water" as the dishwater. The indefinite article of the dishwater is "some".
 
-Before drinking, taking, touching, or tasting the dishwater, say "No thanks; that stuff looks nasty." instead.
+Before drinking, taking, touching, searching, or tasting the dishwater, say "No thanks; that stuff looks nasty." instead.
 
 Some dishes are scenery, in the Kitchen. The description is "The kids did a number on them tonight. Fiona is about halfway through the stack." Understand "plate", "plates", "stack" and "stack of dishes/plates" as the dishes.
 
@@ -6205,8 +6253,10 @@ Chapter 1 - Description
 
 The Privy is southwest of the Hallway. "Not much more than a narrow closet, with a hole in the floor and a bench over it. At least it's more private than an alley."
 
+East of the privy is the hallway.
+
 Instead of going from the Hallway to the Privy when Widow Theresa is in the Hallway:
-	say "[one of]'Not so fast,' snaps Widow Theresa, blocking your path. 'Don't think I don't know what you're up to.'[paragraph break]'But I really have to go to the bathroom!' you protest, knowing that it would do no good even if it were true.[paragraph break]Theresa smirks. 'Then you can do it with the door open, while I stand and watch. No? Well then, I guess you can hold it until the morning. Until then, you're not going anywhere but to bed.'[or]It's no use; Widow Theresa is watching you like a hawk.[stopping]";
+	say "[one of]'Not so fast,' snaps Widow Theresa, blocking your path. 'Don't think I don't know what you're up to.'[paragraph break]'But I really have to go to the bathroom!' you protest, knowing that it would do no good even if it were true.[paragraph break]Theresa smirks. 'Then you can do it with the door open, while I stand and watch. No? Well then, I guess you can hold it until the morning. Until then, you're not going anywhere but to bed.'[or]It's no use; Widow Theresa is watching you like a hawk. You'll probably have to wait until everyone goes to sleep before making your escape.[stopping]";
 
 Before going when in the privy:
 	if the noun is outside:
@@ -6244,6 +6294,9 @@ The bench is an enterable supporter, scenery, in the privy. The description is "
 
 Instead of looking under the bench:
 	try examining the hole;
+
+After standing on or entering the bench:
+	say "You get onto the bench. It wobbles under your feet, and you grab the window sill to steady yourself.";
 
 Instead of sitting on the bench:
 	say "You don't feel the urge right now.";
@@ -6287,7 +6340,7 @@ Before going through the privy window when in the privy:
 	end if;
 
 After going through the privy window from the privy when Leaving Maiden House has not happened:
-	say "[first time]You sneak a furtive glance back at the hallway, then step up onto the bench. It wobbles under your feet, and you grab the window sill to steady yourself.[paragraph break]Then, holding your breath to keep from making a sound, you pull yourself up and through. The window is at ground level outside, and you wriggle out onto the slick cobblestones.[paragraph break]You're free! Of course, the widows will find out you're gone soon enough — Maiden House is not a very big place, after all. But you've snuck out before, and they know you can take care of yourself. At worst, you'll pull extra laundry duty for a few days.[only]";
+	say "[first time]You sneak a furtive glance back at the hallway[if the player was not on the bench], then step up onto the bench. It wobbles under your feet, and you grab the window sill to steady yourself.[paragraph break]Then,[otherwise], then,[end if] holding your breath to keep from making a sound, you pull yourself up and through. The window is at ground level outside, and you wriggle out onto the slick cobblestones.[paragraph break]You're free! Of course, the widows will find out you're gone soon enough — Maiden House is not a very big place, after all. But you've snuck out before, and they know you can take care of yourself. At worst, you'll pull extra laundry duty for a few days.[only]";
 	select theme "EmptyGrubbers";
 	continue the action;
 
@@ -6296,6 +6349,8 @@ Part 7 - Laundry
 Chapter 1 - Description and scenery
 
 The Laundry is southeast of the Hallway. "The air in here is filled with steam and the sharp stink of lye soap. Moisture trickles down the walls, and puddles of water splash underfoot. The main hallway lies northwest."
+
+West of the laundry is the hallway.
 
 Before going when in the laundry:
 	if the noun is outside:
@@ -6364,7 +6419,7 @@ Widow Shannon is a woman, in the Laundry. The initial appearance is "[if Raid on
 
 Understand "maiden", "woman" as Widow Shannon.
 
-The description is "[if Shannon's Company has happened]Shannon is the youngest of the widows in Maiden House. She is plain-looking, and you've always thought of her as not particularly bright... but she is resourceful and devoted, and your respect for her has grown. She seems energetic and happy to be on this adventure with you.[otherwise if Raid on Maiden House has happened]Although Shannon's face is pale, there is a look of resolve in her features that you have never seen there before. This is her protective side: she will not let anyone — not Fossville, not his armed thugs — harm one of [i]her[r] children.[otherwise]Shannon is the youngest of the widows in Maiden House. She is plain-looking, and none too bright, and, to all appearances, utterly uninterested in ever remarrying, which is perhaps just as well. She devotes herself to the children, particularly the toddlers, and does most of the cleaning and cooking for Maiden House.[end if]"
+The description is "[if Shannon's Company has happened]Shannon is the youngest of the widows in Maiden House. She is plain-looking, and you've always thought of her as not particularly bright... but she is resourceful and devoted, and your respect for her has grown. She seems energetic and happy to be on this adventure with you.[otherwise if Raid on Maiden House has happened]Although Shannon's face is pale, there is a look of resolve in her features that you have never seen there before. This is her protective side: she will not let anyone — not Fossville, not his armed thugs — harm one of [i]her[r] children.[otherwise]Shannon is the youngest of the widows in Maiden House. She is plain-looking, none too bright, and, to all appearances, utterly uninterested in ever remarrying, which is perhaps just as well. She devotes herself to the children, particularly the toddlers, and does most of the cleaning and cooking for Maiden House.[end if]"
 
 Instead of kissing Widow Shannon:
 	if Raid on Maiden House has not happened, say "Widow Shannon laughs as you give her a hug and a kiss on the cheek. 'Thank you, Jacqueline,' she says. 'I'd return it, but my hands are full of soapsuds!'";
@@ -6839,6 +6894,9 @@ Instead of going nowhere when in the Woods:
 	otherwise:
 		continue the action;
 
+Instead of searching or examining the trees in the presence of Pieter when the split sapling is off-stage:
+	try searching the underbrush.
+
 Section 2 - Scenery (Game Trails)
 
 Some game trails are scenery, in the Woods. The description is "The trails are little more than narrow gaps in the underbrush, leading in every which direction[if the split sapling is in the location]. One trail leads [way of the split sapling], past a split sapling[end if]." Understand "trail", "path", "paths", "gap", "gaps", "narrow", "track", "tracks" as the game trails.
@@ -7006,7 +7064,7 @@ Section 1 - On the way there
 After looking in the Clearing for the first time during Creeping to Lord's Keep:
 	select theme "Fountain";
 	open the secret entrance;
-	say "'Here we are.' Bobby jumps up into the bowl of the fountain, dried leaves crackling beneath his boots. Then he reaches around the statue of Brigid as though trying to embrace her. His hands fumble at something on the underside of the urn.[paragraph break]Suddenly there is a deep, solid [i]thunk[r] and a scraping sound, and part of the base of the statue moves.[paragraph break]Bobby hops down and pushes against the statue's base. A rectangle of stone about two feet square swings inward. The space behind it is utterly black, and a cold draft of damp-smelling air rises out of it.[paragraph break]'It runs all the way to Lord's Keep,' says Bobby as he brushes off his hands. 'I don't think anyone knows about it. Maybe Lord Toresal did, but now that he's dead it's basically unknown. It's not been used for decades, I'd guess. Well anyway, until now.'[paragraph break]He holds out his hand. His lop-sided smile is absolutely charming. 'After you, kind sir.'";
+	say "'Here we are.' Bobby jumps up into the bowl of the fountain, dried leaves crackling beneath his boots. Then he reaches around the statue of Brigid as though trying to embrace her. His hands fumble at something on the underside of the urn.[paragraph break]Suddenly there is a deep, solid [i]thunk[r] and a scraping sound, and part of the base of the statue moves.[paragraph break]Bobby hops down and pushes against the statue's base. A rectangle of stone about two feet square swings inward. The space behind it is utterly black, and a cold draft of damp-smelling air rises out of it.[paragraph break]'It runs all the way to Lord's Keep,' says Bobby as he brushes off his hands. 'I don't think anyone knows about it. Maybe the old Duke did, but now that he's dead it's basically unknown. It's not been used for decades, I'd guess. Well anyway, until now.'[paragraph break]He holds out his hand. His lop-sided smile is absolutely charming. 'After you, kind sir.'";
 	move Bobby to the location;
 	update the character list;
 
@@ -7133,6 +7191,7 @@ After going to the secret passage from the Chapel when Bobby is on-stage during 
 	move Bobby to the location;
 	update the character list;
 	now the blank stone wall is closed;
+	ratchet the current tension to important;
 	say "Bobby reaches back and pulls the secret door shut, carefully easing it the last few inches so that it doesn't slam. He puts the loose brick back in its place, just as before, and tugs his torch free of the bracket where he'd left it.[paragraph break][i]We're out[r], you realize with a sense of overwhelming relief. [i]We made it. It's like we were never here.[no line break][r][paragraph break]'Some adventure, eh, Jack?' laughs Bobby. His voice is disturbingly loud after the long minutes of terrified silence in the keep. 'Eavesdropping on the Lord's own guardsmen! That's a story that'll have the little ones wide-eyed at the Maiden House, eh?' He claps you on the back, and you manage a smile. It was fun, and you want Bobby to think you had fun, but it will be a while before you feel up to something that dangerous again."
 
 After going south from the secret passage when Bobby is off-stage during Returning From Lord's Keep:
@@ -7207,6 +7266,7 @@ After searching the rectangular hole:
 	end if.
 
 Understand "loose" as the brick when the rectangular hole contains the brick.
+
 The description of the brick is "[if the rectangular hole contains the brick]The brick is loose here.[otherwise]You see nothing special about the brick.[end if]"
 
 Instead of pulling the brick when the brick was in the rectangular hole:
@@ -7218,6 +7278,12 @@ After taking the brick when the brick was contained by the rectangular hole:
 
 Instead of inserting something into the rectangular hole when the noun is not the brick:
 	say "You can't quite fit [the noun] into the hole; it keeps bumping into something back in there.";
+
+Instead of pushing the brick when the brick is in the rectangular hole:
+	say "The brick does not push in. You might be able to pull it out, though.";
+
+Instead of turning the brick when the brick is in the rectangular hole:
+	say "The brick does not turn. You might be able to pull it out, though.";
 
 After inserting the brick into the rectangular hole:
 	conceal the lever;
@@ -7509,10 +7575,19 @@ After assembling during Returning From Lord's Keep:
 	if Bobby is on-stage,
 		add Bobby to the roster of available characters, if absent;
 
-Every turn during Returning From Lord's Keep:
-	if Bobby is on-stage,
+Every turn when the player is on the move during Returning From Lord's Keep:
+	if Bobby is on-stage and the current tension is at most unimportant:
+		say "Bobby [one of]follows you[or]comes along quietly[or]quickly brings up the rear[or]follows right behind you[at random].";
 		move Bobby to the location;
 	continue the action;
+
+Instead of following Bobby when the player can see Bobby during Returning from Lord's Keep:
+	if the table of overheard guardhouse conversation is empty:
+		say "Bobby motions for you to go first, pointing." instead;
+	continue the action;
+
+Instead of following Bobby when the location is Underneath the Fountain during Returning from Lord's Keep:
+	try going up;
 
 Book 6 - Jail
 
@@ -7870,9 +7945,9 @@ To say initial appearance of Jacobs:
 		if JA8 is fired:
 			say "Jacobs sits in the corner, apparently in a deep sulk. ";
 		otherwise:
-			say "[if improper-named]A hulking shape squats in the corner,[otherwise]Jacobs stands[end if] staring at you with bloodshot eyes. ";
+			say "[if improper-named]A hulking shape squats in the corner, staring at you with bloodshot eyes[otherwise]Jacobs stands nearby[end if]. ";
 	otherwise:
-		say "Jacobs stands staring at you with bloodshot eyes. ";
+		say "Jacobs stands nearby. ";
 
 Instead of doing something other than examining or talking to the prisoner:
 	say "He looks way too scary to mess with.";
@@ -8170,7 +8245,7 @@ The piece of wire is a thing. Understand "lockpick", "lock pick", "pick", "bit",
 [ A procedural rule during Picking a Lock:
 	ignore the can't take people's possessions rule; [ because we have to take the wire off of Jacobs ] ]
 
-Understand "unlock [something]" as unlocking it with;
+[ Understand "unlock [something]" as unlocking it with; ]
 
 Rule for supplying a missing second noun while unlocking something with when the player can see the piece of wire:
 	say "(with [the piece of wire])[command clarification break]";
@@ -8181,7 +8256,10 @@ Instead of giving or showing the piece of wire to the prisoner when in jail-cell
 
 Section 7 - Successful lock-picking
 
-First unlocking rule for cell-door-1:
+An unlocking rule for cell-door-1 when the player has the piece of wire:
+	rule succeeds with result the piece of wire;
+
+An unlocking rule for cell-door-1:
 	rule fails;
 
 After unlocking cell-door-1 with the wire during Picking A Lock:
@@ -8240,7 +8318,7 @@ OL4 is a quip. The menu text is "'All right, I'll let you out.'". The display te
 
 OL5 is a quip. The menu text is "'Who are you?'". The display text is "Through the viewing window, you eye the red-faced man warily. To tell the truth, he doesn't inspire much more confidence than Jacobs did. 'Who are you?' you ask. 'What's your name?'[paragraph break]'Please forgive me, miss,' he wheezes. 'I am called Olmer, and this is my associate, Darrens.' The skinny man standing behind him smiles and nods enthusiastically."
 
-OL6 is a quip. The menu text is "'Why doesn't your friend talk?'". The display text is "[first time]You nod towards the red-faced man's skinny friend. 'The tall one,' you ask, 'why doesn't he ever talk?'[paragraph break]'Oh, Darrens wasn't always a mute,' Olmer explains. 'One o['] the Lord's Guard caught him nickin['] from the fruit stall in Grubber's a few years back. Kicked him in the head [']til the blood came out his ears, and his eyes stayed crossed for near on a week. He's never been quite right since.'[paragraph break]Darrens nods sadly.[subsequently][rp] 'he's mute.'[only]"
+OL6 is a quip. The menu text is "'Why doesn't your friend talk?'". The display text is "[first time]You nod towards the red-faced man's skinny friend. 'The tall one,' you ask, 'why doesn't he ever talk?'[paragraph break]'Oh, Darrens wasn't always a mute,' Olmer explains. 'One o['] the Lord's Guard caught him nickin['] from the fruit stall in Grubber's a few years back. Kicked him in the head [']til the blood came out his ears. His eyes stayed crossed for near on a week, and he's never been quite right since.'[paragraph break]Darrens nods sadly.[subsequently][rp] 'he's mute.'[only]"
 
 OL7 is a quip. The menu text is "'What are you doing in prison?'". The display text is "[first time]'What did you do to end up in prison?' you ask.[paragraph break]'Oh, nothin['] worse than the Lord's Guard gets up to themselves on payday,' wheezes Olmer. 'A weakness for the drink is our curse. Every now and again the Goddesses see fit to bless me with an opportunity to learn from my shameful mistakes.' He gives you a wide, gap-toothed grin.[subsequently][rp] 'we had the misfortune to be drunk in the vicinity of a Guardsman.'[only]"
 
@@ -8526,7 +8604,7 @@ Instead of following a glyph: try going the way of the noun.
 
 Section 3 - Collective Glyphs
 
-Some painted symbols are in the Sewer. "Painted on the walls are a number of odd symbols." The description is "The symbols are a number of crude shapes, no bigger than your hand. Each one is painted on the wall next to one of the side tunnels, as if to mark the way. [Glyph report]". Understand "odd", "strange", "paint", "shapes", "glyphs" as the painted symbols.
+Some painted symbols are in the Sewer. "Painted on the walls are a number of odd symbols." The description is "[first time]The symbols are a number of crude shapes, no bigger than your hand. Each one is painted on the wall next to one of the side tunnels, as if to mark the way. [only][Glyph report]". Understand "odd", "strange", "paint", "shapes", "glyphs" as the painted symbols.
 
 Listing the names of glyphs is an activity.
 
@@ -9025,6 +9103,10 @@ A harp is a musical instrument, on the small wooden platform. "A harp stands on 
 The description is "It's a beautiful instrument, and huge, taller than you are. The frame and soundboard are carved of rich, dark kielwood; the strings shine copper in the dim light."
 
 Section 3 - Actions
+
+Understand "pluck [harp]" as improvising on.
+Understand "twang [harp]" as improvising on.
+Understand "strum [harp]" as improvising on.
 
 Instead of improvising on the harp:
 	say "[one of]Though you long to hear it play a note, you can't quite bring yourself to pluck the strings. What if someone hears you?[or]Well, maybe if you do it very softly... you swallow the lump in your throat and brush the strings lightly with your fingers. A cascade of crystal-clear notes wafts through the room. The sound lasts for only a few moments before fading away, and you could barely hear it over the thudding of your heart, but it was very beautiful.[or]No way. You've pushed your luck enough already.[stopping]";
@@ -9993,7 +10075,7 @@ Part 2 - Foyer
 
 Chapter 1 - Description
 
-The Foyer [of Red Gate Estate] is north of Red Gate Estate. "The entrance hall is large, high-ceilinged, and empty but for a few chairs. Your footsteps echo on the marble floor. A doorway leads north into a large hall, and the street lies south." The printed name is "Entrance Hall".
+The Foyer [of Red Gate Estate] is north of Red Gate Estate. "The entrance hall is large, high-ceilinged, and empty. A doorway leads north into a large hall, and the street lies south." The printed name is "Entrance Hall".
 
 Understand "entrance", "hall", "large", "high", "ceiling", "ceilinged", "empty", "echoing", "marble", "shadow", "shadows", "shadowed", "interior" as the Foyer.
 
@@ -10026,7 +10108,7 @@ First after going through Red Gate Estate:
 
 Every turn when the location is the Foyer for the first time:
 	if the player is on the move,
-		say "The house is eerie in its stillness. The walls are bare; and all the furniture is draped in white sheets.";
+		say "The house is eerie in its stillness. The walls are bare; your footsteps echo on the marble floors.";
 
 Instead of going south from the Foyer when the player is still dirty:
 	say "'Wait,' says Shannon. 'Are you sure you've found everything you were meant to find here?'";
@@ -10166,6 +10248,10 @@ Instead of attacking the old furniture when the pile of broken wood is on-stage 
 
 The pile of broken wood is a thing. The description is "Just a bundle of sticks — that used to be a nice chair."
 
+Does the player mean doing something with the pile of broken wood: it is very likely.
+
+Understand "fire wood", "firewood", "bundle", "bundle of", "sticks", "sticks of" as the pile of broken wood.
+
 Instead of inserting the pile of broken wood into the furnace:
 	remove the pile of broken wood from play;
 	now the roaring fire is in the furnace;
@@ -10269,7 +10355,7 @@ Some collected documents are in the wooden box. Understand "legal", "document", 
 
 Understand "letters" as the collected documents when the old love letters are not in the wooden box.
 
-The description of the collected documents is "Some of them are legal documents indicating the disposition of the old Lord's estate. There are also financial records of the city's Treasury, details of various funds and improvements he planned to implement before he died. There are letters from noblemen and noblewomen from every corner of Miradania, addressing the Duke in terms of the utmost deference and respect.[paragraph break][first time][i]My father was a great and powerful man,[r] you realize, skimming over the letters. [i]People thought very highly of him.[r][paragraph break][only]At the bottom of the stack are several letters written on small, worn parchment[first time]. [description of old love letters][subsequently].[only]";
+The description of the collected documents is "Some of them are legal documents indicating the disposition of the old Lord's estate. There are also financial records of the city's Treasury, details of various funds and improvements he planned to implement before he died. There are letters from noblemen and noblewomen from every corner of Miradania, addressing the Duke in terms of the utmost deference and respect.[paragraph break]At the bottom of the stack are several letters written on small, worn parchment[first time]. [description of old love letters][subsequently].[only]";
 
 After printing the description of the collected documents:
 	move the old love letters to the wooden box;
@@ -10279,7 +10365,7 @@ Some old love letters are a thing.
 
 Understand "clumsy", "penmanship", "handwriting", "short", "scribbled", "small", "worn", "parchment" as the old love letters.
 
-The description of the old love letters is "The penmanship is clumsy, like the way yours looked when Fiona was first teaching you your letters. Each is short, no more than a few scribbled sentences:[paragraph break][i]My Lord. I had some time to myself in the garden and thought of you. I hope to see you again soon if your duties will let you get away. You can see I've not put my name to this like you asked but you know who it is. Your Love.[paragraph break]Dear Love. When will I see you again? Your duties keep you too long from me. But that is why I love you so, you are a good man who never forsakes his duty. Come see me soon. Your Love.[paragraph break]My precious Duke. I pressed Estelle with subtle questions but I am certain she knows nothing. I am discreet and would never give you cause to worry. Our secret is safe. Your Love.[no line break][r][first time][paragraph break]Your mother's words, you realize. Secret letters that she sent to your father, before you were born. He would have had no pictures of her, of course, nor any papers containing clues to her identity. These pieces of paper are all you will ever have of her.[only]"
+The description of the old love letters is "The penmanship is clumsy, like the way yours looked when Fiona was first teaching you your letters. Each is short, no more than a few scribbled sentences:[paragraph break][i]My Lord. I had some time to myself in the garden and thought of you. I hope to see you again soon if your duties will let you get away. You can see I've not put my name to this like you asked but you know who it is. Your Love.[paragraph break]Dear Love. When will I see you again? Your duties keep you too long from me. But that is why I love you so, you are a good man who never forsakes his duty. Come see me soon. Your Love.[paragraph break]My precious Duke. I pressed Estelle with subtle questions but I am certain she knows nothing. I am discreet and would never give you cause to worry. Our secret is safe. Your Love.[no line break][r][first time][paragraph break]Your mother's words, you realize. Secret letters that she sent to your father, before you were born. He would have had no pictures of her, of course, nor any documents containing clues to her identity. These pieces of paper are all you will ever have of her.[only]"
 
 Instead of taking something that is in the wooden box:
 	say "Better to leave them in the box for now. If you take them out, they could get scattered and lost.";
@@ -10833,6 +10919,10 @@ Instead of dropping the plain dagger:
 Instead of showing or giving the plain dagger to someone:
 	say "Best to keep it hidden for now.";
 
+Instead of inserting the dagger into the ball gown when the player is wearing the dagger:
+	[ > HIDE DAGGER IN DRESS ]
+	say "The dagger is already well hidden under your dress.";
+
 Instead of taking the plain dagger when the plain dagger is worn by the player:
 	try taking off the plain dagger;
 
@@ -11165,7 +11255,7 @@ JE5 is a quip. The display text is "He holds up a pudgy, ring-encrusted hand. 'D
 
 JE6 is a quip. The menu text is "'I thought you were a crook.'". The display text is "'I've heard you're a crook and a pirate,' you say, suspiciously. 'Why should I trust you?'[paragraph break]Jacob the Elder's face hardens. 'I'm a businessman,' he says loftily, 'with many diversified interests. Whatever else anyone may tell you is a pernicious lie. And I wouldn't turn you over to Fossville in any case because there's nothing in it for me. He will almost certainly find out about it soon enough without my help.'"
 
-JE7 is a quip. The menu text is "'Then what do you want?'". The display text is "'If you're not here to blow the whistle on me, then what do you want?' you ask.[paragraph break]Jacobs the Elder smiles and leans close to you, close enough that you can smell the spiced wine on his breath. 'The way I see it, you owe my son quite a favor,' he murmurs in your ear. 'The way I see it, you'll be owing many people favors before you're done. But if you're to start off well, you'll need to know who those people are.[paragraph break]'Over there for example, is the Queen,' Jacobs says, pointing across the room to a woman you can barely see for all the servants and courtiers pressed around her. 'She knows who you are, too. Best to not cross her path tonight, though I doubt you'll get close enough even if you try.'[paragraph break]He points out a beautiful young woman who seems to be deliberately ignoring the fact that you're staring at her. 'And there's her daughter, working the room,' he says. 'She's Fossville's quarry tonight, but every warm-blooded male with an ounce of ambition will be trying to woo her anyway.'[paragraph break]Slowly, Jacobs turns you full circle, pointing out notable guests as they come into view. 'The Duke and Duchess of Inhyron, in the Seven Lakes region. An old family, very influential. Insufferably snobbish, as well, but at least they liked your father. And there's the Baron and Baroness of Amhyron. You'll like them; they're a bit less formal, and less likely to hold your lack of upbringing against you. On the other hand, they are utterly beholden to the Inhyron Duchy. Then there's the Earl of Bresa,' Jacobs sighs. 'A merchant lord from the Kozar Delta. A foolish man with a purchased title. He has all the money in the world, but no power, because he is utterly indiscriminate in how he spends it.'[paragraph break]He turns back to you. 'Those are the players of the game in this room, and you will have to spar with all of them if you want to win.'"
+JE7 is a quip. The menu text is "'Then what do you want?'". The display text is "'If you're not here to blow the whistle on me, then what do you want?' you ask.[paragraph break]Jacobs the Elder smiles and leans close to you, close enough that you can smell the spiced wine on his breath. 'The way I see it, you owe my son quite a favor,' he murmurs in your ear. 'The way I see it, you'll be owing many people favors before you're done. But if you're to start off well, you'll need to know who those people are.[paragraph break]'Over there for example, is the Queen,' Jacobs says, pointing across the room to a woman you can barely see for all the servants and courtiers pressed around her. 'She knows who you are, too. Best to not cross her path tonight, though I doubt you'll get close enough even if you try.'[paragraph break]He points out a beautiful young woman who seems to be deliberately ignoring the fact that you're staring at her. 'And there's her daughter, working the room,' he says. 'She's Fossville's quarry tonight, but every warm-blooded male with an ounce of ambition will be trying to woo her anyway.'[paragraph break]Slowly, Jacobs turns you full circle, pointing out notable guests as they come into view. 'The Duke and Duchess of Inhyron, in the Seven Lakes region. An old family, very influential. Insufferably snobbish, as well, but at least they liked your father. And there's the Baron of Amhyron. You'll like him; he's a bit less formal, and less likely to hold your lack of upbringing against you. On the other hand, he is utterly beholden to the Inhyron Duchy. Then there's the Earl of Bresa,' Jacobs sighs. 'A merchant lord from the Kozar Delta. A foolish man with a purchased title. He has all the money in the world, but no power, because he is utterly indiscriminate in how he spends it.'[paragraph break]He turns back to you. 'Those are the players of the game in this room, and you will have to spar with all of them if you want to win.'"
 
 JE9 is a quip. The menu text is "'Why are you telling me this?'". The display text is "'I still don't understand,' you say. 'Why are you telling me this? Why are you helping me?'[paragraph break]Jacobs the Elder shrugs. 'I'll be frank,' he says, 'you're a long shot. I don't blame you for trying to capitalize on your father's legacy, but you must know that your chances of doing so successfully are next to zero. Still, I didn't get to be where I am today without laying a few coins down on the occasional dark horse. A bit of free advice is no skin off my nose, and maybe you'll remember it if, by some outside whim of the Goddesses, you actually get somewhere.'"
 
@@ -11907,6 +11997,9 @@ Instead of doing something when the player is tied up:
 [		say "[one of]Before you can move, the Baron makes a gesture, and you hear the creak of leather as the mercenaries loosen their blades in their sheaths. 'Ah, ah... no funny moves, now,' warns the Baron.[or]You hear the hiss of steel sliding out of its sheath, and suddenly someone is pushing the pointy end of a sword into your back. 'One more false move, and I'll have my men run you through,' says the Baron flatly.[or]Not wishing to be stabbed, you decide to remain still for the moment.[stopping]" instead;]
 	continue the action;
 
+Instead of doing something when the dagger is physically involved and the Skirmish has not happened during Confronting the Baron:
+	say "Fossville's eyes are on you constantly. He'd see you if you made a reach for the dagger.";
+
 Instead of taking off the plain dagger while the player is tied up:
 	say "You might [i]just[r] be able to reach your dagger if you stretched your fingers... but there's no way to do it without the Baron seeing you.";
 
@@ -11918,7 +12011,7 @@ FOSS1 is a scripted event. The display text is "'Poisoning your father, now [i]t
 
 FOSS2 is a scripted event. The display text is "Fossville smiles. 'But all that's done with now. Once I realized that you were being manipulated into making your [i]own[r] play for the throne—' He stops and glances at you. 'You [i]do[r] realize you're being manipulated, don't you? No one [i]really[r] thinks gutter-trash like you has a legitimate claim to the throne, no matter who your father was. Your [']backers['] are just using you as a pawn to further their own political ends. Where was I?' He pauses, scratching his chin. 'Ah, yes. Once I realized what you were up to, I knew you would show up here. And now this tiresome little game is nearly over, but for a few loose ends. I hope you can forgive my forwardness...' Fossville searches you with rough, undignified efficiency, and quickly finds your father's letter in a fold of your gown. He yanks the parchment free with a short, triumphant laugh.[paragraph break][i]He didn't find the dagger[r], you think. [i]I still have that[r]."
 
-FOSS5 is a scripted event. The display text is "Fossville holds the letter up to the light, shaking his head slightly as he reads the old words. 'Such a nuisance,' he mutters. 'I can hardly believe it was under my nose all these years, and I never found it. Well, let it be a lesson.' And without another word, he walks over to the fireplace and tosses the letter in.[paragraph break]The dry parchment catches instantly, flares up — and it's gone. Your history, your heritage, your one shot at a world beyond the crumbling orphanage and the back alleys of the city — your [i]life[r] — gone in a flash and a swirl of ashes up the chimney. The shock of it hits you like a punch in the gut.[paragraph break]Fossville draws his sword and admires its blade, glowing in the firelight. He smiles as he approaches you, raising his weapon. 'And now there's just one last — eh?' He stops, looks to the door.[paragraph break]You can hear shouting outside, the sound of metal ringing on metal."
+FOSS5 is a scripted event. The display text is "Fossville holds the letter up to the light, shaking his head slightly as he reads the old words. 'Such a nuisance,' he mutters. 'Very clever of you to find it, by the way. Never hide what you should have just destroyed in the first place. Well, let it be a lesson.' And without another word, he walks over to the fireplace and tosses the letter in.[paragraph break]The dry parchment catches instantly, flares up — and it's gone. Your history, your heritage, your one shot at a world beyond the crumbling orphanage and the back alleys of the city — your [i]life[r] — gone in a flash and a swirl of ashes up the chimney. The shock of it hits you like a punch in the gut.[paragraph break]Fossville draws his sword and admires its blade, glowing in the firelight. He smiles as he approaches you, raising his weapon. 'And now there's just one last — eh?' He stops, looks to the door.[paragraph break]You can hear shouting outside, the sound of metal ringing on metal."
 
 FOSS6 is a scripted event. The display text is "Suddenly the door bursts open — a mercenary staggers backwards into the room, crashes into the table — men rush in, shouting, swords flashing —[paragraph break]Your breath catches in your throat.[paragraph break][i]It's Bobby![paragraph break][r]'Sit tight, Jack! Everything's going to be all right!' he shouts, slamming his fist into a mercenary's face. He flashes you that devil-may-care grin of his before slashing his way into the room, making a beeline for Baron Fossville."
 
@@ -11962,12 +12055,12 @@ The fighting is scenery. The description is "The battle rages everywhere, in the
 Before going a direction in the War Room during the Skirmish:
 	say "The hallway is filled with men fighting, Bobby's reinforcements against the Baron's mercenaries. Both sides are so intent on hacking each other to pieces, you'd never get through. [if Pieter is caught]Besides, you can't leave Pieter tied up![end if]" instead;
 
-Instead of attacking Baron Fossville during the Skirmish:
+Instead of attacking Baron Fossville when the player is not tied up during the Skirmish:
 	if the player carries the plain dagger:
 		try attacking Baron Fossville with the plain dagger instead;
 	continue the action;
 
-Instead of attacking Baron Fossville with the plain dagger during the Skirmish:
+Instead of attacking Baron Fossville with the plain dagger when the player is not tied up during the Skirmish:
 	change the current script to { }; [ thus ending the scene ]
 	remove Bobby from play;
 	remove Baron Fossville from play;
@@ -12018,7 +12111,7 @@ Rule for firing unfired TRIG_PIETER_KICKS_DAGGER:
 	say "Suddenly, over the noise of the battle, you hear someone frantically grunting. It's Pieter! Though bound even more tightly than you, he manages to scoot across the floor and kick the dagger in your direction. You feel the cold steel of the blade thump against your fingers. The dagger is in your hand!";
 	now the player carries the plain dagger;
 
-Instead of cutting the rough ropes with the plain dagger during the Skirmish:
+Instead of cutting the rough ropes with the plain dagger when the player does not wear the plain dagger during the Skirmish:
 	say "You flip the dagger around and start working it back and forth across the ropes binding your wrist to the arm of the chair. It seems to take forever, and your fingers are almost numb from the constant tightness of the ropes... then, with a snap, the rope falls away. Feeling rushes back into your hand, and you make quick work of the rest of your bonds. You're free!";
 	remove the rough ropes from play;
 	move the player to the War Room, without printing a room description;
@@ -12095,7 +12188,14 @@ Understand "frayed", "fraying" as the knotted ropes when Pieter is not caught.
 When the skirmish ends:
 	select theme "Kidnapped";
 	say "At that moment, there is a sudden [i]crack[r] and a rumbling, and a cold draft rushes into the room, tugging at the flames in the fireplace and throwing the room into wildly pitching shadow.[paragraph break]Behind you, the map wall has opened to reveal a dark, cavernous passageway, and [i]more[r] men are rushing out — men dressed all in black, with dark hoods and scarves hiding their faces.[paragraph break]'That's her! Get her!' cries a voice. A young woman's voice. A voice you've heard before.[paragraph break]It happens so fast. Hands are on you, [if the player is tied up]cutting you loose from the chair, [end if]lifting you off your feet, [if the player is not tied up and the player has the dagger]wresting the dagger from your grasp, [end if]pulling you back into that dark, dark tunnel. The firelight falls away, shrinks down to a flickering, orange rectangle. The rumbling starts again, and the rectangle grows narrower, narrower...[paragraph break]'Don't worry,' says the voice. 'We're not going to, like, [i]hurt[r] you.'[paragraph break]And then everything is black.";
-	end the game saying "To be continued";
+	end the game in victory;
+
+Rule for printing the player's obituary when the game ended in death:
+	say "    [b]*** Your adventure is over ***[r][paragraph break]";
+
+Rule for printing the player's obituary when the game ended in victory:
+	say "    [b]*** To be continued ***[r][paragraph break]";
+	say "Stay tricky! Jacqueline Toresal's adventures will continue in [i]The Miradania Chronicles, Part 2: Jacqueline Toresal and the Trials of the Vedd![r]";
 
 Book W - Bits and pieces
 
