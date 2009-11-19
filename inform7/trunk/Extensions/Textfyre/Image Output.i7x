@@ -9,6 +9,11 @@ The image currently being displayed is a text that varies.
 The image-changing rules are a rulebook. The image-changing rules have default success.
 
 To update the current image:
+	do nothing;
+
+Section (For use with FyreVM by Textfyre)
+
+To update the current image:
 	let the old image be the image currently being displayed;
 	consider the image-changing rulebook;
 	[if the image currently being displayed is not the old image or the restoring after undo activity is going on:]

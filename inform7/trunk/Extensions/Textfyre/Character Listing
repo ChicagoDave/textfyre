@@ -3,7 +3,6 @@ Version 1 of Character Listing by Textfyre begins here.
 Use authorial modesty.
 
 Include Quips by Textfyre.
-Include FyreVM Support by Textfyre.
 
 The roster of available characters is a list of objects [people] that varies.
 
@@ -14,6 +13,11 @@ Rule for assembling:
 	remove the player from the roster of available characters, if present;
 
 Character-listing is an activity. 
+
+To update the character list:
+	do nothing;
+
+Section 1 (For use with FyreVM Support by Textfyre)
 
 Rule for character-listing:
 	if XML is in use:

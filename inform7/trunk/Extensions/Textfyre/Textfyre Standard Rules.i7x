@@ -8,6 +8,8 @@ Include Pronouns by Textfyre.
 
 Volume 1 - For universal use
 
+Section 1 (For Glulx only)
+
 Use DICT_WORD_SIZE of 16.
 
 Book 1 - Definitions
@@ -189,13 +191,22 @@ Part 1 - Clothing
 Does the player mean taking off something worn by the player (this is the very likely to mean taking off worn things rule):
 	it is very likely;
 
-Does the player mean wearing something worn by the player (this is the very unlikely to mean wearing worn things rule):
+Does the player mean taking off something not worn by the player (this is the very unlikely to mean taking off unworn things rule):
 	it is very unlikely;
+
+Does the player mean removing something worn by the player from (this is the likely to mean removing worn things rule):
+	it is likely;
+
+Does the player mean removing something not worn by the player from (this is the unlikely to mean removing unworn things rule):
+	it is unlikely;
 
 Does the player mean wearing something wearable (this is the very likely to mean wearing wearable things rule):
 	it is very likely;
 
 Does the player mean wearing something not wearable (this is the very unlikely to mean wearing unwearable things rule):
+	it is very unlikely;
+
+Does the player mean wearing something worn by the player (this is the very unlikely to mean wearing worn things rule):
 	it is very unlikely;
 
 Part 2 - Food and drink
@@ -358,6 +369,8 @@ Standing on is an action applying to one thing.
 Sitting on is an action applying to one thing.
 Lying on is an action applying to one thing.
 
+Entering a supporter is boarding. Standing on something is boarding. Sitting on something is boarding. Lying on something is boarding.
+
 Understand the command "get" as something new.
 Understand "get out/off/up" as exiting.
 Understand "get [things]" as taking.
@@ -368,7 +381,7 @@ Understand "get off [something]" as getting off.
 Understand "get [things inside] from [something]" as removing it from.
 
 Understand the command "stand" as something new.
-Understand "stand" or "stand up" as exiting.
+Understand "stand" or "stand up" as exiting when the player is on a supporter.
 Understand "stand on [supporter]" as standing on.
 Understand "stand on/in [something]" as entering.
 
@@ -624,9 +637,9 @@ Definition: a thing is a lock:
 		yes;
 	no;
 
-Understand "unlock [something]" as unlocking it with;
-Understand "put [key thing] in/into [lock thing]" as unlocking it with (with nouns reversed);
-Understand "insert [key thing] in/into [lock thing]" as unlocking it with (with nouns reversed);
+Understand "unlock [something]" as unlocking it with.
+Understand "put [key thing] in/into [lock thing]" as unlocking it with (with nouns reversed).
+Understand "insert [key thing] in/into [lock thing]" as unlocking it with (with nouns reversed).
 
 Part 9 - Inserting and Removing
 
@@ -644,14 +657,14 @@ Understand "take [things] out of/from [something]" as removing it from.
 Understand "get [things] out of/from [something]" as removing it from.
 
 Rule for supplying a missing second noun when removing something from:
-	if something (called the enclosure) contains the noun:
+	if the player wears the noun:
+		change the second noun to the player;
+	otherwise if something (called the enclosure) contains the noun:
 		begin the clarifying the parser's choice activity with the enclosure;
 		if handling the clarifying the parser's choice activity with the enclosure:
 			say "(from [the enclosure])[command clarification break]";
 		end the clarifying the parser's choice activity with the enclosure;
 		change the second noun to the enclosure;
-	otherwise if the player wears the noun:
-		change the second noun to the player;
 	otherwise:
 		change the second noun to the holder of the noun;
 
@@ -823,6 +836,15 @@ Chapter 2 - HTMLesque Informese
 To say i -- running on: (- style underline; -);
 To say r -- running on: (- style roman; -);
 To say b -- running on: (- style bold; -);
+
+Chapter 3 - New ways of parsing commands as actions
+
+After reading a command:
+	let N be indexed text;
+	let N be the player's command; 
+	replace the regular expression "\btry to (.+)" in N with "\1", case insensitively; 
+	replace the regular expression "\buse (.+?) to (.+)" in N with "\2 with \1", case insensitively; 
+	change the text of the player's command to N. 
 
 Volume 2A (for use without Custom Library Messages by David Fisher)
 

@@ -5,7 +5,6 @@ Version 2 of Quips by Textfyre begins here.
 Use authorial modesty.
 
 Include Triggers by Textfyre.
-Include FyreVM Support by Textfyre.
 Include XML Output Toggling by Textfyre.
 
 Part 1 - Definitions
@@ -65,6 +64,8 @@ Terminating conversation with something is an activity.
 Rule for terminating conversation with a thing (called the former party):
 	if the current conversationalist is the former party: [it may well not be!]
 		now the current conversationalist is the player;
+
+Section 2 (For use with FyreVM Support by Textfyre)
 
 Last after terminating conversation with:
 	if the current conversationalist is the player: [it may well not be! the conversation may yet continue if the game has intervened.]
@@ -146,6 +147,12 @@ Chapter 2 - Viewing the menu
 
 Menu option number display is a truth state that varies.
 
+When play begins:
+	if XML is in use:
+		now menu option number display is false;
+	otherwise:
+		now menu option number display is true;
+
 Section 1 - The Game Action
 
 Viewing the menu is an action out of world applying to nothing.
@@ -174,7 +181,7 @@ Report viewing the menu:
 To display the menu:
 	carry out the displaying the menu activity;
 
-Section 2 - Menu display loop
+Section 2 (For use with FyreVM Support by Textfyre)
 
 First before displaying the menu rule:
 	select the conversation channel;
@@ -182,13 +189,6 @@ First before displaying the menu rule:
 Before displaying the menu when XML is in use:
 	if the current conversationalist is not the player or the number of entries in the current conversation is not 0:
 		say "<TopicList Character='[The Current Conversationalist]'>[line break]";
-
-Rule for displaying the menu:
-	change the menu option currently being displayed to 1;
-	repeat with X running through the current conversation begin;
-		carry out the printing the menu text activity with X;
-		increment the menu option currently being displayed by 1;
-	end repeat;
 
 Rule for displaying the menu when the current conversationalist is the player or the number of entries in the current conversation is 0:
 	if XML is in use:
@@ -201,10 +201,24 @@ After displaying the menu when XML is in use:
 The last after displaying the menu rule:
 	select the main channel;
 
-Section 3 - Menu option display
+Section 2 - For Universal use
+
+Rule for displaying the menu:
+	change the menu option currently being displayed to 1;
+	repeat with X running through the current conversation begin;
+		carry out the printing the menu text activity with X;
+		increment the menu option currently being displayed by 1;
+	end repeat;
+
+Section 3 - Menu option display (For use with FyreVM Support by Textfyre)
 
 First before printing the menu text of a quip when XML is in use:
 	say "<Topic ID='[the menu option currently being displayed]'>";
+
+After printing the menu text of a quip when XML is in use:
+	say "</Topic>";
+
+Section 4 - Menu option display (Universal)
 
 Before printing the menu text of a quip when menu option number display is true:
 	say "[the menu option currently being displayed]. ";
@@ -212,13 +226,10 @@ Before printing the menu text of a quip when menu option number display is true:
 Rule for printing the menu text of a quip (called q):
 	say menu text of q;
 
-After printing the menu text of a quip when XML is in use:
-	say "</Topic>";
-
 Last after printing the menu text of a quip:
 	say line break;
 
-Section 4 - Automatic menu display
+Section 5 - Automatic menu display
 
 Last every turn rule when we are selecting menu option or we are talking to someone:
 	unless the current conversationalist is the player or we are talking to the player:
