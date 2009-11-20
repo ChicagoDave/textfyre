@@ -14,7 +14,7 @@ Help Fade is a number that varies.
 When play begins:
 	say "(This game is equipped with a simple help system. Type [bold type]help[roman type] to learn more about Interactive Fiction.)";
 	now the Help Count is 0;
-	now the Help Fade is 5;
+	now the Help Fade is 3;
 	now the Help Switch is true.
 
 Every turn when the help switch is true:
@@ -46,6 +46,7 @@ Report helping Basic Help:
 	Print Basic Help.
 
 To Print Basic Help:
+	now the help switch is false;
 	say "[bold type]Welcome to Interactive Fiction![roman type]
 
 You are entering a new world where you play the main character in a fictional story. Unlike reading a book, Interactive Fiction allows you to enter natural language commands that are translated to the story.

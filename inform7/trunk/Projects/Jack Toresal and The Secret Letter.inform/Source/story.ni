@@ -216,16 +216,16 @@ The story creation year is 2009.
 
 Rule for printing the banner text:
 	select the title channel;
-	say "[b][story title] - v2.0.20091112Glx[r][line break]";
+	say "[b][story title] - v2.0.20091119[r][line break]";
 	select the credits channel;
 	say "[story title] by [story author][line break]";
-	say "Copyright &#169; [story creation year] by [story author][line break]";
+	say "Copyright @ [story creation year] by [story author][line break]";
 	say "Story by David Cornelson[line break]";
 	say "Written by Michael Gentry[line break]";
 	say "Game Engine (FyreVM) by Jesse McGrew[line break]";
 	say "Inform 7 Story Programming by Graeme Jefferis[line break]";
 	say "Testing by Jacqueline Ashwell, Peter Berman,[line break]Eric Eve, Jim Aikin, and Paul O'Brian[line break]";
-	say "User Interface Programming by Thomas Lynge[line break] of Tenteo (www.tenteo.com)[line break]";
+	say "Deluxe Edition UI by Thomas Lynge[line break] of Tenteo (www.tenteo.com)[line break]";
 	say "Sketches by Erika Swanson (www.simplyerika.com).[line break]";
 	say "Special thanks to Graham Nelson and Emily Short[line break]";
 	say "for Inform 7 (www.inform7.com)[line break]";
@@ -256,6 +256,7 @@ Use MAX_STATIC_DATA of 900000.
 Use MAX_PROP_TABLE_SIZE of 500000.
 Use MAX_OBJECTS of 1280.
 Use MAX_EXPRESSION_NODES of 300.
+Use MAX_SYMBOLS of 30000.
 
 When play begins:
 	change the time of day to 1:00 AM;
@@ -10229,8 +10230,13 @@ Rule for printing the description of the hot furnace:
 	say "The furnace is [if the furnace is closed]closed, but bright orange light flickers through the grating[otherwise]open, and bright orange light pours out from it[end if]. Thick, metal pipes leading away from the furnace carry the heat to other parts of the house.";
 
 After opening the furnace for the first time:
-	say "The grating squeaks open. The inside of the furnace is empty and dark.[paragraph break]'We could break up some of the furniture upstairs,' suggests Shannon. 'It would be nice to have some warmth in here.'";
-
+	say "The grating squeaks open. The inside of the furnace is empty and dark.";
+	if player is not carrying the pile of broken wood:
+		if brokenwood is true:
+			say "'Maybe we should use the broken furniture wood', suggests Shannon.";
+		otherwise:
+			say "'We could break up some of the furniture upstairs,' suggests Shannon. 'It would be nice to have some warmth in here.'";
+	
 Instead of touching the hot furnace:
 	say "You snatch your hand away. It's hot!";
 
@@ -10239,8 +10245,11 @@ Instead of touching the cold furnace:
 
 Chapter 3 - Furniture makes wood
 
+BrokenWood is a truth state that varies.
+
 Instead of attacking the old furniture:
 	say "You pull a couple of chairs out from under the dust sheets and start whacking them against the hard floor, stomping on them, yanking the legs free.  It's tiring work... but also somehow exhilarating. After all the awful things that have happened to you, it's nice to be able to take your frustrations out on this old furniture. Soon you have a respectable pile of firewood.";
+	now brokenwood is true;
 	now the player is carrying the pile of broken wood;
 
 Instead of attacking the old furniture when the pile of broken wood is on-stage or the furnace is hot:
@@ -12410,7 +12419,7 @@ Test redgate with "ne / climb wall / unlock red gate estate with key / n / n /  
 
 Test sandler with "e / e / 1 / 1 / 1 / 1 / 1 / 2 / 3 / 3 / 2 / 1 / 1 / take brooch / w"
 
-Test moneylenders with "se / show letter to brothers / 2 / 1 / 1 / nw"
+Test moneylender with "se / show letter to brothers / 2 / 1 / 1 / nw"
 
 Test clothier with "ne / buy ballgown / sw"
 
