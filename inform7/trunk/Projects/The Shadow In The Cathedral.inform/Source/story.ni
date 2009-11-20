@@ -234,7 +234,7 @@ Rule for printing the banner text:
 	say "[b][story title][r][line break]";
 	select the credits channel;
 	say "[story title] by [story author][line break]";
-	say "Version 1.0.20091105Std[line break]";
+	say "Version 1.2.20091119[line break]";
 	say "Copyright [story creation year] by [story author][line break]";
 	say "Designed by Ian Finley[line break]";
 	say "Written by Jon Ingold[line break]";
@@ -5920,8 +5920,8 @@ Chapter 1 - Leaving and Finishing Chapter 2
 After going from the Entry to the Cathedral Yard for the first time:
 	say "I race through the doors. No-one's going to stop me now! The Archbishop, and my reward - here I come!";
 	end the chapter;
-	now the player is in the Demo Room.
-	[continue the action;]
+	[now the player is in the Demo Room.]
+	continue the action;
 
 The Demo Room is a room. "You have reached the end of the demonstration version for The Shadow in the Cathedral. Please visit www.textfyre.com to purchase the complete version."
 
@@ -6260,8 +6260,8 @@ Instead of going up in Herb Garden when the ladder is not in the Herb Garden:
 Instead of climbing the ladder when in the Herb Garden:
 	say "In a flash, I'm up and over! It's a short fall to the alley behind the wall, then I scamper along a shadowy alleyway and out into the Cathedral Yard. I'm clear! Time to go see the Archbishop!";
 	end the chapter;
-	move the player to the Demo Room;
-	[ changed for demo move the player to the Cathedral Yard;]
+	[move the player to the Demo Room;]
+	move the player to the Cathedral Yard;
 
 Instead of climbing the garden walls when the caretaker's ladder is visible:
 	try going up.

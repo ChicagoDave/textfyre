@@ -71,9 +71,8 @@ Rule for printing the banner text:
 	say "Designed by Paul O'Brian[line break]";
 	say "Written by Christopher Huang[line break]";
 	say "Game Engine (FyreVM) by Jesse McGrew[line break]";
-	say "Inform 7 Story Programming by Graeme Jefferis[line break]";
+	say "Inform 7 Programming by Graeme Jefferis[line break]";
 	say "Testing by ____[line break]";
-	say "User Interface Programming by Thomas Lynge[line break]";
 	say "Special thanks to Graham Nelson and Emily Short[line break]";
 	say "for all of their hard work on Inform 7.[line break]";
 	say "All rights reserved[line break]";
