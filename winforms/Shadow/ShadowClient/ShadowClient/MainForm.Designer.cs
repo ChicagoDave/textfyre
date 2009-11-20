@@ -31,15 +31,18 @@
             this.ScoreTime = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hintMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuPreferences = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.hintMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.StatusMessage = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -56,7 +59,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1001, 482);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1001, 460);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // TextWindow
@@ -65,12 +68,12 @@
             this.TextWindow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextWindow.Location = new System.Drawing.Point(3, 33);
             this.TextWindow.Name = "TextWindow";
-            this.TextWindow.Size = new System.Drawing.Size(995, 446);
-            this.TextWindow.TabIndex = 2;
+            this.TextWindow.Size = new System.Drawing.Size(995, 424);
+            this.TextWindow.TabIndex = 4;
             this.TextWindow.Text = "";
             this.TextWindow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextWindow_KeyDown);
-            this.TextWindow.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.TextWindow_LinkClicked);
             this.TextWindow.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextWindow_KeyPress);
+            this.TextWindow.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextWindow_KeyUp);
             // 
             // tableLayoutPanel2
             // 
@@ -132,17 +135,24 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
             // 
+            // hintMenuItem
+            // 
+            this.hintMenuItem.Name = "hintMenuItem";
+            this.hintMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.hintMenuItem.Text = "&Hints";
+            this.hintMenuItem.Click += new System.EventHandler(this.hintMenuItem_Click);
+            // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "&About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.MenuExit_Click);
             // 
@@ -166,12 +176,21 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(12, 20);
             // 
-            // hintMenuItem
+            // statusStrip1
             // 
-            this.hintMenuItem.Name = "hintMenuItem";
-            this.hintMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.hintMenuItem.Text = "&Hints";
-            this.hintMenuItem.Click += new System.EventHandler(this.hintMenuItem_Click);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StatusMessage});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 484);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1001, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            this.statusStrip1.Visible = false;
+            // 
+            // StatusMessage
+            // 
+            this.StatusMessage.Name = "StatusMessage";
+            this.StatusMessage.Size = new System.Drawing.Size(0, 17);
             // 
             // MainForm
             // 
@@ -180,6 +199,7 @@
             this.ClientSize = new System.Drawing.Size(1001, 506);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
@@ -189,6 +209,8 @@
             this.tableLayoutPanel2.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -202,12 +224,14 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MenuPreferences;
-        private System.Windows.Forms.RichTextBox TextWindow;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label Header;
         private System.Windows.Forms.Label ScoreTime;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hintMenuItem;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel StatusMessage;
+        private System.Windows.Forms.RichTextBox TextWindow;
     }
 }
