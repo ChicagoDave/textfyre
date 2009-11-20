@@ -12077,7 +12077,7 @@ Instead of attacking Baron Fossville with the plain dagger when the player is no
 	update the character list;
 
 Instead of doing something other than talking to or examining to Baron Fossville when the player is not tied up during the Skirmish:
-	say "The Baron is fighting so ferociously, unless you're planning to attack him, he's likely to take [one of]out your eye[or]off your ear[or]off your hand[or]off your heaundd[at random] with a random [one of]backswing[or]slash[or]thrust[or]jab[at random].";
+	say "The Baron is fighting so ferociously, unless you're planning to attack him, he's likely to take [one of]out your eye[or]off your ear[or]off your hand[or]off your head[at random] with a random [one of]backswing[or]slash[or]thrust[or]jab[at random].";
 
 Instead of talking to Baron Fossville during the Skirmish:
 	say "The Baron is so focused on attacking Bobby, he doesn't even hear you."
@@ -12166,19 +12166,19 @@ Understand "remove [knotted ropes]" as cutting.
 Understand "take off [knotted ropes]" as cutting.
 Understand "take [something] off [someone]" as removing it from.
 
-Instead of untying or cutting or taking off the knotted ropes:
+Instead of untying or cutting or taking off the knotted ropes when the player is not tied up:
 	try freeing Pieter;
 
-Instead of removing the knotted ropes from Pieter:
+Instead of removing the knotted ropes from Pieter when the player is not tied up:
 	try freeing Pieter;
 	
-Instead of cutting the knotted ropes with the plain dagger:
-	try cutting the noun;
+Instead of untying a caught Pieter when the player is not tied up:
+	try freeing Pieter;
 
-Instead of untying a caught Pieter:
-	try freeing the noun;
+Instead of freeing a caught Pieter when the player is not tied up during the Skirmish:
+	try cutting the knotted ropes with the plain dagger;
 
-Instead of freeing a caught Pieter during the Skirmish:
+Instead of cutting the knotted ropes with the plain dagger when the player is not tied up:
 	change the current script to { }; [ thus ending the scene ]
 	now Pieter is free;
 	remove the knotted ropes from play;
