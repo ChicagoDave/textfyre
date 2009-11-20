@@ -20,7 +20,6 @@ namespace Textfyre {
         private AutoResetEvent inputReadyEvent = new AutoResetEvent(false);
         private bool lineWanted = false;
         private bool keyWanted = false;
-        private string inputLine = null;
         private string textLine = null;
         private string[] channelText = new string[18];
         private string chapter = "";
@@ -35,6 +34,8 @@ namespace Textfyre {
         bool resetPreferences = false;
         List<string> history = new List<string>();
         int historyIndex = 0;
+        int inputStart = 0;
+        string entry = "";
 
         public MainForm() {
             InitializeComponent();
@@ -112,7 +113,8 @@ namespace Textfyre {
             TextWindow.Enabled = true;
             TextWindow.AppendText(String.Concat("\n", prompt, " "));
             textLine = "";
-            inputLine = "";
+            entry = "";
+            inputStart = TextWindow.Text.Length-1;
             TextWindow.Focus();
         }
 
@@ -122,32 +124,33 @@ namespace Textfyre {
 
             TextWindow.Enabled = true;
             textLine = "";
-            inputLine = "";
+            entry = "";
+            inputStart = TextWindow.Text.Length-1;
             TextWindow.Focus();
         }
 
         private void TextWindow_KeyPress(object sender, KeyPressEventArgs e) {
             int promptLength = prompt.Length + 1;
             if (keyWanted) {
-                GotInput(new string(e.KeyChar, 1));
+                GotKey(new string(e.KeyChar, 1));
                 e.Handled = true;
             } else
                 if (e.KeyChar == '\r' || e.KeyChar == '\n') {
                 e.Handled = true;
             }
 
-            if (e.KeyChar == '\b') {
-                if (textLine == "") {
-                    e.Handled = true;
-                    return;
-                }
-                if (textLine.Length > 0) {
-                    textLine = textLine.Substring(0, textLine.Length - 1);
-                }
-            } else {
-                textLine += e.KeyChar.ToString();
-                //TextWindow.AppendText(e.KeyChar.ToString());
-            }
+            //if (e.KeyChar == '\b') {
+            //    if (textLine == "") {
+            //        e.Handled = true;
+            //        return;
+            //    }
+            //    if (textLine.Length > 0) {
+            //        textLine = textLine.Substring(0, textLine.Length - 1);
+            //    }
+            //} else {
+            //    textLine += e.KeyChar.ToString();
+            //    //TextWindow.AppendText(e.KeyChar.ToString());
+            //}
         }
 
         private void TextWindow_KeyDown(object sender, KeyEventArgs e) {
@@ -183,18 +186,39 @@ namespace Textfyre {
             if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Return) {
                 e.Handled = true;
 
+                textLine = entry;
+
                 if (keyWanted) {
-                    GotInput("\n");
+                    GotKey("\n");
                 } else if (lineWanted) {
                     GotInput(textLine);
                 }
             }
 
-            if (e.KeyCode == Keys.Back && textLine == "")
+            if (e.KeyCode == Keys.Back && entry == "")
                 e.Handled = true;
 
-            if (e.KeyCode != Keys.PageUp && e.KeyCode != Keys.PageDown)
-                TextWindow.SelectionStart = TextWindow.Text.Length;
+            if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Back) {
+                if (TextWindow.SelectionStart == inputStart+1) {
+                    e.Handled = true;
+                    return;
+                }
+            }
+
+            if (e.KeyCode == Keys.End) {
+                TextWindow.SelectionStart = TextWindow.Text.Length-1;
+            }
+
+        }
+
+        private void TextWindow_KeyUp(object sender, KeyEventArgs e) {
+            int p = TextWindow.SelectionStart;
+            int l = (TextWindow.Text.Length-1) - inputStart;
+            entry = "";
+            if (inputStart < TextWindow.Text.Length)
+                entry = TextWindow.Text.Substring(inputStart+1, l);
+
+            //StatusMessage.Text = String.Format("[txtLen:{0}, istart:{1}, selStart:{2}, len:{3}, text:{4}]", TextWindow.Text.Length, inputStart, p, l, entry);
         }
 
         /// <summary>
@@ -205,42 +229,36 @@ namespace Textfyre {
         private void ShowHistoryCommand() {
             RemoveCommand();
             TextWindow.AppendText(history[historyIndex]);
-            textLine = history[historyIndex];
+            entry = history[historyIndex];
         }
 
         private void RemoveCommand() {
-            int carat = TextWindow.Text.Length - 1;
-            if (TextWindow.Text.Substring(carat - 1, 1) != ">") {
-                for (int position = carat; position > -1; position--) {
-                    if (TextWindow.Text[position] == '>') {
-                        carat = position + 2; // include space
-                        break;
-                    }
-                }
-                TextWindow.SelectionStart = carat;
-                TextWindow.SelectionLength = TextWindow.Text.Length - carat;
+            if (entry != "") {
+                TextWindow.SelectionStart = inputStart + 1;
+                TextWindow.SelectionLength = entry.Length;
                 TextWindow.Cut();
-                textLine = "";
+                entry = "";
             }
         }
 
         private void GotInput(string line) {
-            TextWindow.SelectionStart = TextWindow.Text.LastIndexOf(">");
-            int endLine = TextWindow.Text.IndexOf('\n', TextWindow.SelectionStart, TextWindow.Text.Length-1-TextWindow.SelectionStart);
-            if (endLine == -1) endLine = TextWindow.Text.Length;
-            TextWindow.SelectionLength = endLine - TextWindow.SelectionStart;
+            TextWindow.SelectionStart = inputStart+1;
+            TextWindow.SelectionLength = line.Length;
             TextWindow.SelectionFont = new Font(Properties.Settings.Default.GameFont, FontStyle.Bold);
             TextWindow.AppendText("\r\n");
             TextWindow.SelectionFont = new Font(Properties.Settings.Default.GameFont, FontStyle.Regular);
-            inputLine = line;
-            textLine = "";
-            history.Add(inputLine);
+            history.Add(line);
             historyIndex = history.Count;
-            if (inputLine == "hint" || inputLine == "hints") {
+            if (line == "hint" || line == "hints") {
                 hintMenuItem_Click(this, null);
                 RequestLine();
             } else
                 inputReadyEvent.Set();
+        }
+
+        private void GotKey(string key) {
+            entry = key;
+            inputReadyEvent.Set();
         }
 
         private void HandleOutput(Dictionary<OutputChannel, string> package) {
@@ -492,13 +510,13 @@ namespace Textfyre {
         private void vm_LineWanted(object sender, LineWantedEventArgs e) {
             this.Invoke(new Action(RequestLine));
             inputReadyEvent.WaitOne();
-            e.Line = inputLine;
+            e.Line = entry;
         }
 
         private void vm_KeyWanted(object sender, KeyWantedEventArgs e) {
             this.Invoke(new Action(RequestKey));
             inputReadyEvent.WaitOne();
-            e.Char = inputLine[0];
+            e.Char = entry[0];
         }
 
         private void vm_OutputReady(object sender, OutputReadyEventArgs e) {
