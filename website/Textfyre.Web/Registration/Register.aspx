@@ -31,7 +31,7 @@
                     <asp:Label ID="Label2" runat="server" CssClass="regLabel" Text="Last Name:" />
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="regLastName" CssClass="regTextbox" />
+                    <asp:TextBox runat="server" ID="regLastName" CssClass="regTextbox" MaxLength="50" />
                 </td>
             </tr>
             <tr>
@@ -39,7 +39,7 @@
                     <asp:Label ID="Label3" runat="server" CssClass="regLabel" Text="City:" />
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="regCity" CssClass="regTextbox" />
+                    <asp:TextBox runat="server" ID="regCity" CssClass="regTextbox" MaxLength="50" />
                 </td>
             </tr>
             <tr>
@@ -47,7 +47,7 @@
                     <asp:Label ID="Label4" runat="server" CssClass="regLabel" Text="State:" />
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="regState" CssClass="regTextbox" Width="40px" />
+                    <asp:TextBox runat="server" ID="regState" CssClass="regTextbox" Width="40px" MaxLength="2" />
                 </td>
             </tr>
             <tr>
@@ -55,7 +55,7 @@
                     <asp:Label ID="Label5" runat="server" CssClass="regLabel" Text="School:" />
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="regSchool" CssClass="regTextbox" Width="300px" />
+                    <asp:TextBox runat="server" ID="regSchool" CssClass="regTextbox" Width="300px" MaxLength="100" />
                 </td>
             </tr>
             <tr>
@@ -68,14 +68,14 @@
                     <asp:Label ID="Label11" runat="server" CssClass="regLabel" Text="E-Mail Address:" />
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="regEmail" CssClass="regTextbox" Width="400px" />
+                    <asp:TextBox runat="server" ID="regEmail" CssClass="regTextbox" Width="400px" MaxLength="255" />
                     <asp:RequiredFieldValidator ID="EmailRequired" runat="server" ControlToValidate="regEmail"
                         ErrorMessage="E-Mail Address is required." ToolTip="E-Mail Address is required." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <asp:Label ID="Label7" runat="server" CssClass="regLabel" Text="Password:" />
+                    <asp:Label ID="Label7" runat="server" CssClass="regLabel" Text="Password:" MaxLength="10" />
                 </td>
                 <td>
                     <asp:TextBox runat="server" ID="regPassword" CssClass="regTextbox" TextMode="Password" />
@@ -88,7 +88,7 @@
                     <asp:Label ID="Label8" runat="server" CssClass="regLabel" Text="Confirm Password:" />
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="regPassword2" CssClass="regTextbox" TextMode="Password" />
+                    <asp:TextBox runat="server" ID="regPassword2" CssClass="regTextbox" TextMode="Password" MaxLength="10" />
                     <asp:RequiredFieldValidator ID="ConfirmPasswordRequired" runat="server" ControlToValidate="regPassword2"
                         ErrorMessage="Confirm Password is required." ToolTip="Confirm Password is required." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
                     <asp:CompareValidator runat="server" ID="ConfirmPasswordsEqual" ControlToCompare="regPassword" ControlToValidate="regPassword2"
@@ -100,7 +100,7 @@
                     <asp:Label ID="Label9" runat="server" CssClass="regLabel" Text="Security Question:" />
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="regQuestion" CssClass="regTextbox" Width="400px" />
+                    <asp:TextBox runat="server" ID="regQuestion" CssClass="regTextbox" Width="400px" MaxLength="256" />
                     <asp:RequiredFieldValidator ID="QuestionRequired" runat="server" ControlToValidate="regQuestion"
                         ErrorMessage="Security Question is required." ToolTip="Security Question is required." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
                 </td>
@@ -110,7 +110,7 @@
                     <asp:Label ID="Label10" runat="server" CssClass="regLabel" Text="Security Answer:" />
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="regAnswer" CssClass="regTextbox" Width="400px" />
+                    <asp:TextBox runat="server" ID="regAnswer" CssClass="regTextbox" Width="400px" MaxLength="128" />
                     <asp:RequiredFieldValidator ID="AnswerRequired" runat="server" ControlToValidate="regAnswer"
                         ErrorMessage="Security Answer is required." ToolTip="Security Answer is required." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
                 </td>

@@ -53,7 +53,9 @@ namespace Textfyre.Web.Registration {
                     regError.Text = "A problem ocurred writing your registration to the database. The error has been logged and will be reviewed by our staff soon. An e-mail will be sent to you when the problem is resolved.";
                     System.Diagnostics.EventLog log = new System.Diagnostics.EventLog();
                     log.Source = "Textfyre.Com";
-                    log.WriteEntry(string.Format("Error with new account '{0}' - {1}",regEmail,se.Message));
+                    log.WriteEntry(string.Format("Error with new account '{0}' - {1}",regEmail,
+                        String.Concat(se.Message," - ",newUser.ProviderUserKey," - ",regFirstName.Text," - ",regLastName.Text,
+                        " - ",regCity.Text," - ",regState.Text," - ",regSchool.Text," - ",vID)));
                     log.Close();
                     log.Dispose();
                     return;
