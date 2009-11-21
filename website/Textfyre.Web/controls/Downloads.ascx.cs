@@ -49,6 +49,8 @@ namespace Textfyre.Web.controls {
                 }
             }
 
+
+
             Guid guid = Guid.NewGuid();
             Session.Add("files",String.Concat(Server.MapPath("~/TempFiles"), @"\", guid.ToString()));
 
@@ -57,13 +59,33 @@ namespace Textfyre.Web.controls {
 
             // Copy the files to the temporary folder
             foreach (Download file in files) {
-                System.IO.File.Copy(String.Concat(@"D:\TextfyreDownloads\",file.Filename),String.Concat(Session["files"].ToString(),@"\",file.Filename));
+                if (!(bool)file.IsLocked)
+                    try {
+                        System.IO.File.Copy(String.Concat(@"D:\TextfyreDownloads\", file.Filename), String.Concat(Session["files"].ToString(), @"\", file.Filename));
+                    } catch (Exception de) {
+                        System.Diagnostics.EventLog log = new System.Diagnostics.EventLog();
+                        log.Source = "Textfyre.Com";
+                        log.WriteEntry(string.Format("Error with new account '{0}' - {1}", email, de.Message));
+                        log.Close();
+                        log.Dispose();
+                        break;
+                    }
 
-                HyperLink newLink = new HyperLink();
-                newLink.NavigateUrl = String.Concat("~/TempFiles/", guid.ToString(), "/", file.Filename);
-                newLink.Text = GetDescription(file.ProductId);
-
-                downloadList.Controls.Add(newLink);
+                System.Web.UI.HtmlControls.HtmlGenericControl liTag = new System.Web.UI.HtmlControls.HtmlGenericControl();
+                liTag.TagName = "li";
+                downloadList.Controls.Add(liTag);
+                
+                if (!(bool)file.IsLocked) {
+                    HyperLink newLink = new HyperLink();
+                    newLink.NavigateUrl = String.Concat("~/TempFiles/", guid.ToString(), "/", file.Filename);
+                    newLink.Text = String.Concat(GetDescription(file.ProductId), " - ", GetPlatform(file.PlatformId), " - Version: ", file.Version);
+                    liTag.Controls.Add(newLink);
+                } else {
+                    Label newLabel = new Label();
+                    newLabel.Text = String.Concat(GetDescription(file.ProductId), " - ", GetPlatform(file.PlatformId), " - Version: ", file.Version, " (unavailable)");
+                    liTag.Controls.Add(newLabel);
+                }
+                downloadList.Controls.Add(liTag);
             }
 
         }
@@ -74,6 +96,16 @@ namespace Textfyre.Web.controls {
             ProductCollection products = p.LoadAll();
 
             IEnumerable<string> descriptions = from Product in products where Product.ProductId == ProductId select Product.Description;
+
+            return descriptions.ToArray<string>()[0];
+        }
+
+        private string GetPlatform(int? PlatformId) {
+
+            Platform p = new Platform();
+            PlatformCollection platforms = p.LoadAll();
+
+            IEnumerable<string> descriptions = from Platform in platforms where Platform.PlatformId == PlatformId select Platform.Description;
 
             return descriptions.ToArray<string>()[0];
         }

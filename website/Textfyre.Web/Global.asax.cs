@@ -22,6 +22,8 @@ namespace Textfyre.Web {
                 // bring the user profile into the session...
                 Session["User"] = new Textfyre.TextfyreWeb.BusinessLayer.Customer((Guid)member.ProviderUserKey);
             }
+
+            Session.Timeout = 60;
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e) {
@@ -46,6 +48,8 @@ namespace Textfyre.Web {
                 // do nothing
             }
 
+            FormsAuthentication.SignOut();
+            Response.Redirect("~/Default.aspx");
         }
 
         protected void Application_End(object sender, EventArgs e) {

@@ -68,6 +68,32 @@ namespace Textfyre.Web.Customer {
                     }
                     conn.Close();
                 }
+
+                // give the customer the hobbyist edition, if they didn't order it...
+                if (!productid.EndsWith("hobbyist")) {
+                    productid = productid.Replace("deluxe", "hobbyist").Replace("standard", "hobbyist");
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["TFWebLocalDB"].ConnectionString)) {
+                        string insert = "insert into CustomerDownload (Email,ProductId) VALUES (@Email,@ProductId)";
+                        SqlCommand command = new SqlCommand(insert, conn);
+                        command.Parameters.Add(new SqlParameter("@Email", payer));
+                        command.Parameters.Add(new SqlParameter("@ProductId", productid));
+                        try {
+                            conn.Open();
+                            command.ExecuteNonQuery();
+                        } catch (SqlException sex) {
+                            if (sex.Number != 2627)
+                                throw;
+                        } catch (Exception se) {
+                            System.Diagnostics.EventLog log = new System.Diagnostics.EventLog();
+                            log.Source = "Textfyre.Com";
+                            log.WriteEntry(string.Format("Error with new customer download information: {0}", se.Message));
+                            log.Close();
+                            log.Dispose();
+                            return;
+                        }
+                        conn.Close();
+                    }
+                }
             }
         }
     }
