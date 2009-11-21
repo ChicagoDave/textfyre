@@ -24,6 +24,7 @@ namespace Textfyre.Web {
             }
 
             Session.Timeout = 60;
+
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e) {
