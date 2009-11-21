@@ -19,7 +19,7 @@ namespace Textfyre.Web.Registration {
             string vid = Request.QueryString["vid"];
 
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["TFWebLocalDB"].ConnectionString)) {
-                string sql = "select userid from aspnet_TFProfile where ValidationId = @ValidationId";
+                string sql = "select userid from Customer where ValidationId = @ValidationId";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.Add(new SqlParameter("@ValidationId", vid));
 

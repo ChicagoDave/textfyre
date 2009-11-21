@@ -64,11 +64,11 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
         {
             switch (sortField)
             {
-				case DataLayer.CustomerDownloadFields.UserId:
+				case DataLayer.CustomerDownloadFields.Email:
 					if (sortDirection == SortDirection.Descending)
-						Sort(CustomerDownload.SortBy.UserIdColumnDESC);
+						Sort(CustomerDownload.SortBy.EmailColumnDESC);
 					else
-						Sort(CustomerDownload.SortBy.UserIdColumnASC);
+						Sort(CustomerDownload.SortBy.EmailColumnASC);
 					break;
 				case DataLayer.CustomerDownloadFields.ProductId:
 					if (sortDirection == SortDirection.Descending)

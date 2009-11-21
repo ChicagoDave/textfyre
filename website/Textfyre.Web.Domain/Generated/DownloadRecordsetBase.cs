@@ -23,7 +23,7 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 			/// <summary>
 			/// ProductId field.
 			/// </summary>
-			private Int32? _ProductId = null;
+			private string _ProductId;
 			/// <summary>
 			/// PlatformId field.
 			/// </summary>
@@ -36,6 +36,10 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 			/// AvailableDate field.
 			/// </summary>
 			private DateTime? _AvailableDate = null;
+			/// <summary>
+			/// Filename field.
+			/// </summary>
+			private string _Filename;
 			/// <summary>
 			/// IsLocked field.
 			/// </summary>
@@ -131,7 +135,7 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 			}
 		}
 
-		public Int32? ProductId {
+		public string ProductId {
 			get { return _ProductId; }
 			set {
 				if(_ProductId != value) {
@@ -167,6 +171,16 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 				if(_AvailableDate != value) {
 					_isDirty = true;
 					_AvailableDate = value;
+				}
+			}
+		}
+
+		public string Filename {
+			get { return _Filename; }
+			set {
+				if(_Filename != value) {
+					_isDirty = true;
+					_Filename = value;
 				}
 			}
 		}
@@ -385,6 +399,7 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 					newDownloadRS.PlatformId = _PlatformId;
 					newDownloadRS.Version = _Version;
 					newDownloadRS.AvailableDate = _AvailableDate;
+					newDownloadRS.Filename = _Filename;
 					newDownloadRS.IsLocked = _IsLocked;
 					newDownloadRS.IntelMac = _IntelMac;
 					newDownloadRS.PowerPCMac = _PowerPCMac;

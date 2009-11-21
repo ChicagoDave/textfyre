@@ -33,7 +33,7 @@ namespace Textfyre.Web.Registration {
             // We have a new user...add extra bits to TFProfile table...
             string vID = System.Guid.NewGuid().ToString();
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["TFWebLocalDB"].ConnectionString)) {
-                string insert = "insert into aspnet_TFProfile (UserId,FirstName,LastName,City,State,School,ValidationId) VALUES (@UserId,@FirstName,@LastName,@City,@State,@School,@ValidationId)";
+                string insert = "insert into Customer (UserId,FirstName,LastName,City,State,School,ValidationId) VALUES (@UserId,@FirstName,@LastName,@City,@State,@School,@ValidationId)";
                 SqlCommand command = new SqlCommand(insert, conn);
                 command.Parameters.Add(new SqlParameter("@UserId", newUser.ProviderUserKey));
                 command.Parameters.Add(new SqlParameter("@FirstName", regFirstName.Text));

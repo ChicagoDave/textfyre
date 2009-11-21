@@ -22,15 +22,15 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         public SqlParameter GetParameter(Textfyre.TextfyreWeb.DataLayer.CustomerDownloadFields FieldIdentity, object FieldValue) { 
             SqlParameter param = null;
             switch (FieldIdentity) {
-				case CustomerDownloadFields.UserId:
-					param = new SqlParameter("@UserId", SqlDbType.UniqueIdentifier);
+				case CustomerDownloadFields.Email:
+					param = new SqlParameter("@Email", SqlDbType.NVarChar, 255);
 					param.Value = FieldValue;
 					param.Direction = ParameterDirection.Input;
 					param.IsNullable = false;
-					param.SourceColumn = "UserId";
+					param.SourceColumn = "Email";
 					break;
 				case CustomerDownloadFields.ProductId:
-					param = new SqlParameter("@ProductId", SqlDbType.Int);
+					param = new SqlParameter("@ProductId", SqlDbType.NVarChar, 50);
 					param.Value = FieldValue;
 					param.Direction = ParameterDirection.Input;
 					param.IsNullable = false;
@@ -40,7 +40,7 @@ namespace Textfyre.TextfyreWeb.DataLayer {
 					param = new SqlParameter("@PurchaseDateTime", SqlDbType.DateTime);
 					param.Value = FieldValue;
 					param.Direction = ParameterDirection.Input;
-					param.IsNullable = true;
+					param.IsNullable = false;
 					param.SourceColumn = "PurchaseDateTime";
 					break;
             }

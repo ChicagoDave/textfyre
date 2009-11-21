@@ -94,6 +94,12 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 					else
 						Sort(Download.SortBy.AvailableDateColumnASC);
 					break;
+				case DataLayer.DownloadFields.Filename:
+					if (sortDirection == SortDirection.Descending)
+						Sort(Download.SortBy.FilenameColumnDESC);
+					else
+						Sort(Download.SortBy.FilenameColumnASC);
+					break;
 				case DataLayer.DownloadFields.IsLocked:
 					if (sortDirection == SortDirection.Descending)
 						Sort(Download.SortBy.IsLockedColumnDESC);

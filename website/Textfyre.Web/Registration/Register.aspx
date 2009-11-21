@@ -59,6 +59,11 @@
                 </td>
             </tr>
             <tr>
+                <td colspan="2">
+                    <asp:Label ID="Label6" runat="server" CssClass="regLabel" Text="(If you are a customer, please use the same e-mail address that you used with your purchases)" />
+                </td>
+            </tr>
+            <tr>
                 <td>
                     <asp:Label ID="Label11" runat="server" CssClass="regLabel" Text="E-Mail Address:" />
                 </td>

@@ -18,6 +18,5 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// </summary>
         public CustomerData() : base() {
         }
-
     }
 }

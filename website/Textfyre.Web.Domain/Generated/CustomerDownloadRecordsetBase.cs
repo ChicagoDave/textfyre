@@ -17,17 +17,17 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
       #region Members
 
 			/// <summary>
-			/// UserId field.
+			/// Email field.
 			/// </summary>
-			private Guid _UserId = Guid.Empty;
+			private string _Email;
 			/// <summary>
 			/// ProductId field.
 			/// </summary>
-			private Int32 _ProductId;
+			private string _ProductId;
 			/// <summary>
 			/// PurchaseDateTime field.
 			/// </summary>
-			private DateTime? _PurchaseDateTime = null;
+			private DateTime _PurchaseDateTime;
       /// <summary>
       /// _isDirty field.
       /// </summary>
@@ -45,17 +45,17 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
       #region Properties
         
 
-		public Guid UserId {
-			get { return _UserId; }
+		public string Email {
+			get { return _Email; }
 			set {
-				if(_UserId != value) {
+				if(_Email != value) {
 					_isDirty = true;
-					_UserId = value;
+					_Email = value;
 				}
 			}
 		}
 
-		public Int32 ProductId {
+		public string ProductId {
 			get { return _ProductId; }
 			set {
 				if(_ProductId != value) {
@@ -65,7 +65,7 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 			}
 		}
 
-		public DateTime? PurchaseDateTime {
+		public DateTime PurchaseDateTime {
 			get { return _PurchaseDateTime; }
 			set {
 				if(_PurchaseDateTime != value) {
@@ -114,7 +114,7 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
       /// <returns></returns>
       public virtual CustomerDownloadRecordset Clone() {
           CustomerDownloadRecordset newCustomerDownloadRS = new CustomerDownloadRecordset(); 
-          newCustomerDownloadRS.UserId = _UserId;
+          newCustomerDownloadRS.Email = _Email;
 					newCustomerDownloadRS.ProductId = _ProductId;
 					newCustomerDownloadRS.PurchaseDateTime = _PurchaseDateTime;
 					
@@ -127,8 +127,8 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
       /// Sets the identity column.
       /// </summary>
       /// <param name="IdentityValue"></param>
-		public void SetIdentity(Guid UserId, Int32 ProductId) {
-			_UserId = UserId;
+		public void SetIdentity(string Email, string ProductId) {
+			_Email = Email;
 			_ProductId = ProductId;
 
 		}

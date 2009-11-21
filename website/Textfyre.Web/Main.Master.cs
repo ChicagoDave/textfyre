@@ -21,6 +21,10 @@ namespace Textfyre.Web {
                 headerIn.Visible = false;
                 headerOut.Visible = true;
                 LogoutButton.Visible = true;
+                DownloadLink.Visible = false;
+                if (((Textfyre.TextfyreWeb.BusinessLayer.Customer)Session["User"]).HasDownloads == true) {
+                    DownloadLink.Visible = true;
+                }
             } //else
               //  form1.DefaultButton = "Login1.LoginButton";
         }
@@ -33,7 +37,7 @@ namespace Textfyre.Web {
 
                 Session["User"] = new Textfyre.TextfyreWeb.BusinessLayer.Customer((Guid)member.ProviderUserKey);
 
-                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,username,DateTime.Now,DateTime.Now.AddDays(14),true,username,"textfyre");
+                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, username, DateTime.Now, DateTime.Now.AddDays(14), true, username, "textfyre");
                 string encTicket = FormsAuthentication.Encrypt(ticket);
                 Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
                 LoggedInName.Text = string.Concat("Logged in as ", username);

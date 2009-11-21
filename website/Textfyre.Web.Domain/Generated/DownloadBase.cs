@@ -179,7 +179,7 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 			}
 		}
 
-		public virtual Int32? ProductId {
+		public virtual string ProductId {
 			get { return _recordset.ProductId; }
 			set {
 				if (_recordset.ProductId != value) {
@@ -215,6 +215,16 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 				if (_recordset.AvailableDate != value) {
 					_recordset.AvailableDate = value;
 					NotifyPropertyChanged("AvailableDate");
+				}
+			}
+		}
+
+		public virtual string Filename {
+			get { return _recordset.Filename; }
+			set {
+				if (_recordset.Filename != value) {
+					_recordset.Filename = value;
+					NotifyPropertyChanged("Filename");
 				}
 			}
 		}
@@ -465,16 +475,16 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 					};
 
 			public static Comparison<Download> ProductIdColumnASC =
-					delegate(Download o1, Download o2)
-					{
-						return Nullable.Compare<Int32>(o1.ProductId, o2.ProductId);
-					};
+				delegate(Download o1, Download o2)
+				{
+					return o1.ProductId.CompareTo(o2.ProductId);
+				};
 
 			public static Comparison<Download> ProductIdColumnDESC =
-					delegate(Download o1, Download o2)
-					{
-						return Nullable.Compare<Int32>(o2.ProductId, o1.ProductId);
-					};
+				delegate(Download o1, Download o2)
+				{
+					return o2.ProductId.CompareTo(o1.ProductId);
+				};
 
 			public static Comparison<Download> PlatformIdColumnASC =
 					delegate(Download o1, Download o2)
@@ -511,6 +521,18 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 					{
 						return Nullable.Compare<DateTime>(o2.AvailableDate, o1.AvailableDate);
 					};
+
+			public static Comparison<Download> FilenameColumnASC =
+				delegate(Download o1, Download o2)
+				{
+					return o1.Filename.CompareTo(o2.Filename);
+				};
+
+			public static Comparison<Download> FilenameColumnDESC =
+				delegate(Download o1, Download o2)
+				{
+					return o2.Filename.CompareTo(o1.Filename);
+				};
 
 			public static Comparison<Download> IsLockedColumnASC =
 					delegate(Download o1, Download o2)

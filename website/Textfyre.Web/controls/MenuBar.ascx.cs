@@ -20,11 +20,7 @@ namespace Textfyre.Web.controls {
             MakeMenuItem(menuParents, "Parents.aspx", "Parents");
             MakeMenuItem(menuTeachers, "Teachers.aspx", "Teachers");
             //MakeMenuItem(menuLibrarians, "Librarians.aspx", "Librarians");
-            if (Page.User.Identity.IsAuthenticated) {
-                if (((Textfyre.TextfyreWeb.BusinessLayer.Customer)Session["User"]).HasDownloads == true) {
-                    MakeMenuItem(menuAbout, "Customer/", "Customers");
-                }
-            }
+            MakeMenuItem(menuForums, "Forums.aspx", "Forums");
             MakeMenuItem(menuAbout, "About.aspx", "About");
         }
 

@@ -68,9 +68,9 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
             _dataFactory = new CustomerDownloadData();
         }
 
-        public CustomerDownloadBase(Guid UserId, Int32 ProductId) : this() {
+        public CustomerDownloadBase(string Email, string ProductId) : this() {
 
-				Load(UserId, ProductId);
+				Load(Email, ProductId);
 		}                     
         
         /// <summary> 
@@ -87,8 +87,8 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
         /// <summary>
         /// Load method that retrieves a record from the CustomerDownload table by the primary key id.
         /// </summary>
-        public Textfyre.TextfyreWeb.BusinessLayer.CustomerDownloadRecordset Load(Guid UserId, Int32 ProductId) {
-            _recordset = DataFactory.GetCustomerDownloadById(UserId, ProductId);
+        public Textfyre.TextfyreWeb.BusinessLayer.CustomerDownloadRecordset Load(string Email, string ProductId) {
+            _recordset = DataFactory.GetCustomerDownloadById(Email, ProductId);
             return _recordset;
         }
 
@@ -129,7 +129,7 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
             int ReturnValue = -1;
             
             if (_recordset.IsDeleted || compositeSaveFlag == CompositeSaveFlag.Delete) {
-                ReturnValue = DataFactory.DeleteCustomerDownload(_recordset.UserId, _recordset.ProductId);                
+                ReturnValue = DataFactory.DeleteCustomerDownload(_recordset.Email, _recordset.ProductId);                
             } else {
                 if (compositeSaveFlag == CompositeSaveFlag.Insert) {
                                         
@@ -163,17 +163,17 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
         #region Properties
 
 
-		public virtual Guid UserId {
-			get { return _recordset.UserId; }
+		public virtual string Email {
+			get { return _recordset.Email; }
 			set {
-				if (_recordset.UserId != value) {
-					_recordset.UserId = value;
-					NotifyPropertyChanged("UserId");
+				if (_recordset.Email != value) {
+					_recordset.Email = value;
+					NotifyPropertyChanged("Email");
 				}
 			}
 		}
 
-		public virtual Int32 ProductId {
+		public virtual string ProductId {
 			get { return _recordset.ProductId; }
 			set {
 				if (_recordset.ProductId != value) {
@@ -183,7 +183,7 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 			}
 		}
 
-		public virtual DateTime? PurchaseDateTime {
+		public virtual DateTime PurchaseDateTime {
 			get { return _recordset.PurchaseDateTime; }
 			set {
 				if (_recordset.PurchaseDateTime != value) {
@@ -256,41 +256,41 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
         /// </summary>
         public class SortBy
         {
-			public static Comparison<CustomerDownload> UserIdColumnASC =
+			public static Comparison<CustomerDownload> EmailColumnASC =
 				delegate(CustomerDownload o1, CustomerDownload o2)
 				{
-					return o1.UserId.CompareTo(o2.UserId);
+					return o1.Email.CompareTo(o2.Email);
 				};
 
-			public static Comparison<CustomerDownload> UserIdColumnDESC =
+			public static Comparison<CustomerDownload> EmailColumnDESC =
 				delegate(CustomerDownload o1, CustomerDownload o2)
 				{
-					return o2.UserId.CompareTo(o1.UserId);
+					return o2.Email.CompareTo(o1.Email);
 				};
 
 			public static Comparison<CustomerDownload> ProductIdColumnASC =
-					delegate(CustomerDownload o1, CustomerDownload o2)
-					{
-						return Nullable.Compare<Int32>(o1.ProductId, o2.ProductId);
-					};
+				delegate(CustomerDownload o1, CustomerDownload o2)
+				{
+					return o1.ProductId.CompareTo(o2.ProductId);
+				};
 
 			public static Comparison<CustomerDownload> ProductIdColumnDESC =
-					delegate(CustomerDownload o1, CustomerDownload o2)
-					{
-						return Nullable.Compare<Int32>(o2.ProductId, o1.ProductId);
-					};
+				delegate(CustomerDownload o1, CustomerDownload o2)
+				{
+					return o2.ProductId.CompareTo(o1.ProductId);
+				};
 
 			public static Comparison<CustomerDownload> PurchaseDateTimeColumnASC =
-					delegate(CustomerDownload o1, CustomerDownload o2)
-					{
-						return Nullable.Compare<DateTime>(o1.PurchaseDateTime, o2.PurchaseDateTime);
-					};
+				delegate(CustomerDownload o1, CustomerDownload o2)
+				{
+					return o1.PurchaseDateTime.CompareTo(o2.PurchaseDateTime);
+				};
 
 			public static Comparison<CustomerDownload> PurchaseDateTimeColumnDESC =
-					delegate(CustomerDownload o1, CustomerDownload o2)
-					{
-						return Nullable.Compare<DateTime>(o2.PurchaseDateTime, o1.PurchaseDateTime);
-					};
+				delegate(CustomerDownload o1, CustomerDownload o2)
+				{
+					return o2.PurchaseDateTime.CompareTo(o1.PurchaseDateTime);
+				};
 
 
         }

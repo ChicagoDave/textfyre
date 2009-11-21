@@ -37,6 +37,14 @@ namespace Textfyre.Web {
         }
 
         protected void Session_End(object sender, EventArgs e) {
+            // Clean up download directory and files...
+            try {
+                if (Session["files"].ToString() != "") {
+                    System.IO.Directory.Delete(Session["files"].ToString(), true);
+                }
+            } catch {
+                // do nothing
+            }
 
         }
 

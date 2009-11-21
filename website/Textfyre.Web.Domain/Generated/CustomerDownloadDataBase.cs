@@ -159,20 +159,20 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// Get all records in the table.
         /// </summary>
         public virtual List<Textfyre.TextfyreWeb.BusinessLayer.CustomerDownloadRecordset> GetAllCustomerDownload() {
-            return ExecuteSqlGetCollection("SELECT [UserId], [ProductId], [PurchaseDateTime] FROM CustomerDownload", null);
+            return ExecuteSqlGetCollection("SELECT [Email], [ProductId], [PurchaseDateTime] FROM CustomerDownload", null);
         }
 
         /// <summary>
         /// Get a single record in the table.
         /// </summary>
-        public virtual Textfyre.TextfyreWeb.BusinessLayer.CustomerDownloadRecordset GetCustomerDownloadById(Guid UserId, Int32 ProductId) {
-            if (UserId == Guid.Empty && ProductId < 1)
+        public virtual Textfyre.TextfyreWeb.BusinessLayer.CustomerDownloadRecordset GetCustomerDownloadById(string Email, string ProductId) {
+            if (Email == "" && ProductId == "")
                 return null;
 
-            string sql = "SELECT [UserId], [ProductId], [PurchaseDateTime] FROM CustomerDownload WHERE [UserId] = @UserId AND [ProductId] = @ProductId";
+            string sql = "SELECT [Email], [ProductId], [PurchaseDateTime] FROM CustomerDownload WHERE [Email] = @Email AND [ProductId] = @ProductId";
             List<SqlParameter> parameters = new List<SqlParameter>();
             
-			parameters.Add(ParameterFactory.GetParameter(CustomerDownloadFields.UserId, UserId));
+			parameters.Add(ParameterFactory.GetParameter(CustomerDownloadFields.Email, Email));
 			parameters.Add(ParameterFactory.GetParameter(CustomerDownloadFields.ProductId, ProductId));
             
 
@@ -183,15 +183,12 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// Insert a record into the table.
         /// </summary>
         public virtual int InsertCustomerDownload(Textfyre.TextfyreWeb.BusinessLayer.CustomerDownloadRecordset record) {
-            string sql = "INSERT INTO CustomerDownload([UserId], [ProductId], [PurchaseDateTime]) VALUES (@UserId, @ProductId, @PurchaseDateTime)";
+            string sql = "INSERT INTO CustomerDownload([Email], [ProductId], [PurchaseDateTime]) VALUES (@Email, @ProductId, @PurchaseDateTime)";
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-			parameters.Add(ParameterFactory.GetParameter(CustomerDownloadFields.UserId, record.UserId));
+			parameters.Add(ParameterFactory.GetParameter(CustomerDownloadFields.Email, record.Email));
 			parameters.Add(ParameterFactory.GetParameter(CustomerDownloadFields.ProductId, record.ProductId));
-			if(record.PurchaseDateTime.HasValue)
-				parameters.Add(ParameterFactory.GetParameter(CustomerDownloadFields.PurchaseDateTime, record.PurchaseDateTime.Value));
-			else
-				parameters.Add(ParameterFactory.GetParameter(CustomerDownloadFields.PurchaseDateTime, DBNull.Value));
+			parameters.Add(ParameterFactory.GetParameter(CustomerDownloadFields.PurchaseDateTime, record.PurchaseDateTime));
 
             
 			return ExecuteSqlGetNonScalar(sql, parameters);
@@ -201,15 +198,12 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// Update a record in the table.
         /// </summary>
         public virtual int UpdateCustomerDownload(Textfyre.TextfyreWeb.BusinessLayer.CustomerDownloadRecordset record) {
-            string sql = "UPDATE CustomerDownload SET [PurchaseDateTime] = @PurchaseDateTime WHERE [UserId] = @UserId AND [ProductId] = @ProductId";
+            string sql = "UPDATE CustomerDownload SET [PurchaseDateTime] = @PurchaseDateTime WHERE [Email] = @Email AND [ProductId] = @ProductId";
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-			parameters.Add(ParameterFactory.GetParameter(CustomerDownloadFields.UserId, record.UserId));
+			parameters.Add(ParameterFactory.GetParameter(CustomerDownloadFields.Email, record.Email));
 			parameters.Add(ParameterFactory.GetParameter(CustomerDownloadFields.ProductId, record.ProductId));
-			if(record.PurchaseDateTime.HasValue)
-				parameters.Add(ParameterFactory.GetParameter(CustomerDownloadFields.PurchaseDateTime, record.PurchaseDateTime.Value));
-			else
-				parameters.Add(ParameterFactory.GetParameter(CustomerDownloadFields.PurchaseDateTime, DBNull.Value));
+			parameters.Add(ParameterFactory.GetParameter(CustomerDownloadFields.PurchaseDateTime, record.PurchaseDateTime));
 
             
             return ExecuteSqlGetNonScalar(sql, parameters);
@@ -218,11 +212,11 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// <summary>
         /// Delete a record in the table.
         /// </summary>
-        public virtual int DeleteCustomerDownload(Guid UserId, Int32 ProductId) {
-            string sql = "DELETE FROM CustomerDownload WHERE [UserId] = @UserId AND [ProductId] = @ProductId";
+        public virtual int DeleteCustomerDownload(string Email, string ProductId) {
+            string sql = "DELETE FROM CustomerDownload WHERE [Email] = @Email AND [ProductId] = @ProductId";
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-			parameters.Add(ParameterFactory.GetParameter(CustomerDownloadFields.UserId, UserId));
+			parameters.Add(ParameterFactory.GetParameter(CustomerDownloadFields.Email, Email));
 			parameters.Add(ParameterFactory.GetParameter(CustomerDownloadFields.ProductId, ProductId));
 
             
@@ -469,16 +463,16 @@ namespace Textfyre.TextfyreWeb.DataLayer {
                 Textfyre.TextfyreWeb.BusinessLayer.CustomerDownloadRecordset newCustomerDownloadRecordset = new Textfyre.TextfyreWeb.BusinessLayer.CustomerDownloadRecordset();
                 object o = null;
 
-				if (fieldMap.ContainsKey("UserId")) {
-					o = drCustomerDownload[fieldMap["UserId"]];
+				if (fieldMap.ContainsKey("Email")) {
+					o = drCustomerDownload[fieldMap["Email"]];
 					if (o != DBNull.Value)
-						newCustomerDownloadRecordset.UserId = (Guid)o;
+						newCustomerDownloadRecordset.Email = ((string)o).Trim();
 				}
 
 				if (fieldMap.ContainsKey("ProductId")) {
 					o = drCustomerDownload[fieldMap["ProductId"]];
 					if (o != DBNull.Value)
-						newCustomerDownloadRecordset.ProductId = (Int32)o;
+						newCustomerDownloadRecordset.ProductId = ((string)o).Trim();
 				}
 
 				if (fieldMap.ContainsKey("PurchaseDateTime")) {

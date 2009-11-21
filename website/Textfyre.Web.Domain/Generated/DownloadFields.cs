@@ -17,6 +17,7 @@ namespace Textfyre.TextfyreWeb.DataLayer {
 		PlatformId,
 		Version,
 		AvailableDate,
+		Filename,
 		IsLocked,
 		IntelMac,
 		PowerPCMac,

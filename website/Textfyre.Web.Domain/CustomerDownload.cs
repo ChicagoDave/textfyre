@@ -18,7 +18,7 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
         public CustomerDownload() : base() {
         }
 
-        public CustomerDownload(Guid UserId, Int32 ProductId) : base(UserId, ProductId) {
+        public CustomerDownload(string Email, string ProductId) : base(Email, ProductId) {
 		}        
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
         /// <summary>
         /// IEditableObject: New object constructor.
         /// </summary>
-        public CustomerDownload(bool IsAddNew) : this(Guid.NewGuid(), 0) { 
+        public CustomerDownload(bool IsAddNew) : this("", "") { 
             _IsAddNew = IsAddNew; 
         } 
         

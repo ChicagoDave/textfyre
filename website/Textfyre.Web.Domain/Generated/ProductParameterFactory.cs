@@ -23,18 +23,11 @@ namespace Textfyre.TextfyreWeb.DataLayer {
             SqlParameter param = null;
             switch (FieldIdentity) {
 				case ProductFields.ProductId:
-					param = new SqlParameter("@ProductId", SqlDbType.Int);
+					param = new SqlParameter("@ProductId", SqlDbType.NVarChar, 50);
 					param.Value = FieldValue;
 					param.Direction = ParameterDirection.Input;
 					param.IsNullable = false;
 					param.SourceColumn = "ProductId";
-					break;
-				case ProductFields.ProductCode:
-					param = new SqlParameter("@ProductCode", SqlDbType.NVarChar, 50);
-					param.Value = FieldValue;
-					param.Direction = ParameterDirection.Input;
-					param.IsNullable = true;
-					param.SourceColumn = "ProductCode";
 					break;
 				case ProductFields.Description:
 					param = new SqlParameter("@Description", SqlDbType.NVarChar, 100);

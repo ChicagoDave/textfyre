@@ -11,8 +11,6 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
     /// </summary>
     [Serializable()]
     public class Customer : CustomerBase, IEditableObject {
-
-        private DownloadCollection _downloads;
         
         /// <summary>
         /// Empty default constructor.
@@ -27,20 +25,6 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
         /// Empty constructor that accepts a Customerrecordset object.
         /// </summary>
         public Customer(CustomerRecordset Recordset) : base(Recordset) {
-        }
-
-        public DownloadCollection Downloads {
-            get {
-                if (_downloads == null && UserId != null) {
-                    Download download = new Download();
-                    _downloads = download.LoadByUserId(UserId);
-                }
-
-                return _downloads;
-            }
-            set {
-                _downloads = value;
-            }
         }
 
         #region "IEditableObject Interface" 

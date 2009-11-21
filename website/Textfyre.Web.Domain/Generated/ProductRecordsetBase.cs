@@ -19,11 +19,7 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 			/// <summary>
 			/// ProductId field.
 			/// </summary>
-			private Int32 _ProductId;
-			/// <summary>
-			/// ProductCode field.
-			/// </summary>
-			private string _ProductCode;
+			private string _ProductId;
 			/// <summary>
 			/// Description field.
 			/// </summary>
@@ -61,22 +57,12 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
       #region Properties
         
 
-		public Int32 ProductId {
+		public string ProductId {
 			get { return _ProductId; }
 			set {
 				if(_ProductId != value) {
 					_isDirty = true;
 					_ProductId = value;
-				}
-			}
-		}
-
-		public string ProductCode {
-			get { return _ProductCode; }
-			set {
-				if(_ProductCode != value) {
-					_isDirty = true;
-					_ProductCode = value;
 				}
 			}
 		}
@@ -171,7 +157,6 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
       public virtual ProductRecordset Clone() {
           ProductRecordset newProductRS = new ProductRecordset(); 
           newProductRS.ProductId = _ProductId;
-					newProductRS.ProductCode = _ProductCode;
 					newProductRS.Description = _Description;
 					newProductRS.PublishDate = _PublishDate;
 					newProductRS.TeamId = _TeamId;
@@ -187,7 +172,7 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
       /// Sets the identity column.
       /// </summary>
       /// <param name="IdentityValue"></param>
-		public void SetIdentity(Int32 IdentityValue) {
+		public void SetIdentity(string IdentityValue) {
 			_ProductId = IdentityValue;
 		}
 

@@ -5,7 +5,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Textfyre.Com</title>
-
     <!-- Stylesheets -->
     <link href="style/reset.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="style/styling.css" media="screen" rel="stylesheet" type="text/css" />
@@ -46,7 +45,8 @@
     <div id="container">
         <div id="header">
             <div id="logo">
-                <asp:HyperLink runat="server" Text="" NavigateUrl="~/Default.aspx"><asp:Image ID="Image1" runat="server" AlternateText="Textfyre, Inc." ImageUrl="~/images/logo.png" /></asp:HyperLink>
+                <asp:HyperLink runat="server" Text="" NavigateUrl="~/Default.aspx">
+                    <asp:Image ID="Image1" runat="server" AlternateText="Textfyre, Inc." ImageUrl="~/images/logo.png" /></asp:HyperLink>
             </div>
             <div id="headerOut" runat="server">
                 <table class="rfloat">
@@ -56,7 +56,13 @@
                         </td>
                         <td>
                             <asp:Button runat="server" CssClass="logoutButton" ID="LogoutButton" CommandName="Logout"
-                                Text="Sign Out" OnClick="LogoutButton_Click" Visible="false"/>
+                                Text="Sign Out" OnClick="LogoutButton_Click" Visible="false" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:right;">
+                                <asp:HyperLink runat="server" ID="DownloadLink" Visible="false" NavigateUrl="~/Customer/"
+                                    Text="Updates and Downloads" />
                         </td>
                     </tr>
                 </table>
@@ -65,7 +71,7 @@
                 <div id="login">
                     <asp:Login ID="Login1" runat="server">
                         <LayoutTemplate>
-                            <asp:Label CssClass="loginLabel" ID="UserNameLabel" runat="server" AssociatedControlID="UserName">User Name:</asp:Label>
+                            <asp:Label CssClass="loginLabel" ID="UserNameLabel" runat="server" AssociatedControlID="UserName">E-Mail:</asp:Label>
                             <asp:TextBox CssClass="loginBox" ID="UserName" runat="server"></asp:TextBox>
                             <asp:Label CssClass="loginLabel" ID="PasswordLabel" runat="server" AssociatedControlID="Password">Password:</asp:Label>
                             <asp:TextBox CssClass="loginBox" ID="Password" runat="server" TextMode="Password"></asp:TextBox>
@@ -83,7 +89,6 @@
             <div id="menuSpacer">
                 <uc1:MenuBar ID="MenuBar1" runat="server" />
             </div>
-
         </div>
         <!-- end #header -->
         <div id="content">
@@ -92,26 +97,30 @@
             </asp:ContentPlaceHolder>
         </div>
         <div id="footer">
-                Compatible with Windows XP, Windows Vista, Windows 7, and Intel Mac OS X - 
-                <asp:HyperLink runat="server" ID="PrivacyLink" Text="Privacy Policy" NavigateUrl="~/Privacy.aspx" />
-                 - Copyright © 2009 Textfyre, Inc. All rights reserved.
-        </div>            
+            Compatible with Windows XP, Windows Vista, Windows 7, and Intel Mac OS X -
+            <asp:HyperLink runat="server" ID="PrivacyLink" Text="Privacy Policy" NavigateUrl="~/Privacy.aspx" />
+            - Copyright © 2009 Textfyre, Inc. All rights reserved.
+        </div>
         <!-- end #footer -->
     </div>
     <!-- end div#container -->
     <!-- end of content, starting some javascript... -->
     <!-- common functions -->
     </form>
-<!-- Start Quantcast tag -->
-<script type="text/javascript">
-_qoptions={
-qacct:"p-73fx_puOEQzIg"
-};
-</script>
-<script type="text/javascript" src="https://edge.quantserve.com/quant.js"></script>
-<noscript>
-<img src="https://pixel.quantserve.com/pixel/p-73fx_puOEQzIg.gif" class="hidden" border="0" height="1" width="1" alt="Quantcast"/>
-</noscript>
-<!-- End Quantcast tag -->
+    <!-- Start Quantcast tag -->
+
+    <script type="text/javascript">
+        _qoptions = {
+            qacct: "p-73fx_puOEQzIg"
+        };
+    </script>
+
+    <script type="text/javascript" src="https://edge.quantserve.com/quant.js"></script>
+
+    <noscript>
+        <img src="https://pixel.quantserve.com/pixel/p-73fx_puOEQzIg.gif" class="hidden"
+            border="0" height="1" width="1" alt="Quantcast" />
+    </noscript>
+    <!-- End Quantcast tag -->
 </body>
 </html>
