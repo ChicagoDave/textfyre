@@ -7,6 +7,7 @@
         <asp:PlaceHolder ID="menuTeachers" runat="server"></asp:PlaceHolder>
         <!--<asp:PlaceHolder ID="menuLibrarians" runat="server"></asp:PlaceHolder>-->
         <asp:PlaceHolder ID="menuCustomers" runat="server" Visible="false"></asp:PlaceHolder>
+        <asp:PlaceHolder ID="menuForums" runat="server"></asp:PlaceHolder>
         <asp:PlaceHolder ID="menuAbout" runat="server"></asp:PlaceHolder>
     </span>
 </div>

@@ -70,12 +70,6 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
 					else
 						Sort(Product.SortBy.ProductIdColumnASC);
 					break;
-				case DataLayer.ProductFields.ProductCode:
-					if (sortDirection == SortDirection.Descending)
-						Sort(Product.SortBy.ProductCodeColumnDESC);
-					else
-						Sort(Product.SortBy.ProductCodeColumnASC);
-					break;
 				case DataLayer.ProductFields.Description:
 					if (sortDirection == SortDirection.Descending)
 						Sort(Product.SortBy.DescriptionColumnDESC);

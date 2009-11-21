@@ -32,7 +32,8 @@
         <p>DAVID CORNELSON is a computer consultant in Chicago, Illinois and has spent many
             years involved in the hobbyist Interactive Fiction community. He's worked as a consultant
             for many Fortune 500 corporations helping them build enterprise web and windows
-            applications.</p>
+            applications. You can see a history of Textfyre's business development through 
+            <a href="http://chicagodave.wordpress.com">David's blog</a>.</p>
     </div>
     <div class="clearLine"></div>   <div class="col-left"><img id="ctl00_ContentPlaceHolder1_Image2" src="images/gentry.jpg" alt="Michael Gentry, Miradania Designer and Writer"  />
     </div>

@@ -159,17 +159,17 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// Get all records in the table.
         /// </summary>
         public virtual List<Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset> GetAllProduct() {
-            return ExecuteSqlGetCollection("SELECT [ProductId], [ProductCode], [Description], [PublishDate], [TeamId], [GLNumber], [SystemRequirements] FROM Product", null);
+            return ExecuteSqlGetCollection("SELECT [ProductId], [Description], [PublishDate], [TeamId], [GLNumber], [SystemRequirements] FROM Product", null);
         }
 
         /// <summary>
         /// Get a single record in the table.
         /// </summary>
-        public virtual Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset GetProductById(Int32 ProductId) {
-            if (ProductId < 1)
+        public virtual Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset GetProductById(string ProductId) {
+            if (ProductId == "")
                 return null;
 
-            string sql = "SELECT [ProductId], [ProductCode], [Description], [PublishDate], [TeamId], [GLNumber], [SystemRequirements] FROM Product WHERE [ProductId] = @ProductId";
+            string sql = "SELECT [ProductId], [Description], [PublishDate], [TeamId], [GLNumber], [SystemRequirements] FROM Product WHERE [ProductId] = @ProductId";
             List<SqlParameter> parameters = new List<SqlParameter>();
             
 			parameters.Add(ParameterFactory.GetParameter(ProductFields.ProductId, ProductId));            
@@ -180,14 +180,9 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// <summary>
         /// Insert a record into the table.
         /// </summary>
-        public virtual Int32 InsertProduct(Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset record) {
-            string sql = "INSERT INTO Product([ProductCode], [Description], [PublishDate], [TeamId], [GLNumber], [SystemRequirements]) VALUES (@ProductCode, @Description, @PublishDate, @TeamId, @GLNumber, @SystemRequirements); SELECT SCOPE_IDENTITY() as ID;";
+        public virtual int InsertProduct(Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset record) {
+            string sql = "INSERT INTO Product([Description], [PublishDate], [TeamId], [GLNumber], [SystemRequirements]) VALUES (@Description, @PublishDate, @TeamId, @GLNumber, @SystemRequirements); SELECT SCOPE_IDENTITY() as ID;";
             List<SqlParameter> parameters = new List<SqlParameter>();
-
-			if(record.ProductCode != null)
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.ProductCode, record.ProductCode));
-			else
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.ProductCode, DBNull.Value));
 
 			if(record.Description != null)
 				parameters.Add(ParameterFactory.GetParameter(ProductFields.Description, record.Description));
@@ -215,22 +210,17 @@ namespace Textfyre.TextfyreWeb.DataLayer {
 				parameters.Add(ParameterFactory.GetParameter(ProductFields.SystemRequirements, DBNull.Value));
 
             
-			return Convert.ToInt32(ExecuteSqlGetScalar(sql, parameters));
+			return ExecuteSqlGetNonScalar(sql, parameters);
         }
 
         /// <summary>
         /// Update a record in the table.
         /// </summary>
         public virtual int UpdateProduct(Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset record) {
-            string sql = "UPDATE Product SET [ProductCode] = @ProductCode, [Description] = @Description, [PublishDate] = @PublishDate, [TeamId] = @TeamId, [GLNumber] = @GLNumber, [SystemRequirements] = @SystemRequirements WHERE [ProductId] = @ProductId";
+            string sql = "UPDATE Product SET [Description] = @Description, [PublishDate] = @PublishDate, [TeamId] = @TeamId, [GLNumber] = @GLNumber, [SystemRequirements] = @SystemRequirements WHERE [ProductId] = @ProductId";
             List<SqlParameter> parameters = new List<SqlParameter>();
 
 			parameters.Add(ParameterFactory.GetParameter(ProductFields.ProductId, record.ProductId));
-			if(record.ProductCode != null)
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.ProductCode, record.ProductCode));
-			else
-				parameters.Add(ParameterFactory.GetParameter(ProductFields.ProductCode, DBNull.Value));
-
 			if(record.Description != null)
 				parameters.Add(ParameterFactory.GetParameter(ProductFields.Description, record.Description));
 			else
@@ -263,7 +253,7 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// <summary>
         /// Delete a record in the table.
         /// </summary>
-        public virtual int DeleteProduct(Int32 ProductId) {
+        public virtual int DeleteProduct(string ProductId) {
             string sql = "DELETE FROM Product WHERE [ProductId] = @ProductId";
             List<SqlParameter> parameters = new List<SqlParameter>();
 
@@ -516,13 +506,7 @@ namespace Textfyre.TextfyreWeb.DataLayer {
 				if (fieldMap.ContainsKey("ProductId")) {
 					o = drProduct[fieldMap["ProductId"]];
 					if (o != DBNull.Value)
-						newProductRecordset.ProductId = (Int32)o;
-				}
-
-				if (fieldMap.ContainsKey("ProductCode")) {
-					o = drProduct[fieldMap["ProductCode"]];
-					if (o != DBNull.Value)
-						newProductRecordset.ProductCode = ((string)o).Trim();
+						newProductRecordset.ProductId = ((string)o).Trim();
 				}
 
 				if (fieldMap.ContainsKey("Description")) {

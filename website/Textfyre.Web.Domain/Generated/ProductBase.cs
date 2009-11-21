@@ -68,7 +68,7 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
             _dataFactory = new ProductData();
         }
 
-        public ProductBase(Int32 ProductId) : this() {
+        public ProductBase(string ProductId) : this() {
 				Load(ProductId);
 		}                     
         
@@ -86,7 +86,7 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
         /// <summary>
         /// Load method that retrieves a record from the Product table by the primary key id.
         /// </summary>
-        public Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset Load(Int32 ProductId) {
+        public Textfyre.TextfyreWeb.BusinessLayer.ProductRecordset Load(string ProductId) {
             _recordset = DataFactory.GetProductById(ProductId);
             return _recordset;
         }
@@ -111,34 +111,28 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
         /// </summary>
         public virtual void DeleteNow() {
             _recordset.IsDeleted = true;
-            Save();
+            Save(SaveOperation.Delete);
         }
 
-        /// <summary>
-        /// Overload for calling save without concern for the new primary key on insert.
-        /// </summary>
-        public virtual int Save() {
-            Int32 newPrimaryKey;
-            return Save(out newPrimaryKey);
+        public enum SaveOperation {
+            Insert,
+            Update,
+            Delete
         }
 
         /// <summary>
         /// Save the current record to the database.
         /// </summary>
-        public virtual int Save(out Int32 newPrimaryKey)
+        public virtual int Save(SaveOperation saveOperation)
         {
             int ReturnValue = -1;
-            newPrimaryKey = -1;
             
-            if (_recordset.IsDeleted) {
+            if (_recordset.IsDeleted || saveOperation == SaveOperation.Delete) {
                 ReturnValue = DataFactory.DeleteProduct(_recordset.ProductId);                
             } else {
-                if (_recordset.ProductId == -1) {
-                    newPrimaryKey = _dataFactory.InsertProduct(_recordset);
-					if (newPrimaryKey != -1)
-						ReturnValue = -1;
-					else
-						ReturnValue = 0;;                    
+                if (saveOperation == SaveOperation.Insert) {
+                    ReturnValue = _dataFactory.InsertProduct(_recordset);
+                    
                 } else {
                     if(_recordset.IsDirty) {    
                         ReturnValue = DataFactory.UpdateProduct(_recordset);                        
@@ -169,22 +163,12 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
         #region Properties
 
 
-		public virtual Int32 ProductId {
+		public virtual string ProductId {
 			get { return _recordset.ProductId; }
 			set {
 				if (_recordset.ProductId != value) {
 					_recordset.ProductId = value;
 					NotifyPropertyChanged("ProductId");
-				}
-			}
-		}
-
-		public virtual string ProductCode {
-			get { return _recordset.ProductCode; }
-			set {
-				if (_recordset.ProductCode != value) {
-					_recordset.ProductCode = value;
-					NotifyPropertyChanged("ProductCode");
 				}
 			}
 		}
@@ -303,27 +287,15 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
         public class SortBy
         {
 			public static Comparison<Product> ProductIdColumnASC =
-					delegate(Product o1, Product o2)
-					{
-						return Nullable.Compare<Int32>(o1.ProductId, o2.ProductId);
-					};
-
-			public static Comparison<Product> ProductIdColumnDESC =
-					delegate(Product o1, Product o2)
-					{
-						return Nullable.Compare<Int32>(o2.ProductId, o1.ProductId);
-					};
-
-			public static Comparison<Product> ProductCodeColumnASC =
 				delegate(Product o1, Product o2)
 				{
-					return o1.ProductCode.CompareTo(o2.ProductCode);
+					return o1.ProductId.CompareTo(o2.ProductId);
 				};
 
-			public static Comparison<Product> ProductCodeColumnDESC =
+			public static Comparison<Product> ProductIdColumnDESC =
 				delegate(Product o1, Product o2)
 				{
-					return o2.ProductCode.CompareTo(o1.ProductCode);
+					return o2.ProductId.CompareTo(o1.ProductId);
 				};
 
 			public static Comparison<Product> DescriptionColumnASC =

@@ -13,7 +13,6 @@ namespace Textfyre.TextfyreWeb.DataLayer {
     public enum ProductFields {
         
 		ProductId,
-		ProductCode,
 		Description,
 		PublishDate,
 		TeamId,

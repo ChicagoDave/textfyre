@@ -30,7 +30,7 @@ namespace Textfyre.TextfyreWeb.DataLayer {
 					param.SourceColumn = "DownloadId";
 					break;
 				case DownloadFields.ProductId:
-					param = new SqlParameter("@ProductId", SqlDbType.Int);
+					param = new SqlParameter("@ProductId", SqlDbType.NVarChar, 50);
 					param.Value = FieldValue;
 					param.Direction = ParameterDirection.Input;
 					param.IsNullable = true;
@@ -44,7 +44,7 @@ namespace Textfyre.TextfyreWeb.DataLayer {
 					param.SourceColumn = "PlatformId";
 					break;
 				case DownloadFields.Version:
-					param = new SqlParameter("@Version", SqlDbType.NVarChar, 10);
+					param = new SqlParameter("@Version", SqlDbType.NVarChar, 20);
 					param.Value = FieldValue;
 					param.Direction = ParameterDirection.Input;
 					param.IsNullable = true;
@@ -56,6 +56,13 @@ namespace Textfyre.TextfyreWeb.DataLayer {
 					param.Direction = ParameterDirection.Input;
 					param.IsNullable = true;
 					param.SourceColumn = "AvailableDate";
+					break;
+				case DownloadFields.Filename:
+					param = new SqlParameter("@Filename", SqlDbType.NVarChar, 255);
+					param.Value = FieldValue;
+					param.Direction = ParameterDirection.Input;
+					param.IsNullable = true;
+					param.SourceColumn = "Filename";
 					break;
 				case DownloadFields.IsLocked:
 					param = new SqlParameter("@IsLocked", SqlDbType.Bit);

@@ -8,10 +8,12 @@
 <body>
     <form id="form1" runat="server" action="TF99ReceiptData.aspx" method="post">
     <div>
-        <input type="text" name="firstname" /><br />
-        <input type="text" name="lastname" /><br />
-        <input type="text" name="city" /><br />
-        <input type="text" name="state" /><br />
+        first name <input type="text" name="firstname" /><br />
+        last name <input type="text" name="lastname" /><br />
+        city <input type="text" name="city" /><br />
+        state <input type="text" name="state" /><br />
+        email <input type="text" name="payer_email" /><br />
+        productid <input type="text" name="item_number1" /><br />
         <input type="submit" name="postMe" value="Post Me!" />
     </div>
     </form>

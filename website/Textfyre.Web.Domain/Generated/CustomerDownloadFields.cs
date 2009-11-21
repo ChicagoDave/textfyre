@@ -12,7 +12,7 @@ namespace Textfyre.TextfyreWeb.DataLayer {
     /// </summary>
     public enum CustomerDownloadFields {
         
-		UserId,
+		Email,
 		ProductId,
 		PurchaseDateTime
     }

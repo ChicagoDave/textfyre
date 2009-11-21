@@ -18,7 +18,7 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
         public Product() : base() {
         }
 
-        public Product(Int32 ProductId) : base(ProductId) {
+        public Product(string ProductId) : base(ProductId) {
 		}        
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Textfyre.TextfyreWeb.BusinessLayer {
         /// <summary>
         /// IEditableObject: New object constructor.
         /// </summary>
-        public Product(bool IsAddNew) : this(0) { 
+        public Product(bool IsAddNew) : this("") { 
             _IsAddNew = IsAddNew; 
         } 
         

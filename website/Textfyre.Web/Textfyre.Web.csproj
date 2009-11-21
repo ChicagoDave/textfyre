@@ -138,6 +138,13 @@
     <None Include="DomainOld\TransactionItem.cs" />
     <None Include="DomainOld\User.cs" />
     <Compile Include="Extensions\Extensions.cs" />
+    <Compile Include="Forums.aspx.cs">
+      <DependentUpon>Forums.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forums.aspx.designer.cs">
+      <DependentUpon>Forums.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Games.aspx.cs">
       <DependentUpon>Games.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -212,6 +219,13 @@
     <Compile Include="Registration\Welcome.aspx.designer.cs">
       <DependentUpon>Welcome.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ShadowDemo.aspx.cs">
+      <DependentUpon>ShadowDemo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShadowDemo.aspx.designer.cs">
+      <DependentUpon>ShadowDemo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Teachers.aspx.cs">
       <DependentUpon>Teachers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -256,7 +270,10 @@
     <Content Include="Customer\OnTheInside.aspx" />
     <Content Include="Customer\TF99ReceiptData.aspx" />
     <Content Include="Customer\TF99Tester.aspx" />
+    <Content Include="Forums.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="images\secretlettermap.jpg" />
+    <Content Include="images\shbanner.jpg" />
     <Content Include="images\chrishuang.jpg" />
     <Content Include="images\graeme.jpg" />
     <Content Include="images\parents1.jpg" />
@@ -265,6 +282,7 @@
     <Content Include="images\students.jpg" />
     <Content Include="images\teacherkids.jpg" />
     <Content Include="images\tflogo.jpg" />
+    <Content Include="ShadowDemo.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -292,6 +310,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="javascript\" />
+    <Folder Include="TempFiles\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

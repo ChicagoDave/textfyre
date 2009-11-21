@@ -159,7 +159,7 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// Get all records in the table.
         /// </summary>
         public virtual List<Textfyre.TextfyreWeb.BusinessLayer.DownloadRecordset> GetAllDownload() {
-            return ExecuteSqlGetCollection("SELECT [DownloadId], [ProductId], [PlatformId], [Version], [AvailableDate], [IsLocked], [IntelMac], [PowerPCMac], [WindowsXP], [WindowsVista], [Windows7], [Linux], [Unix], [WindowsMobile], [iPhone], [ScreenReader], [RequiresSilverlight], [RequiresFlash], [RequiresDotNet], [DotNetVersion], [RequiresMono], [RequiresMoonlight] FROM Download", null);
+            return ExecuteSqlGetCollection("SELECT [DownloadId], [ProductId], [PlatformId], [Version], [AvailableDate], [Filename], [IsLocked], [IntelMac], [PowerPCMac], [WindowsXP], [WindowsVista], [Windows7], [Linux], [Unix], [WindowsMobile], [iPhone], [ScreenReader], [RequiresSilverlight], [RequiresFlash], [RequiresDotNet], [DotNetVersion], [RequiresMono], [RequiresMoonlight] FROM Download", null);
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace Textfyre.TextfyreWeb.DataLayer {
             if (DownloadId < 1)
                 return null;
 
-            string sql = "SELECT [DownloadId], [ProductId], [PlatformId], [Version], [AvailableDate], [IsLocked], [IntelMac], [PowerPCMac], [WindowsXP], [WindowsVista], [Windows7], [Linux], [Unix], [WindowsMobile], [iPhone], [ScreenReader], [RequiresSilverlight], [RequiresFlash], [RequiresDotNet], [DotNetVersion], [RequiresMono], [RequiresMoonlight] FROM Download WHERE [DownloadId] = @DownloadId";
+            string sql = "SELECT [DownloadId], [ProductId], [PlatformId], [Version], [AvailableDate], [Filename], [IsLocked], [IntelMac], [PowerPCMac], [WindowsXP], [WindowsVista], [Windows7], [Linux], [Unix], [WindowsMobile], [iPhone], [ScreenReader], [RequiresSilverlight], [RequiresFlash], [RequiresDotNet], [DotNetVersion], [RequiresMono], [RequiresMoonlight] FROM Download WHERE [DownloadId] = @DownloadId";
             List<SqlParameter> parameters = new List<SqlParameter>();
             
 			parameters.Add(ParameterFactory.GetParameter(DownloadFields.DownloadId, DownloadId));            
@@ -181,11 +181,11 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// Insert a record into the table.
         /// </summary>
         public virtual Int32 InsertDownload(Textfyre.TextfyreWeb.BusinessLayer.DownloadRecordset record) {
-            string sql = "INSERT INTO Download([ProductId], [PlatformId], [Version], [AvailableDate], [IsLocked], [IntelMac], [PowerPCMac], [WindowsXP], [WindowsVista], [Windows7], [Linux], [Unix], [WindowsMobile], [iPhone], [ScreenReader], [RequiresSilverlight], [RequiresFlash], [RequiresDotNet], [DotNetVersion], [RequiresMono], [RequiresMoonlight]) VALUES (@ProductId, @PlatformId, @Version, @AvailableDate, @IsLocked, @IntelMac, @PowerPCMac, @WindowsXP, @WindowsVista, @Windows7, @Linux, @Unix, @WindowsMobile, @iPhone, @ScreenReader, @RequiresSilverlight, @RequiresFlash, @RequiresDotNet, @DotNetVersion, @RequiresMono, @RequiresMoonlight); SELECT SCOPE_IDENTITY() as ID;";
+            string sql = "INSERT INTO Download([ProductId], [PlatformId], [Version], [AvailableDate], [Filename], [IsLocked], [IntelMac], [PowerPCMac], [WindowsXP], [WindowsVista], [Windows7], [Linux], [Unix], [WindowsMobile], [iPhone], [ScreenReader], [RequiresSilverlight], [RequiresFlash], [RequiresDotNet], [DotNetVersion], [RequiresMono], [RequiresMoonlight]) VALUES (@ProductId, @PlatformId, @Version, @AvailableDate, @Filename, @IsLocked, @IntelMac, @PowerPCMac, @WindowsXP, @WindowsVista, @Windows7, @Linux, @Unix, @WindowsMobile, @iPhone, @ScreenReader, @RequiresSilverlight, @RequiresFlash, @RequiresDotNet, @DotNetVersion, @RequiresMono, @RequiresMoonlight); SELECT SCOPE_IDENTITY() as ID;";
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-			if(record.ProductId.HasValue)
-				parameters.Add(ParameterFactory.GetParameter(DownloadFields.ProductId, record.ProductId.Value));
+			if(record.ProductId != null)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.ProductId, record.ProductId));
 			else
 				parameters.Add(ParameterFactory.GetParameter(DownloadFields.ProductId, DBNull.Value));
 
@@ -203,6 +203,11 @@ namespace Textfyre.TextfyreWeb.DataLayer {
 				parameters.Add(ParameterFactory.GetParameter(DownloadFields.AvailableDate, record.AvailableDate.Value));
 			else
 				parameters.Add(ParameterFactory.GetParameter(DownloadFields.AvailableDate, DBNull.Value));
+
+			if(record.Filename != null)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.Filename, record.Filename));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.Filename, DBNull.Value));
 
 			if(record.IsLocked.HasValue)
 				parameters.Add(ParameterFactory.GetParameter(DownloadFields.IsLocked, record.IsLocked.Value));
@@ -297,12 +302,12 @@ namespace Textfyre.TextfyreWeb.DataLayer {
         /// Update a record in the table.
         /// </summary>
         public virtual int UpdateDownload(Textfyre.TextfyreWeb.BusinessLayer.DownloadRecordset record) {
-            string sql = "UPDATE Download SET [ProductId] = @ProductId, [PlatformId] = @PlatformId, [Version] = @Version, [AvailableDate] = @AvailableDate, [IsLocked] = @IsLocked, [IntelMac] = @IntelMac, [PowerPCMac] = @PowerPCMac, [WindowsXP] = @WindowsXP, [WindowsVista] = @WindowsVista, [Windows7] = @Windows7, [Linux] = @Linux, [Unix] = @Unix, [WindowsMobile] = @WindowsMobile, [iPhone] = @iPhone, [ScreenReader] = @ScreenReader, [RequiresSilverlight] = @RequiresSilverlight, [RequiresFlash] = @RequiresFlash, [RequiresDotNet] = @RequiresDotNet, [DotNetVersion] = @DotNetVersion, [RequiresMono] = @RequiresMono, [RequiresMoonlight] = @RequiresMoonlight WHERE [DownloadId] = @DownloadId";
+            string sql = "UPDATE Download SET [ProductId] = @ProductId, [PlatformId] = @PlatformId, [Version] = @Version, [AvailableDate] = @AvailableDate, [Filename] = @Filename, [IsLocked] = @IsLocked, [IntelMac] = @IntelMac, [PowerPCMac] = @PowerPCMac, [WindowsXP] = @WindowsXP, [WindowsVista] = @WindowsVista, [Windows7] = @Windows7, [Linux] = @Linux, [Unix] = @Unix, [WindowsMobile] = @WindowsMobile, [iPhone] = @iPhone, [ScreenReader] = @ScreenReader, [RequiresSilverlight] = @RequiresSilverlight, [RequiresFlash] = @RequiresFlash, [RequiresDotNet] = @RequiresDotNet, [DotNetVersion] = @DotNetVersion, [RequiresMono] = @RequiresMono, [RequiresMoonlight] = @RequiresMoonlight WHERE [DownloadId] = @DownloadId";
             List<SqlParameter> parameters = new List<SqlParameter>();
 
 			parameters.Add(ParameterFactory.GetParameter(DownloadFields.DownloadId, record.DownloadId));
-			if(record.ProductId.HasValue)
-				parameters.Add(ParameterFactory.GetParameter(DownloadFields.ProductId, record.ProductId.Value));
+			if(record.ProductId != null)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.ProductId, record.ProductId));
 			else
 				parameters.Add(ParameterFactory.GetParameter(DownloadFields.ProductId, DBNull.Value));
 
@@ -320,6 +325,11 @@ namespace Textfyre.TextfyreWeb.DataLayer {
 				parameters.Add(ParameterFactory.GetParameter(DownloadFields.AvailableDate, record.AvailableDate.Value));
 			else
 				parameters.Add(ParameterFactory.GetParameter(DownloadFields.AvailableDate, DBNull.Value));
+
+			if(record.Filename != null)
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.Filename, record.Filename));
+			else
+				parameters.Add(ParameterFactory.GetParameter(DownloadFields.Filename, DBNull.Value));
 
 			if(record.IsLocked.HasValue)
 				parameters.Add(ParameterFactory.GetParameter(DownloadFields.IsLocked, record.IsLocked.Value));
@@ -672,7 +682,7 @@ namespace Textfyre.TextfyreWeb.DataLayer {
 				if (fieldMap.ContainsKey("ProductId")) {
 					o = drDownload[fieldMap["ProductId"]];
 					if (o != DBNull.Value)
-						newDownloadRecordset.ProductId = (Int32)o;
+						newDownloadRecordset.ProductId = ((string)o).Trim();
 				}
 
 				if (fieldMap.ContainsKey("PlatformId")) {
@@ -691,6 +701,12 @@ namespace Textfyre.TextfyreWeb.DataLayer {
 					o = drDownload[fieldMap["AvailableDate"]];
 					if (o != DBNull.Value)
 						newDownloadRecordset.AvailableDate = (DateTime)o;
+				}
+
+				if (fieldMap.ContainsKey("Filename")) {
+					o = drDownload[fieldMap["Filename"]];
+					if (o != DBNull.Value)
+						newDownloadRecordset.Filename = ((string)o).Trim();
 				}
 
 				if (fieldMap.ContainsKey("IsLocked")) {
