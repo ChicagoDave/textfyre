@@ -133,6 +133,7 @@
             <h2>Textfyre Registration Benefits</h2>
             <ul>
                 <li>Be the first to hear about new games</li>
+                <li>Download updates to purchased products</li>
                 <li>Play online demonstrations of current and upcoming games</li>
                 <li>Become involved in the development of new games</li>
                 <li>Receive discounts on software</li>
