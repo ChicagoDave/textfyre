@@ -12,7 +12,7 @@ using System.IO;
 using System.Text;
 #endif
 
-namespace Cjc.SilverFyre
+namespace Textfyre.ShadowFyre
 {
     /// <summary>
     /// Control that implements support for transformations as if applied by

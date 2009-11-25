@@ -18,7 +18,7 @@ using System.Xml.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Cjc.SilverFyre
+namespace Textfyre.ShadowFyre
 {
 	public partial class Page : UserControl, INotifyPropertyChanged
 	{
@@ -62,7 +62,7 @@ namespace Cjc.SilverFyre
             //    storyUrl,
             //    OnLoaded );
 
-            Stream gameStream = new MemoryStream(Cjc.SilverFyre.Resources.shadow);
+            Stream gameStream = new MemoryStream(Textfyre.Shadow.Resources.shadow);
 
             OnLoaded(gameStream);
 

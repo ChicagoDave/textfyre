@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Cjc.SilverFyre
+namespace Textfyre.ShadowFyre
 {
 	public sealed class BooleanToVisibilityConverter : IValueConverter
 	{

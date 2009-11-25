@@ -15,7 +15,7 @@ using System.ComponentModel;
 using System.Windows.Data;
 using System.IO;
 
-namespace Cjc.SilverFyre
+namespace Textfyre.ShadowFyre
 {
 	public partial class SaveLoadPopup : UserControl, IDependencyRelay, INotifyPropertyChanged
 	{

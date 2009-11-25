@@ -20,8 +20,7 @@
     <form id="form1" runat="server" style="height:100%;">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div  style="height:100%;">
-            <asp:Silverlight ID="Xaml1" runat="server" Source="~/ClientBin/Cjc.SilverFyre.xap" MinimumVersion="3.0.40818.0" Width="100%" Height="100%" OnPluginLoaded="OnLoaded" />
-<%--            <asp:Silverlight ID="Xaml1" runat="server" Source="~/ClientBin/SilverFyre.xap" MinimumVersion="3.0.40818.0" Width="100%" Height="100%" InitParameters="story=Lowell's Paradise.ulx" />--%>
+            <asp:Silverlight ID="Xaml1" runat="server" Source="~/ClientBin/Textfyre.ShadowFyre.xap" MinimumVersion="3.0.40818.0" Width="100%" Height="100%" OnPluginLoaded="OnLoaded" />
         </div>
     </form>
 </body>

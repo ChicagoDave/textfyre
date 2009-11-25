@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Cjc.SilverFyre.SaveLoadPopup"
+﻿<UserControl x:Class="Textfyre.ShadowFyre.SaveLoadPopup"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
