@@ -8,27 +8,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Textfyre.Web {
+namespace Textfyre.Web.Customer {
     
     
-    public partial class CompletedSale {
+    public partial class ShadowPlay {
         
         /// <summary>
-        /// custname control.
+        /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label custname;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// custemail control.
+        /// Xaml1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label custemail;
+        protected global::System.Web.UI.SilverlightControls.Silverlight Xaml1;
     }
 }

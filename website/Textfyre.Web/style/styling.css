@@ -2,7 +2,7 @@
 
 															/** BODY ELEMENTS **/
 body {
-	background-image:url('../images/banner.jpg');
+	/*background-image:url('../images/banner.jpg');*/
 	background-repeat:repeat-x;
 	background-position:0px 50px;
 	background-attachment:fixed;
@@ -41,9 +41,6 @@ h1, h2 {
 	}
 
 
-
-
-
 															/** MAIN CONTAINERS **/
 
 
@@ -60,6 +57,14 @@ div#header {
 	background-repeat:repeat-x;
 	height:150px;
 	padding-right:15px;
+}
+
+div#headerShort {
+	color: inherit;
+	background-image:url('../images/banner50.jpg');
+	background-repeat:repeat-x;
+	height:50px;
+	padding-right:0px;
 }
 
 div#headerIn {
@@ -82,6 +87,13 @@ div#logo {
 	padding-left:15px;
 	float:left;
 }
+
+div#logoShort {
+	padding-top:2px;
+	padding-left:5px;
+	float:left;
+}
+
 div#login {
 	float:right;
 }
@@ -298,11 +310,16 @@ div#container {
 	
 }
 
-
 div#menuSpacer {
 	clear:right;
 	float:right;
 	padding:60px 60px 0 0;
+}
+
+div#menuSpacerShort {
+	clear:right;
+	float:right;
+	padding: 10px 60px 0 0;
 }
 
 div.clearLine {
@@ -365,4 +382,9 @@ div#content-singleCol  {
 }
 div#content-singleCol h2 {
     text-align:left;
+}
+
+tr.editions 
+{
+	border-bottom: solid 1px #000000 | inherit;
 }
