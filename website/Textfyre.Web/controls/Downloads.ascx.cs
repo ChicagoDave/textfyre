@@ -49,8 +49,6 @@ namespace Textfyre.Web.controls {
                 }
             }
 
-
-
             Guid guid = Guid.NewGuid();
             Session.Add("files",String.Concat(Server.MapPath("~/TempFiles"), @"\", guid.ToString()));
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
@@ -25,8 +26,10 @@ namespace Textfyre.Web {
                 if (((Textfyre.TextfyreWeb.BusinessLayer.Customer)Session["User"]).HasDownloads == true) {
                     DownloadLink.Visible = true;
                 }
-            } //else
-              //  form1.DefaultButton = "Login1.LoginButton";
+                if (HasOnlineGames()) {
+                    PlayOnlineLink.Visible = true;
+                }
+            }
         }
 
         protected void LoginButton_Click(object sender, EventArgs e) {
@@ -51,6 +54,29 @@ namespace Textfyre.Web {
         protected void LogoutButton_Click(object sender, EventArgs e) {
             FormsAuthentication.SignOut();
             Response.Redirect("~/Default.aspx");
+        }
+
+        private bool HasOnlineGames() {
+            if (Page.User.Identity.IsAuthenticated) {
+                Textfyre.TextfyreWeb.BusinessLayer.Customer user = (Textfyre.TextfyreWeb.BusinessLayer.Customer)Session["User"];
+                string email = Page.User.Identity.Name; // We can't be on this page unless we're logged in.
+
+                CustomerDownload cd = new CustomerDownload();
+                CustomerDownloadCollection allDownloads = cd.LoadAll();
+
+                IEnumerable<string> myDownloads =
+                    from CustomerDownload in allDownloads
+                    where CustomerDownload.Email == email
+                    select CustomerDownload.ProductId;
+
+                foreach (string download in myDownloads) {
+                    if (download.Contains("online")) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }

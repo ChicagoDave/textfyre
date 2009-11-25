@@ -8,27 +8,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Textfyre.Web {
+namespace Textfyre.Web.Customer.Online {
     
     
-    public partial class CompletedSale {
+    public partial class Default {
         
         /// <summary>
-        /// custname control.
+        /// ShadowLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label custname;
-        
-        /// <summary>
-        /// custemail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label custemail;
+        protected global::System.Web.UI.WebControls.HyperLink ShadowLink;
     }
 }

@@ -24,7 +24,12 @@ namespace Textfyre.Web.Customer {
                 string value = Request.Form[f];
 
                 // Save this data to allow registered customer to download files/updates
-                if (key == "item_number1") productid = value;
+                if (key == "item_number1") {
+                    productid = value;
+                    // We don't care if they bought the individual versions and actually, this should never happen
+                    if (productid.EndsWith("-mac") || productid.EndsWith("-win"))
+                        productid = productid.Substring(0, productid.Length - 4);
+                }
                 if (key == "payer_email") payer = value;
             }
 

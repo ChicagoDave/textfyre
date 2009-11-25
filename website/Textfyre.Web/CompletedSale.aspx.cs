@@ -14,7 +14,8 @@ using System.Xml.Linq;
 namespace Textfyre.Web {
     public partial class CompletedSale : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
-
+            custname.Text = String.Concat(Request.QueryString["first_name"], " ", Request.QueryString["last_name"]);
+            custemail.Text = Request.QueryString["payer_email"];
         }
     }
 }

@@ -62,7 +62,9 @@
                     <tr>
                         <td colspan="2" style="text-align:right;">
                                 <asp:HyperLink runat="server" ID="DownloadLink" Visible="false" NavigateUrl="~/Customer/"
-                                    Text="Updates and Downloads" />
+                                    Text="Downloads" /> &nbsp;&nbsp;
+                                <asp:HyperLink runat="server" ID="PlayOnlineLink" Visible="false" NavigateUrl="~/Customer/Online/"
+                                    Text="Play Online" />
                         </td>
                     </tr>
                 </table>

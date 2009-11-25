@@ -41,6 +41,7 @@
     <Reference Include="System.Web.Extensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Web.Silverlight, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -106,12 +107,26 @@
     <Compile Include="Customer\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Customer\Online\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Online\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Customer\OnTheInside.aspx.cs">
       <DependentUpon>OnTheInside.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Customer\OnTheInside.aspx.designer.cs">
       <DependentUpon>OnTheInside.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\Online\Shadow\ShadowPlay.aspx.cs">
+      <DependentUpon>ShadowPlay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Online\Shadow\ShadowPlay.aspx.designer.cs">
+      <DependentUpon>ShadowPlay.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer\TF99ReceiptData.aspx.cs">
       <DependentUpon>TF99ReceiptData.aspx</DependentUpon>
@@ -134,9 +149,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Content Include="Customer\Online\Shadow\Server.ashx" />
+    <Content Include="Customer\Online\Shadow\TranscriptXml.ashx" />
+    <Content Include="Customer\Online\Shadow\UploadTranscript.ashx" />
     <None Include="DomainOld\Transaction.cs" />
     <None Include="DomainOld\TransactionItem.cs" />
     <None Include="DomainOld\User.cs" />
+    <Content Include="OnlineGame.Master" />
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Forums.aspx.cs">
       <DependentUpon>Forums.aspx</DependentUpon>
@@ -168,6 +187,13 @@
     </Compile>
     <Compile Include="Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
+    </Compile>
+    <Compile Include="OnlineGame.Master.cs">
+      <DependentUpon>OnlineGame.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OnlineGame.Master.designer.cs">
+      <DependentUpon>OnlineGame.Master</DependentUpon>
     </Compile>
     <Compile Include="Parents.aspx.cs">
       <DependentUpon>Parents.aspx</DependentUpon>
@@ -264,14 +290,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CancelledSale.aspx" />
+    <Content Include="ClientBin\Textfyre.Shadow.xap" />
     <Content Include="CompletedSale.aspx" />
     <Content Include="controls\Downloads.ascx" />
     <Content Include="Customer\Default.aspx" />
+    <Content Include="Customer\Online\Default.aspx" />
+    <Content Include="Customer\Online\Shadow\Silverlight.js" />
+    <Content Include="Customer\Online\Shadow\Transcript.aspx" />
     <Content Include="Customer\OnTheInside.aspx" />
+    <Content Include="Customer\Online\Shadow\ShadowPlay.aspx" />
     <Content Include="Customer\TF99ReceiptData.aspx" />
     <Content Include="Customer\TF99Tester.aspx" />
     <Content Include="Forums.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="images\banner50.jpg" />
+    <Content Include="images\JackGrubbers-small.jpg" />
     <Content Include="images\secretlettermap.jpg" />
     <Content Include="images\shbanner.jpg" />
     <Content Include="images\chrishuang.jpg" />
@@ -282,6 +315,7 @@
     <Content Include="images\students.jpg" />
     <Content Include="images\teacherkids.jpg" />
     <Content Include="images\tflogo.jpg" />
+    <Content Include="images\tflogo46.png" />
     <Content Include="ShadowDemo.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>

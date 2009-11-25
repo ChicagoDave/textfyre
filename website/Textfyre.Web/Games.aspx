@@ -2,10 +2,16 @@
     Inherits="Textfyre.Web.Games" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .style1
+        {
+            width: 284px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-left">
-        <img src="images/shadow.jpg" alt="The Shadow of the Cathedral" width="240" height="120" />
+        <img src="images/shbanner.jpg" alt="The Shadow of the Cathedral" />
         <h2>
             The Shadow in the Cathedral</h2>
         <p>
@@ -19,58 +25,88 @@
         </p>
         <p>
             <a href="https://textfyre.com/demos/ShadowStd-Demo-1.0.msi"><b>Download a demo of the
-                Standard version!</b></a><br />(Windows only).</p>
+                Standard version!</b></a><br />
+            (Windows only).</p>
         <p>
             <a href="https://textfyre.com/ShadowDemo.aspx"><b>Play the online demonstration!</b></a><br />
             (Intel Mac and Windows - Requires Microsoft Silverlight)</p>
     </div>
-    <div class="col-right"><br />
+    <div class="col-right">
+        <br />
         <table summary="This table provides links to online payment sites">
-            <tr>
-                <th>
-                    Standard and Hobbyist Version Price:
-                </th>
-                <th>
-                    $9.95
-                </th>
-            </tr>
-            <tr>
-                <td>
-                    Purchase the Standard Edition (Windows Only) via PayPal or Credit Card
+            <tr class="editions">
+                <td class="style1">
+                    <b>Standard Edition - $9.95 USD</b><br />
+                    The Standard Edition is a Windows program that you download and install on your
+                    PC. If you register, you can also download the Hobbyist Edition or play the Online
+                    Edition.
                 </td>
                 <td>
+                    <b>Purchase via PayPal or Credit Card</b>
+                    <br />
                     <a href="https://www.e-junkie.com/ecom/gb.php?i=shadow-standard&c=single&cl=74327"
                         target="ejejcsingle">
                         <img src="https://www.e-junkie.com/ej/x-click-butcc.gif" border="0" alt="Buy Now" /></a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Purchase the Standard Edition (Windows Only) via Google Checkout
-                </td>
-                <td>
+                    <br />
+                    <br />
+                    <b>Purchase via Google Checkout</b><br />
                     <a href="https://www.e-junkie.com/ecom/gb.php?i=shadow-standard&c=gc&cl=74327&ejc=4">
                         <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&w=160&h=43&style=trans&variant=text&loc=en_US"
                             border="0" alt="Buy Now" /></a>
                 </td>
             </tr>
             <tr>
-                <td>
-                    Purchase the Hobbyist Edition (All Platforms) via PayPal or Credit Card (requires
-                    Glulx Interpreter)
-                </td>
-                <td>
-                    <a href="https://www.e-junkie.com/ecom/gb.php?i=shadow-glulx&c=single&cl=74327" target="ejejcsingle">
-                        <img src="https://www.e-junkie.com/ej/x-click-butcc.gif" border="0" alt="Buy Now" /></a>
+                <td colspan="2">
+                    <div style="height: 1px; background-color: Black;">
+                    </div>
                 </td>
             </tr>
             <tr>
-                <td>
-                    Purchase the Hobbyist Edition (All Platforms) via Google Checkout (requires Glulx
-                    Interpreter)
+                <td class="style1">
+                    <b>Hobbyist Edition - $9.95 USD</b><br />
+                    The Hobbyist Edition provides the <a href="http://eblong.com/zarf/glulx/index.html">
+                        Glulx</a> game file, which can be played using any of the free hobbyist interpreters.
+                    If you register, you can also play the Online Edition.
                 </td>
                 <td>
-                    <a href="https://www.e-junkie.com/ecom/gb.php?i=shadow-glulx&c=gc&cl=74327&ejc=4">
+                    <b>Purchase via PayPal or Credit Card</b>
+                    <br />
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=shadow-hobbyist&c=single&cl=74327"
+                        target="ejejcsingle">
+                        <img src="https://www.e-junkie.com/ej/x-click-butcc.gif" border="0" alt="Buy Now" /></a>
+                    <br />
+                    <br />
+                    <b>Purchase via Google Checkout</b><br />
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=shadow-hobbyist&c=gc&cl=74327&ejc=4">
+                        <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&w=160&h=43&style=trans&variant=text&loc=en_US"
+                            border="0" alt="Buy Now" /></a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div style="height: 1px; background-color: Black;">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style1">
+                    <b>Online Edition - $9.95 USD</b><br />
+                    The Online Edition allows you to play online using a Silverlight plug-in for your
+                    browser. Of you don't have the plug-in, you will automatically be promoted to install
+                    it when you first access the Online Edition. Currently, only Intel Mac and Windows
+                    operating systems are supported. If you register, you can also download the Hobbyist
+                    Edition.
+                </td>
+                <td>
+                    <b>Purchase via PayPal or Credit Card</b>
+                    <br />
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=shadow-online&c=single&cl=74327"
+                        target="ejejcsingle">
+                        <img src="https://www.e-junkie.com/ej/x-click-butcc.gif" border="0" alt="Buy Now" /></a>
+                    <br />
+                    <br />
+                    <b>Purchase via Google Checkout</b><br />
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=shadow-online&c=gc&cl=74327&ejc=4">
                         <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&w=160&h=43&style=trans&variant=text&loc=en_US"
                             border="0" alt="Buy Now" /></a>
                 </td>
@@ -79,14 +115,18 @@
         <p class="smallprint">
             Standard System Requirements: Microsoft Windows XP, Windows Vista, or Windows 7
             with 16MB RAM and 10MB disk space. The Microsoft .NET Framework is required and
-            is a part of the installation process. Standard version of Secret Letter
+            is a part of the installation process. The Hobbyist Edition requires a separate
+            unsupported Glulx interpreter. The Online Edition requires Microsoft Silverlight
+            3 which is supported on Intem Mac and Windows.
         </p>
     </div>
     <div class="clearLineBlank">
     </div>
+    <div style="height: 2px; background-color: Black;">
+    </div>
     <div class="col-left">
         <br />
-        <img src="images/secret.jpg" alt="Jack Toresal and The Secret Letter" />
+        <img src="images/JackGrubbers-small.jpg" alt="Jack Toresal and The Secret Letter" />
         <h1>
             Jack Toresal and the Secret Letter</h1>
         <p>
@@ -101,73 +141,124 @@
             The shopkeepers are always willing to chat about the latest gossip. Jack, he just
             wants to sit down and eat an apple.
         </p>
+        <p>
+            <a href="https://textfyre.com/sldemo/" target="_blank"><b>Play the Deluxe Edition online!</b></a><br />
+            (Intel Mac and Windows - Requires Microsoft Silverlight)
+            <br />
+            <a href="https://textfyre.com/demos/SecretLetter-1.07StdDemo.msi"><b>Download a demo
+                of the Standard version</b> </a>
+            <br />
+            (Windows only)</p>
     </div>
     <div class="col-right">
-        <p>
-            <a href="https://textfyre.com/sldemo/" target="_blank">
-                <br />
-                Play a demo of the Deluxe Edition online!</a><br />
-            <br />
-            <a href="https://textfyre.com/demos/SecretLetter-1.07StdDemo.msi">Download a demo of
-                the Standard version<br />
-                (Windows only).</a></p>
-        <table summary="This table provides links to online payment sites">
+        <table summary="This table provides links to online payment sites" class="editions">
             <tr>
-                <th>
-                    Deluxe Version Price:
-                </th>
-                <th>
-                    $24.95
-                </th>
-            </tr>
-            <tr>
-                <td>
-                    Purchase the Deluxe Edition via PayPal or Credit Card
+                <td class="style1">
+                    <b>Deluxe Edition - <span style="color: Red; text-decoration: line-through;">$24.95</span>
+                        Now $19.95 USD</b><br />
+                    The Deluxe Edition is a sophisticated program that you download and install on your
+                    PC or Intel Mac. It has a book look and feel with point and click hints. It requires
+                    Microsoft Silverlight, which is installed the first time you play the game. If you
+                    register, you can also download the Standard Edition, Hobbyist Edition, or play
+                    the Online Edition.
                 </td>
                 <td>
-                    <a href="https://www.e-junkie.com/ecom/gb.php?i=280404&amp;c=single&amp;cl=74327">
-                        <img src="https://www.e-junkie.com/ej/x-click-butcc.gif" alt="Buy Now" /></a>
+                    <b>Purchase via PayPal or Credit Card</b>
+                    <br />
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-deluxe&c=single&cl=74327"
+                        target="ejejcsingle">
+                        <img src="https://www.e-junkie.com/ej/x-click-butcc.gif" border="0" alt="Buy Now" /></a><br />
+                    <br />
+                    <b>Purchase via Google Checkout</b><br />
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-deluxe&c=gc&cl=74327&ejc=4">
+                        <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&w=160&h=43&style=trans&variant=text&loc=en_US"
+                            border="0" alt="Buy Now" /></a>
                 </td>
             </tr>
             <tr>
-                <td>
-                    Purchase the Deluxe Edition via Google Checkout
-                </td>
-                <td>
-                    <a href="https://www.e-junkie.com/ecom/gb.php?i=280404&amp;c=gc&amp;cl=74327&amp;ejc=4">
-                        <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&amp;w=160&amp;h=43&amp;style=trans&amp;variant=text&amp;loc=en_US"
-                            alt="Buy Now" /></a>
+                <td colspan="2">
+                    <div style="height: 1px; background-color: Black;">
+                    </div>
                 </td>
             </tr>
             <tr>
-                <th>
-                    Standard Version Price:
-                </th>
-                <th>
-                    $9.95
-                </th>
-            </tr>
-            <tr>
-                <td>
-                    Purchase the Edition Version (Windows Only) via PayPal or Credit Card
+                <td class="style1">
+                    <b>Standard Edition - $9.95 USD</b><br />
+                    The Standard Edition is a Windows program that you download and install on your
+                    PC. If you register, you can also download the Hobbyist Edition or play the Online
+                    Edition.
                 </td>
                 <td>
+                    <b>Purchase via PayPal or Credit Card</b>
+                    <br />
                     <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-standard&amp;c=single&amp;cl=74327"
                         target="ejejcsingle">
                         <img src="https://www.e-junkie.com/ej/x-click-butcc.gif" alt="Buy Now" /></a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Purchase the Edition Version (Windows Only) via Google Checkout
-                </td>
-                <td>
+                    <br />
+                    <br />
+                    <b>Purchase via Google Checkout</b><br />
                     <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-standard&amp;c=gc&amp;cl=74327&amp;ejc=4">
                         <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&amp;w=160&amp;h=43&amp;style=trans&amp;variant=text&amp;loc=en_US"
                             alt="Buy Now" /></a>
                 </td>
             </tr>
-        </table>
+<%/*             <tr>
+                <td colspan="2">
+                    <div style="height: 1px; background-color: Black;">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style1">
+                    <b>Hobbyist Edition - $9.95 USD</b><br />
+                    The Hobbyist Edition provides the <a href="http://eblong.com/zarf/glulx/index.html">
+                        Glulx</a> game file, which can be played using any of the free hobbyist interpreters.
+                    If you register, you can also play the Online Edition.
+                </td>
+                <td>
+                    <b>Purchase via PayPal or Credit Card</b>
+                    <br />
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-hobbyist&c=single&cl=74327"
+                        target="ejejcsingle">
+                        <img src="https://www.e-junkie.com/ej/x-click-butcc.gif" border="0" alt="Buy Now" /></a>
+                    <br />
+                    <br />
+                    <b>Purchase via Google Checkout</b><br />
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-hobbyist&c=gc&cl=74327&ejc=4">
+                        <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&w=160&h=43&style=trans&variant=text&loc=en_US"
+                            border="0" alt="Buy Now" /></a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div style="height: 1px; background-color: Black;">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="style1">
+                    <b>Online Edition - $9.95 USD</b><br />
+                    The Online Edition allows you to play online using a Silverlight plug-in for your
+                    browser. Of you don't have the plug-in, you will automatically be promoted to install
+                    it when you first access the Online Edition. Currently, only Intel Mac and Windows
+                    operating systems are supported. If you register, you can also download the Hobbyist
+                    Edition.
+                </td>
+                <td>
+                    <b>Purchase via PayPal or Credit Card</b>
+                    <br />
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-online&c=single&cl=74327"
+                        target="ejejcsingle">
+                        <img src="https://www.e-junkie.com/ej/x-click-butcc.gif" border="0" alt="Buy Now" /></a>
+                    <br />
+                    <br />
+                    <b>Purchase via Google Checkout</b><br />
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-online&c=gc&cl=74327&ejc=4">
+                        <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&w=160&h=43&style=trans&variant=text&loc=en_US"
+                            border="0" alt="Buy Now" /></a>
+                </td>
+            </tr>
+*/%>        </table>
         <p class="smallprint">
             Deluxe System Requirements: Microsoft Windows XP, Windows Vista, Windows 7, or an
             Intel based Mac with OS X. On Windows, 32MB RAM is required and on the Mac, 512MB
@@ -175,7 +266,8 @@
             2 or 3 is required and is a part of the installation process. Standard System Requirements:
             Microsoft Windows XP, Windows Vista, or Windows 7 with 16MB RAM and 10MB disk space.
             The Microsoft .NET Framework is required and is a part of the installation process.
-            Standard version of Secret Letter
+            The Hobbyist Edition requires a separate unsupported Glulx interpreter. The Online
+            Edition requires Microsoft Silverlight 3 which is supported on Intem Mac and Windows.
         </p>
     </div>
 </asp:Content>
