@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-namespace Cjc.SilverFyre
+namespace Textfyre.ShadowFyre
 {
     /// <summary>
     /// Provides utility functions for working with big-endian numbers.

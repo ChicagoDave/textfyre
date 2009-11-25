@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle( "Cjc.SilverFyre" )]
-[assembly: AssemblyDescription( "Glulx Engine for Silverlight" )]
+[assembly: AssemblyTitle("Textfyre.Shadow")]
+[assembly: AssemblyDescription("Online version of The Shadow in the Cathedral")]
 [assembly: AssemblyConfiguration( "" )]
-[assembly: AssemblyCompany( "Chris Cavanagh" )]
-[assembly: AssemblyProduct( "SilverFyre" )]
-[assembly: AssemblyCopyright( "Copyright © Chris Cavanagh 2009" )]
+[assembly: AssemblyCompany("Textfyre, Inc.")]
+[assembly: AssemblyProduct("The Shadow in the Cathedral - Online Edition")]
+[assembly: AssemblyCopyright("Copyright © Textfyre, Inc.")]
 [assembly: AssemblyTrademark( "" )]
 [assembly: AssemblyCulture( "" )]
 

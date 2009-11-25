@@ -14,7 +14,7 @@ using Textfyre.VM;
 using System.Xml.Linq;
 using System.Xml;
 
-namespace Cjc.SilverFyre
+namespace Textfyre.ShadowFyre
 {
 	public class StoryHistoryItem
 	{
@@ -53,7 +53,12 @@ namespace Cjc.SilverFyre
 					foreach ( var paragraph in GetParagraphs( OutputChannel.Prologue ) ) yield return paragraph;
 				}
 
-				if ( OutputArgs.Package.ContainsKey( OutputChannel.Main ) )
+                if (OutputArgs.Package.ContainsKey(OutputChannel.Credits))
+                {
+                    foreach (var paragraph in GetParagraphs(OutputChannel.Credits)) yield return paragraph;
+                }
+
+                if (OutputArgs.Package.ContainsKey(OutputChannel.Main))
 				{
 					foreach ( var paragraph in GetParagraphs( OutputChannel.Main ) ) yield return paragraph;
 				}
@@ -65,12 +70,19 @@ namespace Cjc.SilverFyre
 			if ( OutputArgs != null )
 			{
 				var xml = ParseContent( OutputArgs.Package[ channel ] );
+                bool hasParagraphs = false;
 
 				foreach ( var paragraph in xml.Elements( "Paragraph" ) )
 				{
+                    hasParagraphs = true;
 					yield return new Paragraph { Inlines = ExpandInlines( paragraph.Nodes() ).ToArray() };
 				}
-			}
+            
+                // for credits
+                if (!hasParagraphs) {
+                    yield return new Paragraph { Inlines = ExpandInlines( xml.Nodes()).ToArray() };
+                }
+            }
 		}
 
 		public Paragraph[] Death

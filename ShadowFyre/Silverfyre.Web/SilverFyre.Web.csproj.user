@@ -25,7 +25,7 @@
           <AlwaysStartWebServerOnDebug>True</AlwaysStartWebServerOnDebug>
           <EnableWcfTestClientForSVC>False</EnableWcfTestClientForSVC>
           <ProjectOutputReferences>
-            <Ref Project="{550637D0-4AC1-46A2-B35B-7607D0AEEE89}" Folder="ClientBin">Cjc.SilverFyre.xap</Ref>
+            <Ref Project="{550637D0-4AC1-46A2-B35B-7607D0AEEE89}" Folder="ClientBin">Textfyre.Shadow.xap</Ref>
           </ProjectOutputReferences>
         </WebProjectProperties>
       </FlavorProperties>

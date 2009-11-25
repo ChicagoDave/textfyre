@@ -2,7 +2,7 @@
 using System.Net;
 using System.IO;
 
-namespace Cjc.SilverFyre
+namespace Textfyre.ShadowFyre
 {
 	public class AsyncLoader
 	{

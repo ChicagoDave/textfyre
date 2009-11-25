@@ -95,7 +95,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ClientBin\Cjc.SilverFyre.xap" />
     <Content Include="Server.ashx" />
   </ItemGroup>
   <ItemGroup>
@@ -107,6 +106,7 @@
     <Content Include="Transcript.xslt" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ClientBin\Textfyre.Shadow.xap" />
     <Content Include="Default.aspx" />
   </ItemGroup>
   <ItemGroup>
