@@ -4,12 +4,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="col-left"><img id="ctl00_ContentPlaceHolder1_Image1" src="images/teacherkids.jpg" alt="Teacher with students using a school computer."  /> <br />
+    <div id="cols-uneven">
+ <div class="col-left" style="width:40%"><img id="ctl00_ContentPlaceHolder1_Image1" src="images/teacherkids.jpg" alt="Teacher with students using a school computer."  /> <br />
         <br />
         <img id="ctl00_ContentPlaceHolder1_Image2" src="images/students.jpg" alt="Students using a school computer."  /> <br />
         <br />
         <img id="ctl00_ContentPlaceHolder1_Image3" src="images/tflogo.jpg" alt="Textfyre.Com"  /></div>
-    <div class="col-right">
+    <div class="col-right" style="width:60%">
         <h1> Teachers, welcome to Textfyre.Com! </h1>
        <h2>Our Passion for Learning</h2>
              <p> In 2006 we started developing the idea of sharing our hobby with middle school kids
@@ -43,5 +44,6 @@
             in anonymously. Teachers will be able to view reports on each student's progress and students
             will see their progress in the number of hurdles they've crossed. The Classroom Edition will
             be available online through the Textfyre.Com website. </p>
+    </div>
     </div>
 </asp:Content>
