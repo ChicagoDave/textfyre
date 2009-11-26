@@ -1,6 +1,8 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs"
     Inherits="Textfyre.Web.Registration.Register" Title="Textfyre.Com - Registration" %>
 
+<%@ Register TagPrefix="recaptcha" Namespace="Recaptcha" Assembly="Recaptcha" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -71,6 +73,11 @@
                     <asp:TextBox runat="server" ID="regEmail" CssClass="regTextbox" Width="400px" MaxLength="255" />
                     <asp:RequiredFieldValidator ID="EmailRequired" runat="server" ControlToValidate="regEmail"
                         ErrorMessage="E-Mail Address is required." ToolTip="E-Mail Address is required." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator id="EmailSignature" 
+                      runat="server" ControlToValidate="regEmail" 
+                      ErrorMessage="You must enter a proper email address" 
+                      ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">
+                    </asp:RegularExpressionValidator>
                 </td>
             </tr>
             <tr>
@@ -123,6 +130,12 @@
             </tr>
             <tr>
                 <td colspan="2">
+                    <recaptcha:RecaptchaControl
+                      ID="recaptcha"
+                      runat="server"
+                      PublicKey="6LcApQkAAAAAAN_4oTamu-8iqgPHFvzjC7UY_zVc"            
+                      PrivateKey="6LcApQkAAAAAAGWHAB7VcaZiiQjwEGJ35QHmJ0SY"
+                      />
                     <asp:Button runat="server" ID="regOK" Text="Submit registration" OnClick="regRegisterButton_Click" ValidationGroup="Login1" CausesValidation="true" />
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button runat="server" ID="regCancel" Text="Cancel" OnClick="regCancel_Click" CausesValidation="false" />
                 </td>
