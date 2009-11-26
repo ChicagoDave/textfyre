@@ -352,6 +352,16 @@ div.col-right{
 	width: 49%;
 	float:right;
 }
+div#cols-uneven .col-left
+{
+	width:40%;
+	float:left;
+}
+
+div#cols-uneven .col-right{
+	width: 59%;
+	float:right;
+}
 
 div.col-left p, div.col-left table, div.col-left li 
 {

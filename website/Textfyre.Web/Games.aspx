@@ -2,12 +2,6 @@
     Inherits="Textfyre.Web.Games" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        .style1
-        {
-            width: 284px;
-        }
-    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-left">
