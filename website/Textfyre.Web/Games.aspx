@@ -37,14 +37,14 @@
                 <td>
                     <b>Purchase via PayPal or Credit Card</b>
                     <br />
-                    <a href="https://www.e-junkie.com/ecom/gb.php?i=shadow-standard&c=single&cl=74327"
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=shadow-standard&amp;c=single&amp;cl=74327"
                         target="ejejcsingle">
                         <img src="https://www.e-junkie.com/ej/x-click-butcc.gif" border="0" alt="Buy Now" /></a>
                     <br />
                     <br />
                     <b>Purchase via Google Checkout</b><br />
-                    <a href="https://www.e-junkie.com/ecom/gb.php?i=shadow-standard&c=gc&cl=74327&ejc=4">
-                        <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&w=160&h=43&style=trans&variant=text&loc=en_US"
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=shadow-standard&amp;c=gc&amp;cl=74327&amp;ejc=4">
+                        <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&amp;w=160&amp;h=43&amp;style=trans&amp;variant=text&amp;loc=en_US"
                             border="0" alt="Buy Now" /></a>
                 </td>
             </tr>
@@ -64,14 +64,14 @@
                 <td>
                     <b>Purchase via PayPal or Credit Card</b>
                     <br />
-                    <a href="https://www.e-junkie.com/ecom/gb.php?i=shadow-hobbyist&c=single&cl=74327"
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=shadow-hobbyist&amp;c=single&amp;cl=74327"
                         target="ejejcsingle">
                         <img src="https://www.e-junkie.com/ej/x-click-butcc.gif" border="0" alt="Buy Now" /></a>
                     <br />
                     <br />
                     <b>Purchase via Google Checkout</b><br />
-                    <a href="https://www.e-junkie.com/ecom/gb.php?i=shadow-hobbyist&c=gc&cl=74327&ejc=4">
-                        <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&w=160&h=43&style=trans&variant=text&loc=en_US"
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=shadow-hobbyist&amp;c=gc&amp;cl=74327&amp;ejc=4">
+                        <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&amp;w=160&amp;h=43&amp;style=trans&amp;variant=text&amp;loc=en_US"
                             border="0" alt="Buy Now" /></a>
                 </td>
             </tr>
@@ -93,14 +93,14 @@
                 <td>
                     <b>Purchase via PayPal or Credit Card</b>
                     <br />
-                    <a href="https://www.e-junkie.com/ecom/gb.php?i=shadow-online&c=single&cl=74327"
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=shadow-online&amp;c=single&amp;cl=74327"
                         target="ejejcsingle">
                         <img src="https://www.e-junkie.com/ej/x-click-butcc.gif" border="0" alt="Buy Now" /></a>
                     <br />
                     <br />
                     <b>Purchase via Google Checkout</b><br />
-                    <a href="https://www.e-junkie.com/ecom/gb.php?i=shadow-online&c=gc&cl=74327&ejc=4">
-                        <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&w=160&h=43&style=trans&variant=text&loc=en_US"
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=shadow-online&amp;c=gc&amp;cl=74327&amp;ejc=4">
+                        <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&amp;w=160&amp;h=43&amp;style=trans&amp;variant=text&amp;loc=en_US"
                             border="0" alt="Buy Now" /></a>
                 </td>
             </tr>
@@ -157,13 +157,13 @@
                 <td>
                     <b>Purchase via PayPal or Credit Card</b>
                     <br />
-                    <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-deluxe&c=single&cl=74327"
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-deluxe&amp;c=single&amp;cl=74327"
                         target="ejejcsingle">
                         <img src="https://www.e-junkie.com/ej/x-click-butcc.gif" border="0" alt="Buy Now" /></a><br />
                     <br />
                     <b>Purchase via Google Checkout</b><br />
-                    <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-deluxe&c=gc&cl=74327&ejc=4">
-                        <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&w=160&h=43&style=trans&variant=text&loc=en_US"
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-deluxe&amp;c=gc&amp;cl=74327&amp;ejc=4">
+                        <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&amp;w=160&amp;h=43&amp;style=trans&amp;variant=text&amp;loc=en_US"
                             border="0" alt="Buy Now" /></a>
                 </td>
             </tr>
@@ -194,7 +194,7 @@
                             alt="Buy Now" /></a>
                 </td>
             </tr>
-<%/*             <tr>
+<%/*     <!--        <tr>
                 <td colspan="2">
                     <div style="height: 1px; background-color: Black;">
                     </div>
@@ -249,7 +249,7 @@
                         <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&w=160&h=43&style=trans&variant=text&loc=en_US"
                             border="0" alt="Buy Now" /></a>
                 </td>
-            </tr>
+            </tr> -->
 */%>        </table>
         <p class="smallprint">
             Deluxe System Requirements: Microsoft Windows XP, Windows Vista, Windows 7, or an
