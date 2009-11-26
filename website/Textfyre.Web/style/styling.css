@@ -2,19 +2,20 @@
 
 															/** BODY ELEMENTS **/
 body {
-	/*background-image:url('../images/banner.jpg');*/
+	/*background-image:url('../images/banner.jpg');
 	background-repeat:repeat-x;
 	background-position:0px 50px;
-	background-attachment:fixed;
+	background-attachment:fixed;*/
 	background-color:#333;
 	padding: 0 20px;
 }
 
 p, li {
 	text-align:justify;
-	padding: 0 1.5em 1em 1.5em;
 	font-size:11pt;
 }
+
+
 li {
     list-style-type:disc;
     list-style-position:outside;
@@ -42,7 +43,10 @@ h1, h2 {
 
 
 															/** MAIN CONTAINERS **/
-
+div#content 
+{
+    padding-top:.5em;
+    }
 
 div#footer {
 	clear:both;
@@ -342,12 +346,21 @@ div.col-left
 {
 	width:50%;
 	float:left;
-
 }
 
 div.col-right{
 	width: 49%;
 	float:right;
+}
+
+div.col-left p, div.col-left table, div.col-left li 
+{
+   	padding:0 .75em .5em 1.5em;
+}
+
+div.col-right p, div.col-right table, div.col-right li 
+{
+    padding:0 1.5em .5em 0;
 }
 
 div#content img {
@@ -368,8 +381,8 @@ div#content table th {
 div#content table td, div#content table th {
 	vertical-align:top;
 	font-size:9pt;
-	padding-left: 1.5em;
-	padding-bottom: .8em;
+	padding: 0 .5em .5em .8em;
+	
 }
 
 div#header-right
@@ -384,7 +397,7 @@ div#content-singleCol h2 {
     text-align:left;
 }
 
-tr.editions 
+div#content table 
 {
-	border-bottom: solid 1px #000000 | inherit;
+    padding-top: .75em;
 }

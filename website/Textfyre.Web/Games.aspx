@@ -32,10 +32,9 @@
             (Intel Mac and Windows - Requires Microsoft Silverlight)</p>
     </div>
     <div class="col-right">
-        <br />
-        <table summary="This table provides links to online payment sites">
-            <tr class="editions">
-                <td class="style1">
+        <table summary="This table provides links to online payment sites" class="editionTable">
+            <tr>
+                <td>
                     <b>Standard Edition - $9.95 USD</b><br />
                     The Standard Edition is a Windows program that you download and install on your
                     PC. If you register, you can also download the Hobbyist Edition or play the Online
@@ -57,12 +56,12 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <div style="height: 1px; background-color: Black;">
+                    <div class="clearLine">
                     </div>
                 </td>
             </tr>
             <tr>
-                <td class="style1">
+                <td>
                     <b>Hobbyist Edition - $9.95 USD</b><br />
                     The Hobbyist Edition provides the <a href="http://eblong.com/zarf/glulx/index.html">
                         Glulx</a> game file, which can be played using any of the free hobbyist interpreters.
@@ -84,15 +83,15 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <div style="height: 1px; background-color: Black;">
+                    <div class="clearLine">
                     </div>
                 </td>
             </tr>
             <tr>
-                <td class="style1">
+                <td>
                     <b>Online Edition - $9.95 USD</b><br />
                     The Online Edition allows you to play online using a Silverlight plug-in for your
-                    browser. Of you don't have the plug-in, you will automatically be promoted to install
+                    browser. If you don't have the plug-in, you will automatically be asked to install
                     it when you first access the Online Edition. Currently, only Intel Mac and Windows
                     operating systems are supported. If you register, you can also download the Hobbyist
                     Edition.
@@ -120,9 +119,7 @@
             3 which is supported on Intem Mac and Windows.
         </p>
     </div>
-    <div class="clearLineBlank">
-    </div>
-    <div style="height: 2px; background-color: Black;">
+    <div class="clearLine">
     </div>
     <div class="col-left">
         <br />
@@ -151,9 +148,10 @@
             (Windows only)</p>
     </div>
     <div class="col-right">
+        
         <table summary="This table provides links to online payment sites" class="editions">
             <tr>
-                <td class="style1">
+                <td>
                     <b>Deluxe Edition - <span style="color: Red; text-decoration: line-through;">$24.95</span>
                         Now $19.95 USD</b><br />
                     The Deluxe Edition is a sophisticated program that you download and install on your
@@ -177,12 +175,12 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <div style="height: 1px; background-color: Black;">
+                    <div class="clearLine">
                     </div>
                 </td>
             </tr>
             <tr>
-                <td class="style1">
+                <td>
                     <b>Standard Edition - $9.95 USD</b><br />
                     The Standard Edition is a Windows program that you download and install on your
                     PC. If you register, you can also download the Hobbyist Edition or play the Online
