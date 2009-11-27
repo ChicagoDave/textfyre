@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Parents.aspx.cs"
-    Inherits="Textfyre.Web.Parents" Title="Textfyre.Com for Parents" %>
+    Inherits="Textfyre.Web.Parents" Title="Information about Interactive Fiction for Parents" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -10,6 +10,7 @@
         <br />
         <img id="ctl00_ContentPlaceHolder1_Image3" src="images/tflogo.jpg" alt="Textfyre.Com"  /> </div>
     <div class="col-right">
+        <h1>Information about Interactive Fiction for Parents</h1>
         <p> Dear Parents,</p>
         <p> My name is David Cornelson and I created Textfyre for you and your kids. I have
             children of my own and I know how hard it is to keep them entertained in today's

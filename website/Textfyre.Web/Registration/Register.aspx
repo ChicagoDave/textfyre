@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs"
-    Inherits="Textfyre.Web.Registration.Register" Title="Textfyre.Com - Registration" %>
+    Inherits="Textfyre.Web.Registration.Register" Title="Registration" %>
 
 <%@ Register TagPrefix="recaptcha" Namespace="Recaptcha" Assembly="Recaptcha" %>
 
@@ -7,8 +7,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-left">
-        <h2>Welcome to Textfyre.Com 
-        <br />Thank you for registering.</h2>
+        <h1>Welcome to Textfyre.Com 
+        <br />Thank you for registering.</h1>
         <p>
             In order to complete the
             registration process, we will need to gather a few pieces of information from you.

@@ -1,13 +1,13 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Privacy.aspx.cs"
-    Inherits="Textfyre.Web.Privacy" Title="Textfyre.Com - Privacy Policy" %>
+    Inherits="Textfyre.Web.Privacy" Title="Privacy Policy" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div id="content-singleCol">
-    <h1>Textfyre, Inc's Privacy Notice</h1>
+    <h1>Textfyre, Inc's Privacy Policy Notice</h1>
 
-    <p >Effective <em>July 27, 2009</em></p>
+    <p>Effective <em>July 27, 2009</em></p>
                                     
     <h2>Privacy Notice Table Of Contents:</h2>
     <ul><li><a href="#1">Our Commitment To Privacy</a></li>

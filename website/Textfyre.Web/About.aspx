@@ -1,11 +1,11 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs"
-    Inherits="Textfyre.Web.About" Title="Textfyre.Com - About" %>
+    Inherits="Textfyre.Web.About" Title="Information about the People of Textfyre" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   <div class="col-left"><img id="ctl00_ContentPlaceHolder1_Image7" src="images/tflogo.jpg" alt="Textfyre" />
-   <p>was founded by David Cornelson, and is the culmination of many years of planning and development. 
+   <div class="col-left"><h1>Information about Textfyre Publishing</h1>
+   <p>Textfyre was founded by David Cornelson, and is the culmination of many years of planning and development. 
    With the help of a few hobbyist authors, players, and fans, we've started something special.</p></div>
 <div class="col-right">
     <p>If you would like to contact us about anything:</p>
