@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs"
-    Inherits="Textfyre.Web.Default" Title="Textfyre.Com - Where Your Mind is the Game Console" %>
+    Inherits="Textfyre.Web.Default" Title="Home of the Best Interactive Fiction" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -24,8 +24,8 @@
                 </p>
     </div>
     <div class="col-right">
-        <h1>
-            Jack Toresal and The Secret Letter</h1>
+        <h2>
+            Jack Toresal and The Secret Letter</h2>
         <a href="Games.aspx">
             <img src="images/secretlettermap.jpg" alt="Jack Toresal and The Secret Letter" /></a>
         <p>

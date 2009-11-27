@@ -1,13 +1,13 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Games.aspx.cs"
-    Inherits="Textfyre.Web.Games" Title="Untitled Page" %>
+    Inherits="Textfyre.Web.Games" Title="Information on Games published by Textfyre" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-left">
         <img src="images/shbanner.jpg" alt="The Shadow of the Cathedral" />
-        <h2>
-            The Shadow in the Cathedral</h2>
+        <h1>
+            The Shadow in the Cathedral</h1>
         <p>
             The Shadow in the Cathedral, Textfyre&#39;s second game, is now available for purchase.
             The first episode in the Klockwerk Series; Shadow begins a deep <i>steampunk</i>
@@ -118,8 +118,8 @@
     <div class="col-left">
         <br />
         <img src="images/JackGrubbers-small.jpg" alt="Jack Toresal and The Secret Letter" />
-        <h1>
-            Jack Toresal and the Secret Letter</h1>
+        <h2>
+            Jack Toresal and the Secret Letter</h2>
         <p>
             Textfyre&#39;s first commercial Interactive Fiction game was released on June 26th,
             2009. Set in the town of Toresal in the kingdom of Miradania, Secret Letter is an

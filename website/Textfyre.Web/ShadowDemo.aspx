@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="ShadowDemo.aspx.cs" Inherits="Textfyre.Web.ShadowDemo" %>
+﻿<%@ Page Title="Online Demonstration of The Shadow in the Cathedral" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="ShadowDemo.aspx.cs" Inherits="Textfyre.Web.ShadowDemo"  %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

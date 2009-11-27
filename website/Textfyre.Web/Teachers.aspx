@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Teachers.aspx.cs"
-    Inherits="Textfyre.Web.Teachers" Title="Textfyre.Com for Teachers" %>
+    Inherits="Textfyre.Web.Teachers" Title="Information about Interactive Fiction for Teachers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -11,7 +11,7 @@
         <br />
         <img id="ctl00_ContentPlaceHolder1_Image3" src="images/tflogo.jpg" alt="Textfyre.Com"  /></div>
     <div class="col-right" style="width:60%">
-        <h1> Teachers, welcome to Textfyre.Com! </h1>
+        <h1>Information about Interactive Fiction for Teachers</h1>
        <h2>Our Passion for Learning</h2>
              <p> In 2006 we started developing the idea of sharing our hobby with middle school kids
             because we believe there's a special place for it in schools and on home computers.
