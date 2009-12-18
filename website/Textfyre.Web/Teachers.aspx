@@ -33,7 +33,7 @@
             on how easily they use the computer and potentially how quickly they read. And those
             mischievous kids will think twice when you ask them why they're trying to kiss or
             kick everything in the game! </p>
-         <h2>Play the Deluxe Demo!</h2>
+         <h2>Play the Demo versions!</h2>
             <p>When you play the demo of Secret Letter, try holding down the Ctrl key on your keyboard.
             You'll see some of the words display in red. Each of these words has a built-in
             pop-up definition. If you click a red word, a balloon displays the definition. It's
