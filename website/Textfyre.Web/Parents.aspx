@@ -23,8 +23,8 @@
         <p> Our games are a combination of a chapter book and a game. As the player, you get
             to tell the main character what to do, using the keyboard and entering natural language
             commands. </p>
-        <p> We hope you take the time to play the online demo of Jack Toresal and The Secret
-            Letter and the upcoming Shadow in the Cathedral.</p>
+        <p> We hope you take the time to play the online demos of Jack Toresal and The Secret
+            Letter and The Shadow in the Cathedral.</p>
         <p> Please mention our products to your teachers and librarians so we can share the
             fun of reading and solving story puzzles. </p>
         <p> Sincerely,</p>
