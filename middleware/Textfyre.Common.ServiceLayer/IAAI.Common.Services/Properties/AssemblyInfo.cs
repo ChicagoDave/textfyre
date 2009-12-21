@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("IAAI.Common.Services")]
+[assembly: AssemblyTitle("Textfyre.Common.Services")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("IAA")]
-[assembly: AssemblyProduct("IAAI.Common.Services")]
-[assembly: AssemblyCopyright("Copyright © IAA 2008")]
+[assembly: AssemblyCompany("Textfyre")]
+[assembly: AssemblyProduct("Textfyre.Common.Services")]
+[assembly: AssemblyCopyright("Copyright © Textfyre 2008")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
