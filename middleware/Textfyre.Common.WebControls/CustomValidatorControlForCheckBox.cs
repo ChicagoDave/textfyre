@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IAAI.Common.WebControls {
+namespace Textfyre.Common.WebControls {
     public class CustomValidatorControlForCheckBox : System.Web.UI.WebControls.BaseValidator {
         private CheckBoxControl _targetCheckbox = null;
         protected CheckBoxControl CheckBoxControlToValidate {

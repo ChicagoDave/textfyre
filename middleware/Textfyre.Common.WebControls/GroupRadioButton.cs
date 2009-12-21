@@ -4,7 +4,7 @@ using System.Web.UI;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace IAAI.Common.WebControls {
+namespace Textfyre.Common.WebControls {
 
     public class GroupRadioButton : RadioButton {
 
