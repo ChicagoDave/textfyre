@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("IAAI.Common.WebControls")]
+[assembly: AssemblyTitle("Textfyre.Common.WebControls")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("IAA")]
-[assembly: AssemblyProduct("IAAI.Common.WebControls")]
-[assembly: AssemblyCopyright("Copyright © IAA 2008")]
+[assembly: AssemblyCompany("Textfyre")]
+[assembly: AssemblyProduct("Textfyre.Common.WebControls")]
+[assembly: AssemblyCopyright("Copyright © Textfyre 2008")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
