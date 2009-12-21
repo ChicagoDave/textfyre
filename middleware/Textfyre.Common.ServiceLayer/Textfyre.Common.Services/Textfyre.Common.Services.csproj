@@ -55,7 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IAAI.Common.Contracts\Textfyre.Common.Contracts.csproj">
+    <ProjectReference Include="..\Textfyre.Common.Contracts\Textfyre.Common.Contracts.csproj">
       <Project>{E1CE9082-4F5F-4D7B-AD86-52A3D30D63A8}</Project>
       <Name>Textfyre.Common.Contracts</Name>
     </ProjectReference>

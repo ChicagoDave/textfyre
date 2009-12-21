@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Textfyre.Common.Contracts", "IAAI.Common.Contracts\Textfyre.Common.Contracts.csproj", "{E1CE9082-4F5F-4D7B-AD86-52A3D30D63A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Textfyre.Common.Contracts", "Textfyre.Common.Contracts\Textfyre.Common.Contracts.csproj", "{E1CE9082-4F5F-4D7B-AD86-52A3D30D63A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Textfyre.Common.Services", "IAAI.Common.Services\Textfyre.Common.Services.csproj", "{01254A26-CB20-4088-BBB2-667795C72C6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Textfyre.Common.Services", "Textfyre.Common.Services\Textfyre.Common.Services.csproj", "{01254A26-CB20-4088-BBB2-667795C72C6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
