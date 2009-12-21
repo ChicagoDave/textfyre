@@ -8,8 +8,8 @@
     <ProjectGuid>{1012B48B-A936-4DE4-A7AE-9264D29E120D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IAAI.Common.WebCache</RootNamespace>
-    <AssemblyName>IAAI.Common.WebCache</AssemblyName>
+    <RootNamespace>Textfyre.Common.WebCache</RootNamespace>
+    <AssemblyName>Textfyre.Common.WebCache</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SignAssembly>false</SignAssembly>
