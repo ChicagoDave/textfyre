@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Textfyre.Common.Contracts",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Textfyre.Common.Services", "Textfyre.Common.Services\Textfyre.Common.Services.csproj", "{01254A26-CB20-4088-BBB2-667795C72C6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFTestWeb", "WCFTestWeb\WCFTestWeb.csproj", "{A6D04DE0-FCA8-46C7-BC3D-1B5A91E9DEB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{01254A26-CB20-4088-BBB2-667795C72C6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01254A26-CB20-4088-BBB2-667795C72C6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01254A26-CB20-4088-BBB2-667795C72C6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6D04DE0-FCA8-46C7-BC3D-1B5A91E9DEB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6D04DE0-FCA8-46C7-BC3D-1B5A91E9DEB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6D04DE0-FCA8-46C7-BC3D-1B5A91E9DEB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6D04DE0-FCA8-46C7-BC3D-1B5A91E9DEB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
