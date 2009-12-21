@@ -1,7 +1,7 @@
 using System;
-using IAAI.Common.Logging;
+using Textfyre.Common.Logging;
 
-namespace IAAI.Common.Globalization
+namespace Textfyre.Common.Globalization
 {
     public class DisposableBaseType : IDisposable {
 

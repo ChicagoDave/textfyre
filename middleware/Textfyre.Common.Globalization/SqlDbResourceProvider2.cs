@@ -4,10 +4,10 @@ using System.Resources;
 using System.Globalization;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using IAAI.Auction.BusinessLayer;
-using IAAI.Auction.DataLayer;
+using Textfyre.Auction.BusinessLayer;
+using Textfyre.Auction.DataLayer;
 
-namespace IAAI.Common.Globalization {
+namespace Textfyre.Common.Globalization {
     /// <summary>
     /// Resource provider accessing resources from the database.
     /// This type is thread safe.
