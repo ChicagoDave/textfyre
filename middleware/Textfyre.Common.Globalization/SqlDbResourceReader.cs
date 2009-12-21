@@ -4,7 +4,7 @@ using System.Resources;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace IAAI.Common.Globalization
+namespace Textfyre.Common.Globalization
 {
    /// <summary>
    /// Implementation of IResourceReader required to retrieve a dictionary

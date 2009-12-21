@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Compilation;
-using IAAI.Auction.BusinessLayer;
+using Textfyre.Auction.BusinessLayer;
 
-namespace IAAI.Common.Globalization {
+namespace Textfyre.Common.Globalization {
     
     public class SqlDbResourceProviderFactory : ResourceProviderFactory {
 
