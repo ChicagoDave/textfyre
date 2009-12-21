@@ -8,8 +8,8 @@
     <ProjectGuid>{B033B930-6426-4901-AB22-B1B585EC62D8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IAAI.Common.WebControls</RootNamespace>
-    <AssemblyName>IAAI.Common.WebControls</AssemblyName>
+    <RootNamespace>Textfyre.Common.WebControls</RootNamespace>
+    <AssemblyName>Textfyre.Common.WebControls</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>

@@ -4,7 +4,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Collections.Specialized;
 
-namespace IAAI.Common.WebControls {
+namespace Textfyre.Common.WebControls {
 
     public class CheckBoxControl : CheckBox {
 
