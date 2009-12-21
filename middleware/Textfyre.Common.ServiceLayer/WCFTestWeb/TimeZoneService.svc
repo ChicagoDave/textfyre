@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="IAAI.Common.Services.TimeZoneService" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Textfyre.Common.Services.TimeZoneService" %>

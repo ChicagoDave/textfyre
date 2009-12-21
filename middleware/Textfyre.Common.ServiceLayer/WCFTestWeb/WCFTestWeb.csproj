@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{A6D04DE0-FCA8-46C7-BC3D-1B5A91E9DEB7}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -71,11 +71,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IAAI.Common.Contracts\IAAI.Common.Contracts.csproj">
+    <ProjectReference Include="..\Textfyre.Common.Contracts\Textfyre.Common.Contracts.csproj">
       <Project>{E1CE9082-4F5F-4D7B-AD86-52A3D30D63A8}</Project>
       <Name>IAAI.Common.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\IAAI.Common.Services\IAAI.Common.Services.csproj">
+    <ProjectReference Include="..\Textfyre.Common.Services\Textfyre.Common.Services.csproj">
       <Project>{01254A26-CB20-4088-BBB2-667795C72C6D}</Project>
       <Name>IAAI.Common.Services</Name>
     </ProjectReference>
@@ -100,6 +100,9 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

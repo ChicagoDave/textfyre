@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.UI.WebControls;
 using System.ServiceModel;
-using IAAI.Common.Contracts;
+using Textfyre.Common.Contracts;
 using System.Collections.Generic;
 
 namespace WCFTestWeb {

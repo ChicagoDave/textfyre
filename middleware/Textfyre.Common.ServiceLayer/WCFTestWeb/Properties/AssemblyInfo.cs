@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("WCFTestWeb")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("IAA")]
+[assembly: AssemblyCompany("Textfyre")]
 [assembly: AssemblyProduct("WCFTestWeb")]
-[assembly: AssemblyCopyright("Copyright © IAA 2008")]
+[assembly: AssemblyCopyright("Copyright © Textfyre 2008")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
