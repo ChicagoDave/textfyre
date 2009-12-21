@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.Caching;
 using System.Data.SqlClient;
-using IAAI.Common.DataLayer;
+using Textfyre.Common.DataLayer;
 
-namespace IAAI.Common.WebCache {
+namespace Textfyre.Common.WebCache {
     /// <summary>
     /// Cache Manager class that stores Lists of Recordsets in the ASP.NET cache.
     /// </summary>
