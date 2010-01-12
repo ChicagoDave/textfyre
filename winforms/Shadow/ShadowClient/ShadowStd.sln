@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextfyreVM", "..\..\..\shar
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ShadowInstaller", "..\ShadowInstall\ShadowInstall.vdproj", "{4D48CF96-CC2B-4B6A-830E-17A97BCF5148}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowRelease", "ShadowRelease\ShadowRelease.csproj", "{A362A0B5-3192-4C0E-A2C2-AAAAAEF99B06}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowRelease", "..\ShadowRelease\ShadowRelease.csproj", "{A362A0B5-3192-4C0E-A2C2-AAAAAEF99B06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowDemo", "ShadowDemo\ShadowDemo.csproj", "{7EC78168-AA56-4ABE-BAE5-6C603BD7A9D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowDemo", "..\ShadowDemo\ShadowDemo.csproj", "{7EC78168-AA56-4ABE-BAE5-6C603BD7A9D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
