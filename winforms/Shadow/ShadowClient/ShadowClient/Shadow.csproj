@@ -160,6 +160,10 @@
       <Project>{61B1E1B1-82B8-42F7-9600-F57B0F254638}</Project>
       <Name>TextfyreVM</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ShadowRelease\ShadowRelease.csproj">
+      <Project>{A362A0B5-3192-4C0E-A2C2-AAAAAEF99B06}</Project>
+      <Name>ShadowRelease</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
