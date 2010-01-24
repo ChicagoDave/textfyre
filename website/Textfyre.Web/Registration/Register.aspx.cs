@@ -93,7 +93,7 @@ namespace Textfyre.Web.Registration {
                 System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
                 smtp.EnableSsl = true;
                 smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
-                smtp.Credentials = new System.Net.NetworkCredential("webadmin@textfyre.com", "tfwebADMIN!@#");
+                smtp.Credentials = new System.Net.NetworkCredential("webadmin@textfyre.com", "wEETA@#$");
                 smtp.Send(email);
                 regError.Text = "";
                 Server.Transfer("~/Registration/Welcome.aspx");
