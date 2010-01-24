@@ -115,6 +115,12 @@
     </div>
     <div class="clearLine">
     </div>
+    <div class="col-left"><img src="images/logo.png" alt="Textfyre.Com" /></div>
+    <div class="col-right"><script type="text/javascript" charset="utf-8" src="https://static.polldaddy.com/p/2412712.js"></script><noscript>
+<a href="https://answers.polldaddy.com/poll/2412712/">What do you think of Textfyre's games?</a><span style="font-size:9px;">(<a href="https://answers.polldaddy.com">trends</a>)</span>
+</noscript></div>
+    <div class="clearLine">
+    </div>
     <div class="col-left">
         <br />
         <img src="images/JackGrubbers-small.jpg" alt="Jack Toresal and The Secret Letter" />

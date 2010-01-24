@@ -3,7 +3,7 @@
 <%@ Register Src="controls/MenuBar.ascx" TagName="MenuBar" TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
     <title>Textfyre.Com</title>
     <!-- Stylesheets -->
     <link href="style/reset.css" media="screen" rel="stylesheet" type="text/css" />
@@ -20,9 +20,14 @@
     <meta content="true" name="MSSmartTagsPreventParsing" />
     <meta content="index, follow" name="robots" />
     <meta content="14 days" name="revisit-after" />
-    <meta content="middle school student students reading educational computer pc mac linux silverlight moonlight windows vista xp program software edutainment textfyre miradania jack toresal secret letter shadow cathedral klockwerk giant leaps gift empathy interactive fiction infocom zork text adventure games casual ian finley jon ingold paul o'brian chris huang mike gentry implementor implementors books kids children family oriented everyone elearning girls boys"
+    <meta content="interactive fiction, ebooks, books, interactive games, elearning games, games for kids, games for students, language arts games, 
+interactive fiction, word games, cognitive thinking games, thinking games, logic puzzles, learning games, games for middle school, games for tweens, 
+tween games, games for girls, games for boys, games for tween girls, reading games for boys, reading games for girls, reading games for tweens, highly 
+rated games, parent approved, teacher approved, librarian approved, games like infocom, inform games, ian finley games, jon ingold games, mike gentry 
+games, paul o'brian games, christopher huang games"
         name="keywords" />
-    <meta content="Textfyre is a software publisher creating interactive stories for middle school students, casual game players, and anyone all the fans of Interactive Fiction." name="description" />
+    <meta content="Textfyre is a software publisher creating interactive stories for middle school students, casual game players, and all fans of 
+Interactive Fiction." name="description" />
 
     <script type="text/javascript">
         var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
@@ -45,7 +50,7 @@
     <div id="container">
         <div id="header">
             <div id="logo">
-                <asp:HyperLink runat="server" Text="" NavigateUrl="~/Default.aspx">
+                <asp:HyperLink ID="HyperLink1" runat="server" Text="" NavigateUrl="~/Default.aspx">
                     <asp:Image ID="Image1" runat="server" AlternateText="Textfyre, Inc." ImageUrl="~/images/logo.png" /></asp:HyperLink>
             </div>
             <div id="headerOut" runat="server">
@@ -92,6 +97,12 @@
                 <uc1:MenuBar ID="MenuBar1" runat="server" />
             </div>
         </div>
+	<div style="clear:both;text-align:right;"><!-- AddThis Button BEGIN -->
+<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4b2f033869ef03e7"><img 
+src="https://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a><script 
+type="text/javascript" src="https://s7.addthis.com/js/250/addthis_widget.js#username=xa-4b2f033869ef03e7"></script>
+<!-- AddThis Button END -->
+</div>
         <!-- end #header -->
         <div id="content">
             <a name="startcontent"></a>
