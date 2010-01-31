@@ -1,0 +1,252 @@
+// !$*UTF8*$!
+{
+	1D3623240D0F684500981E51 /* fyrep_cocoatouchAppDelegate.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 543}}";
+			sepNavSelRange = "{195, 0}";
+			sepNavVisRange = "{0, 386}";
+		};
+	};
+	1D3623250D0F684500981E51 /* fyrep_cocoatouchAppDelegate.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 543}}";
+			sepNavSelRange = "{195, 0}";
+			sepNavVisRange = "{0, 549}";
+		};
+	};
+	1D6058900D05DD3D006BFB54 /* fyrep-cocoatouch */ = {
+		activeExec = 0;
+		executables = (
+			4F3E14D31114E48900007CFC /* fyrep-cocoatouch */,
+		);
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 4F3E14D31114E48900007CFC /* fyrep-cocoatouch */;
+		activeSDKPreference = iphonesimulator3.1.2;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* fyrep-cocoatouch */;
+		addToTargets = (
+			1D6058900D05DD3D006BFB54 /* fyrep-cocoatouch */,
+		);
+		codeSenseManager = 4F3E14EB1114E49200007CFC /* Code sense */;
+		executables = (
+			4F3E14D31114E48900007CFC /* fyrep-cocoatouch */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					515,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 286674167;
+			PBXWorkspaceStateSaveDate = 286674167;
+		};
+		perUserProjectItems = {
+			4F84E82311164D2900C18E3A /* PBXTextBookmark */ = 4F84E82311164D2900C18E3A /* PBXTextBookmark */;
+			4F84E82411164D2900C18E3A /* PBXTextBookmark */ = 4F84E82411164D2900C18E3A /* PBXTextBookmark */;
+			4F84E82511164D2900C18E3A /* PBXTextBookmark */ = 4F84E82511164D2900C18E3A /* PBXTextBookmark */;
+			4F84E82611164D2900C18E3A /* PBXTextBookmark */ = 4F84E82611164D2900C18E3A /* PBXTextBookmark */;
+			4F84E82711164D2900C18E3A /* PBXTextBookmark */ = 4F84E82711164D2900C18E3A /* PBXTextBookmark */;
+			4F84E82811164D2900C18E3A /* PBXTextBookmark */ = 4F84E82811164D2900C18E3A /* PBXTextBookmark */;
+			4F84E82911164D2900C18E3A /* PBXTextBookmark */ = 4F84E82911164D2900C18E3A /* PBXTextBookmark */;
+			4FCCC0B7111540AE0001000B /* PBXTextBookmark */ = 4FCCC0B7111540AE0001000B /* PBXTextBookmark */;
+		};
+		sourceControlManager = 4F3E14EA1114E49200007CFC /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	32CA4F630368D1EE00C91783 /* fyrep_cocoatouch_Prefix.pch */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 543}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 201}";
+		};
+	};
+	4F3E14D31114E48900007CFC /* fyrep-cocoatouch */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = "fyrep-cocoatouch";
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	4F3E14EA1114E49200007CFC /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	4F3E14EB1114E49200007CFC /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	4F3E14FE1114E4D100007CFC /* TFUlxImage.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 585}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1159}";
+			sepNavWindowFrame = "{{19, 109}, {768, 764}}";
+		};
+	};
+	4F3E14FF1114E4D100007CFC /* TFUlxImage.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 4862}}";
+			sepNavSelRange = "{1927, 0}";
+			sepNavVisRange = "{584, 2036}";
+			sepNavWindowFrame = "{{5, 226}, {633, 652}}";
+		};
+	};
+	4F84E82311164D2900C18E3A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4F95044211164C8D003A8841 /* CommonCryptor.h */;
+		name = "CommonCryptor.h: 25";
+		rLen = 13;
+		rLoc = 996;
+		rType = 0;
+		vrLen = 1875;
+		vrLoc = 0;
+	};
+	4F84E82411164D2900C18E3A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623240D0F684500981E51 /* fyrep_cocoatouchAppDelegate.h */;
+		name = "fyrep_cocoatouchAppDelegate.h: 8";
+		rLen = 0;
+		rLoc = 195;
+		rType = 0;
+		vrLen = 386;
+		vrLoc = 0;
+	};
+	4F84E82511164D2900C18E3A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 32CA4F630368D1EE00C91783 /* fyrep_cocoatouch_Prefix.pch */;
+		name = "fyrep_cocoatouch_Prefix.pch: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 201;
+		vrLoc = 0;
+	};
+	4F84E82611164D2900C18E3A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4F3E14FF1114E4D100007CFC /* TFUlxImage.m */;
+		name = "TFUlxImage.m: 58";
+		rLen = 0;
+		rLoc = 1927;
+		rType = 0;
+		vrLen = 2036;
+		vrLoc = 584;
+	};
+	4F84E82711164D2900C18E3A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4F3E14FE1114E4D100007CFC /* TFUlxImage.h */;
+		name = "TFUlxImage.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1159;
+		vrLoc = 0;
+	};
+	4F84E82811164D2900C18E3A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* fyrep_cocoatouchAppDelegate.m */;
+		name = "fyrep_cocoatouchAppDelegate.m: 8";
+		rLen = 0;
+		rLoc = 195;
+		rType = 0;
+		vrLen = 549;
+		vrLoc = 0;
+	};
+	4F84E82911164D2900C18E3A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* fyrep_cocoatouchAppDelegate.m */;
+		name = "fyrep_cocoatouchAppDelegate.m: 8";
+		rLen = 0;
+		rLoc = 195;
+		rType = 0;
+		vrLen = 549;
+		vrLoc = 0;
+	};
+	4F95044211164C8D003A8841 /* CommonCryptor.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = CommonCryptor.h;
+		path = "/Volumes/Baator/Applications/Xcode/10.6(SnowLeopard)/iPhone3.1.2(Xcode3.2.1)/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/usr/include/CommonCrypto/CommonCryptor.h";
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 7852}}";
+			sepNavSelRange = "{996, 13}";
+			sepNavVisRange = "{0, 1875}";
+		};
+	};
+	4FCCBE73111521A40001000B /* GlulxConstants.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 741}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1507}";
+		};
+	};
+	4FCCBE74111521A40001000B /* GlulxConstants.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 549}}";
+			sepNavSelRange = "{228, 17}";
+			sepNavVisRange = "{0, 713}";
+		};
+	};
+	4FCCC0B7111540AE0001000B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4FCCC0B8111540AE0001000B /* CommonDigest.h */;
+		name = "CommonDigest.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 909;
+		vrLoc = 0;
+	};
+	4FCCC0B8111540AE0001000B /* CommonDigest.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = CommonDigest.h;
+		path = "/Volumes/Baator/Applications/Xcode/10.6(SnowLeopard)/iPhone3.1.2(Xcode3.2.1)/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/usr/include/CommonCrypto/CommonDigest.h";
+		sourceTree = "<absolute>";
+	};
+}

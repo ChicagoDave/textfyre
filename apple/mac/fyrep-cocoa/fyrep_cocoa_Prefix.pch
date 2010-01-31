@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'fyrep-cocoa' target in the 'fyrep-cocoa' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
