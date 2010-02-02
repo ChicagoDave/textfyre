@@ -28,19 +28,15 @@
 
 #pragma mark Helper methods
 
-#pragma mark Public methods
-
-- (BOOL)loadFromPath:(NSString *)path {
-
-    [self cleanup];
-
-    BOOL succeeded = NO;
-
-    NSError *error = nil;
-
+// Returns non-nil autoreleased NSMutableData on success, nil on failure, at which point technical details will be printed to Console.
+static NSMutableData *decryptedDataForPath(NSString *path) {
     //
     // Read in file
     //
+
+    NSMutableData *result = nil;
+    
+    NSError *error = nil;
 
     NSData *data = [[NSData alloc] initWithContentsOfFile:path options:NSUncachedRead error:&error];
     if (data == nil) {
@@ -57,7 +53,6 @@
             NSLog(@"Length %lu of file at path \"%@\", minus header size %lu, should be a multiple of AES block size %ld, but is %ld longer", 
                   (unsigned long)[data length], path, (unsigned long)TFGlulxHeaderSize, (long)kCCBlockSizeAES128, ([data length]-TFGlulxHeaderSize) % kCCBlockSizeAES128);
         } else {
-
             //
             // Decrypt in file
             //
@@ -77,70 +72,90 @@
             //              1234567890123456
             uint8_t iv[] = "Hi from Textfyre";
             
-            const size_t dataLength = [data length]-TFGlulxHeaderSize;
+            const NSUInteger dataLength = [data length]-TFGlulxHeaderSize;
 
-            uint8_t *bufferPtr = malloc(dataLength);
+            // TODO Windows code read in header first, then allocated only amount of space specified in header. For us, it's easier to decrypt the whole thing at once. Are there any downsides to this approach? Here's one: we need to save off "end memory" value explicitly, since we can't query the length of this.
+            NSMutableData *decryptedData = [[NSMutableData alloc] initWithLength:dataLength];
 
-            if (bufferPtr == NULL) {
-                NSLog(@"During decryption of file at path \"%@\", unable to malloc %lu-sized buffer", path, (unsigned long)dataLength);
+            if (decryptedData == NULL) {
+                NSLog(@"During decryption of file at path \"%@\", unable to create NSMutableData of %lu bytes", path, (unsigned long)dataLength);
             } else {
                 size_t movedBytes = 0;
 
-                CCCryptorStatus ccStatus = CCCrypt(kCCDecrypt, kCCAlgorithmAES128, 0, key, kCCKeySizeAES256, iv, bytes+TFGlulxHeaderSize, dataLength, bufferPtr, dataLength, &movedBytes);
+                CCCryptorStatus ccStatus = CCCrypt(kCCDecrypt, kCCAlgorithmAES128, 0, key, kCCKeySizeAES256, iv, bytes+TFGlulxHeaderSize, dataLength, [decryptedData mutableBytes], dataLength, &movedBytes);
                 if (ccStatus != kCCSuccess) {
                     NSLog(@"Problem with CCCrypt, ccStatus == %d.", (long)ccStatus);
                 } else if (movedBytes != dataLength) {
                     NSLog(@"CCCrypt should have \"moved\" then entire passed-in data length %ld, but only moved %ld bytes", (unsigned long)dataLength, (unsigned long)movedBytes);
                 } else {
-                    _decryptedData = [[NSData alloc] initWithBytesNoCopy:bufferPtr length:movedBytes];
-                }
+                    //
+                    // Success
+                    //
 
-                if (_decryptedData == nil) {
-                    free(bufferPtr);
+                    result = [[decryptedData retain] autorelease];
                 }
+                
+                [decryptedData release];
             }
         }
         
         [data release], data = nil;
     }
     
+    return result;
+}
+
+#pragma mark Public methods
+
+- (BOOL)loadFromPath:(NSString *)path {
+
+    [self cleanup];
+
+    BOOL succeeded = NO;
+
+    decryptedData = [decryptedDataForPath(path) retain];
+        
     //
     // Analyze decrypted contents
     //
 
-    if (_decryptedData != nil) {
-        if (strncmp([_decryptedData bytes], "Glul", 4) != 0) {
+    if (decryptedData) {
+        if (strncmp([decryptedData bytes], "Glul", 4) != 0) {
             NSLog(@"File at path \"%@\" has wrong magic number2", path);
         } else {
-            self.RAMStart = NSSwapBigIntToHost(*((int32_t *)([_decryptedData bytes]+TFGlulxHeaderRAMStartOffset)));
-        
-            // Do more cool stuff
-/*
-                uint endmem = ReadInt32(Engine.GLULX_HDR_ENDMEM_OFFSET);
-                uint length = ReadInt32(Engine.GLULX_HDR_EXTSTART_OFFSET);
-
-                // now read the whole thing
-                byte[] header = memory;
-                memory = new byte[endmem];
-                Array.Copy(header, memory, Engine.GLULX_HDR_SIZE);
-                cstream.Read(memory, Engine.GLULX_HDR_SIZE, (int)length - Engine.GLULX_HDR_SIZE);
-
-                // cache original RAM and IFHD immediately so we don't have to decrypt again when saving
-                originalHeader = new byte[128];
-                Array.Copy(memory, originalHeader, 128);
-
-                originalRam = new byte[endmem - ramstart];
-                Array.Copy(memory, (int)ramstart, originalRam, 0, originalRam.Length);
-            }
-
             // verify checksum
-            uint checksum = CalculateChecksum();
-            if (checksum != ReadInt32(Engine.GLULX_HDR_CHECKSUM_OFFSET))
-                throw new ArgumentException(".ulx file has incorrect checksum");
-*/
-        
-            succeeded = YES;
+            const uint32_t expectedChecksum = [self checksum];
+            const uint32_t checksum = [self int32AtOffset:TFGlulxHeaderChecksumOffset];
+            if (checksum != expectedChecksum) {
+                NSLog(@"File at path \"%@\" has checksum %lu, when it should have checksum %lu", (unsigned long)expectedChecksum, (unsigned long)checksum);
+            } else {
+                endMemory = [self int32AtOffset:TFGlulxHeaderEndMemoryOffset];
+                if (self.endMemory > [decryptedData length]) {
+                    NSLog(@"In file at path \"%@\", endMemory value in header (%lu) is greater than length of encrypted bytes of file (%lu)", (unsigned long)self.endMemory, (unsigned long)[decryptedData length]);
+                } else {
+                    self.RAMStart = [self int32AtOffset:TFGlulxHeaderRAMStartOffset];
+                
+                    // cache original RAM and IFHD immediately so we don't have to decrypt again when saving
+
+                    const uint32_t endMemoryOffset = [self int32AtOffset:TFGlulxHeaderEndMemoryOffset];
+                    
+                    void *originalHeaderBuffer = malloc(128);
+                    memcpy(originalHeaderBuffer, [decryptedData bytes], 128);
+                    originalHeader = [[NSData alloc] initWithBytesNoCopy:originalHeaderBuffer length:128];
+
+                    const size_t originalRAMLength = endMemoryOffset - self.RAMStart;
+                    void *originalRAMBuffer = malloc(originalRAMLength);
+                    memcpy(originalRAMBuffer, [decryptedData bytes]+self.RAMStart, originalRAMLength);
+                    originalRAM = [[NSData alloc] initWithBytesNoCopy:originalRAMBuffer length:originalRAMLength];
+                
+                    succeeded = YES;
+                }
+            }
         }
+    }
+    
+    if (succeeded == NO) {
+        [self cleanup];
     }
 
     return succeeded;
@@ -239,24 +254,6 @@
         }
 
         /// <summary>
-        /// Calculates the checksum of the image.
-        /// </summary>
-        /// <returns>The sum of the entire image, taken as an array of
-        /// 32-bit words.</returns>
-        public uint CalculateChecksum() {
-            uint end = ReadInt32(Engine.GLULX_HDR_EXTSTART_OFFSET);
-            // negative checksum here cancels out the one we'll add inside the loop
-            uint sum = (uint)(-ReadInt32(Engine.GLULX_HDR_CHECKSUM_OFFSET));
-
-            System.Diagnostics.Debug.Assert(end % 4 == 0); // Glulx spec 1.2 says ENDMEM % 256 == 0
-
-            for (uint i = 0; i < end; i += 4)
-                sum += ReadInt32(i);
-
-            return sum;
-        }
-
-        /// <summary>
         /// Gets the entire contents of memory.
         /// </summary>
         /// <returns>An array containing all VM memory, ROM and RAM.</returns>
@@ -346,9 +343,44 @@
     }
 }
 */
+- (uint32_t)int32AtOffset:(NSUInteger)offset {
+    NSAssert(decryptedData != nil, @"int32AtOffset: called when decryptedData is nil!");
+    
+    return NSSwapBigIntToHost(*((uint32_t *)([decryptedData bytes]+offset)));
+}
+
+- (uint32_t)checksum {
+    uint32_t result = 0;
+
+    uint32_t end = [self int32AtOffset:TFGlulxHeaderExtensionStartOffset];
+
+    uint32_t sum = (uint32_t)(-[self int32AtOffset:TFGlulxHeaderChecksumOffset]);
+
+    if (end % 256 != 0) {
+        NSLog(@"Glulx spec 1.2 says ENDMEM % 256 == 0, but it instead is %lu", end % 256);
+    } else {
+        for (uint32_t i = 0; i < end; i += 4) {
+            sum += [self int32AtOffset:i];
+        }
+        
+        result = sum;
+    }
+
+    return result;
+}
+
+- (uint32_t)endMemory {
+    return endMemory;
+}
+
+- (void)setEndMemory:(uint32_t)newEndMemory {
+    NSAssert(NO, @"setEndMemory: not yet implemented!");
+}
 
 - (void)cleanup {
-    [_decryptedData release];
+    [decryptedData release];
+    [originalHeader release];
+    [originalRAM release];
 }
 
 - (void)dealloc {
