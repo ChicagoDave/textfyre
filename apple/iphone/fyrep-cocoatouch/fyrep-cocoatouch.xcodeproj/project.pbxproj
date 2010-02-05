@@ -14,6 +14,7 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		4F3E15001114E4D100007CFC /* TFUlxImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E14FF1114E4D100007CFC /* TFUlxImage.m */; };
+		4F44C2B1111BE776006B05D2 /* TFEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F44C2B0111BE776006B05D2 /* TFEngine.m */; };
 		4FCCBE77111521A40001000B /* GlulxConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCCBE74111521A40001000B /* GlulxConstants.m */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,8 @@
 		32CA4F630368D1EE00C91783 /* fyrep_cocoatouch_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fyrep_cocoatouch_Prefix.pch; sourceTree = "<group>"; };
 		4F3E14FE1114E4D100007CFC /* TFUlxImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFUlxImage.h; sourceTree = "<group>"; };
 		4F3E14FF1114E4D100007CFC /* TFUlxImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFUlxImage.m; sourceTree = "<group>"; };
+		4F44C2AF111BE776006B05D2 /* TFEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFEngine.h; sourceTree = "<group>"; };
+		4F44C2B0111BE776006B05D2 /* TFEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFEngine.m; sourceTree = "<group>"; };
 		4FCCBE73111521A40001000B /* GlulxConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlulxConstants.h; sourceTree = "<group>"; };
 		4FCCBE74111521A40001000B /* GlulxConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlulxConstants.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* fyrep_cocoatouch-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fyrep_cocoatouch-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -113,6 +116,8 @@
 				4F3E14FF1114E4D100007CFC /* TFUlxImage.m */,
 				4FCCBE73111521A40001000B /* GlulxConstants.h */,
 				4FCCBE74111521A40001000B /* GlulxConstants.m */,
+				4F44C2AF111BE776006B05D2 /* TFEngine.h */,
+				4F44C2B0111BE776006B05D2 /* TFEngine.m */,
 			);
 			name = "fyrevm-foundation";
 			path = "../../shared/fyrevm-foundation";
@@ -178,6 +183,7 @@
 				1D3623260D0F684500981E51 /* fyrep_cocoatouchAppDelegate.m in Sources */,
 				4F3E15001114E4D100007CFC /* TFUlxImage.m in Sources */,
 				4FCCBE77111521A40001000B /* GlulxConstants.m in Sources */,
+				4F44C2B1111BE776006B05D2 /* TFEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

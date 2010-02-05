@@ -11,11 +11,15 @@
 
 /*! Represents the ROM and RAM of a Glulx game image.
 
+    Glulx specification available at http://www.eblong.com/zarf/glulx/glulx-spec.html
+
     Currently assumes the loaded game image is encrypted, and will throw if it isn't.
  */
 @interface TFUlxImage : NSObject {
 
 @private
+    NSString *path;
+
     /*! Cached copy of entirety of decrypted contents of file */
     NSMutableData *decryptedData;
     
@@ -35,6 +39,8 @@
     \param path Full path to Glulx (.ulx) file.
  */
 - (BOOL)loadFromPath:(NSString *)path;
+
+@property (readonly, retain) NSString *path;
 
 /*! Gets the address at which RAM begins.
 
@@ -56,7 +62,15 @@
  */
 - (uint32_t)checksum;
 
-/*! Method to call to dispose of resources. Is called by -dealloc, but also may be called early. Is also called by -loadFromPath:.
+/*! Returns major version number from image header. */
+- (NSUInteger)majorVersion;
+/*! Returns minor version number from image header. 
+
+    Author writes in specification, "I will try to maintain the convention that minor version changes are backwards compatible."
+*/
+- (NSUInteger)minorVersion;
+
+/*! Method to call to dispose of resources. Is called by -dealloc, but also may be called early. Is also called by -loadFromPath: on failure.
  */
 - (void)cleanup;
 
