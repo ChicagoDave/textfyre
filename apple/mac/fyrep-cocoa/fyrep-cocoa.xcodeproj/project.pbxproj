@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		256AC3DA0F4B6AC300CF3369 /* fyrep_cocoaAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* fyrep_cocoaAppDelegate.m */; };
+		4F02BA74111BE8F70054F477 /* TFEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F02BA73111BE8F70054F477 /* TFEngine.m */; };
 		4F3E14B31114C8C000007CFC /* TFUlxImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E14B21114C8C000007CFC /* TFUlxImage.m */; };
 		4F3E153F1114E9B500007CFC /* GlulxConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E153E1114E9B500007CFC /* GlulxConstants.m */; };
 		4F3E15A21114EE9800007CFC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -43,6 +44,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		4F02BA72111BE8F70054F477 /* TFEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFEngine.h; sourceTree = "<group>"; };
+		4F02BA73111BE8F70054F477 /* TFEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFEngine.m; sourceTree = "<group>"; };
 		4F3E14B11114C8C000007CFC /* TFUlxImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFUlxImage.h; sourceTree = "<group>"; };
 		4F3E14B21114C8C000007CFC /* TFUlxImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFUlxImage.m; sourceTree = "<group>"; };
 		4F3E153D1114E9B500007CFC /* GlulxConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlulxConstants.h; sourceTree = "<group>"; };
@@ -169,6 +172,8 @@
 				4F3E14B21114C8C000007CFC /* TFUlxImage.m */,
 				4F3E153D1114E9B500007CFC /* GlulxConstants.h */,
 				4F3E153E1114E9B500007CFC /* GlulxConstants.m */,
+				4F02BA72111BE8F70054F477 /* TFEngine.h */,
+				4F02BA73111BE8F70054F477 /* TFEngine.m */,
 			);
 			name = "fyrevm-foundation";
 			path = "../../shared/fyrevm-foundation";
@@ -301,6 +306,7 @@
 				256AC3DA0F4B6AC300CF3369 /* fyrep_cocoaAppDelegate.m in Sources */,
 				4F3E14B31114C8C000007CFC /* TFUlxImage.m in Sources */,
 				4F3E153F1114E9B500007CFC /* GlulxConstants.m in Sources */,
+				4F02BA74111BE8F70054F477 /* TFEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

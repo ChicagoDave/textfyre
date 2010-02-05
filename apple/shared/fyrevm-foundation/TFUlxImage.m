@@ -1,9 +1,9 @@
 //
 //  TFUlxImage.m
-//  fyrep-cocoa
+//  fyrevm-foundation
 //
-//  Created by Andrew Pontious on 1/30/10.
-//  Copyright 2010 Apple. All rights reserved.
+//  Copyright 2010 Textfyre, Inc. All rights reserved.
+//  Please read the accompanying COPYRIGHT file for licensing restrictions.
 //
 
 #import "TFUlxImage.h"
@@ -16,6 +16,7 @@
 
 @interface TFUlxImage ()
 
+@property (readwrite, retain) NSString *path;
 @property (readwrite) uint32_t RAMStart;
 
 @end
@@ -24,6 +25,7 @@
 
 @implementation TFUlxImage
 
+@synthesize path;
 @synthesize RAMStart;
 
 #pragma mark Helper methods
@@ -40,17 +42,17 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
 
     NSData *data = [[NSData alloc] initWithContentsOfFile:path options:NSUncachedRead error:&error];
     if (data == nil) {
-        NSLog(@"Unable to load file at path \"%@\": %@", path, error);
+        NSLog(@"Unable to load Glulx (.ulx) game file at path \"%@\": %@", path, error);
     } else {
         // Must be enough space for original header, unencrypted + and actual header inside encrypted portion.
         if ([data length] <= TFGlulxHeaderSize * 2) {
-            NSLog(@"File at path \"%@\" is too small", path);
+            NSLog(@"Glulx (.ulx) game file at path \"%@\" is too small", path);
         } else if (strncmp([data bytes], "JACK", 4) != 0) {
-            NSLog(@"File at path \"%@\" has wrong magic number", path);
+            NSLog(@"Glulx (.ulx) game file at path \"%@\" has wrong magic number", path);
         // I haven't seen any documentation that says this, but my experimentation (building CommonCrypto from Darwin sources and stepping through it) shows that the crypto APIs will return kCCParamError if the passed-in data's length is not a multiple of kCCBlockSizeAES128.
         // For the sample games that I have, this always seems to be true. See TestTFUlxImage.
         } else if ((([data length]-TFGlulxHeaderSize) % kCCBlockSizeAES128) != 0) {
-            NSLog(@"Length %lu of file at path \"%@\", minus header size %lu, should be a multiple of AES block size %ld, but is %ld longer", 
+            NSLog(@"Length %lu of Glulx (.ulx) game file at path \"%@\", minus header size %lu, should be a multiple of AES block size %ld, but is %ld longer", 
                   (unsigned long)[data length], path, (unsigned long)TFGlulxHeaderSize, (long)kCCBlockSizeAES128, ([data length]-TFGlulxHeaderSize) % kCCBlockSizeAES128);
         } else {
             //
@@ -78,7 +80,7 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
             NSMutableData *decryptedData = [[NSMutableData alloc] initWithLength:dataLength];
 
             if (decryptedData == NULL) {
-                NSLog(@"During decryption of file at path \"%@\", unable to create NSMutableData of %lu bytes", path, (unsigned long)dataLength);
+                NSLog(@"During decryption of Glulx (.ulx) game file at path \"%@\", unable to create NSMutableData of %lu bytes", path, (unsigned long)dataLength);
             } else {
                 size_t movedBytes = 0;
 
@@ -107,13 +109,15 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
 
 #pragma mark Public methods
 
-- (BOOL)loadFromPath:(NSString *)path {
+- (BOOL)loadFromPath:(NSString *)thePath {
 
     [self cleanup];
 
     BOOL succeeded = NO;
+    
+    self.path = thePath;
 
-    decryptedData = [decryptedDataForPath(path) retain];
+    decryptedData = [decryptedDataForPath(self.path) retain];
         
     //
     // Analyze decrypted contents
@@ -121,17 +125,17 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
 
     if (decryptedData) {
         if (strncmp([decryptedData bytes], "Glul", 4) != 0) {
-            NSLog(@"File at path \"%@\" has wrong magic number2", path);
+            NSLog(@"Glulx (.ulx) game file at path \"%@\" has wrong magic number2", self.path);
         } else {
             // verify checksum
             const uint32_t expectedChecksum = [self checksum];
             const uint32_t checksum = [self int32AtOffset:TFGlulxHeaderChecksumOffset];
             if (checksum != expectedChecksum) {
-                NSLog(@"File at path \"%@\" has checksum %lu, when it should have checksum %lu", (unsigned long)expectedChecksum, (unsigned long)checksum);
+                NSLog(@"Glulx (.ulx) game file at path \"%@\" has checksum %lu, when it should have checksum %lu", (unsigned long)expectedChecksum, (unsigned long)checksum);
             } else {
                 endMemory = [self int32AtOffset:TFGlulxHeaderEndMemoryOffset];
                 if (self.endMemory > [decryptedData length]) {
-                    NSLog(@"In file at path \"%@\", endMemory value in header (%lu) is greater than length of encrypted bytes of file (%lu)", (unsigned long)self.endMemory, (unsigned long)[decryptedData length]);
+                    NSLog(@"In Glulx (.ulx) game file at path \"%@\", endMemory value in header (%lu) is greater than length of encrypted bytes of file (%lu)", (unsigned long)self.endMemory, (unsigned long)[decryptedData length]);
                 } else {
                     self.RAMStart = [self int32AtOffset:TFGlulxHeaderRAMStartOffset];
                 
@@ -350,6 +354,8 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
 }
 
 - (uint32_t)checksum {
+    NSAssert(decryptedData != nil, @"checksum called when decryptedData is nil!");
+    
     uint32_t result = 0;
 
     uint32_t end = [self int32AtOffset:TFGlulxHeaderExtensionStartOffset];
@@ -357,7 +363,7 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
     uint32_t sum = (uint32_t)(-[self int32AtOffset:TFGlulxHeaderChecksumOffset]);
 
     if (end % 256 != 0) {
-        NSLog(@"Glulx spec 1.2 says ENDMEM % 256 == 0, but it instead is %lu", end % 256);
+        NSLog(@"Glulx 1.2 specification says ENDMEM % 256 == 0, but it instead is %lu", end % 256);
     } else {
         for (uint32_t i = 0; i < end; i += 4) {
             sum += [self int32AtOffset:i];
@@ -370,6 +376,8 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
 }
 
 - (uint32_t)endMemory {
+    NSAssert(decryptedData != nil, @"endMemory called when decryptedData is nil!");
+    
     return endMemory;
 }
 
@@ -377,10 +385,27 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
     NSAssert(NO, @"setEndMemory: not yet implemented!");
 }
 
+- (NSUInteger)majorVersion {
+    NSAssert(decryptedData != nil, @"majorVersion called when decryptedData is nil!");
+    
+    uint32_t version = [self int32AtOffset:TFGlulxHeaderVersionOffset];
+
+    return version >> 16;
+}
+- (NSUInteger)minorVersion {
+    NSAssert(decryptedData != nil, @"minorVersion called when decryptedData is nil!");
+    
+    uint32_t version = [self int32AtOffset:TFGlulxHeaderVersionOffset];
+    
+    return (version >> 8) & 0xFF;
+}
+
+
 - (void)cleanup {
-    [decryptedData release];
-    [originalHeader release];
-    [originalRAM release];
+    [path release], path = nil;
+    [decryptedData release], decryptedData = nil;
+    [originalHeader release], originalHeader = nil;
+    [originalRAM release], originalRAM = nil;
 }
 
 - (void)dealloc {
