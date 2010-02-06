@@ -13,6 +13,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		4F05E9B7111E0DA600C90CB3 /* TestTFUlxImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F05E9B6111E0DA600C90CB3 /* TestTFUlxImage.m */; };
 		4F3E15001114E4D100007CFC /* TFUlxImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E14FF1114E4D100007CFC /* TFUlxImage.m */; };
 		4F44C2B1111BE776006B05D2 /* TFEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F44C2B0111BE776006B05D2 /* TFEngine.m */; };
 		4FCCBE77111521A40001000B /* GlulxConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCCBE74111521A40001000B /* GlulxConstants.m */; };
@@ -28,6 +29,10 @@
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* fyrep_cocoatouch_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fyrep_cocoatouch_Prefix.pch; sourceTree = "<group>"; };
+		4F05E9AC111E0CA400C90CB3 /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F05E9AD111E0CA400C90CB3 /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
+		4F05E9B5111E0DA600C90CB3 /* TestTFUlxImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTFUlxImage.h; sourceTree = "<group>"; };
+		4F05E9B6111E0DA600C90CB3 /* TestTFUlxImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTFUlxImage.m; sourceTree = "<group>"; };
 		4F3E14FE1114E4D100007CFC /* TFUlxImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFUlxImage.h; sourceTree = "<group>"; };
 		4F3E14FF1114E4D100007CFC /* TFUlxImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFUlxImage.m; sourceTree = "<group>"; };
 		4F44C2AF111BE776006B05D2 /* TFEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFEngine.h; sourceTree = "<group>"; };
@@ -48,6 +53,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4F05E9A9111E0CA400C90CB3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -64,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* fyrep-cocoatouch.app */,
+				4F05E9AC111E0CA400C90CB3 /* UnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -75,8 +88,10 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				4F05E9B9111E0DB600C90CB3 /* UnitTests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				4F05E9AD111E0CA400C90CB3 /* UnitTests-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -109,6 +124,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4F05E9B4111E0D8C00C90CB3 /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				4F05E9B5111E0DA600C90CB3 /* TestTFUlxImage.h */,
+				4F05E9B6111E0DA600C90CB3 /* TestTFUlxImage.m */,
+			);
+			path = UnitTests;
+			sourceTree = "<group>";
+		};
+		4F05E9B9111E0DB600C90CB3 /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = UnitTests;
+			sourceTree = "<group>";
+		};
 		4F3E14FD1114E4D100007CFC /* fyrevm-foundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +149,7 @@
 				4FCCBE74111521A40001000B /* GlulxConstants.m */,
 				4F44C2AF111BE776006B05D2 /* TFEngine.h */,
 				4F44C2B0111BE776006B05D2 /* TFEngine.m */,
+				4F05E9B4111E0D8C00C90CB3 /* UnitTests */,
 			);
 			name = "fyrevm-foundation";
 			path = "../../shared/fyrevm-foundation";
@@ -143,6 +175,24 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* fyrep-cocoatouch.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4F05E9AB111E0CA400C90CB3 /* UnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F05E9B0111E0CA500C90CB3 /* Build configuration list for PBXNativeTarget "UnitTests" */;
+			buildPhases = (
+				4F05E9A7111E0CA400C90CB3 /* Resources */,
+				4F05E9A8111E0CA400C90CB3 /* Sources */,
+				4F05E9A9111E0CA400C90CB3 /* Frameworks */,
+				4F05E9AA111E0CA400C90CB3 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UnitTests;
+			productName = UnitTests;
+			productReference = 4F05E9AC111E0CA400C90CB3 /* UnitTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -159,6 +209,7 @@
 			);
 			targets = (
 				1D6058900D05DD3D006BFB54 /* fyrep-cocoatouch */,
+				4F05E9AB111E0CA400C90CB3 /* UnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -172,7 +223,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4F05E9A7111E0CA400C90CB3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4F05E9AA111E0CA400C90CB3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -184,6 +258,14 @@
 				4F3E15001114E4D100007CFC /* TFUlxImage.m in Sources */,
 				4FCCBE77111521A40001000B /* GlulxConstants.m in Sources */,
 				4F44C2B1111BE776006B05D2 /* TFEngine.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F05E9A8111E0CA400C90CB3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F05E9B7111E0DA600C90CB3 /* TestTFUlxImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +295,60 @@
 				GCC_PREFIX_HEADER = fyrep_cocoatouch_Prefix.pch;
 				INFOPLIST_FILE = "fyrep_cocoatouch-Info.plist";
 				PRODUCT_NAME = "fyrep-cocoatouch";
+			};
+			name = Release;
+		};
+		4F05E9AE111E0CA500C90CB3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "UnitTests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		4F05E9AF111E0CA500C90CB3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "UnitTests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTests;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -250,6 +386,15 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F05E9B0111E0CA500C90CB3 /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F05E9AE111E0CA500C90CB3 /* Debug */,
+				4F05E9AF111E0CA500C90CB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
