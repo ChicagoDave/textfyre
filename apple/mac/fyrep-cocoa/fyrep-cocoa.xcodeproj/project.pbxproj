@@ -16,6 +16,15 @@
 		4F3E15A41114EEE000007CFC /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3E15A31114EEE000007CFC /* SenTestingKit.framework */; };
 		4F3E15BB1114EEF500007CFC /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3E15A31114EEE000007CFC /* SenTestingKit.framework */; };
 		4F3E15CE1114F04200007CFC /* TestTFUlxImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E15CD1114F04200007CFC /* TestTFUlxImage.m */; };
+		4F6B64CD111E2A9700BABD7F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3E15A31114EEE000007CFC /* SenTestingKit.framework */; };
+		4F6B64CE111E2AA000BABD7F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		4F6B64D1111E2AAC00BABD7F /* TestTFUlxImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E15CD1114F04200007CFC /* TestTFUlxImage.m */; };
+		4F6B64D4111E2AC300BABD7F /* TFUlxImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E14B21114C8C000007CFC /* TFUlxImage.m */; };
+		4F6B64D5111E2AC300BABD7F /* GlulxConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E153E1114E9B500007CFC /* GlulxConstants.m */; };
+		4F6B64D6111E2AC300BABD7F /* TFEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F02BA73111BE8F70054F477 /* TFEngine.m */; };
+		4F6B64D7111E2AE100BABD7F /* sh-v1.0de.ulx in Resources */ = {isa = PBXBuildFile; fileRef = 4F8FD6241115864C00024CED /* sh-v1.0de.ulx */; };
+		4F6B64D8111E2AE100BABD7F /* sh-v1.0e.ulx in Resources */ = {isa = PBXBuildFile; fileRef = 4FCCC0FE111548E30001000B /* sh-v1.0e.ulx */; };
+		4F6B64D9111E2AE100BABD7F /* sh-v1.2e.ulx in Resources */ = {isa = PBXBuildFile; fileRef = 4F9503151116414F003A8841 /* sh-v1.2e.ulx */; };
 		4F9503161116414F003A8841 /* sh-v1.2e.ulx in Resources */ = {isa = PBXBuildFile; fileRef = 4F9503151116414F003A8841 /* sh-v1.2e.ulx */; };
 		4F95031C1116419C003A8841 /* sh-v1.0de.ulx in Resources */ = {isa = PBXBuildFile; fileRef = 4F8FD6241115864C00024CED /* sh-v1.0de.ulx */; };
 		4FCCC100111549050001000B /* sh-v1.0e.ulx in Resources */ = {isa = PBXBuildFile; fileRef = 4FCCC0FE111548E30001000B /* sh-v1.0e.ulx */; };
@@ -51,10 +60,12 @@
 		4F3E153D1114E9B500007CFC /* GlulxConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlulxConstants.h; sourceTree = "<group>"; };
 		4F3E153E1114E9B500007CFC /* GlulxConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlulxConstants.m; sourceTree = "<group>"; };
 		4F3E157C1114EE6A00007CFC /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F3E157D1114EE6A00007CFC /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
+		4F3E157D1114EE6A00007CFC /* ApplicationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ApplicationTests-Info.plist"; sourceTree = "<group>"; };
 		4F3E15A31114EEE000007CFC /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		4F3E15CC1114F04200007CFC /* TestTFUlxImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTFUlxImage.h; sourceTree = "<group>"; };
 		4F3E15CD1114F04200007CFC /* TestTFUlxImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTFUlxImage.m; sourceTree = "<group>"; };
+		4F6B64B3111E2A2600BABD7F /* LogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F6B64B4111E2A2600BABD7F /* LogicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LogicTests-Info.plist"; sourceTree = "<group>"; };
 		4F8FD6241115864C00024CED /* sh-v1.0de.ulx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "sh-v1.0de.ulx"; path = "../../../winforms/Shadow/ShadowClient/ShadowClient/GameFiles/sh-v1.0de.ulx"; sourceTree = SOURCE_ROOT; };
 		4F9503151116414F003A8841 /* sh-v1.2e.ulx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "sh-v1.2e.ulx"; path = "../../../winforms/Shadow/ShadowClient/ShadowRelease/sh-v1.2e.ulx"; sourceTree = SOURCE_ROOT; };
 		4FCCC0FE111548E30001000B /* sh-v1.0e.ulx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "sh-v1.0e.ulx"; path = "../../../winforms/Shadow/ShadowClient/ShadowClient/GameFiles/sh-v1.0e.ulx"; sourceTree = SOURCE_ROOT; };
@@ -69,6 +80,15 @@
 			files = (
 				4F3E15A21114EE9800007CFC /* Cocoa.framework in Frameworks */,
 				4F3E15BB1114EEF500007CFC /* SenTestingKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F6B64B0111E2A2600BABD7F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F6B64CE111E2AA000BABD7F /* Cocoa.framework in Frameworks */,
+				4F6B64CD111E2A9700BABD7F /* SenTestingKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +110,7 @@
 				256AC3D80F4B6AC300CF3369 /* fyrep_cocoaAppDelegate.h */,
 				256AC3D90F4B6AC300CF3369 /* fyrep_cocoaAppDelegate.m */,
 			);
-			name = Classes;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
@@ -116,6 +136,7 @@
 			children = (
 				8D1107320486CEB800E47090 /* fyrep-cocoa.app */,
 				4F3E157C1114EE6A00007CFC /* UnitTests.octest */,
+				4F6B64B3111E2A2600BABD7F /* LogicTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,8 +147,9 @@
 				4F3E14AD1114C80100007CFC /* fyrevm-foundation */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				4F3E15C41114EF6000007CFC /* UnitTests */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				4F6B64C3111E2A5B00BABD7F /* LogicTests */,
+				4F3E15C41114EF6000007CFC /* ApplicationTests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -146,9 +168,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4F9503151116414F003A8841 /* sh-v1.2e.ulx */,
-				4F8FD6241115864C00024CED /* sh-v1.0de.ulx */,
-				4FCCC0FE111548E30001000B /* sh-v1.0e.ulx */,
 				8D1107310486CEB800E47090 /* fyrep_cocoa-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
@@ -165,6 +184,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4F05E9B3111E0D5500C90CB3 /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				4F3E15CC1114F04200007CFC /* TestTFUlxImage.h */,
+				4F3E15CD1114F04200007CFC /* TestTFUlxImage.m */,
+				4F6B6500111E2B2C00BABD7F /* Resources */,
+			);
+			path = UnitTests;
+			sourceTree = "<group>";
+		};
 		4F3E14AD1114C80100007CFC /* fyrevm-foundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,27 +203,44 @@
 				4F3E153E1114E9B500007CFC /* GlulxConstants.m */,
 				4F02BA72111BE8F70054F477 /* TFEngine.h */,
 				4F02BA73111BE8F70054F477 /* TFEngine.m */,
+				4F05E9B3111E0D5500C90CB3 /* UnitTests */,
 			);
 			name = "fyrevm-foundation";
 			path = "../../shared/fyrevm-foundation";
 			sourceTree = "<group>";
 		};
-		4F3E15C41114EF6000007CFC /* UnitTests */ = {
+		4F3E15C41114EF6000007CFC /* ApplicationTests */ = {
 			isa = PBXGroup;
 			children = (
-				4F3E157D1114EE6A00007CFC /* UnitTests-Info.plist */,
-				4F3E15CC1114F04200007CFC /* TestTFUlxImage.h */,
-				4F3E15CD1114F04200007CFC /* TestTFUlxImage.m */,
+				4F3E157D1114EE6A00007CFC /* ApplicationTests-Info.plist */,
 			);
-			path = UnitTests;
+			path = ApplicationTests;
+			sourceTree = "<group>";
+		};
+		4F6B64C3111E2A5B00BABD7F /* LogicTests */ = {
+			isa = PBXGroup;
+			children = (
+				4F6B64B4111E2A2600BABD7F /* LogicTests-Info.plist */,
+			);
+			path = LogicTests;
+			sourceTree = "<group>";
+		};
+		4F6B6500111E2B2C00BABD7F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4F9503151116414F003A8841 /* sh-v1.2e.ulx */,
+				4F8FD6241115864C00024CED /* sh-v1.0de.ulx */,
+				4FCCC0FE111548E30001000B /* sh-v1.0e.ulx */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4F3E157B1114EE6A00007CFC /* UnitTests */ = {
+		4F3E157B1114EE6A00007CFC /* ApplicationTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4F3E15801114EE6A00007CFC /* Build configuration list for PBXNativeTarget "UnitTests" */;
+			buildConfigurationList = 4F3E15801114EE6A00007CFC /* Build configuration list for PBXNativeTarget "ApplicationTests" */;
 			buildPhases = (
 				4F3E15771114EE6A00007CFC /* Resources */,
 				4F3E15781114EE6A00007CFC /* Sources */,
@@ -206,9 +252,27 @@
 			dependencies = (
 				4FCCC12E11154AEA0001000B /* PBXTargetDependency */,
 			);
-			name = UnitTests;
+			name = ApplicationTests;
 			productName = UnitTests;
 			productReference = 4F3E157C1114EE6A00007CFC /* UnitTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		4F6B64B2111E2A2600BABD7F /* LogicTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F6B64B7111E2A2700BABD7F /* Build configuration list for PBXNativeTarget "LogicTests" */;
+			buildPhases = (
+				4F6B64AE111E2A2600BABD7F /* Resources */,
+				4F6B64AF111E2A2600BABD7F /* Sources */,
+				4F6B64B0111E2A2600BABD7F /* Frameworks */,
+				4F6B64B1111E2A2600BABD7F /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LogicTests;
+			productName = LogicTests;
+			productReference = 4F6B64B3111E2A2600BABD7F /* LogicTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 		8D1107260486CEB800E47090 /* fyrep-cocoa */ = {
@@ -245,7 +309,8 @@
 			);
 			targets = (
 				8D1107260486CEB800E47090 /* fyrep-cocoa */,
-				4F3E157B1114EE6A00007CFC /* UnitTests */,
+				4F6B64B2111E2A2600BABD7F /* LogicTests */,
+				4F3E157B1114EE6A00007CFC /* ApplicationTests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,6 +323,16 @@
 				4F95031C1116419C003A8841 /* sh-v1.0de.ulx in Resources */,
 				4FCCC100111549050001000B /* sh-v1.0e.ulx in Resources */,
 				4F9503161116414F003A8841 /* sh-v1.2e.ulx in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F6B64AE111E2A2600BABD7F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F6B64D7111E2AE100BABD7F /* sh-v1.0de.ulx in Resources */,
+				4F6B64D8111E2AE100BABD7F /* sh-v1.0e.ulx in Resources */,
+				4F6B64D9111E2AE100BABD7F /* sh-v1.2e.ulx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +362,19 @@
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 			showEnvVarsInLog = 0;
 		};
+		4F6B64B1111E2A2600BABD7F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -295,6 +383,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F3E15CE1114F04200007CFC /* TestTFUlxImage.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F6B64AF111E2A2600BABD7F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F6B64D4111E2AC300BABD7F /* TFUlxImage.m in Sources */,
+				4F6B64D5111E2AC300BABD7F /* GlulxConstants.m in Sources */,
+				4F6B64D6111E2AC300BABD7F /* TFEngine.m in Sources */,
+				4F6B64D1111E2AAC00BABD7F /* TestTFUlxImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,7 +451,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
+				INFOPLIST_FILE = "ApplicationTests/ApplicationTests-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				PREBINDING = NO;
 				PRODUCT_NAME = UnitTests;
@@ -372,11 +471,53 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
-				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
+				INFOPLIST_FILE = "ApplicationTests/ApplicationTests-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				PREBINDING = NO;
 				PRODUCT_NAME = UnitTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		4F6B64B5111E2A2700BABD7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "LogicTests/LogicTests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				PREBINDING = NO;
+				PRODUCT_NAME = LogicTests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		4F6B64B6111E2A2700BABD7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "LogicTests/LogicTests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				PREBINDING = NO;
+				PRODUCT_NAME = LogicTests;
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
@@ -450,11 +591,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4F3E15801114EE6A00007CFC /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
+		4F3E15801114EE6A00007CFC /* Build configuration list for PBXNativeTarget "ApplicationTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4F3E157E1114EE6A00007CFC /* Debug */,
 				4F3E157F1114EE6A00007CFC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F6B64B7111E2A2700BABD7F /* Build configuration list for PBXNativeTarget "LogicTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F6B64B5111E2A2700BABD7F /* Debug */,
+				4F6B64B6111E2A2700BABD7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
