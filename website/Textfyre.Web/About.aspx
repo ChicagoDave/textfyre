@@ -7,6 +7,9 @@
 
         function toggleMontfort() {
 
+            var nm = document.getElementById('nm');
+            var nmLink = document.getElementById('nmLink');
+
             if (nm.style.display == 'none') {
                 nm.style.display = 'block';
                 nmLink.innerHTML = '(less)';
@@ -18,6 +21,9 @@
         }
 
         function toggleMay() {
+
+            var may = document.getElementById('may');
+            var mayLink = document.getElementById('mayLink');
 
             if (may.style.display == 'none') {
                 may.style.display = 'block';
@@ -76,6 +82,7 @@
     </div>
     <div class="col-left">
         <img id="ctl00_ContentPlaceHolder1_Image1" src="images/david.jpg" alt="David Cornelson, Founder and President" />
+        <p style="font-size:8pt; text-align:center;">Founder and President</p>
     </div>
     <div class="col-right">
         <p>
@@ -89,6 +96,7 @@
     </div>
     <div class="col-left">
         <img id="ctl00_ContentPlaceHolder1_Image2" src="images/gentry.jpg" alt="Michael Gentry, Miradania Designer and Writer" />
+        <p style="font-size:8pt; text-align:center;">Story Designer and Writer</p>
     </div>
     <div class="col-right">
         <p>
@@ -99,6 +107,7 @@
     </div>
     <div class="col-left">
         <img id="ctl00_ContentPlaceHolder1_Image3" src="images/finley.jpg" alt="Ian Finley, Klockwerk Designer" />
+        <p style="font-size:8pt; text-align:center;">Story Designer</p>
     </div>
     <div class="col-right">
         <p>
@@ -112,6 +121,7 @@
     </div>
     <div class="col-left">
         <img id="ctl00_ContentPlaceHolder1_Image4" src="images/ingold.jpg" alt="Jon Ingold, Klockwerk Co-Designer and Writer" />
+        <p style="font-size:8pt; text-align:center;">Story Designer and Writer</p>
     </div>
     <div class="col-right">
         <p>
@@ -125,6 +135,7 @@
     </div>
     <div class="col-left">
         <img id="ctl00_ContentPlaceHolder1_Image5" src="images/obrian.jpg" alt="Paul O'Brian, Giant Leaps Designer" />
+        <p style="font-size:8pt; text-align:center;">Story Designer</p>
     </div>
     <div class="col-right">
         <p>
@@ -140,6 +151,7 @@
     </div>
     <div class="col-left">
         <img id="ctl00_ContentPlaceHolder1_Image8" src="images/chrishuang.jpg" alt="Chris Huang, Giant Leaps Writer" />
+        <p style="font-size:8pt; text-align:center;">Story Writer</p>
     </div>
     <div class="col-right">
         <p>
@@ -153,7 +165,21 @@
     <div class="clearLine">
     </div>
     <div class="col-left">
+        <img id="Img4" src="images/sarah.jpg" alt="Sarah Moriarty, Historical Interactive Fiction Designer and Writer" />
+        <p style="font-size:8pt; text-align:center;">Story Designer and Writer</p>
+    </div>
+    <div class="col-right">
+        <p>
+            SARAH MORAYATI, of Chapel Hill, is the author of several IF works including <i>Broken
+            Legs</i>, which earned second place in the 2009 Interactive Fiction Competition. Outside
+            the IF world, she's worked as a freelance writer and editor.
+        </p>
+    </div>
+    <div class="clearLine">
+    </div>
+    <div class="col-left">
         <img id="ctl00_ContentPlaceHolder1_Image6" src="images/graeme.jpg" alt="Graeme Jefferis, Inform 7 Programmer" />
+        <p style="font-size:8pt; text-align:center;">Story Programmer</p>
     </div>
     <div class="col-right">
         <p>
@@ -166,11 +192,12 @@
     </div>
     <div class="col-left">
         <img id="Img1" src="images/snyder.jpg" alt="Mike Snyder, Story and Puzzle Designer" />
+        <p style="font-size:8pt; text-align:center;">Story and Puzzle Design Advisor</p>
     </div>
     <div class="col-right">
         <p>
             MIKE SNYDER lives with his wife and three children in Wichita, Kansas, where he
-            spends his days developing software and his nights and weekends trying to be a “fun”
+            spends his days developing software and his nights and weekends trying to be a &#8220;fun&#8221;
             dad. Mike has been writing interactive fiction since 1987, with later efforts ranking
             highly in the annual IF competition and winning XYZZY awards for Best Puzzles (Distress
             - 2005) and Best Story (The Traveling Swordsman - 2006). When time permits, Mike
@@ -181,6 +208,7 @@
     </div>
     <div class="col-left">
         <img id="Img2" src="images/montfort.jpg" alt="Nick Montfort, Interactive Fiction Advisor" />
+        <p style="font-size:8pt; text-align:center;">New Media Advisor</p>
     </div>
     <div class="col-right">
         <p>
@@ -214,22 +242,23 @@
     </div>
     <div class="col-left">
         <img id="Img3" src="images/davemay.jpg" alt="David May, Business Development Advisor" />
+        <p style="font-size:8pt; text-align:center;">Business Development Advisor</p>
     </div>
     <div class="col-right">
         <p>
-            DAVID MAY is an IT executive and entrepreuer in Chicago. David was co-founder and
+            DAVID MAY is an IT executive and entrepreneur in Chicago. David was co-founder and
             Chief Technology Officer of LoanX, an internet-based financial services firm in
             over-the-counter syndicated loans. LoanX provides an online price and quote service
-            for billions of dollars of syndicated loans among the world’s largest banks. Turning
-            down venture capital funding, LoanX first and only round of funding was from strategic
-            investors for seven million dollars in April 2001.<a id="mayLink" href="javascript:toggleMay();">
-                (more)</a>
+            for billions of dollars of syndicated loans among the world&#8217;s largest banks.
+            Turning down venture capital funding, LoanX's first and only round of funding was
+            from strategic investors for seven million dollars in April 2001.<a id="mayLink"
+                href="javascript:toggleMay();"> (more)</a>
         </p>
         <div id="may" style="display: none;">
             <p>
-                In 2004, LoanX was sold to Markit Group, a London-based financial information services,
-                at the time about 60 employees. The combined entity pursued both an organic and
-                acquisition growth strategy. Today, Markit exceeds $400 million dollars in revenue
+                In 2004, LoanX was sold to Markit Group, a London-based financial information services
+                firm, at the time about 60 employees. The combined entity pursued both an organic
+                and acquisition growth strategy. Today, Markit exceeds $400 million dollars in revenue
                 and more than 1,200 employees throughout the world. Its independent pricing, quotes
                 and valuation services are now used by over 1,500 of the most prominent investment
                 banks, hedge funds, asset managers, central banks, regulators, rating agencies and
