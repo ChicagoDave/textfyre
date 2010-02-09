@@ -308,7 +308,9 @@
     <Content Include="Forums.aspx" />
     <Content Include="Global.asax" />
     <Content Include="images\banner50.jpg" />
+    <Content Include="images\davemay.jpg" />
     <Content Include="images\JackGrubbers-small.jpg" />
+    <Content Include="images\montfort.jpg" />
     <Content Include="images\secretlettermap.jpg" />
     <Content Include="images\shbanner.jpg" />
     <Content Include="images\chrishuang.jpg" />
@@ -316,6 +318,7 @@
     <Content Include="images\parents1.jpg" />
     <Content Include="images\parents2.jpg" />
     <Content Include="images\secretletter-std.jpg" />
+    <Content Include="images\snyder.jpg" />
     <Content Include="images\students.jpg" />
     <Content Include="images\teacherkids.jpg" />
     <Content Include="images\tflogo.jpg" />
