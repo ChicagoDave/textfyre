@@ -2,6 +2,7 @@
 
 [  Change Log
 When		Who		What
+14-Feb-2010		R. Newcomb	DD2.0 - various synonyms, fixed regionless new rooms, other misc.
 19-Nov-2009	G. Jefferis	Eric's Transcript
 17-Nov-2009	G. Jefferis	Eric's Transcript
 29-Oct-2009	G. Jefferis	DD2.0 - War Room
@@ -216,14 +217,14 @@ The story creation year is 2009.
 
 Rule for printing the banner text:
 	select the title channel;
-	say "[b][story title] - v2.0.20091119[r][line break]";
+	say "[b][story title] - v2.0.20100214[r][line break]";
 	select the credits channel;
 	say "[story title] by [story author][line break]";
 	say "Copyright @ [story creation year] by [story author][line break]";
 	say "Story by David Cornelson[line break]";
 	say "Written by Michael Gentry[line break]";
 	say "Game Engine (FyreVM) by Jesse McGrew[line break]";
-	say "Inform 7 Story Programming by Graeme Jefferis[line break]";
+	say "Inform 7 Story Programming by Graeme Jefferis[line break] and Ron Newcomb[line break]";
 	say "Testing by Jacqueline Ashwell, Peter Berman,[line break]Eric Eve, Jim Aikin, and Paul O'Brian[line break]";
 	say "Deluxe Edition UI by Thomas Lynge[line break] of Tenteo (www.tenteo.com)[line break]";
 	say "Sketches by Erika Swanson (www.simplyerika.com).[line break]";
@@ -300,7 +301,7 @@ Index map with Patio mapped southeast of Roof of Black Gate Estate.
 Index map with Third Floor Landing mapped east of Rooftop Garden.
 Index map with Music Room mapped south of Third Floor Landing.
 Index map with Audience Area mapped south of Music Room. 
-Index map with Third Floor Balcony mapped south of Audience Area.
+[Index map with Third Floor Balcony mapped south of Audience Area.]
 Index map with Second Floor Landing mapped east of Third Floor Landing.
 Index map with Living Room mapped south of Second Floor Landing.
 Index map with Master Bedroom mapped south of Living Room.
@@ -310,6 +311,7 @@ Index map with East Commerce Street mapped southeast of Library.
 Index map with Foyer mapped north of East Commerce Street.
 Index map with Great Hall mapped north of Foyer.
 Index map with Office mapped east of Great Hall.
+Index map with Red Gate Cellar mapped south of Office.
 Index map with Red Gate Estate Second Floor Landing mapped north of Office.
 Index map with Bathroom mapped east of Office.
 Index map with Red Gate Master Bedroom mapped north of Bathroom.
@@ -7735,8 +7737,10 @@ Section 4 - Reaching through windows
 [ I don't actually want to implement this as an action... it doesn't generalize well, it would create too many special cases, and it adds nothing to gameplay. However, it is a reasonable thing for someone to type when trying to get out of jail, so we'll add some error messages to handle it.]
 
 Understand "reach" as a mistake ("[reach message]").
-Understand "reach [something]" as a mistake ("[reach message]").
-Understand "reach in/through/into/between/for [something]" as a mistake ("[reach message]").
+Understand "reach [something]" as a mistake ("[reach message]") when Skirmish is not happening.
+Understand "reach in/through/into/between/for [something]" as a mistake ("[reach message]") when Skirmish is not happening.
+Understand "reach [something]" as taking when Skirmish is happening.
+Understand "reach in/through/into/between/for [something]" as taking when Skirmish is happening.
 Understand "reach arm/hand in/through/into/between [something]" as a mistake ("[reach message]").
 Understand "reach in/through/into/between [viewing window]" as a mistake ("[lockpicking message]").
 Understand "reach arm/hand in/through/into/between [viewing window]" as a mistake ("[lockpicking message]").
@@ -7825,13 +7829,13 @@ After printing the description of the straw when the piece of wire is part of th
 Instead of smelling the straw,
 	say "You can smell it just fine from where you're standing."
 
-Instead of taking or raising the straw when the piece of wire is part of the straw:
+[Instead of taking or raising the straw when the piece of wire is part of the straw:
 	try searching the straw;
 
 Instead of looking under the straw when the piece of wire is part of the straw:
-	try searching the straw;
+	try searching the straw;]
 
-Instead of searching the straw when the piece of wire is part of the straw:
+Instead of searching, taking, raising, or looking under the straw when the piece of wire is part of the straw:
 	now the player carries the piece of wire;
 	say "Holding your breath, you gingerly poke around in the damp, filthy straw, and eventually you find the thing that Jacobs threw in there: it's a short piece of stiff wire."
 
@@ -8097,6 +8101,10 @@ Rule for firing TIMER_lockpicking:
 
 Instead of talking to the prisoner when JA7 is fired and JA8 is unfired:
 	say "Jacobs ignores you completely.";
+
+Instead of talking to Jacobs when JA30 is fired and the player is in the Holding Cell: say "Jacobs grunts noncommittally."
+
+Instead of talking to Jacobs when JA31 is fired and the player is in the Holding Cell: say "Jacobs grunts noncommittally."
 
 [ After firing JA8:
 	now the prisoner carries the piece of wire;
@@ -9200,7 +9208,7 @@ Section 1 - Mops
 
 Some mops are scenery, in the Supply Closet. "The mops and other supplies are stacked up in the back of the closet." Understand "mop", "supplies", "cleaning supplies", "stack", "stacked", "stack of", "stacks of" as the mops.
 
-Instead of searching or raising the mops:
+Instead of searching, looking under, or raising the mops:
 	say "There is no secret letter hidden among the mops.";
 
 Instead of taking the mops:
@@ -9565,7 +9573,7 @@ Part 17 - Black Gate Estate, as a region
 
 The Black Gate Estate Region is a region.
 
-The Third Floor Landing, the Music Room, the Audience Area, the Third Floor Balcony, the Second Floor Landing, the Living Room, the Master Bedroom and the Library are in the Black Gate Estate Region.
+The Third Floor Landing, the Music Room, the Audience Area, [the Third Floor Balcony,] the Supply Closet, the Second Floor Landing, the Living Room, the Master Bedroom and the Library are in the Black Gate Estate Region.
 
 Book 9 - Bobby's Execution
 
@@ -10062,7 +10070,7 @@ When Shannon's Company ends:
 Chapter 6 - Red Gate Estate, as a region
 
 The Red Gate Estate region is a region.
-The Foyer, [the Dining Room, the Red Gate Kitchen,] the Great Hall, the Red Gate Estate Second Floor Landing, the Office, the Red Gate Estate Third Floor Landing, the Red Gate Master Bedroom and the Bathroom are in the Red Gate Estate region.
+The Foyer, [the Dining Room, the Red Gate Kitchen,] the Great Hall, the Red Gate Estate Second Floor Landing, the Office, the Red Gate Estate Third Floor Landing, the Red Gate Master Bedroom, the Red Gate Cellar, and the Bathroom are in the Red Gate Estate region.
 
 The silence is a backdrop, in the Red Gate Estate region. Understand "stillness", "quiet", "eerie", "expectant", "insubstantial", "echo", "echoes", "echos" as the silence.
 
@@ -10208,9 +10216,11 @@ Understand "wipe [something]" as rubbing.
 
 Part 4A - Cellar
 
-The Red Gate Cellar is a room. "It is cool and quiet down here, amidst the stone walls of the cellar. A narrow stairway leads back up."
+The Red Gate Cellar is a room. "It is cool and quiet down here, amidst the stone walls of the cellar. A narrow stairway leads back up."  Understand "basement" as the Red Gate Cellar.
 
 A narrow stairway is a door, scenery, open, not openable, down from the Great Hall, up from the Red Gate Cellar. "Narrow, stone steps leading [if the location is the Red Gate Cellar]up[otherwise]down[end if]."
+
+Understand "narrow", "stone", "stairs", "staircase", "step", "steps" as the narrow stairway.
 
 Instead of climbing the narrow stairway:
 	try entering the narrow stairway;
@@ -11960,7 +11970,7 @@ Instead of freeing the player when the player is tied up:
 Instead of cutting the rough ropes:
 	try cutting the rough ropes with the plain dagger instead;
 
-Instead of pulling or untying the rough ropes:
+Instead of pulling, pushing, or untying the rough ropes:
 	say "The ropes are too tight for you to just pull free, although you might be able to reach your dagger...";
 
 Section 4 - Scenery (Door)
@@ -12272,7 +12282,7 @@ Definition: a room is interior:
 	if it is Upper Bailey, no;
 	if it is Lower Bailey, no;
 	if it is in the rooftops region, no;
-	if it is the Third Floor Balcony, no;
+	[if it is the Third Floor Balcony, no;]
 	if it is a shop, yes;
 	if it is a store, yes;
 	if it is in Maiden House, yes;
