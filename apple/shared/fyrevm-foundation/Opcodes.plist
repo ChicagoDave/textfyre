@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
+<!--
+    Opcodes.plist
+    fyrevm-foundation
+    
+    Copyright 2010 Textfyre, Inc. All rights reserved.
+    Please read the accompanying COPYRIGHT file for licensing restrictions.
+-->
 <array>
 	<array>
 		<integer>0</integer>

@@ -11,9 +11,12 @@
 
 @class TFUlxImage;
 
+/*! The main FyreVM class, which implements a modified Glulx interpreter. */
 @interface TFEngine : NSObject {
 
 @private
+    NSDictionary *opcodeDict;
+
     TFUlxImage *image;
 
     NSMutableData *stack;
@@ -21,6 +24,8 @@
     uint32_t sp; // stack ptr
     uint32_t fp; // call-frame ptr
 }
+
+#pragma mark APIs
 
 /*! Attempts to load Glulx (.ulx) game image file into memory and decrypt it. 
 
@@ -32,14 +37,6 @@
  */
 - (BOOL)loadGameImageFromPath:(NSString *)path;
 
-/*! Compares version numbers of image to what this game engine supports.
-
-    On failure, technical details will be printed to Console.
- */
-- (BOOL)isImageVersionCompatible:(TFUlxImage *)image;
-
-/*! Method to call to dispose of resources. Is called by -dealloc, but also may be called early. Is also called by -loadFromPath: on failure.
- */
-- (void)cleanup;
+#pragma mark APIs for Opcodes
 
 @end
