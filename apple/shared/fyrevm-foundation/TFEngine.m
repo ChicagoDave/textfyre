@@ -10,6 +10,7 @@
 
 #import "TFUlxImage.h"
 #import "GlulxConstants.h"
+#import "TFOpcode.h"
 
 static const NSUInteger TFEngineFirstMajorVersion = 2;
 static const NSUInteger TFEngineFirstMinorVersion = 0;
@@ -18,36 +19,22 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 
 @implementation TFEngine
 
-- (void)initOpcodeDictionary {
-    // TODO
+#pragma mark Private methods
+
+/*! Attempts to fill in opcode dictionary.
+
+    On failure, technical details will be printed to Console.
+ */
+- (BOOL)initOpcodeDictionary {
+    opcodeDict = [[TFOpcode opcodeDictionary] retain];
+    
+    return (opcodeDict != nil);
 }
 
-- (BOOL)loadGameImageFromPath:(NSString *)path {
-    NSAssert(image == nil, @"loadGameImageFromPath: called when image has already been set to something!");
+/*! Compares version numbers of image to what this game engine supports.
 
-    BOOL result = NO;
-    
-    image = [[TFUlxImage alloc] init];
-    
-    if ([image loadFromPath:path]) {
-    
-        if ([self isImageVersionCompatible:image]) {
-            uint32_t stackSize = [image int32AtOffset:TFGlulxHeaderStackSizeOffset];
-            stack = [[NSMutableData alloc] initWithLength:stackSize];
-
-            [self initOpcodeDictionary];
-        
-            result = YES;
-        }
-    }
-    
-    if (result == NO) {
-        [image cleanup];
-    }
-
-    return result;
-}
-
+    On failure, technical details will be printed to Console.
+ */
 - (BOOL)isImageVersionCompatible:(TFUlxImage *)theImage {
     NSUInteger majorVersion = [theImage majorVersion];
     NSUInteger minorVersion = [theImage minorVersion];
@@ -72,10 +59,48 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
     return result;
 }
 
+/*! Method to call to dispose of resources. Is called by -dealloc, but also may be called early. Is called by -loadGameImageFromPath: on failure.
+ */
 - (void)cleanup {
-    [image cleanup], [image release], image = nil;
+    [opcodeDict release], opcodeDict = nil;
+
+    [image  cleanup], [image release], image = nil;
+
+    [stack release], stack = nil;
+
+
     [stack release], stack = nil;
 }
+
+#pragma mark APIs
+
+- (BOOL)loadGameImageFromPath:(NSString *)path {
+    NSAssert(image == nil, @"loadGameImageFromPath: called when image has already been set to something!");
+
+    BOOL result = NO;
+    
+    image = [[TFUlxImage alloc] init];
+    
+    if ([image loadFromPath:path]) {
+    
+        if ([self isImageVersionCompatible:image]) {
+            uint32_t stackSize = [image int32AtOffset:TFGlulxHeaderStackSizeOffset];
+            stack = [[NSMutableData alloc] initWithLength:stackSize];
+
+            result = [self initOpcodeDictionary];
+        }
+    }
+    
+    if (result == NO) {
+        [self cleanup];
+    }
+
+    return result;
+}
+
+#pragma mark APIs for Opcodes
+
+#pragma mark Standard methods
 
 - (void)dealloc {
     [self cleanup];

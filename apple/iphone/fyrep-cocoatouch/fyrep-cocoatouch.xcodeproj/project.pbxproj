@@ -19,6 +19,14 @@
 		4F213AB6111E4E1100C0667D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6B6484111E296700BABD7F /* SenTestingKit.framework */; };
 		4F3E15001114E4D100007CFC /* TFUlxImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E14FF1114E4D100007CFC /* TFUlxImage.m */; };
 		4F44C2B1111BE776006B05D2 /* TFEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F44C2B0111BE776006B05D2 /* TFEngine.m */; };
+		4F50FA5E1130915B006D0738 /* Opcodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F50FA5D1130915B006D0738 /* Opcodes.plist */; };
+		4F50FA5F1130915B006D0738 /* Opcodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F50FA5D1130915B006D0738 /* Opcodes.plist */; };
+		4F50FA601130915B006D0738 /* Opcodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F50FA5D1130915B006D0738 /* Opcodes.plist */; };
+		4F50FB251130DF21006D0738 /* TFOpcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50FB241130DF21006D0738 /* TFOpcode.m */; };
+		4F50FB261130DF21006D0738 /* TFOpcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50FB241130DF21006D0738 /* TFOpcode.m */; };
+		4F50FB271130DF21006D0738 /* TFOpcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50FB241130DF21006D0738 /* TFOpcode.m */; };
+		4F50FBC9113106B1006D0738 /* TestTFOpcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50FBC8113106B1006D0738 /* TestTFOpcode.m */; };
+		4F50FBCE113106EF006D0738 /* TestTFOpcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50FBC8113106B1006D0738 /* TestTFOpcode.m */; };
 		4F6B6498111E297800BABD7F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6B6484111E296700BABD7F /* SenTestingKit.framework */; };
 		4F6B64FB111E2B0300BABD7F /* TFUlxImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E14FF1114E4D100007CFC /* TFUlxImage.m */; };
 		4F6B64FC111E2B0300BABD7F /* GlulxConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCCBE74111521A40001000B /* GlulxConstants.m */; };
@@ -43,6 +51,9 @@
 		4F9DEFF7111E28ED00FDB6AD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		4F9DEFF8111E28ED00FDB6AD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		4FCCBE77111521A40001000B /* GlulxConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCCBE74111521A40001000B /* GlulxConstants.m */; };
+		4FFE4BEF111F960800467156 /* TFEngine_Opcodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE4BEE111F960800467156 /* TFEngine_Opcodes.m */; };
+		4FFE4BF0111F960800467156 /* TFEngine_Opcodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE4BEE111F960800467156 /* TFEngine_Opcodes.m */; };
+		4FFE4BF1111F960800467156 /* TFEngine_Opcodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE4BEE111F960800467156 /* TFEngine_Opcodes.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +70,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
 			remoteInfo = "fyrep-cocoatouch";
+		};
+		4FFE4C51111F9D6900467156 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F9DEF56111E287B00FDB6AD;
+			remoteInfo = LogicTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -80,6 +98,12 @@
 		4F3E14FF1114E4D100007CFC /* TFUlxImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFUlxImage.m; sourceTree = "<group>"; };
 		4F44C2AF111BE776006B05D2 /* TFEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFEngine.h; sourceTree = "<group>"; };
 		4F44C2B0111BE776006B05D2 /* TFEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFEngine.m; sourceTree = "<group>"; };
+		4F50FA5D1130915B006D0738 /* Opcodes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Opcodes.plist; sourceTree = "<group>"; };
+		4F50FB071130B38A006D0738 /* Opcodes README.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Opcodes README.rtf"; sourceTree = "<group>"; };
+		4F50FB231130DF21006D0738 /* TFOpcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFOpcode.h; sourceTree = "<group>"; };
+		4F50FB241130DF21006D0738 /* TFOpcode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFOpcode.m; sourceTree = "<group>"; };
+		4F50FBC7113106B1006D0738 /* TestTFOpcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTFOpcode.h; sourceTree = "<group>"; };
+		4F50FBC8113106B1006D0738 /* TestTFOpcode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTFOpcode.m; sourceTree = "<group>"; };
 		4F6B6484111E296700BABD7F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Developer/Library/Frameworks/SenTestingKit.framework; sourceTree = SDKROOT; };
 		4F6B6501111E2B4C00BABD7F /* sh-v1.2e.ulx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "sh-v1.2e.ulx"; path = "../../../winforms/Shadow/ShadowClient/ShadowRelease/sh-v1.2e.ulx"; sourceTree = SOURCE_ROOT; };
 		4F6B6502111E2B4C00BABD7F /* sh-v1.0de.ulx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "sh-v1.0de.ulx"; path = "../../../winforms/Shadow/ShadowClient/ShadowClient/GameFiles/sh-v1.0de.ulx"; sourceTree = SOURCE_ROOT; };
@@ -89,6 +113,8 @@
 		4F9DEF58111E287B00FDB6AD /* LogicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LogicTests-Info.plist"; sourceTree = "<group>"; };
 		4FCCBE73111521A40001000B /* GlulxConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlulxConstants.h; sourceTree = "<group>"; };
 		4FCCBE74111521A40001000B /* GlulxConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlulxConstants.m; sourceTree = "<group>"; };
+		4FFE4BED111F960800467156 /* TFEngine_Opcodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFEngine_Opcodes.h; sourceTree = "<group>"; };
+		4FFE4BEE111F960800467156 /* TFEngine_Opcodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFEngine_Opcodes.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* fyrep_cocoatouch-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fyrep_cocoatouch-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -205,6 +231,8 @@
 			children = (
 				4F05E9B5111E0DA600C90CB3 /* TestTFUlxImage.h */,
 				4F05E9B6111E0DA600C90CB3 /* TestTFUlxImage.m */,
+				4F50FBC7113106B1006D0738 /* TestTFOpcode.h */,
+				4F50FBC8113106B1006D0738 /* TestTFOpcode.m */,
 				4F6B64FF111E2B2100BABD7F /* Resources */,
 			);
 			path = UnitTests;
@@ -227,7 +255,13 @@
 				4FCCBE74111521A40001000B /* GlulxConstants.m */,
 				4F44C2AF111BE776006B05D2 /* TFEngine.h */,
 				4F44C2B0111BE776006B05D2 /* TFEngine.m */,
+				4FFE4BED111F960800467156 /* TFEngine_Opcodes.h */,
+				4FFE4BEE111F960800467156 /* TFEngine_Opcodes.m */,
+				4F50FB231130DF21006D0738 /* TFOpcode.h */,
+				4F50FB241130DF21006D0738 /* TFOpcode.m */,
 				4F05E9B4111E0D8C00C90CB3 /* UnitTests */,
+				4F50FB071130B38A006D0738 /* Opcodes README.rtf */,
+				4F50FA5D1130915B006D0738 /* Opcodes.plist */,
 			);
 			name = "fyrevm-foundation";
 			path = "../../shared/fyrevm-foundation";
@@ -265,6 +299,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4FFE4C52111F9D6900467156 /* PBXTargetDependency */,
 			);
 			name = "fyrep-cocoatouch";
 			productName = "fyrep-cocoatouch";
@@ -331,6 +366,9 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Textfyre, Inc";
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "fyrep-cocoatouch" */;
 			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 1;
@@ -355,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				4F50FA5E1130915B006D0738 /* Opcodes.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +413,7 @@
 			files = (
 				4F6B6527111E2FA100BABD7F /* MainWindow.xib in Resources */,
 				4F6B65B5111E300800BABD7F /* ApplicationTests.octest in Resources */,
+				4F50FA5F1130915B006D0738 /* Opcodes.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +424,7 @@
 				4F6B6507111E2B4C00BABD7F /* sh-v1.2e.ulx in Resources */,
 				4F6B6508111E2B4C00BABD7F /* sh-v1.0de.ulx in Resources */,
 				4F6B6509111E2B4C00BABD7F /* sh-v1.0e.ulx in Resources */,
+				4F50FA601130915B006D0738 /* Opcodes.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +443,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+			showEnvVarsInLog = 0;
 		};
 		4F9DEF55111E287B00FDB6AD /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -415,6 +457,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -428,6 +471,8 @@
 				4F3E15001114E4D100007CFC /* TFUlxImage.m in Sources */,
 				4FCCBE77111521A40001000B /* GlulxConstants.m in Sources */,
 				4F44C2B1111BE776006B05D2 /* TFEngine.m in Sources */,
+				4FFE4BF0111F960800467156 /* TFEngine_Opcodes.m in Sources */,
+				4F50FB261130DF21006D0738 /* TFOpcode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +481,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F05E9B7111E0DA600C90CB3 /* TestTFUlxImage.m in Sources */,
+				4F50FBCE113106EF006D0738 /* TestTFOpcode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +494,8 @@
 				4F6B652B111E2FA100BABD7F /* TFUlxImage.m in Sources */,
 				4F6B652C111E2FA100BABD7F /* GlulxConstants.m in Sources */,
 				4F6B652D111E2FA100BABD7F /* TFEngine.m in Sources */,
+				4FFE4BF1111F960800467156 /* TFEngine_Opcodes.m in Sources */,
+				4F50FB271130DF21006D0738 /* TFOpcode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +507,9 @@
 				4F6B64FC111E2B0300BABD7F /* GlulxConstants.m in Sources */,
 				4F6B64FD111E2B0300BABD7F /* TFEngine.m in Sources */,
 				4F6B64FE111E2B0300BABD7F /* TestTFUlxImage.m in Sources */,
+				4FFE4BEF111F960800467156 /* TFEngine_Opcodes.m in Sources */,
+				4F50FB251130DF21006D0738 /* TFOpcode.m in Sources */,
+				4F50FBC9113106B1006D0738 /* TestTFOpcode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,6 +526,11 @@
 			target = 1D6058900D05DD3D006BFB54 /* fyrep-cocoatouch */;
 			targetProxy = 4FDFB002111E8BCE00284945 /* PBXContainerItemProxy */;
 		};
+		4FFE4C52111F9D6900467156 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F9DEF56111E287B00FDB6AD /* LogicTests */;
+			targetProxy = 4FFE4C51111F9D6900467156 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -483,10 +539,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -519,7 +571,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/fyrep-cocoatouch.app/fyrep-cocoatouch";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(SDK_DIR)/Developer/Library/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -557,10 +612,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\\\"$(DEVELOPER_FRAMEWORKS_DIR)\\\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -593,7 +644,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
