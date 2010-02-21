@@ -39,4 +39,18 @@
 
 #pragma mark APIs for Opcodes
 
+// TODO: may eventually move these into TFEngine_Opcodes.m
+
+- (void)leaveFunction:(uint32_t)result;
+
+- (void)takeBranch:(uint32_t)target;
+
+#pragma mark Exposed for testing ONLY, DO NOT USE
+
+/*! Attempts to fill in opcode dictionary.
+
+    On failure, technical details will be printed to Console.
+ */
+- (BOOL)initOpcodeDictionary;
+
 @end

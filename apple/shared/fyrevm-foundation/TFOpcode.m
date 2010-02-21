@@ -32,7 +32,7 @@ static const NSUInteger TFMaxOpcodeDataArrayElementCount = 5;
     
     opcode = opcodeParam;
 
-    NSString *selectorName = [[NSString alloc] initWithFormat:@"%@:", nameParam];
+    NSString *selectorName = [[NSString alloc] initWithFormat:@"op_%@:", nameParam];
 
     // This does *not* check whether anyone actually implements this selector.
     selector = NSSelectorFromString(selectorName);
@@ -163,10 +163,22 @@ static const NSUInteger TFMaxOpcodeDataArrayElementCount = 5;
     return result;
 }
 
+#pragma mark Standard methods
+
 - (void)dealloc {
-    
+    [ruleName release], ruleName = nil;
 
     [super dealloc];
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@: %p> opcode %ld (0x%X), selector %@, loadArgs %ld, storeArgs %ld, ruleName %@", 
+                                      [self class], self, 
+                                      (long)opcode, (long)opcode, 
+                                      NSStringFromSelector(selector), 
+                                      (long)loadArgs, 
+                                      (long)storeArgs, 
+                                      (ruleName != nil ? ruleName : @"{none}")];
 }
 
 @end

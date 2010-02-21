@@ -21,6 +21,7 @@
 		4F50FB8E113103D3006D0738 /* TestTFOpcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50FB8D113103D3006D0738 /* TestTFOpcode.m */; };
 		4F50FB8F113103E4006D0738 /* TestTFOpcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50FB8D113103D3006D0738 /* TestTFOpcode.m */; };
 		4F50FBE911310779006D0738 /* Opcodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F50FAD91130ADF8006D0738 /* Opcodes.plist */; };
+		4F50FCB5113113B1006D0738 /* TestTFEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50FCB4113113B1006D0738 /* TestTFEngine.m */; };
 		4F6B64CD111E2A9700BABD7F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3E15A31114EEE000007CFC /* SenTestingKit.framework */; };
 		4F6B64CE111E2AA000BABD7F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		4F6B64D1111E2AAC00BABD7F /* TestTFUlxImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E15CD1114F04200007CFC /* TestTFUlxImage.m */; };
@@ -77,6 +78,8 @@
 		4F50FB201130DEDF006D0738 /* Opcodes README.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Opcodes README.rtf"; sourceTree = "<group>"; };
 		4F50FB8C113103D3006D0738 /* TestTFOpcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTFOpcode.h; sourceTree = "<group>"; };
 		4F50FB8D113103D3006D0738 /* TestTFOpcode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTFOpcode.m; sourceTree = "<group>"; };
+		4F50FCB3113113B1006D0738 /* TestTFEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTFEngine.h; sourceTree = "<group>"; };
+		4F50FCB4113113B1006D0738 /* TestTFEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTFEngine.m; sourceTree = "<group>"; };
 		4F6B64B3111E2A2600BABD7F /* LogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F6B64B4111E2A2600BABD7F /* LogicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LogicTests-Info.plist"; sourceTree = "<group>"; };
 		4F8FD6241115864C00024CED /* sh-v1.0de.ulx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "sh-v1.0de.ulx"; path = "../../../winforms/Shadow/ShadowClient/ShadowClient/GameFiles/sh-v1.0de.ulx"; sourceTree = SOURCE_ROOT; };
@@ -205,6 +208,8 @@
 				4F3E15CD1114F04200007CFC /* TestTFUlxImage.m */,
 				4F50FB8C113103D3006D0738 /* TestTFOpcode.h */,
 				4F50FB8D113103D3006D0738 /* TestTFOpcode.m */,
+				4F50FCB3113113B1006D0738 /* TestTFEngine.h */,
+				4F50FCB4113113B1006D0738 /* TestTFEngine.m */,
 				4F6B6500111E2B2C00BABD7F /* Resources */,
 			);
 			path = UnitTests;
@@ -426,6 +431,7 @@
 				4FFE4C1C111F966A00467156 /* TFEngine_Opcodes.m in Sources */,
 				4F50FB1E1130DEBD006D0738 /* TFOpcode.m in Sources */,
 				4F50FB8E113103D3006D0738 /* TestTFOpcode.m in Sources */,
+				4F50FCB5113113B1006D0738 /* TestTFEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
