@@ -10,8 +10,10 @@
 
 
 @implementation TFEngine (Opcodes)
-/*
-//[Opcode(0x00, "nop", 0)]
+
+// opcode: 0x00
+// name: nop
+// loadArgs: 0
 - (void)op_nop:(uint32_t *)args
 {
     // do nothing!
@@ -19,67 +21,100 @@
 
 #pragma mark Arithmetic
 
-//[Opcode(0x10, "add", 2, 1)]
+// opcode: 0x10
+// name: add
+// loadArgs: 2
+// storeArgs: 1
 - (void)op_add:(uint32_t *)args
 {
     args[2] = args[0] + args[1];
 }
 
-//[Opcode(0x11, "sub", 2, 1)]
+// opcode: 0x11
+// name: sub
+// loadArgs: 2
+// storeArgs: 1
 - (void)op_sub:(uint32_t *)args
 {
     args[2] = args[0] - args[1];
 }
 
-//[Opcode(0x12, "mul", 2, 1)]
+// opcode: 0x12
+// name: mul
+// loadArgs: 2
+// storeArgs: 1
 - (void)op_mul:(uint32_t *)args
 {
     args[2] = args[0] * args[1];
 }
 
-//[Opcode(0x13, "div", 2, 1)]
+// opcode: 0x13
+// name: div
+// loadArgs: 2
+// storeArgs: 1
 - (void)op_div:(uint32_t *)args
 {
     args[2] = (uint32_t)((int)args[0] / (int)args[1]);
 }
 
-//[Opcode(0x14, "mod", 2, 1)]
+// opcode: 0x14
+// name: mod
+// loadArgs: 2
+// storeArgs: 1
 - (void)op_mod:(uint32_t *)args
 {
     args[2] = (uint32_t)((int)args[0] % (int)args[1]);
 }
 
-//[Opcode(0x15, "neg", 1, 1)]
+// opcode: 0x15
+// name: neg
+// loadArgs: 1
+// storeArgs: 1
 - (void)op_neg:(uint32_t *)args
 {
     args[1] = (uint32_t)(-(int)args[0]);
 }
 
-//[Opcode(0x18, "bitand", 2, 1)]
+// opcode: 0x18
+// name: bitand
+// loadArgs: 2
+// storeArgs: 1
 - (void)op_bitand:(uint32_t *)args
 {
     args[2] = args[0] & args[1];
 }
 
-//[Opcode(0x19, "bitor", 2, 1)]
+// opcode: 0x19
+// name: bitor
+// loadArgs: 2
+// storeArgs: 1
 - (void)op_bitor:(uint32_t *)args
 {
     args[2] = args[0] | args[1];
 }
 
-//[Opcode(0x1A, "bitxor", 2, 1)]
+// opcode: 0x1A
+// name: bitxor
+// loadArgs: 2
+// storeArgs: 1
 - (void)op_bitxor:(uint32_t *)args
 {
     args[2] = args[0] ^ args[1];
 }
 
-//[Opcode(0x1B, "bitnot", 1, 1)]
+// opcode: 0x1B
+// name: bitnot
+// loadArgs: 1
+// storeArgs: 1
 - (void)op_bitnot:(uint32_t *)args
 {
     args[1] = ~args[0];
 }
 
-//[Opcode(0x1C, "shiftl", 2, 1)]
+// opcode: 0x1C
+// name: shiftl
+// loadArgs: 2
+// storeArgs: 1
 - (void)op_shiftl:(uint32_t *)args
 {
     if (args[1] >= 32)
@@ -88,7 +123,10 @@
         args[2] = args[0] << (int)args[1];
 }
 
-//[Opcode(0x1D, "sshiftr", 2, 1)]
+// opcode: 0x1D
+// name: sshiftr
+// loadArgs: 2
+// storeArgs: 1
 - (void)op_sshiftr:(uint32_t *)args
 {
     if (args[1] >= 32)
@@ -97,7 +135,10 @@
         args[2] = (uint32_t)((int)args[0] >> (int)args[1]);
 }
 
-//[Opcode(0x1E, "ushiftr", 2, 1)]
+// opcode: 0x1E
+// name: ushiftr
+// loadArgs: 2
+// storeArgs: 1
 - (void)op_ushiftr:(uint32_t *)args
 {
     if (args[1] >= 32)
@@ -108,119 +149,140 @@
 
 #pragma mark Branching
 
-- (void)takeBranch:(uint32_t)target
-{
-    if (target == 0)
-        [self leaveFunction:0];
-    else if (target == 1)
-        [self leaveFunction:1];
-    else
-        pc += target - 2;
-}
-
-//[Opcode(0x20, "jump", 1)]
+// opcode: 0x20
+// name: jump
+// loadArgs: 1
 - (void)op_jump:(uint32_t *)args
 {
     [self takeBranch:args[0]];
 }
 
-//[Opcode(0x22, "jz", 2)]
+// opcode: 0x22
+// name: jz
+// loadArgs: 2
 - (void)op_jz:(uint32_t *)args
 {
     if (args[0] == 0)
         [self takeBranch:args[1]];
 }
 
-//[Opcode(0x23, "jnz", 2)]
+// opcode: 0x23
+// name: jnz
+// loadArgs: 2
 - (void)op_jnz:(uint32_t *)args
 {
     if (args[0] != 0)
         [self takeBranch:args[1]];
 }
 
-//[Opcode(0x24, "jeq", 3)]
+// opcode: 0x24
+// name: jeq
+// loadArgs: 3
 - (void)op_jeq:(uint32_t *)args
 {
     if (args[0] == args[1])
         [self takeBranch:args[2]];
 }
 
-//[Opcode(0x25, "jne", 3)]
+// opcode: 0x25
+// name: jne
+// loadArgs: 3
 - (void)op_jne:(uint32_t *)args
 {
     if (args[0] != args[1])
         [self takeBranch:args[2]];
 }
 
-//[Opcode(0x26, "jlt", 3)]
+// opcode: 0x26
+// name: jlt
+// loadArgs: 3
 - (void)op_jlt:(uint32_t *)args
 {
     if ((int)args[0] < (int)args[1])
         [self takeBranch:args[2]];
 }
 
-//[Opcode(0x27, "jge", 3)]
+// opcode: 0x27
+// name: jge
+// loadArgs: 3
 - (void)op_jge:(uint32_t *)args
 {
     if ((int)args[0] >= (int)args[1])
         [self takeBranch:args[2]];
 }
 
-//[Opcode(0x28, "jgt", 3)]
+// opcode: 0x28
+// name: jgt
+// loadArgs: 3
 - (void)op_jgt:(uint32_t *)args
 {
     if ((int)args[0] > (int)args[1])
         [self takeBranch:args[2]];
 }
 
-//[Opcode(0x29, "jle", 3)]
+// opcode: 0x29
+// name: jle
+// loadArgs: 3
 - (void)op_jle:(uint32_t *)args
 {
     if ((int)args[0] <= (int)args[1])
         [self takeBranch:args[2]];
 }
 
-//[Opcode(0x2A, "jltu", 3)]
+// opcode: 0x2A
+// name: jltu
+// loadArgs: 3
 - (void)op_jltu:(uint32_t *)args
 {
     if (args[0] < args[1])
         [self takeBranch:args[2]];
 }
 
-//[Opcode(0x2B, "jgeu", 3)]
+// opcode: 0x2B
+// name: jgeu
+// loadArgs: 3
 - (void)op_jgeu:(uint32_t *)args
 {
     if (args[0] >= args[1])
         [self takeBranch:args[2]];
 }
 
-//[Opcode(0x2C, "jgtu", 3)]
+// opcode: 0x2C
+// name: jgtu
+// loadArgs: 3
 - (void)op_jgtu:(uint32_t *)args
 {
     if (args[0] > args[1])
         [self takeBranch:args[2]];
 }
 
-//[Opcode(0x2D, "jleu", 3)]
+// opcode: 0x2D
+// name: jleu
+// loadArgs: 3
 - (void)op_jleu:(uint32_t *)args
 {
     if (args[0] <= args[1])
         [self takeBranch:args[2]];
 }
 
-//[Opcode(0x104, "jumpabs", 1)]
+// opcode: 0x104
+// name: jumpabs
+// loadArgs: 1
 - (void)op_jumpabs:(uint32_t *)args
 {
     pc = args[0];
 }
-
+/*
 #pragma mark Functions
 
 static uint32_t funcargs1[1] = { 0 };
 static uint32_t funcargs2[2] = { 0, 0 };
 static uint32_t funcargs3[3] = { 0, 0, 0 };
 
-//[Opcode(0x30, "call", 2, Rule = OpcodeRule.DelayedStore)]
+// opcode: 0x30
+// name: call
+// loadArgs: 2
+// rule: DelayedStore
 - (void)op_call:(uint32_t *)args
 {
     int count = (int)args[1];
@@ -232,20 +294,29 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
     [self performCallWithAddress:args[0], funcargs, args[2], args[3]];
 }
 
-//[Opcode(0x160, "callf", 1, Rule = OpcodeRule.DelayedStore)]
+// opcode: 0x160
+// name: callf
+// loadArgs: 1
+// rule: DelayedStore
 - (void)op_callf:(uint32_t *)args
 {
     [self performCallWithAddress:args[0], null, args[1], args[2]];
 }
 
-//[Opcode(0x161, "callfi", 2, Rule = OpcodeRule.DelayedStore)]
+// opcode: 0x161
+// name: callfi
+// loadArgs: 2
+// rule: DelayedStore
 - (void)op_callfi:(uint32_t *)args
 {
     funcargs1[0] = args[1];
     [self performCallWithAddress:args[0], funcargs1, args[2], args[3]];
 }
 
-//[Opcode(0x162, "callfii", 3, Rule = OpcodeRule.DelayedStore)]
+// opcode: 0x162
+// name: callfii
+// loadArgs: 3
+// rule: DelayedStore
 - (void)op_callfii:(uint32_t *)args
 {
     funcargs2[0] = args[1];
@@ -253,7 +324,10 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
     [self performCallWithAddress:args[0], funcargs2, args[3], args[4]];
 }
 
-//[Opcode(0x163, "callfiii", 4, Rule = OpcodeRule.DelayedStore)]
+// opcode: 0x163
+// name: callfiii
+// loadArgs: 4
+// rule: DelayedStore
 - (void)op_callfiii:(uint32_t *)args
 {
     funcargs3[0] = args[1];
@@ -327,13 +401,18 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
         throw new VMException(string.Format("Invalid function type {0:X}h", type));
 }
 
-//[Opcode(0x31, "return", 1)]
+// opcode: 0x31
+// name: return
+// loadArgs: 1
 - (void)op_return:(uint32_t *)args
 {
-    LeaveFunction(args[0]];
+    [self leaveFunction:args[0]];
 }
 
-//[Opcode(0x32, "catch", 0, Rule = OpcodeRule.Catch)]
+// opcode: 0x32
+// name: catch
+// loadArgs: 0
+// rule: Catch
 - (void)op_catch:(uint32_t *)args
 {
     PushCallStub(new CallStub(args[0], args[1], pc, fp));
@@ -342,7 +421,9 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
     [self takeBranch:args[2]];
 }
 
-//[Opcode(0x33, "throw", 2)]
+// opcode: 0x33
+// name: throw
+// loadArgs: 2
 - (void)op_throw:(uint32_t *)args
 {
     if (args[1] > sp)
@@ -362,7 +443,9 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
     PerformDelayedStore(stub.DestType, stub.DestAddr, args[0]];
 }
 
-//[Opcode(0x34, "tailcall", 2)]
+// opcode: 0x34
+// name: tailcall
+// loadArgs: 2
 - (void)op_tailcall:(uint32_t *)args
 {
     int count = (int)args[1];
@@ -376,55 +459,84 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
 
 #pragma mark Variables and Arrays
 
-//[Opcode(0x40, "copy", 1, 1)]
+// opcode: 0x40
+// name: copy
+// loadArgs: 1
+// storeArgs: 1
 - (void)op_copy:(uint32_t *)args
 {
     args[1] = args[0];
 }
 
-//[Opcode(0x41, "copys", 1, 1, Rule = OpcodeRule.Indirect16Bit)]
+// opcode: 0x41
+// name: copys
+// loadArgs: 1
+// storeArgs: 1
+// rule: Indirect16Bit
 - (void)op_copys:(uint32_t *)args
 {
     args[1] = args[0];
 }
 
-//[Opcode(0x42, "copyb", 1, 1, Rule = OpcodeRule.Indirect8Bit)]
+// opcode: 0x42
+// name: copyb
+// loadArgs: 1
+// storeArgs: 1
+// rule: Indirect8Bit
 - (void)op_copyb:(uint32_t *)args
 {
     args[1] = args[0];
 }
 
-//[Opcode(0x44, "sexs", 1, 1)]
+// opcode: 0x44
+// name: sexs
+// loadArgs: 1
+// storeArgs: 1
 - (void)op_sexs:(uint32_t *)args
 {
     args[1] = (uint32_t)(int)(short)args[0];
 }
 
-//[Opcode(0x45, "sexb", 1, 1)]
+// opcode: 0x45
+// name: sexb
+// loadArgs: 1
+// storeArgs: 1
 - (void)op_sexb:(uint32_t *)args
 {
     args[1] = (uint32_t)(int)(sbyte)args[0];
 }
 
-//[Opcode(0x48, "aload", 2, 1)]
+// opcode: 0x48
+// name: aload
+// loadArgs: 2
+// storeArgs: 1
 - (void)op_aload:(uint32_t *)args
 {
     args[2] = image.ReadInt32(args[0] + 4 * args[1]];
 }
 
-//[Opcode(0x49, "aloads", 2, 1)]
+// opcode: 0x49
+// name: aloads
+// loadArgs: 2
+// storeArgs: 1
 - (void)op_aloads:(uint32_t *)args
 {
     args[2] = image.ReadInt16(args[0] + 2 * args[1]];
 }
 
-//[Opcode(0x4A, "aloadb", 2, 1)]
+// opcode: 0x4A
+// name: aloadb
+// loadArgs: 2
+// storeArgs: 1
 - (void)op_aloadb:(uint32_t *)args
 {
     args[2] = image.ReadByte(args[0] + args[1]];
 }
 
-//[Opcode(0x4B, "aloadbit", 2, 1)]
+// opcode: 0x4B
+// name: aloadbit
+// loadArgs: 2
+// storeArgs: 1
 - (void)op_aloadbit:(uint32_t *)args
 {
     uint32_t address = (uint32_t)(args[0] + ((int)args[1]) / 8);
@@ -434,25 +546,33 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
     args[2] = (value & (1 << bit)) == 0 ? (uint32_t)0 : (uint32_t)1;
 }
 
-//[Opcode(0x4C, "astore", 3)]
+// opcode: 0x4C
+// name: astore
+// loadArgs: 3
 - (void)op_astore:(uint32_t *)args
 {
     image.WriteInt32(args[0] + 4 * args[1], args[2]];
 }
 
-//[Opcode(0x4D, "astores", 3)]
+// opcode: 0x4D
+// name: astores
+// loadArgs: 3
 - (void)op_astores:(uint32_t *)args
 {
     image.WriteInt16(args[0] + 2 * args[1], (ushort)args[2]];
 }
 
-//[Opcode(0x4E, "astoreb", 3)]
+// opcode: 0x4E
+// name: astoreb
+// loadArgs: 3
 - (void)op_astoreb:(uint32_t *)args
 {
     image.WriteByte(args[0] + args[1], (byte)args[2]];
 }
 
-//[Opcode(0x4F, "astorebit", 3)]
+// opcode: 0x4F
+// name: astorebit
+// loadArgs: 3
 - (void)op_astorebit:(uint32_t *)args
 {
     uint32_t address = (uint32_t)(args[0] + ((int)args[1]) / 8);
@@ -468,13 +588,17 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
 
 #pragma mark Output
 
-//[Opcode(0x70, "streamchar", 1)]
+// opcode: 0x70
+// name: streamchar
+// loadArgs: 1
 - (void)op_streamchar:(uint32_t *)args
 {
     StreamCharCore((byte)args[0]];
 }
 
-//[Opcode(0x73, "streamunichar", 1)]
+// opcode: 0x73
+// name: streamunichar
+// loadArgs: 1
 - (void)op_streamunichar:(uint32_t *)args
 {
     StreamCharCore(args[0]];
@@ -492,7 +616,9 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
     }
 }
 
-//[Opcode(0x71, "streamnum", 1)]
+// opcode: 0x71
+// name: streamnum
+// loadArgs: 1
 - (void)op_streamnum:(uint32_t *)args
 {
     if (outputSystem == IOSystem.Filter)
@@ -509,7 +635,9 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
     }
 }
 
-//[Opcode(0x72, "streamstr", 1)]
+// opcode: 0x72
+// name: streamstr
+// loadArgs: 1
 - (void)op_streamstr:(uint32_t *)args
 {
     if (outputSystem == IOSystem.Null)
@@ -597,7 +725,10 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
     }
 }
 
-//[Opcode(0x130, "glk", 2, 1)]
+// opcode: 0x130
+// name: glk
+// loadArgs: 2
+// storeArgs: 1
 - (void)op_glk:(uint32_t *)args
 {
     // not really supported, just clear the stack
@@ -606,20 +737,28 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
     args[2] = 0;
 }
 
-//[Opcode(0x140, "getstringtbl", 0, 1)]
+// opcode: 0x140
+// name: getstringtbl
+// loadArgs: 0
+// storeArgs: 1
 - (void)op_getstringtbl:(uint32_t *)args
 {
     args[0] = decodingTable;
 }
 
-//[Opcode(0x141, "setstringtbl", 1)]
+// opcode: 0x141
+// name: setstringtbl
+// loadArgs: 1
 - (void)op_setstringtbl:(uint32_t *)args
 {
     decodingTable = args[0];
     CacheDecodingTable();
 }
 
-//[Opcode(0x148, "getiosys", 0, 2)]
+// opcode: 0x148
+// name: getiosys
+// loadArgs: 0
+// storeArgs: 2
 - (void)op_getiosys:(uint32_t *)args
 {
     switch (outputSystem)
@@ -641,7 +780,10 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
     }
 }
 
-//[Opcode(0x149, "setiosys", 2, 0)]
+// opcode: 0x149
+// name: setiosys
+// loadArgs: 2
+// storeArgs: 0
 - (void)op_setiosys:(uint32_t *)args
 {
     SelectOutputSystem(args[0], args[1]];
@@ -649,13 +791,19 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
 
 #pragma mark Memory Management
 
-//[Opcode(0x102, "getmemsize", 0, 1)]
+// opcode: 0x102
+// name: getmemsize
+// loadArgs: 0
+// storeArgs: 1
 - (void)op_getmemsize:(uint32_t *)args
 {
     args[0] = image.EndMem;
 }
 
-//[Opcode(0x103, "setmemsize", 1, 1)]
+// opcode: 0x103
+// name: setmemsize
+// loadArgs: 1
+// storeArgs: 1
 - (void)op_setmemsize:(uint32_t *)args
 {
     if (heap != null)
@@ -672,14 +820,18 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
     }
 }
 
-//[Opcode(0x170, "mzero", 2)]
+// opcode: 0x170
+// name: mzero
+// loadArgs: 2
 - (void)op_mzero:(uint32_t *)args
 {
     for (uint32_t i = 0; i < args[0]; i++)
         image.WriteByte(args[1] + i, 0);
 }
 
-//[Opcode(0x171, "mcopy", 3)]
+// opcode: 0x171
+// name: mcopy
+// loadArgs: 3
 - (void)op_mcopy:(uint32_t *)args
 {
     if (args[2] < args[1])
@@ -707,7 +859,10 @@ private bool HandleHeapMemoryRequest(uint32_t newEndMem)
     }
 }
 
-//[Opcode(0x178, "malloc", 1, 1)]
+// opcode: 0x178
+// name: malloc
+// loadArgs: 1
+// storeArgs: 1
 - (void)op_malloc:(uint32_t *)args
 {
     uint32_t size = args[0];
@@ -735,7 +890,9 @@ private bool HandleHeapMemoryRequest(uint32_t newEndMem)
     }
 }
 
-//[Opcode(0x179, "mfree", 1)]
+// opcode: 0x179
+// name: mfree
+// loadArgs: 1
 - (void)op_mfree:(uint32_t *)args
 {
     if (heap != null)
@@ -810,7 +967,10 @@ private int CompareKeys(uint32_t query, uint32_t candidate, uint32_t keySize, Se
     return 0;
 }
 
-//[Opcode(0x150, "linearsearch", 7, 1)]
+// opcode: 0x150
+// name: linearsearch
+// loadArgs: 7
+// storeArgs: 1
 - (void)op_linearsearch:(uint32_t *)args
 {
     uint32_t key = args[0];
@@ -850,7 +1010,10 @@ private int CompareKeys(uint32_t query, uint32_t candidate, uint32_t keySize, Se
     args[7] = result;
 }
 
-//[Opcode(0x151, "binarysearch", 7, 1)]
+// opcode: 0x151
+// name: binarysearch
+// loadArgs: 7
+// storeArgs: 1
 - (void)op_binarysearch:(uint32_t *)args
 {
     uint32_t key = args[0];
@@ -900,7 +1063,10 @@ private uint32_t PerformBinarySearch(uint32_t key, uint32_t keySize, uint32_t st
     return result;
 }
 
-//[Opcode(0x152, "linkedsearch", 6, 1)]
+// opcode: 0x152
+// name: linkedsearch
+// loadArgs: 6
+// storeArgs: 1
 - (void)op_linkedsearch:(uint32_t *)args
 {
     uint32_t key = args[0];
@@ -939,13 +1105,19 @@ private uint32_t PerformBinarySearch(uint32_t key, uint32_t keySize, uint32_t st
 
 #pragma mark Stack Manipulation
 
-//[Opcode(0x50, "stkcount", 0, 1)]
+// opcode: 0x50
+// name: stkcount
+// loadArgs: 0
+// storeArgs: 1
 - (void)op_stkcount:(uint32_t *)args
 {
     args[0] = (sp - (fp + frameLen)) / 4;
 }
 
-//[Opcode(0x51, "stkpeek", 1, 1)]
+// opcode: 0x51
+// name: stkpeek
+// loadArgs: 1
+// storeArgs: 1
 - (void)op_stkpeek:(uint32_t *)args
 {
     uint32_t position = sp - 4 * (1 + args[0]];
@@ -955,7 +1127,9 @@ private uint32_t PerformBinarySearch(uint32_t key, uint32_t keySize, uint32_t st
     args[1] = ReadFromStack(position);
 }
 
-//[Opcode(0x52, "stkswap", 0)]
+// opcode: 0x52
+// name: stkswap
+// loadArgs: 0
 - (void)op_stkswap:(uint32_t *)args
 {
     if (sp - (fp + frameLen) < 8)
@@ -967,7 +1141,9 @@ private uint32_t PerformBinarySearch(uint32_t key, uint32_t keySize, uint32_t st
     Push(b);
 }
 
-//[Opcode(0x53, "stkroll", 2)]
+// opcode: 0x53
+// name: stkroll
+// loadArgs: 2
 - (void)op_stkroll:(uint32_t *)args
 {
     int items = (int)args[0];
@@ -1001,7 +1177,9 @@ private uint32_t PerformBinarySearch(uint32_t key, uint32_t keySize, uint32_t st
     }
 }
 
-//[Opcode(0x54, "stkcopy", 1)]
+// opcode: 0x54
+// name: stkcopy
+// loadArgs: 1
 - (void)op_stkcopy:(uint32_t *)args
 {
     uint32_t bytes = args[0] * 4;
@@ -1026,7 +1204,10 @@ private enum Gestalt
     MAllocHeap = 8,
 }
 
-//[Opcode(0x100, "gestalt", 2, 1)]
+// opcode: 0x100
+// name: gestalt
+// loadArgs: 2
+// storeArgs: 1
 - (void)op_gestalt:(uint32_t *)args
 {
     Gestalt selector = (Gestalt)args[0];
@@ -1069,7 +1250,9 @@ private enum Gestalt
     }
 }
 
-//[Opcode(0x101, "debugtrap", 1)]
+// opcode: 0x101
+// name: debugtrap
+// loadArgs: 1
 - (void)op_debugtrap:(uint32_t *)args
 {
     uint32_t status = args[0];
@@ -1078,27 +1261,37 @@ private enum Gestalt
 
 #pragma mark Game State
 
-//[Opcode(0x120, "quit", 0)]
+// opcode: 0x120
+// name: quit
+// loadArgs: 0
 - (void)op_quit:(uint32_t *)args
 {
     // end execution
     running = false;
 }
 
-//[Opcode(0x121, "verify", 0, 1)]
+// opcode: 0x121
+// name: verify
+// loadArgs: 0
+// storeArgs: 1
 - (void)op_verify:(uint32_t *)args
 {
     // we already verified the game when it was loaded
     args[0] = 0;
 }
 
-//[Opcode(0x122, "restart", 0)]
+// opcode: 0x122
+// name: restart
+// loadArgs: 0
 - (void)op_restart:(uint32_t *)args
 {
     Restart();
 }
 
-//[Opcode(0x123, "save", 1, Rule = OpcodeRule.DelayedStore)]
+// opcode: 0x123
+// name: save
+// loadArgs: 1
+// rule: DelayedStore
 - (void)op_save:(uint32_t *)args
 {
     if (nestingLevel == 0 && SaveRequested != null)
@@ -1156,7 +1349,10 @@ private enum Gestalt
     PerformDelayedStore(args[1], args[2], 1);
 }
 
-//[Opcode(0x124, "restore", 1, Rule = OpcodeRule.DelayedStore)]
+// opcode: 0x124
+// name: restore
+// loadArgs: 1
+// rule: DelayedStore
 - (void)op_restore:(uint32_t *)args
 {
     if (LoadRequested != null)
@@ -1213,7 +1409,11 @@ private enum Gestalt
     PerformDelayedStore(args[1], args[2], 1);
 }
 
-//[Opcode(0x125, "saveundo", 0, 0, Rule = OpcodeRule.DelayedStore)]
+// opcode: 0x125
+// name: saveundo
+// loadArgs: 0
+// storeArgs: 0
+// rule: DelayedStore
 - (void)op_saveundo:(uint32_t *)args
 {
     if (nestingLevel != 0)
@@ -1234,7 +1434,11 @@ private enum Gestalt
     PerformDelayedStore(args[0], args[1], 0);
 }
 
-//[Opcode(0x126, "restoreundo", 0, 0, Rule = OpcodeRule.DelayedStore)]
+// opcode: 0x126
+// name: restoreundo
+// loadArgs: 0
+// storeArgs: 0
+// rule: DelayedStore
 - (void)op_restoreundo:(uint32_t *)args
 {
     if (undoBuffers.Count == 0)
@@ -1251,7 +1455,9 @@ private enum Gestalt
     }
 }
 
-//[Opcode(0x127, "protect", 2)]
+// opcode: 0x127
+// name: protect
+// loadArgs: 2
 - (void)op_protect:(uint32_t *)args
 {
     if (args[0] < image.EndMem)
@@ -1276,7 +1482,10 @@ private enum Gestalt
 
 #pragma mark Random Number Generator
 
-//[Opcode(0x110, "random", 1, 1)]
+// opcode: 0x110
+// name: random
+// loadArgs: 1
+// storeArgs: 1
 - (void)op_random:(uint32_t *)args
 {
     if (args[0] == 0)
@@ -1298,7 +1507,9 @@ private enum Gestalt
     }
 }
 
-//[Opcode(0x111, "setrandom", 1)]
+// opcode: 0x111
+// name: setrandom
+// loadArgs: 1
 - (void)op_setrandom:(uint32_t *)args
 {
     if (args[0] == 0)
@@ -1353,7 +1564,10 @@ private enum FyreCall
     SetVeneer = 8,
 }
 
-//[Opcode(0x1000, "fyrecall", 3, 1)]
+// opcode: 0x1000
+// name: fyrecall
+// loadArgs: 3
+// storeArgs: 1
 - (void)op_fyrecall:(uint32_t *)args
 {
     args[3] = 0;

@@ -16,7 +16,7 @@
 - (void)testOpcodeDictionary {
     NSDictionary *opcodeDictionary = [TFOpcode opcodeDictionary];
     
-    STAssertNotNil(opcodeDictionary, @"opcodeDictionary is nil. See log for details.");
+    STAssertNotNil(opcodeDictionary, @"See log for details.");
 }
 
 @end
