@@ -9,47 +9,47 @@
 #import <Foundation/Foundation.h>
 
 // Header size and field offsets
-const NSInteger TFGlulxHeaderSize;
-const NSInteger TFGlulxHeaderMagicOffset;
-const NSInteger TFGlulxHeaderVersionOffset;
-const NSInteger TFGlulxHeaderRAMStartOffset;
-const NSInteger TFGlulxHeaderExtensionStartOffset;
-const NSInteger TFGlulxHeaderEndMemoryOffset;
-const NSInteger TFGlulxHeaderStackSizeOffset;
-const NSInteger TFGlulxHeaderStartFunctionOffset;
-const NSInteger TFGlulxHeaderDecodingTableOffset;
-const NSInteger TFGlulxHeaderChecksumOffset;
-/*
-// Call stub: DestType values for function calls
-const NSInteger TFGlulxStubSTORE_NULL = 0;
-const NSInteger TFGlulxStubSTORE_MEM = 1;
-const NSInteger TFGlulxStubSTORE_LOCAL = 2;
-const NSInteger TFGlulxStubSTORE_STACK = 3;
+const uint32_t TFGlulxHeaderSize;
+const uint32_t TFGlulxHeaderMagicOffset;
+const uint32_t TFGlulxHeaderVersionOffset;
+const uint32_t TFGlulxHeaderRAMStartOffset;
+const uint32_t TFGlulxHeaderExtensionStartOffset;
+const uint32_t TFGlulxHeaderEndMemoryOffset;
+const uint32_t TFGlulxHeaderStackSizeOffset;
+const uint32_t TFGlulxHeaderStartFunctionOffset;
+const uint32_t TFGlulxHeaderDecodingTableOffset;
+const uint32_t TFGlulxHeaderChecksumOffset;
 
+// Call stub: DestType values for function calls
+const uint32_t TFGlulxStubStoreNULL;
+const uint32_t TFGlulxStubStoreMemory;
+const uint32_t TFGlulxStubStoreLocal;
+const uint32_t TFGlulxStubStoreStack;
+/*
 // Call stub: DestType values for string printing
-const NSInteger TFGlulxStubRESUME_HUFFSTR = 10;
-const NSInteger TFGlulxStubRESUME_FUNC = 11;
-const NSInteger TFGlulxStubRESUME_NUMBER = 12;
-const NSInteger TFGlulxStubRESUME_CSTR = 13;
-const NSInteger TFGlulxStubRESUME_UNISTR = 14;
+const uint32_t TFGlulxStubRESUME_HUFFSTR = 10;
+const uint32_t TFGlulxStubRESUME_FUNC = 11;
+const uint32_t TFGlulxStubRESUME_NUMBER = 12;
+const uint32_t TFGlulxStubRESUME_CSTR = 13;
+const uint32_t TFGlulxStubRESUME_UNISTR = 14;
 
 // FyreVM addition: DestType value for nested calls
-const NSInteger TFFyreVMStubRESUME_NATIVE = 99;
+const uint32_t TFFyreVMStubRESUME_NATIVE = 99;
 
 // String decoding table: header field offsets
-const NSInteger GLULX_HUFF_TABLESIZEOffset = 0;
-const NSInteger GLULX_HUFF_NODECOUNTOffset = 4;
-const NSInteger GLULX_HUFF_ROOTNODEOffset = 8;
+const uint32_t GLULX_HUFF_TABLESIZEOffset = 0;
+const uint32_t GLULX_HUFF_NODECOUNTOffset = 4;
+const uint32_t GLULX_HUFF_ROOTNODEOffset = 8;
 
 // String decoding table: node types
-const NSInteger GLULX_HUFF_NODE_BRANCH = 0;
-const NSInteger GLULX_HUFF_NODE_END = 1;
-const NSInteger GLULX_HUFF_NODE_CHAR = 2;
-const NSInteger GLULX_HUFF_NODE_CSTR = 3;
-const NSInteger GLULX_HUFF_NODE_UNICHAR = 4;
-const NSInteger GLULX_HUFF_NODE_UNISTR = 5;
-const NSInteger GLULX_HUFF_NODE_INDIRECT = 8;
-const NSInteger GLULX_HUFF_NODE_DBLINDIRECT = 9;
-const NSInteger GLULX_HUFF_NODE_INDIRECT_ARGS = 10;
-const NSInteger GLULX_HUFF_NODE_DBLINDIRECT_ARGS = 11;
+const uint32_t GLULX_HUFF_NODE_BRANCH = 0;
+const uint32_t GLULX_HUFF_NODE_END = 1;
+const uint32_t GLULX_HUFF_NODE_CHAR = 2;
+const uint32_t GLULX_HUFF_NODE_CSTR = 3;
+const uint32_t GLULX_HUFF_NODE_UNICHAR = 4;
+const uint32_t GLULX_HUFF_NODE_UNISTR = 5;
+const uint32_t GLULX_HUFF_NODE_INDIRECT = 8;
+const uint32_t GLULX_HUFF_NODE_DBLINDIRECT = 9;
+const uint32_t GLULX_HUFF_NODE_INDIRECT_ARGS = 10;
+const uint32_t GLULX_HUFF_NODE_DBLINDIRECT_ARGS = 11;
 */

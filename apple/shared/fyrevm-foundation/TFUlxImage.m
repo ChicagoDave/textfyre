@@ -14,23 +14,8 @@
 
 //#define ENCRYPTED_GAMES_ONLY
 
-@interface TFUlxImage ()
 
-@property (readwrite, retain) NSString *path;
-@property (readwrite) uint32_t RAMStart;
-
-@end
-
-
-
-@implementation TFUlxImage
-
-@synthesize path;
-@synthesize RAMStart;
-
-#pragma mark Helper methods
-
-// Returns non-nil autoreleased NSMutableData on success, nil on failure, at which point technical details will be printed to Console.
+/*! Returns non-nil autoreleased NSMutableData on success, nil on failure, at which point technical details will be printed to Console. */
 static NSMutableData *decryptedDataForPath(NSString *path) {
     //
     // Read in file
@@ -107,7 +92,19 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
     return result;
 }
 
-#pragma mark Public methods
+@interface TFUlxImage ()
+
+@property (readwrite, retain) NSString *path;
+@property (readwrite) uint32_t RAMStart;
+
+@end
+
+@implementation TFUlxImage
+
+@synthesize path;
+@synthesize RAMStart;
+
+#pragma mark APIs
 
 - (BOOL)loadFromPath:(NSString *)thePath {
 
@@ -129,19 +126,19 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
         } else {
             // verify checksum
             const uint32_t expectedChecksum = [self checksum];
-            const uint32_t checksum = [self int32AtOffset:TFGlulxHeaderChecksumOffset];
+            const uint32_t checksum = [self integerAtOffset:TFGlulxHeaderChecksumOffset];
             if (checksum != expectedChecksum) {
                 NSLog(@"Glulx (.ulx) game file at path \"%@\" has checksum %lu, when it should have checksum %lu", (unsigned long)expectedChecksum, (unsigned long)checksum);
             } else {
-                endMemory = [self int32AtOffset:TFGlulxHeaderEndMemoryOffset];
+                self.endMemory = [self integerAtOffset:TFGlulxHeaderEndMemoryOffset];
                 if (self.endMemory > [decryptedData length]) {
                     NSLog(@"In Glulx (.ulx) game file at path \"%@\", endMemory value in header (%lu) is greater than length of encrypted bytes of file (%lu)", (unsigned long)self.endMemory, (unsigned long)[decryptedData length]);
                 } else {
-                    self.RAMStart = [self int32AtOffset:TFGlulxHeaderRAMStartOffset];
+                    self.RAMStart = [self integerAtOffset:TFGlulxHeaderRAMStartOffset];
                 
                     // cache original RAM and IFHD immediately so we don't have to decrypt again when saving
 
-                    const uint32_t endMemoryOffset = [self int32AtOffset:TFGlulxHeaderEndMemoryOffset];
+                    const uint32_t endMemoryOffset = [self integerAtOffset:TFGlulxHeaderEndMemoryOffset];
                     
                     void *originalHeaderBuffer = malloc(128);
                     memcpy(originalHeaderBuffer, [decryptedData bytes], 128);
@@ -165,98 +162,119 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
     return succeeded;
 }
 
+
+- (uint32_t)endMemory {
+    NSAssert(decryptedData != nil, @"endMemory called when decryptedData is nil!");
+    
+    return endMemory;
+}
+
+- (void)setEndMemory:(uint32_t)newEndMemory {
+    NSAssert(NO, @"setEndMemory: not yet implemented!");
+
+    // round up to the next multiple of 256
+    if (newEndMemory % 256 != 0)
+        newEndMemory = (newEndMemory + 255) & 0xFFFFFF00;
+
+
+
+    if (newEndMemory != endMemory) {
+        if (endMemory < newEndMemory) {
+            // Making memory smaller? Don't go through extra work of copying to new location, just use the old version.
+        } else if (endMemory < [decryptedData length]) {
+            // Making memory larger, but less than length of original data read from disk? Don't go through extra work of copying to new location, just use the old version.
+        } else {
+            // OK, we have no choice but to make a new copy.
+            NSMutableData *newData = [[NSMutableData alloc] initWithLength:newEndMemory];
+            if (newData == nil) {
+                // TODO: Throw exception? We're pretty much toast here.
+            }
+            
+            [newData replaceBytesInRange:NSMakeRange(0, endMemory) withBytes:[decryptedData bytes] length:endMemory];
+        }
+
+        endMemory = newEndMemory;
+    }
+}
+
+#pragma mark -
+
+- (uint8_t)byteAtOffset:(uint32_t)offset {
+    NSAssert(decryptedData != nil, @"byteAtOffset: called when decryptedData is nil!");
+
+    const void *memPtr = [decryptedData bytes]+offset;
+    
+    uint8_t value = *((const uint8_t *)memPtr);
+    
+    return value;
+}
+
+- (uint16_t)shortAtOffset:(uint32_t)offset {
+    NSAssert(decryptedData != nil, @"shortAtOffset: called when decryptedData is nil!");
+
+    const void *memPtr = [decryptedData bytes]+offset;
+    
+    uint16_t bigIntValue = *((const uint16_t *)memPtr);
+    
+    return NSSwapBigShortToHost(bigIntValue);
+}
+
+- (uint32_t)integerAtOffset:(NSUInteger)offset {
+    NSAssert(decryptedData != nil, @"intAtOffset: called when decryptedData is nil!");
+    
+    const void *memPtr = [decryptedData bytes]+offset;
+    
+    uint32_t bigIntValue = *((const uint32_t *)memPtr);
+    
+    return NSSwapBigIntToHost(bigIntValue);
+}
+
+#pragma mark -
+
+/*! Set a single unsigned byte in memory.
+
+    \param value The value to set.
+    \param offset The address to write to.
+ */
+- (void)setByte:(uint8_t)value atOffset:(uint32_t)offset {
+    NSAssert(decryptedData != nil, @"intAtOffset: called when decryptedData is nil!");
+    if (offset < self.RAMStart) {
+//        @throw [NSException exceptionWithName: reason:@"Writing into ROM" userInfo:nil);
+    }
+
+    [decryptedData replaceBytesInRange:NSMakeRange(offset, sizeof(value)) withBytes:&value length:sizeof(value)];
+}
+
+/*! Sets a big-endian unsigned 16-bit word in memory.
+
+    \param value The value to set.
+    \param offset The address to write to.
+ */
+- (void)setShort:(uint16_t)value atOffset:(uint32_t)offset {
+    NSAssert(decryptedData != nil, @"intAtOffset: called when decryptedData is nil!");
+    if (offset < self.RAMStart) {
+//        @throw [NSException exceptionWithName: reason:@"Writing into ROM" userInfo:nil);
+    }
+    
+    uint16_t bigEndianValue = NSSwapHostShortToBig(value);
+    [decryptedData replaceBytesInRange:NSMakeRange(offset, sizeof(value)) withBytes:&bigEndianValue length:sizeof(value)];
+}
+
+/*! Sets a big-endian unsigned 32-bit integer in memory.
+
+    \param value The value to set.
+    \param offset The address to write to.
+ */
+- (void)setInteger:(uint32_t)value atOffset:(uint32_t)offset {
+    NSAssert(decryptedData != nil, @"intAtOffset: called when decryptedData is nil!");
+    if (offset < self.RAMStart) {
+//        @throw [NSException exceptionWithName: reason:@"Writing into ROM" userInfo:nil);
+    }
+
+    uint32_t bigEndianValue = NSSwapHostIntToBig(value);
+    [decryptedData replaceBytesInRange:NSMakeRange(offset, sizeof(value)) withBytes:&bigEndianValue length:sizeof(value)];
+}
 /*
-        /// <summary>
-        /// Gets or sets the address at which memory ends.
-        /// </summary>
-        /// <remarks>
-        /// This can be changed by the game with @setmemsize (or managed
-        /// automatically by the heap allocator). Addresses above EndMem are
-        /// neither readable nor writable.
-        /// </remarks>
-        public uint EndMem {
-            get {
-                return (uint)memory.Length;
-            }
-            set {
-                // round up to the next multiple of 256
-                if (value % 256 != 0)
-                    value = (value + 255) & 0xFFFFFF00;
-
-                if ((uint)memory.Length != value) {
-                    byte[] newMem = new byte[value];
-                    Array.Copy(memory, newMem, (int)Math.Min((uint)memory.Length, (int)value));
-                    memory = newMem;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Reads a single byte from memory.
-        /// </summary>
-        /// <param name="offset">The address to read from.</param>
-        /// <returns>The byte at the specified address.</returns>
-        public byte ReadByte(uint offset) {
-            return memory[offset];
-        }
-
-        /// <summary>
-        /// Reads a big-endian word from memory.
-        /// </summary>
-        /// <param name="offset">The address to read from</param>
-        /// <returns>The word at the specified address.</returns>
-        public ushort ReadInt16(uint offset) {
-            return BigEndian.ReadInt16(memory, offset);
-        }
-
-        /// <summary>
-        /// Reads a big-endian double word from memory.
-        /// </summary>
-        /// <param name="offset">The address to read from.</param>
-        /// <returns>The 32-bit value at the specified address.</returns>
-        public uint ReadInt32(uint offset) {
-            return BigEndian.ReadInt32(memory, offset);
-        }
-
-        /// <summary>
-        /// Writes a single byte into memory.
-        /// </summary>
-        /// <param name="offset">The address to write to.</param>
-        /// <param name="value">The value to write.</param>
-        /// <exception cref="VMException">The address is below RamStart.</exception>
-        public void WriteByte(uint offset, byte value) {
-            if (offset < ramstart)
-                throw new VMException("Writing into ROM");
-
-            memory[offset] = value;
-        }
-
-        /// <summary>
-        /// Writes a big-endian 16-bit word into memory.
-        /// </summary>
-        /// <param name="offset">The address to write to.</param>
-        /// <param name="value">The value to write.</param>
-        /// <exception cref="VMException">The address is below RamStart.</exception>
-        public void WriteInt16(uint offset, ushort value) {
-            if (offset < ramstart)
-                throw new VMException("Writing into ROM");
-
-            BigEndian.WriteInt16(memory, offset, value);
-        }
-
-        /// <summary>
-        /// Writes a big-endian 32-bit word into memory.
-        /// </summary>
-        /// <param name="offset">The address to write to.</param>
-        /// <param name="value">The value to write.</param>
-        /// <exception cref="VMException">The address is below RamStart.</exception>
-        public void WriteInt32(uint offset, uint value) {
-            if (offset < ramstart)
-                throw new VMException("Writing into ROM");
-
-            BigEndian.WriteInt32(memory, offset, value);
-        }
-
         /// <summary>
         /// Gets the entire contents of memory.
         /// </summary>
@@ -347,26 +365,23 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
     }
 }
 */
-- (uint32_t)int32AtOffset:(NSUInteger)offset {
-    NSAssert(decryptedData != nil, @"int32AtOffset: called when decryptedData is nil!");
-    
-    return NSSwapBigIntToHost(*((uint32_t *)([decryptedData bytes]+offset)));
-}
+
+#pragma mark -
 
 - (uint32_t)checksum {
     NSAssert(decryptedData != nil, @"checksum called when decryptedData is nil!");
     
     uint32_t result = 0;
 
-    uint32_t end = [self int32AtOffset:TFGlulxHeaderExtensionStartOffset];
+    uint32_t end = [self integerAtOffset:TFGlulxHeaderExtensionStartOffset];
 
-    uint32_t sum = (uint32_t)(-[self int32AtOffset:TFGlulxHeaderChecksumOffset]);
+    uint32_t sum = (uint32_t)(-[self integerAtOffset:TFGlulxHeaderChecksumOffset]);
 
     if (end % 256 != 0) {
         NSLog(@"Glulx 1.2 specification says ENDMEM % 256 == 0, but it instead is %lu", end % 256);
     } else {
         for (uint32_t i = 0; i < end; i += 4) {
-            sum += [self int32AtOffset:i];
+            sum += [self integerAtOffset:i];
         }
         
         result = sum;
@@ -375,31 +390,22 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
     return result;
 }
 
-- (uint32_t)endMemory {
-    NSAssert(decryptedData != nil, @"endMemory called when decryptedData is nil!");
-    
-    return endMemory;
-}
-
-- (void)setEndMemory:(uint32_t)newEndMemory {
-    NSAssert(NO, @"setEndMemory: not yet implemented!");
-}
-
 - (NSUInteger)majorVersion {
     NSAssert(decryptedData != nil, @"majorVersion called when decryptedData is nil!");
     
-    uint32_t version = [self int32AtOffset:TFGlulxHeaderVersionOffset];
+    uint32_t version = [self integerAtOffset:TFGlulxHeaderVersionOffset];
 
     return version >> 16;
 }
 - (NSUInteger)minorVersion {
     NSAssert(decryptedData != nil, @"minorVersion called when decryptedData is nil!");
     
-    uint32_t version = [self int32AtOffset:TFGlulxHeaderVersionOffset];
+    uint32_t version = [self integerAtOffset:TFGlulxHeaderVersionOffset];
     
     return (version >> 8) & 0xFF;
 }
 
+#pragma mark Standard methods
 
 - (void)cleanup {
     [path release], path = nil;

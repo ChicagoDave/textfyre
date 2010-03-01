@@ -8,6 +8,9 @@
 
 #import "TFEngine_Opcodes.h"
 
+#import "TFUlxImage.h"
+#import "TFVeneer.h"
+
 
 @implementation TFEngine (Opcodes)
 
@@ -272,9 +275,10 @@
 {
     pc = args[0];
 }
-/*
+
 #pragma mark Functions
 
+// TODO is this safe to use singletons like this? Why have them stick around?
 static uint32_t funcargs1[1] = { 0 };
 static uint32_t funcargs2[2] = { 0, 0 };
 static uint32_t funcargs3[3] = { 0, 0, 0 };
@@ -286,12 +290,12 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
 - (void)op_call:(uint32_t *)args
 {
     int count = (int)args[1];
-    uint32_t funcargs[count];
+    uint32_t funcargs[count]; // C99 variable-length array, passed in as pointer below. TODO verify that method below does not save pointer beyond immediate usage.
 
     for (int i = 0; i < count; i++)
         funcargs[i] = [self pop];
 
-    [self performCallWithAddress:args[0], funcargs, args[2], args[3]];
+    [self performCallWithAddress:args[0] args:funcargs destType:args[2] destAddr:args[3]];
 }
 
 // opcode: 0x160
@@ -300,7 +304,7 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
 // rule: DelayedStore
 - (void)op_callf:(uint32_t *)args
 {
-    [self performCallWithAddress:args[0], null, args[1], args[2]];
+    [self performCallWithAddress:args[0]args:NULL destType:args[1] destAddr:args[2]];
 }
 
 // opcode: 0x161
@@ -310,7 +314,7 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
 - (void)op_callfi:(uint32_t *)args
 {
     funcargs1[0] = args[1];
-    [self performCallWithAddress:args[0], funcargs1, args[2], args[3]];
+    [self performCallWithAddress:args[0] args:funcargs1 destType:args[2] destAddr:args[3]];
 }
 
 // opcode: 0x162
@@ -321,7 +325,7 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
 {
     funcargs2[0] = args[1];
     funcargs2[1] = args[2];
-    [self performCallWithAddress:args[0], funcargs2, args[3], args[4]];
+    [self performCallWithAddress:args[0] args:funcargs2 destType:args[3] destAddr:args[4]];
 }
 
 // opcode: 0x163
@@ -333,79 +337,59 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
     funcargs3[0] = args[1];
     funcargs3[1] = args[2];
     funcargs3[2] = args[3];
-    [self performCallWithAddress:args[0], funcargs3, args[4], args[5]];
+    [self performCallWithAddress:args[0] args:funcargs3 destType:args[4] destAddr:args[5]];
 }
 
-- (void)performCallWithAddress:(uint32_t)address args:(uint32_t *)args, destType:(uint32_t)destType destAddr:(uint32_t)destAddr)
+- (void)performCallWithAddress:(uint32_t)address args:(uint32_t *)args destType:(uint32_t)destType destAddr:(uint32_t)destAddr
 {
-    [self performCallWithAddress:address args:args destType:destType destAddress:destAddr stubPC:pc];
+    [self performCallWithAddress:address args:args destType:destType destAddr:destAddr stubPC:pc];
 }
 
-- (void)performCallWithAddress(uint32_t)address args:(uint32_t *)args, destType:(uint32_t)destType destAddr:(uint32_t)destAddr) stubPC:(uint32_t)stubPC
+- (void)performCallWithAddress:(uint32_t)address args:(uint32_t *)args destType:(uint32_t)destType destAddr:(uint32_t)destAddr stubPC:(uint32_t)stubPC
 {
-    [self performCallWithAddress:address args:args destType:destType destAddress:destAddr stubPC:stubPC tailCall:NO];
+    [self performCallWithAddress:address args:args destType:destType destAddr:destAddr stubPC:stubPC tailCall:NO];
 }
 
-/// <summary>
-/// Enters a function, pushing a call stub first if necessary.
-/// </summary>
-/// <param name="address">The address of the function to call.</param>
-/// <param name="args">The function's arguments, or <b>null</b> to call without arguments.</param>
-/// <param name="destType">The DestType for the call stub. Ignored for tail calls.</param>
-/// <param name="destAddr">The DestAddr for the call stub. Ignored for tail calls.</param>
-/// <param name="stubPC">The PC value for the call stub. Ignored for tail calls.</param>
-/// <param name="tailCall"><b>true</b> to perform a tail call, reusing the current call stub
-/// and frame instead of pushing a new stub and creating a new frame.</param>
-- (void)performCallWithAddress(uint32_t)address args:(uint32_t *)args, destType:(uint32_t)destType destAddr:(uint32_t)destAddr) stubPC:(uint32_t)stubPC tailCall:(BOOL)tailCall
+- (void)performCallWithAddress:(uint32_t)address args:(uint32_t *)args destType:(uint32_t)destType destAddr:(uint32_t)destAddr stubPC:(uint32_t)stubPC tailCall:(BOOL)tailCall
 {
     uint32_t result;
-    if (veneer.InterceptCall(this, address, args, out result))
-    {
-        PerformDelayedStore(destType, destAddr, result);
+    if ([veneer interceptCallAtAddress:address args:args result:&result]) {
+        [self performDelayedStoreOfType:destType address:destAddr value:result];
         return;
     }
 
-    if (tailCall)
-    {
+    if (tailCall) {
         // pop the current frame and use the call stub below it
         sp = fp;
-    }
-    else
-    {
+    } else {
         // use a new call stub
-        PushCallStub(new CallStub(destType, destAddr, stubPC, fp));
+        [self pushCallStub:TFMakeCallStub(destType, destAddr, stubPC, fp)];
     }
 
-    byte type = image.ReadByte(address);
-    if (type == 0xC0)
-    {
+    uint8_t type = [image byteAtOffset:address];
+    if (type == 0xC0) {
         // arguments are passed in on the stack
         EnterFunction(address);
-        if (args == null)
-        {
-            Push(0);
-        }
-        else
-        {
-            for (int i = args.Length - 1; i >= 0; i--)
-                Push(args[i]];
+        if (args == null) {
+            [self push:0];
+        } else {
+            for (int i = args.Length - 1; i >= 0; i--) {
+                [self push:args[i]];
+            }
             Push((uint32_t)args.Length);
         }
-    }
-    else if (type == 0xC1)
-    {
+    } else if (type == 0xC1) {
         // arguments are passed in local storage
         EnterFunction(address, args);
+    } else {
+//        throw new VMException(string.Format("Invalid function type {0:X}h", type));
     }
-    else
-        throw new VMException(string.Format("Invalid function type {0:X}h", type));
 }
 
 // opcode: 0x31
 // name: return
 // loadArgs: 1
-- (void)op_return:(uint32_t *)args
-{
+- (void)op_return:(uint32_t *)args {
     [self leaveFunction:args[0]];
 }
 
@@ -415,9 +399,9 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
 // rule: Catch
 - (void)op_catch:(uint32_t *)args
 {
-    PushCallStub(new CallStub(args[0], args[1], pc, fp));
+    [self pushCallStub:TFMakeCallStub(args[0], args[1], pc, fp)];
     // the catch token is the value of sp after pushing that stub
-    PerformDelayedStore(args[0], args[1], sp);
+    [self performDelayedStoreOfType:args[0] address:args[1] value:sp];
     [self takeBranch:args[2]];
 }
 
@@ -426,21 +410,22 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
 // loadArgs: 2
 - (void)op_throw:(uint32_t *)args
 {
-    if (args[1] > sp)
-        throw new VMException("Invalid catch token");
+    if (args[1] > sp) {
+//        throw new VMException("Invalid catch token");
+    }
 
     // pop the stack back down to the stub pushed by catch
     sp = args[1];
 
     // restore from the stub
-    CallStub stub = PopCallStub();
-    pc = stub.PC;
-    fp = stub.FramePtr;
-    frameLen = ReadFromStack(fp);
-    localsPos = ReadFromStack(fp + 4);
+    TFCallStub stub = [self popCallStub];
+    pc = stub.pc;
+    fp = stub.framePtr;
+    frameLen = [self readFromStack:fp];
+    localsPos = [self readFromStack:fp + 4];
 
     // store the thrown value and resume after the catch opcode
-    PerformDelayedStore(stub.DestType, stub.DestAddr, args[0]];
+    [self performDelayedStoreOfType:stub.destType address:stub.destAddr value:args[0]];
 }
 
 // opcode: 0x34
@@ -449,10 +434,11 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
 - (void)op_tailcall:(uint32_t *)args
 {
     int count = (int)args[1];
-    uint32_t *funcargs = new uint32_t[count];
+    uint32_t funcargs[count]; // TODO 
 
-    for (int i = 0; i < count; i++)
+    for (int i = 0; i < count; i++) {
         funcargs[i] = [self pop];
+    }
 
     [self performCallWithAddress:args[0] args:funcargs destType:0 destAddr:0 stubPC:0 tailCall:YES];
 }
@@ -492,8 +478,11 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
 // name: sexs
 // loadArgs: 1
 // storeArgs: 1
+/* Sign-extend a value, considered as a 16-bit value. If the value's 8000 bit is set, the upper 16 bits are all set; otherwise, the upper 16 bits are all cleared.
+ */
 - (void)op_sexs:(uint32_t *)args
 {
+    // TODO will these casts really do what the documentation says they'll do?
     args[1] = (uint32_t)(int)(short)args[0];
 }
 
@@ -501,9 +490,12 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
 // name: sexb
 // loadArgs: 1
 // storeArgs: 1
+/*! Sign-extend a value, considered as an 8-bit value. If the value's 80 bit is set, the upper 24 bits are all set; otherwise, the upper 24 bits are all cleared.
+ */
 - (void)op_sexb:(uint32_t *)args
 {
-    args[1] = (uint32_t)(int)(sbyte)args[0];
+    // TODO will these casts really do what the documentation says they'll do?
+    args[1] = (uint32_t)(int)(int8_t)args[0];
 }
 
 // opcode: 0x48
@@ -512,7 +504,7 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
 // storeArgs: 1
 - (void)op_aload:(uint32_t *)args
 {
-    args[2] = image.ReadInt32(args[0] + 4 * args[1]];
+    args[2] = [image integerAtOffset:args[0] + 4 * args[1]];
 }
 
 // opcode: 0x49
@@ -521,7 +513,7 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
 // storeArgs: 1
 - (void)op_aloads:(uint32_t *)args
 {
-    args[2] = image.ReadInt16(args[0] + 2 * args[1]];
+    args[2] = [image shortAtOffset:args[0] + 2 * args[1]];
 }
 
 // opcode: 0x4A
@@ -530,7 +522,7 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
 // storeArgs: 1
 - (void)op_aloadb:(uint32_t *)args
 {
-    args[2] = image.ReadByte(args[0] + args[1]];
+    args[2] = [image byteAtOffset:args[0] + args[1]];
 }
 
 // opcode: 0x4B
@@ -608,7 +600,7 @@ static uint32_t funcargs3[3] = { 0, 0, 0 };
 {
     if (outputSystem == IOSystem.Filter)
     {
-        [self performCallWithAddress:filterAddress, new uint32_t *{ value }, GLULX_STUB_STORE_NULL, 0);
+        [self performCallWithAddress:filterAddress, new uint32_t *{ value }, TFGlulxStubStoreNULL, 0);
     }
     else
     {
@@ -908,16 +900,6 @@ private bool HandleHeapMemoryRequest(uint32_t newEndMem)
 
 #pragma mark Searching
 
-[Flags]
-private enum SearchOptions
-{
-    None = 0,
-
-    KeyIndirect = 1,
-    ZeroKeyTerminates = 2,
-    ReturnIndex = 4,
-}
-
 private bool KeyIsZero(uint32_t address, uint32_t size)
 {
     for (uint32_t i = 0; i < size; i++)
@@ -925,46 +907,6 @@ private bool KeyIsZero(uint32_t address, uint32_t size)
             return false;
 
     return true;
-}
-
-private int CompareKeys(uint32_t query, uint32_t candidate, uint32_t keySize, SearchOptions options)
-{
-    if ((options & SearchOptions.KeyIndirect) == 0)
-    {
-        uint32_t ckey;
-        switch (keySize)
-        {
-            case 1:
-                ckey = image.ReadByte(candidate);
-                query &= 0xFF;
-                break;
-            case 2:
-                ckey = image.ReadInt16(candidate);
-                query &= 0xFFFF;
-                break;
-            case 3:
-                ckey = (uint32_t)(image.ReadByte(candidate) << 24 + image.ReadInt16(candidate + 1));
-                query &= 0xFFFFFF;
-                break;
-            default:
-                ckey = image.ReadInt32(candidate);
-                break;
-        }
-
-        return query.CompareTo(ckey);
-    }
-
-    for (uint32_t i = 0; i < keySize; i++)
-    {
-        byte b1 = image.ReadByte(query++);
-        byte b2 = image.ReadByte(candidate++);
-        if (b1 < b2)
-            return -1;
-        else if (b1 > b2)
-            return 1;
-    }
-
-    return 0;
 }
 
 // opcode: 0x150
@@ -1025,42 +967,6 @@ private int CompareKeys(uint32_t query, uint32_t candidate, uint32_t keySize, Se
     SearchOptions options = (SearchOptions)args[6];
 
     args[7] = PerformBinarySearch(key, keySize, start, structSize, numStructs, keyOffset, options);
-}
-
-// this is a separate method because it's also used by Veneer.CP__Tab
-private uint32_t PerformBinarySearch(uint32_t key, uint32_t keySize, uint32_t start, uint32_t structSize, uint32_t numStructs, uint32_t keyOffset, SearchOptions options)
-{
-    if ((options & SearchOptions.ReturnIndex) != 0)
-        throw new VMException("ReturnIndex option may not be used with binarysearch");
-    if (keySize > 4 && (options & SearchOptions.KeyIndirect) == 0)
-        throw new VMException("KeyIndirect option must be used when searching for a >4 byte key");
-
-    uint32_t result = (options & SearchOptions.ReturnIndex) == 0 ? 0 : 0xFFFFFFFF;
-    uint32_t low = 0, high = numStructs;
-
-    while (low < high)
-    {
-        uint32_t index = (low + high) / 2;
-        int cmp = CompareKeys(key, start + index * structSize + keyOffset, keySize, options);
-        if (cmp == 0)
-        {
-            // found it
-            if ((options & SearchOptions.ReturnIndex) == 0)
-                result = start + index * structSize;
-            else
-                result = index;
-            break;
-        }
-        else if (cmp < 0)
-        {
-            high = index;
-        }
-        else
-        {
-            low = index + 1;
-        }
-    }
-    return result;
 }
 
 // opcode: 0x152
