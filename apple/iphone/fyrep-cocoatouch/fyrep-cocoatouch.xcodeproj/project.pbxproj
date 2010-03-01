@@ -52,6 +52,9 @@
 		4F6B65B5111E300800BABD7F /* ApplicationTests.octest in Resources */ = {isa = PBXBuildFile; fileRef = 4F05E9AC111E0CA400C90CB3 /* ApplicationTests.octest */; };
 		4F9DEFF7111E28ED00FDB6AD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		4F9DEFF8111E28ED00FDB6AD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		4FB17B851139D43B009491D3 /* TFVeneer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB17B841139D43B009491D3 /* TFVeneer.m */; };
+		4FB17B861139D43B009491D3 /* TFVeneer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB17B841139D43B009491D3 /* TFVeneer.m */; };
+		4FB17B871139D43B009491D3 /* TFVeneer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB17B841139D43B009491D3 /* TFVeneer.m */; };
 		4FCCBE77111521A40001000B /* GlulxConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCCBE74111521A40001000B /* GlulxConstants.m */; };
 		4FFE4BEF111F960800467156 /* TFEngine_Opcodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE4BEE111F960800467156 /* TFEngine_Opcodes.m */; };
 		4FFE4BF0111F960800467156 /* TFEngine_Opcodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE4BEE111F960800467156 /* TFEngine_Opcodes.m */; };
@@ -115,6 +118,8 @@
 		4F6B6535111E2FA100BABD7F /* fyrep-cocoatouchTesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fyrep-cocoatouchTesting.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F9DEF57111E287B00FDB6AD /* LogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F9DEF58111E287B00FDB6AD /* LogicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LogicTests-Info.plist"; sourceTree = "<group>"; };
+		4FB17B831139D43B009491D3 /* TFVeneer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFVeneer.h; sourceTree = "<group>"; };
+		4FB17B841139D43B009491D3 /* TFVeneer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFVeneer.m; sourceTree = "<group>"; };
 		4FCCBE73111521A40001000B /* GlulxConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlulxConstants.h; sourceTree = "<group>"; };
 		4FCCBE74111521A40001000B /* GlulxConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlulxConstants.m; sourceTree = "<group>"; };
 		4FFE4BED111F960800467156 /* TFEngine_Opcodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFEngine_Opcodes.h; sourceTree = "<group>"; };
@@ -265,9 +270,11 @@
 				4FFE4BEE111F960800467156 /* TFEngine_Opcodes.m */,
 				4F50FB231130DF21006D0738 /* TFOpcode.h */,
 				4F50FB241130DF21006D0738 /* TFOpcode.m */,
-				4F05E9B4111E0D8C00C90CB3 /* UnitTests */,
 				4F50FB071130B38A006D0738 /* Opcodes README.rtf */,
 				4F50FA5D1130915B006D0738 /* Opcodes.plist */,
+				4FB17B831139D43B009491D3 /* TFVeneer.h */,
+				4FB17B841139D43B009491D3 /* TFVeneer.m */,
+				4F05E9B4111E0D8C00C90CB3 /* UnitTests */,
 			);
 			name = "fyrevm-foundation";
 			path = "../../shared/fyrevm-foundation";
@@ -479,6 +486,7 @@
 				4F44C2B1111BE776006B05D2 /* TFEngine.m in Sources */,
 				4FFE4BF0111F960800467156 /* TFEngine_Opcodes.m in Sources */,
 				4F50FB261130DF21006D0738 /* TFOpcode.m in Sources */,
+				4FB17B871139D43B009491D3 /* TFVeneer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +511,7 @@
 				4F6B652D111E2FA100BABD7F /* TFEngine.m in Sources */,
 				4FFE4BF1111F960800467156 /* TFEngine_Opcodes.m in Sources */,
 				4F50FB271130DF21006D0738 /* TFOpcode.m in Sources */,
+				4FB17B851139D43B009491D3 /* TFVeneer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +527,7 @@
 				4F50FB251130DF21006D0738 /* TFOpcode.m in Sources */,
 				4F50FBC9113106B1006D0738 /* TestTFOpcode.m in Sources */,
 				4F50FCE2113115C3006D0738 /* TestTFEngine.m in Sources */,
+				4FB17B861139D43B009491D3 /* TFVeneer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

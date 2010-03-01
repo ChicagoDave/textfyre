@@ -20,7 +20,10 @@
 @private
     NSString *path;
 
-    /*! Cached copy of entirety of decrypted contents of file */
+    /*! Cached copy of entirety of decrypted contents of file 
+    
+        Equivalent to "memory" variable of Windows codebase. However, unlike "memory", the length of decryptedData is the length of what we read in from disk, not the original endMemory value from the Glulx header, so it could be longer.
+     */
     NSMutableData *decryptedData;
     
     uint32_t RAMStart;
@@ -54,7 +57,56 @@
  */
 @property uint32_t endMemory;
 
-- (uint32_t)int32AtOffset:(NSUInteger)offset;
+#pragma mark -
+
+/*! Returns a single unsigned byte from memory.
+
+    \param offset The address to read from.
+
+    \return The unsigned 8-bit value at the specified address.
+ */
+- (uint8_t)byteAtOffset:(uint32_t)offset;
+
+/*! Returns a big-endian unsigned 16-bit short from memory.
+
+    \param offset The address to read from.
+
+    \return The unsigned 16-bit value at the specified address.
+ */
+- (uint16_t)shortAtOffset:(uint32_t)offset;
+
+/*! Returns a big-endian unsigned 32-bit integer from memory.
+
+    \param offset The address to read from.
+
+    \return The unsigned 32-bit value at the specified address.
+ */
+- (uint32_t)integerAtOffset:(NSUInteger)offset;
+
+#pragma mark -
+
+/*! Set a single unsigned byte in memory.
+
+    \param value The value to set.
+    \param offset The address to write to.
+ */
+- (void)setByte:(uint8_t)value atOffset:(uint32_t)offset;
+
+/*! Sets a big-endian unsigned 16-bit word in memory.
+
+    \param value The value to set.
+    \param offset The address to write to.
+ */
+- (void)setShort:(uint16_t)value atOffset:(uint32_t)offset;
+
+/*! Sets a big-endian unsigned 32-bit integer in memory.
+
+    \param value The value to set.
+    \param offset The address to write to.
+ */
+- (void)setInteger:(uint32_t)value atOffset:(uint32_t)offset;
+
+#pragma mark -
 
 /*! Calculates the checksum of the image.
 
