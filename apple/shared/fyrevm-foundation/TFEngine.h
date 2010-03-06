@@ -11,18 +11,17 @@
 @class TFUlxImage;
 @class TFVeneer;
 @class TFArguments;
+@class TFHeapAllocator;
 
-/*! Represents a Glulx call stub, which describes the VM's state at the time of a function call or string printing task. */
-typedef struct _TFCallStub {
-    /*! The type of storage location (for function calls) or the previous task (for string printing). */
-    uint32_t destType;
-    /*! The storage address (for function calls) or the digit being examined (for string printing). */
-    uint32_t destAddr;
-    /*! The address of the opcode or character at which to resume. */
-    uint32_t pc;
-    /*! The stack frame in which the function call or string printing was performed. */
-    uint32_t framePtr;
-} TFCallStub;
+/*! Identifies an output system for use with @setiosys. */
+typedef enum _TFIOSystem {
+    /*! Output is discarded. */
+    TFIOSystemNull,
+    /*! Output is filtered through a Glulx function. */
+    TFIOSystemFilter,
+    /*! Output is sent through FyreVM's channel system. */
+    TFIOSystemChannels
+} TFIOSystem;
 
 /*! Describes the task that the interpreter is currently performing. */
 typedef enum _TFExecutionMode
@@ -41,13 +40,25 @@ typedef enum _TFExecutionMode
     TFExecutionModeReturn,
 } TFExecutionMode;
 
+/*! Represents a Glulx call stub, which describes the VM's state at the time of a function call or string printing task. */
+typedef struct _TFCallStub {
+    /*! The type of storage location (for function calls) or the previous task (for string printing). */
+    uint32_t destType;
+    /*! The storage address (for function calls) or the digit being examined (for string printing). */
+    uint32_t destAddr;
+    /*! The address of the opcode or character at which to resume. */
+    uint32_t pc;
+    /*! The stack frame in which the function call or string printing was performed. */
+    uint32_t framePtr;
+} TFCallStub;
+
 typedef enum _TFSearchOptions
 {
-    TFNoSearchOptions = 0,
+    TFSearchOptionsNone = 0,
 
-    TFKeyIndirectSearchOption = 1,
-    TFZeroKeyTerminatesSearchOption = 2,
-    TFReturnIndexSearchOption = 4
+    TFSearchOptionsKeyIndirect = 1,
+    TFSearchOptionsZeroKeyTerminates = 2,
+    TFSearchOptionsReturnIndex = 4
 } TFSearchOptions;
 
 /*! The main FyreVM class, which implements a modified Glulx interpreter. */
@@ -65,13 +76,13 @@ typedef enum _TFSearchOptions
     uint32_t sp; // stack ptr
     uint32_t fp; // call-frame ptr
 
-    // TODO HeapAllocator *heap
+    TFHeapAllocator *heap;
 
     // transient state
     
     // transient state
     uint32_t frameLen, localsPos; // updated along with FP
-//    IOSystem outputSystem;
+    TFIOSystem outputSystem;
 //    OutputBuffer outputBuffer = new OutputBuffer();
     uint32_t filterAddress;
     uint32_t decodingTable;
@@ -86,7 +97,8 @@ typedef enum _TFSearchOptions
     int nestingLevel;
     TFVeneer *veneer;
     uint32_t maxHeapSize;
-//    BOOL allowFiltering = true, gameWantsFiltering = true;
+    BOOL allowFiltering;
+    BOOL gameWantsFiltering;
 }
 
 @property (readonly) TFUlxImage *image;
@@ -95,9 +107,9 @@ typedef enum _TFSearchOptions
 
 /*! Attempts to load Glulx (.ulx) game image file into memory and decrypt it. 
 
-    On success, TODO (presumably, be ready for rest of steps needed to start game, whatever those are).
+    On success, returns YES, at which point TODO (presumably, be ready for rest of steps needed to start game, whatever those are).
 
-    On failure, technical details will be printed to Console.
+    On failure, returns NO, at which point technical details will be printed to Console.
 
     \param path Full path to Glulx (.ulx) file.
  */
@@ -108,6 +120,7 @@ typedef enum _TFSearchOptions
 - (void)push:(uint32_t)value;
 - (void)setStackInteger:(uint32_t)value atOffset:(uint32_t)offset;
 - (uint32_t)pop;
+// TODO change to stackIntegerAtOffset:, to match TFUlxImage APIs? (Change both at ...atAddress:?)
 - (uint32_t)readFromStack:(uint32_t)position;
 -(void)pushCallStub:(TFCallStub)stub;
 - (TFCallStub)popCallStub;
@@ -155,9 +168,11 @@ typedef enum _TFSearchOptions
 
 #pragma mark Exposed for testing ONLY, DO NOT USE
 
-/*! Attempts to fill in opcode dictionary.
+/*! Attempts to read in opcode information from plist and verify that all opcode methods are available.
 
-    On failure, technical details will be printed to Console.
+    On success, returns YES.
+    
+    On failure, returns NO, at which point technical details will be printed to Console.
  */
 - (BOOL)initOpcodeDictionary;
 

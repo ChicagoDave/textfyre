@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class TFEngine;
+@class TFArguments;
 
 /*! Provides hardcoded versions of some commonly used veneer routines (low-level functions that are automatically compiled into every Inform game).
 

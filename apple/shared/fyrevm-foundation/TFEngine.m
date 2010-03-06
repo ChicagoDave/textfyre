@@ -27,7 +27,9 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 
 /*! Compares version numbers of image to what this game engine supports.
 
-    On failure, technical details will be printed to Console.
+    If image version is supported, returns YES.
+    
+    If image version is not supported, returns NO, at which point technical details will be printed to Console.
  */
 - (BOOL)isImageVersionCompatible:(TFUlxImage *)theImage {
     NSUInteger majorVersion = [theImage majorVersion];
@@ -145,6 +147,7 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 
 - (uint32_t)nestedCallAtAddress:(uint32_t)address args:(TFArguments *)args {
 /*
+    TODO
     ExecutionMode oldMode = execMode;
     byte oldDigit = printingDigit;
 
@@ -384,7 +387,7 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 
 
 - (int)compareKeysWithQuery:(uint32_t)query candidate:(uint32_t)candidate keySize:(uint32_t)keySize options:(TFSearchOptions)options {
-    if ((options & TFKeyIndirectSearchOption) == 0) {
+    if ((options & TFSearchOptionsKeyIndirect) == 0) {
         uint32_t ckey;
         switch (keySize) {
             case 1:
@@ -428,13 +431,13 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 }
 
 - (uint32_t)performBinarySearchWithKey:(uint32_t)key keySize:(uint32_t)keySize start:(uint32_t)start structSize:(uint32_t)structSize numStructs:(uint32_t)numStructs keyOffset:(uint32_t)keyOffset options:(TFSearchOptions)options {
-    if ((options & TFReturnIndexSearchOption) != 0) {
+    if ((options & TFSearchOptionsReturnIndex) != 0) {
 //        @throw [NSException exceptionWithName:@"TFException" reason:@"TFReturnIndexSearchOption may not be used with binarysearch" userInfo:nil];
-    } else if (keySize > 4 && (options & TFKeyIndirectSearchOption) == 0) {
+    } else if (keySize > 4 && (options & TFSearchOptionsKeyIndirect) == 0) {
 //        throw new VMException("KeyIndirect option must be used when searching for a >4 byte key");
     }
 
-    uint32_t result = (options & TFReturnIndexSearchOption) == 0 ? 0 : 0xFFFFFFFF;
+    uint32_t result = (options & TFSearchOptionsReturnIndex) == 0 ? 0 : 0xFFFFFFFF;
     uint32_t low = 0, high = numStructs;
 
     while (low < high)
@@ -444,7 +447,7 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
         if (cmp == 0)
         {
             // found it
-            if ((options & TFReturnIndexSearchOption) == 0)
+            if ((options & TFSearchOptionsReturnIndex) == 0)
                 result = start + index * structSize;
             else
                 result = index;
@@ -468,13 +471,18 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 - (BOOL)initOpcodeDictionary {
     BOOL result = NO;
 
+    // opcodeDictionary will log on failure.
     opcodeDict = [[TFOpcode opcodeDictionary] retain];
+
     if (opcodeDict != nil) {
+        result = YES;
+
         // Keys are sorted so, if there are errors, the order of the errors is deterministic. Errors may not be in order of original plist entries.
         for (NSNumber *opcodeNumber in [[opcodeDict allKeys] sortedArrayUsingSelector:@selector(compare:)]) {
             TFOpcode *opcode = [opcodeDict objectForKey:opcodeNumber];
             if ([self respondsToSelector:opcode.selector] == NO) {
                 NSLog(@"%@ has selector that is not implemented in %@.", opcode, [self class]);
+                result = NO;
             }
         }
     }
@@ -486,6 +494,10 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 
 - (id)init {
     self = [super init];
+    
+    allowFiltering = YES;
+    gameWantsFiltering = YES;
+
     
     veneer = [[TFVeneer alloc] init];
     

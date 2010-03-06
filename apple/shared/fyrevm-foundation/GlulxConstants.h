@@ -35,12 +35,12 @@
 
 // FyreVM addition: DestType value for nested calls
 #define TFFyreVMStubResumeNative                99
-/*
-// String decoding table: header field offsets
-#define GLULX_HUFF_TABLESIZEOffset               0
-#define GLULX_HUFF_NODECOUNTOffset               4
-#define GLULX_HUFF_ROOTNODEOffset                8
 
+// String decoding table: header field offsets
+#define TFGlulxHuffmanTableSizeOffset            0
+#define TFGlulxHuffmanNodeCountOffset            4
+#define TFGlulxHuffmanRootNodeOffset             8
+/*
 // String decoding table: node types
 #define GLULX_HUFF_NODE_BRANCH                   0
 #define GLULX_HUFF_NODE_END                      1

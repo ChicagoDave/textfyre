@@ -33,11 +33,11 @@
     NSData *originalRAM;
 }
 
-/*! Attempts to load Glulx (.ulx) game image file into memory and decrypt it. 
+/*! Attempts to load Glulx (.ulx) game image file into memory, decrypt it, and verify it. 
 
-    On success, the other APIs of this class can be used to access the memory of that game image.
+    On success, returns YES, at which point the other APIs of this class can be used to access the memory of that game image.
 
-    On failure, technical details will be printed to Console.
+    On failure, returns NO, at which point technical details will be printed to Console.
 
     \param path Full path to Glulx (.ulx) file.
  */
