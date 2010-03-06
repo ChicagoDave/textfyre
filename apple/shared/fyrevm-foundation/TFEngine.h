@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-
 @class TFUlxImage;
 @class TFVeneer;
+@class TFArguments;
 
 /*! Represents a Glulx call stub, which describes the VM's state at the time of a function call or string printing task. */
 typedef struct _TFCallStub {
@@ -23,6 +23,23 @@ typedef struct _TFCallStub {
     /*! The stack frame in which the function call or string printing was performed. */
     uint32_t framePtr;
 } TFCallStub;
+
+/*! Describes the task that the interpreter is currently performing. */
+typedef enum _TFExecutionMode
+{
+    /*! We are running function code. PC points to the next instruction. */
+    TFExecutionModeCode,
+    /*! We are printing a null-terminated string (E0). PC points to the next character. */
+    TFExecutionModeCString,
+    /*! We are printing a compressed string (E1). PC points to the next compressed byte, and printingDigit is the bit position (0-7). */
+    TFExecutionModeCompressedString,
+    /*! We are printing a Unicode string (E2). PC points to the next character. */
+    TFExecutionModeUnicodeString,
+    /*! We are printing a decimal number. PC contains the number, and printingDigit is the next digit, starting at 0 (for the first digit or minus sign). */
+    TFExecutionModeNumber,
+    /*! We are returning control to nested call after engine code has called a Glulx function. */
+    TFExecutionModeReturn,
+} TFExecutionMode;
 
 typedef enum _TFSearchOptions
 {
@@ -59,7 +76,7 @@ typedef enum _TFSearchOptions
     uint32_t filterAddress;
     uint32_t decodingTable;
 //    StrNode nativeDecodingTable;
-//    ExecutionMode execMode;
+    TFExecutionMode execMode;
     uint8_t printingDigit; // bit number for compressed strings, digit for numbers
 //    Random randomGenerator = new Random();
 //    List<MemoryStream> undoBuffers = new List<MemoryStream>();
@@ -96,9 +113,6 @@ typedef enum _TFSearchOptions
 - (TFCallStub)popCallStub;
 
 - (uint32_t)nestedCallAtAddress:(uint32_t)address;
-- (uint32_t)nestedCallAtAddress:(uint32_t)address arg:(uint32_t)arg1;
-- (uint32_t)nestedCallAtAddress:(uint32_t)address arg:(uint32_t)arg1 arg:(uint32_t) arg2;
-- (uint32_t)nestedCallAtAddress:(uint32_t)address arg:(uint32_t)arg1 arg:(uint32_t)arg2 arg:(uint32_t)arg3;
 /*! Executes a Glulx function and returns its result.
 
     \param address The address of the function.
@@ -106,13 +120,28 @@ typedef enum _TFSearchOptions
 
     \return The function's return value.
  */
-- (uint32_t)nestedCallAtAddress:(uint32_t)address args:(uint32_t *)args;
+- (uint32_t)nestedCallAtAddress:(uint32_t)address args:(TFArguments *)args;
 
 - (void)performDelayedStoreOfType:(uint32_t)type address:(uint32_t)address value:(uint32_t)value;
 
-#pragma mark -
+/*! Pushes a frame for a function call, updating FP, SP, and PC. (A call stub should have already been pushed.)
+
+    \param address The address of the function being called.
+ */
+- (void)enterFunctionAtAddress:(uint32_t)address;
+
+/*! Pushes a frame for a function call, updating FP, SP, and PC. (A call stub should have already been pushed.)
+
+    \param address The address of the function being called.
+    \param args The argument values to load into local storage, or NULL if local storage should all be zeroed.
+ */
+- (void)enterFunctionAtAddress:(uint32_t)address args:(TFArguments *)args;
 
 - (void)leaveFunction:(uint32_t)result;
+
+- (void)resumeFromCallStub:(uint32_t)result;
+
+#pragma mark -
 
 - (void)takeBranch:(uint32_t)target;
 

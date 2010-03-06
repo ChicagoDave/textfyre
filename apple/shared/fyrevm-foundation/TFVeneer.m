@@ -353,7 +353,7 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
     return YES;
 }
 
-- (BOOL)interceptCallAtAddress:(uint32_t)address args:(uint32_t *)args result:(uint32_t *)result {
+- (BOOL)interceptCallAtAddress:(uint32_t)address args:(TFArguments *)args result:(uint32_t *)result {
     NSAssert(result != NULL, @"result parameter of interceptCallAtAddress:args:result: cannot be NULL");
 
     BOOL intercepted = NO;
@@ -362,51 +362,51 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
     if (address != 0) {
         if (address == zregion_fn)
         {
-            (*result) = [self Z__Region:args[0]];
+            (*result) = [self Z__Region:[args argAtIndex:0]];
             intercepted = YES;
         } else if (address == cp_tab_fn)
         {
-            (*result) = [self CP__Tab:args[0] identifier:args[1]];
+            (*result) = [self CP__Tab:[args argAtIndex:0] identifier:[args argAtIndex:1]];
             intercepted = YES;
         } else if (address == oc_cl_fn)
         {
-            (*result) = [self OC__Cl:args[0], args[1]];
+            (*result) = [self OC__Cl:[args argAtIndex:0], [args argAtIndex:1]];
             intercepted = YES;
         } else if (address == ra_pr_fn)
         {
-            (*result) = [self RA__Pr:args[0], args[1]];
+            (*result) = [self RA__Pr:[args argAtIndex:0], [args argAtIndex:1]];
             intercepted = YES;
         } else if (address == rt_chldw_fn)
         {
-            (*result) = [self RT__ChLDW:args[0], args[1]];
+            (*result) = [self RT__ChLDW:[args argAtIndex:0], [args argAtIndex:1]];
             intercepted = YES;
         } else if (address == unsigned_compare_fn)
         {
-            (*result) = [self (uint)args[0].CompareTo(args[1]];
+            (*result) = [self (uint)[args argAtIndex:0].CompareTo(args.arg2];
             intercepted = YES;
         } else if (address == rl_pr_fn)
         {
-            (*result) = [self RL__Pr:args[0], args[1]];
+            (*result) = [self RL__Pr:[args argAtIndex:0], [args argAtIndex:1]];
             intercepted = YES;
         } else if (address == rv_pr_fn)
         {
-            (*result) = [self RV__Pr:args[0], args[1]];
+            (*result) = [self RV__Pr:[args argAtIndex:0], [args argAtIndex:1]];
             intercepted = YES;
         } else if (address == op_pr_fn)
         {
-            (*result) = [self OP__Pr:args[0], args[1]];
+            (*result) = [self OP__Pr:[args argAtIndex:0], [args argAtIndex:1]];
             intercepted = YES;
         } else if (address == rt_chstw_fn)
         {
-            (*result) = [self RT__ChSTW:args[0], args[1], args[2]];
+            (*result) = [self RT__ChSTW:[args argAtIndex:0], [args argAtIndex:1], [args argAtIndex:2]];
             intercepted = YES;
         } else if (address == rt_chldb_fn)
         {
-            (*result) = [self RT__ChLDB:args[0], args[1]];
+            (*result) = [self RT__ChLDB:[args argAtIndex:0], [args argAtIndex:1]];
             intercepted = YES;
         } else if (address == meta_class_fn)
         {
-            (*result) = [self meta__class:args[0]];
+            (*result) = [self meta__class:[args argAtIndex:0]];
             intercepted = YES;
         }
     }

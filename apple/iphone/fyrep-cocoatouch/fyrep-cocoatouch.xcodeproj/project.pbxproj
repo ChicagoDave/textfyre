@@ -29,9 +29,11 @@
 		4F50FBCE113106EF006D0738 /* TestTFOpcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50FBC8113106B1006D0738 /* TestTFOpcode.m */; };
 		4F50FCE2113115C3006D0738 /* TestTFEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50FCE1113115C3006D0738 /* TestTFEngine.m */; };
 		4F50FCE4113115D9006D0738 /* TestTFEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50FCE1113115C3006D0738 /* TestTFEngine.m */; };
+		4F571F221140E3B500C490F4 /* TFArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F571F211140E3B500C490F4 /* TFArguments.m */; };
+		4F571F231140E3B500C490F4 /* TFArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F571F211140E3B500C490F4 /* TFArguments.m */; };
+		4F571F241140E3B500C490F4 /* TFArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F571F211140E3B500C490F4 /* TFArguments.m */; };
 		4F6B6498111E297800BABD7F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6B6484111E296700BABD7F /* SenTestingKit.framework */; };
 		4F6B64FB111E2B0300BABD7F /* TFUlxImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E14FF1114E4D100007CFC /* TFUlxImage.m */; };
-		4F6B64FC111E2B0300BABD7F /* GlulxConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCCBE74111521A40001000B /* GlulxConstants.m */; };
 		4F6B64FD111E2B0300BABD7F /* TFEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F44C2B0111BE776006B05D2 /* TFEngine.m */; };
 		4F6B64FE111E2B0300BABD7F /* TestTFUlxImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F05E9B6111E0DA600C90CB3 /* TestTFUlxImage.m */; };
 		4F6B6504111E2B4C00BABD7F /* sh-v1.2e.ulx in Resources */ = {isa = PBXBuildFile; fileRef = 4F6B6501111E2B4C00BABD7F /* sh-v1.2e.ulx */; };
@@ -44,7 +46,6 @@
 		4F6B6529111E2FA100BABD7F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		4F6B652A111E2FA100BABD7F /* fyrep_cocoatouchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* fyrep_cocoatouchAppDelegate.m */; };
 		4F6B652B111E2FA100BABD7F /* TFUlxImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E14FF1114E4D100007CFC /* TFUlxImage.m */; };
-		4F6B652C111E2FA100BABD7F /* GlulxConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCCBE74111521A40001000B /* GlulxConstants.m */; };
 		4F6B652D111E2FA100BABD7F /* TFEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F44C2B0111BE776006B05D2 /* TFEngine.m */; };
 		4F6B652F111E2FA100BABD7F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		4F6B6530111E2FA100BABD7F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -55,7 +56,6 @@
 		4FB17B851139D43B009491D3 /* TFVeneer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB17B841139D43B009491D3 /* TFVeneer.m */; };
 		4FB17B861139D43B009491D3 /* TFVeneer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB17B841139D43B009491D3 /* TFVeneer.m */; };
 		4FB17B871139D43B009491D3 /* TFVeneer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB17B841139D43B009491D3 /* TFVeneer.m */; };
-		4FCCBE77111521A40001000B /* GlulxConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCCBE74111521A40001000B /* GlulxConstants.m */; };
 		4FFE4BEF111F960800467156 /* TFEngine_Opcodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE4BEE111F960800467156 /* TFEngine_Opcodes.m */; };
 		4FFE4BF0111F960800467156 /* TFEngine_Opcodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE4BEE111F960800467156 /* TFEngine_Opcodes.m */; };
 		4FFE4BF1111F960800467156 /* TFEngine_Opcodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE4BEE111F960800467156 /* TFEngine_Opcodes.m */; };
@@ -111,6 +111,8 @@
 		4F50FBC8113106B1006D0738 /* TestTFOpcode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTFOpcode.m; sourceTree = "<group>"; };
 		4F50FCE0113115C3006D0738 /* TestTFEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTFEngine.h; sourceTree = "<group>"; };
 		4F50FCE1113115C3006D0738 /* TestTFEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTFEngine.m; sourceTree = "<group>"; };
+		4F571F201140E3B500C490F4 /* TFArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFArguments.h; sourceTree = "<group>"; };
+		4F571F211140E3B500C490F4 /* TFArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFArguments.m; sourceTree = "<group>"; };
 		4F6B6484111E296700BABD7F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Developer/Library/Frameworks/SenTestingKit.framework; sourceTree = SDKROOT; };
 		4F6B6501111E2B4C00BABD7F /* sh-v1.2e.ulx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "sh-v1.2e.ulx"; path = "../../../winforms/Shadow/ShadowClient/ShadowRelease/sh-v1.2e.ulx"; sourceTree = SOURCE_ROOT; };
 		4F6B6502111E2B4C00BABD7F /* sh-v1.0de.ulx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "sh-v1.0de.ulx"; path = "../../../winforms/Shadow/ShadowClient/ShadowClient/GameFiles/sh-v1.0de.ulx"; sourceTree = SOURCE_ROOT; };
@@ -121,7 +123,6 @@
 		4FB17B831139D43B009491D3 /* TFVeneer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFVeneer.h; sourceTree = "<group>"; };
 		4FB17B841139D43B009491D3 /* TFVeneer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFVeneer.m; sourceTree = "<group>"; };
 		4FCCBE73111521A40001000B /* GlulxConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlulxConstants.h; sourceTree = "<group>"; };
-		4FCCBE74111521A40001000B /* GlulxConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlulxConstants.m; sourceTree = "<group>"; };
 		4FFE4BED111F960800467156 /* TFEngine_Opcodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFEngine_Opcodes.h; sourceTree = "<group>"; };
 		4FFE4BEE111F960800467156 /* TFEngine_Opcodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFEngine_Opcodes.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* fyrep_cocoatouch-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fyrep_cocoatouch-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -263,7 +264,8 @@
 				4F3E14FE1114E4D100007CFC /* TFUlxImage.h */,
 				4F3E14FF1114E4D100007CFC /* TFUlxImage.m */,
 				4FCCBE73111521A40001000B /* GlulxConstants.h */,
-				4FCCBE74111521A40001000B /* GlulxConstants.m */,
+				4F571F201140E3B500C490F4 /* TFArguments.h */,
+				4F571F211140E3B500C490F4 /* TFArguments.m */,
 				4F44C2AF111BE776006B05D2 /* TFEngine.h */,
 				4F44C2B0111BE776006B05D2 /* TFEngine.m */,
 				4FFE4BED111F960800467156 /* TFEngine_Opcodes.h */,
@@ -482,11 +484,11 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* fyrep_cocoatouchAppDelegate.m in Sources */,
 				4F3E15001114E4D100007CFC /* TFUlxImage.m in Sources */,
-				4FCCBE77111521A40001000B /* GlulxConstants.m in Sources */,
 				4F44C2B1111BE776006B05D2 /* TFEngine.m in Sources */,
 				4FFE4BF0111F960800467156 /* TFEngine_Opcodes.m in Sources */,
 				4F50FB261130DF21006D0738 /* TFOpcode.m in Sources */,
 				4FB17B871139D43B009491D3 /* TFVeneer.m in Sources */,
+				4F571F241140E3B500C490F4 /* TFArguments.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,11 +509,11 @@
 				4F6B6529111E2FA100BABD7F /* main.m in Sources */,
 				4F6B652A111E2FA100BABD7F /* fyrep_cocoatouchAppDelegate.m in Sources */,
 				4F6B652B111E2FA100BABD7F /* TFUlxImage.m in Sources */,
-				4F6B652C111E2FA100BABD7F /* GlulxConstants.m in Sources */,
 				4F6B652D111E2FA100BABD7F /* TFEngine.m in Sources */,
 				4FFE4BF1111F960800467156 /* TFEngine_Opcodes.m in Sources */,
 				4F50FB271130DF21006D0738 /* TFOpcode.m in Sources */,
 				4FB17B851139D43B009491D3 /* TFVeneer.m in Sources */,
+				4F571F221140E3B500C490F4 /* TFArguments.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,7 +522,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F6B64FB111E2B0300BABD7F /* TFUlxImage.m in Sources */,
-				4F6B64FC111E2B0300BABD7F /* GlulxConstants.m in Sources */,
 				4F6B64FD111E2B0300BABD7F /* TFEngine.m in Sources */,
 				4F6B64FE111E2B0300BABD7F /* TestTFUlxImage.m in Sources */,
 				4FFE4BEF111F960800467156 /* TFEngine_Opcodes.m in Sources */,
@@ -528,6 +529,7 @@
 				4F50FBC9113106B1006D0738 /* TestTFOpcode.m in Sources */,
 				4F50FCE2113115C3006D0738 /* TestTFEngine.m in Sources */,
 				4FB17B861139D43B009491D3 /* TFVeneer.m in Sources */,
+				4F571F231140E3B500C490F4 /* TFArguments.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

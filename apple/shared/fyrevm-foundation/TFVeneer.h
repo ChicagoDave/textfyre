@@ -48,7 +48,7 @@
 
     \return YES if call was intercepted, NO otherwise.
  */
-- (BOOL)interceptCallAtAddress:(uint32_t)address args:(uint32_t *)args result:(uint32_t *)result;
+- (BOOL)interceptCallAtAddress:(uint32_t)address args:(TFArguments *)args result:(uint32_t *)result;
 
 @end
 

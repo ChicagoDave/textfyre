@@ -12,6 +12,7 @@
 #import "GlulxConstants.h"
 #import "TFOpcode.h"
 #import "TFVeneer.h"
+#import "TFArguments.h"
 
 static const NSUInteger TFEngineFirstMajorVersion = 2;
 static const NSUInteger TFEngineFirstMinorVersion = 0;
@@ -142,32 +143,7 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
     return [self nestedCallAtAddress:address args:NULL];
 }
 
-- (uint32_t)nestedCallAtAddress:(uint32_t)address arg:(uint32_t)arg1 {
-    uint32_t args[] = { arg1 };
-
-    return [self nestedCallAtAddress:address args:args];
-}
-
-- (uint32_t)nestedCallAtAddress:(uint32_t)address arg:(uint32_t)arg1 arg:(uint32_t) arg2 {
-    uint32_t args[] = { arg1, arg2 };
-
-    return [self nestedCallAtAddress:address args:args];
-}
-
-- (uint32_t)nestedCallAtAddress:(uint32_t)address arg:(uint32_t)arg1 arg:(uint32_t)arg2 arg:(uint32_t)arg3 {
-    uint32_t args[] = { arg1, arg2, arg3 };
-
-    return [self nestedCallAtAddress:address args:args];
-}
-
-/*! Executes a Glulx function and returns its result.
-
-    \param address The address of the function.
-    \param args The list of arguments, or NULL if no arguments need to be passed in.
-
-    \return The function's return value.
- */
-- (uint32_t)nestedCallAtAddress:(uint32_t)address args:(uint32_t *)args {
+- (uint32_t)nestedCallAtAddress:(uint32_t)address args:(TFArguments *)args {
 /*
     ExecutionMode oldMode = execMode;
     byte oldDigit = printingDigit;
@@ -191,25 +167,208 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 }
 
 - (void)performDelayedStoreOfType:(uint32_t)type address:(uint32_t)address value:(uint32_t)value {
-    if (type == TFGlulxStubStoreNULL) {
-        // discard
-    } else if (type == TFGlulxStubStoreMemory) {
-        // store in main memory
-        [image setInteger:value atOffset:address];
-    } else if (TFGlulxStubStoreLocal) {
-        // store in local storage
-        [self setStackInteger:fp + localsPos + address atOffset:value];
-    } else if (TFGlulxStubStoreStack) {
-        // push onto stack
-        [self push:value];
+    switch (type) {
+        case TFGlulxStubStoreNULL:
+            // discard
+            break;
+        case TFGlulxStubStoreMemory:
+            // store in main memory
+            [image setInteger:value atOffset:address];
+            break;
+        case TFGlulxStubStoreLocal:
+            // store in local storage
+            [self setStackInteger:fp + localsPos + address atOffset:value];
+            break;
+        case TFGlulxStubStoreStack:
+            // push onto stack
+            [self push:value];
+            break;
     }
 }
 
-#pragma mark -
+- (void)enterFunctionAtAddress:(uint32_t)address {
+    [self enterFunctionAtAddress:address args:NULL];
+}
+
+- (void)enterFunctionAtAddress:(uint32_t)address args:(TFArguments *)args {
+    execMode = TFExecutionModeCode;
+
+    // push a call frame
+    fp = sp;
+    [self push:0];  // temporary FrameLen
+    [self push:0];  // temporary LocalsPos
+
+    // copy locals info into the frame...
+    uint32_t localSize = 0;
+
+    for (uint32_t i = address + 1; YES; i += 2) {
+        uint8_t type, count;
+        
+        type = [image byteAtOffset:i];
+        [stack replaceBytesInRange:NSMakeRange(sp++, sizeof(type)) withBytes:&type];
+        
+        count = [image byteAtOffset:1];
+        [stack replaceBytesInRange:NSMakeRange(sp++, sizeof(count)) withBytes:&count];
+        
+        if (type == 0 || count == 0) {
+            pc = i + 2;
+            break;
+        }
+        if (localSize % type > 0) {
+            localSize += (type - (localSize % type));
+        }
+        localSize += (uint32_t)(type * count);
+    }
+    // padding
+    if (sp % 4 > 0) {
+        [stack resetBytesInRange:NSMakeRange(sp, (sp / 4 * 4) + 3)];
+        sp = ((sp / 4) + 1) * 4;
+    }
+
+    localsPos = sp - fp;
+    [self setStackInteger:fp + 4 atOffset:localsPos]; // fill in LocalsPos
+
+    if (args == NULL || args.count == 0) {
+        // initialize space for locals
+        if (sp < localSize) {
+            [stack resetBytesInRange:NSMakeRange(sp, localSize - sp)];
+        }
+    } else {
+        // copy initial values as appropriate
+        uint32_t offset = 0, lastOffset = 0;
+        uint8_t size = 0, count = 0;
+        address++;
+        for (uint32_t argnum = 0; argnum < args.count; argnum++)
+        {
+            if (count == 0) {
+                size = [image byteAtOffset:address++];
+                count = [image byteAtOffset:address++];
+                if (size == 0 || count == 0)
+                    break;
+                if (offset % size > 0)
+                    offset += (size - (offset % size));
+            }
+
+            // zero any padding space between locals
+            if (lastOffset < offset) {
+                [stack resetBytesInRange:NSMakeRange(lastOffset, offset - lastOffset)];
+            }
+
+            switch (size) {
+                case 1: {
+                    uint8_t value = (uint8_t)[args argAtIndex:argnum];
+                    [stack replaceBytesInRange:NSMakeRange(sp + offset, sizeof(value)) withBytes:&value];
+                    break;
+                }
+                case 2: {
+                    uint16_t value = (uint16_t)[args argAtIndex:argnum];
+                    uint16_t bigEndianValue = NSSwapHostShortToBig(value);
+                    
+                    [stack replaceBytesInRange:NSMakeRange(sp + offset, sizeof(bigEndianValue)) withBytes:&bigEndianValue];
+                    break;
+                }
+                case 4:
+                    [self setStackInteger:sp + offset atOffset:[args argAtIndex:argnum]];
+                    break;
+            }
+
+            offset += size;
+            lastOffset = offset;
+            count--;
+        }
+
+        // zero any remaining local space
+        if (lastOffset < localSize) {
+            [stack resetBytesInRange:NSMakeRange(lastOffset, localSize - lastOffset)];
+        }
+    }
+    sp += localSize;
+    // padding
+    if (sp % 4 > 0) {
+        [stack resetBytesInRange:NSMakeRange(sp, (sp / 4 * 4) + 3)];
+        sp = ((sp / 4) + 1) * 4;
+    }
+
+    frameLen = sp - fp;
+    [self setStackInteger:fp atOffset:frameLen]; // fill in FrameLen
+}
 
 - (void)leaveFunction:(uint32_t)result {
-    NSAssert(NO, @"Not yet implemented!");
+    if (fp == 0) {
+        // top-level function
+        running = false;
+    } else {
+        NSAssert2(sp >= fp, @"leaveFunction: called when sp %lu >= fp %lu", (unsigned long)sp, (unsigned long)fp);
+        sp = fp;
+        [self resumeFromCallStub:result];
+    }
 }
+- (void)resumeFromCallStub:(uint32_t)result {
+    TFCallStub stub = [self popCallStub];
+
+    pc = stub.pc;
+    execMode = TFExecutionModeCode;
+
+    uint32_t newFP = stub.framePtr;
+    uint32_t newFrameLen = [self readFromStack:newFP];
+    uint32_t newLocalsPos = [self readFromStack:newFP + 4];
+
+    switch (stub.destType)
+    {
+        case TFGlulxStubStoreNULL:
+            // discard
+            break;
+        case TFGlulxStubStoreMemory:
+            // store in main memory
+            [image setInteger:result atOffset:stub.destAddr];
+            break;
+        case TFGlulxStubStoreLocal:
+            // store in local storage
+            [self setStackInteger:newFP + newLocalsPos + stub.destAddr atOffset:result];
+            break;
+        case TFGlulxStubStoreStack:
+            // push onto stack
+            [self push:result];
+            break;
+
+        case TFGlulxStubResumeFunction:
+            // resume executing in the same call frame
+            // return to avoid changing FP
+            return;
+
+        case TFGlulxStubResumeCString:
+            // resume printing a C-string
+            execMode = TFExecutionModeCString;
+            break;
+        case TFGlulxStubResumeUnicodeString:
+            // resume printing a Unicode string
+            execMode = TFExecutionModeUnicodeString;
+            break;
+        case TFGlulxStubResumeNumber:
+            // resume printing a decimal number
+            execMode = TFExecutionModeNumber;
+            printingDigit = (uint8_t)stub.destAddr;
+            break;
+        case TFGlulxStubResumeCompressedString:
+            // resume printing a compressed string
+            execMode = TFExecutionModeCompressedString;
+            printingDigit = (uint8_t)stub.destAddr;
+            break;
+
+        case TFFyreVMStubResumeNative:
+            // exit the interpreter loop and return via NestedCall()
+            nestedResult = result;
+            execMode = TFExecutionModeReturn;
+            break;
+    }
+
+    fp = newFP;
+    frameLen = newFrameLen;
+    localsPos = newLocalsPos;
+    return;
+}
+
+#pragma mark -
 
 - (void)takeBranch:(uint32_t)target
 {

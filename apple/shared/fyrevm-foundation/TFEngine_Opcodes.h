@@ -12,8 +12,8 @@
 @interface TFEngine (Opcodes)
 
 
-- (void)performCallWithAddress:(uint32_t)address args:(uint32_t *)args destType:(uint32_t)destType destAddr:(uint32_t)destAddr;
-- (void)performCallWithAddress:(uint32_t)address args:(uint32_t *)args destType:(uint32_t)destType destAddr:(uint32_t)destAddr stubPC:(uint32_t)stubPC;
+- (void)performCallWithAddress:(uint32_t)address args:(TFArguments *)args destType:(uint32_t)destType destAddr:(uint32_t)destAddr;
+- (void)performCallWithAddress:(uint32_t)address args:(TFArguments *)args destType:(uint32_t)destType destAddr:(uint32_t)destAddr stubPC:(uint32_t)stubPC;
 
 /*! Enters a function, pushing a call stub first if necessary.
 
@@ -24,6 +24,6 @@
     \param stubPC The PC value for the call stub. Ignored for tail calls.
     \param tailCall YES to perform a tail call, reusing the current call stub and frame instead of pushing a new stub and creating a new frame.
  */
-- (void)performCallWithAddress:(uint32_t)address args:(uint32_t *)args destType:(uint32_t)destType destAddr:(uint32_t)destAddr stubPC:(uint32_t)stubPC tailCall:(BOOL)tailCall;
+- (void)performCallWithAddress:(uint32_t)address args:(TFArguments *)args destType:(uint32_t)destType destAddr:(uint32_t)destAddr stubPC:(uint32_t)stubPC tailCall:(BOOL)tailCall;
 
 @end
