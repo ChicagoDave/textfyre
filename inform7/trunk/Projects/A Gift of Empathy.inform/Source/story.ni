@@ -6,6 +6,7 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 
 [  Change Log
 When		Who		What
+28-Feb-2010 	R. Newcomb		Michelle, Brad, Inquiring it about, various improvements
 1-Sep-2009	G. Jefferis	Wandering orderly
 31-Aug-2009	G. Jefferis	Chapter 4 - Hospital scene
 26-Aug-2009	G. Jefferis	Chapter 3 mostly done - Maelstrom maze.
@@ -40,11 +41,19 @@ Include Goals by Textfyre.
 Include Test Suite by Textfyre.
 Include Parse List by Textfyre.
 
+
 Book - Initialisation
 
 Part 0 - Beating memory constraints
 
 Use MAX_STATIC_DATA of 400000.
+Use MAX_OBJECTS of 1024.
+
+[these I wrap around anything that I don't want in the debug build, such as PAUSE THE GAME which breaks re-runs]
+To say ifndef debug: (- #ifndef DEBUG; -).
+To say enddef debug: (-  #endif; RunParagraphOn(); -). 
+
+
 
 Part 00 - Fixing the index map
 
@@ -60,6 +69,15 @@ Part 1 - Set up
 
 Use numbered rules.
 
+To say (p - a person) quips (q - a quip): start conversation with p on q. [ the former system of using ASK Person ABOUT "Topic" was broken because, in the "conversation table of the Person", the topic column has to have the topics for all the objects in the game re-listed within it. This is error-prone, laborious, and destroys any parsing intelligence such as disambiguation, scope, does-the-player-mean fine tuning, etc.  So I've created an ASK Person ABOUT Object which consults the "object-based conversation table of the Person" for objects, once Inform has run its full parsing AI on what the heck the player meant by "TAKE RED". The above Say phrase allows me to marry the ASK ABOUT Object system's parsing to the pre-existing Quip system's dialogue-threading. Win-win. ]
+
+To decide which table-name is the empty table: (- TheEmptyTable -). [uninitialized table-name parameters get this]
+
+To say try (act - an action) -- running on: 
+	(- RunParagraphOn();  {act}; RunParagraphOn(); -). 
+[used within "Understand...as a mistake" and Ask About replies to effect how-to-play instructions and gamestate change. Very handy.]
+
+
 Chapter 1 - Banner Text
 
 Rule for printing the banner text:
@@ -71,7 +89,7 @@ Rule for printing the banner text:
 	say "Designed by Paul O'Brian[line break]";
 	say "Written by Christopher Huang[line break]";
 	say "Game Engine (FyreVM) by Jesse McGrew[line break]";
-	say "Inform 7 Programming by Graeme Jefferis[line break]";
+	say "Inform 7 Programming by Graeme Jefferis[line break]  and Ron Newcomb[line break]";
 	say "Testing by ____[line break]";
 	say "Special thanks to Graham Nelson and Emily Short[line break]";
 	say "for all of their hard work on Inform 7.[line break]";
@@ -123,8 +141,10 @@ The time of day is 7:05 PM.
 
 When play begins:
 	say "It's your second year at the LEAP summer camp, and so far it's been as great as you remember last year to have been.  Ava Winters and Stacy Alexander, whom you met last year (and whom your brother Aidan calls 'your girlfriends', much to your embarrassment) are here again.  You spent yesterday catching up on the news in between options and classes, and now you're settling in with the smug sensation of not being a raw newbie any more.[paragraph break]The LEAP summer camp isn't quite the same as most summer camps.  LEAP is an acronym for 'Learning Enrichment Activity Programme'; the brainchild of world-renowned educator Professor Damon Rose, it is housed on the campus of the University of Colorado at Valmont, and was created for Gifted and Talented Kids (gosh, that sounds impressive) to expand their horizons and encourage them to stretch their mental capabilities.[paragraph break]Whatever. That's all in the promotional flyers. You just know that you're in for two weeks of the sort of interesting classes you don't get in school, and a bunch of fun options with which to fill up the free time after classes.  This evening, for instance, you've signed up for a scavenger hunt....";
-	pause the game;
-	say "LEAP, Day 2.  Evening.[paragraph break]'Okay, kids!' Michelle, the counselor in charge of the scavenger hunt option waves her hands to settle the crowd around you, before finally remembering her whistle.  A brief [i]fweep[r] sweeps through the room.  'Okay, does everyone have their list?  Everyone good?  Okay!  You have until 8:25 pm to find everything on your lists, return here, and show me your lists so I can check them.  So synchronise your watches... are we all in sync?  Good!  Your time starts... now!'[paragraph break]Michelle's whistle gives another sharp fweep, and the room practically empties as everyone else runs off to begin their hunt.";
+	say ifndef debug;
+	pause the game;  [this breaks the skein otherwise]
+	say enddef debug;
+	say "LEAP, Day 2.  Evening.[paragraph break]'Okay, kids!' Michelle, the counselor in charge of the scavenger hunt option waves her hands to settle the crowd around you, before finally remembering her whistle.  A brief [i]fweep[r] sweeps through the room.  'Okay, does everyone have their list?  Everyone good?  Okay!  You have until 8:25 pm to find everything on your lists, return here, and show me your lists so I can check them.  So synchronise your watches... are we all in sync?  Good!  Your time starts... now!'[paragraph break]Michelle's whistle gives another sharp fweep, and the room practically empties as everyone else runs off to begin their hunt."; 
 
 Book - Actions
 
@@ -199,6 +219,64 @@ Check shouting at the location:
 Check shouting at someone:
 	placeholder "Must you draw attention to yourself?" instead;
 
+Part 4 - Kicking
+
+Kicking is an action applying to one thing. Understand "kick [something]" as kicking. 
+Check kicking something (this is the block kicking rule): say "You don't know kung fu!" instead.
+[Instead rules override in particular circumstances for specific messages ]
+
+
+Part 5 - inquiring someone about an object
+
+[ASK ABOUT for objects.  This is much less error-prone for programmers/writers creating conversation tables as they needn't ensure the table's Topic column explicitly re-lists all the synonyms for each object X .  Furthermore, in case of name clashes, like "paper hat" and "paper" (for newspaper), the player gets the nicety of Which Did You Mean.  
+For each character, use like the following.  Note that the default reply is the first row of the table. This allows it to be character-specific without writing additional rules or proxy objects. 
+Replies with [if..] constructs may need a [run paragraph on] construct within them. (It's either putting RPO in half of them, or putting [line break] in the other half of them.) 
+The column "conversation" is named specifically because the topic conversation table uses "conversation" as an object column too.  This makes certain coding tricks easier... such as combining the two tables into a single one of 3 columns. ]
+
+[
+The object-based conversation table of Mr So-and-so is the table of so-and-so's replies.
+
+Table of so-and-so's replies
+conversation 			reply
+an object				"The first row is the default i-don't-know response.[line break]"
+his red right hand			"A great song."
+one red shoe				"A great movie."
+]
+
+A person has a table-name called the object-based conversation table. 
+
+Understand "ask [someone] about [any thing]" or "ask about/-- [any thing]" or "a about/-- [any thing]" as inquiring it about. Inquiring it about is an action applying to one thing and one visible thing.
+
+Report inquiring something about a conversation listed in (the object-based conversation table of the noun): say "[the reply entry][line break]" instead.
+
+Last report inquiring it about when (the object-based conversation table of the noun) is not the empty table: 
+	choose row 1 in the object-based conversation table of the noun;
+	say "[the reply entry][line break]" instead.
+
+Last report inquiring it about when (the object-based conversation table of the noun) is the empty table: 
+	try talking to the noun instead.
+
+Instead of asking someone about "themself/theirself/himself/herself", try inquiring the noun about the noun.
+
+[Rule for supplying a missing second noun when inquiring something about: if the number of people in the location who are not the player is 1 begin; change the second noun to the noun; change the noun to a random person in the location who is not the player; say "([current action])[command clarification break]"; end if.]
+
+[extend same niceties to ASK ABOUT Topic]
+[Understand "ask about/-- [text]" or "a about/-- [text]" as asking it about. 
+
+Rule for supplying a missing noun when asking something about: if the number of people in the location who are not the player is 1, change the noun to a random person in the location who is not the player.]
+
+Part 6 - auto-EXITS
+
+[The action is in the Textfyre Standard Rules, but as a novice player myself, EXITS is much more useful as a response to Going Nowhere than the standard response... or even as an explicit EXITS command itself.  --Ron]
+
+Instead of going nowhere, try listing exits. 
+
+After printing the name of a direction (called the way) while listing exits:
+	if the room way from the location is visited, say " (to [the room way from the location])".
+
+Understand "go","walk","run" or "go [text]","walk [text]","run [text]" as a mistake ("[run paragraph on][try listing exits][run paragraph on]  ").
+
+
 Book - Definitions
 
 Part 1 - Scavenger Hunt
@@ -266,7 +344,7 @@ The verb to be vended by implies the reversed offering relation.
 
 Section 2 - Dispensers
 
-A dispenser is a kind of thing. 
+A dispenser is a kind of thing. A dispenser is usually fixed in place.
 
 Understand "[something related by reversed representation]" as a dispenser.
 
@@ -276,16 +354,25 @@ A procedural rule when taking a dispenser:
 	ignore the can't take component parts rule;
 
 Check taking a dispenser when nothing is vended by the noun:
-	say "No need." instead;
+	say "No need." instead.
 
-Check taking a dispenser when the prize of the noun is on-stage:
-	say "You already have [a prize of the noun].";
+Check taking a dispenser when the prize of the noun is enclosed by the location:
+	say "You already have one [prize of the noun][if the player does not have the prize of the noun] right in front of you[otherwise], and don't need another one[end if]." instead.
 
-Carry out taking a dispenser when the prize of the noun is off-stage:
-	now the player carries the prize of the noun instead;
+Last check taking a dispenser:
+	if the prize of the noun is off-stage, move the prize of the noun to the location; 
+	try taking the prize of the noun; 
+	if the rule failed, remove the prize of the noun from play instead;
+	otherwise the rule succeeds.
 
-Report taking a dispenser:
-	say "You take [a prize of the noun]." instead;
+Last after taking something vended by something:
+	say "You take [a noun]."
+
+Does the player mean taking or dropping a dispenser (called the vendor): if the prize of the vendor is in the location, it is unlikely. 
+Rule for clarifying the parser's choice of something vended by something (called the vendor): if the vendor is in the location, do nothing instead. [skips the "(the red flag)" disambig message when dealing with The Red Flag in the presence of The Pile Of Red Flags.]
+
+[Does the player mean taking or dropping the pile of red flags when the red flag is in the location: it is unlikely. 
+Rule for clarifying the parser's choice of the red flag when the pile of red flags is in the location: say nothing.]
 
 Part 5 - Cutouts of various types
 
@@ -306,8 +393,7 @@ Understand "pouch" as a cutout pouch.
 
 Understand "pouch of", "[something related by reversed representation]", "pouch" as a cutout pouch when the player's command matches the text "pouch", case insensitively.
 
-Instead of searching a cutout pouch:
-	try examining the noun;
+Instead of searching a cutout pouch, try examining the noun.
 
 Section 2 - Life-sized cutouts
 
@@ -409,25 +495,25 @@ After printing the description of a room (called R) when an emotional residue is
 
 Section 2 - Actions
 
-Focussing on is an action applying to one visible thing. 
+focusing on is an action applying to one visible thing. 
 
-Understand "focus" as focussing on when the player has been aware of an emotional residue.
-Understand "feel" as focussing on when the player has been aware of an emotional residue.
+Understand "focus" as focusing on when the player has been aware of an emotional residue.
+Understand "feel" as focusing on when the player has been aware of an emotional residue.
 Understand the command "sense" as "focus".
 
-Rule for supplying a missing noun when focussing on:
+Rule for supplying a missing noun when focusing on:
 	if there is a salient emotional residue:
 		change the noun to a random salient emotional residue;
 	otherwise:
 		change the noun to the location;
 
-Report focussing on an emotional residue:
-	consider the focussing rules for the noun;
+Report focusing on an emotional residue:
+	consider the focusing rules for the noun;
 
-Report focussing on a room:
+Report focusing on a room:
 	placeholder "You sense nothing untoward or out of the ordinary here.";
 
-The focussing rules are an object-based rulebook.
+The focusing rules are an object-based rulebook.
 
 Part 8 - Identified / Unidentified
 
@@ -508,6 +594,8 @@ A plaque shaped like a shield is scenery, in the First Floor Lobby West. "It's s
 
 Chapter 3 - Michelle
 
+Section 1 - description of Michelle
+
 Counselor Michelle Close is a woman, in the First Floor Lobby West. The description of Michelle Close is "Michelle Close is one of the counselors.  She's slightly untidy-looking, with a big explosion of curly black hair and a pencil tucked behind one ear."
 
 Understand "Counsellor" as Michelle Close.
@@ -518,9 +606,85 @@ Rule for printing the name of Michelle Close:
 Michelle Close wears Michelle's whistle.
 
 Rule for writing a paragraph about Michelle Close:
-	placeholder "Room description text about [Michelle Close].";
+	say "Michelle Close leans against the side of the desk, chewing on a pencil."
 
 Michelle's whistle is improper-named. The printed name of Michelle's whistle is "whistle".
+
+Michelle carries Michelle's pencil.  Michelle's pencil is improper-named scenery. The printed name of Michelle's pencil is "pencil".  
+
+Michelle's hair is scenery part of Michelle. 
+
+Section 2 - actions on Michelle
+
+Instead of taking, pushing, [[moving,]] or pulling Michelle, say "Don't be rude."
+Instead of eating, attacking, or kicking Michelle, say "That's a sure way to get yourself kicked out of LEAP, and you don't want that."
+Instead of focusing on Michelle, say "You stare intently at Michelle.  She feels a little creeped out by this."
+
+Section 3 - conversation with Michelle
+
+[CONVERSATION TOPICS: Ask/Tell/Talk about....]
+
+The conversation table of Michelle is the table of Michelle's conversation.
+The object-based conversation table of Michelle is the table of Michelle's replies.
+
+Table of Michelle's replies
+conversation 	reply	
+an object [default]	"She does not reply."	
+newspaper		"[about newspaper]"
+vending machine		"[about newspaper]"
+loose change	"'This?  Just a few odd coins that people find under the sofa or wherever.  Why?'"
+red flag			"[about either flag]"
+green flag		"[about either flag]"
+feather			"[if player does not have the feather]'Birds of a feather flock together, or so they say.'[otherwise]'Good, that's another item off your list.'"
+five-pointed star cutout	"[about either star]"
+Charlie Chaplin cutout	"[about either star]"
+diplodocus		"[if player does not have a diplodocus]'I always loved dinosaurs, ever since I was a little girl.  I always wondered, though, what they sound like.'[otherwise]'Rarr.  I'm checking that off your list.'"
+little straw hat	"[about either hat]"
+paper hat		"[about either hat]"
+Brad			"'Brad's in charge of the flag football option right now,' says Michelle, gesturing vaguely in the direction of Calvin Field, to the southeast."
+Aidan			"'I think I saw your brother heading upstairs for the Rap Session option.'"
+Claudia			 "'Dr Rose had a little meeting with all the counselors before the first day of camp.  She seems like a nice lady; I'm sure you'll get to meet her eventually, if she ever manages to get away from the hospital.'"
+[Damon			"'It was terrible about what happened, wasn't it?'  Michelle is silent for a moment, then says, 'no use thinking about that now!  Don't you have a treasure hunt to do?'"
+Antonia			"'Antonia's a good friend, and a very intelligent person.  Have you signed up for any of the classes she's teaching this year, Daniel?  If not, you should: spaces in her class usually disappear pretty quick!'"]
+Stacy			"[about anyone else]"
+Ava  			"[about anyone else]"
+Hank			"[about anyone else]"
+Joe  			"[about anyone else]"
+Lucian			"[about anyone else]"
+the scavenger hunt	"'You've got until 8:25 to find the things on your list, Daniel.  So if you haven't found everything yet, you'd better hurry.  And don't worry, we checked the lists beforehand and we know that everything is available one way or another around here.'"
+
+Table of Michelle's conversation
+conversation						topic
+MICHELLE_ON_camp-flyer		"LEAP/flyer/camp"
+
+MICHELLE_ON_camp-flyer is a conversation topic. The response text is "'You already know all about that, don't you?  I mean, it's your second year, after all.' "
+
+To say about newspaper: say "[run paragraph on][if player has a newspaper]'Be careful you don't get ink all over your fingers!'[otherwise if the player has been able to see the vending machine]'Why Daniel, I am so very pleased that you're taking an interest in current events!'  She drops just enough change for the newspaper machine into your hand, and winks.  'At least, I'm sure that's why you want a newspaper, and it's not because of anything so silly as a scavenger hunt.'[otherwise]'You'll have to think outside the box for that one.'"
+
+To say about either flag: say "[run paragraph on][if player does not have the green flag and the player does not have the red flag]'I really wouldn't know, Daniel, but perhaps you're just trying too hard.  Why don't you go take a look at how some of the other options are going?'[otherwise if player has the red flag and the player does not have the green flag]'Not bad!  That's another item off your list, isn't it?'[otherwise if player has the green flag and the player does not have the red flag]'Oh, very nice!  That's one solution we never thought of!'[otherwise if player has the green flag and the player has the red flag]'You know you only need one flag, right?'"
+
+To say about either star: say "[run paragraph on][if player does not have five-pointed star cutout and the player does not have cutout Charlie Chaplin]'You know, stars are actually giant balls of flaming gas, a million times bigger than the Earth.  How's that for an off-the-wall fact?'[otherwise if player has five-pointed star cutout and the player does not have cutout Charlie Chaplin]'You're a star, Daniel!  Anything else on the list?'[otherwise if player has cutout Charlie Chaplin and player does not have five-pointed star cutout]Michelle laughs.  'A movie star?  I guess that counts....'[otherwise if player has cutout Charlie Chaplin and the player has five-pointed star cutout]'That's two different ways of reading it.  Bit of an overkill, I'd say.'"
+
+To say about either hat: say "[run paragraph on][if player does not have little straw hat and the player does not have a paper hat]'There's bound to be someone who can help you out on this one.'  She looks down at her clipboard.  'Someone or something, somewhere.'[otherwise if player has little straw hat and the player does not have a paper hat]'Not quite your style, Daniel, but it's a nice one, all the same.'[otherwise if player does not have little straw hat and player has a paper hat]'Oh, now you're going to get ink all over your face, aren't you?  Better clean up properly tonight!'[otherwise if player has  little straw hat and the player has a paper hat]'You know you only need one hat, right?'"
+
+To say about anyone else: say "'I don't really know who has signed up for what,' says Michelle, probably trying to cover up for not actually knowing who you're talking about.  "
+
+
+After deciding the scope when Michelle is in the location: place loose change in scope. Procedural rule while asking Michelle for loose change: ignore the basic accessibility rule. [Grr]
+
+Instead of asking michelle for loose change, start conversation with Michelle on MICHELLE-ON-CHANGE instead.  MICHELLE-ON-CHANGE is a quip. The display text is "'What do you want it for, Daniel?'"
+
+MICHELLE-ON-SNACKS is a quip. The menu text is "'Snacks!'"  The display text is "Michelle frowns.  'That stuff will rot your teeth and spoil your appetite.'  Needless to say, you get no change out of her."
+MICHELLE-ON-SODA is a quip. The menu text is "'Soda pop!'"  The display text is "Michelle frowns.  'That stuff will rot your teeth and spoil your appetite.'  Needless to say, you get no change out of her."
+MICHELLE-ON-COFFEE is a quip. The menu text is "'Coffee!'"  The display text is "'Coffee?  Daniel, there aren't any coin-operated coffee machines here.  I know, I've checked.'  She glances back at the stairs and mutters, 'none that serve anything remotely drinkable, anyway.'"
+MICHELLE-ON-NEWSPAPER is a quip. The menu text is "'Newspaper!'"  The display text is "[about newspaper]"
+
+The response of MICHELLE-ON-CHANGE is { MICHELLE-ON-SNACKS, MICHELLE-ON-SODA, MICHELLE-ON-COFFEE, MICHELLE-ON-NEWSPAPER }.
+
+After populating MICHELLE-ON-CHANGE when the player has not been able to see the vending machine, remove MICHELLE-ON-NEWSPAPER from the current conversation.
+
+After firing MICHELLE-ON-NEWSPAPER: now the player carries the loose change. 
+
 
 Part 2 - Info Desk
 
@@ -583,6 +747,19 @@ After inserting the loose change into the saucer:
 
 Instead of putting something on the saucer:
 	try inserting the noun into the second noun;
+
+
+Instead of examining Michelle's pencil, say "It's a yellow stub of an HB pencil.  The eraser is gone from one end, and it looks like someone's been sharpening it with their teeth."
+Instead of taking, pushing, [Moving,] or Pulling Michelle's pencil, say "After Michelle's been chewing on it?  Eww."
+Instead of Eating Michelle's pencil, say "Sure, it's probably tastier than the dining hall chow, but Michelle isn't going to give it up so easily."
+Instead of attacking Michelle's pencil, say "While Michelle's still chewing on it? That's just rude."
+Instead of focusing on Michelle's pencil, say "You stare intently at the pencil.  It does not tie itself into a knot."
+
+Instead of Examining Michelle's hair, say "It makes her head look three times its size."
+Instead of Taking, [moving,] pushing, or pulling Michelle's hair, say "Surprisingly, it is not a wig."
+Instead of Eating Michelle's hair, say "Eww!!"
+Instead of focusing on Michelle's hair, say "You stare intently at Michelle's head.  Question now is, do you really want to creep out the counselors that badly?"
+
 
 Part 3 - Lobby East
 
@@ -663,6 +840,8 @@ Chapter 1 - Description
 
 Second Avenue is a room, west of the Info Desk. "Second Avenue runs north and south along the edge of a cliff: to the west is a sharp drop down (don't even try) onto the rooftops of the buildings along First Avenue, and beyond those are the jagged ridges of the Rockies.  Jacobs Hall -- the old part, anyway -- is open to the east, and its front lawn spreads out to the southeast.  You can also go northeast, squeezing around the newer part of Jacobs Hall to the courtyard beyond.[paragraph break]Conveniently, a bus shelter with a newspaper vending machine is almost directly outside the Hall."
 
+After reading a command when the player's command includes "ave": replace the matched text with "avenue".
+
 Chapter 2 - Scenery
 
 First Avenue is scenery, in Second Avenue. "It's a good deal more interesting than Second Avenue, that's for sure.  Unless academia is your thing."
@@ -694,7 +873,7 @@ Instead of inserting something into the vending machine:
 Instead of attacking the vending machine:
 	say "Hooliganism is not the answer to this one.";
 
-A newspaper is in the vending machine. The description of the newspaper is "You quickly scan the headlines.  War, pollution, corruption, crime, gas shortages... why anyone would want to start their day with such a sour note, you do not know."
+A newspaper is in the vending machine. The description of the newspaper is "You quickly scan the headlines.  War, pollution, corruption, crime, gas shortages... why anyone would want to start their day with such a sour note, you do not know." Understand "newspaper/paper machine/vendor" as the vending machine.
 
 Rule for printing the description of the newspaper when the newspaper is in the vending machine:
 	carry out the printing the description activity with the vending machine instead;
@@ -755,21 +934,140 @@ The Flag Football option is an option, privately-named, scenery, in Calvin Field
 
 Chapter 3 - Red Flag
 
-A red flag is in Calvin Field South. "It's a small red flag from the flag football option."
+A red flag is a thing. The description is "It's a small red flag from the flag football option."
 
-Instead of waving the red flag:
-	say "Only if you want to be dog-piled by a rabid gang of flag football players.";
+A pile of red flags is a scenery dispenser in Calvin field south. The pile of red flags vends the red flag.  Understand "flag" as the pile of red flags when the red flag is not enclosed by the location. 
 
-Instead of burning the red flag:
-	say "Even if you had a source of fire, you're not exactly the flag-burning sort.";
+Instead of waving the red flag, say "Only if you want to be dog-piled by a rabid gang of flag football players."
 
-After dropping the red flag:
-	say "It flutters to the ground.  No flag football players notice.  Thank goodness.";
+Instead of burning the red flag, say "Even if you had a source of fire, you're not exactly the flag-burning sort."
+
+After dropping the red flag: say "It flutters to the ground.  No flag football players notice.  Thank goodness."
 
 The red flag fulfills the flag-goal.
 
 Rule for printing a locale paragraph about the red flag when the red flag is not handled:
 	now the red flag is mentioned;
+
+Chapter 4 - Brad
+
+
+Section 1 - description of Brad
+
+To decide whether in chapter 8: no. [TODO]
+
+Counselor Brad Kramer is a man, in the Calvin Field South. The description of Brad Kramer is "[unless in chapter 8]Brad Kramer, your counselor for this year, looks like a typical jock, though he's been pretty awesome so far.  Normally, he's never seen without a baseball cap and that ever-present wad of chewing gum lodged in one cheek.  The gum's still there, and somehow he still manages to chew it while still holding his referee's whistle between his lips, but at the moment the cap is gone.[otherwise]Brad Kramer, your counselor for this year, normally looks like a typical jock, though at the moment he's lying unconscious by the wall.  He's wearing a set of pajamas with teddy bears printed on them, but you really don't have time right now to wonder how a cool dude like Brad could wear pajamas with teddy bears printed on them.  Oh, and in case you missed it the first time, he's also out cold, as you will be too if you keep hanging around."
+
+Understand "Counsellor" as Brad Kramer.
+
+Rule for printing the name of Brad Kramer: say "Brad".
+
+Brad Kramer wears Brad's whistle.
+
+Rule for writing a paragraph about Brad Kramer:
+	say "Your counselor, Brad Kramer, stands beside a large pile of red flags, watching the flag football game with a whistle tucked between his lips."
+
+Brad's whistle is improper-named. The printed name of Brad's whistle is "whistle".
+
+Brad carries Brad's gum.  Brad's gum is improper-named scenery. The printed name of Brad's gum is "gum".
+
+Brad's baseball cap is a thing.
+
+Brad's pajamas are a wearable thing. Understand "pyjamas/PJs" as the pajamas.
+
+
+Section 2 - actions on Brad  and his stuff
+
+[Gum (chapter 1)]
+Instead of Examining Brad's gum, say "Brad must go through a few hundred dollars['] worth of gum every year.  That, or he's been chewing on the same wad of gum since the beginning of time."
+Instead of Eating Brad's gum, say "You're not in the mood for sharing anyone's gum, least of all Brad's."
+Instead of Taking, pushing, pulling, [moving,] or touching Brad's gum, say "After Brad's been chewing on it?  Eww."
+Instead of attacking or kicking Brad's gum, say "That would require you to actually touch it...."
+Instead of focusing on Brad's gum, say "You'd really much rather not."
+
+[Whistle (chapter1)]
+Instead of Examining Brad's whistle, say "It's a standard-issue referee's whistle, the sort that high school coaches the world over have been blowing since time immemorial."
+Instead of Taking, pushing, pulling, [moving,] touching, attacking, or kicking Brad's whistle, say "That would earn you a penalty for sure."
+Instead of Eating Brad's whistle, say "No.  It would only get stuck in your throat and whistle every time you tried to talk, and that would be annoying."
+Instead of Listening to Brad's whistle, say "It's loud enough to be heard all across the field!"
+Instead of focusing on Brad's whistle, say "You stare intently at the whistle.  Suddenly, Brad blows it and starts yelling at one of the players, breaking your concentration."
+
+Instead of examining the pile of red flags, say "A pile of red flags for the flag football game.  Maybe not as exciting as tackling, but definitely less likely to cause grievious bodily damage." 
+
+[Check taking the pile of red flags when the player has a red flag, say "You don't need another one!"
+Last check taking the pile of red flags,] 
+After taking a red flag, say "Being careful to not be mistaken for another football player, you pick up one of the flags."
+Instead of Eating, attacking, or kicking the pile of red flags, say "The football players, and your counselor, wouldn't take very kindly to that."
+Instead of Pushing the pile of red flags, say "'Don't push it, Danny,' says Brad without even looking around."
+Instead of Pulling, [moving,] or searching the pile of red flags, say "You find nothing under the flags but a few more flags, and some grass."
+Instead of Touching the pile of red flags, say "Cloth."
+Instead of focusing on the pile of red flags, say "You feel a little angry, for some reason."
+
+[Pajamas, pyjamas (chapter 8)]
+Instead of Examining or focusing on Brad's Pajamas when in chapter 8, say "Teddy bears!"
+Instead of Taking or wearing Brad's Pajamas when in chapter 8, say "That's going to take more time and effort than it's worth, and anyway Aidan's not going to fall for such a flimsy disguise."
+
+[what hat-hair?]
+Instead of doing something with the baseball cap, say "There is no cap!"
+
+[The Brad!]
+Instead of Taking, [moving,] Pushing, or Pulling  The Brad, say "[unless in chapter 8]Don't be rude.[otherwise]He's too heavy!  Maybe you'd better lure Aidan out of the way and hope someone else will deal with Brad."
+Instead of attacking or Kicking The Brad, say "[unless in chapter 8]That's a sure way to get yourself kicked out of LEAP, and you don't want that.[otherwise]He looks beat up enough as it is!"
+Instead of Kissing The Brad, say "Somehow you don't think Brad would appreciate that at the moment."
+Instead of focusing on The Brad, say "[unless in chapter 8]You stare intently at Brad.  He doesn't seem to notice.[otherwise]He's unconscious!  All you can sense is that he's certainly feeling no pain."
+
+
+Section 3 - conversation with Brad
+
+[The conversation table of Brad is the table of Brad's conversation.]
+The object-based conversation table of Brad is the table of Brad's replies.
+
+Asking Brad about is conversing w/Brad.
+Asking Brad for is conversing w/Brad.
+Inquiring Brad about is conversing w/Brad.
+Talking to Brad is conversing w/Brad.
+Telling Brad about is conversing w/Brad.
+
+Instead of conversing w/Brad when in Chapter 8, say "Brad doesn't seem to hear you.  He's unconscious, remember?  And likely to be killed as well once Aidan's done with you!"
+
+Instead of asking Brad for a red flag, try inquiring Brad about the noun.
+Instead of asking Brad for the pile of red flags, try inquiring Brad about the noun.
+
+Does the player mean inquiring Brad about Brad's baseball cap: it is likely. [as opposed to the deerstalker cap]
+Does the player mean asking Brad for Brad's baseball cap: it is likely. [as opposed to the deerstalker cap]
+
+Table of Brad's replies
+conversation 	reply	
+an object [default]	"Brad doesn't reply."	
+baseball cap		"'Sorry, someone else already borrowed it.'"
+Scavenger hunt	"'Yeah, sounds like fun.'  Brad seems quite focussed on the football game.  'That's Michelle's baby, though; I wouldn't know much about it.'"
+the pile of red flags	"'There's a pile of red ones right over there,' Brad says, pointing to a heap of red flags.  'Feel free to help yourself; we've got tons.'"
+the red flag   		"'There's a pile of red ones right over there,' Brad says, pointing to a heap of red flags.  'Feel free to help yourself; we've got tons.'"
+Football 	"'You should pick up the option sometime, Dan.  A little bit of running around in the sun would do you good.  Hey, if you're anything like your brother, you should be pretty good at it, too!'"
+Aidan		"'He's pretty cool, your brother.  We shoot a few hoops now and then, with a few other guys.  You're welcome to join anytime, you know.'"
+Stacy		"'That's your friend with the hats, right?  I think I saw her dragging her roommate to one of the downstairs option.  Tell her for me that if she breaks anything, she's got to fix it herself.'"
+Ava			"'That's your friend Stacy's roommate, right?  I don't know her much at all.'"
+Michelle		"'What's to tell?  She's another counselor, just like me.'  Brad chuckles.  'We come mass-produced and packaged in boxes of six, don't you know.'"
+[Antonia		"'She's got a robotics class she's teaching this year.  You're signed up for it, I think?  Yeah, try not to bug her too much.'"]
+Claudia		"'She's a medical doctor with more qualifications than I ever thought existed.  I don't know if running an educational camp like LEAP is one of them, but I think we'll all just keep doing exactly the same stuff we were doing before.'"
+[Damon		"'Yeah, I'm going to miss the old guy.'"]
+Hank		"[Brad quips BRAD-ON-Hank-and-Joe]"
+Joe   		"[Brad quips BRAD-ON-Hank-and-Joe]"
+
+[Table of Brad's conversation
+conversation						topic
+BRAD_ON_camp-flyer		"LEAP/flyer/camp"]
+
+
+BRAD-ON-Hank-and-Joe is a quip. The display text is "Brad's lips tighten.  'Have Hank and Joe been giving you any trouble?'"
+
+BRAD-ON-yesHJ is a quip. The menu text is "'Yes, they have!'"  The display text is "Liar, liar, pants on fire!  You hesitate, then admit that, after all, they haven't given you any trouble.  Brad nods grimly and turns his attention back to the football game."
+BRAD-ON-noHJ is a quip. The menu text is "'No, they haven't.'"  The display text is "'Well, you be sure to tell me if they start picking on you, okay?'"
+BRAD-ON-yetHJ is a quip. The menu text is "'Not yet...'"  The display text is "'Well, you be sure to tell me if they start picking on you, okay?'"
+BRAD-ON-whoHJ is a quip. The menu text is "'I haven't even met them yet!'"  The display text is "'Their reputation precedes them, I see,' Brad says drily."
+
+The response of BRAD-ON-Hank-and-Joe is { BRAD-ON-yesHJ, BRAD-ON-noHJ, BRAD-ON-yetHJ, BRAD-ON-whoHJ }.
+
 
 Part 6 - Calvin Field North
 
@@ -810,7 +1108,7 @@ A flagpole is scenery, in Front Lawn. "It's keeping the good ol' Star-spangled B
 Instead of climbing the flagpole:
 	say "You're not that good an athlete.";
 
-The Star-Spangled Banner is scenery, part of the flagpole. "It's not exactly the dawn's early light, but you can see it quite clearly, drifting in the wind high overhead." Understand "flag" as the Star-Spangled Banner.
+The Star-Spangled Banner is scenery, part of the flagpole. "It's not exactly the dawn's early light, but you can see it quite clearly, drifting in the wind high overhead." Understand "flag" as the Star-Spangled Banner when the player has been able to see the star-spangled banner. [using "has been able to see" as a built-in knows-about]
 
 The Star-Spangled Banner fulfills the flag-goal.
 
@@ -1247,8 +1545,7 @@ Rule for printing a locale paragraph about Stacy Alexander during Scavenger Hunt
 
 Section 2 - Conversation
 
-Instead of asking Stacy about "hat":
-	start conversation with Stacy on Q_STACY_0;
+Instead of inquiring Stacy about the little straw hat, start conversation with Stacy on Q_STACY_0.
 
 Q_STACY_0 is a quip. The display text is "'Hey, Stacy,' you say, 'I don't suppose I could borrow your hat for a bit, could I?'[paragraph break]'What?  What am I supposed to wear, then?'"
 
@@ -1877,7 +2174,7 @@ When Trailing Lucian begins:
 GOAL_FOCUS is a goal. The printed name is "investigate odd sensations".
 
 A goal-scoring rule for GOAL_FOCUS:
-	if we have focussed on the lachrymose trail:
+	if we have focused on the lachrymose trail:
 		goal achieved;
 
 After printing the description of the lachrymose trail during Trailing Lucian:
@@ -1889,19 +2186,19 @@ Rule for firing relevant TRIG_FOCUS_HINT:
 	say paragraph break;
 	say "'Daniel,' says Ava, 'Daniel, you're getting that funny look again.  Is whatever-it-is somewhere around here?'[paragraph break]'Try to focus,' says Stacy. ";
 
-A focussing rule for the lachrymose trail when in Info Desk:
+A focusing rule for the lachrymose trail when in Info Desk:
 	say "Concentrating on the flavour, you sense an undercurrent of something salty as well, like tears.  You can also tell that this is all definitely part of a trail of some sort, going off to the east and the north. [paragraph break]";
 
-A focussing rule for the lachrymose trail when in First Floor Midpoint:
+A focusing rule for the lachrymose trail when in First Floor Midpoint:
 	say "Concentrating on the flavour, you sense an undercurrent of salt tears.  Both sour and salt seem to form a line between the Info Desk and the stairs going down. [paragraph break]"
 
-A focussing rule for the lachrymose trail when in Pits Stairwell:
+A focusing rule for the lachrymose trail when in Pits Stairwell:
 	say "Concentrating on the flavour, you sense an undercurrent of salt tears.  Both sour and salt seem to trail off to the west and to the stairs going up. [paragraph break]"
 
-A focussing rule for the lachrymose trail when in Pits West:
+A focusing rule for the lachrymose trail when in Pits West:
 	say "Concentrating on the flavour, you sense an undercurrent of salt tears.  They trail off to the east, but seem strongest around one of the doors to the south. [paragraph break]";
 
-Last focussing rule for the lachrymose trail:
+Last focusing rule for the lachrymose trail:
 	fire TRIG_TRAIL;
 
 TRIG_TRAIL is a trigger.
@@ -2122,10 +2419,10 @@ A goal-scoring rule for GOAL_CRYSTAL:
 
 Chapter 1 - New trail
 
-Instead of focussing on a room during Crystal Quest:
+Instead of focusing on a room during Crystal Quest:
 	say "Now that you think about it, there are so many alien sensations swirling around, most of them so faint you're not sure if you're just imagining them.  You really don't know which sensation you really want.";
 
-Before focussing on Info Desk during Crystal Quest:
+Before focusing on Info Desk during Crystal Quest:
 	now the player can sense the oily trail;
 	redirect the action from the Info Desk to the oily trail, and try that instead;
 
@@ -2133,20 +2430,20 @@ The oily trail is an emotional residue. The oily trail taints Info Desk, First F
 
 Understand "burnt", "stench", "engine oil", "oil", "monkey's chatter", "chatter", "path" as the oily trail.
 
-A focussing rule for the oily trail when in Info Desk:
+A focusing rule for the oily trail when in Info Desk:
 	say "[one of]You close your eyes and stand near the door to Calvin Field.  You know Lucian's trail begins just outside this door.  Concentrating on the area in question, you[or]You[stopping] sense the beginning of another trail, one that smells of burnt engine oil and sounds like a monkey's chatter dropped several octaves and sped up.  It traces the same path back towards the dorms to the north. [paragraph break]";
 
-A focussing rule for the oily trail when in First Floor Midpoint:
+A focusing rule for the oily trail when in First Floor Midpoint:
 	say "That unpleasant smell, and its accompanying sound, seems to trace a path from the Info Desk to the eastern end of the hallway. [paragraph break]";
 
-A focussing rule for the oily trail when in First Floor Rooms East:
+A focusing rule for the oily trail when in First Floor Rooms East:
 	say "You can trace that unpleasant smell, and its accompanying sound, to one of the rooms to the south.  The door is open on an already messy room, and with a shock you realise that you are not sensing that burnt-oil smell with your nose at all: it's just registering in your mind as a smell.  Same goes for the sound of low-pitched chattering. [paragraph break]";
 
 Chapter 2 - Bullies
 
 Section 1 - Initial encounter
 
-Last focussing rule for the oily trail when in First Floor Rooms East and TRIG_BULLIES is unfired during Crystal Quest:
+Last focusing rule for the oily trail when in First Floor Rooms East and TRIG_BULLIES is unfired during Crystal Quest:
 	fire TRIG_BULLIES;
 
 TRIG_BULLIES is a trigger.
