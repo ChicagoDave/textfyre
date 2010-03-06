@@ -10,6 +10,7 @@
 
 #import "TFEngine.h"
 #import "TFUlxImage.h"
+#import "TFArguments.h"
 
 
 // RAM addresses of compiler-generated global variables
@@ -66,16 +67,17 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
 {
     if ([self Z__Region:obj] != 1)
     {
-        [engine nestedCallAtAddress:rt_err_fn arg:23 arg:obj];
+        [engine nestedCallAtAddress:rt_err_fn args:[TFArguments argumentsWithArg:23 arg:obj]];
         return 0;
     }
 
     uint32_t otab = [engine.image integerAtOffset:obj + 16];
-    if (otab == 0)
+    if (otab == 0) {
         return 0;
+    }
     uint32_t max = [engine.image integerAtOffset:otab];
     otab += 4;
-    return e.PerformBinarySearch(identifier, 2, otab, 10, max, 0, SearchOptions.None];
+    return [engine performBinarySearchWithKey:identifier keySize:2 start:otab structSize:10 numStructs:max keyOffset:0 options:TFSearchOptionsNone];
 }
 
 /*! finds the location of an object ("parent()" function) */
@@ -119,7 +121,7 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
 
             if ([self parent:class] != class_mc)
             {
-                [engine nestedCallAtAddress:rt_err_fn arg:ofclass_err arg:class arg:0xFFFFFFFF];
+                [engine nestedCallAtAddress:rt_err_fn args:[TFArguments argumentsWithArg:ofclass_err arg:class arg:0xFFFFFFFF]];
                 return 0;
             }
 
@@ -208,7 +210,7 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
 - (uint32_t)RT__ChLDW:(uint32_t)array offset:(uint32_t)offset {
     uint32_t address = array + 4 * offset;
     if (address >= engine.image.endMemory) {
-        return [engine nestedCallAtAddress:rt_err_fn arg:25];
+        return [engine nestedCallAtAddress:rt_err_fn args:[TFArguments argumentsWithArg:25]];
     }
     return [engine.image integerAtOffset:address];
 }
@@ -221,7 +223,7 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
             return [engine.image integerAtOffset:cpv_start + 4 * identifier];
         }
 
-        [engine nestedCallAtAddress:rt_err_fn arg:readprop_err arg:obj arg:identifier];
+        [engine nestedCallAtAddress:rt_err_fn args:[TFArguments argumentsWithArg:readprop_err arg:obj arg:identifier]];
         return 0;
     }
 
@@ -268,22 +270,21 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
 - (uint32_t)RT__ChSTW:(uint32_t)array offset:(uint32_t)offset value:(uint32_t)value {
     uint32_t address = array + 4 * offset;
     if (address >= engine.image.endMemory || address < engine.image.RAMStart) {
-        return [engine nestedCallAtAddress:rt_err_fn arg:27];
+        return [engine nestedCallAtAddress:rt_err_fn args:[TFArguments argumentsWithArg:27]];
     }
     else {
-        [engine.image writeInt32(address, val];
+        [engine.image setInteger:value atOffset:address];
         return 0;
     }
 }
 
 // performs bounds checking when reading from a byte array ("->" operator)
-- (uint32_t)RT__ChLDB(Engine e:(uint32_t) array:(uint32_t) offset)
-{
+- (uint32_t)RT__ChLDB:(uint32_t)array offset:(uint32_t)offset {
     uint32_t address = array + offset;
-    if (address >= engine.image.EndMem)
-        return [engine nestedCallAtAddress:rt_err_fn, 24];
+    if (address >= engine.image.endMemory)
+        return [engine nestedCallAtAddress:rt_err_fn args:[TFArguments argumentsWithArg:24]];
 
-    return engine.image.ReadByte(address];
+    return [engine.image byteAtOffset:address];
 }
 
 // determines the metaclass of a routine, string, or object ("metaclass()" function)
@@ -303,8 +304,6 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
         default:
             return 0;
     }
-}
-}
 }
 
 #pragma mark APIs
@@ -370,39 +369,44 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
             intercepted = YES;
         } else if (address == oc_cl_fn)
         {
-            (*result) = [self OC__Cl:[args argAtIndex:0], [args argAtIndex:1]];
+            (*result) = [self OC__Cl:[args argAtIndex:0] class:[args argAtIndex:1]];
             intercepted = YES;
         } else if (address == ra_pr_fn)
         {
-            (*result) = [self RA__Pr:[args argAtIndex:0], [args argAtIndex:1]];
+            (*result) = [self RA__Pr:[args argAtIndex:0] identifier:[args argAtIndex:1]];
             intercepted = YES;
         } else if (address == rt_chldw_fn)
         {
-            (*result) = [self RT__ChLDW:[args argAtIndex:0], [args argAtIndex:1]];
+            (*result) = [self RT__ChLDW:[args argAtIndex:0] offset:[args argAtIndex:1]];
             intercepted = YES;
         } else if (address == unsigned_compare_fn)
         {
-            (*result) = [self (uint)[args argAtIndex:0].CompareTo(args.arg2];
+            if ([args argAtIndex:0] < [args argAtIndex:1]) {
+                (*result) = -1;
+            } else if ([args argAtIndex:0] < [args argAtIndex:1]) {
+                (*result) = 1;
+            }
+            // result is set to 0 at top of method, so equality case is also covered.
             intercepted = YES;
         } else if (address == rl_pr_fn)
         {
-            (*result) = [self RL__Pr:[args argAtIndex:0], [args argAtIndex:1]];
+            (*result) = [self RL__Pr:[args argAtIndex:0] identifier:[args argAtIndex:1]];
             intercepted = YES;
         } else if (address == rv_pr_fn)
         {
-            (*result) = [self RV__Pr:[args argAtIndex:0], [args argAtIndex:1]];
+            (*result) = [self RV__Pr:[args argAtIndex:0] identifier:[args argAtIndex:1]];
             intercepted = YES;
         } else if (address == op_pr_fn)
         {
-            (*result) = [self OP__Pr:[args argAtIndex:0], [args argAtIndex:1]];
+            (*result) = [self OP__Pr:[args argAtIndex:0] identifier:[args argAtIndex:1]];
             intercepted = YES;
         } else if (address == rt_chstw_fn)
         {
-            (*result) = [self RT__ChSTW:[args argAtIndex:0], [args argAtIndex:1], [args argAtIndex:2]];
+            (*result) = [self RT__ChSTW:[args argAtIndex:0] offset:[args argAtIndex:1] value:[args argAtIndex:2]];
             intercepted = YES;
         } else if (address == rt_chldb_fn)
         {
-            (*result) = [self RT__ChLDB:[args argAtIndex:0], [args argAtIndex:1]];
+            (*result) = [self RT__ChLDB:[args argAtIndex:0] offset:[args argAtIndex:1]];
             intercepted = YES;
         } else if (address == meta_class_fn)
         {

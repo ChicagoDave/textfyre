@@ -37,6 +37,12 @@
 @property (readonly) NSInteger storeArgs;
 @property (readonly) NSString *ruleName;
 
+/*! Attempts to read in opcode information from plist.
+
+    On success, returns autoreleased dictionary.
+    
+    On failure, returns nil, at which point technical details will be printed to Console.
+ */
 + (NSDictionary *)opcodeDictionary;
 
 @end

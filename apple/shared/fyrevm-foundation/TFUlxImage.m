@@ -15,7 +15,12 @@
 //#define ENCRYPTED_GAMES_ONLY
 
 
-/*! Returns non-nil autoreleased NSMutableData on success, nil on failure, at which point technical details will be printed to Console. */
+/*! Attempts to load Glulx (.ulx) game image file into memory and decrypt it.
+
+    On success, returns autoreleased data.
+    
+    On failure, returns nil, at which point technical details will be printed to Console.
+ */
 static NSMutableData *decryptedDataForPath(NSString *path) {
     //
     // Read in file
@@ -170,16 +175,13 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
 }
 
 - (void)setEndMemory:(uint32_t)newEndMemory {
-    NSAssert(NO, @"setEndMemory: not yet implemented!");
-
     // round up to the next multiple of 256
-    if (newEndMemory % 256 != 0)
+    if (newEndMemory % 256 != 0) {
         newEndMemory = (newEndMemory + 255) & 0xFFFFFF00;
-
-
+    }
 
     if (newEndMemory != endMemory) {
-        if (endMemory < newEndMemory) {
+        if (newEndMemory < endMemory) {
             // Making memory smaller? Don't go through extra work of copying to new location, just use the old version.
         } else if (endMemory < [decryptedData length]) {
             // Making memory larger, but less than length of original data read from disk? Don't go through extra work of copying to new location, just use the old version.

@@ -11,6 +11,8 @@
 #import "TFUlxImage.h"
 #import "TFVeneer.h"
 #import "TFArguments.h"
+#import "GlulxConstants.h"
+#import "TFEngine_Output.h"
 
 
 @implementation TFEngine (Opcodes)
@@ -584,45 +586,45 @@
 // loadArgs: 1
 - (void)op_streamchar:(TFArguments *)args
 {
-    StreamCharCore((byte)[args argAtIndex:0]];
+    // TODO
+    //StreamCharCore((uint8_t)[args argAtIndex:0]];
 }
 
 // opcode: 0x73
 // name: streamunichar
 // loadArgs: 1
-- (void)op_streamunichar:(TFArguments *)args
-{
-    StreamCharCore([args argAtIndex:0]];
+- (void)op_streamunichar:(TFArguments *)args {
+    // TODO
+//    [self streamCharCore:[args argAtIndex:0]];
 }
 
-- (void)StreamCharCore(uint32_t value)
-{
-    if (outputSystem == IOSystem.Filter)
-    {
-        [self performCallWithAddress:filterAddress, new uint32_t *{ value }, TFGlulxStubStoreNULL, 0);
-    }
-    else
-    {
-        SendCharToOutput(value);
+- (void)streamCharCore:(uint32_t)value {
+    if (outputSystem == TFIOSystemFilter) {
+        [self performCallWithAddress:filterAddress args:[TFArguments argumentsWithArg:value] destType:TFGlulxStubStoreNULL destAddr:0];
+    } else {
+        // TODO
+        //SendCharToOutput(value);
     }
 }
 
 // opcode: 0x71
 // name: streamnum
 // loadArgs: 1
-- (void)op_streamnum:(TFArguments *)args
-{
-    if (outputSystem == IOSystem.Filter)
-    {
-        PushCallStub(new CallStub(GLULX_STUB_RESUME_FUNC, 0, pc, fp));
+- (void)op_streamnum:(TFArguments *)args {
+    if (outputSystem == TFIOSystemFilter) {
+        [self pushCallStub:TFMakeCallStub(TFGlulxStubResumeFunction, 0, pc, fp)];
+/*
+        TODO
         string num = ((int)[args argAtIndex:0]).ToString();
         [self performCallWithAddress:filterAddress, new uint32_t *{ (uint32_t)num[0] },
-            GLULX_STUB_RESUME_NUMBER, 1, [args argAtIndex:0]];
-    }
-    else
-    {
+            TFGlulxStubResumeNumber, 1, [args argAtIndex:0]];
+*/
+    } else {
+/*
+        TODO
         string num = ((int)[args argAtIndex:0]).ToString();
         SendStringToOutput(num);
+*/
     }
 }
 
@@ -631,21 +633,21 @@
 // loadArgs: 1
 - (void)op_streamstr:(TFArguments *)args
 {
-    if (outputSystem == IOSystem.Null)
+    if (outputSystem == TFIOSystemNull) {
         return;
-
+    }
+/*
+    TODO
     uint32_t address = [args argAtIndex:0];
-    byte type = image.ReadByte(address);
+    uint8_t type = [image byteAtOffset:address];
 
     // for retrying a compressed string after we discover it needs a call stub
-    byte savedDigit = 0;
+    uint8_t savedDigit = 0;
     StrNode savedNode = null;
 
     // if we're not using the userland output filter, and the string is uncompressed (or contains no indirect references), we can just print it right here.
-    if (outputSystem != IOSystem.Filter)
-    {
-        switch (type)
-        {
+    if (outputSystem != IOSystem.Filter) {
+        switch (type) {
             case 0xE0:
                 // C string
                 SendStringToOutput(ReadCString(address + 1));
@@ -714,6 +716,7 @@
         default:
             throw new VMException(string.Format("Invalid string type {0:X}h", type));
     }
+*/
 }
 
 // opcode: 0x130
@@ -723,8 +726,9 @@
 - (void)op_glk:(TFArguments *)args
 {
     // not really supported, just clear the stack
-    for (uint32_t i = 0; i < [args argAtIndex:1]; i++)
-        Pop();
+    for (uint32_t i = 0; i < [args argAtIndex:1]; i++) {
+        [self pop];
+    }
     [args setArg:0 atIndex:2];
 }
 
@@ -742,8 +746,8 @@
 // loadArgs: 1
 - (void)op_setstringtbl:(TFArguments *)args
 {
-    decodingTable = [args argAtIndex:0];
-    CacheDecodingTable();
+    decodingTable = [args argAtIndex:0];   
+    [self cacheDecodingTable];
 }
 
 // opcode: 0x148
@@ -752,19 +756,18 @@
 // storeArgs: 2
 - (void)op_getiosys:(TFArguments *)args
 {
-    switch (outputSystem)
-    {
-        case IOSystem.Null:
+    switch (outputSystem) {
+        case TFIOSystemNull:
             [args setArg:0 atIndex:0];
             [args setArg:0 atIndex:1];
             break;
 
-        case IOSystem.Filter:
+        case TFIOSystemFilter:
             [args setArg:1 atIndex:0];
             [args setArg:filterAddress atIndex:1];
             break;
 
-        case IOSystem.Channels:
+        case TFIOSystemChannels:
             [args setArg:20 atIndex:0];
             [args setArg:0 atIndex:1];
             break;
@@ -777,7 +780,8 @@
 // storeArgs: 0
 - (void)op_setiosys:(TFArguments *)args
 {
-    SelectOutputSystem([args argAtIndex:0], [args argAtIndex:1]];
+    // TODO
+    //SelectOutputSystem([args argAtIndex:0], [args argAtIndex:1]];
 }
 
 #pragma mark Memory Management
@@ -797,16 +801,14 @@
 // storeArgs: 1
 - (void)op_setmemsize:(TFArguments *)args
 {
-    if (heap != null)
-        throw new VMException("setmemsize is not allowed while the heap is active");
-
-    try
-    {
+    if (heap != nil) {
+    // TODO
+//        throw new VMException("setmemsize is not allowed while the heap is active");
+    }
+    @try {
         image.endMemory = [args argAtIndex:0];
         [args setArg:0 atIndex:1];
-    }
-    catch
-    {
+    } @catch(...) {
         [args setArg:1 atIndex:1];
     }
 }
@@ -816,8 +818,10 @@
 // loadArgs: 2
 - (void)op_mzero:(TFArguments *)args
 {
-    for (uint32_t i = 0; i < [args argAtIndex:0]; i++)
-        image.WriteByte([args argAtIndex:1] + i, 0);
+    // TODO should be able to do this faster than this
+    for (uint32_t i = 0; i < [args argAtIndex:0]; i++) {
+        [image setByte:0 atOffset:[args argAtIndex:1] + i];
+    }
 }
 
 // opcode: 0x171
@@ -827,27 +831,24 @@
 {
     if ([args argAtIndex:2] < [args argAtIndex:1])
     {
-        for (uint32_t i = 0; i < [args argAtIndex:0]; i++)
-            image.WriteByte([args argAtIndex:2] + i, image.ReadByte([args argAtIndex:1] + i));
-    }
-    else
-    {
-        for (uint32_t i = [args argAtIndex:0] - 1; i >= 0; i--)
-            image.WriteByte([args argAtIndex:2] + i, image.ReadByte([args argAtIndex:1] + i));
+        for (uint32_t i = 0; i < [args argAtIndex:0]; i++) {
+            [image setByte:[image byteAtOffset:[args argAtIndex:1] + i] atOffset:[args argAtIndex:2] + i];
+        }
+    } else {
+        for (uint32_t i = [args argAtIndex:0] - 1; i >= 0; i--) {
+            [image setByte:[image byteAtOffset:[args argAtIndex:1] + i] atOffset:[args argAtIndex:2] + i];
+        }
     }
 }
 
-private bool HandleHeapMemoryRequest(uint32_t newEndMem)
-{
-    try
-    {
+- (BOOL)handleHeapMemoryRequest:(uint32_t)newEndMem {
+    @try {
         image.endMemory = newEndMem;
-        return true;
+    } @catch(...) {
+        return NO;
     }
-    catch
-    {
-        return false;
-    }
+
+    return YES;
 }
 
 // opcode: 0x178
@@ -857,14 +858,14 @@ private bool HandleHeapMemoryRequest(uint32_t newEndMem)
 - (void)op_malloc:(TFArguments *)args
 {
     uint32_t size = [args argAtIndex:0];
-    if ((int)size <= 0)
-    {
+    if ((int)size <= 0) {
         [args setArg:0 atIndex:1];
         return;
     }
 
-    if (heap == null)
-    {
+    if (heap == nil) {
+        // TODO
+        /*
         uint32_t oldEndMem = image.endMemory;
         heap = new HeapAllocator(oldEndMem, HandleHeapMemoryRequest);
         heap.MaxSize = maxHeapSize;
@@ -874,10 +875,10 @@ private bool HandleHeapMemoryRequest(uint32_t newEndMem)
             heap = null;
             image.endMemory = oldEndMem;
         }
-    }
-    else
-    {
-        [args argAtIndex:1] = heap.Alloc(size);
+        */
+    } else {
+        // TODO
+        //[args setArg:heap.Alloc(size) atIndex:1];
     }
 }
 
@@ -886,26 +887,29 @@ private bool HandleHeapMemoryRequest(uint32_t newEndMem)
 // loadArgs: 1
 - (void)op_mfree:(TFArguments *)args
 {
-    if (heap != NULL)
-    {
+    if (heap != nil) {
+/*
+        // TODO
         heap.Free([args argAtIndex:0]];
         if (heap.BlockCount == 0)
         {
             image.endMemoryory = heap.Address;
             heap = NULL;
         }
+*/
     }
 }
 
 #pragma mark Searching
 
-private bool KeyIsZero(uint32_t address, uint32_t size)
-{
-    for (uint32_t i = 0; i < size; i++)
-        if (image.ReadByte(address + i) != 0)
-            return false;
+- (BOOL)keyIsZeroAtAddress:(uint32_t)address size:(uint32_t)size {
+    for (uint32_t i = 0; i < size; i++) {
+        if ([image byteAtOffset:address + i] != 0) {
+            return NO;
+        }
+    }
 
-    return true;
+    return YES;
 }
 
 // opcode: 0x150
@@ -917,38 +921,38 @@ private bool KeyIsZero(uint32_t address, uint32_t size)
     uint32_t key = [args argAtIndex:0];
     uint32_t keySize = [args argAtIndex:1];
     uint32_t start = [args argAtIndex:2];
-    uint32_t structSize = args[3];
-    uint32_t numStructs = args[4];
-    uint32_t keyOffset = args[5];
-    SearchOptions options = (SearchOptions)args[6];
+    uint32_t structSize = [args argAtIndex:3];
+    uint32_t numStructs = [args argAtIndex:4];
+    uint32_t keyOffset = [args argAtIndex:5];
+    TFSearchOptions options = (TFSearchOptions)[args argAtIndex:6];
 
-    if (keySize > 4 && (options & SearchOptions.KeyIndirect) == 0)
-        throw new VMException("KeyIndirect option must be used when searching for a >4 byte key");
+    if (keySize > 4 && (options & TFSearchOptionsKeyIndirect) == 0) {
+        // TODO
+        //throw new VMException("KeyIndirect option must be used when searching for a >4 byte key");
+    }
 
-    uint32_t result = (options & SearchOptions.KeyIndirect) == 0 ? 0 : 0xFFFFFFFF;
+    uint32_t result = (options & TFSearchOptionsKeyIndirect) == 0 ? 0 : 0xFFFFFFFF;
 
-    for (uint32_t index = 0; index < numStructs; index++)
-    {
-        if ((options & SearchOptions.ZeroKeyTerminates) != 0 &&
-            KeyIsZero(start + index * structSize + keyOffset, keySize))
-        {
+    for (uint32_t index = 0; index < numStructs; index++) {
+        if ((options & TFSearchOptionsZeroKeyTerminates) != 0 &&
+            [self keyIsZeroAtAddress:start + index * structSize + keyOffset size:keySize]) {
             // stop searching, even if this key would match
             break;
         }
 
-        int cmp = CompareKeys(key, start + index * structSize + keyOffset, keySize, options);
-        if (cmp == 0)
-        {
+        int cmp = [self compareKeysWithQuery:key candidate:start + index * structSize + keyOffset keySize:keySize options:options];
+        if (cmp == 0) {
             // found it
-            if ((options & SearchOptions.ReturnIndex) == 0)
+            if ((options & TFSearchOptionsReturnIndex) == 0) {
                 result = start + index * structSize;
-            else
+            } else {
                 result = index;
+            }
             break;
         }
     }
 
-    args[7] = result;
+    [args setArg:result atIndex:7];
 }
 
 // opcode: 0x151
@@ -960,12 +964,12 @@ private bool KeyIsZero(uint32_t address, uint32_t size)
     uint32_t key = [args argAtIndex:0];
     uint32_t keySize = [args argAtIndex:1];
     uint32_t start = [args argAtIndex:2];
-    uint32_t structSize = args[3];
-    uint32_t numStructs = args[4];
-    uint32_t keyOffset = args[5];
-    SearchOptions options = (SearchOptions)args[6];
+    uint32_t structSize = [args argAtIndex:3];
+    uint32_t numStructs = [args argAtIndex:4];
+    uint32_t keyOffset = [args argAtIndex:5];
+    TFSearchOptions options = (TFSearchOptions)[args argAtIndex:6];
 
-    args[7] = PerformBinarySearch(key, keySize, start, structSize, numStructs, keyOffset, options);
+    [args setArg:[self performBinarySearchWithKey:key keySize:keySize start:start structSize:structSize numStructs:numStructs keyOffset:keyOffset options:options] atIndex:7];
 }
 
 // opcode: 0x152
@@ -977,35 +981,33 @@ private bool KeyIsZero(uint32_t address, uint32_t size)
     uint32_t key = [args argAtIndex:0];
     uint32_t keySize = [args argAtIndex:1];
     uint32_t start = [args argAtIndex:2];
-    uint32_t keyOffset = args[3];
-    uint32_t nextOffset = args[4];
-    SearchOptions options = (SearchOptions)args[5];
+    uint32_t keyOffset = [args argAtIndex:3];
+    uint32_t nextOffset = [args argAtIndex:4];
+    TFSearchOptions options = (TFSearchOptions)[args argAtIndex:5];
 
     uint32_t result = 0;
     uint32_t node = start;
 
     while (node != 0)
     {
-        if ((options & SearchOptions.ZeroKeyTerminates) != 0 &&
-            KeyIsZero(node + keyOffset, keySize))
-        {
+        if ((options & TFSearchOptionsZeroKeyTerminates) != 0 &&
+            [self keyIsZeroAtAddress:node + keyOffset size:keySize]) {
             // stop searching, even if this key would match
             break;
         }
 
-        int cmp = CompareKeys(key, node + keyOffset, keySize, options);
-        if (cmp == 0)
-        {
+        int cmp = [self compareKeysWithQuery:key candidate:node + keyOffset keySize:keySize options:options];
+        if (cmp == 0) {
             // found it
             result = node;
             break;
         }
 
         // advance to next item
-        node = image.ReadInt32(node + nextOffset);
+        node = [image integerAtOffset:node + nextOffset];
     }
 
-    args[6] = result;
+    [args setArg:result atIndex:6];
 }
 
 #pragma mark Stack Manipulation
@@ -1025,11 +1027,13 @@ private bool KeyIsZero(uint32_t address, uint32_t size)
 // storeArgs: 1
 - (void)op_stkpeek:(TFArguments *)args
 {
-    uint32_t position = sp - 4 * (1 + [args argAtIndex:0]];
-    if (position < (fp + frameLen))
-        throw new VMException("Stack underflow");
+    uint32_t position = sp - 4 * (1 + [args argAtIndex:0]);
+    if (position < (fp + frameLen)) {
+        // TODO
+        //throw new VMException("Stack underflow");
+    }
 
-    [args setArg:ReadFromStack(position) atIndex:1];
+    [args setArg:[self readFromStack:position] atIndex:1];
 }
 
 // opcode: 0x52
@@ -1037,13 +1041,15 @@ private bool KeyIsZero(uint32_t address, uint32_t size)
 // loadArgs: 0
 - (void)op_stkswap:(TFArguments *)args
 {
-    if (sp - (fp + frameLen) < 8)
-        throw new VMException("Stack underflow");
+    if (sp - (fp + frameLen) < 8) {
+        // TODO
+        //throw new VMException("Stack underflow");
+    }
 
-    uint32_t a = Pop();
-    uint32_t b = Pop();
-    Push(a);
-    Push(b);
+    uint32_t a = [self pop];
+    uint32_t b = [self pop];
+    [self push:a];
+    [self push:b];
 }
 
 // opcode: 0x53
@@ -1054,30 +1060,37 @@ private bool KeyIsZero(uint32_t address, uint32_t size)
     int items = (int)[args argAtIndex:0];
     int distance = (int)[args argAtIndex:1];
 
-    if (items != 0)
-    {
+    if (items != 0) {
         distance %= items;
 
-        if (distance != 0)
-        {
+        if (distance != 0) {
             // rolling X items down Y slots == rolling X items up X-Y slots
-            if (distance < 0)
+            if (distance < 0) {
                 distance += items;
+            }
 
-            if (sp - (fp + frameLen) < 4 * items)
-                throw new VMException("Stack underflow");
-
+            if (sp - (fp + frameLen) < 4 * items) {
+                // TODO
+                //throw new VMException("Stack underflow");
+            }
+/*
+            // TODO
             Stack<uint32_t> temp1 = new Stack<uint32_t>(distance);
             Stack<uint32_t> temp2 = new Stack<uint32_t>(items - distance);
 
-            for (int i = 0; i < distance; i++)
+            for (int i = 0; i < distance; i++) {
                 temp1.Push(Pop());
-            for (int i = distance; i < items; i++)
+            }
+            for (int i = distance; i < items; i++) {
                 temp2.Push(Pop());
-            while (temp1.Count > 0)
+            }
+            while (temp1.Count > 0) {
                 Push(temp1.Pop());
-            while (temp2.Count > 0)
+            }
+            while (temp2.Count > 0) {
                 Push(temp2.Pop());
+            }
+*/
         }
     }
 }
@@ -1088,26 +1101,29 @@ private bool KeyIsZero(uint32_t address, uint32_t size)
 - (void)op_stkcopy:(TFArguments *)args
 {
     uint32_t bytes = [args argAtIndex:0] * 4;
-    if (bytes > sp - (fp + frameLen))
-        throw new VMException("Stack underflow");
+    if (bytes > sp - (fp + frameLen)) {
+        // TODO
+        //throw new VMException("Stack underflow");
+    }
 
     uint32_t start = sp - bytes;
-    while (bytes-- > 0)
+    while (bytes-- > 0) {
         stack[sp++] = stack[start++];
+    }
 }
 
-private enum Gestalt
+typedef enum _TFGestalt
 {
-    GlulxVersion = 0,
-    TerpVersion = 1,
-    ResizeMem = 2,
-    Undo = 3,
-    IOSystem = 4,
-    Unicode = 5,
-    MemCopy = 6,
-    MAlloc = 7,
-    MAllocHeap = 8,
-}
+    TFGestaltGlulxVersion = 0,
+    TFGestaltTerpVersion = 1,
+    TFGestaltResizeMem = 2,
+    TFGestaltUndo = 3,
+    TFGestaltIOSystem = 4,
+    TFGestaltUnicode = 5,
+    TFGestaltMemCopy = 6,
+    TFGestaltMAlloc = 7,
+    TFGestaltMAllocHeap = 8,
+} TFGestalt;
 
 // opcode: 0x100
 // name: gestalt
@@ -1115,37 +1131,39 @@ private enum Gestalt
 // storeArgs: 1
 - (void)op_gestalt:(TFArguments *)args
 {
-    Gestalt selector = (Gestalt)[args argAtIndex:0];
+    TFGestalt selector = (TFGestalt)[args argAtIndex:0];
     switch (selector)
     {
-        case Gestalt.GlulxVersion:
+        case TFGestaltGlulxVersion:
             [args setArg:0x00030100 atIndex:2];
             break;
 
-        case Gestalt.TerpVersion:
+        case TFGestaltTerpVersion:
             [args setArg:0x00000900 atIndex:2];
             break;
 
-        case Gestalt.ResizeMem:
-        case Gestalt.Undo:
-        case Gestalt.Unicode:
-        case Gestalt.MemCopy:
-        case Gestalt.MAlloc:
+        case TFGestaltResizeMem:
+        case TFGestaltUndo:
+        case TFGestaltUnicode:
+        case TFGestaltMemCopy:
+        case TFGestaltMAlloc:
             [args setArg:1 atIndex:2];
             break;
 
-        case Gestalt.IOSystem:
+        case TFGestaltIOSystem:
             if ([args argAtIndex:1] == 0 || [args argAtIndex:1] == 1 || [args argAtIndex:1] == 20)
                 [args setArg:1 atIndex:2];
             else
                 [args setArg:0 atIndex:2];
             break;
 
-        case Gestalt.MAllocHeap:
-            if (heap == null)
+        case TFGestaltMAllocHeap:
+            if (heap == nil) {
                 [args setArg:0 atIndex:2];
-            else
-                [args setArg:heap.Address atIndex:2];
+            } else {
+                // TODO
+                //[args setArg:heap.Address atIndex:2];
+            }
             break;
 
         default:
@@ -1160,8 +1178,9 @@ private enum Gestalt
 // loadArgs: 1
 - (void)op_debugtrap:(TFArguments *)args
 {
-    uint32_t status = [args argAtIndex:0];
-    System.Diagnostics.Debugger.Break();
+    // TODO
+    //uint32_t status = [args argAtIndex:0];
+    //System.Diagnostics.Debugger.Break();
 }
 
 #pragma mark Game State
@@ -1190,7 +1209,8 @@ private enum Gestalt
 // loadArgs: 0
 - (void)op_restart:(TFArguments *)args
 {
-    Restart();
+    // TODO
+    //Restart();
 }
 
 // opcode: 0x123
@@ -1199,24 +1219,18 @@ private enum Gestalt
 // rule: DelayedStore
 - (void)op_save:(TFArguments *)args
 {
-    if (nestingLevel == 0 && SaveRequested != null)
-    {
+/*
+    TODO
+    if (nestingLevel == 0 && SaveRequested != null) {
         SaveRestoreEventArgs e = new SaveRestoreEventArgs();
         SaveRequested(this, e);
-        if (e.Stream != null)
-        {
-            try
-            {
-                do
-                {
-                    try
-                    {
+        if (e.Stream != nil) {
+            @try {
+                do {
+                    @try {
                         SaveToStream(e.Stream, [args argAtIndex:1], [args argAtIndex:2]];
-                    }
-                    catch (Exception ex)
-                    {
-                        if (SaveRestoreError != null)
-                        {
+                    } @catch (NSException *ex) {
+                        if (SaveRestoreError != null) {
                             SaveRestoreErrorEventArgs ee = new SaveRestoreErrorEventArgs();
                             ee.WasSaving = true;
                             ee.Exception = ex;
@@ -1224,10 +1238,8 @@ private enum Gestalt
                             ee.Retry = false;
                             SaveRestoreError(this, ee);
 
-                            if (ee.Retry)
-                            {
-                                if (e.Stream != ee.Stream)
-                                {
+                            if (ee.Retry) {
+                                if (e.Stream != ee.Stream) {
                                     e.Stream.Close();
                                     e.Stream = ee.Stream;
                                 }
@@ -1236,22 +1248,21 @@ private enum Gestalt
                         }
 
                         // unrecoverable
-                        PerformDelayedStore([args argAtIndex:1], [args argAtIndex:2], 1);
+                        [self performDelayedStoreOfType:[args argAtIndex:1] address:[args argAtIndex:2] value:1];
                         return;
                     }
-                } while (false);
-            }
-            finally
-            {
+                } while (NO);
+            } @finally {
                 e.Stream.Close();
             }
-            PerformDelayedStore([args argAtIndex:1], [args argAtIndex:2], 0);
+            [self performDelayedStoreOfType:[args argAtIndex:1] address:[args argAtIndex:2] value:0];
             return;
         }
     }
+    */
 
     // failed
-    PerformDelayedStore([args argAtIndex:1], [args argAtIndex:2], 1);
+    [self performDelayedStoreOfType:[args argAtIndex:1] address:[args argAtIndex:2] value:1];
 }
 
 // opcode: 0x124
@@ -1260,24 +1271,18 @@ private enum Gestalt
 // rule: DelayedStore
 - (void)op_restore:(TFArguments *)args
 {
-    if (LoadRequested != null)
-    {
+/*
+    TODO
+    if (LoadRequested != nil) {
         SaveRestoreEventArgs e = new SaveRestoreEventArgs();
         LoadRequested(this, e);
-        if (e.Stream != null)
-        {
-            try
-            {
-                do
-                {
-                    try
-                    {
+        if (e.Stream != nil) {
+            @try {
+                do {
+                    @try {
                         LoadFromStream(e.Stream);
-                    }
-                    catch (Exception ex)
-                    {
-                        if (SaveRestoreError != null)
-                        {
+                    } @catch (NSException *ex) {
+                        if (SaveRestoreError != nil) {
                             SaveRestoreErrorEventArgs ee = new SaveRestoreErrorEventArgs();
                             ee.WasSaving = false;
                             ee.Exception = ex;
@@ -1285,10 +1290,8 @@ private enum Gestalt
                             ee.Retry = false;
                             SaveRestoreError(this, ee);
 
-                            if (ee.Retry)
-                            {
-                                if (e.Stream != ee.Stream)
-                                {
+                            if (ee.Retry) {
+                                if (e.Stream != ee.Stream) {
                                     e.Stream.Close();
                                     e.Stream = ee.Stream;
                                 }
@@ -1297,21 +1300,20 @@ private enum Gestalt
                         }
 
                         // unrecoverable
-                        PerformDelayedStore([args argAtIndex:1], [args argAtIndex:2], 1);
+                        [self performDelayedStoreOfType:[args argAtIndex:1] address:[args argAtIndex:2] value:1];
                         return;
                     }
-                } while (false);
-            }
-            finally
-            {
+                } while (NO);
+            } @finally {
                 e.Stream.Close();
             }
             return;
         }
     }
+*/
 
     // failed
-    PerformDelayedStore([args argAtIndex:1], [args argAtIndex:2], 1);
+    [self performDelayedStoreOfType:[args argAtIndex:1] address:[args argAtIndex:2] value:1];
 }
 
 // opcode: 0x125
@@ -1321,22 +1323,23 @@ private enum Gestalt
 // rule: DelayedStore
 - (void)op_saveundo:(TFArguments *)args
 {
-    if (nestingLevel != 0)
-    {
+    if (nestingLevel != 0) {
         // can't save if there's native code on the call stack
-        PerformDelayedStore([args argAtIndex:0], [args argAtIndex:1], 1);
+        [self performDelayedStoreOfType:[args argAtIndex:0] address:[args argAtIndex:1] value:1];
         return;
     }
-
+/*
+    TODO
     MemoryStream buffer = new MemoryStream();
     SaveToStream(buffer, [args argAtIndex:0], [args argAtIndex:1]];
 
-    if (undoBuffers.Count >= MAX_UNDO_LEVEL)
+    if (undoBuffers.Count >= MAX_UNDO_LEVEL) {
         undoBuffers.RemoveAt(0);
+    }
 
     undoBuffers.Add(buffer);
-
-    PerformDelayedStore([args argAtIndex:0], [args argAtIndex:1], 0);
+*/
+    [self performDelayedStoreOfType:[args argAtIndex:0] address:[args argAtIndex:1] value:0];
 }
 
 // opcode: 0x126
@@ -1346,18 +1349,18 @@ private enum Gestalt
 // rule: DelayedStore
 - (void)op_restoreundo:(TFArguments *)args
 {
-    if (undoBuffers.Count == 0)
-    {
-        PerformDelayedStore([args argAtIndex:0], [args argAtIndex:1], 1);
-    }
-    else
-    {
+/*
+    TODO
+    if (undoBuffers.Count == 0) {
+        [self performDelayedStoreOfType:[args argAtIndex:0] address:[args argAtIndex:1] value:1];
+    } else {
         MemoryStream buffer = undoBuffers[undoBuffers.Count - 1];
         undoBuffers.RemoveAt(undoBuffers.Count - 1);
 
         buffer.Seek(0, System.IO.SeekOrigin.Begin);
         LoadFromStream(buffer);
     }
+*/
 }
 
 // opcode: 0x127
@@ -1370,14 +1373,14 @@ private enum Gestalt
         protectionStart = [args argAtIndex:0];
         protectionLength = [args argAtIndex:1];
 
-        if (protectionStart >= image.RamStart)
+        if (protectionStart >= image.RAMStart)
         {
-            protectionStart -= image.RamStart;
+            protectionStart -= image.RAMStart;
         }
         else
         {
             protectionStart = 0;
-            protectionLength -= image.RamStart - protectionStart;
+            protectionLength -= image.RAMStart - protectionStart;
         }
 
         if (protectionStart + protectionLength > image.endMemory)
@@ -1393,23 +1396,21 @@ private enum Gestalt
 // storeArgs: 1
 - (void)op_random:(TFArguments *)args
 {
-    if ([args argAtIndex:0] == 0)
-    {
+/*
+    TODO
+    if ([args argAtIndex:0] == 0) {
         // 32 random bits
-        byte[] buffer = new byte[4];
+        uint8_t[] buffer = new uint8_t[4];
         randomGenerator.NextBytes(buffer);
         [args argAtIndex:1] = (uint32_t)(buffer[0] << 24 + buffer[1] << 16 + buffer[2] << 8 + buffer[3]];
-    }
-    else if ((int)[args argAtIndex:0] > 0)
-    {
+    } else if ((int)[args argAtIndex:0] > 0) {
         // range: 0 to [args argAtIndex:0] - 1
         [args argAtIndex:1] = (uint32_t)randomGenerator.Next((int)[args argAtIndex:0]];
-    }
-    else
-    {
+    } else {
         // range: [args argAtIndex:0] + 1 to 0
         [args setArg:(uint32_t)(-randomGenerator.Next(-(int)[args argAtIndex:0])) atIndex:1];
     }
+*/
 }
 
 // opcode: 0x111
@@ -1417,57 +1418,37 @@ private enum Gestalt
 // loadArgs: 1
 - (void)op_setrandom:(TFArguments *)args
 {
-    if ([args argAtIndex:0] == 0)
+/*
+    TODO
+    if ([args argAtIndex:0] == 0) {
         randomGenerator = new Random();
-    else
+    } else {
         randomGenerator = new Random((int)[args argAtIndex:0]];
+    }
+*/
 }
 
 #pragma mark FyreVM Specific
 
-/// <summary>
-/// Selects a function for the FyreVM system call opcode.
-/// </summary>
-private enum FyreCall
-{
-    /// <summary>
-    /// Reads a line from the user: [args argAtIndex:1] = buffer, [args argAtIndex:2] = buffer size.
-    /// </summary>
-    ReadLine = 1,
-    /// <summary>
-    /// Selects a text style: [args argAtIndex:1] = an OutputStyle value (see OutputBuffer.cs).
-    /// </summary>
-    SetStyle = 2,
-    /// <summary>
-    /// Converts a character to lowercase: [args argAtIndex:1] = the character,
-    /// result = the lowercased character.
-    /// </summary>
-    ToLower = 3,
-    /// <summary>
-    /// Converts a character to uppercase: [args argAtIndex:1] = the character,
-    /// result = the uppercased character.
-    /// </summary>
-    ToUpper = 4,
-    /// <summary>
-    /// Selects an output channel: [args argAtIndex:1] = an OutputChannel value (see Output.cs).
-    /// </summary>
-    Channel = 5,
-    /// <summary>
-    /// Turns the main channel's output filtering on or off: [args argAtIndex:1] = nonzero to
-    /// turn it on.
-    /// </summary>
-    EnableFilter = 6,
-    /// <summary>
-    /// Reads a character from the user: result = the 16-bit Unicode value.
-    /// </summary>
-    ReadKey = 7,
-    /// <summary>
-    /// Registers a veneer function address or constant value: [args argAtIndex:1] = a
-    /// VeneerSlot value (see Veneer.cs), [args argAtIndex:2] = the function address or
-    /// constant value, result = nonzero if the value was accepted.
-    /// </summary>
-    SetVeneer = 8,
-}
+/* Selects a function for the FyreVM system call opcode. */
+typedef enum _TFFyreCall {
+    /* Reads a line from the user: [args argAtIndex:1] = buffer, [args argAtIndex:2] = buffer size. */
+    TFFyreCallReadLine = 1,
+    /* Selects a text style: [args argAtIndex:1] = an TFOutputStyle value (see TFOutputBuffer.h). */
+    TFFyreCallSetStyle = 2,
+    /* Converts a character to lowercase: [args argAtIndex:1] = the character, result = the lowercased character. */
+    TFFyreCallToLower = 3,
+    /* Converts a character to uppercase: [args argAtIndex:1] = the character, result = the uppercased character. */
+    TFFyreCallToUpper = 4,
+    /* Selects an output channel: [args argAtIndex:1] = an TFOutputChannel value (see TFEngine_Output.h). */
+    TFFyreCallChannel = 5,
+    /* Turns the main channel's output filtering on or off: [args argAtIndex:1] = nonzero to turn it on. */
+    TFFyreCallEnableFilter = 6,
+    /* Reads a character from the user: result = the 16-bit Unicode value. */
+    TFFyreCallReadKey = 7,
+    /* Registers a veneer function address or constant value: [args argAtIndex:1] = a TFVeneerSlot value (see TFVeneer.h), [args argAtIndex:2] = the function address or constant value, result = nonzero if the value was accepted. */
+    TFFyreCallSetVeneer = 8,
+} TFFyreCall;
 
 // opcode: 0x1000
 // name: fyrecall
@@ -1475,53 +1456,68 @@ private enum FyreCall
 // storeArgs: 1
 - (void)op_fyrecall:(TFArguments *)args
 {
-    args[3] = 0;
+    [args setArg:0 atIndex:3];
 
-    FyreCall call = (FyreCall)[args argAtIndex:0];
-    switch (call)
-    {
-        case FyreCall.ReadLine:
+    TFFyreCall call = (TFFyreCall)[args argAtIndex:0];
+    switch (call) {
+        case TFFyreCallReadLine:
+        /*
+            TODO
             DeliverOutput();
             InputLine([args argAtIndex:1], [args argAtIndex:2]];
+        */
             break;
 
-        case FyreCall.ReadKey:
+        case TFFyreCallReadKey:
+        /*
+            // TODO
             DeliverOutput();
-            args[3] = (uint32_t)InputChar();
+            [args setArg:(uint32_t)InputChar() atIndex:3];
+        */
             break;
 
-        case FyreCall.SetStyle:
-            outputBuffer.SetStyle((OutputStyle)[args argAtIndex:1]];
+        case TFFyreCallSetStyle:
+            // TODO
+            //outputBuffer.SetStyle((OutputStyle)[args argAtIndex:1]];
             break;
 
-        case FyreCall.ToLower:
-        case FyreCall.ToUpper:
-            byte[] bytes = new byte[] { (byte)[args argAtIndex:1] };
+        case TFFyreCallToLower:
+        case TFFyreCallToUpper: {
+        /*
+            TODO
+            uint8_t[] bytes = new uint8_t[] { (uint8_t)[args argAtIndex:1] };
             char[] chars = System.Text.Encoding.GetEncoding(LATIN1_CODEPAGE).GetChars(bytes);
             if (call == FyreCall.ToLower)
                 chars[0] = char.ToLower(chars[0]];
             else
                 chars[0] = char.ToUpper(chars[0]];
             bytes = System.Text.Encoding.GetEncoding(LATIN1_CODEPAGE).GetBytes(chars);
-            args[3] = bytes[0];
+            [args argAtIndex:3] = bytes[0];
+            */
+            break;
+        }
+        case TFFyreCallChannel:
+            // TODO
+            //outputBuffer.Channel = (OutputChannel)[args argAtIndex:1];
             break;
 
-        case FyreCall.Channel:
-            outputBuffer.Channel = (OutputChannel)[args argAtIndex:1];
-            break;
-
-        case FyreCall.EnableFilter:
+        case TFFyreCallEnableFilter:
             gameWantsFiltering = ([args argAtIndex:1] != 0);
-            outputBuffer.FilterEnabled = allowFiltering & gameWantsFiltering;
+            // TODO
+            //outputBuffer.FilterEnabled = allowFiltering & gameWantsFiltering;
             break;
 
-        case FyreCall.SetVeneer:
-            args[3] = (uint32_t)(veneer.SetSlot([args argAtIndex:1], [args argAtIndex:2]) ? 1 : 0);
+        case TFFyreCallSetVeneer:
+//            [args argAtIndex:3] = (uint32_t)(veneer.SetSlot([args argAtIndex:1], [args argAtIndex:2]) ? 1 : 0;
+
+        
+        
+            [args setArg:(uint32_t)[veneer setValue:[args argAtIndex:2] ? 1 : 0 forSlot:[args argAtIndex:1]] atIndex:3];
             break;
 
-        default:
-            throw new VMException("Unrecognized FyreVM system call #" + [args argAtIndex:0].ToString());
+        // TODO
+        //default:
+            //throw new VMException("Unrecognized FyreVM system call #" + [args argAtIndex:0].ToString());
     }
 }
-*/
 @end
