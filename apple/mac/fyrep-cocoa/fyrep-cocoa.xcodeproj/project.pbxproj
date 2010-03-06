@@ -10,8 +10,9 @@
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		256AC3DA0F4B6AC300CF3369 /* fyrep_cocoaAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* fyrep_cocoaAppDelegate.m */; };
 		4F02BA74111BE8F70054F477 /* TFEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F02BA73111BE8F70054F477 /* TFEngine.m */; };
+		4F04E7EF113F8D76002D029A /* TFArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F04E7EE113F8D76002D029A /* TFArguments.m */; };
+		4F04E7F0113F8D76002D029A /* TFArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F04E7EE113F8D76002D029A /* TFArguments.m */; };
 		4F3E14B31114C8C000007CFC /* TFUlxImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E14B21114C8C000007CFC /* TFUlxImage.m */; };
-		4F3E153F1114E9B500007CFC /* GlulxConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E153E1114E9B500007CFC /* GlulxConstants.m */; };
 		4F3E15A21114EE9800007CFC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		4F3E15BB1114EEF500007CFC /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3E15A31114EEE000007CFC /* SenTestingKit.framework */; };
 		4F3E15CE1114F04200007CFC /* TestTFUlxImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E15CD1114F04200007CFC /* TestTFUlxImage.m */; };
@@ -26,7 +27,6 @@
 		4F6B64CE111E2AA000BABD7F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		4F6B64D1111E2AAC00BABD7F /* TestTFUlxImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E15CD1114F04200007CFC /* TestTFUlxImage.m */; };
 		4F6B64D4111E2AC300BABD7F /* TFUlxImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E14B21114C8C000007CFC /* TFUlxImage.m */; };
-		4F6B64D5111E2AC300BABD7F /* GlulxConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E153E1114E9B500007CFC /* GlulxConstants.m */; };
 		4F6B64D6111E2AC300BABD7F /* TFEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F02BA73111BE8F70054F477 /* TFEngine.m */; };
 		4F6B64D7111E2AE100BABD7F /* sh-v1.0de.ulx in Resources */ = {isa = PBXBuildFile; fileRef = 4F8FD6241115864C00024CED /* sh-v1.0de.ulx */; };
 		4F6B64D8111E2AE100BABD7F /* sh-v1.0e.ulx in Resources */ = {isa = PBXBuildFile; fileRef = 4FCCC0FE111548E30001000B /* sh-v1.0e.ulx */; };
@@ -65,10 +65,11 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		4F02BA72111BE8F70054F477 /* TFEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFEngine.h; sourceTree = "<group>"; };
 		4F02BA73111BE8F70054F477 /* TFEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFEngine.m; sourceTree = "<group>"; };
+		4F04E79D113F8138002D029A /* TFArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFArguments.h; sourceTree = "<group>"; };
+		4F04E7EE113F8D76002D029A /* TFArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFArguments.m; sourceTree = "<group>"; };
 		4F3E14B11114C8C000007CFC /* TFUlxImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFUlxImage.h; sourceTree = "<group>"; };
 		4F3E14B21114C8C000007CFC /* TFUlxImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFUlxImage.m; sourceTree = "<group>"; };
 		4F3E153D1114E9B500007CFC /* GlulxConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlulxConstants.h; sourceTree = "<group>"; };
-		4F3E153E1114E9B500007CFC /* GlulxConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlulxConstants.m; sourceTree = "<group>"; };
 		4F3E157C1114EE6A00007CFC /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F3E157D1114EE6A00007CFC /* ApplicationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ApplicationTests-Info.plist"; sourceTree = "<group>"; };
 		4F3E15A31114EEE000007CFC /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -225,17 +226,18 @@
 				4F3E14B11114C8C000007CFC /* TFUlxImage.h */,
 				4F3E14B21114C8C000007CFC /* TFUlxImage.m */,
 				4F3E153D1114E9B500007CFC /* GlulxConstants.h */,
-				4F3E153E1114E9B500007CFC /* GlulxConstants.m */,
+				4F04E79D113F8138002D029A /* TFArguments.h */,
+				4F04E7EE113F8D76002D029A /* TFArguments.m */,
 				4F02BA72111BE8F70054F477 /* TFEngine.h */,
 				4F02BA73111BE8F70054F477 /* TFEngine.m */,
 				4FFE4C19111F966A00467156 /* TFEngine_Opcodes.h */,
 				4FFE4C1A111F966A00467156 /* TFEngine_Opcodes.m */,
+				4FB17B881139D471009491D3 /* TFVeneer.h */,
+				4FB17B891139D471009491D3 /* TFVeneer.m */,
 				4F50FB1C1130DEBD006D0738 /* TFOpcode.h */,
 				4F50FB1D1130DEBD006D0738 /* TFOpcode.m */,
 				4F50FB201130DEDF006D0738 /* Opcodes README.rtf */,
 				4F50FAD91130ADF8006D0738 /* Opcodes.plist */,
-				4FB17B881139D471009491D3 /* TFVeneer.h */,
-				4FB17B891139D471009491D3 /* TFVeneer.m */,
 				4F05E9B3111E0D5500C90CB3 /* UnitTests */,
 			);
 			name = "fyrevm-foundation";
@@ -431,7 +433,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F6B64D4111E2AC300BABD7F /* TFUlxImage.m in Sources */,
-				4F6B64D5111E2AC300BABD7F /* GlulxConstants.m in Sources */,
 				4F6B64D6111E2AC300BABD7F /* TFEngine.m in Sources */,
 				4F6B64D1111E2AAC00BABD7F /* TestTFUlxImage.m in Sources */,
 				4FFE4C1C111F966A00467156 /* TFEngine_Opcodes.m in Sources */,
@@ -439,6 +440,7 @@
 				4F50FB8E113103D3006D0738 /* TestTFOpcode.m in Sources */,
 				4F50FCB5113113B1006D0738 /* TestTFEngine.m in Sources */,
 				4FB17B8A1139D471009491D3 /* TFVeneer.m in Sources */,
+				4F04E7EF113F8D76002D029A /* TFArguments.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,11 +451,11 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* fyrep_cocoaAppDelegate.m in Sources */,
 				4F3E14B31114C8C000007CFC /* TFUlxImage.m in Sources */,
-				4F3E153F1114E9B500007CFC /* GlulxConstants.m in Sources */,
 				4F02BA74111BE8F70054F477 /* TFEngine.m in Sources */,
 				4FFE4C1B111F966A00467156 /* TFEngine_Opcodes.m in Sources */,
 				4F50FB1F1130DEBD006D0738 /* TFOpcode.m in Sources */,
 				4FB17B8B1139D471009491D3 /* TFVeneer.m in Sources */,
+				4F04E7F0113F8D76002D029A /* TFArguments.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
