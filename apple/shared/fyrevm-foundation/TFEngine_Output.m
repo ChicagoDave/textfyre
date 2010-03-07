@@ -8,8 +8,8 @@
 
 #import "TFEngine_Output.h"
 
-#import "TFUlxImage.h"
 #import "GlulxConstants.h"
+#import "TFUlxImage.h"
 
 
 @implementation TFEngine (Output)

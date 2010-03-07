@@ -8,11 +8,12 @@
 
 #import "TFEngine.h"
 
-#import "TFUlxImage.h"
 #import "GlulxConstants.h"
+#import "TFArguments.h"
+#import "TFHeapAllocator.h"
 #import "TFOpcode.h"
 #import "TFVeneer.h"
-#import "TFArguments.h"
+#import "TFUlxImage.h"
 
 static const NSUInteger TFEngineFirstMajorVersion = 2;
 static const NSUInteger TFEngineFirstMinorVersion = 0;
@@ -60,7 +61,9 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 - (void)cleanup {
     [opcodeDict release], opcodeDict = nil;
 
-    [image  cleanup], [image release], image = nil;
+    [image cleanup], [image release], image = nil;
+    
+    [heap release], heap = nil;
 
     [stack release], stack = nil;
 

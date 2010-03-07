@@ -8,11 +8,12 @@
 
 #import "TFEngine_Opcodes.h"
 
+#import "GlulxConstants.h"
+#import "TFArguments.h"
+#import "TFEngine_Output.h"
+#import "TFHeapAllocator.h"
 #import "TFUlxImage.h"
 #import "TFVeneer.h"
-#import "TFArguments.h"
-#import "GlulxConstants.h"
-#import "TFEngine_Output.h"
 
 
 @implementation TFEngine (Opcodes)
@@ -864,21 +865,17 @@
     }
 
     if (heap == nil) {
-        // TODO
-        /*
         uint32_t oldEndMem = image.endMemory;
-        heap = new HeapAllocator(oldEndMem, HandleHeapMemoryRequest);
-        heap.MaxSize = maxHeapSize;
-        [args argAtIndex:1] = heap.Alloc(size);
-        if ([args argAtIndex:1] == 0)
-        {
-            heap = null;
+        heap = [[TFHeapAllocator alloc] initWithEngine:self heapAddress:oldEndMem];
+        heap.maxSize = maxHeapSize;
+        [args setArg:[heap alloc:size] atIndex:1];
+        if ([args argAtIndex:1] == 0) {
+            // TODO deallocate if it doesn't work? Will this ever happen?
+            [heap release], heap = nil;
             image.endMemory = oldEndMem;
         }
-        */
     } else {
-        // TODO
-        //[args setArg:heap.Alloc(size) atIndex:1];
+        [args setArg:[heap alloc:size] atIndex:1];
     }
 }
 
@@ -888,15 +885,12 @@
 - (void)op_mfree:(TFArguments *)args
 {
     if (heap != nil) {
-/*
-        // TODO
-        heap.Free([args argAtIndex:0]];
-        if (heap.BlockCount == 0)
-        {
-            image.endMemoryory = heap.Address;
-            heap = NULL;
+        [heap free:[args argAtIndex:0]];
+        if (heap.blockCount == 0) {
+            image.endMemory = heap.address;
+            // TODO deallocate if it doesn't work? Will this ever happen?
+            [heap release], heap = nil;
         }
-*/
     }
 }
 
