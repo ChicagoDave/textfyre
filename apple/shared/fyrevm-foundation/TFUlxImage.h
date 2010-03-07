@@ -53,7 +53,7 @@
 
 /*! Gets or sets the address at which memory ends.
 
-    This can be changed by the game with @setmemsize (or managed automatically by the heap allocator). Addresses above EndMem are neither readable nor writable.
+    This can be changed by the game with @setmemsize (or managed automatically by the heap allocator). Addresses above endMemory are neither readable nor writable.
  */
 @property uint32_t endMemory;
 

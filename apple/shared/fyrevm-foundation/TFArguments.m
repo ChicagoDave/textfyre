@@ -48,7 +48,7 @@
 
     [result setArg:argAtIndex0 atIndex:0];
     [result setArg:argAtIndex1 atIndex:1];
-    [result setArg:argAtIndex1 atIndex:2];
+    [result setArg:argAtIndex2 atIndex:2];
     
     return result;
 }
@@ -86,6 +86,18 @@
     } else {
         args.array[index] = arg;
     }
+}
+
+- (NSString *)description {
+    NSMutableString *result = [NSMutableString stringWithFormat:@"<%@ %p> count %lu", [self class], self, (unsigned long)self.count];
+    if (self.count > 0) {
+        [result appendString:@" {"];
+        for (NSUInteger i = 0; i < self.count; ++i) {
+            [result appendFormat:@" %lu", (unsigned long)[self argAtIndex:i]];
+        }
+        [result appendString:@" }"];
+    }
+    return result;
 }
 
 - (void)dealloc {
