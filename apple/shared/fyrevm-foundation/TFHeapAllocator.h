@@ -19,7 +19,7 @@
 @interface TFHeapAllocator : NSObject {
 
 @private
-    TFEngine *engine;
+    TFEngine *engine; // Not retained
 
     uint32_t heapAddress;
 
@@ -79,7 +79,7 @@
  */
 - (void)free:(uint32_t)address;
 
-- (void)coalesceRangesAtIndex1:(NSUInteger)index1 index2:(NSUInteger)index2;
+- (void)coalesceRangesStartingAtIndex:(NSUInteger)index;
 
 @end
 

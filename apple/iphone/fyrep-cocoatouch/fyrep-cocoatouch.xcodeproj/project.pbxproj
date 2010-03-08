@@ -14,6 +14,9 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		4F05E9B7111E0DA600C90CB3 /* TestTFUlxImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F05E9B6111E0DA600C90CB3 /* TestTFUlxImage.m */; };
+		4F10338711448241009006DE /* TFInterpreter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F10338611448241009006DE /* TFInterpreter.m */; };
+		4F10338811448241009006DE /* TFInterpreter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F10338611448241009006DE /* TFInterpreter.m */; };
+		4F10338911448241009006DE /* TFInterpreter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F10338611448241009006DE /* TFInterpreter.m */; };
 		4F1E0D071142ED2E004BB393 /* TFEngine_Output.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E0D061142ED2E004BB393 /* TFEngine_Output.m */; };
 		4F1E0D081142ED2E004BB393 /* TFEngine_Output.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E0D061142ED2E004BB393 /* TFEngine_Output.m */; };
 		4F1E0D091142ED2E004BB393 /* TFEngine_Output.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E0D061142ED2E004BB393 /* TFEngine_Output.m */; };
@@ -109,6 +112,8 @@
 		4F05E9AD111E0CA400C90CB3 /* ApplicationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ApplicationTests-Info.plist"; sourceTree = "<group>"; };
 		4F05E9B5111E0DA600C90CB3 /* TestTFUlxImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTFUlxImage.h; sourceTree = "<group>"; };
 		4F05E9B6111E0DA600C90CB3 /* TestTFUlxImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTFUlxImage.m; sourceTree = "<group>"; };
+		4F10338511448241009006DE /* TFInterpreter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFInterpreter.h; sourceTree = "<group>"; };
+		4F10338611448241009006DE /* TFInterpreter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFInterpreter.m; sourceTree = "<group>"; };
 		4F1E0D051142ED2E004BB393 /* TFEngine_Output.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFEngine_Output.h; sourceTree = "<group>"; };
 		4F1E0D061142ED2E004BB393 /* TFEngine_Output.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFEngine_Output.m; sourceTree = "<group>"; };
 		4F1E108411438216004BB393 /* TestTFArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTFArguments.h; sourceTree = "<group>"; };
@@ -294,6 +299,8 @@
 				4F1E0D061142ED2E004BB393 /* TFEngine_Output.m */,
 				4F1E109D1143826F004BB393 /* TFHeapAllocator.h */,
 				4F1E109E1143826F004BB393 /* TFHeapAllocator.m */,
+				4F10338511448241009006DE /* TFInterpreter.h */,
+				4F10338611448241009006DE /* TFInterpreter.m */,
 				4F50FB231130DF21006D0738 /* TFOpcode.h */,
 				4F50FB241130DF21006D0738 /* TFOpcode.m */,
 				4F50FB071130B38A006D0738 /* Opcodes README.rtf */,
@@ -517,6 +524,7 @@
 				4F571F241140E3B500C490F4 /* TFArguments.m in Sources */,
 				4F1E0D071142ED2E004BB393 /* TFEngine_Output.m in Sources */,
 				4F1E109F1143826F004BB393 /* TFHeapAllocator.m in Sources */,
+				4F10338711448241009006DE /* TFInterpreter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +554,7 @@
 				4F571F221140E3B500C490F4 /* TFArguments.m in Sources */,
 				4F1E0D091142ED2E004BB393 /* TFEngine_Output.m in Sources */,
 				4F1E10A11143826F004BB393 /* TFHeapAllocator.m in Sources */,
+				4F10338911448241009006DE /* TFInterpreter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,6 +575,7 @@
 				4F1E108711438216004BB393 /* TestTFArguments.m in Sources */,
 				4F1E108F11438247004BB393 /* TestTFHeapAllocator.m in Sources */,
 				4F1E10A01143826F004BB393 /* TFHeapAllocator.m in Sources */,
+				4F10338811448241009006DE /* TFInterpreter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
