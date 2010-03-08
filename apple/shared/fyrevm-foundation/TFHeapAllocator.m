@@ -191,10 +191,10 @@
         [freeList insertObject:[NSValue valueWithRange:entry] atIndex:index];
 
         if (index < [freeList count] - 1) {
-            [self coalesceRangesAtIndex1:index index2:index + 1];
+            [self coalesceRangesStartingAtIndex:index];
         }
         if (index > 0) {
-            [self coalesceRangesAtIndex1:index - 1 index2:index];
+            [self coalesceRangesStartingAtIndex:index - 1];
         }
 
         // shrink the heap if necessary
@@ -215,15 +215,15 @@
     }
 }
 
-- (void)coalesceRangesAtIndex1:(NSUInteger)index1 index2:(NSUInteger)index2 {
-    NSRange first = [[freeList objectAtIndex:index1] rangeValue];
-    NSRange second = [[freeList objectAtIndex:index2] rangeValue];
+- (void)coalesceRangesStartingAtIndex:(NSUInteger)index {
+    NSRange first = [[freeList objectAtIndex:index] rangeValue];
+    NSRange second = [[freeList objectAtIndex:index + 1] rangeValue];
 
     if (first.location + first.length >= second.location)
     {
         first.length = second.location + second.length - first.location;
-        [freeList replaceObjectAtIndex:index1 withObject:[NSValue valueWithRange:first]];
-        [freeList removeObjectAtIndex:index2];
+        [freeList replaceObjectAtIndex:index withObject:[NSValue valueWithRange:first]];
+        [freeList removeObjectAtIndex:index + 1];
     }
 }
 

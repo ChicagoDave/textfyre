@@ -10,6 +10,8 @@
 
 #import "GlulxConstants.h"
 #import "TFArguments.h"
+#import "TFEngine_Opcodes.h"
+#import "TFEngine_Output.h"
 #import "TFHeapAllocator.h"
 #import "TFOpcode.h"
 #import "TFVeneer.h"
@@ -56,12 +58,23 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
     return result;
 }
 
+/*! Clears the stack and initializes VM registers from values found in RAM. */
+- (void)bootstrap {
+    uint32_t mainfunc = [image integerAtOffset:TFGlulxHeaderStartFunctionOffset];
+    decodingTable = [image integerAtOffset:TFGlulxHeaderDecodingTableOffset ];
+
+    sp = fp = frameLen = localsPos = 0;
+    outputSystem = TFIOSystemNull;
+    execMode = TFExecutionModeCode;
+    [self enterFunctionAtAddress:mainfunc];
+}
+
 /*! Method to call to dispose of resources. Is called by -dealloc, but also may be called early. Is called by -loadGameImageFromPath: on failure.
  */
 - (void)cleanup {
     [opcodeDict release], opcodeDict = nil;
 
-    [image cleanup], [image release], image = nil;
+    [image release], image = nil;
     
     [heap release], heap = nil;
 
@@ -144,32 +157,47 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
     return stub;
 }
 
+- (BOOL)run {
+    BOOL result = YES;
+    
+    // initialize registers and stack
+    [self bootstrap];
+    // TODO this can have errors, should return BOOL and message Console.
+    [self cacheDecodingTable];
+
+    if (result) {
+        // run the game
+        // TODO
+        //InterpreterLoop();
+
+        // send any output that may be left
+        // TODO
+        //DeliverOutput();
+    }
+    
+    return result;
+}
+
 - (uint32_t)nestedCallAtAddress:(uint32_t)address {
     return [self nestedCallAtAddress:address args:NULL];
 }
 
 - (uint32_t)nestedCallAtAddress:(uint32_t)address args:(TFArguments *)args {
-/*
-    TODO
-    ExecutionMode oldMode = execMode;
-    byte oldDigit = printingDigit;
+    TFExecutionMode oldMode = execMode;
+    uint8_t oldDigit = printingDigit;
 
-    PerformCall(address, args, FYREVM_STUB_RESUME_NATIVE, 0);
+    [self performCallWithAddress:address args:args destType:TFFyreVMStubResumeNative destAddr:0];
     nestingLevel++;
-    try
-    {
-        InterpreterLoop();
-    }
-    finally
-    {
+    @try {
+        // TODO
+        //InterpreterLoop();
+    } @finally {
         nestingLevel--;
         execMode = oldMode;
         printingDigit = oldDigit;
     }
 
     return nestedResult;
-*/
-    return 0;
 }
 
 - (void)performDelayedStoreOfType:(uint32_t)type address:(uint32_t)address value:(uint32_t)value {

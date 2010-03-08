@@ -125,6 +125,14 @@ typedef enum _TFSearchOptions
 -(void)pushCallStub:(TFCallStub)stub;
 - (TFCallStub)popCallStub;
 
+/*! \brief Starts the interpreter.
+
+    Comment from Windows code: This method does not return until the game finishes, either by returning from the main function or with the quit opcode.
+
+    On failure, returns NO, at which point technical details will be printed to Console.
+ */
+- (BOOL)run;
+
 - (uint32_t)nestedCallAtAddress:(uint32_t)address;
 /*! Executes a Glulx function and returns its result.
 
