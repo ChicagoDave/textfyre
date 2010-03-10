@@ -22,6 +22,32 @@ static const NSUInteger TFEngineFirstMinorVersion = 0;
 static const NSUInteger TFEngineLastMajorVersion = 3;
 static const NSUInteger TFEngineLastMinorVersion = 1;
 
+@interface TFEngine()
+
+/*! \brief Runs the main interpreter loop.
+
+    In Windows version, this goes on forever. 
+    
+    In Apple version, it's much better to let the system run its own event loop, and only do something when we're called. So this ends on indication from game that user input is expected.
+    
+    On success, returns YES, and application code flow should be allowed to finish and pass back to system.
+    
+    On any sort of unrecoverable error, returns NO, at which point technical details will be printed to Console, and application should end. (TODO see if that works.)
+ */
+- (BOOL)interpreterLoop;
+
+- (void)storeResult:(TFOpcodeRule)rule type:(uint8_t)type address:(uint32_t)address value:(uint32_t)value;
+
+- (uint32_t)decodeLoadOperand:(TFOpcodeRule)rule type:(uint8_t)type operandPos:(uint *)operandPos;
+
+- (uint32_t)decodeStoreOperand:(TFOpcodeRule)rule type:(uint8_t)type operandPos:(uint32_t *)operandPos;
+
+- (void)decodeDelayedStoreOperand:(uint8_t)type operandPos:(uint *)operandPos
+                      resultArray:(uint32_t *)resultArray resultIndex:(int)resultIndex;
+
+@end
+
+
 @implementation TFEngine
 
 @synthesize image;
@@ -166,13 +192,10 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
     [self cacheDecodingTable];
 
     if (result) {
-        // run the game
-        // TODO
-        //InterpreterLoop();
-
-        // send any output that may be left
-        // TODO
-        //DeliverOutput();
+        // run the game, up to user input.
+        result = [self interpreterLoop];
+        
+        // NOTE: Game does *NOT END* here. This just means control should pass back to system for regular event loop.
     }
     
     return result;
@@ -189,8 +212,9 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
     [self performCallWithAddress:address args:args destType:TFFyreVMStubResumeNative destAddr:0];
     nestingLevel++;
     @try {
-        // TODO
-        //InterpreterLoop();
+        // TODO check output of this method.
+        // And in Apple fashion of returning on user input, will this return too soon for this logic?
+        [self interpreterLoop];
     } @finally {
         nestingLevel--;
         execMode = oldMode;
@@ -198,6 +222,500 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
     }
 
     return nestedResult;
+}
+
+#define MAX_OPERANDS        8
+
+- (BOOL)interpreterLoop {
+    BOOL result = YES;
+
+    uint32_t operands[MAX_OPERANDS] = {0};
+    uint32_t resultAddrs[MAX_OPERANDS] =  {0};
+    uint8_t resultTypes[MAX_OPERANDS] =  {0};
+
+    // TODO stop on expected user input.
+    while (running) {
+        switch (execMode) {
+            case TFExecutionModeCode: {
+                // decode opcode number
+                uint32_t opnum = [image byteAtOffset:pc];
+                if (opnum >= 0xC0) {
+                    opnum = [image integerAtOffset:pc] - 0xC0000000;
+                    pc += 4;
+                } else if (opnum >= 0x80) {
+                    opnum = (uint32_t)([image shortAtOffset:pc] - 0x8000);
+                    pc += 2;
+                } else {
+                    pc++;
+                }
+
+                // look up opcode info
+                TFOpcode *opcode = nil;
+//                @try {
+                    NSNumber *opcodeNumber = [[NSNumber alloc] initWithUnsignedInt:opnum];
+                    opcode = [opcodeDict objectForKey:opcodeNumber];
+                    [opcodeNumber release];
+                    //TODOWriteTrace("[" + opcode.ToString());
+                // TODO
+/*                } @catch (KeyNotFoundException)
+                {
+                    throw new VMException(string.Format("Unrecognized opcode {0:X}h", opnum));
+                }*/
+
+                // decode load-operands
+                uint32_t opcount = (uint32_t)(opcode.loadArgs + opcode.storeArgs);
+                if (opcode.rule == TFOpcodeRuleDelayedStore) {
+                    opcount++;
+                } else if (opcode.rule == TFOpcodeRuleCatch) {
+                    opcount += 2;
+                }
+                uint32_t operandPos = pc + (opcount + 1) / 2;
+
+                for (int i = 0; i < opcode.loadArgs; i++) {
+                    uint8_t type = 0;
+                    if (i % 2 == 0) {
+                        type = ([image byteAtOffset:pc] & 0xF);
+                    } else {
+                        type = (([image byteAtOffset:pc] >> 4) & 0xF);
+                        pc++;
+                    }
+
+                    //TODOWriteTrace(" ");
+                    operands[i] = [self decodeLoadOperand:opcode.rule type:type operandPos:&operandPos];
+                }
+
+                // decode store-operands
+                for (int i = 0; i < opcode.storeArgs; i++) {
+                    uint8_t type = 0;
+                    if ((opcode.loadArgs + i) % 2 == 0) {
+                        type = (uint8_t)([image byteAtOffset:pc] & 0xF);
+                    } else {
+                        type = (uint8_t)(([image byteAtOffset:pc] >> 4) & 0xF);
+                        pc++;
+                    }
+
+                    resultTypes[i] = type;
+                    //TODOWriteTrace(" -> ");
+                    resultAddrs[i] = [self decodeLoadOperand:opcode.rule type:type operandPos:&operandPos];
+                }
+
+                if (opcode.rule == TFOpcodeRuleDelayedStore ||
+                    opcode.rule == TFOpcodeRuleCatch) {
+                    // decode delayed store operand
+                    uint8_t type = 0;
+                    if ((opcode.loadArgs + opcode.storeArgs) % 2 == 0) {
+                        type = (uint8_t)([image byteAtOffset:pc] & 0xF);
+                    } else {
+                        type = (uint8_t)(([image byteAtOffset:pc] >> 4) & 0xF);
+                        pc++;
+                    }
+
+                    //TODOWriteTrace(" -> ");
+                    [self decodeDelayedStoreOperand:type operandPos:&operandPos resultArray:operands resultIndex:opcode.loadArgs + opcode.storeArgs];
+                }
+
+                if (opcode.rule == TFOpcodeRuleCatch) {
+                    // decode final load operand for @catch
+                    uint8_t type = 0;
+                    if ((opcode.loadArgs + opcode.storeArgs + 1) % 2 == 0) {
+                        type = (uint8_t)([image byteAtOffset:pc] & 0xF);
+                    } else {
+                        type = (uint8_t)(([image byteAtOffset:pc] >> 4) & 0xF);
+                        pc++;
+                    }
+
+                    //TODOWriteTrace(" ?");
+                    operands[opcode.loadArgs + opcode.storeArgs + 2] =
+                        [self decodeLoadOperand:opcode.rule type:type operandPos:&operandPos];
+                }
+
+                //TODOWriteTrace("]\r\n");
+
+                // call opcode implementation
+                pc = operandPos; // after the last operand
+                opcode.Handler(operands);
+
+                // store results
+                for (int i = 0; i < opcode.storeArgs; i++) {
+                    [self storeResult:opcode.rule type:resultTypes[i] address:resultAddrs[i] value:
+                        operands[opcode.loadArgs + i]];
+                }
+            }
+                break;
+
+            case TFExecutionModeCString:
+                NextCStringChar();
+                break;
+
+            case TFExecutionModeUnicodeString:
+                NextUniStringChar();
+                break;
+
+            case TFExecutionModeNumber:
+                NextDigit();
+                break;
+
+            case TFExecutionModeCompressedString:
+                if (nativeDecodingTable != NULL) {
+                    nativeDecodingTable.HandleNextChar(self);
+                } else {
+                    NextCompressedChar();
+                }
+                break;
+
+            case TFExecutionModeReturn:
+                return result;
+        }
+
+    #if PROFILING
+        cycles++;
+    #endif
+    }
+    
+    return result;
+}
+
+- (uint32_t)decodeLoadOperand:(TFOpcodeRule)rule type:(uint8_t)type operandPos:(uint *)operandPos {
+    uint32_t address, value;
+    switch (type) {
+        case 0:
+            //TODOWriteTrace("zero");
+            value = 0;
+            break;
+        case 1:
+            // TODO why cast to signed?
+            value = (uint32_t)(int8_t)[image byteAtOffset:(*operandPos)++];
+            //TODOWriteTrace("byte_" + value.ToString());
+            break;;
+        case 2:
+            operandPos += 2;
+            // TODO why cast to signed?
+            value = (uint32_t)(int16_t)[image shortAtOffset:(*operandPos) - 2];
+            //TODOWriteTrace("short_" + value.ToString());
+            break;
+        case 3:
+            operandPos += 4;
+            value = [image integerAtOffset:(*operandPos) - 4];
+            //TODOWriteTrace("int_" + value.ToString());
+            break;
+
+        // case 4: unused
+
+        case 5:
+            address = [image byteAtOffset:(*operandPos)++];
+            //TODOWriteTrace("ptr");
+            goto LoadIndirect;
+        case 6:
+            address = [image shortAtOffset:*operandPos];
+            operandPos += 2;
+            //TODOWriteTrace("ptr");
+            goto LoadIndirect;
+        case 7:
+            address = [image integerAtOffset:*operandPos];
+            operandPos += 4;
+            //TODOWriteTrace("ptr");
+        LoadIndirect:
+            //TODOWriteTrace("_" + address.ToString() + "(");
+            switch (rule) {
+                case TFOpcodeRuleIndirect8Bit:
+                    value = [image byteAtOffset:address];
+                    break;
+                case TFOpcodeRuleIndirect16Bit:
+                    value = [image shortAtOffset:address];
+                    break;
+                default:
+                    value = [image integerAtOffset:address];
+                    break;
+            }
+            //TODOWriteTrace(value.ToString() + ")");
+            break;
+
+        case 8:
+            if (sp <= fp + frameLen) {
+                // TODO
+                //throw new VMException("Stack underflow");
+            }
+            value = [self pop];
+            //TODOWriteTrace("sp(" + value.ToString() + ")");
+            break;
+
+        case 9:
+            address = [image byteAtOffset:(*operandPos)++];
+            goto LoadLocal;
+        case 10:
+            address = [image shortAtOffset:*operandPos];
+            operandPos += 2;
+            goto LoadLocal;
+        case 11:
+            address = [image integerAtOffset:*operandPos];
+            operandPos += 4;
+        LoadLocal:
+            //TODOWriteTrace("local_" + address.ToString() + "(");
+            address += fp + localsPos;
+            switch (rule) {
+                case TFOpcodeRuleIndirect8Bit:
+                    if (address >= fp + frameLen) {
+                        //TODOthrow new VMException("Reading outside local storage bounds");
+                    } else {
+                        value = ((const uint8_t*)[stack bytes])[address];
+                    }
+                    break;
+                case TFOpcodeRuleIndirect16Bit:
+                    if (address + 1 >= fp + frameLen) {
+                        //TODOthrow new VMException("Reading outside local storage bounds");
+                    } else {
+                        uint16_t shortValue;
+                    
+                        [stack getBytes:&shortValue range:NSMakeRange(address, sizeof(uint16_t))];
+
+                        value = NSSwapBigShortToHost(shortValue);
+                    }
+                    break;
+                default:
+                    if (address + 3 >= fp + frameLen) {
+                        //TODOthrow new VMException("Reading outside local storage bounds");
+                    } else {
+                        value = [self readFromStack:address];
+                    }
+                    break;
+            }
+            //TODOWriteTrace(value.ToString() + ")");
+            break;
+
+        // case 12: unused
+
+        case 13:
+            address = image.RAMStart + [image byteAtOffset:(*operandPos)++];
+            //TODOWriteTrace("ram");
+            goto LoadIndirect;
+        case 14:
+            address = image.RAMStart + [image shortAtOffset:*operandPos];
+            operandPos += 2;
+            //TODOWriteTrace("ram");
+            goto LoadIndirect;
+        case 15:
+            address = image.RAMStart + [image integerAtOffset:*operandPos];
+            operandPos += 4;
+            //TODOWriteTrace("ram");
+            goto LoadIndirect;
+
+        //TODOdefault:
+            //TODOthrow new ArgumentException("Invalid operand type");
+    }
+    
+    return value;
+}
+
+- (uint32_t)decodeStoreOperand:(TFOpcodeRule)rule type:(uint8_t)type operandPos:(uint32_t *)operandPos {
+    uint32_t address = 0;
+    switch (type) {
+        case 0:
+            // discard result
+            //TODOWriteTrace("discard");
+            break;
+
+        // case 1..4: unused
+
+        case 5:
+            address = [image byteAtOffset:(*operandPos)++];
+            //TODOWriteTrace("ptr_" + address.ToString());
+            break;
+        case 6:
+            address = [image shortAtOffset:*operandPos];
+            (*operandPos) += 2;
+            //TODOWriteTrace("ptr_" + address.ToString());
+            break;
+        case 7:
+            address = [image integerAtOffset:*operandPos];
+            (*operandPos) += 4;
+            //TODOWriteTrace("ptr_" + address.ToString());
+            break;
+
+        // case 8: push onto stack
+        case 8:
+            // push onto stack
+            //TODOWriteTrace("sp");
+            return 0;
+
+        case 9:
+            address = [image byteAtOffset:(*operandPos)++];
+            //TODOWriteTrace("local_" + address.ToString());
+            break;
+        case 10:
+            address = [image shortAtOffset:*operandPos];
+            (*operandPos) += 2;
+            //TODOWriteTrace("local_" + address.ToString());
+            break;
+        case 11:
+            address = [image integerAtOffset:*operandPos];
+            (*operandPos) += 4;
+            //TODOWriteTrace("local_" + address.ToString());
+            break;
+
+        // case 12: unused
+
+        case 13:
+            address = image.RAMStart + [image byteAtOffset:(*operandPos)++];
+            //TODOWriteTrace("ram_" + (address - image.RamStart).ToString());
+            break;
+        case 14:
+            address = image.RAMStart + [image shortAtOffset:*operandPos];
+            (*operandPos) += 2;
+            //TODOWriteTrace("ram_" + (address - image.RamStart).ToString());
+            break;
+        case 15:
+            address = image.RAMStart + [image integerAtOffset:*operandPos];
+            (*operandPos) += 4;
+            //TODOWriteTrace("ram_" + (address - image.RamStart).ToString());
+            break;
+
+        //TODOdefault:
+            //throw new ArgumentException("Invalid operand type");
+    }
+    return address;
+}
+
+- (void)storeResult:(TFOpcodeRule)rule type:(uint8_t)type address:(uint32_t)address value:(uint32_t)value {
+    switch (type) {
+        case 5:
+        case 6:
+        case 7:
+        case 13:
+        case 14:
+        case 15:
+            // write to memory
+            switch (rule) {
+                case TFOpcodeRuleIndirect8Bit:
+                    [image setByte:(uint8_t)value atOffset:address];
+                    break;
+                case TFOpcodeRuleIndirect16Bit:
+                    [image setShort:(uint16_t)value atOffset:address];
+                    break;
+                default:
+                    [image setInteger:value atOffset:address];
+                    break;
+            }
+            break;
+
+        case 9:
+        case 10:
+        case 11:
+            // write to local storage
+            address += fp + localsPos;
+            switch (rule)
+            {
+                case TFOpcodeRuleIndirect8Bit:
+                    if (address >= fp + frameLen) {
+                        //TODOthrow new VMException("Writing outside local storage bounds");
+                    } else {
+                        uint8_t byteValue = (uint8_t)value;
+                        [stack replaceBytesInRange:NSMakeRange(address, sizeof(byteValue)) withBytes:&byteValue];
+                    }
+                    break;
+                case TFOpcodeRuleIndirect16Bit:
+                    if (address + 1 >= fp + frameLen) {
+                        //TODOthrow new VMException("Writing outside local storage bounds");
+                    } else {
+                        uint16_t bigEndianShortValue = NSSwapHostShortToBig((uint16_t)value);
+                        [stack replaceBytesInRange:NSMakeRange(address, sizeof(bigEndianShortValue)) withBytes:&bigEndianShortValue];
+                    }
+                    break;
+                default:
+                    if (address + 3 >= fp + frameLen) {
+                        //TODOthrow new VMException("Writing outside local storage bounds");
+                    } else {
+                        [self setStackInteger:value atOffset:address];
+                    }
+                    break;
+            }
+            break;
+
+        case 8:
+            // push onto stack
+            [self push:value];
+            break;
+    }
+}
+
+- (void)decodeDelayedStoreOperand:(uint8_t)type operandPos:(uint *)operandPos
+                      resultArray:(uint32_t *)resultArray resultIndex:(int)resultIndex {
+    switch (type) {
+        case 0:
+            // discard result
+            resultArray[resultIndex] = TFGlulxStubStoreNULL;
+            resultArray[resultIndex + 1] = 0;
+            //TODOWriteTrace("discard");
+            break;
+
+        // case 1..4: unused
+
+        case 5:
+            resultArray[resultIndex] = TFGlulxStubStoreMemory;
+            resultArray[resultIndex + 1] = [image byteAtOffset:(*operandPos)++];
+            //TODOWriteTrace("ptr_" + (resultArray[resultIndex + 1]).ToString());
+            break;
+        case 6:
+            resultArray[resultIndex] = TFGlulxStubStoreMemory;
+            resultArray[resultIndex + 1] = [image shortAtOffset:(*operandPos)];
+            (*operandPos) += 2;
+            //TODOWriteTrace("ptr_" + (resultArray[resultIndex + 1]).ToString());
+            break;
+        case 7:
+            resultArray[resultIndex] = TFGlulxStubStoreMemory;
+            resultArray[resultIndex + 1] = [image integerAtOffset:*operandPos];
+            (*operandPos) += 4;
+            //TODOWriteTrace("ptr_" + (resultArray[resultIndex + 1]).ToString());
+            break;
+
+        // case 8: push onto stack
+        case 8:
+            // push onto stack
+            resultArray[resultIndex] = TFGlulxStubStoreStack;
+            resultArray[resultIndex + 1] = 0;
+            //TODOWriteTrace("sp");
+            break;
+
+        case 9:
+            resultArray[resultIndex] = TFGlulxStubStoreLocal;
+            resultArray[resultIndex + 1] = [image byteAtOffset:(*operandPos)++];
+            //TODOWriteTrace("local_" + (resultArray[resultIndex + 1]).ToString());
+            break;
+        case 10:
+            resultArray[resultIndex] = TFGlulxStubStoreLocal;
+            resultArray[resultIndex + 1] = [image shortAtOffset:*operandPos];
+            (*operandPos) += 2;
+            //TODOWriteTrace("local_" + (resultArray[resultIndex + 1]).ToString());
+            break;
+        case 11:
+            resultArray[resultIndex] = TFGlulxStubStoreLocal;
+            resultArray[resultIndex + 1] = [image integerAtOffset:*operandPos];
+            (*operandPos) += 4;
+            //TODOWriteTrace("local_" + (resultArray[resultIndex + 1]).ToString());
+            break;
+
+        // case 12: unused
+
+        case 13:
+            resultArray[resultIndex] = TFGlulxStubStoreMemory;
+            resultArray[resultIndex + 1] = image.RAMStart + [image byteAtOffset:(*operandPos)++];
+            //TODOWriteTrace("ram_" + (resultArray[resultIndex + 1] - image.RamStart).ToString());
+            break;
+        case 14:
+            resultArray[resultIndex] = TFGlulxStubStoreMemory;
+            resultArray[resultIndex + 1] = image.RAMStart + [image shortAtOffset:*operandPos];
+            (*operandPos) += 2;
+            //TODOWriteTrace("ram_" + (resultArray[resultIndex + 1] - image.RamStart).ToString());
+            break;
+        case 15:
+            resultArray[resultIndex] = TFGlulxStubStoreMemory;
+            resultArray[resultIndex + 1] = image.RAMStart + [image integerAtOffset:*operandPos];
+            (*operandPos) += 4;
+            //TODOWriteTrace("ram_" + (resultArray[resultIndex + 1] - image.RamStart).ToString());
+            break;
+
+        //TODOdefault:
+            //throw new ArgumentException("Invalid operand type");
+    }
 }
 
 - (void)performDelayedStoreOfType:(uint32_t)type address:(uint32_t)address value:(uint32_t)value {
