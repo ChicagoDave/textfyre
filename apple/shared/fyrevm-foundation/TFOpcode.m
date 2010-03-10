@@ -14,6 +14,14 @@ static NSString *const TFOpcodesPlistFilename = @"Opcodes";
 static const NSUInteger TFMinOpcodeDataArrayElementCount = 3;
 static const NSUInteger TFMaxOpcodeDataArrayElementCount = 5;
 
+/*! Needs to be kept in sync with TFOpcodeRule enumeration. */
+static NSString *TFOpcodeRuleNames[] = {
+    @"",
+    @"indirect8Bit",
+    @"indirect16Bit",
+    @"delayedStore",
+    @"catch"
+};
 
 @implementation TFOpcode
 
@@ -21,13 +29,13 @@ static const NSUInteger TFMaxOpcodeDataArrayElementCount = 5;
 @synthesize selector;
 @synthesize loadArgs;
 @synthesize storeArgs;
-@synthesize ruleName;
+@synthesize rule;
 
 - (id)initWithOpcode:(NSInteger)opcodeParam
                 name:(NSString *)nameParam
             loadArgs:(NSInteger)loadArgsParam
            storeArgs:(NSInteger)storeArgsParam
-            ruleName:(NSString *)ruleNameParam {
+                rule:(TFOpcodeRule)ruleParam {
     self = [super init];
     
     opcode = opcodeParam;
@@ -41,7 +49,7 @@ static const NSUInteger TFMaxOpcodeDataArrayElementCount = 5;
 
     loadArgs = loadArgsParam;
     storeArgs = storeArgsParam;
-    ruleName = [ruleNameParam retain];
+    rule = ruleParam;
     
     return self;
 }
@@ -89,40 +97,68 @@ static const NSUInteger TFMaxOpcodeDataArrayElementCount = 5;
                         NSNumber *loadArgsNumber = [opcodeDataArray objectAtIndex:2];
                         NSNumber *storeArgsNumber = ([opcodeDataArray count] > 3 ? [opcodeDataArray objectAtIndex:3] : nil);
                         NSString *ruleName = ([opcodeDataArray count] > 4 ? [opcodeDataArray objectAtIndex:4] : nil);
+                        TFOpcodeRule rule = TFOpcodeRuleNone;
                         
                         NSMutableString *errorString = [NSMutableString string];
                         
+                        // opcodeNumber
                         if ([opcodeNumber isKindOfClass:[NSNumber class]] == NO) {
                             [errorString appendFormat:@"\n- First element, opcodeNumber, should be of class %@, but instead is of class %@. Use <integer></integer> to wrap the element. ", 
                                                       [NSNumber class], [opcodeNumber class]];
                         } else if ([opcodeNumber integerValue] < 0) {
                             [errorString appendFormat:@"\n- First element, opcodeNumber, should be a positive number, but is %ld. ", (long)[opcodeNumber integerValue]];
                         }
+
+                        // name
                         if ([name isKindOfClass:[NSString class]] == NO) {
                             [errorString appendFormat:@"\n- Second element, name, should be of class %@, but instead is of class %@. Use <string></string> to wrap the element. ", 
                                                       [NSString class], [name class]];
                         } else if ([name length] == 0) {
                             [errorString appendFormat:@"\n- Second element, name, should not be blank. "];
                         }
+
+                        // loadArgsNumber
                         if ([loadArgsNumber isKindOfClass:[NSNumber class]] == NO) {
                             [errorString appendFormat:@"\n- Third element, loadArgsNumber, should be of class %@, but instead is of class %@. Use <integer></integer> to wrap the element. ", 
                                                       [NSNumber class], [loadArgsNumber class]];
                         } else if ([loadArgsNumber integerValue] < 0) {
                             [errorString appendFormat:@"\n- Third element, loadArgsNumber, should be a positive number, but is %ld. ", (long)[loadArgsNumber integerValue]];
                         }
+
+                        // storeArgsNumber
                         if (storeArgsNumber != nil && [storeArgsNumber isKindOfClass:[NSNumber class]] == NO) {
                             [errorString appendFormat:@"\n- Fourth element, storeArgsNumber, should be of class %@, but instead is of class %@. Use <integer></integer> to wrap the element. ",
                                                       [NSNumber class], [storeArgsNumber class]];
                         } else if ([storeArgsNumber integerValue] < 0) {
                             [errorString appendFormat:@"\n- Fourth element, storeArgsNumber, should be a positive number, but is %ld. ", (long)[storeArgsNumber integerValue]];
                         }
-                        if (ruleName != nil && [ruleName isKindOfClass:[NSString class]] == NO) {
-                            [errorString appendFormat:@"\n- Fifth element, ruleName, should be of class %@, but instead is of class %@. Use <string></string> to wrap the element. ",
-                                             [        NSString class], [ruleName class]];
-                        } else if (ruleName != nil && [ruleName length] == 0) {
-                            [errorString appendFormat:@"\n- Fifth element, ruleName, should not be blank. "];
+                        
+                        // ruleName
+                        if (ruleName != nil) {
+                            if ([ruleName isKindOfClass:[NSString class]] == NO) {
+                                [errorString appendFormat:@"\n- Fifth element, ruleName, should be of class %@, but instead is of class %@. Use <string></string> to wrap the element. ",
+                                                           [NSString class], [ruleName class]];
+                            } else if ([ruleName length] == 0) {
+                                [errorString appendFormat:@"\n- Fifth element, ruleName, should not be blank. "];
+                            } else if ([ruleName isEqualToString:TFOpcodeRuleNames[TFOpcodeRuleIndirect8Bit]]) { 
+                                rule = TFOpcodeRuleIndirect8Bit;
+                            } else if ([ruleName isEqualToString:TFOpcodeRuleNames[TFOpcodeRuleIndirect16Bit]]) { 
+                                rule = TFOpcodeRuleIndirect16Bit;
+                            } else if ([ruleName isEqualToString:TFOpcodeRuleNames[TFOpcodeRuleDelayedStore]]) { 
+                                rule = TFOpcodeRuleDelayedStore;
+                            } else if ([ruleName isEqualToString:TFOpcodeRuleNames[TFOpcodeRuleCatch]]) { 
+                                rule = TFOpcodeRuleCatch;
+                            } else {
+                                [errorString appendFormat:@"\n- Fifth element, ruleName, should be equal to \"%@\" or \"%@\" or \"%@\" or \"%@\", but instead is \"%@\". ",
+                                                           TFOpcodeRuleNames[TFOpcodeRuleIndirect8Bit],
+                                                           TFOpcodeRuleNames[TFOpcodeRuleIndirect16Bit],
+                                                           TFOpcodeRuleNames[TFOpcodeRuleDelayedStore],
+                                                           TFOpcodeRuleNames[TFOpcodeRuleCatch],
+                                                           ruleName];
+                            }
                         }
                         
+                        // Errors
                         if ([errorString length] > 0) {
                             TFOpcodeErrorLog(errorString)
                             break;
@@ -135,7 +171,7 @@ static const NSUInteger TFMaxOpcodeDataArrayElementCount = 5;
                                                                 name:name 
                                                             loadArgs:[loadArgsNumber integerValue]
                                                            storeArgs:[storeArgsNumber integerValue]
-                                                            ruleName:ruleName];
+                                                                rule:rule];
                             
                                 if (opcode == nil) {
                                     TFOpcodeErrorLog(@"could not be turned into an object of class %@", [TFOpcode class]);

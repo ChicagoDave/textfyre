@@ -127,9 +127,11 @@ typedef enum _TFSearchOptions
 
 /*! \brief Starts the interpreter.
 
-    Comment from Windows code: This method does not return until the game finishes, either by returning from the main function or with the quit opcode.
-
-    On failure, returns NO, at which point technical details will be printed to Console.
+    In Windows version, this method does not return until the game finishes, either by returning from the main function or with the quit opcode.
+    
+    In Apple version, it's much better to let the system run its own event loop, and only do something when we're called. So this ends on indication from game that user input is expected.
+    
+    On any sort of unrecoverable error, returns NO, at which point technical details will be printed to Console, and application should end. (TODO see if that works.)
  */
 - (BOOL)run;
 
