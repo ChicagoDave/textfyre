@@ -40,16 +40,15 @@
 #define TFGlulxHuffmanTableSizeOffset            0
 #define TFGlulxHuffmanNodeCountOffset            4
 #define TFGlulxHuffmanRootNodeOffset             8
-/*
+
 // String decoding table: node types
-#define GLULX_HUFF_NODE_BRANCH                   0
-#define GLULX_HUFF_NODE_END                      1
-#define GLULX_HUFF_NODE_CHAR                     2
-#define GLULX_HUFF_NODE_CSTR                     3
-#define GLULX_HUFF_NODE_UNICHAR                  4
-#define GLULX_HUFF_NODE_UNISTR                   5
-#define GLULX_HUFF_NODE_INDIRECT                 8
-#define GLULX_HUFF_NODE_DBLINDIRECT              9
-#define GLULX_HUFF_NODE_INDIRECT_ARGS           10
-#define GLULX_HUFF_NODE_DBLINDIRECT_ARGS        11
-*/
+#define TFGlulxHuffmanNodeBranch                 0
+#define TFGlulxHuffmanNodeEnd                    1
+#define TFGlulxHuffmanNodeChar                   2
+#define TFGlulxHuffmanNodeCStr                   3
+#define TFGlulxHuffmanNodeUnichar                4
+#define TFGlulxHuffmanNodeUnistr                 5
+#define TFGlulxHuffmanNodeIndirect               8
+#define TFGlulxHuffmanNodeDBLIndirect            9
+#define TFGlulxHuffmanNodeIndirectArgs          10
+#define TFGlulxHuffmanNodeDBLIndirectArgs       11

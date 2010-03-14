@@ -1,0 +1,111 @@
+//
+//  TFStrNode.h
+//  fyrevm-foundation
+//
+//  Copyright 2010 Textfyre, Inc. All rights reserved.
+//  Please read the accompanying COPYRIGHT file for licensing restrictions.
+//
+
+#import <Foundation/Foundation.h>
+
+#import "TFEngine.h" // For TFExecutionMode
+
+@interface TFStrNode : NSObject
+
+/*! Performs the action associated with this string node: printing a character or string, terminating output, or reading a bit and delegating to another node.
+
+    When called on a branch node, this will consume one or more compressed string bits.
+
+    \param engine The TFEngine that is printing.
+ */
+- (void)handleNextChar:(TFEngine *)engine;
+
+/*! Returns the non-branch node that will handle the next string action.
+
+    When called on a branch node, this will consume one or more compressed string bits.
+    
+    Base class implementation returns self.
+    
+    TODO 
+
+    \param engine The TFEngine that is printing.
+    \return A non-branch string node.
+ */
+- (TFStrNode *)handlingNode:(TFEngine *)engine;
+
+/*! \brief Gets a value indicating whether this node requires a call stub to be pushed. 
+
+    Base class implementation returns NO.
+ */
+- (BOOL)needsCallStub;
+
+/*! Gets a value indicating whether this node terminates the string.
+
+    Base class TODO.
+ */
+- (BOOL)isTerminator;
+
+- (void)emitChar:(char)character engine:(TFEngine *)engine;
+
+@end
+
+@interface TFEndStrNode : TFStrNode
+@end
+
+@interface TFBranchStrNode : TFStrNode {
+
+@private
+    TFStrNode *left;
+    TFStrNode *right;
+}
+
+@property (readonly) TFStrNode *left;
+@property (readonly) TFStrNode *right;
+
+- (id)initWithLeft:(TFStrNode *)left right:(TFStrNode *)right;
+
+@end
+
+@interface TFCharStrNode : TFStrNode {
+
+@private
+    char character;
+}
+
+@property (readonly) char character;
+
+- (id)initWithCharacter:(char)character;
+
+@end
+
+@interface TFUniCharStrNode : TFStrNode {
+
+@private
+    UniChar character;
+}
+
+- (id)initWithCharacter:(UniChar)character;
+
+@end
+
+@interface TFStringStrNode : TFStrNode {
+
+@private
+    uint32_t address;
+    TFExecutionMode mode;
+    NSString *string;
+}
+
+@end
+
+@interface TFIndirectStrNode : TFStrNode {
+
+@private
+    uint32_t address;
+    BOOL doubleIndirect;
+    uint32_t argCount, argsAt;
+}
+
+- (id)initWithAddress:(uint32_t)address doubleIndirect:(BOOL)doubleIndirect argCount:(uint32_t)argCount argsAt:(uint32_t)argsAt;
+
+@end

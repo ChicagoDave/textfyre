@@ -51,10 +51,45 @@ typedef enum _TFOutputChannel {
 
 @interface TFEngine (Output)
 
+/*! Sends a single character to the output system (other than TFIOSystemFilter).
+
+    \param ch The character to send.
+ */
+- (void)sendCharToOutput:(uint32_t)character;
+
+/*! Sends a string to the output system (other than TFIOSystemFilter).
+
+    \param string The string to send.
+ */
+- (void)sendStringToOutput:(NSString *)string;
+
+- (void)nextCStringChar;
+- (void)nextUniStringChar;
+- (void)nextDigit;
+- (BOOL)nextCompressedStringBit;
+
+#pragma mark Native String Decoding Table
+
 /*! Builds a native version of the string decoding table if the table is entirely in ROM, or verifies the table's current state if the table is in RAM. */
 - (void)cacheDecodingTable;
 
 /* Checks that the string decoding table is well-formed, i.e., that it contains at least one branch, one end marker, and no unrecognized node types. */
 - (void)verifyDecodingTable;
+
+/*! \brief Prints the next character of a compressed string, consuming one or more bits. 
+
+    This is only used when the string decoding table is in RAM.
+ */
+- (void)nextCompressedChar;
+
+/*! Prints a string, or calls a routine, when an indirect node is encountered in a compressed string.
+
+    \param address The address of the string or routine.
+    \param argCount The number of arguments passed in.
+    \param argsAt The address where the argument array is stored.
+ */
+- (void)printIndirect:(uint32_t)address argCount:(uint32_t)argCount argsAt:(uint32_t)argsAt;
+
+- (void)donePrinting;
 
 @end

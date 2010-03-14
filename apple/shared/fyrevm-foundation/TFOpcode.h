@@ -28,7 +28,7 @@ typedef enum _TFOpcodeRule
     SEL selector;
     NSInteger loadArgs;
     NSInteger storeArgs;
-    NSString *ruleName;
+    TFOpcodeRule rule;
 }
 
 /*! Designated initializer.
@@ -51,6 +51,8 @@ typedef enum _TFOpcodeRule
 @property (readonly) NSInteger storeArgs;
 @property (readonly) TFOpcodeRule rule;
 
+#pragma mark APIs
+
 /*! Attempts to read in opcode information from plist.
 
     On success, returns autoreleased dictionary.
@@ -58,5 +60,7 @@ typedef enum _TFOpcodeRule
     On failure, returns nil, at which point technical details will be printed to Console.
  */
 + (NSDictionary *)opcodeDictionary;
+
+- (void)performWithOperands:(uint32_t *)operands;
 
 @end

@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @class TFUlxImage;
+@class TFOutputBuffer;
 @class TFVeneer;
 @class TFArguments;
 @class TFHeapAllocator;
+@class TFStrNode;
 
 /*! Identifies an output system for use with @setiosys. */
 typedef enum _TFIOSystem {
@@ -83,10 +85,10 @@ typedef enum _TFSearchOptions
     // transient state
     uint32_t frameLen, localsPos; // updated along with FP
     TFIOSystem outputSystem;
-//    OutputBuffer outputBuffer = new OutputBuffer();
+    TFOutputBuffer *outputBuffer;
     uint32_t filterAddress;
     uint32_t decodingTable;
-//    StrNode nativeDecodingTable;
+    TFStrNode *nativeDecodingTable;
     TFExecutionMode execMode;
     uint8_t printingDigit; // bit number for compressed strings, digit for numbers
 //    Random randomGenerator = new Random();
@@ -102,6 +104,14 @@ typedef enum _TFSearchOptions
 }
 
 @property (readonly) TFUlxImage *image;
+
+@property uint32_t pc;
+@property uint32_t fp;
+
+@property (readonly) TFIOSystem outputSystem;
+@property (readonly) uint32_t filterAddress;
+@property TFExecutionMode execMode;
+@property (readonly) uint8_t printingDigit;
 
 #pragma mark APIs
 
