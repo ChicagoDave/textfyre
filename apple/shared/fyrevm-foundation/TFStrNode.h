@@ -84,7 +84,7 @@
     UniChar character;
 }
 
-- (id)initWithCharacter:(UniChar)character;
+- (id)initWithUniChar:(UniChar)character;
 
 @end
 
@@ -95,6 +95,8 @@
     TFExecutionMode mode;
     NSString *string;
 }
+
+- (id)initWithAddress:(uint32_t)address mode:(TFExecutionMode)mode string:(NSString *)string;
 
 @end
 

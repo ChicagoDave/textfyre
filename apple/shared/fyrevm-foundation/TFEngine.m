@@ -73,10 +73,10 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
     NSUInteger minorVersion = [theImage minorVersion];
 
     BOOL result =
-        (majorVersion < TFEngineFirstMajorVersion ||
-        (majorVersion == TFEngineFirstMajorVersion && minorVersion < TFEngineFirstMinorVersion) ||
-        majorVersion > TFEngineLastMajorVersion ||
-        (majorVersion == TFEngineLastMajorVersion && minorVersion > TFEngineLastMinorVersion));
+        ((majorVersion > TFEngineFirstMajorVersion ||
+         majorVersion == TFEngineFirstMajorVersion && minorVersion >= TFEngineFirstMinorVersion) &&
+         (majorVersion < TFEngineLastMajorVersion ||
+          majorVersion == TFEngineLastMajorVersion && minorVersion <= TFEngineLastMinorVersion));
 
     if (result == NO) {
         NSLog(@"Glulx (.ulx) game file at path \"%@\" has major version %lu and minor version %lu, which are not compatible with this game engine's first major version number %lu, first minor version number %lu, last major version number %lu, last minor version number %lu", 
@@ -95,7 +95,7 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 /*! Clears the stack and initializes VM registers from values found in RAM. */
 - (void)bootstrap {
     uint32_t mainfunc = [image integerAtOffset:TFGlulxHeaderStartFunctionOffset];
-    decodingTable = [image integerAtOffset:TFGlulxHeaderDecodingTableOffset ];
+    decodingTable = [image integerAtOffset:TFGlulxHeaderDecodingTableOffset];
 
     sp = fp = frameLen = localsPos = 0;
     outputSystem = TFIOSystemNull;

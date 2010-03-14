@@ -45,9 +45,8 @@
 		4F6B64D6111E2AC300BABD7F /* TFEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F02BA73111BE8F70054F477 /* TFEngine.m */; };
 		4F6B64D7111E2AE100BABD7F /* sh-v1.0de.ulx in Resources */ = {isa = PBXBuildFile; fileRef = 4F8FD6241115864C00024CED /* sh-v1.0de.ulx */; };
 		4F6B64D8111E2AE100BABD7F /* sh-v1.0e.ulx in Resources */ = {isa = PBXBuildFile; fileRef = 4FCCC0FE111548E30001000B /* sh-v1.0e.ulx */; };
-		4F6B64D9111E2AE100BABD7F /* sh-v1.2e.ulx in Resources */ = {isa = PBXBuildFile; fileRef = 4F9503151116414F003A8841 /* sh-v1.2e.ulx */; };
-		4F9503161116414F003A8841 /* sh-v1.2e.ulx in Resources */ = {isa = PBXBuildFile; fileRef = 4F9503151116414F003A8841 /* sh-v1.2e.ulx */; };
 		4F95031C1116419C003A8841 /* sh-v1.0de.ulx in Resources */ = {isa = PBXBuildFile; fileRef = 4F8FD6241115864C00024CED /* sh-v1.0de.ulx */; };
+		4FB0C855114CA37F005F097B /* sh-v1.2e.ulx in Resources */ = {isa = PBXBuildFile; fileRef = 4F9503151116414F003A8841 /* sh-v1.2e.ulx */; };
 		4FB17B8A1139D471009491D3 /* TFVeneer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB17B891139D471009491D3 /* TFVeneer.m */; };
 		4FB17B8B1139D471009491D3 /* TFVeneer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB17B891139D471009491D3 /* TFVeneer.m */; };
 		4FCCC100111549050001000B /* sh-v1.0e.ulx in Resources */ = {isa = PBXBuildFile; fileRef = 4FCCC0FE111548E30001000B /* sh-v1.0e.ulx */; };
@@ -403,7 +402,6 @@
 			files = (
 				4F95031C1116419C003A8841 /* sh-v1.0de.ulx in Resources */,
 				4FCCC100111549050001000B /* sh-v1.0e.ulx in Resources */,
-				4F9503161116414F003A8841 /* sh-v1.2e.ulx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,7 +411,6 @@
 			files = (
 				4F6B64D7111E2AE100BABD7F /* sh-v1.0de.ulx in Resources */,
 				4F6B64D8111E2AE100BABD7F /* sh-v1.0e.ulx in Resources */,
-				4F6B64D9111E2AE100BABD7F /* sh-v1.2e.ulx in Resources */,
 				4F50FBE911310779006D0738 /* Opcodes.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,6 +422,7 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				4F50FADA1130ADF8006D0738 /* Opcodes.plist in Resources */,
+				4FB0C855114CA37F005F097B /* sh-v1.2e.ulx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
