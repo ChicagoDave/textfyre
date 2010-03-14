@@ -119,7 +119,7 @@
 
 @implementation TFUniCharStrNode
 
-- (id)initWithCharacter:(UniChar)characterParam {
+- (id)initWithUniChar:(UniChar)characterParam {
     self = [super init];
     
     character = characterParam;

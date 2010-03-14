@@ -8,8 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class TFInterpreter;
+
 @interface fyrep_cocoaAppDelegate : NSObject {
+
+@private
     NSWindow *window;
+    
+    TFInterpreter *interpreter;
 }
 
 @property (assign) IBOutlet NSWindow *window;

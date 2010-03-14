@@ -12,6 +12,7 @@
 #import "TFArguments.h"
 #import "TFEngine_Opcodes.h"
 #import "TFOutputBuffer.h"
+#import "TFStrNode.h"
 #import "TFUlxImage.h"
 
 
@@ -131,111 +132,113 @@
 
 #pragma mark Native String Decoding Table
 
-/*! Builds a native version of the string decoding table if the table is entirely in ROM, or verifies the table's current state if the table is in RAM. */
 - (void)cacheDecodingTable {
-    if (decodingTable == 0)
-    {
-        // TODO
-//        nativeDecodingTable = NULL;
+    if (decodingTable == 0) {
+        nativeDecodingTable = NULL;
         return;
     }
 
     uint size = [image integerAtOffset:decodingTable + TFGlulxHuffmanTableSizeOffset];
     if (decodingTable + size - 1 >= image.RAMStart) {
-        // if the table is in RAM, don't cache it. just verify it now
-        // and then process it directly from RAM when the time comes.
-        // TODO
-        //nativeDecodingTable = nil;
+        // If the table is in RAM, don't cache it. just verify it now and then process it directly from RAM when the time comes.
+        nativeDecodingTable = NULL;
         [self verifyDecodingTable];
         return;
     }
 
-    // TODO
-//    uint32_t root = [image integerAtOffset:decodingTable + TFGlulxHuffmanTableSizeOffset];
-//    nativeDecodingTable = [self cacheDecodingTableNode:root];
+    uint32_t root = [image integerAtOffset:decodingTable + TFGlulxHuffmanRootNodeOffset];
+    nativeDecodingTable = [self cacheDecodingTableNode:root];
 }
-/*
-private StrNode CacheDecodingTableNode(uint node)
-{
-    if (node == 0)
-        return null;
 
-    byte nodeType = image.ReadByte(node++);
+- (TFStrNode *)cacheDecodingTableNode:(uint32_t)node {
+    TFStrNode *result = nil;
 
-    switch (nodeType)
-    {
-        case GLULX_HUFF_NODE_END:
-            return new EndStrNode();
+    if (node != 0) {
+        uint8_t nodeType = [image byteAtOffset:node++];
+        
+        TFStrNode *allocedNode = nil;
 
-        case GLULX_HUFF_NODE_BRANCH:
-            return new BranchStrNode(
-                CacheDecodingTableNode([image integerAtOffset:node]),
-                CacheDecodingTableNode(image.ReadInt32(node + 4)));
+        switch (nodeType) {
+            case TFGlulxHuffmanNodeEnd:
+                allocedNode = [[TFEndStrNode alloc] init];
+                break;
 
-        case GLULX_HUFF_NODE_CHAR:
-            return new CharStrNode((char)image.ReadByte(node));
+            case TFGlulxHuffmanNodeBranch: {
+                TFStrNode *left = [self cacheDecodingTableNode:[image integerAtOffset:node]];
+                TFStrNode *right = [self cacheDecodingTableNode:[image integerAtOffset:node + 4]];
+            
+                allocedNode = [[TFBranchStrNode alloc] initWithLeft:left right:right];
+            }
+                break;
 
-        case GLULX_HUFF_NODE_UNICHAR:
-            return new UniCharStrNode([image integerAtOffset:node]);
+            case TFGlulxHuffmanNodeChar:
+                allocedNode = [[TFCharStrNode alloc] initWithCharacter:(char)[image byteAtOffset:node]];
+                break;
 
-        case GLULX_HUFF_NODE_CSTR:
-            return new StringStrNode(node, ExecutionMode.CString,
-                ReadCString(node));
+            case TFGlulxHuffmanNodeUnichar:
+                allocedNode = [[TFUniCharStrNode alloc] initWithUniChar:(UniChar)[image integerAtOffset:node]];
+                break;
 
-        case GLULX_HUFF_NODE_UNISTR:
-            return new StringStrNode(node, ExecutionMode.UnicodeString,
-                ReadUniString(node));
+            case TFGlulxHuffmanNodeCStr:
+                allocedNode = [[TFStringStrNode alloc] initWithAddress:node mode:TFExecutionModeCString string:[self readCString:node]];
+                break;
 
-        case GLULX_HUFF_NODE_INDIRECT:
-            return new IndirectStrNode([image integerAtOffset:node], false, 0, 0);
+            case TFGlulxHuffmanNodeUnistr:
+                allocedNode = [[TFStringStrNode alloc] initWithAddress:node mode:TFExecutionModeUnicodeString string:[self readUniString:node]];
+                break;
 
-        case GLULX_HUFF_NODE_INDIRECT_ARGS:
-            return new IndirectStrNode([image integerAtOffset:node], false,
-                image.ReadInt32(node + 4), node + 8);
+            case TFGlulxHuffmanNodeIndirect:
+                allocedNode = [[TFIndirectStrNode alloc] initWithAddress:[image integerAtOffset:node] doubleIndirect:NO argCount:0 argsAt:0];
+                break;
 
-        case GLULX_HUFF_NODE_DBLINDIRECT:
-            return new IndirectStrNode([image integerAtOffset:node], true, 0, 0);
+            case TFGlulxHuffmanNodeIndirectArgs:
+                allocedNode = [[TFIndirectStrNode alloc] initWithAddress:[image integerAtOffset:node] doubleIndirect:NO argCount:[image integerAtOffset:node + 4] argsAt:node + 8];
+                break;
 
-        case GLULX_HUFF_NODE_DBLINDIRECT_ARGS:
-            return new IndirectStrNode([image integerAtOffset:node], true,
-                image.ReadInt32(node + 4), node + 8);
+            case TFGlulxHuffmanNodeDBLIndirect:
+                allocedNode = [[TFIndirectStrNode alloc] initWithAddress:[image integerAtOffset:node] doubleIndirect:YES argCount:0 argsAt:0];
+                break;
 
-        default:
-            throw new VMException("Unrecognized compressed string node type " + nodeType.ToString());
+            case TFGlulxHuffmanNodeDBLIndirectArgs:
+                allocedNode = [[TFIndirectStrNode alloc] initWithAddress:[image integerAtOffset:node] doubleIndirect:YES argCount:[image integerAtOffset:node + 4] argsAt:node + 8];
+                break;
+
+            /*TODOdefault:
+                throw new VMException("Unrecognized compressed string node type " + nodeType.ToString());
+            */
+        }
+        
+        result = [allocedNode autorelease];
     }
+
+    return result;
 }
 
-private string ReadCString(uint address)
-{
-    StringBuilder sb = new StringBuilder();
+- (NSString *)readCString:(uint32_t)address {
+    NSMutableString *result = [NSMutableString string];
 
-    byte b = image.ReadByte(address);
-    while (b != 0)
-    {
-        sb.Append((char)b);
-        b = image.ReadByte(++address);
+    uint8_t b = [image byteAtOffset:address];
+    while (b != 0) {
+        [result appendFormat:@"%c", b];
+        b = [image byteAtOffset:++address];
     }
 
-    return sb.ToString();
+    return result;
 }
 
-private string ReadUniString(uint address)
-{
-    StringBuilder sb = new StringBuilder();
+- (NSString *)readUniString:(uint32_t)address {
+    NSMutableString *result = [NSMutableString string];
 
-    uint ch = image.ReadInt32(address);
-    while (ch != 0)
-    {
-        sb.Append((char)ch);
+    uint32_t ch = [image integerAtOffset:address];
+    while (ch != 0) {
+        [result appendFormat:@"%C", (UniChar)ch];
         address += 4;
-        ch = image.ReadInt32(address);
+        ch = [image integerAtOffset:address];
     }
 
-    return sb.ToString();
+    return result;
 }
 
-#endregion
-*/
 - (void)verifyDecodingTable {
     if (decodingTable == 0)
         return;

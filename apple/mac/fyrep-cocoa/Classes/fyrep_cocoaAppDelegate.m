@@ -8,12 +8,22 @@
 
 #import "fyrep_cocoaAppDelegate.h"
 
+#import "TFInterpreter.h"
+
 @implementation fyrep_cocoaAppDelegate
 
 @synthesize window;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-	// Insert code here to initialize your application 
+	interpreter = [[TFInterpreter alloc] init];
+    
+    [interpreter startGame];
+}
+
+- (void)dealloc {
+    [interpreter release], interpreter = nil;
+
+    [super dealloc];
 }
 
 @end

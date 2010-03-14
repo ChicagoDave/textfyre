@@ -73,6 +73,11 @@ typedef enum _TFOutputChannel {
 /*! Builds a native version of the string decoding table if the table is entirely in ROM, or verifies the table's current state if the table is in RAM. */
 - (void)cacheDecodingTable;
 
+- (TFStrNode *)cacheDecodingTableNode:(uint32_t)node;
+
+- (NSString *)readCString:(uint32_t)address;
+- (NSString *)readUniString:(uint32_t)address;
+
 /* Checks that the string decoding table is well-formed, i.e., that it contains at least one branch, one end marker, and no unrecognized node types. */
 - (void)verifyDecodingTable;
 
