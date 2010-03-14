@@ -2,7 +2,8 @@
 
 [  Change Log
 When		Who		What
-14-Feb-2010		R. Newcomb	DD2.0 - various synonyms, fixed regionless new rooms, other misc.
+13-Mar-2010	D. Cornelson	Changes to princess dialogue and some of the fight scene. Needs work.
+14-Feb-2010	R. Newcomb	DD2.0 - various synonyms, fixed regionless new rooms, other misc.
 19-Nov-2009	G. Jefferis	Eric's Transcript
 17-Nov-2009	G. Jefferis	Eric's Transcript
 29-Oct-2009	G. Jefferis	DD2.0 - War Room
@@ -217,16 +218,16 @@ The story creation year is 2009.
 
 Rule for printing the banner text:
 	select the title channel;
-	say "[b][story title] - v2.0.20100214[r][line break]";
+	say "[b][story title] - v2.0.20100313[r][line break]";
 	select the credits channel;
 	say "[story title] by [story author][line break]";
 	say "Copyright @ [story creation year] by [story author][line break]";
 	say "Story by David Cornelson[line break]";
 	say "Written by Michael Gentry[line break]";
 	say "Game Engine (FyreVM) by Jesse McGrew[line break]";
-	say "Inform 7 Story Programming by Graeme Jefferis[line break] and Ron Newcomb[line break]";
+	say "Inform 7 Story Programming by Graeme Jefferis[line break]and Ron Newcomb[line break]";
 	say "Testing by Jacqueline Ashwell, Peter Berman,[line break]Eric Eve, Jim Aikin, and Paul O'Brian[line break]";
-	say "Deluxe Edition UI by Thomas Lynge[line break] of Tenteo (www.tenteo.com)[line break]";
+	say "Deluxe Edition UI by Thomas Lynge[line break]";
 	say "Sketches by Erika Swanson (www.simplyerika.com).[line break]";
 	say "Special thanks to Graham Nelson and Emily Short[line break]";
 	say "for Inform 7 (www.inform7.com)[line break]";
@@ -9371,7 +9372,7 @@ Instead of going outside in the Library:
 
 The distant description of the Library is "A library is south of here."
 
-Before going from the Library when the secret letter is on-stage and the player does not carry the letter:
+Before going from the Library when the secret letter is revealed and the player does not carry the letter:
 	say "Don't forget the letter!" instead;
 
 Chapter 2 - Scenery
@@ -9458,14 +9459,15 @@ Instead of examining the lowered gaudy chandelier when the secret letter is in t
 	try searching the gaudy chandelier;
 
 Instead of searching the lowered gaudy chandelier when the secret letter is in the gaudy chandelier:
-	say "[one of]Odd — r[or]R[stopping]olled up and stuffed into one of the empty candle holders is a sheet of parchment."
+	say "[one of]Odd — r[or]R[stopping]olled up and stuffed into one of the empty candle holders is a sheet of parchment.";
+	now the secret letter is revealed.
 
 Instead of searching the lowered gaudy chandelier when the secret letter is not in the gaudy chandelier:
 	say "Nothing else seems to be hidden in the gaudy chandelier.";
 
 Chapter 4 - The Secret Letter
 
-The secret letter is a thing, in the gaudy chandelier. 
+The secret letter is a thing, in the gaudy chandelier. It can be revealed or unrevealed. It is unrevealed.
 
 Rule for deciding the concealed possessions of the raised gaudy chandelier:
 	yes;
@@ -11395,7 +11397,7 @@ PR3 is a transitional quip. The menu text is "'You should be afraid of me.'". Th
 
 PR4 is a transitional quip. The menu text is "'So, do you like parties?'". The display text is "'So...' You flounder, struggling to think of something to say. 'This is a pretty nice place. Do you, uh, like, uh... balls?'" The following quip is PR5.
 
-PR5 is a quip. The display text is "The Princess looks at you incredulously and curls her lip. 'Are you, like, actually trying to have a [i]conversation[r] with me?' she asks."
+PR5 is a quip. The display text is "The Princess looks at you incredulously and says. 'Are you trying to have a [i]conversation[r] with me?' she asks."
 
 PR6 is a transitional quip. The menu text is "'Yes, I am.'". The display text is "'Yes, your Highness, I am,' you say, determined not to be put off. 'It seems to me that getting to know to each other might be to our mutual benefit, even if we do find ourselves at odds.'" The following quip is PR9.
 
@@ -11403,7 +11405,7 @@ PR7 is a transitional quip. The menu text is "'Did you know that Fossville is a 
 
 PR8 is a transitional quip. The menu text is "'It must be nice, being a Princess.'". The display text is "Once again, you find yourself holding the conversational ball with no idea of where you should throw it. 'So... what's it like, being a Princess?' you try. 'Must be nice.'" The following quip is PR9.
 
-PR9 is a quip. The display text is "The Princess looks away, holding one hand delicately against the side of her face as though suffering from a royal headache. 'Oh, Goddesses,' she moans, 'this is so embarrassing.'"
+PR9 is a quip. The display text is "The Princess looks around the room to see who's watching. 'Oh, Goddesses,' she moans, 'this is so embarrassing.'"
 
 PR10 is a transitional quip. The menu text is "'I know, I know!'". The display text is "You find yourself nodding eagerly. 'I know, isn't it?' you say. 'I've been feeling terribly awkward almost from the moment I started talking to you.'" The following quip is PR15.
 
@@ -11415,9 +11417,9 @@ PR13 is a transitional quip. The menu text is "'What can you tell me about the B
 
 PR14 is a transitional quip. The menu text is "'What can you tell me about the Earl of Bresa?'". The display text is "'What can you tell me about—'". The following quip is PR15.
 
-PR15 is a quip. The display text is "'Um, look,' interrupts the Princess, 'I understand you're having a lot of fun pretending to be someone important? But I'm really not interested in listening to some dressed-up alley rat chatter at me all night. So if you'll excuse me...' And then she shoulders past you and disappears into the crowd."
+PR15 is a quip. The display text is "'Enough,' interrupts the Princess in a strong whisper, 'I understand all too well what you represent to Miradania. You're father was [bold type]loved[roman type]. Is loved even in death. As long you remain alive and have access to royalty, you're going to be a thorn in [italic type]my[roman type] plans. I don't think you'll be much competition, but I have no interest in giving you legitimacy either way. So if you'll excuse me...' And then she shoulders past you and disappears into the crowd."
 
-PR16 is a quip. The display text is "'If you'll excuse me, your Highness,' you say, dropping an awkward curtsey, 'I would take your leave-'[paragraph break]'Oh, thank the Goddesses,' she snaps, shouldering past you and disappearing into the crowd."
+PR16 is a quip. The display text is "'If you'll excuse me, your Highness,' you say, dropping an awkward curtsey, 'I would take your leave-'[paragraph break]'My pleasure,' she whispers, shouldering past you and disappearing into the crowd."
 
 Rule for making excuses for someone when the current conversationalist is the Princess:
 	carry out the firing activity with PR16;
@@ -11829,7 +11831,7 @@ GR1 is a quip. The display text is "'Pardon me,' someone says in a low, strangel
 
 GR2 is a quip. The menu text is "'Who are you?'". The display text is "Jacobs never mentioned this guy, and you don't remember seeing him in the ballroom until now. 'Who are you?' you demand.[paragraph break]'Merely an interested observer,' says the Prince with a hint of a smile. 'I have been watching you from afar, and watching the reactions of others to you. I am intrigued.'"
 
-GR3 is a quip. The menu text is "'You've been watching me?'". The display text is "'You've been watching me?' you ask. You want to feel offended, but the way he's looking at you makes that difficult. 'Do you mean watching me in a creepy stalker way, or in a secretly working for Fossville way?'[paragraph break]The Prince chuckles. 'Neither, actually. Of course I know who you are and why you're here, but that's not what intrigues me. There's something... special about you. I could see it from the moment I laid eyes on you.'"
+GR3 is a quip. The menu text is "'You've been watching me?'". The display text is "'You've been watching me?' you ask. You want to feel offended, but the way he's looking at you makes that difficult. 'Do you mean watching me as a potential companion or are you one of Fossville's spies?'[paragraph break]The Prince chuckles. 'Neither, actually. Of course I know who you are and why you're here, but that's not what intrigues me. There's something... special about you. I could see it from the moment I laid eyes on you.'"
 
 GR4 is a quip. The menu text is "'I'm special?'". The display text is "You raise one eyebrow. 'So I'm [']special['], huh? How so?'[paragraph break]The Prince looks away for a moment. 'It is... difficult to explain. People in my family have always been able to see these things. It's like an aura.' He looks directly at you again. 'You have... a highly [i]visible[r] fate.'"
 
@@ -11905,7 +11907,7 @@ When Confronting the Baron begins:
 	move the player to the blackwood chair, without printing a room description;
 	try looking;
 	move Baron Fossville to the War Room;
-	change the current script to {FOSS0, FOSS1, FOSS2, FOSS5, FOSS6, FOSS7, FOSS8,  FOSS8a, FOSS9, FOSS10};
+	change the current script to {FOSS0, FOSS1, FOSS2, FOSS5, FOSS6, FOSS7, FOSS8,  FOSS8a, FOSS9, FOSS10, FOSS11, FOSS12};
 	ratchet the current tension to important;
 
 Chapter 2 - War Room
@@ -12042,7 +12044,11 @@ FOSS8a is a scripted event. The display text is "The Baron roars and brings his 
 
 FOSS9 is a scripted event. The display text is "The two swords clash and clash again. Fossville pushes Bobby back, back across the room, this time backing him towards the roaring fireplace. Bobby is a skilled fighter, but he's losing ground before the Baron's fury. Flames lick the edge of his cloak as he staggers back against the mantelpiece.[if the player is not tied up][paragraph break]You have to do something![end if]"
 
-FOSS10 is a scripted event. The display text is "The Baron feints, then strikes Bobby across the face with his pommel. Bobby's sword clatters to the floor and he falls to his knees. Pieter slumps helplessly against his bonds, groaning with dismay.[paragraph break]'It's over, spy,' snarls Fossville as he steps forward, sword raised."
+FOSS10 is a scripted event. The display text is "Bobby edges Fossville towards Pieter laying on the ground and Fossville stumbles. Bobby presses Fossville backwards and regains the momentum, but is clearly tiring."
+
+FOSS11 is a scripted event. The display text is "Fossville slows the fight, now toying with the young spy. 'You're clearly a well-trained swordsman. I would be very curious to know who paid for such skill. You're not royal born. The kingdom is clearly deteriorating if the likes of you gain power,' and the Baron presses forward once again."
+
+FOSS12 is a scripted event. The display text is "The Baron feints, then strikes Bobby across the face with his pommel. Bobby's sword clatters to the floor and he falls to his knees. Pieter slumps helplessly against his bonds, groaning with dismay.[paragraph break]'It's over, spy,' snarls Fossville as he steps forward, sword raised."
 
 After firing FOSS2:
 	now Baron Fossville carries the secret letter;
@@ -12059,7 +12065,7 @@ After firing FOSS6:
 	move the fighting to the War Room;
 	update the character list;
 
-After firing FOSS10:
+After firing FOSS12:
 	ratchet the current tension to show-stopping;
 
 
@@ -12206,7 +12212,7 @@ Understand "frayed", "fraying" as the knotted ropes when Pieter is not caught.
 
 When the skirmish ends:
 	select theme "Kidnapped";
-	say "At that moment, there is a sudden [i]crack[r] and a rumbling, and a cold draft rushes into the room, tugging at the flames in the fireplace and throwing the room into wildly pitching shadow.[paragraph break]Behind you, the map wall has opened to reveal a dark, cavernous passageway, and [i]more[r] men are rushing out — men dressed all in black, with dark hoods and scarves hiding their faces.[paragraph break]'That's her! Get her!' cries a voice. A young woman's voice. A voice you've heard before.[paragraph break]It happens so fast. Hands are on you, [if the player is tied up]cutting you loose from the chair, [end if]lifting you off your feet, [if the player is not tied up and the player has the dagger]wresting the dagger from your grasp, [end if]pulling you back into that dark, dark tunnel. The firelight falls away, shrinks down to a flickering, orange rectangle. The rumbling starts again, and the rectangle grows narrower, narrower...[paragraph break]'Don't worry,' says the voice. 'We're not going to, like, [i]hurt[r] you.'[paragraph break]And then everything is black.";
+	say "At that moment, there is a sudden [i]crack[r] and a rumbling, and a cold draft rushes into the room, tugging at the flames in the fireplace and throwing the room into wildly pitching shadow.[paragraph break]Behind you, the map wall has opened to reveal a dark, cavernous passageway, and [i]more[r] men are rushing out — men dressed all in black, with dark hoods and scarves hiding their faces.[paragraph break]'That's her! Get her!' cries a voice. A young woman's voice. A voice you've heard before.[paragraph break]It happens so fast. Hands are on you, [if the player is tied up]cutting you loose from the chair, [end if]lifting you off your feet, [if the player is not tied up and the player has the dagger]wresting the dagger from your grasp, [end if]pulling you back into that dark, dark tunnel. The firelight falls away, shrinks down to a flickering, orange rectangle. The rumbling starts again, and the rectangle grows narrower, narrower...[paragraph break]'Don't worry,' says a familiar voice. 'We're not going to [i]hurt[r] you. It's simply ocurred to me that you could be useful after all. You clearly have more friends than I had thought possible.'[paragraph break]You catch a flash of the princess's face and then everything goes black.";
 	end the game in victory;
 
 Rule for printing the player's obituary when the game ended in death:
@@ -12393,6 +12399,8 @@ test scenetest with "scenes / test walkthrough";
 
 test walkthrough with "test walk1 / test walk2 / test walk3"
 
+test walkthrough2 with "test walk1 / test walk2 / test walk25"
+
 test toball with "test walk1 / test redgate/test sandler/test moneylender/test clothier/test armory/test ballgoing"
 
 Test walk1 with "test intro/test market/test meeting/test adventure/test jail/test sewers"
@@ -12400,6 +12408,8 @@ Test walk1 with "test intro/test market/test meeting/test adventure/test jail/te
 Test walk2 with "test rooftops/test blackgate/test hanging/test maidens"
 
 Test brick with "test walk1/test walk2/test redgate/test sandler/test moneylender/test clothier/test armory"
+
+test walk25 with "test redgate/test sandler/test moneylender/test clothier/test armory/test ballgoing"
 
 Test walk3 with "test redgate/test sandler/test moneylender/test clothier/test armory/test ballgoing/test socializing/test warroom" 
 
