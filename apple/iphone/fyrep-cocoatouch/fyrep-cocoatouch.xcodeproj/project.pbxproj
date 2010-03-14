@@ -32,6 +32,9 @@
 		4F213AB6111E4E1100C0667D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6B6484111E296700BABD7F /* SenTestingKit.framework */; };
 		4F3E15001114E4D100007CFC /* TFUlxImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E14FF1114E4D100007CFC /* TFUlxImage.m */; };
 		4F44C2B1111BE776006B05D2 /* TFEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F44C2B0111BE776006B05D2 /* TFEngine.m */; };
+		4F4D7F36114C45E000EA5308 /* TFOutputBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D7F35114C45E000EA5308 /* TFOutputBuffer.m */; };
+		4F4D7F37114C45E000EA5308 /* TFOutputBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D7F35114C45E000EA5308 /* TFOutputBuffer.m */; };
+		4F4D7F38114C45E000EA5308 /* TFOutputBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D7F35114C45E000EA5308 /* TFOutputBuffer.m */; };
 		4F50FA5E1130915B006D0738 /* Opcodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F50FA5D1130915B006D0738 /* Opcodes.plist */; };
 		4F50FA5F1130915B006D0738 /* Opcodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F50FA5D1130915B006D0738 /* Opcodes.plist */; };
 		4F50FA601130915B006D0738 /* Opcodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F50FA5D1130915B006D0738 /* Opcodes.plist */; };
@@ -66,6 +69,9 @@
 		4F6B65B5111E300800BABD7F /* ApplicationTests.octest in Resources */ = {isa = PBXBuildFile; fileRef = 4F05E9AC111E0CA400C90CB3 /* ApplicationTests.octest */; };
 		4F9DEFF7111E28ED00FDB6AD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		4F9DEFF8111E28ED00FDB6AD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		4FA24392114B6FAB008469AC /* TFStrNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA24391114B6FAB008469AC /* TFStrNode.m */; };
+		4FA24393114B6FAB008469AC /* TFStrNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA24391114B6FAB008469AC /* TFStrNode.m */; };
+		4FA24394114B6FAB008469AC /* TFStrNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA24391114B6FAB008469AC /* TFStrNode.m */; };
 		4FB17B851139D43B009491D3 /* TFVeneer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB17B841139D43B009491D3 /* TFVeneer.m */; };
 		4FB17B861139D43B009491D3 /* TFVeneer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB17B841139D43B009491D3 /* TFVeneer.m */; };
 		4FB17B871139D43B009491D3 /* TFVeneer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB17B841139D43B009491D3 /* TFVeneer.m */; };
@@ -126,6 +132,8 @@
 		4F3E14FF1114E4D100007CFC /* TFUlxImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFUlxImage.m; sourceTree = "<group>"; };
 		4F44C2AF111BE776006B05D2 /* TFEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFEngine.h; sourceTree = "<group>"; };
 		4F44C2B0111BE776006B05D2 /* TFEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFEngine.m; sourceTree = "<group>"; };
+		4F4D7F34114C45E000EA5308 /* TFOutputBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFOutputBuffer.h; sourceTree = "<group>"; };
+		4F4D7F35114C45E000EA5308 /* TFOutputBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFOutputBuffer.m; sourceTree = "<group>"; };
 		4F50FA5D1130915B006D0738 /* Opcodes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Opcodes.plist; sourceTree = "<group>"; };
 		4F50FB071130B38A006D0738 /* Opcodes README.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Opcodes README.rtf"; sourceTree = "<group>"; };
 		4F50FB231130DF21006D0738 /* TFOpcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFOpcode.h; sourceTree = "<group>"; };
@@ -143,6 +151,8 @@
 		4F6B6535111E2FA100BABD7F /* fyrep-cocoatouchTesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fyrep-cocoatouchTesting.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F9DEF57111E287B00FDB6AD /* LogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F9DEF58111E287B00FDB6AD /* LogicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LogicTests-Info.plist"; sourceTree = "<group>"; };
+		4FA24390114B6FAB008469AC /* TFStrNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFStrNode.h; sourceTree = "<group>"; };
+		4FA24391114B6FAB008469AC /* TFStrNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFStrNode.m; sourceTree = "<group>"; };
 		4FB17B831139D43B009491D3 /* TFVeneer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFVeneer.h; sourceTree = "<group>"; };
 		4FB17B841139D43B009491D3 /* TFVeneer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFVeneer.m; sourceTree = "<group>"; };
 		4FCCBE73111521A40001000B /* GlulxConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlulxConstants.h; sourceTree = "<group>"; };
@@ -305,6 +315,10 @@
 				4F50FB241130DF21006D0738 /* TFOpcode.m */,
 				4F50FB071130B38A006D0738 /* Opcodes README.rtf */,
 				4F50FA5D1130915B006D0738 /* Opcodes.plist */,
+				4F4D7F34114C45E000EA5308 /* TFOutputBuffer.h */,
+				4F4D7F35114C45E000EA5308 /* TFOutputBuffer.m */,
+				4FA24390114B6FAB008469AC /* TFStrNode.h */,
+				4FA24391114B6FAB008469AC /* TFStrNode.m */,
 				4F3E14FE1114E4D100007CFC /* TFUlxImage.h */,
 				4F3E14FF1114E4D100007CFC /* TFUlxImage.m */,
 				4FB17B831139D43B009491D3 /* TFVeneer.h */,
@@ -525,6 +539,8 @@
 				4F1E0D071142ED2E004BB393 /* TFEngine_Output.m in Sources */,
 				4F1E109F1143826F004BB393 /* TFHeapAllocator.m in Sources */,
 				4F10338711448241009006DE /* TFInterpreter.m in Sources */,
+				4FA24394114B6FAB008469AC /* TFStrNode.m in Sources */,
+				4F4D7F38114C45E000EA5308 /* TFOutputBuffer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,6 +571,8 @@
 				4F1E0D091142ED2E004BB393 /* TFEngine_Output.m in Sources */,
 				4F1E10A11143826F004BB393 /* TFHeapAllocator.m in Sources */,
 				4F10338911448241009006DE /* TFInterpreter.m in Sources */,
+				4FA24393114B6FAB008469AC /* TFStrNode.m in Sources */,
+				4F4D7F37114C45E000EA5308 /* TFOutputBuffer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,6 +594,8 @@
 				4F1E108F11438247004BB393 /* TestTFHeapAllocator.m in Sources */,
 				4F1E10A01143826F004BB393 /* TFHeapAllocator.m in Sources */,
 				4F10338811448241009006DE /* TFInterpreter.m in Sources */,
+				4FA24392114B6FAB008469AC /* TFStrNode.m in Sources */,
+				4F4D7F36114C45E000EA5308 /* TFOutputBuffer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,8 +14,9 @@
 #import "TFEngine_Output.h"
 #import "TFHeapAllocator.h"
 #import "TFOpcode.h"
-#import "TFVeneer.h"
+#import "TFStrNode.h"
 #import "TFUlxImage.h"
+#import "TFVeneer.h"
 
 static const NSUInteger TFEngineFirstMajorVersion = 2;
 static const NSUInteger TFEngineFirstMinorVersion = 0;
@@ -51,6 +52,13 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 @implementation TFEngine
 
 @synthesize image;
+@synthesize pc;
+@synthesize fp;
+@synthesize outputSystem;
+@synthesize filterAddress;
+@synthesize execMode;
+@synthesize printingDigit;
+
 
 #pragma mark Private methods
 
@@ -333,7 +341,7 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 
                 // call opcode implementation
                 pc = operandPos; // after the last operand
-                opcode.Handler(operands);
+                [opcode performWithOperands:operands];
 
                 // store results
                 for (int i = 0; i < opcode.storeArgs; i++) {
@@ -344,22 +352,22 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
                 break;
 
             case TFExecutionModeCString:
-                NextCStringChar();
+                [self nextCStringChar];
                 break;
 
             case TFExecutionModeUnicodeString:
-                NextUniStringChar();
+                [self nextUniStringChar];
                 break;
 
             case TFExecutionModeNumber:
-                NextDigit();
+                [self nextDigit];
                 break;
 
             case TFExecutionModeCompressedString:
                 if (nativeDecodingTable != NULL) {
-                    nativeDecodingTable.HandleNextChar(self);
+                    [nativeDecodingTable handleNextChar:self];
                 } else {
-                    NextCompressedChar();
+                    [self nextCompressedChar];
                 }
                 break;
 

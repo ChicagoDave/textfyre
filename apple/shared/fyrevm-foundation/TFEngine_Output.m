@@ -9,33 +9,27 @@
 #import "TFEngine_Output.h"
 
 #import "GlulxConstants.h"
+#import "TFArguments.h"
+#import "TFEngine_Opcodes.h"
+#import "TFOutputBuffer.h"
 #import "TFUlxImage.h"
 
 
 @implementation TFEngine (Output)
 
-/*
-/// Sends a single character to the output system (other than
-/// <see cref="IOSystem.Filter"/>.
-/// <param name="ch">The character to send.</param>
-- (void)SendCharToOutput(uint ch)
-{
-    if (outputSystem == IOSystem.Channels)
-    {
+- (void)sendCharToOutput:(uint32_t)character {
+    if (outputSystem == TFIOSystemChannels) {
         // TODO: need to handle Unicode characters larger than 16 bits?
-        outputBuffer.Write((char)ch);
+        [outputBuffer writeCharacter:(char)character];
     }
 }
 
-/// Sends a string to the output system (other than
-/// <see cref="IOSystem.Filter"/>.
-/// <param name="str">The string to send.</param>
-- (void)SendStringToOutput(string str)
-{
-    if (outputSystem == IOSystem.Channels)
-        outputBuffer.Write(str);
+- (void)sendStringToOutput:(NSString *)string {
+    if (outputSystem == TFIOSystemChannels) {
+        [outputBuffer writeString:string];
+    }
 }
-
+/*
 /// Sends the queued output to the <see cref="OutputReady"/> event handler.
 - (void)DeliverOutput()
 {
@@ -65,67 +59,65 @@
             throw new VMException("Unrecognized output system " + number.ToString());
     }
 }
-
-- (void)NextCStringChar()
-{
-    byte ch = image.ReadByte(pc);
+*/
+- (void)nextCStringChar {
+    uint8_t ch = [image byteAtOffset:pc];
     pc++;
 
-    if (ch == 0)
-    {
-        DonePrinting();
+    if (ch == 0) {
+        [self donePrinting];
         return;
     }
 
-    if (outputSystem == IOSystem.Filter)
-        PerformCall(filterAddress, new uint[] { ch }, GLULX_STUB_RESUME_CSTR, 0, pc);
-    else
-        SendCharToOutput(ch);
+    if (outputSystem == TFIOSystemFilter) {
+        [self performCallWithAddress:filterAddress args:[TFArguments argumentsWithArg:ch] destType:TFGlulxStubResumeCString destAddr:0 stubPC:pc];
+    } else {
+        [self sendCharToOutput:ch];
+    }
 }
 
-- (void)NextUniStringChar()
-{
-    uint ch = image.ReadInt32(pc);
+- (void)nextUniStringChar {
+    uint32_t ch = [image integerAtOffset:pc];
     pc += 4;
 
-    if (ch == 0)
-    {
-        DonePrinting();
+    if (ch == 0) {
+        [self donePrinting];
         return;
     }
 
-    if (outputSystem == IOSystem.Filter)
-        PerformCall(filterAddress, new uint[] { ch }, GLULX_STUB_RESUME_UNISTR, 0, pc);
-    else
-        SendCharToOutput(ch);
+    if (outputSystem == TFIOSystemFilter) {
+        [self performCallWithAddress:filterAddress args:[TFArguments argumentsWithArg:ch] destType:TFGlulxStubResumeUnicodeString destAddr:0 stubPC:pc];
+    } else {
+        [self sendCharToOutput:ch];
+    }
 }
 
-- (void)NextDigit()
-{
-    string num = pc.ToString();
-    if (printingDigit < num.Length)
-    {
-        if (outputSystem == IOSystem.Filter)
-        {
-            PerformCall(filterAddress, new uint[] { (uint)num[printingDigit] },
-                GLULX_STUB_RESUME_NUMBER, (uint)(printingDigit + 1), pc);
-        }
-        else
-        {
-            // there's no reason to be here if we're not filtering output...
-            System.Diagnostics.Debug.Assert(false);
+#define kBufferStringLength     15
 
-            SendCharToOutput(num[printingDigit]);
+- (void)nextDigit {
+    // Buffer needs to be longer than the number of digits of LONG_MAX
+    char numberString[kBufferStringLength];
+    
+    snprintf(numberString, kBufferStringLength, "%lu", (unsigned long)pc);
+    const size_t numberStringLength = strlen(numberString);
+
+    if (printingDigit < numberStringLength) {
+        if (outputSystem == TFIOSystemFilter) {
+            [self performCallWithAddress:filterAddress args:[TFArguments argumentsWithArg:numberString[printingDigit]] destType:TFGlulxStubResumeNumber destAddr:printingDigit + 1 stubPC:pc];
+        } else {
+            // there's no reason to be here if we're not filtering output...
+            // TODOSystem.Diagnostics.Debug.Assert(false);
+
+            [self sendCharToOutput:numberString[printingDigit]];
             printingDigit++;
         }
+    } else {
+        [self donePrinting];
     }
-    else
-        DonePrinting();
 }
 
-private bool NextCompressedStringBit()
-{
-    bool result = (image.ReadByte(pc) & (1 << printingDigit)) != 0;
+- (BOOL)nextCompressedStringBit {
+    BOOL result = ([image byteAtOffset:pc] & (1 << printingDigit)) != 0;
 
     printingDigit++;
     if (printingDigit == 8)
@@ -137,274 +129,14 @@ private bool NextCompressedStringBit()
     return result;
 }
 
-#region Native String Decoding Table
+#pragma mark Native String Decoding Table
 
-private abstract class StrNode
-{
-    /// <summary>
-    /// Performs the action associated with this string node: printing
-    /// a character or string, terminating output, or reading a bit and
-    /// delegating to another node.
-    /// </summary>
-    /// <param name="e">The <see cref="Engine"/> that is printing.</param>
-    /// <remarks>When called on a branch node, this will consume one or
-    /// more compressed string bits.</remarks>
-    public abstract void HandleNextChar(Engine e);
-
-    /// <summary>
-    /// Returns the non-branch node that will handle the next string action.
-    /// </summary>
-    /// <param name="e">The <see cref="Engine"/> that is printing.</param>
-    /// <returns>A non-branch string node.</returns>
-    /// <remarks>When called on a branch node, this will consume one or
-    /// more compressed string bits.</remarks>
-    public virtual StrNode GetHandlingNode(Engine e)
-    {
-        return this;
-    }
-
-    /// <summary>
-    /// Gets a value indicating whether this node requires a call stub to be
-    /// pushed.
-    /// </summary>
-    public virtual bool NeedsCallStub
-    {
-        get { return false; }
-    }
-
-    /// <summary>
-    /// Gets a value indicating whether this node terminates the string.
-    /// </summary>
-    public virtual bool IsTerminator
-    {
-        get { return false; }
-    }
-
-    protected void EmitChar(Engine e, char ch)
-    {
-        if (e.outputSystem == IOSystem.Filter)
-        {
-            e.PerformCall(e.filterAddress, new uint[] { (uint)ch },
-                GLULX_STUB_RESUME_HUFFSTR, e.printingDigit, e.pc);
-        }
-        else
-        {
-            e.SendCharToOutput(ch);
-        }
-    }
-
-    protected void EmitChar(Engine e, uint ch)
-    {
-        if (e.outputSystem == IOSystem.Filter)
-        {
-            e.PerformCall(e.filterAddress, new uint[] { ch },
-                GLULX_STUB_RESUME_HUFFSTR, e.printingDigit, e.pc);
-        }
-        else
-        {
-            e.SendCharToOutput(ch);
-        }
-    }
-}
-
-private class EndStrNode : StrNode
-{
-    public override void HandleNextChar(Engine e)
-    {
-        e.DonePrinting();
-    }
-
-    public override bool IsTerminator
-    {
-        get { return true; }
-    }
-}
-
-private class BranchStrNode : StrNode
-{
-    private readonly StrNode left, right;
-
-    public BranchStrNode(StrNode left, StrNode right)
-    {
-        this.left = left;
-        this.right = right;
-    }
-
-    public StrNode Left
-    {
-        get { return left; }
-    }
-
-    public StrNode Right
-    {
-        get { return right; }
-    }
-
-    public override void HandleNextChar(Engine e)
-    {
-        if (e.NextCompressedStringBit() == true)
-            right.HandleNextChar(e);
-        else
-            left.HandleNextChar(e);
-    }
-
-    public override StrNode GetHandlingNode(Engine e)
-    {
-        if (e.NextCompressedStringBit() == true)
-            return right.GetHandlingNode(e);
-        else
-            return left.GetHandlingNode(e);
-    }
-}
-
-private class CharStrNode : StrNode
-{
-    private readonly char ch;
-
-    public CharStrNode(char ch)
-    {
-        this.ch = ch;
-    }
-
-    public char Char
-    {
-        get { return ch; }
-    }
-
-    public override void HandleNextChar(Engine e)
-    {
-        EmitChar(e, ch);
-    }
-
-    public override string ToString()
-    {
-        return "CharStrNode: '" + ch + "'";
-    }
-}
-
-private class UniCharStrNode : StrNode
-{
-    private readonly uint ch;
-
-    public UniCharStrNode(uint ch)
-    {
-        this.ch = ch;
-    }
-
-    public uint Char
-    {
-        get { return ch; }
-    }
-
-    public override void HandleNextChar(Engine e)
-    {
-        EmitChar(e, ch);
-    }
-
-    public override string ToString()
-    {
-        return string.Format("UniCharStrNode: '{0}' ({1})", (char)ch, ch);
-    }
-}
-
-private class StringStrNode : StrNode
-{
-    private readonly uint address;
-    private readonly ExecutionMode mode;
-    private readonly string str;
-
-    public StringStrNode(uint address, ExecutionMode mode, string str)
-    {
-        this.address = address;
-        this.mode = mode;
-        this.str = str;
-    }
-
-    public uint Address
-    {
-        get { return address; }
-    }
-
-    public ExecutionMode Mode
-    {
-        get { return mode; }
-    }
-
-    public override void HandleNextChar(Engine e)
-    {
-        if (e.outputSystem == IOSystem.Filter)
-        {
-            e.PushCallStub(
-                new CallStub(GLULX_STUB_RESUME_HUFFSTR, e.printingDigit, e.pc, e.fp));
-            e.pc = address;
-            e.execMode = mode;
-        }
-        else
-        {
-            e.SendStringToOutput(str);
-        }
-    }
-
-    public override string ToString()
-    {
-        return "StringStrNode: \"" + str + "\"";
-    }
-}
-
-private class IndirectStrNode : StrNode
-{
-    private readonly uint address;
-    private readonly bool dblIndirect;
-    private readonly uint argCount, argsAt;
-
-    public IndirectStrNode(uint address, bool dblIndirect,
-        uint argCount, uint argsAt)
-    {
-        this.address = address;
-        this.dblIndirect = dblIndirect;
-        this.argCount = argCount;
-        this.argsAt = argsAt;
-    }
-
-    public uint Address
-    {
-        get { return address; }
-    }
-
-    public bool DoubleIndirect
-    {
-        get { return DoubleIndirect; }
-    }
-
-    public uint ArgCount
-    {
-        get { return argCount; }
-    }
-
-    public uint ArgsAt
-    {
-        get { return argsAt; }
-    }
-
-    public override void HandleNextChar(Engine e)
-    {
-        e.PrintIndirect(
-            dblIndirect ? e.image.ReadInt32(address) : address,
-            argCount, argsAt);
-    }
-
-    public override bool NeedsCallStub
-    {
-        get { return true; }
-    }
-}
-*/
 /*! Builds a native version of the string decoding table if the table is entirely in ROM, or verifies the table's current state if the table is in RAM. */
 - (void)cacheDecodingTable {
     if (decodingTable == 0)
     {
         // TODO
-//        nativeDecodingTable = nil;
+//        nativeDecodingTable = NULL;
         return;
     }
 
@@ -437,14 +169,14 @@ private StrNode CacheDecodingTableNode(uint node)
 
         case GLULX_HUFF_NODE_BRANCH:
             return new BranchStrNode(
-                CacheDecodingTableNode(image.ReadInt32(node)),
+                CacheDecodingTableNode([image integerAtOffset:node]),
                 CacheDecodingTableNode(image.ReadInt32(node + 4)));
 
         case GLULX_HUFF_NODE_CHAR:
             return new CharStrNode((char)image.ReadByte(node));
 
         case GLULX_HUFF_NODE_UNICHAR:
-            return new UniCharStrNode(image.ReadInt32(node));
+            return new UniCharStrNode([image integerAtOffset:node]);
 
         case GLULX_HUFF_NODE_CSTR:
             return new StringStrNode(node, ExecutionMode.CString,
@@ -455,17 +187,17 @@ private StrNode CacheDecodingTableNode(uint node)
                 ReadUniString(node));
 
         case GLULX_HUFF_NODE_INDIRECT:
-            return new IndirectStrNode(image.ReadInt32(node), false, 0, 0);
+            return new IndirectStrNode([image integerAtOffset:node], false, 0, 0);
 
         case GLULX_HUFF_NODE_INDIRECT_ARGS:
-            return new IndirectStrNode(image.ReadInt32(node), false,
+            return new IndirectStrNode([image integerAtOffset:node], false,
                 image.ReadInt32(node + 4), node + 8);
 
         case GLULX_HUFF_NODE_DBLINDIRECT:
-            return new IndirectStrNode(image.ReadInt32(node), true, 0, 0);
+            return new IndirectStrNode([image integerAtOffset:node], true, 0, 0);
 
         case GLULX_HUFF_NODE_DBLINDIRECT_ARGS:
-            return new IndirectStrNode(image.ReadInt32(node), true,
+            return new IndirectStrNode([image integerAtOffset:node], true,
                 image.ReadInt32(node + 4), node + 8);
 
         default:
@@ -524,7 +256,7 @@ private string ReadUniString(uint address)
         switch (nodeType)
         {
             case GLULX_HUFF_NODE_BRANCH:
-                nodesToCheck.Push(image.ReadInt32(node));       // left child
+                nodesToCheck.Push([image integerAtOffset:node]);       // left child
                 nodesToCheck.Push(image.ReadInt32(node + 4));   // right child
                 foundBranch = true;
                 break;
@@ -555,164 +287,140 @@ private string ReadUniString(uint address)
         throw new VMException("String decoding table contains no end markers");
     */
 }
-/*
-/// <summary>
-/// Prints the next character of a compressed string, consuming one or
-/// more bits.
-/// </summary>
-/// <remarks>This is only used when the string decoding table is in RAM.</remarks>
-- (void)NextCompressedChar()
-{
-    uint node = image.ReadInt32(decodingTable + GLULX_HUFF_ROOTNODE_OFFSET);
 
-    while (true)
-    {
-        byte nodeType = image.ReadByte(node++);
+- (void)nextCompressedChar {
+    uint32_t node = [image integerAtOffset:decodingTable + TFGlulxHuffmanRootNodeOffset];
 
-        switch (nodeType)
-        {
-            case GLULX_HUFF_NODE_BRANCH:
-                if (NextCompressedStringBit() == true)
-                    node = image.ReadInt32(node + 4); // go right
-                else
-                    node = image.ReadInt32(node); // go left
+    while (YES) {
+        uint8_t nodeType = [image byteAtOffset:node++];
+
+        switch (nodeType) {
+            case TFGlulxHuffmanNodeBranch:
+                if ([self nextCompressedStringBit] == YES) {
+                    node = [image integerAtOffset:node + 4]; // go right
+                } else {
+                    node = [image integerAtOffset:node]; // go left
+                }
                 break;
 
-            case GLULX_HUFF_NODE_END:
-                DonePrinting();
+            case TFGlulxHuffmanNodeEnd:
+                [self donePrinting];
                 return;
 
-            case GLULX_HUFF_NODE_CHAR:
-            case GLULX_HUFF_NODE_UNICHAR:
-                uint singleChar = (nodeType == GLULX_HUFF_NODE_UNICHAR) ?
-                    image.ReadInt32(node) : image.ReadByte(node);
-                if (outputSystem == IOSystem.Filter)
-                {
-                    PerformCall(filterAddress, new uint[] { singleChar },
-                        GLULX_STUB_RESUME_HUFFSTR, printingDigit, pc);
+            case TFGlulxHuffmanNodeChar:
+            case TFGlulxHuffmanNodeUnichar: {
+                uint32_t singleChar = (nodeType == TFGlulxHuffmanNodeUnichar) ?
+                    [image integerAtOffset:node] : [image byteAtOffset:node];
+                if (outputSystem == TFIOSystemFilter) {
+                    [self performCallWithAddress:filterAddress args:[TFArguments argumentsWithArg:singleChar] destType:TFGlulxStubResumeCompressedString destAddr:printingDigit stubPC:pc];
+                } else {
+                    [self sendCharToOutput:singleChar];
                 }
-                else
-                {
-                    SendCharToOutput(singleChar);
-                }
+            }
                 return;
 
-            case GLULX_HUFF_NODE_CSTR:
-                if (outputSystem == IOSystem.Filter)
-                {
-                    PushCallStub(new CallStub(GLULX_STUB_RESUME_HUFFSTR, printingDigit, pc, fp));
+            case TFGlulxHuffmanNodeCStr:
+                if (outputSystem == TFIOSystemFilter) {
+                    [self pushCallStub:TFMakeCallStub(TFGlulxStubResumeCompressedString, printingDigit, pc, fp)];
                     pc = node;
-                    execMode = ExecutionMode.CString;
-                }
-                else
-                {
-                    for (byte ch = image.ReadByte(node); ch != 0; ch = image.ReadByte(++node))
-                        SendCharToOutput(ch);
+                    execMode = TFExecutionModeCString;
+                } else {
+                    for (uint8_t ch = [image byteAtOffset:node]; ch != 0; ch = [image byteAtOffset:++node]) {
+                        [self sendCharToOutput:ch];
+                    }
                 }
                 return;
 
-            case GLULX_HUFF_NODE_UNISTR:
-                if (outputSystem == IOSystem.Filter)
-                {
-                    PushCallStub(new CallStub(GLULX_STUB_RESUME_UNISTR, printingDigit, pc, fp));
+            case TFGlulxHuffmanNodeUnistr:
+                if (outputSystem == TFIOSystemFilter) {
+                    [self pushCallStub:TFMakeCallStub(TFGlulxStubResumeUnicodeString, printingDigit, pc, fp)];
                     pc = node;
-                    execMode = ExecutionMode.UnicodeString;
+                    execMode = TFExecutionModeUnicodeString;
+                } else {
+                    for (uint32_t ch = [image integerAtOffset:node]; ch != 0; node += 4, ch = [image integerAtOffset:node]) {
+                        [self sendCharToOutput:ch];
+                    }
                 }
-                else
-                {
-                    for (uint ch = image.ReadInt32(node); ch != 0; node += 4, ch = image.ReadInt32(node))
-                        SendCharToOutput(ch);
-                }
                 return;
 
-            case GLULX_HUFF_NODE_INDIRECT:
-                PrintIndirect(image.ReadInt32(node), 0, 0);
+            case TFGlulxHuffmanNodeIndirect:
+                [self printIndirect:[image integerAtOffset:node] argCount:0 argsAt:0];
                 return;
 
-            case GLULX_HUFF_NODE_INDIRECT_ARGS:
-                PrintIndirect(image.ReadInt32(node), image.ReadInt32(node + 4), node + 8);
+            case TFGlulxHuffmanNodeIndirectArgs:
+                [self printIndirect:[image integerAtOffset:node] argCount:[image integerAtOffset:node + 4]argsAt:node + 8];
                 return;
 
-            case GLULX_HUFF_NODE_DBLINDIRECT:
-                PrintIndirect(image.ReadInt32(image.ReadInt32(node)), 0, 0);
+            case TFGlulxHuffmanNodeDBLIndirect:
+                [self printIndirect:[image integerAtOffset:[image integerAtOffset:node]] argCount:0 argsAt:0];
                 return;
 
-            case GLULX_HUFF_NODE_DBLINDIRECT_ARGS:
-                PrintIndirect(image.ReadInt32(image.ReadInt32(node)), image.ReadInt32(node + 4), node + 8);
+            case TFGlulxHuffmanNodeDBLIndirectArgs:
+                [self printIndirect:[image integerAtOffset:[image integerAtOffset:node]] argCount:[image integerAtOffset:node + 4]argsAt:node + 8];
                 return;
 
-            default:
+            /*TODOdefault:
                 throw new VMException("Unrecognized compressed string node type " + nodeType.ToString());
+            */
         }
     }
 }
 
-/// <summary>
-/// Prints a string, or calls a routine, when an indirect node is
-/// encountered in a compressed string.
-/// </summary>
-/// <param name="address">The address of the string or routine.</param>
-/// <param name="argCount">The number of arguments passed in.</param>
-/// <param name="argsAt">The address where the argument array is stored.</param>
-- (void)PrintIndirect(uint address, uint argCount, uint argsAt)
-{
-    byte type = image.ReadByte(address);
+- (void)printIndirect:(uint32_t)address argCount:(uint32_t)argCount argsAt:(uint32_t)argsAt {
+    uint8_t type = [image byteAtOffset:address];
 
-    switch (type)
-    {
+    switch (type) {
         case 0xC0:
-        case 0xC1:
-            uint[] args = new uint[argCount];
-            for (uint i = 0; i < argCount; i++)
-                args[i] = image.ReadInt32(argsAt + 4 * i);
-            PerformCall(address, args, GLULX_STUB_RESUME_HUFFSTR, printingDigit, pc);
+        case 0xC1: {
+            TFArguments *args = [TFArguments argumentsWithCount:argCount];
+            for (uint32_t i = 0; i < argCount; i++) {
+                [args setArg:[image integerAtOffset:argsAt + 4 * i] atIndex:i];
+            }
+            [self performCallWithAddress:address args:args destType:TFGlulxStubResumeCompressedString destAddr:printingDigit stubPC:pc];
+        }
             break;
 
         case 0xE0:
-            if (outputSystem == IOSystem.Filter)
-            {
-                PushCallStub(new CallStub(GLULX_STUB_RESUME_HUFFSTR, printingDigit, pc, fp));
-                execMode = ExecutionMode.CString;
+            if (outputSystem == TFIOSystemFilter) {
+                [self pushCallStub:TFMakeCallStub(TFGlulxStubResumeCompressedString, printingDigit, pc, fp) ];
+                execMode = TFExecutionModeCString;
                 pc = address + 1;
-            }
-            else
-            {
+            } else {
                 address++;
-                for (byte ch = image.ReadByte(address); ch != 0; ch = image.ReadByte(++address))
-                    SendCharToOutput(ch);
+                for (uint8_t ch = [image byteAtOffset:address]; ch != 0; ch = [image byteAtOffset:++address]) {
+                    [self sendCharToOutput:ch];
+                }
             }
             break;
 
         case 0xE1:
-            PushCallStub(new CallStub(GLULX_STUB_RESUME_HUFFSTR, printingDigit, pc, fp));
-            execMode = ExecutionMode.CompressedString;
+            [self pushCallStub:TFMakeCallStub(TFGlulxStubResumeCompressedString, printingDigit, pc, fp)];
+            execMode = TFExecutionModeCompressedString;
             pc = address + 1;
             printingDigit = 0;
             break;
 
         case 0xE2:
-            if (outputSystem == IOSystem.Filter)
-            {
-                PushCallStub(new CallStub(GLULX_STUB_RESUME_HUFFSTR, printingDigit, pc, fp));
-                execMode = ExecutionMode.UnicodeString;
+            if (outputSystem == TFIOSystemFilter) {
+                [self pushCallStub:TFMakeCallStub(TFGlulxStubResumeCompressedString, printingDigit, pc, fp)];
+                execMode = TFExecutionModeUnicodeString;
                 pc = address + 4;
-            }
-            else
-            {
+            } else {
                 address += 4;
-                for (uint ch = image.ReadInt32(address); ch != 0; address += 4, ch = image.ReadInt32(address))
-                    SendCharToOutput(ch);
+                for (uint32_t ch = [image integerAtOffset:address]; ch != 0; address += 4, ch = [image integerAtOffset:address]) {
+                    [self sendCharToOutput:ch];
+                }
             }
             break;
 
-        default:
+        /*TODOdefault:
             throw new VMException(string.Format("Invalid type for indirect printing: {0:X}h", type));
+        */
     }
 }
 
-- (void)DonePrinting()
-{
-    ResumeFromCallStub(0);
+- (void)donePrinting {
+    [self resumeFromCallStub:0];
 }
-*/
+
 @end

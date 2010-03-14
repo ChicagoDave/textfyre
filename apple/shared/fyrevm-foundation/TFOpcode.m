@@ -16,7 +16,7 @@ static const NSUInteger TFMaxOpcodeDataArrayElementCount = 5;
 
 /*! Needs to be kept in sync with TFOpcodeRule enumeration. */
 static NSString *TFOpcodeRuleNames[] = {
-    @"",
+    @"None",
     @"indirect8Bit",
     @"indirect16Bit",
     @"delayedStore",
@@ -53,6 +53,8 @@ static NSString *TFOpcodeRuleNames[] = {
     
     return self;
 }
+
+#pragma mark APIs
 
 + (NSDictionary *)opcodeDictionary {
 
@@ -199,22 +201,20 @@ static NSString *TFOpcodeRuleNames[] = {
     return result;
 }
 
-#pragma mark Standard methods
-
-- (void)dealloc {
-    [ruleName release], ruleName = nil;
-
-    [super dealloc];
+- (void)performWithOperands:(uint32_t *)operands {
+    // TODO
 }
 
+#pragma mark Standard methods
+
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p> opcode %ld (0x%X), selector %@, loadArgs %ld, storeArgs %ld, ruleName %@", 
+    return [NSString stringWithFormat:@"<%@: %p> opcode %ld (0x%X), selector %@, loadArgs %ld, storeArgs %ld, rule %@", 
                                       [self class], self, 
                                       (long)opcode, (long)opcode, 
                                       NSStringFromSelector(selector), 
                                       (long)loadArgs, 
                                       (long)storeArgs, 
-                                      (ruleName != nil ? ruleName : @"{none}")];
+                                      TFOpcodeRuleNames[rule]];
 }
 
 @end
