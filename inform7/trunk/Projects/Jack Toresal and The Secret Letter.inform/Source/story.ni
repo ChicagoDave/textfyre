@@ -2,6 +2,7 @@
 
 [  Change Log
 When		Who		What
+18-Mar-2010	R. Newcomb	Email, me to Dave, just after 8pm
 13-Mar-2010	D. Cornelson	Changes to princess dialogue and some of the fight scene. Needs work.
 14-Feb-2010	R. Newcomb	DD2.0 - various synonyms, fixed regionless new rooms, other misc.
 19-Nov-2009	G. Jefferis	Eric's Transcript
@@ -225,7 +226,7 @@ Rule for printing the banner text:
 	say "Story by David Cornelson[line break]";
 	say "Written by Michael Gentry[line break]";
 	say "Game Engine (FyreVM) by Jesse McGrew[line break]";
-	say "Inform 7 Story Programming by Graeme Jefferis[line break]and Ron Newcomb[line break]";
+	say "Programming by Graeme Jefferis and Ron Newcomb[line break]";
 	say "Testing by Jacqueline Ashwell, Peter Berman,[line break]Eric Eve, Jim Aikin, and Paul O'Brian[line break]";
 	say "Deluxe Edition UI by Thomas Lynge[line break]";
 	say "Sketches by Erika Swanson (www.simplyerika.com).[line break]";
@@ -11898,7 +11899,7 @@ Confronting the Baron is a scene. Confronting the Baron begins when High Society
 When Confronting the Baron begins:
 	select theme "Confrontation";
 	output chapter heading "Chapter 11 - Baron Fossville";
-	say "The mercenaries march you out of the ballroom, through the foyer, and into the inner reaches of the keep. At every doorway you pass a pair of Lord's Guards standing at attention; some of them glare at the ill-kempt and ill-disciplined mercenaries, but no one makes a move to stop them or help you. You are keenly aware of the dagger strapped to your leg under your dress, but there seems to be no opportunity to use it. Not that you'd last very long against a half-dozen armed men anyway.[paragraph break]The last door is not guarded. Beyond it is a room filled with dim, flickering light. The mercenaries push you into a chair and bind you with rough ropes, and then the door clicks shut behind you.";
+	say "The mercenaries march you out of the ballroom, through the foyer, and into the inner reaches of the keep. At every doorway you pass a pair of Lord's Guards standing at attention; some of them glare at the ill-kempt and ill-disciplined mercenaries, but no one makes a move to stop them or help you. You are keenly aware of the dagger strapped to your leg under your dress, but there seems to be no opportunity to use it. Not that you'd last very long against a half-dozen armed men anyway.[paragraph break]The last door is not guarded. Beyond it is a room filled with dim, flickering light. The mercenaries push you into a chair, and then the door clicks shut behind you.";
 	move Pieter to the War Room;
 	now Pieter is caught;
 	now Pieter is not scenery;
@@ -11950,21 +11951,21 @@ Section 3A - Scenery (Chair)
 
 The blackwood chair is a supporter, scenery, in the War Room. The description is "It's made from the same blackwood as the table, and it's very sturdy." Understand "furniture", "black", "wood", "blackwood", "wooden", "sturdy" as the blackwood chair.
 
-Some rough ropes are scenery, in the War Room. The description is "The ropes binding you to the chair are tight enough to keep you from moving very much... but there's just enough wiggle room that you [i]might[r] be able to reach your dagger." Understand "rope", "bonds", "bondage", "binding", "bond", "tight", "your", "my" as the rough ropes.
+Some rough ropes are [off-stage now] scenery[, in the War Room]. The description is "Those ropes are tight enough to keep anyone from moving very much." Understand "rope", "bonds", "bondage", "binding", "bond", "tight", "your", "my" as the rough ropes.
 
 Rule for printing the room description heading details of the blackwood chair when the player is tied up:
 	say "(tied to a chair)";
 
-Rule for printing the name of the rough ropes while clarifying the parser's choice:
-	say "ropes binding you to the chair";
+[Rule for printing the name of the rough ropes while clarifying the parser's choice
+	say "ropes binding you to the chair";]
 
-Does the player mean doing something with the rough ropes:
-	it is likely;
+[Does the player mean doing something with the rough ropes:
+	it is likely;]
 
-Rule for clarifying the parser's choice of the rough ropes:
-	do nothing;
+[Rule for clarifying the parser's choice of the rough ropes:
+	do nothing;]
 
-Definition: a person (called p) is tied up if p is the player and the location is the War Room and the rough ropes are on-stage.
+Definition: a person (called p) is tied up: no.[ if p is the player and the location is the War Room and the rough ropes are on-stage.]
 
 Instead of freeing the player when the player is tied up:
 	try cutting the rough ropes with the plain dagger instead;
@@ -11972,8 +11973,8 @@ Instead of freeing the player when the player is tied up:
 Instead of cutting the rough ropes:
 	try cutting the rough ropes with the plain dagger instead;
 
-Instead of pulling, pushing, or untying the rough ropes:
-	say "The ropes are too tight for you to just pull free, although you might be able to reach your dagger...";
+Instead of pulling, pushing, or untying the knotted ropes when Pieter is caught: [this previously applied to the player]
+	say "The ropes are too tight for you to just pull them off of him, although you might be able to cut them.";
 
 Section 4 - Scenery (Door)
 
@@ -12012,17 +12013,14 @@ Section 7 - Baron Fossville
 Instead of talking to someone during Confronting the Baron:
 	say "[first time]Fossville's black-gloved hand whips out and cracks you across the face. Stars explode in your vision.[paragraph break]'Please be quiet while I am talking,' says the Baron, as calmly as though he were asking you to pass the salt at the dinner table[subsequently]Not feeling too keen on getting hit again, you decide to keep your mouth shut[only].";
 
-Instead of doing something when the player is tied up:
-	if the action is physical:
-		say "The ropes bind you tightly to the chair; you can only move your hands the tiniest bit." instead;
-[		say "[one of]Before you can move, the Baron makes a gesture, and you hear the creak of leather as the mercenaries loosen their blades in their sheaths. 'Ah, ah... no funny moves, now,' warns the Baron.[or]You hear the hiss of steel sliding out of its sheath, and suddenly someone is pushing the pointy end of a sword into your back. 'One more false move, and I'll have my men run you through,' says the Baron flatly.[or]Not wishing to be stabbed, you decide to remain still for the moment.[stopping]" instead;]
-	continue the action;
-
 Instead of doing something when the dagger is physically involved and the Skirmish has not happened during Confronting the Baron:
-	say "Fossville's eyes are on you constantly. He'd see you if you made a reach for the dagger.";
+	say "Fossville's eyes are on you constantly. He'd see you if you made a move for your dagger.";
 
 Instead of taking off the plain dagger while the player is tied up:
 	say "You might [i]just[r] be able to reach your dagger if you stretched your fingers... but there's no way to do it without the Baron seeing you.";
+
+Instead of doing something when the Skirmish has not happened and when the action is physical during Confronting the Baron : say "[one of]Before you can move, the Baron makes a gesture, and you hear the creak of leather as the mercenaries loosen their blades in their sheaths. 'Ah, ah... no funny moves, now,' warns the Baron.[or]You hear the hiss of steel sliding out of its sheath, and suddenly someone is pushing the pointy end of a sword into your back. 'One more false move, and I'll have my men run you through,' says the Baron flatly.[or]Not wishing to be stabbed, you decide to remain still for the moment.[stopping]" 
+
 
 Section 8 - Scripted events
 
@@ -12084,6 +12082,9 @@ Instead of attacking Baron Fossville when the player is not tied up during the S
 	if the player carries the plain dagger:
 		try attacking Baron Fossville with the plain dagger instead;
 	continue the action;
+	
+Instead of throwing the plain dagger at Baron Fossville, try attacking Baron Fossville with the plain dagger.
+Instead of throwing the plain dagger at someone (called the target), say "[The target] [don't or doesn't for the target] need it!"
 
 Instead of attacking Baron Fossville with the plain dagger when the player is not tied up during the Skirmish:
 	change the current script to { }; [ thus ending the scene ]
@@ -12103,7 +12104,7 @@ Instead of communicating when the noun is Bobby during the Skirmish:
 
 Section 2 - Dagger interactions
 
-A person can be knocked over. The player is not knocked over.
+[A person can be knocked over. The player is not knocked over.
 
 Instead of taking or taking off the plain dagger when the player is tied up and the player wears the plain dagger during the Skirmish: 
 	move the plain dagger to the location;
@@ -12139,7 +12140,7 @@ Rule for firing unfired TRIG_PIETER_KICKS_DAGGER:
 Instead of cutting the rough ropes with the plain dagger when the player does not wear the plain dagger during the Skirmish:
 	say "You flip the dagger around and start working it back and forth across the ropes binding your wrist to the arm of the chair. It seems to take forever, and your fingers are almost numb from the constant tightness of the ropes... then, with a snap, the rope falls away. Feeling rushes back into your hand, and you make quick work of the rest of your bonds. You're free!";
 	remove the rough ropes from play;
-	move the player to the War Room, without printing a room description;
+	move the player to the War Room, without printing a room description;]
 
 Instead of entering the blackwood chair when the player is not on the blackwood chair during the Skirmish:
 	say "This is no time to sit down!";
