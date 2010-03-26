@@ -57,8 +57,7 @@
             <tr>
                 <td>
                     <b>Hobbyist Edition - $9.95 USD</b><br />
-                    The Hobbyist Edition provides the <a href="http://eblong.com/zarf/glulx/index.html">
-                        Glulx</a> game file, which can be played using any of the free hobbyist interpreters.
+                    The Hobbyist Edition provides the Glulx game file, which can be played using any of the free hobbyist interpreters.
                     If you register, you can also play the Online Edition.
                 </td>
                 <td>
@@ -116,9 +115,6 @@
     <div class="clearLine">
     </div>
     <div class="col-left"><img src="images/logo.png" alt="Textfyre.Com" /></div>
-    <div class="col-right"><script type="text/javascript" charset="utf-8" src="https://static.polldaddy.com/p/2412712.js"></script><noscript>
-<a href="https://answers.polldaddy.com/poll/2412712/">What do you think of Textfyre's games?</a><span style="font-size:9px;">(<a href="https://answers.polldaddy.com">trends</a>)</span>
-</noscript></div>
     <div class="clearLine">
     </div>
     <div class="col-left">
@@ -163,14 +159,11 @@
                 <td>
                     <b>Purchase via PayPal or Credit Card</b>
                     <br />
-                    <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-deluxe&amp;c=single&amp;cl=74327"
-                        target="ejejcsingle">
-                        <img src="https://www.e-junkie.com/ej/x-click-butcc.gif" border="0" alt="Buy Now" /></a><br />
+<a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-deluxe&c=single&cl=74327" target="ejejcsingle"><img src="https://www.e-junkie.com/ej/x-click-butcc.gif" border="0" alt="Buy Now"/></a>
+<br />
                     <br />
                     <b>Purchase via Google Checkout</b><br />
-                    <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-deluxe&amp;c=gc&amp;cl=74327&amp;ejc=4">
-                        <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&amp;w=160&amp;h=43&amp;style=trans&amp;variant=text&amp;loc=en_US"
-                            border="0" alt="Buy Now" /></a>
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-deluxe&c=gc&cl=74327&ejc=4"><img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&w=160&h=43&style=trans&variant=text&loc=en_US" border="0" alt="Buy Now"/></a>
                 </td>
             </tr>
             <tr>
@@ -189,15 +182,11 @@
                 <td>
                     <b>Purchase via PayPal or Credit Card</b>
                     <br />
-                    <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-standard&amp;c=single&amp;cl=74327"
-                        target="ejejcsingle">
-                        <img src="https://www.e-junkie.com/ej/x-click-butcc.gif" alt="Buy Now" /></a>
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-standard&c=single&cl=74327" target="ejejcsingle"><img src="https://www.e-junkie.com/ej/x-click-butcc.gif" border="0" alt="Buy Now"/></a>
                     <br />
                     <br />
                     <b>Purchase via Google Checkout</b><br />
-                    <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-standard&amp;c=gc&amp;cl=74327&amp;ejc=4">
-                        <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&amp;w=160&amp;h=43&amp;style=trans&amp;variant=text&amp;loc=en_US"
-                            alt="Buy Now" /></a>
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-standard&c=gc&cl=74327&ejc=4"><img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&w=160&h=43&style=trans&variant=text&loc=en_US" border="0" alt="Buy Now"/></a>
                 </td>
             </tr>
 <%/*     <!--        <tr>
@@ -209,8 +198,7 @@
             <tr>
                 <td class="style1">
                     <b>Hobbyist Edition - $9.95 USD</b><br />
-                    The Hobbyist Edition provides the <a href="http://eblong.com/zarf/glulx/index.html">
-                        Glulx</a> game file, which can be played using any of the free hobbyist interpreters.
+                    The Hobbyist Edition provides the Glulx game file, which can be played using any of the free hobbyist interpreters.
                     If you register, you can also play the Online Edition.
                 </td>
                 <td>
@@ -245,15 +233,11 @@
                 <td>
                     <b>Purchase via PayPal or Credit Card</b>
                     <br />
-                    <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-online&c=single&cl=74327"
-                        target="ejejcsingle">
-                        <img src="https://www.e-junkie.com/ej/x-click-butcc.gif" border="0" alt="Buy Now" /></a>
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-online&c=single&cl=74327" target="ejejcsingle"><img src="https://www.e-junkie.com/ej/x-click-butcc.gif" border="0" alt="Buy Now"/></a>
                     <br />
                     <br />
                     <b>Purchase via Google Checkout</b><br />
-                    <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-online&c=gc&cl=74327&ejc=4">
-                        <img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&w=160&h=43&style=trans&variant=text&loc=en_US"
-                            border="0" alt="Buy Now" /></a>
+                    <a href="https://www.e-junkie.com/ecom/gb.php?i=secretletter-online&c=gc&cl=74327&ejc=4"><img src="https://checkout.google.com/buttons/checkout.gif?merchant_id=612728723718733&w=160&h=43&style=trans&variant=text&loc=en_US" border="0" alt="Buy Now"/></a>
                 </td>
             </tr> -->
 */%>        </table>

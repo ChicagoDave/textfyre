@@ -20,14 +20,8 @@
     <meta content="true" name="MSSmartTagsPreventParsing" />
     <meta content="index, follow" name="robots" />
     <meta content="14 days" name="revisit-after" />
-    <meta content="interactive fiction, ebooks, books, interactive games, elearning games, games for kids, games for students, language arts games, 
-interactive fiction, word games, cognitive thinking games, thinking games, logic puzzles, learning games, games for middle school, games for tweens, 
-tween games, games for girls, games for boys, games for tween girls, reading games for boys, reading games for girls, reading games for tweens, highly 
-rated games, parent approved, teacher approved, librarian approved, games like infocom, inform games, ian finley games, jon ingold games, mike gentry 
-games, paul o'brian games, christopher huang games"
-        name="keywords" />
-    <meta content="Textfyre is a software publisher creating interactive stories for middle school students, casual game players, and all fans of 
-Interactive Fiction." name="description" />
+    <meta content="interactive fiction, ebooks, books, interactive games, elearning games, games for kids, games for students, language arts games, interactive fiction, word games, cognitive thinking games, thinking games, logic puzzles, learning games, games for middle school, games for tweens, tween games, games for girls, games for boys, games for tween girls, reading games for boys, reading games for girls, reading games for tweens, highly rated games, parent approved, teacher approved, librarian approved, games like infocom, inform games, ian finley games, jon ingold games, mike gentry games, paul o'brian games, christopher huang games, kids games, text adventures, infocom, hitchhikers, steampunk, disney, fantasy, magic" name="keywords" />
+    <meta content="Textfyre is a software publisher creating interactive stories for middle school students, casual game players, and all fans of Interactive Fiction." name="description" />
 
     <script type="text/javascript">
         var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
@@ -135,5 +129,6 @@ type="text/javascript" src="https://s7.addthis.com/js/250/addthis_widget.js#user
             border="0" height="1" width="1" alt="Quantcast" />
     </noscript>
     <!-- End Quantcast tag -->
+
 </body>
 </html>
