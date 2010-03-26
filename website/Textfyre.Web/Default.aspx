@@ -6,16 +6,16 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-left">
         <h1>
-            The Shadow in the Cathedral - NEW RELEASE</h1>
+            Interactive Fiction</h1>
         <p>
-            Textfyre creates Interactive Fiction with education in mind. Combining the functionality
-            of today's computers with the immersive powers of storytelling, our games create
-            exciting worlds to explore and interact with, while developing reading and problem-solving
-            skills.
+            Textfyre creates Interactive Fiction, also known as text adventures. Our games require you
+            to read and respond by typing in natural language commands. We use the greatest graphics
+            in the universe...your imagination. We invite you to play our first to games, <i>The Shadow
+            in the Cathedral</i> and <i>Jack Toresal and The Secret Letter</i>.
         </p>
         <img src="images/shbanner.jpg" alt="The New Klockwerk Series" />
         <p>
-            Our latest game, <b>The Shadow in the Cathedral</b>, out since November 6th, has received
+           <b>The Shadow in the Cathedral</b> has received
            rave reviews. Emily Short says it's "one of the best Interactive Fiction games of the year."
             <br /><br />
             <a href="https://www.textfyre.com/shadowdemo.aspx">
