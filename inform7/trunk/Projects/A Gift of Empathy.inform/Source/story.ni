@@ -5,7 +5,8 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 ]
 
 [  Change Log
-When		Who		What
+When                 Who                     What
+05-Apr-2010 	R. Newcomb		Michelle 3/29, Aidan 3/02, Rooms01 3/09, Paul's transcript 2010-01-23
 28-Feb-2010 	R. Newcomb		Michelle, Brad, Inquiring it about, various improvements
 1-Sep-2009	G. Jefferis	Wandering orderly
 31-Aug-2009	G. Jefferis	Chapter 4 - Hospital scene
@@ -105,6 +106,25 @@ When play begins:
 	change left hand status line to "[Current term day]: [location]";
 	change right hand status line to "[time of day]";
 
+The chapter num is a number that varies. The chapter num is usually 1. [TODO]
+
+To decide whether in chapter/chapters (N - a number): decide on whether or not the chapter num is N.
+To decide whether in chapters/chapter (N - a number) through/thru/thorugh (M - a number): decide on whether or not the chapter num is at least N and the chapter num is not greater than M.
+
+The land of the dead is a room. [TODO]
+The mindscape is a room. [TODO]
+The dreamscape is a room. [TODO]
+There is a scene called the Battle with the Thief.  [TODO]
+Deepest place is a room. [TODO]
+To In The Battlefield see Chapter 07: placeholder "To be continuted: In The Battlefield, see Chapter 07."
+To Go straight to section (txt - some text) in Chapter 09 text: placeholder "Go straight to section ['][txt]['] in Chapter 09 text."
+Daniel's photograph is a thing. [todo] [FOCUS ON AIDEN, chapter 8]
+To does a chapter change go here: placeholder "does a chapter change go here?"
+
+section 1 - not for release
+	
+Understand "chapter" as a mistake ("Currently in chapter [the chapter num]."). Understand "chapter [number]" as a mistake ("Now pretending we're in chapter [set chapter num to number understood][the chapter num]."). To say set chapter num to (N - a number): now the chapter num is N; if the chapter num > 10, now the chapter num is 10; if the chapter num < 1, now the chapter num is 1.
+
 Chapter 3 - Options
 
 Rule for deciding whether all includes scenery:
@@ -125,12 +145,15 @@ The items list for the Scavenger Hunt is a thing. The description is "A newspape
 
 Understand "item", "of items" as the items list for the Scavenger Hunt.
 
+Before printing the name of the items list for the Scavenger Hunt when we have not examined the items list for the scavenger hunt:
+	say "unread ";
+
 Rule for printing the name of the items list for the Scavenger Hunt:
 	say "list of items for the Scavenger Hunt";
 
-The player carries some dollar notes. The indefinite article of the dollar notes is "a few".
+The player carries some dollars. The indefinite article of the dollars is "a few".
 
-Understand "few", "dollars", "note", "money", "cash", "greenbacks", "buck", "bucks" as the dollar notes.
+Understand "few", "dollar", "note", "money", "cash", "greenbacks", "buck", "bucks" as the dollars.
 
 Last carry out taking inventory:
 	list the player's goals;
@@ -140,7 +163,7 @@ Part 3 - Introduction
 The time of day is 7:05 PM.
 
 When play begins:
-	say "It's your second year at the LEAP summer camp, and so far it's been as great as you remember last year to have been.  Ava Winters and Stacy Alexander, whom you met last year (and whom your brother Aidan calls 'your girlfriends', much to your embarrassment) are here again.  You spent yesterday catching up on the news in between options and classes, and now you're settling in with the smug sensation of not being a raw newbie any more.[paragraph break]The LEAP summer camp isn't quite the same as most summer camps.  LEAP is an acronym for 'Learning Enrichment Activity Programme'; the brainchild of world-renowned educator Professor Damon Rose, it is housed on the campus of the University of Colorado at Valmont, and was created for Gifted and Talented Kids (gosh, that sounds impressive) to expand their horizons and encourage them to stretch their mental capabilities.[paragraph break]Whatever. That's all in the promotional flyers. You just know that you're in for two weeks of the sort of interesting classes you don't get in school, and a bunch of fun options with which to fill up the free time after classes.  This evening, for instance, you've signed up for a scavenger hunt....";
+	say "It's your second year at the LEAP summer camp, and so far it's been as great as you remember last year to have been.  Ava Winters and Stacy Alexander, whom you met last year (and whom your brother Aidan calls 'your girlfriends', much to your embarrassment) are here again.  You spent yesterday catching up on the news in between options and classes, and now you're settling in with the smug sensation of not being a raw newbie any more.[paragraph break]The LEAP summer camp isn't quite the same as most summer camps.  LEAP is an acronym for 'Learning Enrichment Activity Program'; the brainchild of world-renowned educator Professor Damon Rose, it is housed on the campus of the University of Colorado at Valmont, and was created for Gifted and Talented Kids (gosh, that sounds impressive) to expand their horizons and encourage them to stretch their mental capabilities.[paragraph break]Whatever. That's all in the promotional flyers. You just know that you're in for two weeks of the sort of interesting classes you don't get in school, and a bunch of fun options with which to fill up the free time after classes.  This evening, for instance, you've signed up for a scavenger hunt....";
 	say ifndef debug;
 	pause the game;  [this breaks the skein otherwise]
 	say enddef debug;
@@ -148,9 +171,36 @@ When play begins:
 
 Book - Actions
 
-Part 1 - Folding (newspaper)
+Part 1 - Focus
+
+Focusing on is an action applying to one visible thing. 
+
+Understand "focus on [something]", "focus [something]", "focus", "focus on", "feel", "sense" or "sense [something]" as focusing on[ when the player has been aware of an emotional residue].   [removed the condition to remove parser error on FOCUS commands -- it set up false expectations that the words are unknown by the game]
+
+Rule for supplying a missing noun when focusing on:
+	if there is a salient emotional residue:
+		change the noun to a random salient emotional residue;
+	otherwise:
+		change the noun to the location;
+
+Report focusing on an emotional residue:
+	consider the focusing rules for the noun;
+
+Report focusing on a room:
+	say "You sense nothing untoward or out of the ordinary here.";
+
+The focusing rules are an object-based rulebook.
+
+Part 2 - Folding (newspaper)
 
 Folding is an action applying to one carried thing.
+
+[Understand "fold [Star-Spangled Banner]" as folding.
+Understand "fold up [Star-Spangled Banner]" as folding.
+Understand "fold [Star-Spangled Banner] up" as folding.
+Understand "fold [Star-Spangled Banner] into [text]" as folding it into.
+Understand "fold [Star-Spangled Banner] up into [text]" as folding it into.
+Understand "fold up [Star-Spangled Banner] into [text]" as folding it into.]
 
 Understand "fold [something preferably held]" as folding.
 Understand "fold up [something preferably held]" as folding.
@@ -168,7 +218,20 @@ Check folding something into:
 Check folding something:
 	placeholder "You can't fold that.";
 
-Part 2 - Knocking
+Part 3 - Playing (the piano)
+
+Playing is an action applying to one thing.
+
+Understand "play [thing]" as playing. 
+
+Check playing the piano:
+	say "You amuse yourself with 'Chopsticks'." instead.
+
+Check playing:
+	say "You fool around with it until your ears bleed.  Which wasn't long." instead.
+
+
+Part 4 - Knocking
 
 Knocking on is an action applying to one thing.
 
@@ -179,9 +242,25 @@ Instead of attacking a door:
 	try knocking on the noun;
 
 Check knocking on:
-	placeholder "Knock knock.[paragraph break]No reply.";
+	say "You get no reply."
 
-Part 3 - Shouting
+Part 5 - Hiding it under
+
+Hiding it under is an action applying to two things.
+
+Understand "hide under [something]" as hiding it under. 
+Understand "hide [something] under [something]" as hiding it under (with nouns reversed). 
+
+Rule for supplying a missing noun while hiding something under: now the noun is the player.
+
+Check hiding something under: say "Oh, very funny."
+
+Check hiding yourself under: say "Why?  You don't have to hide from anyone."
+
+Check hiding yourself under when in chapter 8: say "Aidan may be pumped full of sedatives, but they're not going to make him stupid enough to miss you crawling under there!"
+
+
+Part 6 - Shouting
 
 Section 1 - Shouting at
 
@@ -219,14 +298,14 @@ Check shouting at the location:
 Check shouting at someone:
 	placeholder "Must you draw attention to yourself?" instead;
 
-Part 4 - Kicking
+Part 7 - Kicking
 
 Kicking is an action applying to one thing. Understand "kick [something]" as kicking. 
 Check kicking something (this is the block kicking rule): say "You don't know kung fu!" instead.
 [Instead rules override in particular circumstances for specific messages ]
 
 
-Part 5 - inquiring someone about an object
+Part 8 - inquiring someone about an object
 
 [ASK ABOUT for objects.  This is much less error-prone for programmers/writers creating conversation tables as they needn't ensure the table's Topic column explicitly re-lists all the synonyms for each object X .  Furthermore, in case of name clashes, like "paper hat" and "paper" (for newspaper), the player gets the nicety of Which Did You Mean.  
 For each character, use like the following.  Note that the default reply is the first row of the table. This allows it to be character-specific without writing additional rules or proxy objects. 
@@ -265,16 +344,81 @@ Instead of asking someone about "themself/theirself/himself/herself", try inquir
 
 Rule for supplying a missing noun when asking something about: if the number of people in the location who are not the player is 1, change the noun to a random person in the location who is not the player.]
 
-Part 6 - auto-EXITS
+Part 9 - auto-EXITS
 
 [The action is in the Textfyre Standard Rules, but as a novice player myself, EXITS is much more useful as a response to Going Nowhere than the standard response... or even as an explicit EXITS command itself.  --Ron]
 
-Instead of going nowhere, try listing exits. 
+Before going nowhere, try listing exits instead. 
 
 After printing the name of a direction (called the way) while listing exits:
 	if the room way from the location is visited, say " (to [the room way from the location])".
 
 Understand "go","walk","run" or "go [text]","walk [text]","run [text]" as a mistake ("[run paragraph on][try listing exits][run paragraph on]  ").
+
+First carry out going when the room gone to is exterior and the room gone from is interior: say "You step out into the bright sunshine."
+
+First carry out going when the room gone to is interior and the room gone from is exterior: say "You leave behind the bright sunshine."
+
+
+Part 10 - inventory rather than silliness
+
+[this game uses FOCUS/SENSE/FEEL for its main dramatic action. But it's a transitive verb, so its only a matter of time until the typical kid types FEEL ME or TOUCH ME.  In that case, INVENTORY, as a sentence.]
+
+First check touching yourself: say "You pat yourself down.  You have "; list the contents of the player, as a sentence, including contents; say "." instead.
+
+
+Part 11 - kinds of talking
+
+Asking someone about is conversing.
+Asking someone for is conversing.
+Inquiring someone about is conversing.
+Talking to someone is conversing.
+Telling someone about is conversing.
+
+Part 12 - examing unimplemented things
+
+[Section 1 - for release only 
+
+Check room-examining when the noun is not visited: say "You've never been there, so you can't recall." instead.    [todo comment me back in]
+]
+
+Section 2 - always
+
+
+Understand "x [any room]" or "examine [any room]" as room-examining. room-examining is an action [out of world] applying to one visible object. Does the player mean room-examining the location: it is very likely.  Rule for clarifying the parser's choice of the location: do nothing. Check room-examining when the noun is not the location: say "You're not there to look at it.  You're pretty sure you can get there by going [directions from the location to the noun]." instead. Carry out room-examining: try looking.
+
+Your room is visited.
+
+[I am so proud of myself for being able to write this without using global variables, and only one local variable. :)  -RN]
+To say directions from (source - a room) to (destination - a room):
+	if source is not a room or destination is not a room:
+		say "... well actually you have no idea";
+		stop; 
+	let aim be the best route from the source to the destination, using doors; 
+	if aim is not a direction:
+		say "... well actually you're not quite sure";
+		stop; 
+	now source is the room aim from the source;
+	if the source is the destination, say "[unless the destination is the room aim from the location]and [end unless][aim]";
+	otherwise say "[aim], [directions from source to destination]".
+
+
+Understand "x [text]" or "examine [text]" as unknown-examining. unknown-examining is an action [out of world] applying to one topic. Check unknown-examining: [out-of-world actions don't set THE TOPIC UNDERSTOOD. reported to graham ]
+	let possible term be indexed text;
+	let possible term be the topic understood;
+	replace the text "\b(the|a|an|my|his|her|your|their|our|another)\s" in the possible term with "";
+	replace the text "\B(es|s)\b" in the possible term with "";
+	if the description of the location matches the text possible term, case insensitively:
+		say "[one of]The [possible term] doesn't look very interesting.[or]The [possible term] looks like every other [possible term] you've ever seen.[or]You don't think the [possible term] is all that interesting, really.[or]It's very [possible term]-like.[at random]";
+	otherwise:
+		say "You can't see such a thing." instead;
+
+Part 13 - score
+
+Understand the command "score" or "full score" as something new.
+Understand "score" or "full score" as score printing. Score printing is an action out of world. Carry out score printing: list the player's goals.
+
+
 
 
 Book - Definitions
@@ -309,8 +453,13 @@ Part 2 - Options
 
 An option is a kind of thing. An option is usually scenery.
 
-Instead of taking an option:
-	say "Maybe tomorrow.";
+Instead of taking an option, say "Maybe tomorrow."
+
+instead of Listening when the school of rock option is in the location and in chapter 1, say "Hey, they're not bad.  A bit too loud, but not bad at all.  At least, the loudness covers up any mistakes they may be making."
+
+Understand "dance" as jumping when an option is in the location.
+
+Instead of jumping in the presence of the school of rock option, say "You execute a few freestyle steps, much to the amusement of the musicians."
 
 Understand "enrol in/for [option]" as taking.
 Understand "participate in [option]" as taking.
@@ -470,11 +619,12 @@ The verb to be occupied by implies the reversed inhabitation relation.
 
 The player inhabits Your Room.
 
+
 Part 7 - Emotional residues
 
 Section 1 - Definitions
 
-[One of the things Inform does brilliantly well:]
+[One of the things Inform does brilliantly well]
 
 An emotional residue is a kind of thing.
 
@@ -484,36 +634,12 @@ Emotional-Awareness relates one person to various emotional residues.
 The verb to be aware of implies the emotional-awareness relation.
 The verb to be able to sense (it is sensed) implies the emotional-awareness relation.
 
-Definition: an emotional residue is salient:
-	if the player can sense it and it taints the location, yes;
-	no;
+Definition: an emotional residue is salient if the player can sense it and it taints the location.
 
 After printing the description of a room (called R) when an emotional residue is salient:
 	if R is the location:
 		repeat with E running through salient emotional residues:
 			carry out the printing the description activity with E;
-
-Section 2 - Actions
-
-focusing on is an action applying to one visible thing. 
-
-Understand "focus" as focusing on when the player has been aware of an emotional residue.
-Understand "feel" as focusing on when the player has been aware of an emotional residue.
-Understand the command "sense" as "focus".
-
-Rule for supplying a missing noun when focusing on:
-	if there is a salient emotional residue:
-		change the noun to a random salient emotional residue;
-	otherwise:
-		change the noun to the location;
-
-Report focusing on an emotional residue:
-	consider the focusing rules for the noun;
-
-Report focusing on a room:
-	placeholder "You sense nothing untoward or out of the ordinary here.";
-
-The focusing rules are an object-based rulebook.
 
 Part 8 - Identified / Unidentified
 
@@ -580,11 +706,13 @@ The player is in First Floor Lobby West.
 
 Chapter 2 - Scenery
 
+Instead of room-examining the info desk when in the first floor lobby west, placeholder "This should describe the graffiti option. I really like windows as a technique for tightening the interconnections in the game world. -POB"
+
 A painted fireplace is scenery, in the First Floor Lobby West. "No-one uses it any more, of course, but it still looks nice.  Even with all that white paint slathered all over it."
 
 The white paint is a backdrop, in the First Floor Lobby West. "It was the fashion, back in the 1950s, to try to make a place look more modern by painting it white.  It's not the 1950s anymore, but apparently nobody ever told the custodians that." Understand "50s", "fifties", "1950s", "nineteen-fifties", "nineteen fifties" as the white paint.
 
-A bay window is scenery, in the First Floor Lobby West. "Normally you can see all of the front lawn spread out from here, but right now there've been temporary walls set up all over the lawn."
+A bay window is scenery, in the First Floor Lobby West. "[if in chapter 1]Normally you can see all of the front lawn spread out from here, but right now there've been temporary walls set up all over the lawn[otherwise]It's dark outside.  You can see some of the temporary walls set up on the front lawn, but that's about it[end if]."
 
 The elaborate wood molding is scenery, in the First Floor Lobby West. "It's pretty elaborate, and almost makes you dizzy as you follow the pattern across the -- oh wait, those are just air bubbles under the paint."
 
@@ -622,8 +750,6 @@ Instead of focusing on Michelle, say "You stare intently at Michelle.  She feels
 
 Section 3 - conversation with Michelle
 
-[CONVERSATION TOPICS: Ask/Tell/Talk about....]
-
 The conversation table of Michelle is the table of Michelle's conversation.
 The object-based conversation table of Michelle is the table of Michelle's replies.
 
@@ -644,10 +770,9 @@ paper hat		"[about either hat]"
 Brad			"'Brad's in charge of the flag football option right now,' says Michelle, gesturing vaguely in the direction of Calvin Field, to the southeast."
 Aidan			"'I think I saw your brother heading upstairs for the Rap Session option.'"
 Claudia			 "'Dr Rose had a little meeting with all the counselors before the first day of camp.  She seems like a nice lady; I'm sure you'll get to meet her eventually, if she ever manages to get away from the hospital.'"
-[Damon			"'It was terrible about what happened, wasn't it?'  Michelle is silent for a moment, then says, 'no use thinking about that now!  Don't you have a treasure hunt to do?'"
-Antonia			"'Antonia's a good friend, and a very intelligent person.  Have you signed up for any of the classes she's teaching this year, Daniel?  If not, you should: spaces in her class usually disappear pretty quick!'"]
+yourself			"'You are yourself, of course.'  Michelle smiles encouragingly.  It's clear the only thing she really knows about you is your name."
 Stacy			"[about anyone else]"
-Ava  			"[about anyone else]"
+Ava  			"'Ava?  I think I heard her say something about the Ping Pong option, downstairs.  I'm a little surprised that she didn't go straight for the Music Jam option, really, given how much she likes to sing.'"
 Hank			"[about anyone else]"
 Joe  			"[about anyone else]"
 Lucian			"[about anyone else]"
@@ -656,6 +781,16 @@ the scavenger hunt	"'You've got until 8:25 to find the things on your list, Dani
 Table of Michelle's conversation
 conversation						topic
 MICHELLE_ON_camp-flyer		"LEAP/flyer/camp"
+
+Understand "jeremy/dolan" or "jeremy dolan" as "[jeremy]".
+Understand "damon/rose" or "damon/professor rose/damon" as "[damon]".
+Understand "antonia/long" or "antonia/professor long/antonia" or "robotics" as "[antonia]".
+
+After asking MIchelle about "[jeremy]": say "[about anyone else][line break]" instead.
+After asking Michelle about "[damon]": say "'It was terrible about what happened, wasn't it?'  Michelle is silent for a moment, then says, 'no use thinking about that now!  Don't you have a treasure hunt to do?'" instead.
+After asking Michelle about "[antonia]": say "'Antonia's a good friend, and a very intelligent person.  You're registered for her robotics class, right?  I thought I saw your name on the registration form.'" instead.
+
+
 
 MICHELLE_ON_camp-flyer is a conversation topic. The response text is "'You already know all about that, don't you?  I mean, it's your second year, after all.' "
 
@@ -685,6 +820,11 @@ After populating MICHELLE-ON-CHANGE when the player has not been able to see the
 
 After firing MICHELLE-ON-NEWSPAPER: now the player carries the loose change. 
 
+Talked to Michelle is a number that varies. 
+Every turn conversing when the noun is Michelle:
+	increase talked to Michelle by 1;
+	if talked to MIchelle is 4, say "She glances at her watch and adds, 'Time's a-wasting, Daniel!  Have you found everything on your list yet?'"
+ 
 
 Part 2 - Info Desk
 
@@ -696,9 +836,11 @@ Chapter 2 - Scenery
 
 Some stairs to administrative offices are scenery, in the Info Desk. "Of course there are stairs here.  But since they lead up to administrative offices which are off-limits to you, there didn't seem to be any point in mentioning them."
 
-A portrait of Alexander Quaverley Jacobs is scenery, in the Info Desk. "Old AQJ, who left his mansion to the university, stares down benevolently from his portrait.  You never cease to be amazed at his enormous sidewhiskers."
+A portrait of Alexander Quaverley Jacobs is scenery, in the Info Desk. "Old AQJ, who left his mansion to the university, stares down benevolently from his portrait.  You never cease to be amazed at his enormous sidewhiskers."  Understand "picture" as portrait of Alexander.
 
 Some sidewhiskers are scenery, part of the portrait of Alexander Quaverley Jacobs. "They're called Dundrearies, though you can't see anything remotely dreary about them.  Maybe one day you'll grow something like that, if Mom doesn't attack you with sheepshearing equipment first."
+
+Some LEAP flyers are scenery in the info desk. "PLACEHOLDER."  Understand "flyer" or "camp" as LEAP flyers.
 
 An information desk is a supporter, scenery, in the Info Desk. "It's very sleek and modern-looking, which means it's oddly shaped and doesn't fit anywhere.  A never-ending supply of LEAP flyers are stacked in a corner.  Tucked away into a corner is a small saucer for loose change.  (The receptionist usually keeps this in a corner of the desk where only she can see it, but apparently it's been moved.  She's only here during the school year, anyway.)"
 
@@ -713,7 +855,7 @@ After printing the name of the saucer when the saucer contains loose change:
 Rule for deciding whether all includes the saucer: it does not;
 
 Understand "dish" as the saucer.
-Understand "few", "random", "small", "coins" as the loose change.
+Understand "few", "random", "small", "coins", "coin" as the loose change.
 
 Rule for printing the name of the loose change when the player has the loose change:
 	say "small change";
@@ -732,6 +874,9 @@ Rule for printing the description of the saucer when the loose change has been h
 
 Rule for printing the description of the loose change when the player has the loose change:
 	say "You have a handful of coins, conveniently just enough."
+
+Instead of taking the loose change when the loose is in the saucer and the newspaper has NOT been handled:
+	say "Michelle clears her throat and gives you a stern look.  Looks like petty thievery is going to have to wait another day.";
 
 Instead of taking the loose change when the loose is in the saucer and the newspaper has been handled:
 	say "No way, those reappearing coins are spooky.";
@@ -765,7 +910,7 @@ Part 3 - Lobby East
 
 Chapter 1 - Description
 
-First Floor Lobby East is a room, east of First Floor Lobby West, southeast of Info Desk. "This used to be a rather large dining room, once upon a time, and it still has a low-hanging chandelier right in the middle of the ceiling.  A piano's been pushed under the chandelier so that nobody accidentally gets a head full of crystal walking blindly around, and the place is generally used as a kind of music room now.  The info desk is back to the northwest, and to the west is the rest of the first floor lobby.  Wide picture windows looks out on the front lawn and on the southern part of Calvin Field."
+First Floor Lobby East is a room, east of First Floor Lobby West, southeast of Info Desk. "This used to be a rather large dining room, once upon a time, and it still has a low-hanging chandelier right in the middle of the ceiling.  A piano's been pushed under the chandelier so that nobody accidentally gets a head full of crystal walking blindly around, and the place is generally used as a kind of music room now.  The info desk is back to the northwest, and to the west is the rest of the first floor lobby.  Wide picture windows look out on the front lawn and on the southern part of Calvin Field[if in Chapter 1]. The School of Rock option is in progress here, jamming away in the upper decibels[otherwise if in chapter 2]. A group of older kids seem to be discussing the psychology of cats in one corner[end if]."
 
 Rule for printing the name of first floor lobby east:
 	say "First Floor Lobby, East";
@@ -776,7 +921,14 @@ A low-hanging chandelier is scenery, in first floor lobby east. "Pretty, but mos
 
 A baby grand piano is scenery, in the first floor lobby east. "Ava says it's a baby grand, and she knows more about this sort of thing.  All grand pianos seem more or less alike to you.  The pile of plastic dinosaurs under the piano probably makes it unique, however."
 
-Some picture windows are scenery, in the first floor lobby east. "The front lawn is littered with graffiti-covered temporary walls, but Calvin Field seems much as usual."
+Instead of playing the baby grand piano when in chapter 1, say "The piano is currently occupied by a couple of older kids in the School of Rock option.  You'll have to wait until later."
+
+Instead of playing the baby grand piano when in chapter 2:
+	if Ava is not in the location, say "You bang out a few bars of [SONG] before hitting a wrong note (it doesn't take long) and stopping.  The only reason you learned that tune was to annoy Ava, anyway: she hates that song.";
+	otherwise say "You bang out a few bars of [SONG] before Ava stops you.  She really has no love for that particular song at all."
+
+
+Some picture windows are scenery, in the first floor lobby east. "[if in chapter 1]The front lawn is littered with graffiti-covered temporary walls, but Calvin Field seems much as usual[otherwise]All you can see outside is darkness[end if]."
 
 The School of Rock option is an option, scenery, in first floor lobby east. "It's a musical jam session.  The majority of the players are pretty good; thankfully, they drown out the ones who aren't."
 
@@ -801,6 +953,13 @@ Rule for firing primed unfired TRIG_SCHOOLOFROCK:
 
 Rule for firing primed fired TRIG_SCHOOLOFROCK:
 	say "As you approach the musicians, you once again get that odd sense of vertigo.  The feeling passes within seconds.";
+
+
+Cat psychologists are scenery in First Floor Lobby East. "They seem pretty absorbed in what they're doing."
+Understand "kids/campers/students", "older kids" as the cat psychologists when in chapter 2.
+
+Instead of listening to the cat psychologists, say "[one of]'...so when you see a cat twitching its tail, that means that it's kind of confused or frustrated...'[or]'...those laser pointers are fun, but too much of it just isn't good for the cat's brains, you know?'[or]'...I'm telling you, they're going to take over the world one day....'[or]'...stupid thing just stands at the open door and meows....'[or]'...there's this webcomic about this pair of cats, and....'[or]'...she was creeping across the linoleum floor, pretending to be an invisible ninja or something....'[or]'...so I looked in the litterbox --' and you stop listening right there.[at random]"
+
 
 Chapter 3 - Purple Plastic Diplodocus
 
@@ -838,7 +997,7 @@ Part 4 - Second Avenue
 
 Chapter 1 - Description
 
-Second Avenue is a room, west of the Info Desk. "Second Avenue runs north and south along the edge of a cliff: to the west is a sharp drop down (don't even try) onto the rooftops of the buildings along First Avenue, and beyond those are the jagged ridges of the Rockies.  Jacobs Hall -- the old part, anyway -- is open to the east, and its front lawn spreads out to the southeast.  You can also go northeast, squeezing around the newer part of Jacobs Hall to the courtyard beyond.[paragraph break]Conveniently, a bus shelter with a newspaper vending machine is almost directly outside the Hall."
+Second Avenue is an exterior room, west of the Info Desk. "Second Avenue runs north and south along the edge of a cliff: to the west is a sharp drop down (don't even try) onto the rooftops of the buildings along First Avenue, and beyond those are the jagged ridges of the Rockies.  Jacobs Hall -- the old part, anyway -- is open to the east, and its front lawn spreads out to the southeast.  You can also go northeast, squeezing around the newer part of Jacobs Hall to the courtyard beyond.[paragraph break]Conveniently, a bus shelter with a newspaper vending machine is almost directly outside the Hall."
 
 After reading a command when the player's command includes "ave": replace the matched text with "avenue".
 
@@ -862,10 +1021,12 @@ Chapter 3 - Vending Machine & Paper
 
 A vending machine is scenery, closed, transparent, not openable, in Second Avenue. "Insert the appropriate change, get your daily dose of gloom and doom."
 
+Instead of opening the vending machine, say "Until you insert some money, the vending machine remains stubbornly shut."
+
 Instead of inserting the loose change into the vending machine:
 	move the loose change to the saucer;
-	move the newspaper to the location;
-	say "You insert the appropriate change, and the glass front of the vending machine clicks open to spit the day's newspaper out at your feet.";
+	now the player carries the newspaper;
+	say "You insert the appropriate change, and the glass front of the vending machine clicks open just wide enough for you to extract the day's newspaper.  Then it snaps shut again.";
 
 Instead of inserting something into the vending machine:
 	say "It appears that the vending machine was not designed to accept [that or those for the noun].";
@@ -886,9 +1047,9 @@ Understand "from [something related by reversed containment]" as the newspaper w
 Before buying the newspaper when the newspaper is in the vending machine and the player has loose change:
 	try inserting the loose change into the vending machine instead;
 
-Before buying the newspaper when the newspaper is in the vending machine and the player has the dollar notes:
-	say "(with a dollar note)[command clarification break]";
-	try inserting the dollar notes into the vending machine instead;
+Before buying the newspaper when the newspaper is in the vending machine and the player has the dollars:
+	say "(with a dollar)[command clarification break]";
+	try inserting the dollars into the vending machine instead;
 
 Instead of folding the newspaper:
 	now the player carries the paper hat;
@@ -907,7 +1068,7 @@ Part 5 - Calvin Field South
 
 Chapter 1 - Description
 
-Calvin Field South is a room. "During the school year, this part of Calvin Field gets pretty scuffed up by students playing football or whatever inter-department sports tickle their fancy at the time.  Right now, it's getting scuffed up by people playing flag football.  The university caretakers must be wondering why they even bother to replant the grass every Spring.  The less scuffed-up part of Calvin Field is to the north, and the front lawn of Jacobs Hall is to the west."
+Calvin Field South is an exterior room. "During the school year, this part of Calvin Field gets pretty scuffed up by students playing football or whatever inter-department sports tickle their fancy at the time.  Right now, it's getting scuffed up by people playing flag football.  The university caretakers must be wondering why they even bother to replant the grass every Spring.  The less scuffed-up part of Calvin Field is to the north, and the front lawn of Jacobs Hall is to the west."
 
 Calvin Field Region is a region. Calvin Field North and Calvin Field South are in Calvin Field Region.
 
@@ -953,8 +1114,6 @@ Chapter 4 - Brad
 
 
 Section 1 - description of Brad
-
-To decide whether in chapter 8: no. [TODO]
 
 Counselor Brad Kramer is a man, in the Calvin Field South. The description of Brad Kramer is "[unless in chapter 8]Brad Kramer, your counselor for this year, looks like a typical jock, though he's been pretty awesome so far.  Normally, he's never seen without a baseball cap and that ever-present wad of chewing gum lodged in one cheek.  The gum's still there, and somehow he still manages to chew it while still holding his referee's whistle between his lips, but at the moment the cap is gone.[otherwise]Brad Kramer, your counselor for this year, normally looks like a typical jock, though at the moment he's lying unconscious by the wall.  He's wearing a set of pajamas with teddy bears printed on them, but you really don't have time right now to wonder how a cool dude like Brad could wear pajamas with teddy bears printed on them.  Oh, and in case you missed it the first time, he's also out cold, as you will be too if you keep hanging around."
 
@@ -1048,9 +1207,7 @@ Aidan		"'He's pretty cool, your brother.  We shoot a few hoops now and then, wit
 Stacy		"'That's your friend with the hats, right?  I think I saw her dragging her roommate to one of the downstairs option.  Tell her for me that if she breaks anything, she's got to fix it herself.'"
 Ava			"'That's your friend Stacy's roommate, right?  I don't know her much at all.'"
 Michelle		"'What's to tell?  She's another counselor, just like me.'  Brad chuckles.  'We come mass-produced and packaged in boxes of six, don't you know.'"
-[Antonia		"'She's got a robotics class she's teaching this year.  You're signed up for it, I think?  Yeah, try not to bug her too much.'"]
 Claudia		"'She's a medical doctor with more qualifications than I ever thought existed.  I don't know if running an educational camp like LEAP is one of them, but I think we'll all just keep doing exactly the same stuff we were doing before.'"
-[Damon		"'Yeah, I'm going to miss the old guy.'"]
 Hank		"[Brad quips BRAD-ON-Hank-and-Joe]"
 Joe   		"[Brad quips BRAD-ON-Hank-and-Joe]"
 
@@ -1073,7 +1230,7 @@ Part 6 - Calvin Field North
 
 Chapter 1 - Description
 
-Calvin Field North is a room, north of Calvin Field South, east of Info Desk. "Claremont Hall, to the north, looms over the entire length of Calvin Field, which continues to the south.  Jacobs Hall is back to the west, and the dining hall is to the east.  A fountain takes up space right where all the paths meet, so there usually aren't that many people running around and tearing up the grass.  Right now, though, there are several people running around, playing Myth Tag, and there's nothing the fountain can do about it."
+Calvin Field North is an exterior room, north of Calvin Field South, east of Info Desk. "Claremont Hall, to the north, looms over the entire length of Calvin Field, which continues to the south.  Jacobs Hall is back to the west, and the dining hall is to the east.  A fountain takes up space right where all the paths meet, so there usually aren't that many people running around and tearing up the grass.  Right now, though, there are several people running around, playing Myth Tag, and there's nothing the fountain can do about it."
 
 Rule for printing the description of the backdrop-grass when in Calvin Field North:
 	say "It's green, which means it's not quite dead yet, despite the best efforts of the Myth Tag players.";
@@ -1088,11 +1245,14 @@ A huge clock tower is scenery, part of Claremont Hall. "The Claremont Hall clock
 
 A fountain is scenery, in Calvin Field North. "The fountain consists of a wide, shallow basin and a modern sculpture that, to you, looks a lot like Big Foot taking a shower.  It's not running right now."
 
+Instead of searching the fountain when the player does not have a feather: say "You spot a lone feather just lying there, presumably lost from some passing pigeon.  You grab it before the wind blows it away."; now the player carries the feather. 
+
+
 Part 7 - Front Lawn
 
 Chapter 1 - Description
 
-The Front Lawn is a room, west of Calvin Field South, southeast of Second Avenue. "A whole bunch of walls have been temporarily erected all over the front lawn for the Graffiti Art option.  The smell of paint is everywhere, not to mention the hiss of spray cans.  Passersby on Second Avenue -- to the northwest -- will no doubt find this all very interesting.  A flagpole rises up from the maze of makeshift walls here, while Calvin Field and the more athletic options are off to the east."
+The Front Lawn is an exterior room, west of Calvin Field South, southeast of Second Avenue. "A whole bunch of walls have been temporarily erected all over the front lawn for the Graffiti Art option.  The smell of paint is everywhere, not to mention the hiss of spray cans.  Passersby on Second Avenue -- to the northwest -- will no doubt find this all very interesting.  A flagpole rises up from the maze of makeshift walls here, while Calvin Field and the more athletic options are off to the east."
 
 Chapter 2 - Scenery
 
@@ -1103,12 +1263,35 @@ The graffiti option is an option, scenery, in Front Lawn. "Some of it is actuall
 
 Some cans of spray paint are scenery, in Front Lawn. "A multitude of different colors, all of it in the hands of kids with instructions to just 'go wild'.  The bathrooms are going to be pretty jammed up this evening."
 
-A flagpole is scenery, in Front Lawn. "It's keeping the good ol' Star-spangled Banner well out of the reach of the spraypaint happy campers all around you."
+A flagpole is scenery in the front lawn. "[if the star-spangled banner is scenery]It's keeping the good ol['] Star-spangled Banner well out of the reach of the spraypaint-happy campers all around you.[otherwise if the star-spangled banner is fixed in place]The flag is at the bottom of the flagpole.[otherwise]The flagpole seems to be missing a flag."
 
-Instead of climbing the flagpole:
-	say "You're not that good an athlete.";
+The Star-Spangled Banner is [initially] fixed in place scenery in the front lawn. "[if the star-spangled banner is scenery]It's not exactly the dawn's early light, but you can see it quite clearly, drifting in the wind high overhead.[otherwise if the star-spangled banner is fixed in place]Up close, you realize it's bigger than you are!  How will you carry it?[otherwise]The camp's flag has seen some years of use.  It looks older than the camp itself." Understand "flag" or "great" or "old glory" as the Star-Spangled Banner. Rule for printing the name of the banner when taking inventory: say "Star-Spangled Banner (folded as a triangle)".
 
-The Star-Spangled Banner is scenery, part of the flagpole. "It's not exactly the dawn's early light, but you can see it quite clearly, drifting in the wind high overhead." Understand "flag" as the Star-Spangled Banner when the player has been able to see the star-spangled banner. [using "has been able to see" as a built-in knows-about]
+[the banner:  
+"scenery" means it is up high
+"fixed in place" means it is unfolded ]
+
+Instead of climbing the flagpole, say "You're not that good an athlete."
+
+[turning off the "scenery" bit]
+Instead of doing something except examining with the Star-Spangled Banner when the star-spangled banner is fixed in place scenery, say "It's way too high to reach."
+
+Understand "lower [Star-Spangled Banner]" or "raise [Star-Spangled Banner]" as turning.  Before turning the Banner: try turning the flagpole instead. [saves me creating a one-off Lower action]  
+
+Instead of turning the flagpole when the Star-Spangled Banner is not enclosed by the location, say "There's little point without the Stars and Stripes to put up there."
+
+Instead of turning the flagpole when the Star-Spangled Banner is scenery: say "You unwind the pulley rope, and lower the flag.  The great flag now within reach."; now the Star-Spangled Banner is not scenery; rule succeeds.  
+
+Instead of turning the flagpole when the Star-Spangled Banner is not scenery and the star-spangled banner is enclosed by the location: say "Perhaps some things are more important than a scavenger hunt.  You raise the Star-spangled Banner to its rightful place."; now the Star-Spangled Banner is fixed in place scenery in the front Lawn; rule succeeds.
+
+[the fixed in place bit]
+Instead of doing something except examining or touching or folding with the Star-Spangled Banner when the star-spangled banner is fixed in place not scenery, say "It's way too big to carry when unfurled."
+
+Before folding the Star-Spangled Banner: now the player carries the banner; now the banner is not fixed in place. [gets around annoying implicit take message]
+
+Instead of folding the Star-Spangled Banner: say "It takes some time, but you get the whole flag into its traditional triangular shape."; now the time of day is the time of day plus 3 minutes.
+
+Instead of dropping the Star-Spangled Banner, say "The flag must never touch the ground."
 
 The Star-Spangled Banner fulfills the flag-goal.
 
@@ -1116,7 +1299,7 @@ Part 8 - Courtyard
 
 Chapter 1 - Description
 
-The Courtyard is a room, northeast of Second Avenue, northwest of Calvin Field North. "The courtyard is a hard, concrete square ringed by bushes and trees.  It's not terribly interesting, but Aidan sometimes comes here to play basketball with his friends, as if the camp counselors didn't make you all run around enough already.  The other university buildings are visible beyond the treetops, and the blank north face of Jacobs Hall rises up to the south; paths southeast and southwest lead around Jacobs Hall, though there is no entrance to the building from here."
+The Courtyard is an exterior room, northeast of Second Avenue, northwest of Calvin Field North. "The courtyard is a hard, concrete square ringed by bushes and trees.  It's not terribly interesting, but Aidan sometimes comes here to play basketball with his friends, as if the camp counselors didn't make you all run around enough already.  The other university buildings are visible beyond the treetops, and the blank north face of Jacobs Hall rises up to the south; paths southeast and southwest lead around Jacobs Hall, though there is no entrance to the building from here."
 
 Chapter 2 - Scenery
 
@@ -1142,10 +1325,16 @@ Ridgeway Museum is in the Courtyard. The University Library is in the Courtyard.
 Rule for printing the description of a university building (called X) when in the Courtyard and X is not Jacobs Hall:
 	say "The university buildings aren't of much interest, at least not from here.";
 
-Some scattered eggboxes are scenery, in the Courtyard. "Those belong to the Egg Drop option, going on up on the roof of Jacobs Hall.  Some appear more effective than others."
+Some scattered eggboxes are scenery, in the Courtyard. "Those belong to the Egg Drop option, going on up on the roof of Jacobs Hall.  Some appear more effective than others." Understand "boxes/containers/box/container/objects/object/debris" as the scattered eggboxes.
 
-Instead of doing something when the scattered eggboxes are physically involved:
-	say "Don't interfere with someone else's scientific data.";
+Instead of searching the eggboxes:
+	if the player does not have a feather:
+		say "Poking about the debris, you come across one that is stuffed full of blue feathers.  Guessing that the actual number of feathers is probably not part of the scientific data under examination, you help yourself to one.";
+		now the player carries the feather;
+	otherwise:
+		say "Poking about the debris, you find nothing on your list that you do not already have."
+
+Instead of doing something except searching when the scattered eggboxes are physically involved, say "Don't interfere with someone else's scientific data."
 
 Chapter 3 - Ambient Messages
 
@@ -1186,7 +1375,7 @@ Section 3 - Wall cutouts
 Rule for printing the description of the images of winter sports:
 	say "You see far too many of those here.".
 
-Understand "ski/skis", "snowboard/snowboards", "snow board/boards", "skate/skates", "sled/sleds", "sledge/sledges", "sleigh/sleighs" as the images of winter sports.
+Understand "ski/skis", "snowboard/snowboards", "snow board/boards", "skate/skates", "sled/sleds", "sledge/sledges", "sleigh/sleighs", "cutouts" as the images of winter sports.
 
 Understand "hockey stick/sticks" as the images of winter sports when the player can not see the matching pair of hockey sticks.
 
@@ -1218,18 +1407,33 @@ Rule for printing the description of the view of Second Avenue when in the First
 Instead of searching the windows of Jacobs Hall:
 	try examining the noun instead;
 
+To decide if (c - person) is in dead end mentions:
+	if C is in First Floor Rooms West, yes;
+	if C is in First Floor Rooms East, yes;
+	if C is in Pits West, yes;
+	if C is in Pits East, yes;
+	no.
+
+Instead of going north when the player is in dead end mentions, mention dead end.
+Instead of going south when the player is in dead end mentions, mention dead end.
+
+To mention dead end: say "[if in Chapter 8]That would put you in a dead end!  And by dead end, I mean DEAD end!  Also, all the doors there are locked[otherwise]Most of the rooms are locked.  And the ones that aren't, are occupied by people you do not know[end if]."
+
+Instead of examining a door when the player is in dead end mentions, say "No name tags, but each door has been decorated with cutouts of various sorts."
+
+
 Section 2 - Hockey Sticks
 
 The matching pair of matching hockey sticks is scenery, in the First Floor Rooms West.
 
-Part 10 B - Aidan's Room
+Part 11 B - Aidan's Room
 
 Aidan's Room is a dorm room. "Aidan shares this room with some guy whose name you never caught and whom you almost never see.  Aidan keeps his half of the room neat and spartan, almost as if he were expecting a military inspection at any moment.  The bedclothes look to be pulled tight enough to bounce a penny to the ceiling, and the desk is practically bare but for a few neatly regulationed necessities.  The door to the dorm corridor is back to the south."
 
 Aidan's door is a door, scenery, closed, locked, north of First Floor Rooms West, south of Aidan's Room.
 
 Instead of opening Aidan's Door during Scavenger Hunting:
-	say "Aidan isn't in right now, and you shouldn't be poking around in his room while he's gone.  Even if he is your brother.  Especially if he's your brother.  And anyway, the door is locked.";
+	say "[if in Chapter 8]You jiggle the handle, but the door is locked![otherwise]Aidan isn't in right now, and you shouldn't be poking around in his room while he's gone.  Even if he is your brother.  Especially if he's your brother.  And anyway, the door is locked.";
 
 Aidan's bed is a supporter, enterable, scenery, in Aidan's room. "Your father is a naval officer, and Aidan seems to take this fact rather more seriously than you do.  His bed is perfectly ship-shape, with shoes and boots lined up for inspection beside it.  You happen to know that Aidan also keeps a guitar stashed away under his bed, behind those perfect shoes and boots."
 
@@ -1237,11 +1441,20 @@ Aidan's boots are scenery, in Aidan's room. "If you kept your shoes and boots in
 
 Aidan's guitar is scenery, in Aidan's room. "It's in its case, for now.  Aidan's quite good, though he doesn't practice as much as he really should.  You sometimes wonder where he finds the time to practice at all."
 
+Instead of playing Aidan's guitar, say "You do a ridiculous imitation of your older brother, to your great amusement.[line break][line break]Then you put his guitar back, [italic type]exactly[roman type] as you found it."
+
+Some neatly regulated necessities are scenery, plural-named, in Aidan's room. "Aidan's toiletries are so neatly laid out that you wonder if he ever actually uses them."  Understand "toiletries" as the neatly regulated necessities.
+
+Instead of doing something to the neatly regulated necessities when the necessities are physically involved, say "It would be a sin to meddle with such perfect order."
+
 Aidan's desk is scenery, a supporter, in Aidan's room.
 
 Aidan's laptop is scenery, on Aidan's desk.
 
-Part 11 - First Floor Rooms, East
+A ring is a kind of thing.  A ring is always wearable. Aidan wears 2 rings.
+
+
+Part 12 - First Floor Rooms, East
 
 Chapter 1 - Description
 
@@ -1261,7 +1474,9 @@ Rule for printing the description of the view of Calvin Field:
 
 Understand "running", "around", "runners", "students", "campers", "myth tag", "tag", "game", "calvin field", "calvin field north", "field north" as the view of Calvin Field.
 
-Part 11 B - Hank & Joe's Room
+
+
+Part 13 B - Hank & Joe's Room
 
 Hank's Room is a dorm room. "The less said about the mess in this room, the better.  The exit is back to the north."
 
@@ -1312,7 +1527,7 @@ Rule for writing a paragraph about Hank:
 Rule for writing a paragraph about Joe:
 	placeholder "Room description text about [Joe].";
 
-Part 12 - Pits Stairwell
+Part 14 - Pits Stairwell
 
 Chapter 1 - Description
 
@@ -1322,31 +1537,26 @@ Chapter 2 - Scenery
 
 Section 1 - Cut out Frankenstein's Monster
 
-Frankenstein's Monster is privately-named.
-
-Understand "frankenstein's monster", "monster", "monsters" as Frankenstein's Monster. [but not 'frankenstein' - see below for that.]
-
-Rule for printing the description of Frankenstein's Monster:
+Rule for printing the description of cutout Frankenstein's Monster:
 	say "He's holding a pouch full of scary monster cutouts.  'Go on, be an evil scientist,' he seems to be saying, 'go make more monsters.  Mwahahaha.'"
 
-Does the player mean taking Frankenstein's Monster:
-	it is likely;
-
-Baron Frankenstein is scenery, privately-named in the Pits Stairwell. Understand "frankenstein" as Baron Frankenstein.
+Baron Frankenstein is scenery in the Pits Stairwell. Understand "frankenstein" as Baron Frankenstein.
 
 Before doing something when Baron Frankenstein is involved:
 	[a few sanity checks because of the 9-character parsing limit!]
 	unless the player's command matches the text "Frankenstein's", case insensitively:
 		if the player's command matches the text "Frankenstein", case insensitively:
 			say "[one of]Frankenstein was the creator, not the monster... but never mind.  [or][stopping][run paragraph on]";
-	redirect the action from Baron Frankenstein to Frankenstein's Monster, and try that instead;
+	redirect the action from Baron Frankenstein to cutout Frankenstein's Monster, and try that instead.
 
 Section 2 - Cutout Pouch
+
+Does the player mean doing something with Frankenstein's Monster's cutout pouch: it is unlikely. 
 
 Rule for printing the description of Frankenstein's Monster's cutout pouch:
 	say "It's full of pictures calculated to keep you awake all night."
 
-Frankenstein's Monster's cutout pouch is represented by the images of classic horror.
+Frankenstein's Monster's cutout pouch is represented by the images of classic horror. Frankenstein's Monster's cutout pouch vends cutout Frankenstein's Monster.
 
 Section 3 - Wall cutouts
 
@@ -1357,7 +1567,7 @@ Understand "vampire/vampires", "ghoul/ghouls", "ghost/ghosts", "monstrous", "sca
 
 Understand "werewolf/werewolves", "were wolf/wolves" as the images of classic horror when the player can not see the cutout werewolf.
 
-Part 13 - Pits West
+Part 15 - Pits West
 
 Chapter 1 - Description
 
@@ -1389,14 +1599,16 @@ Rule for printing the name of some bushes:
 
 Understand "bush", "shrubs", "shrubbery" as the roots of some bushes.
 
-Part 13B - Lucian's Room
+
+
+Part 16 - Lucian's Room
 
 Lucian's Room is a dorm room. "It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing [SONG] over and over, sits on his desk beside a couple of framed photographs."
 
-To say SONG:
-	say "[bracket]SONG[close bracket]";
+To say SONG:  [todo]
+	placeholder "[bracket]SONG[close bracket]";
 
-Chapter 2 - Scenery
+Chapter 1 - Scenery
 
 Section 1 - Door
 
@@ -1415,7 +1627,7 @@ After examining Lucian's photographs during Chatting to Lucian:
 
 Lucian's CD player is scenery, on Lucian's desk. "How many times can one person listen to [SONG] at one go?"
 
-Chapter 3 - Lucian
+Chapter 2 - Lucian
 
 Lucian is a man, in Lucian's Room. The description is "Lucian's a little shrimp of a newbie.  He looks rather pale and colorless, with thin white-blonde hair plastered close to his scalp.  In short, he's rather typical bully-bait."
 
@@ -1428,7 +1640,7 @@ Instead of kissing Lucian:
 Rule for writing a paragraph about Lucian:
 	placeholder "Room description text about [Lucian].";
 
-Part 14 - Pits East
+Part 17 - Pits East
 
 Chapter 1 - Description
 
@@ -1447,7 +1659,9 @@ A cutout werewolf is a wall cutout, in Pits East and Your Room. "Rowrr.  Sure, w
 Understand "whiskers" as the cutout werewolf when the location is Pits East.
 Understand "wolfie", "werewolf", "were-wolf", "were wolf", "wolf" as the cutout werewolf.
 
-Part 15 - Pits Lobby Central
+
+
+Part 18 - Pits Lobby Central
 
 Chapter 1 - Description
 
@@ -1455,7 +1669,14 @@ Pits Lobby Central is a room, south of Pits Stairwell. "This section of the Pits
 
 Chapter 2 - Scenery
 
-Part 16 - Pits Lobby West
+The storeroom doors are scenery in pits lobby central. "Aidan told you once that the storerooms are full of vampires in their coffins, and that campers who tried to sneak around after lights out had a habit of disappearing, never to be seen again.  Haha, he's such a joker ... you weren't fooled for a minute.  Not for a minute, no sir....  [line break]".  Understand "storerooms" as the storeroom doors.
+
+Instead of going Up when in pits lobby central, say "There USED TO BE a staircase here.  Unless you have a time machine, going up from here is not going to get you anywhere."
+
+Instead of opening or entering the storeroom doors, say "The storerooms are reassuringly locked tight."
+
+
+Part 19 - Pits Lobby West
 
 Chapter 1 - Description
 
@@ -1474,7 +1695,7 @@ Understand "amazing", "cables", "equipment", "goggles", "top-of-the-line", "top 
 Rule for printing the name of the powerful computers:
 	say "computers";
 
-Part 17 - Pits Lobby East
+Part 20 - Pits Lobby East
 
 Chapter 1 - Description
 
@@ -1535,7 +1756,7 @@ Stacy Alexander is a woman in the Pits Lobby East. The description of Stacy is "
 Rule for printing the name of Stacy Alexander:
 	say "Stacy";
 
-Stacy wears a little straw hat. A pink ribbon is part of the little straw hat. The little straw hat fulfills the hat-goal.
+Stacy wears a little straw hat. The description of the straw hat is "PLACEHOLDER straw hat." A pink ribbon is part of the little straw hat. The description of the pink ribbon is "PLACEHOLDER ribbon." The little straw hat fulfills the hat-goal.
 
 Rule for printing a locale paragraph about Stacy Alexander during Scavenger Hunting:
 	now Stacy is mentioned;
@@ -1573,16 +1794,20 @@ The response of Q_STACY_3 is {Q_STACY_3a, Q_STACY_0b, Q_STACY_0c}.
 After firing Q_STACY_4:
 	now the player carries the little straw hat;
 
-Part 18 - Your Room
+Part 21 - Your Room
 
 Chapter 1 - Description
 
-Your Room is a dorm room. "You share this room with first-year camper Jeremy Dolan, who hates werewolves for some inexplicable reason.  He let you put the werewolf cutout on the outside of the door only because you let him put up a vampire cutout on the inside.  Jeremy's not around right now, though, so you'll have to wait before continuing your ongoing discussion as to whether vampires or werewolves are cooller.  In the meantime, there's your bed and your desk, and the door back to the north."
+Your Room is a dorm room. "You share this room with first-year camper Jeremy Dolan, who hates werewolves for some inexplicable reason.  He let you put the werewolf cutout on the outside of the door only because you let him put up a vampire cutout on the inside.  Jeremy's not around right now, though, so you'll have to wait before continuing your ongoing discussion as to whether vampires or werewolves are cooller.  In the meantime, there's your bed and your desk, and the door back to the north."  Understand "my" as your room.
 
-Your dorm room door is a closed door, scenery, south of Pits East, north of Your Room.
+Your dorm room door is a closed door, scenery, south of Pits East, north of Your Room. Understand "my" as your dorm room door.
 
-Instead of going to a dorm room during Scavenger Hunting:
-	say "";
+First before going to a dorm room during Scavenger Hunting: say "Michelle said the dorm rooms are off-limits for the hunt." instead.
+
+Before going north when in your room, say "You step out of the room, locking it behind you."
+
+[Before going outside when in your room, say "You step out of the room, locking it behind you."]
+[After exiting your room, say "You step out of the room, locking it behind you."]
 
 Chapter 2 - Scenery
 
@@ -1593,6 +1818,15 @@ A cutout vampire is scenery, in Your Room. "It is a mystery to you why anyone wo
 
 Your bed is scenery, a supporter, in Your Room. "A standard, regulation LEAP bed, with nothing under it but dust.  You've looked several times, especially in the mornings when you can't find your [one of]slippers[or]socks[or]shoes[or]keys[at random]."
 
+Instead of Looking under your bed, say "Oh hey, someone's gone and swept under the bed."
+
+Instead of hiding yourself under your bed when in chapter 8, say "Aidan may be pumped full of sedatives, but they're not going to make him stupid enough to miss you crawling under your bed!"
+
+
+Instead of entering or lying on your bed, say "Now doesn't really seem to be the time for sleep."
+Instead of sleeping,  say "Now doesn't really seem to be the time for sleep."
+
+
 Some dust is scenery, in Your Room. 
 
 Your desk is scenery, a supporter, in Your Room. "A standard, regulation LEAP desk, with a built-in electrical outlet for your laptop if you have one.  The actual outlet is probably in some inconvenient place behind the desk, but why they couldn't just supply you with a power bar, you don't know.  Well, you suppose desks with built-in outlets are pretty cool.  Just... not as cool as werewolves."
@@ -1601,11 +1835,11 @@ Understand "standard", "regulation", "LEAP", "laptop" as your desk.
 
 The built-in electrical outlet is part of your desk. Understand "electric", "power", "socket" as the built-in electrical outlet.
 
-Part 19 - Second Floor Lobby
+Part 22 - Second Floor Lobby
 
 Chapter 1 - Description
 
-Second Floor Lobby is a room, up from First Floor Midpoint. "Hooray for Hollywood!  The words are emblazoned right across the wall, over a cutout of Audrey Hepburn holding a pouch full of smaller cutouts of other Hollywood stars.  The glamour continues east and west, to where the younger girl campers are roomed, while the stairs go up and down.[paragraph break]A few tables have been set up here for the RPG option, and the campers involved seem thoroughly absorbed in the unfolding story."
+Second Floor Lobby is a room, up from First Floor Midpoint. "Hooray for Hollywood!  The words are emblazoned right across the wall, over a cutout of Audrey Hepburn holding a pouch full of smaller cutouts of other Hollywood stars.  The glamour continues east and west, to where the younger girl campers are roomed, while the stairs go up and down.[if in chapter 1][paragraph break]A few tables have been set up here for the RPG option, and the campers involved seem thoroughly absorbed in the unfolding story.[otherwise if in chapter 2][paragraph break]It looks like yesterday's RPG option is still going strong here."
 
 Chapter 2 - Scenery
 
@@ -1638,11 +1872,17 @@ The cutout Charlie Chaplin fulfills the star-goal.
 
 Chapter 3 - RPG Option
 
-The RPG option is an option, scenery, in the Second Floor Lobby. "You've not had much exposure to roleplaying games in the past, but they look quite interesting.  You'd have signed up for this option this evening if it hadn't already been filled up by the time you got to the sign-up sheets.  You'll get another chance some time later, though, never fear.  At any rate, this time round they're playing something called Seventh Sea, which seems to be all about swashbuckly goodness, arrr." 
+The RPG option is an option, scenery, in the Second Floor Lobby. "[if in chapter 1]You've not had much exposure to roleplaying games in the past, but they look quite interesting.  You'd have signed up for this option this evening if it hadn't filled up within seconds of being offered.  You'll get another chance some time later, though, never fear.  At any rate, this time round they're playing something called Seventh Sea, which seems to be all about swashbuckly goodness, arrr[otherwise]They must have really enjoyed themselves yesterday[end if]." 
 
 Understand "role", "playing", "roleplaying", "role-playing", "game", "games", "gamer", "gamers", "seventh", "sea", "tables" as the RPG option.
 
-Part 20 - Second Floor Rooms West
+
+Instead of listening to the second floor lobby when in chapter 1, try listening to the RPG option.
+
+Instead of listening to the RPG option, say "[one of]'No way!  I should totally have made that roll!'[or]'Where's my drama die, then?'[or]'...one and one and two and two and one....'[or]'Excuse me, milady, but I must punch you in the face now.'[or]'It could be worse.  Okay, maybe that IS worse.'[or]'But I am not left-handed either!'[or]'What?  A gazebo?  How ... how big is it?'[or]'We confront the villainous villainess with the evidence!'[or]'He what?  That no-good scoundrel!'[or]'I hit it with my sword.'[at random] [line break]"
+
+
+Part 23 - Second Floor Rooms West
 
 Chapter 1 - Description
 
@@ -1669,8 +1909,7 @@ Rule for printing the description of a Bond:
 Rule for printing the description of David Niven:
 	say "Oh hey, someone's even counted the 1967 not-entirely-serious version of 'Casino Royale'!";
 
-When play begins:
-	now every Bond is in Second Floor Rooms West; 
+When play begins, now every Bond is in Second Floor Rooms West.
 
 Rule for printing the description of the western windows of Jacobs Hall when in Second Floor Rooms West:
 	say "The view is clearly for someone else's eyes only.";
@@ -1678,7 +1917,7 @@ Rule for printing the description of the western windows of Jacobs Hall when in 
 Rule for printing the description of the view of Second Avenue when in Second Floor Rooms West:
 	say "The view is clearly for someone else's eyes only.";
 
-Part 21 - Second Floor Rooms, East
+Part 24 - Second Floor Rooms, East
 
 Chapter 1 - Description
 
@@ -1697,7 +1936,7 @@ Some movie posters are scenery, in the Second Floor Rooms East. "You haven't hea
 
 Understand "films", "film", "movies" as the movie posters.
 
-Part 21 B - Stacy & Ava's Room
+Part 25 B - Stacy & Ava's Room
 
 Stacy's Room is a dorm room. "Ava and Stacy both keep their respective sides of the room perfectly tidy; it's rather intimidating, actually.  You can tell whose side is whose by the stuff they keep on their desks: Ava has a CD player, an assortment of CDs, and a few books; Stacy has a few broken gadgets that she's fixing, probably because she broke them to begin with.  One of them has taped a poster for 'Casablanca' on the door to the south."
 
@@ -1716,18 +1955,24 @@ Understand "Ava and", "Stacy and", "Ava's", "Stacy's" as Stacy's door.
 Instead of opening Stacy's door during Scavenger Hunting:
 	say "Ava and Stacy aren't in right now, and it wouldn't be right to go poking around in other people's rooms while they're gone.  And anyway, the door is locked.";
 
-The poster for Casablanca is scenery, in Stacy's Room.
+The poster for Casablanca is scenery, in Stacy's Room. "Here's lookin' at you, kid." 
 The printed name of the poster for Casablanca is "poster for 'Casablanca'". 
 
+Stacy's tools are scenery, plural-named, in Stacy's Room. "Rule one: never touch Stacy's tools.  Rule two: see rule one."
+
+
 Ava's desk is scenery, in Stacy's Room.
-Ava's CD player is scenery, on Ava's desk.
-Ava's CDs are scenery, plural-named, on Ava's desk.
-A few of Ava's books are scenery, plural-named, on Ava's desk.
+Ava's CD player is scenery, on Ava's desk. "It also plays MP3s.  Ava loves her music."
+Ava's CDs are scenery, plural-named, on Ava's desk. "Ava's on a folksong kick right now.  It's only a matter of time before she turns country-and-western, you think."
+A few of Ava's books are scenery, plural-named, on Ava's desk. "A little light reading, mostly cosy little mysteries set in small New England towns."
 
 Stacy's desk is scenery, in Stacy's Room.
-A few broken gadgets are scenery, plural-named, on Stacy's desk.
+A few broken gadgets are scenery, plural-named, on Stacy's desk. "Stacy's very fond of taking things apart and putting them back together again.  She's going to become a mad scientist and take over the world one day, if you and Ava don't watch her."
 
-Part 22 - Third Floor Lobby
+
+
+
+Part 26 - Third Floor Lobby
 
 Chapter 1 - Description
 
@@ -1763,18 +2008,19 @@ A five-pointed star cutout is a thing. The description is "It's a five-pointed s
 
 The five-pointed star cutout fulfills the star-goal.
 
-Section 3 - Rap Option
+Section 1 - Rap Option
 
 The rap session option is an option, scenery, in the Third Floor Lobby. "Rap or beat poetry, there's not that much difference that you can see here.  People are basically talking about their lives in an improvised rhythmic fashion."
 
 Instead of taking the rap session option:
 	say "Maybe after your improv theatre class.";
 
+Instead of listening when the rap session option is in the location, placeholder "The sound of music!"
+
+
 Chapter 3 - Event on Entering
 
-Definition: a room is rapping:
-	if it is the location of the rap session option, yes;
-	no;
+Definition: a room is rapping if it is the location of the rap session option.
 
 After going to somewhere rapping during Scavenger Hunting:
 	try looking;
@@ -1790,15 +2036,128 @@ Rule for firing unfired TRIG_RAPSESSION:
 Rule for firing fired TRIG_RAPSESSION:
 	say "There it is, that funny throbbing feeling in the back of your head.  And there, it's gone again.";
 
-Chapter 4 - Conversation with Aidan
+Chapter 4 - Aidan
 
-Aidan is a man. The description of Aidan is "Aidan is your big brother.  He looks quite a lot like you, only taller and broader.  He's pretty cool; he just turned 15 a couple of months ago, but hasn't gotten too cool to be seen with you yet.  On the other hand, if your secret plot to grow up just like him works out, he'll never get too cool for you."
+Section 1 - description of Aidan
 
-Understand "big bro/brother", "bro/brother", "taller", "broader" as Aidan.
+Aidan is a man. The description of Aidan is "[if in chapters 1 through 5]Aidan is your big brother.  He looks quite a lot like you, only taller and broader.  He's pretty cool; he just turned 15 a couple of months ago, but hasn't gotten too cool to be seen with you yet.  On the other hand, if your secret plot to grow up just like him works out, he'll never get too cool for you[otherwise if in chapter 6]Robin Hood is thy brother in arms -- and indeed, thy brother Aidan.  There is not a nobler fellow in all of merry old England.[otherwise if in chapter 7][PLACEHOLDER see Focusing action].[otherwise if in chapter 10]Aidan is your big brother.  He looks quite a lot like you, only taller and broader.  He's pretty cool when he isn't a raving murderous monster, which Dr Rose says is never going to happen again.  For now, he just looks grateful that anyone at all is willing to still be friends with him after everything that's happened in the past week[end if]."  
 
-Rule for writing a paragraph about Aidan:
-	say "Room description text about [Aidan].";
+To say PLACEHOLDER see Focusing action: placeholder "see Focusing action".
 
+Instead of examining Aidan when in chapter 8, say "Aidan looks a bit drugged out, but no less dangerous.  [if Aidan has been able to see Brad]His right hand is clenched in a fist around his room keys, which he seems intent on sending to the back of your skull[otherwise]His hands are clenched into fists, and he seems intent on pounding you into applesauce[end if]."
+
+Instead of examining Aidan when in chapter 9 and the player is in land of the dead: say "[if Aidan does not wear a ring] He looks grey and cold and lifeless.  His hands are crossed at the wrist, over his chest, fingers splayed.  For some reason, he's dressed up as Robin Hood[otherwise if Aidan wears two rings]He looks feverish, like he's in pain.  He's wearing a pair of matching rings[otherwise]He looks like he's asleep.  His hands are crossed at the wrist, over his chest, fingers splayed.  For some reason, he's dressed up as Robin Hood.  A single gold ring glints on one finger[end if]."
+
+Instead of examining Aidan when in chapter 9 during battle with the Thief: say "Aidan is your big brother.  He looks quite a lot like you, only taller and broader.  He also seems to know kung fu, though that isn't really giving him much of an edge over the Thief."
+
+Instead of examining Aidan when in chapter 9 and the player is not in the mindscape: say "He doesn't look very happy to be here.  Then again, who would?  Fortunately for everyone, he's also unconscious and drooling slightly.  He's being kept sedated, but goodness only knows how long that will last."[ go to ">Focus on Aidan"] [todo?]
+
+
+Understand "big bro/brother", "bro/brother", "taller", "broader", "aiden" as Aidan.
+
+Rule for writing a paragraph about Aidan when in chapter 1: say "Your brother Aidan is here, having signed up for the Rap Session option."
+
+Rule for writing a paragraph about Aidan when in chapter 2 and the player is in Aidan's room: say "Aidan is sitting at his desk, clearly in the middle of a computer game of some sort."
+
+Rule for writing a paragraph about Aidan when in chapter 2: say "Your brother Aidan is here."
+
+Rule for writing a paragraph about Aidan when in chapter 6: say "Robin Hood, thy brother-in-arms, standeth before thee."
+
+Rule for writing a paragraph about Aidan when in chapter 7: say "Aidan's here, and he looks seriously psychotic!"
+
+Rule for writing a paragraph about Aidan when in chapter 8: say "Aidan is here, swaying a little and looking like an enraged bull with a killer headache."
+
+Rule for writing a paragraph about Aidan when in chapter 9 and the player is in Deepest Place: say "Aidan's here, and he looks normal.  Except he knows kung fu, which isn't quite normal."
+
+Rule for writing a paragraph about Aidan: do nothing. [is Scenery]
+
+
+Section 2 - non-conversation with Aidan
+
+Instead of conversing when in chapters 7 through 8 and Aidan is the noun, say "Aidan does not appear to be in any mood to listen to you.  He probably can't even hear you over the pounding blood in his ears."
+
+Instead of conversing when in chapter 3 and Aidan is the noun, say "Aidan's too far away to speak to, at the moment.  You'll have to wait until later this evening."  Instead of conversing when in chapter 5 and Aidan is the noun, say "Aidan's too far away to speak to, at the moment.  You'll have to wait until later this evening."
+
+Instead of conversing when Aidan is the noun and in chapter 6, say "Forsooth, such existeth not within the bounds of this simulation."
+
+section 3 - conversation with Aidan
+
+The conversation table of Aidan is the table of Aidan's conversation.
+The object-based conversation table of Aidan is the table of Aidan's replies.
+
+Table of Aidan's replies
+conversation 	reply	
+an object [default]	"He does not reply."	
+Claudia Rose	"[if in Chapters 1 thorugh 2]'She seems like a nice lady.  Kind of like everybody's favorite auntie, eh?'"
+Brad Kramer		"[if in Chapters 1 through 2]'I never had him as a counselor, but he joins some of us for a game of basketball now and then.  He's pretty cool, actually.'"
+Ava			"[Aidan on Ava & Stacy]"
+Stacy		"[Aidan on Ava & Stacy]"
+Lucian		"[if in Chapter 1]'Who?'[otherwise if in Chapter 2 and Crystal Quest is not happening]'Sorry, Daniel, I don't see how I can help, there.'[otherwise if in chapter 2 and Crystal Quest is happening][about Joe and Hank and bullying][otherwise if in Chapters 2 through 5]'I hope getting back that crystal makes your friend feel better.'[otherwise if in Chapter 6]This Lucian of whom thou speaketh, existeth not in the time of Robin Hood."
+Joe		"[about Joe and Hank and bullying]"
+Hank	"[about Joe and Hank and bullying]"
+Aidan's guitar	"[if in Chapter 1 through 2]'I should practice my guitar more, but there's just way too much other stuff to do here.'"
+
+A woman can be asked about.  A woman is usually not asked about.
+
+To say Aidan on Ava & Stacy: 
+	now the second noun is asked about;
+	if in chapter 1, say "'Oh yeah, she's your girlfriend, isn't she?'[paragraph break]'She is not!'[paragraph break]'Sure she isn't.' Aidan grins in a way that makes you want to smack him. [if Ava is asked about and Stacy is asked about] 'You're going to have to choose between one of those two girls one of these days, you know.'[end if][paragraph break]'She is NOT my girlfriend!'";
+	otherwise say "[if in chapter 2]It wouldn't be polite to talk about her while she's standing right there.  Anyway, Aidan's probably going to give you the ribbing of your life later about how all the girls just fawn over you, bleagh.[otherwise if in chapter 6]And who, pray tell, is this maiden of whom thou asketh?  She appeareth not in the script."
+
+
+To say about Joe and Hank and bullying: say "[if in Chapter 1]'Look, if anyone starts picking on you, you be sure to tell me, okay?'[otherwise if in Chapter 2 and Crystal Quest has not happened]'Sorry, Daniel.  I mean, I could just tell them to stop picking on people, but that's never worked before.  Unless there's something else you need from them, we're out of luck.'[otherwise if in chapter 2 and Crystal Quest is happening][Aidan quips CT_AIDAN_HELP][otherwise if in Chapter 6]Such craven villains existeth not in the time of Robin Hood; or if they did, thou shalt surely vanquish them ere the tale is told."
+
+Understand "help", "bullies/bully/bullying", "crystal", "earth crystal", "hank and/& joe", or "joe and/& hank" as "[bullying]".
+
+After asking Aidan about "[damon]" when in chapters 1 through 2: say "Yeah, he was a pretty cool dude.  You remember, you met him last year.  I was kind of worried about how things were going to be this year, now he's gone and his sister's in charge, but so far it's been okay, I think."
+After asking Aidan about "[bullying]" when in chapters 1 through 2: say "[about Joe and Hank and bullying]".
+After asking Aidan about "much" when in chapter 6: say "Much may be made of muchness, but thy comrade appeareth not in the humor to humor thy question."
+After asking Aidan about "longbow/bow/archery" when in chapter 6: say "I'm Robin Hood.  That means I'm the best there is with a longbow."
+After asking Aidan about "nottingham" when in Chapter 6: say "The town of Nottingham isn't too far off.  We can get there in plenty of time."
+After asking Aidan about "mass/church" when in chapter 6: say "Only a real villain would dare to try and pick a fight in a church, so we'll be fine."
+After asking Aidan about "oboe" when in chapters 1 through 2: say "'I don't play the oboe.  Why do you ask?'"
+After asking Aidan about "music/oboe" when in Chapter 6: say "Such things are the province of Alan-a-Dale. The chosen instrument of thy brother-in-arms is the longbow."
+After asking Aidan about "music" when in chapters 1 through 2: say "I should practice my guitar more, but there's just way too much other stuff to do here."
+After asking Aidan about "mom/dad/parents/family/home": say "[if in Chapter 1 through 2]'I wonder how Mom is enjoying things in Djibouti.  I know Dad's going to be there for however long the Navy wants him there, but Mom should be back before camp's out.'[otherwise if in Chapter 6]The house of Locksley is both old and noble, and Robin of Locksley its noble scion."
+After asking Aidan about "djibouti" when in chapters 1 through 2: say "'Your guess is as good as mine.  We'll have to wait to see Mom's pictures.'"
+After asking Aidan about "navy" when in chapters 1 through 2: say "Aidan smiles.  You already know he wants to join up as soon as he can; he'd do it right out of high school if Mom and Dad didn't insist he spend some time in college first."
+After asking Aidan about "zork/laptop/game": say "[if in chapter 1]'I've got to show you this Zork game that we're doing for the classic Interactive Fiction class some time.  I started it up on the laptop last night, and it's pretty cool.'[otherwise if in Chapter 2]'Check it out, this is what adventure games on the computer looked like way back before they figured out how to get pictures in.  This one here is Zork; you're this nameless adventurer dude on a treasure hunt in this great network of caves, and there's this thief who keeps popping up and stealing your stuff ... I bet you've got to defeat him somehow, but I haven't gotten that far yet.'[otherwise if in chapter 6] Such is of a different simulation from this."
+
+
+Table of Aidan's conversation
+conversation						topic
+Aidan-on-camp			"LEAP/flyer/camp"
+
+[Chapter 1, 2:] Aidan-on-camp is a quip. The display text is "Yeah, I always have a great time here.  How about you?" 
+
+Aidan-camp1 is a quip. The menu text is "Yeah, it's been awesome!"  The display text is "Hey, you don't have to tell me.  But if anything goes wrong, give me a shout, okay?". 
+
+Aidan-camp2 is a quip. The menu text is "Not so good...."  
+
+The response of Aidan-on-camp is { aidan-camp1, aidan-camp2 }.
+
+After populating Aidan-camp2 when in chapter 1: 
+	remove aidan-camp-2b from the current conversation. 
+After populating Aidan-camp2 when in chapter 2: 
+	remove aidan-camp-2a from the current conversation.
+
+Aidan-camp-2a is a quip. The display text is "Aidan looks a little concerned.  'What's wrong?' he asks, and you're about to tell him everything when you realize that the whole Rap Session option is watching the two of you, clearly waiting for Aidan to take his turn.  'I'll tell you later,' you say at last, figuring that things can probably wait a while."
+
+Aidan-camp-2b is a quip. The display text is "Aidan looks a little concerned.  'What's wrong?' he asks."  
+
+The response of Aidan-camp2 is {aidan-camp-2a, aidan-camp-2b}. 
+
+aidan-camp-2b1 is a quip. The menu text  is "'I've been getting these headaches....'". The display text  is "You tell Aidan some of what's been going on.  He frowns a bit, and says, 'Sounds like a migraine headache to me.  You'd better go lie down, and call your counselor if it gets any worse.'".
+aidan-camp-2b2 is a transitional quip. The menu text is "'Well, there are these bullies...'" The following quip is CT_AIDAN_HELP. After populating aidan-camp-2b2 when crystal quest has not happened: remove aidan-camp-2b2 from the current conversation.
+aidan-camp-2b3 is a quip. The menu text is "(shrug) 'Oh, nothing much, really....'"  The display text is "'Yeah, right.  Look, Daniel, if something's bothering you, you know you can always talk to me about it, right?  Or there's your counselor ... Brad, right?  He's pretty cool with things, and he won't tell a soul if you ask him not to.'"
+	
+The response of aidan-camp-2b is { aidan-camp-2b1, aidan-camp-2b2, aidan-camp-2b3 }.
+
+
+CT_AIDAN_HELP is a quip. The display text is "'Hank and Joe up to their old tricks again, huh?  I'll deal with them.'  Aidan gets up from his desk (he doesn't even hit 'pause'!  What kind of game doesn't need to be paused when you leave it?) and sets off down the hallway."
+
+
+[Upon entering the room with the Rap Session option that Aidan is a part of. ]
 Q_AIDAN_0 is a quip. The display text is "'Hey, Daniel, you okay?'". 
 
 Q_AIDAN_1 is a quip. The display text is "'You sure?  You looked a bit green for a moment there.'".
@@ -1825,7 +2184,45 @@ Last before firing a quip (called Q) (this is the print menu text as part of con
 	unless the menu text of Q is empty:
 		say the menu text of Q, paragraph break;
 
-Part 23 - Third Floor Rooms West
+
+
+Section 4 - actions on Aidan
+
+Instead of attacking or kicking Aidan when in Chapter 9 and the player is not in the dreamscape, say "No way.  Somewhere inside that monster is the brother who helped you with the bullies and who carried you all the way to the hospital himself when you collapsed.  Right now, he needs your help more than anything."
+
+Instead of attacking or kicking Aidan when in chapter 9 and the player is in dreamscape: say "Aidan certainly isn't expecting that, but he's quick enough to dodge your attack.  You've distracted him just enough, however."; Go straight to section "You Fail To Give Aidan The Sword" in Chapter 09 text.
+
+Instead of attacking or kicking Aidan, say "[if in chapters 1 through 5]No way, Mom would kill you.  After she's done killing Aidan for killing you, because, let's face it, Aidan could probably break you in two with both hands tied behind his back.[otherwise if in chapter 6]Nay, [']twould get thee kicked from the simulation.[otherwise if in chapters 7 through 8]Are you out of your mind?"
+
+Instead of kissing Aidan, say "[if in chapters 1 through 5]You're a little too old for that sort of soppiness, don't you think?[otherwise if in chapter 6]Thou art past the age for such sop, dost thou not think?[otherwise if in chapters 7 through 8] That's not going to change his mind![otherwise if in chapter 9]Sadly, you lack the magical Mom power of kissing away owies."
+
+Instead of pushing Aidan, say "[if in chapters 1 through 2]You nudge Aidan with your elbow.  He nudges you back without thinking.[otherwise if in chapters 3 through 5]He's too far away, and probably wouldn't appreciate it anyway.[otherwise if in chapter 6]The script doth proceed apace without recourse to aught additional effort on thy part.[otherwise if in chapter 7 through 8]Are you out of your mind?[otherwise if in chapter 9]Aidan isn't going anywhere without your help, and this isn't helping."
+	
+Instead of pulling [or moving] Aidan while in chapters 1 through 2, say "Aidan's quite capable of moving on his own, thank you very much."
+
+[todo: default message for Pulling Aidan otherwise!]
+
+Instead of focusing on Aidan when in chapters 1 through 6, say "[if in chapter 1]You stare intently at your brother.  'Hey, didn't we stop playing those staring games years and years ago?'[otherwise if in chapter 2 through 3]You think you can hear someone playing an oboe.  Somewhere.[otherwise if in chapter 5]Aidan seems a little more irritable than usual.  You're not sure what it is, but there's something new and dangerous about him, lurking just under the surface.[otherwise if in chapter 6]Thy brother is in a temper, and thou shouldst tread carefully about him."
+
+Instead of focusing on Aidan when in chapter 7 for the first time: say "You sense rage and anger and frustration and hatred and more rage, so much so that you almost feel the same emotions yourself.  Just when you think you're going to fall into the same emotional whirlpool as Aidan has, you become aware that Aidan has paused in his assault on Lucian, and instead is swaying a little, a confused look on his face.  As you register this, Aidan shakes his head and returns his attention to Lucian.
+
+Ava looks from you to Aidan and back.  'What did you just do?'"; rule succeeds.
+
+Instead of focusing on Aidan when in chapter 7 for the second time: say "Rage and anger and hatred and rage and nothing else and suddenly you find yourself somewhere else entirely...."; In The Battlefield see Chapter 07; rule succeeds.
+
+Instead of focusing on Aidan when in chapter 8, say "[if Aidan has not been able to see Daniel's photograph]So much anger!  He's like a walking explosion of anger and aggression and more anger and it's every bit as scary as the fact that he's trying to kill you![otherwise]So much anger!  But ... there, underneath it all, is that a hint of that brotherly love and concern that made him carry you all the way to the hospital last week?[end if]  [line break]"
+
+Instead of focusing on Aidan when in chapter 9 and the player is NOT in the dreamscape and the player has been [expelled]in the mindscape: say "You take a deep breath and focus again on your brother's emotions.  The sensations are beginning to seem all too familiar, and once again you find yourself in...."; does a chapter change go here.
+
+Instead of focusing on Aidan when in chapter 9 and the player is NOT in the dreamscape: say "[one of]You can sense raw, directionless rage and aggression, mixed with a large dose of confusion, all of it fortunately damped down by the sedatives.  Now that you're aware of it, it becomes rather hard to ignore.  Dr Rose, watching you intently, encourages you to go on.  'You can do it, Daniel.  I know you can.'[or]It's just like the last time, only the aggressive emotions seem much more muted.  There is confusion and fear as well.  As you focus, Aidan's emotions become the only ones you are aware of, and then you're somewhere else...[stopping]"; does a chapter change go here.
+
+Instead of focusing on Aidan when in chapter 9 and the player is in the dreamscape, say "Given that you're currently inside his mind, that would probably not be a good idea."
+
+Instead of focusing on Aidan when in chapter 10, say "You sense nothing.  And thank goodness for that."
+
+
+
+Part 27 - Third Floor Rooms West
 
 Chapter 1 - Description
 
@@ -1844,7 +2241,7 @@ The poster of Vincent Van Gogh's painting Starry Night is scenery, in the Third 
 Rule for printing the name of the poster of Van Gogh's Starry Night:
 	say "'Starry Night' poster";
 
-Part 24 - Third Floor Rooms East
+Part 28 - Third Floor Rooms East
 
 Chapter 1 - Description
 
@@ -1861,19 +2258,24 @@ Rule for printing the description of the eastern windows of Jacobs Hall when in 
 
 The constellation of Orion is scenery, in Third Floor Rooms East. "The mighty hunter... he's the only constellation you can recognise in the night sky."
 
-Understand "mighty", "hunter", "star", "Orion's belt", "belt",	"Betelgeuse", "Rigel" as the constellation of Orion.
+Understand "mighty", "hunter", "star", "Orion's belt", "belt", "Betelgeuse", "Rigel" as the constellation of Orion.
 
 Instead of searching the constellation of Orion [> LOOK THROUGH ORION]:
 	try searching the eastern windows of Jacobs Hall.
 
-Part 25 - Rooftop
+Part 29 - Rooftop
 
 Chapter 1 - Description
 
-The Jacobs Hall Rooftop is a room, exterior, up from the Third Floor Lobby. "The rooftop is only accessible when there's an activity or option that uses it.  Otherwise, it's off-limits, not that you can really imagine why anyone would want to come up here.  It's all black gravel and tar.  The courtyard downstairs is way more pleasant.[paragraph break]The Eggdrop option is busy tossing boxes of eggs over the parapet: a table has been set up as well, and is covered with artsy-craftsy materials with which a number of campers are building egg-preservation containers."
+The Jacobs Hall Rooftop is an exterior room, up from the Third Floor Lobby. "The rooftop is only accessible when there's an activity or option that uses it.  Otherwise, it's off-limits, not that you can really imagine why anyone would want to come up here.  It's all black gravel and tar.  The courtyard downstairs is way more pleasant.  [if in chapter 1][paragraph break]The Eggdrop option is busy tossing boxes of eggs over the parapet: a table has been set up as well, and is covered with artsy-craftsy materials with which a number of campers are building egg-preservation containers. [end if] [line break]"
 
 Rule for printing the name of Jacobs Hall Rooftop:
 	say "Rooftop";
+
+instead of Jumping when in Jacobs Hall rooftop, say "Don't do it, Daniel!  You have so much to live for!"
+
+Instead of attacking yourself,  say "Don't do it!  You have so much to live for!"
+
 
 Chapter 2 - Scenery
 
@@ -2100,7 +2502,7 @@ Rule for printing a locale paragraph about Stacy Alexander when in Stacy's Room 
 Rule for printing a locale paragraph about Ava Winters when in Stacy's Room during Visiting Stacy-and-Ava:
 	now Ava is mentioned;
 
-Chapter 2 - Conversation
+Chapter 1 - Conversation
 
 Stacy-and-Ava Dorm Chat is a scene. Stacy-and-Ava Dorm Chat begins when Visiting Stacy-and-Ava ends. Stacy-and-Ava Dorm Chat ends when Q_STACY_AVA_10 is fired.
 
@@ -2351,7 +2753,7 @@ Rule for firing fired Q_LUCIAN_BULLIES:
 	change the following quip of Q_LUCIAN_BULLIES to nothing;
 	say "'I don't want to talk about that any more.'";
 
-Section 5 - Grandmother
+Section 6 - Grandmother
 
 Q_LUCIAN_GRANDMOTHER is an unavailable quip. The display text is "'Yeah.  She died.'  The sour taste in the air is almost overwhelmed by a different, marshy sort of smell, yet you somehow know that the two sensations are somehow related.  Ava is instantly consoling Lucian, and finding all the right words that you can't think of.[paragraph break]'Was she a gardener?' asks Ava.  'That's a beautiful garden she's in.'[paragraph break]'Yeah, yeah she was.  She was an environmentalist.  That's why she....'  Lucian stops.  'Never mind.'".
 
@@ -2359,7 +2761,7 @@ Q_LUCIAN_GRANDMOTHER_A is a menu quip. The following quip is Q_LUCIAN_10. The me
 
 The response of Q_LUCIAN_GRANDMOTHER is { Q_LUCIAN_GRANDMOTHER_A }.
 
-Section 6 - Goal
+Section 7 - Goal
 
 Q_LUCIAN_10 is a transitional quip. The following quip is Q_LUCIAN_11. The display text is "Lucian shakes his head.  Stacy looks a little annoyed and says, 'you know, if you don't tell us what's upsetting you, we can't help you.  So why don't you just spit it out and get it over with?'"
 
@@ -2369,7 +2771,7 @@ After firing Q_LUCIAN_11:
 	now Q_LUCIAN_BULLIES is available;
 	now Q_LUCIAN_EARTH_CRYSTAL is available;
 
-Section 6 - Peter
+Section 8 - Peter
 
 Q_LUCIAN_PETER is an unavailable quip. The display text is "Lucian picks up the class photo.  'That's Peter,' he says, pointing to the teacher smiling up from one side of the group.  For a moment, the sour taste in the air disappears.  'He lets us call him by his first name, and he's the most awesome teacher ever.'  Then Lucian looks sad again.  'He's the one who said I was smart enough to come here, and he went and pulled all sorts of strings.  I should be grateful, I suppose.'".
 
@@ -2377,7 +2779,7 @@ Q_LUCIAN_PETER_A is a menu quip. The following quip is Q_LUCIAN_2. The menu text
 
 The response of Q_LUCIAN_PETER is { Q_LUCIAN_PETER_A }.
 
-Section 7 - Earth Crystal
+Section 9 - Earth Crystal
 
 Q_LUCIAN_EARTH_CRYSTAL is an unavailable quip.
 
@@ -2567,14 +2969,12 @@ Instead of knocking on Aidan's door when Hank's room is visited during Crystal Q
 	now Aidan's door is open;
 	move the player to Aidan's room;
 
-Rule for choosing the conversation table of Aidan during Crystal Quest:
+[Rule for choosing the conversation table of Aidan during Crystal Quest:
 	change the chosen conversation table to the Table of help needed from Aidan;
 
 Table of help needed from Aidan
-conversation			topic
-CT_AIDAN_HELP			"help" or "bullies" or "joe" or "hank" or "lucian" or "crystal" or "earth crystal" or "hank and joe" or "joe and hank"
+conversation			topic]
 
-CT_AIDAN_HELP is a quip. The display text is "'Hank and Joe up to their old tricks again, huh?  I'll deal with them.'  Aidan gets up from his desk (he doesn't even hit 'pause'!  What kind of game doesn't need to be paused when you leave it?) and sets off down the hallway."
 
 Aidan's warpath is a scene. Aidan's warpath begins when CT_AIDAN_HELP is fired. Aidan's warpath ends when the number of entries in the warpath of Aidan is 0.
 
@@ -2683,7 +3083,7 @@ Before eating your dinner:
 Instead of smelling your dinner:
 	say "It smells innocent enough, anyway.  But smells can be deceiving.";
 
-Part 2 - Lucian Again
+Part 3 - Lucian Again
 
 At the time when Lucian appears:
 	move Lucian to the dining hall;
@@ -2752,7 +3152,7 @@ After firing Q_LUCIAN2_7:
 After firing Q_LUCIAN2_8:
 	move the player to the Maelstrom;
 
-Part 3 - Emotional Maelstrom
+Part 4 - Emotional Maelstrom
 
 Chapter 1 - Scene setting
 
@@ -2911,13 +3311,9 @@ This is the emotion-setting rule:
 	repeat with i running from 1 to 4:
 		now entry i of the ways feels entry i of the emotions;
 
-Definition: a direction is maelstrom-blocked:
-	if it is listed in the blocked directions of the Maelstrom, yes;
-	no;
+Definition: a direction is maelstrom-blocked if it is listed in the blocked directions of the Maelstrom.
 
-Definition: a direction is maelstrom-accessible:
-	if it is listed in the accessible directions of the Maelstrom, yes;
-	no;
+Definition: a direction is maelstrom-accessible if it is listed in the accessible directions of the Maelstrom.
 
 Understand "[something related by reversed emotionally-impressing]" as a direction when the location is the Maelstrom and the item described is maelstrom-blocked.
 
@@ -2992,8 +3388,7 @@ When Cased In ends:
 	fire TRIG_EXIT_CASE;
 	change left hand status line to "Day ??: [location]";
 
-Instead of shouting at the location during Cased In:
-	now the coffin case is open;
+Instead of shouting at the location during Cased In, now the coffin case is open.
 
 TRIG_EXIT_CASE is a trigger.
 
@@ -3202,7 +3597,7 @@ Q_AVA_HO_4 is a quip. The display text is "Stacy frowns.  'Maybe.  But I want to
 
 Q_AVA_HO_10 is a quip. The display text is "'That's Aidan's room,' says Ava, 'I tried to drop in on him earlier.  You don't think...?'[paragraph break]'That something's happened to Aidan?'  It's an alarming thought.  'I'd better go find out.'[paragraph break]'But Daniel, you're supposed to be resting!'"
 
-The response of Q_AVA_HO_10 is [reusing the Quip 1 responses:] { Q_AVA_HO_1_A, Q_AVA_HO_1_B, Q_AVA_HO_1_C }.
+The response of Q_AVA_HO_10 is [reusing the Quip 1 responses] { Q_AVA_HO_1_A, Q_AVA_HO_1_B, Q_AVA_HO_1_C }.
 
 Part 4 - Hospital Map
 
@@ -3474,7 +3869,7 @@ Understand "red" as the scarlet.
 Understand "orange" as the saffron.
 Understand "gold", "yellow" as the golden.
 
-Part 2 - Slots
+Part 3 - Slots
 
 A slot is a kind of container. Some slots are defined by the table of programming slots.
 
