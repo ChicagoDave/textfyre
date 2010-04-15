@@ -185,7 +185,7 @@
 }
 
 - (void)handleNextChar:(TFEngine *)engine {
-    [engine printIndirect:doubleIndirect ? [engine.image integerAtOffset:address] : address argCount:argCount argsAt:argsAt];
+    [engine printIndirect:doubleIndirect ? [engine.image integerAtAddress:address] : address argCount:argCount argsAt:argsAt];
 }
 
 - (BOOL)needsCallStub {

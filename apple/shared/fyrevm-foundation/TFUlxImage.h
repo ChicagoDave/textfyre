@@ -61,50 +61,50 @@
 
 /*! Returns a single unsigned byte from memory.
 
-    \param offset The address to read from.
+    \param address The address to read from.
 
     \return The unsigned 8-bit value at the specified address.
  */
-- (uint8_t)byteAtOffset:(uint32_t)offset;
+- (uint8_t)byteAtAddress:(uint32_t)address;
 
 /*! Returns a big-endian unsigned 16-bit short from memory.
 
-    \param offset The address to read from.
+    \param address The address to read from.
 
     \return The unsigned 16-bit value at the specified address.
  */
-- (uint16_t)shortAtOffset:(uint32_t)offset;
+- (uint16_t)shortAtAddress:(uint32_t)address;
 
 /*! Returns a big-endian unsigned 32-bit integer from memory.
 
-    \param offset The address to read from.
+    \param address The address to read from.
 
     \return The unsigned 32-bit value at the specified address.
  */
-- (uint32_t)integerAtOffset:(NSUInteger)offset;
+- (uint32_t)integerAtAddress:(uint32_t)offset;
 
 #pragma mark -
 
 /*! Set a single unsigned byte in memory.
 
     \param value The value to set.
-    \param offset The address to write to.
+    \param address The address to write to.
  */
-- (void)setByte:(uint8_t)value atOffset:(uint32_t)offset;
+- (void)setByte:(uint8_t)value atAddress:(uint32_t)address;
 
 /*! Sets a big-endian unsigned 16-bit word in memory.
 
     \param value The value to set.
-    \param offset The address to write to.
+    \param address The address to write to.
  */
-- (void)setShort:(uint16_t)value atOffset:(uint32_t)offset;
+- (void)setShort:(uint16_t)value atAddress:(uint32_t)address;
 
 /*! Sets a big-endian unsigned 32-bit integer in memory.
 
     \param value The value to set.
-    \param offset The address to write to.
+    \param address The address to write to.
  */
-- (void)setInteger:(uint32_t)value atOffset:(uint32_t)offset;
+- (void)setInteger:(uint32_t)value atAddress:(uint32_t)address;
 
 #pragma mark -
 
@@ -121,9 +121,5 @@
     Author writes in specification, "I will try to maintain the convention that minor version changes are backwards compatible."
 */
 - (NSUInteger)minorVersion;
-
-/*! Method to call to dispose of resources. Is called by -dealloc, but also may be called early. Is also called by -loadFromPath: on failure.
- */
-- (void)cleanup;
 
 @end

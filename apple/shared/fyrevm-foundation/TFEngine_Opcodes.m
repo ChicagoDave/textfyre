@@ -367,7 +367,7 @@
         [self pushCallStub:TFMakeCallStub(destType, destAddr, stubPC, fp)];
     }
 
-    uint8_t type = [image byteAtOffset:address];
+    uint8_t type = [image byteAtAddress:address];
     if (type == 0xC0) {
         // arguments are passed in on the stack
         [self enterFunctionAtAddress:address];
@@ -422,8 +422,8 @@
     TFCallStub stub = [self popCallStub];
     pc = stub.pc;
     fp = stub.framePtr;
-    frameLen = [self readFromStack:fp];
-    localsPos = [self readFromStack:fp + 4];
+    frameLen = [self stackIntegerAtAddress:fp];
+    localsPos = [self stackIntegerAtAddress:fp + 4];
 
     // store the thrown value and resume after the catch opcode
     [self performDelayedStoreOfType:stub.destType address:stub.destAddr value:[args argAtIndex:0]];
@@ -505,7 +505,7 @@
 // storeArgs: 1
 - (void)op_aload:(TFArguments *)args
 {
-    [args setArg:[image integerAtOffset:[args argAtIndex:0] + 4 * [args argAtIndex:1]] atIndex:2];
+    [args setArg:[image integerAtAddress:[args argAtIndex:0] + 4 * [args argAtIndex:1]] atIndex:2];
 }
 
 // opcode: 0x49
@@ -514,7 +514,7 @@
 // storeArgs: 1
 - (void)op_aloads:(TFArguments *)args
 {
-    [args setArg:[image shortAtOffset:[args argAtIndex:0] + 2 * [args argAtIndex:1]] atIndex:2];
+    [args setArg:[image shortAtAddress:[args argAtIndex:0] + 2 * [args argAtIndex:1]] atIndex:2];
 }
 
 // opcode: 0x4A
@@ -523,7 +523,7 @@
 // storeArgs: 1
 - (void)op_aloadb:(TFArguments *)args
 {
-    [args setArg:[image byteAtOffset:[args argAtIndex:0] + [args argAtIndex:1]] atIndex:2];
+    [args setArg:[image byteAtAddress:[args argAtIndex:0] + [args argAtIndex:1]] atIndex:2];
 }
 
 // opcode: 0x4B
@@ -535,7 +535,7 @@
     uint32_t address = (uint32_t)([args argAtIndex:0] + ((int)[args argAtIndex:1]) / 8);
     uint8_t bit = (uint8_t)(((int)[args argAtIndex:1]) % 8);
 
-    uint8_t value = [image byteAtOffset:address];
+    uint8_t value = [image byteAtAddress:address];
     [args setArg:(value & (1 << bit)) == 0 ? (uint32_t)0 : (uint32_t)1 atIndex:2];
 }
 
@@ -544,7 +544,7 @@
 // loadArgs: 3
 - (void)op_astore:(TFArguments *)args
 {
-    [image setInteger:[args argAtIndex:2] atOffset:[args argAtIndex:0] + 4 * [args argAtIndex:1]];
+    [image setInteger:[args argAtIndex:2] atAddress:[args argAtIndex:0] + 4 * [args argAtIndex:1]];
 }
 
 // opcode: 0x4D
@@ -552,7 +552,7 @@
 // loadArgs: 3
 - (void)op_astores:(TFArguments *)args
 {
-    [image setShort:(uint16_t)[args argAtIndex:2] atOffset:[args argAtIndex:0] + 2 * [args argAtIndex:1]];
+    [image setShort:(uint16_t)[args argAtIndex:2] atAddress:[args argAtIndex:0] + 2 * [args argAtIndex:1]];
 }
 
 // opcode: 0x4E
@@ -560,7 +560,7 @@
 // loadArgs: 3
 - (void)op_astoreb:(TFArguments *)args
 {
-    [image setByte:(uint8_t)[args argAtIndex:2] atOffset:[args argAtIndex:0] + [args argAtIndex:1]];
+    [image setByte:(uint8_t)[args argAtIndex:2] atAddress:[args argAtIndex:0] + [args argAtIndex:1]];
 }
 
 // opcode: 0x4F
@@ -571,13 +571,13 @@
     uint32_t address = (uint32_t)([args argAtIndex:0] + ((int)[args argAtIndex:1]) / 8);
     uint8_t bit = (uint8_t)(((int)[args argAtIndex:1]) % 8);
 
-    uint8_t value = [image byteAtOffset:address];
+    uint8_t value = [image byteAtAddress:address];
     if ([args argAtIndex:2] == 0) {
         value &= (uint8_t)(~(1 << bit));
     } else {
         value |= (uint8_t)(1 << bit);
     }
-    [image setByte:value atOffset:address];
+    [image setByte:value atAddress:address];
 }
 
 #pragma mark Output
@@ -640,7 +640,7 @@
 /*
     TODO
     uint32_t address = [args argAtIndex:0];
-    uint8_t type = [image byteAtOffset:address];
+    uint8_t type = [image byteAtAddress:address];
 
     // for retrying a compressed string after we discover it needs a call stub
     uint8_t savedDigit = 0;
@@ -821,7 +821,7 @@
 {
     // TODO should be able to do this faster than this
     for (uint32_t i = 0; i < [args argAtIndex:0]; i++) {
-        [image setByte:0 atOffset:[args argAtIndex:1] + i];
+        [image setByte:0 atAddress:[args argAtIndex:1] + i];
     }
 }
 
@@ -833,11 +833,11 @@
     if ([args argAtIndex:2] < [args argAtIndex:1])
     {
         for (uint32_t i = 0; i < [args argAtIndex:0]; i++) {
-            [image setByte:[image byteAtOffset:[args argAtIndex:1] + i] atOffset:[args argAtIndex:2] + i];
+            [image setByte:[image byteAtAddress:[args argAtIndex:1] + i] atAddress:[args argAtIndex:2] + i];
         }
     } else {
         for (uint32_t i = [args argAtIndex:0] - 1; i >= 0; i--) {
-            [image setByte:[image byteAtOffset:[args argAtIndex:1] + i] atOffset:[args argAtIndex:2] + i];
+            [image setByte:[image byteAtAddress:[args argAtIndex:1] + i] atAddress:[args argAtIndex:2] + i];
         }
     }
 }
@@ -898,7 +898,7 @@
 
 - (BOOL)keyIsZeroAtAddress:(uint32_t)address size:(uint32_t)size {
     for (uint32_t i = 0; i < size; i++) {
-        if ([image byteAtOffset:address + i] != 0) {
+        if ([image byteAtAddress:address + i] != 0) {
             return NO;
         }
     }
@@ -998,7 +998,7 @@
         }
 
         // advance to next item
-        node = [image integerAtOffset:node + nextOffset];
+        node = [image integerAtAddress:node + nextOffset];
     }
 
     [args setArg:result atIndex:6];
@@ -1027,7 +1027,7 @@
         //throw new VMException("Stack underflow");
     }
 
-    [args setArg:[self readFromStack:position] atIndex:1];
+    [args setArg:[self stackIntegerAtAddress:position] atIndex:1];
 }
 
 // opcode: 0x52

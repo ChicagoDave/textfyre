@@ -15,6 +15,8 @@
 
 #pragma mark Private methods
 
+/*! \brief Method to call to dispose of resources. Is called by -dealloc, but also may be called early internally on failure. Outside users of this class should not call this method, but should instead call -deallocate if they own an object of this type.
+ */
 - (void)cleanup {
     [manifestDictionary release], manifestDictionary = nil;
     

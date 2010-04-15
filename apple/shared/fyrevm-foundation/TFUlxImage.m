@@ -110,6 +110,20 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
 @synthesize path;
 @synthesize RAMStart;
 
+#pragma mark Private methods
+
+
+/*! \brief Method to call to dispose of resources. Is called by -dealloc, but also may be called early internally on failure. Outside users of this class should not call this method, but should instead call -deallocate if they own an object of this type.
+
+    Is also called by -loadFromPath: on failure.
+ */
+- (void)cleanup {
+    [path release], path = nil;
+    [decryptedData release], decryptedData = nil;
+    [originalHeader release], originalHeader = nil;
+    [originalRAM release], originalRAM = nil;
+}
+
 #pragma mark APIs
 
 - (BOOL)loadFromPath:(NSString *)thePath {
@@ -132,19 +146,19 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
         } else {
             // verify checksum
             const uint32_t expectedChecksum = [self checksum];
-            const uint32_t checksum = [self integerAtOffset:TFGlulxHeaderChecksumOffset];
+            const uint32_t checksum = [self integerAtAddress:TFGlulxHeaderChecksumOffset];
             if (checksum != expectedChecksum) {
                 NSLog(@"Glulx (.ulx) game file at path \"%@\" has checksum %lu, when it should have checksum %lu", (unsigned long)expectedChecksum, (unsigned long)checksum);
             } else {
-                self.endMemory = [self integerAtOffset:TFGlulxHeaderEndMemoryOffset];
+                self.endMemory = [self integerAtAddress:TFGlulxHeaderEndMemoryOffset];
                 if (self.endMemory > [decryptedData length]) {
                     NSLog(@"In Glulx (.ulx) game file at path \"%@\", endMemory value in header (%lu) is greater than length of encrypted bytes of file (%lu)", (unsigned long)self.endMemory, (unsigned long)[decryptedData length]);
                 } else {
-                    self.RAMStart = [self integerAtOffset:TFGlulxHeaderRAMStartOffset];
+                    self.RAMStart = [self integerAtAddress:TFGlulxHeaderRAMStartOffset];
                 
                     // cache original RAM and IFHD immediately so we don't have to decrypt again when saving
 
-                    const uint32_t endMemoryOffset = [self integerAtOffset:TFGlulxHeaderEndMemoryOffset];
+                    const uint32_t endMemoryOffset = [self integerAtAddress:TFGlulxHeaderEndMemoryOffset];
                     
                     void *originalHeaderBuffer = malloc(128);
                     memcpy(originalHeaderBuffer, [decryptedData bytes], 128);
@@ -202,30 +216,30 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
 
 #pragma mark -
 
-- (uint8_t)byteAtOffset:(uint32_t)offset {
-    NSAssert(decryptedData != nil, @"byteAtOffset: called when decryptedData is nil!");
+- (uint8_t)byteAtAddress:(uint32_t)address {
+    NSAssert(decryptedData != nil, @"byteAtAddress: called when decryptedData is nil!");
 
-    const void *memPtr = [decryptedData bytes]+offset;
+    const void *memPtr = [decryptedData bytes]+address;
     
     uint8_t value = *((const uint8_t *)memPtr);
     
     return value;
 }
 
-- (uint16_t)shortAtOffset:(uint32_t)offset {
-    NSAssert(decryptedData != nil, @"shortAtOffset: called when decryptedData is nil!");
+- (uint16_t)shortAtAddress:(uint32_t)address {
+    NSAssert(decryptedData != nil, @"shortAtAddress: called when decryptedData is nil!");
 
-    const void *memPtr = [decryptedData bytes]+offset;
+    const void *memPtr = [decryptedData bytes]+address;
     
     uint16_t bigIntValue = *((const uint16_t *)memPtr);
     
     return NSSwapBigShortToHost(bigIntValue);
 }
 
-- (uint32_t)integerAtOffset:(NSUInteger)offset {
-    NSAssert(decryptedData != nil, @"intAtOffset: called when decryptedData is nil!");
+- (uint32_t)integerAtAddress:(uint32_t)address {
+    NSAssert(decryptedData != nil, @"intAtAddress: called when decryptedData is nil!");
     
-    const void *memPtr = [decryptedData bytes]+offset;
+    const void *memPtr = [decryptedData bytes]+address;
     
     uint32_t bigIntValue = *((const uint32_t *)memPtr);
     
@@ -237,45 +251,45 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
 /*! Set a single unsigned byte in memory.
 
     \param value The value to set.
-    \param offset The address to write to.
+    \param address The address to write to.
  */
-- (void)setByte:(uint8_t)value atOffset:(uint32_t)offset {
-    NSAssert(decryptedData != nil, @"intAtOffset: called when decryptedData is nil!");
-    if (offset < self.RAMStart) {
+- (void)setByte:(uint8_t)value atAddress:(uint32_t)address {
+    NSAssert(decryptedData != nil, @"intAtAddress: called when decryptedData is nil!");
+    if (address < self.RAMStart) {
 //        @throw [NSException exceptionWithName: reason:@"Writing into ROM" userInfo:nil);
     }
 
-    [decryptedData replaceBytesInRange:NSMakeRange(offset, sizeof(value)) withBytes:&value length:sizeof(value)];
+    [decryptedData replaceBytesInRange:NSMakeRange(address, sizeof(value)) withBytes:&value length:sizeof(value)];
 }
 
 /*! Sets a big-endian unsigned 16-bit word in memory.
 
     \param value The value to set.
-    \param offset The address to write to.
+    \param address The address to write to.
  */
-- (void)setShort:(uint16_t)value atOffset:(uint32_t)offset {
-    NSAssert(decryptedData != nil, @"intAtOffset: called when decryptedData is nil!");
-    if (offset < self.RAMStart) {
+- (void)setShort:(uint16_t)value atAddress:(uint32_t)address {
+    NSAssert(decryptedData != nil, @"intAtAddress: called when decryptedData is nil!");
+    if (address < self.RAMStart) {
 //        @throw [NSException exceptionWithName: reason:@"Writing into ROM" userInfo:nil);
     }
     
     uint16_t bigEndianValue = NSSwapHostShortToBig(value);
-    [decryptedData replaceBytesInRange:NSMakeRange(offset, sizeof(value)) withBytes:&bigEndianValue length:sizeof(value)];
+    [decryptedData replaceBytesInRange:NSMakeRange(address, sizeof(value)) withBytes:&bigEndianValue length:sizeof(value)];
 }
 
 /*! Sets a big-endian unsigned 32-bit integer in memory.
 
     \param value The value to set.
-    \param offset The address to write to.
+    \param address The address to write to.
  */
-- (void)setInteger:(uint32_t)value atOffset:(uint32_t)offset {
-    NSAssert(decryptedData != nil, @"intAtOffset: called when decryptedData is nil!");
-    if (offset < self.RAMStart) {
+- (void)setInteger:(uint32_t)value atAddress:(uint32_t)address {
+    NSAssert(decryptedData != nil, @"intAtAddress: called when decryptedData is nil!");
+    if (address < self.RAMStart) {
 //        @throw [NSException exceptionWithName: reason:@"Writing into ROM" userInfo:nil);
     }
 
     uint32_t bigEndianValue = NSSwapHostIntToBig(value);
-    [decryptedData replaceBytesInRange:NSMakeRange(offset, sizeof(value)) withBytes:&bigEndianValue length:sizeof(value)];
+    [decryptedData replaceBytesInRange:NSMakeRange(address, sizeof(value)) withBytes:&bigEndianValue length:sizeof(value)];
 }
 /*
         /// <summary>
@@ -376,15 +390,15 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
     
     uint32_t result = 0;
 
-    uint32_t end = [self integerAtOffset:TFGlulxHeaderExtensionStartOffset];
+    uint32_t end = [self integerAtAddress:TFGlulxHeaderExtensionStartOffset];
 
-    uint32_t sum = (uint32_t)(-[self integerAtOffset:TFGlulxHeaderChecksumOffset]);
+    uint32_t sum = (uint32_t)(-[self integerAtAddress:TFGlulxHeaderChecksumOffset]);
 
     if (end % 256 != 0) {
         NSLog(@"Glulx 1.2 specification says ENDMEM % 256 == 0, but it instead is %lu", end % 256);
     } else {
         for (uint32_t i = 0; i < end; i += 4) {
-            sum += [self integerAtOffset:i];
+            sum += [self integerAtAddress:i];
         }
         
         result = sum;
@@ -396,26 +410,19 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
 - (NSUInteger)majorVersion {
     NSAssert(decryptedData != nil, @"majorVersion called when decryptedData is nil!");
     
-    uint32_t version = [self integerAtOffset:TFGlulxHeaderVersionOffset];
+    uint32_t version = [self integerAtAddress:TFGlulxHeaderVersionOffset];
 
     return version >> 16;
 }
 - (NSUInteger)minorVersion {
     NSAssert(decryptedData != nil, @"minorVersion called when decryptedData is nil!");
     
-    uint32_t version = [self integerAtOffset:TFGlulxHeaderVersionOffset];
+    uint32_t version = [self integerAtAddress:TFGlulxHeaderVersionOffset];
     
     return (version >> 8) & 0xFF;
 }
 
 #pragma mark Standard methods
-
-- (void)cleanup {
-    [path release], path = nil;
-    [decryptedData release], decryptedData = nil;
-    [originalHeader release], originalHeader = nil;
-    [originalRAM release], originalRAM = nil;
-}
 
 - (void)dealloc {
     [self cleanup];
