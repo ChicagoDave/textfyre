@@ -14,6 +14,7 @@
 #import "TFEngine_Output.h"
 #import "TFHeapAllocator.h"
 #import "TFOpcode.h"
+#import "TFOutputBuffer.h"
 #import "TFStrNode.h"
 #import "TFUlxImage.h"
 #import "TFVeneer.h"
@@ -62,40 +63,10 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 
 #pragma mark Private methods
 
-/*! Compares version numbers of image to what this game engine supports.
-
-    If image version is supported, returns YES.
-    
-    If image version is not supported, returns NO, at which point technical details will be printed to Console.
- */
-- (BOOL)isImageVersionCompatible:(TFUlxImage *)theImage {
-    NSUInteger majorVersion = [theImage majorVersion];
-    NSUInteger minorVersion = [theImage minorVersion];
-
-    BOOL result =
-        ((majorVersion > TFEngineFirstMajorVersion ||
-         majorVersion == TFEngineFirstMajorVersion && minorVersion >= TFEngineFirstMinorVersion) &&
-         (majorVersion < TFEngineLastMajorVersion ||
-          majorVersion == TFEngineLastMajorVersion && minorVersion <= TFEngineLastMinorVersion));
-
-    if (result == NO) {
-        NSLog(@"Glulx (.ulx) game file at path \"%@\" has major version %lu and minor version %lu, which are not compatible with this game engine's first major version number %lu, first minor version number %lu, last major version number %lu, last minor version number %lu", 
-                theImage.path, 
-                (unsigned long)majorVersion,
-                (unsigned long)minorVersion,
-                (unsigned long)TFEngineFirstMajorVersion,
-                (unsigned long)TFEngineFirstMinorVersion,
-                (unsigned long)TFEngineLastMajorVersion,
-                (unsigned long)TFEngineLastMinorVersion);
-    }
-    
-    return result;
-}
-
 /*! Clears the stack and initializes VM registers from values found in RAM. */
 - (void)bootstrap {
-    uint32_t mainfunc = [image integerAtOffset:TFGlulxHeaderStartFunctionOffset];
-    decodingTable = [image integerAtOffset:TFGlulxHeaderDecodingTableOffset];
+    uint32_t mainfunc = [image integerAtAddress:TFGlulxHeaderStartFunctionOffset];
+    decodingTable = [image integerAtAddress:TFGlulxHeaderDecodingTableOffset];
 
     sp = fp = frameLen = localsPos = 0;
     outputSystem = TFIOSystemNull;
@@ -103,18 +74,25 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
     [self enterFunctionAtAddress:mainfunc];
 }
 
-/*! Method to call to dispose of resources. Is called by -dealloc, but also may be called early. Is called by -loadGameImageFromPath: on failure.
+/*! \brief Method to call to dispose of resources. Is called by -dealloc, but also may be called early internally on failure. Outside users of this class should not call this method, but should instead call -deallocate if they own an object of this type.
+
+    Is called by -loadGameImageFromPath: on failure.
  */
 - (void)cleanup {
-    [opcodeDict release], opcodeDict = nil;
+    // Allocated in init.
+    [outputBuffer release], outputBuffer = nil;
+    [veneer release], veneer = nil;
 
+    // Allocated in loadGameImageFromPath:.
     [image release], image = nil;
-    
-    [heap release], heap = nil;
-
     [stack release], stack = nil;
 
-    [veneer release], veneer = nil;
+    // Allocated in initOpcodeDictionary, called by loadGameImageFromPath:.
+    [opcodeDict release], opcodeDict = nil;
+    
+    // Allocated in op_malloc:, in TFEngine_Opcodes.m.
+    [heap release], heap = nil;
+
 }
 
 #pragma mark APIs
@@ -129,7 +107,7 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
     if ([image loadFromPath:path]) {
     
         if ([self isImageVersionCompatible:image]) {
-            uint32_t stackSize = [image integerAtOffset:TFGlulxHeaderStackSizeOffset];
+            uint32_t stackSize = [image integerAtAddress:TFGlulxHeaderStackSizeOffset];
             stack = [[NSMutableData alloc] initWithLength:stackSize];
 
             result = [self initOpcodeDictionary];
@@ -143,30 +121,28 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
     return result;
 }
 
-// Move to TFEngine_Opcodes.m?
-
 - (void)push:(uint32_t)value {
     uint32_t bigEndianValue = NSSwapHostIntToBig(value);
     [stack appendBytes:&bigEndianValue length:sizeof(uint32_t)];
     sp += 4;
 }
 
-- (void)setStackInteger:(uint32_t)value atOffset:(uint32_t)offset {
+- (void)setStackInteger:(uint32_t)value atAddress:(uint32_t)address {
     uint32_t bigEndianValue = NSSwapHostIntToBig(value);
-    [stack replaceBytesInRange:NSMakeRange(offset, sizeof(value)) withBytes:&bigEndianValue length:sizeof(value)];
+    [stack replaceBytesInRange:NSMakeRange(address, sizeof(value)) withBytes:&bigEndianValue length:sizeof(value)];
 }
 
 - (uint32_t)pop {
     sp -= 4;
     
-    return [self readFromStack:sp];
+    return [self stackIntegerAtAddress:sp];
 }
 
-- (uint32_t)readFromStack:(uint32_t)position
+- (uint32_t)stackIntegerAtAddress:(uint32_t)address
 {
     uint32_t value;
     
-    [stack getBytes:&value range:NSMakeRange(position, sizeof(uint32_t))];
+    [stack getBytes:&value range:NSMakeRange(address, sizeof(uint32_t))];
 
     return NSSwapBigIntToHost(value);
 }
@@ -246,12 +222,12 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
         switch (execMode) {
             case TFExecutionModeCode: {
                 // decode opcode number
-                uint32_t opnum = [image byteAtOffset:pc];
+                uint32_t opnum = [image byteAtAddress:pc];
                 if (opnum >= 0xC0) {
-                    opnum = [image integerAtOffset:pc] - 0xC0000000;
+                    opnum = [image integerAtAddress:pc] - 0xC0000000;
                     pc += 4;
                 } else if (opnum >= 0x80) {
-                    opnum = (uint32_t)([image shortAtOffset:pc] - 0x8000);
+                    opnum = (uint32_t)([image shortAtAddress:pc] - 0x8000);
                     pc += 2;
                 } else {
                     pc++;
@@ -282,9 +258,9 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
                 for (int i = 0; i < opcode.loadArgs; i++) {
                     uint8_t type = 0;
                     if (i % 2 == 0) {
-                        type = ([image byteAtOffset:pc] & 0xF);
+                        type = ([image byteAtAddress:pc] & 0xF);
                     } else {
-                        type = (([image byteAtOffset:pc] >> 4) & 0xF);
+                        type = (([image byteAtAddress:pc] >> 4) & 0xF);
                         pc++;
                     }
 
@@ -296,9 +272,9 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
                 for (int i = 0; i < opcode.storeArgs; i++) {
                     uint8_t type = 0;
                     if ((opcode.loadArgs + i) % 2 == 0) {
-                        type = (uint8_t)([image byteAtOffset:pc] & 0xF);
+                        type = (uint8_t)([image byteAtAddress:pc] & 0xF);
                     } else {
-                        type = (uint8_t)(([image byteAtOffset:pc] >> 4) & 0xF);
+                        type = (uint8_t)(([image byteAtAddress:pc] >> 4) & 0xF);
                         pc++;
                     }
 
@@ -312,9 +288,9 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
                     // decode delayed store operand
                     uint8_t type = 0;
                     if ((opcode.loadArgs + opcode.storeArgs) % 2 == 0) {
-                        type = (uint8_t)([image byteAtOffset:pc] & 0xF);
+                        type = (uint8_t)([image byteAtAddress:pc] & 0xF);
                     } else {
-                        type = (uint8_t)(([image byteAtOffset:pc] >> 4) & 0xF);
+                        type = (uint8_t)(([image byteAtAddress:pc] >> 4) & 0xF);
                         pc++;
                     }
 
@@ -326,9 +302,9 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
                     // decode final load operand for @catch
                     uint8_t type = 0;
                     if ((opcode.loadArgs + opcode.storeArgs + 1) % 2 == 0) {
-                        type = (uint8_t)([image byteAtOffset:pc] & 0xF);
+                        type = (uint8_t)([image byteAtAddress:pc] & 0xF);
                     } else {
-                        type = (uint8_t)(([image byteAtOffset:pc] >> 4) & 0xF);
+                        type = (uint8_t)(([image byteAtAddress:pc] >> 4) & 0xF);
                         pc++;
                     }
 
@@ -375,9 +351,9 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
                 return result;
         }
 
-    #if PROFILING
+#if PROFILING
         cycles++;
-    #endif
+#endif
     }
     
     return result;
@@ -392,47 +368,47 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
             break;
         case 1:
             // TODO why cast to signed?
-            value = (uint32_t)(int8_t)[image byteAtOffset:(*operandPos)++];
+            value = (uint32_t)(int8_t)[image byteAtAddress:(*operandPos)++];
             //TODOWriteTrace("byte_" + value.ToString());
             break;;
         case 2:
             operandPos += 2;
             // TODO why cast to signed?
-            value = (uint32_t)(int16_t)[image shortAtOffset:(*operandPos) - 2];
+            value = (uint32_t)(int16_t)[image shortAtAddress:(*operandPos) - 2];
             //TODOWriteTrace("short_" + value.ToString());
             break;
         case 3:
             operandPos += 4;
-            value = [image integerAtOffset:(*operandPos) - 4];
+            value = [image integerAtAddress:(*operandPos) - 4];
             //TODOWriteTrace("int_" + value.ToString());
             break;
 
         // case 4: unused
 
         case 5:
-            address = [image byteAtOffset:(*operandPos)++];
+            address = [image byteAtAddress:(*operandPos)++];
             //TODOWriteTrace("ptr");
             goto LoadIndirect;
         case 6:
-            address = [image shortAtOffset:*operandPos];
+            address = [image shortAtAddress:*operandPos];
             operandPos += 2;
             //TODOWriteTrace("ptr");
             goto LoadIndirect;
         case 7:
-            address = [image integerAtOffset:*operandPos];
+            address = [image integerAtAddress:*operandPos];
             operandPos += 4;
             //TODOWriteTrace("ptr");
         LoadIndirect:
             //TODOWriteTrace("_" + address.ToString() + "(");
             switch (rule) {
                 case TFOpcodeRuleIndirect8Bit:
-                    value = [image byteAtOffset:address];
+                    value = [image byteAtAddress:address];
                     break;
                 case TFOpcodeRuleIndirect16Bit:
-                    value = [image shortAtOffset:address];
+                    value = [image shortAtAddress:address];
                     break;
                 default:
-                    value = [image integerAtOffset:address];
+                    value = [image integerAtAddress:address];
                     break;
             }
             //TODOWriteTrace(value.ToString() + ")");
@@ -448,14 +424,14 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
             break;
 
         case 9:
-            address = [image byteAtOffset:(*operandPos)++];
+            address = [image byteAtAddress:(*operandPos)++];
             goto LoadLocal;
         case 10:
-            address = [image shortAtOffset:*operandPos];
+            address = [image shortAtAddress:*operandPos];
             operandPos += 2;
             goto LoadLocal;
         case 11:
-            address = [image integerAtOffset:*operandPos];
+            address = [image integerAtAddress:*operandPos];
             operandPos += 4;
         LoadLocal:
             //TODOWriteTrace("local_" + address.ToString() + "(");
@@ -483,7 +459,7 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
                     if (address + 3 >= fp + frameLen) {
                         //TODOthrow new VMException("Reading outside local storage bounds");
                     } else {
-                        value = [self readFromStack:address];
+                        value = [self stackIntegerAtAddress:address];
                     }
                     break;
             }
@@ -493,16 +469,16 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
         // case 12: unused
 
         case 13:
-            address = image.RAMStart + [image byteAtOffset:(*operandPos)++];
+            address = image.RAMStart + [image byteAtAddress:(*operandPos)++];
             //TODOWriteTrace("ram");
             goto LoadIndirect;
         case 14:
-            address = image.RAMStart + [image shortAtOffset:*operandPos];
+            address = image.RAMStart + [image shortAtAddress:*operandPos];
             operandPos += 2;
             //TODOWriteTrace("ram");
             goto LoadIndirect;
         case 15:
-            address = image.RAMStart + [image integerAtOffset:*operandPos];
+            address = image.RAMStart + [image integerAtAddress:*operandPos];
             operandPos += 4;
             //TODOWriteTrace("ram");
             goto LoadIndirect;
@@ -525,16 +501,16 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
         // case 1..4: unused
 
         case 5:
-            address = [image byteAtOffset:(*operandPos)++];
+            address = [image byteAtAddress:(*operandPos)++];
             //TODOWriteTrace("ptr_" + address.ToString());
             break;
         case 6:
-            address = [image shortAtOffset:*operandPos];
+            address = [image shortAtAddress:*operandPos];
             (*operandPos) += 2;
             //TODOWriteTrace("ptr_" + address.ToString());
             break;
         case 7:
-            address = [image integerAtOffset:*operandPos];
+            address = [image integerAtAddress:*operandPos];
             (*operandPos) += 4;
             //TODOWriteTrace("ptr_" + address.ToString());
             break;
@@ -546,16 +522,16 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
             return 0;
 
         case 9:
-            address = [image byteAtOffset:(*operandPos)++];
+            address = [image byteAtAddress:(*operandPos)++];
             //TODOWriteTrace("local_" + address.ToString());
             break;
         case 10:
-            address = [image shortAtOffset:*operandPos];
+            address = [image shortAtAddress:*operandPos];
             (*operandPos) += 2;
             //TODOWriteTrace("local_" + address.ToString());
             break;
         case 11:
-            address = [image integerAtOffset:*operandPos];
+            address = [image integerAtAddress:*operandPos];
             (*operandPos) += 4;
             //TODOWriteTrace("local_" + address.ToString());
             break;
@@ -563,16 +539,16 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
         // case 12: unused
 
         case 13:
-            address = image.RAMStart + [image byteAtOffset:(*operandPos)++];
+            address = image.RAMStart + [image byteAtAddress:(*operandPos)++];
             //TODOWriteTrace("ram_" + (address - image.RamStart).ToString());
             break;
         case 14:
-            address = image.RAMStart + [image shortAtOffset:*operandPos];
+            address = image.RAMStart + [image shortAtAddress:*operandPos];
             (*operandPos) += 2;
             //TODOWriteTrace("ram_" + (address - image.RamStart).ToString());
             break;
         case 15:
-            address = image.RAMStart + [image integerAtOffset:*operandPos];
+            address = image.RAMStart + [image integerAtAddress:*operandPos];
             (*operandPos) += 4;
             //TODOWriteTrace("ram_" + (address - image.RamStart).ToString());
             break;
@@ -594,13 +570,13 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
             // write to memory
             switch (rule) {
                 case TFOpcodeRuleIndirect8Bit:
-                    [image setByte:(uint8_t)value atOffset:address];
+                    [image setByte:(uint8_t)value atAddress:address];
                     break;
                 case TFOpcodeRuleIndirect16Bit:
-                    [image setShort:(uint16_t)value atOffset:address];
+                    [image setShort:(uint16_t)value atAddress:address];
                     break;
                 default:
-                    [image setInteger:value atOffset:address];
+                    [image setInteger:value atAddress:address];
                     break;
             }
             break;
@@ -632,7 +608,7 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
                     if (address + 3 >= fp + frameLen) {
                         //TODOthrow new VMException("Writing outside local storage bounds");
                     } else {
-                        [self setStackInteger:value atOffset:address];
+                        [self setStackInteger:value atAddress:address];
                     }
                     break;
             }
@@ -659,18 +635,18 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 
         case 5:
             resultArray[resultIndex] = TFGlulxStubStoreMemory;
-            resultArray[resultIndex + 1] = [image byteAtOffset:(*operandPos)++];
+            resultArray[resultIndex + 1] = [image byteAtAddress:(*operandPos)++];
             //TODOWriteTrace("ptr_" + (resultArray[resultIndex + 1]).ToString());
             break;
         case 6:
             resultArray[resultIndex] = TFGlulxStubStoreMemory;
-            resultArray[resultIndex + 1] = [image shortAtOffset:(*operandPos)];
+            resultArray[resultIndex + 1] = [image shortAtAddress:(*operandPos)];
             (*operandPos) += 2;
             //TODOWriteTrace("ptr_" + (resultArray[resultIndex + 1]).ToString());
             break;
         case 7:
             resultArray[resultIndex] = TFGlulxStubStoreMemory;
-            resultArray[resultIndex + 1] = [image integerAtOffset:*operandPos];
+            resultArray[resultIndex + 1] = [image integerAtAddress:*operandPos];
             (*operandPos) += 4;
             //TODOWriteTrace("ptr_" + (resultArray[resultIndex + 1]).ToString());
             break;
@@ -685,18 +661,18 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 
         case 9:
             resultArray[resultIndex] = TFGlulxStubStoreLocal;
-            resultArray[resultIndex + 1] = [image byteAtOffset:(*operandPos)++];
+            resultArray[resultIndex + 1] = [image byteAtAddress:(*operandPos)++];
             //TODOWriteTrace("local_" + (resultArray[resultIndex + 1]).ToString());
             break;
         case 10:
             resultArray[resultIndex] = TFGlulxStubStoreLocal;
-            resultArray[resultIndex + 1] = [image shortAtOffset:*operandPos];
+            resultArray[resultIndex + 1] = [image shortAtAddress:*operandPos];
             (*operandPos) += 2;
             //TODOWriteTrace("local_" + (resultArray[resultIndex + 1]).ToString());
             break;
         case 11:
             resultArray[resultIndex] = TFGlulxStubStoreLocal;
-            resultArray[resultIndex + 1] = [image integerAtOffset:*operandPos];
+            resultArray[resultIndex + 1] = [image integerAtAddress:*operandPos];
             (*operandPos) += 4;
             //TODOWriteTrace("local_" + (resultArray[resultIndex + 1]).ToString());
             break;
@@ -705,18 +681,18 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 
         case 13:
             resultArray[resultIndex] = TFGlulxStubStoreMemory;
-            resultArray[resultIndex + 1] = image.RAMStart + [image byteAtOffset:(*operandPos)++];
+            resultArray[resultIndex + 1] = image.RAMStart + [image byteAtAddress:(*operandPos)++];
             //TODOWriteTrace("ram_" + (resultArray[resultIndex + 1] - image.RamStart).ToString());
             break;
         case 14:
             resultArray[resultIndex] = TFGlulxStubStoreMemory;
-            resultArray[resultIndex + 1] = image.RAMStart + [image shortAtOffset:*operandPos];
+            resultArray[resultIndex + 1] = image.RAMStart + [image shortAtAddress:*operandPos];
             (*operandPos) += 2;
             //TODOWriteTrace("ram_" + (resultArray[resultIndex + 1] - image.RamStart).ToString());
             break;
         case 15:
             resultArray[resultIndex] = TFGlulxStubStoreMemory;
-            resultArray[resultIndex + 1] = image.RAMStart + [image integerAtOffset:*operandPos];
+            resultArray[resultIndex + 1] = image.RAMStart + [image integerAtAddress:*operandPos];
             (*operandPos) += 4;
             //TODOWriteTrace("ram_" + (resultArray[resultIndex + 1] - image.RamStart).ToString());
             break;
@@ -733,11 +709,11 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
             break;
         case TFGlulxStubStoreMemory:
             // store in main memory
-            [image setInteger:value atOffset:address];
+            [image setInteger:value atAddress:address];
             break;
         case TFGlulxStubStoreLocal:
             // store in local storage
-            [self setStackInteger:fp + localsPos + address atOffset:value];
+            [self setStackInteger:fp + localsPos + address atAddress:value];
             break;
         case TFGlulxStubStoreStack:
             // push onto stack
@@ -764,10 +740,10 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
     for (uint32_t i = address + 1; YES; i += 2) {
         uint8_t type, count;
         
-        type = [image byteAtOffset:i];
+        type = [image byteAtAddress:i];
         [stack replaceBytesInRange:NSMakeRange(sp++, sizeof(type)) withBytes:&type];
         
-        count = [image byteAtOffset:1];
+        count = [image byteAtAddress:1];
         [stack replaceBytesInRange:NSMakeRange(sp++, sizeof(count)) withBytes:&count];
         
         if (type == 0 || count == 0) {
@@ -786,7 +762,7 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
     }
 
     localsPos = sp - fp;
-    [self setStackInteger:fp + 4 atOffset:localsPos]; // fill in LocalsPos
+    [self setStackInteger:fp + 4 atAddress:localsPos]; // fill in LocalsPos
 
     if (args == NULL || args.count == 0) {
         // initialize space for locals
@@ -801,8 +777,8 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
         for (uint32_t argnum = 0; argnum < args.count; argnum++)
         {
             if (count == 0) {
-                size = [image byteAtOffset:address++];
-                count = [image byteAtOffset:address++];
+                size = [image byteAtAddress:address++];
+                count = [image byteAtAddress:address++];
                 if (size == 0 || count == 0)
                     break;
                 if (offset % size > 0)
@@ -828,7 +804,7 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
                     break;
                 }
                 case 4:
-                    [self setStackInteger:sp + offset atOffset:[args argAtIndex:argnum]];
+                    [self setStackInteger:sp + offset atAddress:[args argAtIndex:argnum]];
                     break;
             }
 
@@ -850,7 +826,7 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
     }
 
     frameLen = sp - fp;
-    [self setStackInteger:fp atOffset:frameLen]; // fill in FrameLen
+    [self setStackInteger:fp atAddress:frameLen]; // fill in FrameLen
 }
 
 - (void)leaveFunction:(uint32_t)result {
@@ -870,8 +846,8 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
     execMode = TFExecutionModeCode;
 
     uint32_t newFP = stub.framePtr;
-    uint32_t newFrameLen = [self readFromStack:newFP];
-    uint32_t newLocalsPos = [self readFromStack:newFP + 4];
+    uint32_t newFrameLen = [self stackIntegerAtAddress:newFP];
+    uint32_t newLocalsPos = [self stackIntegerAtAddress:newFP + 4];
 
     switch (stub.destType)
     {
@@ -880,11 +856,11 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
             break;
         case TFGlulxStubStoreMemory:
             // store in main memory
-            [image setInteger:result atOffset:stub.destAddr];
+            [image setInteger:result atAddress:stub.destAddr];
             break;
         case TFGlulxStubStoreLocal:
             // store in local storage
-            [self setStackInteger:newFP + newLocalsPos + stub.destAddr atOffset:result];
+            [self setStackInteger:newFP + newLocalsPos + stub.destAddr atAddress:result];
             break;
         case TFGlulxStubStoreStack:
             // push onto stack
@@ -948,19 +924,19 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
         uint32_t ckey;
         switch (keySize) {
             case 1:
-                ckey = [image byteAtOffset:candidate];
+                ckey = [image byteAtAddress:candidate];
                 query &= 0xFF;
                 break;
             case 2:
-                ckey = [image shortAtOffset:candidate];
+                ckey = [image shortAtAddress:candidate];
                 query &= 0xFFFF;
                 break;
             case 3:
-                ckey = (uint32_t)([image byteAtOffset:candidate] << 24 + [image shortAtOffset:candidate + 1]);
+                ckey = (uint32_t)([image byteAtAddress:candidate] << 24 + [image shortAtAddress:candidate + 1]);
                 query &= 0xFFFFFF;
                 break;
             default:
-                ckey = [image integerAtOffset:candidate];
+                ckey = [image integerAtAddress:candidate];
                 break;
         }
 
@@ -975,8 +951,8 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 
     for (uint32_t i = 0; i < keySize; i++)
     {
-        uint8_t b1 = [image byteAtOffset:query++];
-        uint8_t b2 = [image byteAtOffset:candidate++];
+        uint8_t b1 = [image byteAtAddress:query++];
+        uint8_t b2 = [image byteAtAddress:candidate++];
         if (b1 < b2) {
             return -1;
         } else if (b1 > b2) {
@@ -1025,6 +1001,30 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 
 #pragma mark Exposed for testing ONLY, DO NOT USE
 
+- (BOOL)isImageVersionCompatible:(TFUlxImage *)theImage {
+    NSUInteger majorVersion = [theImage majorVersion];
+    NSUInteger minorVersion = [theImage minorVersion];
+
+    BOOL result =
+        ((majorVersion > TFEngineFirstMajorVersion ||
+         majorVersion == TFEngineFirstMajorVersion && minorVersion >= TFEngineFirstMinorVersion) &&
+         (majorVersion < TFEngineLastMajorVersion ||
+          majorVersion == TFEngineLastMajorVersion && minorVersion <= TFEngineLastMinorVersion));
+
+    if (result == NO) {
+        NSLog(@"Glulx (.ulx) game file at path \"%@\" has major version %lu and minor version %lu, which are not compatible with this game engine's first major version number %lu, first minor version number %lu, last major version number %lu, last minor version number %lu", 
+                theImage.path, 
+                (unsigned long)majorVersion,
+                (unsigned long)minorVersion,
+                (unsigned long)TFEngineFirstMajorVersion,
+                (unsigned long)TFEngineFirstMinorVersion,
+                (unsigned long)TFEngineLastMajorVersion,
+                (unsigned long)TFEngineLastMinorVersion);
+    }
+    
+    return result;
+}
+
 - (BOOL)initOpcodeDictionary {
     BOOL result = NO;
 
@@ -1052,10 +1052,11 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 - (id)init {
     self = [super init];
     
+    outputBuffer = [[TFOutputBuffer alloc] init];
+    
     allowFiltering = YES;
     gameWantsFiltering = YES;
 
-    
     veneer = [[TFVeneer alloc] init];
     
     return self;

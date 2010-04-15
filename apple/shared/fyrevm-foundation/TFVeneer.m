@@ -48,7 +48,7 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
         return 0;
     }
 
-    uint8_t type = [engine.image byteAtOffset:address];
+    uint8_t type = [engine.image byteAtAddress:address];
     if (type >= 0xE0) {
         return 3;
     }
@@ -71,18 +71,18 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
         return 0;
     }
 
-    uint32_t otab = [engine.image integerAtOffset:obj + 16];
+    uint32_t otab = [engine.image integerAtAddress:obj + 16];
     if (otab == 0) {
         return 0;
     }
-    uint32_t max = [engine.image integerAtOffset:otab];
+    uint32_t max = [engine.image integerAtAddress:otab];
     otab += 4;
     return [engine performBinarySearchWithKey:identifier keySize:2 start:otab structSize:10 numStructs:max keyOffset:0 options:TFSearchOptionsNone];
 }
 
 /*! finds the location of an object ("parent()" function) */
 - (uint32_t)parent:(uint32_t)obj {
-    return [engine.image integerAtOffset:obj + 1 + num_attr_bytes + 12];
+    return [engine.image integerAtAddress:obj + 1 + num_attr_bytes + 12];
 }
 
 /*! determines whether an object is a member of a given class ("ofclass" operator) */
@@ -131,7 +131,7 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
 
             uint32_t inlistlen = [self RL__Pr:obj identifier:2] / 4;
             for (uint32_t jx = 0; jx < inlistlen; jx++) {
-                if ([engine.image integerAtOffset:inlist + jx * 4] == class) {
+                if ([engine.image integerAtAddress:inlist + jx * 4] == class) {
                     return 1;
                 }
             }
@@ -147,7 +147,7 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
     uint32_t cla = 0;
     if ((identifier & 0xFFFF0000) != 0)
     {
-        cla = [engine.image integerAtOffset:classes_table + 4 * (identifier & 0xFFFF)];
+        cla = [engine.image integerAtAddress:classes_table + 4 * (identifier & 0xFFFF)];
         if ([self OC__Cl:obj class:cla] == 0)
             return 0;
 
@@ -165,14 +165,14 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
         }
     }
 
-    if ([engine.image integerAtOffset:engine.image.RAMStart + SELF_OFFSET] != obj) {
-        int ix = [engine.image byteAtOffset:(prop + 9) & 1];
+    if ([engine.image integerAtAddress:engine.image.RAMStart + SELF_OFFSET] != obj) {
+        int ix = [engine.image byteAtAddress:(prop + 9) & 1];
         if (ix != 0) {
             return 0;
         }
     }
 
-    return [engine.image integerAtOffset:prop + 4];
+    return [engine.image integerAtAddress:prop + 4];
 }
 
 // finds the length of an object's property (".#" operator)
@@ -180,7 +180,7 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
     uint32_t cla = 0;
     if ((identifier & 0xFFFF0000) != 0)
     {
-        cla = [engine.image integerAtOffset:classes_table + 4 * (identifier & 0xFFFF)];
+        cla = [engine.image integerAtAddress:classes_table + 4 * (identifier & 0xFFFF)];
         if ([self OC__Cl:obj class:cla] == 0)
             return 0;
 
@@ -196,14 +196,14 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
         if (identifier < indiv_prop_start || identifier >= indiv_prop_start + 8)
             return 0;
 
-    if ([engine.image integerAtOffset:engine.image.RAMStart + SELF_OFFSET] != obj)
+    if ([engine.image integerAtAddress:engine.image.RAMStart + SELF_OFFSET] != obj)
     {
-        int ix = [engine.image byteAtOffset:(prop + 9) & 1];
+        int ix = [engine.image byteAtAddress:(prop + 9) & 1];
         if (ix != 0)
             return 0;
     }
 
-    return (uint32_t)(4 * [engine.image shortAtOffset:prop + 2]);
+    return (uint32_t)(4 * [engine.image shortAtAddress:prop + 2]);
 }
 
 // performs bounds checking when reading from a word array ("-->" operator)
@@ -212,7 +212,7 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
     if (address >= engine.image.endMemory) {
         return [engine nestedCallAtAddress:rt_err_fn args:[TFArguments argumentsWithArg:25]];
     }
-    return [engine.image integerAtOffset:address];
+    return [engine.image integerAtAddress:address];
 }
 
 // reads the value of an object's property ("." operator)
@@ -220,14 +220,14 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
     uint32_t addr = [self RA__Pr:obj identifier:identifier];
     if (addr == 0) {
         if (identifier > 0 && identifier < indiv_prop_start) {
-            return [engine.image integerAtOffset:cpv_start + 4 * identifier];
+            return [engine.image integerAtAddress:cpv_start + 4 * identifier];
         }
 
         [engine nestedCallAtAddress:rt_err_fn args:[TFArguments argumentsWithArg:readprop_err arg:obj arg:identifier]];
         return 0;
     }
 
-    return [engine.image integerAtOffset:addr];
+    return [engine.image integerAtAddress:addr];
 }
 
 // determines whether an object provides a given property ("provides" operator)
@@ -273,7 +273,7 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
         return [engine nestedCallAtAddress:rt_err_fn args:[TFArguments argumentsWithArg:27]];
     }
     else {
-        [engine.image setInteger:value atOffset:address];
+        [engine.image setInteger:value atAddress:address];
         return 0;
     }
 }
@@ -284,7 +284,7 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
     if (address >= engine.image.endMemory)
         return [engine nestedCallAtAddress:rt_err_fn args:[TFArguments argumentsWithArg:24]];
 
-    return [engine.image byteAtOffset:address];
+    return [engine.image byteAtAddress:address];
 }
 
 // determines the metaclass of a routine, string, or object ("metaclass()" function)

@@ -62,7 +62,7 @@
 }
 */
 - (void)nextCStringChar {
-    uint8_t ch = [image byteAtOffset:pc];
+    uint8_t ch = [image byteAtAddress:pc];
     pc++;
 
     if (ch == 0) {
@@ -78,7 +78,7 @@
 }
 
 - (void)nextUniStringChar {
-    uint32_t ch = [image integerAtOffset:pc];
+    uint32_t ch = [image integerAtAddress:pc];
     pc += 4;
 
     if (ch == 0) {
@@ -118,7 +118,7 @@
 }
 
 - (BOOL)nextCompressedStringBit {
-    BOOL result = ([image byteAtOffset:pc] & (1 << printingDigit)) != 0;
+    BOOL result = ([image byteAtAddress:pc] & (1 << printingDigit)) != 0;
 
     printingDigit++;
     if (printingDigit == 8)
@@ -138,7 +138,7 @@
         return;
     }
 
-    uint size = [image integerAtOffset:decodingTable + TFGlulxHuffmanTableSizeOffset];
+    uint size = [image integerAtAddress:decodingTable + TFGlulxHuffmanTableSizeOffset];
     if (decodingTable + size - 1 >= image.RAMStart) {
         // If the table is in RAM, don't cache it. just verify it now and then process it directly from RAM when the time comes.
         nativeDecodingTable = NULL;
@@ -146,7 +146,7 @@
         return;
     }
 
-    uint32_t root = [image integerAtOffset:decodingTable + TFGlulxHuffmanRootNodeOffset];
+    uint32_t root = [image integerAtAddress:decodingTable + TFGlulxHuffmanRootNodeOffset];
     nativeDecodingTable = [self cacheDecodingTableNode:root];
 }
 
@@ -154,7 +154,7 @@
     TFStrNode *result = nil;
 
     if (node != 0) {
-        uint8_t nodeType = [image byteAtOffset:node++];
+        uint8_t nodeType = [image byteAtAddress:node++];
         
         TFStrNode *allocedNode = nil;
 
@@ -164,19 +164,19 @@
                 break;
 
             case TFGlulxHuffmanNodeBranch: {
-                TFStrNode *left = [self cacheDecodingTableNode:[image integerAtOffset:node]];
-                TFStrNode *right = [self cacheDecodingTableNode:[image integerAtOffset:node + 4]];
+                TFStrNode *left = [self cacheDecodingTableNode:[image integerAtAddress:node]];
+                TFStrNode *right = [self cacheDecodingTableNode:[image integerAtAddress:node + 4]];
             
                 allocedNode = [[TFBranchStrNode alloc] initWithLeft:left right:right];
             }
                 break;
 
             case TFGlulxHuffmanNodeChar:
-                allocedNode = [[TFCharStrNode alloc] initWithCharacter:(char)[image byteAtOffset:node]];
+                allocedNode = [[TFCharStrNode alloc] initWithCharacter:(char)[image byteAtAddress:node]];
                 break;
 
             case TFGlulxHuffmanNodeUnichar:
-                allocedNode = [[TFUniCharStrNode alloc] initWithUniChar:(UniChar)[image integerAtOffset:node]];
+                allocedNode = [[TFUniCharStrNode alloc] initWithUniChar:(UniChar)[image integerAtAddress:node]];
                 break;
 
             case TFGlulxHuffmanNodeCStr:
@@ -188,19 +188,19 @@
                 break;
 
             case TFGlulxHuffmanNodeIndirect:
-                allocedNode = [[TFIndirectStrNode alloc] initWithAddress:[image integerAtOffset:node] doubleIndirect:NO argCount:0 argsAt:0];
+                allocedNode = [[TFIndirectStrNode alloc] initWithAddress:[image integerAtAddress:node] doubleIndirect:NO argCount:0 argsAt:0];
                 break;
 
             case TFGlulxHuffmanNodeIndirectArgs:
-                allocedNode = [[TFIndirectStrNode alloc] initWithAddress:[image integerAtOffset:node] doubleIndirect:NO argCount:[image integerAtOffset:node + 4] argsAt:node + 8];
+                allocedNode = [[TFIndirectStrNode alloc] initWithAddress:[image integerAtAddress:node] doubleIndirect:NO argCount:[image integerAtAddress:node + 4] argsAt:node + 8];
                 break;
 
             case TFGlulxHuffmanNodeDBLIndirect:
-                allocedNode = [[TFIndirectStrNode alloc] initWithAddress:[image integerAtOffset:node] doubleIndirect:YES argCount:0 argsAt:0];
+                allocedNode = [[TFIndirectStrNode alloc] initWithAddress:[image integerAtAddress:node] doubleIndirect:YES argCount:0 argsAt:0];
                 break;
 
             case TFGlulxHuffmanNodeDBLIndirectArgs:
-                allocedNode = [[TFIndirectStrNode alloc] initWithAddress:[image integerAtOffset:node] doubleIndirect:YES argCount:[image integerAtOffset:node + 4] argsAt:node + 8];
+                allocedNode = [[TFIndirectStrNode alloc] initWithAddress:[image integerAtAddress:node] doubleIndirect:YES argCount:[image integerAtAddress:node + 4] argsAt:node + 8];
                 break;
 
             /*TODOdefault:
@@ -217,10 +217,10 @@
 - (NSString *)readCString:(uint32_t)address {
     NSMutableString *result = [NSMutableString string];
 
-    uint8_t b = [image byteAtOffset:address];
+    uint8_t b = [image byteAtAddress:address];
     while (b != 0) {
         [result appendFormat:@"%c", b];
-        b = [image byteAtOffset:++address];
+        b = [image byteAtAddress:++address];
     }
 
     return result;
@@ -229,11 +229,11 @@
 - (NSString *)readUniString:(uint32_t)address {
     NSMutableString *result = [NSMutableString string];
 
-    uint32_t ch = [image integerAtOffset:address];
+    uint32_t ch = [image integerAtAddress:address];
     while (ch != 0) {
         [result appendFormat:@"%C", (UniChar)ch];
         address += 4;
-        ch = [image integerAtOffset:address];
+        ch = [image integerAtAddress:address];
     }
 
     return result;
@@ -259,7 +259,7 @@
         switch (nodeType)
         {
             case GLULX_HUFF_NODE_BRANCH:
-                nodesToCheck.Push([image integerAtOffset:node]);       // left child
+                nodesToCheck.Push([image integerAtAddress:node]);       // left child
                 nodesToCheck.Push(image.ReadInt32(node + 4));   // right child
                 foundBranch = true;
                 break;
@@ -292,17 +292,17 @@
 }
 
 - (void)nextCompressedChar {
-    uint32_t node = [image integerAtOffset:decodingTable + TFGlulxHuffmanRootNodeOffset];
+    uint32_t node = [image integerAtAddress:decodingTable + TFGlulxHuffmanRootNodeOffset];
 
     while (YES) {
-        uint8_t nodeType = [image byteAtOffset:node++];
+        uint8_t nodeType = [image byteAtAddress:node++];
 
         switch (nodeType) {
             case TFGlulxHuffmanNodeBranch:
                 if ([self nextCompressedStringBit] == YES) {
-                    node = [image integerAtOffset:node + 4]; // go right
+                    node = [image integerAtAddress:node + 4]; // go right
                 } else {
-                    node = [image integerAtOffset:node]; // go left
+                    node = [image integerAtAddress:node]; // go left
                 }
                 break;
 
@@ -313,7 +313,7 @@
             case TFGlulxHuffmanNodeChar:
             case TFGlulxHuffmanNodeUnichar: {
                 uint32_t singleChar = (nodeType == TFGlulxHuffmanNodeUnichar) ?
-                    [image integerAtOffset:node] : [image byteAtOffset:node];
+                    [image integerAtAddress:node] : [image byteAtAddress:node];
                 if (outputSystem == TFIOSystemFilter) {
                     [self performCallWithAddress:filterAddress args:[TFArguments argumentsWithArg:singleChar] destType:TFGlulxStubResumeCompressedString destAddr:printingDigit stubPC:pc];
                 } else {
@@ -328,7 +328,7 @@
                     pc = node;
                     execMode = TFExecutionModeCString;
                 } else {
-                    for (uint8_t ch = [image byteAtOffset:node]; ch != 0; ch = [image byteAtOffset:++node]) {
+                    for (uint8_t ch = [image byteAtAddress:node]; ch != 0; ch = [image byteAtAddress:++node]) {
                         [self sendCharToOutput:ch];
                     }
                 }
@@ -340,26 +340,26 @@
                     pc = node;
                     execMode = TFExecutionModeUnicodeString;
                 } else {
-                    for (uint32_t ch = [image integerAtOffset:node]; ch != 0; node += 4, ch = [image integerAtOffset:node]) {
+                    for (uint32_t ch = [image integerAtAddress:node]; ch != 0; node += 4, ch = [image integerAtAddress:node]) {
                         [self sendCharToOutput:ch];
                     }
                 }
                 return;
 
             case TFGlulxHuffmanNodeIndirect:
-                [self printIndirect:[image integerAtOffset:node] argCount:0 argsAt:0];
+                [self printIndirect:[image integerAtAddress:node] argCount:0 argsAt:0];
                 return;
 
             case TFGlulxHuffmanNodeIndirectArgs:
-                [self printIndirect:[image integerAtOffset:node] argCount:[image integerAtOffset:node + 4]argsAt:node + 8];
+                [self printIndirect:[image integerAtAddress:node] argCount:[image integerAtAddress:node + 4]argsAt:node + 8];
                 return;
 
             case TFGlulxHuffmanNodeDBLIndirect:
-                [self printIndirect:[image integerAtOffset:[image integerAtOffset:node]] argCount:0 argsAt:0];
+                [self printIndirect:[image integerAtAddress:[image integerAtAddress:node]] argCount:0 argsAt:0];
                 return;
 
             case TFGlulxHuffmanNodeDBLIndirectArgs:
-                [self printIndirect:[image integerAtOffset:[image integerAtOffset:node]] argCount:[image integerAtOffset:node + 4]argsAt:node + 8];
+                [self printIndirect:[image integerAtAddress:[image integerAtAddress:node]] argCount:[image integerAtAddress:node + 4]argsAt:node + 8];
                 return;
 
             /*TODOdefault:
@@ -370,14 +370,14 @@
 }
 
 - (void)printIndirect:(uint32_t)address argCount:(uint32_t)argCount argsAt:(uint32_t)argsAt {
-    uint8_t type = [image byteAtOffset:address];
+    uint8_t type = [image byteAtAddress:address];
 
     switch (type) {
         case 0xC0:
         case 0xC1: {
             TFArguments *args = [TFArguments argumentsWithCount:argCount];
             for (uint32_t i = 0; i < argCount; i++) {
-                [args setArg:[image integerAtOffset:argsAt + 4 * i] atIndex:i];
+                [args setArg:[image integerAtAddress:argsAt + 4 * i] atIndex:i];
             }
             [self performCallWithAddress:address args:args destType:TFGlulxStubResumeCompressedString destAddr:printingDigit stubPC:pc];
         }
@@ -390,7 +390,7 @@
                 pc = address + 1;
             } else {
                 address++;
-                for (uint8_t ch = [image byteAtOffset:address]; ch != 0; ch = [image byteAtOffset:++address]) {
+                for (uint8_t ch = [image byteAtAddress:address]; ch != 0; ch = [image byteAtAddress:++address]) {
                     [self sendCharToOutput:ch];
                 }
             }
@@ -410,7 +410,7 @@
                 pc = address + 4;
             } else {
                 address += 4;
-                for (uint32_t ch = [image integerAtOffset:address]; ch != 0; address += 4, ch = [image integerAtOffset:address]) {
+                for (uint32_t ch = [image integerAtAddress:address]; ch != 0; address += 4, ch = [image integerAtAddress:address]) {
                     [self sendCharToOutput:ch];
                 }
             }

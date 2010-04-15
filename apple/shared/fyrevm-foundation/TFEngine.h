@@ -15,16 +15,6 @@
 @class TFHeapAllocator;
 @class TFStrNode;
 
-/*! Identifies an output system for use with @setiosys. */
-typedef enum _TFIOSystem {
-    /*! Output is discarded. */
-    TFIOSystemNull,
-    /*! Output is filtered through a Glulx function. */
-    TFIOSystemFilter,
-    /*! Output is sent through FyreVM's channel system. */
-    TFIOSystemChannels
-} TFIOSystem;
-
 /*! Describes the task that the interpreter is currently performing. */
 typedef enum _TFExecutionMode
 {
@@ -53,6 +43,16 @@ typedef struct _TFCallStub {
     /*! The stack frame in which the function call or string printing was performed. */
     uint32_t framePtr;
 } TFCallStub;
+
+/*! Identifies an output system for use with @setiosys. */
+typedef enum _TFIOSystem {
+    /*! Output is discarded. */
+    TFIOSystemNull,
+    /*! Output is filtered through a Glulx function. */
+    TFIOSystemFilter,
+    /*! Output is sent through FyreVM's channel system. */
+    TFIOSystemChannels
+} TFIOSystem;
 
 typedef enum _TFSearchOptions
 {
@@ -128,10 +128,9 @@ typedef enum _TFSearchOptions
 // TODO: may eventually move these into TFEngine_Opcodes.m
 
 - (void)push:(uint32_t)value;
-- (void)setStackInteger:(uint32_t)value atOffset:(uint32_t)offset;
+- (void)setStackInteger:(uint32_t)value atAddress:(uint32_t)address;
 - (uint32_t)pop;
-// TODO change to stackIntegerAtOffset:, to match TFUlxImage APIs? (Change both at ...atAddress:?)
-- (uint32_t)readFromStack:(uint32_t)position;
+- (uint32_t)stackIntegerAtAddress:(uint32_t)address;
 -(void)pushCallStub:(TFCallStub)stub;
 - (TFCallStub)popCallStub;
 
@@ -188,7 +187,15 @@ typedef enum _TFSearchOptions
 
 #pragma mark Exposed for testing ONLY, DO NOT USE
 
-/*! Attempts to read in opcode information from plist and verify that all opcode methods are available.
+/*! \brief Compares version numbers of image to what this game engine supports.
+
+    If image version is supported, returns YES.
+    
+    If image version is not supported, returns NO, at which point technical details will be printed to Console.
+ */
+- (BOOL)isImageVersionCompatible:(TFUlxImage *)theImage;
+
+/*! \brief Attempts to read in opcode information from plist and verify that all opcode methods are available.
 
     On success, returns YES.
     
