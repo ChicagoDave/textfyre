@@ -16,7 +16,7 @@ The goal-scoring rules are an object-based rulebook.
 
 The goal-scoring rules have outcomes goal achieved (success), goal not yet achieved (failure - the default), and goal thwarted (failure).
 
-Every turn (this is the goal assessment rule):
+First scene changing rule (this is the goal assessment rule):
 	let the goals achieved this turn be a list of objects;
 	let the goals thwarted this turn be a list of objects;
 	repeat with G running through the current goals:
