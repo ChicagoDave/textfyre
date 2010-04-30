@@ -769,6 +769,11 @@ Chapter 2 - Pull
 
 Understand "stretch [something]" as pulling.
 
+Part 14 - Listening 
+
+Understand "listen at/for/with/by/near [something]" as listening to.     
+
+
 Book 5 - Kinds
 
 Part 1 - Doorways
