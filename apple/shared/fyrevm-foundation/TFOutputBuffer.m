@@ -8,217 +8,36 @@
 
 #import "TFOutputBuffer.h"
 
+#import "TFOutputFilterTags.h"
+
 
 @implementation TFOutputBuffer
 
+- (id)init {
+    self = [super init];
+    
+    channel = TFOutputChannelMain;
 /*
-    /// <summary>
-    /// Indicates a text style that may be selected.
-    /// </summary>
-    /// <remarks>
-    /// Selecting the Roman style turns off Bold and Italic.
-    /// Selecting the Fixed style turns off Variable, and vice versa.
-    /// </remarks>
-    internal enum OutputStyle
-    {
-        Roman = 1,
-        Bold = 2,
-        Italic = 3,
-        Fixed = 4,
-        Variable = 5,
+    // TODO I don't know what a StringBuilder is yet. Need as many of them as we have output channels.
+    strings = new StringBuilder[(int)OutputChannel._LAST]; // output channels start at 1
+    for (int i = 0; i < strings.Length; ++i) {
+        strings[i] = new StringBuilder();
     }
+*/
+    filtering = YES;
+    
+    filterTags = [[TFOutputFilterTags alloc] init];
+    
+    return self;
+}
 
-    /// <summary>
-    /// Controls the tags for output filtering.
-    /// </summary>
-    /// <remarks>
-    /// The default set of tags is suitable for XAML.
-    /// </remarks>
-    public sealed class OutputFilterTags
-    {
-        private string startParaTag = "<Paragraph>";
-        private string endParaTag = "</Paragraph>";
-        private string lineBreakTag = "<LineBreak/>";
-        private string leftAngleTag = "&lt;";
-        private string rightAngleTag = "&gt;";
-        private string ampersandTag = "&amp;";
-        private string leftDblQuoteTag = @""""; //"&#8220;";
-        private string rightDblQuoteTag = @""""; //"&#8221;";
-        private string leftQuoteTag = @"'"; //"&#8216;";
-        private string rightQuoteTag = @"'"; //"&#8217;";
-        private string startFixedTag = "<Span FontFamily=\"Courier New\">";
-        private string endFixedTag = "</Span>";
-        private string startItalicTag = "<Italic>";
-        private string endItalicTag = "</Italic>";
-        private string startBoldTag = "<Bold>";
-        private string endBoldTag = "</Bold>";
+- (void)dealloc {
+    [filterTags release], filterTags = nil;
 
-        //private string startParaTag = "<TextBlock Height=\"Auto\" Width=\"Auto\" xmlns=\"http://schemas.microsoft.com/client/2007\" xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\" FontFamily=\"Arial\" >";
-        //private string endParaTag = "</TextBlock>~";
-        //private string lineBreakTag = "<LineBreak/>";
-        //private string leftAngleTag = "<";
-        //private string rightAngleTag = ">";
-        //private string ampersandTag = "&";
-        //private string leftDblQuoteTag = "&#8220;";
-        //private string rightDblQuoteTag = "&#8221;";
-        //private string leftQuoteTag = "&#8216;";
-        //private string rightQuoteTag = "&#8217;";
-        //private string startFixedTag = "<Run FontFamily=\"Courier New\">";
-        //private string endFixedTag = "</Run>";
-        //private string startItalicTag = "<Run FontStyle=\"Italic\">";
-        //private string endItalicTag = "</Run>";
-        //private string startBoldTag = "<Run FontWeight=\"Bold\">";
-        //private string endBoldTag = "</Run>";
+    [super dealloc];
+}
 
-        internal OutputFilterTags()
-        {
-        }
-
-        /// <summary>
-        /// Gets or sets the string that begins a paragraph.
-        /// </summary>
-        public string StartParagraph
-        {
-            get { return startParaTag; }
-            set { if (value == null)throw new ArgumentNullException(); startParaTag = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the string that ends a paragraph.
-        /// </summary>
-        public string EndParagraph
-        {
-            get { return endParaTag; }
-            set { if (value == null) throw new ArgumentNullException(); endParaTag = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the string that introduces a line break.
-        /// </summary>
-        public string LineBreak
-        {
-            get { return lineBreakTag; }
-            set { if (value == null) throw new ArgumentNullException(); lineBreakTag = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the string that encodes a left angle bracket (less-than sign).
-        /// </summary>
-        public string LeftAngleBracket
-        {
-            get { return leftAngleTag; }
-            set { if (value == null) throw new ArgumentNullException(); leftAngleTag = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the string that encodes a right angle bracket (greater-than sign).
-        /// </summary>
-        public string RightAngleBracket
-        {
-            get { return rightAngleTag; }
-            set { if (value == null) throw new ArgumentNullException(); rightAngleTag = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the string that encodes an ampersand.
-        /// </summary>
-        public string Ampersand
-        {
-            get { return ampersandTag; }
-            set { if (value == null) throw new ArgumentNullException(); ampersandTag = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the string that encodes an opening double-quote mark.
-        /// </summary>
-        public string LeftDoubleQuote
-        {
-            get { return leftDblQuoteTag; }
-            set { if (value == null) throw new ArgumentNullException(); leftDblQuoteTag = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the string that encodes a closing double-quote mark.
-        /// </summary>
-        public string RightDoubleQuote
-        {
-            get { return rightDblQuoteTag; }
-            set { if (value == null) throw new ArgumentNullException(); rightDblQuoteTag = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the string that encodes an opening single-quote mark.
-        /// </summary>
-        public string LeftSingleQuote
-        {
-            get { return leftQuoteTag; }
-            set { if (value == null) throw new ArgumentNullException(); leftQuoteTag = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the string that encodes a closing single-quote mark (apostrophe).
-        /// </summary>
-        public string RightSingleQuote
-        {
-            get { return rightQuoteTag; }
-            set { if (value == null) throw new ArgumentNullException(); rightQuoteTag = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the string that begins fixed-pitch type.
-        /// </summary>
-        public string StartFixedPitch
-        {
-            get { return startFixedTag; }
-            set { if (value == null) throw new ArgumentNullException(); startFixedTag = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the string that ends fixed-pitch type.
-        /// </summary>
-        public string EndFixedPitch
-        {
-            get { return endFixedTag; }
-            set { if (value == null) throw new ArgumentNullException(); endFixedTag = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the string that begins italic type.
-        /// </summary>
-        public string StartItalicType
-        {
-            get { return startItalicTag; }
-            set { if (value == null) throw new ArgumentNullException(); startItalicTag = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the string that ends italic type.
-        /// </summary>
-        public string EndItalicType
-        {
-            get { return endItalicTag; }
-            set { if (value == null) throw new ArgumentNullException(); endItalicTag = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the string that begins bold type.
-        /// </summary>
-        public string StartBoldType
-        {
-            get { return startBoldTag; }
-            set { if (value == null) throw new ArgumentNullException(); startBoldTag = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the string that ends bold type.
-        /// </summary>
-        public string EndBoldType
-        {
-            get { return endBoldTag; }
-            set { if (value == null) throw new ArgumentNullException(); endBoldTag = value; }
-        }
-    }
-
+/*
     /// <summary>
     /// Collects output from the game file, on various output channels, to be
     /// delivered all at once.

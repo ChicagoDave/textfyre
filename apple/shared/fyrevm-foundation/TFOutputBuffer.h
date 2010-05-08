@@ -6,11 +6,33 @@
 //  Please read the accompanying COPYRIGHT file for licensing restrictions.
 //
 
-#import <Foundation/Foundation.h>
+#import "TFEngine_Output.h"
 
+@class TFOutputFilterTags;
+
+/*! \brief Indicates a text style that may be selected.
+
+    Selecting the Roman style turns off Bold and Italic.
+    Selecting the Fixed style turns off Variable, and vice versa.
+*/
+typedef enum {
+    TFOutputStyleRoman = 1,
+    TFOutputStyleBold = 2,
+    TFOutputStyleItalic = 3,
+    TFOutputStyleFixed = 4,
+    TFOutputStyleVariable = 5,
+} TFOutputStyle;
 
 @interface TFOutputBuffer : NSObject {
 
+@private
+    TFOutputChannel channel;
+//        private StringBuilder[] strings;
+    BOOL mainIsBold, mainIsItalic, mainIsFixed, mainParaOpen, mainBreakPending;
+    BOOL mainRightQuote;
+    BOOL filtering;
+    BOOL overrideFiltering;
+    TFOutputFilterTags *filterTags;
 }
 
 /*! Writes a string to the buffer for the currently selected output channel.
