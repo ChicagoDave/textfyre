@@ -65,8 +65,7 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
 // finds an object's common property table
 - (uint32_t)CP__Tab:(uint32_t)obj identifier:(uint32_t)identifier
 {
-    if ([self Z__Region:obj] != 1)
-    {
+    if ([self Z__Region:obj] != 1) {
         [engine nestedCallAtAddress:rt_err_fn args:[TFArguments argumentsWithArg:23 arg:obj]];
         return 0;
     }
@@ -87,8 +86,7 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
 
 /*! determines whether an object is a member of a given class ("ofclass" operator) */
 - (uint32_t)OC__Cl:(uint32_t)obj class:(uint32_t)class {
-    switch ([self Z__Region:obj])
-    {
+    switch ([self Z__Region:obj]) {
         case 3:
             return (uint32_t)(class == string_mc ? 1 : 0);
 
@@ -96,31 +94,33 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
             return (uint32_t)(class == routine_mc ? 1 : 0);
 
         case 1:
-            if (class == class_mc)
-            {
-                if ([self parent:obj] == class_mc)
+            if (class == class_mc) {
+                if ([self parent:obj] == class_mc) {
                     return 1;
+                }
                 if (obj == class_mc || obj == string_mc ||
-                    obj == routine_mc || obj == object_mc)
+                    obj == routine_mc || obj == object_mc) {
                     return 1;
+                }
                 return 0;
             }
 
-            if (class == object_mc)
-            {
-                if ([self parent:obj] == class_mc)
+            if (class == object_mc) {
+                if ([self parent:obj] == class_mc) {
                     return 0;
+                }
                 if (obj == class_mc || obj == string_mc ||
-                    obj == routine_mc || obj == object_mc)
+                    obj == routine_mc || obj == object_mc) {
                     return 0;
+                }
                 return 1;
             }
 
-            if (class == string_mc || class == routine_mc)
+            if (class == string_mc || class == routine_mc) {
                 return 0;
+            }
 
-            if ([self parent:class] != class_mc)
-            {
+            if ([self parent:class] != class_mc) {
                 [engine nestedCallAtAddress:rt_err_fn args:[TFArguments argumentsWithArg:ofclass_err arg:class arg:0xFFFFFFFF]];
                 return 0;
             }
@@ -145,19 +145,54 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
 /*! finds the address of an object's property (".&" operator) */
 - (uint32_t)RA__Pr:(uint32_t)obj identifier:(uint32_t)identifier {
     uint32_t cla = 0;
-    if ((identifier & 0xFFFF0000) != 0)
-    {
+    if ((identifier & 0xFFFF0000) != 0) {
         cla = [engine.image integerAtAddress:classes_table + 4 * (identifier & 0xFFFF)];
-        if ([self OC__Cl:obj class:cla] == 0)
+        if ([self OC__Cl:obj class:cla] == 0) {
             return 0;
+        }
 
         identifier >>= 16;
         obj = cla;
     }
 
     uint32_t prop = [self CP__Tab:obj identifier:identifier];
-    if (prop == 0)
+    if (prop == 0) {
         return 0;
+    }
+
+    if ([self parent:obj] == class_mc && cla == 0) {
+        if (identifier < indiv_prop_start || identifier >= indiv_prop_start + 8) {
+            return 0;
+        }
+    }
+
+    if ([engine.image integerAtAddress:engine.image.RAMStart + SELF_OFFSET] != obj) {
+        const int ix = [engine.image byteAtAddress:(prop + 9) & 1];
+        if (ix != 0) {
+            return 0;
+        }
+    }
+
+    return [engine.image integerAtAddress:prop + 4];
+}
+
+// finds the length of an object's property (".#" operator)
+- (uint32_t)RL__Pr:(uint32_t)obj identifier:(uint32_t)identifier {
+    uint32_t cla = 0;
+    if ((identifier & 0xFFFF0000) != 0) {
+        cla = [engine.image integerAtAddress:classes_table + 4 * (identifier & 0xFFFF)];
+        if ([self OC__Cl:obj class:cla] == 0) {
+            return 0;
+        }
+
+        identifier >>= 16;
+        obj = cla;
+    }
+
+    const uint32_t prop = [self CP__Tab:obj identifier:identifier];
+    if (prop == 0) {
+        return 0;
+    }
 
     if ([self parent:obj] == class_mc && cla == 0) {
         if (identifier < indiv_prop_start || identifier >= indiv_prop_start + 8) {
@@ -172,43 +207,12 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
         }
     }
 
-    return [engine.image integerAtAddress:prop + 4];
-}
-
-// finds the length of an object's property (".#" operator)
-- (uint32_t)RL__Pr:(uint32_t)obj identifier:(uint32_t)identifier {
-    uint32_t cla = 0;
-    if ((identifier & 0xFFFF0000) != 0)
-    {
-        cla = [engine.image integerAtAddress:classes_table + 4 * (identifier & 0xFFFF)];
-        if ([self OC__Cl:obj class:cla] == 0)
-            return 0;
-
-        identifier >>= 16;
-        obj = cla;
-    }
-
-    uint32_t prop = [self CP__Tab:obj identifier:identifier];
-    if (prop == 0)
-        return 0;
-
-    if ([self parent:obj] == class_mc && cla == 0)
-        if (identifier < indiv_prop_start || identifier >= indiv_prop_start + 8)
-            return 0;
-
-    if ([engine.image integerAtAddress:engine.image.RAMStart + SELF_OFFSET] != obj)
-    {
-        int ix = [engine.image byteAtAddress:(prop + 9) & 1];
-        if (ix != 0)
-            return 0;
-    }
-
     return (uint32_t)(4 * [engine.image shortAtAddress:prop + 2]);
 }
 
 // performs bounds checking when reading from a word array ("-->" operator)
 - (uint32_t)RT__ChLDW:(uint32_t)array offset:(uint32_t)offset {
-    uint32_t address = array + 4 * offset;
+    const uint32_t address = array + 4 * offset;
     if (address >= engine.image.endMemory) {
         return [engine nestedCallAtAddress:rt_err_fn args:[TFArguments argumentsWithArg:25]];
     }
@@ -359,28 +363,22 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
     (*result) = 0;
     
     if (address != 0) {
-        if (address == zregion_fn)
-        {
+        if (address == zregion_fn) {
             (*result) = [self Z__Region:[args argAtIndex:0]];
             intercepted = YES;
-        } else if (address == cp_tab_fn)
-        {
+        } else if (address == cp_tab_fn) {
             (*result) = [self CP__Tab:[args argAtIndex:0] identifier:[args argAtIndex:1]];
             intercepted = YES;
-        } else if (address == oc_cl_fn)
-        {
+        } else if (address == oc_cl_fn) {
             (*result) = [self OC__Cl:[args argAtIndex:0] class:[args argAtIndex:1]];
             intercepted = YES;
-        } else if (address == ra_pr_fn)
-        {
+        } else if (address == ra_pr_fn) {
             (*result) = [self RA__Pr:[args argAtIndex:0] identifier:[args argAtIndex:1]];
             intercepted = YES;
-        } else if (address == rt_chldw_fn)
-        {
+        } else if (address == rt_chldw_fn) {
             (*result) = [self RT__ChLDW:[args argAtIndex:0] offset:[args argAtIndex:1]];
             intercepted = YES;
-        } else if (address == unsigned_compare_fn)
-        {
+        } else if (address == unsigned_compare_fn) {
             if ([args argAtIndex:0] < [args argAtIndex:1]) {
                 (*result) = -1;
             } else if ([args argAtIndex:0] < [args argAtIndex:1]) {
@@ -388,28 +386,22 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
             }
             // result is set to 0 at top of method, so equality case is also covered.
             intercepted = YES;
-        } else if (address == rl_pr_fn)
-        {
+        } else if (address == rl_pr_fn) {
             (*result) = [self RL__Pr:[args argAtIndex:0] identifier:[args argAtIndex:1]];
             intercepted = YES;
-        } else if (address == rv_pr_fn)
-        {
+        } else if (address == rv_pr_fn) {
             (*result) = [self RV__Pr:[args argAtIndex:0] identifier:[args argAtIndex:1]];
             intercepted = YES;
-        } else if (address == op_pr_fn)
-        {
+        } else if (address == op_pr_fn) {
             (*result) = [self OP__Pr:[args argAtIndex:0] identifier:[args argAtIndex:1]];
             intercepted = YES;
-        } else if (address == rt_chstw_fn)
-        {
+        } else if (address == rt_chstw_fn) {
             (*result) = [self RT__ChSTW:[args argAtIndex:0] offset:[args argAtIndex:1] value:[args argAtIndex:2]];
             intercepted = YES;
-        } else if (address == rt_chldb_fn)
-        {
+        } else if (address == rt_chldb_fn) {
             (*result) = [self RT__ChLDB:[args argAtIndex:0] offset:[args argAtIndex:1]];
             intercepted = YES;
-        } else if (address == meta_class_fn)
-        {
+        } else if (address == meta_class_fn) {
             (*result) = [self meta__class:[args argAtIndex:0]];
             intercepted = YES;
         }

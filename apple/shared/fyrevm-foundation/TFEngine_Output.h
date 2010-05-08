@@ -63,6 +63,8 @@ typedef enum _TFOutputChannel {
  */
 - (void)sendStringToOutput:(NSString *)string;
 
+- (void)selectOutputSystem:(TFIOSystem)number;
+
 - (void)nextCStringChar;
 - (void)nextUniStringChar;
 - (void)nextDigit;
@@ -72,8 +74,6 @@ typedef enum _TFOutputChannel {
 
 /*! Builds a native version of the string decoding table if the table is entirely in ROM, or verifies the table's current state if the table is in RAM. */
 - (void)cacheDecodingTable;
-
-- (TFStrNode *)cacheDecodingTableNode:(uint32_t)node;
 
 - (NSString *)readCString:(uint32_t)address;
 - (NSString *)readUniString:(uint32_t)address;

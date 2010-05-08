@@ -14,6 +14,21 @@
 
 @implementation TFHeapAllocator
 
+#pragma mark Private methods
+
+- (void)coalesceRangesStartingAtIndex:(NSUInteger)index {
+    NSRange first = [[freeList objectAtIndex:index] rangeValue];
+    NSRange second = [[freeList objectAtIndex:index + 1] rangeValue];
+
+    if (first.location + first.length >= second.location) {
+        first.length = second.location + second.length - first.location;
+        [freeList replaceObjectAtIndex:index withObject:[NSValue valueWithRange:first]];
+        [freeList removeObjectAtIndex:index + 1];
+    }
+}
+
+#pragma mark APIs
+
 @synthesize address = heapAddress;
 @synthesize size = heapExtent;
 @synthesize maxSize = maxHeapExtent;
@@ -23,7 +38,7 @@
 
     engine = theEngine;
 
-    heapAddress = heapAddress;
+    heapAddress = theHeapAddress;
 
     blocks = [[NSMutableArray alloc] init];
     freeList = [[NSMutableArray alloc] init];
@@ -33,7 +48,7 @@
     return self;
 }
 
-#define TFDataIntegerFromAtAddress(data, address) \
+#define TFDataIntegerAtAddress(data, address) \
     NSSwapBigIntToHost(*((uint32_t *)([data bytes] + (address))))
 
 - (id)initWithEngine:(TFEngine *)theEngine savedHeap:(NSData *)savedHeap {
@@ -41,9 +56,9 @@
 
     engine = theEngine;
 
-    heapAddress = TFDataIntegerFromAtAddress(savedHeap, 0);
+    heapAddress = TFDataIntegerAtAddress(savedHeap, 0);
 
-    uint32_t numBlocks = TFDataIntegerFromAtAddress(savedHeap, 4);
+    uint32_t numBlocks = TFDataIntegerAtAddress(savedHeap, 4);
 
     blocks = [[NSMutableArray alloc] initWithCapacity:numBlocks];
     freeList = [[NSMutableArray alloc] init];
@@ -51,8 +66,8 @@
     uint32_t nextAddress = heapAddress;
 
     for (uint32_t i = 0; i < numBlocks; i++) {
-        uint32_t start = TFDataIntegerFromAtAddress(savedHeap, 8 * i + 8);
-        uint32_t length = TFDataIntegerFromAtAddress(savedHeap, 8 * i + 12);
+        uint32_t start = TFDataIntegerAtAddress(savedHeap, 8 * i + 8);
+        uint32_t length = TFDataIntegerAtAddress(savedHeap, 8 * i + 12);
         [blocks addObject:[NSValue valueWithRange:NSMakeRange(start,length)]];
 
         if (nextAddress < start) {
@@ -67,8 +82,8 @@
 
     engine.image.endMemory = endMem;
 
-    [blocks sortUsingSelector:@selector(compare:)];
-    [freeList sortUsingSelector:@selector(compare:)];
+    [blocks sortUsingSelector:@selector(TFCompareToRange:)];
+    [freeList sortUsingSelector:@selector(TFCompareToRange:)];
     
     return self;
 }
@@ -77,7 +92,7 @@
     return [blocks count];
 }
 
-#define TFDataWriteIntegerToAddress(data, address, value) \
+#define TFDataSetIntegerAtAddress(data, address, value) \
     temp = NSSwapHostIntToBig(value); \
     [data replaceBytesInRange:NSMakeRange(address, sizeof(uint32_t)) withBytes:&temp length:sizeof(uint32_t)];
 
@@ -86,13 +101,13 @@
 
     uint32_t temp;
 
-    TFDataWriteIntegerToAddress(result, 0, heapAddress);
-    TFDataWriteIntegerToAddress(result, 4, (uint32_t)[blocks count]);
-    for (NSUInteger i = 0; i < [blocks count]; i++) {
+    TFDataSetIntegerAtAddress(result, 0, heapAddress);
+    TFDataSetIntegerAtAddress(result, 4, (uint32_t)[blocks count]);
+    for (NSUInteger i = 0; i < [blocks count]; ++i) {
         NSRange range = [[blocks objectAtIndex:i] rangeValue];
     
-        TFDataWriteIntegerToAddress(result, 8 * i + 8, range.location);
-        TFDataWriteIntegerToAddress(result, 8 * i + 12, range.length);
+        TFDataSetIntegerAtAddress(result, 8 * i + 8, range.location);
+        TFDataSetIntegerAtAddress(result, 8 * i + 12, range.length);
     }
 
     return result;
@@ -104,19 +119,16 @@
                                      [NSValue valueWithRange:range], \
                                      TFRangeComparatorFunction, NULL)
 
-- (uint32_t)alloc:(uint32_t)size {
+- (uint32_t)allocBlockWithSize:(uint32_t)size {
     NSRange result = NSMakeRange(0, size);
 
     // look for a free block
-    for (int i = 0; i < [freeList count]; i++)
-    {
+    for (int i = 0; i < [freeList count]; ++i) {
         NSRange entry = [[freeList objectAtIndex:i] rangeValue];
-        if (entry.location >= size)
-        {
+        if (entry.location >= size) {
             result.location = entry.location;
 
-            if (entry.length > size)
-            {
+            if (entry.length > size) {
                 // shrink the free block
                 entry.location += size;
                 entry.length -= size;
@@ -167,7 +179,7 @@
     return result.location;
 }
 
-- (void)free:(uint32_t)address {
+- (void)freeBlockAtAddress:(uint32_t)address {
     NSRange entry = NSMakeRange(address, 0);
     NSUInteger index = TFArrayBinarySearchArrayForRange(blocks, entry);
     if (index >= 0) {
@@ -215,16 +227,13 @@
     }
 }
 
-- (void)coalesceRangesStartingAtIndex:(NSUInteger)index {
-    NSRange first = [[freeList objectAtIndex:index] rangeValue];
-    NSRange second = [[freeList objectAtIndex:index + 1] rangeValue];
+#pragma mark Standard methods
 
-    if (first.location + first.length >= second.location)
-    {
-        first.length = second.location + second.length - first.location;
-        [freeList replaceObjectAtIndex:index withObject:[NSValue valueWithRange:first]];
-        [freeList removeObjectAtIndex:index + 1];
-    }
+- (void)dealloc {
+    [blocks release], blocks = nil;
+    [freeList release], freeList = nil;
+
+    [super dealloc];
 }
 
 @end

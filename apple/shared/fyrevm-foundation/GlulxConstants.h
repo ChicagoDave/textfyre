@@ -49,6 +49,6 @@
 #define TFGlulxHuffmanNodeUnichar                4
 #define TFGlulxHuffmanNodeUnistr                 5
 #define TFGlulxHuffmanNodeIndirect               8
-#define TFGlulxHuffmanNodeDBLIndirect            9
+#define TFGlulxHuffmanNodeDoubleIndirect         9
 #define TFGlulxHuffmanNodeIndirectArgs          10
-#define TFGlulxHuffmanNodeDBLIndirectArgs       11
+#define TFGlulxHuffmanNodeDoubleIndirectArgs    11

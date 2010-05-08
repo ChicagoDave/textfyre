@@ -28,7 +28,7 @@ static const size_t kGameInfoCount = sizeof(kGameInfos) / sizeof(GameInfo);
 
 @implementation TestTFUlxImage
 
-- (void)_testGameImageWithInfo:(GameInfo)gameInfo {
+- (void)testGameImageWithInfo:(GameInfo)gameInfo {
     TFUlxImage *gameImage = [[TFUlxImage alloc] init];
     
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
@@ -51,7 +51,7 @@ static const size_t kGameInfoCount = sizeof(kGameInfos) / sizeof(GameInfo);
     size_t i;
     
     for (i = 0; i < kGameInfoCount; ++i) {
-        [self _testGameImageWithInfo:kGameInfos[i]];
+        [self testGameImageWithInfo:kGameInfos[i]];
     }
 }
 
