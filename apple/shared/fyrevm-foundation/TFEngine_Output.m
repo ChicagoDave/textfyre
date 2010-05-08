@@ -34,33 +34,26 @@
 /// Sends the queued output to the <see cref="OutputReady"/> event handler.
 - (void)DeliverOutput()
 {
-    if (OutputReady != null)
-    {
+    if (OutputReady != null) {
         OutputReadyEventArgs args = new OutputReadyEventArgs();
         args.Package = outputBuffer.Flush();
         OutputReady(this, args);
     }
 }
-
-- (void)SelectOutputSystem(uint number, uint rock)
-{
-    switch (number)
-    {
-        case 0:
-            outputSystem = IOSystem.Null;
+*/
+- (void)selectOutputSystem:(TFIOSystem)number {
+    switch (number) {
+        case TFIOSystemNull:
+        case TFIOSystemFilter:
+        case TFIOSystemChannels:
+            outputSystem = number;
             break;
-        case 1:
-            outputSystem = IOSystem.Filter;
-            filterAddress = rock;
-            break;
-        case 20: // T is the 20th letter
-            outputSystem = IOSystem.Channels;
-            break;
-        default:
-            throw new VMException("Unrecognized output system " + number.ToString());
+        default: {
+            //TODOthrow new VMException("Unrecognized output system " + number.ToString());
+        }
     }
 }
-*/
+
 - (void)nextCStringChar {
     uint8_t ch = [image byteAtAddress:pc];
     pc++;
@@ -121,8 +114,7 @@
     BOOL result = ([image byteAtAddress:pc] & (1 << printingDigit)) != 0;
 
     printingDigit++;
-    if (printingDigit == 8)
-    {
+    if (printingDigit == 8) {
         printingDigit = 0;
         pc++;
     }
@@ -132,75 +124,57 @@
 
 #pragma mark Native String Decoding Table
 
-- (void)cacheDecodingTable {
-    if (decodingTable == 0) {
-        nativeDecodingTable = NULL;
-        return;
-    }
-
-    uint size = [image integerAtAddress:decodingTable + TFGlulxHuffmanTableSizeOffset];
-    if (decodingTable + size - 1 >= image.RAMStart) {
-        // If the table is in RAM, don't cache it. just verify it now and then process it directly from RAM when the time comes.
-        nativeDecodingTable = NULL;
-        [self verifyDecodingTable];
-        return;
-    }
-
-    uint32_t root = [image integerAtAddress:decodingTable + TFGlulxHuffmanRootNodeOffset];
-    nativeDecodingTable = [self cacheDecodingTableNode:root];
-}
-
 - (TFStrNode *)cacheDecodingTableNode:(uint32_t)node {
     TFStrNode *result = nil;
 
     if (node != 0) {
-        uint8_t nodeType = [image byteAtAddress:node++];
+        const uint8_t nodeType = [image byteAtAddress:node++];
         
-        TFStrNode *allocedNode = nil;
+        TFStrNode *strNode = nil;
 
         switch (nodeType) {
             case TFGlulxHuffmanNodeEnd:
-                allocedNode = [[TFEndStrNode alloc] init];
+                strNode = [[TFEndStrNode alloc] init];
                 break;
 
             case TFGlulxHuffmanNodeBranch: {
                 TFStrNode *left = [self cacheDecodingTableNode:[image integerAtAddress:node]];
                 TFStrNode *right = [self cacheDecodingTableNode:[image integerAtAddress:node + 4]];
             
-                allocedNode = [[TFBranchStrNode alloc] initWithLeft:left right:right];
+                strNode = [[TFBranchStrNode alloc] initWithLeft:left right:right];
             }
                 break;
 
             case TFGlulxHuffmanNodeChar:
-                allocedNode = [[TFCharStrNode alloc] initWithCharacter:(char)[image byteAtAddress:node]];
+                strNode = [[TFCharStrNode alloc] initWithCharacter:(char)[image byteAtAddress:node]];
                 break;
 
             case TFGlulxHuffmanNodeUnichar:
-                allocedNode = [[TFUniCharStrNode alloc] initWithUniChar:(UniChar)[image integerAtAddress:node]];
+                strNode = [[TFUniCharStrNode alloc] initWithUniChar:(UniChar)[image integerAtAddress:node]];
                 break;
 
             case TFGlulxHuffmanNodeCStr:
-                allocedNode = [[TFStringStrNode alloc] initWithAddress:node mode:TFExecutionModeCString string:[self readCString:node]];
+                strNode = [[TFStringStrNode alloc] initWithAddress:node mode:TFExecutionModeCString string:[self readCString:node]];
                 break;
 
             case TFGlulxHuffmanNodeUnistr:
-                allocedNode = [[TFStringStrNode alloc] initWithAddress:node mode:TFExecutionModeUnicodeString string:[self readUniString:node]];
+                strNode = [[TFStringStrNode alloc] initWithAddress:node mode:TFExecutionModeUnicodeString string:[self readUniString:node]];
                 break;
 
             case TFGlulxHuffmanNodeIndirect:
-                allocedNode = [[TFIndirectStrNode alloc] initWithAddress:[image integerAtAddress:node] doubleIndirect:NO argCount:0 argsAt:0];
+                strNode = [[TFIndirectStrNode alloc] initWithAddress:[image integerAtAddress:node] doubleIndirect:NO argCount:0 argsAt:0];
                 break;
 
             case TFGlulxHuffmanNodeIndirectArgs:
-                allocedNode = [[TFIndirectStrNode alloc] initWithAddress:[image integerAtAddress:node] doubleIndirect:NO argCount:[image integerAtAddress:node + 4] argsAt:node + 8];
+                strNode = [[TFIndirectStrNode alloc] initWithAddress:[image integerAtAddress:node] doubleIndirect:NO argCount:[image integerAtAddress:node + 4] argsAt:node + 8];
                 break;
 
-            case TFGlulxHuffmanNodeDBLIndirect:
-                allocedNode = [[TFIndirectStrNode alloc] initWithAddress:[image integerAtAddress:node] doubleIndirect:YES argCount:0 argsAt:0];
+            case TFGlulxHuffmanNodeDoubleIndirect:
+                strNode = [[TFIndirectStrNode alloc] initWithAddress:[image integerAtAddress:node] doubleIndirect:YES argCount:0 argsAt:0];
                 break;
 
-            case TFGlulxHuffmanNodeDBLIndirectArgs:
-                allocedNode = [[TFIndirectStrNode alloc] initWithAddress:[image integerAtAddress:node] doubleIndirect:YES argCount:[image integerAtAddress:node + 4] argsAt:node + 8];
+            case TFGlulxHuffmanNodeDoubleIndirectArgs:
+                strNode = [[TFIndirectStrNode alloc] initWithAddress:[image integerAtAddress:node] doubleIndirect:YES argCount:[image integerAtAddress:node + 4] argsAt:node + 8];
                 break;
 
             /*TODOdefault:
@@ -208,10 +182,28 @@
             */
         }
         
-        result = [allocedNode autorelease];
+        result = [strNode autorelease];
     }
 
     return result;
+}
+
+- (void)cacheDecodingTable {
+    if (decodingTable == 0) {
+        nativeDecodingTable = NULL;
+        return;
+    }
+
+    const uint size = [image integerAtAddress:decodingTable + TFGlulxHuffmanTableSizeOffset];
+    if (decodingTable + size - 1 >= image.RAMStart) {
+        // If the table is in RAM, don't cache it. just verify it now and then process it directly from RAM when the time comes.
+        nativeDecodingTable = NULL;
+        [self verifyDecodingTable];
+        return;
+    }
+
+    const uint32_t root = [image integerAtAddress:decodingTable + TFGlulxHuffmanRootNodeOffset];
+    nativeDecodingTable = [self cacheDecodingTableNode:root];
 }
 
 - (NSString *)readCString:(uint32_t)address {
@@ -231,6 +223,7 @@
 
     uint32_t ch = [image integerAtAddress:address];
     while (ch != 0) {
+        // TODO, won't handle 4-byte unicode character, but original code didn't, either: cast it to char.
         [result appendFormat:@"%C", (UniChar)ch];
         address += 4;
         ch = [image integerAtAddress:address];
@@ -251,13 +244,11 @@
 
     bool foundBranch = false, foundEnd = false;
 
-    while (nodesToCheck.Count > 0)
-    {
+    while (nodesToCheck.Count > 0) {
         uint node = nodesToCheck.Pop();
         byte nodeType = image.ReadByte(node++);
 
-        switch (nodeType)
-        {
+        switch (nodeType) {
             case GLULX_HUFF_NODE_BRANCH:
                 nodesToCheck.Push([image integerAtAddress:node]);       // left child
                 nodesToCheck.Push(image.ReadInt32(node + 4));   // right child
@@ -295,7 +286,7 @@
     uint32_t node = [image integerAtAddress:decodingTable + TFGlulxHuffmanRootNodeOffset];
 
     while (YES) {
-        uint8_t nodeType = [image byteAtAddress:node++];
+        const uint8_t nodeType = [image byteAtAddress:node++];
 
         switch (nodeType) {
             case TFGlulxHuffmanNodeBranch:
@@ -312,7 +303,7 @@
 
             case TFGlulxHuffmanNodeChar:
             case TFGlulxHuffmanNodeUnichar: {
-                uint32_t singleChar = (nodeType == TFGlulxHuffmanNodeUnichar) ?
+                const uint32_t singleChar = (nodeType == TFGlulxHuffmanNodeUnichar) ?
                     [image integerAtAddress:node] : [image byteAtAddress:node];
                 if (outputSystem == TFIOSystemFilter) {
                     [self performCallWithAddress:filterAddress args:[TFArguments argumentsWithArg:singleChar] destType:TFGlulxStubResumeCompressedString destAddr:printingDigit stubPC:pc];
@@ -351,14 +342,14 @@
                 return;
 
             case TFGlulxHuffmanNodeIndirectArgs:
-                [self printIndirect:[image integerAtAddress:node] argCount:[image integerAtAddress:node + 4]argsAt:node + 8];
+                [self printIndirect:[image integerAtAddress:node] argCount:[image integerAtAddress:node + 4] argsAt:node + 8];
                 return;
 
-            case TFGlulxHuffmanNodeDBLIndirect:
+            case TFGlulxHuffmanNodeDoubleIndirect:
                 [self printIndirect:[image integerAtAddress:[image integerAtAddress:node]] argCount:0 argsAt:0];
                 return;
 
-            case TFGlulxHuffmanNodeDBLIndirectArgs:
+            case TFGlulxHuffmanNodeDoubleIndirectArgs:
                 [self printIndirect:[image integerAtAddress:[image integerAtAddress:node]] argCount:[image integerAtAddress:node + 4]argsAt:node + 8];
                 return;
 
@@ -370,13 +361,13 @@
 }
 
 - (void)printIndirect:(uint32_t)address argCount:(uint32_t)argCount argsAt:(uint32_t)argsAt {
-    uint8_t type = [image byteAtAddress:address];
+    const uint8_t type = [image byteAtAddress:address];
 
     switch (type) {
         case 0xC0:
         case 0xC1: {
             TFArguments *args = [TFArguments argumentsWithCount:argCount];
-            for (uint32_t i = 0; i < argCount; i++) {
+            for (uint32_t i = 0; i < argCount; ++i) {
                 [args setArg:[image integerAtAddress:argsAt + 4 * i] atIndex:i];
             }
             [self performCallWithAddress:address args:args destType:TFGlulxStubResumeCompressedString destAddr:printingDigit stubPC:pc];
@@ -389,7 +380,7 @@
                 execMode = TFExecutionModeCString;
                 pc = address + 1;
             } else {
-                address++;
+                ++address;
                 for (uint8_t ch = [image byteAtAddress:address]; ch != 0; ch = [image byteAtAddress:++address]) {
                     [self sendCharToOutput:ch];
                 }

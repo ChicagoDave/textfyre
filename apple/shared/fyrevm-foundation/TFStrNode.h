@@ -12,6 +12,8 @@
 
 @interface TFStrNode : NSObject
 
+#pragma mark APIs
+
 /*! Performs the action associated with this string node: printing a character or string, terminating output, or reading a bit and delegating to another node.
 
     When called on a branch node, this will consume one or more compressed string bits.
@@ -25,8 +27,6 @@
     When called on a branch node, this will consume one or more compressed string bits.
     
     Base class implementation returns self.
-    
-    TODO 
 
     \param engine The TFEngine that is printing.
     \return A non-branch string node.
@@ -41,11 +41,9 @@
 
 /*! Gets a value indicating whether this node terminates the string.
 
-    Base class TODO.
+    Base class implementation returns NO.
  */
 - (BOOL)isTerminator;
-
-- (void)emitChar:(char)character engine:(TFEngine *)engine;
 
 @end
 

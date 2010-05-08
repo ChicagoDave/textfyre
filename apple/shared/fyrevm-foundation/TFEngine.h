@@ -47,11 +47,11 @@ typedef struct _TFCallStub {
 /*! Identifies an output system for use with @setiosys. */
 typedef enum _TFIOSystem {
     /*! Output is discarded. */
-    TFIOSystemNull,
+    TFIOSystemNull = 0,
     /*! Output is filtered through a Glulx function. */
-    TFIOSystemFilter,
+    TFIOSystemFilter = 1,
     /*! Output is sent through FyreVM's channel system. */
-    TFIOSystemChannels
+    TFIOSystemChannels = 20
 } TFIOSystem;
 
 typedef enum _TFSearchOptions

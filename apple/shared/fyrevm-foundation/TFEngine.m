@@ -586,8 +586,7 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
         case 11:
             // write to local storage
             address += fp + localsPos;
-            switch (rule)
-            {
+            switch (rule) {
                 case TFOpcodeRuleIndirect8Bit:
                     if (address >= fp + frameLen) {
                         //TODOthrow new VMException("Writing outside local storage bounds");
@@ -773,9 +772,8 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
         // copy initial values as appropriate
         uint32_t offset = 0, lastOffset = 0;
         uint8_t size = 0, count = 0;
-        address++;
-        for (uint32_t argnum = 0; argnum < args.count; argnum++)
-        {
+        ++address;
+        for (uint32_t argnum = 0; argnum < args.count; ++argnum) {
             if (count == 0) {
                 size = [image byteAtAddress:address++];
                 count = [image byteAtAddress:address++];
@@ -810,7 +808,7 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 
             offset += size;
             lastOffset = offset;
-            count--;
+            --count;
         }
 
         // zero any remaining local space
@@ -849,8 +847,7 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
     uint32_t newFrameLen = [self stackIntegerAtAddress:newFP];
     uint32_t newLocalsPos = [self stackIntegerAtAddress:newFP + 4];
 
-    switch (stub.destType)
-    {
+    switch (stub.destType) {
         case TFGlulxStubStoreNULL:
             // discard
             break;
@@ -908,16 +905,16 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 
 - (void)takeBranch:(uint32_t)target
 {
-    if (target == 0)
+    if (target == 0) {
         [self leaveFunction:0];
-    else if (target == 1)
+    } else if (target == 1) {
         [self leaveFunction:1];
-    else
+    } else {
         pc += target - 2;
+    }
 }
 
 #pragma mark Search APIs
-
 
 - (int)compareKeysWithQuery:(uint32_t)query candidate:(uint32_t)candidate keySize:(uint32_t)keySize options:(TFSearchOptions)options {
     if ((options & TFSearchOptionsKeyIndirect) == 0) {
@@ -949,10 +946,9 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
         }
     }
 
-    for (uint32_t i = 0; i < keySize; i++)
-    {
-        uint8_t b1 = [image byteAtAddress:query++];
-        uint8_t b2 = [image byteAtAddress:candidate++];
+    for (uint32_t i = 0; i < keySize; ++i) {
+        const uint8_t b1 = [image byteAtAddress:query++];
+        const uint8_t b2 = [image byteAtAddress:candidate++];
         if (b1 < b2) {
             return -1;
         } else if (b1 > b2) {
@@ -973,25 +969,19 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
     uint32_t result = (options & TFSearchOptionsReturnIndex) == 0 ? 0 : 0xFFFFFFFF;
     uint32_t low = 0, high = numStructs;
 
-    while (low < high)
-    {
+    while (low < high) {
         uint32_t index = (low + high) / 2;
         int cmp = [self compareKeysWithQuery:key candidate:start + index * structSize + keyOffset keySize:keySize options:options];
-        if (cmp == 0)
-        {
+        if (cmp == 0) {
             // found it
             if ((options & TFSearchOptionsReturnIndex) == 0)
                 result = start + index * structSize;
             else
                 result = index;
             break;
-        }
-        else if (cmp < 0)
-        {
+        } else if (cmp < 0) {
             high = index;
-        }
-        else
-        {
+        } else {
             low = index + 1;
         }
     }

@@ -18,6 +18,18 @@
 
 @implementation TFStrNode
 
+#pragma mark Private methods
+
+- (void)emitChar:(uint32_t)character engine:(TFEngine *)engine {
+    if (engine.outputSystem == TFIOSystemFilter) {
+        [engine performCallWithAddress:engine.filterAddress args:[TFArguments argumentsWithArg:character] destType:TFGlulxStubResumeCompressedString destAddr:engine.printingDigit stubPC:engine.pc];
+    } else {
+        [engine sendCharToOutput:character];
+    }
+}
+
+#pragma mark APIs
+
 - (void)handleNextChar:(TFEngine *)engine {
     NSAssert(NO, @"Must be implemented by subclasses.");
 }
@@ -34,17 +46,11 @@
     return NO;
 }
 
-- (void)emitChar:(char)character engine:(TFEngine *)engine {
-    if (engine.outputSystem == TFIOSystemFilter) {
-        [engine performCallWithAddress:engine.filterAddress args:[TFArguments argumentsWithArg:character] destType:TFGlulxStubResumeCompressedString destAddr:engine.printingDigit stubPC:engine.pc];
-    } else {
-        [engine sendCharToOutput:character];
-    }
-}
-
 @end
 
 @implementation TFEndStrNode
+
+#pragma mark APIs
 
 - (void)handleNextChar:(TFEngine *)engine {
     [engine donePrinting];
@@ -61,14 +67,7 @@
 @synthesize left;
 @synthesize right;
 
-- (id)initWithLeft:(TFStrNode *)leftParam right:(TFStrNode *)rightParam {
-    self = [super init];
-    
-    left = [leftParam retain];
-    right = [rightParam retain];
-    
-    return self;
-}
+#pragma mark APIs
 
 - (void)handleNextChar:(TFEngine *)engine {
     if ([engine nextCompressedStringBit] == YES) {
@@ -86,6 +85,17 @@
     }
 }
 
+#pragma mark Standard methods
+
+- (id)initWithLeft:(TFStrNode *)leftParam right:(TFStrNode *)rightParam {
+    self = [super init];
+    
+    left = [leftParam retain];
+    right = [rightParam retain];
+    
+    return self;
+}
+
 - (void)dealloc {
     [left release], left = nil;
     [right release], right = nil;
@@ -99,16 +109,21 @@
 
 @synthesize character;
 
+#pragma mark APIs
+
+- (void)handleNextChar:(TFEngine *)engine {
+    [self emitChar:(uint32_t)character engine:engine];
+}
+
+#pragma mark Standard methods
+
+
 - (id)initWithCharacter:(char)characterParam {
     self = [super init];
     
     character = characterParam;
     
     return self;
-}
-
-- (void)handleNextChar:(TFEngine *)engine {
-    [self emitChar:character engine:engine];
 }
 
 - (NSString *)description {
@@ -119,16 +134,20 @@
 
 @implementation TFUniCharStrNode
 
+#pragma mark APIs
+
+- (void)handleNextChar:(TFEngine *)engine {
+    [self emitChar:(uint32_t)character engine:engine];
+}
+
+#pragma mark Standard methods
+
 - (id)initWithUniChar:(UniChar)characterParam {
     self = [super init];
     
     character = characterParam;
 
     return self;
-}
-
-- (void)handleNextChar:(TFEngine *)engine {
-    [self emitChar:character engine:engine];
 }
 
 - (NSString *)description {
@@ -139,15 +158,7 @@
 
 @implementation TFStringStrNode
 
-- (id)initWithAddress:(uint32_t)addressParam mode:(TFExecutionMode)modeParam string:(NSString *)stringParam {
-    self = [super init];
-
-    address = addressParam;
-    mode = modeParam;
-    string = [stringParam copy];
-    
-    return self;
-}
+#pragma mark APIs
 
 - (void)handleNextChar:(TFEngine *)engine {
     if (engine.outputSystem == TFIOSystemFilter) {
@@ -157,6 +168,18 @@
     } else {
         [engine sendStringToOutput:string];
     }
+}
+
+#pragma mark Standard methods
+
+- (id)initWithAddress:(uint32_t)addressParam mode:(TFExecutionMode)modeParam string:(NSString *)stringParam {
+    self = [super init];
+
+    address = addressParam;
+    mode = modeParam;
+    string = [stringParam copy];
+    
+    return self;
 }
 
 - (NSString *)description {
@@ -173,6 +196,18 @@
 
 @implementation TFIndirectStrNode
 
+#pragma mark APIs
+
+- (void)handleNextChar:(TFEngine *)engine {
+    [engine printIndirect:(doubleIndirect ? [engine.image integerAtAddress:address] : address) argCount:argCount argsAt:argsAt];
+}
+
+- (BOOL)needsCallStub {
+    return YES;
+}
+
+#pragma mark Standard methods
+
 - (id)initWithAddress:(uint32_t)addressParam doubleIndirect:(BOOL)doubleIndirectParam argCount:(uint32_t)argCountParam argsAt:(uint32_t)argsAtParam {
     self = [super init];
 
@@ -183,13 +218,4 @@
 
     return self;
 }
-
-- (void)handleNextChar:(TFEngine *)engine {
-    [engine printIndirect:doubleIndirect ? [engine.image integerAtAddress:address] : address argCount:argCount argsAt:argsAt];
-}
-
-- (BOOL)needsCallStub {
-    return YES;
-}
-
 @end

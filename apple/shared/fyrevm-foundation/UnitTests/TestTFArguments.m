@@ -13,7 +13,7 @@
 
 @implementation TestTFArguments
 
-- (TFArguments *)_makeArgsFromArgsAsArray:(NSArray *)argsAsArray {
+- (TFArguments *)makeArgsFromArgsAsArray:(NSArray *)argsAsArray {
     TFArguments *result = nil;
     
     switch ([argsAsArray count]) {
@@ -43,8 +43,8 @@
     return result;
 }
 
-- (void)_testArgumentsWithArgsInternal:(NSArray *)argsAsArray {
-    TFArguments *args = [self _makeArgsFromArgsAsArray:argsAsArray];
+- (void)testArgumentsWithArgsInternal:(NSArray *)argsAsArray {
+    TFArguments *args = [self makeArgsFromArgsAsArray:argsAsArray];
     
     STAssertEquals(args.count, [argsAsArray count], @"Count of args object %@, created from array of numbers %@, should be %lu, but is %lu", args, argsAsArray, (unsigned long)[argsAsArray count], (unsigned long)args.count);
     
@@ -55,9 +55,9 @@
     }
 }
 
-- (void)_testArgumentsWithArgs:(NSArray *)argsAsArray {
+- (void)testArgumentsWithArgs:(NSArray *)argsAsArray {
     // Test it forwards
-    [self _testArgumentsWithArgsInternal:argsAsArray];
+    [self testArgumentsWithArgsInternal:argsAsArray];
     
     // Now, for kicks, test it backwards
     NSMutableArray *reversedArgsAsArray = [NSMutableArray array];
@@ -68,22 +68,22 @@
         [reversedArgsAsArray addObject:argValue];
     }
     
-    [self _testArgumentsWithArgsInternal:reversedArgsAsArray];
+    [self testArgumentsWithArgsInternal:reversedArgsAsArray];
 }
 
-- (void)_testArgumentsWithArgCount:(NSUInteger)count {
+- (void)testArgumentsWithArgCount:(NSUInteger)count {
     NSMutableArray *args = [NSMutableArray array];
     
     for (NSUInteger i = 0; i < count; ++i) {
         [args addObject:[NSNumber numberWithUnsignedInteger:i]];
     }
     
-    [self _testArgumentsWithArgs:args];
+    [self testArgumentsWithArgs:args];
 }
 
 - (void)testArguments {
     for (NSUInteger i = 0; i <= 200; ++i) {
-        [self _testArgumentsWithArgCount:i];
+        [self testArgumentsWithArgCount:i];
     }
 }
 

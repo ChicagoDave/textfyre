@@ -17,7 +17,7 @@ typedef struct _RangeTest {
 
 @implementation TestTFHeapAllocator
 
-- (void)_testRangeComparisonWithName:(NSString *)name rangeTests:(RangeTest *)rangeTests count:(NSUInteger)count {
+- (void)testRangeComparisonWithName:(NSString *)name rangeTests:(RangeTest *)rangeTests count:(NSUInteger)count {
     NSMutableArray *desiredArray = [NSMutableArray arrayWithCapacity:count];
     for (NSUInteger i = 0; i < count; ++i) {
         [desiredArray addObject:[NSNull null]];
@@ -62,7 +62,7 @@ static const size_t kRangeTests1Count = sizeof(kRangeTests1) / sizeof(RangeTest)
 // TODO add more sets of tests
 
 - (void)testRangeComparison {
-    [self _testRangeComparisonWithName:@"kRangeTests1" rangeTests:kRangeTests1 count:kRangeTests1Count];
+    [self testRangeComparisonWithName:@"kRangeTests1" rangeTests:kRangeTests1 count:kRangeTests1Count];
 }
 
 @end
