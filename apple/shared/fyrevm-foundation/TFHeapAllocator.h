@@ -35,6 +35,8 @@
     uint32_t maxHeapExtent;
 }
 
+#pragma mark APIs
+
 /*! Initializes a new allocator with an empty heap.
 
     \param heapAddress The address where the heap will start.

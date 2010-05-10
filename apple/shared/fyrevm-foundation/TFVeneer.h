@@ -31,6 +31,8 @@
 
 }
 
+#pragma mark APIs
+
 - (id)initWithEngine:(TFEngine *)engine;
 
 /*! Registers a routine address or constant value.
@@ -53,7 +55,7 @@
 
 @end
 
-typedef enum _TFVeneerSlot {
+typedef enum {
     // routine addresses
     TFVeneerSlotZ__Region = 1,
     TFVeneerSlotCP__Tab = 2,

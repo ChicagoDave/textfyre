@@ -27,13 +27,23 @@ typedef enum {
 
 @private
     TFOutputChannel channel;
-//        private StringBuilder[] strings;
+    NSArray *strings;
     BOOL mainIsBold, mainIsItalic, mainIsFixed, mainParaOpen, mainBreakPending;
     BOOL mainRightQuote;
-    BOOL filtering;
+    BOOL filterEnabled;
     BOOL overrideFiltering;
     TFOutputFilterTags *filterTags;
 }
+
+#pragma mark APIs
+
+@property TFOutputChannel channel;
+/*! Whether the TFOutputChannelMain output channel's text should be filtered to change line breaks, styles, and special characters to a configurable set of tags and entities.
+*/
+@property BOOL filterEnabled;
+@property BOOL overrideFiltering;
+/*! The object controlling the set of strings that are used when output output filtering is enabled. */
+@property (readonly) TFOutputFilterTags *filtertags;
 
 /*! Writes a string to the buffer for the currently selected output channel.
 
@@ -44,6 +54,12 @@ typedef enum {
 
     \param character The character to write.
  */
-- (void)writeCharacter:(char)character;
+- (void)writeCharacter:(UniChar)character;
+
+/* \brief Sets the current output style.
+
+    This method has no effect unless the main channel is selected and filterEnabled is YES.
+*/
+- (void)setStyle:(TFOutputStyle)style;
 
 @end

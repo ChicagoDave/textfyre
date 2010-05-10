@@ -16,8 +16,7 @@
 @class TFStrNode;
 
 /*! Describes the task that the interpreter is currently performing. */
-typedef enum _TFExecutionMode
-{
+typedef enum {
     /*! We are running function code. PC points to the next instruction. */
     TFExecutionModeCode,
     /*! We are printing a null-terminated string (E0). PC points to the next character. */
@@ -45,7 +44,7 @@ typedef struct _TFCallStub {
 } TFCallStub;
 
 /*! Identifies an output system for use with @setiosys. */
-typedef enum _TFIOSystem {
+typedef enum {
     /*! Output is discarded. */
     TFIOSystemNull = 0,
     /*! Output is filtered through a Glulx function. */
@@ -54,8 +53,7 @@ typedef enum _TFIOSystem {
     TFIOSystemChannels = 20
 } TFIOSystem;
 
-typedef enum _TFSearchOptions
-{
+typedef enum {
     TFSearchOptionsNone = 0,
 
     TFSearchOptionsKeyIndirect = 1,
@@ -103,6 +101,8 @@ typedef enum _TFSearchOptions
     BOOL gameWantsFiltering;
 }
 
+#pragma mark APIs
+
 @property (readonly) TFUlxImage *image;
 
 @property uint32_t pc;
@@ -112,8 +112,6 @@ typedef enum _TFSearchOptions
 @property (readonly) uint32_t filterAddress;
 @property TFExecutionMode execMode;
 @property (readonly) uint8_t printingDigit;
-
-#pragma mark APIs
 
 /*! Attempts to load Glulx (.ulx) game image file into memory and decrypt it. 
 

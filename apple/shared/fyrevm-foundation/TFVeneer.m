@@ -24,7 +24,7 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
 
 @interface TFVeneer ()
 
-#pragma mark Veneer Methods
+#pragma mark Veneer methods
 
 // distinguishes between strings, routines, and objects
 - (uint32_t)Z__Region:(uint32_t)address;
@@ -39,7 +39,7 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
 
 @implementation TFVeneer
 
-#pragma mark Veneer Methods
+#pragma mark Veneer methods
 
 // distinguishes between strings, routines, and objects
 - (uint32_t)Z__Region:(uint32_t)address 

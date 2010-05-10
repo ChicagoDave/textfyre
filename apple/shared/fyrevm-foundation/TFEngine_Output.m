@@ -21,7 +21,7 @@
 - (void)sendCharToOutput:(uint32_t)character {
     if (outputSystem == TFIOSystemChannels) {
         // TODO: need to handle Unicode characters larger than 16 bits?
-        [outputBuffer writeCharacter:(char)character];
+        [outputBuffer writeCharacter:(UniChar)character];
     }
 }
 

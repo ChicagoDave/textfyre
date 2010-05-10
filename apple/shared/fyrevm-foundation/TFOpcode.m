@@ -25,6 +25,8 @@ static NSString *TFOpcodeRuleNames[] = {
 
 @implementation TFOpcode
 
+#pragma mark APIs
+
 @synthesize opcode;
 @synthesize selector;
 @synthesize loadArgs;
@@ -53,8 +55,6 @@ static NSString *TFOpcodeRuleNames[] = {
     
     return self;
 }
-
-#pragma mark APIs
 
 + (NSDictionary *)opcodeDictionary {
 

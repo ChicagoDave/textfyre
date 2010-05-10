@@ -52,15 +52,6 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 
 @implementation TFEngine
 
-@synthesize image;
-@synthesize pc;
-@synthesize fp;
-@synthesize outputSystem;
-@synthesize filterAddress;
-@synthesize execMode;
-@synthesize printingDigit;
-
-
 #pragma mark Private methods
 
 /*! Clears the stack and initializes VM registers from values found in RAM. */
@@ -96,6 +87,14 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 }
 
 #pragma mark APIs
+
+@synthesize image;
+@synthesize pc;
+@synthesize fp;
+@synthesize outputSystem;
+@synthesize filterAddress;
+@synthesize execMode;
+@synthesize printingDigit;
 
 - (BOOL)loadGameImageFromPath:(NSString *)path {
     NSAssert(image == nil, @"loadGameImageFromPath: called when image has already been set to something!");

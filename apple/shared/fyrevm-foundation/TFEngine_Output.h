@@ -10,7 +10,7 @@
 
 
 /*! Indicates the channel a piece of output is being sent on. */
-typedef enum _TFOutputChannel {
+typedef enum {
     /*! The regular game output channel. */
     TFOutputChannelMain = 1,
     /*! The name of the current area. */
@@ -46,7 +46,7 @@ typedef enum _TFOutputChannel {
     /*! A channel for reporting that the game has ended in death. */
     TFOutputChannelDeath = 17,
 
-    _TFOutputChannelLast = TFOutputChannelDeath
+    TFOutputChannelLast = TFOutputChannelDeath
 } TFOutputChannel;
 
 @interface TFEngine (Output)
