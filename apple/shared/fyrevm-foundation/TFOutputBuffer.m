@@ -10,287 +10,209 @@
 
 #import "TFOutputFilterTags.h"
 
+static BOOL isFilteredChannel(TFOutputChannel aChannel) {
+    switch (aChannel) {
+        case TFOutputChannelMain:
+        case TFOutputChannelPrologue:
+            return YES;
+    }
+    
+    return NO;
+}
+static void appendCharacterToString(NSMutableString *string, UniChar character) {
+    NSString *characterString = [[NSString alloc] initWithCharacters:&character length:1];
+    [string appendString:characterString];
+    [characterString release];
+}
 
 @implementation TFOutputBuffer
 
-- (id)init {
-    self = [super init];
-    
-    channel = TFOutputChannelMain;
-/*
-    // TODO I don't know what a StringBuilder is yet. Need as many of them as we have output channels.
-    strings = new StringBuilder[(int)OutputChannel._LAST]; // output channels start at 1
-    for (int i = 0; i < strings.Length; ++i) {
-        strings[i] = new StringBuilder();
+#pragma mark Private methods
+
+- (void)openFormattingTags:(NSMutableString *)string {
+    if (mainIsFixed) {
+        [string appendString:filterTags.startFixedPitch];
     }
-*/
-    filtering = YES;
-    
-    filterTags = [[TFOutputFilterTags alloc] init];
-    
-    return self;
+    if (mainIsItalic) {
+        [string appendString:filterTags.startItalicType];
+    }
+    if (mainIsBold) {
+        [string appendString:filterTags.startBoldType];
+    }
 }
 
-- (void)dealloc {
-    [filterTags release], filterTags = nil;
-
-    [super dealloc];
+- (void)closeFormattingTags:(NSMutableString *)string {
+    if (mainIsBold) {
+        [string appendString:filterTags.endBoldType];
+    }
+    if (mainIsItalic) {
+        [string appendString:filterTags.endItalicType];
+    }
+    if (mainIsFixed) {
+        [string appendString:filterTags.endFixedPitch];
+    }
 }
 
-/*
-    /// <summary>
-    /// Collects output from the game file, on various output channels, to be
-    /// delivered all at once.
-    /// </summary>
-    internal class OutputBuffer
-    {
-        private OutputChannel channel;
-        private StringBuilder[] strings;
-        private bool mainIsBold, mainIsItalic, mainIsFixed, mainParaOpen, mainBreakPending;
-        private bool mainRightQuote;
-        private bool filtering = true;
-        private OutputFilterTags filterTags = new OutputFilterTags();
+#pragma mark APIs
 
-        /// <summary>
-        /// Initializes a new output buffer.
-        /// </summary>
-        public OutputBuffer()
-        {
-            channel = OutputChannel.Main;
-            strings = new StringBuilder[(int)OutputChannel._LAST]; // output channels start at 1
-            for (int i = 0; i < strings.Length; i++)
-                strings[i] = new StringBuilder();
-        }
+@synthesize channel;
+@synthesize filterEnabled;
+@synthesize overrideFiltering;
+@synthesize filtertags;
 
-        /// <summary>
-        /// Gets or sets the current output channel.
-        /// </summary>
-        /// <remarks>
-        /// If the output channel is changed to any channel other than
-        /// <see cref="OutputChannel.Main"/>, the channel's contents will be
-        /// cleared first.
-        /// </remarks>
-        public OutputChannel Channel
-        {
-            get { return channel; }
-            set
-            {
-                if (channel != value)
-                {
-                    channel = value;
-                    if (value != OutputChannel.Main)
-                        strings[(int)value - 1].Length = 0;
-                }
-            }
+/*! If the output channel is changed to any channel other than TFOutputChannelMain, the channel's contents will be cleared first.
+ */
+- (void)setChannel:(TFOutputChannel)value {
+    if (channel != value) {
+        channel = value;
+        if (channel != TFOutputChannelMain) {
+            NSMutableString *string = [strings objectAtIndex:(NSUInteger)value - 1];
+            [string deleteCharactersInRange:NSMakeRange(0, [string length])];
         }
+    }
+}
 
-        /// <summary>
-        /// Gets or sets a value indicating whether the <see cref="OutputChannel.Main"/>
-        /// output channel's text should be filtered to change line breaks, styles,
-        /// and special characters to a configurable set of tags and entities.
-        /// </summary>
-        public bool FilterEnabled
-        {
-            get { return filtering; }
-            set { filtering = value; }
-        }
+- (void)setFilterEnabled:(BOOL)value {
+    if (overrideFiltering == NO) {
+        filterEnabled = value;
+    }
+}
 
-        /// <summary>
-        /// Gets the object controlling the set of strings that are used when output
-        /// output filtering is enabled.
-        /// </summary>
-        public OutputFilterTags FilterTags
-        {
-            get { return filterTags; }
-        }
-*/
 - (void)writeString:(NSString *)string {
-/*
-    if ([self isFilteredChannel:channel] && filtering) {
+    if (isFilteredChannel(channel) && self.filterEnabled) {
+        const NSUInteger length = [string length];
+        
         // main channel needs char-by-char filtering
-        foreach (char c in s)
-            Write(c);
+        for (NSUInteger i = 0; i < length; ++i) {
+            [self writeCharacter:[string characterAtIndex:i]];
+        }
+    } else {
+        [[strings objectAtIndex:(NSUInteger)channel - 1] appendString:string];
     }
-    else
-    {
-        strings[(int)channel - 1].Append(s);
-    }
-*/
 }
 
-- (void)writeCharacter:(char)character {
-/*
-    if (IsFilteredChannel(channel) && filtering)
-    {
-        StringBuilder sb = strings[(int)channel - 1];
-        if (c == '\n')
-        {
-            if (mainParaOpen)
-            {
-                if (mainBreakPending)
-                {
-                    CloseFormattingTags(sb);
-                    sb.Append(filterTags.EndParagraph);
-                    mainBreakPending = false;
-                    mainParaOpen = false;
-                }
-                else
-                {
-                    mainBreakPending = true;
+- (void)writeCharacter:(UniChar)character {
+    if (isFilteredChannel(channel) && self.filterEnabled) {
+        NSMutableString *string = [strings objectAtIndex:(NSUInteger)channel - 1];
+        if (character == '\n') {
+            if (mainParaOpen) {
+                if (mainBreakPending) {
+                    [self closeFormattingTags:string];
+                    [string appendString:filterTags.endParagraph];
+                    mainBreakPending = NO;
+                    mainParaOpen = NO;
+                } else {
+                    mainBreakPending = YES;
                 }
             }
 
-            mainRightQuote = false;
-        }
-        else
-        {
-            if (!mainParaOpen)
-            {
-                sb.Append(filterTags.StartParagraph);
-                OpenFormattingTags(sb);
+            mainRightQuote = YES;
+        } else {
+            if (mainParaOpen == NO) {
+                [string appendString:filterTags.startParagraph];
+                [self openFormattingTags:string];
                 mainBreakPending = false;
                 mainParaOpen = true;
             }
-            if (mainBreakPending)
-            {
-                sb.Append(filterTags.LineBreak);
+            if (mainBreakPending == YES) {
+                [string appendString:filterTags.lineBreak];
                 mainBreakPending = false;
             }
-            switch (c)
-            {
-                case '<': sb.Append(filterTags.LeftAngleBracket); break;
-                case '>': sb.Append(filterTags.RightAngleBracket); break;
-                case '&': sb.Append(filterTags.Ampersand); break;
+            switch (character) {
+                case '<': 
+                    [string appendString:filterTags.leftAngleBracket]; 
+                    break;
+                case '>': 
+                    [string appendString:filterTags.rightAngleBracket]; 
+                    break;
+                case '&': 
+                    [string appendString:filterTags.ampersand]; 
+                    break;
 
                 case '"':
-                    if (mainRightQuote)
-                        sb.Append(filterTags.RightDoubleQuote);
-                    else
-                        sb.Append(filterTags.LeftDoubleQuote);
+                    if (mainRightQuote) {
+                        [string appendString:filterTags.rightDoubleQuote];
+                    } else {
+                        [string appendString:filterTags.leftDoubleQuote];
+                    }
                     break;
                 case '\'':
-                    if (mainRightQuote)
-                        sb.Append(filterTags.RightSingleQuote);
-                    else
-                        sb.Append(filterTags.LeftSingleQuote);
+                    if (mainRightQuote) {
+                        [string appendString:filterTags.rightSingleQuote];
+                    } else {
+                        [string appendString:filterTags.leftSingleQuote];
+                    }
                     break;
 
                 default:
-                    sb.Append(c);
-                    mainRightQuote = !char.IsWhiteSpace(c);
+                    appendCharacterToString(string, character);
+                    mainRightQuote = ![[NSCharacterSet whitespaceCharacterSet] characterIsMember:character];
                     break;
             }
         }
+    } else {
+        appendCharacterToString([strings objectAtIndex:(NSUInteger)channel - 1], character);
     }
-    else
-    {
-        strings[(int)channel - 1].Append(c);
+}
+
+- (void)setStyle:(TFOutputStyle)style {
+    if (isFilteredChannel(channel) && self.filterEnabled) {
+        NSMutableString *string = [strings objectAtIndex:(NSUInteger)TFOutputChannelMain - 1];
+        // canonical nesting order: (fixed (italic (bold)))
+        switch (style) {
+            case TFOutputStyleRoman:
+                if (mainParaOpen) {
+                    if (mainIsBold) {
+                        [string appendString:filterTags.endBoldType];
+                    }
+                    if (mainIsItalic) {
+                        [string appendString:filterTags.endItalicType];
+                    }
+                }
+                mainIsBold = mainIsItalic = NO;
+                break;
+
+            case TFOutputStyleBold:
+                if (mainParaOpen && !mainIsBold) {
+                    [string appendString:filterTags.startBoldType];
+                }
+                mainIsBold = YES;
+                break;
+
+            case TFOutputStyleItalic:
+                if (!mainIsItalic) {
+                    if (mainParaOpen) {
+                        if (mainIsBold) {
+                            [string appendString:filterTags.endBoldType];
+                            [string appendString:filterTags.startItalicType];
+                            [string appendString:filterTags.startBoldType];
+                        } else {
+                            [string appendString:filterTags.startItalicType];
+                        }
+                    }
+
+                    mainIsItalic = YES;
+                }
+                break;
+
+            case TFOutputStyleFixed:
+            case TFOutputStyleVariable:
+                if (!mainIsFixed) {
+                    if (mainParaOpen) {
+                        [self closeFormattingTags:string];
+                    }
+
+                    mainIsFixed = (style == TFOutputStyleFixed);
+
+                    if (mainParaOpen) {
+                        [self openFormattingTags:string];
+                    }
+                }
+                break;
+        }
     }
-*/
 }
 /*
-        private static bool IsFilteredChannel(OutputChannel channel)
-        {
-            switch (channel)
-            {
-                case OutputChannel.Main:
-                case OutputChannel.Prologue:
-                    return true;
-
-                default:
-                    return false;
-            }
-        }
-
-        private void OpenFormattingTags(StringBuilder sb)
-        {
-            if (mainIsFixed)
-                sb.Append(filterTags.StartFixedPitch);
-            if (mainIsItalic)
-                sb.Append(filterTags.StartItalicType);
-            if (mainIsBold)
-                sb.Append(filterTags.StartBoldType);
-        }
-
-        private void CloseFormattingTags(StringBuilder sb)
-        {
-            if (mainIsBold)
-                sb.Append(filterTags.EndBoldType);
-            if (mainIsItalic)
-                sb.Append(filterTags.EndItalicType);
-            if (mainIsFixed)
-                sb.Append(filterTags.EndFixedPitch);
-        }
-
-        /// <summary>
-        /// Sets the current output style.
-        /// </summary>
-        /// <param name="value">The style to set.</param>
-        /// <remarks>
-        /// This method has no effect unless the main channel is selected and
-        /// <see cref="FilterEnabled"/> is <see langword="true"/>.
-        /// </remarks>
-        public void SetStyle(OutputStyle style)
-        {
-            if (IsFilteredChannel(channel) && filtering)
-            {
-                StringBuilder sb = strings[(int)OutputChannel.Main - 1];
-                // canonical nesting order: (fixed (italic (bold)))
-                switch (style)
-                {
-                    case OutputStyle.Roman:
-                        if (mainParaOpen)
-                        {
-                            if (mainIsBold)
-                                sb.Append(filterTags.EndBoldType);
-                            if (mainIsItalic)
-                                sb.Append(filterTags.EndItalicType);
-                        }
-                        mainIsBold = mainIsItalic = false;
-                        break;
-
-                    case OutputStyle.Bold:
-                        if (mainParaOpen && !mainIsBold)
-                            sb.Append(filterTags.StartBoldType);
-                        mainIsBold = true;
-                        break;
-
-                    case OutputStyle.Italic:
-                        if (!mainIsItalic)
-                        {
-                            if (mainParaOpen)
-                            {
-                                if (mainIsBold)
-                                {
-                                    sb.Append(filterTags.EndBoldType);
-                                    sb.Append(filterTags.StartItalicType);
-                                    sb.Append(filterTags.StartBoldType);
-                                }
-                                else
-                                    sb.Append(filterTags.StartItalicType);
-                            }
-
-                            mainIsItalic = true;
-                        }
-                        break;
-
-                    case OutputStyle.Fixed:
-                    case OutputStyle.Variable:
-                        if (!mainIsFixed)
-                        {
-                            if (mainParaOpen)
-                                CloseFormattingTags(sb);
-
-                            mainIsFixed = (style == OutputStyle.Fixed);
-
-                            if (mainParaOpen)
-                                OpenFormattingTags(sb);
-                        }
-                        break;
-                }
-            }
-        }
-
         /// <summary>
         /// Packages all the output that has been stored so far, returns it,
         /// and empties the buffer.
@@ -327,4 +249,40 @@
     }
 }
 */
+
+#pragma mark Standard methods
+
+- (id)init {
+    self = [super init];
+    
+    channel = TFOutputChannelMain;
+    
+    const NSUInteger count = TFOutputChannelLast;
+
+    NSMutableArray *temp = [[NSMutableArray alloc] initWithCapacity:count]; // output channels start at 1
+    for (NSUInteger i = 0; i < count; ++i) {
+        NSMutableString *string = [[NSMutableString alloc] init];
+    
+        [temp addObject:string];
+        
+        [string release];
+    }
+    
+    strings = temp;
+
+    filterEnabled = YES;
+    
+    filterTags = [[TFOutputFilterTags alloc] init];
+    
+    return self;
+}
+
+- (void)dealloc {
+    [strings release], strings = nil;
+
+    [filterTags release], filterTags = nil;
+
+    [super dealloc];
+}
+
 @end

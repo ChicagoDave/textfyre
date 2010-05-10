@@ -11,7 +11,7 @@
 
 #define TFArgumentsMaxArrayCount      3
 
-/*! Custom object for holding the kind of arguments needed by the FyreVM. 
+/*! \brief Custom object for holding the kind of arguments needed by the FyreVM. 
 
     Could use a standard NSMutableArray, but that would mean continually boxing and unboxing uint32_t values into NSNumber objects.
     

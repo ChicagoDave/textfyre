@@ -12,6 +12,7 @@
 #import "TFArguments.h"
 #import "TFEngine_Output.h"
 #import "TFHeapAllocator.h"
+#import "TFOutputBuffer.h"
 #import "TFStrNode.h"
 #import "TFUlxImage.h"
 #import "TFVeneer.h"
@@ -1086,8 +1087,7 @@
 
 #pragma mark -
 
-typedef enum _TFGestalt
-{
+typedef enum {
     TFGestaltGlulxVersion = 0,
     TFGestaltTerpVersion = 1,
     TFGestaltResizeMem = 2,
@@ -1389,7 +1389,7 @@ typedef enum _TFGestalt
 #pragma mark FyreVM Specific
 
 /*! Selects a function for the FyreVM system call opcode. */
-typedef enum _TFFyreCall {
+typedef enum {
     /*! Reads a line from the user: [args argAtIndex:1] = buffer, [args argAtIndex:2] = buffer size. */
     TFFyreCallReadLine = 1,
     /*! Selects a text style: [args argAtIndex:1] = an TFOutputStyle value (see TFOutputBuffer.h). */
@@ -1434,8 +1434,7 @@ typedef enum _TFFyreCall {
             break;
 
         case TFFyreCallSetStyle:
-            // TODO
-            //outputBuffer.SetStyle((OutputStyle)[args argAtIndex:1]];
+            [outputBuffer setStyle:(TFOutputStyle)[args argAtIndex:1]];
             break;
 
         case TFFyreCallToLower:

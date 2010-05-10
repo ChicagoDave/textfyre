@@ -64,10 +64,19 @@
 
 @implementation TFBranchStrNode
 
+#pragma mark APIs
+
 @synthesize left;
 @synthesize right;
 
-#pragma mark APIs
+- (id)initWithLeft:(TFStrNode *)leftParam right:(TFStrNode *)rightParam {
+    self = [super init];
+    
+    left = [leftParam retain];
+    right = [rightParam retain];
+    
+    return self;
+}
 
 - (void)handleNextChar:(TFEngine *)engine {
     if ([engine nextCompressedStringBit] == YES) {
@@ -87,15 +96,6 @@
 
 #pragma mark Standard methods
 
-- (id)initWithLeft:(TFStrNode *)leftParam right:(TFStrNode *)rightParam {
-    self = [super init];
-    
-    left = [leftParam retain];
-    right = [rightParam retain];
-    
-    return self;
-}
-
 - (void)dealloc {
     [left release], left = nil;
     [right release], right = nil;
@@ -107,16 +107,9 @@
 
 @implementation TFCharStrNode
 
-@synthesize character;
-
 #pragma mark APIs
 
-- (void)handleNextChar:(TFEngine *)engine {
-    [self emitChar:(uint32_t)character engine:engine];
-}
-
-#pragma mark Standard methods
-
+@synthesize character;
 
 - (id)initWithCharacter:(char)characterParam {
     self = [super init];
@@ -125,6 +118,12 @@
     
     return self;
 }
+
+- (void)handleNextChar:(TFEngine *)engine {
+    [self emitChar:(uint32_t)character engine:engine];
+}
+
+#pragma mark Standard methods
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"<%@ %p> '%c'", [self class], self, character];
@@ -136,12 +135,6 @@
 
 #pragma mark APIs
 
-- (void)handleNextChar:(TFEngine *)engine {
-    [self emitChar:(uint32_t)character engine:engine];
-}
-
-#pragma mark Standard methods
-
 - (id)initWithUniChar:(UniChar)characterParam {
     self = [super init];
     
@@ -149,6 +142,12 @@
 
     return self;
 }
+
+- (void)handleNextChar:(TFEngine *)engine {
+    [self emitChar:(uint32_t)character engine:engine];
+}
+
+#pragma mark Standard methods
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"<%@ %p> '%C'", [self class], self, character];
@@ -198,16 +197,6 @@
 
 #pragma mark APIs
 
-- (void)handleNextChar:(TFEngine *)engine {
-    [engine printIndirect:(doubleIndirect ? [engine.image integerAtAddress:address] : address) argCount:argCount argsAt:argsAt];
-}
-
-- (BOOL)needsCallStub {
-    return YES;
-}
-
-#pragma mark Standard methods
-
 - (id)initWithAddress:(uint32_t)addressParam doubleIndirect:(BOOL)doubleIndirectParam argCount:(uint32_t)argCountParam argsAt:(uint32_t)argsAtParam {
     self = [super init];
 
@@ -218,4 +207,13 @@
 
     return self;
 }
+
+- (void)handleNextChar:(TFEngine *)engine {
+    [engine printIndirect:(doubleIndirect ? [engine.image integerAtAddress:address] : address) argCount:argCount argsAt:argsAt];
+}
+
+- (BOOL)needsCallStub {
+    return YES;
+}
+
 @end

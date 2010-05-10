@@ -57,6 +57,8 @@
     TFStrNode *right;
 }
 
+#pragma mark APIs
+
 @property (readonly) TFStrNode *left;
 @property (readonly) TFStrNode *right;
 
@@ -70,6 +72,8 @@
     char character;
 }
 
+#pragma mark APIs
+
 @property (readonly) char character;
 
 - (id)initWithCharacter:(char)character;
@@ -81,6 +85,8 @@
 @private
     UniChar character;
 }
+
+#pragma mark APIs
 
 - (id)initWithUniChar:(UniChar)character;
 
@@ -94,6 +100,8 @@
     NSString *string;
 }
 
+#pragma mark APIs
+
 - (id)initWithAddress:(uint32_t)address mode:(TFExecutionMode)mode string:(NSString *)string;
 
 @end
@@ -105,6 +113,8 @@
     BOOL doubleIndirect;
     uint32_t argCount, argsAt;
 }
+
+#pragma mark APIs
 
 - (id)initWithAddress:(uint32_t)address doubleIndirect:(BOOL)doubleIndirect argCount:(uint32_t)argCount argsAt:(uint32_t)argsAt;
 
