@@ -19,9 +19,7 @@ typedef enum {
     TFQuetzalHeaderSubtypeUnsupported = 5,
     TFQuetzalFileNotEqualToLength = 6,
     TFQuetzalChunkTooShort = 7,
-    TFQuetzalFileShorterThanChunk = 8,
-    TFQuetzalNonZeroOddByte = 9
-    
+    TFQuetzalFileShorterThanChunk = 8
 } TFQuetzalLoadError;
 
 /*! \brief Implements the Quetzal saved game session file specification by holding a list of typed data chunks which can be read from or written to streams.

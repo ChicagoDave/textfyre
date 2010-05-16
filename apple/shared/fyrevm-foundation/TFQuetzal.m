@@ -148,8 +148,8 @@ static void appendIntToData(uint32_t integer, NSMutableData *data) {
 #pragma mark Exposed for testing ONLY, DO NOT USE
 
 + (TFQuetzal *)gameSessionWithContentsOfFile:(NSString *)path errorString:(NSString **)errorStringPtr errorCode:(TFQuetzalLoadError *)errorCodePtr {
-    NSAssert1(errorStringPtr != nil, @"%@ called with nil errorString pointer.", NSStringFromSelector(_cmd));
-    NSAssert1(errorCodePtr != nil, @"%@ called with nil errorCode pointer.", NSStringFromSelector(_cmd));
+    NSAssert2(errorStringPtr != nil, @"%@ called with nil errorString pointer for file at path \"%@\".", NSStringFromSelector(_cmd), path);
+    NSAssert2(errorCodePtr != nil, @"%@ called with nil errorCode pointer for file at path \"%@\".", NSStringFromSelector(_cmd), path);
 
     TFQuetzal *result = nil;
 
@@ -226,7 +226,7 @@ static void appendIntToData(uint32_t integer, NSMutableData *data) {
                         
                             uint32_t position = TFQuetzalHeaderLength;
                             while (position < chunksLength) {
-                                if (chunksLength - position == 1 && lastByteIsZero(data)) {
+                                if (length % 2 != 1 && chunksLength - position == 1 && lastByteIsZero(data)) {
                                     ++position;
                                 } else if (chunksLength - position < 8) {
                                     errorString = [NSString stringWithFormat:@"should enough remaining content at index %lu for a 4-byte type code and a 4-byte length value, but instead only has %lu bytes.", 
@@ -256,15 +256,11 @@ static void appendIntToData(uint32_t integer, NSMutableData *data) {
                                 }
                             }
                             
-                            if (errorCode == TFQuetzalNoLoadError && position > chunksLength) {
-                                errorString = [NSString stringWithFormat:@"should end when last chunk ends, but last chunk ends at %lu bytes, while file is %lu bytes long.", 
-                                                                            (unsigned long)position,
-                                                                            (unsigned long)chunksLength];
-                                errorCode = TFQuetzalNonZeroOddByte;
-                            }
-                            
                             // *** SUCCESS ***
                             if (errorCode == TFQuetzalNoLoadError) {
+                                // Shouldn't happen if logic above is right.
+                                NSAssert3(position == chunksLength, @"On successful read, when done reading chunks, we should be done reading file, but we've read chunks successfully to index %lu of file, and file length is different value, %lu bytes, for file at path \"%@\".", (unsigned long)position, (unsigned long)chunksLength, path);
+
                                 result = temp;
                             }
                         }
