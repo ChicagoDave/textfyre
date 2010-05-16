@@ -58,7 +58,7 @@ static void appendCharacterToString(NSMutableString *string, UniChar character) 
 @synthesize channel;
 @synthesize filterEnabled;
 @synthesize overrideFiltering;
-@synthesize filtertags;
+@synthesize filterTags;
 
 /*! If the output channel is changed to any channel other than TFOutputChannelMain, the channel's contents will be cleared first.
  */

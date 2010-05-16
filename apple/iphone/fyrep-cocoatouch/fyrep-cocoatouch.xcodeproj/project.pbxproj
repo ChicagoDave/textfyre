@@ -67,11 +67,19 @@
 		4F6B6530111E2FA100BABD7F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		4F6B6531111E2FA100BABD7F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		4F6B65B5111E300800BABD7F /* ApplicationTests.octest in Resources */ = {isa = PBXBuildFile; fileRef = 4F05E9AC111E0CA400C90CB3 /* ApplicationTests.octest */; };
+		4F90A0B61198D2EC00307D72 /* TFOutputFilterTags.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F90A0B31198D2EC00307D72 /* TFOutputFilterTags.m */; };
+		4F90A0B71198D2EC00307D72 /* TFQuetzal.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F90A0B51198D2EC00307D72 /* TFQuetzal.m */; };
+		4F90A0B81198D2EC00307D72 /* TFOutputFilterTags.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F90A0B31198D2EC00307D72 /* TFOutputFilterTags.m */; };
+		4F90A0B91198D2EC00307D72 /* TFQuetzal.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F90A0B51198D2EC00307D72 /* TFQuetzal.m */; };
+		4F90A0BA1198D2EC00307D72 /* TFOutputFilterTags.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F90A0B31198D2EC00307D72 /* TFOutputFilterTags.m */; };
+		4F90A0BB1198D2EC00307D72 /* TFQuetzal.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F90A0B51198D2EC00307D72 /* TFQuetzal.m */; };
 		4F9DEFF7111E28ED00FDB6AD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		4F9DEFF8111E28ED00FDB6AD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		4FA24392114B6FAB008469AC /* TFStrNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA24391114B6FAB008469AC /* TFStrNode.m */; };
 		4FA24393114B6FAB008469AC /* TFStrNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA24391114B6FAB008469AC /* TFStrNode.m */; };
 		4FA24394114B6FAB008469AC /* TFStrNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA24391114B6FAB008469AC /* TFStrNode.m */; };
+		4FB06778119CB483003BABCA /* TestTFQuetzal.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB06777119CB483003BABCA /* TestTFQuetzal.m */; };
+		4FB06796119CB4A0003BABCA /* TestTFQuetzal.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB06777119CB483003BABCA /* TestTFQuetzal.m */; };
 		4FB17B851139D43B009491D3 /* TFVeneer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB17B841139D43B009491D3 /* TFVeneer.m */; };
 		4FB17B861139D43B009491D3 /* TFVeneer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB17B841139D43B009491D3 /* TFVeneer.m */; };
 		4FB17B871139D43B009491D3 /* TFVeneer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB17B841139D43B009491D3 /* TFVeneer.m */; };
@@ -149,10 +157,18 @@
 		4F6B6502111E2B4C00BABD7F /* sh-v1.0de.ulx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "sh-v1.0de.ulx"; path = "../../../winforms/Shadow/ShadowClient/ShadowClient/GameFiles/sh-v1.0de.ulx"; sourceTree = SOURCE_ROOT; };
 		4F6B6503111E2B4C00BABD7F /* sh-v1.0e.ulx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "sh-v1.0e.ulx"; path = "../../../winforms/Shadow/ShadowClient/ShadowClient/GameFiles/sh-v1.0e.ulx"; sourceTree = SOURCE_ROOT; };
 		4F6B6535111E2FA100BABD7F /* fyrep-cocoatouchTesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fyrep-cocoatouchTesting.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F90A0B21198D2EC00307D72 /* TFOutputFilterTags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFOutputFilterTags.h; sourceTree = "<group>"; };
+		4F90A0B31198D2EC00307D72 /* TFOutputFilterTags.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFOutputFilterTags.m; sourceTree = "<group>"; };
+		4F90A0B41198D2EC00307D72 /* TFQuetzal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFQuetzal.h; sourceTree = "<group>"; };
+		4F90A0B51198D2EC00307D72 /* TFQuetzal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFQuetzal.m; sourceTree = "<group>"; };
 		4F9DEF57111E287B00FDB6AD /* LogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F9DEF58111E287B00FDB6AD /* LogicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LogicTests-Info.plist"; sourceTree = "<group>"; };
 		4FA24390114B6FAB008469AC /* TFStrNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFStrNode.h; sourceTree = "<group>"; };
 		4FA24391114B6FAB008469AC /* TFStrNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFStrNode.m; sourceTree = "<group>"; };
+		4FB06776119CB483003BABCA /* TestTFQuetzal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTFQuetzal.h; sourceTree = "<group>"; };
+		4FB06777119CB483003BABCA /* TestTFQuetzal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTFQuetzal.m; sourceTree = "<group>"; };
+		4FB06919119CC8C1003BABCA /* Quetzal Invalid Files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Quetzal Invalid Files"; sourceTree = "<group>"; };
+		4FB0691B119CC8C1003BABCA /* Quetzal Valid Files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Quetzal Valid Files"; sourceTree = "<group>"; };
 		4FB17B831139D43B009491D3 /* TFVeneer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFVeneer.h; sourceTree = "<group>"; };
 		4FB17B841139D43B009491D3 /* TFVeneer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFVeneer.m; sourceTree = "<group>"; };
 		4FCCBE73111521A40001000B /* GlulxConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlulxConstants.h; sourceTree = "<group>"; };
@@ -280,6 +296,8 @@
 				4F1E108D11438247004BB393 /* TestTFHeapAllocator.m */,
 				4F50FBC7113106B1006D0738 /* TestTFOpcode.h */,
 				4F50FBC8113106B1006D0738 /* TestTFOpcode.m */,
+				4FB06776119CB483003BABCA /* TestTFQuetzal.h */,
+				4FB06777119CB483003BABCA /* TestTFQuetzal.m */,
 				4F05E9B5111E0DA600C90CB3 /* TestTFUlxImage.h */,
 				4F05E9B6111E0DA600C90CB3 /* TestTFUlxImage.m */,
 				4F6B64FF111E2B2100BABD7F /* Resources */,
@@ -317,6 +335,10 @@
 				4F50FA5D1130915B006D0738 /* Opcodes.plist */,
 				4F4D7F34114C45E000EA5308 /* TFOutputBuffer.h */,
 				4F4D7F35114C45E000EA5308 /* TFOutputBuffer.m */,
+				4F90A0B21198D2EC00307D72 /* TFOutputFilterTags.h */,
+				4F90A0B31198D2EC00307D72 /* TFOutputFilterTags.m */,
+				4F90A0B41198D2EC00307D72 /* TFQuetzal.h */,
+				4F90A0B51198D2EC00307D72 /* TFQuetzal.m */,
 				4FA24390114B6FAB008469AC /* TFStrNode.h */,
 				4FA24391114B6FAB008469AC /* TFStrNode.m */,
 				4F3E14FE1114E4D100007CFC /* TFUlxImage.h */,
@@ -335,6 +357,8 @@
 				4F6B6501111E2B4C00BABD7F /* sh-v1.2e.ulx */,
 				4F6B6502111E2B4C00BABD7F /* sh-v1.0de.ulx */,
 				4F6B6503111E2B4C00BABD7F /* sh-v1.0e.ulx */,
+				4FB0691B119CC8C1003BABCA /* Quetzal Valid Files */,
+				4FB06919119CC8C1003BABCA /* Quetzal Invalid Files */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -375,7 +399,8 @@
 				4F05E9A7111E0CA400C90CB3 /* Resources */,
 				4F05E9A8111E0CA400C90CB3 /* Sources */,
 				4F05E9A9111E0CA400C90CB3 /* Frameworks */,
-				4F05E9AA111E0CA400C90CB3 /* ShellScript */,
+				4FB068CE119CC5FA003BABCA /* Copy Quetzal Files */,
+				4F05E9AA111E0CA400C90CB3 /* Run Unit Tests */,
 			);
 			buildRules = (
 			);
@@ -412,7 +437,8 @@
 				4F9DEF52111E287B00FDB6AD /* Resources */,
 				4F9DEF53111E287B00FDB6AD /* Sources */,
 				4F9DEF54111E287B00FDB6AD /* Frameworks */,
-				4F9DEF55111E287B00FDB6AD /* ShellScript */,
+				4FB068BD119CC56D003BABCA /* Copy Quetzal Files */,
+				4F9DEF55111E287B00FDB6AD /* Run Unit Tests */,
 			);
 			buildRules = (
 			);
@@ -443,8 +469,8 @@
 			targets = (
 				1D6058900D05DD3D006BFB54 /* fyrep-cocoatouch */,
 				4F9DEF56111E287B00FDB6AD /* LogicTests */,
-				4F05E9AB111E0CA400C90CB3 /* ApplicationTests */,
 				4F6B6525111E2FA100BABD7F /* fyrep-cocoatouchTesting */,
+				4F05E9AB111E0CA400C90CB3 /* ApplicationTests */,
 			);
 		};
 /* End PBXProject section */
@@ -493,13 +519,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4F05E9AA111E0CA400C90CB3 /* ShellScript */ = {
+		4F05E9AA111E0CA400C90CB3 /* Run Unit Tests */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Unit Tests";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,19 +534,48 @@
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4F9DEF55111E287B00FDB6AD /* ShellScript */ = {
+		4F9DEF55111E287B00FDB6AD /* Run Unit Tests */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Unit Tests";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 			showEnvVarsInLog = 0;
+		};
+		4FB068BD119CC56D003BABCA /* Copy Quetzal Files */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Quetzal Files";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FROM_DIRECTORY=\"$SRCROOT/../../shared/fyrevm-foundation/UnitTests/\"\nTO_DIRECTORY=\"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME/\"\n\ndelete_and_copy()\n{\n\tname=$1\n\n\tif [ -d \"$TO_DIRECTORY/$name\" ]; then\n\t\t/bin/rm -rf \"$TO_DIRECTORY/$name\"\n\t\tif [ $? != 0 ]; then\n\t\t\texit $?\n\t\tfi\n\tfi\n\n\tcp -r \"$FROM_DIRECTORY/$name\" \"$TO_DIRECTORY/$name\"\n\tif [ $? != 0 ]; then\n\t\texit $?\n\tfi\n}\n\ndelete_and_copy \"Quetzal Valid Files\"\ndelete_and_copy \"Quetzal Invalid Files\"";
+		};
+		4FB068CE119CC5FA003BABCA /* Copy Quetzal Files */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Quetzal Files";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FROM_DIRECTORY=\"$SRCROOT/../../shared/fyrevm-foundation/UnitTests/\"\nTO_DIRECTORY=\"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME/\"\n\ndelete_and_copy()\n{\n\tname=$1\n\n\tif [ -d \"$TO_DIRECTORY/$name\" ]; then\n\t\t/bin/rm -rf \"$TO_DIRECTORY/$name\"\n\t\tif [ $? != 0 ]; then\n\t\t\texit $?\n\t\tfi\n\tfi\n\n\tcp -r \"$FROM_DIRECTORY/$name\" \"$TO_DIRECTORY/$name\"\n\tif [ $? != 0 ]; then\n\t\texit $?\n\tfi\n}\n\ndelete_and_copy \"Quetzal Valid Files\"\ndelete_and_copy \"Quetzal Invalid Files\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -530,17 +586,19 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* fyrep_cocoatouchAppDelegate.m in Sources */,
-				4F3E15001114E4D100007CFC /* TFUlxImage.m in Sources */,
+				4F571F241140E3B500C490F4 /* TFArguments.m in Sources */,
 				4F44C2B1111BE776006B05D2 /* TFEngine.m in Sources */,
 				4FFE4BF0111F960800467156 /* TFEngine_Opcodes.m in Sources */,
-				4F50FB261130DF21006D0738 /* TFOpcode.m in Sources */,
-				4FB17B871139D43B009491D3 /* TFVeneer.m in Sources */,
-				4F571F241140E3B500C490F4 /* TFArguments.m in Sources */,
 				4F1E0D071142ED2E004BB393 /* TFEngine_Output.m in Sources */,
 				4F1E109F1143826F004BB393 /* TFHeapAllocator.m in Sources */,
 				4F10338711448241009006DE /* TFInterpreter.m in Sources */,
-				4FA24394114B6FAB008469AC /* TFStrNode.m in Sources */,
+				4F50FB261130DF21006D0738 /* TFOpcode.m in Sources */,
 				4F4D7F38114C45E000EA5308 /* TFOutputBuffer.m in Sources */,
+				4F90A0BA1198D2EC00307D72 /* TFOutputFilterTags.m in Sources */,
+				4F90A0BB1198D2EC00307D72 /* TFQuetzal.m in Sources */,
+				4FA24394114B6FAB008469AC /* TFStrNode.m in Sources */,
+				4F3E15001114E4D100007CFC /* TFUlxImage.m in Sources */,
+				4FB17B871139D43B009491D3 /* TFVeneer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,11 +606,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F05E9B7111E0DA600C90CB3 /* TestTFUlxImage.m in Sources */,
-				4F50FBCE113106EF006D0738 /* TestTFOpcode.m in Sources */,
+				4F1E10A9114382CB004BB393 /* TestTFArguments.m in Sources */,
 				4F50FCE4113115D9006D0738 /* TestTFEngine.m in Sources */,
 				4F1E10A8114382CA004BB393 /* TestTFHeapAllocator.m in Sources */,
-				4F1E10A9114382CB004BB393 /* TestTFArguments.m in Sources */,
+				4F50FBCE113106EF006D0738 /* TestTFOpcode.m in Sources */,
+				4FB06796119CB4A0003BABCA /* TestTFQuetzal.m in Sources */,
+				4F05E9B7111E0DA600C90CB3 /* TestTFUlxImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,17 +621,19 @@
 			files = (
 				4F6B6529111E2FA100BABD7F /* main.m in Sources */,
 				4F6B652A111E2FA100BABD7F /* fyrep_cocoatouchAppDelegate.m in Sources */,
-				4F6B652B111E2FA100BABD7F /* TFUlxImage.m in Sources */,
+				4F571F221140E3B500C490F4 /* TFArguments.m in Sources */,
 				4F6B652D111E2FA100BABD7F /* TFEngine.m in Sources */,
 				4FFE4BF1111F960800467156 /* TFEngine_Opcodes.m in Sources */,
-				4F50FB271130DF21006D0738 /* TFOpcode.m in Sources */,
-				4FB17B851139D43B009491D3 /* TFVeneer.m in Sources */,
-				4F571F221140E3B500C490F4 /* TFArguments.m in Sources */,
 				4F1E0D091142ED2E004BB393 /* TFEngine_Output.m in Sources */,
 				4F1E10A11143826F004BB393 /* TFHeapAllocator.m in Sources */,
 				4F10338911448241009006DE /* TFInterpreter.m in Sources */,
-				4FA24393114B6FAB008469AC /* TFStrNode.m in Sources */,
+				4F50FB271130DF21006D0738 /* TFOpcode.m in Sources */,
 				4F4D7F37114C45E000EA5308 /* TFOutputBuffer.m in Sources */,
+				4F90A0B81198D2EC00307D72 /* TFOutputFilterTags.m in Sources */,
+				4F90A0B91198D2EC00307D72 /* TFQuetzal.m in Sources */,
+				4FA24393114B6FAB008469AC /* TFStrNode.m in Sources */,
+				4F6B652B111E2FA100BABD7F /* TFUlxImage.m in Sources */,
+				4FB17B851139D43B009491D3 /* TFVeneer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,22 +641,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F6B64FB111E2B0300BABD7F /* TFUlxImage.m in Sources */,
-				4F6B64FD111E2B0300BABD7F /* TFEngine.m in Sources */,
-				4F6B64FE111E2B0300BABD7F /* TestTFUlxImage.m in Sources */,
-				4FFE4BEF111F960800467156 /* TFEngine_Opcodes.m in Sources */,
-				4F50FB251130DF21006D0738 /* TFOpcode.m in Sources */,
-				4F50FBC9113106B1006D0738 /* TestTFOpcode.m in Sources */,
-				4F50FCE2113115C3006D0738 /* TestTFEngine.m in Sources */,
-				4FB17B861139D43B009491D3 /* TFVeneer.m in Sources */,
 				4F571F231140E3B500C490F4 /* TFArguments.m in Sources */,
+				4F6B64FD111E2B0300BABD7F /* TFEngine.m in Sources */,
+				4FFE4BEF111F960800467156 /* TFEngine_Opcodes.m in Sources */,
 				4F1E0D081142ED2E004BB393 /* TFEngine_Output.m in Sources */,
-				4F1E108711438216004BB393 /* TestTFArguments.m in Sources */,
-				4F1E108F11438247004BB393 /* TestTFHeapAllocator.m in Sources */,
 				4F1E10A01143826F004BB393 /* TFHeapAllocator.m in Sources */,
 				4F10338811448241009006DE /* TFInterpreter.m in Sources */,
-				4FA24392114B6FAB008469AC /* TFStrNode.m in Sources */,
+				4F50FB251130DF21006D0738 /* TFOpcode.m in Sources */,
 				4F4D7F36114C45E000EA5308 /* TFOutputBuffer.m in Sources */,
+				4F90A0B61198D2EC00307D72 /* TFOutputFilterTags.m in Sources */,
+				4F90A0B71198D2EC00307D72 /* TFQuetzal.m in Sources */,
+				4FA24392114B6FAB008469AC /* TFStrNode.m in Sources */,
+				4F6B64FB111E2B0300BABD7F /* TFUlxImage.m in Sources */,
+				4FB17B861139D43B009491D3 /* TFVeneer.m in Sources */,
+				4F1E108711438216004BB393 /* TestTFArguments.m in Sources */,
+				4F50FCE2113115C3006D0738 /* TestTFEngine.m in Sources */,
+				4F1E108F11438247004BB393 /* TestTFHeapAllocator.m in Sources */,
+				4F50FBC9113106B1006D0738 /* TestTFOpcode.m in Sources */,
+				4FB06778119CB483003BABCA /* TestTFQuetzal.m in Sources */,
+				4F6B64FE111E2B0300BABD7F /* TestTFUlxImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

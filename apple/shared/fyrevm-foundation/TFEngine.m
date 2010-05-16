@@ -97,7 +97,7 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
 @synthesize printingDigit;
 
 - (BOOL)loadGameImageFromPath:(NSString *)path {
-    NSAssert(image == nil, @"loadGameImageFromPath: called when image has already been set to something!");
+    NSAssert1(image == nil, @"%@ called when image has already been set to something!", NSStringFromSelector(_cmd));
 
     BOOL result = NO;
     
@@ -831,7 +831,7 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
         // top-level function
         running = false;
     } else {
-        NSAssert2(sp >= fp, @"leaveFunction: called when sp %lu >= fp %lu", (unsigned long)sp, (unsigned long)fp);
+        NSAssert3(sp >= fp, @"%@ called when sp %lu >= fp %lu", NSStringFromSelector(_cmd), (unsigned long)sp, (unsigned long)fp);
         sp = fp;
         [self resumeFromCallStub:result];
     }
@@ -969,14 +969,15 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
     uint32_t low = 0, high = numStructs;
 
     while (low < high) {
-        uint32_t index = (low + high) / 2;
+        const uint32_t index = (low + high) / 2;
         int cmp = [self compareKeysWithQuery:key candidate:start + index * structSize + keyOffset keySize:keySize options:options];
         if (cmp == 0) {
             // found it
-            if ((options & TFSearchOptionsReturnIndex) == 0)
+            if ((options & TFSearchOptionsReturnIndex) == 0) {
                 result = start + index * structSize;
-            else
+            } else {
                 result = index;
+            }
             break;
         } else if (cmp < 0) {
             high = index;

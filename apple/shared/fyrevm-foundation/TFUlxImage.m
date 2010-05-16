@@ -217,7 +217,7 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
 #pragma mark -
 
 - (uint8_t)byteAtAddress:(uint32_t)address {
-    NSAssert(decryptedData != nil, @"byteAtAddress: called when decryptedData is nil!");
+    NSAssert1(decryptedData != nil, @"%@ called when decryptedData is nil!", NSStringFromSelector(_cmd));
 
     const void *memPtr = [decryptedData bytes]+address;
     
@@ -227,7 +227,7 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
 }
 
 - (uint16_t)shortAtAddress:(uint32_t)address {
-    NSAssert(decryptedData != nil, @"shortAtAddress: called when decryptedData is nil!");
+    NSAssert1(decryptedData != nil, @"%@ called when decryptedData is nil!", NSStringFromSelector(_cmd));
 
     const void *memPtr = [decryptedData bytes]+address;
     
@@ -237,7 +237,7 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
 }
 
 - (uint32_t)integerAtAddress:(uint32_t)address {
-    NSAssert(decryptedData != nil, @"intAtAddress: called when decryptedData is nil!");
+    NSAssert1(decryptedData != nil, @"%@ called when decryptedData is nil!", NSStringFromSelector(_cmd));
     
     const void *memPtr = [decryptedData bytes]+address;
     
@@ -254,7 +254,7 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
     \param address The address to write to.
  */
 - (void)setByte:(uint8_t)value atAddress:(uint32_t)address {
-    NSAssert(decryptedData != nil, @"intAtAddress: called when decryptedData is nil!");
+    NSAssert1(decryptedData != nil, @"%@ called when decryptedData is nil!", NSStringFromSelector(_cmd));
     if (address < self.RAMStart) {
 //        @throw [NSException exceptionWithName: reason:@"Writing into ROM" userInfo:nil);
     }
@@ -268,7 +268,7 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
     \param address The address to write to.
  */
 - (void)setShort:(uint16_t)value atAddress:(uint32_t)address {
-    NSAssert(decryptedData != nil, @"intAtAddress: called when decryptedData is nil!");
+    NSAssert1(decryptedData != nil, @"%@ called when decryptedData is nil!", NSStringFromSelector(_cmd));
     if (address < self.RAMStart) {
 //        @throw [NSException exceptionWithName: reason:@"Writing into ROM" userInfo:nil);
     }
@@ -283,7 +283,7 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
     \param address The address to write to.
  */
 - (void)setInteger:(uint32_t)value atAddress:(uint32_t)address {
-    NSAssert(decryptedData != nil, @"intAtAddress: called when decryptedData is nil!");
+    NSAssert1(decryptedData != nil, @"%@ called when decryptedData is nil!", NSStringFromSelector(_cmd));
     if (address < self.RAMStart) {
 //        @throw [NSException exceptionWithName: reason:@"Writing into ROM" userInfo:nil);
     }

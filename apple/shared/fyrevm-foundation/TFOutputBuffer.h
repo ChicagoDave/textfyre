@@ -43,7 +43,7 @@ typedef enum {
 @property BOOL filterEnabled;
 @property BOOL overrideFiltering;
 /*! The object controlling the set of strings that are used when output output filtering is enabled. */
-@property (readonly) TFOutputFilterTags *filtertags;
+@property (readonly) TFOutputFilterTags *filterTags;
 
 /*! Writes a string to the buffer for the currently selected output channel.
 

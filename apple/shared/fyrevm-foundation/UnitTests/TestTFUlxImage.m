@@ -17,6 +17,7 @@ typedef struct {
 
 static const GameInfo kGameInfos[] = {
     // Game currently used by ShadowStd solution via ShadowRelease
+    // TODO -- put this in filename in some way?
     { @"sh-v1.2e.ulx", 
       1730560 },
     { @"sh-v1.0de.ulx", 
@@ -40,9 +41,9 @@ static const size_t kGameInfoCount = sizeof(kGameInfos) / sizeof(GameInfo);
     BOOL loadedGame = [gameImage loadFromPath:gamePath];
     
     STAssertTrue(loadedGame, @"Unable to load game at path \"%@\". See console for details.", gamePath);
-    
-    STAssertEquals(gameImage.RAMStart, gameInfo.expectedRAMStart, @"In game with name \"%@\", RAMStart value was expected to be %lu, but instead is %lu", gameInfo.name, (unsigned long)gameInfo.expectedRAMStart, gameImage.RAMStart);
-    
+    if (loadedGame) {
+        STAssertEquals(gameImage.RAMStart, gameInfo.expectedRAMStart, @"In game with name \"%@\", RAMStart value was expected to be %lu, but instead is %lu", gameInfo.name, (unsigned long)gameInfo.expectedRAMStart, gameImage.RAMStart);
+    }
     [gameImage release];
 }
 
