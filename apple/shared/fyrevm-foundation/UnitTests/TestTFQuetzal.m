@@ -18,12 +18,11 @@ static NSString *temporaryFilesDirectory() {
 @implementation TestTFQuetzal
 
 - (void)testValidGameSessionFileWithPath:(NSString *)path {
-    // Test loading file without error.
+
+    // (1) Test loading file without error
     
     NSString *errorString = nil;
     TFQuetzalLoadError errorCode = TFQuetzalNoLoadError;
-    
-    NSString *filename = [path lastPathComponent];
     
     TFQuetzal *gameSessionFile = [TFQuetzal gameSessionWithContentsOfFile:path errorString:&errorString errorCode:&errorCode];
     
@@ -31,10 +30,13 @@ static NSString *temporaryFilesDirectory() {
     
     if (errorCode == TFQuetzalNoLoadError) {
         
+        NSString *filename = [path lastPathComponent];
         NSString *newFilePath = [temporaryFilesDirectory() stringByAppendingPathComponent:filename];
         
         NSError *error = nil;
         
+        // (2) Test saving file without error
+    
         [gameSessionFile writeToFile:newFilePath error:&error];
         STAssertNil(error, @"Couldn't save Quetzal saved-game session file at path \"%@\": %@", path, error);
         
@@ -45,6 +47,9 @@ static NSString *temporaryFilesDirectory() {
                 NSData *newFile = [NSData dataWithContentsOfFile:newFilePath options:0 error:&error];
                 STAssertNil(error, @"Couldn't load Quetzal saved-game session file at path \"%@\" into NSData: %@", newFilePath, error);
                 if (error == nil) {
+
+                    // (3) Do binary comparison of old and new files
+    
                     STAssertEquals([originalFile length], [newFile length], @"Original Quetzal saved-game session file at path \"%@\" has length %lu, but new Quetzal saved-game session file at path \"%@\" has different length %lu",
                                     path, (unsigned long)[originalFile length], 
                                     newFilePath, (unsigned long)[newFile length]);
@@ -57,9 +62,7 @@ static NSString *temporaryFilesDirectory() {
                                             (unsigned long)i,
                                             (int)originalChar, (int)newChar,
                                             path, newFilePath);
-                        
                             if (originalChar != newChar) {
-                                
                                 break;
                             }
                         }
@@ -70,7 +73,36 @@ static NSString *temporaryFilesDirectory() {
     }
 }
 - (void)testInvalidGameSessionFileWithPath:(NSString *)path {
-    // Test loading file, that we get error. (Test error?)
+    NSString *filename = [path lastPathComponent];
+    
+    STAssertTrue([filename hasPrefix:@"Error code "], @"File doesn't start with \"Error code \" at path \"%@\".", path);
+    if ([filename hasPrefix:@"Error code "]) {
+        NSUInteger i;
+        for (i = [@"Error code " length]; i < [filename length]; ++i) {
+            if ([[NSCharacterSet decimalDigitCharacterSet] characterIsMember:[filename characterAtIndex:i]] == NO) {
+                break;
+            }
+        }
+        NSString *numberString = [filename substringWithRange:NSMakeRange([@"Error code " length], i - [@"Error code " length])];
+        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+        NSNumber *number = [numberFormatter numberFromString:numberString];
+        [numberFormatter release];
+        STAssertNotNil(number, @"String \"%@\", part of filename %@, isn't a number!", numberString, filename);
+        if (number) {
+            STAssertTrue([number integerValue] != 0, @"String \"%@\", part of filename %@, is number 0, which means success, which isn't what we're testing for.", numberString, filename);
+            if ([number integerValue] != 0) {
+                NSString *errorString = nil;
+                TFQuetzalLoadError errorCode = TFQuetzalNoLoadError;
+                
+                TFQuetzal *gameSessionFile = [TFQuetzal gameSessionWithContentsOfFile:path errorString:&errorString errorCode:&errorCode];
+                
+                STAssertNil(gameSessionFile, @"File should have an error but does not, at path \"%@\".", path);
+                if (gameSessionFile == nil) {
+                    STAssertEquals((NSInteger)errorCode, [number integerValue], @"File should have error code %ld, but instead has error code %ld, with error string \"%@\", at path \"%@\".", (long)[number integerValue], (long)errorCode, errorString, path);
+                }
+            }
+        }
+    }
 }
 
 - (void)testGameSessionFiles {
@@ -115,6 +147,8 @@ static NSString *temporaryFilesDirectory() {
                             [self testValidGameSessionFileWithPath:path];
                         }
                     }
+                    
+                    [self testInvalidGameSessionFileWithPath:[filesDirectoryPath stringByAppendingPathComponent:@"Error code 1, Non-existent file.tfq"]];
 
                     for (NSString *filename in invalidFilenames) {
                         if ([filename hasSuffix:@".tfq"]) {
