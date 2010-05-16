@@ -1443,18 +1443,18 @@ typedef enum {
             TODO
             uint8_t[] bytes = new uint8_t[] { (uint8_t)[args argAtIndex:1] };
             char[] chars = System.Text.Encoding.GetEncoding(LATIN1_CODEPAGE).GetChars(bytes);
-            if (call == FyreCall.ToLower)
+            if (call == TFFyreCallToLower) {
                 chars[0] = char.ToLower(chars[0]];
-            else
+            } else {
                 chars[0] = char.ToUpper(chars[0]];
+            }
             bytes = System.Text.Encoding.GetEncoding(LATIN1_CODEPAGE).GetBytes(chars);
             [args argAtIndex:3] = bytes[0];
             */
             break;
         }
         case TFFyreCallChannel:
-            // TODO
-            //outputBuffer.Channel = (OutputChannel)[args argAtIndex:1];
+            [outputBuffer setChannel:(TFOutputChannel)[args argAtIndex:1]];
             break;
 
         case TFFyreCallEnableFilter:
