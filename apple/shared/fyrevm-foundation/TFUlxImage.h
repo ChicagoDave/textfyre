@@ -110,7 +110,7 @@
 
 /*! Calculates the checksum of the image.
 
-    \result The sum of the entire image, taken as an array of 32-bit words.
+    \return The sum of the entire image, taken as an array of 32-bit words.
  */
 - (uint32_t)checksum;
 
