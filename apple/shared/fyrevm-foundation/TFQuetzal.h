@@ -78,6 +78,26 @@ typedef enum {
  */
 - (BOOL)writeToFile:(NSString *)path error:(NSError **)error;
 
+/*! Compresses a block of memory by comparing it with the original version from the game file.
+
+    \param memory data containing changed memory to be compressed.
+    \param range location and length of changed memory within data.
+    \param originalMemory data containing original memory.
+    \param originalRange location and length of original memory within data.
+
+    \return the RLE-compressed set of differences between the original and changed memory blocks, prefixed with a 4-byte length of uncompressed changed memory.
+*/
++ (NSData *)compressMemory:(NSData *)memory range:(NSRange)range
+            originalMemory:(NSData *)originalMemory originalRange:(NSRange)originalRange;
+
+/*! Reconstitutes a changed block of memory by applying a compressed set of differences to the original block from the game file.
+
+    \param originalMemory the original block of memory.
+    \param delta the RLE-compressed set of differences, prefixed with a 4-byte length. This length may be larger than the original block, but not smaller.
+    \return the changed block of memory.The length of this array is specified at the beginning of delta.
+*/
++ (NSData *)decompressMemory:(NSData *)originalMemory delta:(NSData *)delta;
+
 #pragma mark Exposed for testing ONLY, DO NOT USE
 
 /*! \brief Loads a collection of chunks from a Quetzal file. See gameSessionWithContentsOfFile: for more details.

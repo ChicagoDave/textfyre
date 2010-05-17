@@ -127,6 +127,50 @@ static void appendIntToData(uint32_t integer, NSMutableData *data) {
     return [data writeToFile:path options:0 error:error];;
 }
 
++ (NSData *)compressMemory:(NSData *)memory range:(NSRange)range
+            originalMemory:(NSData *)originalMemory originalRange:(NSRange)originalRange {
+    NSAssert3(NSMaxRange(range) > [memory length], @"%@ called with range %@ but memory only of length %lu", 
+                NSStringFromSelector(_cmd), NSStringFromRange(range), (unsigned long)[memory length]);
+    NSAssert3(NSMaxRange(originalRange) > [originalMemory length], @"%@ called with originalRange %@ but originalMemory only of length %lu", 
+                NSStringFromSelector(_cmd), NSStringFromRange(originalRange), (unsigned long)[originalMemory length]);
+    NSAssert3([memory length] >= [originalMemory length], @"%@ called with changed/new memory block of length %lu, which is (but should not be) shorter than original memory block of length %lu",
+                NSStringFromSelector(_cmd), (unsigned long)[memory length], (unsigned long)[originalMemory length]);
+
+    NSMutableData *result = [NSMutableData data];
+    
+    appendIntToData((uint32_t)range.length, result);
+    
+    unsigned char bytes[2] = {0, 0};
+    
+    for (NSUInteger i = 0; i < originalRange.length; ++i) {
+        unsigned char b = (((const unsigned char *)[originalMemory bytes])[originalRange.location+i] ^ ((const unsigned char *)[memory bytes])[range.location+i]);
+        if (b == 0) {
+            NSUInteger runLength;
+            for (runLength = 1; i + runLength < originalRange.length; ++runLength) {
+                if (runLength == 256) {
+                    break;
+                }
+                if (((const unsigned char *)[originalMemory bytes])[originalRange.location + i + runLength] != ((const unsigned char *)[memory bytes])[range.location + i + runLength]) {
+                    break;
+                }
+            }
+            
+            bytes[1] = runLength - 1;
+
+            [result appendBytes:bytes length:2];
+            i += runLength - 1;
+        } else {
+            [result appendBytes:&b length:1];
+        }
+    }
+    
+    return result;
+}
+
++ (NSData *)decompressMemory:(NSData *)originalMemory delta:(NSData *)delta {
+    return nil;
+}
+
 #pragma mark Standard methods
 
 - (id)init {
