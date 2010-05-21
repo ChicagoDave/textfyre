@@ -304,7 +304,7 @@
 				4F05E9B3111E0D5500C90CB3 /* UnitTests */,
 			);
 			name = "TextfyreVM-Foundation";
-			path = "../../shared/TextfyreVM-Foundation";
+			path = "../../Shared/TextfyreVM-Foundation";
 			sourceTree = "<group>";
 		};
 		4F3E15C41114EF6000007CFC /* ApplicationTests */ = {
@@ -497,7 +497,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "FROM_DIRECTORY=\"$SRCROOT/../../shared/fyrevm-foundation/UnitTests/\"\nTO_DIRECTORY=\"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME/Contents/Resources\"\n\ndelete_and_copy()\n{\n\tname=$1\n\n\tif [ -d \"$TO_DIRECTORY/$name\" ]; then\n\t\t/bin/rm -rf \"$TO_DIRECTORY/$name\"\n\t\tif [ $? != 0 ]; then\n\t\t\texit $?\n\t\tfi\n\tfi\n\n\tcp -r \"$FROM_DIRECTORY/$name\" \"$TO_DIRECTORY/$name\"\n\tif [ $? != 0 ]; then\n\t\texit $?\n\tfi\n}\n\ndelete_and_copy \"Quetzal Valid Files\"\ndelete_and_copy \"Quetzal Invalid Files\"";
+			shellScript = "FROM_DIRECTORY=\"$SRCROOT/../../Shared/TextfyreVM-Foundation/UnitTests/\"\nTO_DIRECTORY=\"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME/Contents/Resources\"\n\ndelete_and_copy()\n{\n\tname=$1\n\n\tif [ -d \"$TO_DIRECTORY/$name\" ]; then\n\t\t/bin/rm -rf \"$TO_DIRECTORY/$name\"\n\t\tif [ $? != 0 ]; then\n\t\t\texit $?\n\t\tfi\n\tfi\n\n\tcp -r \"$FROM_DIRECTORY/$name\" \"$TO_DIRECTORY/$name\"\n\tif [ $? != 0 ]; then\n\t\texit $?\n\tfi\n}\n\ndelete_and_copy \"Quetzal Valid Files\"\ndelete_and_copy \"Quetzal Invalid Files\"";
 		};
 		4FB068CC119CC5C9003BABCA /* Copy Quetzal Files */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -511,7 +511,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "FROM_DIRECTORY=\"$SRCROOT/../../shared/fyrevm-foundation/UnitTests/\"\nTO_DIRECTORY=\"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME/Contents/Resources\"\n\ndelete_and_copy()\n{\n\tname=$1\n\n\tif [ -d \"$TO_DIRECTORY/$name\" ]; then\n\t\t/bin/rm -rf \"$TO_DIRECTORY/$name\"\n\t\tif [ $? != 0 ]; then\n\t\t\texit $?\n\t\tfi\n\tfi\n\n\tcp -r \"$FROM_DIRECTORY/$name\" \"$TO_DIRECTORY/$name\"\n\tif [ $? != 0 ]; then\n\t\texit $?\n\tfi\n}\n\ndelete_and_copy \"Quetzal Valid Files\"\ndelete_and_copy \"Quetzal Invalid Files\"";
+			shellScript = "FROM_DIRECTORY=\"$SRCROOT/../../Shared/TextfyreVM-Foundation/UnitTests/\"\nTO_DIRECTORY=\"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME/Contents/Resources\"\n\ndelete_and_copy()\n{\n\tname=$1\n\n\tif [ -d \"$TO_DIRECTORY/$name\" ]; then\n\t\t/bin/rm -rf \"$TO_DIRECTORY/$name\"\n\t\tif [ $? != 0 ]; then\n\t\t\texit $?\n\t\tfi\n\tfi\n\n\tcp -r \"$FROM_DIRECTORY/$name\" \"$TO_DIRECTORY/$name\"\n\tif [ $? != 0 ]; then\n\t\texit $?\n\tfi\n}\n\ndelete_and_copy \"Quetzal Valid Files\"\ndelete_and_copy \"Quetzal Invalid Files\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
