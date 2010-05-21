@@ -464,7 +464,7 @@
 			projectDirPath = "";
 			projectRoots = (
 				"",
-				../../shared,
+				../../Shared,
 			);
 			targets = (
 				1D6058900D05DD3D006BFB54 /* fyrep-cocoatouch */,

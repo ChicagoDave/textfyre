@@ -410,7 +410,7 @@
 			projectDirPath = "";
 			projectRoots = (
 				"",
-				../../shared,
+				../../Shared,
 			);
 			targets = (
 				8D1107260486CEB800E47090 /* fyrep-cocoa */,
