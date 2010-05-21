@@ -69,11 +69,12 @@ Part 2 - Actions
 
 Section 1 - Convert Telling and Answering to Asking
 
-Instead of telling someone about something:
-	try asking the noun about it;
+Replacable-action-name is an action name that varies. Replacable-action-name variable translates into I6 as "action".
 
-Instead of answering someone that something:
-	try asking the noun about it;
+First before telling: change the replacable-action-name to the asking it about action.
+First before answering: change the replacable-action-name to the asking it about action.
+
+[these actions are hard-coded into the inform parser, so using "Understand the command.... as something new." won't work. Changing the action produces better performance than re-trying a whole new action.]
 
 Section 2 - Talking to action (for use without Quips by Textfyre)
 
