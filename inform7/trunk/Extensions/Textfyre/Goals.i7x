@@ -16,7 +16,11 @@ The goal-scoring rules are an object-based rulebook.
 
 The goal-scoring rules have outcomes goal achieved (success), goal not yet achieved (failure - the default), and goal thwarted (failure).
 
+The goal eval toggle is a truth state that varies. 
+
 First scene changing rule (this is the goal assessment rule):
+	now the goal eval toggle is whether or not the goal eval toggle is false;
+	if goal eval toggle is true, make no decision; [performance enhancement; scene-changing called twice per turn, but no Every Turn will fulfill a goal. I think. ]
 	let the goals achieved this turn be a list of objects;
 	let the goals thwarted this turn be a list of objects;
 	repeat with G running through the current goals:
