@@ -52,40 +52,37 @@ Part 3 - Properties of directions
 Chapter 1 - Clockwise and Anticlockwise rotation of directions
 
 To decide what direction is clockwise of (dir - a direction):
-	if dir is:
-	 -- north: decide on northeast;
-	 -- northeast: decide on east;
-	 -- east: decide on southeast;
-	 -- southeast: decide on south;
-	 -- south: decide on southwest;
-	 -- southwest: decide on west;
-	 -- west: decide on northwest;
-	 -- northwest: decide on north;
-	 -- otherwise: decide on dir;
+	 if dir is north, decide on northeast;
+	 if dir is northeast, decide on east;
+	 if dir is east, decide on southeast;
+	 if dir is southeast, decide on south;
+	 if dir is south, decide on southwest;
+	 if dir is southwest, decide on west;
+	 if dir is west, decide on northwest;
+	 if dir is northwest, decide on north;
+	 decide on dir;
 
 To decide what direction is anticlockwise of (dir - a direction):
-	if dir is:
-	 -- north: decide on northwest;
-	 -- northeast: decide on north;
-	 -- east: decide on northeast;
-	 -- southeast: decide on east;
-	 -- south: decide on southeast;
-	 -- southwest: decide on south;
-	 -- west: decide on southwest;
-	 -- northwest: decide on west;
-	 -- otherwise: decide on dir;
+	 if dir is north, decide on northwest;
+	 if dir is northeast, decide on north;
+	 if dir is east, decide on northeast;
+	 if dir is southeast, decide on east;
+	 if dir is south, decide on southeast;
+	 if dir is southwest, decide on south;
+	 if dir is west, decide on southwest;
+	 if dir is northwest, decide on west;
+	 decide on dir;
 
 Chapter 2 - Horizontal mirroring of directions
 
 To decide what direction is (dir - a direction) in the mirror:
-	if dir is:
-	 -- northeast: decide on northwest;
-	 -- east: decide on west;
-	 -- southeast: decide on southwest;
-	 -- northwest: decide on northeast;
-	 -- west: decide on east;
-	 -- southwest: decide on southeast;
-	 -- otherwise: decide on dir;
+	 if dir is northeast, decide on northwest;
+	 if dir is east, decide on west;
+	 if dir is southeast, decide on southwest;
+	 if dir is northwest, decide on northeast;
+	 if dir is west, decide on east;
+	 if dir is southwest, decide on southeast;
+	 decide on dir;
 
 Chapter 3 - Planar and Vertical directions
 
@@ -255,6 +252,11 @@ The can't turn people rule is listed before the can't turn what's fixed in place
 The can't push people rule is listed before the can't push what's fixed in place rule in the check pushing rulebook.
 The can't pull people rule is listed before the can't pull what's fixed in place rule in the check pulling rulebook.
 
+Part 2 - deprecated 6E36
+
+To decide if (x - something) goes undescribed by source text: decide on whether or not the description of x is "".
+
+
 Part 2 - Printing descriptions activity
 
 Chapter 1 - Printing the description of something
@@ -269,21 +271,21 @@ This is the fancy examining rule:
 	carry out the printing the description activity with the noun;
 
 The examine undescribed things rule is not listed in any rulebook.
-The examine undescribed devices rule is not listed in any rulebook.
-The examine undescribed containers rule is not listed in any rulebook.
+The examine [undescribed] devices rule is not listed in any rulebook.
+The examine [undescribed] containers rule is not listed in any rulebook. [ 6E36 ]
 
 First before printing the description:
 	change the final-paragraph-break to false;
 
 Rule for printing the description of a container (called item): 
 	if the item goes undescribed by source text:
-		abide by the examine undescribed containers rule instead;
+		abide by the examine [undescribed] containers rule instead;
 	say description of item;
 	change the final-paragraph-break to true;
 
 Rule for printing the description of a device (called item): 
 	if the item goes undescribed by source text:
-		abide by the examine undescribed devices rule instead;
+		abide by the examine [undescribed] devices rule instead;
 	say description of item;
 	change the final-paragraph-break to true;
 
@@ -582,45 +584,45 @@ Rule for implicitly opening something (called the unopened item):
 	try silently opening the unopened item; 
 
 Rule for implicitly opening something locked (called the locked item):
-	consider the unlocking rules for the locked item;
-	if the rule succeeded:
-		let the chosen key be the result of the rule;
-		if the chosen key is not nothing:
-			say "(first unlocking [the locked item] with [the chosen key])[command clarification break]";
-			try silently unlocking the locked item with the chosen key;
-			if the locked item is unlocked and the locked item is closed:	
-				try silently opening the locked item;
-		otherwise:
-			say "(first opening [the locked item])[command clarification break]";
+[	consider the unlocking rules for the locked item;
+	if the rule succeeded:]
+	let the chosen key be the object produced by the unlocking rules for the locked item[result of the rule];
+	if the chosen key is something:
+		say "(first unlocking [the locked item] with [the chosen key])[command clarification break]";
+		try silently unlocking the locked item with the chosen key;
+		if the locked item is unlocked and the locked item is closed:	
 			try silently opening the locked item;
+	otherwise:
+		say "(first opening [the locked item])[command clarification break]";
+		try silently opening the locked item;
 
-Before going through a closed door (called the obstacle):
+Before going through a closed door (called the obstacle) (this is the textfyre standard implicit opening rule):  [no longer needed per 6E36?]
 	carry out the implicitly opening activity with the obstacle;
 	if [the obstacle is locked and] the obstacle is closed:
 		stop the action;
 
 Chapter 2 - Implicitly unlocking
 
-The unlocking rules are an object-based rulebook. The unlocking rules have default failure.
+The unlocking rules are an object based rulebook producing an object. The unlocking rules have default failure.
 
-An unlocking rule for something lockable (called l) (this is the matching key rule):
-	if the player carries something (called k) that fits l:
-		rule succeeds with result k;
+An unlocking rule for something lockable (called the lockbox) (this is the matching key rule):
+	if the player carries something (called the appropriate key) that fits the lockbox:
+		rule succeeds with result the appropriate key;
 	continue the activity;
 
 Last unlocking rule (this is the no matching key found rule):
-	rule succeeds;
+	rule fails. [6E36]
 
 Rule for supplying a missing second noun while unlocking something (called the locked item) with:
-	consider the unlocking rules for the locked item;
-	if the rule succeeded:
-		let the chosen key be the result of the rule;
-		if the chosen key is not nothing:
-			begin the clarifying the parser's choice activity with the chosen key;
-			if handling the clarifying the parser's choice activity with the chosen key:
-				say "(with [the chosen key])[command clarification break]";
-			end the clarifying the parser's choice activity with the chosen key;
-			change the second noun to the chosen key;
+[	consider the unlocking rules for the locked item;
+	if the rule succeeded:]  [6E36]
+	let the chosen key be the object produced by the unlocking rules for the locked item; [result of the rule;]
+	if the chosen key is something:
+		begin the clarifying the parser's choice activity with the chosen key;
+		if handling the clarifying the parser's choice activity with the chosen key:
+			say "(with [the chosen key])[command clarification break]";
+		end the clarifying the parser's choice activity with the chosen key;
+		change the second noun to the chosen key;
 
 Chapter 3 - Locking and unlocking
 
@@ -780,13 +782,15 @@ Part 1 - Doorways
 
 A doorway is a kind of door. A doorway is usually open, not openable, unlocked, not lockable, privately-named, scenery. The specification of a doorway is "A kind of door which can be referred to by its direction."
 
-Before printing the name of a doorway (called the portal):
-	let d be the direction of the portal from the location;
-	unless d is nothing:
-		say "[d] ";
+The printed name of doorway is usually "[directional for the item described]doorway".
 
-Rule for printing the name of a doorway:
-	say "doorway";
+[Before printing the name of a doorway (called the portal):]
+To say directional for (portal - a door):
+	let d be the direction of the portal from the location;
+	unless d is nothing, say "[d] ".
+
+[Rule for printing the name of a doorway:
+	say "doorway";]
 
 Understand "[something related by leading]" as a doorway.
 
