@@ -11,6 +11,35 @@
 @class TFEngine;
 @class TFArguments;
 
+typedef enum {
+    // routine addresses
+    TFVeneerSlotZ__Region = 1,
+    TFVeneerSlotCP__Tab = 2,
+    TFVeneerSlotOC__Cl = 3,
+    TFVeneerSlotRA__Pr = 4,
+    TFVeneerSlotRT__ChLDW = 5,
+    TFVeneerSlotUnsigned__Compare = 6,
+    TFVeneerSlotRL__Pr = 7,
+    TFVeneerSlotRV__Pr = 8,
+    TFVeneerSlotOP__Pr = 9,
+    TFVeneerSlotRT__ChSTW = 10,
+    TFVeneerSlotRT__ChLDB = 11,
+    TFVeneerSlotMeta__class = 12,
+
+    // object numbers and compiler constants
+    TFVeneerSlotString = 1001,
+    TFVeneerSlotRoutine = 1002,
+    TFVeneerSlotClass = 1003,
+    TFVeneerSlotObject = 1004,
+    TFVeneerSlotRT__Err = 1005,
+    TFVeneerSlotNUM_ATTR_BYTES = 1006,
+    TFVeneerSlotclasses_table = 1007,
+    TFVeneerSlotINDIV_PROP_START = 1008,
+    TFVeneerSlotcpv__start = 1009,
+    TFVeneerSlotofclass_err = 1010,
+    TFVeneerSlotreadprop_err = 1011,
+} TFVeneerSlot;
+
 /*! Provides hardcoded versions of some commonly used veneer routines (low-level functions that are automatically compiled into every Inform game).
 
     Inform games rely heavily on these routines, and substituting our C# versions for the Glulx versions in the story file can increase performance significantly.
@@ -54,33 +83,4 @@
 - (BOOL)interceptCallAtAddress:(uint32_t)address args:(TFArguments *)args result:(uint32_t *)result;
 
 @end
-
-typedef enum {
-    // routine addresses
-    TFVeneerSlotZ__Region = 1,
-    TFVeneerSlotCP__Tab = 2,
-    TFVeneerSlotOC__Cl = 3,
-    TFVeneerSlotRA__Pr = 4,
-    TFVeneerSlotRT__ChLDW = 5,
-    TFVeneerSlotUnsigned__Compare = 6,
-    TFVeneerSlotRL__Pr = 7,
-    TFVeneerSlotRV__Pr = 8,
-    TFVeneerSlotOP__Pr = 9,
-    TFVeneerSlotRT__ChSTW = 10,
-    TFVeneerSlotRT__ChLDB = 11,
-    TFVeneerSlotMeta__class = 12,
-
-    // object numbers and compiler constants
-    TFVeneerSlotString = 1001,
-    TFVeneerSlotRoutine = 1002,
-    TFVeneerSlotClass = 1003,
-    TFVeneerSlotObject = 1004,
-    TFVeneerSlotRT__Err = 1005,
-    TFVeneerSlotNUM_ATTR_BYTES = 1006,
-    TFVeneerSlotclasses_table = 1007,
-    TFVeneerSlotINDIV_PROP_START = 1008,
-    TFVeneerSlotcpv__start = 1009,
-    TFVeneerSlotofclass_err = 1010,
-    TFVeneerSlotreadprop_err = 1011,
-} TFVeneerSlot;
 

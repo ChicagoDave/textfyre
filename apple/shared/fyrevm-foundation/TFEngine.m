@@ -900,6 +900,218 @@ static const NSUInteger TFEngineLastMinorVersion = 1;
     return;
 }
 
+/*
+        private void InputLine(uint address, uint bufSize)
+        {
+            string input = null;
+
+            // we need at least 4 bytes to do anything useful
+            if (bufSize < 4)
+                return;
+
+            // can't do anything without this event handler
+            if (LineWanted == null)
+            {
+                image.WriteInt32(address, 0);
+                return;
+            }
+
+            LineWantedEventArgs lineArgs = new LineWantedEventArgs();
+           // CancelEventArgs waitArgs = new CancelEventArgs();
+
+            // ask the application to read a line
+            LineWanted(this, lineArgs);
+            input = lineArgs.Line;
+
+            if (input == null)
+            {
+                image.WriteInt32(address, 0);
+            }
+            else
+            {
+                byte[] bytes = null;
+                // write the length first
+                try {
+                    bytes = StringToLatin1(input);
+                } catch (Exception ex) {
+                    Console.Write(ex.Message);
+                }
+                image.WriteInt32(address, (uint)bytes.Length);
+                // followed by the character data, truncated to fit the buffer
+                uint max = Math.Min(bufSize, (uint)bytes.Length);
+                for (uint i = 0; i < max; i++)
+                    image.WriteByte(address + 4 + i, bytes[i]);
+            }
+        }
+
+        // quick 'n dirty translation, because Silverlight doesn't support ISO-8859-1 encoding
+        private static byte[] StringToLatin1(string str)
+        {
+            byte[] result = new byte[str.Length];
+
+            for (int i = 0; i < str.Length; i++)
+            {
+                ushort value = (ushort)str[i];
+                if (value > 255)
+                    result[i] = (byte)'?';
+                else
+                    result[i] = (byte)value;
+            }
+
+            return result;
+        }
+
+        private char InputChar()
+        {
+            // can't do anything without this event handler
+            if (KeyWanted == null)
+                return '\0';
+
+            KeyWantedEventArgs keyArgs = new KeyWantedEventArgs();
+            //CancelEventArgs waitArgs = new CancelEventArgs();
+
+            // ask the application to read a character
+            KeyWanted(this, keyArgs);
+            return keyArgs.Char;
+        }
+
+        private void SaveToStream(Stream stream, uint destType, uint destAddr)
+        {
+            Quetzal quetzal = new Quetzal();
+
+            // 'IFhd' identifies the first 128 bytes of the game file
+            quetzal["IFhd"] = image.GetOriginalIFHD();
+
+            // 'CMem' or 'UMem' are the compressed/uncompressed contents of RAM
+            byte[] origRam = image.GetOriginalRAM();
+            NSData *newRomRAM = [image decryptedData];
+            int ramSize = (int)(image.EndMem - image.RamStart);
+#if !SAVE_UNCOMPRESSED
+            quetzal["CMem"] = Quetzal.CompressMemory(
+                origRam, 0, origRam.Length,
+                newRomRam, (int)image.RamStart, ramSize);
+#else
+            byte[] umem = new byte[ramSize + 4];
+            BigEndian.WriteInt32(umem, 0, (uint)ramSize);
+            Array.Copy(newRomRam, (int)image.RamStart, umem, 4, ramSize);
+            quetzal["UMem"] = umem;
+#endif
+
+            // 'Stks' is the contents of the stack, with a stub on top
+            // identifying the destination of the save opcode.
+            PushCallStub(new CallStub(destType, destAddr, pc, fp));
+            byte[] trimmed = new byte[sp];
+            Array.Copy(stack, trimmed, (int)sp);
+            quetzal["Stks"] = trimmed;
+            PopCallStub();
+
+            // 'MAll' is the list of heap blocks
+            if (heap != null)
+                quetzal["MAll"] = heap.Save();
+
+            quetzal.WriteToStream(stream);
+        }
+
+        private void LoadFromStream(Stream stream)
+        {
+            Quetzal quetzal = Quetzal.FromStream(stream);
+
+            // make sure the save file matches the game file
+            byte[] ifhd1 = quetzal["IFhd"];
+            byte[] ifhd2 = image.GetOriginalIFHD();
+            if (ifhd1 == null || ifhd1.Length != ifhd2.Length)
+                throw new ArgumentException("Missing or invalid IFhd block");
+
+            for (int i = 0; i < ifhd1.Length; i++)
+                if (ifhd1[i] != ifhd2[i])
+                    throw new ArgumentException("Saved game doesn't match this story file");
+
+            // load the stack
+            byte[] newStack = quetzal["Stks"];
+            if (newStack == null)
+                throw new ArgumentException("Missing Stks block");
+
+            Array.Copy(newStack, stack, newStack.Length);
+            sp = (uint)newStack.Length;
+
+            // save the protected area of RAM
+            byte[] protectedRam = new byte[protectionLength];
+            image.ReadRAM(protectionStart, protectionLength, protectedRam);
+
+            // load the contents of RAM, preferring a compressed chunk
+            byte[] origRam = image.GetOriginalRAM();
+            byte[] delta = quetzal["CMem"];
+            if (delta != null)
+            {
+                byte[] newRam = Quetzal.DecompressMemory(origRam, delta);
+                image.SetRAM(newRam, false);
+            }
+            else
+            {
+                // look for an uncompressed chunk
+                byte[] newRam = quetzal["UMem"];
+                if (newRam == null)
+                    throw new ArgumentException("Missing CMem/UMem blocks");
+                else
+                    image.SetRAM(newRam, true);
+            }
+
+            // restore protected RAM
+            image.WriteRAM(protectionStart, protectedRam);
+
+            // pop a call stub to restore registers
+            CallStub stub = PopCallStub();
+            pc = stub.PC;
+            fp = stub.FramePtr;
+            frameLen = ReadFromStack(fp);
+            localsPos = ReadFromStack(fp + 4);
+            execMode = ExecutionMode.Code;
+
+            // restore the heap if available
+            if (quetzal.Contains("MAll"))
+            {
+                heap = new HeapAllocator(quetzal["MAll"], HandleHeapMemoryRequest);
+                if (heap.BlockCount == 0)
+                    heap = null;
+                else
+                    heap.MaxSize = maxHeapSize;
+            }
+
+            // give the original save opcode a result of -1 to show that it's been restored
+            PerformDelayedStore(stub.DestType, stub.DestAddr, 0xFFFFFFFF);
+        }
+
+        /// <summary>
+        /// Reloads the initial contents of memory (except the protected area)
+        /// and starts the game over from the top of the main function.
+        /// </summary>
+        private void Restart()
+        {
+            // save the protected area of RAM
+            byte[] protectedRam = new byte[protectionLength];
+            image.ReadRAM(protectionStart, protectionLength, protectedRam);
+
+            // reload memory, reinitialize registers and stacks
+            image.Revert();
+            Bootstrap();
+
+            // restore protected RAM
+            image.WriteRAM(protectionStart, protectedRam);
+            CacheDecodingTable();
+        }
+
+        /// <summary>
+        /// Terminates the interpreter loop, causing the <see cref="Run"/>
+        /// method to return.
+        /// </summary>
+        public void Stop()
+        {
+            running = false;
+        }
+
+    }
+*/
+
 #pragma mark -
 
 - (void)takeBranch:(uint32_t)target

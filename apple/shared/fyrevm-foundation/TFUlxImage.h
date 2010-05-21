@@ -114,6 +114,12 @@
  */
 - (uint32_t)checksum;
 
+/*! Gets the entire contents of memory.
+
+    \return Data containing all VM memory, ROM and RAM.
+*/
+- (NSData *)decryptedData;
+
 /*! Returns major version number from image header. */
 - (NSUInteger)majorVersion;
 /*! Returns minor version number from image header. 

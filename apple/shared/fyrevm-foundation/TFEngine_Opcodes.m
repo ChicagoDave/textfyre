@@ -1463,12 +1463,10 @@ typedef enum {
             //outputBuffer.FilterEnabled = allowFiltering & gameWantsFiltering;
             break;
 
-        case TFFyreCallSetVeneer:
-//            [args argAtIndex:3] = (uint32_t)(veneer.SetSlot([args argAtIndex:1], [args argAtIndex:2]) ? 1 : 0;
-
-        
-        
-            [args setArg:(uint32_t)[veneer setValue:[args argAtIndex:2] ? 1 : 0 forSlot:[args argAtIndex:1]] atIndex:3];
+        case TFFyreCallSetVeneer: {
+            // BOOL YES value is assumed to be 1, as it is in objc.h.
+            [args setArg:[veneer setValue:[args argAtIndex:2] forSlot:[args argAtIndex:1]] atIndex:3];
+        }
             break;
 
         // TODO
