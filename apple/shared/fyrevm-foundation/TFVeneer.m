@@ -26,18 +26,123 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
 
 #pragma mark Veneer methods
 
-// distinguishes between strings, routines, and objects
 - (uint32_t)Z__Region:(uint32_t)address;
 - (uint32_t)CP__Tab:(uint32_t)obj identifier:(uint32_t)identifier;
 - (uint32_t)parent:(uint32_t)obj;
 - (uint32_t)OC__Cl:(uint32_t)obj class:(uint32_t)class;
 - (uint32_t)RA__Pr:(uint32_t)obj identifier:(uint32_t)identifier;
 - (uint32_t)RL__Pr:(uint32_t)obj identifier:(uint32_t)identifier;
+- (uint32_t)RT__ChLDW:(uint32_t)array offset:(uint32_t)offset;
+- (uint32_t)RV__Pr:(uint32_t)obj identifier:(uint32_t)identifier;
+- (uint32_t)OP__Pr:(uint32_t)obj identifier:(uint32_t)identifier;
+- (uint32_t)RT__ChSTW:(uint32_t)array offset:(uint32_t)offset value:(uint32_t)value;
+- (uint32_t)RT__ChLDB:(uint32_t)array offset:(uint32_t)offset;
+- (uint32_t)meta__class:(uint32_t)obj;
 
 @end
 
 
 @implementation TFVeneer
+
+#pragma mark APIs
+
+- (id)initWithEngine:(TFEngine *)e {
+    self = [super init];
+    
+    engine = e;
+    
+    return self;
+}
+
+- (BOOL)setValue:(uint32_t)value forSlot:(uint32_t)slot {
+    switch ((TFVeneerSlot)slot) {
+        case TFVeneerSlotZ__Region: zregion_fn = value; break;
+        case TFVeneerSlotCP__Tab: cp_tab_fn = value; break;
+        case TFVeneerSlotOC__Cl: oc_cl_fn = value; break;
+        case TFVeneerSlotRA__Pr: ra_pr_fn = value; break;
+        case TFVeneerSlotRT__ChLDW: rt_chldw_fn = value; break;
+        case TFVeneerSlotUnsigned__Compare: unsigned_compare_fn = value; break;
+        case TFVeneerSlotRL__Pr: rl_pr_fn = value; break;
+        case TFVeneerSlotRV__Pr: rv_pr_fn = value; break;
+        case TFVeneerSlotOP__Pr: op_pr_fn = value; break;
+        case TFVeneerSlotRT__ChSTW: rt_chstw_fn = value; break;
+        case TFVeneerSlotRT__ChLDB: rt_chldb_fn = value; break;
+        case TFVeneerSlotMeta__class: meta_class_fn = value; break;
+
+        case TFVeneerSlotString: string_mc = value; break;
+        case TFVeneerSlotRoutine: routine_mc = value; break;
+        case TFVeneerSlotClass: class_mc = value; break;
+        case TFVeneerSlotObject: object_mc = value; break;
+        case TFVeneerSlotRT__Err: rt_err_fn = value; break;
+        case TFVeneerSlotNUM_ATTR_BYTES: num_attr_bytes = value; break;
+        case TFVeneerSlotclasses_table: classes_table = value; break;
+        case TFVeneerSlotINDIV_PROP_START: indiv_prop_start = value; break;
+        case TFVeneerSlotcpv__start: cpv_start = value; break;
+        case TFVeneerSlotofclass_err: ofclass_err = value; break;
+        case TFVeneerSlotreadprop_err: readprop_err = value; break;
+
+        default:
+            // not recognized
+            return NO;
+    }
+
+    // recognized
+    return YES;
+}
+
+- (BOOL)interceptCallAtAddress:(uint32_t)address args:(TFArguments *)args result:(uint32_t *)result {
+    NSAssert(result != NULL, @"result parameter of interceptCallAtAddress:args:result: cannot be NULL");
+
+    BOOL intercepted = NO;
+    (*result) = 0;
+    
+    if (address != 0) {
+        if (address == zregion_fn) {
+            (*result) = [self Z__Region:[args argAtIndex:0]];
+            intercepted = YES;
+        } else if (address == cp_tab_fn) {
+            (*result) = [self CP__Tab:[args argAtIndex:0] identifier:[args argAtIndex:1]];
+            intercepted = YES;
+        } else if (address == oc_cl_fn) {
+            (*result) = [self OC__Cl:[args argAtIndex:0] class:[args argAtIndex:1]];
+            intercepted = YES;
+        } else if (address == ra_pr_fn) {
+            (*result) = [self RA__Pr:[args argAtIndex:0] identifier:[args argAtIndex:1]];
+            intercepted = YES;
+        } else if (address == rt_chldw_fn) {
+            (*result) = [self RT__ChLDW:[args argAtIndex:0] offset:[args argAtIndex:1]];
+            intercepted = YES;
+        } else if (address == unsigned_compare_fn) {
+            if ([args argAtIndex:0] < [args argAtIndex:1]) {
+                (*result) = -1;
+            } else if ([args argAtIndex:0] < [args argAtIndex:1]) {
+                (*result) = 1;
+            }
+            // result is set to 0 at top of method, so equality case is also covered.
+            intercepted = YES;
+        } else if (address == rl_pr_fn) {
+            (*result) = [self RL__Pr:[args argAtIndex:0] identifier:[args argAtIndex:1]];
+            intercepted = YES;
+        } else if (address == rv_pr_fn) {
+            (*result) = [self RV__Pr:[args argAtIndex:0] identifier:[args argAtIndex:1]];
+            intercepted = YES;
+        } else if (address == op_pr_fn) {
+            (*result) = [self OP__Pr:[args argAtIndex:0] identifier:[args argAtIndex:1]];
+            intercepted = YES;
+        } else if (address == rt_chstw_fn) {
+            (*result) = [self RT__ChSTW:[args argAtIndex:0] offset:[args argAtIndex:1] value:[args argAtIndex:2]];
+            intercepted = YES;
+        } else if (address == rt_chldb_fn) {
+            (*result) = [self RT__ChLDB:[args argAtIndex:0] offset:[args argAtIndex:1]];
+            intercepted = YES;
+        } else if (address == meta_class_fn) {
+            (*result) = [self meta__class:[args argAtIndex:0]];
+            intercepted = YES;
+        }
+    }
+    
+    return intercepted;
+}
 
 #pragma mark Veneer methods
 
@@ -310,104 +415,4 @@ static const uint32_t PRINT_TO_ARRAY_PROP = 7;
     }
 }
 
-#pragma mark APIs
-
-- (id)initWithEngine:(TFEngine *)e {
-    self = [super init];
-    
-    engine = e;
-    
-    return self;
-}
-
-- (BOOL)setValue:(uint32_t)value forSlot:(uint32_t)slot {
-    switch ((TFVeneerSlot)slot) {
-        case TFVeneerSlotZ__Region: zregion_fn = value; break;
-        case TFVeneerSlotCP__Tab: cp_tab_fn = value; break;
-        case TFVeneerSlotOC__Cl: oc_cl_fn = value; break;
-        case TFVeneerSlotRA__Pr: ra_pr_fn = value; break;
-        case TFVeneerSlotRT__ChLDW: rt_chldw_fn = value; break;
-        case TFVeneerSlotUnsigned__Compare: unsigned_compare_fn = value; break;
-        case TFVeneerSlotRL__Pr: rl_pr_fn = value; break;
-        case TFVeneerSlotRV__Pr: rv_pr_fn = value; break;
-        case TFVeneerSlotOP__Pr: op_pr_fn = value; break;
-        case TFVeneerSlotRT__ChSTW: rt_chstw_fn = value; break;
-        case TFVeneerSlotRT__ChLDB: rt_chldb_fn = value; break;
-        case TFVeneerSlotMeta__class: meta_class_fn = value; break;
-
-        case TFVeneerSlotString: string_mc = value; break;
-        case TFVeneerSlotRoutine: routine_mc = value; break;
-        case TFVeneerSlotClass: class_mc = value; break;
-        case TFVeneerSlotObject: object_mc = value; break;
-        case TFVeneerSlotRT__Err: rt_err_fn = value; break;
-        case TFVeneerSlotNUM_ATTR_BYTES: num_attr_bytes = value; break;
-        case TFVeneerSlotclasses_table: classes_table = value; break;
-        case TFVeneerSlotINDIV_PROP_START: indiv_prop_start = value; break;
-        case TFVeneerSlotcpv__start: cpv_start = value; break;
-        case TFVeneerSlotofclass_err: ofclass_err = value; break;
-        case TFVeneerSlotreadprop_err: readprop_err = value; break;
-
-        default:
-            // not recognized
-            return NO;
-    }
-
-    // recognized
-    return YES;
-}
-
-- (BOOL)interceptCallAtAddress:(uint32_t)address args:(TFArguments *)args result:(uint32_t *)result {
-    NSAssert(result != NULL, @"result parameter of interceptCallAtAddress:args:result: cannot be NULL");
-
-    BOOL intercepted = NO;
-    (*result) = 0;
-    
-    if (address != 0) {
-        if (address == zregion_fn) {
-            (*result) = [self Z__Region:[args argAtIndex:0]];
-            intercepted = YES;
-        } else if (address == cp_tab_fn) {
-            (*result) = [self CP__Tab:[args argAtIndex:0] identifier:[args argAtIndex:1]];
-            intercepted = YES;
-        } else if (address == oc_cl_fn) {
-            (*result) = [self OC__Cl:[args argAtIndex:0] class:[args argAtIndex:1]];
-            intercepted = YES;
-        } else if (address == ra_pr_fn) {
-            (*result) = [self RA__Pr:[args argAtIndex:0] identifier:[args argAtIndex:1]];
-            intercepted = YES;
-        } else if (address == rt_chldw_fn) {
-            (*result) = [self RT__ChLDW:[args argAtIndex:0] offset:[args argAtIndex:1]];
-            intercepted = YES;
-        } else if (address == unsigned_compare_fn) {
-            if ([args argAtIndex:0] < [args argAtIndex:1]) {
-                (*result) = -1;
-            } else if ([args argAtIndex:0] < [args argAtIndex:1]) {
-                (*result) = 1;
-            }
-            // result is set to 0 at top of method, so equality case is also covered.
-            intercepted = YES;
-        } else if (address == rl_pr_fn) {
-            (*result) = [self RL__Pr:[args argAtIndex:0] identifier:[args argAtIndex:1]];
-            intercepted = YES;
-        } else if (address == rv_pr_fn) {
-            (*result) = [self RV__Pr:[args argAtIndex:0] identifier:[args argAtIndex:1]];
-            intercepted = YES;
-        } else if (address == op_pr_fn) {
-            (*result) = [self OP__Pr:[args argAtIndex:0] identifier:[args argAtIndex:1]];
-            intercepted = YES;
-        } else if (address == rt_chstw_fn) {
-            (*result) = [self RT__ChSTW:[args argAtIndex:0] offset:[args argAtIndex:1] value:[args argAtIndex:2]];
-            intercepted = YES;
-        } else if (address == rt_chldb_fn) {
-            (*result) = [self RT__ChLDB:[args argAtIndex:0] offset:[args argAtIndex:1]];
-            intercepted = YES;
-        } else if (address == meta_class_fn) {
-            (*result) = [self meta__class:[args argAtIndex:0]];
-            intercepted = YES;
-        }
-    }
-    
-    
-    return intercepted;
-}
 @end

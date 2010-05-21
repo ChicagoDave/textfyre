@@ -291,15 +291,36 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
     uint32_t bigEndianValue = NSSwapHostIntToBig(value);
     [decryptedData replaceBytesInRange:NSMakeRange(address, sizeof(value)) withBytes:&bigEndianValue length:sizeof(value)];
 }
-/*
-        /// <summary>
-        /// Gets the entire contents of memory.
-        /// </summary>
-        /// <returns>An array containing all VM memory, ROM and RAM.</returns>
-        public byte[] GetMemory() {
-            return memory;
-        }
 
+#pragma mark -
+
+- (uint32_t)checksum {
+    NSAssert1(decryptedData != nil, @"%@ called when decryptedData is nil!", NSStringFromSelector(_cmd));
+    
+    uint32_t result = 0;
+
+    const uint32_t end = [self integerAtAddress:TFGlulxHeaderExtensionStartOffset];
+
+    uint32_t sum = (uint32_t)(-[self integerAtAddress:TFGlulxHeaderChecksumOffset]);
+
+    if (end % 256 != 0) {
+        NSLog(@"Glulx 1.2 specification says ENDMEM % 256 == 0, but it instead is %lu", end % 256);
+    } else {
+        for (uint32_t i = 0; i < end; i += 4) {
+            sum += [self integerAtAddress:i];
+        }
+        
+        result = sum;
+    }
+
+    return result;
+}
+
+- (NSData *)decryptedData {
+    return decryptedData;
+}
+
+/*
         /// <summary>
         /// Sets the entire contents of RAM, changing the size if necessary.
         /// </summary>
@@ -382,30 +403,6 @@ static NSMutableData *decryptedDataForPath(NSString *path) {
     }
 }
 */
-
-#pragma mark -
-
-- (uint32_t)checksum {
-    NSAssert(decryptedData != nil, @"checksum called when decryptedData is nil!");
-    
-    uint32_t result = 0;
-
-    uint32_t end = [self integerAtAddress:TFGlulxHeaderExtensionStartOffset];
-
-    uint32_t sum = (uint32_t)(-[self integerAtAddress:TFGlulxHeaderChecksumOffset]);
-
-    if (end % 256 != 0) {
-        NSLog(@"Glulx 1.2 specification says ENDMEM % 256 == 0, but it instead is %lu", end % 256);
-    } else {
-        for (uint32_t i = 0; i < end; i += 4) {
-            sum += [self integerAtAddress:i];
-        }
-        
-        result = sum;
-    }
-
-    return result;
-}
 
 - (NSUInteger)majorVersion {
     NSAssert(decryptedData != nil, @"majorVersion called when decryptedData is nil!");
