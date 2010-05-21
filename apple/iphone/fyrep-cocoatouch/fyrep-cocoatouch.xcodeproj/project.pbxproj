@@ -244,7 +244,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				4F3E14FD1114E4D100007CFC /* fyrevm-foundation */,
+				4F3E14FD1114E4D100007CFC /* TextfyreVM-Foundation */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -313,7 +313,7 @@
 			path = ApplicationTests;
 			sourceTree = "<group>";
 		};
-		4F3E14FD1114E4D100007CFC /* fyrevm-foundation */ = {
+		4F3E14FD1114E4D100007CFC /* TextfyreVM-Foundation */ = {
 			isa = PBXGroup;
 			children = (
 				4FCCBE73111521A40001000B /* GlulxConstants.h */,
@@ -347,8 +347,8 @@
 				4FB17B841139D43B009491D3 /* TFVeneer.m */,
 				4F05E9B4111E0D8C00C90CB3 /* UnitTests */,
 			);
-			name = "fyrevm-foundation";
-			path = "../../shared/fyrevm-foundation";
+			name = "TextfyreVM-Foundation";
+			path = "../../shared/TextfyreVM-Foundation";
 			sourceTree = SOURCE_ROOT;
 		};
 		4F6B64FF111E2B2100BABD7F /* Resources */ = {
