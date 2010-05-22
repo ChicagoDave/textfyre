@@ -1,9 +1,9 @@
 //
 //  main.m
-//  fyrep-cocoatouch
+//  TextfyreApp-iPhone
 //
-//  Created by Andrew Pontious on 1/30/10.
-//  Copyright Apple 2010. All rights reserved.
+//  Copyright 2010 Textfyre, Inc. All rights reserved.
+//  Please read the accompanying COPYRIGHT file for licensing restrictions.
 //
 
 #import <UIKit/UIKit.h>

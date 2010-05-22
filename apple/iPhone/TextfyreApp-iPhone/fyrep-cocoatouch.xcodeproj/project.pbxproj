@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D3623260D0F684500981E51 /* fyrep_cocoatouchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* fyrep_cocoatouchAppDelegate.m */; };
-		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D3623260D0F684500981E51 /* TextfyreApp-iPhoneAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* TextfyreApp-iPhoneAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* TextfyreApp-iPhone main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* TextfyreApp-iPhone main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		28AD733F0D9D9553002E5188 /* TextfyreApp-iPhone MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* TextfyreApp-iPhone MainWindow.xib */; };
 		4F05E9B7111E0DA600C90CB3 /* TestTFUlxImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F05E9B6111E0DA600C90CB3 /* TestTFUlxImage.m */; };
 		4F10338711448241009006DE /* TFInterpreter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F10338611448241009006DE /* TFInterpreter.m */; };
 		4F10338811448241009006DE /* TFInterpreter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F10338611448241009006DE /* TFInterpreter.m */; };
@@ -58,9 +58,9 @@
 		4F6B6507111E2B4C00BABD7F /* sh-v1.2e.ulx in Resources */ = {isa = PBXBuildFile; fileRef = 4F6B6501111E2B4C00BABD7F /* sh-v1.2e.ulx */; };
 		4F6B6508111E2B4C00BABD7F /* sh-v1.0de.ulx in Resources */ = {isa = PBXBuildFile; fileRef = 4F6B6502111E2B4C00BABD7F /* sh-v1.0de.ulx */; };
 		4F6B6509111E2B4C00BABD7F /* sh-v1.0e.ulx in Resources */ = {isa = PBXBuildFile; fileRef = 4F6B6503111E2B4C00BABD7F /* sh-v1.0e.ulx */; };
-		4F6B6527111E2FA100BABD7F /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
-		4F6B6529111E2FA100BABD7F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		4F6B652A111E2FA100BABD7F /* fyrep_cocoatouchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* fyrep_cocoatouchAppDelegate.m */; };
+		4F6B6527111E2FA100BABD7F /* TextfyreApp-iPhone MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* TextfyreApp-iPhone MainWindow.xib */; };
+		4F6B6529111E2FA100BABD7F /* TextfyreApp-iPhone main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* TextfyreApp-iPhone main.m */; };
+		4F6B652A111E2FA100BABD7F /* TextfyreApp-iPhoneAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* TextfyreApp-iPhoneAppDelegate.m */; };
 		4F6B652B111E2FA100BABD7F /* TFUlxImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E14FF1114E4D100007CFC /* TFUlxImage.m */; };
 		4F6B652D111E2FA100BABD7F /* TFEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F44C2B0111BE776006B05D2 /* TFEngine.m */; };
 		4F6B652F111E2FA100BABD7F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -103,27 +103,20 @@
 			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
 			remoteInfo = "fyrep-cocoatouch";
 		};
-		4FFE4C51111F9D6900467156 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4F9DEF56111E287B00FDB6AD;
-			remoteInfo = LogicTests;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D3623240D0F684500981E51 /* fyrep_cocoatouchAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fyrep_cocoatouchAppDelegate.h; sourceTree = "<group>"; };
-		1D3623250D0F684500981E51 /* fyrep_cocoatouchAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fyrep_cocoatouchAppDelegate.m; sourceTree = "<group>"; };
+		1D3623240D0F684500981E51 /* TextfyreApp-iPhoneAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TextfyreApp-iPhoneAppDelegate.h"; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* TextfyreApp-iPhoneAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TextfyreApp-iPhoneAppDelegate.m"; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* fyrep-cocoatouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fyrep-cocoatouch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		32CA4F630368D1EE00C91783 /* fyrep_cocoatouch_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fyrep_cocoatouch_Prefix.pch; sourceTree = "<group>"; };
+		28AD733E0D9D9553002E5188 /* TextfyreApp-iPhone MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "TextfyreApp-iPhone MainWindow.xib"; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* TextfyreApp-iPhone main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TextfyreApp-iPhone main.m"; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* TextfyreApp-iPhone_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TextfyreApp-iPhone_Prefix.pch"; sourceTree = "<group>"; };
 		4F05E9AC111E0CA400C90CB3 /* ApplicationTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ApplicationTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F05E9AD111E0CA400C90CB3 /* ApplicationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ApplicationTests-Info.plist"; sourceTree = "<group>"; };
+		4F05E9AD111E0CA400C90CB3 /* TextfyreApp-iPhone-ApplicationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TextfyreApp-iPhone-ApplicationTests-Info.plist"; sourceTree = "<group>"; };
 		4F05E9B5111E0DA600C90CB3 /* TestTFUlxImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTFUlxImage.h; sourceTree = "<group>"; };
 		4F05E9B6111E0DA600C90CB3 /* TestTFUlxImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTFUlxImage.m; sourceTree = "<group>"; };
 		4F10338511448241009006DE /* TFInterpreter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFInterpreter.h; sourceTree = "<group>"; };
@@ -162,7 +155,7 @@
 		4F90A0B41198D2EC00307D72 /* TFQuetzal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFQuetzal.h; sourceTree = "<group>"; };
 		4F90A0B51198D2EC00307D72 /* TFQuetzal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFQuetzal.m; sourceTree = "<group>"; };
 		4F9DEF57111E287B00FDB6AD /* LogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F9DEF58111E287B00FDB6AD /* LogicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LogicTests-Info.plist"; sourceTree = "<group>"; };
+		4F9DEF58111E287B00FDB6AD /* TextfyreApp-iPhone-LogicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TextfyreApp-iPhone-LogicTests-Info.plist"; sourceTree = "<group>"; };
 		4FA24390114B6FAB008469AC /* TFStrNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFStrNode.h; sourceTree = "<group>"; };
 		4FA24391114B6FAB008469AC /* TFStrNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFStrNode.m; sourceTree = "<group>"; };
 		4FB06776119CB483003BABCA /* TestTFQuetzal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTFQuetzal.h; sourceTree = "<group>"; };
@@ -174,7 +167,7 @@
 		4FCCBE73111521A40001000B /* GlulxConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlulxConstants.h; sourceTree = "<group>"; };
 		4FFE4BED111F960800467156 /* TFEngine_Opcodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFEngine_Opcodes.h; sourceTree = "<group>"; };
 		4FFE4BEE111F960800467156 /* TFEngine_Opcodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFEngine_Opcodes.m; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* fyrep_cocoatouch-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fyrep_cocoatouch-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* TextfyreApp-iPhone-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TextfyreApp-iPhone-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,8 +217,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1D3623240D0F684500981E51 /* fyrep_cocoatouchAppDelegate.h */,
-				1D3623250D0F684500981E51 /* fyrep_cocoatouchAppDelegate.m */,
+				1D3623240D0F684500981E51 /* TextfyreApp-iPhoneAppDelegate.h */,
+				1D3623250D0F684500981E51 /* TextfyreApp-iPhoneAppDelegate.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -259,8 +252,8 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				32CA4F630368D1EE00C91783 /* fyrep_cocoatouch_Prefix.pch */,
-				29B97316FDCFA39411CA2CEA /* main.m */,
+				32CA4F630368D1EE00C91783 /* TextfyreApp-iPhone_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* TextfyreApp-iPhone main.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -268,8 +261,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
-				8D1107310486CEB800E47090 /* fyrep_cocoatouch-Info.plist */,
+				28AD733E0D9D9553002E5188 /* TextfyreApp-iPhone MainWindow.xib */,
+				8D1107310486CEB800E47090 /* TextfyreApp-iPhone-Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -308,7 +301,7 @@
 		4F05E9B9111E0DB600C90CB3 /* ApplicationTests */ = {
 			isa = PBXGroup;
 			children = (
-				4F05E9AD111E0CA400C90CB3 /* ApplicationTests-Info.plist */,
+				4F05E9AD111E0CA400C90CB3 /* TextfyreApp-iPhone-ApplicationTests-Info.plist */,
 			);
 			path = ApplicationTests;
 			sourceTree = "<group>";
@@ -366,7 +359,7 @@
 		4F9DEF5E111E289000FDB6AD /* LogicTests */ = {
 			isa = PBXGroup;
 			children = (
-				4F9DEF58111E287B00FDB6AD /* LogicTests-Info.plist */,
+				4F9DEF58111E287B00FDB6AD /* TextfyreApp-iPhone-LogicTests-Info.plist */,
 			);
 			path = LogicTests;
 			sourceTree = "<group>";
@@ -385,7 +378,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4FFE4C52111F9D6900467156 /* PBXTargetDependency */,
 			);
 			name = "fyrep-cocoatouch";
 			productName = "fyrep-cocoatouch";
@@ -480,7 +472,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				28AD733F0D9D9553002E5188 /* TextfyreApp-iPhone MainWindow.xib in Resources */,
 				4F50FA5E1130915B006D0738 /* Opcodes.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,7 +491,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F6B6527111E2FA100BABD7F /* MainWindow.xib in Resources */,
+				4F6B6527111E2FA100BABD7F /* TextfyreApp-iPhone MainWindow.xib in Resources */,
 				4F6B65B5111E300800BABD7F /* ApplicationTests.octest in Resources */,
 				4F50FA5F1130915B006D0738 /* Opcodes.plist in Resources */,
 			);
@@ -584,8 +576,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				1D3623260D0F684500981E51 /* fyrep_cocoatouchAppDelegate.m in Sources */,
+				1D60589B0D05DD56006BFB54 /* TextfyreApp-iPhone main.m in Sources */,
+				1D3623260D0F684500981E51 /* TextfyreApp-iPhoneAppDelegate.m in Sources */,
 				4F571F241140E3B500C490F4 /* TFArguments.m in Sources */,
 				4F44C2B1111BE776006B05D2 /* TFEngine.m in Sources */,
 				4FFE4BF0111F960800467156 /* TFEngine_Opcodes.m in Sources */,
@@ -619,8 +611,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F6B6529111E2FA100BABD7F /* main.m in Sources */,
-				4F6B652A111E2FA100BABD7F /* fyrep_cocoatouchAppDelegate.m in Sources */,
+				4F6B6529111E2FA100BABD7F /* TextfyreApp-iPhone main.m in Sources */,
+				4F6B652A111E2FA100BABD7F /* TextfyreApp-iPhoneAppDelegate.m in Sources */,
 				4F571F221140E3B500C490F4 /* TFArguments.m in Sources */,
 				4F6B652D111E2FA100BABD7F /* TFEngine.m in Sources */,
 				4FFE4BF1111F960800467156 /* TFEngine_Opcodes.m in Sources */,
@@ -676,11 +668,6 @@
 			target = 1D6058900D05DD3D006BFB54 /* fyrep-cocoatouch */;
 			targetProxy = 4FDFB002111E8BCE00284945 /* PBXContainerItemProxy */;
 		};
-		4FFE4C52111F9D6900467156 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4F9DEF56111E287B00FDB6AD /* LogicTests */;
-			targetProxy = 4FFE4C51111F9D6900467156 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -692,9 +679,9 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = fyrep_cocoatouch_Prefix.pch;
+				GCC_PREFIX_HEADER = "TextfyreApp-iPhone_Prefix.pch";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INFOPLIST_FILE = "fyrep_cocoatouch-Info.plist";
+				INFOPLIST_FILE = "TextfyreApp-iPhone-Info.plist";
 				PRODUCT_NAME = "fyrep-cocoatouch";
 			};
 			name = Debug;
@@ -730,8 +717,8 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
-				INFOPLIST_FILE = "ApplicationTests/ApplicationTests-Info.plist";
+				GCC_PREFIX_HEADER = "TextfyreApp-iPhone_Prefix.pch";
+				INFOPLIST_FILE = "ApplicationTests/TextfyreApp-iPhone-ApplicationTests-Info.plist";
 				PREBINDING = NO;
 				PRODUCT_NAME = ApplicationTests;
 				WRAPPER_EXTENSION = octest;
@@ -765,9 +752,9 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = fyrep_cocoatouch_Prefix.pch;
+				GCC_PREFIX_HEADER = "TextfyreApp-iPhone_Prefix.pch";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INFOPLIST_FILE = "fyrep_cocoatouch-Info.plist";
+				INFOPLIST_FILE = "TextfyreApp-iPhone-Info.plist";
 				PRODUCT_NAME = "fyrep-cocoatouchTesting";
 			};
 			name = Debug;
@@ -804,8 +791,8 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
-				INFOPLIST_FILE = "LogicTests/LogicTests-Info.plist";
+				GCC_PREFIX_HEADER = "TextfyreApp-iPhone_Prefix.pch";
+				INFOPLIST_FILE = "LogicTests/TextfyreApp-iPhone-LogicTests-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				PREBINDING = NO;
 				PRODUCT_NAME = LogicTests;

@@ -1,12 +1,12 @@
 //
-//  fyrep_cocoatouchAppDelegate.m
-//  fyrep-cocoatouch
+//  TextfyreApp-iPhoneAppDelegate.m
+//  TextfyreApp-iPhone
 //
 //  Copyright 2010 Textfyre, Inc. All rights reserved.
 //  Please read the accompanying COPYRIGHT file for licensing restrictions.
 //
 
-#import "fyrep_cocoatouchAppDelegate.h"
+#import "TextfyreApp-iPhoneAppDelegate.h"
 
 @implementation fyrep_cocoatouchAppDelegate
 
