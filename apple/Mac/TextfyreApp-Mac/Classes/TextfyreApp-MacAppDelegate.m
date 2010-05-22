@@ -1,12 +1,12 @@
 //
-//  fyrep_cocoaAppDelegate.m
-//  fyrep-cocoa
+//  TextfyreApp-MacAppDelegate.m
+//  TextfyreApp-Mac
 //
 //  Copyright 2010 Textfyre, Inc. All rights reserved.
 //  Please read the accompanying COPYRIGHT file for licensing restrictions.
 //
 
-#import "fyrep_cocoaAppDelegate.h"
+#import "TextfyreApp-MacAppDelegate.h"
 
 #import "TFInterpreter.h"
 

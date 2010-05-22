@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
-		256AC3DA0F4B6AC300CF3369 /* fyrep_cocoaAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* fyrep_cocoaAppDelegate.m */; };
+		1DDD58160DA1D0A300B32029 /* TextfyreApp-Mac MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* TextfyreApp-Mac MainMenu.xib */; };
+		256AC3DA0F4B6AC300CF3369 /* TextfyreApp-MacAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* TextfyreApp-MacAppDelegate.m */; };
 		4F02BA74111BE8F70054F477 /* TFEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F02BA73111BE8F70054F477 /* TFEngine.m */; };
 		4F04E7EF113F8D76002D029A /* TFArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F04E7EE113F8D76002D029A /* TFArguments.m */; };
 		4F04E7F0113F8D76002D029A /* TFArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F04E7EE113F8D76002D029A /* TFArguments.m */; };
@@ -60,7 +60,7 @@
 		4FFE4C1B111F966A00467156 /* TFEngine_Opcodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE4C1A111F966A00467156 /* TFEngine_Opcodes.m */; };
 		4FFE4C1C111F966A00467156 /* TFEngine_Opcodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE4C1A111F966A00467156 /* TFEngine_Opcodes.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
-		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D11072D0486CEB800E47090 /* TextfyreApp-Mac main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* TextfyreApp-Mac main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,13 +75,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = "English.lproj/TextfyreApp-Mac-InfoPlist.strings"; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		256AC3D80F4B6AC300CF3369 /* fyrep_cocoaAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fyrep_cocoaAppDelegate.h; sourceTree = "<group>"; };
-		256AC3D90F4B6AC300CF3369 /* fyrep_cocoaAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fyrep_cocoaAppDelegate.m; sourceTree = "<group>"; };
-		256AC3F00F4B6AF500CF3369 /* fyrep_cocoa_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fyrep_cocoa_Prefix.pch; sourceTree = "<group>"; };
-		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = "English.lproj/TextfyreApp-Mac MainMenu.xib"; sourceTree = "<group>"; };
+		256AC3D80F4B6AC300CF3369 /* TextfyreApp-MacAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TextfyreApp-MacAppDelegate.h"; sourceTree = "<group>"; };
+		256AC3D90F4B6AC300CF3369 /* TextfyreApp-MacAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TextfyreApp-MacAppDelegate.m"; sourceTree = "<group>"; };
+		256AC3F00F4B6AF500CF3369 /* TextfyreApp-Mac_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TextfyreApp-Mac_Prefix.pch"; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* TextfyreApp-Mac main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TextfyreApp-Mac main.m"; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		4F02BA72111BE8F70054F477 /* TFEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFEngine.h; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 		4F3E14B21114C8C000007CFC /* TFUlxImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFUlxImage.m; sourceTree = "<group>"; };
 		4F3E153D1114E9B500007CFC /* GlulxConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlulxConstants.h; sourceTree = "<group>"; };
 		4F3E157C1114EE6A00007CFC /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F3E157D1114EE6A00007CFC /* ApplicationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ApplicationTests-Info.plist"; sourceTree = "<group>"; };
+		4F3E157D1114EE6A00007CFC /* TextfyreApp-Mac-ApplicationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TextfyreApp-Mac-ApplicationTests-Info.plist"; sourceTree = "<group>"; };
 		4F3E15A31114EEE000007CFC /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		4F3E15CC1114F04200007CFC /* TestTFUlxImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTFUlxImage.h; sourceTree = "<group>"; };
 		4F3E15CD1114F04200007CFC /* TestTFUlxImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTFUlxImage.m; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 		4F50FCB3113113B1006D0738 /* TestTFEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTFEngine.h; sourceTree = "<group>"; };
 		4F50FCB4113113B1006D0738 /* TestTFEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTFEngine.m; sourceTree = "<group>"; };
 		4F6B64B3111E2A2600BABD7F /* LogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F6B64B4111E2A2600BABD7F /* LogicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LogicTests-Info.plist"; sourceTree = "<group>"; };
+		4F6B64B4111E2A2600BABD7F /* TextfyreApp-Mac-LogicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TextfyreApp-Mac-LogicTests-Info.plist"; sourceTree = "<group>"; };
 		4F8FD6241115864C00024CED /* sh-v1.0de.ulx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "sh-v1.0de.ulx"; path = "../../../winforms/Shadow/ShadowClient/ShadowClient/GameFiles/sh-v1.0de.ulx"; sourceTree = SOURCE_ROOT; };
 		4F90A0A31198D2A600307D72 /* TFQuetzal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFQuetzal.h; sourceTree = "<group>"; };
 		4F90A0A41198D2A600307D72 /* TFQuetzal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFQuetzal.m; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 		4FF344521195FBD900A61F76 /* TFOutputFilterTags.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFOutputFilterTags.m; sourceTree = "<group>"; };
 		4FFE4C19111F966A00467156 /* TFEngine_Opcodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFEngine_Opcodes.h; sourceTree = "<group>"; };
 		4FFE4C1A111F966A00467156 /* TFEngine_Opcodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFEngine_Opcodes.m; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* fyrep_cocoa-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fyrep_cocoa-Info.plist"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* TextfyreApp-Mac-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TextfyreApp-Mac-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* fyrep-cocoa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fyrep-cocoa.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -172,8 +172,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				256AC3D80F4B6AC300CF3369 /* fyrep_cocoaAppDelegate.h */,
-				256AC3D90F4B6AC300CF3369 /* fyrep_cocoaAppDelegate.m */,
+				256AC3D80F4B6AC300CF3369 /* TextfyreApp-MacAppDelegate.h */,
+				256AC3D90F4B6AC300CF3369 /* TextfyreApp-MacAppDelegate.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -224,8 +224,8 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				256AC3F00F4B6AF500CF3369 /* fyrep_cocoa_Prefix.pch */,
-				29B97316FDCFA39411CA2CEA /* main.m */,
+				256AC3F00F4B6AF500CF3369 /* TextfyreApp-Mac_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* TextfyreApp-Mac main.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -233,9 +233,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107310486CEB800E47090 /* fyrep_cocoa-Info.plist */,
+				8D1107310486CEB800E47090 /* TextfyreApp-Mac-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
-				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
+				1DDD58140DA1D0A300B32029 /* TextfyreApp-Mac MainMenu.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -310,7 +310,7 @@
 		4F3E15C41114EF6000007CFC /* ApplicationTests */ = {
 			isa = PBXGroup;
 			children = (
-				4F3E157D1114EE6A00007CFC /* ApplicationTests-Info.plist */,
+				4F3E157D1114EE6A00007CFC /* TextfyreApp-Mac-ApplicationTests-Info.plist */,
 			);
 			path = ApplicationTests;
 			sourceTree = "<group>";
@@ -318,7 +318,7 @@
 		4F6B64C3111E2A5B00BABD7F /* LogicTests */ = {
 			isa = PBXGroup;
 			children = (
-				4F6B64B4111E2A2600BABD7F /* LogicTests-Info.plist */,
+				4F6B64B4111E2A2600BABD7F /* TextfyreApp-Mac-LogicTests-Info.plist */,
 			);
 			path = LogicTests;
 			sourceTree = "<group>";
@@ -447,7 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
-				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
+				1DDD58160DA1D0A300B32029 /* TextfyreApp-Mac MainMenu.xib in Resources */,
 				4F50FADA1130ADF8006D0738 /* Opcodes.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -559,8 +559,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				256AC3DA0F4B6AC300CF3369 /* fyrep_cocoaAppDelegate.m in Sources */,
+				8D11072D0486CEB800E47090 /* TextfyreApp-Mac main.m in Sources */,
+				256AC3DA0F4B6AC300CF3369 /* TextfyreApp-MacAppDelegate.m in Sources */,
 				4F04E7F0113F8D76002D029A /* TFArguments.m in Sources */,
 				4F02BA74111BE8F70054F477 /* TFEngine.m in Sources */,
 				4FFE4C1B111F966A00467156 /* TFEngine_Opcodes.m in Sources */,
@@ -596,12 +596,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		1DDD58140DA1D0A300B32029 /* MainMenu.xib */ = {
+		1DDD58140DA1D0A300B32029 /* TextfyreApp-Mac MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				1DDD58150DA1D0A300B32029 /* English */,
 			);
-			name = MainMenu.xib;
+			name = "TextfyreApp-Mac MainMenu.xib";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -619,7 +619,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "ApplicationTests/ApplicationTests-Info.plist";
+				INFOPLIST_FILE = "ApplicationTests/TextfyreApp-Mac-ApplicationTests-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				PREBINDING = NO;
 				PRODUCT_NAME = UnitTests;
@@ -661,8 +661,8 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "LogicTests/LogicTests-Info.plist";
+				GCC_PREFIX_HEADER = "TextfyreApp-Mac_Prefix.pch";
+				INFOPLIST_FILE = "LogicTests/TextfyreApp-Mac-LogicTests-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				PREBINDING = NO;
 				PRODUCT_NAME = LogicTests;
@@ -701,8 +701,8 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = fyrep_cocoa_Prefix.pch;
-				INFOPLIST_FILE = "fyrep_cocoa-Info.plist";
+				GCC_PREFIX_HEADER = "TextfyreApp-Mac_Prefix.pch";
+				INFOPLIST_FILE = "TextfyreApp-Mac-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = "fyrep-cocoa";
 			};

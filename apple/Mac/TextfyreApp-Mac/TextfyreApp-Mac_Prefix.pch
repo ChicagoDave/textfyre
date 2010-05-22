@@ -1,0 +1,7 @@
+//
+// Prefix header for Mac applications
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
