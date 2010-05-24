@@ -209,13 +209,7 @@
 		29B97314FDCFA39411CA2CEA /* fyrep-cocoa */ = {
 			isa = PBXGroup;
 			children = (
-				4F3E14AD1114C80100007CFC /* TextfyreVM-Foundation */,
-				080E96DDFE201D6D7F000001 /* Classes */,
-				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				29B97317FDCFA39411CA2CEA /* Resources */,
-				4F6B64C3111E2A5B00BABD7F /* LogicTests */,
-				4F3E15C41114EF6000007CFC /* ApplicationTests */,
-				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				4FBEEB5B11AA573600B0EC4D /* Platforms */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
 			name = "fyrep-cocoa";
@@ -247,6 +241,7 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			path = "../../Games/The Shadow in the Cathedral";
 			sourceTree = "<group>";
 		};
 		4F05E9B3111E0D5500C90CB3 /* UnitTests */ = {
@@ -303,8 +298,7 @@
 				4FB17B891139D471009491D3 /* TFVeneer.m */,
 				4F05E9B3111E0D5500C90CB3 /* UnitTests */,
 			);
-			name = "TextfyreVM-Foundation";
-			path = "../../Shared/TextfyreVM-Foundation";
+			path = "TextfyreVM-Foundation";
 			sourceTree = "<group>";
 		};
 		4F3E15C41114EF6000007CFC /* ApplicationTests */ = {
@@ -333,6 +327,45 @@
 				4FB0691F119CC924003BABCA /* Quetzal Invalid Files */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		4FBEEB5B11AA573600B0EC4D /* Platforms */ = {
+			isa = PBXGroup;
+			children = (
+				4FBEEB5C11AA573C00B0EC4D /* Mac */,
+				4FBEEB5E11AA578000B0EC4D /* Shared */,
+			);
+			name = Platforms;
+			path = ../../Platforms;
+			sourceTree = "<group>";
+		};
+		4FBEEB5C11AA573C00B0EC4D /* Mac */ = {
+			isa = PBXGroup;
+			children = (
+				4FBEEB5D11AA575E00B0EC4D /* TextfyreApp-Mac */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+			);
+			path = Mac;
+			sourceTree = "<group>";
+		};
+		4FBEEB5D11AA575E00B0EC4D /* TextfyreApp-Mac */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				4F6B64C3111E2A5B00BABD7F /* LogicTests */,
+				4F3E15C41114EF6000007CFC /* ApplicationTests */,
+			);
+			path = "TextfyreApp-Mac";
+			sourceTree = "<group>";
+		};
+		4FBEEB5E11AA578000B0EC4D /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				4F3E14AD1114C80100007CFC /* TextfyreVM-Foundation */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,10 +441,7 @@
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* fyrep-cocoa */;
 			projectDirPath = "";
-			projectRoots = (
-				"",
-				../../Shared,
-			);
+			projectRoot = ../..;
 			targets = (
 				8D1107260486CEB800E47090 /* The Shadow in the Cathedral */,
 				4F6B64B2111E2A2600BABD7F /* LogicTests */,
@@ -497,7 +527,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "FROM_DIRECTORY=\"$SRCROOT/../../Shared/TextfyreVM-Foundation/UnitTests/\"\nTO_DIRECTORY=\"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME/Contents/Resources\"\n\ndelete_and_copy()\n{\n\tname=$1\n\n\tif [ -d \"$TO_DIRECTORY/$name\" ]; then\n\t\t/bin/rm -rf \"$TO_DIRECTORY/$name\"\n\t\tif [ $? != 0 ]; then\n\t\t\texit $?\n\t\tfi\n\tfi\n\n\tcp -r \"$FROM_DIRECTORY/$name\" \"$TO_DIRECTORY/$name\"\n\tif [ $? != 0 ]; then\n\t\texit $?\n\tfi\n}\n\ndelete_and_copy \"Quetzal Valid Files\"\ndelete_and_copy \"Quetzal Invalid Files\"";
+			shellScript = "FROM_DIRECTORY=\"$SRCROOT/../../Platforms/Shared/TextfyreVM-Foundation/UnitTests/\"\nTO_DIRECTORY=\"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME/Contents/Resources\"\n\ndelete_and_copy()\n{\n\tname=$1\n\n\tif [ -d \"$TO_DIRECTORY/$name\" ]; then\n\t\t/bin/rm -rf \"$TO_DIRECTORY/$name\"\n\t\tif [ $? != 0 ]; then\n\t\t\texit $?\n\t\tfi\n\tfi\n\n\tcp -r \"$FROM_DIRECTORY/$name\" \"$TO_DIRECTORY/$name\"\n\tif [ $? != 0 ]; then\n\t\texit $?\n\tfi\n}\n\ndelete_and_copy \"Quetzal Valid Files\"\ndelete_and_copy \"Quetzal Invalid Files\"";
+			showEnvVarsInLog = 0;
 		};
 		4FB068CC119CC5C9003BABCA /* Copy Quetzal Files */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -511,7 +542,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "FROM_DIRECTORY=\"$SRCROOT/../../Shared/TextfyreVM-Foundation/UnitTests/\"\nTO_DIRECTORY=\"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME/Contents/Resources\"\n\ndelete_and_copy()\n{\n\tname=$1\n\n\tif [ -d \"$TO_DIRECTORY/$name\" ]; then\n\t\t/bin/rm -rf \"$TO_DIRECTORY/$name\"\n\t\tif [ $? != 0 ]; then\n\t\t\texit $?\n\t\tfi\n\tfi\n\n\tcp -r \"$FROM_DIRECTORY/$name\" \"$TO_DIRECTORY/$name\"\n\tif [ $? != 0 ]; then\n\t\texit $?\n\tfi\n}\n\ndelete_and_copy \"Quetzal Valid Files\"\ndelete_and_copy \"Quetzal Invalid Files\"";
+			shellScript = "FROM_DIRECTORY=\"$SRCROOT/../../Platforms/Shared/TextfyreVM-Foundation/UnitTests/\"\nTO_DIRECTORY=\"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME/Contents/Resources\"\n\ndelete_and_copy()\n{\n\tname=$1\n\n\tif [ -d \"$TO_DIRECTORY/$name\" ]; then\n\t\t/bin/rm -rf \"$TO_DIRECTORY/$name\"\n\t\tif [ $? != 0 ]; then\n\t\t\texit $?\n\t\tfi\n\tfi\n\n\tcp -r \"$FROM_DIRECTORY/$name\" \"$TO_DIRECTORY/$name\"\n\tif [ $? != 0 ]; then\n\t\texit $?\n\tfi\n}\n\ndelete_and_copy \"Quetzal Valid Files\"\ndelete_and_copy \"Quetzal Invalid Files\"";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -619,7 +651,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "ApplicationTests/TextfyreApp-Mac-ApplicationTests-Info.plist";
+				INFOPLIST_FILE = "../../Platforms/Mac/TextfyreApp-Mac/ApplicationTests/TextfyreApp-Mac-ApplicationTests-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				PREBINDING = NO;
 				PRODUCT_NAME = UnitTests;
@@ -661,8 +693,8 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TextfyreApp-Mac_Prefix.pch";
-				INFOPLIST_FILE = "LogicTests/TextfyreApp-Mac-LogicTests-Info.plist";
+				GCC_PREFIX_HEADER = "../../Platforms/Mac/TextfyreApp-Mac/TextfyreApp-Mac_Prefix.pch";
+				INFOPLIST_FILE = "../../Platforms/Mac/TextfyreApp-Mac/LogicTests/TextfyreApp-Mac-LogicTests-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				PREBINDING = NO;
 				PRODUCT_NAME = LogicTests;
@@ -701,8 +733,8 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TextfyreApp-Mac_Prefix.pch";
-				INFOPLIST_FILE = "TextfyreApp-Mac-Info.plist";
+				GCC_PREFIX_HEADER = "../../Platforms/Mac/TextfyreApp-Mac/TextfyreApp-Mac_Prefix.pch";
+				INFOPLIST_FILE = "../../Platforms/Mac/TextfyreApp-Mac/TextfyreApp-Mac-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = "The Shadow in the Cathedral";
 			};
