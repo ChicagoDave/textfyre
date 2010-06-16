@@ -861,7 +861,7 @@ Volume 2A (for use without Custom Library Messages by David Fisher)
 
 Chapter 1 - Parser Errors
 
-Rule for printing a parser error when the parser error is noun did not make sense in that context:
+Rule for printing a parser error when the latest parser error is noun did not make sense in that context error:
 	say "I can't see any such thing." instead;
 
 Volume 2B (for use with Custom Library Messages by David Fisher)

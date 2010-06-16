@@ -207,7 +207,7 @@ Rule for displaying the menu:
 	change the menu option currently being displayed to 1;
 	repeat with X running through the current conversation begin;
 		carry out the printing the menu text activity with X;
-		increment the menu option currently being displayed by 1;
+		increase the menu option currently being displayed by 1;
 	end repeat;
 
 Section 3 - Menu option display (For use with FyreVM Support by Textfyre)
@@ -265,7 +265,7 @@ Part 6 - Fixing misleading parser errors
 To TF_QUIP_fix_parser:
 	(- etype = STUCK_PE; -)
 
-Before printing a parser error when the parser error is didn't understand that number:
+Before printing a parser error when the latest parser error is didn't understand that number error:
 	TF_QUIP_fix_parser;
 
 Part 7 - Toggling topic numbers
@@ -290,15 +290,22 @@ Report hiding topic numbers:
 
 Part X - Debugging - Not for release
 
-After printing the name of an unfired quip:
+After printing the name of an unfired quip (this is the unfired quip status for-debug-only rule):
 	say " (unfired)"
 
-After printing the name of an fired quip:
+After printing the name of an fired quip (this is the fired quip status for-debug-only rule):
 	say " *FIRED*"
 
-After printing the name of a room while constructing the status line:
+After printing the name of a room while constructing the status line (this is the current listener in statusline for-debug-only rule):
 	if the current conversationalist is not the player:
 		say " (talking to [the current conversationalist])";
+
+To fire (t - a quip):
+	bug "Directly fired a quip via 'fire [printed name of t]' rather than 'start conversation with (someone) on [printed name of t]'.";
+	carry out the firing activity with t.   [ when we   fire <quip>    then any menu attached to it will never appear. Nor will the conversationalist be displayed in fancier UIs, I imagine. ]
+
+Understand "quip [any quip]" as a mistake ("[yourself quips the noun]").
+
 
 Quips ends here.
 
