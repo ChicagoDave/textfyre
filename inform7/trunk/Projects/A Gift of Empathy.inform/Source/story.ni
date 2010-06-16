@@ -4068,9 +4068,9 @@ This is the coordinate-updating rule:
 	let XX be the x part of the coordinate of the Maelstrom;
 	let YY be the y part of the coordinate of the Maelstrom;
 	if the noun is:
-		-- north: increment YY by 1;
+		-- north: increase YY by 1;
 		-- south: decrease YY by 1;
-		-- west: increment XX by 1;
+		-- west: increase XX by 1;
 		-- east: decrease XX by 1;
 	change the coordinate of the Maelstrom to the coordinate with x part XX y part YY;
 
@@ -5768,7 +5768,7 @@ The Poisoned Mind ends when Aidan has the sword.
 
 Book 10 - Breakfast of Champions
 
-Breakfast of Champions is a chapter-length scene. Breakfast of Champions begins when the Poisoned Mind ends. The entire game ends when Breakfast of Champions ends.
+Breakfast of Champions is a chapter-length scene. Breakfast of Champions begins when the Poisoned Mind ends. [The entire game ends when Breakfast of Champions ends.]
 
 section 2 - scene begin
 
