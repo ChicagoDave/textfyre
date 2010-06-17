@@ -221,7 +221,7 @@ Section 1 - Glulx segment
 Include (-
 Global is_fyrevm = 0;
 
-[ VM_Initialise res;
+[ VM_PreInitialise res;
     @gestalt 4 20 is_fyrevm; ! Test if this interpreter has FyreVM channels
     if (is_fyrevm) {
         ! If so, we can skip all the Glk business
@@ -239,6 +239,19 @@ Global is_fyrevm = 0;
 
     ! Set the VM's I/O system to be Glk.
     @setiosys 2 0;
+]; 
+
+[ VM_Initialise res;
+    @gestalt 4 20 is_fyrevm; ! Test if this interpreter has FyreVM channels
+    if (is_fyrevm) {
+        ! If so, we can skip all the Glk business
+        unicode_gestalt_ok = true;
+        @setiosys 20 0;
+        return;
+    }
+
+    @gestalt 4 2 res; ! Test if this interpreter has Glk...
+    if (res == 0) quit; ! ...without which there would be nothing we could do
 
     ! First, we must go through all the Glk objects that exist, and see
     ! if we created any of them. One might think this strange, since the
@@ -1283,8 +1296,7 @@ Include (-
 
 Chapter 3 - Standard Rules replacements
 
-To say bold type -- running on
-	(documented at ph_types):
+To say bold type -- running on:
 	(- if (is_fyrevm) FyreCall(FY_SETSTYLE, FYS_BOLD); else style bold; -).
 To say italic type -- running on:
 	(- if (is_fyrevm) FyreCall(FY_SETSTYLE, FYS_ITALIC); else style underline; -).
