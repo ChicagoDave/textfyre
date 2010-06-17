@@ -7,6 +7,8 @@ Include (- Constant DEBUG; -) after "Definitions.i6t".
 [  Change Log
 
 When	Who	What
+16-Jun-2010		D Cornelson	Fixed VM_PreInitialise and the Document at bug. Now named V2 since
+                                                        I have the standard named extension for V3 and Zifmia.
 16-May-2010 	R. Newcomb  	walkthroughs to end of game done. Chapter 1 4/20; 
 29-Apr-2010 	R. Newcomb  	Inform 7 build 6E36
 23-Apr-2010 	R. Newcomb  	refactor code:  replace all (or combine) Instead, Before, After, Every Turn, and Procedural rules with Check (etc.) equivalents; replace Print Desc. Of, Locale, Paragraph About, Check Examining rules with properties; rewrite how Goals extension works for O(n) running time rather than O(n-squared); 
@@ -38,7 +40,7 @@ Volume 1 - Map & Code
 Use no scoring, American dialect and full-length room descriptions.
 The story creation year is 2010.
 
-Include FyreVM Support by Textfyre.
+Include FyreVM Support V2 by Textfyre.
 Include Punctuation Removal by Emily Short.
 Include Basic Screen Effects by Emily Short.
 

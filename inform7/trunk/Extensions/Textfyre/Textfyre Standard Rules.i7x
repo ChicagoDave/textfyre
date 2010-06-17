@@ -871,7 +871,7 @@ Volume 2B (for use with Custom Library Messages by David Fisher)
 Volume 3A (for use without FyreVM Support by Textfyre)
 
 To output chapter heading (header - text):
-	say "[bold type][header] [roman type][paragraph break]";
+	say "[line break][bold type][header] [roman type][paragraph break]";
 
 To select theme (theme - text):
 	do nothing;
@@ -886,12 +886,13 @@ To output chapter heading (header - text):
 	otherwise:
 		say "[bold type][header] [roman type][paragraph break]";
 
+[
 To select theme (theme - text):
 	if FyreVM is present:
 		select the theme channel;
 		say theme;
 		select the main channel;
-
+]
 Textfyre Standard Rules ends here.
 
 ---- DOCUMENTATION ----
