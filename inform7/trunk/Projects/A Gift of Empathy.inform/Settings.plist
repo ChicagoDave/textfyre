@@ -6,6 +6,8 @@
 	<dict>
 		<key>IFSettingNaturalInform</key>
 		<true/>
+		<key>IFSettingNobbleRng</key>
+		<false/>
 	</dict>
 	<key>IFLibrarySettings</key>
 	<dict>
@@ -15,7 +17,7 @@
 	<key>IFOutputSettings</key>
 	<dict>
 		<key>IFSettingCreateBlorb</key>
-		<true/>
+		<false/>
 		<key>IFSettingZCodeVersion</key>
 		<integer>256</integer>
 	</dict>

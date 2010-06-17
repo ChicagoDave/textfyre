@@ -2,15 +2,15 @@
 
 ! Identification
 
-project folder "C:\Users\David\Documents\Inform\Projects\The Shadow In The Cathedral.inform"
+project folder "D:\My Documents\Inform\Projects\The Shadow In The Cathedral.inform"
 
 ! Blorb instructions
 
 storyfile leafname "The Shadow In The Cathedral.gblorb"
-storyfile "C:\Users\David\Documents\Inform\Projects\The Shadow In The Cathedral.inform\Build\output.ulx" include
-ifiction "C:\Users\David\Documents\Inform\Projects\The Shadow In The Cathedral.inform\Metadata.iFiction" include
-cover "C:\Program Files\Inform 7 5Z\Inform7\Extensions\Reserved\DefaultCover.jpg"
-picture 1 "C:\Program Files\Inform 7 5Z\Inform7\Extensions\Reserved\DefaultCover.jpg"
+storyfile "D:\My Documents\Inform\Projects\The Shadow In The Cathedral.inform\Build\output.ulx" include
+ifiction "D:\My Documents\Inform\Projects\The Shadow In The Cathedral.inform\Metadata.iFiction" include
+cover "C:\Program Files (x86)\Inform 7 5Z71\Inform7\Extensions\Reserved\DefaultCover.jpg"
+picture 1 "C:\Program Files (x86)\Inform 7 5Z71\Inform7\Extensions\Reserved\DefaultCover.jpg"
 
 ! Placeholder variables
 

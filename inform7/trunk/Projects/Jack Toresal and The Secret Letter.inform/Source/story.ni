@@ -11951,11 +11951,13 @@ Section 3A - Scenery (Chair)
 
 The blackwood chair is a supporter, scenery, in the War Room. The description is "It's made from the same blackwood as the table, and it's very sturdy." Understand "furniture", "black", "wood", "blackwood", "wooden", "sturdy" as the blackwood chair.
 
-Some rough ropes are [off-stage now] scenery[, in the War Room]. The description is "Those ropes are tight enough to keep anyone from moving very much." Understand "rope", "bonds", "bondage", "binding", "bond", "tight", "your", "my" as the rough ropes.
+[
+Some rough ropes are [off-stage now] scenery[, in the War Room]. The description is "Those ropes are tight enough to keep anyone from moving very much." Understand "rope", "bonds", "bondage", "binding", "bond", "tight", "your", "my" as the rough ropes.]
 
+[
 Rule for printing the room description heading details of the blackwood chair when the player is tied up:
 	say "(tied to a chair)";
-
+]
 [Rule for printing the name of the rough ropes while clarifying the parser's choice
 	say "ropes binding you to the chair";]
 
@@ -11963,9 +11965,9 @@ Rule for printing the room description heading details of the blackwood chair wh
 	it is likely;]
 
 [Rule for clarifying the parser's choice of the rough ropes:
-	do nothing;]
+	do nothing;
 
-Definition: a person (called p) is tied up: no.[ if p is the player and the location is the War Room and the rough ropes are on-stage.]
+Definition: a person (called p) is tied up: no.[ if p is the player and the location is the War Room and the rough ropes are on-stage.
 
 Instead of freeing the player when the player is tied up:
 	try cutting the rough ropes with the plain dagger instead;
@@ -11975,7 +11977,7 @@ Instead of cutting the rough ropes:
 
 Instead of pulling, pushing, or untying the knotted ropes when Pieter is caught: [this previously applied to the player]
 	say "The ropes are too tight for you to just pull them off of him, although you might be able to cut them.";
-
+]]
 Section 4 - Scenery (Door)
 
 The heavy iron reinforced door is a door. It is east of the War Room. It is closed, locked, openable, and scenery. The description is "The door is [if closed]locked tight. You'll never get out that way[otherwise]open, but blocked by fighting mercenaries and soldiers[end if]."
@@ -12016,7 +12018,7 @@ Instead of talking to someone during Confronting the Baron:
 Instead of doing something when the dagger is physically involved and the Skirmish has not happened during Confronting the Baron:
 	say "Fossville's eyes are on you constantly. He'd see you if you made a move for your dagger.";
 
-Instead of taking off the plain dagger while the player is tied up:
+Instead of taking off the plain dagger when the Skirmish has not happened during Confronting the Baron:
 	say "You might [i]just[r] be able to reach your dagger if you stretched your fingers... but there's no way to do it without the Baron seeing you.";
 
 Instead of doing something when the Skirmish has not happened and when the action is physical during Confronting the Baron : say "[one of]Before you can move, the Baron makes a gesture, and you hear the creak of leather as the mercenaries loosen their blades in their sheaths. 'Ah, ah... no funny moves, now,' warns the Baron.[or]You hear the hiss of steel sliding out of its sheath, and suddenly someone is pushing the pointy end of a sword into your back. 'One more false move, and I'll have my men run you through,' says the Baron flatly.[or]Not wishing to be stabbed, you decide to remain still for the moment.[stopping]" 
@@ -12078,22 +12080,20 @@ The fighting is scenery. The description is "The battle rages everywhere, in the
 Before going a direction in the War Room during the Skirmish:
 	say "The hallway is filled with men fighting, Bobby's reinforcements against the Baron's mercenaries. Both sides are so intent on hacking each other to pieces, you'd never get through. [if Pieter is caught]Besides, you can't leave Pieter tied up![end if]" instead;
 
-Instead of attacking Baron Fossville when the player is not tied up during the Skirmish:
-	if the player carries the plain dagger:
-		try attacking Baron Fossville with the plain dagger instead;
-	continue the action;
+Instead of attacking Baron Fossville when the Skirmish has not happened during Confronting the Baron:
+	say "Seeing the Baron in this light brings up all of the emotions from the last few days. The chase in Grubber's, Bobby's kidnapping and hanging, finding out about your parents. Gripped with unbridled rage, you throw yourself at the Baron.[line break][line break]The Baron easily pushes you back into the chair and laughs." instead;
 	
 Instead of throwing the plain dagger at Baron Fossville, try attacking Baron Fossville with the plain dagger.
 Instead of throwing the plain dagger at someone (called the target), say "[The target] [don't or doesn't for the target] need it!"
 
-Instead of attacking Baron Fossville with the plain dagger when the player is not tied up during the Skirmish:
+Instead of attacking Baron Fossville with the plain dagger during the Skirmish:
 	change the current script to { }; [ thus ending the scene ]
 	remove Bobby from play;
 	remove Baron Fossville from play;
 	say "You dart into the fray, lashing out with the dagger. You've never been much of a fighter, but you put all your rage and fear and confusion behind the blow, and the blade is sharp enough to do the rest. Fossville howls as the dagger sinks deep into his arm.[paragraph break]'Well done, Jack! We've got him on the ropes now!' cries Bobby, renewing his attack. The Baron staggers back, blood dripping from his sword arm. He stumbles... and then turns and runs out the door, calling for his mercenaries to defend him.[paragraph break]Bobby turns to you, grinning. 'Great work, Jack,' he says. 'You stay and help Pieter. I'll catch that villain quick enough, and then I'll explain everything.' And then with a bound, he is out the door.";
 	update the character list;
 
-Instead of doing something other than talking to or examining to Baron Fossville when the player is not tied up during the Skirmish:
+Instead of doing something other than talking to or examining to Baron Fossville during the Skirmish:
 	say "The Baron is fighting so ferociously, unless you're planning to attack him, he's likely to take [one of]out your eye[or]off your ear[or]off your hand[or]off your head[at random] with a random [one of]backswing[or]slash[or]thrust[or]jab[at random].";
 
 Instead of talking to Baron Fossville during the Skirmish:

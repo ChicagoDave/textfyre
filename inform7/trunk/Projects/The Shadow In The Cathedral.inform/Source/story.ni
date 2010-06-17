@@ -153,6 +153,7 @@ Include Textfyre Standard Backdrops by Textfyre.
 Include Shadow Hints by Textfyre.
 Include Xml Output Toggling by Textfyre.
 Include Basic Help by David Cornelson.
+[Include Guncho Mockup by Guncho Cabal.]
 
 Book - Initialisation
 
@@ -163,10 +164,10 @@ Use MAX_PROP_TABLE_SIZE of 600000.
 Use MAX_DICT_ENTRIES of 4000.
 Use MAX_OBJECTS of 1280.
 Use MAX_SYMBOLS of 26000.
-Use MAX_ZCODE_SIZE of 80000.
+Use MAX_ZCODE_SIZE of 100000.
 Use MAX_LINESPACE of 20000.
 Use ALLOC_CHUNK_SIZE of 20000.
-Use MAX_SYMBOLS of 30000.
+Use MAX_SYMBOLS of 40000.
 Use MAX_VERBS of 300.
 Use MAX_NUM_STATIC_STRINGS of 25000.
 
@@ -1174,9 +1175,9 @@ A glimpse backdrop is a kind of backdrop. The description of a glimpse backdrop 
 
 Section 1 - Glimpses identify real objects
 
-Identification relates various glimpse backdrops to one thing (called the true representation). The verb to identify (he identifies, they identify, he identified, it is identified, he is identifying) implies the identification relation.
+Shidentification relates various glimpse backdrops to one thing (called the true representation). The verb to shidentify (he shidentifies, they shidentify, he shidentified, it is shidentified, he is shidentifying) implies the shidentification relation.
 
-Definition: a glimpse backdrop is matched-up if there is something identified by it.
+Definition: a glimpse backdrop is matched-up if there is something shidentified by it.
 
 A glimpse backdrop is usually privately-named. 
 
@@ -1203,7 +1204,7 @@ Instead of listening to a glimpse backdrop (called the far-off thing):
 Section 3 - Approaching
 
 Instead of approaching an matched-up glimpse backdrop (called the far-off thing):
-	let N be a random thing identified by the far-off thing;
+	let N be a random thing shidentified by the far-off thing;
 	let N be the location of N;
 	if N is a room:
 		let the way be the best route from the location to N, using doors;
@@ -5356,7 +5357,7 @@ Instead of dropping the full teacup:
 
 Section 4 - Refectory Clock Glimpse
 
-The Ref_clock_glimpse is a glimpse backdrop in the West Refectory, identifying the Refectory Clock. Understand "refectory clock", "clock" as the Ref_clock_glimpse. The description is "The Refectory Clock is at the other end of the refectory."
+The Ref_clock_glimpse is a glimpse backdrop in the West Refectory, shidentifying the Refectory Clock. Understand "refectory clock", "clock" as the Ref_clock_glimpse. The description is "The Refectory Clock is at the other end of the refectory."
 
 Part 9 - East Refectory
 
@@ -5920,8 +5921,8 @@ Chapter 1 - Leaving and Finishing Chapter 2
 After going from the Entry to the Cathedral Yard for the first time:
 	say "I race through the doors. No-one's going to stop me now! The Archbishop, and my reward - here I come!";
 	end the chapter;
-	[now the player is in the Demo Room.]
-	continue the action;
+	now the player is in the Demo Room.
+[	continue the action;]
 
 The Demo Room is a room. "You have reached the end of the demonstration version for The Shadow in the Cathedral. Please visit www.textfyre.com to purchase the complete version."
 
@@ -6720,7 +6721,7 @@ Before smelling the heat:
 
 Section 0b - View of Doors
 
-The glimpse-doors are a glimpse backdrop in the Lower Nave, in the Upper Nave, in the Cathedral Altar, identifying the Great Doors. "The Doors frame the entrance to the Cathedral in shadow." Understand "doors", "great" as the glimpse-doors.
+The glimpse-doors are a glimpse backdrop in the Lower Nave, in the Upper Nave, in the Cathedral Altar, shidentifying the Great Doors. "The Doors frame the entrance to the Cathedral in shadow." Understand "doors", "great" as the glimpse-doors.
 
 Section 1b - Shrines
 
@@ -6823,7 +6824,7 @@ Instead of doing something when the chanting monks are physically involved:
 
 Some glimpsed monks are a glimpse backdrop, in Cathedral Entrance, in Lower Nave, in Upper Nave, in East Apse, in West Apse, in North Clerestory, in Cathedral Choir, in East Clerestory, in West Clerestory. "The monks are gathered around some gleaming object on the altar." Understand "monk/monks", "chanting", "singing", "group of" as the glimpsed Monks.
 
-The glimpsed monks identifies the chanting Monks.
+The glimpsed monks shidentifies the chanting Monks.
 
 Instead of listening to something when the player can see the glimpsed Monks:
 	say "The monks['] song echoes off the walls, one syllable at a time, one second at a time.";
@@ -8352,7 +8353,7 @@ Section 1 - Glimpse of Choir stalls
 
 The glimpsed Choir is a glimpse backdrop, in the East Clerestory, in the West Clerestory, in the North Clerestory. "The choir stalls are empty." Understand "choir", "stall", "stalls" as the glimpsed Choir.
 
-The glimpsed Choir identifies the choir stalls.
+The glimpsed Choir shidentifies the choir stalls.
 
 Chapter 2 - Events on Entry
 
@@ -8764,11 +8765,11 @@ Section 2 - Glimpse of Altar
 
 The glimpsed Altar is a glimpse backdrop, in Cathedral Entrance, in the Lower Nave, in the Upper Nave, in the East Apse, in the West Apse, in the North Clerestory, in the Cathedral Choir, in the East Clerestory, in the West Clerestory, in the Shrine of the Saints, in the Calendar Shrine. "[if Return to the Cathedral is happening]The altar is silent, just a dark block of gold.[else]The altar is surrounded by monks, softly singing.[end if]". Understand "altar" as the glimpsed Altar.
 
-The glimpsed Altar identifies the iron altar.
+The glimpsed Altar shidentifies the iron altar.
 
 The glimpsed Perpetuum is a glimpse backdrop, in Cathedral Entrance, in Lower Nave, in Upper Nave, in East Apse, in West Apse, in North Clerestory, in Cathedral Choir, in East Clerestory, in West Clerestory, in the Shrine of the Saints, in the Calendar Shrine. "I can't make out much of the gleaming object from here, except it's gold - and it's moving." Understand "object", "perpetuum", "mobile", "clock", "gleaming", "gold", "mechanism", "gleaming object" as the glimpsed Perpetuum.
 
-The glimpsed Perpetuum identifies the Perpetuum Mobile.
+The glimpsed Perpetuum shidentifies the Perpetuum Mobile.
 
 Book 4 - The Cathedral Of Time (Continued)
 
@@ -10523,7 +10524,7 @@ Instead of getting off or jumping off the ob_platform:
 
 Section 3 - Glimpse of Weather Station
 
-The glimpse of the weather station is a glimpse backdrop in the Observation Platform. It identifies the zephyrgraph. The printed name is "weather station". "The weather station is southeast of the platform, down some steps." Understand "step", "steps", "weather", "station" as the glimpse of the weather station. Instead of entering or climbing the glimpse of the weather station, try going down.
+The glimpse of the weather station is a glimpse backdrop in the Observation Platform. It shidentifies the zephyrgraph. The printed name is "weather station". "The weather station is southeast of the platform, down some steps." Understand "step", "steps", "weather", "station" as the glimpse of the weather station. Instead of entering or climbing the glimpse of the weather station, try going down.
 
 Chapter 3 - Telescope Mechanism
 
@@ -10880,7 +10881,7 @@ Before approaching the escaping Figure when the weather balloon is deflated and 
 
 Section 6b - Glimpse of weather balloon for navigation
 
-The glimpse of the weather balloon is a glimpse backdrop. It identifies the weather balloon. Understand "weather", "balloon" as the glimpse of the weather balloon. "The weather balloon is all ready to go."
+The glimpse of the weather balloon is a glimpse backdrop. It shidentifies the weather balloon. Understand "weather", "balloon" as the glimpse of the weather balloon. "The weather balloon is all ready to go."
 
 Every turn when balloon spotted is true:
 	if the location is the Weather Station: [ avoid noun doubling up ]
@@ -11890,9 +11891,9 @@ Instead of going to the Bedroom from the Clock Shop when the scrap of paper is o
 
 Chapter 6 - Glimpses for Bedroom and Shop
 
-The glimpse-bedroom is a glimpse backdrop in the Clock Shop. The printed name is "bedroom". Understand "bedroom", "bed room", "back room", "backroom" as the glimpse-bedroom. The glimpse-bedroom identifies the feather bed.
+The glimpse-bedroom is a glimpse backdrop in the Clock Shop. The printed name is "bedroom". Understand "bedroom", "bed room", "back room", "backroom" as the glimpse-bedroom. The glimpse-bedroom shidentifies the feather bed.
 
-The glimpse-Clock-Shop is a glimpse backdrop in the Bedroom. The printed name is "clock shop". Understand "clock", "shop", "store", "clockshop", "clock-shop" as the glimpse-Clock-Shop. The glimpse-Clock-Shop identifies the solid table.
+The glimpse-Clock-Shop is a glimpse backdrop in the Bedroom. The printed name is "clock shop". Understand "clock", "shop", "store", "clockshop", "clock-shop" as the glimpse-Clock-Shop. The glimpse-Clock-Shop shidentifies the solid table.
 
 Book 7 - The Counting House
 
@@ -12418,7 +12419,7 @@ The glimpse-machine is a glimpse backdrop in the Grand Foyer. The printed name i
 Rule for printing the description of the glimpse-machine when in the Grand Foyer:
 	say "[if the glass doors are closed]I can't make out much through the bevelled glass[else]The machine seems vast and very complicated[end if]."
 
-The glimpse-machine identifies the sprung platform.
+The glimpse-machine shidentifies the sprung platform.
 
 
 
@@ -13035,7 +13036,7 @@ The sprung platform is a backdrop, in the main platform, in the Western Platform
 Instead of jumping in the main platform:
 	say "The platform bounces underfoot.";
 
-The glimpse-sprung platform is a glimpse backdrop in the Engine Room. "The engine is gathered around the base of the platform like it washed up there." The glimpse-sprung platform identifies the sprung platform. Understand "platform", "sprung", "main", "central" as the glimpse-sprung platform.
+The glimpse-sprung platform is a glimpse backdrop in the Engine Room. "The engine is gathered around the base of the platform like it washed up there." The glimpse-sprung platform shidentifies the sprung platform. Understand "platform", "sprung", "main", "central" as the glimpse-sprung platform.
 
 Instead of approaching or climbing or jumping on or entering the glimpse-sprung platform:
 	try going south.
@@ -18723,7 +18724,7 @@ Instead of entering, pushing, pulling, turning, approaching, searching the giant
 Instead of examining the giant stones when the giant stones are not explored:
 	try entering the giant stones instead.
         
-The iron_door_glimpse is a glimpse backdrop, in the Henge, identifying the Iron Vault Door. Understand "iron", "door", "dark", "shadow" as the iron_door_glimpse. The printed name is "iron door". The description is "A squat door of iron lies like a shadow between two stones to the west."
+The iron_door_glimpse is a glimpse backdrop, in the Henge, shidentifying the Iron Vault Door. Understand "iron", "door", "dark", "shadow" as the iron_door_glimpse. The printed name is "iron door". The description is "A squat door of iron lies like a shadow between two stones to the west."
 
 Instead of entering the iron_door_glimpse: try going west instead.
 
