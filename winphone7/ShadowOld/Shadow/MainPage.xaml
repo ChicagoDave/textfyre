@@ -1,0 +1,75 @@
+﻿<phoneNavigation:PhoneApplicationPage 
+    x:Class="Shadow.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phoneNavigation="clr-namespace:Microsoft.Phone;assembly=Microsoft.Phone.Controls.Navigation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}">
+
+    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!--TitleGrid is the name of the application and page title-->
+        <Grid x:Name="TitleGrid" Grid.Row="0">
+            <TextBlock Text="The Shadow in the Cathedral" x:Name="textBlockPageTitle" Style="{StaticResource PhoneTextPageTitle1Style}" Margin="1,4,19,16" FontWeight="Bold" />
+        </Grid>
+
+        <!--ContentGrid is empty. Place new content here-->
+        <Grid x:Name="ContentGrid" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <StackPanel>
+                <TextBlock Text="Front of House" FontWeight="Bold"/>
+                <TextBlock Text="You are standing in front of a small white house. You can see forest in all directions." TextAlignment="Left" TextWrapping="Wrap"/>
+                <TextBlock Text="Front of House" FontWeight="Bold"/>
+                <TextBlock Text="You are standing in front of a small white house. You can see forest in all directions." TextAlignment="Left" TextWrapping="Wrap"/>
+                <TextBlock Text="Front of House" FontWeight="Bold"/>
+                <TextBlock Text="You are standing in front of a small white house. You can see forest in all directions." TextAlignment="Left" TextWrapping="Wrap"/>
+                <TextBlock Text="Front of House" FontWeight="Bold"/>
+                <TextBlock Text="You are standing in front of a small white house. You can see forest in all directions." TextAlignment="Left" TextWrapping="Wrap"/>
+                <TextBlock Text="Front of House" FontWeight="Bold"/>
+                <TextBlock Text="You are standing in front of a small white house. You can see forest in all directions." TextAlignment="Left" TextWrapping="Wrap"/>
+                <TextBlock Text="Front of House" FontWeight="Bold"/>
+                <TextBlock Text="You are standing in front of a small white house. You can see forest in all directions." TextAlignment="Left" TextWrapping="Wrap"/>
+                <TextBlock Text="Front of House" FontWeight="Bold"/>
+                <TextBlock Text="You are standing in front of a small white house. You can see forest in all directions." TextAlignment="Left" TextWrapping="Wrap"/>
+                <TextBlock Text="Front of House" FontWeight="Bold"/>
+                <TextBlock Text="You are standing in front of a small white house. You can see forest in all directions." TextAlignment="Left" TextWrapping="Wrap"/>
+                <TextBlock Text="Front of House" FontWeight="Bold"/>
+                <TextBlock Text="You are standing in front of a small white house. You can see forest in all directions." TextAlignment="Left" TextWrapping="Wrap"/>
+                <TextBlock Text="Front of House" FontWeight="Bold"/>
+                <TextBlock Text="You are standing in front of a small white house. You can see forest in all directions." TextAlignment="Left" TextWrapping="Wrap"/>
+                <TextBlock Text="Front of House" FontWeight="Bold"/>
+                <TextBlock Text="You are standing in front of a small white house. You can see forest in all directions." TextAlignment="Left" TextWrapping="Wrap"/>
+                <TextBlock Text="Front of House" FontWeight="Bold"/>
+                <TextBlock Text="You are standing in front of a small white house. You can see forest in all directions." TextAlignment="Left" TextWrapping="Wrap"/>
+                <TextBlock Text="Front of House" FontWeight="Bold"/>
+                <TextBlock Text="You are standing in front of a small white house. You can see forest in all directions." TextAlignment="Left" TextWrapping="Wrap"/>
+                <TextBlock Text="Front of House" FontWeight="Bold"/>
+                <TextBlock Text="You are standing in front of a small white house. You can see forest in all directions." TextAlignment="Left" TextWrapping="Wrap"/>
+                <TextBlock Text="Front of House" FontWeight="Bold"/>
+                <TextBlock Text="You are standing in front of a small white house. You can see forest in all directions." TextAlignment="Left" TextWrapping="Wrap"/>
+                <TextBlock Text="Front of House" FontWeight="Bold"/>
+                <TextBlock Text="You are standing in front of a small white house. You can see forest in all directions." TextAlignment="Left" TextWrapping="Wrap"/>
+                <TextBlock Text="Front of House" FontWeight="Bold"/>
+                <TextBlock Text="You are standing in front of a small white house. You can see forest in all directions." TextAlignment="Left" TextWrapping="Wrap"/>
+                <TextBlock Text="Front of House" FontWeight="Bold"/>
+                <TextBlock Text="You are standing in front of a small white house. You can see forest in all directions." TextAlignment="Left" TextWrapping="Wrap"/>
+            </StackPanel>            
+        </Grid>
+        
+        <Grid x:Name="InputRow" Grid.Row="2">
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="InputBox" Width="394" />
+                <Button x:Name="CommandButton" Content="Go" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+    
+</phoneNavigation:PhoneApplicationPage>
