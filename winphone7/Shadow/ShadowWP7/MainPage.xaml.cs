@@ -41,12 +41,12 @@ namespace ShadowWP7
 
             InitializeComponent();
 
-			engine = Load( "Lowell's Paradise.ulx" );
+			engine = Load( "shadow-1.2.ulx" );
 
 			engine.OutputReady += engine_OutputReady;
         }
 
-		public string StoryTitle { get { return "Lowell's Paradise"; } }
+		public string StoryTitle { get { return "The Shadow in the Cathedral"; } }
 		public ObservableCollection<StoryHistoryItem> History { get; private set; }
 		public StoryState CurrentState { get; private set; }
 
