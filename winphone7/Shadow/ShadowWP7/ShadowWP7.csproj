@@ -56,15 +56,26 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PanoramaItemsConverter.cs" />
+    <Compile Include="SilverFyre\BigEndian.cs" />
+    <Compile Include="SilverFyre\Blorb.cs" />
+    <Compile Include="SilverFyre\Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="SilverFyre\EngineClient.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SilverFyre\ExtensionMethods.cs" />
+    <Compile Include="SilverFyre\IFF.cs" />
+    <Compile Include="SilverFyre\Paragraph.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SilverFyre\StoryHistoryItem.cs" />
+    <Compile Include="SilverFyre\StoryState.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -77,6 +88,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Lowell%27s Paradise.ulx" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
@@ -88,6 +100,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SplashScreenImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\WindowsPhone\Pivot samples\Phone.Controls.Samples\Phone.Controls.Samples.csproj">
+      <Project>{700BA959-2F8B-459F-802A-76836144765B}</Project>
+      <Name>Phone.Controls.Samples</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Textfyre.VM\Textfyre.VM.csproj">
+      <Project>{13A8583B-F4F0-4518-999F-A5A3A169615D}</Project>
+      <Name>Textfyre.VM</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

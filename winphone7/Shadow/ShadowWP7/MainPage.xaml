@@ -6,29 +6,146 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:local="clr-namespace:ShadowWP7"
+	xmlns:convert="clr-namespace:Cjc.SilverFyre"
+	xmlns:samples="clr-namespace:Phone.Controls.Samples;assembly=Phone.Controls.Samples"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True"
+	Name="mainPage">
+
+	<phone:PhoneApplicationPage.Resources>
+
+		<convert:BooleanToVisibilityConverter x:Key="booleanVisibilityConverter" />
+
+		<Style x:Key="statusText" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="18"/>
+			<Setter Property="Foreground" Value="White"/>
+		</Style>
+
+		<Style x:Key="historyPromptText" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="24"/>
+			<Setter Property="Foreground" Value="Blue"/>
+		</Style>
+
+		<Style x:Key="historyCommandText" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="24"/>
+			<Setter Property="FontStyle" Value="Italic"/>
+			<Setter Property="Foreground" Value="Green"/>
+		</Style>
+
+		<Style x:Key="historyText" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="24"/>
+			<Setter Property="FontFamily" Value="Segoe WP"/>
+		</Style>
+
+		<Style x:Key="deathText" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="24"/>
+			<Setter Property="Foreground" Value="Red"/>
+			<Setter Property="FontFamily" Value="Segoe WP"/>
+		</Style>
+
+		<Style x:Key="promptText" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="24"/>
+			<Setter Property="Foreground" Value="Blue"/>
+			<Setter Property="FontFamily" Value="Segoe WP"/>
+		</Style>
+
+		<Style x:Key="commandText" TargetType="Control">
+			<Setter Property="FontSize" Value="24"/>
+			<Setter Property="Foreground" Value="Green"/>
+			<Setter Property="FontFamily" Value="Segoe WP"/>
+		</Style>
+
+		<Style x:Key="controlText" TargetType="Control">
+			<Setter Property="FontSize" Value="24"/>
+			<Setter Property="FontFamily" Value="Segoe WP"/>
+		</Style>
+
+		<DataTemplate x:Key="paragraphTemplate">
+			<TextBlock Loaded="OnParagraphLoaded" TextWrapping="Wrap" Margin="0,0,0,10" Style="{StaticResource historyText}"/>
+		</DataTemplate>
+
+		<DataTemplate x:Key="deathTemplate">
+			<TextBlock Loaded="OnParagraphLoaded" TextWrapping="Wrap" Margin="0,0,0,10" Style="{StaticResource deathText}"/>
+		</DataTemplate>
+
+		<DataTemplate x:Key="storyItemTemplate">
+			<StackPanel>
+				<StackPanel Orientation="Horizontal" Visibility="{Binding HasInput, Converter={StaticResource booleanVisibilityConverter}}" Margin="0,0,0,10">
+					<TextBlock Text="&gt;" Margin="0,0,5,0" Style="{StaticResource historyPromptText}" VerticalAlignment="Center"/>
+					<TextBlock Text="{Binding Input}" Style="{StaticResource historyCommandText}" VerticalAlignment="Center"/>
+				</StackPanel>
+				<ItemsControl ItemsSource="{Binding Death}" ItemTemplate="{StaticResource deathTemplate}"
+							  Visibility="{Binding HasDeath, Converter={StaticResource booleanVisibilityConverter}}"/>
+				<ItemsControl ItemsSource="{Binding Paragraphs}" ItemTemplate="{StaticResource paragraphTemplate}"
+							  Visibility="{Binding HasOutput, Converter={StaticResource booleanVisibilityConverter}}"/>
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate x:Key="panoramaItemTemplate">
+			<ScrollViewer Height="400" VerticalAlignment="Top">
+				<StackPanel>
+
+					<ItemsControl ItemsSource="{Binding Death}" ItemTemplate="{StaticResource deathTemplate}"
+									Visibility="{Binding HasDeath, Converter={StaticResource booleanVisibilityConverter}}"/>
+
+					<ItemsControl ItemsSource="{Binding Paragraphs}" ItemTemplate="{StaticResource paragraphTemplate}"
+									Visibility="{Binding HasOutput, Converter={StaticResource booleanVisibilityConverter}}"/>
+
+					<StackPanel Orientation="Horizontal" Visibility="{Binding HasInput, Converter={StaticResource booleanVisibilityConverter}}" Margin="0,0,0,10">
+						<TextBlock Text="&gt;" Margin="0,0,5,0" Style="{StaticResource historyPromptText}" VerticalAlignment="Center"/>
+						<TextBlock Text="{Binding Input}" Style="{StaticResource historyCommandText}" VerticalAlignment="Center"/>
+					</StackPanel>
+
+					<TextBox x:Name="commandBox" Grid.Row="1" VerticalAlignment="Center" BorderThickness="0" KeyDown="OnCommandKey"
+							 FontStyle="Italic" Style="{StaticResource commandText}" IsTabStop="True" TabIndex="0"/>
+
+				</StackPanel>
+			</ScrollViewer>
+		</DataTemplate>
+
+		<Storyboard x:Key="showSaveLoad">
+			<DoubleAnimation Storyboard.TargetName="saveLoadPopup" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.5"/>
+		</Storyboard>
+
+		<Storyboard x:Key="hideSaveLoad">
+			<DoubleAnimation Storyboard.TargetName="saveLoadPopup" Storyboard.TargetProperty="Opacity" To="0" Completed="OnSaveLoadHidden"/>
+		</Storyboard>
+
+		<Storyboard x:Key="showLoading">
+			<DoubleAnimation Storyboard.TargetName="loading" Storyboard.TargetProperty="Opacity" To="1" BeginTime="0:0:1" Duration="0:0:1"/>
+		</Storyboard>
+
+		<Storyboard x:Key="hideLoading">
+			<DoubleAnimation Storyboard.TargetName="loading" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.5" Completed="OnLoadingHidden"/>
+		</Storyboard>
+
+		<Storyboard x:Key="showPleaseWait">
+			<DoubleAnimation Storyboard.TargetName="pleaseWait" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:2"/>
+		</Storyboard>
+
+		<local:PanoramaItemsConverter x:Key="panoramaItemsConverter" ItemTemplate="{StaticResource panoramaItemTemplate}" />
+
+	</phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="24,24,0,12">
-            <TextBlock x:Name="ApplicationTitle" Text="The Shadow in the Cathedral" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Shadow" Margin="-3,-8,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
+		<samples:PanoramaControl Grid.Row="0" Title="{Binding StoryTitle, ElementName=mainPage}" 
+			ItemsSource="{Binding History, ElementName=mainPage, Converter={StaticResource panoramaItemsConverter}}">
+		</samples:PanoramaControl>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentGrid" Grid.Row="1">
-        </Grid>
+		<TextBlock x:Name="pleaseWait" Grid.Row="0" Style="{StaticResource historyText}" Opacity="0"><Run Text="Please wait..."/></TextBlock>
+
     </Grid>
     
     <!-- Sample code showing usage of ApplicationBar
