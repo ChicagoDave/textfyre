@@ -12,7 +12,6 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Cjc.SilverFyre;
 using System.Collections.Generic;
-using Phone.Controls.Samples;
 
 namespace ShadowWP7
 {

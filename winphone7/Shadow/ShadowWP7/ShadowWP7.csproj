@@ -64,7 +64,6 @@
     </Compile>
     <Compile Include="ItemsControlHelper.cs" />
     <Compile Include="PagingPanel.cs" />
-    <Compile Include="PanoramaItemsConverter.cs" />
     <Compile Include="ScrollViewerOffsetMediator.cs" />
     <Compile Include="SilverFyre\BigEndian.cs" />
     <Compile Include="SilverFyre\Blorb.cs" />
@@ -118,10 +117,6 @@
     <ProjectReference Include="..\..\Textfyre.VM\Textfyre.VM.csproj">
       <Project>{13A8583B-F4F0-4518-999F-A5A3A169615D}</Project>
       <Name>Textfyre.VM</Name>
-    </ProjectReference>
-    <ProjectReference Include="C:\Users\Dsv\Downloads\phone-55041\Phone.Controls.Samples\Phone.Controls.Samples.csproj">
-      <Project>{700BA959-2F8B-459F-802A-76836144765B}</Project>
-      <Name>Phone.Controls.Samples</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
