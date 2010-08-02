@@ -13,10 +13,11 @@ using System.Windows.Shapes;
 using Textfyre.VM;
 using System.Xml.Linq;
 using System.Xml;
+using System.ComponentModel;
 
 namespace Cjc.SilverFyre
 {
-	public class StoryHistoryItem
+	public class StoryHistoryItem : INotifyPropertyChanged
 	{
 		private Paragraph[] paragraphs = null;
 		private Paragraph[] death = null;
@@ -35,6 +36,13 @@ namespace Cjc.SilverFyre
 		public StoryState State { get; private set; }
 		public string Input { get; private set; }
 		public OutputReadyEventArgs OutputArgs { get; private set; }
+
+		public void SetInput( string input )
+		{
+			this.Input = input;
+			RaisePropertyChanged( "Input" );
+			RaisePropertyChanged( "HasInput" );
+		}
 
 		public Paragraph[] Paragraphs
 		{
@@ -168,5 +176,16 @@ namespace Cjc.SilverFyre
 
 			return inline;
 		}
+
+		#region INotifyPropertyChanged Members
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected void RaisePropertyChanged( string propertyName )
+		{
+			if ( PropertyChanged != null ) PropertyChanged( this, new PropertyChangedEventArgs( propertyName ) );
+		}
+
+		#endregion
 	}
 }

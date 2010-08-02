@@ -17,6 +17,7 @@ using Cjc.SilverFyre;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading;
+using Phone.Controls.Samples;
 
 namespace ShadowWP7
 {
@@ -31,8 +32,12 @@ namespace ShadowWP7
 		private double? targetVerticalOffset = null;
 		private bool pinnedToEnd = false;
 
+		private bool? isPanning;
+		private double panOffset;
+
 		private string baseUrl;
 		private string storyUrl;
+		private ManipulationHook hook = new ManipulationHook();
 
         // Constructor
         public MainPage()
@@ -44,11 +49,14 @@ namespace ShadowWP7
 			engine = Load( "shadow-1.2.ulx" );
 
 			engine.OutputReady += engine_OutputReady;
+
+			StoryItemsHelper = new ItemsControlHelper( storyItems );
         }
 
 		public string StoryTitle { get { return "The Shadow in the Cathedral"; } }
 		public ObservableCollection<StoryHistoryItem> History { get; private set; }
 		public StoryState CurrentState { get; private set; }
+		public ItemsControlHelper StoryItemsHelper { get; private set; }
 
 		void engine_OutputReady( object sender, OutputReadyEventArgs e )
 		{
@@ -89,6 +97,8 @@ namespace ShadowWP7
 				CurrentState = new StoryState( item.OutputArgs );
 				RaisePropertyChanged( "CurrentState" );
 			}
+
+			ScrollTo( History.Count );
 		}
 
 		private Storyboard FindStoryboard( string name )
@@ -106,16 +116,17 @@ namespace ShadowWP7
 
 		private void OnCommand( object sender, RoutedEventArgs e )
 		{
-/*			AddHistory( new StoryHistoryItem( commandBox.Text, null ) );
+			History.Last().SetInput( commandBox.Text );
+//			AddHistory( new StoryHistoryItem( commandBox.Text, null ) );
 
 			FindStoryboard( "showPleaseWait" ).Begin();
 			pleaseWait.Visibility = Visibility.Visible;
 
 			if ( engine != null ) engine.SendLine( commandBox.Text );
-			commandBox.Text = "";*/
+			commandBox.Text = "";
 		}
 
-		private void OnCommandKey( object sender, KeyEventArgs e )
+		private void OnCommandKeyDown( object sender, KeyEventArgs e )
 		{
 			switch ( e.Key )
 			{
@@ -134,10 +145,10 @@ namespace ShadowWP7
 						}
 						while ( selectedCommandIndex >= 0 && !History[ selectedCommandIndex.Value ].HasInput );
 
-/*						commandBox.Text = ( selectedCommandIndex >= 0 )
+						commandBox.Text = ( selectedCommandIndex >= 0 )
 							? History[ selectedCommandIndex.Value ].Input
 							: "";
-						*/
+
 						e.Handled = true;
 						break;
 					}
@@ -151,9 +162,9 @@ namespace ShadowWP7
 						}
 						while ( selectedCommandIndex < History.Count && !History[ selectedCommandIndex.Value ].HasInput );
 
-/*						commandBox.Text = ( selectedCommandIndex < History.Count )
+						commandBox.Text = ( selectedCommandIndex < History.Count )
 							? History[ selectedCommandIndex.Value ].Input
-							: "";*/
+							: "";
 
 						e.Handled = true;
 						break;
@@ -168,6 +179,18 @@ namespace ShadowWP7
 			}
 
 			ScrollToEnd();
+		}
+
+		private void OnCommandKeyUp( object sender, KeyEventArgs e )
+		{
+			switch ( e.Key )
+			{
+				case Key.Enter:
+					{
+						this.Focus();
+						break;
+					}
+			}
 		}
 
 		private void OnSaveLoadHidden( object sender, EventArgs e )
@@ -188,6 +211,78 @@ namespace ShadowWP7
 		private void OnSaveLoadCancelled( object sender, EventArgs e )
 		{
 //			saveLoadCancelled.Set();
+		}
+
+		void OnManipulationStarted( object sender, ManipulationStartedEventArgs e )
+		{
+			isPanning = null;
+
+			if ( StoryItemsHelper.ScrollHost != null )
+			{
+				panOffset = StoryItemsHelper.ScrollHost.HorizontalOffset;
+			}
+//			hook.Hook( e.ManipulationContainer );
+//			hook.HookDeltaHandler( 
+		}
+
+		void OnManipulationDelta( object sender, ManipulationDeltaEventArgs e )
+		{
+			var deltaX = e.CumulativeManipulation.Translation.X;
+			var deltaY = e.CumulativeManipulation.Translation.Y;
+
+			if ( !isPanning.HasValue && ( deltaX != 0 || deltaY != 0 ) )
+			{
+				isPanning = Math.Abs( deltaX ) > Math.Abs( deltaY );
+			}
+
+			if ( isPanning.GetValueOrDefault( false ) && StoryItemsHelper.ScrollHost != null )
+			{
+				StoryItemsHelper.ScrollHost.ScrollToHorizontalOffset( panOffset - ( e.CumulativeManipulation.Translation.X / 480 ) );
+
+				e.Handled = true;
+			}
+		}
+
+		void OnManipulationCompleted( object sender, ManipulationCompletedEventArgs e )
+		{
+			if ( e.TotalManipulation.Translation.X != 0 && isPanning.GetValueOrDefault( false ) )
+			{
+				ScrollTo( (int)( panOffset + ( e.TotalManipulation.Translation.X < 0 ? 1 : -1 ) ) );
+			}
+		}
+
+		private void ScrollTo( int page )
+		{
+			var scrollHost = StoryItemsHelper.ScrollHost;
+
+			if ( scrollHost != null )
+			{
+				var mediator = FindName( "scrollMediator" ) as ScrollViewerOffsetMediator;
+				mediator.ScrollViewer = StoryItemsHelper.ScrollHost;
+
+				var storyboard = FindStoryboard( "scrollPage" );
+				var animation = storyboard.Children.First() as DoubleAnimation;
+
+				animation.From = scrollHost.HorizontalOffset;
+				animation.To = page;
+
+				storyboard.Begin();
+			}
+		}
+
+		private VirtualizingStackPanel StoryStackPanel
+		{
+			get
+			{
+				if ( storyItems.Items.Count > 0 )
+				{
+					var container = storyItems.ItemContainerGenerator.ContainerFromIndex( 0 );
+
+					if ( container != null ) return VisualTreeHelper.GetParent( container ) as VirtualizingStackPanel;
+				}
+
+				return null;
+			}
 		}
 
 		#region INotifyPropertyChanged Members

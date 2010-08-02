@@ -15,6 +15,7 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     shell:SystemTray.IsVisible="True"
+	IsTabStop="True"
 	Name="mainPage">
 
 	<phone:PhoneApplicationPage.Resources>
@@ -40,6 +41,7 @@
 		<Style x:Key="historyText" TargetType="TextBlock">
 			<Setter Property="FontSize" Value="24"/>
 			<Setter Property="FontFamily" Value="Segoe WP"/>
+			<Setter Property="Foreground" Value="#E0E0E0"/>
 		</Style>
 
 		<Style x:Key="deathText" TargetType="TextBlock">
@@ -101,9 +103,6 @@
 						<TextBlock Text="{Binding Input}" Style="{StaticResource historyCommandText}" VerticalAlignment="Center"/>
 					</StackPanel>
 
-					<TextBox x:Name="commandBox" Grid.Row="1" VerticalAlignment="Center" BorderThickness="0" KeyDown="OnCommandKey"
-							 FontStyle="Italic" Style="{StaticResource commandText}" IsTabStop="True" TabIndex="0"/>
-
 				</StackPanel>
 			</ScrollViewer>
 		</DataTemplate>
@@ -130,23 +129,76 @@
 
 		<local:PanoramaItemsConverter x:Key="panoramaItemsConverter" ItemTemplate="{StaticResource panoramaItemTemplate}" />
 
+		<!-- Trigger to start the animation when loaded -->
+		<Storyboard x:Key="scrollPage">
+			<!-- Animate from top to bottom -->
+			<DoubleAnimation
+				Storyboard.TargetName="scrollMediator"
+				Storyboard.TargetProperty="HorizontalOffset"
+				From="0"
+				To="1"
+				Duration="0:0:0.5">
+				<DoubleAnimation.EasingFunction>
+					<!-- Ease in and out -->
+					<ExponentialEase EasingMode="EaseOut"/>
+				</DoubleAnimation.EasingFunction>
+			</DoubleAnimation>
+		</Storyboard>
+
+		<!-- Mediator that forwards the property changes -->
+		<local:ScrollViewerOffsetMediator x:Name="scrollMediator"/>
+
 	</phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="Transparent"
+		  ManipulationStarted="OnManipulationStarted" ManipulationDelta="OnManipulationDelta" ManipulationCompleted="OnManipulationCompleted">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
 
-		<samples:PanoramaControl Grid.Row="0" Title="{Binding StoryTitle, ElementName=mainPage}" 
-			ItemsSource="{Binding History, ElementName=mainPage, Converter={StaticResource panoramaItemsConverter}}">
-		</samples:PanoramaControl>
+		<Grid Grid.Row="0">
+			<ItemsControl Name="storyItems" ItemsSource="{Binding History, ElementName=mainPage}">
+				<ItemsControl.Template>
+					<ControlTemplate>
+						<ScrollViewer HorizontalScrollBarVisibility="Auto">
+							<ItemsPresenter/>
+						</ScrollViewer>
+					</ControlTemplate>
+				</ItemsControl.Template>
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<VirtualizingStackPanel Name="storyItemsPanel" CanHorizontallyScroll="True" CanVerticallyScroll="False"
+											Orientation="Horizontal"/>
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<ScrollViewer Name="pageScroll" Width="480" Height="710">
+							<local:StoryPage Story="{Binding}" ManipulationDelta="OnManipulationDelta" CacheMode="BitmapCache"/>
+						</ScrollViewer>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+				<ItemsControl.RenderTransform>
+					<TranslateTransform x:Name="pageTranslate"/>
+				</ItemsControl.RenderTransform>
+			</ItemsControl>
+		</Grid>
 
 		<TextBlock x:Name="pleaseWait" Grid.Row="0" Style="{StaticResource historyText}" Opacity="0"><Run Text="Please wait..."/></TextBlock>
 
-    </Grid>
+		<Grid Grid.Row="1">
+			<Grid.Background>
+				<ImageBrush ImageSource="BlackPaper.jpg"/>
+			</Grid.Background>
+			<TextBox x:Name="commandBox" VerticalAlignment="Center" BorderThickness="0" KeyDown="OnCommandKeyDown" KeyUp="OnCommandKeyUp"
+				 Visibility="{Binding HasInput, Converter={StaticResource booleanVisibilityConverter}, ConverterParameter=Not}"
+				 FontStyle="Italic" Style="{StaticResource commandText}" IsTabStop="True" TabIndex="0"/>
+		</Grid>
+
+	</Grid>
     
     <!-- Sample code showing usage of ApplicationBar
     <phone:PhoneApplicationPage.ApplicationBar>
