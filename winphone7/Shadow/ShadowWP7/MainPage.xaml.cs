@@ -17,7 +17,6 @@ using Cjc.SilverFyre;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading;
-using Phone.Controls.Samples;
 
 namespace ShadowWP7
 {
@@ -37,7 +36,6 @@ namespace ShadowWP7
 
 		private string baseUrl;
 		private string storyUrl;
-		private ManipulationHook hook = new ManipulationHook();
 
         // Constructor
         public MainPage()
@@ -51,12 +49,26 @@ namespace ShadowWP7
 			engine.OutputReady += engine_OutputReady;
 
 			StoryItemsHelper = new ItemsControlHelper( storyItems );
-        }
+
+//			Application.Current.Host.Settings.EnableCacheVisualization = true;
+		}
 
 		public string StoryTitle { get { return "The Shadow in the Cathedral"; } }
 		public ObservableCollection<StoryHistoryItem> History { get; private set; }
 		public StoryState CurrentState { get; private set; }
 		public ItemsControlHelper StoryItemsHelper { get; private set; }
+
+		protected override void OnBackKeyPress( CancelEventArgs e )
+		{
+			var page = CurrentStoryPage;
+
+			if ( page > 0 )
+			{
+				ScrollTo( page - 1 );
+				e.Cancel = true;
+			}
+			else base.OnBackKeyPress( e );
+		}
 
 		void engine_OutputReady( object sender, OutputReadyEventArgs e )
 		{
@@ -267,6 +279,16 @@ namespace ShadowWP7
 				animation.To = page;
 
 				storyboard.Begin();
+			}
+		}
+
+		private int CurrentStoryPage
+		{
+			get
+			{
+				var scrollHost = StoryItemsHelper.ScrollHost;
+
+				return ( scrollHost != null ) ? (int)scrollHost.HorizontalOffset : 0;
 			}
 		}
 

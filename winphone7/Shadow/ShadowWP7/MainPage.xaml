@@ -8,7 +8,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:local="clr-namespace:ShadowWP7"
 	xmlns:convert="clr-namespace:Cjc.SilverFyre"
-	xmlns:samples="clr-namespace:Phone.Controls.Samples;assembly=Phone.Controls.Samples"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -127,8 +126,6 @@
 			<DoubleAnimation Storyboard.TargetName="pleaseWait" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:2"/>
 		</Storyboard>
 
-		<local:PanoramaItemsConverter x:Key="panoramaItemsConverter" ItemTemplate="{StaticResource panoramaItemTemplate}" />
-
 		<!-- Trigger to start the animation when loaded -->
 		<Storyboard x:Key="scrollPage">
 			<!-- Animate from top to bottom -->
@@ -189,7 +186,7 @@
 
 		<TextBlock x:Name="pleaseWait" Grid.Row="0" Style="{StaticResource historyText}" Opacity="0"><Run Text="Please wait..."/></TextBlock>
 
-		<Grid Grid.Row="1">
+		<Grid Grid.Row="1" CacheMode="BitmapCache">
 			<Grid.Background>
 				<ImageBrush ImageSource="BlackPaper.jpg"/>
 			</Grid.Background>
