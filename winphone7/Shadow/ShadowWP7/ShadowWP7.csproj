@@ -62,7 +62,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ItemsControlHelper.cs" />
+    <Compile Include="PagingPanel.cs" />
     <Compile Include="PanoramaItemsConverter.cs" />
+    <Compile Include="ScrollViewerOffsetMediator.cs" />
     <Compile Include="SilverFyre\BigEndian.cs" />
     <Compile Include="SilverFyre\Blorb.cs" />
     <Compile Include="SilverFyre\Converters\BooleanToVisibilityConverter.cs" />
@@ -76,6 +79,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SilverFyre\StoryHistoryItem.cs" />
     <Compile Include="SilverFyre\StoryState.cs" />
+    <Compile Include="StoryPage.xaml.cs">
+      <DependentUpon>StoryPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -85,6 +91,10 @@
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StoryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -99,7 +109,10 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="BlackPaper.jpg" />
+    <Resource Include="GrainyText.jpg" />
     <Content Include="SplashScreenImage.jpg" />
+    <Resource Include="OldPaper.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Textfyre.VM\Textfyre.VM.csproj">

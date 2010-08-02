@@ -20,6 +20,9 @@ namespace Cjc.SilverFyre
 				bool? nullable = (bool?)value;
 				flag = nullable.HasValue ? nullable.Value : false;
 			}
+
+			if ( parameter != null && parameter.ToString().ToLower() == "not" ) flag = !flag;
+
 			return ( flag ? Visibility.Visible : Visibility.Collapsed );
 		}
 
