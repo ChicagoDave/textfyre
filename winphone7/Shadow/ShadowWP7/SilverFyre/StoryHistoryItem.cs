@@ -19,31 +19,31 @@ namespace Cjc.SilverFyre
 {
 	public class StoryHistoryItem : INotifyPropertyChanged
 	{
-		private Paragraph[] paragraphs = null;
-		private Paragraph[] death = null;
+/*		private Paragraph[] paragraphs = null;
+		private Paragraph[] death = null;*/
 
-		public StoryHistoryItem( string input, OutputReadyEventArgs output )
+		public StoryHistoryItem( string command, OutputReadyEventArgs output )
 		{
-			this.Input = input;
+			this.Command = command;
 			this.OutputArgs = output;
 			this.State = ( output != null ) ? new StoryState( output ) : null;
 		}
 
-		public bool HasInput { get { return Input != null; } }
-		public bool HasOutput { get { return Paragraphs.Length > 0; } }
-		public bool HasDeath { get { return Death.Length > 0; } }
+		public bool HasCommand { get { return Command != null; } }
+/*		public bool HasOutput { get { return Paragraphs.Length > 0; } }
+		public bool HasDeath { get { return Death.Length > 0; } }*/
 
 		public StoryState State { get; private set; }
-		public string Input { get; private set; }
+		public string Command { get; private set; }
 		public OutputReadyEventArgs OutputArgs { get; private set; }
 
-		public void SetInput( string input )
+		public void SetCommand( string command )
 		{
-			this.Input = input;
-			RaisePropertyChanged( "Input" );
-			RaisePropertyChanged( "HasInput" );
+			this.Command = command;
+			RaisePropertyChanged( "Command" );
+			RaisePropertyChanged( "HasCommand" );
 		}
-
+/*
 		public Paragraph[] Paragraphs
 		{
 			get
@@ -175,7 +175,7 @@ namespace Cjc.SilverFyre
 			}
 
 			return inline;
-		}
+		}*/
 
 		#region INotifyPropertyChanged Members
 

@@ -17,6 +17,7 @@ using Cjc.SilverFyre;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading;
+using System.IO.IsolatedStorage;
 
 namespace ShadowWP7
 {
@@ -26,6 +27,9 @@ namespace ShadowWP7
 		private AutoResetEvent saveLoadItemSelected = new AutoResetEvent( false );
 		private AutoResetEvent saveLoadCompleted = new AutoResetEvent( false );
 		private AutoResetEvent saveLoadCancelled = new AutoResetEvent( false );
+
+		private string saveGameFile = "Shadow.ulx.save";
+		private IsolatedStorageFile storageFile = IsolatedStorageFile.GetUserStoreForApplication();
 
 		private int? selectedCommandIndex = null;
 		private double? targetVerticalOffset = null;
@@ -37,26 +41,45 @@ namespace ShadowWP7
 		private string baseUrl;
 		private string storyUrl;
 
+		public string StoryTitle { get { return "The Shadow in the Cathedral"; } }
+		public ObservableCollection<StoryHistoryItem> History { get; private set; }
+		public ObservableCollection<PageBase> Pages { get; private set; }
+		public StoryState CurrentState { get; private set; }
+		public ItemsControlHelper StoryItemsHelper { get; private set; }
+
         // Constructor
         public MainPage()
         {
 			History = new ObservableCollection<StoryHistoryItem>();
+			Pages = new ObservableCollection<PageBase>();
 
             InitializeComponent();
 
 			engine = Load( "shadow-1.2.ulx" );
 
 			engine.OutputReady += engine_OutputReady;
+			engine.LoadRequested += engine_LoadRequested;
+			engine.SaveRequested += engine_SaveRequested;
 
 			StoryItemsHelper = new ItemsControlHelper( storyItems );
+
+			if ( storageFile.FileExists( saveGameFile ) ) engine.SendLine( "RESTORE" );
 
 //			Application.Current.Host.Settings.EnableCacheVisualization = true;
 		}
 
-		public string StoryTitle { get { return "The Shadow in the Cathedral"; } }
-		public ObservableCollection<StoryHistoryItem> History { get; private set; }
-		public StoryState CurrentState { get; private set; }
-		public ItemsControlHelper StoryItemsHelper { get; private set; }
+		void engine_LoadRequested( object sender, SaveRestoreEventArgs e )
+		{
+			if ( storageFile.FileExists( saveGameFile ) )
+			{
+				e.Stream = storageFile.OpenFile( saveGameFile, FileMode.Open );
+			}
+		}
+
+		void engine_SaveRequested( object sender, SaveRestoreEventArgs e )
+		{
+			e.Stream = storageFile.CreateFile( saveGameFile );
+		}
 
 		protected override void OnBackKeyPress( CancelEventArgs e )
 		{
@@ -78,9 +101,15 @@ namespace ShadowWP7
 				{
 					pleaseWait.Visibility = Visibility.Collapsed;
 					pleaseWait.Opacity = 0;
+
 					AddHistory( new StoryHistoryItem( null, e ) );
 				} );
 			}
+		}
+
+		public void SaveGame()
+		{
+			if ( engine != null ) engine.SendLine( "SAVE" );
 		}
 
 		private void ScrollToEnd()
@@ -99,18 +128,37 @@ namespace ShadowWP7
 			}
 		}
 
-		private void AddHistory( StoryHistoryItem item )
+		private void AddHistory( StoryHistoryItem item, bool scrollToEnd = true )
 		{
-//			pinnedToEnd = false;
 			History.Add( item );
+
+			int? nextPage = null;
 
 			if ( item.OutputArgs != null )
 			{
 				CurrentState = new StoryState( item.OutputArgs );
+
+				if ( item.OutputArgs.Package.ContainsKey( OutputChannel.Prologue ) )
+				{
+					Pages.Add( new ProloguePage( item ) );
+					if ( !nextPage.HasValue ) nextPage = Pages.Count;
+				}
+
+				if ( item.OutputArgs.Package.ContainsKey( OutputChannel.Death ) )
+				{
+					Pages.Add( new DeathPage( item ) );
+					if ( !nextPage.HasValue ) nextPage = Pages.Count;
+				}
+
+				if ( item.OutputArgs.Package.ContainsKey( OutputChannel.Main ) )
+				{
+					Pages.Add( new StoryPage( item ) );
+				}
+
 				RaisePropertyChanged( "CurrentState" );
 			}
 
-			ScrollTo( History.Count );
+			if ( scrollToEnd ) ScrollTo( nextPage.GetValueOrDefault( Pages.Count ) );
 		}
 
 		private Storyboard FindStoryboard( string name )
@@ -126,28 +174,22 @@ namespace ShadowWP7
 			foreach ( var inline in paragraph.Inlines ) textBlock.Inlines.Add( inline );
 		}
 
-		private void OnCommand( object sender, RoutedEventArgs e )
+		private void OnCommand( object sender, CommandEventArgs e )
 		{
-			History.Last().SetInput( commandBox.Text );
-//			AddHistory( new StoryHistoryItem( commandBox.Text, null ) );
+			History.Last().SetCommand( e.Command );
 
 			FindStoryboard( "showPleaseWait" ).Begin();
 			pleaseWait.Visibility = Visibility.Visible;
 
-			if ( engine != null ) engine.SendLine( commandBox.Text );
-			commandBox.Text = "";
+			if ( engine != null ) engine.SendLine( e.Command );
 		}
 
 		private void OnCommandKeyDown( object sender, KeyEventArgs e )
 		{
+			var pageView = sender as StoryPageView;
+
 			switch ( e.Key )
 			{
-				case Key.Enter:
-					{
-						OnCommand( sender, null );
-						break;
-					}
-
 				case Key.Up:
 					{
 						do
@@ -155,11 +197,11 @@ namespace ShadowWP7
 							if ( !selectedCommandIndex.HasValue ) selectedCommandIndex = History.Count - 1;
 							else if ( selectedCommandIndex >= 0 ) --selectedCommandIndex;
 						}
-						while ( selectedCommandIndex >= 0 && !History[ selectedCommandIndex.Value ].HasInput );
+						while ( selectedCommandIndex >= 0 && !History[ selectedCommandIndex.Value ].HasCommand );
 
-						commandBox.Text = ( selectedCommandIndex >= 0 )
-							? History[ selectedCommandIndex.Value ].Input
-							: "";
+						pageView.SetCommand( ( selectedCommandIndex >= 0 )
+							? History[ selectedCommandIndex.Value ].Command
+							: "" );
 
 						e.Handled = true;
 						break;
@@ -172,11 +214,11 @@ namespace ShadowWP7
 							if ( !selectedCommandIndex.HasValue ) selectedCommandIndex = 0;
 							else if ( selectedCommandIndex < History.Count ) ++selectedCommandIndex;
 						}
-						while ( selectedCommandIndex < History.Count && !History[ selectedCommandIndex.Value ].HasInput );
+						while ( selectedCommandIndex < History.Count && !History[ selectedCommandIndex.Value ].HasCommand );
 
-						commandBox.Text = ( selectedCommandIndex < History.Count )
-							? History[ selectedCommandIndex.Value ].Input
-							: "";
+						pageView.SetCommand( ( selectedCommandIndex < History.Count )
+							? History[ selectedCommandIndex.Value ].Command
+							: "" );
 
 						e.Handled = true;
 						break;

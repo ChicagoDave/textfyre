@@ -62,12 +62,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CommandEventArgs.cs" />
     <Compile Include="ItemsControlHelper.cs" />
     <Compile Include="PagingPanel.cs" />
     <Compile Include="ScrollViewerOffsetMediator.cs" />
     <Compile Include="SilverFyre\BigEndian.cs" />
     <Compile Include="SilverFyre\Blorb.cs" />
     <Compile Include="SilverFyre\Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="SilverFyre\StoryPage.cs" />
+    <Compile Include="SilverFyre\DeathPage.cs" />
     <Compile Include="SilverFyre\EngineClient.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -76,11 +79,19 @@
     <Compile Include="SilverFyre\IFF.cs" />
     <Compile Include="SilverFyre\Paragraph.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SilverFyre\ProloguePage.cs" />
     <Compile Include="SilverFyre\StoryHistoryItem.cs" />
+    <Compile Include="SilverFyre\PageBase.cs" />
     <Compile Include="SilverFyre\StoryState.cs" />
-    <Compile Include="StoryPage.xaml.cs">
-      <DependentUpon>StoryPage.xaml</DependentUpon>
+    <Compile Include="StoryPageView.xaml.cs">
+      <DependentUpon>StoryPageView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Streams.cs" />
+    <Compile Include="Toolkit\LengthConverter.cs" />
+    <Compile Include="Toolkit\NumericExtensions.cs" />
+    <Compile Include="Toolkit\OrientedSize.cs" />
+    <Compile Include="Toolkit\TypeConverters.cs" />
+    <Compile Include="Toolkit\WrapPanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -91,7 +102,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="StoryPage.xaml">
+    <Page Include="StoryPageView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -108,10 +119,23 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="BlackPaper.jpg" />
-    <Resource Include="GrainyText.jpg" />
+    <Resource Include="Images\TornPaperBottomSmall.jpg" />
+    <Resource Include="Images\TornPaperBottom.jpg" />
+    <Resource Include="Images\TornPaper.png" />
+    <Resource Include="Images\BlackPaper.jpg" />
+    <Resource Include="Images\GrainyText.jpg" />
+    <Resource Include="Images\BlackPaperTorn.jpg" />
+    <Resource Include="Images\BlackPaperTorn.png" />
+    <Resource Include="Images\BottomWhiteTear.png" />
+    <Resource Include="Images\BottomWhiteTearThin.png" />
+    <Resource Include="Images\BottomWhiteTearMedium.png" />
+    <Resource Include="Images\HardCover.png" />
+    <Resource Include="Images\BlackLeather.jpg" />
+    <Resource Include="Images\PaperTearBackground.png" />
+    <Resource Include="Images\PaperTearBottom.png" />
+    <Resource Include="Images\PaperTearTop.png" />
     <Content Include="SplashScreenImage.jpg" />
-    <Resource Include="OldPaper.jpg" />
+    <Resource Include="Images\OldPaper.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Textfyre.VM\Textfyre.VM.csproj">
