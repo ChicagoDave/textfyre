@@ -21,90 +21,9 @@
 
 		<convert:BooleanToVisibilityConverter x:Key="booleanVisibilityConverter" />
 
-		<Style x:Key="statusText" TargetType="TextBlock">
-			<Setter Property="FontSize" Value="18"/>
-			<Setter Property="Foreground" Value="White"/>
+		<Style x:Key="locationText" TargetType="TextBlock">
+			<Setter Property="Foreground" Value="#202050"/>
 		</Style>
-
-		<Style x:Key="historyPromptText" TargetType="TextBlock">
-			<Setter Property="FontSize" Value="24"/>
-			<Setter Property="Foreground" Value="Blue"/>
-		</Style>
-
-		<Style x:Key="historyCommandText" TargetType="TextBlock">
-			<Setter Property="FontSize" Value="24"/>
-			<Setter Property="FontStyle" Value="Italic"/>
-			<Setter Property="Foreground" Value="Green"/>
-		</Style>
-
-		<Style x:Key="historyText" TargetType="TextBlock">
-			<Setter Property="FontSize" Value="24"/>
-			<Setter Property="FontFamily" Value="Segoe WP"/>
-			<Setter Property="Foreground" Value="#E0E0E0"/>
-		</Style>
-
-		<Style x:Key="deathText" TargetType="TextBlock">
-			<Setter Property="FontSize" Value="24"/>
-			<Setter Property="Foreground" Value="Red"/>
-			<Setter Property="FontFamily" Value="Segoe WP"/>
-		</Style>
-
-		<Style x:Key="promptText" TargetType="TextBlock">
-			<Setter Property="FontSize" Value="24"/>
-			<Setter Property="Foreground" Value="Blue"/>
-			<Setter Property="FontFamily" Value="Segoe WP"/>
-		</Style>
-
-		<Style x:Key="commandText" TargetType="Control">
-			<Setter Property="FontSize" Value="24"/>
-			<Setter Property="Foreground" Value="Green"/>
-			<Setter Property="FontFamily" Value="Segoe WP"/>
-		</Style>
-
-		<Style x:Key="controlText" TargetType="Control">
-			<Setter Property="FontSize" Value="24"/>
-			<Setter Property="FontFamily" Value="Segoe WP"/>
-		</Style>
-
-		<DataTemplate x:Key="paragraphTemplate">
-			<TextBlock Loaded="OnParagraphLoaded" TextWrapping="Wrap" Margin="0,0,0,10" Style="{StaticResource historyText}"/>
-		</DataTemplate>
-
-		<DataTemplate x:Key="deathTemplate">
-			<TextBlock Loaded="OnParagraphLoaded" TextWrapping="Wrap" Margin="0,0,0,10" Style="{StaticResource deathText}"/>
-		</DataTemplate>
-
-		<DataTemplate x:Key="storyItemTemplate">
-			<StackPanel>
-				<StackPanel Orientation="Horizontal" Visibility="{Binding HasInput, Converter={StaticResource booleanVisibilityConverter}}" Margin="0,0,0,10">
-					<TextBlock Text="&gt;" Margin="0,0,5,0" Style="{StaticResource historyPromptText}" VerticalAlignment="Center"/>
-					<TextBlock Text="{Binding Input}" Style="{StaticResource historyCommandText}" VerticalAlignment="Center"/>
-				</StackPanel>
-				<ItemsControl ItemsSource="{Binding Death}" ItemTemplate="{StaticResource deathTemplate}"
-							  Visibility="{Binding HasDeath, Converter={StaticResource booleanVisibilityConverter}}"/>
-				<ItemsControl ItemsSource="{Binding Paragraphs}" ItemTemplate="{StaticResource paragraphTemplate}"
-							  Visibility="{Binding HasOutput, Converter={StaticResource booleanVisibilityConverter}}"/>
-			</StackPanel>
-		</DataTemplate>
-
-		<DataTemplate x:Key="panoramaItemTemplate">
-			<ScrollViewer Height="400" VerticalAlignment="Top">
-				<StackPanel>
-
-					<ItemsControl ItemsSource="{Binding Death}" ItemTemplate="{StaticResource deathTemplate}"
-									Visibility="{Binding HasDeath, Converter={StaticResource booleanVisibilityConverter}}"/>
-
-					<ItemsControl ItemsSource="{Binding Paragraphs}" ItemTemplate="{StaticResource paragraphTemplate}"
-									Visibility="{Binding HasOutput, Converter={StaticResource booleanVisibilityConverter}}"/>
-
-					<StackPanel Orientation="Horizontal" Visibility="{Binding HasInput, Converter={StaticResource booleanVisibilityConverter}}" Margin="0,0,0,10">
-						<TextBlock Text="&gt;" Margin="0,0,5,0" Style="{StaticResource historyPromptText}" VerticalAlignment="Center"/>
-						<TextBlock Text="{Binding Input}" Style="{StaticResource historyCommandText}" VerticalAlignment="Center"/>
-					</StackPanel>
-
-				</StackPanel>
-			</ScrollViewer>
-		</DataTemplate>
 
 		<Storyboard x:Key="showSaveLoad">
 			<DoubleAnimation Storyboard.TargetName="saveLoadPopup" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.5"/>
@@ -151,13 +70,8 @@
     <Grid x:Name="LayoutRoot" Background="Transparent"
 		  ManipulationStarted="OnManipulationStarted" ManipulationDelta="OnManipulationDelta" ManipulationCompleted="OnManipulationCompleted">
 
-		<Grid.RowDefinitions>
-			<RowDefinition/>
-			<RowDefinition Height="Auto"/>
-		</Grid.RowDefinitions>
-
-		<Grid Grid.Row="0">
-			<ItemsControl Name="storyItems" ItemsSource="{Binding History, ElementName=mainPage}">
+		<Grid>
+			<ItemsControl Name="storyItems" ItemsSource="{Binding Pages, ElementName=mainPage}">
 				<ItemsControl.Template>
 					<ControlTemplate>
 						<ScrollViewer HorizontalScrollBarVisibility="Auto">
@@ -173,9 +87,28 @@
 				</ItemsControl.ItemsPanel>
 				<ItemsControl.ItemTemplate>
 					<DataTemplate>
-						<ScrollViewer Name="pageScroll" Width="480" Height="710">
-							<local:StoryPage Story="{Binding}" ManipulationDelta="OnManipulationDelta" CacheMode="BitmapCache"/>
-						</ScrollViewer>
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition/>
+							</Grid.RowDefinitions>
+							<Grid Grid.Row="0">
+								<Grid.Background>
+									<ImageBrush ImageSource="Images/OldPaper.jpg"/>
+								</Grid.Background>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto"/>
+									<ColumnDefinition/>
+									<ColumnDefinition Width="Auto"/>
+								</Grid.ColumnDefinitions>
+								<TextBlock Grid.Column="1" Text="{Binding State.Location}" HorizontalAlignment="Center" Margin="10"
+										   Style="{StaticResource locationText}"/>
+							</Grid>
+							<ScrollViewer Grid.Row="1" Name="pageScroll" Width="480" Height="720">
+								<local:StoryPageView StoryPage="{Binding}" ManipulationDelta="OnManipulationDelta" CacheMode="BitmapCache"
+													 Command="OnCommand" CommandKeyDown="OnCommandKeyDown" CommandKeyUp="OnCommandKeyUp"/>
+							</ScrollViewer>
+						</Grid>
 					</DataTemplate>
 				</ItemsControl.ItemTemplate>
 				<ItemsControl.RenderTransform>
@@ -184,16 +117,7 @@
 			</ItemsControl>
 		</Grid>
 
-		<TextBlock x:Name="pleaseWait" Grid.Row="0" Style="{StaticResource historyText}" Opacity="0"><Run Text="Please wait..."/></TextBlock>
-
-		<Grid Grid.Row="1" CacheMode="BitmapCache">
-			<Grid.Background>
-				<ImageBrush ImageSource="BlackPaper.jpg"/>
-			</Grid.Background>
-			<TextBox x:Name="commandBox" VerticalAlignment="Center" BorderThickness="0" KeyDown="OnCommandKeyDown" KeyUp="OnCommandKeyUp"
-				 Visibility="{Binding HasInput, Converter={StaticResource booleanVisibilityConverter}, ConverterParameter=Not}"
-				 FontStyle="Italic" Style="{StaticResource commandText}" IsTabStop="True" TabIndex="0"/>
-		</Grid>
+		<TextBlock x:Name="pleaseWait" Opacity="0"><Run Text="Please wait..."/></TextBlock>
 
 	</Grid>
     
