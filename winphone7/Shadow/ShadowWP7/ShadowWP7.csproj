@@ -63,6 +63,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="CommandEventArgs.cs" />
+    <Compile Include="CommandInput.xaml.cs">
+      <DependentUpon>CommandInput.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ItemsControlHelper.cs" />
     <Compile Include="PagingPanel.cs" />
     <Compile Include="ScrollViewerOffsetMediator.cs" />
@@ -83,10 +86,12 @@
     <Compile Include="SilverFyre\StoryHistoryItem.cs" />
     <Compile Include="SilverFyre\PageBase.cs" />
     <Compile Include="SilverFyre\StoryState.cs" />
+    <Compile Include="StoryboardHelper.cs" />
     <Compile Include="StoryPageView.xaml.cs">
       <DependentUpon>StoryPageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Streams.cs" />
+    <Compile Include="TileBorder.cs" />
     <Compile Include="Toolkit\LengthConverter.cs" />
     <Compile Include="Toolkit\NumericExtensions.cs" />
     <Compile Include="Toolkit\OrientedSize.cs" />
@@ -98,6 +103,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="CommandInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

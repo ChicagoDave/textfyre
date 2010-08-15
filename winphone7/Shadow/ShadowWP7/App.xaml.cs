@@ -51,13 +51,19 @@ namespace ShadowWP7
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
+			var page = this.RootFrame.Content as MainPage;
+
+			if ( page != null ) page.SaveGame();
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
-        }
+			var page = this.RootFrame.Content as MainPage;
+
+			if ( page != null ) page.SaveGame();
+		}
 
         // Code to execute if a navigation fails
         void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)

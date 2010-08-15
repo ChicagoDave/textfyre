@@ -1,0 +1,55 @@
+﻿<UserControl
+    x:Class="ShadowWP7.StoryPageView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:controls="clr-namespace:System.Windows.Controls"
+	xmlns:convert="clr-namespace:Cjc.SilverFyre"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+	Name="storyPage"
+    shell:SystemTray.IsVisible="True">
+
+	<UserControl.Resources>
+
+		<convert:BooleanToVisibilityConverter x:Key="booleanVisibilityConverter" />
+
+		<DataTemplate x:Key="paragraphTemplate">
+			<TextBlock Loaded="OnParagraphLoaded" Unloaded="OnParagraphUnloaded" TextWrapping="Wrap" Margin="0,0,0,10" Style="{StaticResource historyText}"/>
+		</DataTemplate>
+
+		<DataTemplate x:Key="deathTemplate">
+			<TextBlock Loaded="OnParagraphLoaded" Unloaded="OnParagraphUnloaded" TextWrapping="Wrap" Margin="0,0,0,10" Style="{StaticResource deathText}"/>
+		</DataTemplate>
+
+	</UserControl.Resources>
+
+	<!--LayoutRoot contains the root grid where all other page content is placed-->
+	<Grid x:Name="LayoutRoot">
+
+		<StackPanel Name="pageContent" DataContext="{Binding StoryPage, ElementName=storyPage}">
+
+			<ItemsControl ItemsSource="{Binding Paragraphs}" Margin="10,10,10,0"
+						ItemTemplate="{StaticResource paragraphTemplate}"
+						Visibility="{Binding HasOutput, Converter={StaticResource booleanVisibilityConverter}}"/>
+
+			<Grid Margin="10" Visibility="{Binding HasCommand, Converter={StaticResource booleanVisibilityConverter}}">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Grid.Column="0" Text="&gt;" Margin="0,0,5,0" Style="{StaticResource historyPromptText}" VerticalAlignment="Center"/>
+				<TextBlock Grid.Column="1" Text="{Binding Command}" Style="{StaticResource historyCommandText}" VerticalAlignment="Center"/>
+			</Grid>
+
+
+		</StackPanel>
+
+	</Grid>
+
+</UserControl>

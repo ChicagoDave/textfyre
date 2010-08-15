@@ -47,6 +47,18 @@ namespace ShadowWP7
 		public StoryState CurrentState { get; private set; }
 		public ItemsControlHelper StoryItemsHelper { get; private set; }
 
+		public static readonly DependencyProperty CommandTextProperty = DependencyProperty.Register(
+			"CommandText",
+			typeof( string ),
+			typeof( CommandInput ),
+			null );
+
+		public string CommandText
+		{
+			get { return (string)GetValue( CommandTextProperty ); }
+			set { SetValue( CommandTextProperty, value ); }
+		}
+
         // Constructor
         public MainPage()
         {
@@ -199,9 +211,9 @@ namespace ShadowWP7
 						}
 						while ( selectedCommandIndex >= 0 && !History[ selectedCommandIndex.Value ].HasCommand );
 
-						pageView.SetCommand( ( selectedCommandIndex >= 0 )
+						CommandText = ( selectedCommandIndex >= 0 )
 							? History[ selectedCommandIndex.Value ].Command
-							: "" );
+							: "";
 
 						e.Handled = true;
 						break;
@@ -216,9 +228,9 @@ namespace ShadowWP7
 						}
 						while ( selectedCommandIndex < History.Count && !History[ selectedCommandIndex.Value ].HasCommand );
 
-						pageView.SetCommand( ( selectedCommandIndex < History.Count )
+						CommandText = ( selectedCommandIndex < History.Count )
 							? History[ selectedCommandIndex.Value ].Command
-							: "" );
+							: "";
 
 						e.Handled = true;
 						break;
@@ -314,7 +326,7 @@ namespace ShadowWP7
 				var mediator = FindName( "scrollMediator" ) as ScrollViewerOffsetMediator;
 				mediator.ScrollViewer = StoryItemsHelper.ScrollHost;
 
-				var storyboard = FindStoryboard( "scrollPage" );
+				var storyboard = FindStoryboard( "scrollStory" );
 				var animation = storyboard.Children.First() as DoubleAnimation;
 
 				animation.From = scrollHost.HorizontalOffset;
@@ -346,6 +358,44 @@ namespace ShadowWP7
 				}
 
 				return null;
+			}
+		}
+
+		void OnPageManipulationStarted( object sender, ManipulationStartedEventArgs e )
+		{
+		}
+
+		void OnPageManipulationDelta( object sender, ManipulationDeltaEventArgs e )
+		{
+		}
+
+		void OnPageManipulationCompleted( object sender, ManipulationCompletedEventArgs e )
+		{
+			if ( !isPanning.GetValueOrDefault( false ) )
+			{
+				var page = Pages[ CurrentStoryPage ];
+
+				if ( page.HasInput )
+				{
+					var container = storyItems.ItemContainerGenerator.ContainerFromIndex( CurrentStoryPage );
+					var scrollViewer = sender as ScrollViewer;
+					var commandInput = scrollViewer.FindName( "commandInput" ) as CommandInput;
+
+					if ( e.TotalManipulation.Translation.Y < 0
+						&& scrollViewer.VerticalOffset >= scrollViewer.ScrollableHeight - commandInput.DesiredSize.Height )
+					{
+						var mediator = FindName( "scrollMediator" ) as ScrollViewerOffsetMediator;
+						mediator.ScrollViewer = scrollViewer;
+
+						var storyboard = FindStoryboard( "scrollPage" );
+						var animation = storyboard.Children.First() as DoubleAnimation;
+
+						animation.From = scrollViewer.VerticalOffset;
+						animation.To = scrollViewer.ScrollableHeight; ;
+
+						storyboard.Begin();
+					}
+				}
 			}
 		}
 
