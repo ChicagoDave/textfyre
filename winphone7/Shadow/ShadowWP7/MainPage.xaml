@@ -15,7 +15,7 @@
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     shell:SystemTray.IsVisible="True"
 	IsTabStop="True"
-	Name="mainPage">
+	Name="self">
 
 	<phone:PhoneApplicationPage.Resources>
 
@@ -45,9 +45,8 @@
 			<DoubleAnimation Storyboard.TargetName="pleaseWait" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:2"/>
 		</Storyboard>
 
-		<!-- Trigger to start the animation when loaded -->
-		<Storyboard x:Key="scrollPage">
-			<!-- Animate from top to bottom -->
+		<Storyboard x:Key="scrollStory">
+			<!-- Animate from left to right -->
 			<DoubleAnimation
 				Storyboard.TargetName="scrollMediator"
 				Storyboard.TargetProperty="HorizontalOffset"
@@ -55,7 +54,20 @@
 				To="1"
 				Duration="0:0:0.5">
 				<DoubleAnimation.EasingFunction>
-					<!-- Ease in and out -->
+					<ExponentialEase EasingMode="EaseOut"/>
+				</DoubleAnimation.EasingFunction>
+			</DoubleAnimation>
+		</Storyboard>
+
+		<Storyboard x:Key="scrollPage">
+			<!-- Animate from top to bottom -->
+			<DoubleAnimation
+				Storyboard.TargetName="scrollMediator"
+				Storyboard.TargetProperty="VerticalOffset"
+				From="0"
+				To="1"
+				Duration="0:0:0.5">
+				<DoubleAnimation.EasingFunction>
 					<ExponentialEase EasingMode="EaseOut"/>
 				</DoubleAnimation.EasingFunction>
 			</DoubleAnimation>
@@ -68,13 +80,15 @@
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent"
-		  ManipulationStarted="OnManipulationStarted" ManipulationDelta="OnManipulationDelta" ManipulationCompleted="OnManipulationCompleted">
+		  ManipulationStarted="OnManipulationStarted"
+		  ManipulationDelta="OnManipulationDelta"
+		  ManipulationCompleted="OnManipulationCompleted">
 
 		<Grid>
-			<ItemsControl Name="storyItems" ItemsSource="{Binding Pages, ElementName=mainPage}">
+			<ItemsControl Name="storyItems" ItemsSource="{Binding Pages, ElementName=self}">
 				<ItemsControl.Template>
 					<ControlTemplate>
-						<ScrollViewer HorizontalScrollBarVisibility="Auto">
+						<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
 							<ItemsPresenter/>
 						</ScrollViewer>
 					</ControlTemplate>
@@ -87,7 +101,7 @@
 				</ItemsControl.ItemsPanel>
 				<ItemsControl.ItemTemplate>
 					<DataTemplate>
-						<Grid>
+						<Grid Width="480">
 							<Grid.RowDefinitions>
 								<RowDefinition Height="Auto"/>
 								<RowDefinition/>
@@ -104,9 +118,22 @@
 								<TextBlock Grid.Column="1" Text="{Binding State.Location}" HorizontalAlignment="Center" Margin="10"
 										   Style="{StaticResource locationText}"/>
 							</Grid>
-							<ScrollViewer Grid.Row="1" Name="pageScroll" Width="480" Height="720">
-								<local:StoryPageView StoryPage="{Binding}" ManipulationDelta="OnManipulationDelta" CacheMode="BitmapCache"
-													 Command="OnCommand" CommandKeyDown="OnCommandKeyDown" CommandKeyUp="OnCommandKeyUp"/>
+							<ScrollViewer Grid.Row="1" Name="pageScroll" HorizontalScrollBarVisibility="Disabled"
+										  ManipulationStarted="OnPageManipulationStarted"
+										  ManipulationDelta="OnPageManipulationDelta"
+										  ManipulationCompleted="OnPageManipulationCompleted">
+								<local:TileBorder>
+									<local:TileBorder.ImageBrush>
+										<ImageBrush ImageSource="Images/BlackPaper.jpg"/>
+									</local:TileBorder.ImageBrush>
+									<StackPanel>
+										<local:StoryPageView StoryPage="{Binding}" ManipulationDelta="OnManipulationDelta" CacheMode="BitmapCache"/>
+										<local:CommandInput x:Name="commandInput"
+													CommandText="{Binding CommandText, ElementName=self, Mode=TwoWay}"
+													Visibility="{Binding HasInput, Converter={StaticResource booleanVisibilityConverter}}"
+													Command="OnCommand" CommandKeyDown="OnCommandKeyDown" CommandKeyUp="OnCommandKeyUp"/>
+									</StackPanel>
+								</local:TileBorder>
 							</ScrollViewer>
 						</Grid>
 					</DataTemplate>

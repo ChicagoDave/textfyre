@@ -1,0 +1,190 @@
+﻿<UserControl x:Class="ShadowWP7.CommandInput"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:controls="clr-namespace:System.Windows.Controls"
+	xmlns:local="clr-namespace:ShadowWP7"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+	Name="self"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+	<UserControl.Resources>
+
+		<Storyboard x:Key="scrollPage">
+			<!-- Animate from top to bottom -->
+			<DoubleAnimation
+				Storyboard.TargetName="scrollMediator"
+				Storyboard.TargetProperty="VerticalOffset"
+				From="0"
+				To="1"
+				Duration="0:0:0.5">
+				<DoubleAnimation.EasingFunction>
+					<ExponentialEase EasingMode="EaseOut"/>
+				</DoubleAnimation.EasingFunction>
+			</DoubleAnimation>
+		</Storyboard>
+
+		<!-- Mediator that forwards the property changes -->
+		<local:ScrollViewerOffsetMediator x:Name="scrollMediator"/>
+
+	</UserControl.Resources>
+
+	<StackPanel>
+		<Grid Margin="1,0,1,0">
+			<Grid>
+				<Grid Margin="0,50,0,50" Background="#FAECBD"/>
+				<StackPanel>
+					<Image Source="Images/PaperTearTop.png" UseLayoutRounding="False"/>
+					<Grid Margin="10,-5,10,0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<TextBlock Grid.Column="0" Text="{Binding State.Prompt}" Margin="0,0,5,0" Style="{StaticResource promptText}" VerticalAlignment="Center"/>
+						<ScrollViewer Grid.Column="1" Name="virtualInputScroll" HorizontalScrollBarVisibility="Hidden">
+							<StackPanel Orientation="Horizontal">
+								<StackPanel.Triggers>
+									<EventTrigger RoutedEvent="StackPanel.Loaded">
+										<BeginStoryboard>
+											<Storyboard>
+												<DoubleAnimationUsingKeyFrames Duration="0:0:0.5"
+														AutoReverse="True"
+														RepeatBehavior="Forever"
+														Storyboard.TargetName="cursor"
+														Storyboard.TargetProperty="Opacity">
+													<DiscreteDoubleKeyFrame Value="0.2" KeyTime="0:0:0.0"/>
+													<DiscreteDoubleKeyFrame Value="0.8" KeyTime="0:0:0.3"/>
+												</DoubleAnimationUsingKeyFrames>
+											</Storyboard>
+										</BeginStoryboard>
+									</EventTrigger>
+								</StackPanel.Triggers>
+								<TextBlock Grid.Column="1" x:Name="virtualInputBox" Style="{StaticResource virtualText}"
+										   TextWrapping="Wrap" Text="{Binding CommandText, ElementName=self, Mode=TwoWay}" />
+								<Rectangle x:Name="cursor" Width="2" Fill="Black" Opacity="0.8" StrokeThickness="0"/>
+							</StackPanel>
+						</ScrollViewer>
+
+						<TextBox Visibility="Collapsed" Grid.Column="1" x:Name="inputBox" BorderThickness="0" KeyDown="OnCommandKeyDown" KeyUp="OnCommandKeyUp"
+								Style="{StaticResource commandText}" IsTabStop="True" TabIndex="0" CaretBrush="Black">
+							<TextBox.Template>
+								<ControlTemplate>
+									<ScrollViewer x:Name="ContentElement"/>
+								</ControlTemplate>
+							</TextBox.Template>
+						</TextBox>
+					</Grid>
+					<Image Source="Images/PaperTearBottom.png" UseLayoutRounding="False"/>
+				</StackPanel>
+			</Grid>
+		</Grid>
+
+		<ItemsControl ItemsSource="{Binding Words}">
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<controls:WrapPanel/>
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
+			<ItemsControl.ItemTemplate>
+				<DataTemplate>
+					<HyperlinkButton Click="HyperlinkButton_Click" Background="Yellow" Tag="{Binding}">
+						<HyperlinkButton.Template>
+							<ControlTemplate>
+								<TextBlock Style="{StaticResource historyTextWord}" Text="{Binding}"/>
+							</ControlTemplate>
+						</HyperlinkButton.Template>
+					</HyperlinkButton>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+
+		</ItemsControl>
+
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+
+			<ScrollViewer Grid.Column="0" Name="keyScroll">
+				<StackPanel>
+
+					<ListBox Name="firstLetter" ItemsSource="{Binding State.Commands}" HorizontalAlignment="Center"
+							 SelectionChanged="firstLetter_SelectionChanged">
+						<ItemsControl.Template>
+							<ControlTemplate>
+								<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+									<ItemsPresenter/>
+								</ScrollViewer>
+							</ControlTemplate>
+						</ItemsControl.Template>
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<VirtualizingStackPanel Orientation="Horizontal" />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Button Content="{Binding Key}" IsHitTestVisible="False">
+									<Button.Template>
+										<ControlTemplate>
+											<Border Background="#4A494A" Padding="10" Margin="4">
+												<TextBlock Text="{TemplateBinding Content}"/>
+											</Border>
+										</ControlTemplate>
+									</Button.Template>
+								</Button>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ListBox>
+
+					<ListBox Name="commandButtons" ItemsSource="{Binding SelectedItem.Value, ElementName=firstLetter}" HorizontalAlignment="Center"
+							 SelectionChanged="commandButtons_SelectionChanged">
+						<ItemsControl.Template>
+							<ControlTemplate>
+								<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+									<ItemsPresenter/>
+								</ScrollViewer>
+							</ControlTemplate>
+						</ItemsControl.Template>
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<VirtualizingStackPanel Orientation="Horizontal"/>
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Button Content="{Binding}" IsHitTestVisible="False">
+									<Button.Template>
+										<ControlTemplate>
+											<Border Background="#4A494A" Padding="10" Margin="4">
+												<TextBlock Text="{TemplateBinding Content}"/>
+											</Border>
+										</ControlTemplate>
+									</Button.Template>
+								</Button>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ListBox>
+
+				</StackPanel>
+			</ScrollViewer>
+
+			<Button Grid.Column="1" Content="Go">
+				<Button.Template>
+					<ControlTemplate>
+						<Border Background="#4A494A" Padding="10" Margin="4">
+							<TextBlock Text="{TemplateBinding Content}"/>
+						</Border>
+					</ControlTemplate>
+				</Button.Template>
+			</Button>
+
+		</Grid>
+
+	</StackPanel>
+
+</UserControl>

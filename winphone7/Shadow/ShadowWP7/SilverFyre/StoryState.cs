@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Textfyre.VM;
+using System.Collections.Generic;
 
 namespace Cjc.SilverFyre
 {
@@ -27,5 +28,38 @@ namespace Cjc.SilverFyre
 		public string Score { get; private set; }
 		public string Time { get; private set; }
 		public string Prompt { get; private set; }
+
+		public IDictionary<string, string[]> Commands
+		{
+			get
+			{
+				// TODO: These will eventually be provided through a channel
+				return new Dictionary<string, string[]>
+					{
+						{ "A", new[] { "Again", "Ask" } },
+						{ "B", new[] { "Buy" } },
+						{ "C", new[] { "Climb" } },
+						{ "D", new[] { "Down", "Drop" } },
+						{ "E", new[] { "East", "Examine" } },
+						{ "G", new[] { "Get", "Give", "Again", "Go" } },
+						{ "H", new[] { "Help", "Hide", "Hint" } },
+						{ "I", new[] { "Inventory", "In" } },
+						{ "J", new[] { "Jump" } },
+						{ "K", new[] { "Kill", "Kick" } },
+						{ "L", new[] { "Listen", "Lick", "Lock", "Look", "Lift" } },
+						{ "N", new[] { "North", "Northeast", "Northwest" } },
+						{ "O", new[] { "Out", "Open" } },
+						{ "P", new[] { "Press", "Pull", "Push", "Pick Up", "Put" } },
+						{ "Q", new[] { "Quit" } },
+						{ "R", new[] { "Restore", "Restart" } },
+						{ "S", new[] { "South", "Southeast", "Southwest", "Set", "Say", "Save", "Sell", "Sleep", "Screw", "Show" } },
+						{ "T", new[] { "Take", "Turn", "Turn On", "Turn Off", "Twist", "Tie", "Tell" } },
+						{ "U", new[] { "Up", "Undo", "Unscrew", "Unlock" } },
+						{ "W", new[] { "West", "Wait", "Wind" } },
+						{ "X", new[] { "Xyzzy", "Examine" } },
+						{ "Z", new[] { "Sleep" } }
+					};
+			}
+		}
 	}
 }

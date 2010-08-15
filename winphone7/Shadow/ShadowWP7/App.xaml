@@ -7,7 +7,67 @@
 
     <!--Application Resources-->
     <Application.Resources>
-    </Application.Resources>
+
+		<Style x:Key="statusText" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="24"/>
+			<Setter Property="Foreground" Value="White"/>
+		</Style>
+
+		<Style x:Key="historyPromptText" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="24"/>
+			<Setter Property="Foreground" Value="#A0FFA0"/>
+		</Style>
+
+		<Style x:Key="historyCommandText" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="24"/>
+			<Setter Property="FontStyle" Value="Italic"/>
+			<Setter Property="Foreground" Value="#A0A0FF"/>
+		</Style>
+
+		<Style x:Key="historyText" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="24"/>
+			<Setter Property="Foreground">
+				<Setter.Value>
+					<ImageBrush ImageSource="Images/GrainyText.jpg"/>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style x:Key="historyTextWord" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="24"/>
+			<Setter Property="Margin" Value="0,0,5,0"/>
+			<Setter Property="Foreground">
+				<Setter.Value>
+					<ImageBrush ImageSource="Images/GrainyText.jpg"/>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style x:Key="deathText" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="24"/>
+			<Setter Property="Foreground" Value="Red"/>
+		</Style>
+
+		<Style x:Key="promptText" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="24"/>
+			<Setter Property="Foreground" Value="Green"/>
+		</Style>
+
+		<Style x:Key="virtualText" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="24"/>
+			<Setter Property="Foreground" Value="Navy"/>
+		</Style>
+
+		<Style x:Key="commandText" TargetType="Control">
+			<Setter Property="FontSize" Value="24"/>
+			<Setter Property="Foreground" Value="Navy"/>
+		</Style>
+
+		<Style x:Key="controlText" TargetType="Control">
+			<Setter Property="FontSize" Value="24"/>
+		</Style>
+
+	</Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
         <!--Required object that handles lifetime events for the application-->
