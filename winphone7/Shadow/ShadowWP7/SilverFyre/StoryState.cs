@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace Cjc.SilverFyre
 {
-	public class StoryState
+	public class StoryState : DependencyObject
 	{
 		public StoryState( OutputReadyEventArgs outputArgs )
 		{
@@ -24,10 +24,31 @@ namespace Cjc.SilverFyre
 			else Prompt = ">";
 		}
 
+		public static readonly DependencyProperty CommandTextProperty = DependencyProperty.Register(
+			"CommandText",
+			typeof( string ),
+			typeof( StoryState ),
+			null );
+
+		public string CommandText
+		{
+			get { return (string)GetValue( CommandTextProperty ); }
+			set { SetValue( CommandTextProperty, value ); }
+		}
+
 		public string Location { get; private set; }
 		public string Score { get; private set; }
 		public string Time { get; private set; }
 		public string Prompt { get; private set; }
+
+		public void AppendCommand( string command )
+		{
+			var current = CommandText;
+
+			current = ( current != null ) ? current.Trim() : "";
+
+			CommandText = current + ( current.Length > 0 ? " " : "" ) + command;
+		}
 
 		public IDictionary<string, string[]> Commands
 		{

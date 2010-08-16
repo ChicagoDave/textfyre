@@ -47,18 +47,6 @@ namespace ShadowWP7
 		public StoryState CurrentState { get; private set; }
 		public ItemsControlHelper StoryItemsHelper { get; private set; }
 
-		public static readonly DependencyProperty CommandTextProperty = DependencyProperty.Register(
-			"CommandText",
-			typeof( string ),
-			typeof( CommandInput ),
-			null );
-
-		public string CommandText
-		{
-			get { return (string)GetValue( CommandTextProperty ); }
-			set { SetValue( CommandTextProperty, value ); }
-		}
-
         // Constructor
         public MainPage()
         {
@@ -95,7 +83,7 @@ namespace ShadowWP7
 
 		protected override void OnBackKeyPress( CancelEventArgs e )
 		{
-			var page = CurrentStoryPage;
+			var page = CurrentStoryPageIndex;
 
 			if ( page > 0 )
 			{
@@ -148,7 +136,7 @@ namespace ShadowWP7
 
 			if ( item.OutputArgs != null )
 			{
-				CurrentState = new StoryState( item.OutputArgs );
+				CurrentState = item.State;
 
 				if ( item.OutputArgs.Package.ContainsKey( OutputChannel.Prologue ) )
 				{
@@ -211,7 +199,7 @@ namespace ShadowWP7
 						}
 						while ( selectedCommandIndex >= 0 && !History[ selectedCommandIndex.Value ].HasCommand );
 
-						CommandText = ( selectedCommandIndex >= 0 )
+						CurrentStoryPage.CommandText = ( selectedCommandIndex >= 0 )
 							? History[ selectedCommandIndex.Value ].Command
 							: "";
 
@@ -228,7 +216,7 @@ namespace ShadowWP7
 						}
 						while ( selectedCommandIndex < History.Count && !History[ selectedCommandIndex.Value ].HasCommand );
 
-						CommandText = ( selectedCommandIndex < History.Count )
+						CurrentStoryPage.CommandText = ( selectedCommandIndex < History.Count )
 							? History[ selectedCommandIndex.Value ].Command
 							: "";
 
@@ -323,20 +311,16 @@ namespace ShadowWP7
 
 			if ( scrollHost != null )
 			{
-				var mediator = FindName( "scrollMediator" ) as ScrollViewerOffsetMediator;
-				mediator.ScrollViewer = StoryItemsHelper.ScrollHost;
-
-				var storyboard = FindStoryboard( "scrollStory" );
-				var animation = storyboard.Children.First() as DoubleAnimation;
-
-				animation.From = scrollHost.HorizontalOffset;
-				animation.To = page;
-
-				storyboard.Begin();
+				ScrollHelper.ScrollTo( scrollHost, Resources, "scrollStory", scrollHost.HorizontalOffset, page );
 			}
 		}
 
-		private int CurrentStoryPage
+		private PageBase CurrentStoryPage
+		{
+			get { return storyItems.Items[ CurrentStoryPageIndex ] as PageBase; }
+		}
+
+		private int CurrentStoryPageIndex
 		{
 			get
 			{
@@ -363,37 +347,33 @@ namespace ShadowWP7
 
 		void OnPageManipulationStarted( object sender, ManipulationStartedEventArgs e )
 		{
+			OnManipulationStarted( sender, e );
 		}
 
 		void OnPageManipulationDelta( object sender, ManipulationDeltaEventArgs e )
 		{
+			OnManipulationDelta( sender, e );
 		}
 
 		void OnPageManipulationCompleted( object sender, ManipulationCompletedEventArgs e )
 		{
+			OnManipulationCompleted( sender, e );
+
 			if ( !isPanning.GetValueOrDefault( false ) )
 			{
-				var page = Pages[ CurrentStoryPage ];
+				var element = sender as FrameworkElement;
+				var page = element.DataContext as PageBase;
 
 				if ( page.HasInput )
 				{
-					var container = storyItems.ItemContainerGenerator.ContainerFromIndex( CurrentStoryPage );
-					var scrollViewer = sender as ScrollViewer;
+					var container = storyItems.ItemContainerGenerator.ContainerFromIndex( CurrentStoryPageIndex );
+					var scrollViewer = element.FindName( "pageScroll" ) as ScrollViewer;
 					var commandInput = scrollViewer.FindName( "commandInput" ) as CommandInput;
 
 					if ( e.TotalManipulation.Translation.Y < 0
 						&& scrollViewer.VerticalOffset >= scrollViewer.ScrollableHeight - commandInput.DesiredSize.Height )
 					{
-						var mediator = FindName( "scrollMediator" ) as ScrollViewerOffsetMediator;
-						mediator.ScrollViewer = scrollViewer;
-
-						var storyboard = FindStoryboard( "scrollPage" );
-						var animation = storyboard.Children.First() as DoubleAnimation;
-
-						animation.From = scrollViewer.VerticalOffset;
-						animation.To = scrollViewer.ScrollableHeight; ;
-
-						storyboard.Begin();
+						ScrollHelper.ScrollTo( scrollViewer, Resources, "scrollPage", scrollViewer.VerticalOffset, scrollViewer.ScrollableHeight );
 					}
 				}
 			}
@@ -409,5 +389,19 @@ namespace ShadowWP7
 		}
 
 		#endregion
+
+		private void pageScroll_SizeChanged( object sender, SizeChangedEventArgs e )
+		{
+/*			var container = sender as ScrollViewer;
+			var storyPageView = container.FindName(  sender. VisualTreeHelper.GetChild( panel, 0 ) as StoryPageView;
+			var commandInput = VisualTreeHelper.GetChild( panel, 1 ) as CommandInput;
+
+			storyPageView.MinHeight = e.NewSize.Height - commandInput.DesiredSize.Height;*/
+		}
+
+		private void OnStoryInteraction( object sender, CommandEventArgs e )
+		{
+			if ( CurrentStoryPage.State == CurrentState ) CurrentState.AppendCommand( e.Command );
+		}
 	}
 }

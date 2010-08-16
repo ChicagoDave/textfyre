@@ -12,44 +12,24 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Cjc.SilverFyre;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace ShadowWP7
 {
 	public partial class StoryPageView : UserControl
 	{
-		private Image backgroundSource;
+		public event EventHandler<CommandEventArgs> StoryInteraction;
+
+		private TextBlock hoverTextBlock;
+		private TextBlock selectedTextBlock;
+		private DispatcherTimer timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds( 500 ) };
 
 		public StoryPageView()
 		{
 			InitializeComponent();
 
-/*			pageContent.LayoutUpdated += delegate
-			{
-				ResizeBackground( (int)pageContent.DesiredSize.Width, (int)pageContent.DesiredSize.Height);
-			};*/
+			timer.Tick += OnTimerTick;
 		}
-
-		public static readonly DependencyProperty StoryPageProperty = DependencyProperty.Register(
-			"StoryPage",
-			typeof( PageBase ),
-			typeof( StoryPageView ),
-			null );
-
-		public PageBase StoryPage
-		{
-			get { return (PageBase)GetValue( StoryPageProperty ); }
-			set { SetValue( StoryPageProperty, value ); }
-		}
-
-		/*
-		protected override Size ArrangeOverride( Size finalSize )
-		{
-			var size =base.ArrangeOverride( finalSize );
-
-			ResizeBackground( (int)LayoutRoot.ActualWidth, (int)LayoutRoot.ActualHeight );
-
-			return size;
-		}*/
 
 		private void OnParagraphLoaded( object sender, RoutedEventArgs e )
 		{
@@ -70,6 +50,71 @@ namespace ShadowWP7
 		void OnManipulationDelta( object sender, ManipulationDeltaEventArgs e )
 		{
 			e.Handled = false;
+		}
+
+		private void storyPanel_ManipulationStarted( object sender, ManipulationStartedEventArgs e )
+		{
+			var textBlock = e.ManipulationContainer as TextBlock;
+
+			if ( textBlock != null && (string)textBlock.Tag == "Word" && StoryInteraction != null )
+			{
+				hoverTextBlock = textBlock;
+				selectedTextBlock = null;
+				timer.Start();
+			}
+		}
+
+		private void OnTimerTick( object sender, EventArgs e )
+		{
+			if ( hoverTextBlock != null )
+			{
+				selectedTextBlock = hoverTextBlock;
+				hoverTextBlock = null;
+
+				MoveSelectedWord( new Point() );
+
+				selectedWord.Text = selectedTextBlock.Text;
+				selectedWord.FontWeight = selectedTextBlock.FontWeight;
+				selectedWord.FontStyle = selectedTextBlock.FontStyle;
+				selectedWordBorder.Visibility = Visibility.Visible;
+			}
+		}
+
+		private void storyPanel_ManipulationDelta( object sender, ManipulationDeltaEventArgs e )
+		{
+			if ( hoverTextBlock != null )
+			{
+				timer.Stop();
+				hoverTextBlock = selectedTextBlock = null;
+			}
+			else if ( selectedTextBlock != null )
+			{
+				MoveSelectedWord( e.CumulativeManipulation.Translation );
+				e.Handled = true;
+			}
+		}
+
+		private void storyPanel_ManipulationCompleted( object sender, ManipulationCompletedEventArgs e )
+		{
+			selectedWordBorder.Visibility = Visibility.Collapsed;
+
+			if ( selectedTextBlock != null && e.FinalVelocities.LinearVelocity.Y > 0 )
+			{
+				StoryInteraction( e.ManipulationContainer, new CommandEventArgs( selectedTextBlock.Text ) );
+				hoverTextBlock = selectedTextBlock = null;
+				e.Handled = true;
+			}
+		}
+
+		private void MoveSelectedWord( Point offset )
+		{
+			var position = selectedTextBlock.TransformToVisual( LayoutRoot ).Transform( new Point() );
+
+			selectedWordBorder.RenderTransform = new TranslateTransform
+			{
+				X = position.X - selectedWordBorder.Padding.Left,
+				Y = position.Y - selectedWordBorder.Padding.Top + Math.Max( offset.Y, 0 )
+			};
 		}
 	}
 }
