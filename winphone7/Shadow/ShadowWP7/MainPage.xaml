@@ -122,11 +122,13 @@
 								<Grid ManipulationStarted="OnPageManipulationStarted"
 									  ManipulationDelta="OnPageManipulationDelta"
 									  ManipulationCompleted="OnPageManipulationCompleted" MinHeight="720">
-									<local:TileBorder>
-										<local:TileBorder.ImageBrush>
-											<ImageBrush ImageSource="Images/BlackPaper.jpg"/>
-										</local:TileBorder.ImageBrush>
-									</local:TileBorder>
+									<local:CroppingPanel Background="blue">
+										<StackPanel>
+											<Image Source="Images/BlackPaper.jpg"/>
+											<Image Source="Images/BlackPaper.jpg"/>
+											<Image Source="Images/BlackPaper.jpg"/>
+										</StackPanel>
+									</local:CroppingPanel>
 									<Grid>
 										<Grid.RowDefinitions>
 											<RowDefinition/>
