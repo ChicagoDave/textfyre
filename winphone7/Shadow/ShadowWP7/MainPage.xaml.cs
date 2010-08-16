@@ -37,6 +37,7 @@ namespace ShadowWP7
 
 		private bool? isPanning;
 		private double panOffset;
+		private bool panCancelled;
 
 		private string baseUrl;
 		private string storyUrl;
@@ -275,8 +276,6 @@ namespace ShadowWP7
 			{
 				panOffset = StoryItemsHelper.ScrollHost.HorizontalOffset;
 			}
-//			hook.Hook( e.ManipulationContainer );
-//			hook.HookDeltaHandler( 
 		}
 
 		void OnManipulationDelta( object sender, ManipulationDeltaEventArgs e )
@@ -291,8 +290,10 @@ namespace ShadowWP7
 
 			if ( isPanning.GetValueOrDefault( false ) && StoryItemsHelper.ScrollHost != null )
 			{
-				StoryItemsHelper.ScrollHost.ScrollToHorizontalOffset( panOffset - ( e.CumulativeManipulation.Translation.X / 480 ) );
+				panCancelled = ( e.CumulativeManipulation.Translation.X > 0 && e.DeltaManipulation.Translation.X < 0 )
+					|| ( e.CumulativeManipulation.Translation.X < 0 && e.DeltaManipulation.Translation.X > 0 );
 
+				StoryItemsHelper.ScrollHost.ScrollToHorizontalOffset( panOffset - ( e.CumulativeManipulation.Translation.X / 480 ) );
 				e.Handled = true;
 			}
 		}
@@ -301,7 +302,8 @@ namespace ShadowWP7
 		{
 			if ( e.TotalManipulation.Translation.X != 0 && isPanning.GetValueOrDefault( false ) )
 			{
-				ScrollTo( (int)( panOffset + ( e.TotalManipulation.Translation.X < 0 ? 1 : -1 ) ) );
+				ScrollTo( (int)( panOffset + ( panCancelled ? 0 : ( e.TotalManipulation.Translation.X < 0 ? 1 : -1 ) ) ) );
+				e.Handled = true;
 			}
 		}
 

@@ -57,8 +57,8 @@
 					<ColumnDefinition Width="Auto"/>
 					<ColumnDefinition/>
 				</Grid.ColumnDefinitions>
-				<TextBlock Grid.Column="0" Text="&gt;" Margin="0,0,5,0" Style="{StaticResource historyPromptText}" VerticalAlignment="Center"/>
-				<TextBlock Grid.Column="1" Text="{Binding Command}" Style="{StaticResource historyCommandText}" VerticalAlignment="Center"
+				<TextBlock Grid.Column="0" Text="&gt;" Margin="0,0,5,0" Style="{StaticResource historyPromptText}" VerticalAlignment="Top"/>
+				<TextBlock Grid.Column="1" Text="{Binding Command}" Style="{StaticResource historyCommandText}" VerticalAlignment="Top"
 						   TextWrapping="Wrap"/>
 			</Grid>
 

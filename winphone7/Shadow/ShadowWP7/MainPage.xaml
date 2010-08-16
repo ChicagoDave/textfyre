@@ -85,7 +85,7 @@
 			<ListBox Name="storyItems" ItemsSource="{Binding Pages, ElementName=self}">
 				<ItemsControl.Template>
 					<ControlTemplate>
-						<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+						<ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
 							<ItemsPresenter/>
 						</ScrollViewer>
 					</ControlTemplate>
@@ -121,7 +121,7 @@
 							<ScrollViewer Grid.Row="1" Name="pageScroll" HorizontalScrollBarVisibility="Disabled">
 								<Grid ManipulationStarted="OnPageManipulationStarted"
 									  ManipulationDelta="OnPageManipulationDelta"
-									  ManipulationCompleted="OnPageManipulationCompleted">
+									  ManipulationCompleted="OnPageManipulationCompleted" MinHeight="720">
 									<local:TileBorder>
 										<local:TileBorder.ImageBrush>
 											<ImageBrush ImageSource="Images/BlackPaper.jpg"/>
