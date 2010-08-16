@@ -57,6 +57,8 @@ namespace ShadowWP7
 				grid.Children.Add( (UIElement)newContent );
 
 				Content = grid;
+
+				InvalidateMeasure();
 			}
 
 			base.OnContentChanged( oldContent, Content );

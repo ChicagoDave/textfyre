@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:system="clr-namespace:System;assembly=mscorlib"
 	xmlns:local="clr-namespace:ShadowWP7"
 	xmlns:convert="clr-namespace:Cjc.SilverFyre"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -15,15 +16,11 @@
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     shell:SystemTray.IsVisible="True"
 	IsTabStop="True"
-	Name="self">
+	x:Name="self">
 
 	<phone:PhoneApplicationPage.Resources>
 
 		<convert:BooleanToVisibilityConverter x:Key="booleanVisibilityConverter" />
-
-		<Style x:Key="locationText" TargetType="TextBlock">
-			<Setter Property="Foreground" Value="#202050"/>
-		</Style>
 
 		<Storyboard x:Key="showSaveLoad">
 			<DoubleAnimation Storyboard.TargetName="saveLoadPopup" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.5"/>
@@ -48,7 +45,7 @@
 		<Storyboard x:Key="scrollStory">
 			<!-- Animate from left to right -->
 			<DoubleAnimation
-				Storyboard.TargetName="scrollMediator"
+				Storyboard.TargetName="scrollStoryMediator"
 				Storyboard.TargetProperty="HorizontalOffset"
 				From="0"
 				To="1"
@@ -59,10 +56,13 @@
 			</DoubleAnimation>
 		</Storyboard>
 
+		<!-- Mediator that forwards the property changes -->
+		<local:ScrollViewerOffsetMediator x:Name="scrollStoryMediator"/>
+
 		<Storyboard x:Key="scrollPage">
 			<!-- Animate from top to bottom -->
 			<DoubleAnimation
-				Storyboard.TargetName="scrollMediator"
+				Storyboard.TargetName="scrollPageMediator"
 				Storyboard.TargetProperty="VerticalOffset"
 				From="0"
 				To="1"
@@ -74,18 +74,15 @@
 		</Storyboard>
 
 		<!-- Mediator that forwards the property changes -->
-		<local:ScrollViewerOffsetMediator x:Name="scrollMediator"/>
+		<local:ScrollViewerOffsetMediator x:Name="scrollPageMediator"/>
 
 	</phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent"
-		  ManipulationStarted="OnManipulationStarted"
-		  ManipulationDelta="OnManipulationDelta"
-		  ManipulationCompleted="OnManipulationCompleted">
+    <Grid x:Name="LayoutRoot" Background="Transparent">
 
 		<Grid>
-			<ItemsControl Name="storyItems" ItemsSource="{Binding Pages, ElementName=self}">
+			<ListBox Name="storyItems" ItemsSource="{Binding Pages, ElementName=self}">
 				<ItemsControl.Template>
 					<ControlTemplate>
 						<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
@@ -101,7 +98,10 @@
 				</ItemsControl.ItemsPanel>
 				<ItemsControl.ItemTemplate>
 					<DataTemplate>
-						<Grid Width="480">
+						<Grid Width="480"
+						  ManipulationStarted="OnManipulationStarted"
+						  ManipulationDelta="OnManipulationDelta"
+						  ManipulationCompleted="OnManipulationCompleted">
 							<Grid.RowDefinitions>
 								<RowDefinition Height="Auto"/>
 								<RowDefinition/>
@@ -118,22 +118,26 @@
 								<TextBlock Grid.Column="1" Text="{Binding State.Location}" HorizontalAlignment="Center" Margin="10"
 										   Style="{StaticResource locationText}"/>
 							</Grid>
-							<ScrollViewer Grid.Row="1" Name="pageScroll" HorizontalScrollBarVisibility="Disabled"
-										  ManipulationStarted="OnPageManipulationStarted"
-										  ManipulationDelta="OnPageManipulationDelta"
-										  ManipulationCompleted="OnPageManipulationCompleted">
-								<local:TileBorder>
-									<local:TileBorder.ImageBrush>
-										<ImageBrush ImageSource="Images/BlackPaper.jpg"/>
-									</local:TileBorder.ImageBrush>
-									<StackPanel>
-										<local:StoryPageView StoryPage="{Binding}" ManipulationDelta="OnManipulationDelta" CacheMode="BitmapCache"/>
-										<local:CommandInput x:Name="commandInput"
-													CommandText="{Binding CommandText, ElementName=self, Mode=TwoWay}"
-													Visibility="{Binding HasInput, Converter={StaticResource booleanVisibilityConverter}}"
-													Command="OnCommand" CommandKeyDown="OnCommandKeyDown" CommandKeyUp="OnCommandKeyUp"/>
-									</StackPanel>
-								</local:TileBorder>
+							<ScrollViewer Grid.Row="1" Name="pageScroll" HorizontalScrollBarVisibility="Disabled">
+								<Grid ManipulationStarted="OnPageManipulationStarted"
+									  ManipulationDelta="OnPageManipulationDelta"
+									  ManipulationCompleted="OnPageManipulationCompleted">
+									<local:TileBorder>
+										<local:TileBorder.ImageBrush>
+											<ImageBrush ImageSource="Images/BlackPaper.jpg"/>
+										</local:TileBorder.ImageBrush>
+									</local:TileBorder>
+									<Grid>
+										<Grid.RowDefinitions>
+											<RowDefinition/>
+											<RowDefinition Height="Auto"/>
+										</Grid.RowDefinitions>
+										<local:StoryPageView Grid.Row="0" CacheMode="BitmapCache" StoryInteraction="OnStoryInteraction"/>
+										<local:CommandInput Name="commandInput" Grid.Row="1"
+															Visibility="{Binding HasInput, Converter={StaticResource booleanVisibilityConverter}}"
+															Command="OnCommand" CommandKeyDown="OnCommandKeyDown" CommandKeyUp="OnCommandKeyUp"/>
+									</Grid>
+								</Grid>
 							</ScrollViewer>
 						</Grid>
 					</DataTemplate>
@@ -141,7 +145,7 @@
 				<ItemsControl.RenderTransform>
 					<TranslateTransform x:Name="pageTranslate"/>
 				</ItemsControl.RenderTransform>
-			</ItemsControl>
+			</ListBox>
 		</Grid>
 
 		<TextBlock x:Name="pleaseWait" Opacity="0"><Run Text="Please wait..."/></TextBlock>

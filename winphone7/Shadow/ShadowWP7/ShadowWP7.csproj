@@ -66,6 +66,7 @@
     <Compile Include="CommandInput.xaml.cs">
       <DependentUpon>CommandInput.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SilverFyre\Converters\InlineWordConverter.cs" />
     <Compile Include="ItemsControlHelper.cs" />
     <Compile Include="PagingPanel.cs" />
     <Compile Include="ScrollViewerOffsetMediator.cs" />
@@ -86,7 +87,10 @@
     <Compile Include="SilverFyre\StoryHistoryItem.cs" />
     <Compile Include="SilverFyre\PageBase.cs" />
     <Compile Include="SilverFyre\StoryState.cs" />
-    <Compile Include="StoryboardHelper.cs" />
+    <Compile Include="ScrollHelper.cs" />
+    <Compile Include="StoryPageHost.xaml.cs">
+      <DependentUpon>StoryPageHost.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StoryPageView.xaml.cs">
       <DependentUpon>StoryPageView.xaml</DependentUpon>
     </Compile>
@@ -108,6 +112,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StoryPageHost.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -151,6 +159,9 @@
       <Project>{13A8583B-F4F0-4518-999F-A5A3A169615D}</Project>
       <Name>Textfyre.VM</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Converters\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

@@ -8,6 +8,10 @@
     <!--Application Resources-->
     <Application.Resources>
 
+		<Style x:Key="locationText" TargetType="TextBlock">
+			<Setter Property="Foreground" Value="#202050"/>
+		</Style>
+
 		<Style x:Key="statusText" TargetType="TextBlock">
 			<Setter Property="FontSize" Value="24"/>
 			<Setter Property="Foreground" Value="White"/>
@@ -35,7 +39,6 @@
 
 		<Style x:Key="historyTextWord" TargetType="TextBlock">
 			<Setter Property="FontSize" Value="24"/>
-			<Setter Property="Margin" Value="0,0,5,0"/>
 			<Setter Property="Foreground">
 				<Setter.Value>
 					<ImageBrush ImageSource="Images/GrainyText.jpg"/>

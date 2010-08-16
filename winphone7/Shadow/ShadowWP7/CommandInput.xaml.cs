@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Cjc.SilverFyre;
 
 namespace ShadowWP7
 {
@@ -20,18 +21,6 @@ namespace ShadowWP7
 		public event KeyEventHandler CommandKeyDown;
 		public event KeyEventHandler CommandKeyUp;
 
-		public static readonly DependencyProperty CommandTextProperty = DependencyProperty.Register(
-			"CommandText",
-			typeof( string ),
-			typeof( CommandInput ),
-			null );
-
-		public string CommandText
-		{
-			get { return (string)GetValue( CommandTextProperty ); }
-			set { SetValue( CommandTextProperty, value ); }
-		}
-
 		public CommandInput()
 		{
 			InitializeComponent();
@@ -39,7 +28,7 @@ namespace ShadowWP7
 
 		private void OnCommand( object sender, RoutedEventArgs e )
 		{
-			if ( Command != null ) Command( this, new CommandEventArgs( inputBox.Text ) );
+			if ( Command != null ) Command( this, new CommandEventArgs( virtualInputBox.Text /*?? inputBox.Text*/ ) );
 		}
 
 		private void OnCommandKeyDown( object sender, KeyEventArgs e )
@@ -71,6 +60,7 @@ namespace ShadowWP7
 
 		private void AddCommand( string command )
 		{
+			( DataContext as PageBase ).State.AppendCommand( command );
 			var current = virtualInputBox.Text.Trim();
 
 			virtualInputBox.Text = current + ( current.Length > 0 ? " " : "" ) + command;
@@ -98,6 +88,12 @@ namespace ShadowWP7
 				keyScroll.Measure( keyScroll.RenderSize );
 				keyScroll.ScrollTo( Resources, "scrollPage", keyScroll.VerticalOffset, 0 );
 			}
+		}
+
+		private void goButton_Click( object sender, RoutedEventArgs e )
+		{
+			OnCommand( sender, null );
+			inputBox.Text = "";
 		}
 	}
 }
