@@ -92,7 +92,7 @@
       <DependentUpon>StoryPageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Streams.cs" />
-    <Compile Include="TileBorder.cs" />
+    <Compile Include="CroppingPanel.cs" />
     <Compile Include="Toolkit\LengthConverter.cs" />
     <Compile Include="Toolkit\NumericExtensions.cs" />
     <Compile Include="Toolkit\OrientedSize.cs" />

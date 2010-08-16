@@ -51,19 +51,9 @@ namespace ShadowWP7
 			inputBox.Text = command;
 		}
 
-		private void HyperlinkButton_Click( object sender, RoutedEventArgs e )
-		{
-			var button = sender as HyperlinkButton;
-
-			AddCommand( (string)button.Tag );
-		}
-
-		private void AddCommand( string command )
+		private void AppendCommand( string command )
 		{
 			( DataContext as PageBase ).State.AppendCommand( command );
-			var current = virtualInputBox.Text.Trim();
-
-			virtualInputBox.Text = current + ( current.Length > 0 ? " " : "" ) + command;
 
 			virtualInputScroll.Measure( virtualInputScroll.RenderSize );
 			virtualInputScroll.ScrollToHorizontalOffset( virtualInputScroll.ScrollableWidth );
@@ -83,7 +73,7 @@ namespace ShadowWP7
 		{
 			if ( e.AddedItems.Count > 0 )
 			{
-				AddCommand( (string)e.AddedItems[ 0 ] );
+				AppendCommand( (string)e.AddedItems[ 0 ] );
 
 				keyScroll.Measure( keyScroll.RenderSize );
 				keyScroll.ScrollTo( Resources, "scrollPage", keyScroll.VerticalOffset, 0 );
