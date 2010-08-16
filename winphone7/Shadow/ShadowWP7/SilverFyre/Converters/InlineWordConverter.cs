@@ -82,8 +82,11 @@ namespace Cjc.SilverFyre
 
 					foreach ( var match in wordRegex.Matches( run.Text ).Cast<Match>() )
 					{
-						yield return new TextBlock { Text = match.Groups[ "word" ].Value, Style = WordStyle, FontWeight = inline.FontWeight, FontStyle = inline.FontStyle, Tag = "Word" };
-						yield return new TextBlock { Text = match.Groups[ "other" ].Value, Style = PunctuationStyle, FontWeight = inline.FontWeight, FontStyle = inline.FontStyle };
+						var panel = new StackPanel { Orientation = Orientation.Horizontal };
+						panel.Children.Add( new TextBlock { Text = match.Groups[ "word" ].Value, Style = WordStyle, FontWeight = inline.FontWeight, FontStyle = inline.FontStyle, Tag = "Word" } );
+						panel.Children.Add( new TextBlock { Text = match.Groups[ "other" ].Value, Style = PunctuationStyle, FontWeight = inline.FontWeight, FontStyle = inline.FontStyle } );
+
+						yield return panel;
 					}
 				}
 			}
