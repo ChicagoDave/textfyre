@@ -96,14 +96,16 @@ namespace ShadowWP7
 
 		private void storyPanel_ManipulationCompleted( object sender, ManipulationCompletedEventArgs e )
 		{
+			timer.Stop();
 			selectedWordBorder.Visibility = Visibility.Collapsed;
 
 			if ( selectedTextBlock != null && e.FinalVelocities.LinearVelocity.Y > 0 )
 			{
 				StoryInteraction( e.ManipulationContainer, new CommandEventArgs( selectedTextBlock.Text ) );
-				hoverTextBlock = selectedTextBlock = null;
 				e.Handled = true;
 			}
+
+			hoverTextBlock = selectedTextBlock = null;
 		}
 
 		private void MoveSelectedWord( Point offset )

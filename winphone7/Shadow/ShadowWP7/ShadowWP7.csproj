@@ -88,9 +88,6 @@
     <Compile Include="SilverFyre\PageBase.cs" />
     <Compile Include="SilverFyre\StoryState.cs" />
     <Compile Include="ScrollHelper.cs" />
-    <Compile Include="StoryPageHost.xaml.cs">
-      <DependentUpon>StoryPageHost.xaml</DependentUpon>
-    </Compile>
     <Compile Include="StoryPageView.xaml.cs">
       <DependentUpon>StoryPageView.xaml</DependentUpon>
     </Compile>
@@ -112,10 +109,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="StoryPageHost.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
