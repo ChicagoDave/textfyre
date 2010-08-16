@@ -12,7 +12,7 @@ using System.Windows.Shapes;
 
 namespace ShadowWP7
 {
-	public static class StoryboardHelper
+	public static class ScrollHelper
 	{
 		public static void ScrollTo( this ScrollViewer scrollViewer, ResourceDictionary resources, string storyboardName, double from, double to )
 		{
