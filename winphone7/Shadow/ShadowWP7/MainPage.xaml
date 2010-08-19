@@ -82,7 +82,7 @@
     <Grid x:Name="LayoutRoot" Background="Transparent">
 
 		<Grid>
-			<ListBox Name="storyItems" ItemsSource="{Binding Pages, ElementName=self}">
+			<ItemsControl Name="storyItems" ItemsSource="{Binding Pages, ElementName=self}">
 				<ItemsControl.Template>
 					<ControlTemplate>
 						<ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
@@ -146,7 +146,7 @@
 				<ItemsControl.RenderTransform>
 					<TranslateTransform x:Name="pageTranslate"/>
 				</ItemsControl.RenderTransform>
-			</ListBox>
+			</ItemsControl>
 		</Grid>
 
 		<TextBlock x:Name="pleaseWait" Opacity="0"><Run Text="Please wait..."/></TextBlock>
