@@ -66,6 +66,9 @@
     <Compile Include="CommandInput.xaml.cs">
       <DependentUpon>CommandInput.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SilverFyre\ImagePage.cs" />
+    <Compile Include="SilverFyre\CreditsPage.cs" />
+    <Compile Include="VisualStateHelper.cs" />
     <Compile Include="SilverFyre\Converters\InlineWordConverter.cs" />
     <Compile Include="ItemsControlHelper.cs" />
     <Compile Include="PagingPanel.cs" />
@@ -144,6 +147,7 @@
     <Resource Include="Images\PaperTearBackground.png" />
     <Resource Include="Images\PaperTearBottom.png" />
     <Resource Include="Images\PaperTearTop.png" />
+    <Resource Include="Images\shadow-ad.jpg" />
     <Content Include="SplashScreenImage.jpg" />
     <Resource Include="Images\OldPaper.jpg" />
   </ItemGroup>

@@ -86,7 +86,8 @@ namespace Cjc.SilverFyre
 
 				return content.IsXml()
 					? XElement.Parse( "<X>" + EnsureXml( content ) + "</X>" )
-					: new XElement( "X", content );
+					: new XElement( "X", new XElement( "Paragraph",
+						content.Split( '\n' ).Select( c => new[] { new XElement( "R", c ), new XElement( "LineBreak" ) } ) ) );
 			}
 			catch
 			{

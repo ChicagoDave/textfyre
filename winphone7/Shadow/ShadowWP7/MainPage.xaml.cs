@@ -18,6 +18,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading;
 using System.IO.IsolatedStorage;
+using System.Windows.Media.Imaging;
 
 namespace ShadowWP7
 {
@@ -38,6 +39,7 @@ namespace ShadowWP7
 		private bool? isPanning;
 		private double panOffset;
 		private bool panCancelled;
+		private bool scrollCancelled;
 
 		private string baseUrl;
 		private string storyUrl;
@@ -141,7 +143,14 @@ namespace ShadowWP7
 
 				if ( item.OutputArgs.Package.ContainsKey( OutputChannel.Prologue ) )
 				{
+					Pages.Add( new ImagePage( item, new BitmapImage( new Uri( "Images/Shadow-ad.jpg", UriKind.Relative ) ) ) );
 					Pages.Add( new ProloguePage( item ) );
+					if ( !nextPage.HasValue ) nextPage = Pages.Count;
+				}
+
+				if ( item.OutputArgs.Package.ContainsKey( OutputChannel.Credits ) )
+				{
+					Pages.Add( new CreditsPage( item ) );
 					if ( !nextPage.HasValue ) nextPage = Pages.Count;
 				}
 
@@ -274,7 +283,7 @@ namespace ShadowWP7
 
 			if ( StoryItemsHelper.ScrollHost != null )
 			{
-				panOffset = StoryItemsHelper.ScrollHost.HorizontalOffset;
+				panOffset = (int)StoryItemsHelper.ScrollHost.HorizontalOffset;
 			}
 		}
 
@@ -296,14 +305,38 @@ namespace ShadowWP7
 				StoryItemsHelper.ScrollHost.ScrollToHorizontalOffset( panOffset - ( e.CumulativeManipulation.Translation.X / 480 ) );
 				e.Handled = true;
 			}
+			else if ( !isPanning.GetValueOrDefault( false ) )
+			{
+				scrollCancelled = ( e.CumulativeManipulation.Translation.Y > 0 && e.DeltaManipulation.Translation.Y < 0 )
+					|| ( e.CumulativeManipulation.Translation.Y < 0 && e.DeltaManipulation.Translation.Y > 0 );
+			}
 		}
 
 		void OnManipulationCompleted( object sender, ManipulationCompletedEventArgs e )
 		{
-			if ( e.TotalManipulation.Translation.X != 0 && isPanning.GetValueOrDefault( false ) )
+			var offset = StoryItemsHelper.ScrollHost.HorizontalOffset;
+
+			if ( ( e.TotalManipulation.Translation.X != 0 && isPanning.GetValueOrDefault( false ) ) || offset != (int)offset )
 			{
 				ScrollTo( (int)( panOffset + ( panCancelled ? 0 : ( e.TotalManipulation.Translation.X < 0 ? 1 : -1 ) ) ) );
 				e.Handled = true;
+			}
+			else if ( e.TotalManipulation.Translation.Y != 0 && !scrollCancelled )
+			{
+				var element = sender as FrameworkElement;
+				var scrollViewer = element.FindName( "pageScroll" ) as ScrollViewer;
+				var commandInput = scrollViewer.FindName( "commandInput" ) as CommandInput;
+
+				if ( e.TotalManipulation.Translation.Y < 0
+					&& scrollViewer.VerticalOffset >= scrollViewer.ScrollableHeight - commandInput.DesiredSize.Height )
+				{
+					ScrollHelper.ScrollTo( scrollViewer, Resources, "scrollPage", scrollViewer.VerticalOffset, scrollViewer.ScrollableHeight );
+				}
+				else if ( e.TotalManipulation.Translation.Y > 0
+					&& scrollViewer.VerticalOffset >= scrollViewer.ScrollableHeight - commandInput.DesiredSize.Height )
+				{
+					ScrollHelper.ScrollTo( scrollViewer, Resources, "scrollPage", scrollViewer.VerticalOffset, scrollViewer.ScrollableHeight - commandInput.DesiredSize.Height );
+				}
 			}
 		}
 
@@ -315,6 +348,10 @@ namespace ShadowWP7
 			{
 				ScrollHelper.ScrollTo( scrollHost, Resources, "scrollStory", scrollHost.HorizontalOffset, page );
 			}
+		}
+
+		private void scrollStory_Completed( object sender, EventArgs e )
+		{
 		}
 
 		private PageBase CurrentStoryPage
@@ -404,6 +441,17 @@ namespace ShadowWP7
 		private void OnStoryInteraction( object sender, CommandEventArgs e )
 		{
 			if ( CurrentStoryPage.State == CurrentState ) CurrentState.AppendCommand( e.Command );
+		}
+
+		private void CommandInput_SizeChanged( object sender, SizeChangedEventArgs e )
+		{
+			var commandInput = sender as CommandInput;
+			var scrollViewer = commandInput.FindName( "pageScroll" ) as ScrollViewer;
+
+			if ( scrollViewer.VerticalOffset >= scrollViewer.ScrollableHeight - commandInput.DesiredSize.Height )
+			{
+				scrollViewer.ScrollToVerticalOffset( scrollViewer.ScrollableHeight );
+			}
 		}
 	}
 }
