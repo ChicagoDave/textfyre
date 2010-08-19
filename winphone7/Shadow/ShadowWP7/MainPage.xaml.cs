@@ -448,7 +448,7 @@ namespace ShadowWP7
 			var commandInput = sender as CommandInput;
 			var scrollViewer = commandInput.FindName( "pageScroll" ) as ScrollViewer;
 
-			if ( scrollViewer.VerticalOffset >= scrollViewer.ScrollableHeight - commandInput.DesiredSize.Height )
+			if ( scrollViewer.VerticalOffset == scrollViewer.ScrollableHeight - ( e.NewSize.Height - e.PreviousSize.Height ) )
 			{
 				scrollViewer.ScrollToVerticalOffset( scrollViewer.ScrollableHeight );
 			}

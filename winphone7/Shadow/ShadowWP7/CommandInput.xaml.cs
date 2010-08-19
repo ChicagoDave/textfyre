@@ -27,8 +27,19 @@ namespace ShadowWP7
 		{
 			InitializeComponent();
 
-			this.Loaded += delegate { ( DataContext as PageBase ).State.PropertyChanged += OnCommandTextChanged; };
-			this.Unloaded += delegate { ( DataContext as PageBase ).State.PropertyChanged -= OnCommandTextChanged; };
+			this.Loaded += delegate
+			{
+				var page = DataContext as PageBase;
+
+				if ( page != null && page.State != null ) page.State.PropertyChanged += OnCommandTextChanged;
+			};
+
+			this.Unloaded += delegate
+			{
+				var page = DataContext as PageBase;
+
+				if ( page != null && page.State != null ) page.State.PropertyChanged -= OnCommandTextChanged;
+			};
 		}
 
 		private void OnCommandTextChanged( object sender, PropertyChangedEventArgs e )
