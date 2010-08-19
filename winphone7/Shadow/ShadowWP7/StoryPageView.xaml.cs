@@ -22,7 +22,7 @@ namespace ShadowWP7
 
 		private TextBlock hoverTextBlock;
 		private TextBlock selectedTextBlock;
-		private DispatcherTimer timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds( 500 ) };
+		private DispatcherTimer timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds( 250 ) };
 
 		public StoryPageView()
 		{
@@ -66,6 +66,8 @@ namespace ShadowWP7
 
 		private void OnTimerTick( object sender, EventArgs e )
 		{
+			timer.Stop();
+
 			if ( hoverTextBlock != null )
 			{
 				selectedTextBlock = hoverTextBlock;
@@ -73,10 +75,11 @@ namespace ShadowWP7
 
 				MoveSelectedWord( new Point() );
 
-				selectedWord.Text = selectedTextBlock.Text;
-				selectedWord.FontWeight = selectedTextBlock.FontWeight;
-				selectedWord.FontStyle = selectedTextBlock.FontStyle;
-				selectedWordBorder.Visibility = Visibility.Visible;
+				selectedWordTooltip.Content = selectedTextBlock.Text;
+				selectedWordTooltip.FontWeight = selectedTextBlock.FontWeight;
+				selectedWordTooltip.FontStyle = selectedTextBlock.FontStyle;
+
+				ShowSelectedWord();
 			}
 		}
 
@@ -85,6 +88,7 @@ namespace ShadowWP7
 			if ( hoverTextBlock != null )
 			{
 				timer.Stop();
+				HideSelectedWord();
 				hoverTextBlock = selectedTextBlock = null;
 			}
 			else if ( selectedTextBlock != null )
@@ -97,7 +101,7 @@ namespace ShadowWP7
 		private void storyPanel_ManipulationCompleted( object sender, ManipulationCompletedEventArgs e )
 		{
 			timer.Stop();
-			selectedWordBorder.Visibility = Visibility.Collapsed;
+			HideSelectedWord();
 
 			if ( selectedTextBlock != null && e.FinalVelocities.LinearVelocity.Y > 0 )
 			{
@@ -111,12 +115,22 @@ namespace ShadowWP7
 		private void MoveSelectedWord( Point offset )
 		{
 			var position = selectedTextBlock.TransformToVisual( LayoutRoot ).Transform( new Point() );
+			var padding = 10;
+			var pagePadding = 10;
+			var yOffset = ( position.Y - padding - 50 < 0 ) ? 40 : -40;
 
-			selectedWordBorder.RenderTransform = new TranslateTransform
-			{
-				X = position.X - selectedWordBorder.Padding.Left,
-				Y = position.Y - selectedWordBorder.Padding.Top + Math.Max( offset.Y, 0 )
-			};
+			selectedWordTransform.X = Math.Min( Math.Max( position.X - padding, pagePadding ), LayoutRoot.RenderSize.Width - pagePadding - selectedWordTooltip.RenderSize.Width );
+			selectedWordTransform.Y = Math.Min( Math.Max( position.Y - padding + Math.Max( offset.Y, 0 ) + yOffset, pagePadding ), LayoutRoot.RenderSize.Height - pagePadding - selectedWordTooltip.RenderSize.Height );
+		}
+
+		private void ShowSelectedWord()
+		{
+			var result = VisualStateManager.GoToState( selectedWordTooltip, "Pressed", true );
+		}
+
+		private void HideSelectedWord()
+		{
+			var result = VisualStateManager.GoToState( selectedWordTooltip, "Normal", true );
 		}
 	}
 }

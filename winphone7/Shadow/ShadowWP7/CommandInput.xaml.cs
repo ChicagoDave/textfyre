@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Cjc.SilverFyre;
+using System.Windows.Data;
+using System.ComponentModel;
 
 namespace ShadowWP7
 {
@@ -24,6 +26,15 @@ namespace ShadowWP7
 		public CommandInput()
 		{
 			InitializeComponent();
+
+			this.Loaded += delegate { ( DataContext as PageBase ).State.PropertyChanged += OnCommandTextChanged; };
+			this.Unloaded += delegate { ( DataContext as PageBase ).State.PropertyChanged -= OnCommandTextChanged; };
+		}
+
+		private void OnCommandTextChanged( object sender, PropertyChangedEventArgs e )
+		{
+			virtualInputScroll.Measure( virtualInputScroll.RenderSize );
+			virtualInputScroll.ScrollToHorizontalOffset( virtualInputScroll.ScrollableWidth );
 		}
 
 		private void OnCommand( object sender, RoutedEventArgs e )
@@ -54,9 +65,6 @@ namespace ShadowWP7
 		private void AppendCommand( string command )
 		{
 			( DataContext as PageBase ).State.AppendCommand( command );
-
-			virtualInputScroll.Measure( virtualInputScroll.RenderSize );
-			virtualInputScroll.ScrollToHorizontalOffset( virtualInputScroll.ScrollableWidth );
 		}
 
 		private void Button_Click( object sender, RoutedEventArgs e )
@@ -65,8 +73,7 @@ namespace ShadowWP7
 
 		private void firstLetter_SelectionChanged( object sender, SelectionChangedEventArgs e )
 		{
-			keyScroll.Measure( keyScroll.RenderSize );
-			keyScroll.ScrollTo( Resources, "scrollPage", keyScroll.VerticalOffset, keyScroll.ScrollableHeight );
+			VisualStateManager.GoToState( commandButtons, "Visible", true );
 		}
 
 		private void commandButtons_SelectionChanged( object sender, SelectionChangedEventArgs e )
@@ -75,8 +82,10 @@ namespace ShadowWP7
 			{
 				AppendCommand( (string)e.AddedItems[ 0 ] );
 
-				keyScroll.Measure( keyScroll.RenderSize );
-				keyScroll.ScrollTo( Resources, "scrollPage", keyScroll.VerticalOffset, 0 );
+				commandButtons.SelectedItem = null;
+				firstLetter.SelectedItem = null;
+
+				VisualStateManager.GoToState( commandButtons, "Hidden", true );
 			}
 		}
 
@@ -84,6 +93,11 @@ namespace ShadowWP7
 		{
 			OnCommand( sender, null );
 			inputBox.Text = "";
+		}
+
+		private void backspaceButton_Click( object sender, RoutedEventArgs e )
+		{
+			( DataContext as PageBase ).State.DeleteCommand();
 		}
 	}
 }

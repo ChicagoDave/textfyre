@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,10 +11,11 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Textfyre.VM;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Cjc.SilverFyre
 {
-	public class StoryState : DependencyObject
+	public class StoryState : DependencyObject, INotifyPropertyChanged
 	{
 		public StoryState( OutputReadyEventArgs outputArgs )
 		{
@@ -48,6 +50,16 @@ namespace Cjc.SilverFyre
 			current = ( current != null ) ? current.Trim() : "";
 
 			CommandText = current + ( current.Length > 0 ? " " : "" ) + command;
+			RaisePropertyChanged( "CommandText" );
+		}
+
+		public void DeleteCommand()
+		{
+			var current = CommandText;
+			var words = current.Split( ' ' );
+
+			CommandText = string.Join( " ", words.Take( words.Length - 1 ).ToArray() );
+			RaisePropertyChanged( "CommandText" );
 		}
 
 		public IDictionary<string, string[]> Commands
@@ -82,5 +94,16 @@ namespace Cjc.SilverFyre
 					};
 			}
 		}
+
+		#region INotifyPropertyChanged Members
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected void RaisePropertyChanged( string propertyName )
+		{
+			if ( PropertyChanged != null ) PropertyChanged( this, new PropertyChangedEventArgs( propertyName ) );
+		}
+
+		#endregion
 	}
 }

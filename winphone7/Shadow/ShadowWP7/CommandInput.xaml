@@ -20,7 +20,7 @@
 				Storyboard.TargetProperty="VerticalOffset"
 				From="0"
 				To="1"
-				Duration="0:0:0.5">
+				Duration="0:0:0.1">
 				<DoubleAnimation.EasingFunction>
 					<ExponentialEase EasingMode="EaseOut"/>
 				</DoubleAnimation.EasingFunction>
@@ -33,15 +33,108 @@
 	</UserControl.Resources>
 
 	<StackPanel>
+
 		<Grid Margin="1,0,1,0">
 			<Grid>
 				<Grid Margin="0,50,0,50" Background="#FAECBD"/>
-				<StackPanel>
-					<Image Source="Images/PaperTearTop.png" UseLayoutRounding="False"/>
-					<Grid Margin="10,-5,10,0">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+					</Grid.RowDefinitions>
+
+					<Image Grid.Row="0" Source="Images/PaperTearTop.png" UseLayoutRounding="False"/>
+
+					<Image Grid.Row="3" Source="Images/PaperTearBottom.png" UseLayoutRounding="False"/>
+
+					<StackPanel Grid.Row="1" Margin="0,-20,0,5">
+
+						<ListBox Name="firstLetter" ItemsSource="{Binding State.Commands}" HorizontalAlignment="Center"
+						SelectionChanged="firstLetter_SelectionChanged">
+							<ItemsControl.Template>
+								<ControlTemplate>
+									<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+										<ItemsPresenter/>
+									</ScrollViewer>
+								</ControlTemplate>
+							</ItemsControl.Template>
+							<ItemsControl.ItemsPanel>
+								<ItemsPanelTemplate>
+									<VirtualizingStackPanel Orientation="Horizontal" />
+								</ItemsPanelTemplate>
+							</ItemsControl.ItemsPanel>
+							<ItemsControl.ItemTemplate>
+								<DataTemplate>
+									<Button Content="{Binding Key}" IsHitTestVisible="False">
+										<Button.Template>
+											<ControlTemplate>
+												<Border Background="#1F1F1F" Padding="10" Margin="4">
+													<TextBlock Text="{TemplateBinding Content}"/>
+												</Border>
+											</ControlTemplate>
+										</Button.Template>
+									</Button>
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+						</ListBox>
+
+						<ListBox Name="commandButtons" ItemsSource="{Binding SelectedItem.Value, ElementName=firstLetter}" HorizontalAlignment="Center"
+						SelectionChanged="commandButtons_SelectionChanged">
+							<ItemsControl.Template>
+								<ControlTemplate>
+									<ScrollViewer Name="scrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Height="0">
+										<VisualStateManager.VisualStateGroups>
+											<VisualStateGroup x:Name="CommonStates">
+												<VisualStateGroup.Transitions>
+													<VisualTransition To="Visible" GeneratedDuration="0:0:0.1"/>
+													<VisualTransition To="Hidden" GeneratedDuration="0:0:0.1"/>
+												</VisualStateGroup.Transitions>
+												<VisualState x:Name="Hidden">
+													<Storyboard>
+														<DoubleAnimation To="0" Storyboard.TargetName="scrollViewer" Storyboard.TargetProperty="Height"/>
+													</Storyboard>
+												</VisualState>
+												<VisualState x:Name="Visible">
+													<Storyboard>
+														<DoubleAnimation To="60" Storyboard.TargetName="scrollViewer" Storyboard.TargetProperty="Height"/>
+													</Storyboard>
+												</VisualState>
+											</VisualStateGroup>
+										</VisualStateManager.VisualStateGroups>
+										<ItemsPresenter/>
+									</ScrollViewer>
+								</ControlTemplate>
+							</ItemsControl.Template>
+							<ItemsControl.ItemsPanel>
+								<ItemsPanelTemplate>
+									<VirtualizingStackPanel Orientation="Horizontal"/>
+								</ItemsPanelTemplate>
+							</ItemsControl.ItemsPanel>
+							<ItemsControl.ItemTemplate>
+								<DataTemplate>
+									<Button Content="{Binding}" IsHitTestVisible="False">
+										<Button.Template>
+											<ControlTemplate>
+												<Border Background="#1F1F1F" Padding="10" Margin="4">
+													<TextBlock Text="{TemplateBinding Content}"/>
+												</Border>
+											</ControlTemplate>
+										</Button.Template>
+									</Button>
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+						</ListBox>
+
+					</StackPanel>
+
+					<Grid Grid.Row="2"  Margin="10,0,10,-10">
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="Auto"/>
 							<ColumnDefinition/>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="Auto"/>
 						</Grid.ColumnDefinitions>
 						<TextBlock Grid.Column="0" Text="{Binding State.Prompt}" Margin="0,0,5,0" Style="{StaticResource promptText}" VerticalAlignment="Center"/>
 						<ScrollViewer Grid.Column="1" Name="virtualInputScroll" HorizontalScrollBarVisibility="Hidden">
@@ -49,7 +142,7 @@
 								<StackPanel.Triggers>
 									<EventTrigger RoutedEvent="StackPanel.Loaded">
 										<BeginStoryboard>
-											<Storyboard>
+											<Storyboard x:Name="cursorAnimation">
 												<DoubleAnimationUsingKeyFrames Duration="0:0:0.5"
 														AutoReverse="True"
 														RepeatBehavior="Forever"
@@ -63,144 +156,118 @@
 									</EventTrigger>
 								</StackPanel.Triggers>
 								<TextBlock Grid.Column="1" x:Name="virtualInputBox" Style="{StaticResource virtualText}"
-										   TextWrapping="Wrap" Text="{Binding State.CommandText, Mode=TwoWay}" />
+										   TextWrapping="Wrap" Text="{Binding State.CommandText, Mode=TwoWay}"
+										   VerticalAlignment="Center"/>
 								<Rectangle x:Name="cursor" Width="2" Fill="Black" Opacity="0.8" StrokeThickness="0"/>
 							</StackPanel>
 						</ScrollViewer>
 
-						<TextBox Visibility="Collapsed" Grid.Column="1" x:Name="inputBox" BorderThickness="0" KeyDown="OnCommandKeyDown" KeyUp="OnCommandKeyUp"
-								Style="{StaticResource commandText}" IsTabStop="True" TabIndex="0" CaretBrush="Black">
+						<TextBox Visibility="Collapsed" Grid.Column="1" x:Name="inputBox" BorderThickness="0"
+								 KeyDown="OnCommandKeyDown" KeyUp="OnCommandKeyUp"
+								 VerticalAlignment="Center"
+								 Style="{StaticResource commandText}" IsTabStop="True" TabIndex="0" CaretBrush="Black">
 							<TextBox.Template>
 								<ControlTemplate>
 									<ScrollViewer x:Name="ContentElement"/>
 								</ControlTemplate>
 							</TextBox.Template>
 						</TextBox>
+
+						<Button Name="backspaceButton" Grid.Column="2" Content="←" Click="backspaceButton_Click" Margin="10,0,0,0"
+								BorderBrush="Black" Foreground="Black" Background="Transparent"
+								Padding="5,0,5,0">
+							<Button.Template>
+								<ControlTemplate>
+									<Grid Background="Transparent">
+										<VisualStateManager.VisualStateGroups>
+											<VisualStateGroup x:Name="CommonStates">
+												<VisualState x:Name="Normal"/>
+												<VisualState x:Name="MouseOver"/>
+												<VisualState x:Name="Pressed">
+													<Storyboard>
+														<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer" Storyboard.TargetProperty="Foreground">
+															<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneBackgroundBrush}" />
+														</ObjectAnimationUsingKeyFrames>
+														<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground" Storyboard.TargetProperty="Background">
+															<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneForegroundBrush}" />
+														</ObjectAnimationUsingKeyFrames>
+														<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground" Storyboard.TargetProperty="BorderBrush">
+															<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneForegroundBrush}" />
+														</ObjectAnimationUsingKeyFrames>
+													</Storyboard>
+												</VisualState>
+												<VisualState x:Name="Disabled">
+													<Storyboard>
+														<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer" Storyboard.TargetProperty="Foreground">
+															<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}" />
+														</ObjectAnimationUsingKeyFrames>
+														<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground" Storyboard.TargetProperty="BorderBrush">
+															<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}" />
+														</ObjectAnimationUsingKeyFrames>
+														<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground" Storyboard.TargetProperty="Background">
+															<DiscreteObjectKeyFrame KeyTime="0" Value="Transparent" />
+														</ObjectAnimationUsingKeyFrames>
+													</Storyboard>
+												</VisualState>
+											</VisualStateGroup>
+										</VisualStateManager.VisualStateGroups>
+										<Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="0" Background="{TemplateBinding Background}" Margin="0">
+											<ContentControl x:Name="ContentContainer" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Padding="{TemplateBinding Padding}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+										</Border>
+									</Grid>
+								</ControlTemplate>
+							</Button.Template>
+						</Button>
+
+						<Button Name="goButton" Grid.Column="3" Content="Go" Click="goButton_Click" Margin="10,0,0,0"
+								BorderBrush="Black" Foreground="Black" Background="Transparent"
+								Padding="5,0,5,0">
+							<Button.Template>
+								<ControlTemplate>
+									<Grid Background="Transparent">
+										<VisualStateManager.VisualStateGroups>
+											<VisualStateGroup x:Name="CommonStates">
+												<VisualState x:Name="Normal"/>
+												<VisualState x:Name="MouseOver"/>
+												<VisualState x:Name="Pressed">
+													<Storyboard>
+														<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer" Storyboard.TargetProperty="Foreground">
+															<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneBackgroundBrush}" />
+														</ObjectAnimationUsingKeyFrames>
+														<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground" Storyboard.TargetProperty="Background">
+															<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneForegroundBrush}" />
+														</ObjectAnimationUsingKeyFrames>
+														<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground" Storyboard.TargetProperty="BorderBrush">
+															<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneForegroundBrush}" />
+														</ObjectAnimationUsingKeyFrames>
+													</Storyboard>
+												</VisualState>
+												<VisualState x:Name="Disabled">
+													<Storyboard>
+														<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer" Storyboard.TargetProperty="Foreground">
+															<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}" />
+														</ObjectAnimationUsingKeyFrames>
+														<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground" Storyboard.TargetProperty="BorderBrush">
+															<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}" />
+														</ObjectAnimationUsingKeyFrames>
+														<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground" Storyboard.TargetProperty="Background">
+															<DiscreteObjectKeyFrame KeyTime="0" Value="Transparent" />
+														</ObjectAnimationUsingKeyFrames>
+													</Storyboard>
+												</VisualState>
+											</VisualStateGroup>
+										</VisualStateManager.VisualStateGroups>
+										<Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="0" Background="{TemplateBinding Background}" Margin="0">
+											<ContentControl x:Name="ContentContainer" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Padding="{TemplateBinding Padding}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+										</Border>
+									</Grid>
+								</ControlTemplate>
+							</Button.Template>
+						</Button>
+
 					</Grid>
-					<Image Source="Images/PaperTearBottom.png" UseLayoutRounding="False"/>
-				</StackPanel>
+				</Grid>
 			</Grid>
-		</Grid>
-
-		<Grid>
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition/>
-				<ColumnDefinition Width="Auto"/>
-			</Grid.ColumnDefinitions>
-
-			<Grid.RowDefinitions>
-				<RowDefinition/>
-				<RowDefinition/>
-			</Grid.RowDefinitions>
-
-			<ScrollViewer Grid.Column="0" Grid.RowSpan="2" Name="keyScroll">
-				<StackPanel>
-
-					<ListBox Name="firstLetter" ItemsSource="{Binding State.Commands}" HorizontalAlignment="Center"
-							 SelectionChanged="firstLetter_SelectionChanged">
-						<ItemsControl.Template>
-							<ControlTemplate>
-								<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-									<ItemsPresenter/>
-								</ScrollViewer>
-							</ControlTemplate>
-						</ItemsControl.Template>
-						<ItemsControl.ItemsPanel>
-							<ItemsPanelTemplate>
-								<VirtualizingStackPanel Orientation="Horizontal" />
-							</ItemsPanelTemplate>
-						</ItemsControl.ItemsPanel>
-						<ItemsControl.ItemTemplate>
-							<DataTemplate>
-								<Button Content="{Binding Key}" IsHitTestVisible="False">
-									<Button.Template>
-										<ControlTemplate>
-											<Border Background="#4A494A" Padding="10" Margin="4">
-												<TextBlock Text="{TemplateBinding Content}"/>
-											</Border>
-										</ControlTemplate>
-									</Button.Template>
-								</Button>
-							</DataTemplate>
-						</ItemsControl.ItemTemplate>
-					</ListBox>
-
-					<ListBox Name="commandButtons" ItemsSource="{Binding SelectedItem.Value, ElementName=firstLetter}" HorizontalAlignment="Center"
-							 SelectionChanged="commandButtons_SelectionChanged">
-						<ItemsControl.Template>
-							<ControlTemplate>
-								<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-									<ItemsPresenter/>
-								</ScrollViewer>
-							</ControlTemplate>
-						</ItemsControl.Template>
-						<ItemsControl.ItemsPanel>
-							<ItemsPanelTemplate>
-								<VirtualizingStackPanel Orientation="Horizontal"/>
-							</ItemsPanelTemplate>
-						</ItemsControl.ItemsPanel>
-						<ItemsControl.ItemTemplate>
-							<DataTemplate>
-								<Button Content="{Binding}" IsHitTestVisible="False">
-									<Button.Template>
-										<ControlTemplate>
-											<Border Background="#4A494A" Padding="10" Margin="4">
-												<TextBlock Text="{TemplateBinding Content}"/>
-											</Border>
-										</ControlTemplate>
-									</Button.Template>
-								</Button>
-							</DataTemplate>
-						</ItemsControl.ItemTemplate>
-					</ListBox>
-
-				</StackPanel>
-			</ScrollViewer>
-
-			<Button Name="goButton" Grid.Column="1" Content="Go" Click="goButton_Click" Margin="10,3,0,0">
-				<Button.Template>
-					<ControlTemplate>
-						<Grid Background="Transparent">
-							<VisualStateManager.VisualStateGroups>
-								<VisualStateGroup x:Name="CommonStates">
-									<VisualState x:Name="Normal"/>
-									<VisualState x:Name="MouseOver"/>
-									<VisualState x:Name="Pressed">
-										<Storyboard>
-											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer" Storyboard.TargetProperty="Foreground">
-												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneBackgroundBrush}" />
-											</ObjectAnimationUsingKeyFrames>
-											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground" Storyboard.TargetProperty="Background">
-												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneForegroundBrush}" />
-											</ObjectAnimationUsingKeyFrames>
-											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground" Storyboard.TargetProperty="BorderBrush">
-												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneForegroundBrush}" />
-											</ObjectAnimationUsingKeyFrames>
-										</Storyboard>
-									</VisualState>
-									<VisualState x:Name="Disabled">
-										<Storyboard>
-											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer" Storyboard.TargetProperty="Foreground">
-												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}" />
-											</ObjectAnimationUsingKeyFrames>
-											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground" Storyboard.TargetProperty="BorderBrush">
-												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}" />
-											</ObjectAnimationUsingKeyFrames>
-											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground" Storyboard.TargetProperty="Background">
-												<DiscreteObjectKeyFrame KeyTime="0" Value="Transparent" />
-											</ObjectAnimationUsingKeyFrames>
-										</Storyboard>
-									</VisualState>
-								</VisualStateGroup>
-							</VisualStateManager.VisualStateGroups>
-							<Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="0" Background="{TemplateBinding Background}" Margin="0">
-								<ContentControl x:Name="ContentContainer" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Padding="{TemplateBinding Padding}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
-							</Border>
-						</Grid>
-					</ControlTemplate>
-				</Button.Template>
-			</Button>
-
 		</Grid>
 
 	</StackPanel>

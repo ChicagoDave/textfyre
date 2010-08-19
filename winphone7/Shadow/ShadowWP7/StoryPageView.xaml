@@ -23,18 +23,21 @@
 		<convert:InlineWordConverter x:Key="inlineWordConverter" WordStyle="{StaticResource wordStyle}" PunctuationStyle="{StaticResource punctuationStyle}" />
 
 		<DataTemplate x:Key="paragraphTemplate">
-			<ItemsControl ItemsSource="{Binding Inlines, Converter={StaticResource inlineWordConverter}}" Margin="0,0,0,10">
-				<ItemsControl.ItemsPanel>
-					<ItemsPanelTemplate>
-						<controls:WrapPanel ManipulationStarted="storyPanel_ManipulationStarted"
-											ManipulationDelta="storyPanel_ManipulationDelta"
-											ManipulationCompleted="storyPanel_ManipulationCompleted" />
-					</ItemsPanelTemplate>
-				</ItemsControl.ItemsPanel>
-			</ItemsControl>
+			<StackPanel>
+				<Image Source="{Binding ImageSource}" Stretch="Fill"/>
+				<ItemsControl ItemsSource="{Binding Inlines, Converter={StaticResource inlineWordConverter}}" Margin="10,5,10,5">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<controls:WrapPanel ManipulationStarted="storyPanel_ManipulationStarted"
+												ManipulationDelta="storyPanel_ManipulationDelta"
+												ManipulationCompleted="storyPanel_ManipulationCompleted" />
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+				</ItemsControl>
 <!--
 			<TextBlock Loaded="OnParagraphLoaded" Unloaded="OnParagraphUnloaded" TextWrapping="Wrap" Margin="0,0,0,10" Style="{StaticResource historyText}"/>
 -->
+			</StackPanel>
 		</DataTemplate>
 
 		<DataTemplate x:Key="deathTemplate">
@@ -48,9 +51,8 @@
 
 		<StackPanel Name="pageContent">
 
-			<ItemsControl ItemsSource="{Binding Paragraphs}" Margin="10,10,10,0"
-						ItemTemplate="{StaticResource paragraphTemplate}"
-						Visibility="{Binding HasOutput, Converter={StaticResource booleanVisibilityConverter}}"/>
+			<ItemsControl ItemsSource="{Binding Paragraphs}"
+						ItemTemplate="{StaticResource paragraphTemplate}"/>
 
 			<Grid Margin="10" Visibility="{Binding HasCommand, Converter={StaticResource booleanVisibilityConverter}}">
 				<Grid.ColumnDefinitions>
@@ -65,9 +67,43 @@
 		</StackPanel>
 
 		<Canvas>
-			<Border Name="selectedWordBorder" CornerRadius="5" Background="#C0E0FFE0" Visibility="Collapsed" Padding="10">
-				<TextBlock Name="selectedWord" Style="{StaticResource historyTextWord}" Foreground="Black"/>
-			</Border>
+			<ToolTip Name="selectedWordTooltip">
+				<ToolTip.RenderTransform>
+					<TranslateTransform x:Name="selectedWordTransform" X="100" Y="100"/>
+				</ToolTip.RenderTransform>
+				<ToolTip.Template>
+					<ControlTemplate TargetType="ToolTip">
+						<Border x:Name="wordBorder" CornerRadius="5" Background="#C0E0FFE0" Padding="10" Opacity="0" RenderTransformOrigin="0.5,0.5">
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualStateGroup.Transitions>
+										<VisualTransition To="Pressed" GeneratedDuration="0:0:0.1"/>
+										<VisualTransition To="Normal" GeneratedDuration="0:0:0.1"/>
+									</VisualStateGroup.Transitions>
+									<VisualState x:Name="Normal">
+										<Storyboard>
+											<DoubleAnimation To="0" Storyboard.TargetName="wordBorder" Storyboard.TargetProperty="Opacity"/>
+											<DoubleAnimation To="1" Storyboard.TargetName="wordBorderScale" Storyboard.TargetProperty="ScaleX"/>
+											<DoubleAnimation To="1" Storyboard.TargetName="wordBorderScale" Storyboard.TargetProperty="ScaleY"/>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Pressed">
+										<Storyboard>
+											<DoubleAnimation To="1" Storyboard.TargetName="wordBorder" Storyboard.TargetProperty="Opacity"/>
+											<DoubleAnimation To="1.1" Storyboard.TargetName="wordBorderScale" Storyboard.TargetProperty="ScaleX"/>
+											<DoubleAnimation To="1.1" Storyboard.TargetName="wordBorderScale" Storyboard.TargetProperty="ScaleY"/>
+										</Storyboard>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+							<Border.RenderTransform>
+								<ScaleTransform x:Name="wordBorderScale"/>
+							</Border.RenderTransform>
+							<TextBlock Name="selectedWord" Style="{StaticResource historyTextWord}" Foreground="Black" Text="{TemplateBinding Content}"/>
+						</Border>
+					</ControlTemplate>
+				</ToolTip.Template>
+			</ToolTip>
 		</Canvas>
 
 	</Grid>

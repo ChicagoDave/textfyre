@@ -46,18 +46,6 @@ namespace Cjc.SilverFyre
 		private static Brush wordBrush = new SolidColorBrush( Colors.Cyan );
 
 		#region IValueConverter Members
-/*
-		private TextBlock MakeTextBlock( Inline source, string text )
-		{
-			var run = source;
-
-			if ( run != null )
-			{
-				var isWord = text != null && ( text.Length > 1 || ( text.Length == 1 && !punctuation.Contains( text.First() ) ) );
-
-				var textBlock = new TextBlock();
-				textBlock.Inlines.Add( 
-		}*/
 
 		private IEnumerable<FrameworkElement> MakeTextBlocks( IEnumerable<Inline> inlines )
 		{
@@ -94,7 +82,9 @@ namespace Cjc.SilverFyre
 
 		public object Convert( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
 		{
-			return MakeTextBlocks( value as IEnumerable<Inline> );
+			var inlines = value as IEnumerable<Inline>;
+
+			return ( inlines != null ) ? MakeTextBlocks( value as IEnumerable<Inline> ) : null;
 		}
 
 		public object ConvertBack( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )

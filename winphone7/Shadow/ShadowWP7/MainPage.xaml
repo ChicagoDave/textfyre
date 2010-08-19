@@ -42,14 +42,14 @@
 			<DoubleAnimation Storyboard.TargetName="pleaseWait" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:2"/>
 		</Storyboard>
 
-		<Storyboard x:Key="scrollStory">
+		<Storyboard x:Key="scrollStory" Completed="scrollStory_Completed">
 			<!-- Animate from left to right -->
 			<DoubleAnimation
 				Storyboard.TargetName="scrollStoryMediator"
 				Storyboard.TargetProperty="HorizontalOffset"
 				From="0"
 				To="1"
-				Duration="0:0:0.5">
+				Duration="0:0:0.1">
 				<DoubleAnimation.EasingFunction>
 					<ExponentialEase EasingMode="EaseOut"/>
 				</DoubleAnimation.EasingFunction>
@@ -66,7 +66,7 @@
 				Storyboard.TargetProperty="VerticalOffset"
 				From="0"
 				To="1"
-				Duration="0:0:0.5">
+				Duration="0:0:0.1">
 				<DoubleAnimation.EasingFunction>
 					<ExponentialEase EasingMode="EaseOut"/>
 				</DoubleAnimation.EasingFunction>
@@ -86,22 +86,19 @@
 				<ItemsControl.Template>
 					<ControlTemplate>
 						<ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
-							<ItemsPresenter/>
+							<ItemsPresenter />
 						</ScrollViewer>
 					</ControlTemplate>
 				</ItemsControl.Template>
 				<ItemsControl.ItemsPanel>
 					<ItemsPanelTemplate>
 						<VirtualizingStackPanel Name="storyItemsPanel" CanHorizontallyScroll="True" CanVerticallyScroll="False"
-											Orientation="Horizontal"/>
+											Orientation="Horizontal" />
 					</ItemsPanelTemplate>
 				</ItemsControl.ItemsPanel>
 				<ItemsControl.ItemTemplate>
 					<DataTemplate>
-						<Grid Width="480"
-						  ManipulationStarted="OnManipulationStarted"
-						  ManipulationDelta="OnManipulationDelta"
-						  ManipulationCompleted="OnManipulationCompleted">
+						<Grid Width="480">
 							<Grid.RowDefinitions>
 								<RowDefinition Height="Auto"/>
 								<RowDefinition/>
@@ -119,9 +116,7 @@
 										   Style="{StaticResource locationText}"/>
 							</Grid>
 							<ScrollViewer Grid.Row="1" Name="pageScroll" HorizontalScrollBarVisibility="Disabled">
-								<Grid ManipulationStarted="OnPageManipulationStarted"
-									  ManipulationDelta="OnPageManipulationDelta"
-									  ManipulationCompleted="OnPageManipulationCompleted" MinHeight="720">
+								<Grid MinHeight="720">
 									<local:CroppingPanel Background="blue">
 										<StackPanel>
 											<Image Source="Images/BlackPaper.jpg"/>
@@ -134,10 +129,14 @@
 											<RowDefinition/>
 											<RowDefinition Height="Auto"/>
 										</Grid.RowDefinitions>
-										<local:StoryPageView Grid.Row="0" CacheMode="BitmapCache" StoryInteraction="OnStoryInteraction"/>
+										<local:StoryPageView Grid.Row="0" CacheMode="BitmapCache" StoryInteraction="OnStoryInteraction"
+															 ManipulationStarted="OnManipulationStarted"
+															 ManipulationDelta="OnManipulationDelta"
+															 ManipulationCompleted="OnManipulationCompleted"/>
 										<local:CommandInput Name="commandInput" Grid.Row="1"
 															Visibility="{Binding HasInput, Converter={StaticResource booleanVisibilityConverter}}"
-															Command="OnCommand" CommandKeyDown="OnCommandKeyDown" CommandKeyUp="OnCommandKeyUp"/>
+															Command="OnCommand" CommandKeyDown="OnCommandKeyDown" CommandKeyUp="OnCommandKeyUp"
+															SizeChanged="CommandInput_SizeChanged"/>
 									</Grid>
 								</Grid>
 							</ScrollViewer>
