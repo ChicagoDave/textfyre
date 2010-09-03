@@ -1,0 +1,90 @@
+﻿h1 {
+	font-size: 1em;
+}
+
+body {
+	background-color: #0066FF;
+	width: 98%;
+}
+
+#header {
+	text-align: center;
+	color: white;
+}
+
+#leftpanel {
+	width:24%;
+	float:left;
+}
+
+#rightpanel {
+	width:24%;
+	float:right;
+}
+
+#centerpanel {
+	width:50%;
+	float:left;
+	margin-left:3px;
+    background-color: #0066FF;
+}
+
+#device {
+    border-radius: 1em;
+    border: .5em black solid;
+    background-color: white;
+}
+
+#outerMain {
+	margin-left: auto;
+	margin-right: auto;
+	width: 440px;
+	border: 1em blue solid;
+}
+
+#lcp {
+	float: left;
+	width: 10px;
+	border: thin lime solid;
+}
+
+#rcp {
+	float: right;
+	width: 10px;
+	border: thin lime solid;
+}
+
+#main {
+	width: 400px;
+	height: 400px;
+	background-color: white;
+	color: black;
+	overflow: hidden;
+	border: thin fuchsia solid;
+	padding: 8px 8px 8px 8px;
+}
+
+#title {
+	height: 30px;
+	text-align: center;
+	font-family: "Palatino Linotype";
+	font-size: 1em;
+	font-weight: bold;
+}
+
+#gamemenu {
+	margin-top: 10px;
+	width: 400px;
+	height: 80px;
+	background-color: silver;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	padding: .5em .5em .5em .5em;
+}
+
+#footer {
+	clear: both;
+	font-size: .5em;
+	text-align: center;
+}
