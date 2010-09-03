@@ -29,6 +29,32 @@ namespace ShadowWP7
 			InitializeComponent();
 
 			timer.Tick += OnTimerTick;
+/*
+			Loaded += delegate
+			{
+				var page = DataContext as PageBase;
+
+				if ( page != null && page.Paragraphs != null )
+				{
+					foreach ( var p in page.Paragraphs.Where( p => p.TextBlock != null ) )
+					{
+						p.AddToCollection( paragraphs.Items );
+					}
+				}
+			};
+
+			Unloaded += delegate
+			{
+				var page = DataContext as PageBase;
+
+				if ( page != null && page.Paragraphs != null )
+				{
+					foreach ( var p in page.Paragraphs.Where( p => p.TextBlock != null ) )
+					{
+						p.RemoveFromCollection();
+					}
+				}
+			};*/
 		}
 
 		private void OnParagraphLoaded( object sender, RoutedEventArgs e )
@@ -36,15 +62,17 @@ namespace ShadowWP7
 			var textBlock = sender as TextBlock;
 			var paragraph = textBlock.DataContext as Paragraph;
 
-			foreach ( var inline in paragraph.Inlines ) textBlock.Inlines.Add( inline );
+			if ( paragraph != null && paragraph.Inlines != null )
+			{
+				foreach ( var inline in paragraph.Inlines ) textBlock.Inlines.Add( inline );
+			}
 		}
 
 		private void OnParagraphUnloaded( object sender, RoutedEventArgs e )
 		{
 			var textBlock = sender as TextBlock;
-			var paragraph = textBlock.DataContext as Paragraph;
 
-			foreach ( var inline in paragraph.Inlines ) textBlock.Inlines.Remove( inline );
+			textBlock.Inlines.Clear();
 		}
 
 		void OnManipulationDelta( object sender, ManipulationDeltaEventArgs e )
@@ -114,13 +142,13 @@ namespace ShadowWP7
 
 		private void MoveSelectedWord( Point offset )
 		{
-			var position = selectedTextBlock.TransformToVisual( LayoutRoot ).Transform( new Point() );
+/*			var position = selectedTextBlock.TransformToVisual( LayoutRoot ).Transform( new Point() );
 			var padding = 10;
 			var pagePadding = 10;
 			var yOffset = ( position.Y - padding - 50 < 0 ) ? 40 : -40;
 
 			selectedWordTransform.X = Math.Min( Math.Max( position.X - padding, pagePadding ), LayoutRoot.RenderSize.Width - pagePadding - selectedWordTooltip.RenderSize.Width );
-			selectedWordTransform.Y = Math.Min( Math.Max( position.Y - padding + Math.Max( offset.Y, 0 ) + yOffset, pagePadding ), LayoutRoot.RenderSize.Height - pagePadding - selectedWordTooltip.RenderSize.Height );
+			selectedWordTransform.Y = Math.Min( Math.Max( position.Y - padding + Math.Max( offset.Y, 0 ) + yOffset, pagePadding ), LayoutRoot.RenderSize.Height - pagePadding - selectedWordTooltip.RenderSize.Height );*/
 		}
 
 		private void ShowSelectedWord()

@@ -15,10 +15,12 @@ namespace Cjc.SilverFyre
 {
 	public class ImagePage : PageBase
 	{
+		public ImageSource ImageSource { get; private set; }
+
 		public ImagePage( StoryHistoryItem storyHistoryItem, ImageSource imageSource )
 			: base( storyHistoryItem )
 		{
-			Paragraphs = new[] { new Paragraph { ImageSource = imageSource, ImageStretch = Stretch.UniformToFill } };
+			this.ImageSource = imageSource;
 		}
 	}
 }

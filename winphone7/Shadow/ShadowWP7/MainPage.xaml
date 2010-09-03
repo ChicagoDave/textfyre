@@ -12,7 +12,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     shell:SystemTray.IsVisible="True"
 	IsTabStop="True"
@@ -76,16 +76,49 @@
 		<!-- Mediator that forwards the property changes -->
 		<local:ScrollViewerOffsetMediator x:Name="scrollPageMediator"/>
 
+		<Style x:Key="pageStyle" TargetType="ContentPresenter">
+			<Setter Property="Width" Value="480"/>
+		</Style>
+
+		<!-- Image -->
+		<DataTemplate x:Key="ImagePage">
+			<Image Source="{Binding ImageSource}" Stretch="UniformToFill" VerticalAlignment="Bottom" CacheMode="BitmapCache"/>
+		</DataTemplate>
+
+		<!-- Prologue -->
+		<DataTemplate x:Key="ProloguePage">
+			<local:StoryPageView/>
+		</DataTemplate>
+
+		<!-- Credits -->
+		<DataTemplate x:Key="CreditsPage">
+			<local:StoryPageView/>
+		</DataTemplate>
+
+		<!-- Story -->
+		<DataTemplate x:Key="StoryPage">
+			<local:StoryPageView/>
+		</DataTemplate>
+
+		<!-- Death -->
+		<DataTemplate x:Key="DeathPage">
+			<local:StoryPageView/>
+		</DataTemplate>
+
 	</phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
 
 		<Grid>
-			<ItemsControl Name="storyItems" ItemsSource="{Binding Pages, ElementName=self}">
+			<local:ImplicitTemplateItemsControl x:Name="storyItems" ItemsSource="{Binding Pages, ElementName=self}"
+												ItemContainerStyle="{StaticResource pageStyle}"
+												ManipulationStarted="OnManipulationStarted"
+												ManipulationDelta="OnManipulationDelta"
+												ManipulationCompleted="OnManipulationCompleted">
 				<ItemsControl.Template>
 					<ControlTemplate>
-						<ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
+						<ScrollViewer x:Name="storyScroll" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
 							<ItemsPresenter />
 						</ScrollViewer>
 					</ControlTemplate>
@@ -93,60 +126,10 @@
 				<ItemsControl.ItemsPanel>
 					<ItemsPanelTemplate>
 						<VirtualizingStackPanel Name="storyItemsPanel" CanHorizontallyScroll="True" CanVerticallyScroll="False"
-											Orientation="Horizontal" />
+												Orientation="Horizontal" CleanUpVirtualizedItemEvent="storyItemsPanel_CleanUpVirtualizedItemEvent" />
 					</ItemsPanelTemplate>
 				</ItemsControl.ItemsPanel>
-				<ItemsControl.ItemTemplate>
-					<DataTemplate>
-						<Grid Width="480">
-							<Grid.RowDefinitions>
-								<RowDefinition Height="Auto"/>
-								<RowDefinition/>
-							</Grid.RowDefinitions>
-							<Grid Grid.Row="0">
-								<Grid.Background>
-									<ImageBrush ImageSource="Images/OldPaper.jpg"/>
-								</Grid.Background>
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="Auto"/>
-									<ColumnDefinition/>
-									<ColumnDefinition Width="Auto"/>
-								</Grid.ColumnDefinitions>
-								<TextBlock Grid.Column="1" Text="{Binding State.Location}" HorizontalAlignment="Center" Margin="10"
-										   Style="{StaticResource locationText}"/>
-							</Grid>
-							<ScrollViewer Grid.Row="1" Name="pageScroll" HorizontalScrollBarVisibility="Disabled">
-								<Grid MinHeight="720">
-									<local:CroppingPanel Background="blue">
-										<StackPanel>
-											<Image Source="Images/BlackPaper.jpg"/>
-											<Image Source="Images/BlackPaper.jpg"/>
-											<Image Source="Images/BlackPaper.jpg"/>
-										</StackPanel>
-									</local:CroppingPanel>
-									<Grid>
-										<Grid.RowDefinitions>
-											<RowDefinition/>
-											<RowDefinition Height="Auto"/>
-										</Grid.RowDefinitions>
-										<local:StoryPageView Grid.Row="0" CacheMode="BitmapCache" StoryInteraction="OnStoryInteraction"
-															 ManipulationStarted="OnManipulationStarted"
-															 ManipulationDelta="OnManipulationDelta"
-															 ManipulationCompleted="OnManipulationCompleted"/>
-										<local:CommandInput Name="commandInput" Grid.Row="1"
-															Visibility="{Binding HasInput, Converter={StaticResource booleanVisibilityConverter}}"
-															Command="OnCommand" CommandKeyDown="OnCommandKeyDown" CommandKeyUp="OnCommandKeyUp"
-															SizeChanged="CommandInput_SizeChanged"/>
-									</Grid>
-								</Grid>
-							</ScrollViewer>
-						</Grid>
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
-				<ItemsControl.RenderTransform>
-					<TranslateTransform x:Name="pageTranslate"/>
-				</ItemsControl.RenderTransform>
-			</ItemsControl>
+			</local:ImplicitTemplateItemsControl>
 		</Grid>
 
 		<TextBlock x:Name="pleaseWait" Opacity="0"><Run Text="Please wait..."/></TextBlock>
