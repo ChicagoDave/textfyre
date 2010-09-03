@@ -50,11 +50,11 @@
   <ItemGroup>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Interop" />
-    <Reference Include="System.Windows" />
     <Reference Include="mscorlib" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Windows" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
@@ -66,6 +66,9 @@
     <Compile Include="CommandInput.xaml.cs">
       <DependentUpon>CommandInput.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ImplicitTemplateItemsControl.cs" />
+    <Compile Include="PageHostControl.cs" />
+    <Compile Include="SilverFyre\Converters\InlineParagraphConverter.cs" />
     <Compile Include="SilverFyre\ImagePage.cs" />
     <Compile Include="SilverFyre\CreditsPage.cs" />
     <Compile Include="VisualStateHelper.cs" />
@@ -132,24 +135,24 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\TornPaperBottomSmall.jpg" />
-    <Resource Include="Images\TornPaperBottom.jpg" />
-    <Resource Include="Images\TornPaper.png" />
-    <Resource Include="Images\BlackPaper.jpg" />
-    <Resource Include="Images\GrainyText.jpg" />
-    <Resource Include="Images\BlackPaperTorn.jpg" />
-    <Resource Include="Images\BlackPaperTorn.png" />
-    <Resource Include="Images\BottomWhiteTear.png" />
-    <Resource Include="Images\BottomWhiteTearThin.png" />
-    <Resource Include="Images\BottomWhiteTearMedium.png" />
-    <Resource Include="Images\HardCover.png" />
-    <Resource Include="Images\BlackLeather.jpg" />
-    <Resource Include="Images\PaperTearBackground.png" />
-    <Resource Include="Images\PaperTearBottom.png" />
-    <Resource Include="Images\PaperTearTop.png" />
-    <Resource Include="Images\shadow-ad.jpg" />
+    <Content Include="Images\TornPaperBottomSmall.jpg" />
+    <Content Include="Images\TornPaperBottom.jpg" />
+    <Content Include="Images\TornPaper.png" />
+    <Content Include="Images\BlackPaper.jpg" />
+    <Content Include="Images\GrainyText.jpg" />
+    <Content Include="Images\BlackPaperTorn.jpg" />
+    <Content Include="Images\BlackPaperTorn.png" />
+    <Content Include="Images\BottomWhiteTear.png" />
+    <Content Include="Images\BottomWhiteTearThin.png" />
+    <Content Include="Images\BottomWhiteTearMedium.png" />
+    <Content Include="Images\HardCover.png" />
+    <Content Include="Images\BlackLeather.jpg" />
+    <Content Include="Images\PaperTearBackground.png" />
+    <Content Include="Images\PaperTearBottom.png" />
+    <Content Include="Images\PaperTearTop.png" />
+    <Content Include="Images\shadow-wp7.jpg" />
     <Content Include="SplashScreenImage.jpg" />
-    <Resource Include="Images\OldPaper.jpg" />
+    <Content Include="Images\OldPaper.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Textfyre.VM\Textfyre.VM.csproj">
@@ -157,9 +160,7 @@
       <Name>Textfyre.VM</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Converters\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

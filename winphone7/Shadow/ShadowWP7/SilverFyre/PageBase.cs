@@ -21,9 +21,9 @@ namespace Cjc.SilverFyre
 	{
 		public StoryHistoryItem StoryHistoryItem { get; private set; }
 
-		public StoryState State { get { return StoryHistoryItem.State; } }
+		public StoryState State { get { return ( StoryHistoryItem != null ) ? StoryHistoryItem.State : null; } }
 		public Paragraph[] Paragraphs { get; protected set; }
-		public virtual string Command { get { return StoryHistoryItem.Command; } }
+		public virtual string Command { get { return ( StoryHistoryItem != null ) ? StoryHistoryItem.Command : null; } }
 		public string CommandText { get; set; }
 
 		public string[] Words { get { return "This is a test of a long bit of text, where every word is a hyperlink. It should be possible to click any word".Split( ' ' ).ToArray(); } }
@@ -35,15 +35,18 @@ namespace Cjc.SilverFyre
 		{
 			this.StoryHistoryItem = storyHistoryItem;
 
-			storyHistoryItem.PropertyChanged += delegate( object sender, PropertyChangedEventArgs e )
+			if ( storyHistoryItem != null )
 			{
-				if ( e.PropertyName == "Command" )
+				storyHistoryItem.PropertyChanged += delegate( object sender, PropertyChangedEventArgs e )
 				{
-					RaisePropertyChanged( "HasInput" );
-					RaisePropertyChanged( "HasCommand" );
-					RaisePropertyChanged( "Command" );
-				}
-			};
+					if ( e.PropertyName == "Command" )
+					{
+						RaisePropertyChanged( "HasInput" );
+						RaisePropertyChanged( "HasCommand" );
+						RaisePropertyChanged( "Command" );
+					}
+				};
+			}
 		}
 
 		public PageBase( StoryHistoryItem storyHistoryItem, OutputChannel channel )

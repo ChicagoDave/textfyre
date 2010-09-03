@@ -36,6 +36,7 @@ namespace ShadowWP7
 		private double? targetVerticalOffset = null;
 		private bool pinnedToEnd = false;
 
+		private UIElement hookedElement;
 		private bool? isPanning;
 		private double panOffset;
 		private bool panCancelled;
@@ -56,6 +57,8 @@ namespace ShadowWP7
 			History = new ObservableCollection<StoryHistoryItem>();
 			Pages = new ObservableCollection<PageBase>();
 
+			Pages.Add( new ImagePage( null, new BitmapImage( new Uri( "Images/shadow-wp7.jpg", UriKind.Relative ) ) ) );
+
             InitializeComponent();
 
 			engine = Load( "shadow-1.2.ulx" );
@@ -69,6 +72,7 @@ namespace ShadowWP7
 			if ( storageFile.FileExists( saveGameFile ) ) engine.SendLine( "RESTORE" );
 
 //			Application.Current.Host.Settings.EnableCacheVisualization = true;
+//			Application.Current.Host.Settings.EnableRedrawRegions = true;
 		}
 
 		void engine_LoadRequested( object sender, SaveRestoreEventArgs e )
@@ -143,21 +147,20 @@ namespace ShadowWP7
 
 				if ( item.OutputArgs.Package.ContainsKey( OutputChannel.Prologue ) )
 				{
-					Pages.Add( new ImagePage( item, new BitmapImage( new Uri( "Images/Shadow-ad.jpg", UriKind.Relative ) ) ) );
 					Pages.Add( new ProloguePage( item ) );
-					if ( !nextPage.HasValue ) nextPage = Pages.Count;
+					if ( !nextPage.HasValue ) nextPage = Pages.Count - 1;
 				}
 
 				if ( item.OutputArgs.Package.ContainsKey( OutputChannel.Credits ) )
 				{
 					Pages.Add( new CreditsPage( item ) );
-					if ( !nextPage.HasValue ) nextPage = Pages.Count;
+					if ( !nextPage.HasValue ) nextPage = Pages.Count - 1;
 				}
 
 				if ( item.OutputArgs.Package.ContainsKey( OutputChannel.Death ) )
 				{
 					Pages.Add( new DeathPage( item ) );
-					if ( !nextPage.HasValue ) nextPage = Pages.Count;
+					if ( !nextPage.HasValue ) nextPage = Pages.Count - 1;
 				}
 
 				if ( item.OutputArgs.Package.ContainsKey( OutputChannel.Main ) )
@@ -283,8 +286,10 @@ namespace ShadowWP7
 
 			if ( StoryItemsHelper.ScrollHost != null )
 			{
-				panOffset = (int)StoryItemsHelper.ScrollHost.HorizontalOffset;
+				panOffset = StoryItemsHelper.ScrollHost.HorizontalOffset;
 			}
+
+			if ( sender != e.OriginalSource ) HookManipulationSource( VisualTreeHelper.GetParent( (DependencyObject)e.OriginalSource ) as UIElement );
 		}
 
 		void OnManipulationDelta( object sender, ManipulationDeltaEventArgs e )
@@ -297,23 +302,30 @@ namespace ShadowWP7
 				isPanning = Math.Abs( deltaX ) > Math.Abs( deltaY );
 			}
 
-			if ( isPanning.GetValueOrDefault( false ) && StoryItemsHelper.ScrollHost != null )
+			if ( isPanning.HasValue )
 			{
-				panCancelled = ( e.CumulativeManipulation.Translation.X > 0 && e.DeltaManipulation.Translation.X < 0 )
-					|| ( e.CumulativeManipulation.Translation.X < 0 && e.DeltaManipulation.Translation.X > 0 );
+				if ( isPanning.Value && StoryItemsHelper.ScrollHost != null )
+				{
+					panCancelled = ( e.CumulativeManipulation.Translation.X > 0 && e.DeltaManipulation.Translation.X < 0 )
+						|| ( e.CumulativeManipulation.Translation.X < 0 && e.DeltaManipulation.Translation.X > 0 );
 
-				StoryItemsHelper.ScrollHost.ScrollToHorizontalOffset( panOffset - ( e.CumulativeManipulation.Translation.X / 480 ) );
-				e.Handled = true;
-			}
-			else if ( !isPanning.GetValueOrDefault( false ) )
-			{
-				scrollCancelled = ( e.CumulativeManipulation.Translation.Y > 0 && e.DeltaManipulation.Translation.Y < 0 )
-					|| ( e.CumulativeManipulation.Translation.Y < 0 && e.DeltaManipulation.Translation.Y > 0 );
+					StoryItemsHelper.ScrollHost.ScrollToHorizontalOffset( panOffset - ( e.CumulativeManipulation.Translation.X / 480 ) );
+					e.Handled = true;
+				}
+				else if ( !isPanning.Value )
+				{
+					UnhookManipulationSource();
+
+					scrollCancelled = ( e.CumulativeManipulation.Translation.Y > 0 && e.DeltaManipulation.Translation.Y < 0 )
+						|| ( e.CumulativeManipulation.Translation.Y < 0 && e.DeltaManipulation.Translation.Y > 0 );
+				}
 			}
 		}
 
 		void OnManipulationCompleted( object sender, ManipulationCompletedEventArgs e )
 		{
+			UnhookManipulationSource();
+
 			var offset = StoryItemsHelper.ScrollHost.HorizontalOffset;
 
 			if ( ( e.TotalManipulation.Translation.X != 0 && isPanning.GetValueOrDefault( false ) ) || offset != (int)offset )
@@ -321,7 +333,7 @@ namespace ShadowWP7
 				ScrollTo( (int)( panOffset + ( panCancelled ? 0 : ( e.TotalManipulation.Translation.X < 0 ? 1 : -1 ) ) ) );
 				e.Handled = true;
 			}
-			else if ( e.TotalManipulation.Translation.Y != 0 && !scrollCancelled )
+/*			else if ( e.TotalManipulation.Translation.Y != 0 && !scrollCancelled )
 			{
 				var element = sender as FrameworkElement;
 				var scrollViewer = element.FindName( "pageScroll" ) as ScrollViewer;
@@ -337,6 +349,26 @@ namespace ShadowWP7
 				{
 					ScrollHelper.ScrollTo( scrollViewer, Resources, "scrollPage", scrollViewer.VerticalOffset, scrollViewer.ScrollableHeight - commandInput.DesiredSize.Height );
 				}
+			}*/
+		}
+
+		private void HookManipulationSource( UIElement source )
+		{
+			if ( source != null )
+			{
+				hookedElement = source;
+				hookedElement.ManipulationDelta += OnManipulationDelta;
+				hookedElement.ManipulationCompleted += OnManipulationCompleted;
+			}
+		}
+
+		private void UnhookManipulationSource()
+		{
+			if ( hookedElement != null )
+			{
+				hookedElement.ManipulationCompleted -= OnManipulationCompleted;
+				hookedElement.ManipulationDelta -= OnManipulationDelta;
+				hookedElement = null;
 			}
 		}
 
@@ -445,13 +477,18 @@ namespace ShadowWP7
 
 		private void CommandInput_SizeChanged( object sender, SizeChangedEventArgs e )
 		{
-			var commandInput = sender as CommandInput;
+/*			var commandInput = sender as CommandInput;
 			var scrollViewer = commandInput.FindName( "pageScroll" ) as ScrollViewer;
 
 			if ( scrollViewer.VerticalOffset == scrollViewer.ScrollableHeight - ( e.NewSize.Height - e.PreviousSize.Height ) )
 			{
 				scrollViewer.ScrollToVerticalOffset( scrollViewer.ScrollableHeight );
-			}
+			}*/
+		}
+
+		private void storyItemsPanel_CleanUpVirtualizedItemEvent( object sender, CleanUpVirtualizedItemEventArgs e )
+		{
+
 		}
 	}
 }
