@@ -60,9 +60,9 @@ namespace ShadowWP7
 			History = new ObservableCollection<StoryHistoryItem>();
 			Pages = new ObservableCollection<PageBase>();
 
-			Pages.Add( new ImagePage( null, new BitmapImage( new Uri( "Images/shadow-wp7.jpg", UriKind.Relative ) ) ) );
-
             InitializeComponent();
+
+			Pages.Add( new ImagePage( null, new BitmapImage( new Uri( "Images/shadow-wp7.jpg", UriKind.Relative ) ) ) );
 
 			engine = Load( "shadow-1.2.ulx" );
 
@@ -112,7 +112,7 @@ namespace ShadowWP7
 					pleaseWait.Visibility = Visibility.Collapsed;
 					pleaseWait.Opacity = 0;
 
-					AddHistory( new StoryHistoryItem( null, e ) );
+					AddHistory( new StoryHistoryItem( null, e ), true );
 				} );
 			}
 		}
@@ -530,12 +530,10 @@ namespace ShadowWP7
 				}
 			}
 
-			var scrollHost = helper.ScrollHost;
-
-			if ( scrollHost != null )
+			Dispatcher.BeginInvoke( delegate
 			{
-				scrollHost.ScrollToHorizontalOffset( lastScrolledPage );
-			}
+				StoryItemsHelper.ScrollHost.ScrollToHorizontalOffset( lastScrolledPage );
+			} );
 		}
 	}
 }
