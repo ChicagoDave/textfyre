@@ -19,6 +19,7 @@ using System.ComponentModel;
 using System.Threading;
 using System.IO.IsolatedStorage;
 using System.Windows.Media.Imaging;
+using Microsoft.Phone.Shell;
 
 namespace ShadowWP7
 {

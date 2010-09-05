@@ -15,7 +15,7 @@
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
 	OrientationChanged="self_OrientationChanged"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
-    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.IsVisible="False"
 	IsTabStop="True"
 	x:Name="self">
 
@@ -82,7 +82,7 @@
 
 		<!-- Image -->
 		<DataTemplate x:Key="ImagePage">
-			<Image Name="image" Source="{Binding ImageSource}" Stretch="UniformToFill" VerticalAlignment="Bottom" CacheMode="BitmapCache"/>
+			<Image Name="image" Source="{Binding ImageSource}" Stretch="Uniform" VerticalAlignment="Bottom" CacheMode="BitmapCache"/>
 		</DataTemplate>
 
 		<!-- Prologue -->
