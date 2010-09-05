@@ -24,6 +24,9 @@ namespace ShadowWP7
 		private TextBlock selectedTextBlock;
 		private DispatcherTimer timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds( 250 ) };
 
+		private static Dictionary<PageBase, CachedPage> cachedPages = new Dictionary<PageBase, CachedPage>();
+		private static List<PageBase> recentPages = new List<PageBase>();
+
 		public StoryPageView()
 		{
 			InitializeComponent();
@@ -55,6 +58,77 @@ namespace ShadowWP7
 					}
 				}
 			};*/
+		}
+
+		protected override Size MeasureOverride( Size availableSize )
+		{
+			var size = base.MeasureOverride( availableSize );
+
+			return size;
+		}
+
+		protected override Size ArrangeOverride( Size finalSize )
+		{
+			var page = DataContext as PageBase;
+
+			if ( page != null )
+			{
+				var cachedPage = ( cachedPages.ContainsKey( page ) && cachedPages[ page ].Bitmap.PixelWidth == finalSize.Width )
+					? cachedPages[ page ]
+					: cachedPages[ page ] = CreateCachedPage( page, finalSize.Width );
+
+				if ( contentImage.Source != cachedPage.Bitmap )
+				{
+					contentImage.Source = cachedPage.Bitmap;
+
+					var index = recentPages.IndexOf( page );
+
+					if ( index != 0 )
+					{
+						if ( index > 0 ) recentPages.RemoveAt( index );
+						recentPages.Insert( 0, page );
+					}
+
+					while ( recentPages.Count > 10 ) recentPages.RemoveAt( recentPages.Count - 1 );
+				}
+			}
+
+			return base.ArrangeOverride( finalSize );
+		}
+
+		private CachedPage CreateCachedPage( PageBase page, double width )
+		{
+			System.Diagnostics.Debug.WriteLine( "Caching page" );
+
+			var textStyle = Application.Current.Resources[ "historyText" ] as Style;
+			var stackPanel = new StackPanel();
+
+			foreach ( var paragraph in page.Paragraphs )
+			{
+				var textBlock = new TextBlock();
+				textBlock.Style = textStyle;
+
+				foreach ( var inline in paragraph.Inlines ) textBlock.Inlines.Add( inline );
+
+				stackPanel.Children.Add( textBlock );
+			}
+
+			var border = stackPanel;
+
+			border.Measure( new Size( width, double.PositiveInfinity ) );
+			border.Arrange( new Rect( new Point(), new Size( width, border.DesiredSize.Height ) ) );
+
+			var bitmap = new WriteableBitmap( (int)border.ActualWidth, (int)border.ActualHeight );
+			bitmap.Render( border, null );
+
+			bitmap.Invalidate();
+
+			foreach ( var textBlock in stackPanel.Children.OfType<TextBlock>() )
+			{
+				textBlock.Inlines.Clear();
+			}
+
+			return new CachedPage { Bitmap = bitmap };
 		}
 
 		private void OnParagraphLoaded( object sender, RoutedEventArgs e )

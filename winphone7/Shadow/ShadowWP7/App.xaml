@@ -30,20 +30,14 @@
 
 		<Style x:Key="historyText" TargetType="TextBlock">
 			<Setter Property="FontSize" Value="28"/>
-			<Setter Property="Foreground">
-				<Setter.Value>
-					<ImageBrush ImageSource="Images/GrainyText.jpg"/>
-				</Setter.Value>
-			</Setter>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="TextWrapping" Value="Wrap"/>
+			<Setter Property="Margin" Value="10,0,10,10"/>
 		</Style>
 
 		<Style x:Key="historyTextWord" TargetType="TextBlock">
 			<Setter Property="FontSize" Value="28"/>
-			<Setter Property="Foreground">
-				<Setter.Value>
-					<ImageBrush ImageSource="Images/GrainyText.jpg"/>
-				</Setter.Value>
-			</Setter>
+			<Setter Property="Foreground" Value="White"/>
 		</Style>
 
 		<Style x:Key="deathText" TargetType="TextBlock">

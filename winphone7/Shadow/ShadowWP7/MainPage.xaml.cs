@@ -41,6 +41,7 @@ namespace ShadowWP7
 		private double panOffset;
 		private bool panCancelled;
 		private bool scrollCancelled;
+		private int lastScrolledPage;
 
 		private string baseUrl;
 		private string storyUrl;
@@ -50,6 +51,7 @@ namespace ShadowWP7
 		public ObservableCollection<PageBase> Pages { get; private set; }
 		public StoryState CurrentState { get; private set; }
 		public ItemsControlHelper StoryItemsHelper { get; private set; }
+		public double PageWidth { get; private set; }
 
         // Constructor
         public MainPage()
@@ -286,10 +288,10 @@ namespace ShadowWP7
 
 			if ( StoryItemsHelper.ScrollHost != null )
 			{
-				panOffset = StoryItemsHelper.ScrollHost.HorizontalOffset;
+				panOffset = Math.Round( StoryItemsHelper.ScrollHost.HorizontalOffset );
 			}
 
-			if ( sender != e.OriginalSource ) HookManipulationSource( VisualTreeHelper.GetParent( (DependencyObject)e.OriginalSource ) as UIElement );
+			if ( sender != e.OriginalSource ) HookManipulationSource( e.OriginalSource as UIElement );// VisualTreeHelper.GetParent( (DependencyObject)e.OriginalSource ) as UIElement );
 		}
 
 		void OnManipulationDelta( object sender, ManipulationDeltaEventArgs e )
@@ -309,7 +311,7 @@ namespace ShadowWP7
 					panCancelled = ( e.CumulativeManipulation.Translation.X > 0 && e.DeltaManipulation.Translation.X < 0 )
 						|| ( e.CumulativeManipulation.Translation.X < 0 && e.DeltaManipulation.Translation.X > 0 );
 
-					StoryItemsHelper.ScrollHost.ScrollToHorizontalOffset( panOffset - ( e.CumulativeManipulation.Translation.X / 480 ) );
+					StoryItemsHelper.ScrollHost.ScrollToHorizontalOffset( panOffset - ( e.CumulativeManipulation.Translation.X / RenderSize.Width ) );
 					e.Handled = true;
 				}
 				else if ( !isPanning.Value )
@@ -324,15 +326,24 @@ namespace ShadowWP7
 
 		void OnManipulationCompleted( object sender, ManipulationCompletedEventArgs e )
 		{
-			UnhookManipulationSource();
+			System.Diagnostics.Debug.WriteLine( "OnManipulationCompleted from {0}", e.OriginalSource.GetType().Name );
 
 			var offset = StoryItemsHelper.ScrollHost.HorizontalOffset;
 
 			if ( ( e.TotalManipulation.Translation.X != 0 && isPanning.GetValueOrDefault( false ) ) || offset != (int)offset )
 			{
-				ScrollTo( (int)( panOffset + ( panCancelled ? 0 : ( e.TotalManipulation.Translation.X < 0 ? 1 : -1 ) ) ) );
+				var targetOffset = panCancelled
+					? panOffset
+					: ( e.TotalManipulation.Translation.X > 0 ) ? Math.Floor( offset ) : Math.Ceiling( offset );
+
+				System.Diagnostics.Debug.WriteLine( string.Format( "Scrolling from {0} to {1}", offset, targetOffset ) );
+
+				ScrollTo( (int)Math.Round( targetOffset ) );
+
 				e.Handled = true;
 			}
+
+			UnhookManipulationSource();
 /*			else if ( e.TotalManipulation.Translation.Y != 0 && !scrollCancelled )
 			{
 				var element = sender as FrameworkElement;
@@ -354,8 +365,14 @@ namespace ShadowWP7
 
 		private void HookManipulationSource( UIElement source )
 		{
+			UnhookManipulationSource();
+
+//			while ( source != null && !( source is ScrollViewer ) ) source = VisualTreeHelper.GetParent( source ) as UIElement;
+
 			if ( source != null )
 			{
+				System.Diagnostics.Debug.WriteLine( "Hooked manipulation source ({0})", source.GetType().Name );
+
 				hookedElement = source;
 				hookedElement.ManipulationDelta += OnManipulationDelta;
 				hookedElement.ManipulationCompleted += OnManipulationCompleted;
@@ -366,6 +383,8 @@ namespace ShadowWP7
 		{
 			if ( hookedElement != null )
 			{
+				System.Diagnostics.Debug.WriteLine( "Unhooked manipulation source ({0})", hookedElement.GetType().Name );
+
 				hookedElement.ManipulationCompleted -= OnManipulationCompleted;
 				hookedElement.ManipulationDelta -= OnManipulationDelta;
 				hookedElement = null;
@@ -380,6 +399,8 @@ namespace ShadowWP7
 			{
 				ScrollHelper.ScrollTo( scrollHost, Resources, "scrollStory", scrollHost.HorizontalOffset, page );
 			}
+
+			lastScrolledPage = page;
 		}
 
 		private void scrollStory_Completed( object sender, EventArgs e )
@@ -489,6 +510,31 @@ namespace ShadowWP7
 		private void storyItemsPanel_CleanUpVirtualizedItemEvent( object sender, CleanUpVirtualizedItemEventArgs e )
 		{
 
+		}
+
+		private void self_OrientationChanged( object sender, OrientationChangedEventArgs e )
+		{
+		}
+
+		private void LayoutRoot_SizeChanged( object sender, SizeChangedEventArgs e )
+		{
+			var helper = StoryItemsHelper;
+			var itemsHost = helper.ItemsHost;
+
+			if ( itemsHost != null )
+			{
+				foreach ( var child in itemsHost.Children.OfType<FrameworkElement>() )
+				{
+					child.Width = storyItems.DesiredSize.Width;
+				}
+			}
+
+			var scrollHost = helper.ScrollHost;
+
+			if ( scrollHost != null )
+			{
+				scrollHost.ScrollToHorizontalOffset( lastScrolledPage );
+			}
 		}
 	}
 }

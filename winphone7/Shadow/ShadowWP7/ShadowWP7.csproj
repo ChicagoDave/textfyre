@@ -62,6 +62,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CachedPage.cs" />
     <Compile Include="CommandEventArgs.cs" />
     <Compile Include="CommandInput.xaml.cs">
       <DependentUpon>CommandInput.xaml</DependentUpon>

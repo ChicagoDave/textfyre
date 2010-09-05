@@ -24,7 +24,9 @@
 		<convert:InlineParagraphConverter x:Key="inlineParagraphConverter"/>
 
 		<DataTemplate x:Key="paragraphTemplate">
-			<StackPanel>
+			<TextBlock Loaded="OnParagraphLoaded" Unloaded="OnParagraphUnloaded"
+							   TextWrapping="Wrap" Margin="10,0,10,10" Style="{StaticResource historyText}"/>
+<!--			<StackPanel>-->
 
 <!--				<ItemsControl ItemsSource="{Binding Inlines, Converter={StaticResource inlineWordConverter}}" Margin="10,5,10,5">
 					<ItemsControl.ItemsPanel>
@@ -37,17 +39,43 @@
 				</ItemsControl>-->
 
 <!--				<ContentPresenter Content="{Binding TextBlock}" Margin="0,0,0,10" Style="{StaticResource historyText}"/>-->
-				<Grid>
+<!--				<Grid>
 					<TextBlock Loaded="OnParagraphLoaded" Unloaded="OnParagraphUnloaded"
 							   TextWrapping="Wrap" Margin="10,0,10,10" Style="{StaticResource historyText}"/>
 					<controls:WrapPanel Visibility="Collapsed"/>
 				</Grid>
-			</StackPanel>
+			</StackPanel>-->
 
 		</DataTemplate>
 
 		<DataTemplate x:Key="deathTemplate">
 			<TextBlock Loaded="OnParagraphLoaded" Unloaded="OnParagraphUnloaded" TextWrapping="Wrap" Margin="0,0,0,10" Style="{StaticResource deathText}"/>
+		</DataTemplate>
+
+		<DataTemplate x:Key="pageContent">
+
+			<StackPanel Name="pageContent" CacheMode="BitmapCache">
+
+				<ItemsControl ItemsSource="{Binding Paragraphs}" ItemTemplate="{StaticResource paragraphTemplate}">
+					<!--					<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<VirtualizingStackPanel Orientation="Vertical"/>
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>-->
+				</ItemsControl>
+<!--
+				<Grid Margin="10" Visibility="{Binding HasCommand, Converter={StaticResource booleanVisibilityConverter}}">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<TextBlock Grid.Column="0" Text="&gt;" Margin="0,0,5,0" Style="{StaticResource historyPromptText}" VerticalAlignment="Top"/>
+					<TextBlock Grid.Column="1" Text="{Binding Command}" Style="{StaticResource historyCommandText}" VerticalAlignment="Top"
+								   TextWrapping="Wrap"/>
+				</Grid>-->
+
+			</StackPanel>
+
 		</DataTemplate>
 
 	</UserControl.Resources>
@@ -74,27 +102,7 @@
 
 		<ScrollViewer Grid.Row="1" Name="pageScroll" HorizontalScrollBarVisibility="Disabled">
 
-			<StackPanel Name="pageContent" Background="Transparent">
-
-				<ItemsControl ItemsSource="{Binding Paragraphs}" ItemTemplate="{StaticResource paragraphTemplate}" Background="Yellow">
-					<ItemsControl.ItemsPanel>
-						<ItemsPanelTemplate>
-							<VirtualizingStackPanel Orientation="Vertical"/>
-						</ItemsPanelTemplate>
-					</ItemsControl.ItemsPanel>
-				</ItemsControl>
-
-				<Grid Margin="10" Visibility="{Binding HasCommand, Converter={StaticResource booleanVisibilityConverter}}">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition/>
-					</Grid.ColumnDefinitions>
-					<TextBlock Grid.Column="0" Text="&gt;" Margin="0,0,5,0" Style="{StaticResource historyPromptText}" VerticalAlignment="Top"/>
-					<TextBlock Grid.Column="1" Text="{Binding Command}" Style="{StaticResource historyCommandText}" VerticalAlignment="Top"
-							   TextWrapping="Wrap"/>
-				</Grid>
-
-			</StackPanel>
+			<Image Name="contentImage" VerticalAlignment="Top"/>
 
 		</ScrollViewer>
 

@@ -13,6 +13,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
+	OrientationChanged="self_OrientationChanged"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     shell:SystemTray.IsVisible="True"
 	IsTabStop="True"
@@ -77,12 +78,11 @@
 		<local:ScrollViewerOffsetMediator x:Name="scrollPageMediator"/>
 
 		<Style x:Key="pageStyle" TargetType="ContentPresenter">
-			<Setter Property="Width" Value="480"/>
 		</Style>
 
 		<!-- Image -->
 		<DataTemplate x:Key="ImagePage">
-			<Image Source="{Binding ImageSource}" Stretch="UniformToFill" VerticalAlignment="Bottom" CacheMode="BitmapCache"/>
+			<Image Name="image" Source="{Binding ImageSource}" Stretch="UniformToFill" VerticalAlignment="Bottom" CacheMode="BitmapCache"/>
 		</DataTemplate>
 
 		<!-- Prologue -->
@@ -108,7 +108,7 @@
 	</phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="Transparent" SizeChanged="LayoutRoot_SizeChanged">
 
 		<Grid>
 			<local:ImplicitTemplateItemsControl x:Name="storyItems" ItemsSource="{Binding Pages, ElementName=self}"
