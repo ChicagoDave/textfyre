@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.Windows.Data;
 
 namespace ShadowWP7
 {
@@ -28,6 +29,22 @@ namespace ShadowWP7
 		}
 
 		private Dictionary<Type, DataTemplate> templates = new Dictionary<Type, DataTemplate>();
+		/*
+		protected override Size ArrangeOverride( Size finalSize )
+		{
+			var helper = new ItemsControlHelper( this );
+			var offset = 0d;
+
+			if ( helper.ItemsHost != null )
+			{
+				foreach ( var child in helper.ItemsHost.Children.OfType<FrameworkElement>() )
+				{
+					child.Width = finalSize.Width;
+				}
+			}
+
+			return base.ArrangeOverride( finalSize );
+		}*/
 
 		protected override void PrepareContainerForItemOverride( DependencyObject element, object item )
 		{
@@ -41,7 +58,17 @@ namespace ShadowWP7
 				presenter.ContentTemplate = template;
 			}
 
+			if ( presenter.Width != DesiredSize.Width ) presenter.Width = DesiredSize.Width;
 			if ( presenter.Content != item ) presenter.Content = item;
+		}
+
+		protected override void ClearContainerForItemOverride( DependencyObject element, object item )
+		{
+			var presenter = element as ContentPresenter;
+			presenter.Content = null;
+			presenter.ContentTemplate = null;
+
+			base.ClearContainerForItemOverride( element, item );
 		}
 
 		private DataTemplate FindTemplate( object item )

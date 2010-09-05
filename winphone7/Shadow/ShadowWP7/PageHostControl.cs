@@ -22,7 +22,10 @@ namespace ShadowWP7
 
 		public PageHostControl()
 		{
-			this.Loaded += delegate { Content = GetDataTemplate( DataContext ).LoadContent(); };
+			this.Loaded += delegate
+			{
+				ContentTemplate = GetDataTemplate( Content );
+			};
 		}
 
 		private DataTemplate GetDataTemplate( object data )
