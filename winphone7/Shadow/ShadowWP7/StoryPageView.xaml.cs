@@ -20,6 +20,9 @@ namespace ShadowWP7
 	public partial class StoryPageView : UserControl
 	{
 		public event EventHandler<CommandEventArgs> StoryInteraction;
+		public event EventHandler<CommandEventArgs> CommandEntered;
+		public event EventHandler<KeyEventArgs> KeyDown;
+		public event EventHandler<KeyEventArgs> KeyUp;
 
 //		private TextBlock hoverTextBlock;
 //		private TextBlock selectedTextBlock;
@@ -101,7 +104,7 @@ namespace ShadowWP7
 
 			var bitmap = new WriteableBitmap(
 				(int)border.ActualWidth,
-				(int)Math.Max( border.ActualHeight, size.Height - 149 ) );
+				(int)Math.Max( border.ActualHeight, size.Height - 100 ) );
 
 			bitmap.Render( border, null );
 
@@ -218,15 +221,22 @@ namespace ShadowWP7
 
 		private void commandButton_Click( object sender, RoutedEventArgs e )
 		{
-			if ( StoryInteraction != null )
+			if ( CommandEntered != null )
 			{
-				StoryInteraction( this, new CommandEventArgs( commandInput.Text.Trim() ) );
+				CommandEntered( this, new CommandEventArgs( commandInput.Text.Trim() ) );
 			}
+		}
+
+		private void commandInput_KeyDown( object sender, KeyEventArgs e )
+		{
+			if ( KeyDown != null ) KeyDown( this, e );
 		}
 
 		private void commandInput_KeyUp( object sender, KeyEventArgs e )
 		{
 			if ( e.Key == Key.Enter ) commandButton_Click( sender, e );
+
+			if ( KeyUp != null ) KeyUp( this, e );
 		}
 
 /*

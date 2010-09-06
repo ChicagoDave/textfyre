@@ -97,7 +97,7 @@
 
 		<!-- Story -->
 		<DataTemplate x:Key="StoryPage">
-			<local:StoryPageView StoryInteraction="OnCommand"/>
+			<local:StoryPageView CommandEntered="OnCommand" KeyDown="OnCommandKeyDown" KeyUp="OnCommandKeyUp"/>
 		</DataTemplate>
 
 		<!-- Death -->

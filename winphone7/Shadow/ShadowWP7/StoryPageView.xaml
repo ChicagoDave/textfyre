@@ -115,7 +115,8 @@
 								</Grid.ColumnDefinitions>
 								<TextBlock Grid.Column="0" Text="&gt;" Style="{StaticResource promptText}" VerticalAlignment="Center" Margin="10,0,0,0"/>
 								<TextBox Grid.Column="1" Name="commandInput" Style="{StaticResource commandText}" VerticalAlignment="Center"
-										 TextChanged="commandInput_TextChanged" LostFocus="commandInput_LostFocus" KeyUp="commandInput_KeyUp">
+										 TextChanged="commandInput_TextChanged" LostFocus="commandInput_LostFocus"
+										 KeyDown="commandInput_KeyDown" KeyUp="commandInput_KeyUp">
 									<TextBox.InputScope>
 										<InputScope>
 											<InputScopeName NameValue="PhraseList" />
