@@ -64,7 +64,7 @@ namespace ShadowWP7
 						recentPages.Insert( 0, page );
 					}
 
-					while ( recentPages.Count > 10 )
+					while ( recentPages.Count > 5 )
 					{
 						var lastIndex = recentPages.Count - 1;
 
