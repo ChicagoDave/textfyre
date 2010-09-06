@@ -50,7 +50,7 @@ namespace ShadowWP7
 			{
 				var cachedPage = ( cachedPages.ContainsKey( page ) && cachedPages[ page ].Bitmap.PixelWidth == finalSize.Width )
 					? cachedPages[ page ]
-					: cachedPages[ page ] = CreateCachedPage( page, finalSize.Width );
+					: cachedPages[ page ] = CreateCachedPage( page, finalSize );
 
 				if ( contentImage.Source != cachedPage.Bitmap )
 				{
@@ -77,7 +77,7 @@ namespace ShadowWP7
 			return base.ArrangeOverride( finalSize );
 		}
 
-		private CachedPage CreateCachedPage( PageBase page, double width )
+		private CachedPage CreateCachedPage( PageBase page, Size size )
 		{
 			System.Diagnostics.Debug.WriteLine( "Caching page" );
 
@@ -96,10 +96,13 @@ namespace ShadowWP7
 
 			var border = stackPanel;
 
-			border.Measure( new Size( width, double.PositiveInfinity ) );
-			border.Arrange( new Rect( new Point(), new Size( width, border.DesiredSize.Height ) ) );
+			border.Measure( new Size( size.Width, double.PositiveInfinity ) );
+			border.Arrange( new Rect( new Point(), new Size( size.Width, border.DesiredSize.Height ) ) );
 
-			var bitmap = new WriteableBitmap( (int)border.ActualWidth, (int)border.ActualHeight );
+			var bitmap = new WriteableBitmap(
+				(int)border.ActualWidth,
+				(int)Math.Max( border.ActualHeight, size.Height - 149 ) );
+
 			bitmap.Render( border, null );
 
 			bitmap.Invalidate();
@@ -215,7 +218,10 @@ namespace ShadowWP7
 
 		private void commandButton_Click( object sender, RoutedEventArgs e )
 		{
-
+			if ( StoryInteraction != null )
+			{
+				StoryInteraction( this, new CommandEventArgs( commandInput.Text.Trim() ) );
+			}
 		}
 
 		private void commandInput_KeyUp( object sender, KeyEventArgs e )

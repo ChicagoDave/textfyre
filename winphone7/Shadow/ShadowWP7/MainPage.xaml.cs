@@ -174,7 +174,7 @@ namespace ShadowWP7
 				RaisePropertyChanged( "CurrentState" );
 			}
 
-			if ( scrollToEnd ) ScrollTo( nextPage.GetValueOrDefault( Pages.Count ) );
+			if ( scrollToEnd ) Dispatcher.BeginInvoke( delegate { ScrollTo( nextPage.GetValueOrDefault( Pages.Count ) ); } );
 		}
 
 		private Storyboard FindStoryboard( string name )
