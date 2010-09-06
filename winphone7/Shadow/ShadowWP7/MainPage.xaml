@@ -97,7 +97,7 @@
 
 		<!-- Story -->
 		<DataTemplate x:Key="StoryPage">
-			<local:StoryPageView/>
+			<local:StoryPageView StoryInteraction="OnCommand"/>
 		</DataTemplate>
 
 		<!-- Death -->
