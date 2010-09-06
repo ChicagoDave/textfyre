@@ -13,6 +13,7 @@ using Microsoft.Phone.Controls;
 using Cjc.SilverFyre;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using System.Collections.ObjectModel;
 
 namespace ShadowWP7
 {
@@ -20,52 +21,26 @@ namespace ShadowWP7
 	{
 		public event EventHandler<CommandEventArgs> StoryInteraction;
 
-		private TextBlock hoverTextBlock;
-		private TextBlock selectedTextBlock;
-		private DispatcherTimer timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds( 250 ) };
+//		private TextBlock hoverTextBlock;
+//		private TextBlock selectedTextBlock;
+//		private DispatcherTimer timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds( 250 ) };
 
 		private static Dictionary<PageBase, CachedPage> cachedPages = new Dictionary<PageBase, CachedPage>();
 		private static List<PageBase> recentPages = new List<PageBase>();
+		private string partialWord;
+		private int partialWordIndex;
+		private bool focusCommand;
 
 		public StoryPageView()
 		{
+			Words = new ObservableCollection<string>();
+
 			InitializeComponent();
 
-			timer.Tick += OnTimerTick;
-/*
-			Loaded += delegate
-			{
-				var page = DataContext as PageBase;
-
-				if ( page != null && page.Paragraphs != null )
-				{
-					foreach ( var p in page.Paragraphs.Where( p => p.TextBlock != null ) )
-					{
-						p.AddToCollection( paragraphs.Items );
-					}
-				}
-			};
-
-			Unloaded += delegate
-			{
-				var page = DataContext as PageBase;
-
-				if ( page != null && page.Paragraphs != null )
-				{
-					foreach ( var p in page.Paragraphs.Where( p => p.TextBlock != null ) )
-					{
-						p.RemoveFromCollection();
-					}
-				}
-			};*/
+//			timer.Tick += OnTimerTick;
 		}
 
-		protected override Size MeasureOverride( Size availableSize )
-		{
-			var size = base.MeasureOverride( availableSize );
-
-			return size;
-		}
+		public ObservableCollection<string> Words { get; private set; }
 
 		protected override Size ArrangeOverride( Size finalSize )
 		{
@@ -89,7 +64,13 @@ namespace ShadowWP7
 						recentPages.Insert( 0, page );
 					}
 
-					while ( recentPages.Count > 10 ) recentPages.RemoveAt( recentPages.Count - 1 );
+					while ( recentPages.Count > 10 )
+					{
+						var lastIndex = recentPages.Count - 1;
+
+						cachedPages.Remove( recentPages[ lastIndex ] );
+						recentPages.RemoveAt( lastIndex );
+					}
 				}
 			}
 
@@ -131,6 +112,118 @@ namespace ShadowWP7
 			return new CachedPage { Bitmap = bitmap };
 		}
 
+		private void commandInput_TextChanged( object sender, TextChangedEventArgs e )
+		{
+			var lastSpaceIndex = ( commandInput.SelectionStart > 0 )
+				? commandInput.Text.LastIndexOf( ' ', commandInput.SelectionStart - 1 )
+				: -1;
+
+			partialWordIndex = lastSpaceIndex >= 0 ? lastSpaceIndex + 1 : 0;
+
+			var nextSpaceIndex = commandInput.Text.IndexOf( ' ', partialWordIndex );
+
+			partialWord = ( nextSpaceIndex >= 0 )
+				? commandInput.Text.Substring( partialWordIndex, nextSpaceIndex - partialWordIndex )
+				: commandInput.Text.Substring( partialWordIndex );
+
+			Words.Clear();
+
+			if ( partialWord.Length > 0 )
+			{
+				var words = from g in ( DataContext as PageBase ).State.Commands.Values
+							from w in g
+							let index = w.StartsWith( partialWord, StringComparison.InvariantCultureIgnoreCase )
+								? 0
+								: w.IndexOf( partialWord, StringComparison.InvariantCultureIgnoreCase ) >= 0 ? 1 : 2
+							where index < 2
+							orderby index, w
+							select w;
+
+				var isLower = char.IsLower( partialWord.FirstOrDefault() );
+
+				foreach ( var w in words ) Words.Add( isLower ? w.ToLower() : w.ToUpper() );
+
+				Dispatcher.BeginInvoke( delegate
+				{
+					pageScroll.ScrollToVerticalOffset( pageScroll.ExtentHeight );
+				} );
+			}
+		}
+
+		private void suggestedWord_Click( object sender, RoutedEventArgs e )
+		{
+/*			commandInput.Focus();
+
+			Dispatcher.BeginInvoke( delegate
+			{
+				var selectionStart = commandInput.SelectionStart;
+				var word = (string)( ( sender as Button ).Content );
+
+				commandInput.Select( partialWordIndex, partialWord.Length + 1 );
+				commandInput.SelectedText = word + " ";
+				commandInput.SelectionStart = selectionStart + word.Length + 1;
+			} );*/
+		}
+
+		private void suggestion_ManipulationStarted( object sender, ManipulationStartedEventArgs e )
+		{
+			focusCommand = true;
+//			e.Handled = true;
+		}
+
+		private void suggestion_ManipulationCompleted( object sender, ManipulationCompletedEventArgs e )
+		{
+			if ( e.TotalManipulation.Translation.X == 0 && e.TotalManipulation.Translation.Y == 0 )
+			{
+				Dispatcher.BeginInvoke( delegate
+				{
+					var selectionStart = commandInput.SelectionStart;
+					var word = (string)( ( sender as TextBlock ).Text );
+
+					commandInput.Select( partialWordIndex, partialWord.Length + 1 );
+					commandInput.SelectedText = word + " ";
+					commandInput.SelectionStart = selectionStart + word.Length + 1;
+				} );
+
+				e.Handled = true;
+			}
+		}
+
+		private void commandInput_LostFocus( object sender, RoutedEventArgs e )
+		{
+			if ( focusCommand )
+			{
+				commandInput.Focus();
+				focusCommand = false;
+			}
+		}
+
+		private void suggestionArea_ManipulationStarted( object sender, ManipulationStartedEventArgs e )
+		{
+			e.Handled = true;
+		}
+
+		private void suggestionArea_ManipulationDelta( object sender, ManipulationDeltaEventArgs e )
+		{
+			e.Handled = true;
+		}
+
+		private void suggestionArea_ManipulationCompleted( object sender, ManipulationCompletedEventArgs e )
+		{
+			e.Handled = true;
+		}
+
+		private void commandButton_Click( object sender, RoutedEventArgs e )
+		{
+
+		}
+
+		private void commandInput_KeyUp( object sender, KeyEventArgs e )
+		{
+			if ( e.Key == Key.Enter ) commandButton_Click( sender, e );
+		}
+
+/*
 		private void OnParagraphLoaded( object sender, RoutedEventArgs e )
 		{
 			var textBlock = sender as TextBlock;
@@ -223,7 +316,7 @@ namespace ShadowWP7
 
 			selectedWordTransform.X = Math.Min( Math.Max( position.X - padding, pagePadding ), LayoutRoot.RenderSize.Width - pagePadding - selectedWordTooltip.RenderSize.Width );
 			selectedWordTransform.Y = Math.Min( Math.Max( position.Y - padding + Math.Max( offset.Y, 0 ) + yOffset, pagePadding ), LayoutRoot.RenderSize.Height - pagePadding - selectedWordTooltip.RenderSize.Height );*/
-		}
+/*		}
 
 		private void ShowSelectedWord()
 		{
@@ -233,6 +326,6 @@ namespace ShadowWP7
 		private void HideSelectedWord()
 		{
 			var result = VisualStateManager.GoToState( selectedWordTooltip, "Normal", true );
-		}
+		}*/
 	}
 }

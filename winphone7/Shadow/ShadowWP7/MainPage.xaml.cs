@@ -297,30 +297,33 @@ namespace ShadowWP7
 
 		void OnManipulationDelta( object sender, ManipulationDeltaEventArgs e )
 		{
-			var deltaX = e.CumulativeManipulation.Translation.X;
-			var deltaY = e.CumulativeManipulation.Translation.Y;
-
-			if ( !isPanning.HasValue && ( deltaX != 0 || deltaY != 0 ) )
+			if ( e.ManipulationContainer is ScrollViewer )
 			{
-				isPanning = Math.Abs( deltaX ) > Math.Abs( deltaY );
-			}
+				var deltaX = e.CumulativeManipulation.Translation.X;
+				var deltaY = e.CumulativeManipulation.Translation.Y;
 
-			if ( isPanning.HasValue )
-			{
-				if ( isPanning.Value && StoryItemsHelper.ScrollHost != null )
+				if ( !isPanning.HasValue && ( deltaX != 0 || deltaY != 0 ) )
 				{
-					panCancelled = ( e.CumulativeManipulation.Translation.X > 0 && e.DeltaManipulation.Translation.X < 0 )
-						|| ( e.CumulativeManipulation.Translation.X < 0 && e.DeltaManipulation.Translation.X > 0 );
-
-					StoryItemsHelper.ScrollHost.ScrollToHorizontalOffset( panOffset - ( e.CumulativeManipulation.Translation.X / RenderSize.Width ) );
-					e.Handled = true;
+					isPanning = Math.Abs( deltaX ) > Math.Abs( deltaY );
 				}
-				else if ( !isPanning.Value )
-				{
-					UnhookManipulationSource();
 
-					scrollCancelled = ( e.CumulativeManipulation.Translation.Y > 0 && e.DeltaManipulation.Translation.Y < 0 )
-						|| ( e.CumulativeManipulation.Translation.Y < 0 && e.DeltaManipulation.Translation.Y > 0 );
+				if ( isPanning.HasValue )
+				{
+					if ( isPanning.Value && StoryItemsHelper.ScrollHost != null )
+					{
+						panCancelled = ( e.CumulativeManipulation.Translation.X > 0 && e.DeltaManipulation.Translation.X < 0 )
+							|| ( e.CumulativeManipulation.Translation.X < 0 && e.DeltaManipulation.Translation.X > 0 );
+
+						StoryItemsHelper.ScrollHost.ScrollToHorizontalOffset( panOffset - ( e.CumulativeManipulation.Translation.X / RenderSize.Width ) );
+						e.Handled = true;
+					}
+					else if ( !isPanning.Value )
+					{
+						UnhookManipulationSource();
+
+						scrollCancelled = ( e.CumulativeManipulation.Translation.Y > 0 && e.DeltaManipulation.Translation.Y < 0 )
+							|| ( e.CumulativeManipulation.Translation.Y < 0 && e.DeltaManipulation.Translation.Y > 0 );
+					}
 				}
 			}
 		}
