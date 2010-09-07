@@ -12,13 +12,15 @@ namespace Cjc.SilverFyre
 		public event OutputReadyEventHandler OutputReady;
 		public event SaveRestoreEventHandler SaveRequested;
 		public event SaveRestoreEventHandler LoadRequested;
+		public event EventHandler AwaitingLine;
+		public event EventHandler AwaitingKey;
 
 		private MemoryStream game;
 		private Thread thread;
 		private Engine engine;
 
-		private string nextLine;
-		private char nextKey;
+		private Queue<string> nextLines = new Queue<string>();
+		private Queue<char> nextKeys = new Queue<char>();
 
 		private AutoResetEvent keyReady = new AutoResetEvent( false );
 		private AutoResetEvent lineReady = new AutoResetEvent( false );
@@ -55,13 +57,14 @@ namespace Cjc.SilverFyre
 
 		public void SendLine( string line )
 		{
-			nextLine = line;
+			lock ( nextKeys ) { nextKeys.Clear(); }
+			lock ( nextLines ) { nextLines.Enqueue( line ); }
 			lineReady.Set();
 		}
 
 		public void SendKey( char key )
 		{
-			nextKey = key;
+			lock ( nextKeys ) { nextKeys.Enqueue( key ); }
 			keyReady.Set();
 		}
 
@@ -113,17 +116,39 @@ namespace Cjc.SilverFyre
 
 		void engine_KeyWanted( object sender, KeyWantedEventArgs e )
 		{
+			lock ( nextKeys )
+			{
+				if ( nextKeys.Count > 0 )
+				{
+					e.Char = nextKeys.Dequeue();
+					return;
+				}
+			}
+
 			keyReady.Reset();
 
-			if ( WaitHandle.WaitAny( keyEvents ) == 0 ) e.Char = nextKey;
+			if ( AwaitingKey != null ) AwaitingKey( this, EventArgs.Empty );
+
+			if ( WaitHandle.WaitAny( keyEvents ) == 0 ) lock ( nextKeys ) { e.Char = nextKeys.Dequeue(); }
 			else engine.Stop();
 		}
 
 		void engine_LineWanted( object sender, LineWantedEventArgs e )
 		{
+			lock ( nextLines )
+			{
+				if ( nextLines.Count > 0 )
+				{
+					e.Line = nextLines.Dequeue();
+					return;
+				}
+			}
+
 			lineReady.Reset();
 
-			if ( WaitHandle.WaitAny( lineEvents ) == 0 ) e.Line = nextLine;
+			if ( AwaitingLine != null ) AwaitingLine( this, EventArgs.Empty );
+
+			if ( WaitHandle.WaitAny( lineEvents ) == 0 ) lock ( nextLines ) { e.Line = nextLines.Dequeue(); }
 			else engine.Stop();
 		}
 

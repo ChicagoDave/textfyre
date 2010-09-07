@@ -32,6 +32,9 @@ namespace ShadowWP7
 
 		private string saveGameFile = "Shadow.ulx.save";
 		private IsolatedStorageFile storageFile = IsolatedStorageFile.GetUserStoreForApplication();
+		private bool waitingForSave = false;
+		private bool waitingForLoad = false;
+		private bool engineWaitingForKey = false;
 
 		private int? selectedCommandIndex = null;
 		private double? targetVerticalOffset = null;
@@ -69,10 +72,17 @@ namespace ShadowWP7
 			engine.OutputReady += engine_OutputReady;
 			engine.LoadRequested += engine_LoadRequested;
 			engine.SaveRequested += engine_SaveRequested;
+			engine.AwaitingLine += delegate { engineWaitingForKey = false; };
+			engine.AwaitingKey += delegate { engineWaitingForKey = true; };
 
 			StoryItemsHelper = new ItemsControlHelper( storyItems );
 
-			if ( storageFile.FileExists( saveGameFile ) ) engine.SendLine( "RESTORE" );
+			if ( storageFile.FileExists( saveGameFile ) )
+			{
+				waitingForLoad = true;
+				engine.SendLine( "RESTORE" );
+				engine.SendLine( "LOOK" );
+			}
 
 //			Application.Current.Host.Settings.EnableCacheVisualization = true;
 //			Application.Current.Host.Settings.EnableRedrawRegions = true;
@@ -88,6 +98,8 @@ namespace ShadowWP7
 
 		void engine_SaveRequested( object sender, SaveRestoreEventArgs e )
 		{
+			waitingForSave = true;
+
 			e.Stream = storageFile.CreateFile( saveGameFile );
 		}
 
@@ -105,21 +117,37 @@ namespace ShadowWP7
 
 		void engine_OutputReady( object sender, OutputReadyEventArgs e )
 		{
+			if ( waitingForSave ) saveLoadCompleted.Set();
+
 			if ( e.Package.Count > 0 )
 			{
-				Dispatcher.BeginInvoke( delegate
+				if ( waitingForLoad )
 				{
-					pleaseWait.Visibility = Visibility.Collapsed;
-					pleaseWait.Opacity = 0;
+					if ( e.Package.ContainsKey( OutputChannel.Main ) && e.Package[ OutputChannel.Main ] == "<Paragraph>Ok.</Paragraph>" )
+					{
+						waitingForLoad = false;
+					}
+				}
+				else
+				{
+					Dispatcher.BeginInvoke( delegate
+					{
+						pleaseWait.IsHitTestVisible = false;
+						FindStoryboard( "hidePleaseWait" ).Begin();
 
-					AddHistory( new StoryHistoryItem( null, e ), true );
-				} );
+						AddHistory( new StoryHistoryItem( null, e ), true );
+					} );
+				}
 			}
 		}
 
 		public void SaveGame()
 		{
-			if ( engine != null ) engine.SendLine( "SAVE" );
+			if ( engine != null )
+			{
+				engine.SendLine( "SAVE" );
+				saveLoadCompleted.WaitOne();
+			}
 		}
 
 		private void ScrollToEnd()
@@ -194,8 +222,8 @@ namespace ShadowWP7
 		{
 			History.Last().SetCommand( e.Command );
 
+			pleaseWait.IsHitTestVisible = true;
 			FindStoryboard( "showPleaseWait" ).Begin();
-			pleaseWait.Visibility = Visibility.Visible;
 
 			if ( engine != null ) engine.SendLine( e.Command );
 		}
@@ -243,7 +271,19 @@ namespace ShadowWP7
 				default:
 					{
 						selectedCommandIndex = null;
-						if ( engine != null ) engine.SendKey( (char)( e.PlatformKeyCode ) );
+
+						if ( engine != null && e.Key != Key.Unknown )
+						{
+							engine.SendKey( (char)( e.PlatformKeyCode ) );
+
+							if ( engineWaitingForKey )
+							{
+								self.Focus();
+								pleaseWait.IsHitTestVisible = true;
+								FindStoryboard( "showPleaseWait" ).Begin();
+							}
+						}
+
 						break;
 					}
 			}
