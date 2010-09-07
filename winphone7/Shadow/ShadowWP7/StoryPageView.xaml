@@ -80,8 +80,6 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>?
 		</Grid.RowDefinitions>
 
 		<Grid Grid.Row="0">
@@ -99,65 +97,74 @@
 
 		<ScrollViewer Grid.Row="1" Name="pageScroll" HorizontalScrollBarVisibility="Disabled">
 
-			<Image Name="contentImage" VerticalAlignment="Top"/>
+			<StackPanel Background="Black">
 
-		</ScrollViewer>
+				<Image Name="contentImage" VerticalAlignment="Top"/>
 
-		<StackPanel Grid.Row="3" Visibility="{Binding HasInput, Converter={StaticResource booleanVisibilityConverter}}">
-
-			<Grid>
-				<Rectangle Fill="#F9EBBC" Margin="0,50,0,0"/>
-				<StackPanel>
-					<Image Source="Images/PaperTearTop.png" Stretch="Fill" Height="50"/>
-					<Grid Margin="0,-20,0,0">
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto"/>
-							<ColumnDefinition/>
-							<ColumnDefinition Width="Auto"/>
-						</Grid.ColumnDefinitions>
-						<TextBlock Grid.Column="0" Text="&gt;" Style="{StaticResource promptText}" VerticalAlignment="Center" Margin="10,0,0,0"/>
-						<TextBox Grid.Column="1" Name="commandInput" Style="{StaticResource commandText}" VerticalAlignment="Center"
-									TextChanged="commandInput_TextChanged" LostFocus="commandInput_LostFocus"
-									KeyDown="commandInput_KeyDown" KeyUp="commandInput_KeyUp">
-							<TextBox.InputScope>
-								<InputScope>
-									<InputScopeName NameValue="PhraseList" />
-								</InputScope>
-							</TextBox.InputScope>
-						</TextBox>
-						<Button Grid.Column="2" Name="commandButton" Content="Go" Click="commandButton_Click" Foreground="Navy" BorderBrush="Navy"/>
+				<StackPanel Visibility="{Binding HasInput, Converter={StaticResource booleanVisibilityConverter}}">
+					<Grid>
+						<Rectangle Fill="#F9EBBC" Margin="0,50,0,50"/>
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+							</Grid.RowDefinitions>
+							<Image Grid.Row="0" Source="Images/PaperTearTop.png" Stretch="Fill" Height="50"/>
+							<Image Grid.Row="2" Source="Images/PaperTearBottom.png" Stretch="Fill" Height="50"/>
+							<Grid Grid.Row="1" Margin="0,-20,0,-15">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto"/>
+									<ColumnDefinition/>
+									<ColumnDefinition Width="Auto"/>
+								</Grid.ColumnDefinitions>
+								<TextBlock Grid.Column="0" Text="&gt;" Style="{StaticResource promptText}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+								<TextBox Grid.Column="1" Name="commandInput" Style="{StaticResource commandText}" VerticalAlignment="Center"
+											TextChanged="commandInput_TextChanged" LostFocus="commandInput_LostFocus"
+											KeyDown="commandInput_KeyDown" KeyUp="commandInput_KeyUp">
+									<TextBox.InputScope>
+										<InputScope>
+											<InputScopeName NameValue="PhraseList" />
+										</InputScope>
+									</TextBox.InputScope>
+								</TextBox>
+								<Button Grid.Column="2" Name="commandButton" Content="Go" Click="commandButton_Click" Foreground="Navy" BorderBrush="Navy"/>
+							</Grid>
+						</Grid>
 					</Grid>
-				</StackPanel>
-			</Grid>
 
-			<Border Name="suggestionArea" Background="#212021"
-					ManipulationStarted="suggestionArea_ManipulationStarted"
-					ManipulationDelta="suggestionArea_ManipulationDelta"
-					ManipulationCompleted="suggestionArea_ManipulationCompleted">
-				<ItemsControl ItemsSource="{Binding Words, ElementName=self}">
-					<ItemsControl.Template>
-						<ControlTemplate>
-							<ScrollViewer x:Name="storyScroll" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" IsTabStop="False">
-								<ItemsPresenter />
-							</ScrollViewer>
-						</ControlTemplate>
-					</ItemsControl.Template>
-					<ItemsControl.ItemsPanel>
-						<ItemsPanelTemplate>
-							<VirtualizingStackPanel Orientation="Horizontal" CanHorizontallyScroll="True" CanVerticallyScroll="False"/>
-						</ItemsPanelTemplate>
-					</ItemsControl.ItemsPanel>
-					<ItemsControl.ItemTemplate>
-						<DataTemplate>
-							<TextBlock Text="{Binding}" Padding="10" Style="{StaticResource suggestedWord}"
+					<Border Name="suggestionArea" Margin="0,-10,0,0"
+							ManipulationStarted="suggestionArea_ManipulationStarted"
+							ManipulationDelta="suggestionArea_ManipulationDelta"
+							ManipulationCompleted="suggestionArea_ManipulationCompleted">
+						<ItemsControl ItemsSource="{Binding Words, ElementName=self}">
+							<ItemsControl.Template>
+								<ControlTemplate>
+									<ScrollViewer x:Name="storyScroll" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" IsTabStop="False">
+										<ItemsPresenter />
+									</ScrollViewer>
+								</ControlTemplate>
+							</ItemsControl.Template>
+							<ItemsControl.ItemsPanel>
+								<ItemsPanelTemplate>
+									<VirtualizingStackPanel Orientation="Horizontal" CanHorizontallyScroll="True" CanVerticallyScroll="False"/>
+								</ItemsPanelTemplate>
+							</ItemsControl.ItemsPanel>
+							<ItemsControl.ItemTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding}" Padding="10" Style="{StaticResource suggestedWord}"
 										ManipulationStarted="suggestion_ManipulationStarted"
 										ManipulationCompleted="suggestion_ManipulationCompleted"/>
-						</DataTemplate>
-					</ItemsControl.ItemTemplate>
-				</ItemsControl>
-			</Border>
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+						</ItemsControl>
+					</Border>
 
-		</StackPanel>
+				</StackPanel>
+
+			</StackPanel>
+
+		</ScrollViewer>
 
 <!--
 		<ToolTip Name="selectedWordTooltip" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" IsHitTestVisible="False" >
