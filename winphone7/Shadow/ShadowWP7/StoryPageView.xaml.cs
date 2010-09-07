@@ -103,7 +103,7 @@ namespace ShadowWP7
 
 			var bitmap = new WriteableBitmap(
 				(int)border.ActualWidth,
-				(int)border.ActualHeight /*(int)Math.Max( border.ActualHeight, size.Height - 100 )*/ );
+				(int)Math.Max( border.ActualHeight, size.Height - 149 ) );
 
 			bitmap.Render( border, null );
 
