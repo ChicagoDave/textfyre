@@ -39,7 +39,6 @@ namespace ShadowWP7
 			Words = new ObservableCollection<string>();
 
 			InitializeComponent();
-
 //			timer.Tick += OnTimerTick;
 		}
 
@@ -104,7 +103,7 @@ namespace ShadowWP7
 
 			var bitmap = new WriteableBitmap(
 				(int)border.ActualWidth,
-				(int)Math.Max( border.ActualHeight, size.Height - 100 ) );
+				(int)border.ActualHeight /*(int)Math.Max( border.ActualHeight, size.Height - 100 )*/ );
 
 			bitmap.Render( border, null );
 
