@@ -40,7 +40,11 @@
 		</Storyboard>
 
 		<Storyboard x:Key="showPleaseWait">
-			<DoubleAnimation Storyboard.TargetName="pleaseWait" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:2"/>
+			<DoubleAnimation Storyboard.TargetName="pleaseWait" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:1"/>
+		</Storyboard>
+
+		<Storyboard x:Key="hidePleaseWait">
+			<DoubleAnimation Storyboard.TargetName="pleaseWait" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:1"/>
 		</Storyboard>
 
 		<Storyboard x:Key="scrollStory" Completed="scrollStory_Completed">
@@ -110,29 +114,29 @@
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent" SizeChanged="LayoutRoot_SizeChanged">
 
-		<Grid>
-			<local:ImplicitTemplateItemsControl x:Name="storyItems" ItemsSource="{Binding Pages, ElementName=self}"
-												ItemContainerStyle="{StaticResource pageStyle}"
-												ManipulationStarted="OnManipulationStarted"
-												ManipulationDelta="OnManipulationDelta"
-												ManipulationCompleted="OnManipulationCompleted">
-				<ItemsControl.Template>
-					<ControlTemplate>
-						<ScrollViewer x:Name="storyScroll" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
-							<ItemsPresenter />
-						</ScrollViewer>
-					</ControlTemplate>
-				</ItemsControl.Template>
-				<ItemsControl.ItemsPanel>
-					<ItemsPanelTemplate>
-						<VirtualizingStackPanel Name="storyItemsPanel" CanHorizontallyScroll="True" CanVerticallyScroll="False"
-												Orientation="Horizontal" CleanUpVirtualizedItemEvent="storyItemsPanel_CleanUpVirtualizedItemEvent" />
-					</ItemsPanelTemplate>
-				</ItemsControl.ItemsPanel>
-			</local:ImplicitTemplateItemsControl>
-		</Grid>
+		<local:ImplicitTemplateItemsControl x:Name="storyItems" ItemsSource="{Binding Pages, ElementName=self}"
+											ItemContainerStyle="{StaticResource pageStyle}"
+											ManipulationStarted="OnManipulationStarted"
+											ManipulationDelta="OnManipulationDelta"
+											ManipulationCompleted="OnManipulationCompleted">
+			<ItemsControl.Template>
+				<ControlTemplate>
+					<ScrollViewer x:Name="storyScroll" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
+						<ItemsPresenter />
+					</ScrollViewer>
+				</ControlTemplate>
+			</ItemsControl.Template>
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<VirtualizingStackPanel Name="storyItemsPanel" CanHorizontallyScroll="True" CanVerticallyScroll="False"
+											Orientation="Horizontal" CleanUpVirtualizedItemEvent="storyItemsPanel_CleanUpVirtualizedItemEvent" />
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
+		</local:ImplicitTemplateItemsControl>
 
-		<TextBlock x:Name="pleaseWait" Opacity="0"><Run Text="Please wait..."/></TextBlock>
+		<Grid x:Name="pleaseWait" Background="#A0000000" Opacity="0" IsHitTestVisible="False">
+			<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48"><Run Text="Please wait..."/></TextBlock>
+		</Grid>
 
 	</Grid>
     
