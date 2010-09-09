@@ -35,8 +35,9 @@ Understand "floor", "ground" as the backdrop-floor when the location is grounded
 Instead of putting something on the backdrop-floor:
 	try dropping the noun;
 
-[A procedural rule when] First check removing something from the backdrop-floor:
-	ignore the can't remove what's not inside rule;
+First check removing something from the backdrop-floor when the noun is not fixed in place:
+	now the noun is in the location;
+	try taking the noun instead.
 
 Check facing down towards nothing when the location is grounded and the player can see the backdrop-floor (this is the convert looking down at nothing into examining the floor rule):
 	try examining the backdrop-floor instead;
