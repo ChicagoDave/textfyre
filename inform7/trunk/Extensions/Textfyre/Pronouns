@@ -1,4 +1,4 @@
-Pronouns by Textfyre begins here.
+Version 3 of Pronouns by Textfyre begins here.
 
 "Phrases to say various pronouns and conjugations of the verb 'to be' for in-game objects."
 
@@ -10,7 +10,7 @@ Part 1 - Various pronouns and parts of speech
 
 The last mentioned thing is a thing that varies. 
 
-After printing the name of something (called the target) (this is the textfyre's pronoun setting rule): change the last mentioned thing to the target. 
+After printing the name of something (called the target) (this is the textfyre's pronoun setting rule): now the last mentioned thing is the target. 
 
 To say it-they: 
     if the last mentioned thing is plural-named, say "they"; 
@@ -177,19 +177,26 @@ To say don't or doesn't for (x - an object):
 
 Part 4 - the player's pronouns
 
+section 1 - (for use with Quips by TextFyre)
+
+To decide which object is the/-- pronoun/-- you/your/yours: decide on the current conversationalist.
+To change 	the/-- pronoun/-- 	you/your/yours 	to (character - an object): now the current conversationalist is the character.
+
+section 2 - usual pronouns
+
 [To decide which person is the/-- pronoun/-- I/me/my: (- PronounValue('me') -).]
 To decide which man is the/-- pronoun/-- he/him/his: (- PronounValue('him') -).
 To decide which woman is the/-- pronoun/-- she/her/hers: (- PronounValue('her') -).
 To decide which object is the/-- pronoun/-- it/its: (- PronounValue('it') -).    [  It can refer to anything: things, rooms, directions, anything ]
 To decide which object is the/-- pronoun/-- they/them/their: (- PronounValue('them') -).  [ ditto for Them ]
-To decide which object is the/-- pronoun/-- you/your/yours: decide on the current conversationalist.
 To change 	the/-- pronoun/-- 	he/him/his	to (character - a man): (- (SetPronoun('him',{character})); -).
 To change 	the/-- pronoun/-- 	she/her/hers	to (character - a woman): (- (SetPronoun('her',{character})); -).
 To change 	the/-- pronoun/-- 	it/its	to (character - an object): (- (SetPronoun('it',{character})); -).
 To change 	the/-- pronoun/-- 	they/them/their 	to (character - an object): (- (SetPronoun('them',{character})); -).
-To change 	the/-- pronoun/-- 	you/your/yours 	to (character - an object): now the current conversationalist is the character.
 
 To change the/-- personal pronouns to nothing: (- SetPronoun('him',0); SetPronoun('her',0); -). 
+
+
 
 Pronouns ends here.
 
