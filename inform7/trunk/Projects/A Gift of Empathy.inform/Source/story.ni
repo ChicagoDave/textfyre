@@ -4,11 +4,12 @@
 Include (- Constant DEBUG; -) after "Definitions.i6t".
 ]
 
+[Use no deprecated features.]
+
 [  Change Log
 
 When	Who	What
-16-Jun-2010		D Cornelson	Fixed VM_PreInitialise and the Document at bug. Now named V2 since
-                                                        I have the standard named extension for V3 and Zifmia.
+16-June-2010	R. Newcomb		6E59; removed deprecated phrases; starting Paul's many June transcripts
 16-May-2010 	R. Newcomb  	walkthroughs to end of game done. Chapter 1 4/20; 
 29-Apr-2010 	R. Newcomb  	Inform 7 build 6E36
 23-Apr-2010 	R. Newcomb  	refactor code:  replace all (or combine) Instead, Before, After, Every Turn, and Procedural rules with Check (etc.) equivalents; replace Print Desc. Of, Locale, Paragraph About, Check Examining rules with properties; rewrite how Goals extension works for O(n) running time rather than O(n-squared); 
@@ -40,7 +41,7 @@ Volume 1 - Map & Code
 Use no scoring, American dialect and full-length room descriptions.
 The story creation year is 2010.
 
-Include FyreVM Support V2 by Textfyre.
+Include FyreVM Support v2 by Textfyre.
 Include Punctuation Removal by Emily Short.
 Include Basic Screen Effects by Emily Short.
 
@@ -54,18 +55,15 @@ Include Goals by Textfyre.
 
 Include Test Suite by Textfyre.
 [Include Parse List by Textfyre.]
- 
-[Every turn : show future events.   TO show future events: (- sfe(); -).
-Include (-
-[ sfe i rule;
-	print (TimedEventsTable-->0), " pending events: ";
-	for (i=1: i<=(TimedEventsTable-->0): i++)
-		!if ((rule=TimedEventsTable-->i) ~= 0)
-		{ rule=TimedEventsTable-->i;
-  		  print (RulePrintingRule) rule, "(", (TimedEventTimesTable-->i), "), "; }
-	print "^";
 
-];-).]
+Include Smarter Parser by Aaron Reed.
+Include Small Kindnesses by Aaron Reed.
+Include Extended Grammar by Aaron Reed.
+
+Chapter - (in place of Chapter - Show valid directions after going nowhere in Small Kindnesses by Aaron Reed)
+
+    [ this section intentionally left blank ]
+
 
 Book 1 - Initialization
 
@@ -87,16 +85,6 @@ Use MAX_NUM_STATIC_STRINGS of 30000.
 Section 2 - debugging aids
 
 Use numbered rules.
-
-[these I wrap around anything that I don't want in the debug build, such as PAUSE THE GAME which breaks re-runs]
-To ifndef debug: do nothing. [(- #ifndef DEBUG; -).]
-To enddef debug: do nothing. [ (-  #endif; -). ]
-
-To say placeholder -- beginning say_placeholder:
-	say "[bracket]placeholder text: '";
-
-To say end placeholder -- ending say_placeholder:
-	say "'[close bracket][paragraph break]";
 
 Section 3 - teleport to a room - not for release
 
@@ -120,6 +108,11 @@ Include (-
     at = FindAction(act); 
     ActionData-->(at+AD_REQUIREMENTS) = ActionData-->(at+AD_REQUIREMENTS) | OUT_OF_WORLD_ABIT;
 ];-).
+
+[deprecated in 6E59, but so darn useful]
+To decide whether in (R - a room): decide on whether or not the location is R.
+To decide whether in (R - a region): decide on whether or not the location is R.
+To decide whether in (R - a container): decide on whether or not the location is R.
 
 
 Chapter 2 - cribbed from extension Mentioned In Room Descriptions
@@ -161,8 +154,8 @@ A term day is a kind of value. Day 10 specifies a term day.
 The current term day is a term day that varies. The current term day is Day 2.
 
 When play begins:
-	change left hand status line to "[Current term day]: [the location in title case]";
-	change right hand status line to "[time of day]".
+	now the left hand status line is "[Current term day]: [the location in title case]";
+	now the right hand status line is "[time of day]".
 
 Section 2 - narrative time
 
@@ -183,10 +176,6 @@ Chapter 10 - Breakfast of Champions
 
 To decide whether in chapter/chapters (N - a number): decide on whether or not the chapter number is N.
 To decide whether in chapters/chapter (N - a number) through/thru/thorugh (M - a number): decide on whether or not the chapter number is at least N and the chapter number is not greater than M.
-
-[The dreamscape is a room. [TODO]] [try the "mindscape" region]
-
-There is a scene called the Battle with the Thief.  [TODO]
 
 To Go straight to section (txt - some text) in Chapter 09 text: placeholder "Go straight to section ['][txt]['] in Chapter 09 text."
 
@@ -209,8 +198,8 @@ Chapter 6 - Convert Telling and Answering to Asking
 
 Replaceable-action-name is an action name that varies. Replaceable-action-name variable translates into I6 as "action".
 
-First before telling: change the Replaceable-action-name to the asking it about action.
-First before answering: change the Replaceable-action-name to the asking it about action.
+First before telling it about: now the Replaceable-action-name is the asking it about action.
+First before answering: now the Replaceable-action-name is the asking it about action.
 
 [these actions are hard-coded into the inform parser, so using "Understand the command.... as something new." won't work. Changing the action produces better performance than re-trying a whole new action.]
 
@@ -233,7 +222,7 @@ The player is in the info desk.
 
 The player carries the items list for the scavenger hunt.  The items list for the Scavenger Hunt is a thing. The description is "A newspaper[line break]A feather[line break]A flag[line break]A star[line break]A dinosaur[line break]A hat[line break]Something that was once alive".  The printed name of the items list for the Scavenger Hunt is "[if we have not examined the item described]unread [end if]list of items for the Scavenger Hunt".  Understand "item", "of items" as the items list for the Scavenger Hunt.
 
-Carry out examining the list for the scavenger hunt: change the current goals to the list of scavenger hunt goals.
+Carry out examining the list for the scavenger hunt: now the current goals is the list of scavenger hunt goals.
 
 Last carry out taking inventory when we have examined the items list for the scavenger hunt: list the player's goals.
 
@@ -263,7 +252,7 @@ First check inserting something into a supporter (called parent): if the parent 
 
 First check putting something on a container (called parent): if the parent is not [also] a supporter, try inserting the noun into the second noun instead.
 
-Understand the command "place" as "put".
+[Understand the command "place" as "put".]  [in Extended Grammar by Aaron Reed]
 Understand the command "peek" as "look".
 
 Chapter 2 - pat yourself down
@@ -284,7 +273,7 @@ Chapter 5 - kicking
 
 Understand "i know kung fu" as a mistake ("Show me.").
 
-Understand the commands "kick" as "attack".
+[Understand the commands "kick" as "attack".]  [in Extended Grammar by Aaron Reed]
 Understand "kung fu [something]", "karate chop/kick [something]", or "judo chop/kick [something]" as attacking.
 
 Last check attacking when in chapter 9: say "You [one of]karate[or]judo[or]flying[purely at random] [one of]chop[or]kick[or]punch[purely at random] [the noun]." instead.
@@ -329,15 +318,19 @@ Understand "focus [direction]", "focus on [direction]", "concentrate on [directi
 
 Rule for supplying a missing noun when focusing on:
 	if there is a salient emotional residue:
-		change the noun to a random salient emotional residue;
+		now the noun is a random salient emotional residue;
 	otherwise:
-		change the noun to the location;
+		now the noun is the location;
 
 Check focusing on yourself: placeholder "Snark." instead.
 
 Last check focusing on something which is a part of someone (called the target): try focusing on the target instead.
 
 Last report focusing on an emotional residue: consider the focusing rules for the noun instead.
+
+Last report focusing on:
+	if the noun is the location and an emotional residue is salient: 
+		consider the focusing rules for a random salient emotional residue instead.
 
 Last report focusing on: say "You sense nothing untoward or out of the ordinary here." instead.
 
@@ -452,7 +445,7 @@ Understand "call [text] to [someone]" as asking it about (with nouns reversed).
 
 Understand the commands "yell", "scream", "cry", "bellow", "wail", or "yelp" as "shout".
 
-Rule for supplying a missing noun when shouting at: change the noun to the location.
+Rule for supplying a missing noun when shouting at: now the noun is the location.
 
 Report shouting at yourself: say "Must you berate yourself?" instead.
 Report shouting at someone: say "[The noun] frowns at you." instead.
@@ -513,8 +506,8 @@ one red shoe				"A great movie."
 
 A person has a table-name called the object-based conversation table. 
 
-Understand "ask [someone] about [any thing]" or "ask about/-- [any thing]" or "a about/-- [any thing]" as inquiring it about. Inquiring it about is an action applying to one thing and one visible thing. Does the player mean inquiring someone about something (called the subject) (this is the assume conversation about present things rule): if the subject is in the location, it is very likely[; otherwise say "Not applicable."].  Does the player mean inquiring someone about something (called the subject) (this is the assume non-conversation about off-stage things rule): if the subject is off-stage, it is unlikely[; otherwise say "Not applicable."].  Rule for supplying a missing noun when inquiring something about something (this is the assume conversation with the only person here rule): if the number of people in the location who are not the player is 1, change the noun to a random person in the location who is not the player.
-
+Understand "ask [someone] about [any thing]" or "ask about/-- [any thing]" or "a about/-- [any thing]" as inquiring it about. Inquiring it about is an action applying to one thing and one visible thing. Does the player mean inquiring someone about something (called the subject) (this is the assume conversation about present things rule): if the subject is in the location, it is very likely[; otherwise say "Not applicable."].  Does the player mean inquiring someone about something (called the subject) (this is the assume non-conversation about off-stage things rule): if the subject is off-stage, it is unlikely[; otherwise say "Not applicable."].  Rule for supplying a missing noun when inquiring something about something (this is the assume conversation with the only person here rule): if the number of people in the location who are not the player is 1, now the noun is a random person in the location who is not the player.
+	
 Report inquiring something about a conversation listed in (the object-based conversation table of the noun) (this is the chooses response per object rule): say "[the reply entry][line break]" instead.
 
 Carry out inquiring something about an achieved goal (this is the blank-out goals from conv tables rule):
@@ -531,6 +524,14 @@ Last report inquiring it about when (the object-based conversation table of the 
 
 Check asking someone about "themself/theirself/himself/herself": try inquiring the noun about the noun instead.
 
+[Persuasion rule for asking someone (called the owner) to try giving something (called the owned) to the player (this is the convert failed asking-for to inquiring-about rule):
+	try inquiring the owner about the owned instead.]
+
+Understand "hi [someone]" or "hello [someone]" or "greet [someone]" as talking to. 
+Understand "hi" or "hello" as talking to. 
+
+Understand "thanks" or "thank you" as a mistake ("'You're welcome.'").
+
 [TODO:   when i DOES THE PLAYER MEAN, if there is more than one final option with equal rank, *everything* is written. ]
 
 
@@ -538,7 +539,9 @@ Part 12 - going and EXITS
 
 [The action is in the Textfyre Standard Rules, but as a novice player myself, EXITS is much more useful as a response to Going Nowhere than the standard response... or even as an explicit EXITS command itself.  --Ron]
 
-Check going nowhere: try listing exits instead. 
+Check going nowhere: 
+	ignore the advance time rule;
+	try listing exits instead. 
 
 After printing the name of a direction (called the way) while listing exits:
 	if the room way from the location is visited, say " (to [the room way from the location])".
@@ -593,7 +596,15 @@ To say directions from (source - a room) to (destination - a room):
 	otherwise say "[forward], [directions from source to destination]".  [recurse!]
 	[otherwise say "[forward] to [the source], [directions from source to destination]".]
 
-part 15 - enter room
+part 15 - Follow someone or something
+
+Understand "follow scent/trail/it/that" as a mistake ("Though you can definitly tell when something's there, you can't always sense directionality.  This makes following a sensation automatically rather difficult.").
+Understand "follow [emotional residue]" as a mistake ("Though you can definitly tell when something's there, you can't always sense directionality.  This makes following a sensation automatically rather difficult.").
+Understand "follow [something]" as a mistake ("Actually, you'll need to specify which direction to go.").
+
+[Following is an action applying to one thing. 
+Carry out following someone: now the player follows the noun.] [this is a can of worms.  How many times is an actor "moved offstage"? ]
+
 
 [Understand "enter [any room]" or "go to/into [any room]" or "go [any room]" or "run to/into [any room]" or "run [any room]" or "walk [any room]" or "walk to/into [any room]" as nominal-going. Nominal-going is an action applying to one visible thing. Check nominal-going to a room which is not adjacent: try room-examining the noun instead.  Check nominal-going to an adjacent room: 
 	let aim be the best route from the location to the noun, using doors; 
@@ -647,9 +658,9 @@ Swapping it with is an action applying to two things. Understand "swap [somethin
 First check swapping an unplugged slot with an unplugged slot: 
 	say "Neither slot has anything in it." instead.
 Check swapping a plugged slot with (this is the typecast first slot rule):
-	change the noun to a random logic block in the noun.
+	now the noun is a random logic block in the noun.
 Check swapping something with a plugged slot (this is the typecast second slot rule): 
-	change the second noun to a random logic block in the second noun.
+	now the second noun is a random logic block in the second noun.
 Check swapping (this is the convert swap to insert rule):
 	if the noun is an unplugged slot, try inserting the second noun into the noun instead;
 	if the second noun is an unplugged slot, try inserting the noun into the second noun instead.
@@ -668,6 +679,8 @@ A persuasion rule for asking someone to try examining: say "[The person asked] g
 
 A persuasion rule for asking someone to try looking: say "[The person asked] looks around.  'What?'" instead.
 
+A persuasion rule for asking someone to try playing: say "'Another time, maybe.'" instead.
+
 
 Book 3 - Definitions
 
@@ -684,18 +697,20 @@ Chapter 2 - topics just for ASK ABOUT
 Understand "lean on me" or "Bill Withers song/--" as "[lean on me]".   
 Understand "jeremy/dolan" or "jeremy dolan" as "[jeremy]".
 Understand "damon/rose" or "damon/professor rose/damon" as "[damon]".
-Understand "antonia/long" or "antonia/professor long/antonia" or "robotics" as "[antonia]".
+Understand "antonia/long" or "antonia/professor long/antonia" or "robotics" as Antonia Long. Antonia Long is a woman. The description of Antonia is "[placeholder]desc[end placeholder]".
 Understand "Nana Mouskouri" or "nana" or "mouskouri" as "[mouskouri]".
 Understand "Voice lessons", "singing", "lessons" as "[singing]".
 Understand "power/powers/superpower/superpowers/empath/empathy/empathic" as "[powers]".
 Understand "food" or "camp/cafeteria food" as "[food]".
 Understand "cooking" or "cooking class" or "class" as "[cooking]".
 Understand "SARG" or "robot" as "[robot]".
-Understand "Dr", "Hu", or "Dr Hu" as "[hu]". [IMPORTANT:  Hu's on first. ]
+Understand "Dr", "Hu", or "Dr Hu" as "[hu]". [IMPORTANT QUESTION:  Hu's on first? ]
 Understand "help", "bullies/bully/bullying", "crystal", "earth crystal", "hank and/& joe", or "joe and/& hank" as "[bullying]".
 Understand "himself" or "his family/father/mother" or "family/father/mother" as "[family]".
-Understand "grandmother" or "gran" or "granny" or "grannie" or "grandma" or "granma" or "gramps" or "grandparent" or "grandparents" or "old lady" as "[grandmother]".
+Understand "grandmother" or "gran" or "granny" or "grannie" or "grandma" or "granma" or "gramps" or "grandparent" or "grandparents" or "old lady" or "sadness" as "[grandmother]".
+Understand "garden" or "bench" or "lady" as "[grandmother]" when in Lucian's room.
 Understand "peter" or "school" or "teacher" or "class" or "class photo" as "[peter]".
+Understand "man" or "old man" or "blackboard" as "[peter]" when in Lucian's room.
 Understand "crashing" or "crash" or "smash" or "noise" or "sound" as "[noise]".
 
 
@@ -725,6 +740,19 @@ After reading a command (this is the common synonyms and abbreviations rule):
 	if the player's command includes "anyway/whole/entire/just", cut the matched text;
 	if the player's command includes "again" and the first word does not match "again", cut the matched text;
 	if the player's command includes "remove all/everything from", replace the matched text with "empty";
+
+
+After reading a command during Robot Fun:
+	if the player's command includes "1st/first", replace the matched text with "1";
+	if the player's command includes "2nd/second", replace the matched text with "2";
+	if the player's command includes "3rd/third", replace the matched text with "3";
+	if the player's command includes "4th/fourth", replace the matched text with "4";
+	if the player's command includes "5th/fifth", replace the matched text with "5";
+	if the player's command includes "6th/sixth", replace the matched text with "6";
+	if the player's command includes "7th/seventh", replace the matched text with "7";
+	if the player's command includes "8th/eighth/eigth/eigth", replace the matched text with "8";
+	if the player's command includes "9th/ninth/nineth", replace the matched text with "9";
+	if the player's command includes "10th/tenth", replace the matched text with "10";
 
 
 Part 2 - implicit action reporting
@@ -791,7 +819,7 @@ An option has a room called the venue.
 
 When play begins:
 	repeat with o running through options:
-		change the venue of o to the location of o;
+		now the venue of o is the location of o;
 
 Part 6 - Quip, Trigger, & miscellaneous extension additions
 
@@ -816,34 +844,34 @@ The verb to be vended by implies the reversed offering relation.
 
 Section 2 - Dispensers
 
-A dispenser is a kind of thing. A dispenser is usually fixed in place.
+A dispenser is a kind of thing. A dispenser is usually scenery[fixed in place].
 
 Understand "[something related by reversed representation]" as a dispenser.
+Understand "[something related by offering]" as a dispenser.
 
-First check taking a dispenser: [formerly a procedural rule]
-	ignore the can't take scenery rule;
-	ignore the can't take what's fixed in place rule;
-	ignore the can't take component parts rule.
-
-Check taking a dispenser when nothing is vended by the noun:
-	say "No need." instead.
-
-Check taking a dispenser when the prize of the noun is enclosed by the location:
-	say "You already have one [prize of the noun][if the player does not have the prize of the noun] right in front of you[otherwise], and don't need another one[end if]." instead.
-
-Last check taking a dispenser:
+First check taking a dispenser:
+	if the prize of the noun is enclosed by the location:
+		say "You already have one [prize of the noun][if the player does not have the prize of the noun] right in front of you[otherwise], and don't need another one[end if]." instead;
 	if the prize of the noun is off-stage, move the prize of the noun to the location; 
 	try taking the prize of the noun; 
 	if the rule failed, remove the prize of the noun from play instead;
-	otherwise the rule succeeds.
+	otherwise [this] rule succeeds.
 
-Report taking something vended by something: say "You take [a noun]." instead.
+Report taking something vended by something: 
+	change the pronoun it to the noun;
+	change the pronoun they to the noun;
+	say "You take [a noun]." instead.
 
 Does the player mean taking or dropping a dispenser (called the vendor): if the prize of the vendor is in the location, it is unlikely. 
 Rule for clarifying the parser's choice of something vended by something (called the vendor): if the vendor is in the location, do nothing instead. [skips the "(the red flag)" disambiguation message when dealing with The Red Flag in the presence of The Pile Of Red Flags.]
 
 [Does the player mean taking or dropping the pile of red flags when the red flag is in the location: it is unlikely. 
 Rule for clarifying the parser's choice of the red flag when the pile of red flags is in the location: say nothing.]
+
+Section 3 - sanity check - not for release
+
+When play begins (this is the dispensers sanity check rule): repeat with X running through dispensers begin; if the number of things vended by X is not 1, say "[bold type]BUG -- [X] is a dispenser that doesn't dispense anything[roman type]."; end repeat.
+
 
 Part 8 - Cutouts of various types
 
@@ -915,6 +943,8 @@ The images of classic horror are in pits west, pits stairwell, pits east.
 The images of winter sports are in the first floor rooms west, the first floor midpoint, the first floor rooms east.
 The images of Hollywood stars are in the second floor rooms west, the second floor lobby, the second floor rooms east. Understand "actor/actors" as the images of Hollywood stars.
 The images of stellar bodies are in the third floor rooms west, the third floor lobby, the third floor rooms east.
+
+Understand "star/stars" as the images of hollywood stars.
 
 Check taking a wall cutout when a cutout pouch is apparent:
 	try taking a random apparent cutout pouch instead.
@@ -1065,7 +1095,7 @@ The elaborate wood molding is scenery, in the first floor lobby west. "It's pret
 
 Some air bubbles are scenery, in the first floor lobby west. "They're annoyingly random.  You don't know why the original painters couldn't have taken the trouble to -- oh wait, that's actually an elaborate wood molding."
 
-A plaque shaped like a shield is scenery, in the first floor lobby west. "It's shaped like a shield, and commemorates the memory of Damon Rose, one of the founders of LEAP.  You remember him quite well from last year.  It was quite a shock to hear about the accident, and there was some question as to whether LEAP could go on without him.  His sister, Claudia Rose, is in charge of LEAP now, and making sure that the good work goes on.  She seems like a nice lady, but she's just not quite as present as old Damon Rose used to be."
+A plaque shaped like a shield is scenery, in the first floor lobby west. "It's shaped like a shield, and commemorates the memory of Damon Rose, one of the founders of LEAP.  You remember him quite well from last year.  It was quite a shock to hear about the accident, and there was some question as to whether LEAP could go on without him.  His sister, Claudia Rose, is in charge of LEAP now, and making sure that the good work goes on.  She seems like a nice lady, but she's just not quite as present as old Damon Rose used to be." Understand "AQJ" as the plaque shaped like a shield.
 
 Chapter 3 - Michelle
 
@@ -1093,6 +1123,10 @@ Check focusing on Michelle's hair: say "You stare intently at Michelle's head.  
 Instead of taking, pushing, [[moving,]] or pulling Michelle, say "Don't be rude."
 Instead of eating or attacking Michelle, say "That's a sure way to get yourself kicked out of LEAP, and you don't want that."
 Check focusing on Michelle: say "You stare intently at Michelle.  She feels a little creeped out by this." instead.
+
+Check giving something to Michelle: say "'Hang on to your finds until you've completed the list.'" instead.
+Check showing something to Michelle: say "'Hang on to your finds until you've completed the list.'" instead.
+
 
 Section 3 - conversation with Michelle
 
@@ -1124,11 +1158,11 @@ Joe  			"[about anyone else]"
 Lucian			"[about anyone else]"
 the scavenger hunt	"'You've got until 8:25 to find the things on your list, Daniel.  So if you haven't found everything yet, you'd better hurry.  And don't worry, we checked the lists beforehand and we know that everything is available one way or another around here.'"
 LEAP flyers		"'You already know all about that, don't you?  I mean, it's your second year, after all.'"
+Antonia		"'Antonia's a good friend, and a very intelligent person.  You're registered for her robotics class, right?  I thought I saw your name on the registration form.'" 
 
 
 Report asking MIchelle about "[jeremy]": say "[about anyone else][line break]" instead.
 Report asking Michelle about "[damon]": say "'It was terrible about what happened, wasn't it?'  Michelle is silent for a moment, then says, 'no use thinking about that now!  Don't you have a treasure hunt to do?'" instead.
-Report asking Michelle about "[antonia]": say "'Antonia's a good friend, and a very intelligent person.  You're registered for her robotics class, right?  I thought I saw your name on the registration form.'" instead.
 
 
 To say about newspaper: say "[run paragraph on][if player has a newspaper]'Be careful you don't get ink all over your fingers!'[otherwise if the player has been able to see the vending machine]'Why Daniel, I am so very pleased that you're taking an interest in current events!'  She drops just enough change for the newspaper machine into your hand, and winks.  'At least, I'm sure that's why you want a newspaper, and it's not because of anything so silly as a scavenger hunt.'[otherwise]'You'll have to think outside the box for that one.'"
@@ -1242,8 +1276,7 @@ Rule for firing primed fired TRIG_SCHOOLOFROCK:
 	say "As you approach the musicians, you once again get that odd sense of vertigo.  The feeling passes within seconds.";
 
 
-Cat psychologists are scenery in first floor lobby east. "They seem pretty absorbed in what they're doing."
-Understand "kids/campers/students", "older kids" as the cat psychologists when in chapter 2.
+Cat psychologists are scenery in first floor lobby east. "They seem pretty absorbed in what they're doing."  Understand "kids/campers/students", "older kids" as the cat psychologists when in chapter 2 and the cat psychologists are in the location. Check listening to the location when the cat psychologists are in the location: now the noun is the cat psychologists.
 
 Carry out listening to the cat psychologists: say "[one of]'...so when you see a cat twitching its tail, that means that it's kind of confused or frustrated...'[or]'...those laser pointers are fun, but too much of it just isn't good for the cat's brains, you know?'[or]'...I'm telling you, they're going to take over the world one day....'[or]'...stupid thing just stands at the open door and meows....'[or]'...there's this webcomic about this pair of cats, and....'[or]'...she was creeping across the linoleum floor, pretending to be an invisible ninja or something....'[or]'...so I looked in the litterbox --' and you stop listening right there.[at random]"
 
@@ -1509,7 +1542,7 @@ The Star-Spangled Banner is [initially] fixed in place scenery in the front lawn
 "fixed in place" means it is unfolded ]
 
 Check climbing the flagpole: say "You're not that good an athlete." instead.
-First check folding the flagpole: change the noun to the star-spangled banner. [no instead -- typecast]
+First check folding the flagpole: now the noun is the star-spangled banner. [no instead -- typecast]
 
 [turning off the "scenery" bit]
 Instead of doing something except examining or turning with the Star-Spangled Banner when the star-spangled banner is scenery, say "It's way too high to reach."
@@ -1598,9 +1631,9 @@ Chapter 2 - Scenery
 
 Section 1 - Cut out Stephan Eberharter
 
-The description of Stephan Eberharter is "He's been glued to the wall, no doubt because this particular junction sees a lot more traffic than most."
+A cutout picture of Stephan Eberharter is a thing.  The description of the cutout picture of Stephan Eberharter is "He's been glued to the wall, no doubt because this particular junction sees a lot more traffic than most."
 
-Understand "olympic", "ski champ", "skiing", "champ", "champion" as Stephan Eberharter.
+Understand "olympic", "ski champ", "skiing", "champ", "champion" as cutout picture of Stephan Eberharter.
 
 Check taking Stephan Eberharter: try examining Stephan Eberharter instead.
 
@@ -1608,6 +1641,7 @@ Section 2 - Cutout Pouch
 
 The description of Stephan Eberharter's cutout pouch is "It's full of cutouts of snowboards, skis, hockey sticks, skates, sleds and other things that make you want to put on your scarf and your warm, woolly mittens."
 
+Stephan Eberharter's cutout pouch vends a cutout picture of Stephan Eberharter. 
 Stephan Eberharter's cutout pouch is represented by the images of winter sports.
 
 Section 3 - Wall cutouts
@@ -1658,14 +1692,14 @@ The matching pair of matching hockey sticks is scenery, in the first floor rooms
 
 Part 11 - Aidan's Room
 
-Aidan's room is a dorm room. "Aidan shares this room with some guy whose name you never caught and whom you almost never see.  Aidan keeps his half of the room neat and spartan, almost as if he were expecting a military inspection at any moment.  The bedclothes look to be pulled tight enough to bounce a penny to the ceiling, and the desk is practically bare but for a few neatly regulationed necessities.  The door to the dorm corridor is back to the south."
+Aidan's room is a dorm room. "Aidan shares this room with some guy whose name you never caught and whom you almost never see.  Aidan keeps his half of the room neat and spartan, almost as if he were expecting a military inspection at any moment.  The bedclothes look to be pulled tight enough to bounce a penny to the ceiling, and the desk is practically bare but for a few neatly regulated necessities.  The door to the dorm corridor is back to the south."
 
 Aidan's door is a dorm door, scenery, closed, locked, north of first floor rooms west, south of Aidan's room.
 
 Aidan's key is a thing.  The printed name of Aidan's key is "Aidan's room key".
 
 First check opening Aidan's door when the player does not have Aidan's key:
-	say "[if Night Terrors is happening]You jiggle the handle, but Aidan's door is locked![otherwise]Aidan isn't in right now, and you shouldn't be poking around in his room while he's gone.  Even if he is your brother.  Especially if he's your brother.  And anyway, the door is locked." instead.
+	say "[if Night Terrors is happening]You jiggle the handle, but Aidan's door is locked![otherwise if Crystal Quest is happening]Through the door, you can hear Aidan typing on a keyboard.  Perhaps you should knock.[otherwise]Aidan isn't in right now, and you shouldn't be poking around in his room while he's gone.  Even if he is your brother.  Especially if he's your brother.  And anyway, the door is locked." instead.
 
 First check opening Aidan's door when the player has Aidan's key: now Aidan's door is unlocked. [no instead]
 
@@ -1689,9 +1723,11 @@ Instead of doing something to the neatly regulated necessities when the necessit
 
 Aidan's desk is scenery, a supporter, in Aidan's room. "[placeholder]Aidan's desk[end placeholder]"
 
-Aidan's laptop is scenery, on Aidan's desk. "[placeholder]Aidan's laptop[end placeholder]"
+Aidan's laptop is scenery, on Aidan's desk. The description is "[if in chapter 1]'I've got to show you this Zork game that we're doing for the classic Interactive Fiction class some time.  I started it up on the laptop last night, and it's pretty cool.'[otherwise if in Chapters 2 thru 3]'Check it out, this is what adventure games on the computer looked like way back before they figured out how to get pictures in.  This one here is Zork; you're this nameless adventurer dude on a treasure hunt in this great network of caves, and there's this thief who keeps popping up and stealing your stuff ... I bet you've got to defeat him somehow, but I haven't gotten that far yet.'[otherwise if in chapter 6] Such is of a different simulation from this."  Understand "zork/laptop/game/computer" or "computer game" as Aidan's laptop.
 
-Aidan's photograph is scenery on Aidan's desk. "[PLACEHOLDER]A photograph of Aidan and yourself (during a warm, fuzzy moment)[end placeholder]."  Understand "framed"  or "photo/photos", "picture/portrait", or "photographs" as Aidan's photograph.
+Aidan's photograph is scenery on Aidan's desk. "[PLACEHOLDER]A photograph of Aidan and yourself during a warm, fuzzy moment[end placeholder]."  Understand "framed" or "photo/photos", "picture/portrait", or "photographs" as Aidan's photograph.
+
+Check playing Aidan's laptop: say "Looks like there's half a story on the screen, with a blinking cursor awaiting someone to advance the plot." instead.
 
 
 Part 12 - first floor rooms, east
@@ -1887,7 +1923,7 @@ Part 20 - pits lobby east
 
 Chapter 1 - Description
 
-The pits lobby east is a room, east of pits lobby central. "This part of the Pits used to be the kitchen, once upon a time.  Imagine, having the kitchen in the basement, downstairs from the dining room!  All the kitchen equipment's been removed now, though, and the place is used as a sort of recreation room.  There are several ping pong tables here, and a tournament going in full swing.  The central lobby is back to the west.[if in chapters 1 through 2][paragraph break][Ava mentioned][Stacy mentioned]Ava and Stacy have both taken this option and are waiting for their turn at the ping pong tables.[otherwise if in chapter 10][paragraph break][Ava mentioned][Stacy mentioned]Ava and Stacy have both taken this option and are waiting for their turn at the ping pong tables."
+The pits lobby east is a room, east of pits lobby central. "This part of the Pits used to be the kitchen, once upon a time.  Imagine, having the kitchen in the basement, downstairs from the dining room!  All the kitchen equipment's been removed now, though, and the place is used as a sort of recreation room.  There are several ping pong tables here, and a tournament going in full swing.  The central lobby is back to the west.[if in chapter 1][paragraph break][Ava mentioned][Stacy mentioned]Ava and Stacy have both taken this option and are waiting for their turn at the ping pong tables.[otherwise if in chapter 10][paragraph break][Ava mentioned][Stacy mentioned]Ava and Stacy have both taken this option and are waiting for their turn at the ping pong tables."
 
 
 Chapter 2 - Scenery
@@ -1957,6 +1993,8 @@ Ava's books	"[placeholder]Ava's books as dialogue[end placeholder][try examining
 Ava's CDs		"[placeholder]Ava's CDs as dialogue[end placeholder][try examining Ava's CDs]"
 Ava's CD player	"[placeholder]Ava's CD player as dialogue[end placeholder][try examining Ava's CD player]"
 odd sensations investigate	"[placeholder]asking about the goal '[odd sensations]'[end placeholder]"
+Antonia		"'I just know what Stacy tells me.  I wasn't in any of her classes last year, and I'm not registered for any of them this year either.'" 
+
 
 Report asking Ava about "thief/thieves": say "[if in chapter 2 and Hank is identified]'I really don't understand why anyone would want to be so mean!'[otherwise if in chapter 10 and C10.1 is unfired][Ava quips C10.1][otherwise if in chapter 10]'I don't know, Daniel.  It all seems very mysterious to me.'[otherwise]Ava doesn't have much of interest to say about that." instead.
 
@@ -1967,7 +2005,6 @@ Report asking Ava about "star": say "'Does Humphrey Bogart count?  We've got a H
 
 Report asking Ava about "[damon]": say "[if in Chapter 7]'I don't think that's going to help, Daniel!'[otherwise if in Chapter 10]'It was really tragic, him dying so suddenly.  He was better at spending time with us campers, you know, but then I guess Dr Rose also has her hospital work, and he didn't.'[otherwise]'Oh, that was really tragic!  He seemed so full of life, you know?  And so nice.  I mean, I never got to talk to him personally or anything, but you remember the welcome speech on the first day last year, and the farewell speech.... Of course, his sister's in charge now, and she also seems quite nice, even if she didn't make any welcome speeches.  Maybe she's shy.'" instead.
 
-Report asking Ava about "[antonia]": say "'I just know what Stacy tells me.  I wasn't in any of her classes last year, and I'm not registered for any of them this year either.'" instead.
 
 Report asking Ava about "[mouskouri]": say "[if in Chapter 7]'Really, Daniel, this is not the time!'[Otherwise]'She's my favorite singer!  She's got a fantastic voice!'  Ava begins to sing something about how only love can make a memory, before you stop her." instead.
 
@@ -1994,7 +2031,7 @@ Section 1 - Description
 Stacy Alexander is a woman in the pits lobby east. "[if Stacy follows the player and Ava follows the player]Ava and Stacy trail along behind you. [Ava mentioned] [run paragraph on][otherwise if Stacy follows the player]Stacy trails along behind you. [run paragraph on][otherwise if in chapter 5]Stacy is sitting beside you, completely absorbed in her project.[otherwise if in chapter 6]Much, the Miller's Son, as played by thy friend Stacy, loiters.[otherwise if Ava is in the location][Ava mentioned]Ava and Stacy are here.[otherwise]Stacy is here."  
 The description of Stacy is "You met Stacy last year, here at LEAP.  She's a skinny blonde girl with freckles and rather prominent front teeth.  She likes playing with gadgets, and is so full of nervous energy she could probably swallow an elephant and not gain an ounce of weight.  [if Stacy wears the straw hat]She's also wearing a neat little straw hat with a pink ribbon trailing behind.  [otherwise if Stacy wears the deerstalker cap]She's also wearing a deerstalker cap with a completely inappropriate daisy stuck into one flap.  [otherwise if Stacy wears the purple hat]She's also wearing a rather dashing purple hat with a wide, floppy brim. [end if]  [line break]".  The printed name of Stacy Alexander is "[if the constructing the status line activity is going on and Hospital Chat is happening]Ava and [end if]Stacy".
 
-The little straw hat is a girly Stacy-esque hat. "This little straw hat belongs to Stacy, and is decorated with a few paper flowers and a wide pink ribbon.  It's rather more feminine than you would expect from someone who spends half her time playing with screwdrivers." Stacy wears the little straw hat. A pink ribbon is part of the little straw hat. The description of the pink ribbon is "[PLACEHOLDER]ribbon[end placeholder]." The little straw hat fulfills the hat-goal.  The printed name of the little straw hat is "Stacy's little straw hat[if taking inventory and we have worn the little straw hat] ([italic type]not[roman type] worn!)"
+The little straw hat is a girly Stacy-esque hat. "This little straw hat belongs to Stacy, and is decorated with a few paper flowers and a wide pink ribbon.  It's rather more feminine than you would expect from someone who spends half her time playing with screwdrivers." Stacy wears the little straw hat. A pink ribbon is part of the little straw hat. The description of the pink ribbon is "[PLACEHOLDER]ribbon[end placeholder]." The little straw hat fulfills the hat-goal.  The printed name of the little straw hat is "little straw hat[if taking inventory and we have worn the little straw hat] ([italic type]not[roman type] worn!)"
 
 The purple hat is a girly Stacy-esque hat. "It's one of those flashy, wide-brimmed hats designed to sit at an angle on one's head."  Understand "dashing/flashy" as the purple hat.
 
@@ -2015,7 +2052,7 @@ Instead of pushing, pulling, or attacking Stacy, say "Only if you want a screwdr
 
 Check kissing Stacy: say "Aidan makes enough fun of you and your 'girlfriends' as it is.  Do you really want to give him any more ammo than he already thinks he has?" instead.
 
-Check focusing on Stacy: say "[if in chapter 1]'What?  Is there something on my nose?'[otherwise if in Chapter 2]You seem to hear crickets chirping.[otherwise if in Chapter 4]There's definitely some sort of chirping, ringing sound surrounding Stacy, along with a vaguely smoky smell.  She's ... curious?  Suspicious?  Anxious?  Something like that.[otherwise if in Chapter 5]Stacy is focussed on SARG with the sort of concentration most people reserve for defusing bomb threats.  There's a sort of interest and excitement about her that tells you that everything must be going according to plan.[otherwise if in Chapter 6]Stacy seems hurt and confused, especially with regard to Aidan.  She must still be thinking about what happened at the robotics class.[otherwise if in Chapter 10]You sense nothing.  And thank goodness for that." instead.
+Check focusing on Stacy: say "[if in chapter 1]'What?  Is there something on my nose?'[otherwise if in Chapter 2]You think you hear crickets chirping.[otherwise if in Chapter 4]There's definitely some sort of chirping, ringing sound surrounding Stacy, along with a vaguely smoky smell.  She's ... curious?  Suspicious?  Anxious?  Something like that.[otherwise if in Chapter 5]Stacy is focussed on SARG with the sort of concentration most people reserve for defusing bomb threats.  There's a sort of interest and excitement about her that tells you that everything must be going according to plan.[otherwise if in Chapter 6]Stacy seems hurt and confused, especially with regard to Aidan.  She must still be thinking about what happened at the robotics class.[otherwise if in Chapter 10]You sense nothing.  And thank goodness for that." instead.
 
 
 Section 3 - conversation with Stacy
@@ -2047,11 +2084,10 @@ LEAP		"[if in chapters 1 through 2]'I'm having a great time already.  I was kind
 Stacy's tools		"'My dad's co-worker, Dr Hu, gave me this nifty new screwdriver for Christmas.  It's made out of a special space-age metal alloy, and the handle is specially molded to fit in my hand.  And it lights up if it touches something with an electrical current in it.  It's totally the awesomest screwdriver ever.'"
 Stacy's screwdriver		"'My dad's co-worker, Dr Hu, gave me this nifty new screwdriver for Christmas.  It's made out of a special space-age metal alloy, and the handle is specially molded to fit in my hand.  And it lights up if it touches something with an electrical current in it.  It's totally the awesomest screwdriver ever.'"
 odd sensations investigate	"[placeholder]asking about the goal '[odd sensations]'[end placeholder]"
+Antonia		"[if in chapter 5]'I wouldn't try asking her about anything, if I were you.  At least, not now, while she's being mobbed by idiots who shouldn't be taking this class in the first place.  Wait until after class if you really need her help.'[otherwise if in chapter 6]'I know she programmed most of Sherwood Forest.  I can't wait to go take a closer look at everything.'[otherwise if in chapters 1 through 4]'She's really smart.  I wouldn't be taking her robotics class again this year if she weren't.  But she's always getting bogged down by stupid people who need things explain seven or eight times.'[otherwise if in chapter 10]'I really liked her class.  Well, except for the part where Aidan broke SARG, but that wasn't her fault.  I hope she'll be back again next year.'"
 
 
 Report asking Stacy about "[damon]": say "'I read all about Mr Rose's death in the newspaper.  I thought LEAP would shut down this year because of it, but I'm glad his sister decided to step in and keep the camp running.  I mean, it's awful that he's dead and all, and I'm sorry that he's gone, but really I didn't know him all that well.'" instead.
-
-Report asking Stacy about "[antonia]": say "[if in chapter 5]'I wouldn't try asking her about anything, if I were you.  At least, not now, while she's being mobbed by idiots who shouldn't be taking this class in the first place.  Wait until after class if you really need her help.'[otherwise if in chapter 6]'I know she programmed most of Sherwood Forest.  I can't wait to go take a closer look at everything.'[otherwise if in chapters 1 through 4]'She's really smart.  I wouldn't be taking her robotics class again this year if she weren't.  But she's always getting bogged down by stupid people who need things explain seven or eight times.'[otherwise if in chapter 10]'I really liked her class.  Well, except for the part where Aidan broke SARG, but that wasn't her fault.  I hope she'll be back again next year.'" instead.
 
 Report asking Stacy about "[hu]": say "Yeah, he's one of my dad's co-workers.  He's pretty brilliant, and has all the neatest gadgets." instead.
 
@@ -2176,13 +2212,15 @@ Chapter 3 - RPG Option
 
 The RPG option is an option, scenery, in the second floor lobby. "[if in chapter 1]You've not had much exposure to roleplaying games in the past, but this looks quite interesting.  You'd have signed up for this option this evening if it hadn't filled up within seconds of being offered.  You'll get another chance some time later, though, never fear.  At any rate, this time round they're playing something called Seventh Sea, which seems to be all about swashbuckly goodness, arrr[otherwise]They must have really enjoyed themselves yesterday[end if]." 
 
-Understand "role", "playing", "roleplaying", "role-playing", "game", "games", "gamer", "gamers", "seventh", "sea", "tables", "campers" as the RPG option.
+Understand "role", "playing", "roleplaying", "role-playing", "game", "games", "gamer", "gamers", "seventh", "sea", "tables" as the RPG option.
 
 Check focusing on the RPG option: say "[if in Chapter 1]You are distracted by a mild itch in one ear.[otherwise]You stare at the gamers.  You could almost swear there's a dark, bluish-green aura about them, and their speech seems to buzz like a swarm of bees." instead.
 
 Check listening to the second floor lobby when in chapter 1: try listening to the RPG option instead.
 
 Check listening to the RPG option: say "[one of]'No way!  I should totally have made that roll!'[or]'Where's my drama die, then?'[or]'...one and one and two and two and one....'[or]'Excuse me, milady, but I must punch you in the face now.'[or]'It could be worse.  Okay, maybe that IS worse.'[or]'But I am not left-handed either!'[or]'What?  A gazebo?  How ... how big is it?'[or]'We confront the villainous villainess with the evidence!'[or]'He what?  That no-good scoundrel!'[or]'I hit it with my sword.'[at random] [line break]" instead.
+
+Check playing the RPG option: placeholder "something" instead.
 
 
 Part 23 - second floor rooms west
@@ -2241,7 +2279,7 @@ Stacy's door is a dorm door, scenery, closed, locked.  Stacy's door is north of 
 Check opening Stacy's door during Scavenger Hunting:
 	say "Ava and Stacy aren't in right now, and it wouldn't be right to go poking around in other people's rooms while they're gone.  And anyway, the door is locked." instead.
 
-The poster for Casablanca is scenery, in Stacy's room. "Here's lookin' at you, kid." 
+The poster for Casablanca is scenery, in Stacy's room. "Here's lookin['] at you, kid." 
 The printed name of the poster for Casablanca is "poster for 'Casablanca'". 
 
 Stacy's tools are scenery, plural-named, in Stacy's room. The description is "Rule one: never touch Stacy's tools.  Rule two: see rule one."  Understand "screwdriver" as Stacy's tools when in Stacy's room. Stacy's screwdriver is scenery in Stacy's room. 
@@ -2339,7 +2377,7 @@ Chapter 4 - Aidan
 Section 1 - description of Aidan
 
 Aidan is a man.  "[if in chapter 1]Your brother Aidan is here, having signed up for the Rap Session option.[otherwise if in chapter 2 and the player is in Aidan's room]Aidan is sitting at his desk, clearly in the middle of a computer game of some sort.[otherwise if in chapter 2]Your brother Aidan is here.[otherwise if in chapter 6]Robin Hood, thy brother-in-arms, standeth before thee.[otherwise if in chapter 7]Aidan's here, and he looks seriously psychotic![otherwise if in chapter 8]Aidan is here, swaying a little and looking like an enraged bull with a killer headache.[otherwise if  in chapter 9 and the player is in the deepest place]Aidan's here, and he looks normal.  Except he knows kung fu, which isn't quite normal.[otherwise if in chapter 10]Aidan's sitting with a small handful of his closest friends, off at the other side of the hall.  They seem rather subdued; most of the other campers seem to be keeping their distance." [otherwise, do nothing -- is scenery ]  
-The description of Aidan is "[if Here Comes The Flood is happening]He's sitting with a crowd of older campers, at the other side of the hall.  You're not so insecure that you absolutely have to sit beside him at every meal.  Not now that you're a mature second-year camper, anyway.[otherwise if in chapters 1 through 5]Aidan is your big brother.  He looks quite a lot like you, only taller and broader.  He's pretty cool; he just turned 15 a couple of months ago, but hasn't gotten too cool to be seen with you yet.  On the other hand, if your secret plot to grow up just like him works out, he'll never get too cool for you[otherwise if in chapter 6]Robin Hood is thy brother in arms -- and indeed, thy brother Aidan.  There is not a nobler fellow in all of merry old England.[otherwise if in chapter 7][PLACEHOLDER]TODO: examining is much like the Focusing action[end placeholder].[otherwise if in chapter 9 and battle with the thief is happening]Aidan is your big brother.  He looks quite a lot like you, only taller and broader.  He also seems to know kung fu, though that isn't really giving him much of an edge over the Thief.[otherwise if in chapter 10]Aidan is your big brother.  He looks quite a lot like you, only taller and broader.  He's pretty cool when he isn't a raving murderous monster, which Dr Rose says is never going to happen again.  For now, he just looks grateful that anyone at all is willing to still be friends with him after everything that's happened in the past week[end if]."  
+The description of Aidan is "[if Here Comes The Flood is happening]He's sitting with a crowd of older campers, at the other side of the hall.  You're not so insecure that you absolutely have to sit beside him at every meal.  Not now that you're a mature second-year camper, anyway[otherwise if in chapters 1 through 5]Aidan is your big brother.  He looks quite a lot like you, only taller and broader.  He's pretty cool; he just turned 15 a couple of months ago, but hasn't gotten too cool to be seen with you yet.  On the other hand, if your secret plot to grow up just like him works out, he'll never get too cool for you[otherwise if in chapter 6]Robin Hood is thy brother in arms -- and indeed, thy brother Aidan.  There is not a nobler fellow in all of merry old England[otherwise if in chapter 7][PLACEHOLDER]TODO: examining is much like the Focusing action[end placeholder][otherwise if in chapter 9 and in the deepest place]Aidan is your big brother.  He looks quite a lot like you, only taller and broader.  He also seems to know kung fu, though that isn't really giving him much of an edge over the Thief[otherwise if in chapter 10]Aidan is your big brother.  He looks quite a lot like you, only taller and broader.  He's pretty cool when he isn't a raving murderous monster, which Dr Rose says is never going to happen again.  For now, he just looks grateful that anyone at all is willing to still be friends with him after everything that's happened in the past week[end if]."  
 
 Check examining Aidan when in chapter 8: say "Aidan looks a bit drugged out, but no less dangerous.  [if Aidan has been able to see Brad]His hands are clenched into fists, and he seems intent on pounding you into applesauce[otherwise]His right hand is clenched in a fist around his room keys, which he seems intent on sending to the back of your skull[end if]." instead.
 
@@ -2365,7 +2403,7 @@ The object-based conversation table of Aidan is the table of Aidan's replies.
 
 Table of Aidan's replies
 conversation 	reply	
-an object [default]	"He does not reply."	
+an object [default]	"[if in chapters 2 through 3]He seems absorbed in his game.[otherwise]He does not reply."
 Claudia Rose	"[if in Chapters 1 through 2]'She seems like a nice lady.  Kind of like everybody's favorite auntie, eh?'"
 Brad Kramer	"[if in Chapters 1 through 2]'I never had him as a counselor, but he joins some of us for a game of basketball now and then.  He's pretty cool, actually.'"
 Ava			"[Aidan on Ava & Stacy]"
@@ -2380,8 +2418,12 @@ A woman can be asked about.  A woman is usually not asked about.
 
 To say Aidan on Ava & Stacy: 
 	now the second noun is asked about;
-	if in chapter 1, say "'Oh yeah, she's your girlfriend, isn't she?'[paragraph break]'She is not!'[paragraph break]'Sure she isn't.' Aidan grins in a way that makes you want to smack him. [if Ava is asked about and Stacy is asked about] 'You're going to have to choose between one of those two girls one of these days, you know.'[end if][paragraph break]'She is NOT my girlfriend!'";
-	otherwise say "[if in chapter 2]It wouldn't be polite to talk about her while she's standing right there.  Anyway, Aidan's probably going to give you the ribbing of your life later about how all the girls just fawn over you, bleagh.[otherwise if in chapter 6]And who, pray tell, is this maiden of whom thou asketh?  She appeareth not in the script."
+	if in chapter 1:
+		say "'Oh yeah, she's your girlfriend, isn't she?'[paragraph break]'She is not!'[paragraph break]'Sure she isn't.' Aidan grins in a way that makes you want to smack him. [if Ava is asked about and Stacy is asked about] 'You're going to have to choose between one of those two girls one of these days, you know.'[end if][paragraph break]'She is NOT my girlfriend!'";
+	otherwise if in chapter 6: 
+		say "And who, pray tell, is this maiden of whom thou asketh?  She appeareth not in the script.";
+	otherwise if in chapter 2: 
+		say "It wouldn't be polite to talk about her[if the second noun is in the location] while she's standing right there[end if].  Anyway, Aidan's probably going to give you the ribbing of your life later about how all the girls just fawn over you, bleagh."
 
 
 To say about Joe and Hank and bullying: say "[if in Chapter 1]'Look, if anyone starts picking on you, you be sure to tell me, okay?'[otherwise if in Chapter 2 and Crystal Quest has not happened]'Sorry, Daniel.  I mean, I could just tell them to stop picking on people, but that's never worked before.  Unless there's something else you need from them, we're out of luck.'[otherwise if in chapter 2 and Crystal Quest is happening][Aidan quips CT_AIDAN_HELP][otherwise if in Chapter 6]Such craven villains existeth not in the time of Robin Hood; or if they did, thou shalt surely vanquish them ere the tale is told."
@@ -2397,8 +2439,6 @@ Report asking Aidan about "music" when in chapters 1 through 2: say "I should pr
 Report asking Aidan about "mom/dad/parents/family/home": say "[if in Chapter 1 through 2]'I wonder how Mom is enjoying things in Djibouti.  I know Dad's going to be there for however long the Navy wants him there, but Mom should be back before camp's out.'[otherwise if in Chapter 6]The house of Locksley is both old and noble, and Robin of Locksley its noble scion." instead.
 Report asking Aidan about "djibouti" when in chapters 1 through 2: say "'Your guess is as good as mine.  We'll have to wait to see Mom's pictures.'" instead.
 Report asking Aidan about "navy" when in chapters 1 through 2: say "Aidan smiles.  You already know he wants to join up as soon as he can; he'd do it right out of high school if Mom and Dad didn't insist he spend some time in college first." instead.
-Report asking Aidan about "zork/laptop/game": say "[if in chapter 1]'I've got to show you this Zork game that we're doing for the classic Interactive Fiction class some time.  I started it up on the laptop last night, and it's pretty cool.'[otherwise if in Chapter 2]'Check it out, this is what adventure games on the computer looked like way back before they figured out how to get pictures in.  This one here is Zork; you're this nameless adventurer dude on a treasure hunt in this great network of caves, and there's this thief who keeps popping up and stealing your stuff ... I bet you've got to defeat him somehow, but I haven't gotten that far yet.'[otherwise if in chapter 6] Such is of a different simulation from this." instead.
-
 
 Aidan-on-camp is a quip. The display text is "Yeah, I always have a great time here.  How about you?" 
 
@@ -2423,7 +2463,7 @@ The response of Aidan-camp2 is {aidan-camp-2a, aidan-camp-2b}.
 	The response of aidan-camp-2b is { aidan-camp-2b1, aidan-camp-2b2, aidan-camp-2b3 }.
 
 
-CT_AIDAN_HELP is a quip. The display text is "'Hank and Joe up to their old tricks again, huh?  I'll deal with them.'  Aidan gets up from his desk (he doesn't even hit 'pause'!  What kind of game doesn't need to be paused when you leave it?) and sets off down the hallway."
+CT_AIDAN_HELP is a quip. The display text is "[one of]'Hank and Joe up to their old tricks again, huh?  I'll deal with them.'  Aidan gets up from his desk (he doesn't even hit 'pause'!  What kind of game doesn't need to be paused when you leave it?) and sets off down the hallway.[or](Snitches and rats, snitches and rats.)[stopping]"
 
 
 [Upon entering the room with the Rap Session option that Aidan is a part of. ]
@@ -2519,12 +2559,13 @@ Some window-like frames are scenery, in the third floor rooms east. "You have to
 
 Understand "space", "shuttle", "stars", "planets", "viewport", "paint", "painted", "graffiti" as the window-like frames.
 
-The constellation of Orion is scenery, in the third floor rooms east. "The mighty hunter... he's the only constellation you can recognize in the night sky."
-
-Understand "mighty", "hunter", "star", "Orion's belt", "belt", "Betelgeuse", "Rigel" as the constellation of Orion.
+The constellation of Orion is scenery, in the third floor rooms east. "The mighty hunter... he's the only constellation you can recognize in the night sky."  Understand "mighty", "hunter", "star", "Orion's belt", "belt", "Betelgeuse", "Rigel" as the constellation of Orion.
 
 Check searching the constellation of Orion [> LOOK THROUGH ORION]:
 	try searching the eastern windows of Jacobs Hall instead.
+
+Understand "viewport/viewports" or "window" as the eastern windows of Jacobs Hall when in the third floor rooms east.
+
 
 Part 29 - Rooftop
 
@@ -2551,13 +2592,11 @@ The rooftop parapet is scenery, in the rooftop. "It's all that's keeping you fro
 
 Section 2 - Table and supplies
 
-The eggdrop option table is a privately-named supporter, scenery, in the rooftop. "The table is covered with artsy-craftsy materials: cardboard boxes, egg cartons, feathers, bits of cloth, sticks, rubber bands, glue, and so on.  There are also several cartons of eggs."  Understand "table/materials" as the eggdrop option table.
+The eggdrop option table is a privately-named supporter, scenery, in the rooftop. "The table is covered with artsy-craftsy materials: cardboard boxes, egg cartons, feathers, bits of cloth, [skewers mentioned]sticks, rubber bands, glue, and so on.  There are also several cartons of eggs."  Understand "table/materials" as the eggdrop option table.
 
-Some egg cartons are a privately-named container, open, openable, scenery, on the eggdrop option table. "Some are still full of eggs.  Others have been cut up to form other egg containment units."
+Some egg cartons are a privately-named container, open, openable, transparent, scenery, on the eggdrop option table. "Some are still full of eggs.  Others have been cut up to form other egg containment units."  Understand "box", "boxes", "cartons", "carton", "egg carton", "egg cartons", "of eggs" as the egg cartons. The indefinite article of the egg cartons is "several". Check taking egg cartons: say "You can't see the cartons as being useful." instead.
 
-Understand "box", "boxes", "cartons", "carton", "egg carton", "egg cartons", "of eggs" as the egg cartons. The indefinite article of the cartons of eggs is "several".
-
-Some white eggs are scenery, in the cartons of eggs. "There's something vaguely wrong about how they're all the exact same shade of white."
+Some white eggs are edible things in the egg cartons. "There's something vaguely wrong about how they're all the exact same shade of white." Understand "egg" as some white eggs. Check taking some white eggs: say "After they've been out in this heat? Eww." instead. 
 
 A large bottle of white Elmer's glue is scenery, on the eggdrop option table. "There is a large bottle of white glue here, available for, and constantly in, use."  Check taking the glue: say "You can use some glue while you're here, but there's no need in taking a whole bottle." instead.
 
@@ -2688,7 +2727,7 @@ Check opening an air vent when the player does not have the screwdriver: say "Yo
 [Carry out opening an air vent: now the noun is open. [now the grill is not part of the air vent;][ remove the obstacle from play.]]
 Report opening an air vent: say "You remove the screws as quickly as you can, the head of the screwdriver slipping from the screws rather more often than is usual.  Eventually, the grill falls off and is immediately lost among the boxes of costume accessories." instead.
 
-First check examining an open air vent: ignore the examine containers rule. [prevents annoying "The air vent is empty" message]
+[First check examining an open air vent: ignore the examine containers rule. [prevents annoying "The air vent is empty" message]]
 
 Check shouting at an air vent: say "Your own hollow voice echoes back at you." instead.
 Check shouting at an air vent for three turns: say "A hollow voice says, 'Fool!'" instead.
@@ -2822,11 +2861,11 @@ Part 1 - Battlefield for chapter 7 only
 
 The battlefield is a room. "Everything is black and white, and grainy as an old photograph.  The ground is barren and scored with trenches; the sky is filled with stormclouds.  A fierce wind threatens to knock you off your feet, as bombshells rain about you."
 
-The trenches are scenery in the battlefield. "Trenches crisscross the ground; where they aren't filled with mud, they're filled with sharp rocks and nasty bits of twisted shrapnel."  Before doing something to the backdrop-floor when in the battlefield, change the noun to the trenches.
+The trenches are scenery in the battlefield. "Trenches crisscross the ground; where they aren't filled with mud, they're filled with sharp rocks and nasty bits of twisted shrapnel."  Before doing something to the backdrop-floor when in the battlefield, now the noun is the trenches.
 
 The bombshells are scenery in the battlefield. "You're not quite crazy enough to get close enough to one of the shells to examine it.  They fall, they explode, they send bits and pieces of themselves flying through the air, and it's a miracle you haven't been sliced to ribbons by the flying shrapnel already." Understand "shrapnel/shells" as the bombshells.
 
-The stormclouds are scenery in the battlefield. "The stormclouds race across the sky, driven by the mad winds."  Before doing something to the backdrop-sky when in the battlefield, change the noun to the stormclouds.
+The stormclouds are scenery in the battlefield. "The stormclouds race across the sky, driven by the mad winds."  Before doing something to the backdrop-sky when in the battlefield, now the noun is the stormclouds.
 
 The wind is scenery in the battlefield. "It's insane.  But listening very carefully, you think you hear ... a voice?  No, you've lost it again...."
 
@@ -2848,7 +2887,7 @@ The memorabilia is scenery in the living room. "You don't remember half of this 
 
 The oriental rug is scenery in the living room. "It's slightly dusty, but clearly a high-quality Persian, worth at least 20% of what the carpet seller was originally asking.[if we have not folded the rug]  It lies flat on the floor, its geometric pattern somehow creating an illusion of depth.[otherwise]  It's been rolled up and pushed to one side, revealing a trap door in the floor." The printed name of the oriental rug is "[if we have folded the oriental rug]rolled-up [end if]oriental rug".
 
-The trap door is a scenery door. The trap door is down from the living room and up from the crossroads. The description is "The trap door is an over-engineered affair of heavy oak and ironwork, not the sort of thing one expects to find in a modern suburban house."  Before doing something with the trap door when we have not folded the oriental rug, say "You can't see any such thing." instead. First check going down from the living room when we have not folded the oriental rug: try listing exits instead.
+The trap door is a scenery door. The trap door is down from the living room and up from the crossroads. The description is "The trap door is an over-engineered affair of heavy oak and ironwork, not the sort of thing one expects to find in a modern suburban house."  Before doing something except going with the trap door when we have not folded the oriental rug, say "You can't see any such thing." instead. First check going down from the living room when we have not folded the oriental rug: try listing exits instead.
 
 Rule for implicitly taking the oriental rug: now the player carries the oriental rug. 
 Check pulling the oriental rug: try folding the oriental rug instead.
@@ -2988,26 +3027,33 @@ The fork, the crossroads, the land of the dead, the maintenance room are in the 
 Section 1 - push my buttons, move my world
 
 First check pushing a device (this is the allow pushing device buttons rule): [formerly a procedural rule]
-	ignore the can't push what's fixed in place rule; 
-	ignore the can't push scenery rule. 
+	if the noun is switched off, try switching on the noun instead; 
+	otherwise try switching off the noun instead. 	
+[	ignore the can't push what's fixed in place rule; 
+	ignore the can't push scenery rule. ]
 
-Carry out pushing a device (this is the pushbutton device rule): if the noun is switched off, try silently switching on the noun; otherwise try silently switching off the noun. Report pushing a device: rule succeeds.
+[Carry out pushing a device (this is the pushbutton device rule): if the noun is switched off, try silently switching on the noun; otherwise try silently switching off the noun. Report pushing a device: rule succeeds.]
 
 The blue button is a device, part of the terminal [in the maintenance room]. The description is "The blue button is labeled with the greek letter alpha.  It is currently [if the blue button is switched off]not [end if]pressed." Understand "alpha" as the blue button. 
 
-Report pushing the blue button: 
+Report switching on the blue button (this is the blue pushbutton rule): 
 	say "[if the red button is switched on]The red button pops up as you push on the blue button, which sinks into the panel and locks into place with a soft click[otherwise if blue button is switched on]The blue button sinks into the panel and locks into place with a soft click[otherwise if blue button is switched off]The blue button unlocks and pops out again[end if].  Off in the distance, you hear the grinding of heavy machinery."; 
 	if the red button is switched on, now the red button is switched off;
 	rearrange the map;
 	rule succeeds.
 
+The blue pushbutton rule is [also] listed in the report switching off rules.
+
+
 The red button is a device, part of the terminal [in the maintenance room]. The description is "The red button is labeled with the greek letter omega.  It is currently [if the red button is switched off]not [end if]pressed." Understand "omega" as the red button.
 
-Report pushing the red button:
+Report switching on the red button (this is the red pushbutton rule):
 	say "[if the blue button is switched on]The blue button pops up as you push on the red button, which sinks into the panel and locks into place with a soft click[otherwise if the red button is switched on]The red button sinks into the panel and locks into place with a soft click[otherwise if the red button is switched off]The red button unlocks and pops out again[end if].  Off in the distance, you hear the grinding of heavy machinery.";
 	if the blue button is switched on, now the blue button is switched off;
 	rearrange the map;
 	rule succeeds.
+
+The red pushbutton rule is [also] listed in the report switching off rules.
 
 To rearrange the map:
 	if the blue button is switched on:
@@ -3271,15 +3317,16 @@ When Lucian's Secret begins:
 	ifndef debug; 
 	pause the game; 
 	enddef debug;
-	change the right hand status line to "Dorm time";
-	change the current term day to day 3;
-	change the time of day to 8:32 PM;
-	change the current goals to { GOAL_AVA_STACY };
+	now the right hand status line is "Dorm time";
+	now the current term day is day 3;
+	now the time of day is 8:32 PM;
+	now the current goals are { GOAL_AVA_STACY };
 	now the chapter number is 2;
 	say "[paragraph break]LEAP, Day 3 (Tuesday) - Dorm Time[paragraph break]Your roommate, Jeremy, went off with some friends after dinner, which leaves you alone for now.  It's dorm time, which means you have maybe a couple of hours or so before lights-out, all to yourself.  Some people spend the time reading, or listening to music, or visiting friends.  Which reminds you, maybe talking to Stacy and Ava about this would be the best thing to do.  Maybe they'll tell you it's all part of being eleven years old, or something.[paragraph break]Yeah.  You can hope.";
 	consider the new goal notification rule;
 	now the player is in your room;
 	now all options are off-stage;
+	now the RPG option is in the second floor lobby;
 	[repeat with opt running through options:
 		remove opt from play;]
 	now Michelle Close is off-stage;
@@ -3332,7 +3379,7 @@ Q_STACY_AVA_4 is a quip. The display text is "'I don't know,' says Ava, 'it soun
 
 	The response of Q_STACY_AVA_4 is { Q_STACY_AVA_4A, Q_STACY_AVA_4B }.
 
-Q_STACY_AVA_5 is a quip. The display text is "'Mostly to Ava, says Stacy, 'because Ava notices these things.  I would have totally missed it if she hadn't pointed it out as we were coming back from dinner earlier.'  You remember feeling a little nauseous as you walked by the info desk.  You thought it might have been something you ate.  'Personally,' Stacy continues, 'I'm kind of wondering if maybe it could be real.  The sounds and stuff you told us about, I mean.'[paragraph break]Ava frowns.  'Stacy, how can it possibly be real?  Nobody else noticed anything.'[paragraph break]'Nobody else noticed Daniel getting all glassy-eyed and green either.  Look, Daniel, there's a very easy way to find out.  If there's something at the info desk that's making you sick, then going there again will bring back the same feeling, right?  So we could just go there and see how consistent these feelings are.'"
+Q_STACY_AVA_5 is a quip. The display text is "'Mostly to Ava,' says Stacy, 'because Ava notices these things.  I would have totally missed it if she hadn't pointed it out as we were coming back from dinner earlier.'  You remember feeling a little nauseous as you walked by the info desk.  You thought it might have been something you ate.  'Personally,' Stacy continues, 'I'm kind of wondering if maybe it could be real.  The sounds and stuff you told us about, I mean.'[paragraph break]Ava frowns.  'Stacy, how can it possibly be real?  Nobody else noticed anything.'[paragraph break]'Nobody else noticed Daniel getting all glassy-eyed and green either.  Look, Daniel, there's a very easy way to find out.  If there's something at the info desk that's making you sick, then going there again will bring back the same feeling, right?  So we could just go there and see how consistent these feelings are.'"
 
 	Q_STACY_AVA_5A is a transitional quip. The following quip is Q_STACY_AVA_6. The menu text is "'They're pretty consistent, now I think about it.  Always at the same place... sort of.  I mean, unless something's changed about the place since.'".
 	Q_STACY_AVA_5B is a transitional quip. The following quip is Q_STACY_AVA_7. The menu text is "'Consistent? They're just random.  I never know when I'm going to suddenly get this feeling, whatever it is.'". 
@@ -3555,7 +3602,15 @@ Section 5 - Bullies
 Q_LUCIAN_BULLIES is an unavailable transitional quip.  The following quip of Q_LUCIAN_BULLIES is Q_LUCIAN_10.
 
 Rule for firing fired Q_LUCIAN_BULLIES:
-	change the following quip of Q_LUCIAN_BULLIES to nothing;
+	now the following quip of Q_LUCIAN_BULLIES is nothing;
+	say "'I don't want to talk about that any more.'"
+
+Rule for firing fired Q_LUCIAN_10:
+	now the following quip of Q_LUCIAN_10 is nothing;
+	say "'I don't want to talk about that any more.'"
+
+Rule for firing fired Q_LUCIAN_11:
+	now the following quip of Q_LUCIAN_11 is nothing;
 	say "'I don't want to talk about that any more.'"
 
 Section 6 - Grandmother
@@ -3621,7 +3676,7 @@ Check focusing on a room during Crystal Quest: say "Now that you think about it,
 
 First check focusing on the info desk during Crystal Quest:
 	now the player can sense the oily trail;
-	change the noun to the oily trail.
+	now the noun is the oily trail.
 
 The oily trail is an emotional residue. The oily trail taints info desk, the first floor midpoint, first floor rooms east. The description of the oily trail is "Some sort of oily, burnt stench seems to coil about your legs here, and you think you can hear some sort of low-pitched chatter."
 
@@ -3641,12 +3696,18 @@ Chapter 2 - Bullies
 Section 1 - Initial encounter
 
 Last focusing rule for the oily trail when in the first floor rooms east and TRIG_BULLIES is unfired during Crystal Quest:
+	move Joe to Hank's room;
+	move Hank to Hank's room;
+	now the player is in Hank's room; [makes coding, scope, much easier]
 	fire TRIG_BULLIES;
+
+Check going to Hank's room when TRIG_BULLIES is fired and Aidan's warpath has not happened: say "(They seemed pretty adamant about keeping you out.)" instead.
 
 TRIG_BULLIES is a trigger.
 
 Rule for firing unfired TRIG_BULLIES:
-	move Joe to the location;
+	move Joe to Hank's room;
+	move Hank to Hank's room;
 	start conversation with Joe on Q_JOE_0;
 
 Q_JOE_0 is a quip. The display text is "One of the boys inside the room notices you gawking outside the door, and comes out.  'Yeah, what do you want?'"
@@ -3663,15 +3724,20 @@ Q_JOE_2 is a quip. The display text is "'Oh, that?  Hey, Hank, loser-boy here wa
 
 After firing Q_JOE_1:
 	move Joe to Hank's Room;
+	move Hank to Hank's Room;
 
 After firing Q_JOE_2:
 	identify Hank; identify Joe;
 	identify Hank's Door;
+	move Hank to Hank's Room;
 	move Joe to Hank's Room;
 
 Check going from the first floor rooms east to Hank's Room when Joe is the current conversationalist: placeholder "The boy is blocking the door." instead.
 
 First report going from the first floor rooms east when Joe is the current conversationalist: say Joe quips Q_JOE_1.
+
+Understand "boy/man/guy" as Hank when Hank is in the location.
+Understand "boy/man/guy" as Joe when Joe is in the location.
 
 
 Section 2 - In Joe & Hank's Room
@@ -3705,7 +3771,7 @@ Q_HANK_1 is a quip. The display text is "Joe smirks.  'It's yours if you can tak
 	The response of Q_HANK_1 is { Q_HANK_1A, Q_HANK_1B, Q_HANK_1C }
 
 First before firing Q_HANK_1B:
-	change the menu text of Q_HANK_1B to ""; [We don't really say that.]
+	now the menu text of Q_HANK_1B is ""; [We don't really say that.]
 
 Q_HANK_2 is a quip. The display text is "'Too bad, so sad.  Now get lost.'"
 
@@ -3811,18 +3877,19 @@ When Here Comes The Flood begins:
 	ifndef debug;
 	pause the game;
 	enddef debug;
-	change the current term day to Day 4;
-	change the time of day to 5:08 PM;
-	change the right hand status line to "[time of day]";	
+	now the current term day is Day 4;
+	now the time of day is 5:08 PM;
+	now the right hand status line is "[time of day]";	
 	now the chapter number is 3;
-	say "LEAP, Day 4 (Wednesday) - Dinner[paragraph break]You usually have your meals with Ava and Stacy, but they're in a different time slot for dinner today.  Aidan's with his own friends at the other end of the dining hall, which leaves you alone with your readings for your class on satirical writing.  Hopefully Aristophanes and Moliere will be enough to distract you from the rather unpleasant substances on your plate pretending to be meat and potatoes.";
-	now the player carries the readings for Satirical Writing;
+	now all options are off-stage;
+	say "LEAP, Day 4 (Wednesday) - Dinner[paragraph break]You usually have your meals with Ava and Stacy, but they're in a different time slot for dinner today.  Aidan's with his own friends at the other end of the dining hall, which leaves you alone with your readings for your class on satirical drama.  Hopefully Aristophanes and Moliere will be enough to distract you from the rather unpleasant substances on your plate pretending to be meat and potatoes.";
+	now the player carries the readings for Satirical Drama;
 	move the player to the Dining Hall;
 	now Aidan is in the location;
 	add GOAL_DINNER to the current goals;
-	Lucian appears in two turns from now.
+	Lucian comes to dine with you in two turns from now.
 
-Some readings for Satirical Writing are a thing. The description is "Aristophanes, Rabelais, Moliere... if you didn't find this sort of thing as fascinating as you do, you'd be comatose after the first page." The printed name of some readings for Satirical Writing is "readings for your Satirical Writing class". 
+Some readings for Satirical Drama are a thing. The description is "Aristophanes, Rabelais, Moliere... if you didn't find this sort of thing as fascinating as you do, you'd be comatose after the first page." The printed name of some readings for Satirical Drama is "readings for your Satirical Drama class". 
 
 Instead of doing something when Aidan is physically involved:
 	if Here Comes The Flood is happening, placeholder "Aidan's away with his friends on the other side of the hall." instead;
@@ -3834,12 +3901,12 @@ GOAL_DINNER is a goal. The printed name is "eat dinner in peace". The win condit
 
 Part 2 - Dining Hall
 
-The Dining Hall is east of Calvin Field north. "[if Here Comes The Flood is happening]You are alone at the southeast corner of the room, with a few readings for your satirical writing class.  You can see Aidan somewhere off to the west, eating with his friends.[otherwise if in chapter 10]You are sitting between Ava and Stacy.  Lucian is sitting across from you, half-hidden behind a stack of pancakes.  Aidan is with his friends somewhere off to the west.[otherwise]The dining hall is a large room lined with long tables and chairs.  It is crowded with campers discussing just about everything under the sun."
+The Dining Hall is east of Calvin Field north. "[if Here Comes The Flood is happening]You are alone at the southeast corner of the room, with a few readings for your satirical drama class.  You can see Aidan somewhere off to the west, eating with his friends.[otherwise if in chapter 10]You are sitting between Ava and Stacy.  Lucian is sitting across from you, half-hidden behind a stack of pancakes.  Aidan is with his friends somewhere off to the west.[otherwise]The dining hall is a large room lined with long tables and chairs.  It is crowded with campers discussing just about everything under the sun."
 
 A plural-named thing called some dining tables and chairs are scenery, in the dining hall.
 
-Your dining table is scenery, in the dining hall.
-Your dinner is edible scenery [allegedly] carried by the player. [avoid problems with implicit take]
+Your dining table is scenery supporter, in the dining hall.
+Your dinner is edible scenery on your dining table.
 
 First carry out examining your dinner (this is the school dinners box quote rule):
 	display the boxed quotation
@@ -3856,7 +3923,7 @@ Check smelling your dinner: say "It smells innocent enough, anyway.  But smells 
 
 Part 3 - Lucian Again
 
-At the time when Lucian appears:
+At the time when Lucian comes to dine with you:
 	now Lucian is in the dining hall;
 	start conversation with Lucian on Q_LUCIAN2_0.
 
@@ -4011,11 +4078,11 @@ To say desc de maelstrom:
 		remove west from the potential directions, if present;
 	if the y part of the coordinate of the Maelstrom is the y part of the boundary of the Maelstrom:
 		remove north from the potential directions, if present;
-	change the accessible directions of the Maelstrom to the potential directions;
+	now the accessible directions of the Maelstrom is the potential directions;
 	sort the potential directions in random order;
 	remove entry 1 from the potential directions;
 	sort the potential directions;
-	change the blocked directions of the Maelstrom to the potential directions;
+	now the blocked directions of the Maelstrom is the potential directions;
 	;
 	if the x part of the coordinate of the Maelstrom is 4, stop;
 	say "You are lost in a swirl of sensory stimuli. ";
@@ -4074,12 +4141,12 @@ This is the coordinate-updating rule:
 		-- south: decrease YY by 1;
 		-- west: increase XX by 1;
 		-- east: decrease XX by 1;
-	change the coordinate of the Maelstrom to the coordinate with x part XX y part YY;
+	now the coordinate of the Maelstrom is the coordinate with x part XX y part YY;
 
 Chapter 5 - End
 
 When Lost In The Maelstrom ends:
-	say "You finally stumble into the edge of what looks like a long, sustained note played on an oboe and sounds like a cone of bright, white light.  It leaps about you, and you feel someone catch hold of you -- it takes you a moment to realize that this is real, and not a product of your out-of-control senses.  It's Aidan, you can hear his voice over the buzzing of all the other sounds that aren't really there.  The relief is overwhelming, and you finally allow yourself to collapse.";
+	say "You finally stumble into the edge of what looks like a long, sustained note played on an oboe and sounds like a cone of bright, white light.  It leaps about you, and you feel someone catch hold of you -- it takes you a moment to realize that this is real, and not a product of your out-of-control senses.  It's Aidan.  You can hear his voice over the buzzing of all the other sounds that aren't really there.  The relief is overwhelming, and you finally allow yourself to collapse.";
 	consider the goal assessment rule;
 	say "Just as you lose consciousness, you are startled by the appearance of something ominously black and alien, spinning about in the centre of the whiteness surrounding you....";
 	ifndef debug;
@@ -4096,11 +4163,12 @@ When Hospital begins:
 	pause the game;
 	enddef debug;
 	now the chapter number is 4;
-	change the current term day to Day 5;
-	change the left hand status line to "Day ??: ??";
-	change the right hand status line to "??:??";
+	now the current term day is Day 5;
+	now the left hand status line is "Day ??: ??";
+	now the right hand status line is "??:??";
 	say "[paragraph break]Location unknown, Day unknown - Time un-- you know it's entirely possible that you're dead, right?[paragraph break]You are in darkness.";
 	move the player to the coffin case, without printing a room description;
+	now everything carried by the player is off-stage;
 	add GOAL_FIND_OUT_ABOUT_YOU to the current goals, if absent.
 
 GOAL_FIND_OUT_ABOUT_YOU is a goal. The printed name is "find out what's happened to you".  The win condition is "[if Doc Rose Chat has ended][goal achieved]".
@@ -4133,13 +4201,23 @@ Cased In ends eventually when the time since Cased In began is 10 minutes.
 Cased In ends prematurely when the coffin case is open.
 
 Check shouting at the location during Cased In: now the coffin case is open instead.
-Check knocking on during Cased In: now the coffin case is open instead.
+First check knocking on during Cased In: now the coffin case is open instead.
+Check focusing on during Cased In: say "You feel solid walls on every side of you, pressing close.  It feels like a coffin, with walls cold and impersonal." instead.
+Check touching during Cased In: say "You feel solid walls on every side of you, pressing close.  It feels like a coffin, with walls cold and impersonal." instead.
+Check opening during Cased In: say "You can't feel any door.  Or knob.  Or switch." instead.
+
+Every turn during Cased In:
+	if cased in is happening for the fourth time and the coffin case is closed, say "Is the air getting a little warm in here? Like, a little stale?";
+	if cased in is happening for the eighth time and the coffin case is closed, say "The word 'oxygen' keeping beating inside your brain, and you're sure the air is warm in here."
+
+Instead of conversing when in the coffin case and the coffin case is closed, say "You speak a few timid words, but something in front of you is bouncing the sounds back at you."
+
 
 When Cased In ends:
-	change left hand status line to "Day ??: [the location in title case]";
+	now the left hand status line is "Day ??: [the location in title case]";
 	now the coffin case is open;
 	say "The darkness above you flies open, and you're momentarily blinded by a flood of bright light.  As you try to blink away the spots, a face swims into view -- it takes you a few moments to register the curly white hair, the rosy cheeks and the clear blue eyes, and the fact that said face is talking to you.";
-	move the player to your hospital room, without printing a room description;
+	[move the player to your hospital room, without printing a room description;]
 	start conversation with Doctor Claudia Rose on Q_DOC_ROSE_0.
 
 Check entering the coffin case when not in the coffin case: say "No." instead.
@@ -4185,7 +4263,7 @@ Q_DOC_ROSE_3 is a quip. The display text is "'Tsk tsk, I do know you're upset, b
 
 Q_DOC_ROSE_4 is a quip. The display text is "'You're in the university hospital, dear, and I'm Dr Claudia Rose.  We've had you and your brother under observation all night, and I really hope you'll both be well enough to return to the camp today.  You should be, if nothing goes wrong.'"
 
-	Q_DOC_ROSE_4A is a transitional quip. The following quip is Q_DOC_ROSE_7. The menu text is "'Aidan's under observation?  Whatever for?'".
+	Q_DOC_ROSE_4A is a transitional quip. The following quip is Q_DOC_ROSE_7. The menu text is "'Aidan's under observation?  What for?'".
 	Q_DOC_ROSE_4B is a transitional quip. The following quip is Q_DOC_ROSE_6. The menu text is "'What do you mean, [']if nothing goes wrong[']?  What's happening?'".
 
 	After firing Q_DOC_ROSE_4: identify Doctor Claudia Rose.
@@ -4201,7 +4279,7 @@ Q_DOC_ROSE_5 is a quip. The display text is "'Here, sit up.  I'm Dr Claudia Rose
 
 	The response of Q_DOC_ROSE_5 is { Q_DOC_ROSE_5A, Q_DOC_ROSE_5B }.
 
-Q_DOC_ROSE_6 is a quip. The display text is "'You're developing some rather unique abilities, Daniel.  As far as I can tell, based on what your friends have told me, you are gaining the ability to sense the emotions of the people around you.  At the moment, your brain is trying to cope with the influx of these new senses and trying to interpret them using the template of the other five; before long, you should start recognizing emotions for what they are, rather than sensing them as flavors or colours or smells.'"
+Q_DOC_ROSE_6 is a quip. The display text is "'You're developing some rather unique abilities, Daniel.  As far as I can tell, based on what your friends have told me, you are gaining the ability to sense the emotions of the people around you.  At the moment, your brain is trying to cope with the influx of these new senses and trying to interpret them using the template of the other five; before long, you should start recognizing emotions for what they are, rather than sensing them as flavors or colors or smells.'"
 
 	Q_DOC_ROSE_6A is a transitional quip. The following quip is Q_DOC_ROSE_9. The menu text is "'So ... what, I'm going to be some sort of mind-reader?'"
 	Q_DOC_ROSE_6B is a transitional quip. The following quip is Q_DOC_ROSE_10. The menu text is "'So what DID happen at dinner?'"
@@ -4231,11 +4309,11 @@ Q_DOC_ROSE_10 is a quip. The display text is "'What happened at dinner was a sen
 
 	Q_DOC_ROSE_10A is a transitional quip. The following quip is Q_DOC_ROSE_13. The menu text is "'It's not going to also give me a hair helmet, is it?'"
 	Q_DOC_ROSE_10B is a transitional quip. The following quip is Q_DOC_ROSE_11. The menu text is "'Well, that's a drag.  I suppose there's nothing I can do about it, is there?'"
-	Q_DOC_ROSE_10C is a transitional quip. The following quip is Q_DOC_ROSE_06. The menu text is "'But I don't understand.  What's happening to me?'"
+	Q_DOC_ROSE_10C is a transitional quip. The following quip is Q_DOC_ROSE_6. The menu text is "'But I don't understand.  What's happening to me?'"
 
 	The response of Q_DOC_ROSE_10 is { Q_DOC_ROSE_10A, Q_DOC_ROSE_10B, Q_DOC_ROSE_10C }.
 	
-	After populating Q_DOC_ROSE_10 when Q_DOC_ROSE_06 is fired: remove Q_DOC_ROSE_10C from the current conversation.
+	After populating Q_DOC_ROSE_10 when Q_DOC_ROSE_6 is fired: remove Q_DOC_ROSE_10C from the current conversation.
 
 Q_DOC_ROSE_11 is a quip. The display text is "'Your friends tell me you've been able to track people using the emotional debris they leave in their wake.  That's really quite impressive.  You should also be able to get an idea of how a person feels by examining them, and possibly more if you focus on those emotions.  Eventually, I think you might even be able to amplify or muffle whatever emotion you find, though right now that ability may only manifest in times of extreme stress, as it was with the manifestation of Aidan's abilities.'"
 
@@ -4275,7 +4353,7 @@ Q_DOC_ROSE_13 is a quip. The display text is "'A hair helmet?'  Dr Rose looks at
 
 	The response of Q_DOC_ROSE_13 is { Q_DOC_ROSE_13A  }.
 
-Q_DOC_ROSE_14 is a quip. The display text is "'I have spoken to your parents, by the way, and explained everything to them.  As you know, they're overseas and cannot return at the moment, at least not on such short notice.  In the meantime, they've left me in charge of your health and welfare.  So, Daniel, if anything bothers you at all, I hope you will tell me about it.  I'll do anything I can to make sure you're safe.'[paragraph break]Dr Rose pats you on the shoulder and is about to say something more when there's a resounding crash from somewhere else in the hospital.  At the same time, the pager on Dr Rose's belt goes off.  You catch a glimpse of a number, R15, flashing on its face as Dr Rose looks down at it.  She frowns.  'I'm sorry to have to cut our little chat short, Daniel, but it seems I'm urgently needed elsewhere.  Remember, stay where you are, and don't exert yourself.'  With that, she hurries out of the room, leaving a cloud of apprehension (or is it anxiety?) in her wake.[paragraph break]As the door closes behind her, Ava and Stacy slip into the room.  'Daniel!' says Ava, 'what happened?  Are you going to be okay?'[paragraph break]'Ava, stop worrying and let him answer already.'  Stacy's eye wanders over to the cranial crown contraption.  You don't need super emo-detector powers to see that her curiosity is piqued.";
+Q_DOC_ROSE_14 is a quip. The display text is "'I have spoken to your parents, by the way, and explained everything to them.  As you know, they're overseas and cannot return at the moment, at least not on such short notice.  In the meantime, they've left me in charge of your health and welfare.  So, Daniel, if anything bothers you at all, I hope you will tell me about it.  I'll do anything I can to make sure you're safe.'[paragraph break]Dr Rose pats you on the shoulder and is about to say something more when there's a resounding crash from somewhere else in the hospital.  At the same time, the pager on Dr Rose's belt goes off.  You catch a glimpse of a number, R15, flashing on its face as Dr Rose looks down at it.  She frowns.  'I'm sorry to have to cut our little chat short, Daniel, but it seems I'm urgently needed elsewhere.  Remember, stay where you are, and don't exert yourself.'  With that, she hurries out of the room, leaving a cloud of apprehension (or is it anxiety?) in her wake.[paragraph break]As the door closes behind her, Ava and Stacy slip into the room.  'Daniel!' says Ava, 'What happened?  Are you going to be okay?'[paragraph break]'Ava, stop worrying and let him answer already.'  Stacy's eye wanders over to the cranial crown contraption.  You don't need super emo-detector powers to see that her curiosity is piqued.";
 
 When Doc Rose Chat ends:
 	now Doctor Claudia Rose is off-stage;
@@ -4290,12 +4368,12 @@ Chapter 1 - Scene
 Hospital chat is a scene. Hospital chat begins when Doc Rose chat ends. Hospital chat ends when Q_AVA_HO_2 is fired or Q_AVA_HO_3 is fired or Q_AVA_HO_4 is fired.
 	
 When hospital chat begins: 
-	change the object-based conversation table of Ava to the table of Ava and Stacy's hospital object-conversation;
-	change the object-based conversation table of Stacy to the table of Ava and Stacy's hospital object-conversation.
+	now the object-based conversation table of Ava is the table of Ava and Stacy's hospital object-conversation;
+	now the object-based conversation table of Stacy is the table of Ava and Stacy's hospital object-conversation.
 
 When hospital chat ends: 
-	change the object-based conversation table of Ava to the table of Ava's replies;
-	change the object-based conversation table of Stacy to the table of Stacy's replies.
+	now the object-based conversation table of Ava is the table of Ava's replies;
+	now the object-based conversation table of Stacy is the table of Stacy's replies.
 
 Understand "ava and/& stacy" as ava when the player can see Ava and the player can see Stacy.
 Understand "stacy and/& ava" as ava when the player can see Ava and the player can see Stacy.
@@ -4431,7 +4509,7 @@ The disorderly movement rules are a rulebook.
 First disorderly movement rule when the wandering orderly is in an adjacent room and the wandering orderly is capturing (this is the wandering orderly capture rule):
 	let x be the location of the wandering orderly;
 	let d be the quick best route from x to the location of the player;
-	change the previous location of the wandering orderly to x;
+	now the previous location of the wandering orderly is x;
 	try the wandering orderly trying going d;
 	rule fails;
 
@@ -4444,7 +4522,7 @@ A disorderly movement rule (this is the disorderly wandering rule):
 		if x is a room:
 			let the new direction be the direction produced by the disorderly motion rules for x;
 			if the new direction is a direction:
-				change the previous location of the wandering orderly to the location of the wandering orderly;
+				now the previous location of the wandering orderly is the location of the wandering orderly;
 				try the wandering orderly trying going the new direction;
 				rule succeeds;
 
@@ -4484,10 +4562,10 @@ Check going to a hospital ward:
 	otherwise if the wandering orderly is in an adjacent room (called R):
 		let x be a random adjacent hospital corridor;
 		while x is the location of the wandering orderly:
-			change x to a random adjacent hospital corridor;
+			now x is a random adjacent hospital corridor;
 		let d be the quick best route from the location to x;
 		move the wandering orderly to x;
-		change the previous location of the wandering orderly to the location;
+		now the previous location of the wandering orderly is the location;
 		now the wandering orderly is stopped;
 		now the wandering orderly is wandering-freely;
 		say "You quickly duck into the empty hospital room as an orderly [if R is a Hospital Ward]comes out of the other room[otherwise]approaches[end if].  You wait until the footsteps fade away to [the d] before emerging again into the corridor.";
@@ -4497,7 +4575,7 @@ Check going to a hospital ward:
 
 TRIG_DR_ROSE_DEATH is a quip. The display text is "'I do wish you wouldn't insist on running around unsupervised, Daniel.  You need your rest, we need to monitor your condition, and this last adventure of yours might very possibly have interfered terribly with ... well, with everything.  The data may have been compromised.  I'm afraid we'll have to keep you under observation a little longer.'  She shakes her head sadly. 'Believe me, Daniel, I'd have liked to let you go back to the camp every bit as much as you would, but under the circumstances, I'm afraid it just can't be done.'"
 
-Rule for firing TRIG_DR_ROSE_DEATH: end the game saying "The story is over."
+After firing TRIG_DR_ROSE_DEATH: end the story saying "The story is over."
 
 
 Part 6 - Finding Aidan
@@ -4553,19 +4631,23 @@ Robot Fun begins when chapter number is 5 [and the player is in the robotics cla
 
 When Robot Fun begins:
 	now every logic block is on your workbench;
-	change the current term day to day 6;
-	change the time of day to 10:25 AM;
+	now the current term day is day 6;
+	now the time of day is 10:25 AM;
 	now the left hand status line is "[Current term day]: [the location in title case]";
 	now the right hand status line is "[time of day]";
 	now the chapter number is 5;
 	say "Things settle down, more or less, over the next day or so.  People are trying very hard to not give you funny looks when they see you, which pretty much comes to the same thing, really.  Aidan's probably going through the same sort of thing too.  He's certainly rather a bit more moody than he used to be.[paragraph break]LEAP, Day 6 (Friday) - Class Period 2[paragraph break]Robotics class, the wave of the future, because everyone knows that some day we're going to have giant killer robots laying waste to downtown Tokyo or something like that, and it would be a good thing to know how to deal with them.  No-one's really capable of making a giant killer robot: right now, you're all just doing a basic project to program a robot to do a certain simple task.  Except Stacy, who seems to be dead set on making a midget killer robot she calls the 'Stacy Alexander Robot Guy', or SARG for short.";
+	add GOAL_MR_ROBOTO to the recently achieved goals, if absent;
 	move Stacy Alexander to Robotics Class;
 	move Aidan to Robotics Class;
 	move the player to Robotics Class;
+	move Antonia Long to Robotics Class;
 	remove Ava from play;
 	now nobody follows the player.
 
-Robotics Class is a privately-named unimportant classroom. "[if in chapter 5]You sit at a table in a perfectly ordinary classroom, surrounded by electronic parts.  Antonia Long, your Robotics instructor, has been cornered elsewhere by students with issues, leaving you to your own electronic, robotic devices.  Stacy sits beside you with her own robot project, SARG, while Aidan[Aidan mentioned] is at another table with the older students[otherwise]No windows here:  small electronic and mechanical parts fill every nook and cranny of the shelved walls of Robotics.  A half-dozen tables each large enough for four march down the center of the room toward Instructor Long's bench, opposite the door[end if]." Understand "robotics" as Robotics Class.
+GOAL_MR_ROBOTO is a goal. The printed name is "get your robot to move marbles on its own".  The win condition is "[if Robot Fun has ended][goal achieved]". Understand "help" as GOAL_MR_ROBOTO when in chapter 5.
+
+Robotics Class is a privately-named unimportant classroom. "[if in chapter 5]You sit at a table in a perfectly ordinary classroom, surrounded by electronic parts.  [Antonia mentioned]Antonia Long, your Robotics instructor, has been cornered elsewhere by students with issues, leaving you to your own electronic, robotic devices.  Stacy sits beside you with her own robot project, SARG, while Aidan[Aidan mentioned] is at another table with the older students[otherwise]No windows here:  small electronic and mechanical parts fill every nook and cranny of the shelved walls of Robotics.  A half-dozen tables each large enough for four march down the center of the room toward Instructor Long's bench, opposite the door[end if]." Understand "robotics" as Robotics Class.
 
 Some electronic parts are scenery in robotics class. "[if in chapter 5]You've already isolated the bits and pieces you need; the rest is[otherwise]They are[end if] just so much debris."
 
@@ -4600,16 +4682,16 @@ Understand "examine [logic blocks]" or "x [logic blocks]" as examining.
 
 Table of robot logic blocks
 logic block		braces	pseudocode
-copper-colored		-1	"[tab][tab][tab][tab]last_used = left;[line break][tab][tab][tab]}"
-royal purple		0	"[tab][tab][tab][tab]pick_up_with_left;"
-hot pink		-1	"[tab]}[line break]end loop"
-scarlet			-1	"[tab][tab]}[line break][tab]} else {"
-saffron			1	"[tab][tab][tab]turn_to_destination_basket;[line break][tab][tab]} else {[line break][tab][tab][tab]if (last_used == left) {[line break][tab][tab][tab][tab]pick_up_with_right;"
-golden			-1	"[tab][tab]}[line break][tab][tab]turn_to_source_basket;"
-mint green		2	"begin loop[line break][tab]if (facing_source_basket) {[line break][tab][tab]if (holding_marble) {"
-magenta		1	"[tab][tab]if (holding_marble) {[line break][tab][tab][tab]drop_marble_in_basket;"
-baby blue		0	"[tab][tab][tab]holding_marble = true;[line break][tab][tab][tab]turn_to_destination_basket;"
-forest green		0	"[tab][tab][tab][tab]last_used = right;[line break][tab][tab][tab]} else {"
+the copper-colored		-1	"[tab][tab][tab][tab]last_used = left;[line break][tab][tab][tab]}"
+the royal purple		0	"[tab][tab][tab][tab]pick_up_with_left;"
+the hot pink		-1	"[tab]}[line break]end loop"
+the scarlet			-1	"[tab][tab]}[line break][tab]} else {"
+the saffron			1	"[tab][tab][tab]turn_to_destination_basket;[line break][tab][tab]} else {[line break][tab][tab][tab]if (last_used == left) {[line break][tab][tab][tab][tab]pick_up_with_right;"
+the golden			-1	"[tab][tab]}[line break][tab][tab]turn_to_source_basket;"
+the mint green		2	"begin loop[line break][tab]if (facing_source_basket) {[line break][tab][tab]if (holding_marble) {"
+the magenta		1	"[tab][tab]if (holding_marble) {[line break][tab][tab][tab]drop_marble_in_basket;"
+the baby blue		0	"[tab][tab][tab]holding_marble = true;[line break][tab][tab][tab]turn_to_destination_basket;"
+the forest green		0	"[tab][tab][tab][tab]last_used = right;[line break][tab][tab][tab]} else {"
 
 To say tab: say "    ".
 
@@ -4630,16 +4712,16 @@ Does the player mean removing a placed block from: it is likely.
 
 Table of programming slots
 slot	running order	solution block (an object)
-slot 1		1	mint green
-slot 2		2	saffron
-slot 3		3	forest green
-slot 4		4	royal purple
-slot 5		5	copper-colored
-slot 6		6	baby blue
-slot 7		7	scarlet
-slot 8		8	magenta
-slot 9		9	golden
-slot 10	10	hot pink
+slot 1		1	the mint green
+slot 2		2	the saffron
+slot 3		3	the forest green
+slot 4		4	the royal purple
+slot 5		5	the copper-colored
+slot 6		6	the baby blue
+slot 7		7	the scarlet
+slot 8		8	the magenta
+slot 9		9	the golden
+slot 10		10	the hot pink
 
 
 Part 4 - robot sim
@@ -4757,16 +4839,20 @@ Report inserting something into a slot: say "Ker-chunk[one of]! [The noun] fills
 
 Instead of doing something except inserting or swapping when an unplugged slot is physically involved, say "Nothing's in that slot."
 
-[Before doing something except taking or removing when the noun is a plugged slot and a plugged slot is physically involved: let B be a random logic block in the noun; change the noun to B.]
+[Before doing something except taking or removing when the noun is a plugged slot and a plugged slot is physically involved: let B be a random logic block in the noun; now the noun is B.]
 
 Check taking a plugged slot: let B be a random logic block in the noun; try taking B instead.
 
-First check removing a placed block from your robot: change the second noun to the holder of the noun.
-First check removing a placed block from the program: change the second noun to the holder of the noun.
+First check removing a placed block from your robot: now the second noun is the holder of the noun.
+First check removing a placed block from the program: now the second noun is the holder of the noun.
 
 Check removing a plugged slot from: let X be a random logic block in the noun; try removing X from the second noun instead.
 
-Rule for supplying a missing second noun while in chapter 5: change the noun to your robot.
+Check taking a placed block during robot fun:
+	now the player carries the noun;
+	say "You unplug [the noun] from your robot." instead.
+
+Rule for supplying a missing second noun while in chapter 5: now the noun is your robot.
 
 Every turn when in chapter 5: now every logic block in [on the floor of] robotics class is on your workbench.
 
@@ -4786,9 +4872,9 @@ To say program description:
 		if we are examining your robot, say "[if B is nothing]Slot [X] is empty.[otherwise]In slot [X], [the B]:[line break]";
 		unless B is nothing, say "[fixed letter spacing][pseudocode of B][variable letter spacing][line break]".
 
-Understand "run [program]", "execute [program]", "run [your robot]", "execute [your robot]" as entering. Understand "run", "go", "execute" as entering when in chapter 5. Rule for supplying a missing noun when entering and in chapter 5: now the noun is the program.
+Understand "run [program]", "execute [program]", "run [your robot]", "execute [your robot]" or "turn on [program]" or "turn on [your robot]" as entering. Understand "run", "go", "execute" as entering when in chapter 5. Rule for supplying a missing noun when entering and in chapter 5: now the noun is the program.
 
-First check entering your robot (this is the by robot i meant program rule): change the noun to the program. [no instead -- typecasting]
+First check entering your robot (this is the by robot i meant program rule): now the noun is the program. [no instead -- typecasting]
 
 The number of correctly placed blocks is a number that varies. The number of correctly placed blocks is usually 0.
 
@@ -4884,13 +4970,13 @@ Some merry green trees are scenery in under the greenwood tree. "No greener tree
 When the Protector begins:
 	say "Things are a little tense Friday evening, and through most of Saturday.  Stacy is angry with Aidan for what he did to SARG, Aidan is being all sulky and broody and unsociable, and Ava seems to have had an argument with Stacy over who was right or wrong in the Great Robotics Class Incident.  You, meanwhile, have simply been watching the ebb and flow of everybody's emotional states.
 
-You're getting better at this.  Some things don't even register as smells or sounds or colours any more, but as recognizable emotions.  So of course, since you're the one who can see the best time to approach people, you're the one to go gather everyone together for Sunday's event.";
+You're getting better at this.  Some things don't even register as smells or sounds or colors any more, but as recognizable emotions.  So of course, since you're the one who can see the best time to approach people, you're the one to go gather everyone together for Sunday's event.";
 	ifndef debug;
 	pause the game; 
 	enddef debug;
 	now the chapter number is 6;
-	change the current term day to day 8;
-	change the time of day to 1:30 PM;
+	now the current term day is day 8;
+	now the time of day is 1:30 PM;
 	say "LEAP, Day 8 (Sunday) - Mid-afternoon
 
 Everyone looks forward to Sim Sunday!  That's when people get to go into the Simulation Room and play through the scenario that some of the counselors have spent the whole year putting together.  It is quite literally THE great virtual reality event of the entire camp.
@@ -5153,8 +5239,8 @@ Lucian's Bad Day begins when the chapter number is 7.
 
 When Lucian's Bad Day begins:
 	now the chapter number is 7;
-	change the current term day to day 9;
-	change the time of day to 8:00 AM;
+	now the current term day is day 9;
+	now the time of day is 8:00 AM;
 	say "Everything is Absolutely Fine.
 
 At least, that's what you keep telling everybody who asks, especially the ones who stink of Morbid Curiosity.  You're guessing that your little fainting spell, at the Sim Sunday event, was something similar to what happened at dinner with Lucian last week, but at least this time round you didn't wind up in the hospital.  It looks really bad for Aidan, though: some of the people who used to hang out with him are giving him the cold shoulder now, and Stacy is definitely actively avoiding him.
@@ -5166,7 +5252,7 @@ You have no idea what sort of emotion could have knocked you out like that.  And
 	say "LEAP, Day 9 (Monday) - Class Period 1
 
 Satirical drama.  The best way to take your mind off your troubles is to laugh at them, and some of the other people doing this class are pretty good.  You've spent half the class period listening to other people reading their stuff, but now it's time to work on your own stuff.  You're looking forward to putting this on stage this Friday, and that's enough to make you forget everything else.";
-	now the player carries the readings for Satirical Writing;
+	now the player carries the readings for Satirical Drama;
 	move the player to the auditorium;
 	now Ava is in the auditorium;
 	now Ava follows the player;
@@ -5175,7 +5261,7 @@ Satirical drama.  The best way to take your mind off your troubles is to laugh a
 	now Stacy's screwdriver is not fixed in place.
 
 
-Ava gets Daniel's help is a scene.  Ava gets Daniel's help begins when Lucian's Bad Day is happening and the time since Lucian's Bad Day began is 5 minutes.
+Ava gets Daniel's help is a scene.  Ava gets Daniel's help begins when Lucian's Bad Day is happening and the time since Lucian's Bad Day began is 5 minutes. Ava gets Daniel's help ends when A-alarm-5 is fired.
 
 When Ava gets Daniel's help begins: say "The alarm bells go off.  Judging by the reactions of the counselors and instructors, this is not a drill.  You are about to follow everyone out (in a not-so-orderly fashion) when you see Ava fighting her way past the surging crowd.  She sees you and immediately pulls you aside."; say Ava quips A_ALARM.
 
@@ -5210,9 +5296,9 @@ Check Ava singing when not in Claremont Library during coaxing Lucian out of the
 
 Part 2 - Tracking down Lucian
 
-Tracking Lucian is a scene. Tracking Lucian begins when A-alarm-5 is fired.
+Tracking Lucian is a scene. Tracking Lucian begins when Ava gets Daniel's help ends.
 
-Last check going from the auditorium when A-alarm-5 is unfired during tracking Lucian: say Ava quips A-alarm-5.
+Last check going from the auditorium when A-alarm-5 is unfired during Ava gets Daniel's help: say Ava quips A-alarm-5.
 
 FEAR-TRAIL-DETECTED is a trigger.
 
@@ -5239,7 +5325,7 @@ Every turn during tracking Lucian (this is the Aidan turns up the heat rule):
 	-- 50 minutes: say "Who knew the HVAC systems could get this hot?  You could probably roast something in one of the vents.";
 	-- 60 minutes: 
 		say "In fact, you can roast something in the vents, as the authorities discover shortly afterwards.  Poor Lucian, too afraid to come out of his hiding place in one of those vents, is cooked alive.  Ava goes into hysterics at the discovery; her emotional outburst sends you reeling and by the time you are steady on your feet again, Aidan has been taken away by armed guards and men with mirror shades and black suits.  You never see your brother again ... in fact, all evidence that he ever existed seems to vanish from the face of the earth."; 
-		end the game saying "You lose your friend and your brother".
+		end the story saying "You lose your friend and your brother".
 
 
 Part 3 - Coaxing Lucian out of Claremont Library's air vent
@@ -5366,7 +5452,7 @@ Every turn during saving Lucian from Aidan (this is the Aidan attempts murder ru
 		say "There is a sickening crunch as Aidan's hand closes around Lucian's throat, and the smaller boy goes limp.  Behind you, Ava begins screaming.  As for yourself, you are nearly overwhelmed by a wave of black horror, much of it coming from yourself.  You black out....
 
 You are told, when you regain consciousness, that Aidan was 'taken away'; accounts differ as to who exactly did the taking.  Some say it was the police, others say it was the army.  A few people whisper about conspiracies and men in black.  Regardless, you never see your brother again."; 
-		end the game saying "You have lost your brother and your friend".
+		end the story saying "You have lost your brother and your friend".
 
 
 Instead of conversing when the noun is Ava during saving Lucian from Aidan, say "'I don't know, just do something!'  Ava is wide-eyed and almost panicking."
@@ -5378,7 +5464,7 @@ Check focusing on Claremont Library during saving lucian from Aidan:
 
 Check focusing on Lucian during saving lucian from Aidan: say "The pure survival instinct of doomed prey." instead.
 
-Rule for supplying a missing second noun while amplifying during saving Lucian from Aidan: change the second noun to Aidan.
+Rule for supplying a missing second noun while amplifying during saving Lucian from Aidan: now the second noun is Aidan.
 
 Check amplifying anger for Aidan when in chapters 7 through 8: say "[italic type]Maybe it'll make him black out[roman type], you think desperately.  But as Aidan's rage threatens to bury you alive, it becomes clear that you'd be the one to black out first, and lose control of the situation." instead.
 
@@ -5424,9 +5510,9 @@ Aidan didn't come back that day, or the day after.  Nobody knows anything.  Ava 
 	now the chapter number is 8;
 	now every room in Jacobs Hall is visited;
 	now Aidan's door is locked closed;
-	change the current term day to day 10;
-	change the time of day to 2:32 AM;
-	change the right hand status line to "Late at night";
+	now the current term day is day 10;
+	now the time of day is 2:32 AM;
+	now the right hand status line is "Late at night";
 	say "LEAP, Day 10 (Tuesday) - Late at night
 
 Thump.
@@ -5483,7 +5569,7 @@ Every turn during Night Terrors:
 			placeholder "Familiar surroundings momentarily confuse him.";
 		otherwise:
 			say "You hesitate a little too long.  Aidan pounces on you with a triumphant little snarl, and, well, that's pretty much the last thing you ever see.";
-			end the game in death;
+			end the story saying "You have died";
 	otherwise:
 		let backward be the best route from the location to the location of Aidan;
 		if backward is not a direction:
@@ -5536,7 +5622,7 @@ At the time when the SWAT team shows up:
 Someone's gone and called the police, and it sounds like they've sent in a SWAT team.  You are momentarily distracted by the commotion, and that moment's distraction is all Aidan needs to catch up with you.  For a moment, you are lifted off the ground, and then three sniper bullets cut into Aidan in important places.  He collapses right on top of you, and this time it's your own horrified reaction that knocks you out.
 
 It's probably best to not think about what happens afterwards.";
-		end the game saying "You lose your brother and your sanity".
+		end the story saying "You lose your brother and your sanity".
 
 
 Night Terrors ends when BLOOD-IS-THICKER is fired.
@@ -5560,9 +5646,9 @@ When the Poisoned Mind begins:
 	say "'Have a sandwich,' says Dr Rose.  'And some tea, perhaps?'
 
 You help yourself to the first thing you've had in almost two weeks that doesn't taste of reverse-engineered sugar substitute.  As you nibble on the sandwich, Dr Rose pours out a cup of tea for herself and for you.  'I spoke with Ava,' she says, looking serious, 'and she tells me that you said something about having entered your brother's mind at one point.  Now, that is an aspect of your power that I had not anticipated, and I must say I find it quite fascinating.  It might, I suspect it might be of great use to Aidan right now.  Poor boy, I'm afraid there's no other way of dealing with the side effects of his emerging powers, as there was with you.  You're his last hope, Daniel.'";
-	change the current term day to day 12;
-	change the time of day to 4:39 PM;
-	change the right hand status line to "[time of day]";
+	now the current term day is day 12;
+	now the time of day is 4:39 PM;
+	now the right hand status line is "[time of day]";
 	say "University Hospital, Day 12 (Thursday) - Late afternoon
 
 You're back in the same hospital room you woke up in last week, after you blacked out in the dining hall.  This time it's Aidan who's in the coffin-thing, pumped full of sedatives and tied down with so many heavy-duty cables that he looks like a mummy.  A small table and a couple of comfy chairs have been set up; Dr Rose is sitting in one chair, sipping at her tea.";
@@ -5577,7 +5663,7 @@ You're back in the same hospital room you woke up in last week, after you blacke
 	now the player carries tea;
 	[start conversation with Doctor Claudia Rose on C9.01;]
 
-Rule for initiating conversation with Claudia Rose: change the chosen opening gambit to C9.01.
+Rule for initiating conversation with Claudia Rose: now the chosen opening gambit is C9.01.
 
 C9.01 is a quip. The display text is "'You will give it a try, won't you, Daniel?'"
 
@@ -5631,7 +5717,7 @@ C9.01-5 is a quip. The display text is "Dr Rose looks at you sadly.  'Really, Da
 [YOU TURN YOUR BACK ON EVERYTHING, YOU UNFEELING MONSTER]
 C9.01-6 is a quip. The display text is "Dr Rose doesn't try to stop you as you hurry out the door of the hospital room and down to the lobby.
 
-You never see Aidan again.  Rumor has it that he was shipped off to some very hush-hush government department.  When your parents start asking questions, they disappear as well.  The next few years are a blur of foster homes.  Dr Rose tries to do what she can for you, but it isn't long before you disappear as well....".  After firing C9.01-6, end the game saying "You were never seen again".
+You never see Aidan again.  Rumor has it that he was shipped off to some very hush-hush government department.  When your parents start asking questions, they disappear as well.  The next few years are a blur of foster homes.  Dr Rose tries to do what she can for you, but it isn't long before you disappear as well....".  After firing C9.01-6, end the story saying "You were never seen again".
 
 
 C9.01-7 is a quip. The display text is "'You need to take a little  trip inside Aidan's mindscape, find the source of his rage, and remove it.  He's under a lot of heavy sedation, so you might find the experience a little surreal.  But at least it won't be as dangerous as it was the last time this happened, I think.'"
@@ -5647,9 +5733,9 @@ Check going from your hospital room when in chapter 9:
 
 Check amplifying it for when Aidan is the second noun and in chapter 9: say "Though you feel your effort has some effect, it's akin to stirring a turbulent sea:  no trace of your effort remains once you've stopped." instead.
 
-First check focusing on your hospital room when in chapter 9: change the noun to Aidan. 
-[Rule for supplying a missing noun when focusing on and in chapter 9: change the noun to Aidan.]
-Rule for supplying a missing second noun when amplifying and in chapter 9: change the second noun to Aidan.
+First check focusing on your hospital room when in chapter 9: now the noun is Aidan. 
+[Rule for supplying a missing noun when focusing on and in chapter 9: now the noun is Aidan.]
+Rule for supplying a missing second noun when amplifying and in chapter 9: now the second noun is Aidan.
 
 
 Chapter 3 - when all else fails, die, die again
@@ -5751,7 +5837,7 @@ To say go straight to section YOU FAIL TO GIVE AIDAN THE SWORD:
 	say "With a sudden lunge, the Thief slips through Aidan's defenses and buries his knife in Aidan's stomach.  Aidan has time to give you one horrified look before his eyes roll up and he collapses.  The mindscape wavers for a moment, then shatters, and that is the last thing you know.
 
 No really, it's the last thing you know.  Both you and Aidan spend the next twenty-odd years in a coma, knowing nothing of what's going on around you.  It's a terrible fate, and if you were conscious enough to formulate a thought, you would probably wonder what you could have done differently in that last fight that would have averted this.";
-	end the game saying "You lose your brother and your mind."
+	end the story saying "You lose your brother and your mind."
 
 
 First check giving the sword to Aidan: now Aidan has the sword; say  "You put the sword on the ground and slide it over to Aidan, who kicks it up into his hands and swings it up to block the Thief's knife.  He's much faster than you are, given the super-speed and super-strength, and you can hear the sword whistling through the air as it whirls, a blue blur around the Thief.  In less than a minute, the Thief's knife goes flying off into the darkness, and the Thief himself is cut down.
@@ -5770,7 +5856,7 @@ The Poisoned Mind ends when Aidan has the sword.
 
 Book 10 - Breakfast of Champions
 
-Breakfast of Champions is a chapter-length scene. Breakfast of Champions begins when the Poisoned Mind ends. [The entire game ends when Breakfast of Champions ends.]
+Breakfast of Champions is a chapter-length scene. Breakfast of Champions begins when the Poisoned Mind ends. Breakfast of Champions ends when the entire game ends.
 
 section 2 - scene begin
 
@@ -5784,9 +5870,9 @@ After two hours of various tests and stuff, you and Aidan are both shipped back 
 	ifndef debug;
 	pause the game;
 	enddef debug;
-	change the current term day to day 13;
-	change the time of day to 7:32 AM;
-	change the right hand status line to "[time of day]";	
+	now the current term day is day 13;
+	now the time of day is 7:32 AM;
+	now the right hand status line is "[time of day]";	
 	say "LEAP, Day 13 (Friday) - Breakfast
 
 You are sitting with Ava and Stacy and Lucian; otherwise, there's no-one else at the table.  Somewhere else in the dining hall, Aidan is sitting with a small handful of friends who still think he's okay, murderous psycho rages or not.  A lot of the people have finished breakfast and moved on, but you've been busy telling your friends about your adventures through Aidan's mindscape.";
@@ -5795,9 +5881,9 @@ You are sitting with Ava and Stacy and Lucian; otherwise, there's no-one else at
 	now Aidan is in the dining hall;
 	now Lucian is in the dining hall;
 	now the player is in the dining hall;
-	change the object-based conversation table of Stacy to the table of Stacy's final replies;
-	change the object-based conversation table of Ava to the table of Ava's final replies;
-	change the object-based conversation table of Lucian to the table of Lucian's final replies;
+	now the object-based conversation table of Stacy is the table of Stacy's final replies;
+	now the object-based conversation table of Ava is the table of Ava's final replies;
+	now the object-based conversation table of Lucian is the table of Lucian's final replies;
 
 
 Instead of standing on, facing, entering, exiting, or going when in chapter 10, say "You'll lose your seat if you do."
@@ -6053,5 +6139,5 @@ As everyone gets up from the table, you are suddenly hit with a strong sense of 
 
 But, as the emotion fades away, you know that this isn't over yet.  Not by a long shot...."
 
-After firing C10.6, end the game in victory.
+After firing C10.6, end the story finally saying "The End". 
 
