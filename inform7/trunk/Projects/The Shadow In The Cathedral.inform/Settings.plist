@@ -9,17 +9,28 @@
 		<key>IFSettingNobbleRng</key>
 		<false/>
 	</dict>
+	<key>IFInform6Extensions</key>
+	<dict/>
 	<key>IFLibrarySettings</key>
 	<dict>
 		<key>IFSettingLibraryToUse</key>
 		<string>Natural</string>
 	</dict>
+	<key>IFMiscSettings</key>
+	<dict>
+		<key>IFSettingInfix</key>
+		<false/>
+	</dict>
 	<key>IFOutputSettings</key>
 	<dict>
 		<key>IFSettingCreateBlorb</key>
 		<false/>
+		<key>IFSettingNobbleRng</key>
+		<true/>
 		<key>IFSettingZCodeVersion</key>
 		<integer>256</integer>
 	</dict>
+	<key>IFRandomSettings</key>
+	<dict/>
 </dict>
 </plist>
