@@ -1,4 +1,4 @@
-Counters by Textfyre begins here.
+Version 2 of Counters by Textfyre begins here.
 
 "Things that happen regularly, such as every four turns, rather than every turn."
 
@@ -21,23 +21,23 @@ A timer is a kind of counter.
 A timer is usually not repeating.
 The internal value of a timer is usually 0.
 
-Part 2 - Incrementing
+Part 2 - increment/increaseing
 
-To increment (c - a counter):
+To increment/increase (c - a counter):
 	if the internal value of c is 1,
 		fire c;
-	increment the internal value of c by one;
+	increase the internal value of c by one;
 	if the internal value of c is greater than the top end of c and c is repeating,
 		change the internal value of c to 1;
 
-To increment (c - a busy counter):
+To increment/increase (c - a busy counter):
 	fire c;
-	increment the internal value of c by one;
+	increase the internal value of c by one;
 	if the internal value of c is greater than the top end of c and c is repeating,
 		change the internal value of c to 1;
 
-To increment (c - a timer):
-	increment the internal value of c by one;
+To increment/increase (c - a timer):
+	increase the internal value of c by one;
 	if the internal value of c is the top end of c:
 		fire c;
 	if the internal value of c is greater than the top end of c and c is repeating,
