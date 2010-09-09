@@ -17,22 +17,22 @@
         <releases>
             <attached>
                 <release>
-                    <releasedate>2010-05-29</releasedate>
+                    <releasedate>2010-09-08</releasedate>
                     <version>1</version>
                     <compiler>Inform 7</compiler>
-                    <compilerversion>5Z71</compilerversion>
+                    <compilerversion>6E72</compilerversion>
                 </release>
             </attached>
         </releases>
         <colophon>
             <generator>Inform 7</generator>
-            <generatorversion>5Z71</generatorversion>
-            <originated>2010-05-29</originated>
+            <generatorversion>6E72</generatorversion>
+            <originated>2010-09-08</originated>
         </colophon>
         <glulx>
-            <serial>100529</serial>
+            <serial>100908</serial>
             <release>1</release>
-            <compiler>Inform 7 build 5Z71</compiler>
+            <compiler>Inform 7 build 6E72</compiler>
         </glulx>
     </story>
 </ifindex>
