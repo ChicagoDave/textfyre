@@ -143,10 +143,10 @@ Include Basic Screen Effects by Emily Short.
 Include Scripted Events by Textfyre.
 Include Scripted Room Events by Textfyre.
 Include Conversation Topics by Textfyre.
-Include Counters by Textfyre.
+Include Counters by Textfyre. [updated for 6E builds]
 Include Direct Questions by Textfyre.
 Include Textfyre Standard Rules by Textfyre.
-Include Grid Layout by Textfyre.
+Include Grid Layout by Textfyre.  [updated for 6E builds]
 Include Test Suite by Textfyre.
 Include Parse List by Textfyre.
 Include Textfyre Standard Backdrops by Textfyre.
@@ -154,6 +154,9 @@ Include Shadow Hints by Textfyre.
 Include Xml Output Toggling by Textfyre.
 Include Basic Help by David Cornelson.
 [Include Guncho Mockup by Guncho Cabal.]
+[Pronouns by TextFyre]   [updated for non-Quip-using games]
+
+To decide whether (act - an activity) ain't going on: (- (~~(TestActivity({act}))) -). [to solve weird issue with 6E builds]
 
 Book - Initialisation
 
@@ -164,12 +167,14 @@ Use MAX_PROP_TABLE_SIZE of 600000.
 Use MAX_DICT_ENTRIES of 4000.
 Use MAX_OBJECTS of 1280.
 Use MAX_SYMBOLS of 26000.
-Use MAX_ZCODE_SIZE of 100000.
+Use MAX_ZCODE_SIZE of 500000.
 Use MAX_LINESPACE of 20000.
-Use ALLOC_CHUNK_SIZE of 20000.
+Use ALLOC_CHUNK_SIZE of 50000.
 Use MAX_SYMBOLS of 40000.
 Use MAX_VERBS of 300.
-Use MAX_NUM_STATIC_STRINGS of 25000.
+Use MAX_NUM_STATIC_STRINGS of 50000.
+Use MAX_LABELS of 50000.
+
 
 Chapter - Debugging and Analysing Verbs (not for release)
 
@@ -213,7 +218,7 @@ Definition: a thing is nontrigger:
 	unless it is a trigger, yes;
 	no;
 
-To check articles for (D - a description), only showing definite articles:
+To check articles for (D - a description of objects), only showing definite articles:
 	repeat with x running through D:
 		say "[The x][unless only showing definite articles], [An x][end if] ([X])[line break]";
 
@@ -336,7 +341,7 @@ Section M - Miscellanea
 
 The player is in the Abbot's Quarters.
 
-The examine described devices rule is not listed in any rulebook.
+[The examine described devices rule is not listed in any rulebook.]
 The describe what's on scenery supporters in room descriptions rule is not listed in any rulebook.
 
 
@@ -357,7 +362,7 @@ Chapter 4 - Or-separated lists
 
 [ Two syntaxes: [or-separated list of ...] and [the or-separated list of...] .]
 
-To say or-separated list of (the collection - a description):
+To say or-separated list of (the collection - a description of objects):
 	let N be the number of members of the collection;
 	repeat with item running through the collection:
 		say "[item]";
@@ -365,7 +370,7 @@ To say or-separated list of (the collection - a description):
 		if N is 1, say " or ";
 		if N > 1, say ", ";
 
-To say the or-separated list of (the collection - a description):
+To say the or-separated list of (the collection - a description of objects):
 	let N be the number of members of the collection;
 	repeat with item running through the collection:
 		say "[the item]";
@@ -2436,7 +2441,7 @@ Understand "bow your/my head" as making the sign of.
 Understand "genuflect" as making the sign of.
 
 
-Rule for supplying a missing noun for making the sign of:
+Rule for supplying a missing noun while making the sign of:
 	change the noun to a random clock-sign.
 
 Chapter 1 - Signs the player can make
@@ -3064,25 +3069,25 @@ Part 3 - Cant Go message
 [ Definition: a direction (called that way) is viable if the room that way from the location is a room and that way is not inside and that way is not outside. ]
 
 After assembling available exits:
-	remove {inside, outside} from the viable directions, if present;
+	remove {inside, outside} from the viable-directions, if present;
 
 The last instead of going nowhere:
 	try listing exits instead;
 
-[ The last instead of going nowhere when the number of viable directions is 1:
+[ The last instead of going nowhere when the number of viable-directions is 1:
 	say "The only way to go from here is [random viable direction].";
 
-The last instead of going nowhere when the number of viable directions is at least 2:
-	say "The only ways to go from here are [list of viable directions]."; ]
+The last instead of going nowhere when the number of viable-directions is at least 2:
+	say "The only ways to go from here are [list of viable-directions]."; ]
 
 The replacement listing exits rule is listed instead of the Textfyre standard listing exits rule in the Report listing exits rules.
 
 This is the replacement listing exits rule:
-	if the viable directions is not empty:
-		if the number of entries in the viable directions is 1:
-			say "The only way to go from here is [viable directions].";
+	if the viable-directions is not empty:
+		if the number of entries in the viable-directions is 1:
+			say "The only way to go from here is [viable-directions].";
 		otherwise:
-			say "The only ways to go from here are [viable directions].";
+			say "The only ways to go from here are [viable-directions].";
 	otherwise:
 		say "There are no obvious exits from here.";
 
@@ -3328,11 +3333,11 @@ Section 3 - Actions - opening
 [Rule for implicitly opening the Grandfather Clock when in Abbot's Quarters and Clock Case has not been hidden in and Voices have not been Heard:
 	do nothing;]
 
-After opening the Grandfather Clock when in Abbot's Quarters and the implicitly opening activity is not going on:
+After opening the Grandfather Clock when in Abbot's Quarters and the implicitly opening activity ain't going on:
 	say "I open the clock door and peek inside. [run paragraph on]";
 	try searching the Grandfather Clock instead;
 
-Instead of opening the Grandfather Clock when in the Abbot's Quarters and AB_QUART4 is fired and the implicitly opening activity is not going on and Inside Clock Case is not visited: [only auto-enter when the player hasn't auto-entered before ]
+Instead of opening the Grandfather Clock when in the Abbot's Quarters and AB_QUART4 is fired and the implicitly opening activity ain't going on and Inside Clock Case is not visited: [only auto-enter when the player hasn't auto-entered before ]
 	try entering the Grandfather Clock instead.
 
 Instead of searching the closed Grandfather Clock when in Abbot's Quarters:
@@ -3348,7 +3353,7 @@ Before entering the closed Grandfather Clock when in Inside Clock Case:
 Instead of searching the Grandfather Clock:
 	say "For a big clock it's got a pretty small [i][penduluum][r], about the size of Calvin's fist and not as big as Drake's. There's even enough space in front of it for the Abbot to hang up one of his spare robes."
 
-Instead of opening the Grandfather Clock when Hiding in the Clock has ended and the implicitly opening activity is not going on and the player is in Inside Clock Case:
+Instead of opening the Grandfather Clock when Hiding in the Clock has ended and the implicitly opening activity ain't going on and the player is in Inside Clock Case:
 	now the Grandfather Clock is open;
 	try exiting instead.
 
@@ -4194,7 +4199,7 @@ The Rickety Stair is a room. The description is "I'm in the western corner of th
 
 After assembling available exits of the Rickety Stair:
 	if the caretaker's ladder is in the Rickety Stair:
-		add up to the viable directions, if absent;
+		add up to the viable-directions, if absent;
 
 The printed name of Rickety Stair is "Western Corner of the Great Hall".
 
@@ -5330,8 +5335,7 @@ Instead of turning the hourglasses: say "The hourglasses tell the monks how long
 
 Section 3 - Tea Cup
 
-A porcelain teacup is a fake container, on the long tables. The description is "[if empty]A porcelain teacup. The edges are a little chipped from overuse.[otherwise]A steaming cup of freshly-brewed tea.[end if][if not handled] It's next to Brother Horloge's hourglass.[end if]". The printed name is "teacup".
-The printed name is "teacup". Understand "chipped", "porcelain", "edges", "cup", "tea cup" as the teacup.
+A porcelain teacup is a fake container, on the long tables. The description is "[if empty]A porcelain teacup. The edges are a little chipped from overuse.[otherwise]A steaming cup of freshly-brewed tea.[end if][if not handled] It's next to Brother Horloge's hourglass.[end if]". The printed name is "teacup".  Understand "chipped", "porcelain", "edges", "cup", "tea cup" as the teacup.
 Understand "steaming", "full" as the teacup when the teacup is full.
 Understand "fresh", "freshly", "brewed", "freshly-brewed", "hot", "tea" as the teacup when the teacup is full.
 Understand "of tea" as the teacup when the teacup is full.
@@ -6666,7 +6670,7 @@ Section 4 - East Door
 
 The East Door is scenery, in the Cathedral Entrance. "That's the door back to the Cathedral Yard."
 
-Instead of opening or entering the East Door when the implicitly opening activity is not going on:
+Instead of opening or entering the East Door when the implicitly opening activity ain't going on:
 	try going east;
 
 Instead of opening the East Door when Upper Nave is not visited:
@@ -7276,7 +7280,7 @@ A wax-mixing rule for a candle (called c) when the brazier contains a wax lump:
 	let color be the wax of c;
 	remove c from play;
 	change the color of r to what you get when you mix color with color of r;
-	increment the size of r by 1;
+	increase the size of r by 1;
 	if the size of r is greater than 10,
 		now the indefinite article of r is "probably about half the church's wealth's worth of wax melted down into a";
 	move r to the brazier;
@@ -7291,7 +7295,7 @@ A wax-mixing rule for a wax lump (called w) when the brazier does not contain a 
 A wax-mixing rule for a wax lump (called w) when the brazier contains a wax lump:
 	let r be a random wax lump in the brazier;
 	change the color of r to what you get when you mix color of w with color of r;
-	increment the size of r by the size of w;
+	increase the size of r by the size of w;
 	if the size of r is greater than 10,
 		now the indefinite article of r is "probably about half the church's wealth's worth of wax melted down into a";
 	move w to the Beehive;
@@ -7324,7 +7328,7 @@ After taking a wax lump:
 	let c be the color of the noun;
 	repeat with lump running through wax lumps carried by the player begin;
 		if the lump is not the noun and the color of the lump is the color of the noun begin;
-			increment the size of the noun by the size of the lump;
+			increase the size of the noun by the size of the lump;
 			move the lump to the Beehive;
 			if the size of the noun is greater than 10,
 				now the indefinite article of the noun is "probably about half the church's wealth's worth of wax melted down into a";
@@ -10641,7 +10645,7 @@ Instead of making to leave in Weather Station:
 	try going up.
 
 After assembling available exits when in the Weather Station:
-	remove {down} from the viable directions, if present;
+	remove {down} from the viable-directions, if present;
 
 Chapter 2 - Scenery
 
@@ -11349,7 +11353,7 @@ Section 3 (continued) - Enquiring about clock shop clutter
 
 After enquiring of Covalt about something:
 	carry out the choosing the conversation table activity with Covalt;
-	carry out the choosing the conversation topic activity;
+	carry out the choosing the conversation topic activity with the noun;
 	carry out the speaking with activity with Covalt instead;	
 
 Rule for choosing the conversation topic when we are enquiring of Covalt about something and the state of Covalt is 3:
@@ -12744,7 +12748,7 @@ The subtle escape is a door, privately-named, east of the Long Hall, west of the
 The subtle escape is closed.
 
 After assembling available exits when the location is the Long Hall and Calculatrix Chase is not happening:
-	remove east from the viable directions, if present;
+	remove east from the viable-directions, if present;
 	continue the action;
 
 Rule for implicitly opening the subtle escape: [ we mirror can't go behaviour here ]
@@ -13031,7 +13035,7 @@ Chapter 2 - Scenery
 
 Section 1 - Platform
 
-The sprung platform is a backdrop, in the main platform, in the Western Platform in the Eastern Platform. The description is "[if the location is the Main Platform]The platform seems to be very slightly sprung. Something to do with the lever, no doubt.[otherwise]The platform is made of delicate wrought iron and brass, and runs all along the south side of the atrium, facing the Engine. It's supported above floor level, where the driving springs are.[end if]". The printed name is "platform".
+The sprung platform is a backdrop. The sprung platform is in the main platform, the Western Platform, and the Eastern Platform. The description is "[if the location is the Main Platform]The platform seems to be very slightly sprung. Something to do with the lever, no doubt.[otherwise]The platform is made of delicate wrought iron and brass, and runs all along the south side of the atrium, facing the Engine. It's supported above floor level, where the driving springs are.[end if]". The printed name is "platform".
 
 Instead of jumping in the main platform:
 	say "The platform bounces underfoot.";
@@ -13942,8 +13946,8 @@ Instead of attacking the huge iron door with the wrench:
 Instead of attacking the huge iron door with something:
 	try attacking the huge iron door;
 
-Rule for supplying a missing second noun when the noun is the huge iron door while unlocking:
-	say "I don't have a key anything like big enough for this door." instead;
+Rule for supplying a missing second noun while unlocking the huge iron door with:
+	say "I don't have a key anything like big enough for this door." instead.
 
 The solid iron padlock is part of the huge iron door. The description is "The padlock is built of old anchors and the funnels of the great spring-powered Ocean liners. It would take a key the size of my arm to open it."
 
@@ -14185,7 +14189,7 @@ Part 6 - Ledge
 The Ledge is south of the Dock. South of the Ledge is west of South Side. "This is a narrow plank walkway on the west side of the warehouse, that gives me barely a hand-span between the brick wall and the dark water of the River Thymes. I could scurry north or south like a rat, but hanging around here might be a bad idea."
 
 After assembling available exits when in the Ledge:
-	remove {west} from the viable directions, if present;
+	remove {west} from the viable-directions, if present;
 	continue the action;
 
 Instead of making to leave when in the Ledge:
@@ -15596,7 +15600,7 @@ A bolt-turning rule when the long lever is not armed:
 
 A bolt-turning rule when the ignition button is not ignited:
 	change the setting of the ignition bolt to the remainder after dividing the setting of the ignition bolt by 3; [0, 1, 2]
-	increment the setting of the ignition bolt by 1; [1, 2, 3]
+	increase the setting of the ignition bolt by 1; [1, 2, 3]
 	if the setting of the ignition bolt is:
 		-- 2:
 			say "I heave the bolt around. The room is suddenly filled by a hissing sound, like a thousand baby cobras coiling and getting ready to strike! A strange smell comes with them." instead;
@@ -16515,7 +16519,7 @@ Last vending machine rule for a tiny door (called x) when the vended item is not
 		say "You chicken, Wren. [run paragraph on]";
 
 Last vending machine rule for a tiny door (called x) when the vended item is not nothing:
-	decrement the count of the silver coins by 1;
+	decrease the count of the silver coins by 1;
 	if the count of the silver coins is at most 0:
 		remove the silver coins from play;
 	now the player carries the vended item;
@@ -16595,13 +16599,13 @@ A drug-adding rule for the tincture of Morphos when the state of the autopotheca
 A drug-adding rule for the oil of vitriol:
 	say "I drip the contents of the vial into the funnel[if the state of the autopothecary press is 3]. The tin sign rotates to read 'lift lever if ready.'[otherwise].[end if]";
 	remove the oil of vitriol from play;
-	increment the state of the autopothecary press by 1;
+	increase the state of the autopothecary press by 1;
 	rule succeeds;
 
 A drug-adding rule for the tincture of morphos:
 	say "The Morphos falls in tiny starlight splashes into the bowl of the press. There’s a faint bitter smell that makes my head spin... [if the state of the autopothecary press is 3]The tin sign rotates to read 'lift lever if ready.' [end if][paragraph break]";
 	remove the tincture of morphos from play;
-	increment the state of the autopothecary press by 1;
+	increase the state of the autopothecary press by 1;
 	rule succeeds;
 
 Section 3 - Drug Pressing
@@ -17769,7 +17773,7 @@ After unlocking the crypt grate with the old iron crypt key:
 Then the gate is open. Like a pin into a hinge joint, I enter the dark.";
 	end the chapter;
 	now the crypt grate is open;
-	if the implicitly opening activity is not going on,
+	if the implicitly opening activity ain't going on,
 		try going the crypt grate instead;
 
 Before opening the crypt grate when the player is carrying the old iron crypt key:
@@ -18692,7 +18696,7 @@ After going from the Middle of Gnomon to the Henge:
 	continue the action;
 
 After assembling available exits when in the Henge and the giant stones are not explored:
-	remove {west} from the viable directions, if present;
+	remove {west} from the viable-directions, if present;
 
 Chapter 1 - Description
 
@@ -18853,7 +18857,7 @@ To say from-distance:
 Section 3 - Script loop count
 
 Before firing SE_BRASSHEAD_1:
-	increment the loop count of the brass head by 1;
+	increase the loop count of the brass head by 1;
 
 After firing SE_BRASSHEAD_4 when the loop count of the brass head is 1:
 	say "If this door is the vault and the Head is a lock, then the Figure must know a way through. There’s no keyhole. No mechanism to be undone. Nothing the Abbot could have given him to get by, except perhaps a word.[paragraph break]But what word would serve as a key to the vaults?";
@@ -19012,16 +19016,16 @@ Does the player mean taking the decoy perpetuum when the player is carrying the 
 Does the player mean taking the decoy perpetuum when the steel altar supports the decoy perpetuum:
 	it is very likely;
 
-Rule for printing the name of the decoy perpetuum mobile when the asking which do you mean activity is going on and the player can see the real perpetuum:
+Rule for printing the name of the decoy perpetuum mobile  while asking which do you mean when the player can see the real perpetuum:
 	say "decoy";
 
-Rule for printing the name of the real perpetuum mobile when the asking which do you mean activity is going on and the player can see the decoy perpetuum:
+Rule for printing the name of the real perpetuum mobile while asking which do you mean when the player can see the decoy perpetuum:
 	say "real one";
 
-Rule for printing the name of the decoy perpetuum mobile when the clarifying the parser's choice activity is going on and the player can see the real perpetuum:
+Rule for printing the name of the decoy perpetuum mobile while clarifying the parser's choice when the player can see the real perpetuum:
 	say "decoy";
 
-Rule for printing the name of the real perpetuum mobile when the clarifying the parser's choice activity is going on and the player can see the decoy perpetuum:
+Rule for printing the name of the real perpetuum mobile while clarifying the parser's choice when the player can see the decoy perpetuum:
 	say "real one";
 
 After taking the real perpetuum mobile when the real perpetuum mobile was on the steel altar:
@@ -19383,7 +19387,7 @@ The winding slot is part of the Figure Grey.
 Understand "crack", "dark crack" as the winding slot.
 Understand "neck", "figure's neck", "figures neck", "back of" as the winding slot.
 
-The wound spring is part of the winding slot, privately-named. [ you can't just attack ]
+The wound spring is part of the winding slot. It is privately-named. [ you can't just attack ]
 
 The description of the winding slot is "A weak point in every device. A way straight in to the heart of the clockwork. The imperfection needed to jam a perfect mechanism..."
 
@@ -19515,7 +19519,7 @@ First before when the third-state of Covalt is 10: [ this is absurd, I'm just tr
 
 Book W - Walkthrough Script
 
-Test wholegame with "test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt / test countinghouse / test outsidewarehouse / test insidewarehouse / test covaltreturn / test returncathedral / test crypt / in / open bird cage / i / put lucky clock key in winding slot / z".
+Test wholegame with "random / test intro / test abbey-garden / test cathedral / test clockchase / test rooftops / test covalt / test countinghouse / test outsidewarehouse / test insidewarehouse / test covaltreturn / test returncathedral / test crypt / in / open bird cage / i / put lucky clock key in winding slot / z".
 
 Test crypt with " d / s / w / take dial / out / e / take cloth / put cloth in oil / take dowel / tie cloth to dowel / out / light torch on torches / d / put dial on pedestal / put torch in sconce / set pedestal to 12 / d / d / search stones / in / open door / say patience / in / take perpetuum / out / out / hide behind door / z / z".
 
@@ -19533,7 +19537,7 @@ Test intro with "z/w/hide in clock/put tumbler on door/z/z/z/z/z/out/open door/w
 
 Test abbey-garden with "d/e/sw/e/get cup/e/n/put cup in bracket/hide in pantry/s/s/smell/take leaf/s/put tea in basket /x train / get gear / turn spigot / wind key / w / sw / sw / sw / w / get new gear / ne / take keys / e / e / e / e / e / n / put new gear in train / pull lever / n / z / z / z / s / take cup of tea / w  / sw/ sw / sw  /w / ne / put tea on table / get keys / get keys / e / e / e / unlock door with keys / e / up / w / n / w / w / take ladder / e / sw / e / e / e / put ladder against wall / up / w/drop rag/ w".
 
-Test abbey-clock with "d/e/sw/e/get cup/e/n/put cup in bracket/hide in pantry/s/s/smell/take leaf/s/put tea in basket /x train / get gear / turn spigot / wind key / w / sw / sw / sw / w / get new gear / ne / take keys / e / e / e / e / e / n / put new gear in train / pull lever / n / z / z / s / take cup of tea / w / sw / sw / z / w / ne / put tea on table / get keys / get keys / e / e / e / unlock clock / open clock / set clock to 5 pm / set clock to 5 pm / w / w / sw/ sw / w / w / drop rag / w".
+Test abbey-clock with "d/e/sw/e/get cup/e/n/put cup in bracket/hide in pantry/s/s/smell/take leaf/s/put tea in basket /x train / get gear / turn spigot / wind key / w / sw / sw / sw / w / get new gear / ne / take keys / e / e / e / e / e / n / put new gear in train / pull lever / n / z / z / z / s / take cup of tea / w / sw / sw / z / w / ne / put tea on table / get keys / get keys / e / e / e / unlock clock / open clock / set clock to 5 pm / set clock to 5 pm / w / w / sw/ sw / w / w / drop rag / w".
 
 Test abbey2 with "d/e/sw/e/get cup/e/n/put cup in bracket/w/w/z/z/z/e/e/get tea/x train/get gear/turn spigot/wind key/put tea in basket/w/sw/sw/w/get new gear/ne/e/ne/e/put new gear in train/pull lever/z/z/z/w/w/z/z/z/e/e/e/get tea/w/sw/sw/sw/w/put tea on table/get keys/get keys/e/e/e/unlock clock".
 
