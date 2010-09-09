@@ -16,11 +16,7 @@ The goal-scoring rules are an object-based rulebook.
 
 The goal-scoring rules have outcomes goal achieved (success), goal not yet achieved (failure - the default), and goal thwarted (failure).
 
-The goal eval toggle is a truth state that varies. 
-
 First scene changing rule (this is the goal assessment rule):
-	now the goal eval toggle is whether or not the goal eval toggle is false;
-	if goal eval toggle is true, make no decision; [performance enhancement; scene-changing called twice per turn, but no Every Turn will fulfill a goal. I think. ]
 	let the goals achieved this turn be a list of objects;
 	let the goals thwarted this turn be a list of objects;
 	repeat with G running through the current goals:
@@ -38,14 +34,14 @@ First scene changing rule (this is the goal assessment rule):
 		say "[bracket]You achieved [if n is 1]a[otherwise][n in words][end if] goal[if n is not 1]s[end if]! ([the goals achieved this turn])[close bracket][paragraph break]";
 
 Last when play begins:
-	change last turn's goals to the current goals;
+	now last turn's goals are the current goals;
 
 Every turn (this is the new goal notification rule):
 	if the turn count is 1:
 		rule fails;
 	let the goal sieve be the current goals;
 	remove last turn's goals from the goal sieve;
-	change last turn's goals to the current goals;
+	now last turn's goals are the current goals;
 	let n be the number of entries in the goal sieve;
 	if n is 1:
 		say "[bracket]A new goal was added: [the goal sieve][close bracket][paragraph break]";
