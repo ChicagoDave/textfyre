@@ -147,16 +147,16 @@ Definition: a direction (called D) is an exit:
 Understand "[something related by leading]" as a door.
 
 Assembling available exits of something is an activity.
-The viable directions is a list of objects [directions] that varies.
+The viable-directions is a list of objects [directions] that varies.
 
 Rule for assembling available exits of a room (called someplace):
-	change the viable directions to {north, northeast, east, southeast, south, southwest, west, northwest, up, down, inside, outside};
+	change the viable-directions to {north, northeast, east, southeast, south, southwest, west, northwest, up, down, inside, outside};
 	repeat with i running from 1 to 12:
-		let way be entry 1 of the viable directions;
+		let way be entry 1 of the viable-directions;
 		if someplace exits the way:
-			rotate the viable directions backwards;
+			rotate the viable-directions backwards;
 		otherwise:
-			remove entry 1 from the viable directions;
+			remove entry 1 from the viable-directions;
 
 Part 3 - Activity bug fix
 
@@ -741,11 +741,11 @@ Carry out listing exits:
 	carry out the assembling available exits activity with the location;
 
 Report listing exits (this is the Textfyre standard listing exits rule):
-	if the viable directions is not empty:
-		if the number of entries in the viable directions is 1:
-			say "There is an exit [viable directions] from here.";
+	if the viable-directions is not empty:
+		if the number of entries in the viable-directions is 1:
+			say "There is an exit [viable-directions] from here.";
 		otherwise:
-			say "There are exits [viable directions] from here.";
+			say "There are exits [viable-directions] from here.";
 	otherwise:
 		say "There are no obvious exits from this place.";
 
