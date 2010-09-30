@@ -136,7 +136,7 @@ When				Who		What
 Use no scoring, American dialect and full-length room descriptions.
 The story creation year is 2009.
 
-Include FyreVM Support by Textfyre.
+Include FyreVM Support for 5Z71 by Textfyre.
 Include Custom Library Messages by David Fisher.
 Include Punctuation Removal by Emily Short.
 Include Basic Screen Effects by Emily Short.
@@ -264,10 +264,10 @@ After reading a command:
 After reading a command: 
 	let T be indexed text; 
 	let T be the player's command;
-	if T matches the regular expression "^\*|\[bracket]":
+[	if T matches the regular expression "^\*|\[bracket]":
 		say "[bracket][one of]Your comment has been noted[or]Noted[stopping].[close bracket][paragraph break]";
-		reject the player's command; 
-	otherwise:
+		reject the fplayer's command; 
+	otherwise:]
 		continue the action. 
 
 Section 1a - Clouds and Backdrops
