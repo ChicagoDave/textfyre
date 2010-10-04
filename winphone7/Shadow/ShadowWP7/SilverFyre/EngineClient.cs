@@ -25,6 +25,7 @@ namespace Cjc.SilverFyre
 		private AutoResetEvent keyReady = new AutoResetEvent( false );
 		private AutoResetEvent lineReady = new AutoResetEvent( false );
 		private ManualResetEvent stop = new ManualResetEvent( false );
+		private ManualResetEvent stopped = new ManualResetEvent( false );
 
 		private EventWaitHandle[] lineEvents;
 		private EventWaitHandle[] keyEvents;
@@ -46,13 +47,18 @@ namespace Cjc.SilverFyre
 			{
 				game = new MemoryStream( buffer );
 			}
+		}
 
+		public void Start()
+		{
 			thread = new Thread( Run );
 			thread.Start();
 		}
 
 		public void Stop()
 		{
+			stop.Set();
+			stopped.WaitOne();
 		}
 
 		public void SendLine( string line )
@@ -101,6 +107,8 @@ namespace Cjc.SilverFyre
 			{
 				OutputError( ex );
 			}
+
+			stopped.Set();
 		}
 
 		private void OutputError( Exception ex )
@@ -121,6 +129,7 @@ namespace Cjc.SilverFyre
 				if ( nextKeys.Count > 0 )
 				{
 					e.Char = nextKeys.Dequeue();
+					System.Diagnostics.Debug.WriteLine( string.Format( "Processing queued character: [{0}]", e.Char ) );
 					return;
 				}
 			}
@@ -129,7 +138,11 @@ namespace Cjc.SilverFyre
 
 			if ( AwaitingKey != null ) AwaitingKey( this, EventArgs.Empty );
 
-			if ( WaitHandle.WaitAny( keyEvents ) == 0 ) lock ( nextKeys ) { e.Char = nextKeys.Dequeue(); }
+			if ( WaitHandle.WaitAny( keyEvents ) == 0 )
+			{
+				lock ( nextKeys ) { e.Char = nextKeys.Dequeue(); }
+				System.Diagnostics.Debug.WriteLine( string.Format( "Processing character: [{0}]", e.Char ) );
+			}
 			else engine.Stop();
 		}
 
@@ -140,6 +153,7 @@ namespace Cjc.SilverFyre
 				if ( nextLines.Count > 0 )
 				{
 					e.Line = nextLines.Dequeue();
+					System.Diagnostics.Debug.WriteLine( string.Format( "Processing queued line: [{0}]", e.Line ) );
 					return;
 				}
 			}
@@ -148,7 +162,11 @@ namespace Cjc.SilverFyre
 
 			if ( AwaitingLine != null ) AwaitingLine( this, EventArgs.Empty );
 
-			if ( WaitHandle.WaitAny( lineEvents ) == 0 ) lock ( nextLines ) { e.Line = nextLines.Dequeue(); }
+			if ( WaitHandle.WaitAny( lineEvents ) == 0 )
+			{
+				lock ( nextLines ) { e.Line = nextLines.Dequeue(); }
+				System.Diagnostics.Debug.WriteLine( string.Format( "Processing line: [{0}]", e.Line ) );
+			}
 			else engine.Stop();
 		}
 

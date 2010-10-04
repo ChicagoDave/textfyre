@@ -1,25 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.IO;
+using System.IO.IsolatedStorage;
 using System.Linq;
-using System.Net;
+using System.Reflection;
+using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-using Microsoft.Phone.Controls;
-using Textfyre.VM;
-using System.IO;
-using System.Reflection;
-using Cjc.SilverFyre;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Threading;
-using System.IO.IsolatedStorage;
 using System.Windows.Media.Imaging;
-using Microsoft.Phone.Shell;
+using System.Xml.Linq;
+using Cjc.SilverFyre;
+using Microsoft.Phone.Controls;
+using ShadowWP7.SavedGames;
+using Textfyre.VM;
 
 namespace ShadowWP7
 {
@@ -27,13 +25,15 @@ namespace ShadowWP7
     {
 		private EngineClient engine;
 		private AutoResetEvent saveLoadItemSelected = new AutoResetEvent( false );
-		private AutoResetEvent saveLoadCompleted = new AutoResetEvent( false );
+		private AutoResetEvent saveCompleted = new AutoResetEvent( false );
+		private AutoResetEvent loadCompleted = new AutoResetEvent( false );
 		private AutoResetEvent saveLoadCancelled = new AutoResetEvent( false );
 
-		private string saveGameFile = "Shadow.ulx.save";
 		private IsolatedStorageFile storageFile = IsolatedStorageFile.GetUserStoreForApplication();
-		private bool waitingForSave = false;
 		private bool waitingForLoad = false;
+
+		private ManualResetEvent gameLoaded = new ManualResetEvent( false );
+		private bool engineRunning = false;
 		private bool engineWaitingForKey = false;
 
 		private int? selectedCommandIndex = null;
@@ -47,12 +47,14 @@ namespace ShadowWP7
 		private bool scrollCancelled;
 		private int lastScrolledPage;
 
+		private SavedGameSlot savedGameSlot;
+
 		private string baseUrl;
 		private string storyUrl;
 
 		public string StoryTitle { get { return "The Shadow in the Cathedral"; } }
 		public ObservableCollection<StoryHistoryItem> History { get; private set; }
-		public ObservableCollection<PageBase> Pages { get; private set; }
+		public ObservableCollection<object> Pages { get; private set; }
 		public StoryState CurrentState { get; private set; }
 		public ItemsControlHelper StoryItemsHelper { get; private set; }
 		public double PageWidth { get; private set; }
@@ -60,47 +62,157 @@ namespace ShadowWP7
         // Constructor
         public MainPage()
         {
+			DataContext = this;
 			History = new ObservableCollection<StoryHistoryItem>();
-			Pages = new ObservableCollection<PageBase>();
+			Pages = new ObservableCollection<object>();
 
             InitializeComponent();
 
-			Pages.Add( new ImagePage( null, new BitmapImage( new Uri( "Images/shadow-wp7.jpg", UriKind.Relative ) ) ) );
-
-			engine = Load( "shadow-1.2.ulx" );
-
-			engine.OutputReady += engine_OutputReady;
-			engine.LoadRequested += engine_LoadRequested;
-			engine.SaveRequested += engine_SaveRequested;
-			engine.AwaitingLine += delegate { engineWaitingForKey = false; };
-			engine.AwaitingKey += delegate { engineWaitingForKey = true; };
+			Pages.Add( new ImagePage( new BitmapImage( new Uri( "Images/shadow-wp7.jpg", UriKind.Relative ) ) ) );
+			Pages.Add( new SavedGamesPage() );
 
 			StoryItemsHelper = new ItemsControlHelper( storyItems );
 
-			if ( storageFile.FileExists( saveGameFile ) )
-			{
-				waitingForLoad = true;
-				engine.SendLine( "RESTORE" );
-				engine.SendLine( "LOOK" );
-			}
-
+			Loaded += delegate { ScrollTo( 1 ); };
 //			Application.Current.Host.Settings.EnableCacheVisualization = true;
 //			Application.Current.Host.Settings.EnableRedrawRegions = true;
 		}
 
+		private void SavedGamesView_Selected( object sender, SavedGames.SavedGamesView.SavedGameEventArgs e )
+		{
+			ShowPleaseWait();
+
+			var selected = e.SavedGameSlot;
+
+			if ( selected.Game == null ) selected.Game = new SavedGameSummary( "Loading...", "0", "0" );
+
+			LoadGame( selected );
+		}
+
+		private void LoadGame( SavedGameSlot savedGameSlot )
+		{
+			if ( savedGameSlot != null ) SaveGame();
+			if ( engine != null ) StopEngine();
+
+			History.Clear();
+
+			engine = LoadEngine( "shadow-1.2.ulx" );
+			StartEngine();
+
+			this.savedGameSlot = savedGameSlot;
+
+			if ( savedGameSlot != null )
+			{
+				if ( savedGameSlot.HasProgressFile( storageFile ) )
+				{
+					using ( var stream = new MemoryStream() )
+					{
+						using ( var loadStream = savedGameSlot.LoadProgress( storageFile ) )
+						{
+							if ( loadStream != null ) Streams.CopyStream( loadStream, stream );
+						}
+
+						var buffer = stream.ToArray();
+
+						if ( buffer.Length > 0 )
+						{
+							var xml = XElement.Parse( Encoding.UTF8.GetString( buffer, 0, buffer.Length ) );
+
+							AddHistory( StoryHistoryItem.FromXml( xml ), true );
+						}
+					}
+				}
+
+				if ( savedGameSlot.HasGameFile( storageFile ) )
+				{
+					waitingForLoad = true;
+
+					engine.SendLine( "RESTORE" );
+					loadCompleted.WaitOne();
+				}
+			}
+		}
+
+		public void SaveGame( bool saveEngineState = true )
+		{
+			if ( engine != null && savedGameSlot != null )
+			{
+				var title = CurrentState.Location;
+				var time = CurrentState.Time;
+				var score = CurrentState.Score;
+				var content = History.Last().ToXml();
+
+				using ( var stream = new MemoryStream( Encoding.UTF8.GetBytes( content.ToString() ) ) )
+				{
+					savedGameSlot.SaveProgress( storageFile, title, time, score, stream );
+				}
+
+				if ( saveEngineState )
+				{
+					engine.SendLine( "SAVE" );
+					saveCompleted.WaitOne();
+				}
+			}
+		}
+
+		private void StartEngine()
+		{
+			if ( !engineRunning )
+			{
+				engineRunning = true;
+
+				engine.OutputReady += engine_OutputReady;
+				engine.LoadRequested += engine_LoadRequested;
+				engine.SaveRequested += engine_SaveRequested;
+				engine.AwaitingLine += engine_AwaitingLine;
+				engine.AwaitingKey += engine_AwaitingKey;
+
+				engine.Start();
+			}
+		}
+
+		public void StopEngine()
+		{
+			if ( engineRunning )
+			{
+				engineRunning = false;
+
+				engine.Stop();
+
+				engine.OutputReady -= engine_OutputReady;
+				engine.LoadRequested -= engine_LoadRequested;
+				engine.SaveRequested -= engine_SaveRequested;
+				engine.AwaitingLine -= engine_AwaitingLine;
+				engine.AwaitingKey -= engine_AwaitingKey;
+
+				Dispatcher.BeginInvoke( delegate
+				{
+					while ( Pages.Count > 2 ) Pages.RemoveAt( 2 );
+					History.Clear();
+				} );
+			}
+		}
+
 		void engine_LoadRequested( object sender, SaveRestoreEventArgs e )
 		{
-			if ( storageFile.FileExists( saveGameFile ) )
+			if ( savedGameSlot != null )
 			{
-				e.Stream = storageFile.OpenFile( saveGameFile, FileMode.Open );
+				var stream = new NotifyingStream( savedGameSlot.GetLoadGameStream( storageFile ) );
+				stream.Closed += delegate { loadCompleted.Set(); };
+
+				e.Stream = stream;
 			}
 		}
 
 		void engine_SaveRequested( object sender, SaveRestoreEventArgs e )
 		{
-			waitingForSave = true;
+			if ( savedGameSlot != null )
+			{
+				var stream = new NotifyingStream( savedGameSlot.GetSaveGameStream( storageFile ) );
+				stream.Closed += delegate { saveCompleted.Set(); };
 
-			e.Stream = storageFile.CreateFile( saveGameFile );
+				e.Stream = stream;
+			}
 		}
 
 		protected override void OnBackKeyPress( CancelEventArgs e )
@@ -117,8 +229,6 @@ namespace ShadowWP7
 
 		void engine_OutputReady( object sender, OutputReadyEventArgs e )
 		{
-			if ( waitingForSave ) saveLoadCompleted.Set();
-
 			if ( e.Package.Count > 0 )
 			{
 				if ( waitingForLoad )
@@ -132,22 +242,23 @@ namespace ShadowWP7
 				{
 					Dispatcher.BeginInvoke( delegate
 					{
-						pleaseWait.IsHitTestVisible = false;
-						FindStoryboard( "hidePleaseWait" ).Begin();
-
+						HidePleaseWait();
 						AddHistory( new StoryHistoryItem( null, e ), true );
 					} );
 				}
 			}
 		}
 
-		public void SaveGame()
+		void engine_AwaitingLine( object sender, EventArgs e )
 		{
-			if ( engine != null )
-			{
-				engine.SendLine( "SAVE" );
-				saveLoadCompleted.WaitOne();
-			}
+			engineWaitingForKey = false;
+			HidePleaseWait();
+		}
+
+		void engine_AwaitingKey( object sender, EventArgs e )
+		{
+			engineWaitingForKey = true;
+			HidePleaseWait();
 		}
 
 		private void ScrollToEnd()
@@ -158,7 +269,7 @@ namespace ShadowWP7
 //			else targetVerticalOffset = storyScroll.ScrollableHeight;
 		}
 
-		private EngineClient Load( string filename )
+		private EngineClient LoadEngine( string filename )
 		{
 			using ( var story = Assembly.GetExecutingAssembly().GetManifestResourceStream( "ShadowWP7." + filename ) )
 			{
@@ -170,7 +281,7 @@ namespace ShadowWP7
 		{
 			History.Add( item );
 
-			int? nextPage = null;
+			int? nextPage = lastScrolledPage < 1 ? 0 : (int?)null;
 
 			if ( item.OutputArgs != null )
 			{
@@ -202,6 +313,8 @@ namespace ShadowWP7
 				RaisePropertyChanged( "CurrentState" );
 			}
 
+			SaveGame( false );
+
 			if ( scrollToEnd ) Dispatcher.BeginInvoke( delegate { ScrollTo( nextPage.GetValueOrDefault( Pages.Count - 1 ) ); } );
 		}
 
@@ -222,8 +335,7 @@ namespace ShadowWP7
 		{
 			History.Last().SetCommand( e.Command );
 
-			pleaseWait.IsHitTestVisible = true;
-			FindStoryboard( "showPleaseWait" ).Begin();
+			ShowPleaseWait();
 
 			if ( engine != null ) engine.SendLine( e.Command );
 		}
@@ -278,9 +390,8 @@ namespace ShadowWP7
 
 							if ( engineWaitingForKey )
 							{
-								self.Focus();
-								pleaseWait.IsHitTestVisible = true;
-								FindStoryboard( "showPleaseWait" ).Begin();
+								this.Focus();
+								ShowPleaseWait();
 							}
 						}
 
@@ -293,14 +404,7 @@ namespace ShadowWP7
 
 		private void OnCommandKeyUp( object sender, KeyEventArgs e )
 		{
-			switch ( e.Key )
-			{
-				case Key.Enter:
-					{
-						this.Focus();
-						break;
-					}
-			}
+			if ( e.Key == Key.Enter || e.PlatformKeyCode == 10 ) this.Focus();
 		}
 
 		private void OnSaveLoadHidden( object sender, EventArgs e )
@@ -380,8 +484,6 @@ namespace ShadowWP7
 					? panOffset
 					: ( e.TotalManipulation.Translation.X > 0 ) ? Math.Floor( offset ) : Math.Ceiling( offset );
 
-				System.Diagnostics.Debug.WriteLine( string.Format( "Scrolling from {0} to {1}", offset, targetOffset ) );
-
 				ScrollTo( (int)Math.Round( targetOffset ) );
 
 				e.Handled = true;
@@ -435,12 +537,31 @@ namespace ShadowWP7
 			}
 		}
 
+		private void ShowPleaseWait()
+		{
+			Dispatcher.BeginInvoke( delegate
+			{
+				pleaseWait.IsHitTestVisible = true;
+				FindStoryboard( "showPleaseWait" ).Begin();
+			} );
+		}
+
+		private void HidePleaseWait()
+		{
+			Dispatcher.BeginInvoke( delegate
+			{
+				pleaseWait.IsHitTestVisible = false;
+				FindStoryboard( "hidePleaseWait" ).Begin();
+			} );
+		}
+
 		private void ScrollTo( int page )
 		{
 			var scrollHost = StoryItemsHelper.ScrollHost;
 
 			if ( scrollHost != null )
 			{
+				System.Diagnostics.Debug.WriteLine( string.Format( "Scrolling from {0} to {1}", scrollHost.HorizontalOffset, page ) );
 				ScrollHelper.ScrollTo( scrollHost, Resources, "scrollStory", scrollHost.HorizontalOffset, page );
 			}
 
