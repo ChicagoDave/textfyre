@@ -53,7 +53,11 @@ namespace ShadowWP7
         {
 			var page = this.RootFrame.Content as MainPage;
 
-			if ( page != null ) page.SaveGame();
+			if ( page != null )
+			{
+				page.SaveGame();
+				page.StopEngine();
+			}
         }
 
         // Code to execute when the application is closing (eg, user hit Back)

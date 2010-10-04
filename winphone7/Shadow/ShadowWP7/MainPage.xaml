@@ -9,6 +9,7 @@
 	xmlns:system="clr-namespace:System;assembly=mscorlib"
 	xmlns:local="clr-namespace:ShadowWP7"
 	xmlns:convert="clr-namespace:Cjc.SilverFyre"
+	xmlns:saved="clr-namespace:ShadowWP7.SavedGames"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -16,8 +17,7 @@
 	OrientationChanged="self_OrientationChanged"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     shell:SystemTray.IsVisible="False"
-	IsTabStop="True"
-	x:Name="self">
+	IsTabStop="True">
 
 	<phone:PhoneApplicationPage.Resources>
 
@@ -89,6 +89,11 @@
 			<Image Name="image" Source="{Binding ImageSource}" Stretch="Uniform" VerticalAlignment="Bottom" CacheMode="BitmapCache"/>
 		</DataTemplate>
 
+		<!-- Saved games -->
+		<DataTemplate x:Key="SavedGamesPage">
+			<saved:SavedGamesView x:Name="savedGames" Selected="SavedGamesView_Selected"/>
+		</DataTemplate>
+
 		<!-- Prologue -->
 		<DataTemplate x:Key="ProloguePage">
 			<local:StoryPageView/>
@@ -114,7 +119,7 @@
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent" SizeChanged="LayoutRoot_SizeChanged">
 
-		<local:ImplicitTemplateItemsControl x:Name="storyItems" ItemsSource="{Binding Pages, ElementName=self}"
+		<local:ImplicitTemplateItemsControl x:Name="storyItems" ItemsSource="{Binding Pages}"
 											ItemContainerStyle="{StaticResource pageStyle}"
 											ManipulationStarted="OnManipulationStarted"
 											ManipulationDelta="OnManipulationDelta"
@@ -135,7 +140,7 @@
 		</local:ImplicitTemplateItemsControl>
 
 		<Grid x:Name="pleaseWait" Background="#A0000000" Opacity="0" IsHitTestVisible="False">
-			<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48"><Run Text="Please wait..."/></TextBlock>
+<!--			<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48"><Run Text="Please wait..."/></TextBlock>-->
 		</Grid>
 
 	</Grid>

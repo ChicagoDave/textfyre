@@ -147,12 +147,9 @@ namespace ShadowWP7
 				var isLower = char.IsLower( partialWord.FirstOrDefault() );
 
 				foreach ( var w in words ) Words.Add( isLower ? w.ToLower() : w.ToUpper() );
-
-				Dispatcher.BeginInvoke( delegate
-				{
-					pageScroll.ScrollToVerticalOffset( pageScroll.ExtentHeight );
-				} );
 			}
+
+			ScrollHelper.ScrollTo( pageScroll, Resources, "scrollPage", pageScroll.VerticalOffset, pageScroll.ExtentHeight );
 		}
 
 		private void suggestedWord_Click( object sender, RoutedEventArgs e )
@@ -194,6 +191,11 @@ namespace ShadowWP7
 			}
 		}
 
+		private void commandInput_GotFocus( object sender, RoutedEventArgs e )
+		{
+
+		}
+
 		private void commandInput_LostFocus( object sender, RoutedEventArgs e )
 		{
 			if ( focusCommand )
@@ -233,7 +235,7 @@ namespace ShadowWP7
 
 		private void commandInput_KeyUp( object sender, KeyEventArgs e )
 		{
-			if ( e.Key == Key.Enter ) commandButton_Click( sender, e );
+			if ( e.Key == Key.Enter || e.PlatformKeyCode == 10 ) commandButton_Click( sender, e );
 
 			if ( KeyUp != null ) KeyUp( this, e );
 		}

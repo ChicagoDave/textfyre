@@ -55,7 +55,7 @@ namespace ShadowWP7
 
 		private void OnCommandKeyDown( object sender, KeyEventArgs e )
 		{
-			if ( e.Key == Key.Enter && !string.IsNullOrEmpty( inputBox.Text.Trim() ) )
+			if ( ( e.Key == Key.Enter || e.PlatformKeyCode == 10 ) && !string.IsNullOrEmpty( inputBox.Text.Trim() ) )
 			{
 				OnCommand( sender, null );
 				inputBox.Text = "";

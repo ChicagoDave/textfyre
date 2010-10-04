@@ -13,12 +13,11 @@ using Textfyre.VM;
 
 namespace Cjc.SilverFyre
 {
-	public class ImagePage : PageBase
+	public class ImagePage
 	{
 		public ImageSource ImageSource { get; private set; }
 
-		public ImagePage( StoryHistoryItem storyHistoryItem, ImageSource imageSource )
-			: base( storyHistoryItem )
+		public ImagePage( ImageSource imageSource )
 		{
 			this.ImageSource = imageSource;
 		}

@@ -20,6 +20,7 @@ namespace Cjc.SilverFyre
 				bool? nullable = (bool?)value;
 				flag = nullable.HasValue ? nullable.Value : false;
 			}
+			else flag = ( value != null );
 
 			if ( parameter != null && parameter.ToString().ToLower() == "not" ) flag = !flag;
 

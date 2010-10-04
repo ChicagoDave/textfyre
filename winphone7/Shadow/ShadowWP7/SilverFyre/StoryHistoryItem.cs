@@ -39,6 +39,33 @@ namespace Cjc.SilverFyre
 			RaisePropertyChanged( "HasCommand" );
 		}
 
+		public XElement ToXml()
+		{
+			return new XElement( "Item",
+				( Command != null ) ? new XElement( "Command", Command ) : null,
+				new XElement( "Package",
+					from c in OutputArgs.Package
+					select new XElement(
+						c.Key.ToString(),
+						c.Value.IsXml() ? (object)XElement.Parse( "<X>" + c.Value + "</X>" ).Elements() : c.Value ) ) );
+		}
+
+		public static StoryHistoryItem FromXml( XElement element )
+		{
+			var command = (string)element.Element( "Command" );
+
+			var package = ( from e in element.Elements( "Package" ).Elements()
+							let c = (OutputChannel)Enum.Parse( typeof( OutputChannel ), e.Name.LocalName, true )
+							select new
+							{
+								Key = c,
+								Value = e.HasElements ? string.Concat( e.Elements().Select( n => n.ToString() ).ToArray() ) : e.Value
+							} )
+							.ToDictionary( c => c.Key, c => c.Value );
+
+			return new StoryHistoryItem( command, new OutputReadyEventArgs { Package = package } );
+		}
+
 		#region INotifyPropertyChanged Members
 
 		public event PropertyChangedEventHandler PropertyChanged;

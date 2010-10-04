@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:controls="clr-namespace:System.Windows.Controls"
 	xmlns:convert="clr-namespace:Cjc.SilverFyre"
+	xmlns:local="clr-namespace:ShadowWP7"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -19,10 +20,28 @@
 
 		<Style x:Key="wordStyle" TargetType="TextBlock" BasedOn="{StaticResource historyTextWord}"/>
 		<Style x:Key="punctuationStyle" TargetType="TextBlock" BasedOn="{StaticResource historyTextWord}"/>
-
-		<convert:BooleanToVisibilityConverter x:Key="booleanVisibilityConverter" />
+																													
+		<convert:BooleanToVisibilityConverter x:Key="booleanVisibilityConverter" />									
 		<convert:InlineWordConverter x:Key="inlineWordConverter" WordStyle="{StaticResource wordStyle}" PunctuationStyle="{StaticResource punctuationStyle}" />
 		<convert:InlineParagraphConverter x:Key="inlineParagraphConverter"/>
+
+		<Storyboard x:Key="scrollPage">
+			<!-- Animate from top to bottom -->
+			<DoubleAnimation
+				Storyboard.TargetName="scrollPageMediator"
+				Storyboard.TargetProperty="VerticalOffset"
+				From="0"
+				To="1"
+				Duration="0:0:0.1">
+				<DoubleAnimation.EasingFunction>
+					<ExponentialEase EasingMode="EaseOut"/>
+				</DoubleAnimation.EasingFunction>
+			</DoubleAnimation>
+		</Storyboard>
+
+		<!-- Mediator that forwards the property changes -->
+		<local:ScrollViewerOffsetMediator x:Name="scrollPageMediator"/>
+
 <!--
 		<DataTemplate x:Key="paragraphTemplate">
 			<TextBlock Loaded="OnParagraphLoaded" Unloaded="OnParagraphUnloaded"
@@ -120,7 +139,7 @@
 								</Grid.ColumnDefinitions>
 								<TextBlock Grid.Column="0" Text="&gt;" Style="{StaticResource promptText}" VerticalAlignment="Center" Margin="10,0,0,0"/>
 								<TextBox Grid.Column="1" Name="commandInput" Style="{StaticResource commandText}" VerticalAlignment="Center"
-											TextChanged="commandInput_TextChanged" LostFocus="commandInput_LostFocus"
+											TextChanged="commandInput_TextChanged" GotFocus="commandInput_GotFocus" LostFocus="commandInput_LostFocus"
 											KeyDown="commandInput_KeyDown" KeyUp="commandInput_KeyUp">
 									<TextBox.InputScope>
 										<InputScope>
@@ -136,7 +155,8 @@
 					<Border Name="suggestionArea" Margin="0,-10,0,0"
 							ManipulationStarted="suggestionArea_ManipulationStarted"
 							ManipulationDelta="suggestionArea_ManipulationDelta"
-							ManipulationCompleted="suggestionArea_ManipulationCompleted">
+							ManipulationCompleted="suggestionArea_ManipulationCompleted"
+							Height="60">
 						<ItemsControl ItemsSource="{Binding Words, ElementName=self}">
 							<ItemsControl.Template>
 								<ControlTemplate>
