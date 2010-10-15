@@ -42,56 +42,6 @@
 		<!-- Mediator that forwards the property changes -->
 		<local:ScrollViewerOffsetMediator x:Name="scrollPageMediator"/>
 
-<!--
-		<DataTemplate x:Key="paragraphTemplate">
-			<TextBlock Loaded="OnParagraphLoaded" Unloaded="OnParagraphUnloaded"
-							   TextWrapping="Wrap" Margin="10,0,10,10" Style="{StaticResource historyText}"/>-->
-<!--			<StackPanel>-->
-
-<!--				<ItemsControl ItemsSource="{Binding Inlines, Converter={StaticResource inlineWordConverter}}" Margin="10,5,10,5">
-					<ItemsControl.ItemsPanel>
-						<ItemsPanelTemplate>
-							<controls:WrapPanel ManipulationStarted="storyPanel_ManipulationStarted"
-												ManipulationDelta="storyPanel_ManipulationDelta"
-												ManipulationCompleted="storyPanel_ManipulationCompleted" />
-						</ItemsPanelTemplate>
-					</ItemsControl.ItemsPanel>
-				</ItemsControl>-->
-
-<!--				<ContentPresenter Content="{Binding TextBlock}" Margin="0,0,0,10" Style="{StaticResource historyText}"/>-->
-<!--				<Grid>
-					<TextBlock Loaded="OnParagraphLoaded" Unloaded="OnParagraphUnloaded"
-							   TextWrapping="Wrap" Margin="10,0,10,10" Style="{StaticResource historyText}"/>
-					<controls:WrapPanel Visibility="Collapsed"/>
-				</Grid>
-			</StackPanel>-->
-<!--
-		</DataTemplate>
-
-		<DataTemplate x:Key="deathTemplate">
-			<TextBlock Loaded="OnParagraphLoaded" Unloaded="OnParagraphUnloaded" TextWrapping="Wrap" Margin="0,0,0,10" Style="{StaticResource deathText}"/>
-		</DataTemplate>
-
-		<DataTemplate x:Key="pageContent">
-
-			<StackPanel Name="pageContent" CacheMode="BitmapCache">
-
-				<ItemsControl ItemsSource="{Binding Paragraphs}" ItemTemplate="{StaticResource paragraphTemplate}"/>
-
-				<Grid Margin="10" Visibility="{Binding HasCommand, Converter={StaticResource booleanVisibilityConverter}}">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition/>
-					</Grid.ColumnDefinitions>
-					<TextBlock Grid.Column="0" Text="&gt;" Margin="0,0,5,0" Style="{StaticResource historyPromptText}" VerticalAlignment="Top"/>
-					<TextBlock Grid.Column="1" Text="{Binding Command}" Style="{StaticResource historyCommandText}" VerticalAlignment="Top"
-								   TextWrapping="Wrap"/>
-				</Grid>-->
-<!--
-			</StackPanel>
-
-		</DataTemplate>
--->
 	</UserControl.Resources>
 
 	<Grid x:Name="LayoutRoot">
@@ -116,11 +66,11 @@
 
 		<ScrollViewer Grid.Row="1" Name="pageScroll" HorizontalScrollBarVisibility="Disabled">
 
-			<StackPanel Background="Black">
+			<StackPanel Name="pageContent">
 
 				<Image Name="contentImage" VerticalAlignment="Top"/>
 
-				<StackPanel Visibility="{Binding HasInput, Converter={StaticResource booleanVisibilityConverter}}">
+				<StackPanel Name="footer" Visibility="{Binding HasInput, Converter={StaticResource booleanVisibilityConverter}}">
 					<Grid>
 						<Rectangle Fill="#F9EBBC" Margin="0,50,0,50"/>
 						<Grid>
@@ -160,7 +110,7 @@
 						<ItemsControl ItemsSource="{Binding Words, ElementName=self}">
 							<ItemsControl.Template>
 								<ControlTemplate>
-									<ScrollViewer x:Name="storyScroll" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" IsTabStop="False">
+									<ScrollViewer x:Name="suggestionScroll" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" IsTabStop="False">
 										<ItemsPresenter />
 									</ScrollViewer>
 								</ControlTemplate>

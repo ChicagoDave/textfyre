@@ -31,14 +31,11 @@ namespace ShadowWP7.Controls
 
 		private const int cacheSize = 5;
 
-		private Canvas canvas = new Canvas();
 		private int currentPage = 1;
 		private double startOffset = 0;
 		private bool cancelScroll;
 		private bool? isScrolling;
-		private bool adjusting = false;
 		private UIElement hookedElement;
-		private BackgroundWorker pageRequestWorker = new BackgroundWorker();
 		private Storyboard scrollStoryboard = new Storyboard();
 		private DoubleAnimation scrollTimeline = new DoubleAnimation();
 
@@ -53,13 +50,14 @@ namespace ShadowWP7.Controls
 			ManipulationCompleted += OnManipulationCompleted;
 			Unloaded += VirtualizingPager_Unloaded;
 
+//			Background = new SolidColorBrush( Colors.Yellow );
+
 			scrollTimeline = new DoubleAnimation
 			{
-				Duration = new Duration( TimeSpan.FromMilliseconds( 500 ) ),
-				EasingFunction = new PowerEase
+				Duration = new Duration( TimeSpan.FromMilliseconds( 250 ) ),
+				EasingFunction = new SineEase
 				{
-					EasingMode = EasingMode.EaseOut,
-					Power = 5
+					EasingMode = EasingMode.EaseOut
 				}
 			};
 
@@ -67,11 +65,40 @@ namespace ShadowWP7.Controls
 			Storyboard.SetTargetProperty( scrollTimeline, new PropertyPath( VirtualizingPager.ScrollOffsetProperty ) );
 
 			scrollStoryboard.Children.Add( scrollTimeline );
-
-			pageRequestWorker.DoWork += pageRequestWorker_DoWork;
+			scrollStoryboard.Completed += scrollStoryboard_Completed;
 		}
 
-		void pageRequestWorker_DoWork( object sender, DoWorkEventArgs e )
+		void scrollStoryboard_Completed( object sender, EventArgs e )
+		{
+			var pages = (int)Math.Floor( ScrollOffset );
+
+			if ( pages != 0 )
+			{
+				currentPage -= pages;
+				ScrollOffset -= pages;
+				startOffset -= pages;
+			}
+		}
+
+		public int CurrentPage
+		{
+			get { return currentPage; }
+
+			set
+			{
+				Dispatcher.BeginInvoke( delegate
+				{
+					if ( value != currentPage )
+					{
+						scrollTimeline.To = currentPage - value;
+						scrollStoryboard.Begin();
+					}
+					else InvalidateArrange();
+				} );
+			}
+		}
+
+		private void pageRequestWorker_DoWork( object sender, DoWorkEventArgs e )
 		{
 			// Get page and cache it...
 			var index = (int)e.Argument;
@@ -86,12 +113,22 @@ namespace ShadowWP7.Controls
 					page.DataContext = request.DataContext;
 					page.Content = request.DataContext;
 					page.ContentTemplate = FindTemplate( request.DataContext );
-					page.Opacity = 0;
+					page.HorizontalContentAlignment = HorizontalAlignment.Stretch;
+					page.VerticalContentAlignment = VerticalAlignment.Stretch;
 
 					var removed = new List<FrameworkElement>();
+					var isNew = true;
 
 					lock ( cachedPages )
 					{
+						FrameworkElement previous;
+
+						if ( cachedPages.TryGetValue( index, out previous ) && previous != null && Children.Contains( previous ) )
+						{
+							removed.Add( previous );
+							isNew = false;
+						}
+
 						cachedPages[ index ] = page;
 
 						// Clear old cached pages
@@ -100,7 +137,7 @@ namespace ShadowWP7.Controls
 							var firstIndex = cachedPageIndexes[ 0 ];
 							var cachedPage = cachedPages[ firstIndex ];
 
-							if ( cachedPage != null ) removed.Add( cachedPage );
+							if ( cachedPage != null && Children.Contains( cachedPage ) ) removed.Add( cachedPage );
 
 							cachedPages.Remove( firstIndex );
 							cachedPageIndexes.RemoveAt( 0 );
@@ -110,12 +147,46 @@ namespace ShadowWP7.Controls
 					Children.Add( page );
 					foreach ( var remove in removed ) Children.Remove( remove );
 
+					if ( isNew )
+					{
+						page.Opacity = 0;
+						ShowPage( page );
+					}
+
 					InvalidateArrange();
 				} );
 			}
+			else
+			{
+				lock ( cachedPages )
+				{
+					cachedPages.Remove( index );
+					cachedPageIndexes.Remove( index );
+				}
+			}
 		}
 
-		void OnManipulationStarted( object sender, ManipulationStartedEventArgs e )
+		private void ShowPage( FrameworkElement page )
+		{
+			if ( page.Opacity < 1 )
+			{
+				var storyboard = new Storyboard();
+
+				var timeline = new DoubleAnimation
+				{
+					To = 1,
+					Duration = new Duration( TimeSpan.FromMilliseconds( 250 ) )
+				};
+
+				Storyboard.SetTarget( timeline, page );
+				Storyboard.SetTargetProperty( timeline, new PropertyPath( ContentControl.OpacityProperty ) );
+
+				storyboard.Children.Add( timeline );
+				storyboard.Begin();
+			}
+		}
+
+		private void OnManipulationStarted( object sender, ManipulationStartedEventArgs e )
 		{
 			isScrolling = null;
 			startOffset = ScrollOffset;
@@ -123,7 +194,7 @@ namespace ShadowWP7.Controls
 			if ( sender != e.OriginalSource ) HookManipulationSource( e.OriginalSource as UIElement );// VisualTreeHelper.GetParent( (DependencyObject)e.OriginalSource ) as UIElement );
 		}
 
-		void OnManipulationDelta( object sender, ManipulationDeltaEventArgs e )
+		private void OnManipulationDelta( object sender, ManipulationDeltaEventArgs e )
 		{
 			if ( !isScrolling.HasValue ) isScrolling = Math.Abs( e.DeltaManipulation.Translation.X ) > Math.Abs( e.DeltaManipulation.Translation.Y );
 
@@ -137,7 +208,7 @@ namespace ShadowWP7.Controls
 			}
 		}
 
-		void OnManipulationCompleted( object sender, ManipulationCompletedEventArgs e )
+		private void OnManipulationCompleted( object sender, ManipulationCompletedEventArgs e )
 		{
 			scrollTimeline.To = cancelScroll
 				? 0
@@ -173,7 +244,6 @@ namespace ShadowWP7.Controls
 			}
 		}
 
-
 		void VirtualizingPager_Unloaded( object sender, RoutedEventArgs e )
 		{
 			lock ( cachedPages )
@@ -204,27 +274,7 @@ namespace ShadowWP7.Controls
 
 		private void OnScrollPositionChanged( DependencyPropertyChangedEventArgs args )
 		{
-			if ( !adjusting )
-			{
-				adjusting = true;
-
-				if ( ScrollOffset < -1.0 )
-				{
-					currentPage++;
-					ScrollOffset += 1.0;
-					startOffset += 1.0;
-				}
-				else if ( ScrollOffset > 1.0 )
-				{
-					currentPage--;
-					ScrollOffset -= 1.0;
-					startOffset -= 1.0;
-				}
-
-				InvalidateArrange();
-
-				adjusting = false;
-			}
+			InvalidateArrange();
 		}
 
 		private FrameworkElement GetCurrentPageContent()
@@ -259,7 +309,7 @@ namespace ShadowWP7.Controls
 
 		protected override Size ArrangeOverride( Size finalSize )
 		{
-			SetOpacity();
+			SetVisibility();
 
 			var currentPageContent = GetCurrentPageContent();
 			var nextPageContent = GetNextPageContent();
@@ -282,6 +332,9 @@ namespace ShadowWP7.Controls
 			{
 				if ( cachedPages.ContainsKey( index ) )
 				{
+					System.Diagnostics.Debug.WriteLine( string.Format( "Retrieving cached page {0}{1} (Current {2})",
+						index, cachedPages[ index ] != null ? " (Loaded)" : null, currentPage ) );
+
 					cachedPageIndexes.Remove( index );
 					cachedPageIndexes.Add( index );
 
@@ -289,17 +342,27 @@ namespace ShadowWP7.Controls
 				}
 				else if ( PageRequest != null )
 				{
+					System.Diagnostics.Debug.WriteLine( "Requesting page " + index );
+
 					cachedPages[ index ] = null;
 					cachedPageIndexes.Add( index );
 
-					if ( !pageRequestWorker.IsBusy ) pageRequestWorker.RunWorkerAsync( index );
+					LoadPage( index );
 				}
 			}
 
 			return null;
 		}
 
-		private void SetOpacity()
+		public void LoadPage( int index )
+		{
+			var worker = new BackgroundWorker();
+			worker.DoWork += pageRequestWorker_DoWork;
+
+			worker.RunWorkerAsync( index );
+		}
+
+		private void SetVisibility()
 		{
 			var visible = new[] { currentPage, GetNextPage() };
 
@@ -307,7 +370,9 @@ namespace ShadowWP7.Controls
 			{
 				foreach ( var page in cachedPages.Where( cp => cp.Value != null ) )
 				{
-					page.Value.Opacity = visible.Contains( page.Key ) ? 1 : 0;
+					var visibility = visible.Contains( page.Key ) ? Visibility.Visible : Visibility.Collapsed;
+
+					if ( page.Value.Visibility != visibility ) page.Value.Visibility = visibility;
 				}
 			}
 		}
@@ -330,6 +395,22 @@ namespace ShadowWP7.Controls
 			}
 
 			return null;
+		}
+
+		public void Clear()
+		{
+			currentPage = 1;
+			startOffset = 0;
+			cancelScroll = false;
+			isScrolling = null;
+
+			Children.Clear();
+
+			lock ( cachedPages )
+			{
+				cachedPages.Clear();
+				cachedPageIndexes.Clear();
+			}
 		}
 	}
 }

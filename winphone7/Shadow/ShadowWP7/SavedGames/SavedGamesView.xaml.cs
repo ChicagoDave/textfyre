@@ -11,10 +11,11 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.IO.IsolatedStorage;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace ShadowWP7.SavedGames
 {
-	public partial class SavedGamesView : UserControl
+	public partial class SavedGamesView : UserControl, INotifyPropertyChanged
 	{
 		public class SavedGameEventArgs : EventArgs
 		{
@@ -51,6 +52,17 @@ namespace ShadowWP7.SavedGames
 
 				Selected( this, new SavedGameEventArgs( item ) );
 			}
+		}
+
+		public void Invalidate()
+		{
+			RaisePropertyChanged( "Slots" );		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		public void RaisePropertyChanged( string propertyName )
+		{
+			if ( PropertyChanged != null ) PropertyChanged( this, new PropertyChangedEventArgs( propertyName ) );
 		}
 	}
 }

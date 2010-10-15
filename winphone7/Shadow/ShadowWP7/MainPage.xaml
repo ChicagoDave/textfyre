@@ -8,36 +8,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:system="clr-namespace:System;assembly=mscorlib"
 	xmlns:local="clr-namespace:ShadowWP7"
+	xmlns:controls="clr-namespace:ShadowWP7.Controls"
 	xmlns:convert="clr-namespace:Cjc.SilverFyre"
 	xmlns:saved="clr-namespace:ShadowWP7.SavedGames"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
-	OrientationChanged="self_OrientationChanged"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
     shell:SystemTray.IsVisible="False"
 	IsTabStop="True">
 
 	<phone:PhoneApplicationPage.Resources>
 
 		<convert:BooleanToVisibilityConverter x:Key="booleanVisibilityConverter" />
-
-		<Storyboard x:Key="showSaveLoad">
-			<DoubleAnimation Storyboard.TargetName="saveLoadPopup" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.5"/>
-		</Storyboard>
-
-		<Storyboard x:Key="hideSaveLoad">
-			<DoubleAnimation Storyboard.TargetName="saveLoadPopup" Storyboard.TargetProperty="Opacity" To="0" Completed="OnSaveLoadHidden"/>
-		</Storyboard>
-
-		<Storyboard x:Key="showLoading">
-			<DoubleAnimation Storyboard.TargetName="loading" Storyboard.TargetProperty="Opacity" To="1" BeginTime="0:0:1" Duration="0:0:1"/>
-		</Storyboard>
-
-		<Storyboard x:Key="hideLoading">
-			<DoubleAnimation Storyboard.TargetName="loading" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.5" Completed="OnLoadingHidden"/>
-		</Storyboard>
 
 		<Storyboard x:Key="showPleaseWait">
 			<DoubleAnimation Storyboard.TargetName="pleaseWait" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:1"/>
@@ -47,39 +31,15 @@
 			<DoubleAnimation Storyboard.TargetName="pleaseWait" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:1"/>
 		</Storyboard>
 
-		<Storyboard x:Key="scrollStory" Completed="scrollStory_Completed">
-			<!-- Animate from left to right -->
-			<DoubleAnimation
-				Storyboard.TargetName="scrollStoryMediator"
-				Storyboard.TargetProperty="HorizontalOffset"
-				From="0"
-				To="1"
-				Duration="0:0:0.1">
-				<DoubleAnimation.EasingFunction>
-					<ExponentialEase EasingMode="EaseOut"/>
-				</DoubleAnimation.EasingFunction>
-			</DoubleAnimation>
+		<Storyboard x:Key="showSavedGames">
+			<DoubleAnimation Storyboard.TargetName="savedGames" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.25"
+							 Completed="savedGames_VisibilityChanged"/>
 		</Storyboard>
 
-		<!-- Mediator that forwards the property changes -->
-		<local:ScrollViewerOffsetMediator x:Name="scrollStoryMediator"/>
-
-		<Storyboard x:Key="scrollPage">
-			<!-- Animate from top to bottom -->
-			<DoubleAnimation
-				Storyboard.TargetName="scrollPageMediator"
-				Storyboard.TargetProperty="VerticalOffset"
-				From="0"
-				To="1"
-				Duration="0:0:0.1">
-				<DoubleAnimation.EasingFunction>
-					<ExponentialEase EasingMode="EaseOut"/>
-				</DoubleAnimation.EasingFunction>
-			</DoubleAnimation>
+		<Storyboard x:Key="hideSavedGames">
+			<DoubleAnimation Storyboard.TargetName="savedGames" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.25"
+							 Completed="savedGames_VisibilityChanged"/>
 		</Storyboard>
-
-		<!-- Mediator that forwards the property changes -->
-		<local:ScrollViewerOffsetMediator x:Name="scrollPageMediator"/>
 
 		<Style x:Key="pageStyle" TargetType="ContentPresenter">
 		</Style>
@@ -89,74 +49,62 @@
 			<Image Name="image" Source="{Binding ImageSource}" Stretch="Uniform" VerticalAlignment="Bottom" CacheMode="BitmapCache"/>
 		</DataTemplate>
 
-		<!-- Saved games -->
-		<DataTemplate x:Key="SavedGamesPage">
-			<saved:SavedGamesView x:Name="savedGames" Selected="SavedGamesView_Selected"/>
-		</DataTemplate>
-
 		<!-- Prologue -->
 		<DataTemplate x:Key="ProloguePage">
-			<local:StoryPageView/>
+			<local:StoryPageView>
+				<local:StoryPageView.Background>
+					<ImageBrush ImageSource="Images/BlackPaper.jpg"/>
+				</local:StoryPageView.Background>
+			</local:StoryPageView>
 		</DataTemplate>
 
 		<!-- Credits -->
 		<DataTemplate x:Key="CreditsPage">
-			<local:StoryPageView/>
+			<local:StoryPageView>
+				<local:StoryPageView.Background>
+					<ImageBrush ImageSource="Images/BlackPaper.jpg"/>
+				</local:StoryPageView.Background>
+			</local:StoryPageView>
 		</DataTemplate>
 
 		<!-- Story -->
 		<DataTemplate x:Key="StoryPage">
-			<local:StoryPageView CommandEntered="OnCommand" KeyDown="OnCommandKeyDown" KeyUp="OnCommandKeyUp"/>
+			<local:StoryPageView CommandEntered="OnCommand" KeyDown="OnCommandKeyDown" KeyUp="OnCommandKeyUp">
+				<local:StoryPageView.Background>
+					<ImageBrush ImageSource="Images/BlackPaper.jpg"/>
+				</local:StoryPageView.Background>
+			</local:StoryPageView>
 		</DataTemplate>
 
 		<!-- Death -->
 		<DataTemplate x:Key="DeathPage">
-			<local:StoryPageView/>
+			<local:StoryPageView>
+				<local:StoryPageView.Background>
+					<ImageBrush ImageSource="Images/BlackPaper.jpg"/>
+				</local:StoryPageView.Background>
+			</local:StoryPageView>
 		</DataTemplate>
 
 	</phone:PhoneApplicationPage.Resources>
 
-    <!--LayoutRoot contains the root grid where all other page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent" SizeChanged="LayoutRoot_SizeChanged">
+	<phone:PhoneApplicationPage.ApplicationBar>
+		<shell:ApplicationBar x:Name="globalApplicationBar" Opacity="1">
+			<shell:ApplicationBar.MenuItems>
+				<shell:ApplicationBarMenuItem x:Name="saveMenuItem" Text="Save" Click="save_Click" />
+				<shell:ApplicationBarMenuItem x:Name="loadMenuItem" Text="Load" Click="load_Click" />
+			</shell:ApplicationBar.MenuItems>
+			<shell:ApplicationBarIconButton x:Name="save" IconUri="/icons/appbar.save.rest.png" IsEnabled="True" Text="save" Click="save_Click"/>
+			<shell:ApplicationBarIconButton x:Name="load" IconUri="/icons/appbar.folder.rest.png" IsEnabled="True" Text="load" Click="load_Click"/>
+			<shell:ApplicationBarIconButton x:Name="cancel" IconUri="/icons/appbar.cancel.rest.png" IsEnabled="False" Text="cancel" Click="cancel_Click"/>
+		</shell:ApplicationBar>
+	</phone:PhoneApplicationPage.ApplicationBar>
 
-		<local:ImplicitTemplateItemsControl x:Name="storyItems" ItemsSource="{Binding Pages}"
-											ItemContainerStyle="{StaticResource pageStyle}"
-											ManipulationStarted="OnManipulationStarted"
-											ManipulationDelta="OnManipulationDelta"
-											ManipulationCompleted="OnManipulationCompleted">
-			<ItemsControl.Template>
-				<ControlTemplate>
-					<ScrollViewer x:Name="storyScroll" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
-						<ItemsPresenter />
-					</ScrollViewer>
-				</ControlTemplate>
-			</ItemsControl.Template>
-			<ItemsControl.ItemsPanel>
-				<ItemsPanelTemplate>
-					<VirtualizingStackPanel Name="storyItemsPanel" CanHorizontallyScroll="True" CanVerticallyScroll="False"
-											Orientation="Horizontal" CleanUpVirtualizedItemEvent="storyItemsPanel_CleanUpVirtualizedItemEvent" />
-				</ItemsPanelTemplate>
-			</ItemsControl.ItemsPanel>
-		</local:ImplicitTemplateItemsControl>
+	<!--LayoutRoot contains the root grid where all other page content is placed-->
+	<Grid x:Name="LayoutRoot" Background="Black">
 
-		<Grid x:Name="pleaseWait" Background="#A0000000" Opacity="0" IsHitTestVisible="False">
-<!--			<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48"><Run Text="Please wait..."/></TextBlock>-->
-		</Grid>
+		<controls:VirtualizingPager x:Name="pager" PageRequest="pager_PageRequest"/>
+		<saved:SavedGamesView x:Name="savedGames" Opacity="0" Selected="savedGames_Selected" IsHitTestVisible="False"/>
 
 	</Grid>
-    
-    <!-- Sample code showing usage of ApplicationBar
-    <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton x:Name="appbar_button1" IconUri="/Images/appbar_button1.png" Text="Button 1"></shell:ApplicationBarIconButton>
-            <shell:ApplicationBarIconButton x:Name="appbar_button2" IconUri="/Images/appbar_button2.png" Text="Button 2"></shell:ApplicationBarIconButton>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem x:Name="menuItem1" Text="MenuItem 1"></shell:ApplicationBarMenuItem>
-                <shell:ApplicationBarMenuItem x:Name="menuItem2" Text="MenuItem 2"></shell:ApplicationBarMenuItem>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
-    -->
-
 
 </phone:PhoneApplicationPage>

@@ -51,21 +51,18 @@ namespace ShadowWP7.SavedGames
 			CreatedTime = DateTime.Now;
 
 			System.Diagnostics.Debug.WriteLine( string.Format( "Updating SavedGameSummary ({0})", title ) );
-
-			RaisePropertyChanged( "Title" );
-			RaisePropertyChanged( "Time" );
-			RaisePropertyChanged( "Score" );
-			RaisePropertyChanged( "CreatedTime" );
 		}
 
-		public string ArchiveFile { get { return GetFilename( "History" ); } }
-		public string ProgressFile { get { return GetFilename( "Current" ); } }
+		public string ArchiveFile( int? turn = null ) { return string.Format( "History_{0}", turn ?? Turn ); }
 
-		private string GetFilename( string index )
+		public string ProgressFile
 		{
-			return string.Format(
-				"{0}_{1}_{2}_{3}_{4}_{5}",
-				index, Turn, Encode( Title ), Encode( Time ), Encode( Score ), Encode( XmlConvert.ToString( CreatedTime ) ) );
+			get
+			{
+				return string.Format(
+					"Current_{0}_{1}_{2}_{3}_{4}",
+					Turn, Encode( Title ), Encode( Time ), Encode( Score ), Encode( XmlConvert.ToString( CreatedTime ) ) );
+			}
 		}
 
 		private static string Encode( string value )
