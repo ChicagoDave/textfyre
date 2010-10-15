@@ -25,6 +25,8 @@
     <SilverlightAppEntry>ShadowWP7.App</SilverlightAppEntry>
     <ValidateXaml>true</ValidateXaml>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <Utf8Output>true</Utf8Output>
+    <ExpressionBlendVersion>4.0.20901.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -67,7 +69,9 @@
     <Compile Include="CommandInput.xaml.cs">
       <DependentUpon>CommandInput.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\VirtualizingPager.cs" />
     <Compile Include="Helpers\ImplicitTemplateItemsControl.cs" />
+    <Compile Include="Helpers\StoryCache.cs" />
     <Compile Include="NotifyingStream.cs" />
     <Compile Include="PageHostControl.cs" />
     <Compile Include="SavedGames\ExtensionMethods.cs" />
@@ -149,10 +153,19 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\appbar.cancel.rest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\appbar.folder.rest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\appbar.save.rest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\TornPaperBottomSmall.jpg" />
     <Content Include="Images\TornPaperBottom.jpg" />
     <Content Include="Images\TornPaper.png" />
-    <Content Include="Images\BlackPaper.jpg" />
+    <Resource Include="Images\BlackPaper.jpg" />
     <Content Include="Images\GrainyText.jpg" />
     <Content Include="Images\BlackPaperTorn.jpg" />
     <Content Include="Images\BlackPaperTorn.png" />
@@ -174,7 +187,6 @@
       <Name>Textfyre.VM</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -29,22 +29,6 @@ namespace ShadowWP7
 		}
 
 		private Dictionary<Type, DataTemplate> templates = new Dictionary<Type, DataTemplate>();
-		/*
-		protected override Size ArrangeOverride( Size finalSize )
-		{
-			var helper = new ItemsControlHelper( this );
-			var offset = 0d;
-
-			if ( helper.ItemsHost != null )
-			{
-				foreach ( var child in helper.ItemsHost.Children.OfType<FrameworkElement>() )
-				{
-					child.Width = finalSize.Width;
-				}
-			}
-
-			return base.ArrangeOverride( finalSize );
-		}*/
 
 		protected override void PrepareContainerForItemOverride( DependencyObject element, object item )
 		{

@@ -19,16 +19,17 @@ namespace Cjc.SilverFyre
 {
 	public class StoryHistoryItem : INotifyPropertyChanged
 	{
+		private StoryState storyState;
+
 		public StoryHistoryItem( string command, OutputReadyEventArgs output )
 		{
 			this.Command = command;
 			this.OutputArgs = output;
-			this.State = ( output != null ) ? new StoryState( output ) : null;
 		}
 
 		public bool HasCommand { get { return Command != null; } }
 
-		public StoryState State { get; private set; }
+		public StoryState State { get { return ( storyState != null ) ? storyState : storyState = new StoryState( OutputArgs ); } }
 		public string Command { get; private set; }
 		public OutputReadyEventArgs OutputArgs { get; private set; }
 

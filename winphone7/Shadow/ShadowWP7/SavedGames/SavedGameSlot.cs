@@ -13,29 +13,8 @@ namespace ShadowWP7.SavedGames
 {
 	public class SavedGameSlot : DependencyObject
 	{
-		public static readonly DependencyProperty SlotProperty = DependencyProperty.Register(
-			"Slot",
-			typeof( int ),
-			typeof( SavedGameSlot ),
-			null );
-
-		public int Slot
-		{
-			get { return (int)GetValue( SlotProperty ); }
-			set { SetValue( SlotProperty, value ); }
-		}
-
-		public static readonly DependencyProperty GameProperty = DependencyProperty.Register(
-			"Game",
-			typeof( SavedGameSummary ),
-			typeof( SavedGameSlot ),
-			new PropertyMetadata( OnGameChanged ) );
-
-		public SavedGameSummary Game
-		{
-			get { try { return (SavedGameSummary)GetValue( GameProperty ); } catch ( Exception ex ) { throw; } }
-			set { try { SetValue( GameProperty, value ); } catch ( Exception ex ) { throw; } }
-		}
+		public int Slot { get; set; }
+		public SavedGameSummary Game { get; set; }
 
 		public string SlotName { get; set; }
 		public string ProgressFile { get; private set; }
@@ -49,10 +28,6 @@ namespace ShadowWP7.SavedGames
 			}
 
 			return this;
-		}
-
-		private static void OnGameChanged( DependencyObject obj, DependencyPropertyChangedEventArgs args )
-		{
 		}
 	}
 }

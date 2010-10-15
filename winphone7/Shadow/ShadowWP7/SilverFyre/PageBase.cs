@@ -19,14 +19,15 @@ namespace Cjc.SilverFyre
 {
 	public abstract class PageBase : INotifyPropertyChanged
 	{
+		private OutputChannel channel;
+		private Paragraph[] paragraphs;
+
 		public StoryHistoryItem StoryHistoryItem { get; private set; }
 
 		public StoryState State { get { return ( StoryHistoryItem != null ) ? StoryHistoryItem.State : null; } }
-		public Paragraph[] Paragraphs { get; protected set; }
+		public Paragraph[] Paragraphs { get { return ( paragraphs != null ) ? paragraphs : paragraphs = GetParagraphs( channel ); } }
 		public virtual string Command { get { return ( StoryHistoryItem != null ) ? StoryHistoryItem.Command : null; } }
 		public string CommandText { get; set; }
-
-		public string[] Words { get { return "This is a test of a long bit of text, where every word is a hyperlink. It should be possible to click any word".Split( ' ' ).ToArray(); } }
 
 		public virtual bool HasInput { get { return false; } }
 		public virtual bool HasCommand { get { return false; } }
@@ -52,7 +53,7 @@ namespace Cjc.SilverFyre
 		public PageBase( StoryHistoryItem storyHistoryItem, OutputChannel channel )
 			: this( storyHistoryItem )
 		{
-			this.Paragraphs = GetParagraphs( channel );
+			this.channel = channel;
 		}
 
 		protected Paragraph[] GetParagraphs( OutputChannel channel )

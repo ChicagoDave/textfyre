@@ -39,7 +39,6 @@ namespace ShadowWP7
 			Words = new ObservableCollection<string>();
 
 			InitializeComponent();
-//			timer.Tick += OnTimerTick;
 		}
 
 		public ObservableCollection<string> Words { get; private set; }
@@ -76,6 +75,8 @@ namespace ShadowWP7
 				}
 			}
 
+			footer.Background = Background;
+
 			return base.ArrangeOverride( finalSize );
 		}
 
@@ -85,6 +86,8 @@ namespace ShadowWP7
 
 			var textStyle = Application.Current.Resources[ "historyText" ] as Style;
 			var stackPanel = new StackPanel();
+
+			stackPanel.Background = Background;
 
 			foreach ( var paragraph in page.Paragraphs )
 			{
@@ -96,14 +99,25 @@ namespace ShadowWP7
 				stackPanel.Children.Add( textBlock );
 			}
 
+			if ( page.Command != null )
+			{
+				var textBlock = new TextBlock();
+				textBlock.Style = Application.Current.Resources[ "historyCommandText" ] as Style;
+				textBlock.Text = page.Command;
+				textBlock.Margin = new Thickness( 10 );
+
+				stackPanel.Children.Add( textBlock );
+			}
+
 			var border = stackPanel;
 
 			border.Measure( new Size( size.Width, double.PositiveInfinity ) );
 			border.Arrange( new Rect( new Point(), new Size( size.Width, border.DesiredSize.Height ) ) );
 
-			var bitmap = new WriteableBitmap(
-				(int)border.ActualWidth,
-				(int)Math.Max( border.ActualHeight, size.Height - 149 ) );
+			var actualHeight = (int)Math.Max( border.ActualHeight, size.Height - ( page.HasInput ? 149 : 0 ) );
+			var bitmap = new WriteableBitmap( (int)border.ActualWidth, actualHeight );
+
+			border.Arrange( new Rect( new Point(), new Size( size.Width, actualHeight ) ) );
 
 			bitmap.Render( border, null );
 
@@ -149,6 +163,7 @@ namespace ShadowWP7
 				foreach ( var w in words ) Words.Add( isLower ? w.ToLower() : w.ToUpper() );
 			}
 
+			suggestionArea.InvalidateMeasure();
 			ScrollHelper.ScrollTo( pageScroll, Resources, "scrollPage", pageScroll.VerticalOffset, pageScroll.ExtentHeight );
 		}
 

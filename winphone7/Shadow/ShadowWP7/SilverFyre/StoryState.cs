@@ -15,7 +15,7 @@ using System.ComponentModel;
 
 namespace Cjc.SilverFyre
 {
-	public class StoryState : DependencyObject, INotifyPropertyChanged
+	public class StoryState : INotifyPropertyChanged
 	{
 		public StoryState( OutputReadyEventArgs outputArgs )
 		{
@@ -26,18 +26,7 @@ namespace Cjc.SilverFyre
 			else Prompt = ">";
 		}
 
-		public static readonly DependencyProperty CommandTextProperty = DependencyProperty.Register(
-			"CommandText",
-			typeof( string ),
-			typeof( StoryState ),
-			null );
-
-		public string CommandText
-		{
-			get { return (string)GetValue( CommandTextProperty ); }
-			set { SetValue( CommandTextProperty, value ); }
-		}
-
+		public string CommandText { get; set; }
 		public string Location { get; private set; }
 		public string Score { get; private set; }
 		public string Time { get; private set; }

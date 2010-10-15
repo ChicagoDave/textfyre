@@ -36,9 +36,10 @@ namespace ShadowWP7
 
 		public override void Close()
 		{
-			if ( Closed != null ) Closed( this, EventArgs.Empty );
-
+			stream.Close();
 			base.Close();
+
+			if ( Closed != null ) Closed( this, EventArgs.Empty );
 		}
 	}
 }
