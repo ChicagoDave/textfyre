@@ -171,10 +171,13 @@ namespace ShadowWP7
 				}
 				else
 				{
+					ApplicationBar.IsVisible = false;
+
 					var nextPage = ( storyCache.LastPage ?? 0 ) + 1;
 
 					storyCache.SaveProgress( lastCommand, new StoryHistoryItem( null, e ) );
 
+					pager.PurgeCache( nextPage );
 					pager.LoadPage( pager.CurrentPage );
 					pager.CurrentPage = nextPage;
 				}
