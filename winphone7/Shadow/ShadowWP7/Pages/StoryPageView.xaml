@@ -1,0 +1,180 @@
+﻿<UserControl
+    x:Class="ShadowWP7.Pages.StoryPageView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:controls="clr-namespace:System.Windows.Controls"
+	xmlns:convert="clr-namespace:Cjc.SilverFyre"
+	xmlns:local="clr-namespace:ShadowWP7"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True"
+	x:Name="self">
+
+	<UserControl.Resources>
+
+		<Style x:Key="wordStyle" TargetType="TextBlock" BasedOn="{StaticResource historyTextWord}"/>
+		<Style x:Key="punctuationStyle" TargetType="TextBlock" BasedOn="{StaticResource historyTextWord}"/>
+																													
+		<convert:BooleanToVisibilityConverter x:Key="booleanVisibilityConverter" />									
+		<convert:InlineWordConverter x:Key="inlineWordConverter" WordStyle="{StaticResource wordStyle}" PunctuationStyle="{StaticResource punctuationStyle}" />
+		<convert:InlineParagraphConverter x:Key="inlineParagraphConverter"/>
+
+		<Storyboard x:Key="scrollPage">
+			<!-- Animate from top to bottom -->
+			<DoubleAnimation
+				Storyboard.TargetName="scrollPageMediator"
+				Storyboard.TargetProperty="VerticalOffset"
+				From="0"
+				To="1"
+				Duration="0:0:0.1">
+				<DoubleAnimation.EasingFunction>
+					<ExponentialEase EasingMode="EaseOut"/>
+				</DoubleAnimation.EasingFunction>
+			</DoubleAnimation>
+		</Storyboard>
+
+		<!-- Mediator that forwards the property changes -->
+		<local:ScrollViewerOffsetMediator x:Name="scrollPageMediator"/>
+
+	</UserControl.Resources>
+
+	<Grid x:Name="LayoutRoot">
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+
+		<Grid Grid.Row="0">
+			<Grid.Background>
+				<ImageBrush ImageSource="../Images/OldPaper.jpg"/>
+			</Grid.Background>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+			<TextBlock Grid.Column="1" Text="{Binding State.Location}" HorizontalAlignment="Center" Margin="10"
+					   Style="{StaticResource locationText}"/>
+		</Grid>
+
+		<ScrollViewer Grid.Row="1" Name="pageScroll" HorizontalScrollBarVisibility="Disabled">
+
+			<StackPanel Name="pageContent">
+
+				<Image Name="contentImage" VerticalAlignment="Top"/>
+
+				<StackPanel Name="footer" Visibility="{Binding HasInput, Converter={StaticResource booleanVisibilityConverter}}">
+					<Grid>
+						<Rectangle Fill="#F9EBBC" Margin="0,50,0,50"/>
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+							</Grid.RowDefinitions>
+							<Image Grid.Row="0" Source="../Images/PaperTearTop.png" Stretch="Fill" Height="50"/>
+							<Image Grid.Row="2" Source="../Images/PaperTearBottom.png" Stretch="Fill" Height="50"/>
+							<Grid Grid.Row="1" Margin="0,-20,0,-15">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto"/>
+									<ColumnDefinition/>
+									<ColumnDefinition Width="Auto"/>
+								</Grid.ColumnDefinitions>
+								<TextBlock Grid.Column="0" Text="&gt;" Style="{StaticResource promptText}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+								<TextBox Grid.Column="1" Name="commandInput" Style="{StaticResource commandText}" VerticalAlignment="Center"
+											TextChanged="commandInput_TextChanged" GotFocus="commandInput_GotFocus" LostFocus="commandInput_LostFocus"
+											KeyDown="commandInput_KeyDown" KeyUp="commandInput_KeyUp">
+									<TextBox.InputScope>
+										<InputScope>
+											<InputScopeName NameValue="PhraseList" />
+										</InputScope>
+									</TextBox.InputScope>
+								</TextBox>
+								<Button Grid.Column="2" Name="commandButton" Content="Go" Click="commandButton_Click" Foreground="Navy" BorderBrush="Navy"/>
+							</Grid>
+						</Grid>
+					</Grid>
+
+					<Border Name="suggestionArea" Margin="0,-10,0,0"
+							ManipulationStarted="suggestionArea_ManipulationStarted"
+							ManipulationDelta="suggestionArea_ManipulationDelta"
+							ManipulationCompleted="suggestionArea_ManipulationCompleted"
+							Height="60">
+						<ItemsControl ItemsSource="{Binding Words, ElementName=self}">
+							<ItemsControl.Template>
+								<ControlTemplate>
+									<ScrollViewer x:Name="suggestionScroll" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" IsTabStop="False">
+										<ItemsPresenter />
+									</ScrollViewer>
+								</ControlTemplate>
+							</ItemsControl.Template>
+							<ItemsControl.ItemsPanel>
+								<ItemsPanelTemplate>
+									<VirtualizingStackPanel Orientation="Horizontal" CanHorizontallyScroll="True" CanVerticallyScroll="False"/>
+								</ItemsPanelTemplate>
+							</ItemsControl.ItemsPanel>
+							<ItemsControl.ItemTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding}" Padding="10" Style="{StaticResource suggestedWord}"
+										ManipulationStarted="suggestion_ManipulationStarted"
+										ManipulationCompleted="suggestion_ManipulationCompleted"/>
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+						</ItemsControl>
+					</Border>
+
+				</StackPanel>
+
+			</StackPanel>
+
+		</ScrollViewer>
+
+<!--
+		<ToolTip Name="selectedWordTooltip" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" IsHitTestVisible="False" >
+			<ToolTip.RenderTransform>
+				<TranslateTransform x:Name="selectedWordTransform" X="100" Y="100"/>
+			</ToolTip.RenderTransform>
+			<ToolTip.Template>
+				<ControlTemplate TargetType="ToolTip">
+					<Border x:Name="wordBorder" CornerRadius="5" Background="#C0E0FFE0" Padding="10" Opacity="0" RenderTransformOrigin="0.5,0.5">
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualStateGroup.Transitions>
+									<VisualTransition To="Pressed" GeneratedDuration="0:0:0.1"/>
+									<VisualTransition To="Normal" GeneratedDuration="0:0:0.1"/>
+								</VisualStateGroup.Transitions>
+								<VisualState x:Name="Normal">
+									<Storyboard>
+										<DoubleAnimation To="0" Storyboard.TargetName="wordBorder" Storyboard.TargetProperty="Opacity"/>
+										<DoubleAnimation To="1" Storyboard.TargetName="wordBorderScale" Storyboard.TargetProperty="ScaleX"/>
+										<DoubleAnimation To="1" Storyboard.TargetName="wordBorderScale" Storyboard.TargetProperty="ScaleY"/>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Pressed">
+									<Storyboard>
+										<DoubleAnimation To="1" Storyboard.TargetName="wordBorder" Storyboard.TargetProperty="Opacity"/>
+										<DoubleAnimation To="1.1" Storyboard.TargetName="wordBorderScale" Storyboard.TargetProperty="ScaleX"/>
+										<DoubleAnimation To="1.1" Storyboard.TargetName="wordBorderScale" Storyboard.TargetProperty="ScaleY"/>
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<Border.RenderTransform>
+							<ScaleTransform x:Name="wordBorderScale"/>
+						</Border.RenderTransform>
+						<TextBlock Name="selectedWord" Style="{StaticResource historyTextWord}" Foreground="Black" Text="{TemplateBinding Content}"/>
+					</Border>
+				</ControlTemplate>
+			</ToolTip.Template>
+		</ToolTip>
+-->
+	</Grid>
+
+</UserControl>

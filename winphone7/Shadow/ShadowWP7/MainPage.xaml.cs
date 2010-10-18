@@ -219,7 +219,7 @@ namespace ShadowWP7
 
 		private void OnCommandKeyDown( object sender, KeyEventArgs e )
 		{
-			var pageView = sender as StoryPageView;
+			var pageView = sender as Pages.StoryPageView;
 
 			switch ( e.Key )
 			{
@@ -298,7 +298,18 @@ namespace ShadowWP7
 
 		private void pager_PageRequest( object sender, Controls.PageRequestEventArgs e )
 		{
-			if ( storyCache != null ) e.DataContext = storyCache.GetPage( e.Index );
+			if ( storyCache != null )
+			{
+				var outsideBounds = 0;
+				e.DataContext = storyCache.GetPage( e.Index, out outsideBounds );
+
+				switch ( outsideBounds )
+				{
+					case 1: e.DataContext = new Pages.MenuPage(); break;
+					case 2: e.DataContext = new Pages.Intro1(); break;
+					case 3: e.DataContext = new Pages.Intro2(); break;
+				}
+			}
 		}
 
 		private void load_Click( object sender, EventArgs e )

@@ -72,6 +72,17 @@
     <Compile Include="Controls\VirtualizingPager.cs" />
     <Compile Include="Helpers\ImplicitTemplateItemsControl.cs" />
     <Compile Include="Helpers\StoryCache.cs" />
+    <Compile Include="Pages\IntroPage1.xaml.cs">
+      <DependentUpon>IntroPage1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\IntroPage2.xaml.cs">
+      <DependentUpon>IntroPage2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\IntroPages.cs" />
+    <Compile Include="Pages\MenuPage.cs" />
+    <Compile Include="Pages\MenuView.xaml.cs">
+      <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NotifyingStream.cs" />
     <Compile Include="PageHostControl.cs" />
     <Compile Include="SavedGames\ExtensionMethods.cs" />
@@ -108,7 +119,7 @@
     <Compile Include="SilverFyre\PageBase.cs" />
     <Compile Include="SilverFyre\StoryState.cs" />
     <Compile Include="ScrollHelper.cs" />
-    <Compile Include="StoryPageView.xaml.cs">
+    <Compile Include="Pages\StoryPageView.xaml.cs">
       <DependentUpon>StoryPageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Streams.cs" />
@@ -132,11 +143,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\IntroPage1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\IntroPage2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\MenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Resources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="SavedGames\SavedGamesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="StoryPageView.xaml">
+    <Page Include="Pages\StoryPageView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -178,6 +205,11 @@
     <Content Include="Images\PaperTearBottom.png" />
     <Content Include="Images\PaperTearTop.png" />
     <Content Include="Images\shadow-wp7.jpg" />
+    <Content Include="Pages\Image1.png" />
+    <Content Include="Pages\Image2.png" />
+    <Content Include="Pages\Image3.png" />
+    <Content Include="Pages\Image4.png" />
+    <Resource Include="Pages\parchmnt.jpg" />
     <Content Include="SplashScreenImage.jpg" />
     <Content Include="Images\OldPaper.jpg" />
   </ItemGroup>

@@ -11,6 +11,7 @@
 	xmlns:controls="clr-namespace:ShadowWP7.Controls"
 	xmlns:convert="clr-namespace:Cjc.SilverFyre"
 	xmlns:saved="clr-namespace:ShadowWP7.SavedGames"
+	xmlns:pages="clr-namespace:ShadowWP7.Pages"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -51,38 +52,53 @@
 
 		<!-- Prologue -->
 		<DataTemplate x:Key="ProloguePage">
-			<local:StoryPageView>
-				<local:StoryPageView.Background>
+			<pages:StoryPageView>
+				<pages:StoryPageView.Background>
 					<ImageBrush ImageSource="Images/BlackPaper.jpg"/>
-				</local:StoryPageView.Background>
-			</local:StoryPageView>
+				</pages:StoryPageView.Background>
+			</pages:StoryPageView>
 		</DataTemplate>
 
 		<!-- Credits -->
 		<DataTemplate x:Key="CreditsPage">
-			<local:StoryPageView>
-				<local:StoryPageView.Background>
+			<pages:StoryPageView>
+				<pages:StoryPageView.Background>
 					<ImageBrush ImageSource="Images/BlackPaper.jpg"/>
-				</local:StoryPageView.Background>
-			</local:StoryPageView>
+				</pages:StoryPageView.Background>
+			</pages:StoryPageView>
 		</DataTemplate>
 
 		<!-- Story -->
 		<DataTemplate x:Key="StoryPage">
-			<local:StoryPageView CommandEntered="OnCommand" KeyDown="OnCommandKeyDown" KeyUp="OnCommandKeyUp">
-				<local:StoryPageView.Background>
+			<pages:StoryPageView CommandEntered="OnCommand" KeyDown="OnCommandKeyDown" KeyUp="OnCommandKeyUp">
+				<pages:StoryPageView.Background>
 					<ImageBrush ImageSource="Images/BlackPaper.jpg"/>
-				</local:StoryPageView.Background>
-			</local:StoryPageView>
+				</pages:StoryPageView.Background>
+			</pages:StoryPageView>
 		</DataTemplate>
 
 		<!-- Death -->
 		<DataTemplate x:Key="DeathPage">
-			<local:StoryPageView>
-				<local:StoryPageView.Background>
+			<pages:StoryPageView>
+				<pages:StoryPageView.Background>
 					<ImageBrush ImageSource="Images/BlackPaper.jpg"/>
-				</local:StoryPageView.Background>
-			</local:StoryPageView>
+				</pages:StoryPageView.Background>
+			</pages:StoryPageView>
+		</DataTemplate>
+
+		<!-- Menu -->
+		<DataTemplate x:Key="MenuPage">
+			<pages:MenuView/>
+		</DataTemplate>
+
+		<!-- Intro page 1 -->
+		<DataTemplate x:Key="Intro1">
+			<pages:IntroPage1/>
+		</DataTemplate>
+
+		<!-- Intro page 2 -->
+		<DataTemplate x:Key="Intro2">
+			<pages:IntroPage2/>
 		</DataTemplate>
 
 	</phone:PhoneApplicationPage.Resources>
