@@ -88,7 +88,7 @@
 	</phone:PhoneApplicationPage.Resources>
 
 	<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar x:Name="globalApplicationBar" Opacity="1">
+		<shell:ApplicationBar x:Name="globalApplicationBar" IsVisible="False" Opacity="0.7" >
 			<shell:ApplicationBar.MenuItems>
 				<shell:ApplicationBarMenuItem x:Name="saveMenuItem" Text="Save" Click="save_Click" />
 				<shell:ApplicationBarMenuItem x:Name="loadMenuItem" Text="Load" Click="load_Click" />
@@ -102,7 +102,11 @@
 	<!--LayoutRoot contains the root grid where all other page content is placed-->
 	<Grid x:Name="LayoutRoot" Background="Black">
 
-		<controls:VirtualizingPager x:Name="pager" PageRequest="pager_PageRequest"/>
+		<controls:VirtualizingPager x:Name="pager" PageRequest="pager_PageRequest"
+									MouseLeftButtonUp="pager_MouseLeftButtonUp"
+									ManipulationStarted="pager_ManipulationStarted"
+									ManipulationCompleted="pager_ManipulationCompleted"/>
+
 		<saved:SavedGamesView x:Name="savedGames" Opacity="0" Selected="savedGames_Selected" IsHitTestVisible="False"/>
 
 	</Grid>

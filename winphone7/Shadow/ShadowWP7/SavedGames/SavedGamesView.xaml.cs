@@ -41,7 +41,7 @@ namespace ShadowWP7.SavedGames
 
 		public ObservableCollection<SavedGameSlot> Slots
 		{
-			get { return storageFile.GetSavedGameSlots(); }
+			get { return ( storageFile != null ) ? storageFile.GetSavedGameSlots() : null; }
 		}
 
 		private void ListBox_SelectionChanged( object sender, SelectionChangedEventArgs e )

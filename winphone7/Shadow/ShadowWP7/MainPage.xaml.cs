@@ -4,6 +4,7 @@ using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using Cjc.SilverFyre;
@@ -12,6 +13,7 @@ using Microsoft.Phone.Shell;
 using ShadowWP7.Helpers;
 using ShadowWP7.SavedGames;
 using Textfyre.VM;
+using System.Windows.Controls;
 
 namespace ShadowWP7
 {
@@ -34,6 +36,8 @@ namespace ShadowWP7
 		private bool waitingForSave;
 		private AutoResetEvent saveCompleted = new AutoResetEvent( false );
 		private AutoResetEvent loadCompleted = new AutoResetEvent( false );
+
+		private Point lastManipulation;
 
 		private static readonly string[] saveLoadResponses = new[]
 			{
@@ -367,6 +371,24 @@ namespace ShadowWP7
 		private void savedGames_VisibilityChanged( object sender, EventArgs e )
 		{
 			savedGames.IsHitTestVisible = savedGames.Opacity > 0;
+		}
+
+		private void pager_ManipulationStarted( object sender, ManipulationStartedEventArgs e )
+		{
+			lastManipulation = new Point();
+		}
+
+		private void pager_ManipulationCompleted( object sender, ManipulationCompletedEventArgs e )
+		{
+			lastManipulation = e.TotalManipulation.Translation;
+		}
+
+		private void pager_MouseLeftButtonUp( object sender, MouseButtonEventArgs e )
+		{
+			if ( lastManipulation.X == 0 && lastManipulation.Y == 0 )
+			{
+				ApplicationBar.IsVisible = !ApplicationBar.IsVisible;
+			}
 		}
 	}
 }
