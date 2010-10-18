@@ -362,6 +362,18 @@ namespace ShadowWP7.Controls
 			worker.RunWorkerAsync( index );
 		}
 
+		public void PurgeCache( int index )
+		{
+			lock ( cachedPages )
+			{
+				for ( ; cachedPages.ContainsKey( index ); ++index )
+				{
+					cachedPages.Remove( index );
+					cachedPageIndexes.Remove( index );
+				}
+			}
+		}
+
 		private void SetVisibility()
 		{
 			var visible = new[] { currentPage, GetNextPage() };
