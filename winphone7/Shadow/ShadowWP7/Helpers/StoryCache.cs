@@ -39,8 +39,10 @@ namespace ShadowWP7.Helpers
 			this.SelectedTurn = ( savedGameSlot.Game != null ) ? savedGameSlot.Game.Turn : 1;
 		}
 
-		public PageBase GetPage( int index )
+		public PageBase GetPage( int index, out int outsideBounds )
 		{
+			outsideBounds = 0;
+
 			lock ( pageCache )
 			{
 				if ( savedGameSlot.Game == null ) return null;
@@ -89,10 +91,18 @@ namespace ShadowWP7.Helpers
 						if ( pageCache.ContainsKey( index ) )
 						{
 							SelectedTurn = turn;
+
 							return pageCache[ index ];
 						}
 					}
-					else break;
+					else
+					{
+						outsideBounds = ( scanStep.Value < 0 )
+							? index - minPage
+							: index - maxPage;
+
+						break;
+					}
 				}
 			}
 
