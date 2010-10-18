@@ -1,0 +1,19 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntroHelp", "IntroHelp\IntroHelp.csproj", "{ea5050cb-2ba5-48eb-bb00-58a1e823d63f}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA5050CB-2BA5-48EB-BB00-58A1E823D63F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA5050CB-2BA5-48EB-BB00-58A1E823D63F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA5050CB-2BA5-48EB-BB00-58A1E823D63F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{EA5050CB-2BA5-48EB-BB00-58A1E823D63F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA5050CB-2BA5-48EB-BB00-58A1E823D63F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA5050CB-2BA5-48EB-BB00-58A1E823D63F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
