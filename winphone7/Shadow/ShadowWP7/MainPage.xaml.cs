@@ -171,7 +171,7 @@ namespace ShadowWP7
 				}
 				else
 				{
-					ApplicationBar.IsVisible = false;
+					Dispatcher.BeginInvoke( delegate { ApplicationBar.IsVisible = false; } );
 
 					var nextPage = ( storyCache.LastPage ?? 0 ) + 1;
 
