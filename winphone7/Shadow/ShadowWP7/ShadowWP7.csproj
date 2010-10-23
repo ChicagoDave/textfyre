@@ -51,7 +51,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Phone" />
+    <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="Microsoft.Xna.Framework" />
     <Reference Include="mscorlib" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -69,6 +71,7 @@
     <Compile Include="CommandInput.xaml.cs">
       <DependentUpon>CommandInput.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\HTDocs.cs" />
     <Compile Include="Controls\VirtualizingPager.cs" />
     <Compile Include="Helpers\ImplicitTemplateItemsControl.cs" />
     <Compile Include="Helpers\StoryCache.cs" />
@@ -77,6 +80,9 @@
     </Compile>
     <Compile Include="Pages\IntroPage2.xaml.cs">
       <DependentUpon>IntroPage2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\IntroPage3.xaml.cs">
+      <DependentUpon>IntroPage3.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\IntroPages.cs" />
     <Compile Include="Pages\MenuPage.cs" />
@@ -151,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\IntroPage3.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\MenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -169,6 +179,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="htdocs.txt" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
     <EmbeddedResource Include="shadow-1.2.ulx" />
@@ -205,11 +216,12 @@
     <Content Include="Images\PaperTearBottom.png" />
     <Content Include="Images\PaperTearTop.png" />
     <Content Include="Images\shadow-wp7.jpg" />
-    <Content Include="Pages\Image1.png" />
-    <Content Include="Pages\Image2.png" />
-    <Content Include="Pages\Image3.png" />
-    <Content Include="Pages\Image4.png" />
-    <Resource Include="Pages\parchmnt.jpg" />
+    <Content Include="HTDocs\images\Image1.png" />
+    <Content Include="HTDocs\images\Image2.png" />
+    <Content Include="HTDocs\images\Image3.png" />
+    <Content Include="HTDocs\images\Image4.png" />
+    <Content Include="HTDocs\images\parchmnt.jpg" />
+    <Content Include="HTDocs\intropage1.html" />
     <Content Include="SplashScreenImage.jpg" />
     <Content Include="Images\OldPaper.jpg" />
   </ItemGroup>

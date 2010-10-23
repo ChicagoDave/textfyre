@@ -14,6 +14,7 @@ using ShadowWP7.Helpers;
 using ShadowWP7.SavedGames;
 using Textfyre.VM;
 using System.Windows.Controls;
+using ShadowWP7.Controls;
 
 namespace ShadowWP7
 {
@@ -55,6 +56,8 @@ namespace ShadowWP7
 
 			settings = IsolatedStorageSettings.ApplicationSettings;
 			storageFile = IsolatedStorageFile.GetUserStoreForApplication();
+
+            //HTDocs.MoveFiles(storageFile);
 
 			var savedGameSlots = storageFile.GetSavedGameSlots().ToDictionary( s => s.Slot, s => s );
 
@@ -309,8 +312,8 @@ namespace ShadowWP7
 				switch ( outsideBounds )
 				{
 					case 1: e.DataContext = new Pages.MenuPage(); break;
-					case 2: e.DataContext = new Pages.Intro1(); break;
-					case 3: e.DataContext = new Pages.Intro2(); break;
+					case 2: e.DataContext = new Pages.Intro3(); break;
+					//case 3: e.DataContext = new Pages.Intro2(); break;
 				}
 			}
 		}

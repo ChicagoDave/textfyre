@@ -1,0 +1,31 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls" xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+	mc:Ignorable="d"
+	x:Class="ShadowWP7.Pages.IntroPage3"
+	d:DesignWidth="480" d:DesignHeight="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+		<controls:Panorama Margin="8" Title="panorama">
+			<controls:PanoramaItem Header="item1" Width="365">
+				<phone:WebBrowser x:Name="introweb1" Margin="0,-112,8,13" Loaded="introweb1_Loaded" />
+			</controls:PanoramaItem>
+			<controls:PanoramaItem Header="item2">
+				<Grid/>
+			</controls:PanoramaItem>
+			<controls:PanoramaItem Header="item3">
+				<Grid/>
+			</controls:PanoramaItem>
+		</controls:Panorama>
+	</Grid>
+</UserControl>
