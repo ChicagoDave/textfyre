@@ -54,7 +54,7 @@
 		<DataTemplate x:Key="ProloguePage">
 			<pages:StoryPageView>
 				<pages:StoryPageView.Background>
-					<ImageBrush ImageSource="Images/BlackPaper.jpg"/>
+					<ImageBrush ImageSource="/Images/BlackPaper.jpg"/>
 				</pages:StoryPageView.Background>
 			</pages:StoryPageView>
 		</DataTemplate>
@@ -63,7 +63,7 @@
 		<DataTemplate x:Key="CreditsPage">
 			<pages:StoryPageView>
 				<pages:StoryPageView.Background>
-					<ImageBrush ImageSource="Images/BlackPaper.jpg"/>
+					<ImageBrush ImageSource="/Images/BlackPaper.jpg"/>
 				</pages:StoryPageView.Background>
 			</pages:StoryPageView>
 		</DataTemplate>
@@ -72,7 +72,7 @@
 		<DataTemplate x:Key="StoryPage">
 			<pages:StoryPageView CommandEntered="OnCommand" KeyDown="OnCommandKeyDown" KeyUp="OnCommandKeyUp">
 				<pages:StoryPageView.Background>
-					<ImageBrush ImageSource="Images/BlackPaper.jpg"/>
+					<ImageBrush ImageSource="/Images/BlackPaper.jpg"/>
 				</pages:StoryPageView.Background>
 			</pages:StoryPageView>
 		</DataTemplate>
@@ -81,7 +81,7 @@
 		<DataTemplate x:Key="DeathPage">
 			<pages:StoryPageView>
 				<pages:StoryPageView.Background>
-					<ImageBrush ImageSource="Images/BlackPaper.jpg"/>
+					<ImageBrush ImageSource="/Images/BlackPaper.jpg"/>
 				</pages:StoryPageView.Background>
 			</pages:StoryPageView>
 		</DataTemplate>

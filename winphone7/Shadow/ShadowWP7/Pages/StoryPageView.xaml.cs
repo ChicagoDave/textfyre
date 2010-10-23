@@ -255,6 +255,16 @@ namespace ShadowWP7.Pages
 			if ( KeyUp != null ) KeyUp( this, e );
 		}
 
+		private void tooltip_ManipulationStarted( object sender, ManipulationStartedEventArgs e )
+		{
+			if ( infoArea.Opacity > 0 )
+			{
+				infoArea.IsHitTestVisible = false;
+				( Resources[ "hideInfo" ] as Storyboard ).Begin();
+				e.Handled = true;
+			}
+		}
+
 /*
 		private void OnParagraphLoaded( object sender, RoutedEventArgs e )
 		{

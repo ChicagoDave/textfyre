@@ -192,7 +192,7 @@
     <Content Include="Images\TornPaperBottomSmall.jpg" />
     <Content Include="Images\TornPaperBottom.jpg" />
     <Content Include="Images\TornPaper.png" />
-    <Resource Include="Images\BlackPaper.jpg" />
+    <Content Include="Images\BlackPaper.jpg" />
     <Content Include="Images\GrainyText.jpg" />
     <Content Include="Images\BlackPaperTorn.jpg" />
     <Content Include="Images\BlackPaperTorn.png" />

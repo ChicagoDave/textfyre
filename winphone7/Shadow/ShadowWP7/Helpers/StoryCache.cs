@@ -32,6 +32,8 @@ namespace ShadowWP7.Helpers
 		public StoryHistoryItem SelectedHistoryItem { get; private set; }
 		public StoryHistoryItem CurrentHistoryItem { get; private set; }
 
+		public CreditsPage CreditsPage { get; private set; }
+
 		public StoryCache( SavedGameSlot savedGameSlot, IsolatedStorageFile storageFile )
 		{
 			this.savedGameSlot = savedGameSlot;
@@ -157,7 +159,7 @@ namespace ShadowWP7.Helpers
 			if ( item.OutputArgs != null )
 			{
 				if ( item.OutputArgs.Package.ContainsKey( OutputChannel.Prologue ) ) yield return new ProloguePage( item );
-				if ( item.OutputArgs.Package.ContainsKey( OutputChannel.Credits ) ) yield return new CreditsPage( item );
+				if ( item.OutputArgs.Package.ContainsKey( OutputChannel.Credits ) ) CreditsPage = new CreditsPage( item );
 				if ( item.OutputArgs.Package.ContainsKey( OutputChannel.Death ) ) yield return new DeathPage( item );
 				if ( item.OutputArgs.Package.ContainsKey( OutputChannel.Main ) ) yield return new StoryPage( item );
 			}
