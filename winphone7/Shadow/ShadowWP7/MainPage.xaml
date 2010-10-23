@@ -101,7 +101,12 @@
 			<pages:IntroPage2/>
 		</DataTemplate>
 
-	</phone:PhoneApplicationPage.Resources>
+        <!-- Intro page 2 -->
+        <DataTemplate x:Key="Intro3">
+            <pages:IntroPage3/>
+        </DataTemplate>
+    
+    </phone:PhoneApplicationPage.Resources>
 
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar x:Name="globalApplicationBar" IsVisible="False" Opacity="0.7" >
