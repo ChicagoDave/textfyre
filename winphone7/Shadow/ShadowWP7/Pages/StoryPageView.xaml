@@ -42,6 +42,12 @@
 		<!-- Mediator that forwards the property changes -->
 		<local:ScrollViewerOffsetMediator x:Name="scrollPageMediator"/>
 
+		<Storyboard x:Key="hideInfo">
+			<DoubleAnimation To="0"
+							 Storyboard.TargetName="infoArea"
+							 Storyboard.TargetProperty="Opacity"/>
+		</Storyboard>
+
 	</UserControl.Resources>
 
 	<Grid x:Name="LayoutRoot">
@@ -53,7 +59,7 @@
 
 		<Grid Grid.Row="0">
 			<Grid.Background>
-				<ImageBrush ImageSource="../Images/OldPaper.jpg"/>
+				<ImageBrush ImageSource="parchmnt.jpg"/>
 			</Grid.Background>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
@@ -79,8 +85,8 @@
 								<RowDefinition/>
 								<RowDefinition/>
 							</Grid.RowDefinitions>
-							<Image Grid.Row="0" Source="../Images/PaperTearTop.png" Stretch="Fill" Height="50"/>
-							<Image Grid.Row="2" Source="../Images/PaperTearBottom.png" Stretch="Fill" Height="50"/>
+							<Image Grid.Row="0" Source="/Images/PaperTearTop.png" Stretch="Fill" Height="50"/>
+							<Image Grid.Row="2" Source="/Images/PaperTearBottom.png" Stretch="Fill" Height="50"/>
 							<Grid Grid.Row="1" Margin="0,-20,0,-15">
 								<Grid.ColumnDefinitions>
 									<ColumnDefinition Width="Auto"/>
@@ -136,7 +142,23 @@
 
 		</ScrollViewer>
 
-<!--
+		<Grid Name="infoArea" Background="#B0000000" Grid.RowSpan="2"
+			  Visibility="{Binding Information, Converter={StaticResource booleanVisibilityConverter}}"
+			  ManipulationStarted="tooltip_ManipulationStarted">
+			<ToolTip Name="infoBalloon" HorizontalAlignment="Center" VerticalAlignment="Center"
+					 Margin="50">
+				<ToolTip.Template>
+					<ControlTemplate TargetType="ToolTip">
+						<Border CornerRadius="10" Background="#C0505050" Padding="20">
+							<TextBlock Text="{Binding Information}" Foreground="White"
+									   FontSize="32" TextWrapping="Wrap" TextAlignment="Center"/>
+						</Border>
+					</ControlTemplate>
+				</ToolTip.Template>
+			</ToolTip>
+		</Grid>
+
+		<!--
 		<ToolTip Name="selectedWordTooltip" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" IsHitTestVisible="False" >
 			<ToolTip.RenderTransform>
 				<TranslateTransform x:Name="selectedWordTransform" X="100" Y="100"/>

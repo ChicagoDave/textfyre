@@ -18,6 +18,8 @@ namespace ShadowWP7.Pages
 		public MenuView()
 		{
 			InitializeComponent();
+
+			DataContext = this;
 		}
 	}
 }

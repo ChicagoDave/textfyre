@@ -15,9 +15,16 @@ namespace Cjc.SilverFyre
 {
 	public class ProloguePage : PageBase
 	{
+		private static bool showInformation = true;
+
 		public ProloguePage( StoryHistoryItem storyHistoryItem )
 			: base( storyHistoryItem, OutputChannel.Prologue )
 		{
+			if ( showInformation )
+			{
+				Information = "You can tap the screen to move to the next page.";
+				showInformation = false;
+			}
 		}
 	}
 }

@@ -319,7 +319,7 @@ namespace ShadowWP7
 		{
 			SetSaveLoadEnabled( false );
 
-			SaveGame();
+//			SaveGame();
 			savedGames.Invalidate();			
 
 			FindStoryboard( "showSavedGames" ).Begin();
@@ -401,7 +401,16 @@ namespace ShadowWP7
 		{
 			if ( lastManipulation.X == 0 && lastManipulation.Y == 0 )
 			{
-				ApplicationBar.IsVisible = !ApplicationBar.IsVisible;
+				int outsideBounds;
+
+				if ( storyCache != null && storyCache.GetPage( pager.CurrentPage + 1, out outsideBounds ) != null )
+				{
+					pager.CurrentPage++;
+				}
+				else
+				{
+					ApplicationBar.IsVisible = !ApplicationBar.IsVisible;
+				}
 			}
 		}
 	}

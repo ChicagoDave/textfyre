@@ -28,6 +28,7 @@ namespace Cjc.SilverFyre
 		public Paragraph[] Paragraphs { get { return ( paragraphs != null ) ? paragraphs : paragraphs = GetParagraphs( channel ); } }
 		public virtual string Command { get { return ( StoryHistoryItem != null ) ? StoryHistoryItem.Command : null; } }
 		public string CommandText { get; set; }
+		public string Information { get; set; }
 
 		public virtual bool HasInput { get { return false; } }
 		public virtual bool HasCommand { get { return false; } }
