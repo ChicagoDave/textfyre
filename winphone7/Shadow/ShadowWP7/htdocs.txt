@@ -1,0 +1,6 @@
+﻿HTDocs\intropage1.html
+HTDocs\images\image1.png
+HTDocs\images\image2.png
+HTDocs\images\image3.png
+HTDocs\images\image4.png
+HTDocs\images\parchmnt.jpg
