@@ -78,6 +78,20 @@ namespace ShadowWP7.Controls
 				ScrollOffset -= pages;
 				startOffset -= pages;
 			}
+
+			var focusedControl = ( FocusManager.GetFocusedElement() as Control );
+
+			if ( focusedControl != null && !( focusedControl is Page ) )
+			{
+				for ( var parent = VisualTreeHelper.GetParent( focusedControl ); parent != null; parent = VisualTreeHelper.GetParent( parent ) )
+				{
+					if ( parent is Page )
+					{
+						( (Control)parent ).Focus();
+						break;
+					}
+				}
+			}
 		}
 
 		public int CurrentPage
