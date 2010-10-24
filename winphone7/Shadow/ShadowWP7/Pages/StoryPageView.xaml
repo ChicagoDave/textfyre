@@ -59,7 +59,7 @@
 
 		<Grid Grid.Row="0">
 			<Grid.Background>
-				<ImageBrush ImageSource="parchmnt.jpg"/>
+				<ImageBrush ImageSource="/HTDocs/images/parchmnt.jpg"/>
 			</Grid.Background>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
