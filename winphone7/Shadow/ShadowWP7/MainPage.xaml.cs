@@ -402,11 +402,15 @@ namespace ShadowWP7
 
 		private void pager_MouseLeftButtonUp( object sender, MouseButtonEventArgs e )
 		{
-			if ( lastManipulation.X == 0 && lastManipulation.Y == 0 )
+			if ( lastManipulation.X == 0 && lastManipulation.Y == 0
+				&& !( FocusManager.GetFocusedElement() is TextBox )
+				&& e.OriginalSource is Image /* Page content image; TODO: Improve this :) */ )
 			{
 				int outsideBounds;
 
-				if ( storyCache != null && storyCache.GetPage( pager.CurrentPage + 1, out outsideBounds ) != null )
+				if ( !ApplicationBar.IsVisible
+					&& storyCache != null
+					&& storyCache.GetPage( pager.CurrentPage + 1, out outsideBounds ) != null )
 				{
 					pager.CurrentPage++;
 				}
