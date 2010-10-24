@@ -113,6 +113,19 @@ namespace ShadowWP7.SavedGames
 				: false;
 		}
 
+		public static void DeleteProgress( this SavedGameSlot savedGameSlot, IsolatedStorageFile file )
+		{
+			var slotName = savedGameSlot.SlotName;
+
+			if ( file.DirectoryExists( slotName ) )
+			{
+				foreach ( var f in file.GetFileNames( FilePath( slotName, "*" ) ) )
+				{
+					file.DeleteFile( FilePath( slotName, f ) );
+				}
+			}
+		}
+
 		public static void DeleteOldGames( this SavedGameSlot savedGameSlot, IsolatedStorageFile file )
 		{
 			var slotName = savedGameSlot.SlotName;

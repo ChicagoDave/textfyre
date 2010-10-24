@@ -179,7 +179,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="htdocs.txt" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
     <EmbeddedResource Include="shadow-1.2.ulx" />

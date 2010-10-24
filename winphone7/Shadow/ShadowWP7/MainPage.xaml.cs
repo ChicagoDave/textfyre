@@ -75,6 +75,7 @@ namespace ShadowWP7
 				waitingForLoad = true;
 				engine.SendLine( "RESTORE" );
 			}
+			else storyCache.DeleteProgress();
 
 			settings[ slotSetting ] = slot;
 
@@ -309,11 +310,14 @@ namespace ShadowWP7
 				var outsideBounds = 0;
 				e.DataContext = storyCache.GetPage( e.Index, out outsideBounds );
 
-				switch ( outsideBounds )
+				if ( e.DataContext == null && storyCache.CurrentHistoryItem != null )
 				{
-					case 1: e.DataContext = new Pages.MenuPage(); break;
-					case 2: e.DataContext = new Pages.Intro3(); break;
-					//case 3: e.DataContext = new Pages.Intro2(); break;
+					switch ( outsideBounds )
+					{
+						case 1: e.DataContext = new Pages.MenuPage(); break;
+						case 2: e.DataContext = new Pages.Intro3(); break;
+						//case 3: e.DataContext = new Pages.Intro2(); break;
+					}
 				}
 			}
 		}
@@ -355,6 +359,9 @@ namespace ShadowWP7
 				else
 				{
 					StopEngine();
+
+					storyCache.DeleteProgress();
+
 					engine = LoadEngine( "shadow-1.2.ulx" );
 					StartEngine();
 				}

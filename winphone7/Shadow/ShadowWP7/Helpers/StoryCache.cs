@@ -137,6 +137,11 @@ namespace ShadowWP7.Helpers
 			get { lock ( pageCache ) return pageCache.Keys.Cast<int?>().Max(); }
 		}
 
+		public void DeleteProgress()
+		{
+			savedGameSlot.DeleteProgress( storageFile );
+		}
+
 		private StoryHistoryItem LoadHistoryItem( int? turn = null )
 		{
 			using ( var loadStream = savedGameSlot.LoadProgress( storageFile, turn ) )
