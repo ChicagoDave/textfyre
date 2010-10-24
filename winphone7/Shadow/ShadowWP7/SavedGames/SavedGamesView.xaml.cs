@@ -29,11 +29,17 @@ namespace ShadowWP7.SavedGames
 
 		public event EventHandler<SavedGameEventArgs> Selected;
 
-		private IsolatedStorageFile storageFile = IsolatedStorageFile.GetUserStoreForApplication();
+		private IsolatedStorageFile storageFile;
 		private const int maxSlots = 10;
 
 		public SavedGamesView()
 		{
+			try
+			{
+				storageFile = IsolatedStorageFile.GetUserStoreForApplication();
+			}
+			catch {}
+
 			InitializeComponent();
 
 			slots.DataContext = this;

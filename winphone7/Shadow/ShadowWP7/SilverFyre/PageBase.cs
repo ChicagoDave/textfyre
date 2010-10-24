@@ -21,6 +21,7 @@ namespace Cjc.SilverFyre
 	{
 		private OutputChannel channel;
 		private Paragraph[] paragraphs;
+		private string information;
 
 		public StoryHistoryItem StoryHistoryItem { get; private set; }
 
@@ -28,7 +29,6 @@ namespace Cjc.SilverFyre
 		public Paragraph[] Paragraphs { get { return ( paragraphs != null ) ? paragraphs : paragraphs = GetParagraphs( channel ); } }
 		public virtual string Command { get { return ( StoryHistoryItem != null ) ? StoryHistoryItem.Command : null; } }
 		public string CommandText { get; set; }
-		public string Information { get; set; }
 
 		public virtual bool HasInput { get { return false; } }
 		public virtual bool HasCommand { get { return false; } }
@@ -55,6 +55,20 @@ namespace Cjc.SilverFyre
 			: this( storyHistoryItem )
 		{
 			this.channel = channel;
+		}
+
+		public string Information
+		{
+			get
+			{
+				return ( information != null )
+					? information
+					: StoryHistoryItem.OutputArgs.Package.ContainsKey( OutputChannel.Hints )
+						? StoryHistoryItem.OutputArgs.Package[ OutputChannel.Hints ]
+						: null;
+			}
+
+			set { information = value; }
 		}
 
 		protected Paragraph[] GetParagraphs( OutputChannel channel )
@@ -88,7 +102,6 @@ namespace Cjc.SilverFyre
 		{
 			try
 			{
-
 				return content.IsXml()
 					? XElement.Parse( "<X>" + EnsureXml( content ) + "</X>" )
 					: new XElement( "X", new XElement( "Paragraph",
