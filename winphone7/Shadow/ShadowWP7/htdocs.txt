@@ -1,6 +1,8 @@
-﻿HTDocs\intropage1.html
-HTDocs\images\image1.png
-HTDocs\images\image2.png
-HTDocs\images\image3.png
-HTDocs\images\image4.png
-HTDocs\images\parchmnt.jpg
+﻿mkdir HTDocs
+mkdir HTDocs\images
+copy text HTDocs\intropage1.html
+copy binary HTDocs\images\image1.png
+copy binary HTDocs\images\image2.png
+copy binary HTDocs\images\image3.png
+copy binary HTDocs\images\image4.png
+copy binary HTDocs\images\parchmnt.jpg
