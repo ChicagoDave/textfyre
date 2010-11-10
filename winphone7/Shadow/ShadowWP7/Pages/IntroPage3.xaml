@@ -16,14 +16,14 @@
     </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
-		<controls:Panorama Margin="8" Title="panorama">
-			<controls:PanoramaItem Header="item1" Width="365">
+		<controls:Panorama Margin="8" Title="Intro">
+			<controls:PanoramaItem Header="cover" Width="365">
 				<phone:WebBrowser x:Name="introweb1" Margin="0,-112,8,13" Loaded="introweb1_Loaded" />
 			</controls:PanoramaItem>
-			<controls:PanoramaItem Header="item2">
-				<Grid/>
-			</controls:PanoramaItem>
-			<controls:PanoramaItem Header="item3">
+			<controls:PanoramaItem Header="welcome">
+                <phone:WebBrowser x:Name="introweb2" Margin="0,-112,8,13" Loaded="introweb2_Loaded" />
+            </controls:PanoramaItem>
+			<controls:PanoramaItem Header="look">
 				<Grid/>
 			</controls:PanoramaItem>
 		</controls:Panorama>

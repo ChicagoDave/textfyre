@@ -26,5 +26,12 @@ namespace ShadowWP7.Pages
             introweb1.Base = "HTDocs";
             introweb1.Navigate(new Uri("intropage1.html", UriKind.Relative));
         }
-	}
+
+        private void introweb2_Loaded(object sender, RoutedEventArgs e)
+        {
+            introweb2.Base = "HTDocs";
+            introweb2.Navigate(new Uri("intropage2.html", UriKind.Relative));
+        }
+    
+    }
 }
