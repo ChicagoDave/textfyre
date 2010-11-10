@@ -75,14 +75,8 @@
     <Compile Include="Controls\VirtualizingPager.cs" />
     <Compile Include="Helpers\ImplicitTemplateItemsControl.cs" />
     <Compile Include="Helpers\StoryCache.cs" />
-    <Compile Include="Pages\IntroPage1.xaml.cs">
-      <DependentUpon>IntroPage1.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\IntroPage2.xaml.cs">
-      <DependentUpon>IntroPage2.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\IntroPage3.xaml.cs">
-      <DependentUpon>IntroPage3.xaml</DependentUpon>
+    <Compile Include="Pages\IntroView1.xaml.cs">
+      <DependentUpon>IntroView1.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\IntroPages.cs" />
     <Compile Include="Pages\MenuPage.cs" />
@@ -149,17 +143,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\IntroPage1.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Pages\IntroView1.xaml">
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Pages\IntroPage2.xaml">
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Pages\IntroPage3.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\MenuView.xaml">
       <SubType>Designer</SubType>

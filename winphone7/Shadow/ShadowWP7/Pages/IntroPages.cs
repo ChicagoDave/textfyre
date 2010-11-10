@@ -11,15 +11,7 @@ using System.Windows.Shapes;
 
 namespace ShadowWP7.Pages
 {
-	public class Intro1
+	public class IntroPage1
 	{
 	}
-
-	public class Intro2
-	{
-	}
-
-    public class Intro3
-    {
-    }
 }

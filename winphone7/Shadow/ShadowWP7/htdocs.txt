@@ -1,6 +1,7 @@
 ﻿mkdir HTDocs
 mkdir HTDocs\images
 copy txt HTDocs\intropage1.html
+copy txt HTDocs\intropage2.html
 copy bin HTDocs\images\image1.png
 copy bin HTDocs\images\image2.png
 copy bin HTDocs\images\image3.png

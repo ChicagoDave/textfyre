@@ -315,8 +315,7 @@ namespace ShadowWP7
 					switch ( outsideBounds )
 					{
 						case 1: e.DataContext = new Pages.MenuPage(); break;
-						case 2: e.DataContext = new Pages.Intro3(); break;
-						//case 3: e.DataContext = new Pages.Intro2(); break;
+						case 2: e.DataContext = new Pages.IntroPage1(); break;
 					}
 				}
 			}
