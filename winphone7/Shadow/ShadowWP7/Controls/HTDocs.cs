@@ -24,33 +24,68 @@ namespace ShadowWP7.Controls
             StreamReader reader = new StreamReader(TitleContainer.OpenStream("htdocs.txt"));
             while (!reader.EndOfStream)
             {
-                string filename = reader.ReadLine();
+                string command = reader.ReadLine();
+                string filename = "";
+                string dirname = "";
 
-                BinaryReader fileReader = new BinaryReader(TitleContainer.OpenStream(filename));
-                IsolatedStorageFileStream outFile = isf.CreateFile(filename);
+                bool isMakeDir = (command.StartsWith("mkdir"));
+                bool isCopyText = (command.StartsWith("copy txt"));
+                bool isCopyBinary = (command.StartsWith("copy bin"));
 
-                bool eof = false;
-                long fileLength = fileReader.BaseStream.Length;
-                int writeLength = 512;
-                while (!eof)
+                if (isMakeDir)
                 {
-                    if (fileLength < 512)
-                    {
-                        writeLength = Convert.ToInt32(fileLength);
-                        outFile.Write(fileReader.ReadBytes(writeLength), 0, writeLength);
-                    }
-                    else
-                    {
-                        outFile.Write(fileReader.ReadBytes(writeLength), 0, writeLength);
-                    }
+                    dirname = command.Substring(6, command.Length - 6);
 
-                    fileLength = fileLength - 512;
-
-                    if (fileLength <= 0) eof = true;
+                    if (!isf.DirectoryExists(dirname))
+                        isf.CreateDirectory(dirname);
                 }
-                fileReader.Close();
-                outFile.Close();
+                else
+                    filename = command.Substring(9, command.Length - 9);
+
+                if (isCopyText)
+                {
+                    StreamReader stream = new StreamReader(TitleContainer.OpenStream(filename));
+                    IsolatedStorageFileStream outFile = isf.CreateFile(filename);
+
+                    string fileAsString = stream.ReadToEnd();
+                    byte[] fileBytes = System.Text.Encoding.UTF8.GetBytes(fileAsString);
+
+                    outFile.Write(fileBytes, 0, fileBytes.Length);
+
+                    stream.Close();
+                    outFile.Close();
+                }
+
+                if (isCopyBinary)
+                {
+                    BinaryReader fileReader = new BinaryReader(TitleContainer.OpenStream(filename));
+                    IsolatedStorageFileStream outFile = isf.CreateFile(filename);
+
+                    bool eof = false;
+                    long fileLength = fileReader.BaseStream.Length;
+                    int writeLength = 512;
+                    while (!eof)
+                    {
+                        if (fileLength < 512)
+                        {
+                            writeLength = Convert.ToInt32(fileLength);
+                            outFile.Write(fileReader.ReadBytes(writeLength), 0, writeLength);
+                        }
+                        else
+                        {
+                            outFile.Write(fileReader.ReadBytes(writeLength), 0, writeLength);
+                        }
+
+                        fileLength = fileLength - 512;
+
+                        if (fileLength <= 0) eof = true;
+                    }
+                    fileReader.Close();
+                    outFile.Close();
+                }
+
             }
+
             reader.Close();
             reader = null;
         }

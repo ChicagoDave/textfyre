@@ -57,7 +57,7 @@ namespace ShadowWP7
 			settings = IsolatedStorageSettings.ApplicationSettings;
 			storageFile = IsolatedStorageFile.GetUserStoreForApplication();
 
-            //HTDocs.MoveFiles(storageFile);
+            HTDocs.MoveFiles(storageFile);
 
 			var savedGameSlots = storageFile.GetSavedGameSlots().ToDictionary( s => s.Slot, s => s );
 
