@@ -24,6 +24,8 @@ namespace ShadowWP7.Controls
             StreamReader reader = new StreamReader(TitleContainer.OpenStream("htdocs.txt"));
             while (!reader.EndOfStream)
             {
+                bool overwrite = true;
+
                 string command = reader.ReadLine();
                 string filename = "";
                 string dirname = "";
@@ -42,7 +44,7 @@ namespace ShadowWP7.Controls
                 else
                     filename = command.Substring(9, command.Length - 9);
 
-                if (!isf.FileExists(filename))
+                if (!isf.FileExists(filename) || overwrite == true)
                 {
                     if (isCopyText)
                     {
