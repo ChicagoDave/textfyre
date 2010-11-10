@@ -92,19 +92,9 @@
 		</DataTemplate>
 
 		<!-- Intro page 1 -->
-		<DataTemplate x:Key="Intro1">
-			<pages:IntroPage1/>
+		<DataTemplate x:Key="IntroPage1">
+			<pages:IntroView1/>
 		</DataTemplate>
-
-		<!-- Intro page 2 -->
-		<DataTemplate x:Key="Intro2">
-			<pages:IntroPage2/>
-		</DataTemplate>
-
-        <!-- Intro page 2 -->
-        <DataTemplate x:Key="Intro3">
-            <pages:IntroPage3/>
-        </DataTemplate>
     
     </phone:PhoneApplicationPage.Resources>
 
