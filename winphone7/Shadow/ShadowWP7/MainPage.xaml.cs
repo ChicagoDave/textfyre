@@ -57,7 +57,7 @@ namespace ShadowWP7
 			settings = IsolatedStorageSettings.ApplicationSettings;
 			storageFile = IsolatedStorageFile.GetUserStoreForApplication();
 
-            HTDocs.MoveFiles(storageFile);
+            CopyFiles();
 
 			var savedGameSlots = storageFile.GetSavedGameSlots().ToDictionary( s => s.Slot, s => s );
 
@@ -426,5 +426,19 @@ namespace ShadowWP7
 				}
 			}
 		}
+
+        private void CopyFiles()
+        {
+
+            // Make sure HTDocs and HTDOCS\images are created.
+            storageFile.CreateDirectory("HTDocs\\images");
+            storageFile.CopyTextFile("HTDocs\\intropage1.html", true);
+            storageFile.CopyTextFile("HTDocs\\intropage2.html", true);
+            storageFile.CopyBinaryFile("HTDocs\\images\\oldclock.png", true);
+            storageFile.CopyBinaryFile("HTDocs\\images\\image2.png", true);
+            storageFile.CopyBinaryFile("HTDocs\\images\\image3.png", true);
+            storageFile.CopyBinaryFile("HTDocs\\images\\image4.png", true);
+            storageFile.CopyBinaryFile("HTDocs\\images\\parchmnt.jpg", true);
+        }
 	}
 }
