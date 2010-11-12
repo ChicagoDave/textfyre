@@ -43,7 +43,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>Bin\Release</OutputPath>
-    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <DefineConstants>SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -170,12 +170,7 @@
     <EmbeddedResource Include="shadow-1.2.ulx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ApplicationIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Background.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="ApplicationIcon.png" />
     <Content Include="HTDocs\images\oldclock.png" />
     <Content Include="HTDocs\intropage2.html" />
     <Content Include="HTDocs\style.css" />
@@ -209,6 +204,7 @@
     <Content Include="HTDocs\images\Image4.png" />
     <Content Include="HTDocs\images\parchmnt.jpg" />
     <Content Include="HTDocs\intropage1.html" />
+    <Content Include="Background.png" />
     <Content Include="SplashScreenImage.jpg" />
     <Content Include="Images\OldPaper.jpg" />
   </ItemGroup>

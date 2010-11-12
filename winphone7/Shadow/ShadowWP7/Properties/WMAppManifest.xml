@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.0">
-  <App xmlns="" ProductID="{2e085a18-16e4-4eaa-9e37-6150fd68dac8}" Title="ShadowWP7" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="ShadowWP7 author" Description="Sample description" Publisher="ShadowWP7">
+  <App xmlns="" ProductID="{2e085a18-16e4-4eaa-9e37-6150fd68dac8}" Title="Klockwerk Shadow" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Ian Finley, Jon Ingold" Description="Sample description" Publisher="Textfyre, Inc.">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
@@ -21,7 +21,7 @@
         <TemplateType5>
           <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
           <Count>0</Count>
-          <Title>ShadowWP7</Title>
+          <Title></Title>
         </TemplateType5>
       </PrimaryToken>
     </Tokens>
