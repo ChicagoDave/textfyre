@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ShadowWP7")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Klockwerk Shadow")]
+[assembly: AssemblyDescription("Interactive Fiction set in Edwardian world where clocks and gears are worshipped.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft IT")]
-[assembly: AssemblyProduct("ShadowWP7")]
-[assembly: AssemblyCopyright("Copyright © Microsoft IT 2009")]
+[assembly: AssemblyCompany("Textfyre, Inc.")]
+[assembly: AssemblyProduct("Klockwerk: The Shadow in the Cathedral")]
+[assembly: AssemblyCopyright("Copyright © 2010 Textfyre, Inc.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d12aa161-b654-40ea-9036-36ca9deb6b1e")]
+[assembly: Guid("d12aa161-b654-40ea-9036-36ca9deb6b1f")]
 
 // Version information for an assembly consists of the following four values:
 //
