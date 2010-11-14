@@ -316,6 +316,7 @@ namespace ShadowWP7
 					{
 						case 1: e.DataContext = new Pages.MenuPage(); break;
 						case 2: e.DataContext = new Pages.IntroPage1(); break;
+                        case 3: e.DataContext = new Pages.IntroPage2(); break;
 					}
 				}
 			}
