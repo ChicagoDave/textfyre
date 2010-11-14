@@ -95,7 +95,12 @@
 		<DataTemplate x:Key="IntroPage1">
 			<pages:IntroView1/>
 		</DataTemplate>
-    
+        
+        <!-- Intro page 2 -->
+        <DataTemplate x:Key="IntroPage2">
+            <pages:IntroView2/>
+        </DataTemplate>
+
     </phone:PhoneApplicationPage.Resources>
 
 	<phone:PhoneApplicationPage.ApplicationBar>
