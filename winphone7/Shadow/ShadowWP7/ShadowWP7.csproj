@@ -180,6 +180,7 @@
     <Content Include="ApplicationIcon.png" />
     <Resource Include="HTDocs\images\image5.png" />
     <Resource Include="HTDocs\images\image6.png" />
+    <Content Include="HTDocs\about.html" />
     <Content Include="HTDocs\intropage5.html" />
     <Content Include="HTDocs\intropage4.html" />
     <Content Include="HTDocs\intropage3.html" />
