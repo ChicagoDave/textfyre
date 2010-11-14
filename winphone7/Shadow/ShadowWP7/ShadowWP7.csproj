@@ -174,7 +174,7 @@
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
-    <EmbeddedResource Include="shadow-1.2.ulx" />
+    <EmbeddedResource Include="sh-v1.3.ulx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApplicationIcon.png" />

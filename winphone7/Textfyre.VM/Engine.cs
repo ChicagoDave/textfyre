@@ -172,6 +172,15 @@ namespace Textfyre.VM
     /// <param name="e">The event arguments.</param>
     public delegate void SaveRestoreErrorEventHandler(object sender, SaveRestoreErrorEventArgs e);
 
+    public class TransitionEventArgs : EventArgs
+    {
+        private string message;
+
+        public string Message { get { return message; } set { message = value; } }
+    }
+
+    public delegate void TransitionRequestedEventHandler(object sender, TransitionEventArgs e);
+
     /// <summary>
     /// The main FyreVM class, which implements a modified Glulx interpreter.
     /// </summary>
@@ -433,6 +442,12 @@ namespace Textfyre.VM
         /// Raised when an exception is caught during save/restore.
         /// </summary>
         public event SaveRestoreErrorEventHandler SaveRestoreError;
+
+        /// <summary>
+        /// Raised when the game requests a physical device transition. The host device can handle in a native manner.
+        /// This happens instead of fusging for a keypress.
+        /// </summary>
+        public event TransitionRequestedEventHandler TransitionRequested;
 
         /// <summary>
         /// Gets or sets a value indicating whether the main and prologue output
