@@ -85,6 +85,9 @@
     </Compile>
     <Compile Include="NotifyingStream.cs" />
     <Compile Include="PageHostControl.cs" />
+    <Compile Include="Pages\IntroView2.xaml.cs">
+      <DependentUpon>IntroView2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SavedGames\ExtensionMethods.cs" />
     <Compile Include="SavedGames\SavedGameSlot.cs" />
     <Compile Include="SavedGames\SavedGameSummary.cs" />
@@ -151,6 +154,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\IntroView2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Resources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -173,7 +180,6 @@
     <Content Include="ApplicationIcon.png" />
     <Content Include="HTDocs\images\oldclock.png" />
     <Content Include="HTDocs\intropage2.html" />
-    <Content Include="HTDocs\style.css" />
     <Content Include="icons\appbar.cancel.rest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
