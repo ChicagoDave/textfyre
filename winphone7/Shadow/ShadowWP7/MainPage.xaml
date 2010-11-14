@@ -16,7 +16,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     shell:SystemTray.IsVisible="False"
 	IsTabStop="True">
 
@@ -112,7 +112,7 @@
 			<shell:ApplicationBarIconButton x:Name="save" IconUri="/icons/appbar.save.rest.png" IsEnabled="True" Text="save" Click="save_Click"/>
 			<shell:ApplicationBarIconButton x:Name="load" IconUri="/icons/appbar.folder.rest.png" IsEnabled="True" Text="load" Click="load_Click"/>
 			<shell:ApplicationBarIconButton x:Name="cancel" IconUri="/icons/appbar.cancel.rest.png" IsEnabled="False" Text="cancel" Click="cancel_Click"/>
-		</shell:ApplicationBar>
+        </shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
 
 	<!--LayoutRoot contains the root grid where all other page content is placed-->

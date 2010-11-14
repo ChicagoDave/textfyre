@@ -446,6 +446,8 @@ namespace ShadowWP7
             storageFile.CopyBinaryFile("HTDocs\\images\\map-ch5.jpg", true);
             storageFile.CopyBinaryFile("HTDocs\\images\\map-ch6.jpg", true);
             storageFile.CopyBinaryFile("HTDocs\\images\\map-ch8.jpg", true);
+            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch10.jpg", true);
+            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch11.jpg", true);
         }
 	}
 }

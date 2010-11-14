@@ -21,5 +21,6 @@ namespace ShadowWP7.Pages
 
 			DataContext = this;
 		}
+
 	}
 }
