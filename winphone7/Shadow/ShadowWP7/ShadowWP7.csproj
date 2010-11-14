@@ -178,10 +178,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApplicationIcon.png" />
-    <Resource Include="HTDocs\images\map-ch2.png" />
-    <Resource Include="HTDocs\images\map-ch3.png" />
-    <Resource Include="HTDocs\images\map-ch4.png" />
-    <Resource Include="HTDocs\images\map-ch5.png" />
+    <Content Include="HTDocs\images\map-ch2.png" />
+    <Content Include="HTDocs\images\map-ch3.png" />
+    <Content Include="HTDocs\images\map-ch4.png" />
+    <Content Include="HTDocs\images\map-ch5.png" />
+    <Content Include="HTDocs\images\map-ch6.png" />
     <Content Include="HTDocs\images\oldclock.png" />
     <Content Include="HTDocs\intropage2.html" />
     <Content Include="icons\appbar.cancel.rest.png">
