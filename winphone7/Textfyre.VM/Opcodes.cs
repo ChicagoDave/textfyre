@@ -1513,6 +1513,10 @@ namespace Textfyre.VM
             /// constant value, result = nonzero if the value was accepted.
             /// </summary>
             SetVeneer = 8,
+            /// <summary>
+            /// Tells the UI a device handled transition is requested. (press a button, touch scree, etc).
+            /// </summary>
+            RequestTransition = 9
         }
 
         [Opcode(0x1000, "fyrecall", 3, 1)]
@@ -1567,6 +1571,11 @@ namespace Textfyre.VM
 
                 case FyreCall.SetVeneer:
                     args[3] = (uint)(veneer.SetSlot(args[1], args[2]) ? 1 : 0);
+                    break;
+
+                case FyreCall.RequestTransition:
+                    if (TransitionRequested != null)
+                        TransitionRequested(this, new TransitionEventArgs());
                     break;
 
                 default:

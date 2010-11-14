@@ -13,74 +13,89 @@ namespace Textfyre.VM
     /// </summary>
     public enum OutputChannel
     {
-        /// <summary>
-        /// The regular game output channel.
-        /// </summary>
-        Main = 1,
-        /// <summary>
-        /// The name of the current area.
-        /// </summary>
-        Location = 2,
-        /// <summary>
-        /// The player's score.
-        /// </summary>
-        Score = 3,
-        /// <summary>
-        /// The time of day or turn count.
-        /// </summary>
-        Time = 4,
-        /// <summary>
-        /// Spoilery hint data for the player's current situation.
-        /// </summary>
-        Hints = 5,
-        /// <summary>
-        /// Help data for the player's current situation.
-        /// </summary>
-        Help = 6,
-        /// <summary>
-        /// Data about visited areas, map connections, etc.
-        /// </summary>
-        Map = 7,
-        /// <summary>
-        /// A structured description of the player's progress in the story.
-        /// </summary>
-        Progress = 8,
-        /// <summary>
-        /// A control channel for the interpreter's visual appearance.
-        /// </summary>
-        Theme = 9,
-        /// <summary>
-        /// A prompt to use for the next input request, such as "> ".
-        /// </summary>
-        Prompt = 10,
-        /// <summary>
-        /// A list of topics the player can select that auto-inputs the proper command.
-        /// </summary>
-        Conversation = 11,
-        /// <summary>
-        /// A Channel for playing sounds.
-        /// </summary>
-        Sound = 12,
-        /// <summary>
-        /// A channel for the prologue text.
-        /// </summary>
-        Prologue = 13,
-        /// <summary>
-        /// A channel for the title text.
-        /// </summary>
-        Title = 14,
+        Title = 1,
         /// <summary>
         /// A channel for the credits of the game.
         /// </summary>
-        Credits = 15,
+        Credits = 2,
+        /// <summary>
+        /// A channel for the prologue text.
+        /// </summary>
+        Prologue = 3,
+        /// <summary>
+        /// The regular game output channel.
+        /// </summary>
+        Main = 4,
+        /// <summary>
+        /// A prompt to use for the next input request, such as "> ".
+        /// </summary>
+        Prompt = 5,
+        /// <summary>
+        /// The name of the current area.
+        /// </summary>
+        Location = 6,
+        /// <summary>
+        /// The player's score.
+        /// </summary>
+        Score = 7,
+        /// <summary>
+        /// The time of day within the game.
+        /// </summary>
+        Time = 8,
+        /// <summary>
+        /// The turn count.
+        /// </summary>
+        Turn = 9,
+        /// <summary>
+        /// Spoilery hint data for the player's current situation.
+        /// </summary>
+        Hints = 10,
+        /// <summary>
+        /// Help text for the player's current situation.
+        /// </summary>
+        Help = 11,
+        /// <summary>
+        /// Data about visited areas, map connections, etc.
+        /// </summary>
+        Map = 12,
+        /// <summary>
+        /// A Channel for playing sounds.
+        /// </summary>
+        Sound = 13,
         /// <summary>
         /// A channel for the chapter text.
         /// </summary>
-        Chapter = 16,
+        Chapter = 14,
+        /// <summary>
+        /// Achievments channel.
+        /// </summary>
+        Achievements = 15,
+        /// <summary>
+        /// Popup tips channel.
+        /// </summary>
+        Tips = 16,
+        /// <summary>
+        /// Extra channels to be defined by the game author.
+        /// </summary>
+        ChannelA = 17,
+        ChannelB = 18,
+        ChannelC = 19,
+        ChannelD = 20,
+        ChannelE = 21,
+        ChannelF = 22,
+        ChannelG = 23,
+        ChannelH = 24,
+        ChannelI = 25,
+        ChannelJ = 26,
+        ChannelK = 27,
+        ChannelL = 28,
+        ChannelM = 29,
+        ChannelN = 30,
+        ChannelO = 31,
         /// <summary>
         /// A channel for reporting that the game has ended in death.
         /// </summary>
-        Death = 17,
+        Death = 32,
 
         _LAST = Death
     }

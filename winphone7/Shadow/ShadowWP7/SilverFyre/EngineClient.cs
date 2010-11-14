@@ -12,6 +12,7 @@ namespace Cjc.SilverFyre
 		public event OutputReadyEventHandler OutputReady;
 		public event SaveRestoreEventHandler SaveRequested;
 		public event SaveRestoreEventHandler LoadRequested;
+        public event TransitionRequestedEventHandler TransitionRequested;
 		public event EventHandler AwaitingLine;
 		public event EventHandler AwaitingKey;
 
@@ -85,6 +86,7 @@ namespace Cjc.SilverFyre
 				engine.LineWanted += new LineWantedEventHandler( engine_LineWanted );
 				engine.SaveRequested += new SaveRestoreEventHandler( engine_SaveRequested );
 				engine.LoadRequested += new SaveRestoreEventHandler( engine_LoadRequested );
+                engine.TransitionRequested += new TransitionRequestedEventHandler(engine_TransitionRequested);
 
 				while ( !stop.WaitOne( 0 ) )
 				{
@@ -110,6 +112,12 @@ namespace Cjc.SilverFyre
 
 			stopped.Set();
 		}
+
+        void engine_TransitionRequested(object sender, TransitionEventArgs e)
+        {
+            if (TransitionRequested != null)
+                TransitionRequested(sender, e);
+        }
 
 		private void OutputError( Exception ex )
 		{

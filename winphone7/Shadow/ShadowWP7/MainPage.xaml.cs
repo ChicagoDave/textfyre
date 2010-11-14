@@ -32,6 +32,7 @@ namespace ShadowWP7
 		private bool engineRunning;
 		private bool awaitingKey;
 		private bool awaitingLine;
+        private bool awaitingTransition;
 
 		private bool waitingForLoad;
 		private bool waitingForSave;
@@ -68,7 +69,7 @@ namespace ShadowWP7
 			savedGameSlot = savedGameSlots[ slot ];
 			storyCache = new StoryCache( savedGameSlot, storageFile );
 
-			engine = LoadEngine( "shadow-1.2.ulx" );
+			engine = LoadEngine( "sh-v1.3.ulx" );
 
 			if ( savedGameSlot.Game != null && savedGameSlot.HasGameFile( storageFile ) )
 			{
@@ -103,6 +104,7 @@ namespace ShadowWP7
 				engine.SaveRequested += engine_SaveRequested;
 				engine.AwaitingLine += engine_AwaitingLine;
 				engine.AwaitingKey += engine_AwaitingKey;
+                engine.TransitionRequested += engine_TransitionRequested;
 
 				engine.Start();
 			}
@@ -121,7 +123,8 @@ namespace ShadowWP7
 				engine.SaveRequested -= engine_SaveRequested;
 				engine.AwaitingLine -= engine_AwaitingLine;
 				engine.AwaitingKey -= engine_AwaitingKey;
-			}
+                engine.TransitionRequested -= engine_TransitionRequested;
+            }
 		}
 
 		void engine_LoadRequested( object sender, SaveRestoreEventArgs e )
@@ -192,13 +195,22 @@ namespace ShadowWP7
 		{
 			awaitingLine = true;
 			awaitingKey = false;
-		}
+            awaitingTransition = false;
+        }
 
 		void engine_AwaitingKey( object sender, EventArgs e )
 		{
 			awaitingKey = true;
 			awaitingLine = false;
-		}
+            awaitingTransition = false;
+        }
+
+        void engine_TransitionRequested(object sender, TransitionEventArgs e)
+        {
+            awaitingKey = false;
+            awaitingLine = false;
+            awaitingTransition = true;
+        }
 
 		private void ScrollToEnd()
 		{
@@ -440,14 +452,14 @@ namespace ShadowWP7
             storageFile.CopyBinaryFile("HTDocs\\images\\image3.png", true);
             storageFile.CopyBinaryFile("HTDocs\\images\\image4.png", true);
             storageFile.CopyBinaryFile("HTDocs\\images\\parchmnt.jpg", true);
-            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch2.jpg", true);
-            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch3.jpg", true);
-            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch4.jpg", true);
-            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch5.jpg", true);
-            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch6.jpg", true);
-            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch8.jpg", true);
-            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch10.jpg", true);
-            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch11.jpg", true);
+            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch2.png", true);
+            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch3.png", true);
+            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch4.png", true);
+            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch5.png", true);
+            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch6.png", true);
+            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch8.png", true);
+            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch10.png", true);
+            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch11.png", true);
         }
 	}
 }
