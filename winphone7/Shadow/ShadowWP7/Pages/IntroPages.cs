@@ -14,4 +14,8 @@ namespace ShadowWP7.Pages
 	public class IntroPage1
 	{
 	}
+
+    public class IntroPage2
+    {
+    }
 }
