@@ -178,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApplicationIcon.png" />
+    <Resource Include="HTDocs\images\map-ch2.png" />
     <Content Include="HTDocs\images\oldclock.png" />
     <Content Include="HTDocs\intropage2.html" />
     <Content Include="icons\appbar.cancel.rest.png">
