@@ -466,7 +466,7 @@ namespace ShadowWP7
 			storageFile.CopyBinaryFile( "HTDocs\\images\\oldclock.png", true );
 			storageFile.CopyBinaryFile( "HTDocs\\images\\image2.png", true );
 			storageFile.CopyBinaryFile( "HTDocs\\images\\image3.png", true );
-			storageFile.CopyBinaryFile( "HTDocs\\images\\image4.png", true );
+			storageFile.CopyBinaryFile( "HTDocs\\images\\compass.png", true );
 			storageFile.CopyBinaryFile( "HTDocs\\images\\parchmnt.jpg", true );
 			storageFile.CopyBinaryFile( "HTDocs\\images\\map-ch2.png", true );
 			storageFile.CopyBinaryFile( "HTDocs\\images\\map-ch3.png", true );

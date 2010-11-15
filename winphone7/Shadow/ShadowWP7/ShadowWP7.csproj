@@ -177,6 +177,7 @@
     <Resource Include="HTDocs\images\image5.png" />
     <Resource Include="HTDocs\images\image6.png" />
     <Content Include="HTDocs\about.html" />
+    <Content Include="HTDocs\images\compass.png" />
     <Content Include="HTDocs\intropage5.html" />
     <Content Include="HTDocs\intropage4.html" />
     <Content Include="HTDocs\intropage3.html" />
@@ -217,7 +218,6 @@
     <Content Include="Images\shadow-wp7.jpg" />
     <Content Include="HTDocs\images\Image2.png" />
     <Content Include="HTDocs\images\Image3.png" />
-    <Content Include="HTDocs\images\Image4.png" />
     <Content Include="HTDocs\images\parchmnt.jpg" />
     <Content Include="HTDocs\intropage1.html" />
     <Content Include="Background.png" />
