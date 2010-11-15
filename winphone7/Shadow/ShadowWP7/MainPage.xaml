@@ -88,18 +88,13 @@
 
 		<!-- Menu -->
 		<DataTemplate x:Key="MenuPage">
-			<pages:MenuView/>
+			<pages:MenuView Selected="MenuItem_Click"/>
 		</DataTemplate>
 
-		<!-- Intro page 1 -->
-		<DataTemplate x:Key="IntroPage1">
-			<pages:IntroView1/>
+		<!-- HTML page -->
+		<DataTemplate x:Key="HtmlPage">
+			<pages:HtmlView />
 		</DataTemplate>
-        
-        <!-- Intro page 2 -->
-        <DataTemplate x:Key="IntroPage2">
-            <pages:IntroView2/>
-        </DataTemplate>
 
     </phone:PhoneApplicationPage.Resources>
 

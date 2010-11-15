@@ -15,11 +15,13 @@ using ShadowWP7.SavedGames;
 using Textfyre.VM;
 using System.Windows.Controls;
 using ShadowWP7.Controls;
+using ShadowWP7.HTDocs;
+using System.Windows.Shapes;
 
 namespace ShadowWP7
 {
-    public partial class MainPage : PhoneApplicationPage, INotifyPropertyChanged
-    {
+	public partial class MainPage : PhoneApplicationPage, INotifyPropertyChanged
+	{
 		private const string slotSetting = "Slot";
 
 		private IsolatedStorageSettings settings;
@@ -27,12 +29,13 @@ namespace ShadowWP7
 		private SavedGameSlot savedGameSlot;
 		private StoryCache storyCache;
 		private string lastCommand;
+		private HtmlPageGroup? selectedPageGroup;
 
 		private EngineClient engine;
 		private bool engineRunning;
 		private bool awaitingKey;
 		private bool awaitingLine;
-        private bool awaitingTransition;
+		private bool awaitingTransition;
 
 		private bool waitingForLoad;
 		private bool waitingForSave;
@@ -48,17 +51,17 @@ namespace ShadowWP7
 				"<Paragraph>Restore failed.</Paragraph>"
 			};
 
-        // Constructor
-        public MainPage()
-        {
+		// Constructor
+		public MainPage()
+		{
 			DataContext = this;
 
-            InitializeComponent();
+			InitializeComponent();
 
 			settings = IsolatedStorageSettings.ApplicationSettings;
 			storageFile = IsolatedStorageFile.GetUserStoreForApplication();
 
-            CopyFiles();
+			CopyFiles();
 
 			var savedGameSlots = storageFile.GetSavedGameSlots().ToDictionary( s => s.Slot, s => s );
 
@@ -104,7 +107,7 @@ namespace ShadowWP7
 				engine.SaveRequested += engine_SaveRequested;
 				engine.AwaitingLine += engine_AwaitingLine;
 				engine.AwaitingKey += engine_AwaitingKey;
-                engine.TransitionRequested += engine_TransitionRequested;
+				engine.TransitionRequested += engine_TransitionRequested;
 
 				engine.Start();
 			}
@@ -123,8 +126,8 @@ namespace ShadowWP7
 				engine.SaveRequested -= engine_SaveRequested;
 				engine.AwaitingLine -= engine_AwaitingLine;
 				engine.AwaitingKey -= engine_AwaitingKey;
-                engine.TransitionRequested -= engine_TransitionRequested;
-            }
+				engine.TransitionRequested -= engine_TransitionRequested;
+			}
 		}
 
 		void engine_LoadRequested( object sender, SaveRestoreEventArgs e )
@@ -155,7 +158,7 @@ namespace ShadowWP7
 
 			if ( page > 0 )
 			{
-				pager.CurrentPage --;
+				pager.CurrentPage--;
 				e.Cancel = true;
 			}
 			else base.OnBackKeyPress( e );
@@ -195,22 +198,22 @@ namespace ShadowWP7
 		{
 			awaitingLine = true;
 			awaitingKey = false;
-            awaitingTransition = false;
-        }
+			awaitingTransition = false;
+		}
 
 		void engine_AwaitingKey( object sender, EventArgs e )
 		{
 			awaitingKey = true;
 			awaitingLine = false;
-            awaitingTransition = false;
-        }
+			awaitingTransition = false;
+		}
 
-        void engine_TransitionRequested(object sender, TransitionEventArgs e)
-        {
-            awaitingKey = false;
-            awaitingLine = false;
-            awaitingTransition = true;
-        }
+		void engine_TransitionRequested( object sender, TransitionEventArgs e )
+		{
+			awaitingKey = false;
+			awaitingLine = false;
+			awaitingTransition = true;
+		}
 
 		private void ScrollToEnd()
 		{
@@ -278,7 +281,7 @@ namespace ShadowWP7
 
 				default:
 					{
-//						selectedCommandIndex = null;
+						//						selectedCommandIndex = null;
 
 						if ( engine != null && e.Key != Key.Unknown )
 						{
@@ -324,22 +327,31 @@ namespace ShadowWP7
 
 				if ( e.DataContext == null && storyCache.CurrentHistoryItem != null )
 				{
-					switch ( outsideBounds )
-					{
-						case 1: e.DataContext = new Pages.MenuPage(); break;
-						case 2: e.DataContext = new Pages.IntroPage1(); break;
-                        case 3: e.DataContext = new Pages.IntroPage2(); break;
-					}
+					e.DataContext = GetInfoPage( outsideBounds );
 				}
 			}
+		}
+
+		private object GetInfoPage( int outsideBounds )
+		{
+			if ( outsideBounds == 1 ) return new Pages.MenuPage();
+
+			if ( selectedPageGroup.HasValue )
+			{
+				var page = HtmlPages.GetPage( selectedPageGroup.Value, outsideBounds - 2 );
+
+				if ( page != null ) return new Pages.HtmlPage { Page = page };
+			}
+
+			return null;
 		}
 
 		private void load_Click( object sender, EventArgs e )
 		{
 			SetSaveLoadEnabled( false );
 
-//			SaveGame();
-			savedGames.Invalidate();			
+			//			SaveGame();
+			savedGames.Invalidate();
 
 			FindStoryboard( "showSavedGames" ).Begin();
 		}
@@ -423,13 +435,13 @@ namespace ShadowWP7
 		{
 			if ( lastManipulation.X == 0 && lastManipulation.Y == 0
 				&& !( FocusManager.GetFocusedElement() is TextBox )
-				&& e.OriginalSource is Image /* Page content image; TODO: Improve this :) */ )
+				&& ( e.OriginalSource is Image || e.OriginalSource is Rectangle ) /* Page content image; TODO: Improve this :) */ )
 			{
-				int outsideBounds;
+				int outsideBounds = 0;
 
 				if ( !ApplicationBar.IsVisible
-					&& storyCache != null
-					&& storyCache.GetPage( pager.CurrentPage + 1, out outsideBounds ) != null )
+					&& ( ( storyCache != null && storyCache.GetPage( pager.CurrentPage + 1, out outsideBounds ) != null )
+						|| ( selectedPageGroup.HasValue && GetInfoPage( outsideBounds ) != null ) ) )
 				{
 					pager.CurrentPage++;
 				}
@@ -440,26 +452,46 @@ namespace ShadowWP7
 			}
 		}
 
-        private void CopyFiles()
-        {
+		private void CopyFiles()
+		{
 
-            // Make sure HTDocs and HTDOCS\images are created.
-            storageFile.CreateDirectory("HTDocs\\images");
-            storageFile.CopyTextFile("HTDocs\\intropage1.html", true);
-            storageFile.CopyTextFile("HTDocs\\intropage2.html", true);
-            storageFile.CopyBinaryFile("HTDocs\\images\\oldclock.png", true);
-            storageFile.CopyBinaryFile("HTDocs\\images\\image2.png", true);
-            storageFile.CopyBinaryFile("HTDocs\\images\\image3.png", true);
-            storageFile.CopyBinaryFile("HTDocs\\images\\image4.png", true);
-            storageFile.CopyBinaryFile("HTDocs\\images\\parchmnt.jpg", true);
-            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch2.png", true);
-            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch3.png", true);
-            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch4.png", true);
-            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch5.png", true);
-            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch6.png", true);
-            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch8.png", true);
-            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch10.png", true);
-            storageFile.CopyBinaryFile("HTDocs\\images\\map-ch11.png", true);
-        }
+			// Make sure HTDocs and HTDOCS\images are created.
+			storageFile.CreateDirectory( "HTDocs\\images" );
+			storageFile.CopyTextFile( "HTDocs\\intropage1.html", true );
+			storageFile.CopyTextFile( "HTDocs\\intropage2.html", true );
+			storageFile.CopyTextFile( "HTDocs\\intropage3.html", true );
+			storageFile.CopyTextFile( "HTDocs\\intropage4.html", true );
+			storageFile.CopyTextFile( "HTDocs\\intropage5.html", true );
+			storageFile.CopyTextFile( "HTDocs\\about.html", true );
+			storageFile.CopyBinaryFile( "HTDocs\\images\\oldclock.png", true );
+			storageFile.CopyBinaryFile( "HTDocs\\images\\image2.png", true );
+			storageFile.CopyBinaryFile( "HTDocs\\images\\image3.png", true );
+			storageFile.CopyBinaryFile( "HTDocs\\images\\image4.png", true );
+			storageFile.CopyBinaryFile( "HTDocs\\images\\parchmnt.jpg", true );
+			storageFile.CopyBinaryFile( "HTDocs\\images\\map-ch2.png", true );
+			storageFile.CopyBinaryFile( "HTDocs\\images\\map-ch3.png", true );
+			storageFile.CopyBinaryFile( "HTDocs\\images\\map-ch4.png", true );
+			storageFile.CopyBinaryFile( "HTDocs\\images\\map-ch5.png", true );
+			storageFile.CopyBinaryFile( "HTDocs\\images\\map-ch6.png", true );
+			storageFile.CopyBinaryFile( "HTDocs\\images\\map-ch8.png", true );
+			storageFile.CopyBinaryFile( "HTDocs\\images\\map-ch10.png", true );
+			storageFile.CopyBinaryFile( "HTDocs\\images\\map-ch11.png", true );
+		}
+
+		private void MenuItem_Click( object sender, Pages.MenuEventArgs e )
+		{
+			switch ( e.SelectedItem )
+			{
+				case Pages.MenuItem.Introduction: selectedPageGroup = HtmlPageGroup.Intro; break;
+				case Pages.MenuItem.About: selectedPageGroup = HtmlPageGroup.About; break;
+				default: selectedPageGroup = null; break;
+			}
+
+			if ( selectedPageGroup.HasValue )
+			{
+				pager.PurgeCache( pager.CurrentPage + 1 );
+				pager.CurrentPage++;
+			}
+		}
 	}
 }

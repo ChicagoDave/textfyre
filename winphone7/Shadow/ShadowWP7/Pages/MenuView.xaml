@@ -6,10 +6,11 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:local="clr-namespace:ShadowWP7"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True">
 
@@ -33,11 +34,11 @@
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
 			<ListBox>
-				<TextBlock Style="{StaticResource PhoneTextTitle1Style}">introduction</TextBlock>
-				<TextBlock Style="{StaticResource PhoneTextTitle1Style}">help</TextBlock>
-				<TextBlock Style="{StaticResource PhoneTextTitle1Style}">hints</TextBlock>
-				<TextBlock Style="{StaticResource PhoneTextTitle1Style}">settings</TextBlock>
-				<TextBlock Style="{StaticResource PhoneTextTitle1Style}">about</TextBlock>
+				<TextBlock local:TiltEffect.IsTiltEnabled="True" MouseLeftButtonUp="Introduction_Click" Style="{StaticResource PhoneTextTitle1Style}">introduction</TextBlock>
+				<TextBlock local:TiltEffect.IsTiltEnabled="True" MouseLeftButtonUp="Help_Click" Style="{StaticResource PhoneTextTitle1Style}">help</TextBlock>
+				<TextBlock local:TiltEffect.IsTiltEnabled="True" MouseLeftButtonUp="Hints_Click" Style="{StaticResource PhoneTextTitle1Style}">hints</TextBlock>
+				<TextBlock local:TiltEffect.IsTiltEnabled="True" MouseLeftButtonUp="Settings_Click" Style="{StaticResource PhoneTextTitle1Style}">settings</TextBlock>
+				<TextBlock local:TiltEffect.IsTiltEnabled="True" MouseLeftButtonUp="About_Click" Style="{StaticResource PhoneTextTitle1Style}">about</TextBlock>
 			</ListBox>
 		</Grid>
     </Grid>

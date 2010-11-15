@@ -75,6 +75,11 @@
     <Compile Include="Controls\VirtualizingPager.cs" />
     <Compile Include="Helpers\ImplicitTemplateItemsControl.cs" />
     <Compile Include="Helpers\StoryCache.cs" />
+    <Compile Include="HTDocs\HtmlPages.cs" />
+    <Compile Include="Pages\HtmlPage.cs" />
+    <Compile Include="Pages\HtmlView.xaml.cs">
+      <DependentUpon>HtmlView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\IntroView1.xaml.cs">
       <DependentUpon>IntroView1.xaml</DependentUpon>
     </Compile>
@@ -99,6 +104,7 @@
     <Compile Include="SilverFyre\SavedGamesPage.cs" />
     <Compile Include="SilverFyre\ImagePage.cs" />
     <Compile Include="SilverFyre\CreditsPage.cs" />
+    <Compile Include="TiltEffect.cs" />
     <Compile Include="VisualStateHelper.cs" />
     <Compile Include="SilverFyre\Converters\InlineWordConverter.cs" />
     <Compile Include="ItemsControlHelper.cs" />
@@ -145,6 +151,10 @@
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\HtmlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\IntroView1.xaml">
       <SubType>Designer</SubType>

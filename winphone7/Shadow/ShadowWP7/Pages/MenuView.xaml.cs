@@ -13,8 +13,22 @@ using Microsoft.Phone.Controls;
 
 namespace ShadowWP7.Pages
 {
+	public enum MenuItem { Introduction, Help, Hints, Settings, About };
+
+	public class MenuEventArgs : EventArgs
+	{
+		public MenuItem SelectedItem { get; private set; }
+
+		public MenuEventArgs( MenuItem selectedItem )
+		{
+			this.SelectedItem = selectedItem;
+		}
+	}
+
 	public partial class MenuView : PhoneApplicationPage
 	{
+		public event EventHandler<MenuEventArgs> Selected;
+
 		public MenuView()
 		{
 			InitializeComponent();
@@ -22,5 +36,34 @@ namespace ShadowWP7.Pages
 			DataContext = this;
 		}
 
+		private void Introduction_Click( object sender, MouseButtonEventArgs e )
+		{
+			RaiseSelected( MenuItem.Introduction );
+		}
+
+		private void Help_Click( object sender, MouseButtonEventArgs e )
+		{
+			RaiseSelected( MenuItem.Help );
+		}
+
+		private void Hints_Click( object sender, MouseButtonEventArgs e )
+		{
+			RaiseSelected( MenuItem.Hints );
+		}
+
+		private void Settings_Click( object sender, MouseButtonEventArgs e )
+		{
+			RaiseSelected( MenuItem.Settings );
+		}
+
+		private void About_Click( object sender, MouseButtonEventArgs e )
+		{
+			RaiseSelected( MenuItem.About );
+		}
+
+		private void RaiseSelected( MenuItem selectedItem )
+		{
+			if ( Selected != null ) Selected( this, new MenuEventArgs( selectedItem ) );
+		}
 	}
 }
