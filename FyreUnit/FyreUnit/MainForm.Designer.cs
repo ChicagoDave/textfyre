@@ -34,6 +34,7 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.ExitProgram = new System.Windows.Forms.ToolStripMenuItem();
             this.OutputTextbox = new System.Windows.Forms.RichTextBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,6 +84,12 @@
             this.OutputTextbox.TabIndex = 4;
             this.OutputTextbox.Text = "";
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.DefaultExt = "ulx";
+            this.openFileDialog1.Filter = "FyreVM Files|*.ulx";
+            this.openFileDialog1.Title = "Open FyreVM Game";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -108,6 +115,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ExitProgram;
         private System.Windows.Forms.RichTextBox OutputTextbox;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
