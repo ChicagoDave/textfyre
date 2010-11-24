@@ -25,22 +25,13 @@ namespace ShadowWP7.Pages
         {
 			var page = ( DataContext as HtmlPage ).Page;
 
-            browser.Base = "HTDocs";
-            browser.Navigate( new Uri( page, UriKind.Relative ) );
+			browser.Base = "HTDocs";
+			browser.Navigate( new Uri( page, UriKind.Relative ) );
         }
 
 		private void browser_Navigated( object sender, System.Windows.Navigation.NavigationEventArgs e )
 		{
-/*			browser.Opacity = 1;
-
-			var bitmap = new WriteableBitmap( (int)DesiredSize.Width, (int)DesiredSize.Height );
-			bitmap.Render( browser, null );
-
-			bitmap.Invalidate();
-
-			image.Source = bitmap;
-
-			browser.Opacity = 0;*/
+			( Resources[ "showPage" ] as Storyboard ).Begin();
 		}
     }
 }
