@@ -13,13 +13,13 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Xml;
 using System.Xml.Linq;
-using Textfyre.VM;
+using FyreVM;
 
 namespace Cjc.SilverFyre
 {
 	public abstract class PageBase : INotifyPropertyChanged
 	{
-		private OutputChannel channel;
+		private string channel;
 		private Paragraph[] paragraphs;
 		private string information;
 
@@ -51,7 +51,7 @@ namespace Cjc.SilverFyre
 			}
 		}
 
-		public PageBase( StoryHistoryItem storyHistoryItem, OutputChannel channel )
+		public PageBase( StoryHistoryItem storyHistoryItem, string channel )
 			: this( storyHistoryItem )
 		{
 			this.channel = channel;
@@ -63,20 +63,20 @@ namespace Cjc.SilverFyre
 			{
 				return ( information != null )
 					? information
-					: StoryHistoryItem.OutputArgs.Package.ContainsKey( OutputChannel.Hints )
-						? StoryHistoryItem.OutputArgs.Package[ OutputChannel.Hints ]
+					: StoryHistoryItem.OutputArgs.Package.ContainsKey( Channels.HINT )
+						? StoryHistoryItem.OutputArgs.Package[ Channels.HINT ]
 						: null;
 			}
 
 			set { information = value; }
 		}
 
-		protected Paragraph[] GetParagraphs( OutputChannel channel )
+		protected Paragraph[] GetParagraphs( string channel )
 		{
-			return GetParagraphs( StoryHistoryItem.OutputArgs.Package[ channel ] ).ToArray();
+			return GetParagraphsFromXML( StoryHistoryItem.OutputArgs.Package[ channel ] ).ToArray();
 		}
 
-		protected IEnumerable<Paragraph> GetParagraphs( string content )
+		protected IEnumerable<Paragraph> GetParagraphsFromXML( string content )
 		{
 			var xml = ParseContent( content );
 

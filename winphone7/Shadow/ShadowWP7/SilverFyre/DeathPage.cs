@@ -9,7 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using Textfyre.VM;
+using FyreVM;
 
 namespace Cjc.SilverFyre
 {
@@ -18,7 +18,7 @@ namespace Cjc.SilverFyre
 		public override bool HasInput { get { return true; } }
 
 		public DeathPage( StoryHistoryItem storyHistoryItem )
-			: base( storyHistoryItem, OutputChannel.Death )
+			: base( storyHistoryItem, Channels.DEATH )
 		{
 		}
 	}

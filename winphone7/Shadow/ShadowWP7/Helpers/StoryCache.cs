@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 using System.Xml.Linq;
 using Cjc.SilverFyre;
 using ShadowWP7.SavedGames;
-using Textfyre.VM;
+using FyreVM;
 
 namespace ShadowWP7.Helpers
 {
@@ -163,10 +163,10 @@ namespace ShadowWP7.Helpers
 		{
 			if ( item.OutputArgs != null )
 			{
-				if ( item.OutputArgs.Package.ContainsKey( OutputChannel.Prologue ) ) yield return new ProloguePage( item );
-				if ( item.OutputArgs.Package.ContainsKey( OutputChannel.Credits ) ) CreditsPage = new CreditsPage( item );
-				if ( item.OutputArgs.Package.ContainsKey( OutputChannel.Death ) ) yield return new DeathPage( item );
-				if ( item.OutputArgs.Package.ContainsKey( OutputChannel.Main ) ) yield return new StoryPage( item );
+				if ( item.OutputArgs.Package.ContainsKey( Channels.PROLOGUE ) ) yield return new ProloguePage( item );
+				if ( item.OutputArgs.Package.ContainsKey( Channels.CREDITS ) ) CreditsPage = new CreditsPage( item );
+				if ( item.OutputArgs.Package.ContainsKey( Channels.DEATH ) ) yield return new DeathPage( item );
+				if ( item.OutputArgs.Package.ContainsKey( Channels.MAIN ) ) yield return new StoryPage( item );
 			}
 		}
 	}

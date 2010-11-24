@@ -94,6 +94,7 @@
     <Compile Include="SavedGames\SavedGamesView.xaml.cs">
       <DependentUpon>SavedGamesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SilverFyre\Channels.cs" />
     <Compile Include="SilverFyre\Converters\InlineParagraphConverter.cs" />
     <Compile Include="SilverFyre\SavedGamesPage.cs" />
     <Compile Include="SilverFyre\ImagePage.cs" />
@@ -170,7 +171,7 @@
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
-    <EmbeddedResource Include="sh-v1.3.ulx" />
+    <EmbeddedResource Include="sh-v1.3dc.ulx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApplicationIcon.png" />
@@ -225,9 +226,9 @@
     <Content Include="Images\OldPaper.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Textfyre.VM\Textfyre.VM.csproj">
-      <Project>{13A8583B-F4F0-4518-999F-A5A3A169615D}</Project>
-      <Name>Textfyre.VM</Name>
+    <ProjectReference Include="..\..\FyreVMWP7\FyreVMWP7.csproj">
+      <Project>{32882E12-CB55-405E-BD74-0845837BE6A1}</Project>
+      <Name>FyreVMWP7</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

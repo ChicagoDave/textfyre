@@ -1,17 +1,7 @@
-﻿using System;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-using Textfyre.VM;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using FyreVM;
 
 namespace Cjc.SilverFyre
 {
@@ -19,10 +9,10 @@ namespace Cjc.SilverFyre
 	{
 		public StoryState( OutputReadyEventArgs outputArgs )
 		{
-			if ( outputArgs.Package.ContainsKey( OutputChannel.Location ) ) Location = outputArgs.Package[ OutputChannel.Location ].Trim();
-			if ( outputArgs.Package.ContainsKey( OutputChannel.Score ) ) Score = outputArgs.Package[ OutputChannel.Score ].Trim();
-			if ( outputArgs.Package.ContainsKey( OutputChannel.Time ) ) Time = outputArgs.Package[ OutputChannel.Time ].Trim();
-			if ( outputArgs.Package.ContainsKey( OutputChannel.Prompt ) ) Prompt = outputArgs.Package[ OutputChannel.Prompt ].Trim();
+			if ( outputArgs.Package.ContainsKey( Channels.LOCATION ) ) Location = outputArgs.Package[ Channels.LOCATION ].Trim();
+			if ( outputArgs.Package.ContainsKey( Channels.SCORE ) ) Score = outputArgs.Package[ Channels.SCORE ].Trim();
+			if ( outputArgs.Package.ContainsKey( Channels.TIME ) ) Time = outputArgs.Package[ Channels.TIME ].Trim();
+			if ( outputArgs.Package.ContainsKey( Channels.PROMPT ) ) Prompt = outputArgs.Package[ Channels.PROMPT ].Trim();
 			else Prompt = ">";
 		}
 
@@ -51,6 +41,9 @@ namespace Cjc.SilverFyre
 			RaisePropertyChanged( "CommandText" );
 		}
 
+        /// <summary>
+        /// These come through the Channels.VERB channel on the opening output.
+        /// </summary>
 		public IDictionary<string, string[]> Commands
 		{
 			get

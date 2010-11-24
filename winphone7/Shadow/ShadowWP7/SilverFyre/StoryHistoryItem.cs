@@ -10,7 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using Textfyre.VM;
+using FyreVM;
 using System.Xml.Linq;
 using System.Xml;
 using System.ComponentModel;
@@ -56,7 +56,7 @@ namespace Cjc.SilverFyre
 			var command = (string)element.Element( "Command" );
 
 			var package = ( from e in element.Elements( "Package" ).Elements()
-							let c = (OutputChannel)Enum.Parse( typeof( OutputChannel ), e.Name.LocalName, true )
+							let c = (string)Enum.Parse( typeof( string ), e.Name.LocalName, true )
 							select new
 							{
 								Key = c,

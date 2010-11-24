@@ -12,7 +12,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using ShadowWP7.Helpers;
 using ShadowWP7.SavedGames;
-using Textfyre.VM;
+using FyreVM;
 using System.Windows.Controls;
 using ShadowWP7.Controls;
 using ShadowWP7.HTDocs;
@@ -72,7 +72,7 @@ namespace ShadowWP7
 			savedGameSlot = savedGameSlots[ slot ];
 			storyCache = new StoryCache( savedGameSlot, storageFile );
 
-			engine = LoadEngine( "sh-v1.3.ulx" );
+            engine = LoadEngine("sh-v1.3dc.ulx");
 
 			if ( savedGameSlot.Game != null && savedGameSlot.HasGameFile( storageFile ) )
 			{
@@ -173,8 +173,8 @@ namespace ShadowWP7
 
 				if ( waitingForLoad || waitingForSave )
 				{
-					if ( ( e.Package.ContainsKey( OutputChannel.Main ) && saveLoadResponses.Contains( e.Package[ OutputChannel.Main ] ) )
-						|| e.Package.ContainsKey( OutputChannel.Death ) )
+					if ( ( e.Package.ContainsKey( Channels.MAIN ) && saveLoadResponses.Contains( e.Package[ Channels.MAIN ] ) )
+						|| e.Package.ContainsKey( Channels.DEATH ) )
 					{
 						waitingForLoad = waitingForSave = false;
 					}
