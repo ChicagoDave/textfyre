@@ -174,8 +174,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApplicationIcon.png" />
-    <Resource Include="HTDocs\images\image5.png" />
-    <Resource Include="HTDocs\images\image6.png" />
+    <Content Include="HTDocs\blank.html" />
+    <Content Include="HTDocs\images\image5.png" />
+    <Content Include="HTDocs\images\image6.png" />
     <Content Include="HTDocs\about.html" />
     <Content Include="HTDocs\images\compass.png" />
     <Content Include="HTDocs\intropage5.html" />

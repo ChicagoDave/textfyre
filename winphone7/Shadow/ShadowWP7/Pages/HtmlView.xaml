@@ -13,11 +13,28 @@
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True">
 
+	<phone:PhoneApplicationPage.Resources>
+		<Storyboard x:Key="showPage">
+			<DoubleAnimation To="1"
+							 Storyboard.TargetName="browser"
+							 Storyboard.TargetProperty="Opacity"
+							 Duration="0:0:0.25"/>
+		</Storyboard>
+	</phone:PhoneApplicationPage.Resources>
+
     <Grid x:Name="LayoutRoot">
-        <phone:WebBrowser Name="browser" HorizontalAlignment="Left" Width="480" Height="768"
-						  Margin="0,0,0,0" VerticalAlignment="Top"
-						  Loaded="browser_Loaded" Navigated="browser_Navigated"/>
-		<Rectangle Opacity="0" Fill="Transparent"/>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="50"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+		<Image Grid.Row="0" Grid.RowSpan="2"
+			   Source="/HTDocs/images/parchmnt.jpg"
+			   Stretch="Fill"/>
+		<Rectangle Grid.Row="0" Fill="#20000000"/>
+		<phone:WebBrowser Grid.Row="1" Name="browser"
+							Margin="0,0,0,0" Opacity="0"
+							Loaded="browser_Loaded"
+							Navigated="browser_Navigated"/>
 	</Grid> 
 
 </phone:PhoneApplicationPage>

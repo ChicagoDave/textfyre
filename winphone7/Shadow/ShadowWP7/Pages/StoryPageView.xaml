@@ -45,7 +45,8 @@
 		<Storyboard x:Key="hideInfo">
 			<DoubleAnimation To="0"
 							 Storyboard.TargetName="infoArea"
-							 Storyboard.TargetProperty="Opacity"/>
+							 Storyboard.TargetProperty="Opacity"
+							 Duration="0:0:0.25"/>
 		</Storyboard>
 
 	</UserControl.Resources>
