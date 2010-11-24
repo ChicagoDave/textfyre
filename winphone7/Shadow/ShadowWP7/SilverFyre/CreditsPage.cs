@@ -9,14 +9,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using Textfyre.VM;
+using FyreVM;
 
 namespace Cjc.SilverFyre
 {
 	public class CreditsPage : PageBase
 	{
 		public CreditsPage( StoryHistoryItem storyHistoryItem )
-			: base( storyHistoryItem, OutputChannel.Credits )
+			: base( storyHistoryItem, Channels.CREDITS )
 		{
 		}
 	}

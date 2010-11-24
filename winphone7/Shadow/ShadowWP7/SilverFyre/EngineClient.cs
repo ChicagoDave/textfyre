@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
-using Textfyre.VM;
 using System.IO.IsolatedStorage;
 using System.Collections.Generic;
+using FyreVM;
 
 namespace Cjc.SilverFyre
 {
@@ -123,8 +123,8 @@ namespace Cjc.SilverFyre
 		{
 			if ( OutputReady != null )
 			{
-				var package = new Dictionary<OutputChannel, string>();
-				package[ OutputChannel.Death ] = ex.Message;
+				var package = new Dictionary<string, string>();
+				package[ Channels.DEATH ] = ex.Message;
 
 				OutputReady( this, new OutputReadyEventArgs { Package = package } );
 			}

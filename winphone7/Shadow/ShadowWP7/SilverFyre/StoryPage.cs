@@ -9,7 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using Textfyre.VM;
+using FyreVM;
 
 namespace Cjc.SilverFyre
 {
@@ -21,7 +21,7 @@ namespace Cjc.SilverFyre
 		public override bool HasCommand { get { return StoryHistoryItem.HasCommand; } }
 
 		public StoryPage( StoryHistoryItem storyHistoryItem )
-			: base( storyHistoryItem, OutputChannel.Main )
+			: base( storyHistoryItem, Channels.MAIN )
 		{
 			if ( showInformation )
 			{
