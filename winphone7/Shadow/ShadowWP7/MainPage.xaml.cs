@@ -463,7 +463,6 @@ namespace ShadowWP7
 			storageFile.CopyTextFile( "HTDocs\\intropage4.html", true );
 			storageFile.CopyTextFile( "HTDocs\\intropage5.html", true );
 			storageFile.CopyTextFile( "HTDocs\\about.html", true );
-			storageFile.CopyTextFile( "HTDocs\\blank.html", true );
 			storageFile.CopyBinaryFile( "HTDocs\\images\\oldclock.png", true );
 			storageFile.CopyBinaryFile( "HTDocs\\images\\image2.png", true );
 			storageFile.CopyBinaryFile( "HTDocs\\images\\image3.png", true );
