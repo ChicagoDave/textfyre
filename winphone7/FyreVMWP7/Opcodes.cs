@@ -1508,7 +1508,9 @@ namespace FyreVM
         [Opcode(0x191, "ftonumz", 1, 1)]
         private void op_ftonumz(uint[] args)
         {
-            double f = Math.Truncate(DecodeFloat(args[0]));
+            string truncatedValue = DecodeFloat(args[0]).ToString();
+            truncatedValue = truncatedValue.Substring(0, truncatedValue.IndexOf("."));
+            double f = Convert.ToDouble(truncatedValue);
             if (double.IsNaN(f))
             {
                 if ((args[0] & 0x80000000) != 0)
@@ -1600,7 +1602,9 @@ namespace FyreVM
             }
             else
             {
-                double quo = Math.Truncate((double)f1 / f2);
+                string truncatedValue = ((double)f1 / f2).ToString();
+                truncatedValue = truncatedValue.Substring(0, truncatedValue.IndexOf("."));
+                double quo = Convert.ToDouble(truncatedValue);
                 args[2] = EncodeFloat((float)(f1 % f2));
                 if (args[2] == 0 && (args[0] & 0x80000000) != 0)
                     args[2] = 0x80000000;
