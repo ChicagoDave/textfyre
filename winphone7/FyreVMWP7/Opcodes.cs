@@ -1473,7 +1473,9 @@ namespace FyreVM
         #endregion
 
         #region Floating Point
+
 #if FLOATING_POINT
+        private static double Truncate(double d) { return d > 0.0 ? Math.Floor(d) : Math.Ceiling(d); }
 
 #if !ALLOW_UNSAFE
         private static uint EncodeFloat(float x)
@@ -1508,9 +1510,7 @@ namespace FyreVM
         [Opcode(0x191, "ftonumz", 1, 1)]
         private void op_ftonumz(uint[] args)
         {
-            string truncatedValue = DecodeFloat(args[0]).ToString();
-            truncatedValue = truncatedValue.Substring(0, truncatedValue.IndexOf("."));
-            double f = Convert.ToDouble(truncatedValue);
+            double f = (double)DecodeFloat((uint)Truncate(args[0]));
             if (double.IsNaN(f))
             {
                 if ((args[0] & 0x80000000) != 0)
@@ -1602,9 +1602,7 @@ namespace FyreVM
             }
             else
             {
-                string truncatedValue = ((double)f1 / f2).ToString();
-                truncatedValue = truncatedValue.Substring(0, truncatedValue.IndexOf("."));
-                double quo = Convert.ToDouble(truncatedValue);
+                double quo = Truncate((double)f1 / f2);
                 args[2] = EncodeFloat((float)(f1 % f2));
                 if (args[2] == 0 && (args[0] & 0x80000000) != 0)
                     args[2] = 0x80000000;
