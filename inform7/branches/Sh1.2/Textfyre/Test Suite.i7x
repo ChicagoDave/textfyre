@@ -13,8 +13,8 @@ To assert the/-- equality of (m - a number) and (n - a number), critically:
 To assert the/-- inequality of (m - a thing) and (n - a thing), critically:
 	do nothing;
 
-To assert that/-- (C - a condition) issuing (report - indexed text), critically:
-	do nothing
+To assert that/-- (C - a condition) issuing (report - indexed text), critically: 
+	(- ; -).  [satisfy 6E92 compiler]
 
 To assert that/-- (T - a truth state) issuing (report - some text), critically:
 	do nothing;
@@ -118,6 +118,13 @@ To placeholder (X - indexed text):
 To debug (X - indexed text):
 	do nothing;
 
+To say placeholder -- beginning say_placeholder:
+	do nothing.
+
+To say end placeholder -- ending say_placeholder:
+	do nothing.
+
+
 Section 2 - Not For Release
 
 [By placing these second in the source, we ensure that the previous definitions are overridden.]
@@ -142,6 +149,14 @@ To placeholder (X - indexed text):
 To debug (X - indexed text):
 	say "[bracket]debug[close bracket] [X][paragraph break]";
 
+
+To say placeholder -- beginning say_placeholder:
+	say "[bracket]placeholder text: '";
+
+To say end placeholder -- ending say_placeholder:
+	say "'[close bracket][paragraph break]";
+
+
 Section 3 - Not For Release
 
 Warning-display is a truth state that varies. Warning-display is false.
@@ -149,14 +164,44 @@ Warning-display is a truth state that varies. Warning-display is false.
 Toggling warnings is an action out of world applying to nothing. Understand "warnings" as toggling warnings.
 
 Carry out toggling warnings:
-	change warning-display to whether or not warning-display is false;
+	now warning-display is whether or not warning-display is false;
 
 Report toggling warnings:
 	say "[bracket]Warnings will [if warning-display is true]now[otherwise]not[end if] be displayed[close bracket][paragraph break]";
 
 
+Part 3 - miscellaneous
 
-Part X - Stopping abruptly (For use without Basic Screen Effects by Emily Short)
+Section 1 - ifndef debug compiler directives
+
+[these I wrap around anything that is "for release only", such as the PAUSE THE GAME phrase which breaks the Skein and many TEST ME commands]
+To ifndef debug: [do nothing.] (- #ifndef DEBUG; -).
+To enddef debug: [do nothing.]  (-  #endif; -). 
+
+
+Section 2 - showing Inform's scheduled events
+
+[Use from a rule, like this :
+
+Every turn: say future events.
+
+]
+
+To say future events: (- sfe(); -).
+
+Include (-
+[ sfe i rule;
+	print (TimedEventsTable-->0), " pending events: ";
+	for (i=1: i<=(TimedEventsTable-->0): i++)
+		!if ((rule=TimedEventsTable-->i) ~= 0)
+		{ rule=TimedEventsTable-->i;
+  		  print (RulePrintingRule) rule, "(", (TimedEventTimesTable-->i), "), "; }
+	print "^";
+
+];-).
+
+
+Part 4 - Stopping abruptly (For use without Basic Screen Effects by Emily Short)
 
 To stop the/-- game abruptly:
 	(- quit; -)

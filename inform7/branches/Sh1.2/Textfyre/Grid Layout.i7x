@@ -38,7 +38,7 @@ To say (t - a table-name) laid out as a grid:
 				change ws to entry n of the spacings - 1;
 				while ws is greater than 0:
 					change x to "[x] ";
-					decrement ws by 1;
+					decrease ws by 1;
 		say "[x]", line break, run paragraph on;
 	change ws to 0;
 	change x to "";
@@ -60,7 +60,7 @@ To say (t - a table-name) laid out as a grid:
 				change ws to entry n of the spacings - (0 - ws + the number of characters in x);
 				while ws is greater than 0:
 					change x to "[x] ";
-					decrement ws by 1;
+					decrease ws by 1;
 			say "[x]";
 		say line break, run paragraph on;
 	say variable letter spacing, run paragraph on;
@@ -155,9 +155,9 @@ To decide what number is how many characters are needed for the first (n - a num
 		change n to the number of unpunctuated words in t;
 	repeat with i running from 1 to n:
 		let x be unpunctuated word number i in t;
-		increment count by the number of characters in x;
+		increase count by the number of characters in x;
 		if i is less than n:
-			increment count by 1;
+			increase count by 1;
 	decide on count;
 
 To decide what number is how many words of (t - indexed text) fit in (n - a number):
@@ -173,12 +173,12 @@ To decide what number is how many words of (t - indexed text) fit in (n - a numb
 	while i is less than n and wn is at most the number of unpunctuated words in t:
 		let x be unpunctuated word number wn in t;
 		let wl be the number of characters in x;
-		increment i by wl;
+		increase i by wl;
 		if i is at most n:
-			increment wn by 1;
+			increase wn by 1;
 		if i is less than n:
-			increment i by 1;
-	decrement wn by 1;
+			increase i by 1;
+	decrease wn by 1;
 	decide on wn;
 
 Grid Layout ends here.

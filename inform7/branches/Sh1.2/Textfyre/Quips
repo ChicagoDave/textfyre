@@ -51,7 +51,7 @@ Chapter 4 - Conversation Initiation
 Initiating conversation with something is an activity.
 
 The first before initiating conversation with rule:
-	change the chosen opening gambit to nothing;
+	now the chosen opening gambit is nothing;
 
 After initiating conversation with a thing (called the new person):
 	unless the chosen opening gambit is nothing:
@@ -135,7 +135,7 @@ Populating something is an activity.
 
 Rule for populating a quip (called q) (this is the standard quip-populating rule):
 	let n be the number of entries in the current conversation;
-	change the current conversation to the response of q;
+	now the current conversation is the response of q;
 
 Last after populating a transitional quip (called tq) (this is the standard quip-transitioning rule):
 	let the real destination be the following quip of tq;
@@ -204,10 +204,10 @@ The last after displaying the menu rule:
 Section 2 - For Universal use
 
 Rule for displaying the menu:
-	change the menu option currently being displayed to 1;
+	now the menu option currently being displayed is 1;
 	repeat with X running through the current conversation begin;
 		carry out the printing the menu text activity with X;
-		increment the menu option currently being displayed by 1;
+		increase the menu option currently being displayed by 1;
 	end repeat;
 
 Section 3 - Menu option display (For use with FyreVM Support by Textfyre)
@@ -265,7 +265,7 @@ Part 6 - Fixing misleading parser errors
 To TF_QUIP_fix_parser:
 	(- etype = STUCK_PE; -)
 
-Before printing a parser error when the parser error is didn't understand that number:
+Before printing a parser error when the latest parser error is didn't understand that number error:
 	TF_QUIP_fix_parser;
 
 Part 7 - Toggling topic numbers
@@ -277,10 +277,10 @@ Showing topic numbers is an action out of world applying to nothing.
 Hiding topic numbers is an action out of world applying to nothing.
 
 Carry out showing topic numbers:
-	change menu option number display to true;
+	now menu option number display is true;
 
 Carry out hiding topic numbers:
-	change menu option number display to false;
+	now menu option number display is false;
 
 Report showing topic numbers:
 	say "[bracket]Topic numbers are now on.[close bracket][paragraph break]";
@@ -290,15 +290,22 @@ Report hiding topic numbers:
 
 Part X - Debugging - Not for release
 
-After printing the name of an unfired quip:
+After printing the name of an unfired quip (this is the unfired quip status for-debug-only rule):
 	say " (unfired)"
 
-After printing the name of an fired quip:
+After printing the name of an fired quip (this is the fired quip status for-debug-only rule):
 	say " *FIRED*"
 
-After printing the name of a room while constructing the status line:
+After printing the name of a room while constructing the status line (this is the current listener in statusline for-debug-only rule):
 	if the current conversationalist is not the player:
 		say " (talking to [the current conversationalist])";
+
+To fire (t - a quip):
+	bug "Directly fired a quip via 'fire [printed name of t]' rather than 'start conversation with (someone) on [printed name of t]'.";
+	carry out the firing activity with t.   [ when we   fire <quip>    then any menu attached to it will never appear. Nor will the conversationalist be displayed in fancier UIs, I imagine. ]
+
+[Understand "quip [any quip]" as a mistake ("[yourself quips the noun]").]
+
 
 Quips ends here.
 
@@ -341,7 +348,7 @@ A player can only be in conversation with one game character at a time, although
 When the player types "talk to Bobby" then - assuming no before rules, instead rules, or standard check rules interfere - the "initiating conversation" activity is carried out. The initiating conversation with rules have a chance to set the global value "the chosen opening gambit" to a quip. In practice, all this means that setting the starting quip for an NPC usually looks something like this:
 
 	Rule for initiating conversation with Bobby:
-		change the chosen opening gambit to EG1.
+		now the chosen opening gambit is EG1.
 
 Technically, this "initiating" activity is called "initiating conversation with" - and unlike "of" which is automatically stripped from activity names, "with" is not a recognised I7 preposition. It is only important to know this when carrying out the activity manually:
 
