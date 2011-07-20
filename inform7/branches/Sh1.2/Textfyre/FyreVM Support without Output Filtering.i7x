@@ -1,4 +1,4 @@
-Version 3/100527 of FyreVM Support (for Glulx only) by Textfyre begins here.
+Version 1/101123 of FyreVM Support without Output Filtering (for Glulx only) by Textfyre begins here.
 
 Use authorial modesty.
 
@@ -12,63 +12,48 @@ Include (-
 ! of the buffer, and the characters are written after (starting at offset 4).
 ! Writes a length of 0 if the read failed.
 Constant FY_READLINE = 1;
-! FY_SETSTYLE: Activates the selected text style. Bold and italic may be
-! combined by setting them one after the other; roman will turn both off.
-! Fixed and variable are opposites.
-Constant FY_SETSTYLE = 2;
 ! FY_TOLOWER/FY_TOUPPER: Converts a character to lower or upper case, based
 ! on whichever encoding is used for the dictionary and input buffer.
-Constant FY_TOLOWER = 3;
-Constant FY_TOUPPER = 4;
+Constant FY_TOLOWER = 2;
+Constant FY_TOUPPER = 3;
 ! FY_CHANNEL: Selects an output channel.
-Constant FY_CHANNEL = 5;
-! FY_XMLFILTER: Turns the main channel's XML filter on (1) or off (0).
-Constant FY_XMLFILTER = 6;
+Constant FY_CHANNEL = 4;
 ! FY_READKEY: Reads a single character of input, e.g. for pausing the game.
 ! Returns the Unicode character, or 0 if the read failed.
-Constant FY_READKEY = 7;
+Constant FY_READKEY = 5;
 ! FY_SETVENEER: Registers a routine address or constant value with the
 ! interpreter's veneer acceleration system.
-Constant FY_SETVENEER = 8;
+Constant FY_SETVENEER = 6;
+! FY_TRANSITION_REQUESTED: Occurs when the game is jumping forward. Helps the UI identify how to do this.
+Constant FY_REQUEST_TRANSITION = 7;
 
-! Text styles for FY_SETSTYLE.
-Constant FYS_ROMAN = 1;
-Constant FYS_BOLD = 2;
-Constant FYS_ITALIC = 3;
-Constant FYS_FIXED = 4;
-Constant FYS_VARIABLE = 5;
+! **** Channel IO Layout ****
+!
+! Each channel constant is a 4 byte integer packed with 4 upper case letters.
+!
+! Required Channels for FY_CHANNEL.
+!
+Constant FYC_MAIN = ('M' * $1000000) + ('A' * $10000) + ('I' * $100) + 'N';			! MAIN
+Constant FYC_PROMPT = ('P' * $1000000) + ('R' * $10000) + ('P' * $100) + 'T';			! PRPT
+Constant FYC_LOCATION = ('L' * $1000000) + ('O' * $10000) + ('C' * $100) + 'N';		! LOCN
+Constant FYC_SCORE = ('S' * $1000000) + ('C' * $10000) + ('O' * $100) + 'R';			! SCOR
+Constant FYC_TIME = ('T' * $1000000) + ('I' * $10000) + ('M' * $100) + 'E';				! TIME
+Constant FYC_DEATH = ('D' * $1000000) + ('E' * $10000) + ('A' * $100) + 'D';			! DEAD
 
-! Channels for FY_CHANNEL.
-Constant FYC_TITLE = 1;
-Constant FYC_CREDITS = 2;
-Constant FYC_PROLOGUE = 3;
-Constant FYC_MAIN = 4;
-Constant FYC_PROMPT = 5;
-Constant FYC_LOCATION = 6;
-Constant FYC_SCORE = 7;
-Constant FYC_TIME = 8;
-Constant FYC_TURN = 9;
-Constant FYC_HINTS = 10;
-Constant FYC_HELP = 11;
-Constant FYC_MAP = 12;
-Constant FYC_SOUND = 13;
-Constant FYC_CHAPTER = 14;
-Constant FYC_CHANNEL_A = 15;
-Constant FYC_CHANNEL_B = 16;
-Constant FYC_CHANNEL_C = 17;
-Constant FYC_CHANNEL_D = 18;
-Constant FYC_CHANNEL_E = 19;
-Constant FYC_CHANNEL_F = 20;
-Constant FYC_CHANNEL_G = 21;
-Constant FYC_CHANNEL_H = 22;
-Constant FYC_CHANNEL_I = 23;
-Constant FYC_CHANNEL_J = 24;
-Constant FYC_CHANNEL_K = 25;
-Constant FYC_CHANNEL_L = 26;
-Constant FYC_CHANNEL_M = 27;
-Constant FYC_CHANNEL_N = 28;
-Constant FYC_CHANNEL_O = 29;
-Constant FYC_DEATH = 30;
+! Game specific channels for FY_CHANNEL
+Constant FYC_TITLE = ('T' * $1000000) + ('I' * $10000) + ('T' * $100) + 'L';				! TITL
+Constant FYC_CREDITS = ('C' * $1000000) + ('R' * $10000) + ('E' * $100) + 'D';			! CRED
+Constant FYC_PROLOGUE = ('P' * $1000000) + ('L' * $10000) + ('O' * $100) + 'G';		! PLOG
+Constant FYC_TURN = ('T' * $1000000) + ('U' * $10000) + ('R' * $100) + 'N';			! TURN
+Constant FYC_HINT = ('H' * $1000000) + ('I' * $10000) + ('N' * $100) + 'T';				! HINT
+Constant FYC_HELP = ('H' * $1000000) + ('E' * $10000) + ('L' * $100) + 'P';				! HELP
+Constant FYC_MAP = ('M' * $1000000) + ('A' * $10000) + ('P' * $100) + ' ';				! MAP
+Constant FYC_SOUND = ('S' * $1000000) + ('O' * $10000) + ('N' * $100) + 'D';			! SOND
+Constant FYC_CHAPTER = ('C' * $1000000) + ('H' * $10000) + ('A' * $100) + 'P';		! CHAP
+Constant FYC_ACHIEVEMENT = ('A' * $1000000) + ('C' * $10000) + ('H' * $100) + 'V';	! ACHV
+Constant FYC_TIPS = ('T' * $1000000) + ('I' * $10000) + ('P' * $100) + 'S';				! TIPS
+Constant FYC_VERSION = ('V' * $1000000) + ('R' * $10000) + ('S' * $100) + 'N';			! VRSN
+Constant FYC_VERB = ('V' * $1000000) + ('E' * $10000) + ('R' * $100) + 'B';				! VERB
 
 ! Slots for FY_SETVENEER.
 Constant FYV_Z__Region = 1;
@@ -243,16 +228,7 @@ Global is_fyrevm = 0;
         return;
     }
 
-    @gestalt 4 2 res; ! Test if this interpreter has Glk...
-    if (res == 0) quit; ! ...without which there would be nothing we could do
-
-	unicode_gestalt_ok = false;
-	if (glk_gestalt(gestalt_Unicode, 0))
-		unicode_gestalt_ok = true;
-
-    ! Set the VM's I/O system to be Glk.
-    @setiosys 2 0;
-]; 
+];
 
 [ VM_Initialise res;
     @gestalt 4 20 is_fyrevm; ! Test if this interpreter has FyreVM channels
@@ -265,6 +241,13 @@ Global is_fyrevm = 0;
 
     @gestalt 4 2 res; ! Test if this interpreter has Glk...
     if (res == 0) quit; ! ...without which there would be nothing we could do
+
+	unicode_gestalt_ok = false;
+	if (glk_gestalt(gestalt_Unicode, 0))
+		unicode_gestalt_ok = true;
+
+    ! Set the VM's I/O system to be Glk.
+    @setiosys 2 0;
 
     ! First, we must go through all the Glk objects that exist, and see
     ! if we created any of them. One might think this strange, since the
@@ -577,16 +560,11 @@ Include (-
 ];
 -) instead of "Audiovisual Resources" in "Glulx.i6t".
 
+[ FyreVM does not do anything about styles. This has to be managed in the game file with markup. ]
+
 Include (-
 [ VM_Style sty;
-	if (is_fyrevm) {
-		switch (sty) {
-			NORMAL_VMSTY:
-				FyreCall(FY_SETSTYLE, FYS_ROMAN);
-			HEADER_VMSTY, SUBHEADER_VMSTY, ALERT_VMSTY:
-				FyreCall(FY_SETSTYLE, FYS_BOLD);
-		}
-	} else {
+	if (~~is_fyrevm) {
 		switch (sty) {
 			NORMAL_VMSTY:     glk_set_style(style_Normal);
 			HEADER_VMSTY:     glk_set_style(style_Header);
@@ -1069,9 +1047,12 @@ Include (-
 			FyreCall(FY_CHANNEL, FYC_SCORE);
 			print sline1;
 			#endif;
-
+			
 			FyreCall(FY_CHANNEL, FYC_TIME);
-			print sline2;
+			print the_time;
+
+			FyreCall(FY_CHANNEL, FYC_TURN);
+			print turns;
 		}
 		ClearParagraphing();
 		FyreCall(FY_CHANNEL, FYC_MAIN);
@@ -1309,17 +1290,6 @@ Include (-
 
 Chapter 3 - Standard Rules replacements
 
-To say bold type -- running on:
-	(- if (is_fyrevm) FyreCall(FY_SETSTYLE, FYS_BOLD); else style bold; -).
-To say italic type -- running on:
-	(- if (is_fyrevm) FyreCall(FY_SETSTYLE, FYS_ITALIC); else style underline; -).
-To say roman type -- running on:
-	(- if (is_fyrevm) FyreCall(FY_SETSTYLE, FYS_ROMAN); else style roman; -).
-To say fixed letter spacing -- running on:
-	(- if (is_fyrevm) FyreCall(FY_SETSTYLE, FYS_FIXED); else font off; -).
-To say variable letter spacing -- running on:
-	(- if (is_fyrevm) FyreCall(FY_SETSTYLE, FYS_VARIABLE); else font on; -).
-
 This is the direct the final prompt to the prompt channel rule:
 	select the prompt channel;
 	follow the print the final prompt rule;
@@ -1329,292 +1299,135 @@ The direct the final prompt to the prompt channel rule is listed instead of the 
 
 Chapter 4 - Channel Rules
 
-To Select the Title Channel:
-	resume XML filtering;
-	Turn on the Title Channel.
-
-To Turn on the Title Channel:
-	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_TITLE); -).
-
-To Select the Credits Channel:
-	resume XML filtering;
-	Turn on the Credits Channel.
-
-To Turn on the Credits Channel:
-	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_CREDITS); -);
-
-To Select the Prologue Channel:
-	resume XML filtering;
-	Turn on the Prologue Channel.
-
-To Turn on the Prologue Channel:
-	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_PROLOGUE); -).
+Section 1 - Required Channels
 
 To Select the Main Channel:
-	resume XML filtering;
-	Turn on the Main Channel.
-
-To Turn on the Main Channel:
 	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_MAIN); -).
 
 To Select the Prompt Channel:
 	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_PROMPT); -).
 
 To Change the Prompt to (T - text):
-	resume XML filtering;
 	Select the Prompt Channel;
 	say T;
 	Select the Main Channel.
 
 To Select the Location Channel:
-	resume XML filtering;
-	Turn on the Location Channel.
-
-To Turn on the Location Channel:
 	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_LOCATION); -).
 
 To Select the Score Channel:
-	resume XML filtering;
-	Turn on the Score Channel.
-
-To Turn on the Score Channel:
 	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_SCORE); -).
 
 To Select the Time Channel:
-	resume XML filtering;
-	Turn on the Time Channel.
-
-To Turn on the Time Channel:
 	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_TIME); -).
 
-To Select the Turn Channel:
-	resume XML filtering;
-	Turn on the Turn Channel.
+To Select the Death Channel:
+	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_DEATH); -);
 
-To Turn on the Turn Channel:
+Section 2 - Additional Channels
+	
+To Select the Title Channel:
+	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_TITLE); -).
+
+To Select the Credits Channel:
+	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_CREDITS); -);
+
+To Select the Prologue Channel:
+	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_PROLOGUE); -).
+
+To Select the Turn Channel:
 	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_TURN); -).
 
-To Select the Hints Channel:
-	suspend XML filtering;
-	Turn on the Hints Channel.
-
-To Turn on the Hints Channel:
-	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_HINTS); -).
+To Select the Hint Channel:
+	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_HINT); -).
 
 To Select the Help Channel:
-	suspend XML filtering;
-	Turn on the Help Channel.
-
-To Turn on the Help Channel:
 	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_HELP); -).
 
 To Select the Map Channel:
-	suspend XML filtering;
-	Turn on the Map Channel.
-
-To Turn on the Map Channel:
 	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_MAP); -).
 
 To Select the Sound Channel:
-	suspend XML filtering;
-	Turn on the Sound Channel.
-
-To Turn on the Sound Channel:
 	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_SOUND); -).
 
 To Select the Chapter Channel:
-	resume XML filtering;
-	Turn on the Chapter Channel.
-	
-To Turn on the Chapter Channel:
 	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_CHAPTER); -);
 
-To Select Channel A:
-	resume XML filtering;
-	Turn on Channel A.
+To Set the Chapter to (T - text):
+	Select the Chapter Channel;
+	say T;
+	Select the Main Channel.
 
-To Turn on Channel A:
-	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_CHANNEL_A); -);
+To Select the Achievement Channel:
+	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_ACHIEVEMENT); -);
 
-To Select Channel B:
-	resume XML filtering;
-	Turn on Channel B.
+To Select the Tips Channel:
+	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_TIPS); -);
 
-To Turn on Channel B:
-	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_CHANNEL_B); -);
+To Select the Version Channel:
+	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_VERSION); -);
 
-To Select Channel C:
-	resume XML filtering;
-	Turn on Channel C.
+To Set the Version to (T - text):
+	Select the Version Channel;
+	say T;
+	Select the Main Channel.
 
-To Turn on Channel C:
-	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_CHANNEL_C); -);
+To Select the Verb List Channel:
+	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_VERB); -);
 
-To Select Channel D:
-	resume XML filtering;
-	Turn on Channel D.
+Chapter 5 - Transition Requested
 
-To Turn on Channel D:
-	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_CHANNEL_D); -);
+To Request Transition:
+	(- if (is_fyrevm) FyreCall(FY_REQUEST_TRANSITION); -);
 
-To Select Channel E:
-	resume XML filtering;
-	Turn on Channel E.
-
-To Turn on Channel E:
-	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_CHANNEL_E); -);
-
-To Select Channel F:
-	resume XML filtering;
-	Turn on Channel F.
-
-To Turn on Channel F:
-	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_CHANNEL_F); -);
-
-To Select Channel G:
-	resume XML filtering;
-	Turn on Channel G.
-
-To Turn on Channel G:
-	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_CHANNEL_G); -);
-
-To Select Channel H:
-	resume XML filtering;
-	Turn on Channel H.
-
-To Turn on Channel H:
-	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_CHANNEL_H); -);
-
-To Select Channel I:
-	resume XML filtering;
-	Turn on Channel I.
-
-To Turn on Channel I:
-	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_CHANNEL_I); -);
-
-To Select Channel J:
-	resume XML filtering;
-	Turn on Channel J.
-
-To Turn on Channel J:
-	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_CHANNEL_J); -);
-
-To Select Channel K:
-	resume XML filtering;
-	Turn on Channel K.
-
-To Turn on Channel K:
-	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_CHANNEL_K); -);
-
-To Select Channel L:
-	resume XML filtering;
-	Turn on Channel L.
-
-To Turn on Channel L:
-	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_CHANNEL_L); -);
-
-To Select Channel M:
-	resume XML filtering;
-	Turn on Channel M.
-
-To Turn on Channel M:
-	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_CHANNEL_M); -);
-
-To Select Channel N:
-	resume XML filtering;
-	Turn on Channel N.
-
-To Turn on Channel N:
-	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_CHANNEL_N); -);
-
-To Select Channel O:
-	resume XML filtering;
-	Turn on Channel O.
-
-To Turn on Channel O:
-	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_CHANNEL_O); -);
-
-To Select the Death Channel:
-	resume XML filtering;
-	Turn on the Death Channel.
-
-To Turn on the Death Channel:
-	(- if (is_fyrevm) FyreCall(FY_CHANNEL, FYC_DEATH); -);
-
-Chapter 5 - XML Output Rules
-
-To suspend XML filtering:
-	allow XML Output.
-
-To allow XML Output:
-	(- if (is_fyrevm) FyreCall(FY_XMLFILTER, 0); -).
-
-To resume XML filtering:
-	disallow XML Output.
-
-To disallow XML Output:
-	(- if (is_fyrevm) FyreCall(FY_XMLFILTER, 1); -).
-
-FyreVM Support ends here.
+FyreVM Support without Output Filtering ends here.
 
 ---- DOCUMENTATION ----
 
-FyreVM is a Glulx Virtual Machine implementation that runs in the Microsoft .NET Framework or Novell's Mono Runtime. Since FyreVM implements a different I/O system, it is necessary to provide support through an extension for this new I/O system, which is called FyreVM Channels.
+FyreVM is a Glulx Virtual Machine implementation that uses Channel IO instead of the standard Glk input/output layer.
 
-The channel system provides text communication from the game to the user interface based on a group of channels (a better metaphor might be folder or bucket). There are fifteen defined channels: title, credits, prologue, main, prompt, location, score, time, turn, hints, help, map, sound, chapter, and death. There are also fourteen additional channels that can be used by the author for any purpose. These are named Channel A through Channel O.
+The channel system provides text communication from the virtual machine to the user interface (interpreter). The first six channels (main, prompt, location, score, time, and death) are required.
 
-Each of the defned channels has a specific context for which they should be used.
+The additional channels (sound, hint, help, map, ) are supported only at the base level and have no implementation in this extension. There are separate extensions with "default" implementations that can be used or you can develop your own extension. If you develop your own, this extension will be required.
 
-* Title		Contains the title of the game.
+Required Channels:
 
-* Credits	Contains the credits for the game.
+* Main -- The main channel is meant to handle the regular text window output.
 
-* Prologue	Contains a prologue for the game, if one is provided.
+* Prompt -- The prompt channel defaults to the common ">" caret, but can be altered to be anything.
 
-* Main		Contains the main output of the game.
+* Location -- The location channel contains the current location name.
 
-* Prompt	Contains the character or text that prompts input in the game. This is usually a '>' in standard IF games.
+* Score -- The score channel contains, if any is provided, the current score of the game.
 
-* Location	Contains the current room location of the player character.
+* Time -- The time channel contains the current number of turns or the current time.
 
-* Score		Contains the current score of the game, if implemented.
+* Death -- The death channel contains any output that happens after the player dies. This is separated from the main text so that the UI can handle it contextually.
 
-* Time		Contains the game time, if implemented.
+Additional Channels:
 
-* Turn		Contains the current turn count.
+* Title -- The title channel can be used for identifying the title of the game.
 
-* Hints		Contains contextual hint information, if implemented. (this would be game specific information)
+* Credits -- The credits channel can be used for identifying the credits for the game.
 
-* Help		Contains contextual help information, if implemented. (this would be more general information)
+* Prologue -- The prologue channel can be used for the output at the beginning of a game.
 
-* Map		Contains information that can direct the user interface to show a map.
+* Turn -- The turn channel has the turn count, regardless if time is the primary timekeeping method.
 
-* Sound		Contains information that can be used to play sound files.
+* Hint -- The hint channel can be used to send hint information to the user interface. Textfyre provides a sample implementation in FyreVM Hint Channel Support by Textfyre.
 
-* Chapter	Contains the current chapter name.
+* Help -- The help channel can be used to send general help information to the user interface. Textfyre provides a sample implementation in FyreVM Help Channel Support by Textfyre.
 
-* Death		Contains the text for when the player dies.
+* Map -- The map channel can be used to send map details to the user interface. Textfyre provides a sample implementation in FyreVM Map Channel Support by Textfyre.
 
-To direct all print statements to a particular channel, you simply select that channel:
+* Sound -- The sound channel allows you to send information about a change to the musical score or theme.
 
-	To output the title of the game:
-		Select the Title Channel;
-		print "The Spooky Story";
-		Select the Main Channel.
+* Chapter -- The chapter channel is used to announce the current chapter of the game.
 
-In the case of the extra channels, you would do the following:
+* Achievement -- The Achievement channel is used to offer feedback to the user or to share progress on Twitter or Facebook.
 
-	To output the table of widgets:
-		Select Channel A;
-		Print the Table of Widgets;
-		Select the Main Channel.
+* Tips -- The tips channel is used by a progressive user interface to help the user understand how to play Interactive Fiction.
 
-Note that you always want to redirect output to the Main Channel after using a different channel.
+* Version -- The version channel is a text based version descriptor used in testing.
 
-The Prompt Channel has a special phrase that automatically switches to the Prompt Channel, prints the given text, and then switches back to the Main Channel:
-
-	Change the Prompt to "What! ".
-
-More information for FyreVM is at https://sourceforge.net/projects/fyrevm/.
-
-FyreVM is an open source project under the MIT License.
+For more information, screen shots, and examples, please visit "http://fyrevm.sourcefore.net".
