@@ -92,7 +92,15 @@
             var emailAddress = $("#emailAddress").val();
             var password = $("#password").val();
 
-            zifmia.register(username, password, nickname, emailAddress, handleRegistration, handleRegistrationError);
+            username = trimPeriod(username);
+            nickname = trimPeriod(nickname);
+            emailAddress = trimPeriod(emailAddress);
+
+            $("#username").val(username);
+            $("#nickname").val(nickname);
+            $("#emailAddress").val(emailAddress);
+
+            zifmia.register("#registerLoading", username, password, nickname, emailAddress, handleRegistration, handleRegistrationError);
         });
 
         $("#loginSubmitButton").click(function () {
@@ -112,6 +120,14 @@
             $("#loginMessagePanel").hide();
         });
     });
+
+    function trimPeriod(field) {
+        while (field.substr(field.length-1,field.length-1) == ".") {
+            field = field.substring(0, field.length - 1);
+        }
+
+        return field;
+    }
 
     function handleRegistration(viewModel) {
 
@@ -254,6 +270,7 @@
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: right;">
+                            <div id="registerLoading" style="float:left;display:none;"><img src="@Url.Content("~/Content/loading.gif")" alt="Registering..." /></div>
                             <button id="registerButton" type="button" style="width: 100px; height: 50px; font-family: Arial;
                                 font-size: 14pt;" disabled="disabled">
                                 Register</button>

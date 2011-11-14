@@ -70,6 +70,10 @@ namespace Textfyre.Website.UnitTests
         [TestMethod]
         public void InvalidLoginTest()
         {
+            ZifmiaController zController = new ZifmiaController();
+            zController.DeletePlayer("testuser1");
+            zController.DeletePlayer("testuser2");
+
             ServiceController controller = new ServiceController();
             JsonResult result = controller.Login("testuser99", "password");
 
@@ -85,7 +89,7 @@ namespace Textfyre.Website.UnitTests
         public void RegisterTest()
         {
             ServiceController controller = new ServiceController();
-            JsonResult result = controller.Register("testuser2", "password", "TestUser2", "testuser2@textfyre.com");
+            JsonResult result = controller.Register("testuser1", "password", "Test User", "testuser1@textfyre.com");
 
             Assert.IsNotNull(result, "Results cannot be null.");
 
@@ -93,16 +97,40 @@ namespace Textfyre.Website.UnitTests
             
             ZifmiaController zController = new ZifmiaController();
             ZifmiaDatabase database = new ZifmiaDatabase();
-            ZifmiaPlayer player = database.GetPlayerByUsername("testuser2");
+            ZifmiaPlayer player = database.GetPlayerByUsername("testuser1");
 
             Assert.IsNotNull(player, "Player was not registered successfully.");
-            Assert.IsTrue(player.Username == "testuser2", "Username is incorrect.");
+            Assert.IsTrue(player.Username == "testuser1", "Username is incorrect.");
 
             ZifmiaStatus zStatus = zController.ValidatePlayer(player.ValidationId);
-
             Assert.IsTrue(zStatus == ZifmiaStatus.Success, "Authorization should succeed.");
 
+            player = database.GetPlayerByUsername("testuser1");
+
             Assert.IsTrue(player.IsValidated, "Player should be validated.");
+        }
+
+        [TestMethod]
+        public void InvalidRegisterTest()
+        {
+            ServiceController controller = new ServiceController();
+            //
+            // Fails on username.
+            //
+            JsonResult result = controller.Register("testuser1", "password", "Test User Foo", "testuser2@textfyre.com");
+            Assert.IsNotNull(result, "Results cannot be null.");
+            ZifmiaRegistrationViewModel viewData = (ZifmiaRegistrationViewModel)result.Data;
+            Assert.IsTrue(viewData.RegistrationStatus == ZifmiaRegistrationStatus.UsernameExists, "Should fail on duplicate username.");
+
+            result = controller.Register("testuser2", "password", "Test User", "testuser2@textfyre.com");
+            Assert.IsNotNull(result, "Results cannot be null.");
+            viewData = (ZifmiaRegistrationViewModel)result.Data;
+            Assert.IsTrue(viewData.RegistrationStatus == ZifmiaRegistrationStatus.NickNameExists, "Should fail on duplicate nickname.");
+
+            result = controller.Register("testuser3", "password", "Test User 3", "testuser1@textfyre.com");
+            Assert.IsNotNull(result, "Results cannot be null.");
+            viewData = (ZifmiaRegistrationViewModel)result.Data;
+            Assert.IsTrue(viewData.RegistrationStatus == ZifmiaRegistrationStatus.EmailAddressExists, "Should fail on duplicate email address.");
         }
 
         [TestMethod]
@@ -114,14 +142,11 @@ namespace Textfyre.Website.UnitTests
             Assert.IsTrue(result.Data != null, "Results cannot be null.");
 
             ZifmiaLoginViewModel viewModel = (ZifmiaLoginViewModel)result.Data;
-        }
 
-        [TestInitialize]
-        public void RemoveOldData()
-        {
-            ZifmiaController zController = new ZifmiaController();
-            zController.DeletePlayer("testuser1");
-            zController.DeletePlayer("testuser2");
+            Assert.IsTrue(viewModel.Status == ZifmiaStatus.Success, "Login should succeed.");
+            Assert.IsTrue(viewModel.AuthKey != "", "Authorization key should not be blank.");
+            Assert.IsTrue(viewModel.Nickname == "Test User", "Nick name is incorrect.");
+            Assert.IsTrue(viewModel.EmailAddress == "testuser1@textfyre.com", "Email address is incorrect.");
         }
 
     }

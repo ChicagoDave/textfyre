@@ -95,6 +95,7 @@
     <Compile Include="Controllers\PortalController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
+    <Compile Include="Controllers\ValidationController.cs" />
     <Compile Include="FyreVM\BigEndian.cs" />
     <Compile Include="FyreVM\Engine.cs" />
     <Compile Include="FyreVM\EngineWrapper.cs" />
@@ -327,6 +328,7 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="packages.config" />
     <Content Include="Views\Session\Index.cshtml" />
+    <Content Include="Views\Validation\Index.cshtml" />
     <None Include="Zifmia\Model\ZifmiaClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

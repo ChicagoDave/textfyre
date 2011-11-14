@@ -44,22 +44,22 @@ namespace Zifmia.Model
                 {
                     if (this.LastName != "")
                     {
-                        return string.Concat(this.FirstName, " ", this.LastName, " (", this.NickName, ")");
+                        return string.Concat(this.FirstName, " ", this.LastName);
                     }
                     else
                     {
-                        return string.Concat(this.FirstName, " (", this.NickName, ")");
+                        return this.FirstName;
                     }
                 }
                 else
                 {
                     if (this.LastName != "")
                     {
-                        return string.Concat(this.LastName, " (", this.NickName, ")");
+                        return this.LastName;
                     }
                     else
                     {
-                        return string.Concat("(", this.NickName, ")");
+                        return this.NickName;
                     }
                 }
             }
