@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<OrderedTest name="PlayerTests" storage="c:\my projects\textfyre\website\textfyre.website\textfyre.website.unittests\playertests.orderedtest" id="402f4963-fde8-4a22-834a-c8ffb8399219" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestLinks>
+    <TestLink id="b30a3549-9d71-dace-48c9-dcf143a3297f" name="InvalidLoginTest" storage="bin\debug\textfyre.website.unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="f5d7c7ff-ebc6-c97e-b88c-645b4fd60100" name="RegisterTest" storage="bin\debug\textfyre.website.unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="c0054fc9-67f9-d992-535e-394ed9c38241" name="ValidLoginTest" storage="bin\debug\textfyre.website.unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  </TestLinks>
+</OrderedTest>

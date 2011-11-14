@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BEDAE7FA-0670-4247-BA0A-0465E2E6842E}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Textfyre.Website</RootNamespace>
+    <AssemblyName>Textfyre.Website</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Eloquera.Client, Version=4.14.0.6, Culture=neutral, PublicKeyToken=170cadcdba67be6c, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.4.2.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook">
+      <HintPath>..\packages\Facebook.5.3.2.0\lib\net40-client\Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="RouteDebugger">
+      <HintPath>..\packages\routedebugger.2.1.1\lib\net40\RouteDebugger.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages" />
+    <Reference Include="System.Web.Helpers" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Containers\TFContainer.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TFContainer.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GameController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PortalController.cs" />
+    <Compile Include="Controllers\ServiceController.cs" />
+    <Compile Include="Controllers\SessionController.cs" />
+    <Compile Include="FyreVM\BigEndian.cs" />
+    <Compile Include="FyreVM\Engine.cs" />
+    <Compile Include="FyreVM\EngineWrapper.cs" />
+    <Compile Include="FyreVM\GlkWrapper.cs" />
+    <Compile Include="FyreVM\HeapAllocator.cs" />
+    <Compile Include="FyreVM\Opcodes.cs" />
+    <Compile Include="FyreVM\Output.cs" />
+    <Compile Include="FyreVM\OutputBuffer.cs" />
+    <Compile Include="FyreVM\Profiler.cs" />
+    <Compile Include="FyreVM\Quetzal.cs" />
+    <Compile Include="FyreVM\UlxImage.cs" />
+    <Compile Include="FyreVM\Veneer.cs" />
+    <Compile Include="FyreVM\VMException.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GameViewData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Routing\TabConstraint.cs" />
+    <Compile Include="Routing\GameConstraint.cs" />
+    <Compile Include="Security\ResetQuestion.cs" />
+    <Compile Include="Security\User.cs" />
+    <Compile Include="Zifmia\Controller\ZifmiaController.cs" />
+    <Compile Include="Zifmia\Database\ZifmiaDatabase.cs" />
+    <Compile Include="Zifmia\Model\IEQObject.cs" />
+    <Compile Include="Zifmia\Model\IZifmiaViewModel.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaAuthorizationId.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaBranch.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaBranchMap.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaChannel.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaEngine.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaEngineId.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaExtensions.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaGame.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaGameId.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaGamesViewModel.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaGameViewModel.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaIdGenerator.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaLoginViewModel.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaNode.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaObject.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaPlayer.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaPlayerId.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaPlayers.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaRegistrationStatus.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaRegistrationViewModel.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaSession.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaSessionId.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaSessions.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaSessionsViewModel.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaSessionViewModel.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaStatus.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Arrow2 Left.png" />
+    <Content Include="Content\Arrow2 Right.png" />
+    <Content Include="Content\Arrow3 Left.png" />
+    <Content Include="Content\Arrow3 Right.png" />
+    <Content Include="Content\Back.png" />
+    <Content Include="Content\cloak-tile.png" />
+    <Content Include="Content\compass-rose.png" />
+    <Content Include="Content\Copyright.png" />
+    <Content Include="Content\Email.png" />
+    <Content Include="Content\Exclamation.png" />
+    <Content Include="Content\Fbook.png" />
+    <Content Include="Content\Flag.png" />
+    <Content Include="Content\hints-scroll.png" />
+    <Content Include="Content\Info.png" />
+    <Content Include="Content\Info2.png" />
+    <Content Include="Content\loading.gif" />
+    <Content Include="Content\Logo.png" />
+    <Content Include="Content\Luggage.png" />
+    <Content Include="Content\map.png" />
+    <Content Include="Content\Player FastFwd.png" />
+    <Content Include="Content\Player FastRev.png" />
+    <Content Include="Content\Player Next.png" />
+    <Content Include="Content\Player Pause.png" />
+    <Content Include="Content\Player Play.png" />
+    <Content Include="Content\Player Previous.png" />
+    <Content Include="Content\Player Record.png" />
+    <Content Include="Content\Player Stop.png" />
+    <Content Include="Content\Question.png" />
+    <Content Include="Content\secretletter-tile.png" />
+    <Content Include="Content\secretlettermap.jpg" />
+    <Content Include="Content\settings.png" />
+    <Content Include="Content\shadow-tile.png" />
+    <Content Include="Content\sprite.png" />
+    <Content Include="Content\Stats 3.png" />
+    <Content Include="Content\sunset.gif" />
+    <Content Include="Content\Text Large.png" />
+    <Content Include="Content\Text Meduim.png" />
+    <Content Include="Content\Text Minus.png" />
+    <Content Include="Content\Text Plus.png" />
+    <Content Include="Content\Text Small.png" />
+    <Content Include="Content\Textfyre-Logo.png" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.all.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.base.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\Warning.png" />
+    <Content Include="Content\Weather Snow.png" />
+    <Content Include="Content\Wordpress.png" />
+    <Content Include="Content\Write2.png" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Scripts\cookies.js" />
+    <Content Include="Scripts\dictionary.js" />
+    <Content Include="Scripts\game.js" />
+    <Content Include="Scripts\ingame.js" />
+    <Content Include="Scripts\jquery-1.6.min.js" />
+    <Content Include="Scripts\jquery-1.7-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.7.js" />
+    <Content Include="Scripts\jquery-1.7.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.14.custom.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.16.js" />
+    <Content Include="Scripts\jquery-ui-1.8.16.min.js" />
+    <Content Include="Scripts\jquery.bpopup-0.5.1.min.js" />
+    <Content Include="Scripts\jquery.mobile-1.0b2.min.js" />
+    <Content Include="Scripts\labels.js" />
+    <Content Include="Scripts\utility.js" />
+    <Content Include="Scripts\zifmia-htmlformatting.js" />
+    <Content Include="Scripts\zifmia.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery-1.4.4.js" />
+    <Content Include="Scripts\jquery-1.4.4.min.js" />
+    <Content Include="Scripts\jquery-1.4.4-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Domain\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Header.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Footer.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Portal\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Game\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Containers\TFContainer.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TFContainer.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="FyreVM\COPYRIGHT" />
+    <Content Include="Views\Shared\Login.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="packages.config" />
+    <Content Include="Views\Session\Index.cshtml" />
+    <None Include="Zifmia\Model\ZifmiaClassDiagram.cd" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>25366</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,51 @@
+﻿@model Textfyre.Website.Models.GameViewData
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        $("#gametabs").tabs();
+
+        $("#playDemo").click(function () {
+            document.location.href = '@Url.Content("~/Session/")' + '@Model.Key';
+        });
+    });
+</script>
+<div style="width: 800px; margin-left: auto; margin-right: auto; display: block;">
+    <table>
+        <tr>
+            <td colspan="2">
+                <h2>@Model.Title</h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="@Url.Content(@Model.ImageURL)" alt="@Model.Title" />
+            </td>
+            <td style="vertical-align: top;">
+                <div id="gametabs" style="height: 292px;">
+                    <ul>
+                        <li><a href="#tabs-1">About</a></li>
+                        <li><a href="#tabs-2">Reviews</a></li>
+                        <li><a href="#tabs-3">Sample</a></li>
+                        <li><a href="#tabs-4">Play</a></li>
+                    </ul>
+                    <div id="tabs-1">
+                        <span class="aboutLabel">By:</span> @Model.Author<br />
+                        <br />
+                        <span class="aboutLabel">Description:</span> @Model.Description<br />
+                        <br />
+                        <span class="aboutLabel">Keywords:</span> @Model.Keywords<br />
+                        <br />
+                        <span class="aboutLabel">Platform:</span> @Model.Platform
+                    </div>
+                    <div id="tabs-2">
+                    </div>
+                    <div id="tabs-3">
+                    </div>
+                    <div id="tabs-4">
+                        <input type="button" id="playDemo" value="Play Demo" style="float: right; width: 120px;
+                            height: 50px; font-family: Arial; font-size: 14pt;" />
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
