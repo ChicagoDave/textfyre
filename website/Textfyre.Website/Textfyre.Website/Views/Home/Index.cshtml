@@ -1,0 +1,277 @@
+﻿<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        zifmia.loadSessionData();
+
+        if (zifmia.authorized()) {
+            $("#loggedOutPanel").hide();
+            $("#nicknameLabel").text(zifmia.nickname);
+            $("#loggedInPanel").show();
+            $("#loggedInTeaser").hide();
+        } else {
+            $("#unm").focus();
+        }
+
+        $(".gameTitleBox").mouseover(function () {
+            $("#" + this.id + "Buttons").show();
+        });
+
+        $(".gameBlock").mouseleave(function () {
+            $(".gameButtons").hide();
+        });
+
+        $("#shadowTitle").click(function () {
+        });
+
+        $("#slTitle").click(function () {
+        });
+
+        $("#cloakTitle").click(function () {
+            document.location.href = '@Url.Content("~/Game/Cloak")';
+        });
+
+        $("#goHomeLink").click(function () {
+            $("#noticePanel").hide();
+            $("#homePanel").show();
+        });
+
+        $("#logoutButton").click(function () {
+            zifmia.authKey = "";
+            zifmia.saveSessionData();
+            $("#registerPanel").hide();
+            $("#homePanel").show();
+            $("#loggedInPanel").hide();
+            $("#loggedOutPanel").show();
+            $("#loggedInTeaser").show();
+            $("#unm").val(zifmia.username);
+            $("#unm").focus();
+        });
+
+        $(".validate").keyup(function () {
+            var username = $("#username").val();
+            var nickname = $("#nickname").val();
+            var emailAddress = $("#emailAddress").val();
+            var password = $("#password").val();
+            var confirm = $("#confirm").val();
+
+            if (username != "" && username != null && nickname != "" && nickname != null && emailAddress != "" && emailAddress != null && password != "" && password != null && confirm != "" && confirm != null) {
+                if (password != confirm) {
+                    $("#regErrorMessage").text("Password and Confirm fields must match.");
+                    $("#registerButton").attr('disabled', 'disabled');
+                    return;
+                }
+
+                $("#regErrorMessage").text("");
+                $("#registerButton").removeAttr('disabled');
+                return;
+            }
+            $("#regErrorMessage").text("");
+            $("#registerButton").attr('disabled', 'disabled');
+
+        });
+
+        $("#showRegisterPanelButton").click(function () {
+            $("#homePanel").toggle();
+            $("#registerPanel").toggle();
+            $("#username").focus();
+        });
+
+        $("#cancelButton").click(function () {
+            $("#homePanel").toggle();
+            $("#registerPanel").toggle();
+
+            if (!zifmia.authorized()) {
+                $("#unm").focus();
+            }
+        });
+
+        $("#registerButton").click(function () {
+            var username = $("#username").val();
+            var nickname = $("#nickname").val();
+            var emailAddress = $("#emailAddress").val();
+            var password = $("#password").val();
+
+            zifmia.register(username, password, nickname, emailAddress, handleRegistration, handleRegistrationError);
+        });
+
+        $("#loginSubmitButton").click(function () {
+
+            var username = $("#unm").val();
+            var password = $("#pwd").val();
+
+            zifmia.username = username;
+
+            zifmia.login(username, password, handleLogin, handleLoginError);
+
+        });
+
+        $("#unm").click(function () {
+            $("#errorPanel").text("").hide();
+            $("#loginMessage").text("");
+            $("#loginMessagePanel").hide();
+        });
+    });
+
+    function handleRegistration(viewModel) {
+
+        if (viewModel.Status == 0) {
+            if (viewModel.RegistrationStatus == 0) {
+                $("#registerPanel").hide();
+                $("#noticePanel").show();
+            } else {
+                switch (viewModel.RegistrationStatus) {
+                    case -1:
+                        $("#regErrorMessage").text("Username exists. Please choose another.");
+                        break;
+                    case -2:
+                        $("#regErrorMessage").text("Nickname exists. Please choose another.");
+                        break;
+                    case -3:
+                        $("#regErrorMessage").text("Email Address exists. Please choose another.");
+                        break;
+                }
+            }
+        } else {
+            $("#regErrorMessage").text(viewModel.Message);
+        }
+    }
+
+    function handleRegistrationError(xhr, textStatus, errorThrown) {
+        $("#regErrorMessage").text("Server error. Please contact an administrator.");
+    }
+
+    // AuthKey, Nickname, Status (Success=0,Failure=-1,Unauthorized=-2,Invalid=-3,DoesNotExist=-4), Message
+    function handleLogin(viewModel) {
+        if (viewModel.Status == 0) {
+            $("#registerPanel").hide();
+            $("#homePanel").show();
+            $("#loggedOutPanel").hide();
+            $("#nicknameLabel").text(viewModel.Nickname);
+            $("#loggedInPanel").show();
+            $("#loggedInTeaser").hide();
+            zifmia.authKey = viewModel.AuthKey;
+            zifmia.nickname = viewModel.Nickname;
+            zifmia.saveSessionData(); // Let's stay logged in by setting our cookies.
+        } else {
+            $("#loginMessage").text(viewModel.Message);
+            $("#loginMessagePanel").show();
+        }
+
+    }
+
+    function handleLoginError(xhr, textStatus, errorThrown) {
+        $("#loginMessage").text("Server error...please contact an administrator.");
+        $("#loginMessagePanel").show();
+    }
+
+
+</script>
+<div id="homePanel" style="height: 100%; width: 100%; padding-top: 20px; text-align: center;">
+    <div>
+        <img style="display:block; margin-left:auto; margin-right:auto; margin-bottom:10px;" src="@Url.Content("~/Content/Textfyre-Logo.png")" alt="Textfyre Adaptive Learning Entertainment" />
+    </div>
+    <div style="display: inline-block; width: 200px; text-align: left; font-family: Georgia;
+        font-size: 18pt;">
+        Interactive Fiction gives <span style="font-style: italic;">you</span> control of
+        the story.<br />
+        <br />
+        Start playing a demo now.<span id="loggedInTeaser">..<br />
+            <br />
+            ...or <a id="showRegisterPanelButton" href="#register">register</a> to play the
+            full game.</span>
+    </div>
+    <div style="display: inline-block; width: 20px;">
+    </div>
+    <div class="gameBlock" style="display: inline-block; vertical-align: top;">
+        <div id="shadowTitle" class="gameTitleBox">
+            <img class="gameTitle" src="@Url.Content("~/Content/shadow-tile.png")" alt="The Shadow in the Cathedral" /></div>
+        <div class="gameButtons" id="shadowTitleButtons" style="display: none;">
+            coming soon
+        </div>
+    </div>
+    <div style="display: inline-block; width: 20px;">
+    </div>
+    <div class="gameBlock" style="display: inline-block; vertical-align: top;">
+        <div id="slTitle" class="gameTitleBox">
+            <img class="gameTitle" src="@Url.Content("~/Content/secretletter-tile.png")" alt="Jack Toresal and The Secret Letter" /></div>
+        <div class="gameButtons" id="slTitleButtons" style="display: none;">
+            coming soon
+        </div>
+    </div>
+    <div style="display: inline-block; width: 20px;">
+    </div>
+    <div class="gameBlock" style="display: inline-block; vertical-align: top;">
+        <div id="cloakTitle" class="gameTitleBox">
+            <img class="gameTitle" src="@Url.Content("~/Content/cloak-tile.png")" alt="Cloak of Darkness" /></div>
+        <div class="gameButtons" id="cloakTitleButtons" style="display: none;">
+            click poster to view game
+        </div>
+    </div>
+</div>
+<div id="registerPanel" style="height: 100%; width: 100%; padding-top: 20px; text-align: center;display: none;">
+    <div>
+        <img style="display:block; margin-left:auto; margin-right:auto; margin-bottom:10px;" src="@Url.Content("~/Content/Textfyre-Logo.png")" alt="Textfyre Adaptive Learning Entertainment" />
+    </div>
+    <div style="height: 50px; text-align: center;">
+        <div style="text-align: center; display: inline-block;">
+            <h1>
+                Get your own Textfyre Games account in seconds</h1>
+            <span class="subtitle">Fill in this one-step form and you'll be on a new adventure in
+                no time!</span>
+            <div class="center">
+                <table class="center" style="padding: 20px 0 0 0;">
+                    <tr>
+                        <td style="background-color: #0099ff; height: 130px; padding: 0 20px 0 20px; text-align: left;
+                            font-family: Arial;">
+                            <span>Username</span><br />
+                            <input type="text" id="username" maxlength="20" class="shortField validate" />
+                        </td>
+                        <td style="background-color: #0099ff; height: 130px; padding: 0 20px 0 20px; text-align: left;
+                            font-family: Arial;">
+                            <span>Nickname</span><br />
+                            <input type="text" id="nickname" maxlength="20" class="shortField validate" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="background-color: #0099ff; height: 130px; padding: 0 20px 0 20px;
+                            text-align: left; font-family: Arial;">
+                            <span>Email Address <span style="font-size: 8pt;">(a valid email address is required)</span></span><br />
+                            <input type="text" id="emailAddress" maxlength="100" class="longField validate" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: #0099ff; height: 130px; padding: 0 20px 0 20px; text-align: left;
+                            font-family: Arial;">
+                            <span>Password</span><br />
+                            <input type="password" id="password" maxlength="20" class="shortField validate" />
+                        </td>
+                        <td style="background-color: #0099ff; height: 130px; padding: 0 20px 0 20px; text-align: left;
+                            font-family: Arial;">
+                            <span>Confirm</span><br />
+                            <input type="password" id="confirm" maxlength="20" class="shortField validate" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: right;">
+                            <button id="registerButton" type="button" style="width: 100px; height: 50px; font-family: Arial;
+                                font-size: 14pt;" disabled="disabled">
+                                Register</button>
+                            <button id="cancelButton" type="button" style="width: 100px; height: 50px; font-family: Arial;
+                                font-size: 14pt;">
+                                Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div id="regErrorPanel" style="text-align: center;">
+                                <span id="regErrorMessage" style="font-family: Times New Roman; font-size: 18pt;
+                                    color: Red;"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
