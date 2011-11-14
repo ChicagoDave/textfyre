@@ -18,60 +18,6 @@ namespace Zifmia.Service.Database
         public const Int64 BASE_KEY = 178956969;
         public const Int64 BASE_ID = 0;
 
-        /// <summary>
-        /// Checks if database exists and if not, creates it and registers types.
-        /// </summary>
-        public void CheckDatabase()
-        {
-            DB db = new DB(DatabaseConnection);
-
-            string[] dbs = db.GetDbList();
-            bool dbExists = (dbs.Contains<string>(DatabaseName));
-
-            if (!dbExists)
-            {
-                db.CreateDatabase(DatabaseName);
-                db.OpenDatabase(DatabaseName);
-                db.RegisterType(typeof(ZifmiaAuthorizationId));
-                db.RegisterType(typeof(ZifmiaBranch));
-                db.RegisterType(typeof(ZifmiaChannel));
-                db.RegisterType(typeof(ZifmiaGame));
-                db.RegisterType(typeof(ZifmiaNode));
-                db.RegisterType(typeof(ZifmiaEngine));
-                db.RegisterType(typeof(ZifmiaPlayer));
-                db.RegisterType(typeof(ZifmiaGameId));
-                db.RegisterType(typeof(ZifmiaEngineId));
-                db.RegisterType(typeof(ZifmiaPlayerId));
-                db.RegisterType(typeof(ZifmiaSessionId));
-                db.RegisterType(typeof(ZifmiaStatus));
-            }
-
-            db.Close();
-        }
-
-        public DB GetDatabaseConnection()
-        {
-            DB db = new DB(DatabaseConnection);
-            db.OpenDatabase(DatabaseName);
-            return db;
-        }
-
-        public string DatabaseConnection
-        {
-            get
-            {
-                return ConfigurationManager.AppSettings["oodb_connection"];
-            }
-        }
-
-        public string DatabaseName
-        {
-            get
-            {
-                return ConfigurationManager.AppSettings["oodb_name"];
-            }
-        }
-
         public static Int64 GetMaxDiskUsage
         {
             get
@@ -80,21 +26,11 @@ namespace Zifmia.Service.Database
             }
         }
 
-        public static bool IsNetworkAvailable
-        {
-            get {
-                if (ConfigurationManager.AppSettings["networkAvailable"] == "true")
-                    return true;
-                else
-                    return false;
-            }
-        }
-
         public ZifmiaRegistrationStatus CheckPlayerIsUnqiue(ZifmiaPlayer player)
         {
             ZifmiaRegistrationStatus status = ZifmiaRegistrationStatus.Succeeded;
 
-            using (DB db = GetDatabaseConnection())
+            using (DB db = EQ.GetInstance.DB)
             {
 
                 int count = (from ZifmiaPlayer p in db where p.Username == player.Username select p).Count<ZifmiaPlayer>();
@@ -122,6 +58,7 @@ namespace Zifmia.Service.Database
                     }
                 }
 
+                db.Close();
             }
 
             return status;
@@ -131,11 +68,12 @@ namespace Zifmia.Service.Database
         {
             ZifmiaPlayer player = null;
 
-            using (DB db = GetDatabaseConnection())
+            using (DB db = EQ.GetInstance.DB)
             {
                 player = (from ZifmiaPlayer p in db where p.ValidationId == validtionId select p).FirstOrDefault<ZifmiaPlayer>();
                 if (player != null)
                     player.UID = db.GetUid(player);
+                db.Close();
             }
 
             return player;
@@ -145,11 +83,12 @@ namespace Zifmia.Service.Database
         {
             ZifmiaPlayer player = null;
 
-            using (DB db = GetDatabaseConnection())
+            using (DB db = EQ.GetInstance.DB)
             {
                 player = (from ZifmiaPlayer p in db where p.AuthKey == authKey select p).FirstOrDefault<ZifmiaPlayer>();
                 if (player != null)
                     player.UID = db.GetUid(player);
+                db.Close();
             }
 
             return player;
@@ -159,11 +98,12 @@ namespace Zifmia.Service.Database
         {
             ZifmiaPlayer player = null;
 
-            using (DB db = GetDatabaseConnection())
+            using (DB db = EQ.GetInstance.DB)
             {
                 player = (from ZifmiaPlayer p in db where p.Username == username select p).FirstOrDefault<ZifmiaPlayer>();
                 if (player != null)
                     player.UID = db.GetUid(player);
+                db.Close();
             }
 
             return player;
@@ -173,11 +113,12 @@ namespace Zifmia.Service.Database
         {
             ZifmiaPlayer player = null;
 
-            using (DB db = GetDatabaseConnection())
+            using (DB db = EQ.GetInstance.DB)
             {
                 player = (from ZifmiaPlayer p in db where p.Username == username && p.Password == password select p).FirstOrDefault<ZifmiaPlayer>();
                 if (player != null)
                     player.UID = db.GetUid(player);
+                db.Close();
             }
 
             return player;
@@ -185,12 +126,13 @@ namespace Zifmia.Service.Database
 
         public ZifmiaStatus DeletePlayer(string username)
         {
-            using (DB db = GetDatabaseConnection())
+            using (DB db = EQ.GetInstance.DB)
             {
                 ZifmiaPlayer player = (from ZifmiaPlayer zp in db where zp.Username == username select zp).FirstOrDefault<ZifmiaPlayer>();
 
                 if (player != null)
                     db.Delete(player);
+                db.Close();
             }
 
             return ZifmiaStatus.Success;
@@ -200,14 +142,15 @@ namespace Zifmia.Service.Database
         {
             ZifmiaSessions sessions = new ZifmiaSessions();
 
-            using (DB db = GetDatabaseConnection())
+            using (DB db = EQ.GetInstance.DB)
             {
                 Int64 playerId = Int64.Parse(playerKey, NumberStyles.AllowHexSpecifier);
-                sessions = new ZifmiaSessions((from ZifmiaSession s in db where s.Owner.Id == playerId select s).ToList<ZifmiaSession>());
+                sessions = new ZifmiaSessions((from ZifmiaSession s in db where s.Owner.UID == playerId select s).ToList<ZifmiaSession>());
                 foreach (ZifmiaSession session in sessions.Sessions)
                 {
                     session.UID = db.GetUid(session);
                 }
+                db.Close();
             }
 
             return sessions;
@@ -217,11 +160,12 @@ namespace Zifmia.Service.Database
         {
             ZifmiaSession session = null;
 
-            using (DB db = GetDatabaseConnection())
+            using (DB db = EQ.GetInstance.DB)
             {
                 Int64 sessionId = Int64.Parse(sessionKey, NumberStyles.AllowHexSpecifier);
-                session = (from ZifmiaSession s in db where s.Id == sessionId select s).FirstOrDefault<ZifmiaSession>();
+                session = (from ZifmiaSession s in db where s.UID == sessionId select s).FirstOrDefault<ZifmiaSession>();
                 session.UID = db.GetUid(session);
+                db.Close();
             }
 
             return session;
@@ -232,9 +176,10 @@ namespace Zifmia.Service.Database
             Int64 diskUsage = 0;
             List<ZifmiaSession> sessions = null;
 
-            using (DB db = GetDatabaseConnection())
+            using (DB db = EQ.GetInstance.DB)
             {
                 sessions = (from ZifmiaSession s in db select s).ToList<ZifmiaSession>();
+                db.Close();
             }
 
             foreach (ZifmiaSession session in sessions)
@@ -250,10 +195,11 @@ namespace Zifmia.Service.Database
             ZifmiaGame game = null;
             Int64 gameId = Int64.Parse(gameKey, NumberStyles.AllowHexSpecifier);
 
-            using (DB db = GetDatabaseConnection())
+            using (DB db = EQ.GetInstance.DB)
             {
-                game = (from ZifmiaGame g in db where g.Id == gameId select g).First<ZifmiaGame>();
+                game = (from ZifmiaGame g in db where g.UID == gameId select g).First<ZifmiaGame>();
                 game.UID = db.GetUid(game);
+                db.Close();
             }
 
             return game;
@@ -263,9 +209,10 @@ namespace Zifmia.Service.Database
         {
             List<ZifmiaGame> games = new List<ZifmiaGame>();
 
-            using (DB db = GetDatabaseConnection())
+            using (DB db = EQ.GetInstance.DB)
             {
                 games = (from ZifmiaGame game in db select game).ToList<ZifmiaGame>();
+                db.Close();
             }
 
             return games;
@@ -276,13 +223,36 @@ namespace Zifmia.Service.Database
             ZifmiaPlayer player = null;
             Int64 playerId = Int64.Parse(playerKey, NumberStyles.AllowHexSpecifier);
 
-            using (DB db = GetDatabaseConnection())
+            using (DB db = EQ.GetInstance.DB)
             {
-                player = (from ZifmiaPlayer p in db where p.Id == playerId select p).First<ZifmiaPlayer>();
+                player = (from ZifmiaPlayer p in db where p.UID == playerId select p).First<ZifmiaPlayer>();
                 player.UID = db.GetUid(player);
+                db.Close();
             }
 
             return player;
+        }
+
+        public static bool IsNetworkAvailable
+        {
+            get
+            {
+                if (ConfigurationManager.AppSettings["networkAvailable"] == "true")
+                    return true;
+                else
+                    return false;
+            }
+        }
+
+        public static bool UnitTesting
+        {
+            get
+            {
+                if (ConfigurationManager.AppSettings["unitTesting"] == "true")
+                    return true;
+                else
+                    return false;
+            }
         }
 
         public static bool TraceMessages
@@ -306,7 +276,7 @@ namespace Zifmia.Service.Database
 
         public void Save(ZifmiaGame game)
         {
-            using (DB db = GetDatabaseConnection())
+            using (DB db = EQ.GetInstance.DB)
             {
                 db.Store(game.UID, game);
                 db.Close();
@@ -315,7 +285,7 @@ namespace Zifmia.Service.Database
 
         public void Save(ZifmiaPlayer player)
         {
-            using (DB db = GetDatabaseConnection())
+            using (DB db = EQ.GetInstance.DB)
             {
                 db.Store(player.UID, player);
                 db.Close();
@@ -334,7 +304,7 @@ namespace Zifmia.Service.Database
             }
             session.DiskUsage = diskUsage;
 
-            using (DB db = GetDatabaseConnection())
+            using (DB db = EQ.GetInstance.DB)
             {
                 db.Store(session.UID, session);
                 db.Close();
@@ -343,7 +313,7 @@ namespace Zifmia.Service.Database
 
         public void Dispose()
         {
-            using (DB db = GetDatabaseConnection())
+            using (DB db = EQ.GetInstance.DB)
             {
                 db.Dispose();
             }

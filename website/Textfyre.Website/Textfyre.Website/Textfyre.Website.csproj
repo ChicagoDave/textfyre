@@ -118,8 +118,8 @@
     <Compile Include="Security\ResetQuestion.cs" />
     <Compile Include="Security\User.cs" />
     <Compile Include="Zifmia\Controller\ZifmiaController.cs" />
+    <Compile Include="Zifmia\Database\EQ.cs" />
     <Compile Include="Zifmia\Database\ZifmiaDatabase.cs" />
-    <Compile Include="Zifmia\Model\IEQObject.cs" />
     <Compile Include="Zifmia\Model\IZifmiaViewModel.cs" />
     <Compile Include="Zifmia\Model\ZifmiaAuthorizationId.cs" />
     <Compile Include="Zifmia\Model\ZifmiaBranch.cs" />
@@ -135,7 +135,6 @@
     <Compile Include="Zifmia\Model\ZifmiaIdGenerator.cs" />
     <Compile Include="Zifmia\Model\ZifmiaLoginViewModel.cs" />
     <Compile Include="Zifmia\Model\ZifmiaNode.cs" />
-    <Compile Include="Zifmia\Model\ZifmiaObject.cs" />
     <Compile Include="Zifmia\Model\ZifmiaPlayer.cs" />
     <Compile Include="Zifmia\Model\ZifmiaPlayerId.cs" />
     <Compile Include="Zifmia\Model\ZifmiaPlayers.cs" />

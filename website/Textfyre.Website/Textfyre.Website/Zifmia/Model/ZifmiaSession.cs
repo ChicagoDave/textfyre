@@ -8,7 +8,7 @@ using Eloquera.Client;
 
 namespace Zifmia.Model
 {
-    public class ZifmiaSession : ZifmiaObject, IEQObject
+    public class ZifmiaSession
     {
         private List<ZifmiaBranch> _branches = null;
 
@@ -20,9 +20,8 @@ namespace Zifmia.Model
         /// </summary>
         /// <param name="game"></param>
         /// <param name="owner"></param>
-        public ZifmiaSession(DB client, ZifmiaGame game, ZifmiaPlayer owner)
+        public ZifmiaSession(ZifmiaGame game, ZifmiaPlayer owner)
         {
-            this.Id = ZifmiaSessionId.GetNextId(client);
             this.Game = game;
             this.Owner = owner;
             this.StartDate = DateTime.Now;
@@ -50,7 +49,15 @@ namespace Zifmia.Model
             this.CurrentBranch.CurrentNode = node;
         }
 
-        public long UID { get; set; }
+        [ID]
+        internal long UID;
+        public virtual string Key
+        {
+            get
+            {
+                return this.UID.ToString("X");
+            }
+        }
         public ZifmiaGame Game { get; set; }
         public ZifmiaPlayer Owner { get; set; }
         public DateTime StartDate { get; set; }
