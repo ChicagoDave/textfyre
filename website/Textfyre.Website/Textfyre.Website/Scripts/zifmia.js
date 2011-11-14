@@ -16,16 +16,15 @@ function Zifmia() {
     //
     // Zifmia Service Layer - Each call is a routed REST call that returns JSON.
     //
-    var ZifmiaService           = "ZifmiaService/";
-    var ZifmiaRegister          = ZifmiaService + "Register/{0}/{1}/{2}/{3}";               // username, password, nickName, emailAddress
-    var ZifmiaLogin             = ZifmiaService + "Login/{0}/{1}";                          // username, password
-    var ZifmiaAuthorized        = ZifmiaService + "IsAuthorized/{0}";                       // authKey
-    var ZifmiaGames             = ZifmiaService + "Games";                                  // no arguments
-    var ZifmiaSessionStart      = ZifmiaService + "Session/Start/{0}/{1}";                  // authKey, gameKey
-    var ZifmiaSessionCommand    = ZifmiaService + "Session/Command/{0}/{1}/{2}/{3}/{4}";    // authKey, sessionKey, branchid, turn, command
-    var ZifmiaSessionGet        = ZifmiaService + "Session/Get/{0}/{1}";                    // authKey, sessionKey
-    var ZifmiaSessionGetHistory = ZifmiaService + "Session/History/{0}/{1}/{2}/{3}";        // authKey, sessionKey, branchId, turn
-    var ZifmiaUserSessionList   = ZifmiaService + "User/Session/List/{0}";                  // authKey
+    var ZifmiaRegister          = "Register/{0}/{1}/{2}/{3}";               // username, password, nickName, emailAddress
+    var ZifmiaLogin             = "Login/{0}/{1}";                          // username, password
+    var ZifmiaAuthorized        = "IsAuthorized/{0}";                       // authKey
+    var ZifmiaGames             = "Games";                                  // no arguments
+    var ZifmiaSessionStart      = "SessionStart/{0}/{1}";                  // authKey, gameKey
+    var ZifmiaSessionCommand    = "SessionCommand/{0}/{1}/{2}/{3}/{4}";    // authKey, sessionKey, branchid, turn, command
+    var ZifmiaSessionGet        = "SessionGet/{0}/{1}";                    // authKey, sessionKey
+    var ZifmiaSessionGetHistory = "SessionHistory/{0}/{1}/{2}/{3}";        // authKey, sessionKey, branchId, turn
+    var ZifmiaUserSessionList   = "UserSessionList/{0}";                  // authKey
 
     var isSessionDataLoaded = false;
 
@@ -117,7 +116,7 @@ function Zifmia() {
         }).responseText;
     }
 
-    this.register = function (username, password, nickName, emailAddress, callback, errorCallback) {
+    this.register = function (ajaxImage, username, password, nickName, emailAddress, callback, errorCallback) {
         var sendURL = ZifmiaRegister.format(escape(username), escape(password), escape(nickName), escape(emailAddress));
         $.ajax({
             type: "GET",
@@ -129,8 +128,8 @@ function Zifmia() {
             error: function (xhr, textStatus, errorThrown) {
                 errorCallback(xhr, textStatus, errorThrown);
             },
-            beforeSend: function () { $(ajaxLoading).show(); },
-            complete: function () { $(ajaxLoading).hide(); }
+            beforeSend: function () { $(ajaxImage).show(); },
+            complete: function () { $(ajaxImage).hide(); }
         });
     }
 
@@ -145,9 +144,7 @@ function Zifmia() {
             },
             error: function (xhr, textStatus, errorThrown) {
                 errorCallback(xhr, textStatus, errorThrown);
-            },
-            beforeSend: function () { $(ajaxLoading).show(); },
-            complete: function () { $(ajaxLoading).hide(); }
+            }
         });
     }
 

@@ -1,0 +1,22 @@
+﻿@model Zifmia.Model.ZifmiaStatus
+
+@{
+    var message = "Validation succeeded.";
+    switch((int)Model) {
+        case -1: message = "Validation failed."; break;
+        case -2: message = "Unauthorized error."; break;
+        case -3: message = "Invalid validation."; break;
+    }
+
+    message = message + " You will be forwarded back to the Textfyre site in 3 seconds...";
+}
+
+<div style="text-align:center;margin-left:auto;margin-right:auto;display:block;"><h3 style="padding-top:10px;color:green;">@message</h3></div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var timeout = setTimeout("location.href = '/'", 3000);
+    });
+
+</script>

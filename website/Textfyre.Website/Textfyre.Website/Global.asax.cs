@@ -50,11 +50,11 @@ namespace Textfyre.Website
                 new { controller = "Service", action = "Login" } // Parameter defaults
             );
 
-            // ValidatePlayer/{validationId}
+            // /Validation/{validationId}
             routes.MapRoute(
-                "ValidatePlayer", // Route name
-                "ValidatePlayer/{validationId}", // URL with parameters
-                new { controller = "Service", action = "ValidatePlayer" } // Parameter defaults
+                "Validation",
+                "Validation/{validationId}",
+                new { controller = "Validation", action = "Index" }
             );
 
             // IsAuthorized/{authKey}

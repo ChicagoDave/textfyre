@@ -91,7 +91,7 @@ namespace Zifmia.Service.Controller
                         message.From = new MailAddress("zifmia-noreply@textfyre.com", "Textfyre Games Validation - NO REPLY");
                         message.ReplyToList.Add(new MailAddress("zifmia-noreply@textfyre.com", "Textfyre Games Validation - NO REPLY"));
                         message.To.Add(new MailAddress(emailAddress, nickName));
-                        message.Body = String.Format(@"Dear New Textfyre Player,<br/><br/>Please click the following link to validate your new registration:<br/><br/>" + host + "/validation/validateuser.aspx?key={0}<br/><br/>Sincerely,<br/><br/>The Textfyre Team", newPlayer.ValidationId);
+                        message.Body = String.Format(@"Dear New Textfyre Player,<br/><br/>Please click the following link to validate your new registration:<br/><br/>" + host + "/Validation/{0}<br/><br/>Sincerely,<br/><br/>The Textfyre Team", newPlayer.ValidationId);
                         message.IsBodyHtml = true;
                         SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
                         smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
@@ -158,7 +158,11 @@ namespace Zifmia.Service.Controller
                 database.Save(player);
 
                 viewModel.AuthKey = authKey;
-                viewModel.Nickname = player.FullName;
+                viewModel.FirstName = player.FirstName;
+                viewModel.LastName = player.LastName;
+                viewModel.FullName = player.FullName;
+                viewModel.Nickname = player.NickName;
+                viewModel.EmailAddress = player.EmailAddress;
                 viewModel.Status = ZifmiaStatus.Success;
                 viewModel.Message = "Player is logged in.";
             }
