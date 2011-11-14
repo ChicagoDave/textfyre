@@ -8,20 +8,27 @@ using Eloquera.Client;
 
 namespace Zifmia.Model
 {
-    public class ZifmiaGame : ZifmiaObject, IEQObject
+    public class ZifmiaGame
     {
         public ZifmiaGame() { }
 
-        public ZifmiaGame(DB client, string title, byte[] engine, List<ZifmiaChannel> channels)
+        public ZifmiaGame(string title, byte[] engine, List<ZifmiaChannel> channels)
         {
             this.Title = title;
-            this.Id = ZifmiaGameId.GetNextId(client);
             this.Engine = engine;
             this.Channels = channels;
             this.Installed = DateTime.Now;
         }
 
-        public long UID { get; set; }
+        [ID]
+        internal long UID;
+        public virtual string Key
+        {
+            get
+            {
+                return this.UID.ToString("X");
+            }
+        }
         public string Title { get; set; }
         public DateTime Installed { get; set; }
         public byte[] Engine { get; set; }

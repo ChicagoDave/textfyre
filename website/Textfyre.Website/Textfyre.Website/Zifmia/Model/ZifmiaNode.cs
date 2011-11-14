@@ -64,10 +64,8 @@ namespace Zifmia.Model
             }
         }
 
-        public static void SetEngine(DB client, EngineWrapper engine, ref Int64 engineId, ref int engineLength)
+        public static void SetEngine(EngineWrapper engine, ref Int64 engineId, ref int engineLength)
         {
-            ZifmiaDatabase database = new ZifmiaDatabase();
-
             BinaryFormatter serializer = new BinaryFormatter();
             MemoryStream stream = new MemoryStream();
             serializer.Serialize(stream, engine);
@@ -79,20 +77,24 @@ namespace Zifmia.Model
         public static void SetEngine(byte[] engineStream, ref Int64 engineId, ref int engineLength)
         {
             ZifmiaEngine newEngine = new ZifmiaEngine(engineStream);
-            engineId = newEngine.Id;
+            engineId = newEngine.UID;
             engineLength = newEngine.Data.Length;
 
             newEngine.Save();
         }
 
-        public byte[] GetEngine(DB client)
+        public byte[] GetEngine()
         {
             if (this.EngineId <= 0)
             {
                 return null;
             }
 
-            ZifmiaEngine engine = (from ZifmiaEngine e in client where e.Id == this.EngineId select e).First<ZifmiaEngine>();
+            ZifmiaEngine engine = null;
+            using (DB db = EQ.GetInstance.DB)
+            {
+                engine = (from ZifmiaEngine e in db where e.UID == this.EngineId select e).First<ZifmiaEngine>();
+            }
 
             return engine.Data;
         }

@@ -42,7 +42,7 @@ namespace Zifmia.Model
         public static string GetNextKey(ZifmiaDatabase database)
         {
             T id = new T();
-            using (DB db = database.GetDatabaseConnection())
+            using (DB db = EQ.GetInstance.DB)
             {
 
                 lock (locker)

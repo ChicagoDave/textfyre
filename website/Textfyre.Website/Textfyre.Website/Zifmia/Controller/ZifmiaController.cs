@@ -21,8 +21,13 @@ namespace Zifmia.Service.Controller
 {
     public class ZifmiaController
     {
+        private ZifmiaDatabase _database;
+        private bool _unitTesting;
+
         public ZifmiaController()
         {
+            _database = new ZifmiaDatabase();
+            _unitTesting = ZifmiaDatabase.UnitTesting;
         }
 
         #region Registration and Login
@@ -107,7 +112,7 @@ namespace Zifmia.Service.Controller
             return viewModel;
         }
 
-        public ZifmiaStatus AuthorizePlayer(string validationId)
+        public ZifmiaStatus ValidatePlayer(string validationId)
         {
             ZifmiaStatus returnStatus = ZifmiaStatus.Failure;
 
@@ -361,7 +366,7 @@ namespace Zifmia.Service.Controller
             ZifmiaGame game = _database.GetGame(gameKey);
             ZifmiaDatabase.WriteTrace("Game retrieved.");
 
-            ZifmiaSession session = new ZifmiaSession(_database.OODB, game, player);
+            ZifmiaSession session = new ZifmiaSession(game, player);
             ZifmiaDatabase.WriteTrace("Session created.");
 
             viewModel = new ZifmiaViewModel(session);
@@ -464,7 +469,7 @@ namespace Zifmia.Service.Controller
         private ZifmiaViewModel ExecuteStandardTurn(ZifmiaSession session, Int64 branchId, int turn, string command) {
             ZifmiaDatabase.WriteTrace("Starting Standard Command.");
             BinaryFormatter serializer = new BinaryFormatter();
-            MemoryStream toStream = new MemoryStream(session.CurrentBranch.CurrentNode.GetEngine(_database.OODB));
+            MemoryStream toStream = new MemoryStream(session.CurrentBranch.CurrentNode.GetEngine());
             EngineWrapper engine = (EngineWrapper)serializer.Deserialize(toStream);
             ZifmiaDatabase.WriteTrace("Engine deserialized.");
 
@@ -513,7 +518,7 @@ namespace Zifmia.Service.Controller
             ZifmiaDatabase.WriteTrace("Begin Action.");
             Int64 engineId = 0;
             int engineLength = 0;
-            ZifmiaNode.SetEngine(_database.OODB, false, engine, ref engineId, ref engineLength);
+            ZifmiaNode.SetEngine(engine, ref engineId, ref engineLength);
             node.EngineId = engineId;
             node.EngineLength = engineLength;
             _database.Save(session);
@@ -581,7 +586,7 @@ namespace Zifmia.Service.Controller
         private ZifmiaViewModel ExecuteBranchedTurn(ZifmiaSession session, Int64 branchId, int turn, string command)
         {
             BinaryFormatter serializer = new BinaryFormatter();
-            MemoryStream toStream = new MemoryStream(session.CurrentBranch.CurrentNode.GetEngine(_database.OODB));
+            MemoryStream toStream = new MemoryStream(session.CurrentBranch.CurrentNode.GetEngine());
             EngineWrapper engine = (EngineWrapper)serializer.Deserialize(toStream);
 
             engine.SendCommand(command);

@@ -2,26 +2,16 @@
 using System.Linq;
 using System.Collections.Generic;
 
-using Zifmia.Service.Database;
-
 using Eloquera.Client;
 
 namespace Zifmia.Model
 {
-    public class ZifmiaPlayer : ZifmiaObject, IEQObject
+    public class ZifmiaPlayer
     {
         public ZifmiaPlayer() { }
 
         public ZifmiaPlayer(string username, string password, string nickName, string emailAddress)
         {
-            using (ZifmiaDatabase database = new ZifmiaDatabase())
-            {
-                using (DB db = database.GetDatabaseConnection())
-                {
-                    this.Id = ZifmiaPlayerId.GetNextId(db);
-                }
-            }
-
             this.Username = username;
             this.Password = password;
             this.NickName = nickName;
@@ -32,7 +22,15 @@ namespace Zifmia.Model
             this.IsValidated = false;
         }
 
-        public long UID { get; set; }
+        [ID]
+        internal long UID;
+        public virtual string Key
+        {
+            get
+            {
+                return this.UID.ToString("X");
+            }
+        }
         public string Message { get; set; }
         public ZifmiaStatus Status { get; set; }
         public string NickName { get; set; }

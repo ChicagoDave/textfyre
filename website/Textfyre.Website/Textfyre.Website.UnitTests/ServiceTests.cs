@@ -9,6 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Textfyre.Website.Controllers;
 using Zifmia.Model;
+using Zifmia.Service.Database;
 using Zifmia.Service.Controller;
 
 namespace Textfyre.Website.UnitTests
@@ -90,15 +91,18 @@ namespace Textfyre.Website.UnitTests
 
             ZifmiaRegistrationViewModel viewData = (ZifmiaRegistrationViewModel)result.Data;
             
-            ZifmiaController zController = new ZifmiaController(false);
-            ZifmiaPlayer player = zController.Database.GetPlayerByUsername("testuser2");
+            ZifmiaController zController = new ZifmiaController();
+            ZifmiaDatabase database = new ZifmiaDatabase();
+            ZifmiaPlayer player = database.GetPlayerByUsername("testuser2");
 
             Assert.IsNotNull(player, "Player was not registered successfully.");
             Assert.IsTrue(player.Username == "testuser2", "Username is incorrect.");
 
-            ZifmiaStatus zStatus = zController.AuthorizePlayer(player.ValidationId);
+            ZifmiaStatus zStatus = zController.ValidatePlayer(player.ValidationId);
 
             Assert.IsTrue(zStatus == ZifmiaStatus.Success, "Authorization should succeed.");
+
+            Assert.IsTrue(player.IsValidated, "Player should be validated.");
         }
 
         [TestMethod]
@@ -115,7 +119,7 @@ namespace Textfyre.Website.UnitTests
         [TestInitialize]
         public void RemoveOldData()
         {
-            ZifmiaController zController = new ZifmiaController(false);
+            ZifmiaController zController = new ZifmiaController();
             zController.DeletePlayer("testuser1");
             zController.DeletePlayer("testuser2");
         }

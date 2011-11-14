@@ -64,6 +64,21 @@ namespace Textfyre.Website.Controllers
             return Json(viewModel,JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult ValidatePlayer(string validationId)
+        {
+            ZifmiaStatus status = ZifmiaStatus.Failure;
+            try
+            {
+                status = _controller.ValidatePlayer(validationId);
+            }
+            catch (Exception ex)
+            {
+                WriteException(ex);
+            }
+
+            return Json(status, JsonRequestBehavior.AllowGet);
+        }
+
         // SessionStart/{authKey}/{gameKey}
         public JsonResult SessionStart(string authKey, string gameKey)
         {
