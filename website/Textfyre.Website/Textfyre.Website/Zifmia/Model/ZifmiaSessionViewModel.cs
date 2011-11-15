@@ -18,6 +18,7 @@ namespace Zifmia.Model
             this.StartDate = session.StartDate;
             this.GameKey = session.Game.Key;
             this.GameTitle = session.Game.Title;
+            this.GameName = session.Game.Name;
             this.BranchMap = new List<ZifmiaBranchMap>();
 
             // create branch map
@@ -43,6 +44,7 @@ namespace Zifmia.Model
         public DateTime StartDate { get; set; }
         public string GameKey { get; set; }
         public string GameTitle { get; set; }
+        public string GameName { get; set; }
         public List<ZifmiaBranchMap> BranchMap { get; set; }
     }
 }

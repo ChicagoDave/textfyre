@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using Zifmia.Service.Controller;
+
 namespace Textfyre.Website.Controllers
 {
     /// <summary>
@@ -13,10 +15,15 @@ namespace Textfyre.Website.Controllers
     public class SessionController : Controller
     {
         //
-        // GET: /Session/
-
-        public ActionResult Index(string game, string command)
+        // GET: /Session/GameKey
+        //
+        public ActionResult Index(string gameKey)
         {
+            ZifmiaController zController = new ZifmiaController();
+
+
+
+
             return View();
         }
 

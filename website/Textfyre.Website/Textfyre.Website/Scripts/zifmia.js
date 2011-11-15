@@ -4,11 +4,6 @@
 // This file should not need to be modified.
 //
 
-//
-// Support cross domain requests. This is required for IE and jQuery 1.6.
-//
-//$.support.cors = true;
-
 var zifmia = new Zifmia();
 
 function Zifmia() {
@@ -20,17 +15,13 @@ function Zifmia() {
     var ZifmiaLogin             = "Login/{0}/{1}";                          // username, password
     var ZifmiaAuthorized        = "IsAuthorized/{0}";                       // authKey
     var ZifmiaGames             = "Games";                                  // no arguments
-    var ZifmiaSessionStart      = "SessionStart/{0}/{1}";                  // authKey, gameKey
-    var ZifmiaSessionCommand    = "SessionCommand/{0}/{1}/{2}/{3}/{4}";    // authKey, sessionKey, branchid, turn, command
-    var ZifmiaSessionGet        = "SessionGet/{0}/{1}";                    // authKey, sessionKey
-    var ZifmiaSessionGetHistory = "SessionHistory/{0}/{1}/{2}/{3}";        // authKey, sessionKey, branchId, turn
-    var ZifmiaUserSessionList   = "UserSessionList/{0}";                  // authKey
+    var ZifmiaSessionStart      = "SessionStart/{0}/{1}";                   // authKey, gameKey
+    var ZifmiaSessionCommand    = "SessionCommand/{0}/{1}/{2}/{3}/{4}";     // authKey, sessionKey, branchid, turn, command
+    var ZifmiaSessionGet        = "SessionGet/{0}/{1}";                     // authKey, sessionKey
+    var ZifmiaSessionGetHistory = "SessionHistory/{0}/{1}/{2}/{3}";         // authKey, sessionKey, branchId, turn
+    var ZifmiaUserSessionList   = "UserSessionList/{0}";                    // authKey
 
     var isSessionDataLoaded = false;
-
-    this.ShadowInTheCathedral = "AAAAAAA";
-    this.JackToresalAndTheSecretLetter = "AAAAAAB";
-    this.CloakOfDarkness = "AAAAAAA";
 
     this.ZC_USERNAME = "zifmiaUsername";
     this.ZC_NICKNAME = "zifmiaNickname";
@@ -192,7 +183,7 @@ function Zifmia() {
     // Note that if the client sends in a command from a history turn (less than the greatest turn number for this session)
     // a new session will be created and returned with the response. This means the client should always be aware of the
     // returned sessionKey.
-    this.sendCommand = function (sessionKey, branchid, turn, command, callback, errorCallback) {
+    this.sendCommand = function (ajaxImage, sessionKey, branchid, turn, command, callback, errorCallback) {
         $.ajax({
             type: "GET",
             url: ZifmiaSessionCommand.format(zifmia.authKey, sessionKey, branchid, turn, command),
@@ -203,15 +194,15 @@ function Zifmia() {
             error: function (xhr, textStatus, errorThrown) {
                 errorCallback(xhr, textStatus, errorThrown);
             },
-            beforeSend: function () { $(ajaxLoading).show(); },
-            complete: function () { $(ajaxLoading).hide(); }
+            beforeSend: function () { $(ajaxImage).show(); },
+            complete: function () { $(ajaxImage).hide(); }
         });
     }
 
     //
     // Get the last turn session and response data of a given session.
     //
-    this.getSession = function (sessionKey, callback, errorCallback) {
+    this.getSession = function (ajaxImage, sessionKey, callback, errorCallback) {
         $.ajax({
             type: "GET",
             url: ZifmiaSessionGet.format(zifmia.authKey, sessionKey),
@@ -222,15 +213,15 @@ function Zifmia() {
             error: function (xhr, textStatus, errorThrown) {
                 errorCallback(xhr, textStatus, errorThrown);
             },
-            beforeSend: function () { $(ajaxLoading).show(); },
-            complete: function () { $(ajaxLoading).hide(); }
+            beforeSend: function () { $(ajaxImage).show(); },
+            complete: function () { $(ajaxImage).hide(); }
         });
     }
 
     //
     // Get the history turn.
     //
-    this.getHistorySession = function (sessionKey, branchId, turn, callback, errorCallback) {
+    this.getHistorySession = function (ajaxImage, sessionKey, branchId, turn, callback, errorCallback) {
         $.ajax({
             type: "GET",
             url: ZifmiaSessionGetHistory.format(zifmia.authKey, sessionKey, branchId, turn),
@@ -241,12 +232,12 @@ function Zifmia() {
             error: function (xhr, textStatus, errorThrown) {
                 errorCallback(xhr, textStatus, errorThrown);
             },
-            beforeSend: function () { $(ajaxLoading).show(); },
-            complete: function () { $(ajaxLoading).hide(); }
+            beforeSend: function () { $(ajaxImage).show(); },
+            complete: function () { $(ajaxImage).hide(); }
         });
     }
 
-    this.getUserSessions = function (callback, errorCallback) {
+    this.getUserSessions = function (ajaxImage, callback, errorCallback) {
         $.ajax({
             type: "GET",
             url: ZifmiaUserSessionList.format(zifmia.authKey),
@@ -257,8 +248,8 @@ function Zifmia() {
             error: function (xhr, textStatus, errorThrown) {
                 errorCallback(xhr, textStatus, errorThrown);
             },
-            beforeSend: function () { $(ajaxLoading).show(); },
-            complete: function () { $(ajaxLoading).hide(); }
+            beforeSend: function () { $(ajaxImage).show(); },
+            complete: function () { $(ajaxImage).hide(); }
         });
     }
 

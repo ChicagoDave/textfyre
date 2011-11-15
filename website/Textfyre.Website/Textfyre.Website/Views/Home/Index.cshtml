@@ -36,7 +36,7 @@
             $("#homePanel").show();
         });
 
-        $("#logoutButton").click(function () {
+        $("#logoutLink").click(function () {
             zifmia.authKey = "";
             zifmia.saveSessionData();
             $("#registerPanel").hide();
@@ -162,10 +162,10 @@
         if (viewModel.Status == 0) {
             $("#registerPanel").hide();
             $("#homePanel").show();
-            $("#loggedOutPanel").hide();
             $("#nicknameLabel").text(viewModel.Nickname);
-            $("#loggedInPanel").show();
             $("#loggedInTeaser").hide();
+            $("#loggedOutPanel").hide();
+            $("#loggedInPanel").show();
             zifmia.authKey = viewModel.AuthKey;
             zifmia.nickname = viewModel.Nickname;
             zifmia.saveSessionData(); // Let's stay logged in by setting our cookies.

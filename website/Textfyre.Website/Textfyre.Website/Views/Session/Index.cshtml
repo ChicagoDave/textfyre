@@ -1,12 +1,285 @@
-﻿<!DOCTYPE html>
+﻿@model Zifmia.Model.ZifmiaSessionViewModel
+<script type="text/javascript">
 
-<html>
-<head>
-    <title>Index</title>
-</head>
-<body>
-    <div>
-        
+    var game = new Game();
+
+    $(document).ready(function () {
+
+        zifmia.loadSessionData();
+
+        if (zifmia.authorized()) {
+            $("#nicknameLabel").text(zifmia.nickname);
+        } else {
+            zifmia.loginGuest();
+            $("#nicknameLabel").text("(guest)");
+        }
+
+        // We're authorized...load the game. Oh yeah, Hacker dudes. It's cool. We totally dig the idea of you figuring our code out and doing your own thing.
+        game.setGame('@Model.GameName');
+
+        $("#mapButton").click(function () {
+            $("#gameMap").bPopup();
+        });
+
+        $("#hintsButton").click(function () {
+            $("#hintsBlock").bPopup();
+        });
+
+        $('html, body').animate({ scrollTop: '0px' }, 800);
+
+        if (game.sessionKey == null || game.sessionKey == "") {
+
+            //
+            // Start a session
+            //
+            zifmia.startSession('@Model.GameKey', handleStartSession, handleStartSessionError);
+
+        } else {
+
+            //
+            // Get known session
+            //
+            zifmia.getSession('@Model.GameKey', handleGetSession, handleGetSessionError);
+        }
+
+        $("#logoutButton").click(function () {
+            zifmia.authKey = "";
+            zifmia.saveSessionData();
+            document.location.href = "/";
+        });
+
+    });
+
+    function handleStartSession(viewModel) {
+
+        if (viewModel.Status != 0) {
+            alert(viewModel.Message);
+            location.href = "/index.html";
+        }
+
+        // store the session key in a cookie
+        game.setSessionKey(viewModel.SessionKey);
+
+        // Loads channel content
+        game.loadChannelData(viewModel.Channels);
+        game.setBranchId(viewModel.BranchId);
+        game.setTurn(viewModel.Turn);
+
+        if (game.prologueChannel != "") {
+
+
+        }
+
+        if (game.prologueChannel != "") {
+            $("#prologueContent").html(game.prologueChannel.toHtml());
+            $("#prologuePanel").show();
+            setupPrologue();
+        }
+
+        $("#mainContent").html(game.mainChannel.toHtml());
+        $("#promptTitle").text(game.promptChannel);
+        $("#locationTitle").html(game.locationChannel);
+        $("#gameTitleLabel").html(game.titleChannel);
+
+    }
+
+    function handleStartSessionError(xhr, textStatus, errorThrown) {
+        $("#mainContent").html(xhr.responseText);
+        $("#mainPanel").show();
+    }
+
+    function handleGetSession(viewModel) {
+        if (viewModel.Status != 0) {
+            alert(viewModel.Message);
+            location.href = "/index.html";
+        }
+
+        // Loads channel content
+        game.loadChannelData(viewModel.Channels);
+        game.setBranchId(viewModel.BranchId);
+        game.setTurn(viewModel.Turn);
+
+        $("#mainContent").html(game.mainChannel.toHtml());
+        $("#promptTitle").text(game.promptChannel);
+        $("#locationTitle").html(game.locationChannel);
+        $("#gameTitleLabel").html(game.titleChannel);
+
+        $("#mainPanel").show();
+        $("#footerWrap").slideToggle(function () { });
+
+        $("#userCommand").keypress(onCommandEnter).focus();
+    }
+
+    function handleGetSessionError(xhr, textStatus, errorThrown) {
+    }
+
+    function handleSendCommand(viewModel) {
+        if (viewModel.Status != 0) {
+            alert(viewModel.Message);
+            location.href = "/index.html";
+        }
+
+        // Loads channel content
+        game.loadChannelData(viewModel.Channels);
+
+        // Save current branch and turn
+        game.setBranchId(viewModel.BranchId);
+        game.setTurn(viewModel.Turn);
+
+        // Display channel content
+        $("#mainContent").html(game.mainChannel.toHtml());
+        $("#promptTitle").text(game.promptChannel);
+        $("#locationTitle").html(game.locationChannel);
+        $("#gameTitleLabel").html(game.titleChannel);
+
+        $("#userCommand").focus();
+    }
+
+    function handleSendCommandError() {
+    }
+
+    function onCommandEnter(e) {
+        if (e.which == 13) {
+            handleCommand();
+        }
+    }
+
+    function setupPrologue() {
+        $("#prologueButton").click(function () {
+
+            $("#prologuePanel").hide();
+            $("#mainPanel").show();
+            $("#footerWrap").slideToggle(function () { });
+            $("#userCommand").keypress(onCommandEnter(e));
+        });
+    }
+
+    function handleCommand() {
+        var command = $("#userCommand").val();
+
+        zifmia.sendCommand(game.sessionKey, game.branchId, game.turn, command, handleSendCommand, handleSendCommandError);
+
+        $("#userCommand").val("");
+    }
+
+    function setupPrologue() {
+        $('#anyKey').keydown(function () {
+            $('#page').unbind('keydown');
+            showMain();
+        });
+    }
+
+    function setupAnykey() {
+        $("#anyKey").focus();
+    }
+
+    function showMain() {
+        $("#prologuePanel").hide();
+        $("#mainPanel").show();
+        $("#prologueButton").hide();
+        $("#commandPanel").slideToggle(function () { });
+        $("#userCommand").keypress(onCommandEnter);
+        $("#userCommand").val("");
+        $("#userCommand").focus();
+        $('html, body').animate({ scrollTop: '0px' }, 800);
+        $("#contentTitle").text("Current Location");
+        $("#mapButton").show();
+        $("#hintsButton").show();
+    }
+
+    function onCommandEnter(e) {
+        if (e.which == 13) {
+            handleCommand();
+        }
+    }
+
+    function handleCommand() {
+        var command = $("#userCommand").val();
+
+        zifmia.sendCommand(game.sessionKey, game.branchId, game.turn, command, handleSendCommand, handleSendCommandError);
+
+        $("#userCommand").val("");
+    }
+
+    var skipToggle = 0;
+
+    function toggleQuestion(answers) {
+
+        var a = document.getElementById(answers.id);
+
+        if (skipToggle == 0) {
+            if (a.style.display == 'none') {
+                a.style.display = 'block';
+            } else {
+                a.style.display = 'none';
+            }
+        }
+
+        skipToggle = 0;
+    }
+
+    function showHint(mungedText, hintText) {
+        mungedText.style.display = 'none';
+        hintText.style.display = 'block';
+        skipToggle = 1;
+    }
+</script>
+<div id="page">
+    <div id="header">
+        <div style="float: left; padding-right: 3px; vertical-align: middle; width: 100%;">
+            <div id="nicknameLabel" style="padding-left: 5px; float: left; margin-top: 3px;">
+            </div>
+            <div style="float: right; padding-right: 3px; margin-top: 4px;">
+                <button id="logoutButton" style="border-radius: 10px; font-size: 10pt; height: 20px;
+                    font-weight: bold;">
+                    Logout</button></div>
+            <div id="gameTitle">
+                This is the Game Title</div>
+        </div>
+        <div id="contentTitle">
+            Prologue</div>
     </div>
-</body>
-</html>
+    <div id="ajaxLoading" style="display: none;">
+        <img src="@Url.Content("~/Content/loading.gif")" alt="Ajax" /></div>
+    <div style="padding-bottom: 10px;">
+    </div>
+    <div id="main">
+        <div id="prologuePanel">
+            <div id="prologueContent" class="content">
+            </div>
+        </div>
+        <div id="mainPanel" style="display: none;">
+            <div id="mainContent" class="content">
+            </div>
+        </div>
+        <div id="gameMap">
+            <img src="@Url.Content("~/Content/secretlettermap.jpg")" alt="Game Map" /></div>
+        <div id="hintsBlock">
+            Cloak of Darkness - Hints<br />
+            <br />
+            Cloak of Darkness is a sample game developed in most Interactive Fiction systems
+            as a way to display their programming features.<br />
+            <br />
+            There is only one simple puzzle within Cloak, which is to hang your cloak on the
+            hook in the closet.
+        </div>
+    </div>
+    <div id="footer">
+        <div id="prologueButton">
+            <div id="anyKey" tabindex="-1">
+                Press any key to begin game...</div>
+        </div>
+        <div id="commandPanel">
+            <span id="promptTitle">Prompt Text:</span>
+            <br />
+            <input id="userCommand" type="text" maxlength="100" /></div>
+        <div id="hintsButton">
+            <img src="@Url.Content("~/Content/hints-scroll.png")" alt="Hints" /><div>
+                Hints</div>
+        </div>
+        <div id="mapButton">
+            <img src="@Url.Content("~/Content/compass-rose.png")" alt="Map of Game" /><div>
+                Map</div>
+        </div>
+    </div>
+</div>
