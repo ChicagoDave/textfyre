@@ -1,6 +1,6 @@
 ﻿<script type="text/javascript">
 
-    var cloak = new Game();
+    var game = new Game();
 
     $(document).ready(function () {
 
@@ -15,7 +15,7 @@
 
         // We're authorized...load the game.
 
-        cloak.setGame('cloak');
+        game.setGame('cloak');
 
         $("#mapButton").click(function () {
             $("#gameMap").bPopup();

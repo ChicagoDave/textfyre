@@ -12,9 +12,10 @@ namespace Zifmia.Model
     {
         public ZifmiaGame() { }
 
-        public ZifmiaGame(string title, byte[] engine, List<ZifmiaChannel> channels)
+        public ZifmiaGame(string title, string name, byte[] engine, List<ZifmiaChannel> channels)
         {
             this.Title = title;
+            this.Name = name;
             this.Engine = engine;
             this.Channels = channels;
             this.Installed = DateTime.Now;
@@ -30,6 +31,7 @@ namespace Zifmia.Model
             }
         }
         public string Title { get; set; }
+        public string Name { get; set; }
         public DateTime Installed { get; set; }
         public byte[] Engine { get; set; }
         public List<ZifmiaChannel> Channels { get; set; }

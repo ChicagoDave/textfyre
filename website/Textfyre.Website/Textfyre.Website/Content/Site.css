@@ -42,4 +42,8 @@ a.homeLink { float: right; padding-right: 10px; margin-top: 3px; font-size: 12pt
 a.homeLink:visited { float: right; padding-right: 10px; margin-top: 3px; font-size: 12pt; color:black; }
 a.homeLink:hover { float: right; padding-right: 10px; margin-top: 3px; font-size: 12pt; color:black; }
 
+a.homeLinkLoggedIn { padding-right: 10px; margin-top: 3px; font-size: 12pt; color:black; }
+a.homeLinkLoggedIn:visited { padding-right: 10px; margin-top: 3px; font-size: 12pt; color:black; }
+a.homeLinkLoggedIn:hover { padding-right: 10px; margin-top: 3px; font-size: 12pt; color:black; }
+
 .aboutLabel { font-weight: bold; }

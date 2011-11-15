@@ -4,13 +4,21 @@ namespace Zifmia.Model
 {
     public class ZifmiaLoginViewModel : IZifmiaViewModel
     {
-        public virtual string AuthKey { get; set; }
-        public virtual string FirstName { get; set; }
-        public virtual string LastName { get; set; }
-        public virtual string FullName { get; set; }
-        public virtual string EmailAddress { get; set; }
-        public virtual string Nickname { get; set; }
-        public virtual ZifmiaStatus Status { get; set; }
-        public virtual string Message { get; set; }
+        public bool IsLoggedIn { get; set; }
+        public string AuthKey { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string FullName { get; set; }
+        public string EmailAddress { get; set; }
+        public string Nickname { get; set; }
+        public ZifmiaStatus Status { get; set; }
+        public string Message { get; set; }
+
+        public ZifmiaLoginViewModel() { }
+
+        public ZifmiaLoginViewModel(bool loggedIn)
+        {
+            this.IsLoggedIn = loggedIn;
+        }
     }
 }

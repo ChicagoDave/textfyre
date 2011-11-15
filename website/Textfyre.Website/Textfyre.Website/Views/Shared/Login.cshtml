@@ -1,16 +1,28 @@
 ﻿<div style="height: 28px; background-color: #0099ff;">
-    <div style="float: left; padding-right: 3px;">
-        <span style="padding: 0 3px 0 3px;">Username</span><input style="margin-top: 3px;
-            height: 16px;" type="text" id="unm" value="" tabindex="1" /></div>
-    <div style="float: left; padding-right: 3px;">
-        <span style="padding-right: 3px;">Password</span><input style="margin-top: 3px; height: 16px;"
-            type="password" id="pwd" value="" tabindex="2" /></div>
-    <button type="submit" id="loginSubmitButton" tabindex="4">
-        <span>Log In</span></button>
-    <span style="margin-top: 3px;">
-        <input type="checkbox" id="rememberme" value="forever" tabindex="3" checked="checked" />
-        <label for="rememberme">
-            Remember me</label>
-        <a id="lostPasswordLink" href="#lostpassword">Lost your password?</a></span>
-    @Html.ActionLink("Home", "Index", "Home", null, new { @class = "homeLink" })
+    <div id="loggedOutPanel">
+        <div style="float: left; padding-right: 3px;">
+            <span style="padding: 0 3px 0 3px;">Username</span><input style="margin-top: 3px;
+                height: 16px;" type="text" id="unm" value="" tabindex="1" /></div>
+        <div style="float: left; padding-right: 3px;">
+            <span style="padding-right: 3px;">Password</span><input style="margin-top: 3px; height: 16px;"
+                type="password" id="pwd" value="" tabindex="2" /></div>
+        <button type="submit" id="loginSubmitButton" tabindex="4">
+            <span>Log In</span></button>
+        <span style="margin-top: 3px;">
+            <input type="checkbox" id="rememberme" value="forever" tabindex="3" checked="checked" />
+            <label for="rememberme">
+                Remember me</label>
+            <a id="lostPasswordLink" href="#lostpassword">Lost your password?</a></span>
+        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "homeLink" })
+    </div>
+    <div id="loggedInPanel">
+        <div style="float: left; padding-right: 3px; vertical-align: middle; width: 100%;">
+            <div id="nicknameLabel" style="padding-left: 5px; float: left; margin-top: 3px;">
+            </div>
+            <div style="float: right; padding-right: 3px; margin-top: 4px;">
+                <a id="logoutLink" href="#" class="homeLinkLoggedIn">Logout</a>
+                @Html.ActionLink("Home", "Index", "Home", null, new { @class = "homeLinkLoggedIn" })
+            </div>
+        </div>
+    </div>
 </div>
