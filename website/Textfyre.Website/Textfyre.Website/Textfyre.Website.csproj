@@ -134,6 +134,7 @@
     <Compile Include="Zifmia\Model\ZifmiaGamesViewModel.cs" />
     <Compile Include="Zifmia\Model\ZifmiaGameViewModel.cs" />
     <Compile Include="Zifmia\Model\ZifmiaIdGenerator.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaLoggedInViewData.cs" />
     <Compile Include="Zifmia\Model\ZifmiaLoginViewModel.cs" />
     <Compile Include="Zifmia\Model\ZifmiaNode.cs" />
     <Compile Include="Zifmia\Model\ZifmiaPlayer.cs" />
@@ -146,6 +147,7 @@
     <Compile Include="Zifmia\Model\ZifmiaSessions.cs" />
     <Compile Include="Zifmia\Model\ZifmiaSessionsViewModel.cs" />
     <Compile Include="Zifmia\Model\ZifmiaSessionViewModel.cs" />
+    <Compile Include="Zifmia\Model\ZifmiaState.cs" />
     <Compile Include="Zifmia\Model\ZifmiaStatus.cs" />
     <Compile Include="Zifmia\Model\ZifmiaViewModel.cs" />
   </ItemGroup>
@@ -270,7 +272,9 @@
     <Content Include="Scripts\utility.js" />
     <Content Include="Scripts\zifmia-htmlformatting.js" />
     <Content Include="Scripts\zifmia.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -329,6 +333,12 @@
     <Content Include="packages.config" />
     <Content Include="Views\Session\Index.cshtml" />
     <Content Include="Views\Validation\Index.cshtml" />
+    <Content Include="Views\Session\MainContent.cshtml" />
+    <Content Include="Views\Session\TitleContent.cshtml" />
+    <Content Include="Views\Session\ChapterContent.cshtml" />
+    <Content Include="Views\Session\CommandContent.cshtml" />
+    <Content Include="Views\Session\BadGameKey.cshtml" />
+    <Content Include="Views\Session\SessionLoggedIn.cshtml" />
     <None Include="Zifmia\Model\ZifmiaClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
