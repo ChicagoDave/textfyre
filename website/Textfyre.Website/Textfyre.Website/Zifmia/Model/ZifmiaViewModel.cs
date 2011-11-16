@@ -59,8 +59,8 @@ namespace Zifmia.Model
             this.BranchMap = new List<ZifmiaBranchMap>();
 
             this.AuthKey = session.Owner.AuthKey;
-            this.PlayerKey = session.Owner.Key;
-            this.GameKey = session.Game.Key;
+            this.Player = session.Owner;
+            this.Game = session.Game;
             this.SessionKey = session.Key;
             this.BranchId = session.CurrentBranch.Id;
             this.Turn = session.CurrentBranch.CurrentNode.Turn;
@@ -85,31 +85,18 @@ namespace Zifmia.Model
             }
         }
 
-
         public string AuthKey { get; set; }
-
-        public string PlayerKey { get; set; }
-
-        public string GameKey { get; set; }
-
+        public ZifmiaPlayer Player { get; set; }
+        public ZifmiaGame Game { get; set; }
         public string SessionKey { get; set; }
-
         public Int64 BranchId { get; set; }
-
         public int Turn { get; set; }
-
         public string Command { get; set; }
-
         public bool HasPreviousNode { get; set; }
-
         public bool HasNextNode { get; set; }
-
         public List<ZifmiaChannel> Channels { get; set; }
-
         public List<ZifmiaBranchMap> BranchMap { get; set; }
-
         public string Message { get; set; }
-
         public ZifmiaStatus Status { get; set; }
 
     }

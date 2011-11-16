@@ -348,6 +348,8 @@ namespace Zifmia.Service.Controller
                 return viewModel;
             }
 
+            viewModel.Player = player;
+
             ZifmiaDatabase.WriteTrace("Player Key: " + player.Key);
             ZifmiaDatabase.WriteTrace("Player successfully authorized.");
 
@@ -368,6 +370,7 @@ namespace Zifmia.Service.Controller
             // TO DO - Add game access logic here for commercial games.
             //
             ZifmiaGame game = _database.GetGame(gameKey);
+            viewModel.Game = game;
             ZifmiaDatabase.WriteTrace("Game retrieved.");
 
             ZifmiaSession session = new ZifmiaSession(game, player);
@@ -419,12 +422,14 @@ namespace Zifmia.Service.Controller
                 return viewModel;
             }
             ZifmiaDatabase.WriteTrace("Player authorized.");
+            viewModel.Player = player;
 
             //
             // Read the session
             //
             ZifmiaSession session = _database.GetSessionByKey(sessionKey);
             ZifmiaDatabase.WriteTrace("Session retrieved.");
+            viewModel.Game = session.Game;
 
             //
             // Reset the state of the session to reflect the selected branch and turn
