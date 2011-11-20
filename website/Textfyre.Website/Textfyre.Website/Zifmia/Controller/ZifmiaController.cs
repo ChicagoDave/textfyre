@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Mail;
 using System.Xml;
+using System.Globalization;
 using System.Linq;
 using System.IO;
 using System.Threading.Tasks;
@@ -47,65 +48,63 @@ namespace Zifmia.Service.Controller
                 newPlayer.IsValidated = true;
             }
 
-            using (ZifmiaDatabase database = new ZifmiaDatabase())
+            ZifmiaDatabase database = new ZifmiaDatabase();
+            ZifmiaRegistrationStatus status = database.CheckPlayerIsUnqiue(newPlayer);
+
+            if (status != ZifmiaRegistrationStatus.Succeeded)
             {
-                ZifmiaRegistrationStatus status = database.CheckPlayerIsUnqiue(newPlayer);
-
-                if (status != ZifmiaRegistrationStatus.Succeeded)
+                viewModel.RegistrationStatus = status;
+                switch (status)
                 {
-                    viewModel.RegistrationStatus = status;
-                    switch (status)
-                    {
-                        case ZifmiaRegistrationStatus.UsernameExists:
-                            viewModel.Message = "The username '" + username + "' is unavailable.";
-                            break;
-                        case ZifmiaRegistrationStatus.NickNameExists:
-                            viewModel.Message = "The nick name '" + nickName + "' is unavailable.";
-                            break;
-                        case ZifmiaRegistrationStatus.EmailAddressExists:
-                            viewModel.Message = "The email address '" + emailAddress + "' is unavailable.";
-                            break;
-                    }
+                    case ZifmiaRegistrationStatus.UsernameExists:
+                        viewModel.Message = "The username '" + username + "' is unavailable.";
+                        break;
+                    case ZifmiaRegistrationStatus.NickNameExists:
+                        viewModel.Message = "The nick name '" + nickName + "' is unavailable.";
+                        break;
+                    case ZifmiaRegistrationStatus.EmailAddressExists:
+                        viewModel.Message = "The email address '" + emailAddress + "' is unavailable.";
+                        break;
                 }
-                else
+            }
+            else
+            {
+                database.Save(newPlayer);
+
+                viewModel.Status = ZifmiaStatus.Success;
+                viewModel.Message = "Registration has been completed. Please check your e-mail for further instructions.";
+
+                // We can't send e-mails, but we still want to return normally.
+                // Also skip sending an email for regression test user
+                if (ZifmiaDatabase.IsNetworkAvailable && username != "regression")
                 {
-                    database.Save(newPlayer);
+                    string host = HttpContext.Current.Request.ServerVariables["HTTP_HOST"];
+                    string protocol = HttpContext.Current.Request.ServerVariables["SERVER_PROTOCOL"];
+                    if (protocol.StartsWith("HTTP/"))
+                        protocol = "http://";
+                    else
+                        protocol = "https://";
 
-                    viewModel.Status = ZifmiaStatus.Success;
-                    viewModel.Message = "Registration has been completed. Please check your e-mail for further instructions.";
+                    host = protocol + host;
 
-                    // We can't send e-mails, but we still want to return normally.
-                    // Also skip sending an email for regression test user
-                    if (ZifmiaDatabase.IsNetworkAvailable && username != "regression")
-                    {
-                        string host = HttpContext.Current.Request.ServerVariables["HTTP_HOST"];
-                        string protocol = HttpContext.Current.Request.ServerVariables["SERVER_PROTOCOL"];
-                        if (protocol.StartsWith("HTTP/"))
-                            protocol = "http://";
-                        else
-                            protocol = "https://";
+                    MailMessage message = new MailMessage();
+                    message.From = new MailAddress("zifmia-noreply@textfyre.com", "Textfyre Games Validation - NO REPLY");
+                    message.ReplyToList.Add(new MailAddress("zifmia-noreply@textfyre.com", "Textfyre Games Validation - NO REPLY"));
+                    message.To.Add(new MailAddress(emailAddress, nickName));
+                    message.Body = String.Format(@"Dear New Textfyre Player,<br/><br/>Please click the following link to validate your new registration:<br/><br/>" + host + "/Validation/{0}<br/><br/>Sincerely,<br/><br/>The Textfyre Team", newPlayer.ValidationId);
+                    message.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
 
-                        host = protocol + host;
+                    // Since this is open source, we can't just hard code the SMTP account password, can we?
+                    // Sorry spammer dudes, no open relay for you...
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(@"D:\Zifmia\Zifmia.config");
+                    string emailPassword = doc.SelectSingleNode("/ZifmiaConfiguration/EmailPassword").InnerText;
 
-                        MailMessage message = new MailMessage();
-                        message.From = new MailAddress("zifmia-noreply@textfyre.com", "Textfyre Games Validation - NO REPLY");
-                        message.ReplyToList.Add(new MailAddress("zifmia-noreply@textfyre.com", "Textfyre Games Validation - NO REPLY"));
-                        message.To.Add(new MailAddress(emailAddress, nickName));
-                        message.Body = String.Format(@"Dear New Textfyre Player,<br/><br/>Please click the following link to validate your new registration:<br/><br/>" + host + "/Validation/{0}<br/><br/>Sincerely,<br/><br/>The Textfyre Team", newPlayer.ValidationId);
-                        message.IsBodyHtml = true;
-                        SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-                        smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-
-                        // Since this is open source, we can't just hard code the SMTP account password, can we?
-                        // Sorry spammer dudes, no open relay for you...
-                        XmlDocument doc = new XmlDocument();
-                        doc.Load(@"D:\Zifmia\Zifmia.config");
-                        string emailPassword = doc.SelectSingleNode("/ZifmiaConfiguration/EmailPassword").InnerText;
-
-                        smtp.Credentials = new System.Net.NetworkCredential("no-reply@textfyre.com", emailPassword);
-                        smtp.EnableSsl = true;
-                        smtp.Send(message);
-                    }
+                    smtp.Credentials = new System.Net.NetworkCredential("no-reply@textfyre.com", emailPassword);
+                    smtp.EnableSsl = true;
+                    smtp.Send(message);
                 }
             }
 
@@ -116,18 +115,16 @@ namespace Zifmia.Service.Controller
         {
             ZifmiaStatus returnStatus = ZifmiaStatus.Failure;
 
-            using (ZifmiaDatabase database = new ZifmiaDatabase())
+            ZifmiaDatabase database = new ZifmiaDatabase();
+            ZifmiaPlayer player = database.GetPlayerByValidationId(validationId);
+
+            if (player != null)
             {
-                ZifmiaPlayer player = database.GetPlayerByValidationId(validationId);
+                player.Validate(validationId);
 
-                if (player != null)
-                {
-                    player.Validate(validationId);
+                database.Save(player);
 
-                    database.Save(player);
-
-                    returnStatus = ZifmiaStatus.Success;
-                }
+                returnStatus = ZifmiaStatus.Success;
             }
 
             return returnStatus;
@@ -137,35 +134,33 @@ namespace Zifmia.Service.Controller
 
             ZifmiaLoginViewModel viewModel = new ZifmiaLoginViewModel();
 
-            using (ZifmiaDatabase database = new ZifmiaDatabase())
+            ZifmiaDatabase database = new ZifmiaDatabase();
+            //
+            // Get the playerKey for the current user so we can authorize them.
+            //
+            ZifmiaPlayer player = database.GetPlayerByUsernamePassword(username, password);
+
+
+            CheckPlayer(player, viewModel);
+            if (viewModel.Status == ZifmiaStatus.DoesNotExist || viewModel.Status == ZifmiaStatus.Invalid)
             {
-                //
-                // Get the playerKey for the current user so we can authorize them.
-                //
-                ZifmiaPlayer player = database.GetPlayerByUsernamePassword(username, password);
-
-
-                CheckPlayer(player, viewModel);
-                if (viewModel.Status == ZifmiaStatus.DoesNotExist || viewModel.Status == ZifmiaStatus.Invalid)
-                {
-                    return viewModel;
-                }
-
-                string authKey = ZifmiaAuthorizationId.GetNextKey(database);
-
-                player.Authorize(authKey);
-
-                database.Save(player);
-
-                viewModel.AuthKey = authKey;
-                viewModel.FirstName = player.FirstName;
-                viewModel.LastName = player.LastName;
-                viewModel.FullName = player.FullName;
-                viewModel.Nickname = player.NickName;
-                viewModel.EmailAddress = player.EmailAddress;
-                viewModel.Status = ZifmiaStatus.Success;
-                viewModel.Message = "Player is logged in.";
+                return viewModel;
             }
+
+            string authKey = ZifmiaAuthorizationId.GetNextKey(database);
+
+            player.Authorize(authKey);
+
+            database.Save(player);
+
+            viewModel.AuthKey = authKey;
+            viewModel.FirstName = player.FirstName;
+            viewModel.LastName = player.LastName;
+            viewModel.FullName = player.FullName;
+            viewModel.Nickname = player.NickName;
+            viewModel.EmailAddress = player.EmailAddress;
+            viewModel.Status = ZifmiaStatus.Success;
+            viewModel.Message = "Player is logged in.";
 
             return viewModel;
         }
@@ -173,13 +168,11 @@ namespace Zifmia.Service.Controller
         public virtual ZifmiaLoginViewModel IsAuthorized(string authKey)
         {
             ZifmiaPlayer player = null;
-            using (ZifmiaDatabase database = new ZifmiaDatabase())
-            {
-                //
-                // Get the player by the auth key
-                //
-                player = database.GetPlayerByAuthKey(authKey);
-            }
+            ZifmiaDatabase database = new ZifmiaDatabase();
+            //
+            // Get the player by the auth key
+            //
+            player = database.GetPlayerByAuthKey(authKey);
 
             ZifmiaLoginViewModel viewModel = new ZifmiaLoginViewModel();
 
@@ -201,10 +194,8 @@ namespace Zifmia.Service.Controller
         {
             ZifmiaStatus returnStatus = ZifmiaStatus.DoesNotExist;
 
-            using (ZifmiaDatabase database = new ZifmiaDatabase())
-            {
-                returnStatus = database.DeletePlayer(username);
-            }
+            ZifmiaDatabase database = new ZifmiaDatabase();
+            returnStatus = database.DeletePlayer(username);
 
             return returnStatus;
         }
@@ -215,15 +206,20 @@ namespace Zifmia.Service.Controller
         public virtual ZifmiaGamesViewModel GetInstalledGames()
         {
             ZifmiaGamesViewModel viewModel = new ZifmiaGamesViewModel();
-            List<ZifmiaGame> games = _database.GetInstalledGames();
+            List<ZifmiaGame> games = new List<ZifmiaGame>();
+
+            ZifmiaDatabase database = new ZifmiaDatabase();
+            games = database.GetInstalledGames();
 
             // copy list of games to view model, leaving out engine data
             foreach (ZifmiaGame game in games)
             {
                 ZifmiaGameViewModel newGame = new ZifmiaGameViewModel();
+                newGame.Id = game.UID;
                 newGame.Key = game.Key;
                 newGame.Installed = game.Installed;
                 newGame.Title = game.Title;
+                newGame.Name = game.Name;
                 viewModel.Games.Add(newGame);
             }
 
@@ -328,6 +324,13 @@ namespace Zifmia.Service.Controller
             return viewModel;
         }
 
+        public bool VerifyGame(long gameId)
+        {
+            ZifmiaGame game = _database.GetGame(gameId);
+
+            return (game != null);
+        }
+
         #region Start Session
         // - Verify player is validated
         // - Verify player is authorization (logged in)
@@ -369,11 +372,15 @@ namespace Zifmia.Service.Controller
             //
             // TO DO - Add game access logic here for commercial games.
             //
-            ZifmiaGame game = _database.GetGame(gameKey);
+            long gameId = Int64.Parse(gameKey, NumberStyles.AllowHexSpecifier);
+            ZifmiaGame game = _database.GetGame(gameId);
             viewModel.Game = game;
             ZifmiaDatabase.WriteTrace("Game retrieved.");
 
             ZifmiaSession session = new ZifmiaSession(game, player);
+
+            _database.Save(session);
+
             ZifmiaDatabase.WriteTrace("Session created.");
 
             viewModel = new ZifmiaViewModel(session);
@@ -434,7 +441,7 @@ namespace Zifmia.Service.Controller
             //
             // Reset the state of the session to reflect the selected branch and turn
             //
-            ZifmiaBranch selectedBranch = (from ZifmiaBranch b in session.Branches where b.Id == branchId select b).FirstOrDefault<ZifmiaBranch>();
+            ZifmiaBranch selectedBranch = (from ZifmiaBranch b in session.Branches where b.BranchId == branchId select b).FirstOrDefault<ZifmiaBranch>();
             ZifmiaDatabase.WriteTrace("Branch retrieved.");
 
             if (selectedBranch == null)
@@ -454,7 +461,7 @@ namespace Zifmia.Service.Controller
             }
 
 
-            if (session.CurrentBranch.Id == branchId && session.CurrentBranch.CurrentNode.Turn == turn)
+            if (session.CurrentBranch.BranchId == branchId && session.CurrentBranch.CurrentNode.Turn == turn)
             {
                 return ExecuteStandardTurn(session, branchId, turn, command);
             }
@@ -541,7 +548,7 @@ namespace Zifmia.Service.Controller
         /// <returns></returns>
         private ZifmiaSession FindExistingNode(ZifmiaSession session, Int64 branchId, int turn, string command)
         {
-            List<ZifmiaBranch> branches = (from ZifmiaBranch b in session.Branches where b.Id != branchId && b.Nodes[0].Turn == turn select b).ToList<ZifmiaBranch>();
+            List<ZifmiaBranch> branches = (from ZifmiaBranch b in session.Branches where b.BranchId != branchId && b.Nodes[0].Turn == turn select b).ToList<ZifmiaBranch>();
 
             if (session.CurrentBranch.Nodes[0].Turn < turn)
             {
