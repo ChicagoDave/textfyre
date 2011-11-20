@@ -1,13 +1,12 @@
 ﻿@model Zifmia.Model.ZifmiaLoggedInViewData
-           
 <div style="height: 28px; background-color: #0099ff;">
     <div style="float: left; padding-right: 3px; vertical-align: middle; width: 100%;">
         <div id="nicknameLabel" style="padding-left: 5px; float: left; margin-top: 3px;">@Model.Nickname
         </div>
-        <div style="left-margin: auto; right-margin: auto; display: block;">@Model.GameTitle</div>
         <div style="float: right; padding-right: 3px; margin-top: 4px;">
             <a id="logoutLink" href="#" class="homeLinkLoggedIn">Logout</a>
             @Html.ActionLink("Home", "Index", "Home", null, new { @class = "homeLinkLoggedIn" })
         </div>
+        <div style="left-margin: auto; right-margin: auto; display: block; text-align:center; font-family: Georgia; font-size:18px; font-weight:bold; height:22px; margin-top:4px;">@Model.GameTitle</div>
     </div>
 </div>

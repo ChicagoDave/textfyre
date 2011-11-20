@@ -1,1 +1,17 @@
-﻿
+﻿@model Textfyre.Website.Models.CommandViewData
+<div id="footer">
+    <div id="hintPanel">
+        <div id="hintLabel" tabindex="-1">
+            Try typing EXAMINE ME</div>
+    </div>
+    <div id="commandPanel">
+        <input id="userCommand" type="text" maxlength="100" /></div>
+    <div id="hintsButton">
+        <img src="@Url.Content("~/Content/hints-scroll.png")" alt="Hints" /><div>
+            Hints</div>
+    </div>
+    <div id="mapButton">
+        <img src="@Url.Content("~/Content/compass-rose.png")" alt="Map of Game" /><div>
+            Map</div>
+    </div>
+</div>

@@ -1,10 +1,5 @@
 ﻿function Game() {
 
-    this.gameName = '';
-    this.sessionKey = '';
-    this.branchId = '';
-    this.turn = '';
-
     this.promptChannel = '';
     this.mainChannel = '';
     this.timeChannel = '';
@@ -19,28 +14,8 @@
     this.tipsChannel = '';
     this.versionChannel = '';
     this.verbChannel = '';
-
-    this.setGame = function (gName) {
-        this.gameName = gName;
-        this.sessionKey = getCookie(this.gameName + 'SessionKey', '');
-        this.branchId = getCookie(this.gameName + 'Branch', '');
-        this.turn = getCookie(this.gameName + 'Turn', '1');
-    }
-
-    this.setSessionKey = function (key) {
-        setCookie(this.gameName + 'SessionKey', key, 7);
-        this.sessionKey = getCookie(this.gameName + 'SessionKey', '');
-    }
-
-    this.setBranchId = function (branch) {
-        setCookie(this.gameName + 'Branch', branch, 7);
-        this.branchId = getCookie(this.gameName + 'Branch', '');
-    }
-
-    this.setTurn = function (turn) {
-        setCookie(this.gameName + 'Turn', turn, 7);
-        this.turn = getCookie(this.gameName + 'Turn', '1');
-    }
+    this.tutorialChannel = '';
+    this.mapsChannel = '';
 
     this.loadChannelData = function (channelList) {
         this.promptChannel = this.getText(channelList, 'PRPT');
@@ -57,6 +32,8 @@
         this.tipsChannel = this.getText(channelList, 'TIPS');
         this.versionChannel = this.getText(channelList, 'VRSN');
         this.verbChannel = this.getText(channelList, 'VERB');
+        this.tutorialChannel = this.getText(channelList, 'TUTR');
+        this.mapsChannel = this.getText(channelList, 'MAPS');
     }
 
     this.getText = function(channelList, channelName) {

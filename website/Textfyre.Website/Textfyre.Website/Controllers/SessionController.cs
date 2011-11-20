@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -18,7 +19,7 @@ namespace Textfyre.Website.Controllers
         //
         // GET: /Session/GameKey
         //
-        public ActionResult Index(string gameKey, string command)
+        public ActionResult Index(string gameKey, string sessionKey, string command)
         {
             ZifmiaController zController = new ZifmiaController();
 
@@ -26,10 +27,15 @@ namespace Textfyre.Website.Controllers
             //  1. Validate Game Key
             //
             ZifmiaGamesViewModel gamesData = zController.GetInstalledGames();
-            ZifmiaGame game = (from ZifmiaGame g in gamesData.Games where g.Key == gameKey select g).FirstOrDefault<ZifmiaGame>();
-            if (game == null)
+            if (gamesData.Status == ZifmiaStatus.Failure)
             {
-                return View("BadGameKey");
+                return View("NoGames", "_SessionLayout");
+            }
+
+            long gameId = Int64.Parse(gameKey, NumberStyles.AllowHexSpecifier);
+            if (!zController.VerifyGame(gameId))
+            {
+                return View("BadGameKey", "_SessionLayout");
             }
 
             //
@@ -56,6 +62,10 @@ namespace Textfyre.Website.Controllers
                 //  4. If the user does not have a working session, start a new session.
                 //
                 viewData = zController.StartSession(state.AuthKey, gameKey);
+
+                Response.Cookies.Add(new HttpCookie(gameKey + "_zifmiaSessionKey", viewData.SessionKey));
+                Response.Cookies.Add(new HttpCookie(gameKey + "_zifmiaBranchId", viewData.BranchId.ToString()));
+                Response.Cookies.Add(new HttpCookie(gameKey + "_zifmiaTurn", viewData.Turn.ToString()));
             }
             else
             {
@@ -65,7 +75,7 @@ namespace Textfyre.Website.Controllers
                 viewData = zController.SendCommand(state.AuthKey, state.SessionKey, state.BranchId, state.Turn, command);
             }
 
-            return View(viewData);
+            return View("Index", "_SessionLayout", viewData);
         }
 
     }
