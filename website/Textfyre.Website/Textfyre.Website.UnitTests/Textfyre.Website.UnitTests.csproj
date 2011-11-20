@@ -59,6 +59,10 @@
       <Project>{BEDAE7FA-0670-4247-BA0A-0465E2E6842E}</Project>
       <Name>Textfyre.Website</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Textfyre.Zifmia.EQClient\Textfyre.Zifmia.EQClient.csproj">
+      <Project>{0596EBA2-71F0-4613-BA6B-96523C432EF2}</Project>
+      <Name>Textfyre.Zifmia.EQClient</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
