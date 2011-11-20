@@ -16,7 +16,7 @@ function Zifmia() {
     var ZifmiaAuthorized        = "IsAuthorized/{0}";                       // authKey
     var ZifmiaGames             = "Games";                                  // no arguments
     var ZifmiaSessionStart      = "SessionStart/{0}/{1}";                   // authKey, gameKey
-    var ZifmiaSessionCommand    = "SessionCommand/{0}/{1}/{2}/{3}/{4}";     // authKey, sessionKey, branchid, turn, command
+    var ZifmiaSessionCommand    = "/SessionCommand/{0}/{1}/{2}/{3}/{4}";     // authKey, sessionKey, branchid, turn, command
     var ZifmiaSessionGet        = "SessionGet/{0}/{1}";                     // authKey, sessionKey
     var ZifmiaSessionGetHistory = "SessionHistory/{0}/{1}/{2}/{3}";         // authKey, sessionKey, branchId, turn
     var ZifmiaUserSessionList   = "UserSessionList/{0}";                    // authKey

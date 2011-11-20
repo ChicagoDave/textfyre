@@ -1,39 +1,33 @@
-body { margin: 0 0 0 0; padding: 0 0 0 0; }
-h1 { font-family:"Times Roman", serif; font-size:30pt;}
-p { text-indent: 1.5em; }
+h1 { font-family: "Times New Roman" , serif; font-size: 30pt; }
+div.para { margin-bottom: 15px; display: inline-block; }
+body { margin: 70px 0; font-family: Times New Roman; font-size: 14pt; overflow-x: hidden; }
+#main { width: 700px; margin: 0 auto; }
+.leftbox { float: left; width: 200px; margin-left: -250px; background-color: AntiqueWhite; text-indent: 0px; border-radius: 10px; -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888;
+           box-shadow: 10px 10px 5px #888;  padding: 5px; }
+.rightbox { float: right; width: 200px; margin-right: -250px; background-color: AntiqueWhite; text-indent: 0px; border-radius: 10px; -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888;
+            box-shadow: 10px 10px 5px #888; padding: 5px; }
+#header, #footer { height: 70px; background-color: #CCCCC2; width: 100%; position: fixed; left: 0; }
+#gameTitle { margin: auto; width: 50%; text-align: center; }
+#contentTitle { margin-top:40px; text-align: center; height:30px; vertical-align:bottom; }
+#header { top: 0; }
+#footer { bottom: 0; }
+div#hintPanel { color: black; text-align: center; font-size: 14pt; width: 100%; position: absolute; height: 32px; left: 0; bottom: 0; padding-bottom: 10px; padding-top: 20px; }
+#hintLabel { outline: 0; text-decoration:none; color:Black; opacity: .3;}
 
-.subtitle { font-family:"Times Roman", serif; color:#888; font-size:18pt;}
-.tooltip { -moz-box-shadow: 10px 10px 5px #ccc; -webkit-box-shadow: 10px 10px 5px #ccc; box-shadow: 10px 10px 5px #ccc;position: relative; left: -300px; top: 20px; width: 190px; white-space: normal; font-size: 10pt; background-color: #FFFFCC; padding: 5px; border-radius: 10px; }
-
-div.topBar { background-color: #777; height: 28px; color: White; font-family: Arial,Helvetica,sans-serif; font-size: 11pt; }
-div#loggedInPanel { display: none; }
-div#loggedOutPanel { }
-div#outerPanel { text-align: left; display: inline-block; width: 700px; }
-
-input.loginInput { margin-top: 3px; height: 16px; font-family: Arial,Helvetica,sans-serif; font-size: 10pt; background-color: silver; }
-
-span#promptTitle { font-family: Arial; font-size: 10pt; color: Gray; text-align: left; width: 700px; display: inline-block; padding-top: 5px; }
-.gameTitle { -moz-box-shadow: 10px 10px 5px #ccc; -webkit-box-shadow: 10px 10px 5px #ccc; box-shadow:10px 10px 5px #58595B;}
-div.gameButtons { margin-top: 10px; }
-
-div#centerColumn { text-align: center; }
-div#gameTitleLabel { margin-left:auto; text-align:center; font-size:16pt; font-weight: bold;}
-div#prologuePanel { display:none; }
-div#prologueHeader { font-size: 14pt; font-weight: bold; background-color: Silver; padding-left: 5px; text-align: left; }
-div#prologueContent { font-family: Times Roman; font-size: 14pt; }
-div#prologueButton { color: black; text-align: center; font-size: 14pt; width:100%; position:absolute; height:60px; background-color:#CCCCC2;left:0;bottom:0;padding-bottom:10px;padding-top: 25px;}
-span#locationTitle { font-weight: bold; padding-right: 5px; text-align:center; }
-div#mainHeader { font-size: 14pt; font-weight: bold; background-color: Silver; padding-left: 5px; text-align: left; }
-div#mainContent { font-family: Times New Roman; font-size: 14pt; position: absolute; top: 70px; width: 700px; }
-
-input#userCommand { height: 31px; width: 700px; font-size: 20pt; }
+div#prologueButton { color: black; text-align: center; font-size: 14pt; width: 100%; position: absolute; height: 32px; background-color: #CCCCC2; left: 0; bottom: 0; padding-bottom: 10px; padding-top: 20px; }
+input#userCommand { height: 30px; width: 700px; font-size: 20pt; }
 input.shortField { font-size: 20pt; padding: 3px 0 3px 0; }
 input.longField { font-size: 20pt; padding: 3px 0 3px 0; width: 656px; }
+#commandPanel { margin: auto; width: 700px; display: none; }
+#anyKey { outline: 0; text-decoration:none; color:Black; }
+#mapButton { position:absolute; bottom: 100px; right: 50px; z-index:100; font-family: @MS Gothic; font-size:10pt; text-align:center; display:none; }
+#hintsButton { position:absolute; bottom: 200px; right: 50px; z-index:100; font-family: @MS Gothic; font-size:10pt; text-align:center; display:none; }
+#gameMap { display:none; }
+#hintsBlock { display:none; }
+#tutorial { height:30px; width: 400px; float:left; margin-top:10px; margin-left:10px; font-size:14px; }
 
-div#footerWrap { width:100%; position:absolute; height:60px; background-color:#CCCCC2; display:block;left:0;bottom:0;padding-bottom:10px;}
-div#footer { text-align:center; }
-
-#ajaxLoading{ display:none; width:200px; text-align:left; position:absolute; top:50%; left:50%; margin-left:-100px;}
+img.floatLeft { float: left; margin-right: 3px; }
+img.floatRight { float: right; margin-left: 3px; }
 
 .center { text-align: center; }
 .center table { margin-left: auto; margin-right: auto; text-align: left; }
@@ -47,3 +41,4 @@ a.homeLinkLoggedIn:visited { padding-right: 10px; margin-top: 3px; font-size: 12
 a.homeLinkLoggedIn:hover { padding-right: 10px; margin-top: 3px; font-size: 12pt; color:black; }
 
 .aboutLabel { font-weight: bold; }
+

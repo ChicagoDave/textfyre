@@ -11,17 +11,18 @@ namespace Textfyre.Website.Controllers
     public class GameController : Controller
     {
         //
-        // GET: /Game/Cloak/{Game}/{Tab}
-        public ActionResult Index(string game, string tab)
+        // GET: /Game/{Game}
+        public ActionResult Index(string game)
         {
             GameViewData viewData = new GameViewData();
-            viewData.Key = "Shadow";
-            viewData.Title = "The Shadow in the Cathedral";
-            viewData.Author = "Ian Finley and Jon Ingold";
+            viewData.Key = "10B0000000005";
+            viewData.Name = "Cloak";
+            viewData.Title = "Cloak of Darkness";
+            viewData.Author = "Anonymous";
             viewData.Platform = "Inform 7";
-            viewData.ImageURL = "~/Content/shadow-tile.png";
-            viewData.Keywords = "steampunk, adventure, edwardian, clocks";
-            viewData.Description = "Klockwerk is a steampunk adventure set in an Edwardian world where Newtonian devices, specifically clocks, are worshipped.";
+            viewData.ImageURL = "~/Content/cloak-tile.png";
+            viewData.Keywords = "example";
+            viewData.Description = "Cloak of Darkness is a simple example that demonstrates implementations using different Interactive Fiction development platforms.";
 
             return View(viewData);
         }
