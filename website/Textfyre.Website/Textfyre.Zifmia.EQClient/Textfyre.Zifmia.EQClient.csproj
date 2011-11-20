@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0596EBA2-71F0-4613-BA6B-96523C432EF2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Textfyre.Zifmia.EQClient</RootNamespace>
+    <AssemblyName>Textfyre.Zifmia.EQClient</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Eloquera.Client, Version=4.14.0.6, Culture=neutral, PublicKeyToken=170cadcdba67be6c, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controller\ZifmiaController.cs" />
+    <Compile Include="Database\EQ.cs" />
+    <Compile Include="Database\ZifmiaDatabase.cs" />
+    <Compile Include="FyreVM\BigEndian.cs" />
+    <Compile Include="FyreVM\Engine.cs" />
+    <Compile Include="FyreVM\EngineWrapper.cs" />
+    <Compile Include="FyreVM\GlkWrapper.cs" />
+    <Compile Include="FyreVM\HeapAllocator.cs" />
+    <Compile Include="FyreVM\Opcodes.cs" />
+    <Compile Include="FyreVM\Output.cs" />
+    <Compile Include="FyreVM\OutputBuffer.cs" />
+    <Compile Include="FyreVM\Profiler.cs" />
+    <Compile Include="FyreVM\Quetzal.cs" />
+    <Compile Include="FyreVM\UlxImage.cs" />
+    <Compile Include="FyreVM\Veneer.cs" />
+    <Compile Include="FyreVM\VMException.cs" />
+    <Compile Include="Model\IZifmiaViewModel.cs" />
+    <Compile Include="Model\ZifmiaAuthorizationId.cs" />
+    <Compile Include="Model\ZifmiaBranch.cs" />
+    <Compile Include="Model\ZifmiaBranchMap.cs" />
+    <Compile Include="Model\ZifmiaChannel.cs" />
+    <Compile Include="Model\ZifmiaEngine.cs" />
+    <Compile Include="Model\ZifmiaEngineId.cs" />
+    <Compile Include="Model\ZifmiaExtensions.cs" />
+    <Compile Include="Model\ZifmiaGame.cs" />
+    <Compile Include="Model\ZifmiaGameId.cs" />
+    <Compile Include="Model\ZifmiaGamesViewModel.cs" />
+    <Compile Include="Model\ZifmiaGameViewModel.cs" />
+    <Compile Include="Model\ZifmiaIdGenerator.cs" />
+    <Compile Include="Model\ZifmiaLoggedInViewData.cs" />
+    <Compile Include="Model\ZifmiaLoginViewModel.cs" />
+    <Compile Include="Model\ZifmiaNode.cs" />
+    <Compile Include="Model\ZifmiaPlayer.cs" />
+    <Compile Include="Model\ZifmiaPlayerId.cs" />
+    <Compile Include="Model\ZifmiaPlayers.cs" />
+    <Compile Include="Model\ZifmiaRegistrationStatus.cs" />
+    <Compile Include="Model\ZifmiaRegistrationViewModel.cs" />
+    <Compile Include="Model\ZifmiaSession.cs" />
+    <Compile Include="Model\ZifmiaSessionId.cs" />
+    <Compile Include="Model\ZifmiaSessions.cs" />
+    <Compile Include="Model\ZifmiaSessionsViewModel.cs" />
+    <Compile Include="Model\ZifmiaSessionViewModel.cs" />
+    <Compile Include="Model\ZifmiaState.cs" />
+    <Compile Include="Model\ZifmiaStatus.cs" />
+    <Compile Include="Model\ZifmiaViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FyreVM\COPYRIGHT" />
+    <None Include="Model\ZifmiaClassDiagram.cd" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
