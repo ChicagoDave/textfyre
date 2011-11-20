@@ -32,8 +32,8 @@ namespace Textfyre.Website
 
             routes.MapRoute(
                 "Session", // Route name
-                "Session/{game}/{command}", // URL with parameters
-                new { controller = "Session", action = "Index", game = UrlParameter.Optional, command = UrlParameter.Optional } // Parameter defaults
+                "Session/{gameKey}/{sessionKey}/{command}", // URL with parameters
+                new { controller = "Session", action = "Index", sessionKey = UrlParameter.Optional, command = UrlParameter.Optional } // Parameter defaults
             );
 
             // Register/{username}/{password}/{nickName}/{emailAddress}
