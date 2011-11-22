@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using Zifmia.Model;
+using Zifmia.Service.Controller;
 using Textfyre.Website.Models;
 
 namespace Textfyre.Website.Controllers
@@ -15,7 +17,7 @@ namespace Textfyre.Website.Controllers
         public ActionResult Index(string game)
         {
             GameViewData viewData = new GameViewData();
-            viewData.Key = "10B0000000005";
+            viewData.Key = "10B0000000009";
             viewData.Name = "Cloak";
             viewData.Title = "Cloak of Darkness";
             viewData.Author = "Anonymous";
@@ -25,6 +27,17 @@ namespace Textfyre.Website.Controllers
             viewData.Description = "Cloak of Darkness is a simple example that demonstrates implementations using different Interactive Fiction development platforms.";
 
             return View(viewData);
+        }
+
+        public ActionResult Clean(string game)
+        {
+            ZifmiaController zController = new ZifmiaController();
+
+            ZifmiaGame zGame = zController.GetGameByName(game);
+
+            zGame.Clean();
+
+            return View();
         }
 
     }

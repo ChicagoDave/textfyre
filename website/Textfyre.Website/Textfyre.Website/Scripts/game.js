@@ -16,6 +16,7 @@
     this.verbChannel = '';
     this.tutorialChannel = '';
     this.mapsChannel = '';
+    this.deadChannel = '';
 
     this.loadChannelData = function (channelList) {
         this.promptChannel = this.getText(channelList, 'PRPT');
@@ -34,6 +35,7 @@
         this.verbChannel = this.getText(channelList, 'VERB');
         this.tutorialChannel = this.getText(channelList, 'TUTR');
         this.mapsChannel = this.getText(channelList, 'MAPS');
+        this.deadChannel = this.getText(channelList, 'DEAD');
     }
 
     this.getText = function(channelList, channelName) {

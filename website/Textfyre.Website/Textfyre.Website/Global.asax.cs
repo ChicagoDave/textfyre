@@ -31,6 +31,12 @@ namespace Textfyre.Website
             );
 
             routes.MapRoute(
+                "Clean", // Route name
+                "Game/Clean/{game}", // URL with parameters
+                new { controller = "Game", action = "Clean" } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Session", // Route name
                 "Session/{gameKey}/{sessionKey}/{command}", // URL with parameters
                 new { controller = "Session", action = "Index", sessionKey = UrlParameter.Optional, command = UrlParameter.Optional } // Parameter defaults

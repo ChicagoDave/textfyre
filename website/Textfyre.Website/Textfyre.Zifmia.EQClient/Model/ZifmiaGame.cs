@@ -44,5 +44,11 @@ namespace Zifmia.Model
             }
         }
 
+        public void Clean()
+        {
+            ZifmiaDatabase zdb = new ZifmiaDatabase();
+            zdb.CleanGame(this.UID);
+        }
+
     }
 }
