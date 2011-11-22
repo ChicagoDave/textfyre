@@ -75,6 +75,11 @@ namespace Textfyre.Website.Controllers
                 viewData = zController.SendCommand(state.AuthKey, state.SessionKey, state.BranchId, state.Turn, command);
             }
 
+            if (viewData.Status == ZifmiaStatus.Failure)
+            {
+                return View("SessionError", viewData);
+            }
+
             return View("Index", "_SessionLayout", viewData);
         }
 

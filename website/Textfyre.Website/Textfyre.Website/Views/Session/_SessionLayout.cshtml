@@ -43,6 +43,7 @@
                 $("#mainPanel").show();
                 $("#prologueButton").hide();
                 $("#commandPanel").slideToggle(function () { });
+                $("#userCommand").keydown(onCommandWorking);
                 $("#userCommand").keypress(onCommandEnter);
                 $("#userCommand").val("");
                 $("#userCommand").focus();
@@ -64,7 +65,23 @@
             $('html, body').animate({ scrollTop: '0px' }, 800);
         });
 
+
+        function onCommandWorking(e) {
+            var command = $("#userCommand").val().trim();
+            if (command == "" || (command.length == 1 && e.which == 8)) {
+                $("#tutorial").show();
+            }
+        }
+
         function onCommandEnter(e) {
+            var command = $("#userCommand").val().trim();
+            if (e.which == 32 && command == "") {
+                $("#userCommand").val("");
+                $("#tutorial").show();
+                return false;
+            } else {
+                $("#tutorial").hide();
+            }
             if (e.which == 13) {
                 handleCommand();
             }
@@ -83,6 +100,7 @@
             zifmia.sendCommand("ajaxLoading", sessionKey, branchId, turn, command, handleSessionSend, handleSessionSendError);
 
             $("#userCommand").val("");
+            $("#tutorial").show();
         }
 
         // 1. get data
@@ -100,6 +118,19 @@
                 game = new Game();
                 game.loadChannelData(zifmiaViewModel.Channels);
 
+                if (zifmiaViewModel.Status == -99) {
+                    $("#commandPanel").slideToggle(function () { });
+                    $("#mapButton").hide();
+                    $("#hintsButton").hide();
+                    $("#tutorial").hide();
+
+                    //
+                    // Reset game cookies to first turn, to avoid restart message.
+                    //
+                    setCookie("@gameKey" + "_zifmiaBranchId", "1");
+                    setCookie("@gameKey" + "_zifmiaTurn", "1");
+                }
+
                 $("#mainParagraph").text(game.mainChannel);
 
                 if ($("#mapImage").length != 0 && game.mapsChannel != null) {
@@ -109,10 +140,12 @@
                 setChannelContent("#tutorialContent", game.tutorialChannel);
                 setChannelContent("#contentTitle", game.locationChannel);
 
-                // reset state. Turn is the only likely change here, branches can change.
-                setCookie("@gameKey" + "_zifmiaSessionKey", zifmiaViewModel.SessionKey);
-                setCookie("@gameKey" + "_zifmiaBranchId", zifmiaViewModel.BranchId);
-                setCookie("@gameKey" + "_zifmiaTurn", zifmiaViewModel.Turn);
+                if (zifmiaViewModel.Status != -99) {
+                    // reset state. Turn is the only likely change here, branches can change.
+                    setCookie("@gameKey" + "_zifmiaSessionKey", zifmiaViewModel.SessionKey);
+                    setCookie("@gameKey" + "_zifmiaBranchId", zifmiaViewModel.BranchId);
+                    setCookie("@gameKey" + "_zifmiaTurn", zifmiaViewModel.Turn);
+                }
             }
         }
 

@@ -170,6 +170,53 @@ namespace Zifmia.Service.Database
             return diskUsage;
         }
 
+        public void CleanGame(long uid)
+        {
+            using (DB db = EQ.GetInstance.DB) {
+                List<ZifmiaSession> sessions = (from ZifmiaSession s in db select s).ToList<ZifmiaSession>();
+
+                foreach (ZifmiaSession session in sessions)
+                {
+                    //ZifmiaGame game = session.Game;
+
+                    //if (game.Id == uid)
+                    //{
+                        db.Delete(session);
+                    //}
+                }
+
+                List<ZifmiaBranch> branches = (from ZifmiaBranch b in db select b).ToList<ZifmiaBranch>();
+
+                foreach (ZifmiaBranch branch in branches)
+                {
+                    db.Delete(branch);
+                }
+
+                List<ZifmiaNode> nodes = (from ZifmiaNode n in db select n).ToList<ZifmiaNode>();
+
+                foreach (ZifmiaNode node in nodes)
+                {
+                    db.Delete(node);
+                }
+
+                List<ZifmiaEngine> engines = (from ZifmiaEngine e in db select e).ToList<ZifmiaEngine>();
+
+                foreach (ZifmiaEngine engine in engines)
+                {
+                    db.Delete(engine);
+                }
+
+                List<ZifmiaChannel> channels = (from ZifmiaChannel c in db select c).ToList<ZifmiaChannel>();
+
+                foreach (ZifmiaChannel channel in channels)
+                {
+                    db.Delete(channel);
+                }
+
+                db.Close();
+            }
+        }
+
         public ZifmiaStatus DeleteGame(string gameName)
         {
             using (DB db = EQ.GetInstance.DB)
@@ -205,6 +252,18 @@ namespace Zifmia.Service.Database
             using (DB db = EQ.GetInstance.DB)
             {
                 game = (from ZifmiaGame g in db where db.UID == uid select g).FirstOrDefault<ZifmiaGame>();
+            }
+
+            return game;
+        }
+
+        public ZifmiaGame GetGameByName(string gameName)
+        {
+            ZifmiaGame game = null;
+
+            using (DB db = EQ.GetInstance.DB)
+            {
+                game = (from ZifmiaGame g in db where g.Name == gameName select g).FirstOrDefault<ZifmiaGame>();
             }
 
             return game;

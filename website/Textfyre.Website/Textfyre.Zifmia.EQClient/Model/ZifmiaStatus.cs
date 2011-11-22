@@ -6,6 +6,7 @@
         Failure = -1,
         Unauthorized = -2,
         Invalid = -3,
-        DoesNotExist = -4
+        DoesNotExist = -4,
+        GameEnded = -99
     }
 }

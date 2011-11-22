@@ -16,6 +16,8 @@
     ZifmiaChannel map = (from ZifmiaChannel ch in Model.Channels where ch.Name == "MAPS" select ch).FirstOrDefault<ZifmiaChannel>();
     ZifmiaChannel tutorial = (from ZifmiaChannel ch in Model.Channels where ch.Name == "TUTR" select ch).FirstOrDefault<ZifmiaChannel>();
 
+    hints = new ZifmiaChannel();
+    
     Textfyre.Website.Models.CommandViewData commandViewData = new Textfyre.Website.Models.CommandViewData();
     commandViewData.Hints = new List<string>();
     commandViewData.Hints.Add("Try EXAMINE ME");
@@ -41,6 +43,13 @@
     <div style="padding-bottom: 10px;">
     </div>
     <div id="main">
+        <div id="branches">
+            <div class="icon"><span class="iconText">1</span></div>
+            <div class="icon"><span class="iconText">2</span></div>
+            <div class="icon"><span class="iconText">3</span></div>
+            <div class="icon"><span class="iconText">4</span></div>
+            <div class="icon"><span class="iconText">5</span></div>
+        </div>
         <div id="prologuePanel">
             <div id="prologueContent" class="content">
                 <div class="para">
@@ -78,12 +87,6 @@
             <div id="anyKey" tabindex="-1">
                 Press any key to begin game...</div>
         </div>
-        @if (tutorial != null)
-        {
-            <div id="tutorial">
-                <span style="font-weight: bold;">Hint:</span><span id="tutorialContent">@tutorial.Content</span>
-            </div>
-        }
         <div id="commandPanel">
             <span id="promptTitle">
                 @if (prompt != null)
@@ -95,19 +98,24 @@
                     @Html.Label("Now what?")
                 }
             </span>
-            <br />
+        @if (tutorial != null)
+        {
+            <span id="tutorial">
+                <span id="tutorialContent">@tutorial.Content</span>
+            </span>
+        }
             <input id="userCommand" type="text" maxlength="100" /></div>
         @if (hints != null)
         {
             <div id="hintsButton">
-                <img src="@Url.Content("~/Content/hints-scroll.png")" alt="Hints" /><div>
+                <img src="@Url.Content("~/Content/lightbulb.png")" alt="Hints" /><div>
                     Hints</div>
             </div>
         }
         @if (map != null)
         {
             <div id="mapButton">
-                <img src="@Url.Content("~/Content/compass-rose.png")" alt="Map of Game" /><div>
+                <img src="@Url.Content("~/Content/globe.png")" alt="Map of Game" /><div>
                     Map</div>
             </div>
         }
