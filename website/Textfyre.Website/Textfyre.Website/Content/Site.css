@@ -1,31 +1,53 @@
 h1 { font-family: "Times New Roman" , serif; font-size: 30pt; }
-div.para { margin-bottom: 15px; display: inline-block; }
-body { margin: 70px 0; font-family: Times New Roman; font-size: 14pt; overflow-x: hidden; }
+div.para { padding-top:10px; margin-bottom: 15px; display: inline-block; }
+body { margin: 100px 0 70px 0; font-family: Times New Roman; font-size: 14pt; overflow-x: hidden;  }
 #main { width: 700px; margin: 0 auto; }
 .leftbox { float: left; width: 200px; margin-left: -250px; background-color: AntiqueWhite; text-indent: 0px; border-radius: 10px; -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888;
            box-shadow: 10px 10px 5px #888;  padding: 5px; }
 .rightbox { float: right; width: 200px; margin-right: -250px; background-color: AntiqueWhite; text-indent: 0px; border-radius: 10px; -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888;
             box-shadow: 10px 10px 5px #888; padding: 5px; }
-#header, #footer { height: 70px; background-color: #CCCCC2; width: 100%; position: fixed; left: 0; }
-#gameTitle { margin: auto; width: 50%; text-align: center; }
-#contentTitle { margin-top:40px; text-align: center; height:30px; vertical-align:bottom; }
+#header { height: 34px; width: 100%; position: fixed; left: 0; }
+#footer { height: 150px; width: 100%; position: fixed; left: 0; background-color:azure;}
+#gameTitle { margin-left: auto; margin-right: auto;
+                padding-top:10px;
+                font-family: script mt bold;
+                font-size: 30px;
+                text-align: center;
+                height:40px;
+                width:800px;
+                vertical-align:bottom;
+                border-radius: 10px; }
+#contentTitle { margin-top:60px; margin-left: auto; margin-right: auto;
+                padding-top:10px;
+                text-align: center;
+                height:30px;
+                width:800px;
+                vertical-align:bottom;
+                border-radius: 10px;
+                background-color:#3366CC;
+                color: white; -moz-box-shadow: 5px 5px 2px #888; -webkit-box-shadow: 5px 5px 2px #888;
+                box-shadow: 5px 5px 2px #888;}
 #header { top: 0; }
 #footer { bottom: 0; }
+#content { position:relative; top: 20px; }
 div#hintPanel { color: black; text-align: center; font-size: 14pt; width: 100%; position: absolute; height: 32px; left: 0; bottom: 0; padding-bottom: 10px; padding-top: 20px; }
 #hintLabel { outline: 0; text-decoration:none; color:Black; opacity: .3;}
 
-div#prologueButton { color: black; text-align: center; font-size: 14pt; width: 100%; position: absolute; height: 32px; background-color: #CCCCC2; left: 0; bottom: 0; padding-bottom: 10px; padding-top: 20px; }
-input#userCommand { height: 30px; width: 700px; font-size: 20pt; }
+div#prologueButton { color: black; text-align: center; font-size: 14pt; height: 32px; margin:auto;}
+input#userCommand { height: 30px; width: 796px; font-size: 20pt; }
 input.shortField { font-size: 20pt; padding: 3px 0 3px 0; }
 input.longField { font-size: 20pt; padding: 3px 0 3px 0; width: 656px; }
-#commandPanel { margin: auto; width: 700px; display: none; }
+#commandPanel { margin: auto; width: 800px; display: none; }
 #anyKey { outline: 0; text-decoration:none; color:Black; }
 #mapButton { position:absolute; bottom: 100px; right: 50px; z-index:100; font-family: @MS Gothic; font-size:10pt; text-align:center; display:none; }
 #hintsButton { position:absolute; bottom: 200px; right: 50px; z-index:100; font-family: @MS Gothic; font-size:10pt; text-align:center; display:none; }
 #branches { position:absolute; top: 100px; right: 50px; z-index:100; }
 #gameMap { display:none; }
 #hintsBlock { display:none; }
-#tutorial { position:relative; top:28px; margin:0 auto; font-size:14px; opacity:.3; }
+#tutorial { position:relative; top:80px; margin:0 auto; font-size:14px; opacity:.3; }
+#promptTitle { float:left; font-size:20px; position:relative; top:46px; }
+#buttonPanel { font-size: 16px; float:right; border-radius: 6px; padding-left:15px; padding-right:5px;}
+.button { margin-right:10px; width: 50px; font-size: 12px; float: left; text-align:center;}
 
 img.floatLeft { float: left; margin-right: 3px; }
 img.floatRight { float: right; margin-left: 3px; }
@@ -45,3 +67,5 @@ a.homeLinkLoggedIn:hover { padding-right: 10px; margin-top: 3px; font-size: 12pt
 
 .icon { background-image: url(/Content/book.png); background-repeat: no-repeat; width:48px; height:48px; }
 .iconText { position:relative; top:14px; left:22px; font-family: @MS Gothic; font-size:14pt; }
+
+.ui-widget { font-size: 1em; }
