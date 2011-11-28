@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Eloquera.Client, Version=4.14.0.6, Culture=neutral, PublicKeyToken=170cadcdba67be6c, processorArchitecture=MSIL" />
+    <Reference Include="Eloquera.Client, Version=4.17.0.0, Culture=neutral, PublicKeyToken=170cadcdba67be6c, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -66,7 +66,7 @@
     <Compile Include="Model\IZifmiaViewModel.cs" />
     <Compile Include="Model\ZifmiaAuthorizationId.cs" />
     <Compile Include="Model\ZifmiaBranch.cs" />
-    <Compile Include="Model\ZifmiaBranchMap.cs" />
+    <Compile Include="Model\ZifmiaBranchViewData.cs" />
     <Compile Include="Model\ZifmiaChannel.cs" />
     <Compile Include="Model\ZifmiaEngine.cs" />
     <Compile Include="Model\ZifmiaEngineId.cs" />
@@ -79,6 +79,7 @@
     <Compile Include="Model\ZifmiaLoggedInViewData.cs" />
     <Compile Include="Model\ZifmiaLoginViewModel.cs" />
     <Compile Include="Model\ZifmiaNode.cs" />
+    <Compile Include="Model\ZifmiaNodeViewData.cs" />
     <Compile Include="Model\ZifmiaPlayer.cs" />
     <Compile Include="Model\ZifmiaPlayerId.cs" />
     <Compile Include="Model\ZifmiaPlayers.cs" />

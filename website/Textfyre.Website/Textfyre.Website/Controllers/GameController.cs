@@ -16,11 +16,15 @@ namespace Textfyre.Website.Controllers
         // GET: /Game/{Game}
         public ActionResult Index(string game)
         {
+            ZifmiaController zController = new ZifmiaController();
+
+            ZifmiaGame zGame = zController.GetGameByName(game);
+
             GameViewData viewData = new GameViewData();
-            viewData.Key = "10B0000000009";
-            viewData.Name = "Cloak";
-            viewData.Title = "Cloak of Darkness";
-            viewData.Author = "Anonymous";
+            viewData.Key = zGame.Key;
+            viewData.Name = game;
+            viewData.Title = zGame.Title;
+            viewData.Author = "anonymous";
             viewData.Platform = "Inform 7";
             viewData.ImageURL = "~/Content/cloak-tile.png";
             viewData.Keywords = "example";

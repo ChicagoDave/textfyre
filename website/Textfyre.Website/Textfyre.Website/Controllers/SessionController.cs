@@ -46,12 +46,36 @@ namespace Textfyre.Website.Controllers
             //
             //  3. If the player is not authorized, login as guest. This allows limited demo play.
             //
-            if (state.AuthKey == "") {
-                ZifmiaLoginViewModel loginData = zController.Login("guest","guest");
+            if (state.AuthKey == "")
+            {
+                ZifmiaLoginViewModel loginData = zController.Login("guest", "guest");
 
                 Response.Cookies.Add(new HttpCookie("zifmiaAuthKey", loginData.AuthKey));
                 state.AuthKey = loginData.AuthKey;
                 state.LoginData = loginData;
+
+                // Guests cannot save sessions. When starting a game, all data is reset.
+                state.SessionKey = "";
+                state.BranchId = 1;
+                state.Turn = 1;
+            }
+            else
+            {
+                ZifmiaPlayer player = zController.GetPlayerByAuth(state.AuthKey);
+
+                if (player.Username == "guest")
+                {
+                    ZifmiaLoginViewModel loginData = zController.Login("guest", "guest");
+
+                    Response.Cookies.Add(new HttpCookie("zifmiaAuthKey", loginData.AuthKey));
+                    state.AuthKey = loginData.AuthKey;
+                    state.LoginData = loginData;
+
+                    // Guests cannot save sessions. When starting a game, all data is reset.
+                    state.SessionKey = "";
+                    state.BranchId = 1;
+                    state.Turn = 1;
+                }
             }
 
             ZifmiaViewModel viewData = new ZifmiaViewModel();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 
 using Zifmia.Service.Controller;
 using Zifmia.Model;
@@ -134,6 +135,7 @@ namespace Textfyre.Website.Controllers
             try
             {
                 viewModel = _controller.SendCommand(authKey, sessionKey, Convert.ToInt64(branchId), Convert.ToInt32(turn), command);
+                viewModel.BranchesViewHtml = RenderPartialViewToString("Branches", viewModel.Branches);
             }
             catch (Exception ex)
             {
@@ -174,6 +176,23 @@ namespace Textfyre.Website.Controllers
             return viewModel;
         }
 
+        protected string RenderPartialViewToString(string viewName, object model)
+        {
+            if (string.IsNullOrEmpty(viewName))
+                viewName = ControllerContext.RouteData.GetRequiredString("action");
+
+            ViewData.Model = model;
+
+            using (StringWriter sw = new StringWriter())
+            {
+                ViewEngineResult viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
+                ViewContext viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
+                viewResult.View.Render(viewContext, sw);
+
+                return sw.GetStringBuilder().ToString();
+            }
+        }
+        
         private void WriteException(Exception ex)
         {
             System.Diagnostics.EventLog ev = new System.Diagnostics.EventLog();

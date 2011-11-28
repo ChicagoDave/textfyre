@@ -183,7 +183,7 @@ function Zifmia() {
     // Note that if the client sends in a command from a history turn (less than the greatest turn number for this session)
     // a new session will be created and returned with the response. This means the client should always be aware of the
     // returned sessionKey.
-    this.sendCommand = function (ajaxImage, sessionKey, branchid, turn, command, callback, errorCallback) {
+    this.sendCommand = function (sessionKey, branchid, turn, command, callback, errorCallback, beforeCall, completeCall) {
         $.ajax({
             type: "GET",
             url: ZifmiaSessionCommand.format(zifmia.authKey, sessionKey, branchid, turn, command),
@@ -194,8 +194,12 @@ function Zifmia() {
             error: function (xhr, textStatus, errorThrown) {
                 errorCallback(xhr, textStatus, errorThrown);
             },
-            beforeSend: function () { $(ajaxImage).show(); },
-            complete: function () { $(ajaxImage).hide(); }
+            beforeSend: function () {
+                beforeCall();
+            },
+            complete: function () {
+                completeCall();
+            }
         });
     }
 

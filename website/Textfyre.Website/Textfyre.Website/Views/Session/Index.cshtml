@@ -17,7 +17,7 @@
     ZifmiaChannel tutorial = (from ZifmiaChannel ch in Model.Channels where ch.Name == "TUTR" select ch).FirstOrDefault<ZifmiaChannel>();
 
     hints = new ZifmiaChannel();
-    
+
     Textfyre.Website.Models.CommandViewData commandViewData = new Textfyre.Website.Models.CommandViewData();
     commandViewData.Hints = new List<string>();
     commandViewData.Hints.Add("Try EXAMINE ME");
@@ -35,21 +35,17 @@
             <div id="gameTitle">
                 @title.Content</div>
         </div>
-        <div id="contentTitle">
-            Prologue</div>
+        <div id="contentPanel">
+            <div id="contentTitle">
+                Prologue
+            </div>
+        </div>
     </div>
     <div id="ajaxLoading" style="display: none;">
         <img src="@Url.Content("~/Content/loading.gif")" alt="" /></div>
     <div style="padding-bottom: 10px;">
     </div>
     <div id="main">
-        <div id="branches">
-            <div class="icon"><span class="iconText">1</span></div>
-            <div class="icon"><span class="iconText">2</span></div>
-            <div class="icon"><span class="iconText">3</span></div>
-            <div class="icon"><span class="iconText">4</span></div>
-            <div class="icon"><span class="iconText">5</span></div>
-        </div>
         <div id="prologuePanel">
             <div id="prologueContent" class="content">
                 <div class="para">
@@ -69,55 +65,65 @@
         </div>
         @if (map != null)
         {
-            <div id="gameMap">
-                <img id="mapImage" src="@Url.Content("~/Content/" + map.Content)" alt="Game Map" /></div>
+            <div id="mapPanel" class="flyup">
+                <img id="mapImage" src="@Url.Content("~/Content/" + map.Content)" alt="Game Map" />
+            </div>
         }
         @if (hints != null)
         {
-            <div id="hintsBlock">
-                @if (hints != null)
-                {
-                    @hints.Content
-                }
+                    
+            <div id="hintsPanel" class="flyup">
+                @hints.Content
             </div>
         }
+        <div id="historyPanel" class="flyup">
+            @Html.Partial("Branches", Model.Branches)
+        </div>
     </div>
     <div id="footer">
         <div id="prologueButton">
             <div id="anyKey" tabindex="-1">
-                Press any key to begin game...</div>
+                Press any key or click here to begin the story...</div>
         </div>
         <div id="commandPanel">
-            <span id="promptTitle">
-                @if (prompt != null)
-                {
-                    @prompt.Content
-                }
-                else
-                {
-                    @Html.Label("Now what?")
-                }
-            </span>
-        @if (tutorial != null)
-        {
-            <span id="tutorial">
-                <span id="tutorialContent">@tutorial.Content</span>
-            </span>
-        }
-            <input id="userCommand" type="text" maxlength="100" /></div>
-        @if (hints != null)
-        {
-            <div id="hintsButton">
-                <img src="@Url.Content("~/Content/lightbulb.png")" alt="Hints" /><div>
-                    Hints</div>
+            <div id="buttonPanel">
+                <div id="mapButton" class="button">
+                    @if (map != null)
+                    {
+                        <img src="@Url.Content("~/Content/globe.png")" alt="Map of Game" />
+                        <text>Map</text>
+                    }
+                </div>
+                <div id="hintsButton" class="button">
+                    @if (hints != null)
+                    {
+                        <img src="@Url.Content("~/Content/lightbulb.png")" alt="Hints" />
+                        <text>Hints</text>
+                    }
+                </div>
+                <div id="historyButton" class="button">
+                    <img src="@Url.Content("~/Content/history48.png")" alt="Hints" />
+                    History
+                </div>
             </div>
-        }
-        @if (map != null)
-        {
-            <div id="mapButton">
-                <img src="@Url.Content("~/Content/globe.png")" alt="Map of Game" /><div>
-                    Map</div>
-            </div>
-        }
+            <div id="inputPanel">
+                <div id="promptTitle">
+                    @if (prompt != null)
+                    {
+                        @prompt.Content
+                    }
+                    else
+                    {
+                        @Html.Label("Now what?")
+                    }
+                </div>
+                @if (tutorial != null)
+                {
+                    <div id="tutorial">
+                        <div id="tutorialContent">@tutorial.Content</div>
+                    </div>
+                }
+                <input id="userCommand" type="text" maxlength="100" /></div>
+        </div>
     </div>
 </div>

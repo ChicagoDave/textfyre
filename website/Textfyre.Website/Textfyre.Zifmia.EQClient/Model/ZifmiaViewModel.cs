@@ -20,7 +20,7 @@ namespace Zifmia.Model
         public ZifmiaViewModel()
         {
             this.Channels = new List<ZifmiaChannel>();
-            this.BranchMap = new List<ZifmiaBranchMap>();
+            this.Branches = new List<ZifmiaBranchViewData>();
         }
 
         public ZifmiaViewModel(ZifmiaSession session, int branchId, int turn)
@@ -56,7 +56,7 @@ namespace Zifmia.Model
         private void SetData(ZifmiaSession session)
         {
             this.Channels = new List<ZifmiaChannel>();
-            this.BranchMap = new List<ZifmiaBranchMap>();
+            this.Branches = new List<ZifmiaBranchViewData>();
 
             this.AuthKey = session.Owner.AuthKey;
             this.Player = session.Owner;
@@ -72,17 +72,28 @@ namespace Zifmia.Model
             // create branch map
             foreach (ZifmiaBranch branch in session.Branches)
             {
-                ZifmiaBranchMap map = new ZifmiaBranchMap();
-                map.BranchId = branch.BranchId;
-                if (branch.ParentBranch == null)
-                    map.ParentBranchId = 0;
-                else
-                    map.ParentBranchId = branch.ParentBranch.BranchId;
-                map.StartNodeTurn = branch.Nodes[0].Turn;
-                map.EndNodeTurn = branch.Nodes[branch.Nodes.Count - 1].Turn;
+                ZifmiaBranchViewData branchViewData = new ZifmiaBranchViewData();
+                branchViewData.BranchId = branch.BranchId;
+                branchViewData.StartNodeTurn = branch.Nodes[0].Turn;
+                branchViewData.EndNodeTurn = branch.Nodes[branch.Nodes.Count - 1].Turn;
+                branchViewData.Nodes = new List<ZifmiaNodeViewData>();
 
-                this.BranchMap.Add(map);
+                foreach (ZifmiaNode node in branch.Nodes)
+                {
+                    ZifmiaNodeViewData nodeViewData = new ZifmiaNodeViewData();
+                    nodeViewData.Turn = node.Turn;
+                    nodeViewData.LocationName = (from ZifmiaChannel channel in node.Channels where channel.Name == "LOCN" select channel.Content).FirstOrDefault<string>();
+                    nodeViewData.Time = (from ZifmiaChannel channel in node.Channels where channel.Name == "TIME" select channel.Content).FirstOrDefault<string>();
+                    nodeViewData.Score = Convert.ToInt32((from ZifmiaChannel channel in node.Channels where channel.Name == "SCOR" select channel.Content).FirstOrDefault<string>());
+                    nodeViewData.Command = node.Command;
+                    nodeViewData.Inventory = "";
+
+                    branchViewData.Nodes.Add(nodeViewData);
+                }
+
+                this.Branches.Add(branchViewData);
             }
+
         }
 
         public string AuthKey { get; set; }
@@ -95,9 +106,10 @@ namespace Zifmia.Model
         public bool HasPreviousNode { get; set; }
         public bool HasNextNode { get; set; }
         public List<ZifmiaChannel> Channels { get; set; }
-        public List<ZifmiaBranchMap> BranchMap { get; set; }
+        public List<ZifmiaBranchViewData> Branches { get; set; }
         public string Message { get; set; }
         public ZifmiaStatus Status { get; set; }
+        public string BranchesViewHtml { get; set; }
 
     }
 }
