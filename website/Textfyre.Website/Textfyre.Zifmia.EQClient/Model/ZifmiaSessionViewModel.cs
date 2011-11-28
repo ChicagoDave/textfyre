@@ -19,21 +19,29 @@ namespace Zifmia.Model
             this.GameKey = session.Game.Key;
             this.GameTitle = session.Game.Title;
             this.GameName = session.Game.Name;
-            this.BranchMap = new List<ZifmiaBranchMap>();
+            this.Branches = new List<ZifmiaBranchViewData>();
 
             // create branch map
             foreach (ZifmiaBranch branch in session.Branches)
             {
-                ZifmiaBranchMap map = new ZifmiaBranchMap();
-                map.BranchId = branch.BranchId;
-                if (branch.ParentBranch == null)
-                    map.ParentBranchId = 0;
-                else
-                    map.ParentBranchId = branch.ParentBranch.BranchId;
-                map.StartNodeTurn = branch.Nodes[0].Turn;
-                map.EndNodeTurn = branch.Nodes[branch.Nodes.Count - 1].Turn;
+                ZifmiaBranchViewData branchViewData = new ZifmiaBranchViewData();
+                branchViewData.BranchId = branch.BranchId;
+                branchViewData.StartNodeTurn = branch.Nodes[0].Turn;
+                branchViewData.EndNodeTurn = branch.Nodes[branch.Nodes.Count - 1].Turn;
 
-                this.BranchMap.Add(map);
+                foreach (ZifmiaNode node in branch.Nodes)
+                {
+                    ZifmiaNodeViewData nodeViewData = new ZifmiaNodeViewData();
+                    nodeViewData.Turn = node.Turn;
+                    nodeViewData.LocationName = (from ZifmiaChannel channel in node.Channels where channel.Name == "LOCN" select channel.Content).FirstOrDefault<string>();
+                    nodeViewData.Time = (from ZifmiaChannel channel in node.Channels where channel.Name == "TIME" select channel.Content).FirstOrDefault<string>();
+                    nodeViewData.Score = Convert.ToInt32((from ZifmiaChannel channel in node.Channels where channel.Name == "SCOR" select channel.Content).FirstOrDefault<string>());
+                    nodeViewData.Inventory = "";
+
+                    branchViewData.Nodes.Add(nodeViewData);
+                }
+
+                this.Branches.Add(branchViewData);
             }
 
         }
@@ -45,6 +53,6 @@ namespace Zifmia.Model
         public string GameKey { get; set; }
         public string GameTitle { get; set; }
         public string GameName { get; set; }
-        public List<ZifmiaBranchMap> BranchMap { get; set; }
+        public List<ZifmiaBranchViewData> Branches { get; set; }
     }
 }

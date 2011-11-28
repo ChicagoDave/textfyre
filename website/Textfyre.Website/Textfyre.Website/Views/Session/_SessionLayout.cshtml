@@ -25,6 +25,7 @@
     <script src="@Url.Content("~/Scripts/zifmia-htmlformatting.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/zifmia.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/game.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.blockUI.js")" type="text/javascript"></script>
 
 @{
     var host = Url.Content("~/");
@@ -36,34 +37,81 @@
         var SessionSend = "@host" + "/Session/{0}/{1}";
 
         $(document).ready(function () {
-            $('#anyKey').keydown(function () {
-                $('#page').unbind('keydown');
+            $('#anyKey').click(function () {
+                PrologueComplete();
+            });
 
-                $("#prologuePanel").hide();
-                $("#mainPanel").show();
-                $("#prologueButton").hide();
-                $("#commandPanel").slideToggle(function () { });
-                $("#userCommand").keydown(onCommandWorking);
-                $("#userCommand").keypress(onCommandEnter);
-                $("#userCommand").val("");
-                $("#userCommand").focus();
-                $('html, body').animate({ scrollTop: '0px' }, 800);
-                $("#contentTitle").text("@location.Content");
-                $("#mapButton").show();
-                $("#hintsButton").show();
+            $('#anyKey').keydown(function () {
+                PrologueComplete();
             });
 
             $("#mapButton").click(function () {
-                $("#gameMap").bPopup();
+                ToggleFlyout("#mapPanel");
             });
 
             $("#hintsButton").click(function () {
-                $("#hintsBlock").bPopup();
+                ToggleFlyout("#hintsPanel");
+            });
+
+            $("#historyButton").click(function () {
+                ToggleFlyout("#historyPanel");
             });
 
             $("#anyKey").focus();
             $('html, body').animate({ scrollTop: '0px' }, 800);
         });
+
+        function ToggleFlyout(panel) {
+            if ($(panel).is(":hidden")) {
+                // before showing any panel, close any open panels.
+                switch (panel) {
+                    case '#mapPanel':
+                        HideFlyout('#hintsPanel');
+                        HideFlyout('#historyPanel');
+                        break;
+                    case '#hintsPanel':
+                        HideFlyout('#mapPanel');
+                        HideFlyout('#historyPanel');
+                        break;
+                    case '#historyPanel':
+                        HideFlyout('#mapPanel');
+                        HideFlyout('#hintsPanel');
+                        break;
+                }
+                ShowFlyout(panel);
+            } else {
+                HideFlyout(panel);
+            }
+        }
+
+        function ShowFlyout(panel) {
+            $(panel).show();
+            $(panel).animate({ width: "800px" }, 500).animate({ height: "400px" }, 500);
+        }
+
+        function HideFlyout(panel) {
+            $(panel).animate({ height: "0px" }, 500).animate({ width: "0px" }, 500, function () {
+                $(panel).hide();
+            });
+        }
+
+        function PrologueComplete() {
+            $('body').unbind('click');
+            $('body').unbind('keydown');
+
+            $("#prologuePanel").hide();
+            $("#mainPanel").show();
+            $("#prologueButton").hide();
+            $("#commandPanel").slideToggle(function () { });
+            $("#userCommand").keydown(onCommandWorking);
+            $("#userCommand").keypress(onCommandEnter);
+            $("#userCommand").val("");
+            $("#userCommand").focus();
+            $('html, body').animate({ scrollTop: '0px' }, 800);
+            $("#contentTitle").text("@location.Content");
+            $("#mapButton").show();
+            $("#hintsButton").show();
+        }
 
 
         function onCommandWorking(e) {
@@ -97,7 +145,7 @@
             var turn = getCookie("@gameKey" + "_zifmiaTurn", null);
 
             zifmia.loadSessionData();
-            zifmia.sendCommand("ajaxLoading", sessionKey, branchId, turn, command, handleSessionSend, handleSessionSendError);
+            zifmia.sendCommand(sessionKey, branchId, turn, command, handleSessionSend, handleSessionSendError, block, unblock);
 
             $("#userCommand").val("");
             $("#tutorial").show();
@@ -120,8 +168,6 @@
 
                 if (zifmiaViewModel.Status == -99) {
                     $("#commandPanel").slideToggle(function () { });
-                    $("#mapButton").hide();
-                    $("#hintsButton").hide();
                     $("#tutorial").hide();
 
                     //
@@ -132,6 +178,8 @@
                 }
 
                 $("#mainParagraph").text(game.mainChannel);
+
+                $("#branchPanel").html(zifmiaViewModel.BranchesViewHtml);
 
                 if ($("#mapImage").length != 0 && game.mapsChannel != null) {
                     $("#mapImage").attr("src", "@imageRoot" + game.mapsChannel);
@@ -156,6 +204,14 @@
         }
 
         function handleSessionSendError(xhr, textStatus, errorThrown) {
+        }
+
+        function block() {
+            $.blockUI({ message: '<h3>Working...</h3>' });
+        }
+
+        function unblock() {
+            $.unblockUI();
         }
 
         var skipToggle = 0;

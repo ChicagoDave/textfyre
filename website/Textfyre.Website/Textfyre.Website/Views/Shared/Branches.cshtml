@@ -1,0 +1,48 @@
+﻿@model List<Zifmia.Model.ZifmiaBranchViewData>
+@using Zifmia.Model
+<div > <!--style="position: absolute; left: 5px; top: 100px; height: 300px; width: 60px;
+    background-color: #CCCCCC;">-->
+    <div style="font-size: 12pt; text-align: center; border-bottom: .1em solid black;">
+        History</div>
+    <div style="overflow-x: hidden;">
+        @foreach (ZifmiaBranchViewData branch in Model)
+        {
+            <div id="branch-@branch.BranchId">
+                <input style="width:100%; font-size:12px;font-weight:bold; text-align:center;" type="button" value="@branch.BranchId:@branch.StartNodeTurn-@branch.EndNodeTurn" /></div>
+        }
+    </div>
+</div>
+<div< <!-- style="position: absolute; left: 66px; top: 100px; height: 300px; width: 400px;
+    background-color: #CCCCCC;">-->
+    <table style="width: 100%; padding-left: 10px; padding-top: 2px; font-size: 10pt;
+        font-weight: normal; text-align: left;">
+        <tr>
+            <th>
+                Location
+            </th>
+            <th>
+                Command
+            </th>
+            <th>
+                Score
+            </th>
+            <th>
+                Turn
+            </th>
+        </tr>
+        @foreach (ZifmiaNodeViewData node in Model[0].Nodes)
+        {
+            <tr>
+                <td>@node.LocationName
+                </td>
+                <td>@node.Command
+                </td>
+                <td>@node.Score
+                </td>
+                <td>@node.Turn
+                </td>
+            </tr>
+        
+        }
+    </table>
+</div>

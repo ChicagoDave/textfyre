@@ -7,6 +7,8 @@ using System.Xml.Serialization;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Cryptography;
+using System.Text;
 
 using Zifmia.Service.Database;
 using Zifmia.FyreVM.Service;
@@ -78,12 +80,40 @@ namespace Zifmia.Model
 
         public static void SetEngine(byte[] engineStream, ref Int64 engineId, ref int engineLength)
         {
-            ZifmiaEngine newEngine = new ZifmiaEngine(engineStream);
-            newEngine.Save();
+            string md5hash = "";
+            using (MD5 md5Hash = MD5.Create())
+            {
+                byte[] hash = md5Hash.ComputeHash(engineStream);
 
-            engineId = newEngine.UID;
-            engineLength = newEngine.Data.Length;
+                StringBuilder sb = new StringBuilder();
 
+                for (int i = 0; i < hash.Length; i++)
+                {
+                    sb.Append(hash[i].ToString("x2"));
+                }
+
+                md5hash = sb.ToString();
+            }
+
+            //
+            // Check if the engine in its current state has been saved before and if so, set this node's engine
+            // to that data. There's no need to store multiple copies of the same engine state.
+            //
+            ZifmiaEngine engine = (from ZifmiaEngine ze in EQ.GetInstance.DB where ze.MD5Hash == md5hash select ze).FirstOrDefault<ZifmiaEngine>();
+
+            if (engine == null)
+            {
+                ZifmiaEngine newEngine = new ZifmiaEngine(engineStream);
+                newEngine.Save();
+
+                engineId = newEngine.UID;
+                engineLength = newEngine.Data.Length;
+            }
+            else
+            {
+                engineId = engine.Id;
+                engineLength = engine.Data.Length;
+            }
         }
 
         public byte[] GetEngine()
