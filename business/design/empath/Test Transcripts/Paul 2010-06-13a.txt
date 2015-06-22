@@ -1,0 +1,1158 @@
+Start of a transcript of
+
+The Empath's Gift
+The Empath's Gift by Textfyre
+Copyright 2010 by Textfyre
+Designed by Paul O'Brian
+Written by Christopher Huang
+Game Engine (FyreVM) by Jesse McGrew
+Inform 7 Programming by Ron Newcomb
+ and Graeme Jefferis
+Testing by ____
+Special thanks to Graham Nelson and Emily Short
+for all of their hard work on Inform 7.
+All rights reserved.
+Identification number: //88E48DB3-8DB5-4468-9F2A-8D30D3E09EFA//
+Interpreter version 1.2.6 / VM 3.1.1 / Library serial number 080126
+Standard Rules version 2/090402 by Graham Nelson
+Textfyre Standard Backdrops by Textfyre
+Basic Followers by Textfyre
+Goals by Textfyre
+Test Suite by Textfyre
+
+>restore
+Ok.
+
+>l
+Old Archery Range
+Though all of Sherwood be thy range, this sunny glen doth lend itself best to thy sport.  A stump by thy feet doth provide adequate place for thy wager, and targets lean upon the trees at the opposite side of the glen.
+
+Robin Hood, thy brother-in-arms, standeth before thee.
+
+>i
+You are carrying:
+  some readings for your Satirical Writing class
+  a plastic dinosaur
+  a few dollars
+
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+
+>ask aidan about stacy
+Much may be made of muchness, but thy comrade appeareth not in the humor to humor thy question.
+
+>[hee hee hee. Good answer.]
+That's not a verb I recognize.
+
+>focus on aidan
+Thy brother is in a temper, and thou shouldst tread carefully about him.
+
+>[yeah, there's definitely more there to show.]
+You seem to want to talk to someone, but I can't see whom.
+
+>x stump
+'Tis as flat as a table, and hath oft served as a place upon which to place thy wagers when thou and thy friends take up thy bows against thy fearsome foes, the targets.
+
+>put shilling on stump
+You can't see any such thing.
+
+>get shilling
+You can't see such a thing.
+
+>i
+You are carrying:
+  some readings for your Satirical Writing class
+  a plastic dinosaur
+  a few dollars
+
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+
+>put dollars on stump
+You put the dollars on the stump.
+
+>[heh. Shouldn't be possible, but is making me smile at the moment.]
+You seem to want to talk to someone, but I can't see whom.
+
+>shoot tree
+You can't see any such thing.
+
+>shoot target
+Thy arrow is unfortunately wide of the target.  Robin doth smirk as he fitteth an arrow upon his own bowstring.
+
+Robin doth raise up his bow and let fly his shot, straight and true, to the heart of the target.  Well shot, indeed.
+
+>[an impressive feat for somebody with no bow.]
+That's not a verb I recognize.
+
+>shoot target
+Well shot!  Thou art another three pennies ahead of thy companion!
+
+Robin doth shoot his arrow, which misseth the target by a hair.  With a scowl, he bids thee take thy turn.
+
+>["another" three pennies? I've only shot one other time, and I missed that one.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[Also, the shots should begin with wagers placed on the stump. It's fine if the game fills in this action from the command SHOOT TARGET, but it needs to say that's what it's doing. Otherwise all this talk of who's ahead will confuse the heck out of people.
+You seem to want to talk to someone, but I can't see whom.
+
+>[Of course, if the goals were working, that would help too.]
+You seem to want to talk to someone, but I can't see whom.
+
+>shoot target
+Thy arrow seemeth to shimmer in its flight, and striketh the target but close to the edge.  A lucky shot indeed!
+
+Robin shooteth, but scoreth not.
+
+Thou art a full two shillings, or four-and-twenty pennies, ahead of thy companion.  Verily, thou hast won the contest.  With ill humor, Robin doth gather up the arrows and prepareth to continue upon his way to Nottingham.
+
+>[Not sure how I got that far ahead that quickly.]
+That's not a verb I recognize.
+
+>[Anyway, right here is where the scrolls would chime and new goals would appear. I envision Aidan scooping up all the money from the stump, which is what would start the argument.]
+You seem to want to talk to someone, but I can't see whom.
+
+>ask robin about money
+"Robin, I have won of thee fairly two shillings, and would have thee pay me what thou owest."
+
+"Don't be stupid.  I don't owe you any such thing.  And for goodness' sake, drop the fake Shakespeare already.  It's not even the right time period for Robin Hood."
+
+1. "Verily thou owest me that much, and I demand it of thee!"
+2. "You do so owe me two shillings!  Cough it up!"
+3. "C'mon, it's in character, anyway.  Pay unto me the two shillings, as thou didst promise!"
+
+>3
+"C'mon, it's in character, anyway.  Pay unto me the two shillings, as thou didst promise!"
+
+"And you are a miserable liar!  Shut up and get moving or we'll be late for church!"
+
+1. "Nay, 'tis thou who art the liar!  Thou dost so owe me two shillings!"
+2. "Nay, I shall not, for thou art a faithless master and I shall have none of thee!  If thou goest, thou goest alone!"
+3. "Very well, if thou insists upon it.  Let us go on."
+
+>2
+"Nay, I shall not, for thou art a faithless master and I shall have none of thee!  If thou goest, thou goest alone!"
+
+Thou turnst upon thy heel to stride off, but Aidan doth grab thee by the shoulder and spins thee around to face him.  "Don't you DARE turn your back on me!" he roars.
+
+Aidan ('tis useless now to call him "Robin", for he hath dropped all pretense of playing the part) doth take a menacing step towards you, forcing you to backpedal in alarm.  You can sense the rush of emotion in and around him, like a hurricane, building in intensity.  He raises a fist to make a point, but you have no idea what he's saying because the force of his emotion has, at that point, suddenly exploded in your face, knocking you flat out on your back.
+
+The next thing you know, you are sitting up outside the simulation room.  Brad, your counselor, is kneeling beside you with a concerned look on his face.  "Whew, almost thought we'd have to ship you over to the hospital again.  You okay?  I'm afraid we can't put you back into the sim as Little John.  We didn't know how long you'd be out, so we let someone else take your place."
+
+Behind him, you can see Aidan apologizing madly to the other counselors.  Clearly he's been pulled out of the sim too, and been replaced.  But there's something wrong with the picture ... it isn't until later that you realise that this time, unlike the incident with Stacy's robot, he really doesn't care whether or not he did anything wrong....
+
+
+Please press SPACE to continue.
+
+Everything is Absolutely Fine.
+
+At least, that's what you keep telling everybody who asks, especially the ones who stink of Morbid Curiosity.  You're guessing that your little fainting spell, at the Sim Sunday event, was something similar to what happened at dinner with Lucian last week, but at least this time round you didn't wind up in the hospital.  It looks really bad for Aidan, though: some of the people who used to hang out with him are giving him the cold shoulder now, and Stacy is definitely actively avoiding him.
+
+You have no idea what sort of emotion could have knocked you out like that.  And you're kind of leery of checking out Aidan's emotional status these days....
+
+
+Please press SPACE to continue.
+LEAP, Day 9 (Monday) - Class Period 1
+
+Satirical drama.  The best way to take your mind off your troubles is to laugh at them, and some of the other people doing this class are pretty good.  You've spent half the class period listening to other people reading their stuff, but now it's time to work on your own stuff.  You're looking forward to putting this on stage this Friday, and that's enough to make you forget everything else.
+
+Auditorium
+The chairs of the auditorium have been folded up and moved aside, to give everyone plenty of room to spread out in the middle and even on the stage.  A rather harsh, bright light illuminates the central portion of the room and leaves the corners in shadows; the overall effect is to produce that still, dead, rather muffled feel that most theaters seem to have when they're not in use.  The backstage areas are to the north, and the main exit is to the west.
+
+>[The description mentions that there's space for everybody, but I think there should be a bit of atmospheric text here and there describing the class in session. At the moment it still kind of feels like Daniel's alone in an empty auditorium]
+You seem to want to talk to someone, but I can't see whom.
+
+>i
+You are carrying:
+  some readings for your Satirical Writing class
+  a plastic dinosaur
+
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+
+>[Also, an immediate goal would be good, even though we're going to drop it in a few turns. There could be ongoing group work, readings to do, working on a script, whatever. Just something class-related for him to do.]
+You seem to want to talk to someone, but I can't see whom.
+
+>write
+That's not a verb I recognize.
+
+>x class
+You can't see such a thing.
+
+>x chairs
+They have been folded up and set aside, and are of no concern to you.  At least, not until you want to fill them with audience members.
+
+>work on my stuff
+That's not a verb I recognize.
+
+>work
+That's not a verb I recognize.
+
+>xyzzy
+That's not a verb I recognize.
+
+>l
+Auditorium
+The chairs of the auditorium have been folded up and moved aside, to give everyone plenty of room to spread out in the middle and even on the stage.  A rather harsh, bright light illuminates the central portion of the room and leaves the corners in shadows; the overall effect is to produce that still, dead, rather muffled feel that most theaters seem to have when they're not in use.  The backstage areas are to the north, and the main exit is to the west.
+
+Ava trails along behind you. 
+
+>[Ava???]
+That's not a verb I recognize.
+
+>x light
+You can see dust motes floating in the air.
+
+>x me
+[placeholder text: "A description of the player"]
+
+.
+
+The alarm bells go off.  Judging by the reactions of the counselors and instructors, this is not a drill.  You are about to follow everyone out (in a not-so-orderly fashion) when you see Ava fighting her way past the surging crowd.  She sees you and immediately pulls you aside.
+
+"Daniel! Thank goodness I found you.  You know what the alarm is all about?  It's about Aidan!  He's gone crazy ... we were in the middle of our film class when Lucian -- you remember him -- accidentally jostled the camera and ruined Aidan's shot, and then Aidan went berserk!  I swear, he tried to kill Lucian!"
+
+1. "Don't tell me Lucian's dead?"
+2. "Why are you telling me this?"
+3. "What do you mean, Aidan went berserk?"
+4. "You're joking, right?"
+
+>1
+"Don't tell me Lucian's dead?"
+
+"No no, he got away.  Aidan tried to hit him and got his fist stuck in a wall, and Lucian ran off ... now Aidan's running around the school trying to find Lucian, and if we don't find him first Aidan is really going to kill him!  I mean it!"  You've never seen Ava look this distraught. "Lucian's bound to be terrified.  Can't you find him the same way you found him the last time?"
+
+You glance around.  Everyone's already left, and, standing as you were in the shadows of the auditorium, you and Ava were missed in the general exodus.  "All right," you say, "we'd better find Lucian and get him out of here."
+
+"As long as Lucian doesn't make you go crazy like he did the last time." 
+
+
+>focus
+You sense a confusion of trails, all of them scented with fear.  More than one of them seem strong enough to be Lucian's, assuming he's as terrified as you think he is, though none are precisely alike.
+
+>n
+
+Backstage
+Backstage is cramped, cluttered and chaotic, and it's not even in use yet.  It also smells of old costumes, which is hardly surprising, given the racks of costumes mouldering in one airless cubbyhole.  The stage and the auditorium are to the south, and a door out into the hallway is to the west.
+
+Ava trails along behind you. 
+
+>x costumes
+A brief rummage through the costumes reveals nothing but dust, more costumes, an air vent, and an overwhelming urge to sneeze.
+
+>x vent
+The air vent is almost hidden behind the racks of costumes.
+
+>look in vent
+The air vent is empty.
+
+>open vent
+You're not strong enough to tear this thing from the wall with your bare hands.
+
+>enter vent
+The vent is covered over with a metal grill, to prevent silly people like you from getting lost in an HVAC maze of twisty little ducts, all alike.  You couldn't turn around in there, anyway, and the idea of crawling backwards through such a tight squeeze, in darkness, makes you want to hurl.
+
+>focus
+You sense a confusion of trails, all of them scented with fear.  More than one of them seem strong enough to be Lucian's, assuming he's as terrified as you think he is, though none are precisely alike.
+
+>focus on vent
+You sense nothing untoward or out of the ordinary here.
+
+>move costumes
+Those are fixed in place.
+
+>[that needs a better response[
+That's not a verb I recognize.
+
+>n
+There are exits south (to the auditorium) and northwest from here.
+
+>[it's listed in the desc as west]
+That's not a verb I recognize.
+
+>ne
+There are exits south (to the auditorium) and northwest from here.
+
+>w
+There are exits south (to the auditorium) and northwest from here.
+
+>l
+Backstage
+Backstage is cramped, cluttered and chaotic, and it's not even in use yet.  It also smells of old costumes, which is hardly surprising, given the racks of costumes mouldering in one airless cubbyhole.  The stage and the auditorium are to the south, and a door out into the hallway is to the west.
+
+Ava trails along behind you. 
+
+>nw
+
+Eastern Hallway
+A utilitarian, academic hallway, stretching north and south.  Two empty classrooms are on the west side.  On the east side, the door to the backstage areas of the auditorium is to the southeast, while half of the film studio lies northeast.
+
+Ava trails along behind you. 
+
+>focus
+You sense a confusion of trails, all of them scented with fear.  More than one of them seem strong enough to be Lucian's, assuming he's as terrified as you think he is, though none are precisely alike.
+
+>n
+
+Northeast Corner Of Claremont
+The hallway makes an elbow here, heading off to the south and the west.  To the east is the film studio.  You can tell because the door has been torn off its hinges, giving you a perfectly unimpeded view of the studio within.  Another set of doors, to the north, leads out of the building, but those are intact.
+
+Ava trails along behind you. 
+
+>x studio
+Which do you mean, the film studio north or the film studio south?
+
+>north
+You've never been to the film studio north so you can't recall.
+
+>[but the room description says I have a perfectly unimpeded view of it.]
+That's not a verb I recognize.
+
+>focus
+You sense a confusion of trails, all of them scented with fear.  More than one of them seem strong enough to be Lucian's, assuming he's as terrified as you think he is, though none are precisely alike.
+
+>n
+There are exits east, south (to the eastern hallway) and west from here.
+
+>e
+
+Film Studio, North
+The film studio has been deserted, and in a hurry, too.  Notebooks and papers and pens have been dropped or left behind, and chairs have been overturned.  It is quiet, the only sounds being the hum of warm air being pushed into the room through the vent high up in the wall.  The studio continues off to the south, and the exit to the hallway is to the west.
+
+Ava trails along behind you. 
+
+>x vent
+This particular vent doesn't have a grill, and the rows of shelving beneath it make it fairly accessible.  The wall around it looks as if it's been attacked with a sledgehammer.  Unfortunately for whoever attacked it, the dents in the metal duct have only served to make the opening more difficult to climb through.
+
+>focus
+You sense a confusion of trails, all of them scented with fear.  More than one of them seem strong enough to be Lucian's, assuming he's as terrified as you think he is, though none are precisely alike.
+
+>focus on vent
+You sense nothing untoward or out of the ordinary here.
+
+>[I note that the design doc calls for Ava to cajole and hassle me into Film Studio South. Instead, she seems very passive.]
+That's not a verb I recognize.
+
+>[Also, per the design doc, I should be able to sense Lucian's trail into the air vent and Aidan's out to the HVAC room.]
+You seem to want to talk to someone, but I can't see whom.
+
+>climb shelves
+You can't see any such thing.
+
+>[Missing object.]
+That's not a verb I recognize.
+
+>enter vent
+The duct beyond might be wide enough to crawl through, though not to turn around, but the vent itself is too small for you to fit through now.  Maybe you shouldn't have had that growth spurt after all.
+
+>[Oh very nice -- great way to distinguish between me & Lucian while also accomplishing a "can't go" action.]
+That's not a verb I recognize.
+
+>l
+Film Studio, North
+The film studio has been deserted, and in a hurry, too.  Notebooks and papers and pens have been dropped or left behind, and chairs have been overturned.  It is quiet, the only sounds being the hum of warm air being pushed into the room through the vent high up in the wall.  The studio continues off to the south, and the exit to the hallway is to the west.
+
+Ava trails along behind you. 
+
+>n
+There are exits south and west (to the northeast corner of Claremont) from here.
+
+>s
+
+Film Studio, South
+This end of the film studio looks like the aftermath of a particularly exuberant action flick.  Tables, chairs and assorted props have been hurled about, some of it even broken in the process, and a fist-sized hole has been punched into one wall.  It's a little less untidy to the north, and the door to the hallway is to the west.
+
+Ava trails along behind you. 
+
+>x tables
+You don't find the tabl all that interesting, really.
+
+>["tabl"]
+That's not a verb I recognize.
+
+>x chairs
+The chair doesn't look very interesting.
+
+>x props
+The prop looks like every other prop you've ever seen.
+
+>[singular/plural confusion]
+That's not a verb I recognize.
+
+>x hole
+"Aidan did that," Ava says.  "Lucian made a run for it right then, while Aidan was trying to pull his fist out of the hole.  I don't know what would have happened if he hadn't missed."
+
+>n
+
+Film Studio, North
+The film studio has been deserted, and in a hurry, too.  Notebooks and papers and pens have been dropped or left behind, and chairs have been overturned.  It is quiet, the only sounds being the hum of warm air being pushed into the room through the vent high up in the wall.  The studio continues off to the south, and the exit to the hallway is to the west.
+
+Ava trails along behind you. 
+
+>x papers
+People have sure left in a hurry.  You can taste the shock and fear clinging to the debris they've left behind.
+
+>listen
+You hear nothing unexpected.
+
+>s
+
+Film Studio, South
+This end of the film studio looks like the aftermath of a particularly exuberant action flick.  Tables, chairs and assorted props have been hurled about, some of it even broken in the process, and a fist-sized hole has been punched into one wall.  It's a little less untidy to the north, and the door to the hallway is to the west.
+
+Ava trails along behind you. 
+
+>w
+There are exits north (to the film studio) and southwest (to the eastern hallway) from here.
+
+>n
+
+Film Studio, North
+The film studio has been deserted, and in a hurry, too.  Notebooks and papers and pens have been dropped or left behind, and chairs have been overturned.  It is quiet, the only sounds being the hum of warm air being pushed into the room through the vent high up in the wall.  The studio continues off to the south, and the exit to the hallway is to the west.
+
+Ava trails along behind you. 
+
+>s
+
+Film Studio, South
+This end of the film studio looks like the aftermath of a particularly exuberant action flick.  Tables, chairs and assorted props have been hurled about, some of it even broken in the process, and a fist-sized hole has been punched into one wall.  It's a little less untidy to the north, and the door to the hallway is to the west.
+
+Ava trails along behind you. 
+
+>sw
+
+Eastern Hallway
+A utilitarian, academic hallway, stretching north and south.  Two empty classrooms are on the west side.  On the east side, the door to the backstage areas of the auditorium is to the southeast, while half of the film studio lies northeast.
+
+Ava trails along behind you. 
+
+>n
+
+Northeast Corner Of Claremont
+The hallway makes an elbow here, heading off to the south and the west.  To the east is the film studio.  You can tell because the door has been torn off its hinges, giving you a perfectly unimpeded view of the studio within.  Another set of doors, to the north, leads out of the building, but those are intact.
+
+Ava trails along behind you. 
+
+>se
+There are exits east (to the film studio), south (to the eastern hallway) and west from here.
+
+>w
+
+Northern Hallway
+You are at a T-junction.  The hallway goes east and west, and another hallway joins it from the south.  To the north, wide double doors open into the library.
+
+Ava trails along behind you. 
+
+>n
+
+Claremont Library
+The Education And Fine Arts Library, as befits the University of Colorado at Valmont, is a labyrinth stacked high with books and simply lousy with hidden corners and dead ends.  Thankfully, most of it is also sealed away beyond a security barrier, and as far as you can tell, no-one is likely to have slipped through to the stacks beyond.  The only part of the library you can really access from here is the circulation desk, which has been positioned directly under an air vent to allow the librarians the full benefit of the heating system during the cold winter semester.  And also to blow papers off the desk, but none of the librarians have complained about that one little detail, oddly enough.
+
+Ava trails along behind you. 
+
+>focus
+You sense a confusion of trails, all of them scented with fear.  More than one of them seem strong enough to be Lucian's, assuming he's as terrified as you think he is, though none are precisely alike.
+
+>s
+
+Northern Hallway
+You are at a T-junction.  The hallway goes east and west, and another hallway joins it from the south.  To the north, wide double doors open into the library.
+
+Ava trails along behind you. 
+
+>focus
+You sense a confusion of trails, all of them scented with fear.  More than one of them seem strong enough to be Lucian's, assuming he's as terrified as you think he is, though none are precisely alike.
+
+>n
+
+Claremont Library
+The Education And Fine Arts Library, as befits the University of Colorado at Valmont, is a labyrinth stacked high with books and simply lousy with hidden corners and dead ends.  Thankfully, most of it is also sealed away beyond a security barrier, and as far as you can tell, no-one is likely to have slipped through to the stacks beyond.  The only part of the library you can really access from here is the circulation desk, which has been positioned directly under an air vent to allow the librarians the full benefit of the heating system during the cold winter semester.  And also to blow papers off the desk, but none of the librarians have complained about that one little detail, oddly enough.
+
+Ava trails along behind you. 
+
+>x desk
+This is actually only half the circulation desk, the other half being on the other side of the security barrier.  Plaques indicate that one may drop off one's returns here, or pick up whatever books one has placed on reserve.  It is covered with stacks of papers and forms, each stack weighted down by a paperweight.
+
+>x paperweight
+They're a variety of shapes and sizes and materials, and range from a simple cobblestone to an elaborately etched hunk of glass.
+
+>x hunk
+You can't see such a thing.
+
+>x papers
+Who knew that the business of managing a library entailed so much bureaucracy?  The papers rustle under the breeze from the vent above.  
+
+>x vent
+It is positioned directly over the circulation desk.  You can feel hot air blowing from it, and something else, too: fear.  It seems stronger here than elsewhere.
+
+>u
+There is an exit south (to the northern hallway) from here.
+
+>x vent
+It is positioned directly over the circulation desk.  You can feel hot air blowing from it, and something else, too: fear.  It seems stronger here than elsewhere.
+
+>focus on fear
+You sense a confusion of trails, all of them scented with fear.  More than one of them seem strong enough to be Lucian's, assuming he's as terrified as you think he is, though none are precisely alike.
+
+  
+>focus on vent
+You sense nothing untoward or out of the ordinary here.
+
+>focus
+You sense a confusion of trails, all of them scented with fear.  More than one of them seem strong enough to be Lucian's, assuming he's as terrified as you think he is, though none are precisely alike.
+
+>[hrm]
+That's not a verb I recognize.
+
+>enter vent
+The vent is covered over with a metal grill, to prevent silly people like you from getting lost in an HVAC maze of twisty little ducts, all alike.  You couldn't turn around in there, anyway, and the idea of crawling backwards through such a tight squeeze, in darkness, makes you want to hurl.
+
+>l
+Claremont Library
+The Education And Fine Arts Library, as befits the University of Colorado at Valmont, is a labyrinth stacked high with books and simply lousy with hidden corners and dead ends.  Thankfully, most of it is also sealed away beyond a security barrier, and as far as you can tell, no-one is likely to have slipped through to the stacks beyond.  The only part of the library you can really access from here is the circulation desk, which has been positioned directly under an air vent to allow the librarians the full benefit of the heating system during the cold winter semester.  And also to blow papers off the desk, but none of the librarians have complained about that one little detail, oddly enough.
+
+Ava trails along behind you. 
+
+>climb desk
+You get onto the circulation desk.
+
+>open vent
+You're not strong enough to tear this thing from the wall with your bare hands.
+
+>unscrew vent
+You're not strong enough to tear this thing from the wall with your bare hands.
+
+>[that's not the right response to "unscrew"]
+That's not a verb I recognize.
+
+>d
+You get off the circulation desk.
+
+Claremont Library
+The Education And Fine Arts Library, as befits the University of Colorado at Valmont, is a labyrinth stacked high with books and simply lousy with hidden corners and dead ends.  Thankfully, most of it is also sealed away beyond a security barrier, and as far as you can tell, no-one is likely to have slipped through to the stacks beyond.  The only part of the library you can really access from here is the circulation desk, which has been positioned directly under an air vent to allow the librarians the full benefit of the heating system during the cold winter semester.  And also to blow papers off the desk, but none of the librarians have complained about that one little detail, oddly enough.
+
+Ava trails along behind you. 
+
+>n
+There is an exit south (to the northern hallway) from here.
+
+>s
+
+Northern Hallway
+You are at a T-junction.  The hallway goes east and west, and another hallway joins it from the south.  To the north, wide double doors open into the library.
+
+Ava trails along behind you. 
+
+>n
+
+Claremont Library
+The Education And Fine Arts Library, as befits the University of Colorado at Valmont, is a labyrinth stacked high with books and simply lousy with hidden corners and dead ends.  Thankfully, most of it is also sealed away beyond a security barrier, and as far as you can tell, no-one is likely to have slipped through to the stacks beyond.  The only part of the library you can really access from here is the circulation desk, which has been positioned directly under an air vent to allow the librarians the full benefit of the heating system during the cold winter semester.  And also to blow papers off the desk, but none of the librarians have complained about that one little detail, oddly enough.
+
+Ava trails along behind you. 
+
+>call lucian
+(to Ava)
+There is no reply.
+
+>[This is a pretty natural action, and should probably be implemented with a few different verbs. I'd envision a response along the lines of "You think of shouting Lucian's name, but then you remember that you don't know where Aidan is. Probably best not to
+You seem to want to talk to someone, but I can't see whom.
+
+>[draw too much attention to yourself right now.]
+That's not a verb I recognize.
+
+>[Also, I am liking the creepy feel of not knowing where Aidan is. The design doc calls for a 10% change of a message of him running through like the Flash, but now that I'm playing, I think it would be more effective to have that message be something like 
+You seem to want to talk to someone, but I can't see whom.
+
+>[a distant crash, or an unsettling rattle, or some such. That's creepier than the rush of super-speed air.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[Also, aren't I supposed to be getting messages about the building getting hotter? As the heat continues to go up, Daniel should notice the difference in the air coming out of these various vents]
+You seem to want to talk to someone, but I can't see whom.
+
+>ask vent about lucian
+You can only do that to something animate.
+
+>l
+Claremont Library
+The Education And Fine Arts Library, as befits the University of Colorado at Valmont, is a labyrinth stacked high with books and simply lousy with hidden corners and dead ends.  Thankfully, most of it is also sealed away beyond a security barrier, and as far as you can tell, no-one is likely to have slipped through to the stacks beyond.  The only part of the library you can really access from here is the circulation desk, which has been positioned directly under an air vent to allow the librarians the full benefit of the heating system during the cold winter semester.  And also to blow papers off the desk, but none of the librarians have complained about that one little detail, oddly enough.
+
+Ava trails along behind you. 
+
+>s
+
+Northern Hallway
+You are at a T-junction.  The hallway goes east and west, and another hallway joins it from the south.  To the north, wide double doors open into the library.
+
+Ava trails along behind you. 
+
+>ne
+There are exits north (to the Claremont library), east (to the northeast corner of Claremont), south and west from here.
+
+>s
+
+Central Hallway Of Claremont
+A utilitarian, academic hallway, stretching north and south.  Empty classrooms are in all other directions.
+
+Ava trails along behind you. 
+
+>x classrooms
+It's very classroom-like.
+
+>ne
+There are exits north (to the northern hallway), south and southwest (to Robotics class) from here.
+
+>e
+There are exits north (to the northern hallway), south and southwest (to Robotics class) from here.
+
+>s
+
+Southern Hallway
+You are in a utilitarian east-west hallway.  Another hallway from the north connects here.
+
+Ava trails along behind you. 
+
+>ne
+There are exits north (to the central hallway of Claremont), east and west from here.
+
+>e
+
+Southeast Corner Of Claremont
+You're at a T-junction, of sorts.  Hallways stretch off to the north and west; another hallway stretches off to the south, ramping up slightly as it passes from this building to the next.  You catch sight of two of the counselors pacing about at the end of the southern hallway; fortunately, they haven't seen you ... yet.  The door to the auditorium where you were supposed to spend this morning working on your satirical drama class is to the east.
+
+Ava trails along behind you. 
+
+>l
+Southeast Corner Of Claremont
+You're at a T-junction, of sorts.  Hallways stretch off to the north and west; another hallway stretches off to the south, ramping up slightly as it passes from this building to the next.  You catch sight of two of the counselors pacing about at the end of the southern hallway; fortunately, they haven't seen you ... yet.  The door to the auditorium where you were supposed to spend this morning working on your satirical drama class is to the east.
+
+Ava trails along behind you. 
+
+>ne
+There are exits north (to the eastern hallway), east (to the auditorium) and west (to the southern hallway) from here.
+
+>w
+
+Southern Hallway
+You are in a utilitarian east-west hallway.  Another hallway from the north connects here.
+
+Ava trails along behind you. 
+
+>se
+There are exits north (to the central hallway of Claremont), east (to the southeast corner of Claremont) and west from here.
+
+>s
+There are exits north (to the central hallway of Claremont), east (to the southeast corner of Claremont) and west from here.
+
+>focus 
+You sense a confusion of trails, all of them scented with fear.  More than one of them seem strong enough to be Lucian's, assuming he's as terrified as you think he is, though none are precisely alike.
+
+>[failure with that message too many times in a row discourages me from using it.]
+That's not a verb I recognize.
+
+>ne
+There are exits north (to the central hallway of Claremont), east (to the southeast corner of Claremont) and west from here.
+
+>w
+
+Southwest Corner Of Claremont
+Not actually a corner, but enough of one for your purposes: the counselors standing guard to the south make you rather hesitant to wander off in that direction.  Fortunately, they're more concerned with keeping the other students from coming over onto this side, and aren't looking behind them for people who've already done so.  That leaves the north and the east open to travel.
+
+Ava trails along behind you. 
+
+>x counselors
+They look nervous as they pace back and forth.
+
+>n
+
+Western Hallway
+A utilitarian, academic hallway, stretching north and south.  Empty classrooms are in all other directions.
+
+Ava trails along behind you. 
+
+>n
+
+Northwest Corner Of Claremont
+The hallway goes east and south from here.  To the north is an exit from the building.  You notice a door, previously locked, has been smashed open; beyond it, stairs lead down into the basement.  You can easily sense that Aidan has been here: you can trace two trails, one going down the stairs and another running off to the south.
+
+Ava trails along behind you. 
+
+>focus
+You sense a confusion of trails, all of them scented with fear.  More than one of them seem strong enough to be Lucian's, assuming he's as terrified as you think he is, though none are precisely alike.
+
+>[that should give me a little more about the trails mentioned in the room desc]
+That's not a verb I recognize.
+
+>n
+There are exits east (to the northern hallway), south (to the western hallway) and down from here.
+
+>[the desc says that direction is an exit from the building. Trying to use it should result in a message along the lines of "if
+That's not a verb I recognize.
+
+>[whoops, tried to paste from the design doc but apparently Git takes the carriage return rather seriously. A message along the lines of "if you leave now, Lucian may be done for."]
+You seem to want to talk to someone, but I can't see whom.
+
+>ne
+There are exits east (to the northern hallway), south (to the western hallway) and down from here.
+
+>d
+
+HVAC Room
+This is essentially a concrete basement full of pipes and maintenance equipment.  The master HVAC unit takes up half the space, and all the vents and chutes and pipes coming into or out of it takes up almost all the rest.
+
+Ava trails along behind you. 
+
+>x unit
+Essentially a furnace, generating hot air which is then pumped up to all the rooms of the building above.  The central thermostat, here, regulates the general temperature.  Judging by the roaring sound, it's working overtime to generate as much heat as it possibly can.
+
+>x thermostat
+The central thermostat consists of a simple dial which can be turned, and a meter above showing the temperature of the building.  Someone has set the the thermostat to the maximum!  The meter is slowly but surely climbing towards the danger zone.
+
+>x meter
+You can't see such a thing.
+
+>[missing object]
+That's not a verb I recognize.
+
+>[This is an anticlimax without the messages about the building getting hotter. I don't know if we need to be quite so on the nose as to point out the fact that Aidan is trying to flush out Lucian by overheating the vents, but it should at least be clear
+That's not a verb I recognize.
+
+>[that Lucian is in the vents (and I think that much *is* clear) and that they're getting hotter.]
+That's not a verb I recognize.
+
+>turn down thermostat
+I only understood you as far as wanting to turn down.
+
+>x thermostat
+The central thermostat consists of a simple dial which can be turned, and a meter above showing the temperature of the building.  Someone has set the the thermostat to the maximum!  The meter is slowly but surely climbing towards the danger zone.
+
+>[thermostat should alias to dial for the purposes of TURN DOWN THERMOSTAT]
+That's not a verb I recognize.
+
+>turn down dial
+I only understood you as far as wanting to turn down.
+
+>[or maybe it's TURN DOWN that we're choking on here.]
+That's not a verb I recognize.
+
+>turn thermostat
+You quickly turn the thermostat down to a more normal setting.  Immediately, the HVAC unit falls silent.  It'll be a while before the temperature drops back to normal, but at least it's not rising.
+
+>n
+There is an exit up (to the northwest corner of Claremont) from here.
+
+>focus
+You sense a confusion of trails, all of them scented with fear.  More than one of them seem strong enough to be Lucian's, assuming he's as terrified as you think he is, though none are precisely alike.
+
+>u
+
+Northwest Corner Of Claremont
+The hallway goes east and south from here.  To the north is an exit from the building.  You notice a door, previously locked, has been smashed open; beyond it, stairs lead down into the basement.  You can easily sense that Aidan has been here: you can trace two trails, one going down the stairs and another running off to the south.
+
+Ava trails along behind you. 
+
+>e
+
+Northern Hallway
+You are at a T-junction.  The hallway goes east and west, and another hallway joins it from the south.  To the north, wide double doors open into the library.
+
+Ava trails along behind you. 
+
+>n
+
+Claremont Library
+The Education And Fine Arts Library, as befits the University of Colorado at Valmont, is a labyrinth stacked high with books and simply lousy with hidden corners and dead ends.  Thankfully, most of it is also sealed away beyond a security barrier, and as far as you can tell, no-one is likely to have slipped through to the stacks beyond.  The only part of the library you can really access from here is the circulation desk, which has been positioned directly under an air vent to allow the librarians the full benefit of the heating system during the cold winter semester.  And also to blow papers off the desk, but none of the librarians have complained about that one little detail, oddly enough.
+
+Ava trails along behind you. 
+
+>focus
+You sense a confusion of trails, all of them scented with fear.  More than one of them seem strong enough to be Lucian's, assuming he's as terrified as you think he is, though none are precisely alike.
+
+>u
+There is an exit south (to the northern hallway) from here.
+
+>talk to vents
+You can't see any such thing.
+
+>stand on vent
+The vent is covered over with a metal grill, to prevent silly people like you from getting lost in an HVAC maze of twisty little ducts, all alike.  You couldn't turn around in there, anyway, and the idea of crawling backwards through such a tight squeeze, in darkness, makes you want to hurl.
+
+>ask ava about vents
+There is no reply.
+
+>l
+Claremont Library
+The Education And Fine Arts Library, as befits the University of Colorado at Valmont, is a labyrinth stacked high with books and simply lousy with hidden corners and dead ends.  Thankfully, most of it is also sealed away beyond a security barrier, and as far as you can tell, no-one is likely to have slipped through to the stacks beyond.  The only part of the library you can really access from here is the circulation desk, which has been positioned directly under an air vent to allow the librarians the full benefit of the heating system during the cold winter semester.  And also to blow papers off the desk, but none of the librarians have complained about that one little detail, oddly enough.
+
+Ava trails along behind you. 
+
+>ask ava about lucian
+"We've got to help him, Daniel!  Aidan's really going to kill him!"
+
+>ask ava about aidan
+(Aidan)
+"He's gone crazy!  We've got to do something!"
+
+>[why the disambiguation?]
+That's not a verb I recognize.
+
+>u
+There is an exit south (to the northern hallway) from here.
+
+>climb desk
+You get onto the circulation desk.
+
+>knock on vent
+You can't see any such thing.
+
+>[I don't?]
+That's not a verb I recognize.
+
+>l
+Claremont Library (on the circulation desk)
+The Education And Fine Arts Library, as befits the University of Colorado at Valmont, is a labyrinth stacked high with books and simply lousy with hidden corners and dead ends.  Thankfully, most of it is also sealed away beyond a security barrier, and as far as you can tell, no-one is likely to have slipped through to the stacks beyond.  The only part of the library you can really access from here is the circulation desk, which has been positioned directly under an air vent to allow the librarians the full benefit of the heating system during the cold winter semester.  And also to blow papers off the desk, but none of the librarians have complained about that one little detail, oddly enough.
+
+Ava trails along behind you. 
+
+>x vent
+It is positioned directly over the circulation desk.  You can feel hot air blowing from it, and something else, too: fear.  It seems stronger here than elsewhere.
+
+>get paperweight
+There's enough chaos going on without taking a paperweight and letting all those papers blow about the place.
+
+>[heh]
+That's not a verb I recognize.
+
+>touch vent
+You feel nothing unexpected.
+
+>focus
+You sense a confusion of trails, all of them scented with fear.  More than one of them seem strong enough to be Lucian's, assuming he's as terrified as you think he is, though none are precisely alike.
+
+>muffle fear
+You must supply a second noun.
+
+>[what?]
+That's not a verb I recognize.
+
+>muffle
+That's not a verb I recognize.
+
+>amplify
+I didn't understand that sentence.
+
+>[this is getting guess-the-verby.]
+That's not a verb I recognize.
+
+>d
+You get off the circulation desk.
+
+Claremont Library
+The Education And Fine Arts Library, as befits the University of Colorado at Valmont, is a labyrinth stacked high with books and simply lousy with hidden corners and dead ends.  Thankfully, most of it is also sealed away beyond a security barrier, and as far as you can tell, no-one is likely to have slipped through to the stacks beyond.  The only part of the library you can really access from here is the circulation desk, which has been positioned directly under an air vent to allow the librarians the full benefit of the heating system during the cold winter semester.  And also to blow papers off the desk, but none of the librarians have complained about that one little detail, oddly enough.
+
+Ava trails along behind you. 
+
+>s
+
+Northern Hallway
+You are at a T-junction.  The hallway goes east and west, and another hallway joins it from the south.  To the north, wide double doors open into the library.
+
+Ava trails along behind you. 
+
+>l
+Northern Hallway
+You are at a T-junction.  The hallway goes east and west, and another hallway joins it from the south.  To the north, wide double doors open into the library.
+
+Ava trails along behind you. 
+
+>ne
+There are exits north (to the Claremont library), east (to the northeast corner of Claremont), south (to the central hallway of Claremont) and west (to the northwest corner of Claremont) from here.
+
+>s
+
+Central Hallway Of Claremont
+A utilitarian, academic hallway, stretching north and south.  Empty classrooms are in all other directions.
+
+Ava trails along behind you. 
+
+>sw
+
+Robotics Class
+No windows here:  small electronic and mechanical parts fill every nook and cranny of the shelved walls of Robotics.  A half-dozen tables each large enough for four march down the center of the room toward Instructor Long's bench, opposite the door.
+
+Ava trails along behind you. 
+
+On your workbench are your robot, a metal bowl (empty) and a wicker basket (in which are seven marbles).
+
+You can also see Stacy's screwdriver here.
+
+>[oh very nice.]
+That's not a verb I recognize.
+
+>get screwdriver
+Taken.
+
+>[Ha, taken in by thinking I knew the game. No wonder I couldn't figure out what to do. Very nice addition, Ron or Chris.]
+You seem to want to talk to someone, but I can't see whom.
+
+>ne
+
+Central Hallway Of Claremont
+A utilitarian, academic hallway, stretching north and south.  Empty classrooms are in all other directions.
+
+Ava trails along behind you. 
+
+>n
+
+Northern Hallway
+You are at a T-junction.  The hallway goes east and west, and another hallway joins it from the south.  To the north, wide double doors open into the library.
+
+Ava trails along behind you. 
+
+>u
+There are exits north (to the Claremont library), east (to the northeast corner of Claremont), south (to the central hallway of Claremont) and west (to the northwest corner of Claremont) from here.
+
+>n
+
+Claremont Library
+The Education And Fine Arts Library, as befits the University of Colorado at Valmont, is a labyrinth stacked high with books and simply lousy with hidden corners and dead ends.  Thankfully, most of it is also sealed away beyond a security barrier, and as far as you can tell, no-one is likely to have slipped through to the stacks beyond.  The only part of the library you can really access from here is the circulation desk, which has been positioned directly under an air vent to allow the librarians the full benefit of the heating system during the cold winter semester.  And also to blow papers off the desk, but none of the librarians have complained about that one little detail, oddly enough.
+
+Ava trails along behind you. 
+
+>climb desk
+You get onto the circulation desk.
+
+>[oh, now I want to try the one backstage]
+You seem to want to talk to someone, but I can't see whom.
+
+>d
+You get off the circulation desk.
+
+Claremont Library
+The Education And Fine Arts Library, as befits the University of Colorado at Valmont, is a labyrinth stacked high with books and simply lousy with hidden corners and dead ends.  Thankfully, most of it is also sealed away beyond a security barrier, and as far as you can tell, no-one is likely to have slipped through to the stacks beyond.  The only part of the library you can really access from here is the circulation desk, which has been positioned directly under an air vent to allow the librarians the full benefit of the heating system during the cold winter semester.  And also to blow papers off the desk, but none of the librarians have complained about that one little detail, oddly enough.
+
+Ava trails along behind you. 
+
+>s
+
+Northern Hallway
+You are at a T-junction.  The hallway goes east and west, and another hallway joins it from the south.  To the north, wide double doors open into the library.
+
+Ava trails along behind you. 
+
+>e
+
+Northeast Corner Of Claremont
+The hallway makes an elbow here, heading off to the south and the west.  To the east is the film studio.  You can tell because the door has been torn off its hinges, giving you a perfectly unimpeded view of the studio within.  Another set of doors, to the north, leads out of the building, but those are intact.
+
+Ava trails along behind you. 
+
+>s
+
+Eastern Hallway
+A utilitarian, academic hallway, stretching north and south.  Two empty classrooms are on the west side.  On the east side, the door to the backstage areas of the auditorium is to the southeast, while half of the film studio lies northeast.
+
+Ava trails along behind you. 
+
+>s
+
+Southeast Corner Of Claremont
+You're at a T-junction, of sorts.  Hallways stretch off to the north and west; another hallway stretches off to the south, ramping up slightly as it passes from this building to the next.  You catch sight of two of the counselors pacing about at the end of the southern hallway; fortunately, they haven't seen you ... yet.  The door to the auditorium where you were supposed to spend this morning working on your satirical drama class is to the east.
+
+Ava trails along behind you. 
+
+>e
+
+Auditorium
+The chairs of the auditorium have been folded up and moved aside, to give everyone plenty of room to spread out in the middle and even on the stage.  A rather harsh, bright light illuminates the central portion of the room and leaves the corners in shadows; the overall effect is to produce that still, dead, rather muffled feel that most theaters seem to have when they're not in use.  The backstage areas are to the north, and the main exit is to the west.
+
+Ava trails along behind you. 
+
+>e
+There are exits north (to Backstage) and west (to the southeast corner of Claremont) from here.
+
+>s
+There are exits north (to Backstage) and west (to the southeast corner of Claremont) from here.
+
+>n
+
+Backstage
+Backstage is cramped, cluttered and chaotic, and it's not even in use yet.  It also smells of old costumes, which is hardly surprising, given the racks of costumes mouldering in one airless cubbyhole.  The stage and the auditorium are to the south, and a door out into the hallway is to the west.
+
+Ava trails along behind you. 
+
+>unscrew vent
+You remove the screws as quickly as you can, the head of the screwdriver slipping from the screws rather more often than is usual.  Eventually, the grill falls off and is immediately lost among the boxes of costume accessories.
+
+>enter vent
+The duct beyond might be wide enough to crawl through, though not to turn around, but the vent itself is too small for you to fit through now.  Maybe you shouldn't have had that growth spurt after all.
+
+>focus
+You sense a confusion of trails, all of them scented with fear.  More than one of them seem strong enough to be Lucian's, assuming he's as terrified as you think he is, though none are precisely alike.
+
+>focus on vent
+You sense nothing untoward or out of the ordinary here.
+
+>[I like having this red herring here, but FOCUS should give a more helpful message, maybe after the "nothing untoward" sentence, something like, "Lucian must not be nearby."]
+You seem to want to talk to someone, but I can't see whom.
+
+>w
+There are exits south (to the auditorium) and northwest (to the eastern hallway) from here.
+
+>n
+There are exits south (to the auditorium) and northwest (to the eastern hallway) from here.
+
+>nw
+
+Eastern Hallway
+A utilitarian, academic hallway, stretching north and south.  Two empty classrooms are on the west side.  On the east side, the door to the backstage areas of the auditorium is to the southeast, while half of the film studio lies northeast.
+
+Ava trails along behind you. 
+
+>w
+There are exits north (to the northeast corner of Claremont), northeast (to the film studio), southeast (to Backstage) and south (to the southeast corner of Claremont) from here.
+
+>n
+
+Northeast Corner Of Claremont
+The hallway makes an elbow here, heading off to the south and the west.  To the east is the film studio.  You can tell because the door has been torn off its hinges, giving you a perfectly unimpeded view of the studio within.  Another set of doors, to the north, leads out of the building, but those are intact.
+
+Ava trails along behind you. 
+
+>n
+There are exits east (to the film studio), south (to the eastern hallway) and west (to the northern hallway) from here.
+
+>w
+
+Northern Hallway
+You are at a T-junction.  The hallway goes east and west, and another hallway joins it from the south.  To the north, wide double doors open into the library.
+
+Ava trails along behind you. 
+
+>u
+There are exits north (to the Claremont library), east (to the northeast corner of Claremont), south (to the central hallway of Claremont) and west (to the northwest corner of Claremont) from here.
+
+>n
+
+Claremont Library
+The Education And Fine Arts Library, as befits the University of Colorado at Valmont, is a labyrinth stacked high with books and simply lousy with hidden corners and dead ends.  Thankfully, most of it is also sealed away beyond a security barrier, and as far as you can tell, no-one is likely to have slipped through to the stacks beyond.  The only part of the library you can really access from here is the circulation desk, which has been positioned directly under an air vent to allow the librarians the full benefit of the heating system during the cold winter semester.  And also to blow papers off the desk, but none of the librarians have complained about that one little detail, oddly enough.
+
+Ava trails along behind you. 
+
+>u
+There is an exit south (to the northern hallway) from here.
+
+>climb desk
+You get onto the circulation desk.
+
+>unscrew vent
+You remove the screws as quickly as you can, the head of the screwdriver slipping from the screws rather more often than is usual.  Eventually, the grill falls off and is immediately lost among the boxes of costume accessories.
+
+>[costume accessories? this is the library.]
+That's not a verb I recognize.
+
+>enter vent
+The duct beyond might be wide enough to crawl through, though not to turn around, but the vent itself is too small for you to fit through now.  Maybe you shouldn't have had that growth spurt after all.
+
+>look in vent
+The air vent is empty.
+
+>focus
+You sense a confusion of trails, all of them scented with fear.  More than one of them seem strong enough to be Lucian's, assuming he's as terrified as you think he is, though none are precisely alike.
+
+>focus on vent
+You sense nothing untoward or out of the ordinary here.
+
+>[and conversely, here, I should be able to sense Lucian's fear in the vent]
+You seem to want to talk to someone, but I can't see whom.
+
+>listen
+You hear nothing unexpected.
+
+>l
+Claremont Library (on the circulation desk)
+The Education And Fine Arts Library, as befits the University of Colorado at Valmont, is a labyrinth stacked high with books and simply lousy with hidden corners and dead ends.  Thankfully, most of it is also sealed away beyond a security barrier, and as far as you can tell, no-one is likely to have slipped through to the stacks beyond.  The only part of the library you can really access from here is the circulation desk, which has been positioned directly under an air vent to allow the librarians the full benefit of the heating system during the cold winter semester.  And also to blow papers off the desk, but none of the librarians have complained about that one little detail, oddly enough.
+
+Ava trails along behind you. 
+
+>i
+You are carrying:
+  Stacy's screwdriver
+  some readings for your Satirical Writing class
+  a plastic dinosaur
+
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+
+>put dinosaur in vent
+You put the plastic dinosaur into the air vent.
+
+>[heh]
+That's not a verb I recognize.
+
+>ask ava about vent
+She does not reply.[placeholder text: "That seems kind of rude and unfriendly. She should have a handful of default responses for topics she doesn't know."]
+
+
+
+>reach in vent
+I only understood you as far as wanting to reach inside.
+
+>reach
+(Ava)
+I don't suppose Ava would care for that.
+
+>[ha ha]
+That's not a verb I recognize.
+
+>reach in
+You must name something more substantial.
+
+>reach vent
+That's already open.
+
+>reach in vent
+I only understood you as far as wanting to reach inside.
+
+>reach into vent
+You can't see any such thing.
+
+>[that should be implemented]
+That's not a verb I recognize.
+
+>shout
+Must you draw attention to yourself?
+
+>[good answer]
+That's not a verb I recognize.
+
+>call lucian
+(to Ava)
+There is no reply.
+
+>[okay, NOW I'm guessing the verb]
+You seem to want to talk to someone, but I can't see whom.
+
+>save
+Ok.
+
+>[I'm going to bail for tonight. Maybe I'll take a peek at the test script in the debug build to figure out what the game is expecting of me here.]
+That's not a verb I recognize.
+
+>quit
+Are you sure you want to quit? yes

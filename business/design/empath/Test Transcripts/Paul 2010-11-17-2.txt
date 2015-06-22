@@ -1,0 +1,774 @@
+Start of a transcript of
+
+The Empath's Gift
+The Empath's Gift by Textfyre
+Copyright 2010 by Textfyre
+Designed by Paul O'Brian
+Written by Christopher Huang
+Game Engine (FyreVM) by Jesse McGrew
+Inform 7 Programming by Ron Newcomb and Graeme Jefferis
+Testing by Paul O'Brian, Christopher Huang, and Eric Eve
+Special thanks to Graham Nelson and Emily Short
+for all of their hard work on Inform 7.
+All rights reserved.
+Identification number: //C746C678-3CEA-4998-A60D-448CD90B7AE2//
+Interpreter version 1.2.8 / VM 3.1.2 / Library serial number 080126
+Standard Rules version 2/090402 by Graham Nelson
+Textfyre Standard Backdrops by Textfyre
+Basic Followers by Textfyre
+Goals by Textfyre
+Test Suite by Textfyre
+Smarter Parser version 6 by Aaron Reed
+Small Kindnesses version 5 by Aaron Reed
+Extended Grammar version 3 by Aaron Reed
+
+>restore
+Ok.
+
+>[time for just a bit more before bed]
+You typed a rather long command and I didn't understand it. It's better to stick to simpler things like TAKE FLOWER, for example.
+
+>l
+Ava And Stacy's Room
+Ava and Stacy both keep their respective sides of the room perfectly tidy; it's rather intimidating, actually.  You can tell whose side is whose by the stuff they keep on their desks: Ava has a CD player, an assortment of CDs, and a few books; Stacy has a few broken gadgets that she's fixing, probably because she broke them to begin with.  One of them has taped a poster for "Casablanca" on the door to the south.
+
+Ava and Stacy trail along behind you.  
+
+>x cds
+Ava's on a folk song kick right now.  It's only a matter of time before she turns country-and-western, you think.
+
+>x gadgets
+Stacy's very fond of taking things apart and putting them back together again.  She's going to become a mad scientist and take over the world one day, if you and Ava don't watch her.
+
+>s
+
+Second Floor Rooms, East
+The girls at this end of the corridor seem to prefer movie posters to cutouts of actors.  The only cutout here is a life-size Humphrey Bogart, on the door to the fire stairs.  Opposite Bogey, to the north, is Ava and Stacy's room, while behind Bogey are stairs going up and down.  And at the end of the corridor is, of course, the window overlooking Calvin Field, and stardom continues back to the west.
+
+Ava and Stacy trail along behind you. 
+
+>x ava
+You met Ava last year, here at LEAP.  She's a rosy-cheeked girl with long, brown pigtails; since last year, she's also acquired a pair of glasses that, she claims, make her look like a young Nana Mouskouri.
+
+>x stacy
+You met Stacy last year, here at LEAP.  She's a skinny blonde girl with freckles and rather prominent front teeth.  She likes playing with gadgets, and is so full of nervous energy she could probably swallow an elephant and not gain an ounce of weight.  She's also wearing a deerstalker cap with a completely inappropriate daisy stuck into one flap.    
+
+
+>[extra linefeed]
+That's not a verb I recognize.
+
+>ask stacy abou that
+I didn't understand that sentence.
+
+>ask stacy about hat
+There is no reply.
+
+>[better default, more extensive library of responses.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[is needed, I mean]
+You seem to want to talk to someone, but I can't see whom.
+
+>ask stacy abou tme
+I didn't understand that sentence.
+
+>[argh
+That's not a verb I recognize.
+
+>ask stacy about me
+"You're you.  Why?"
+
+>ask stacy about stacy
+She does not reply.That seems kind of rude and unfriendly. She should have a handful of default responses for topics she doesn't know.
+
+>[Oh, apparently the game knows what I think about this too. :)]
+You seem to want to talk to someone, but I can't see whom.
+
+>[Boy I really hope these placeholders are marked behind the scenes or we could be letting ourselves in for some real embarrassment after release.]
+You typed a rather long command and I didn't understand it. It's better to stick to simpler things like TAKE FLOWER, for example.
+
+>l
+Second Floor Rooms, East
+The girls at this end of the corridor seem to prefer movie posters to cutouts of actors.  The only cutout here is a life-size Humphrey Bogart, on the door to the fire stairs.  Opposite Bogey, to the north, is Ava and Stacy's room, while behind Bogey are stairs going up and down.  And at the end of the corridor is, of course, the window overlooking Calvin Field, and stardom continues back to the west.
+
+Ava and Stacy trail along behind you. 
+
+>u
+
+Third Floor Rooms, East
+This end of the corridor looks like the inside of a space shuttle.  Someone's gone to great care to create window-like frames for the stars and planets and whatnot; even the window overlooking Calvin Field has been made to look like a space shuttle viewport.  Outer Space is back to the west; presumably the planet Earth is down the stairs.
+
+Ava and Stacy trail along behind you. 
+
+>ask ava about headaches
+There is no reply.
+
+>ask stacy about phenomenon
+There is no reply.
+
+>focus
+You sense nothing untoward or out of the ordinary here.
+
+>[Again, the hallways seem deserted. They shouldn't. There should be stuff going on all over the place during dorm time, so that focusing reveals a big morass of stuff none of which stands out for its intensity.]
+You sense nothing untoward or out of the ordinary here.
+
+>w
+
+Third Floor Lobby
+This is where the older girls have their rooms.  The walls are painted a very dark blue, and there are planets, stars and all things space-age stuck all over the place.  A cutout of an astronaut holds out a pouch full of astronomical bits; the corridor itself extends east and west, and the stairs continue down to the rest of the dorms and up to the roof.
+
+Ava and Stacy trail along behind you. 
+
+>u
+It's against the rules to leave the building during dorm time.
+
+>ask stacy about stars
+There is no reply.
+
+>ask ava about casablanca
+There is no reply.
+
+>[sigh]
+That's not a verb I recognize.
+
+>d
+
+Second Floor Lobby
+Hooray for Hollywood!  The words are emblazoned right across the wall, over a cutout of Audrey Hepburn holding a pouch full of smaller cutouts of other Hollywood stars.  The glamour continues east and west, to where the younger girl campers are roomed, while the stairs go up and down.
+
+It looks like the folks who took yesterday's RPG option have decided to reconvene and keep playing.
+
+Ava and Stacy trail along behind you. 
+
+>d
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+There is a sour, vaguely nauseating taste in the air.  
+
+"Daniel," says Ava, "Daniel, you're getting that funny look again.  Is whatever-it-is somewhere around here?"
+
+"Try to focus," says Stacy. 
+
+>taste air
+You can't see any such thing.
+
+>[we should handle that since we're talking about a taste in the air. Not to say we should alias it to focus. "Taste in the air is a metaphor."]
+You typed a rather long command and I didn't understand it. It's better to stick to simpler things like TAKE FLOWER, for example.
+
+>focus on stacy
+You think you hear crickets chirping.
+
+>focus on me
+You space out for a few seconds.  Incredibly, you now know exactly what you're thinking.
+
+>[I like that response and think it's really funny, but it could constitute a bit of a spoiler before Daniel (or the player) understands what focusing actually does. Perhaps a different response prior to that time.]
+You typed a rather long command and I didn't understand it. It's better to stick to simpler things like TAKE FLOWER, for example.
+
+>focus
+Concentrating on the flavor, you sense an undercurrent of salt tears.  Both sour and salt seem to form a line between the info desk and the stairs going down. 
+
+"It's a trail," you say.  "It goes down the stairs and back to the info desk."
+
+"I know we said we'd go look around the info desk," says Stacy, "but if this is a trail of some sort, I wonder where it leads."
+
+Ava shrugs.  "Up to you, Daniel.  Off to the info desk, or down the stairs?"
+
+[You achieved a goal! (investigate odd sensations)]
+
+>goals
+Goals Accomplished: 
+  runner up in the scavenger hunt
+  visit Ava & Stacy
+  investigate odd sensations
+
+>d
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+There is a sour, vaguely nauseating taste in the air.  
+
+Ava and Stacy trail along behind you. 
+
+>focus
+Concentrating on the flavor, you sense an undercurrent of salt tears.  Both sour and salt seem to trail off to the west and to the stairs going up. 
+
+>w
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+There is a sour, vaguely nauseating taste in the air.  
+
+Ava and Stacy trail along behind you. 
+
+>focus
+Concentrating on the flavor, you sense an undercurrent of salt tears.  They trail off to the east, but seem strongest around one of the doors to the south. 
+
+"Whatever it is, it's strongest around that door."
+
+Ava and Stacy exchange glances, and before you can stop her, Stacy is knocking on the door.  "We've come this far.  I want to know what's at the end of --"
+
+Stacy quickly shuts up when the door opens a crack, and a rather timid little guy peeks out at you.  He fairly reeks of that mysterious sour-salty air.  And now you think you can hear some sort of twittering in the background, too.  It occurs to you that you remember seeing him up at the egg-drop option yesterday, though he certainly wasn't giving off this... whatever it is... back then.
+
+"Hi," says Ava, who seems to recognize the guy.  "Lucian, isn't it?  We met yesterday at the sign-ups.  Anyway, these are my friends Daniel and Stacy.  May we come in for a moment?"
+
+Lucian lets the door swing half-open and sighs resignedly.  "Sure, if you want," he says, retreating back into the room.  The three of you follow him inside.
+
+Lucian's Room
+It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing Bill Withers' "Lean On Me" over and over, sits on his desk beside a couple of framed photographs.
+
+There is a sour, vaguely nauseating taste in the air.  
+
+Room description text about Lucian.
+
+>["twittering" has taken on a new meaning. A different word choice would be better.]
+You typed a rather long command and I didn't understand it. It's better to stick to simpler things like TAKE FLOWER, for example.
+
+>[also, there's another of those unmarked placeholders.]
+You seem to want to talk to someone, but I can't see whom.
+
+>x lucian
+Lucian's a little shrimp of a newbie.  He looks rather pale and colorless, with thin white-blonde hair plastered close to his scalp.  In short, he's rather typical bully-bait.
+
+[A new goal was added: find out what happened to Lucian]
+
+>focus on lucian
+You sense nothing untoward or out of the ordinary here.
+
+>[Well, that's not true at all, is it?]
+You seem to want to talk to someone, but I can't see whom.
+
+>focus
+>[and that's missing entirely.]
+(Adverbs are almost never necessary.)
+>AND THAT'S MISSING .
+That's not a verb I recognize.
+
+>talk to lucian
+There is no reply.
+
+>[also not good]
+That's not a verb I recognize.
+
+>ask lucian about lucian
+Lucian rolls his eyes.  "What's to know?  My dad is an airline steward and my mom works in a hardware store.  We're just ordinary people."
+
+
+
+>[too many linefeeds]
+That's not a verb I recognize.
+
+>ask lucian about lea[
+There is no reply.
+
+>ask lucian about leap
+There is no reply.
+
+>ask lucian about egg drop
+There is no reply.
+
+>ask lucian about room
+There is no reply.
+
+>[boy is this guy impervious to small talk]
+You typed a rather long command and I didn't understand it. It's better to stick to simpler things like TAKE FLOWER, for example.
+
+>l
+Lucian's Room
+It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing Bill Withers' "Lean On Me" over and over, sits on his desk beside a couple of framed photographs.
+
+Lucian's sour, vaguely nauseating trail is in the air.  
+
+Ava and Stacy are here.
+
+Room description text about Lucian.
+
+>focus on trail
+You sense nothing untoward or out of the ordinary here.
+
+>x trail
+It's here, but you'll really need to focus on it.
+
+>[bleh]
+That's not a verb I recognize.
+
+>x ava
+You met Ava last year, here at LEAP.  She's a rosy-cheeked girl with long, brown pigtails; since last year, she's also acquired a pair of glasses that, she claims, make her look like a young Nana Mouskouri.
+
+>ask lucian about song
+There is no reply.
+
+>ask lucian about withers
+There is no reply.
+
+>[this has a lot more baking to do]
+You typed a rather long command and I didn't understand it. It's better to stick to simpler things like TAKE FLOWER, for example.
+
+>x photo
+You can't see such a thing.
+
+>[alias]
+That's not a verb I recognize.
+
+>x photos
+There are two of them.  One appears to be a class photograph taken a year or two ago: there's an older man, maybe in his fifties, surrounded by a bunch of kids, in front of a blackboard.  The other is much older, judging by the clothes and hair, and shows a cheerful little old lady sitting on a bench in a colorful flower garden.
+
+There is no reply.
+
+>[also, what? no reply?]
+You seem to want to talk to someone, but I can't see whom.
+
+>x photos
+There are two of them.  One appears to be a class photograph taken a year or two ago: there's an older man, maybe in his fifties, surrounded by a bunch of kids, in front of a blackboard.  The other is much older, judging by the clothes and hair, and shows a cheerful little old lady sitting on a bench in a colorful flower garden.
+
+There is no reply.
+
+>[reproducible. Weird.]
+That's not a verb I recognize.
+
+>x garden
+You can't see such a thing.
+
+>[alias again]
+That's not a verb I recognize.
+
+>ask lucian about garden
+"Yeah.  She died."  The sour taste in the air is almost overwhelmed by a different, marshy sort of smell, yet you somehow know that the two sensations are somehow related.  Ava is instantly consoling Lucian, and finding all the right words that you can't think of.
+
+"Was she a gardener?" asks Ava.  "That's a beautiful garden she's in."
+
+"Yeah, yeah she was.  She was an environmentalist.  That's why she...."  Lucian stops.  "Never mind."
+
+1. "Why what?"
+
+>1
+"Why what?"
+
+Lucian shakes his head.  Stacy looks a little annoyed and says, "you know, if you don't tell us what's upsetting you, we can't help you.  So why don't you just spit it out and get it over with?"
+
+Lucian looks a little angry and says, "Stop picking on me!  You're just like those bullies at dinner!  They made me give them my grandmother's earth crystal and I bet you want me to pay some sort of fine for being a loser.  Well I've had it.  Just go away and leave me alone!"
+
+>["Yeah. She died." is a pretty abrupt and non-sequitur-ish answer to asking about the garden. It might make sense to put some words in Daniel's mouth for these conversations. "I like your pictures. Is the woman in the garden...?"]
+You typed a rather long command and I didn't understand it. It's better to stick to simpler things like TAKE FLOWER, for example.
+
+>ask lucian about crystal
+"I don't want to talk about that any more."
+
+>ask lucian about bullies
+"I don't want to talk about that any more."
+
+>ask lucian about garden
+"Yeah.  She died."  The sour taste in the air is almost overwhelmed by a different, marshy sort of smell, yet you somehow know that the two sensations are somehow related.  Ava is instantly consoling Lucian, and finding all the right words that you can't think of.
+
+"Was she a gardener?" asks Ava.  "That's a beautiful garden she's in."
+
+"Yeah, yeah she was.  She was an environmentalist.  That's why she...."  Lucian stops.  "Never mind."
+
+1. "Why what?"
+
+>[this should not repeat]
+(Most connecting and comparative words are not necessary.)
+>SHOULD NOT REPEAT
+That's not a verb I recognize.
+
+>1
+"Why what?"
+
+"I don't want to talk about that any more."
+
+>ask lucian about class
+Lucian picks up the class photo.  "That's Peter," he says, pointing to the teacher smiling up from one side of the group.  For a moment, the sour taste in the air disappears.  "He lets us call him by his first name, and he's the most awesome teacher ever."  Then Lucian looks sad again.  "He's the one who said I was smart enough to come here, and he went and pulled all sorts of strings.  I should be grateful, I suppose."
+
+1. "But you're not?  Why?"
+
+>1
+"But you're not?  Why?"
+
+"I don't know anybody here and I'm all alone.  Why shouldn't I be unhappy?  Let's talk about something else."
+
+>lucian, follow me
+There is no reply.
+
+>[missing]
+That's not a verb I recognize.
+
+>l
+Lucian's Room
+It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing Bill Withers' "Lean On Me" over and over, sits on his desk beside a couple of framed photographs.
+
+Lucian's sour, vaguely nauseating trail is in the air.  
+
+Ava and Stacy are here.
+
+Room description text about Lucian.
+
+>ask lucian about cd
+There is no reply.
+
+>ask ava about cd
+There is no reply.
+
+>ask ava about song
+There is no reply.
+
+>listen
+You hear nothing unexpected.
+
+>listen to song
+You hear nothing unexpected.
+
+>x desk
+Standard, regulation LEAP desks, littered with the odd personal items that save them from complete anonymity.
+
+>x bed
+Standard, regulation LEAP beds.
+
+>l
+Lucian's Room
+It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing Bill Withers' "Lean On Me" over and over, sits on his desk beside a couple of framed photographs.
+
+Lucian's sour, vaguely nauseating trail is in the air.  
+
+Ava and Stacy are here.
+
+Room description text about Lucian.
+
+>tell lucian about trail
+This provokes no reaction.
+
+>[my, he's unflappable]
+Which do you mean, the five-pointed star cutout, the LEAP camp flyer, the cutout picture of Stephan Eberharter, the dollars, Ava, Ava's pigtails, Ava's glasses, Stacy, the deerstalker cap, the emotion trail, Lucian's door, the sky, the sun, the moon, the clouds, the walls, the ceiling, the floor, yourself, Lucian's bed, Lucian's desk, Lucian's photographs, Lucian's CD player or Lucian?
+
+>[?????]
+You seem to want to talk to someone, but I can't see whom.
+
+>my
+Which do you mean, Ava, Ava's pigtails, Ava's glasses, Stacy, the deerstalker cap, the emotion trail, Lucian's door, the sky, the sun, the moon, the clouds, the walls, the ceiling, the floor, yourself, Lucian's bed, Lucian's desk, Lucian's photographs, Lucian's CD player, Lucian, the five-pointed star cutout, the LEAP camp flyer, the cutout picture of Stephan Eberharter or the dollars?
+
+>[well, it's nice to know what's implemented]
+You seem to want to talk to someone, but I can't see whom.
+
+>x pigtails
+Ava has her hair done in two fat pigtails hanging down her back.  You've never seen her with her hair loose.
+
+>ask ava about pigtails
+There is no reply.
+
+>[oh come now]
+(Most connecting and comparative words are not necessary.)
+>OH COME 
+That's not a verb I recognize.
+
+>x sky
+You can't see such a thing.
+
+>x ceiling
+You see nothing special about the ceiling.
+
+>n
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+Lucian's sour, vaguely nauseating trail is in the air.  
+
+>x trail
+It's here, but you'll really need to focus on it.
+
+>focus
+Concentrating on the flavor, you sense an undercurrent of salt tears.  They trail off to the east, but seem strongest around one of the doors to the south. 
+
+"Whatever it is, it's strongest around that door."
+
+Ava and Stacy exchange glances, and before you can stop her, Stacy is knocking on the door.  "We've come this far.  I want to know what's at the end of --"
+
+Stacy quickly shuts up when the door opens a crack, and a rather timid little guy peeks out at you.  He fairly reeks of that mysterious sour-salty air.  And now you think you can hear some sort of twittering in the background, too.  It occurs to you that you remember seeing him up at the egg-drop option yesterday, though he certainly wasn't giving off this... whatever it is... back then.
+
+"Hi," says Ava, who seems to recognize the guy.  "Lucian, isn't it?  We met yesterday at the sign-ups.  Anyway, these are my friends Daniel and Stacy.  May we come in for a moment?"
+
+Lucian lets the door swing half-open and sighs resignedly.  "Sure, if you want," he says, retreating back into the room.  The three of you follow him inside.
+
+Lucian's Room
+It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing Bill Withers' "Lean On Me" over and over, sits on his desk beside a couple of framed photographs.
+
+Lucian's sour, vaguely nauseating trail is in the air.  
+
+Ava and Stacy are here.
+
+Room description text about Lucian.
+
+>[no no no. That should really not reply, especially since we are very likely going to be focusing on the trail outside the door again.]
+You typed a rather long command and I didn't understand it. It's better to stick to simpler things like TAKE FLOWER, for example.
+
+>lucian, bye
+There is no reply.
+
+>n
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+Lucian's sour, vaguely nauseating trail is in the air.  
+
+>e
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Lucian's sour, vaguely nauseating trail is in the air.  
+
+>e
+
+Pits, East
+Your room is at this end of the Pits hallway, just to the south of here.  You've elected to cover your door with the biggest cutout of a werewolf that you can find, because werewolves are cool.  The hallway continues west, and a high window on the east wall looks out across Calvin Field North.  Right beside your room door is the fire stair leading back upstairs.
+
+>s
+
+Your Room
+You share this room with first-year camper Jeremy Dolan, who hates werewolves for some inexplicable reason.  He let you put the werewolf cutout on the outside of the door only because you let him put up a vampire cutout on the inside.  Jeremy's not around right now, though, so you'll have to wait before continuing your ongoing discussion as to whether vampires or werewolves are cooler.  In the meantime, there's your bed and your desk, and the door back to the north.
+
+>n
+You step out of the room, locking it behind you.
+
+Pits, East
+Your room is at this end of the Pits hallway, just to the south of here.  You've elected to cover your door with the biggest cutout of a werewolf that you can find, because werewolves are cool.  The hallway continues west, and a high window on the east wall looks out across Calvin Field North.  Right beside your room door is the fire stair leading back upstairs.
+
+>w
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Lucian's sour, vaguely nauseating trail is in the air.  
+
+>s
+
+Pits Lobby Central
+This section of the Pits is part of the older part of Jacobs Hall, and therefore cut up into more interesting shapes.  There are a bunch of storerooms, all of them locked, and then two very large halls to the east and west.  A passage to the north leads back to the main stairwell.  Apparently there used to be another staircase here going up, but it was ripped out to give this place a little more elbow room.
+
+>fucos
+That's not a verb I recognize.
+
+>focus
+You sense nothing untoward or out of the ordinary here.
+
+>n
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Lucian's sour, vaguely nauseating trail is in the air.  
+
+>[I'll just mention again that this place feels totally deserted when it should be full of kids.]
+You typed a rather long command and I didn't understand it. It's better to stick to simpler things like TAKE FLOWER, for example.
+
+>u
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Lucian's sour, vaguely nauseating trail is in the air.  
+
+>n
+There are exits east (to the first floor rooms), south (to the info desk), west (to the first floor rooms), up (to the second floor lobby) and down (to the pits stairwell) from here.
+
+>s
+
+Info Desk
+The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.
+
+Lucian's sour, vaguely nauseating trail is in the air.  
+
+>focus
+Concentrating on the flavor, you sense an undercurrent of something salty as well, like tears.  You can also tell that this is all definitely part of a trail of some sort, going off to the east and the north. 
+
+>e
+It's against the rules to leave the building during dorm time.
+
+>n
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Lucian's sour, vaguely nauseating trail is in the air.  
+
+>focus
+Concentrating on the flavor, you sense an undercurrent of salt tears.  Both sour and salt seem to form a line between the info desk and the stairs going down. 
+
+>d
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Lucian's sour, vaguely nauseating trail is in the air.  
+
+>w
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+Lucian's sour, vaguely nauseating trail is in the air.  
+
+>w
+There are exits east (to the pits stairwell), south (to Lucian's room) and up (to the first floor rooms) from here.
+
+>s
+
+Lucian's Room
+It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing Bill Withers' "Lean On Me" over and over, sits on his desk beside a couple of framed photographs.
+
+Lucian's sour, vaguely nauseating trail is in the air.  
+
+Ava and Stacy are here.
+
+Room description text about Lucian.
+
+>focus
+>n
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+Lucian's sour, vaguely nauseating trail is in the air.  
+
+>focus
+Concentrating on the flavor, you sense an undercurrent of salt tears.  They trail off to the east, but seem strongest around one of the doors to the south. 
+
+"Whatever it is, it's strongest around that door."
+
+Ava and Stacy exchange glances, and before you can stop her, Stacy is knocking on the door.  "We've come this far.  I want to know what's at the end of --"
+
+Stacy quickly shuts up when the door opens a crack, and a rather timid little guy peeks out at you.  He fairly reeks of that mysterious sour-salty air.  And now you think you can hear some sort of twittering in the background, too.  It occurs to you that you remember seeing him up at the egg-drop option yesterday, though he certainly wasn't giving off this... whatever it is... back then.
+
+"Hi," says Ava, who seems to recognize the guy.  "Lucian, isn't it?  We met yesterday at the sign-ups.  Anyway, these are my friends Daniel and Stacy.  May we come in for a moment?"
+
+Lucian lets the door swing half-open and sighs resignedly.  "Sure, if you want," he says, retreating back into the room.  The three of you follow him inside.
+
+Lucian's Room
+It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing Bill Withers' "Lean On Me" over and over, sits on his desk beside a couple of framed photographs.
+
+Lucian's sour, vaguely nauseating trail is in the air.  
+
+Ava and Stacy are here.
+
+Room description text about Lucian.
+
+>n
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+Lucian's sour, vaguely nauseating trail is in the air.  
+
+>e
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Lucian's sour, vaguely nauseating trail is in the air.  
+
+>focus
+Concentrating on the flavor, you sense an undercurrent of salt tears.  Both sour and salt seem to trail off to the west and to the stairs going up. 
+
+>e
+
+Pits, East
+Your room is at this end of the Pits hallway, just to the south of here.  You've elected to cover your door with the biggest cutout of a werewolf that you can find, because werewolves are cool.  The hallway continues west, and a high window on the east wall looks out across Calvin Field North.  Right beside your room door is the fire stair leading back upstairs.
+
+>u
+
+First Floor Rooms, East
+This is the east end of the first floor dorm area.  Through the window at the end of the hall, you can see Calvin Field North and a bunch of campers running about in the summer sunshine.  In here, you are surrounded by images of people having snowball fights.  The fire stairs at this end of the hall go up and down.
+
+>focus
+You sense nothing untoward or out of the ordinary here.
+
+>e
+There are exits south, west (to the first floor midpoint), up (to the second floor rooms) and down (to pits) from here.
+
+>s
+It seems to be locked.
+
+>w
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Lucian's sour, vaguely nauseating trail is in the air.  
+
+>w
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+>focus
+You sense nothing untoward or out of the ordinary here.
+
+>[funny, I actually remember this being more fully implemented than it seems to be here. Is stuff commented out or something?]
+You seem to want to talk to someone, but I can't see whom.
+
+>w
+There are exits north, east (to the first floor midpoint), up (to the second floor rooms) and down (to pits) from here.
+
+>[I'm stuck!]
+Please rephrase your command to start with an imperative verb, like LOOK.
+
+>n
+Aidan isn't in right now, and you shouldn't be poking around in his room while he's gone.  Even if he is your brother.  Especially if he's your brother.  And anyway, the door is locked.
+
+>knock on door
+You get no reply.
+
+>d
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+Lucian's sour, vaguely nauseating trail is in the air.  
+
+>d
+There are exits east (to the pits stairwell), south (to Lucian's room) and up (to the first floor rooms) from here.
+
+>s
+
+Lucian's Room
+It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing Bill Withers' "Lean On Me" over and over, sits on his desk beside a couple of framed photographs.
+
+Lucian's sour, vaguely nauseating trail is in the air.  
+
+Ava and Stacy are here.
+
+Room description text about Lucian.
+
+>ask lucian about crystal
+"I don't want to talk about that any more."
+
+>focus on lucian
+You sense nothing untoward or out of the ordinary here.
+
+>focus on photos
+You sense nothing untoward or out of the ordinary here.
+
+>focus
+>goals
+Goals Accomplished: 
+  runner up in the scavenger hunt
+  visit Ava & Stacy
+  investigate odd sensations
+
+Goals Remaining: 
+  find out what happened to Lucian
+
+>[yeah, seriously, is this an older build or something? I really believe this is less complete than the last time I looked at it. I don't think this chapter is finishable in the state it's currently in, and I know it was before because I was able to get
+You seem to want to talk to someone, but I can't see whom.
+
+>[much further in the game.]
+That's not a verb I recognize.
+
+>[So that's it for me. I'm mailing off these transcripts now.]
+You typed a rather long command and I didn't understand it. It's better to stick to simpler things like TAKE FLOWER, for example.
+
+>quit
+Are you sure you want to quit? yes

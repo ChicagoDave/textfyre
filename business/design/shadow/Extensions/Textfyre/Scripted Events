@@ -1,0 +1,55 @@
+Version 1 of Scripted Events by Textfyre begins here.
+
+"An object-oriented approach to scripted cut-scenes that play over several turns."
+
+Use authorial modesty.
+Include Triggers by Textfyre.
+
+Part 1 - Definitions
+
+Chapter 1 - Scripted events
+
+A scripted event is a kind of trigger.
+
+The current script is a list of objects [scripted events] that varies.
+When play begins:
+	now the current script is {};
+
+A scripted event has a text called the display text.
+
+Chapter 2 - Firing activity
+
+[ Firing something is an activity. [defined in the Quips extension] ]
+
+Rule for firing a scripted event (called x):
+	if the display text of x is not "",
+		say the display text of x, paragraph break;
+
+Chapter 4 - Implementation
+
+To fire the next event:
+	let the imminent occurrence be entry 1 of the current script; ["occurrence" is a funny word, isn't it? I've always spelt it "occurence" or possibly even "occurance" until I thought to check. Now, it goes on my mental 'double-double letter' list along with "accommodating".]
+	fire the imminent occurrence;
+	if the number of entries in the current script is not 0 begin;
+		remove entry 1 from the current script;
+	end if;
+
+Every turn when the number of entries in the current script is not 0:
+	fire the next event;
+
+To clear the current script:
+	now the current script is {};
+
+Chapter 5 - Not for release - Debugging
+
+Script-listing is an action out of world.
+Understand "events" as script-listing.
+
+Report script-listing:
+	say "{";
+	repeat with x running through the current script begin;
+		say "[x]";
+	end repeat;
+	say "}";
+
+Scripted Events ends here.

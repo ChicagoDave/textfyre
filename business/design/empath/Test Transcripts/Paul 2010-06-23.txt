@@ -1,0 +1,1641 @@
+Start of a transcript of
+
+The Empath's Gift
+The Empath's Gift by Textfyre
+Copyright 2010 by Textfyre
+Designed by Paul O'Brian
+Written by Christopher Huang
+Game Engine (FyreVM) by Jesse McGrew
+Inform 7 Programming by Ron Newcomb
+ and Graeme Jefferis
+Testing by ____
+Special thanks to Graham Nelson and Emily Short
+for all of their hard work on Inform 7.
+All rights reserved.
+Identification number: //88E48DB3-8DB5-4468-9F2A-8D30D3E09EFA//
+Interpreter version 1.2.6 / VM 3.1.1 / Library serial number 080126
+Standard Rules version 2/090402 by Graham Nelson
+Textfyre Standard Backdrops by Textfyre
+Basic Followers by Textfyre
+Goals by Textfyre
+Test Suite by Textfyre
+
+>restore
+Ok.
+
+>nw
+You hesitantly walk off into the shadows, but turn back when it becomes clear that the lamplight from the signpost isn't going to penetrate far enough into the darkness to allow you to find anything.
+
+>w
+
+Fork
+The shadowy passage from the east forks here, to the northwest and southwest.  A dim glow can be discerned at the end of the northwest fork; to the southwest, you can see only darkness.
+
+>nw
+
+Land Of The Dead
+You are on a vast, perfectly flat plain of ice.  A platform of some sort has been built out of dry twigs in the middle of the plain; Aidan is lying on it, his arms crossed sedately over his chest.  The spirits of the dead crowd all around, chanting and wailing and gibbering, and preventing you from approaching the platform.
+
+>x aidan
+He looks grey and cold and lifeless.  His hands are crossed at the wrist, over his chest, fingers splayed.  For some reason, he's dressed up as Robin Hood.
+
+>i
+You are carrying:
+  Aidan's photograph
+  Aidan's room key
+  some readings for your Satirical Writing class
+
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+  Bring Light to the Darkness
+
+Goals Remaining: 
+  Revive Aidan
+  Defeat the Thief
+
+>se
+
+Fork
+The shadowy passage from the east forks here, to the northwest and southwest.  A dim glow can be discerned at the end of the northwest fork; to the southwest, you can see only darkness.
+
+>e
+
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, south, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+You can see a brass lantern here.
+
+>e
+
+Xroads
+You are standing at an Xroads, which differ from a mere crossroads in that the roads go off diagonally, that is, to the northeast, southeast, and northwest.  Another narrow path goes back west to the crossroads.
+
+>se
+
+Darkness
+It is pitch dark, and you can't see a thing.
+
+>nw
+
+Xroads
+You are standing at an Xroads, which differ from a mere crossroads in that the roads go off diagonally, that is, to the northeast, southeast, and northwest.  Another narrow path goes back west to the crossroads.
+
+>se
+
+Darkness
+It is pitch dark, and you can't see a thing.
+
+>focus
+You sense nothing untoward or out of the ordinary here.
+
+>nw
+
+Xroads
+You are standing at an Xroads, which differ from a mere crossroads in that the roads go off diagonally, that is, to the northeast, southeast, and northwest.  Another narrow path goes back west to the crossroads.
+
+>w
+
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, south, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+You can see a brass lantern here.
+
+>get lantern
+Taken.
+
+>e
+
+Xroads
+You are standing at an Xroads, which differ from a mere crossroads in that the roads go off diagonally, that is, to the northeast, southeast, and northwest.  Another narrow path goes back west to the crossroads.
+
+>se
+
+Art Gallery
+This was clearly an art gallery once, but the walls are bare: you can see squares and rectangles of unfaded wallpaper where paintings used to hang.  An archway in the northwest corner would take you back to the Xroads.
+
+Only one painting still remains on the wall, and it's not a painting at all: it's a calligraphy scroll of some kind.
+
+>x scroll
+[placeholder text: "A canvas whose only decorations are words. It is labeled "Exorcism""]
+
+.
+
+>get scroll
+Taken.
+
+>nw
+
+Xroads
+You are standing at an Xroads, which differ from a mere crossroads in that the roads go off diagonally, that is, to the northeast, southeast, and northwest.  Another narrow path goes back west to the crossroads.
+
+>w
+
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, south, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+>nw
+You bravely march off into the shadows in that direction.  For a while, you can see nothing around you except for the ground at your feet and the shadows beyond the light ... and then you finally arrive at...
+
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, south, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+>w
+
+Fork
+The shadowy passage from the east forks here, to the northwest and southwest.  A dim glow can be discerned at the end of the northwest fork; to the southwest, you can see only darkness.
+
+>nw
+
+Land Of The Dead
+You are on a vast, perfectly flat plain of ice.  A platform of some sort has been built out of dry twigs in the middle of the plain; Aidan is lying on it, his arms crossed sedately over his chest.  The spirits of the dead crowd all around, chanting and wailing and gibbering, and preventing you from approaching the platform.
+
+>read exorcism
+Begone!The spirits dissipate.  Two gold rings drop from thin air.
+>x rings
+You can't see such a thing.
+
+>x ring
+You see nothing special about the gold ring.
+
+>get ring
+Taken.
+
+>i
+You are carrying:
+  a gold ring
+  Exorcism
+  a brass lantern, providing light
+  Aidan's photograph
+  Aidan's room key
+  some readings for your Satirical Writing class
+
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+  Bring Light to the Darkness
+
+Goals Remaining: 
+  Revive Aidan
+  Defeat the Thief
+
+>l
+Land Of The Dead
+You are on a vast, perfectly flat plain of ice.  A platform of some sort has been built out of dry twigs in the middle of the plain; Aidan is lying on it, his arms crossed sedately over his chest.  It is completely and utterly silent.
+
+You can see a gold ring here.
+
+>get ring
+(the gold ring)
+Taken.
+
+>i
+You are carrying:
+  two gold rings
+  Exorcism
+  a brass lantern, providing light
+  Aidan's photograph
+  Aidan's room key
+  some readings for your Satirical Writing class
+
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+  Bring Light to the Darkness
+
+Goals Remaining: 
+  Revive Aidan
+  Defeat the Thief
+
+>x ice
+The ice looks like every other ice you've ever seen.
+
+>wear ring
+You put on the gold ring.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>[oh crap, I forgot I can't take it off now]
+You seem to want to talk to someone, but I can't see whom.
+
+>take off ring
+(the gold ring)
+You take off the gold ring.
+
+>[or... I can?]
+That's not a verb I recognize.
+
+>wear ring
+You put on the gold ring.
+
+>remove ring
+(the gold ring)
+That seems to belong to yourself.
+
+>[Oh, I see. Just a parsing problem.]
+You seem to want to talk to someone, but I can't see whom.
+
+>take off ring
+(the gold ring)
+You take off the gold ring.
+
+>wear ring
+You put on the gold ring.
+
+>wear ring
+(the gold ring)
+You put on the gold ring.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+The heat is unbearable now.  And it's getting worse!  You burst into flames, which is not very pleasant, to say the least.
+
+
+
+*** You have died ***
+
+Please press SPACE to continue.
+
+
+
+Or have you?  The light at the end of the tunnel soon revolves into the ceiling light of the hospital room, and you see Dr Rose looking down at you, her face full of concern.  "Oh dear," she says, "I suppose something went a little wrong in there?  Well, whenever you're ready, I hope you'll give it another try."
+
+Your Hospital Room
+The room is, if anything, even more full of medical equipment than the last time you were here.  Aidan has been strapped into that coffin-thing that you woke up in back then, and trussed up so securely that it's a wonder they found anywhere to stick the wires monitoring his condition.  The door is back to the north.
+
+A pair of comfortable chairs have been wheeled in, along with a small table.  Dr Rose sits in one chair, watching you with concern.
+
+>undo
+land of the dead
+[Previous turn undone.]
+
+>take off ring
+You take off the gold ring.
+
+>take off ring
+(the gold ring)
+You take off the gold ring.
+
+>put ring on aidan
+As you slip the ring onto Aidan's finger, a warm glow seems to spread from his hands and up to his face.  He looks somehow peaceful, as if he were just taking a nap.
+
+Again, off in the distance.  The cawing of birds.
+
+[You achieved a goal! (Revive Aidan)]
+
+>[Hrm, I think that goal showed up at the wrong time. It should have appeared when I arrived at the land of the dead, along with "Banish The Evil Spirits.
+You seem to want to talk to someone, but I can't see whom.
+
+>[In general, the whole goal thing seems broken.]
+You seem to want to talk to someone, but I can't see whom.
+
+>put ring on aidan
+(the gold ring on Aidan)
+As you slip the second ring onto Aidan's finger, the heat around him increases and you begin to see steam rising from his body.  His face flushes with fever.  Meanwhile, there's a dry, crackling sound coming from the platform now, and the smell of scorching.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+The heat around Aidan intensifies until it explodes with such force that you are violently thrown off your feet.  You slam painfully into a solid rock wall and lose consciousness....
+
+
+
+*** You have died ***
+
+Please press SPACE to continue.
+
+
+
+Or have you?  The light at the end of the tunnel soon revolves into the ceiling light of the hospital room, and you see Dr Rose looking down at you, her face full of concern.  "Oh dear," she says, "I suppose something went a little wrong in there?  Well, whenever you're ready, I hope you'll give it another try."
+
+Your Hospital Room
+The room is, if anything, even more full of medical equipment than the last time you were here.  Aidan has been strapped into that coffin-thing that you woke up in back then, and trussed up so securely that it's a wonder they found anywhere to stick the wires monitoring his condition.  The door is back to the north.
+
+A pair of comfortable chairs have been wheeled in, along with a small table.  Dr Rose sits in one chair, watching you with concern.
+
+>undo
+land of the dead
+[Previous turn undone.]
+
+>get ring
+That seems to belong to Aidan.
+
+The heat around Aidan intensifies until it explodes with such force that you are violently thrown off your feet.  You slam painfully into a solid rock wall and lose consciousness....
+
+
+
+*** You have died ***
+
+Please press SPACE to continue.
+
+
+
+Or have you?  The light at the end of the tunnel soon revolves into the ceiling light of the hospital room, and you see Dr Rose looking down at you, her face full of concern.  "Oh dear," she says, "I suppose something went a little wrong in there?  Well, whenever you're ready, I hope you'll give it another try."
+
+Your Hospital Room
+The room is, if anything, even more full of medical equipment than the last time you were here.  Aidan has been strapped into that coffin-thing that you woke up in back then, and trussed up so securely that it's a wonder they found anywhere to stick the wires monitoring his condition.  The door is back to the north.
+
+A pair of comfortable chairs have been wheeled in, along with a small table.  Dr Rose sits in one chair, watching you with concern.
+
+>[ha]
+That's not a verb I recognize.
+
+>undo
+your hospital room
+[Previous turn undone.]
+
+>undo
+land of the dead
+[Previous turn undone.]
+
+>take ring off of aidan
+You can't see such a thing.
+
+The heat around Aidan intensifies until it explodes with such force that you are violently thrown off your feet.  You slam painfully into a solid rock wall and lose consciousness....
+
+
+
+*** You have died ***
+
+Please press SPACE to continue.
+
+
+
+Or have you?  The light at the end of the tunnel soon revolves into the ceiling light of the hospital room, and you see Dr Rose looking down at you, her face full of concern.  "Oh dear," she says, "I suppose something went a little wrong in there?  Well, whenever you're ready, I hope you'll give it another try."
+
+Your Hospital Room
+The room is, if anything, even more full of medical equipment than the last time you were here.  Aidan has been strapped into that coffin-thing that you woke up in back then, and trussed up so securely that it's a wonder they found anywhere to stick the wires monitoring his condition.  The door is back to the north.
+
+A pair of comfortable chairs have been wheeled in, along with a small table.  Dr Rose sits in one chair, watching you with concern.
+
+>[okay, well, I should be able to take the ring off Aidan's finger.]
+You seem to want to talk to someone, but I can't see whom.
+
+>focus
+You take a deep breath and focus again on your brother's emotions.  The sensations are beginning to seem all too familiar, and once again you find yourself in....
+
+
+Please press SPACE to continue.
+
+Living Room
+You are standing in your living room.  At least, it looks just like your living room back home, except for the trap door in the floor where the stairs used to be.  The kitchen is off to the east, just as you remember it.  And Dad's trophy case, there in the corner, seems a little larger and more imposing than you remember, come to think of it.
+
+>d
+
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, south, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+[A new goal was added: Revive Aidan]
+
+>[???]
+That's not a verb I recognize.
+
+>w
+
+Fork
+The shadowy passage from the east forks here, to the northwest and southwest.  A dim glow can be discerned at the end of the northwest fork; to the southwest, you can see only darkness.
+
+>nw
+
+Land Of The Dead
+You are on a vast, perfectly flat plain of ice.  A platform of some sort has been built out of dry twigs in the middle of the plain; Aidan is lying on it, his arms crossed sedately over his chest.  It is completely and utterly silent.
+
+You can see two gold rings here.
+
+>get rings
+gold ring: Taken.
+gold ring: Taken.
+
+>put ring on aidan
+As you slip the ring onto Aidan's finger, a warm glow seems to spread from his hands and up to his face.  He looks somehow peaceful, as if he were just taking a nap.
+
+Again, off in the distance.  The cawing of birds.
+
+[You achieved a goal! (Revive Aidan)]
+
+>[hmm, I wonder if that advanced the bird thing by two. If so, it shouldn't have. The counter should decrement by one on that losing ending.]
+You seem to want to talk to someone, but I can't see whom.
+
+>feel aian
+You can't see any such thing.
+
+>feel aidan
+Keep your hands to yourself!
+
+>[I should be able to feel his warmth vs. his earlier coldness]
+That's not a verb I recognize.
+
+>l
+Land Of The Dead
+You are on a vast, perfectly flat plain of ice.  A platform of some sort has been built out of dry twigs in the middle of the plain; Aidan is lying on it, his arms crossed sedately over his chest.  It is completely and utterly silent.
+
+>remove ring
+(the gold ring)
+That seems to belong to yourself.
+
+>remove ring from aidan
+(the gold ring from Aidan)
+The temperature drops back down to something more comfortable, and Aidan himself loses the feverish look and returns to a more comfortable-looking state of unconsciousness.
+
+>[huh? I think he only has one on.]
+That's not a verb I recognize.
+
+>remove ring from aidan
+(the gold ring from Aidan)
+The temperature drops back down to something more comfortable, and Aidan himself loses the feverish look and returns to a more comfortable-looking state of unconsciousness.
+
+>g
+(the gold ring from Aidan)
+The temperature drops back down to something more comfortable, and Aidan himself loses the feverish look and returns to a more comfortable-looking state of unconsciousness.
+
+>g
+(the gold ring from Aidan)
+The temperature drops back down to something more comfortable, and Aidan himself loses the feverish look and returns to a more comfortable-looking state of unconsciousness.
+
+>g
+(the gold ring from Aidan)
+The temperature drops back down to something more comfortable, and Aidan himself loses the feverish look and returns to a more comfortable-looking state of unconsciousness.
+
+>g
+(the gold ring from Aidan)
+The temperature drops back down to something more comfortable, and Aidan himself loses the feverish look and returns to a more comfortable-looking state of unconsciousness.
+
+>g
+(the gold ring from Aidan)
+The temperature drops back down to something more comfortable, and Aidan himself loses the feverish look and returns to a more comfortable-looking state of unconsciousness.
+
+>g
+(the gold ring from Aidan)
+The temperature drops back down to something more comfortable, and Aidan himself loses the feverish look and returns to a more comfortable-looking state of unconsciousness.
+
+>[okay, so that's an issue.]
+You seem to want to talk to someone, but I can't see whom.
+
+>x aidan
+He looks grey and cold and lifeless.  His hands are crossed at the wrist, over his chest, fingers splayed.  For some reason, he's dressed up as Robin Hood.
+
+>put ring on aidan
+(the gold ring on Aidan)
+As you slip the second ring onto Aidan's finger, the heat around him increases and you begin to see steam rising from his body.  His face flushes with fever.  Meanwhile, there's a dry, crackling sound coming from the platform now, and the smell of scorching.
+
+>[second ring? Something is off-kilter here.]
+That's not a verb I recognize.
+
+>remove ring from aidan
+The temperature drops back down to something more comfortable, and Aidan himself loses the feverish look and returns to a more comfortable-looking state of unconsciousness.
+
+>remove ring from aidan
+(the gold ring from Aidan)
+The temperature drops back down to something more comfortable, and Aidan himself loses the feverish look and returns to a more comfortable-looking state of unconsciousness.
+
+>i
+You are carrying:
+  a gold ring
+  Exorcism
+  a brass lantern, providing light
+  Aidan's photograph
+  Aidan's room key
+  some readings for your Satirical Writing class
+
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+  Bring Light to the Darkness
+  Revive Aidan
+
+Goals Remaining: 
+  Defeat the Thief
+
+>l
+Land Of The Dead
+You are on a vast, perfectly flat plain of ice.  A platform of some sort has been built out of dry twigs in the middle of the plain; Aidan is lying on it, his arms crossed sedately over his chest.  It is completely and utterly silent.
+
+>x aidan
+He looks grey and cold and lifeless.  His hands are crossed at the wrist, over his chest, fingers splayed.  For some reason, he's dressed up as Robin Hood.
+
+>se
+
+Fork
+The shadowy passage from the east forks here, to the northwest and southwest.  A dim glow can be discerned at the end of the northwest fork; to the southwest, you can see only darkness.
+
+>drop ring
+Dropped.
+
+>nw
+
+Land Of The Dead
+You are on a vast, perfectly flat plain of ice.  A platform of some sort has been built out of dry twigs in the middle of the plain; Aidan is lying on it, his arms crossed sedately over his chest.  It is completely and utterly silent.
+
+>remove ring from aidan
+Aidan's face turns grey and ashen as the temperature drops.
+
+>[okay, so again it's a parsing issue.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[but his description doesn't change either
+That's not a verb I recognize.
+
+>x aidan
+He looks grey and cold and lifeless.  His hands are crossed at the wrist, over his chest, fingers splayed.  For some reason, he's dressed up as Robin Hood.
+
+>put ring on aidan
+As you slip the ring onto Aidan's finger, a warm glow seems to spread from his hands and up to his face.  He looks somehow peaceful, as if he were just taking a nap.
+
+>x aidan
+He looks grey and cold and lifeless.  His hands are crossed at the wrist, over his chest, fingers splayed.  For some reason, he's dressed up as Robin Hood.
+
+>[That should update.]
+That's not a verb I recognize.
+
+>se
+
+Fork
+The shadowy passage from the east forks here, to the northwest and southwest.  A dim glow can be discerned at the end of the northwest fork; to the southwest, you can see only darkness.
+
+You can see a gold ring here.
+
+>get ring
+Taken.
+
+>nw
+
+Land Of The Dead
+You are on a vast, perfectly flat plain of ice.  A platform of some sort has been built out of dry twigs in the middle of the plain; Aidan is lying on it, his arms crossed sedately over his chest.  It is completely and utterly silent.
+
+>put ring on aidan
+(the gold ring on Aidan)
+As you slip the second ring onto Aidan's finger, the heat around him increases and you begin to see steam rising from his body.  His face flushes with fever.  Meanwhile, there's a dry, crackling sound coming from the platform now, and the smell of scorching.
+
+>x aidan
+He looks grey and cold and lifeless.  His hands are crossed at the wrist, over his chest, fingers splayed.  For some reason, he's dressed up as Robin Hood.
+
+>[that too]
+That's not a verb I recognize.
+
+>remove ring from aidan
+The temperature drops back down to something more comfortable, and Aidan himself loses the feverish look and returns to a more comfortable-looking state of unconsciousness.
+
+>wear ring
+(the gold ring)
+You put on the gold ring.
+
+>i
+You are carrying:
+  a gold ring (being worn)
+  Exorcism
+  a brass lantern, providing light
+  Aidan's photograph
+  Aidan's room key
+  some readings for your Satirical Writing class
+
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+  Bring Light to the Darkness
+  Revive Aidan
+
+Goals Remaining: 
+  Defeat the Thief
+
+>remove ring
+(the gold ring (being worn))
+That seems to belong to yourself.
+
+>take off ring
+(the gold ring)
+You take off the gold ring.
+
+>i
+You are carrying:
+  a gold ring
+  Exorcism
+  a brass lantern, providing light
+  Aidan's photograph
+  Aidan's room key
+  some readings for your Satirical Writing class
+
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+  Bring Light to the Darkness
+  Revive Aidan
+
+Goals Remaining: 
+  Defeat the Thief
+
+>se
+
+Fork
+The shadowy passage from the east forks here, to the northwest and southwest.  A dim glow can be discerned at the end of the northwest fork; to the southwest, you can see only darkness.
+
+>[note to self: check to see if the lake complains about coldness when Daniel isn't wearing the ring.]
+That's not a verb I recognize.
+
+>n
+There are exits east (to the crossroads), southwest (to the maintenance room) and northwest (to the land of the dead) from here.
+
+>e
+
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, south, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+>n
+
+Classroom
+Looks like you're back in school again.  There's the old chalkboard, and all the familiar desks and chairs, all looking a little smaller than you remember.  By contrast, the teacher's desk looms menacingly at one shadowy end of the room.  There is an exit to the south.
+
+A folded-up piece of paper
+
+>get paper
+Taken.
+
+>x ink
+You can't see such a thing.
+
+>[without descriptions this puzzle won't work]
+That's not a verb I recognize.
+
+>[also, I'm supposed to notice its sponginess when I pick it up]
+You seem to want to talk to someone, but I can't see whom.
+
+>se
+There is an exit south (to the crossroads) from here.
+
+>s
+
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, south, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+>e
+
+Xroads
+You are standing at an Xroads, which differ from a mere crossroads in that the roads go off diagonally, that is, to the northeast, southeast, and northwest.  Another narrow path goes back west to the crossroads.
+
+>ne
+
+Curtain Room
+You are in a perfectly cubical room, with wall-to-wall carpeting and wood-paneled walls.  An archway at the southwest corner leads back towards the Xroads.  The entire east wall is taken up by a red curtain that wafts and rustles in the nonexistent breeze.
+
+>x curtain
+It stretches from ceiling to floor, and from wall to wall.  You can't see anything through it, but there is no way any curtain could move like that unless there were a window or something on the other side, with a wind blowing against it.
+
+>lift curtain
+That's not a verb I recognize.
+
+>[we should parse that]
+That's not a verb I recognize.
+
+>move curtain
+It is fixed in place.
+
+>enter curtain
+That's not something you can enter.
+
+>go behind curtain
+You must supply a noun.
+  
+>walk behind curtain
+You must supply a noun.
+  
+>["curtain" isn't enough of a noun for you?]
+That's not a verb I recognize.
+
+>look behind curtain
+You can't see any such thing.
+
+>w
+There is an exit southwest (to the Xroads) from here.
+
+>sw
+
+Xroads
+You are standing at an Xroads, which differ from a mere crossroads in that the roads go off diagonally, that is, to the northeast, southeast, and northwest.  Another narrow path goes back west to the crossroads.
+
+[A new goal was added: Pierce the Veil]
+
+>w
+
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, south, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+>sw
+You bravely march off into the shadows in that direction.  For a while, you can see nothing around you except for the ground at your feet and the shadows beyond the light ... and then you finally arrive at...
+
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, south, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+>w
+
+Fork
+The shadowy passage from the east forks here, to the northwest and southwest.  A dim glow can be discerned at the end of the northwest fork; to the southwest, you can see only darkness.
+
+>sw
+
+Maintenance Room
+This looks suspiciously like the bridge of your Dad's ship, at least what you remember of it from your visit to the naval base a couple of years ago.  Banks of controls line the walls, most of them blinking and beyond complicated.  One solitary terminal, separate from the others, seems simple enough, however.  Through a door to the northeast, which you do not remember opening to get in here, is the passage back to the fork.
+
+>[okay so yes, there should be SCUBA gear here.]
+You seem to want to talk to someone, but I can't see whom.
+
+>x controls
+With all these blinking lights, it's surprising that you needed to bring a light source into this room to dispel the darkness.
+
+>x terminal
+This terminal consists of a monitor screen, a red button, and a blue button.  The screen shows six boxes, labeled A to F: A and B in the top row, and the remaining four in the bottom row.  Horizontal lines connect boxes A to B,  E to F, and D to E.  A vertical line joins boxes A and D.
+
+>ne
+
+Fork
+The shadowy passage from the east forks here, to the northwest and southwest.  A dim glow can be discerned at the end of the northwest fork; to the southwest, you can see only darkness.
+
+>e
+
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, south, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+>s
+
+Right Corner
+You are in a passageway that goes east and north.  It seems absolutely ordinary in every way.
+
+>e
+
+Obtuse Passageway
+You are in a passageway that goes west and east.  It seems absolutely ordinary in every way.
+
+>e
+
+Lake Shore
+You stand on the shores of what should more properly be called a sea: it is enormous, its far shores lost beyond the reach of any light.  The ceiling of the cavern is lost in the darkness as well; it is so high up that it is entirely possible that there is in fact no ceiling, and that the darkness above is a starless, moonless sky.  Faint music wafts down from above, and the only visible exit is to the west.
+
+>x lake
+The lake is dark and inky, and covered over with a thick layer of ice.  Curiously, the marbled patterns of bubbles in the ice seem to form the vague appearance of a face.  A face wearing a domino mask.
+
+>x ice
+It seems solid enough.
+
+>walk on lake
+You must supply a noun.
+  
+>enter lake
+You walk out across the ice, and despite your best efforts to keep in a straight line, find yourself emerging right where you started.
+
+>[we should parse "walk on lake".]
+That's not a verb I recognize.
+
+>skate
+That's not a verb I recognize.
+
+>[that too]
+That's not a verb I recognize.
+
+>w
+
+Obtuse Passageway
+You are in a passageway that goes west and east.  It seems absolutely ordinary in every way.
+
+>nw
+There are exits east (to the lake shore) and west (to the right corner) from here.
+
+>w
+
+Right Corner
+You are in a passageway that goes east and north.  It seems absolutely ordinary in every way.
+
+>nw
+There are exits north (to the crossroads) and east (to the obtuse passageway) from here.
+
+>n
+
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, south, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+>w
+
+Fork
+The shadowy passage from the east forks here, to the northwest and southwest.  A dim glow can be discerned at the end of the northwest fork; to the southwest, you can see only darkness.
+
+>sw
+
+Maintenance Room
+This looks suspiciously like the bridge of your Dad's ship, at least what you remember of it from your visit to the naval base a couple of years ago.  Banks of controls line the walls, most of them blinking and beyond complicated.  One solitary terminal, separate from the others, seems simple enough, however.  Through a door to the northeast, which you do not remember opening to get in here, is the passage back to the fork.
+
+>push blue
+The blue button unlocks and pops out again.  Off in the distance, you hear the grinding of heavy machinery.
+
+>push red
+The red button sinks into the panel and locks into place with a soft click.  Off in the distance, you hear the grinding of heavy machinery.
+
+>ne
+
+Fork
+The shadowy passage from the east forks here, to the northwest and southwest.  A dim glow can be discerned at the end of the northwest fork; to the southwest, you can see only darkness.
+
+>sw
+
+Maintenance Room
+This looks suspiciously like the bridge of your Dad's ship, at least what you remember of it from your visit to the naval base a couple of years ago.  Banks of controls line the walls, most of them blinking and beyond complicated.  One solitary terminal, separate from the others, seems simple enough, however.  Through a door to the northeast, which you do not remember opening to get in here, is the passage back to the fork.
+
+>push blue
+The red button pops up as you push on the blue button, which sinks into the panel and locks into place with a soft click.  Off in the distance, you hear the grinding of heavy machinery.
+
+>push red
+The blue button pops up as you push on the red button, which sinks into the panel and locks into place with a soft click.  Off in the distance, you hear the grinding of heavy machinery.
+
+>e
+There is an exit northeast (to the fork) from here.
+
+>ne
+
+Fork
+The shadowy passage from the east forks here, to the northwest and southwest.  A dim glow can be discerned at the end of the northwest fork; to the southwest, you can see only darkness.
+
+>e
+
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+>s
+You bravely march off into the shadows in that direction.  For a while, you can see nothing around you except for the ground at your feet and the shadows beyond the light ... and then you finally arrive at...
+
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+>e
+
+Xroads
+You are standing at an Xroads, which differ from a mere crossroads in that the roads go off diagonally, that is, to the northeast, southeast, southwest, and northwest.  Another narrow path goes back west to the crossroads.
+
+>sw
+
+Obtuse Corner
+You are in a passageway that goes west and northeast.  It seems absolutely ordinary in every way.
+
+>w
+
+Right Passageway
+You are in a passageway that goes east and west.  It seems absolutely ordinary in every way.
+
+>w
+
+Twisty Passages
+You are in a completely unsurprising maze of twisty passages, all alike.
+
+>w
+
+Twisty Passages
+You are in a completely unsurprising maze of twisty passages, all alike.  Well, not all of them completely alike: the passage sloping upwards from here runs right beside a large rockfall.
+
+>get fall
+You can't see such a thing.
+
+>get rocks
+You can't see such a thing.
+
+>get rock
+You take a smooth rock.
+
+>x rock
+You see nothing special about the smooth rock.
+
+>get rock
+You already have that.
+
+>get another rock
+You already have that.
+
+>u
+
+Twisty Passages
+[placeholder text: "Twisty Passages"]
+
+.
+
+>u
+
+Twisty Passages
+[placeholder text: "Twisty Passages"]
+
+.
+
+>throw rock
+Dropped.
+
+>[there should probably be a bit of cueing in that response instead.]
+That's not a verb I recognize.
+
+>get rock
+You take a smooth rock.
+
+>u
+
+Thief's Den
+You have managed to find your way into the thief's den, a seedy little place higher than it is wide and lined with shelves displaying the thief's ill-gotten gains.  The only piece of furniture appears to be a dirty mattress on the floor.  A spiral stair winds back up to the twisty passages of the maze.
+
+Surprised, the thief twists to his feet, pulling a knife.
+
+You can also see some night vision goggles here.
+
+>kill thief
+Oh, hey, you know kung fu.  Since when did you know kung fu?  Clearly Aidan must think you ought to know kung fu, because here you do.  You show the thief.
+
+WHAM!
+
+The thief rolls to one side as he lands, and is quickly on his feet again.  He shakes his head, as if to clear it, and aims a deadly jab at your throat.  You manage to dodge the worst of it, but it still clips you quite painfully on the shoulder.
+
+>g
+THUD.
+
+The thief scrambles to his feet again, and adopts a defensive position.
+
+>g
+CRACK!
+
+The thief tries to get up, but this time your awesome in-this-world-only kung fu skills prove too much for him, and he collapses, unconscious.
+
+[You achieved a goal! (Defeat the Thief)]
+
+>remove mask
+You can't see any such thing.
+
+>get mask
+Black smoke begins to emit from the fallen thief, only slightly at first, then billowing out in greater and greater amounts.  Again you hear the distant sound of cawing birds, but this time, the sound draws closer, as if they come for you.  As the cold smoke fills the room, it begins to circle and swirl, until resolving itself into a mass of inky-black birds, cawing, echoing, shrieking within the small space.  You duck down, cover your head and your ears, await some sort of onslaught, but, it does not come.  The black flock thins on its own, not so much flying down the only exit, as disappearing through the rock itself.
+
+>undo
+thief's den
+[Previous turn undone.]
+
+>x thief
+Black smoke begins to emit from the fallen thief, only slightly at first, then billowing out in greater and greater amounts.  Again you hear the distant sound of cawing birds, but this time, the sound draws closer, as if they come for you.  As the cold smoke fills the room, it begins to circle and swirl, until resolving itself into a mass of inky-black birds, cawing, echoing, shrieking within the small space.  You duck down, cover your head and your ears, await some sort of onslaught, but, it does not come.  The black flock thins on its own, not so much flying down the only exit, as disappearing through the rock itself.
+
+>get goggles
+Taken.
+
+>d
+
+Twisty Passages
+[placeholder text: "Twisty Passages"]
+
+.
+
+>d
+
+Twisty Passages
+[placeholder text: "Twisty Passages"]
+
+.
+
+>d
+
+Twisty Passages
+You are in a completely unsurprising maze of twisty passages, all alike.  Well, not all of them completely alike: the passage sloping upwards from here runs right beside a large rockfall.
+
+>e
+
+Twisty Passages
+You are in a completely unsurprising maze of twisty passages, all alike.
+
+>ne
+There are exits east (to the right passageway) and west (to the twisty passages) from here.
+
+>n
+There are exits east (to the right passageway) and west (to the twisty passages) from here.
+
+>e
+
+Right Passageway
+You are in a passageway that goes east and west.  It seems absolutely ordinary in every way.
+
+>n
+There are exits east (to the obtuse corner) and west (to the twisty passages) from here.
+
+>e
+
+Obtuse Corner
+You are in a passageway that goes west and northeast.  It seems absolutely ordinary in every way.
+
+>ne
+
+Xroads
+You are standing at an Xroads, which differ from a mere crossroads in that the roads go off diagonally, that is, to the northeast, southeast, southwest, and northwest.  Another narrow path goes back west to the crossroads.
+
+>w
+
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+>ju
+That's not a verb I recognize.
+
+>u
+
+Living Room
+You are standing in your living room.  At least, it looks just like your living room back home, except for the trap door in the floor where the stairs used to be.  The kitchen is off to the east, just as you remember it.  And Dad's trophy case, there in the corner, seems a little larger and more imposing than you remember, come to think of it.
+
+>e
+
+Kitchen
+This looks almost exactly like your kitchen back home, except that the door to the basement is missing.  Also, there's a blank wall where the entrance to the dining room used to be.  The kitchen table is pushed up under a window, just as it has always been, but the chairs are missing.
+
+On the kitchen table are some binoculars.
+
+>e
+
+Mountain View
+The ground just drops away a short distance away from the house, descending straight down into the clouds miles below.  The only solid object you can see beyond the clouds is a mountain far off into the distance.  The only way back into the house is through the kitchen window.
+
+>x mountain
+The mountain rises straight up from the clouds, its ice-covered peak glinting in the sunlight.  In the ice, you can see Aidan's face, scowling murderously back at you.
+
+>throw rock at mountain
+The ice shatters.
+>d
+There is an exit west (to the kitchen) from here.
+
+>w
+
+Kitchen
+This looks almost exactly like your kitchen back home, except that the door to the basement is missing.  Also, there's a blank wall where the entrance to the dining room used to be.  The kitchen table is pushed up under a window, just as it has always been, but the chairs are missing.
+
+On the kitchen table are some binoculars.
+
+>d
+There are exits east (to the mountain view) and west (to the living room) from here.
+
+>d
+There are exits east (to the mountain view) and west (to the living room) from here.
+
+>w
+
+Living Room
+You are standing in your living room.  At least, it looks just like your living room back home, except for the trap door in the floor where the stairs used to be.  The kitchen is off to the east, just as you remember it.  And Dad's trophy case, there in the corner, seems a little larger and more imposing than you remember, come to think of it.
+
+>d
+
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+>e
+
+Xroads
+You are standing at an Xroads, which differ from a mere crossroads in that the roads go off diagonally, that is, to the northeast, southeast, southwest, and northwest.  Another narrow path goes back west to the crossroads.
+
+>w
+
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+>w
+
+Fork
+The shadowy passage from the east forks here, to the northwest and southwest.  A dim glow can be discerned at the end of the northwest fork; to the southwest, you can see only darkness.
+
+>sw
+
+Maintenance Room
+This looks suspiciously like the bridge of your Dad's ship, at least what you remember of it from your visit to the naval base a couple of years ago.  Banks of controls line the walls, most of them blinking and beyond complicated.  One solitary terminal, separate from the others, seems simple enough, however.  Through a door to the northeast, which you do not remember opening to get in here, is the passage back to the fork.
+
+>push blue
+The red button pops up as you push on the blue button, which sinks into the panel and locks into place with a soft click.  Off in the distance, you hear the grinding of heavy machinery.
+
+>e
+There is an exit northeast (to the fork) from here.
+
+>ne
+
+Fork
+The shadowy passage from the east forks here, to the northwest and southwest.  A dim glow can be discerned at the end of the northwest fork; to the southwest, you can see only darkness.
+
+>e
+
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, south, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+>s
+
+Right Corner
+You are in a passageway that goes east and north.  It seems absolutely ordinary in every way.
+
+>e
+
+Obtuse Passageway
+You are in a passageway that goes west and east.  It seems absolutely ordinary in every way.
+
+>e
+
+Lake Shore
+You stand on the shores of what should more properly be called a sea: it is enormous, its far shores lost beyond the reach of any light.  The ceiling of the cavern is lost in the darkness as well; it is so high up that it is entirely possible that there is in fact no ceiling, and that the darkness above is a starless, moonless sky.  Faint music wafts down from above, and the only visible exit is to the west.
+
+>[I think the ice should be foregrounded a bit more. I'm thinking a sentence appears after the room description, along the lines of "The lake is covered with a thick layer of ice." (Leave the discovery of the bubble-face for those who examine.)]
+That's not a verb I recognize.
+
+>[Then the first entry into this room after the ice has shattered will note the fact that the ice is no longer there.]
+That's not a verb I recognize.
+
+>l
+Lake Shore
+You stand on the shores of what should more properly be called a sea: it is enormous, its far shores lost beyond the reach of any light.  The ceiling of the cavern is lost in the darkness as well; it is so high up that it is entirely possible that there is in fact no ceiling, and that the darkness above is a starless, moonless sky.  Faint music wafts down from above, and the only visible exit is to the west.
+
+>i
+You are carrying:
+  some night vision goggles
+  Aidan's essay
+  a gold ring
+  Exorcism
+  a brass lantern, providing light
+  Aidan's photograph
+  Aidan's room key
+  some readings for your Satirical Writing class
+
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+  Bring Light to the Darkness
+  Revive Aidan
+  Defeat the Thief
+
+Goals Remaining: 
+  Pierce the Veil
+
+>swim
+That's not a verb I recognize.
+
+>drop all
+night vision goggles: Dropped.
+Aidan's essay: Dropped.
+gold ring: Dropped.
+Exorcism: Dropped.
+brass lantern: Dropped.
+Aidan's room key: Dropped.
+readings for your Satirical Writing class: Dropped.
+Aidan's photograph: Dropped.
+
+>enter water
+You can't see any such thing.
+
+>enter lake
+You walk out across the ice, and despite your best efforts to keep in a straight line, find yourself emerging right where you started.
+
+>[wait, the ice is still there?]
+You seem to want to talk to someone, but I can't see whom.
+
+>x lake
+The lake is dark and inky, and covered over with a thick layer of ice.  Curiously, the marbled patterns of bubbles in the ice seem to form the vague appearance of a face.  A face wearing a domino mask.
+
+>d
+
+Beneath The Surface
+All you can see is ink.  The fact that it's opaque makes the possession of a light source, or lack thereof, rather immaterial.
+
+>[oh, I see. This is buggy. The ice should be gone, and commands like "swim" or "enter water" should work. When the ice is there, "D" shouldn't work.]
+You seem to want to talk to someone, but I can't see whom.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>[Also, there should be text about how cold the lake is, and hypothermia after 3 turns. The ring counteracts this.]
+You seem to want to talk to someone, but I can't see whom.
+
+>out
+But you aren't in anything at the moment.
+
+>[that should work too.]
+That's not a verb I recognize.
+
+>u
+
+Lake Shore
+You stand on the shores of what should more properly be called a sea: it is enormous, its far shores lost beyond the reach of any light.  The ceiling of the cavern is lost in the darkness as well; it is so high up that it is entirely possible that there is in fact no ceiling, and that the darkness above is a starless, moonless sky.  Faint music wafts down from above, and the only visible exit is to the west.
+
+You can see some readings for your Satirical Writing class, Aidan's room key, a brass lantern, Exorcism, a gold ring, Aidan's essay and some night vision goggles here.
+
+>get lantern
+Taken.
+
+>d
+
+Beneath The Surface
+All you can see is ink.  The fact that it's opaque makes the possession of a light source, or lack thereof, rather immaterial.
+
+>i
+You are carrying:
+  a brass lantern, providing light
+
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+  Bring Light to the Darkness
+  Revive Aidan
+  Defeat the Thief
+
+Goals Remaining: 
+  Pierce the Veil
+
+>u
+
+Lake Shore
+You stand on the shores of what should more properly be called a sea: it is enormous, its far shores lost beyond the reach of any light.  The ceiling of the cavern is lost in the darkness as well; it is so high up that it is entirely possible that there is in fact no ceiling, and that the darkness above is a starless, moonless sky.  Faint music wafts down from above, and the only visible exit is to the west.
+
+You can see some readings for your Satirical Writing class, Aidan's room key, Exorcism, a gold ring, Aidan's essay and some night vision goggles here.
+
+>[okay, I see what's happening with the light. That's fine.
+You seem to want to talk to someone, but I can't see whom.
+
+>get essay
+Taken.
+
+>d
+
+Beneath The Surface
+You hover just a foot below the surface.  It's too dark to go much deeper.
+
+>x essay
+You see nothing special about Aidan's essay.
+
+>[It's description should change. Also, when I take the essay into the water, I should notice it filling up with ink, the brightness of the red ink seeping into the lake.]
+You seem to want to talk to someone, but I can't see whom.
+
+>d
+It's too dark to go deeper.
+
+>i
+You are carrying:
+  Aidan's essay
+  a brass lantern, providing light
+
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+  Bring Light to the Darkness
+  Revive Aidan
+  Defeat the Thief
+
+Goals Remaining: 
+  Pierce the Veil
+
+>w
+There are exits up (to the lake shore) and down from here.
+
+>iu
+That's not a verb I recognize.
+
+>u
+
+Lake Shore
+You stand on the shores of what should more properly be called a sea: it is enormous, its far shores lost beyond the reach of any light.  The ceiling of the cavern is lost in the darkness as well; it is so high up that it is entirely possible that there is in fact no ceiling, and that the darkness above is a starless, moonless sky.  Faint music wafts down from above, and the only visible exit is to the west.
+
+You can see some readings for your Satirical Writing class, Aidan's room key, Exorcism, a gold ring and some night vision goggles here.
+
+>get goggles
+Taken.
+
+>d
+
+Beneath The Surface
+You hover just a foot below the surface.  It's too dark to go much deeper.
+
+>d
+It's too dark to go deeper.
+
+>wear goggles
+You put on the night vision goggles.
+
+>d
+
+Lake Bottom
+You are finally at the bottom of the lake, a vast desert of silt softly shifting with the currents.  Amid the billowing silt is a monolithic, hexagonal block of black basalt.  A sword, glowing a dim blue, has been plunged halfway into the basalt.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>[I should drown here without scuba gear]
+That's not a verb I recognize.
+
+>x sword
+[placeholder text: "An elvish sword of great antiquity."]
+
+
+
+>get sword
+Taken.
+
+>u
+
+Beneath The Surface
+All you have to go on is an innate sense of up and down:  all around you, for as far as you can see, is cold, clear water.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>[I think I scripted a shark for this section]
+That's not a verb I recognize.
+
+>u
+
+Lake Shore
+You stand on the shores of what should more properly be called a sea: it is enormous, its far shores lost beyond the reach of any light.  The ceiling of the cavern is lost in the darkness as well; it is so high up that it is entirely possible that there is in fact no ceiling, and that the darkness above is a starless, moonless sky.  Faint music wafts down from above, and the only visible exit is to the west.
+
+You can see some readings for your Satirical Writing class, Aidan's room key, Exorcism and a gold ring here.
+
+>get all
+readings for your Satirical Writing class: Taken.
+Aidan's room key: Taken.
+Exorcism: Taken.
+gold ring: Taken.
+
+>e
+There are exits west (to the obtuse passageway) and down (to beneath the surface) from here.
+
+>w
+
+Obtuse Passageway
+You are in a passageway that goes west and east.  It seems absolutely ordinary in every way.
+
+>ne
+There are exits east (to the lake shore) and west (to the right corner) from here.
+
+>w
+
+Right Corner
+You are in a passageway that goes east and north.  It seems absolutely ordinary in every way.
+
+>n
+
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, south, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+>e
+
+Xroads
+You are standing at an Xroads, which differ from a mere crossroads in that the roads go off diagonally, that is, to the northeast, southeast, and northwest.  Another narrow path goes back west to the crossroads.
+
+>ne
+
+Curtain Room
+You are in a perfectly cubical room, with wall-to-wall carpeting and wood-paneled walls.  An archway at the southwest corner leads back towards the Xroads.  The entire east wall is taken up by a red curtain that wafts and rustles in the nonexistent breeze.
+
+>cut curtain
+The sword sings as it slices through the air and the curtain, cutting through it as if it were nothing but light and shadows.  The fabric seems to dissolve into tendrils of mist as it falls apart, finally leaving the way east open.
+
+[You achieved a goal! (Pierce the Veil)]
+
+>e
+
+Deepest Place
+[placeholder text: "deepest place"]
+
+  
+
+[placeholder text: "the thief"]
+
+.
+
+>kill thief
+Out of nowhere, someone leaps in between you and the thief!  It's Aidan, and more to the point, it's the Aidan that you remember, the one who helps you handle bullies and carries you to the hospital when you freak out in the dining hall!  He barely has time to give you a "hi Daniel" before he and the thief are locked in mortal combat with each other....
+
+The thief is too busy fighting Aidan to attempt to attack you.
+
+>kill thief
+You judo punch the thief.
+
+The thief lashes out at Aidan with his knife and a bucket-load of inhuman speed.  Aidan somehow manages to deflect the attack, but only just.
+
+>kill thief with sword
+You can't see any such thing.
+
+>i
+You are carrying:
+  a gold ring
+  Exorcism
+  Aidan's room key
+  some readings for your Satirical Writing class
+  an elvish sword
+  some night vision goggles (being worn)
+  Aidan's essay
+  a brass lantern, providing light
+
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+  Bring Light to the Darkness
+  Revive Aidan
+  Defeat the Thief
+  Pierce the Veil
+
+>[I should be able to use the sword][
+That's not a verb I recognize.
+
+>l
+Deepest Place
+[placeholder text: "deepest place"]
+
+  
+
+[placeholder text: "the thief"]
+
+.
+
+Aidan's here, and he looks normal.  Except he knows kung fu, which isn't quite normal.
+
+>kill thief
+You judo punch the thief.
+
+The thief lunges at Aidan, who dives for the ground and kicks out at the thief.  The kick manages to catch the thief in the shoulder, sending him spinning off to one side.  Unfortunately, this does not seem to slow the thief down in the slightest.
+
+>help aidan
+That's not a verb I recognize.
+
+>x thief
+[placeholder text: "thief"]
+
+ 
+
+Aidan engages the thief in a blur of flying fists and feet, and for a moment the two of them are moving so quickly you're not sure where one of them ends and the other begins.  And when they finally disengage, you can't tell if either of them has managed to land a blow on the other.
+
+>x aidan
+He doesn't look very happy to be here.  Then again, who would?  Fortunately for everyone, he's also unconscious and drooling slightly.  He's being kept sedated, but goodness only knows how long that will last.
+
+Aidan catches your eye.  "We're too evenly matched," he says, in between deflecting the thief's knife and trying to land a punch, "I could really use an edge here...."
+
+>[he's a hell of a fighter for an unconscious guy.]
+That's not a verb I recognize.
+
+>[Also "i could really use an edge" is an awesome cue]
+That's not a verb I recognize.
+
+>throw sword to aidan
+I only understood you as far as wanting to throw the elvish sword.
+
+>[that should work]
+That's not a verb I recognize.
+
+>give sword to aidan
+You put the sword on the ground and slide it over to Aidan, who kicks it up into his hands and swings it up to block the Thief's knife.  He's much faster than you are, given the super-speed and super-strength, and you can hear the sword whistling through the air as it whirls, a blue blur around the Thief.  In less than a minute, the Thief's knife goes flying off into the darkness, and the Thief himself is cut down.
+
+There's no blood.
+
+Aidan stands over the Thief, leaning on the sword and panting.  He flashes you a familiar smile.  "Thanks, Daniel.  He almost had me there.  If you hadn't passed me the sword...."  He shakes his head.  "Now, let's see who this fellow is behind his mask."  Leaning down, he pulls off the Thief's mask, revealing the face of ... Dr Claudia Rose.
+
+The scene wavers and dissolves all around you.  Aidan is saying something, but you can't hear him.  And in a moment, you are back in the hospital room, looking at the real Dr Rose, who is smiling quite happily.  "You did it, Daniel!  I knew you could do it!  Look, your brother's looking more peaceful already."
+
+It's true.  Aidan's still unconscious, but he looks a great deal more relaxed, with the same expression of peace that you saw when you put the ring on him back there in the Land of the Dead.  Whatever was going wrong in his head, it's over now.
+
+"For he's a jolly good fellow, for he's a jolly good fellow, for he's...."
+
+You wake up to face the last day of LEAP.  Oh, a big parade, like the one in your dream, would have been nice.  But it looks as if you've been totally out of it since saving Aidan from himself; in fact, Dr Rose's congratulations really were pretty much the last thing you remember before waking up just now, three hours before breakfast, with Dr Rose hovering nearby.  She doesn't appear to have slept all night.
+
+After two hours of various tests and stuff, you and Aidan are both shipped back to camp, and then it's off to breakfast while ignoring all the whispers and the odd looks.  You find a seat in a far corner of the dining hall, while Aidan falls in with some friends who don't think he's going to rip their heads off if they look at him funny.  Almost immediately, Ava and Stacy sit down on either side of you, and Lucian sits himself across the table from you.  At least some people don't think you're an all-out freak....
+
+
+Please press SPACE to continue.
+LEAP, Day 13 (Friday) - Breakfast
+
+You are sitting with Ava and Stacy and Lucian; otherwise, there's no-one else at the table.  Somewhere else in the dining hall, Aidan is sitting with a small handful of friends who still think he's okay, murderous psycho rages or not.  A lot of the people have finished breakfast and moved on, but you've been busy telling your friends about your adventures through Aidan's mindscape.
+
+Dining Hall
+You are sitting between Ava and Stacy.  Lucian is sitting across from you, half-hidden behind a stack of pancakes.  Aidan is with his friends somewhere off to the west.
+
+[placeholder text: "Room description text about Lucian"]
+
+.
+
+Aidan's sitting with a small handful of his closest friends, off at the other side of the hall.  They seem rather subdued; most of the other campers seem to be keeping their distance.
+
+Ava and Stacy are here.
+
+>[okay, with that I think I'll wrap up my work with this build.]
+You seem to want to talk to someone, but I can't see whom.
+
+>save
+Ok.
+
+>quit
+Are you sure you want to quit? y

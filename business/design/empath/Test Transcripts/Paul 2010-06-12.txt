@@ -1,0 +1,1528 @@
+Start of a transcript of
+
+The Empath's Gift
+The Empath's Gift by Textfyre
+Copyright 2010 by Textfyre
+Designed by Paul O'Brian
+Written by Christopher Huang
+Game Engine (FyreVM) by Jesse McGrew
+Inform 7 Programming by Ron Newcomb
+ and Graeme Jefferis
+Testing by ____
+Special thanks to Graham Nelson and Emily Short
+for all of their hard work on Inform 7.
+All rights reserved.
+Identification number: //88E48DB3-8DB5-4468-9F2A-8D30D3E09EFA//
+Interpreter version 1.2.6 / VM 3.1.1 / Library serial number 080126
+Standard Rules version 2/090402 by Graham Nelson
+Textfyre Standard Backdrops by Textfyre
+Basic Followers by Textfyre
+Goals by Textfyre
+Test Suite by Textfyre
+
+>restore
+Ok.
+
+>l
+Darkness
+It is pitch dark, and you can't see a thing.
+
+>x me
+It is pitch dark, and you can't see a thing.
+
+>feel
+You sense nothing untoward or out of the ordinary here.
+
+>[hmmmm. I know that's normally a synonymn for "focus". In this case, though, I think when confronted with pitch darkness a natural thing to attempt is to feel around. I think there should be a response along the lines of "You feel solid walls on every side
+You seem to want to talk to someone, but I can't see whom.
+
+>[of you, pressing close. It sure feels like a coffin, but one whose walls are smooth and cold."]
+You seem to want to talk to someone, but I can't see whom.
+
+>knock
+The coffin case isn't open.
+
+>knock on case
+You can't see any such thing.
+
+>[hrm]
+That's not a verb I recognize.
+
+>scream
+The darkness above you flies open, and you're momentarily blinded by a flood of bright light.  As you try to blink away the spots, a face swims into view -- it takes you a few moments to register the curly white hair, the rosy cheeks and the clear blue eyes, and the fact that said face is talking to you.
+
+"Hullo, Daniel.  My goodness, you gave us a scare.  How are you feeling?"
+
+1. "I'm alive, I think."
+2. "What just happened?"
+3. "What the hell just happened?"
+4. "I just woke up in a coffin!  I thought I was being buried alive!  How do you think I feel?"
+
+>4
+"I just woke up in a coffin!  I thought I was being buried alive!  How do you think I feel?"
+
+"Tsk tsk, I do know you're upset, but I do think it best if you try to calm down and consider that this sort of stress might be what put you here in the first place."
+
+1. "Where am I?"
+2. "Okay, fine, I'll calm down.  See?  All calmed down.  Now this had better be good."
+
+>2
+"Okay, fine, I'll calm down.  See?  All calmed down.  Now this had better be good."
+
+"Here, sit up.  I'm Dr Claudia Rose, by the way, and you and your brother are very lucky that your particular condition happens to be a specialty of mine."
+
+1. "Condition?  What condition?"
+2. "What... has something happened to Aidan?"
+
+>1
+"Condition?  What condition?"
+
+"You're developing some rather unique abilities, Daniel.  As far as I can tell, based on what your friends have told me, you are gaining the ability to sense the emotions of the people around you.  At the moment, your brain is trying to cope with the influx of these new senses and trying to interpret them using the template of the other five; before long, you should start recognizing emotions for what they are, rather than sensing them as flavors or colours or smells."
+
+1. "So ... what, I'm going to be some sort of mind-reader?"
+2. "So what DID happen at dinner?"
+3. "So I've got to avoid people now or I'll wind up here again?"
+4. "That sounds kind of cool, actually...."
+
+>["flavors or colours" -- mix 'n' match british & american spellings]
+That's not a verb I recognize.
+
+>2
+"So what DID happen at dinner?"
+
+"What happened at dinner was a sensory overload.  Too many people, too many emotions, not enough experience.  You should develop the ability to handle this sort of thing, with time, but in the meantime it is absolutely vital that you come back here once a week for ... well, this device here."  Dr Rose waves a hand at what appears to be a steampunk salon hair dryer.  "This is a cranial crown that will flood your brain with an electromagnetic frequency that should dampen the new sensory stimulus going to your brain -- giving it a rest, as it were -- and prevent it from going out of control again."
+
+1. "It's not going to also give me a hair helmet, is it?"
+2. "Well, that's a drag.  I suppose there's nothing I can do about it, is there?"
+3. "But I don't understand.  What's happening to me?"
+
+>1
+"It's not going to also give me a hair helmet, is it?"
+
+"A hair helmet?"  Dr Rose looks at the cranial crown again.  "Oh!  I suppose it does rather look like a salon hair dryer, doesn't it?  Well, function before form, I suppose.  The important thing is that it will allow your abilities to develop without overwhelming you in the process."
+
+1. "My abilities?"
+
+>1
+"My abilities?"
+
+"Your friends tell me you've been able to track people using the emotional debris they leave in their wake.  That's really quite impressive.  You should also be able to get an idea of how a person feels by examining them, and possibly more if you focus on those emotions.  Eventually, I think you might even be able to amplify or muffle whatever emotion you find, though right now that ability may only manifest in times of extreme stress, as it was with the manifestation of Aidan's abilities."
+
+1. "Aidan's abilities?  What do you mean?"
+2. "Can I see Aidan?"
+3. "I guess that sort of went out of control at dinner...."
+
+>1
+"Aidan's abilities?  What do you mean?"
+
+"Your brother Aidan carried you here after you collapsed at dinner last night."  Dr Rose pauses.  "A distance of about a mile, running at thirty miles an hour, he was here before anyone at the camp could fully explain over the phone what had happened."
+
+1. "Where is he?  I want to see him."
+2. "So what DID happen?"
+
+>1
+"Where is he?  I want to see him."
+
+"Your conditions are quite delicate, Daniel, and I don't want you to experience a relapse or anything of the sort.  The exertion may be too much, and I don't want you to excite yourself.  So please stay in your room, refrain from exerting yourself, and wait until I'm sure that your condition is stable."
+
+"I have spoken to your parents, by the way, and explained everything to them.  As you know, they're overseas and cannot return at the moment, at least not on such short notice.  In the meantime, they've left me in charge of your health and welfare.  So, Daniel, if anything bothers you at all, I hope you will tell me about it.  I'll do anything I can to make sure you're safe."
+
+Dr Rose pats you on the shoulder and is about to say something more when there's a resounding crash from somewhere else in the hospital.  At the same time, the pager on Dr Rose's belt goes off.  You catch a glimpse of a number, R15, flashing on its face as Dr Rose looks down at it.  She frowns.  "I'm sorry to have to cut our little chat short, Daniel, but it seems I'm urgently needed elsewhere.  Remember, stay where you are, and don't exert yourself."  With that, she hurries out of the room, leaving a cloud of apprehension (or is it anxiety?) in her wake.
+
+As the door closes behind her, Ava and Stacy slip into the room.  "Daniel!" says Ava, "what happened?  Are you going to be okay?"
+
+"Ava, stop worrying and let him answer already."  Stacy's eye wanders over to the cranial crown contraption.  You don't need super emo-detector powers to see that her curiosity is piqued.
+
+>["what" in the 2nd to last line should be capitalized.]
+That's not a verb I recognize.
+
+>tell stacy about crown
+There is no reply.
+
+[You achieved a goal! (find out what's happened to you)]
+
+>[that seems weirdly late]
+That's not a verb I recognize.
+
+>ask stacy about crown
+You tell Stacy about the cranial crown and the need for regular treatments.  "Sorry to hear that," Stacy says, still peering at the cranial crown and not sounding very convincing, "that sort of thing always sucks." 
+
+
+
+>[hmmm... "ask" got me the response I was expecting from "tell" -- in fact, it reads as if it interpreted "ask" as "tell".]
+You seem to want to talk to someone, but I can't see whom.
+
+>tell ava about powers
+"I don't know what to say, Daniel."  Ava shifts uncomfortably.  "It's like something out of a comic book."
+
+>tell stacy about powers
+"So you've got these super emo-powers now?  I think I'm jealous."  She isn't really, you know, but you somehow know that she finds the idea absolutely fascinating.
+
+>get up
+But you aren't in anything at the moment.
+
+>[I still envision myself in the coffin this whole time.]
+That's not a verb I recognize.
+
+>l
+Your Hospital Room
+You are in a hospital room, equipped with a single bizarre-looking coffin-case thing attached to a bewildering wall of medical equipment.  The walls are painted a sterile white.  Huge windows look out to the south, while a pale green door, equipped with a small viewing window, is to the north.
+
+Ava and Stacy are here.
+
+>x case
+It's shiny and silver and futuristic-looking, but still looks like a coffin.  Or an Egyptian sarcophagus.  Or an iron maiden.  You'd have to be out cold before you'd let anyone put you into that thing.
+
+>x equipment
+Monitors, wires, computers ... it's all quite dizzying and bewildering.  Is that a stereo amplifier?
+
+>ask stacy about equipment
+(the medical equipment)
+She doesn't say anything.
+
+>[she's probably have something to say about it]
+That's not a verb I recognize.
+
+>ask stacy about case
+(the coffin case)
+You tell Stacy about the cranial crown and the need for regular treatments.  "Sorry to hear that," Stacy says, still peering at the cranial crown and not sounding very convincing, "that sort of thing always sucks." 
+
+
+
+>ask ava about case
+(the coffin case)
+You tell Stacy about the cranial crown and the need for regular treatments.  "Sorry to hear that," Stacy says, still peering at the cranial crown and not sounding very convincing, "that sort of thing always sucks." 
+
+
+
+>[I'm trying to address ava]
+That's not a verb I recognize.
+
+>x ava
+You met Ava last year, here at LEAP.  She's a rosy-cheeked girl with long, brown pigtails; since last year, she's also acquired a pair of glasses that, she claims, make her look like a young Nana Mouskouri.
+
+>l
+Your Hospital Room
+You are in a hospital room, equipped with a single bizarre-looking coffin-case thing attached to a bewildering wall of medical equipment.  The walls are painted a sterile white.  Huge windows look out to the south, while a pale green door, equipped with a small viewing window, is to the north.
+
+Ava and Stacy are here.
+
+>x windows
+You can see your dorm from here!
+
+>x window
+Which do you mean, the huge window or the viewing window?
+
+>huge
+You can see your dorm from here!
+
+>x viewing
+It's a square of reinforced glass set into the middle of the door.  Through it, you can see a featureless hospital corridor.
+
+>ask ava about aidan
+(Aidan)
+"Ava went to look in on him while we were waiting to see you," says Stacy.  "He's somewhere on this floor too, isn't he?"
+
+"They wouldn't let me in to see him, either," Ava says, "and it's not as if anything had happened to him or anything.  He's in room R15."
+
+1. "R15?  That's the number I saw flashing on Dr Rose's pager!"
+
+
+>1
+"R15?  That's the number I saw flashing on Dr Rose's pager!"
+
+"Something must have happened," you say, "I'll bet it has something to do with that crash I heard ... I've got to see what's going on!"
+
+"No, wait," Ava says, "you're supposed to be resting!"
+
+1. "I'll rest after I've checked in on Aidan!"
+2. "I feel fine!"
+3. "I suppose you're right.  Someone will tell me if it's something to do with Aidan."
+
+>2
+"I feel fine!"
+
+"Well you don't know that you actually are fine!"  Ava moves to block your way.
+
+"I'd like to know what that noise was, too," Stacy says, "and, come on, aren't you the least bit concerned?  It might have something to do with Aidan!"
+
+Ava looks anxious and uncertain, then finally backs down.  "Okay, fine, but we better not get caught."
+
+Stacy opens the door, and you all slip out into the corridor.  Ava points off to the northwest.  "Aidan's room is that way."
+
+South T-Intersection
+You are in a featureless hospital corridor stretching from east to west.  Another corridor goes off to the north.  The door to your hospital room is to the south.
+
+[That command asks to do something outside of play, so it can only make sense from you to me. The wandering orderly cannot be asked to do this.]
+
+>[Okay, what's up with that bracketed statement?]
+You seem to want to talk to someone, but I can't see whom.
+
+>[Also, a couple of moves ago: it is weird to present a conversation tree with one option. I'm not vetoing it, but it struck me strange as a player.]
+You seem to want to talk to someone, but I can't see whom.
+
+>ask stacy about r15
+She does not reply.[placeholder text: "That seems kind of rude and unfriendly. She should have a handful of default responses for topics she doesn't know."]
+
+
+
+>n
+
+Main Intersection
+This is the heart of this particular wing of the hospital, with corridors running off in all four cardinal directions.
+
+Ava and Stacy trail along behind you. 
+
+>x rooms
+Which do you mean, the first floor rooms west, the first floor rooms east, the second floor rooms west, the second floor rooms east, the third floor rooms west or the third floor rooms east?
+
+>[?????]
+You can't see such a thing.
+
+>[Oh, it's referencing the dorms. Is this scoping thing an Inform 7 deal? I don't remember Inform 6 being quite so all-inclusive.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[anyway, what I was thinking is that when I'm looking for a specific room number in an unfamiliar building, I generally look at the room numbers around me, to get a sense of which direction is the right one. We should probably allow that in this scene.]
+You seem to want to talk to someone, but I can't see whom.
+
+>n
+
+North T-Intersection
+You are in a featureless hospital corridor stretching north and south.  Another corridor goes off to the south.
+
+Ava and Stacy trail along behind you. 
+
+>x rooms
+Which do you mean, the first floor rooms west, the first floor rooms east, the second floor rooms west, the second floor rooms east, the third floor rooms west or the third floor rooms east?
+
+>x hospital rooms
+You can't see such a thing.
+
+>n
+You quickly duck into the empty hospital room.  After a few moments, when nothing happens, you creep back out again.
+
+>e
+The wandering orderly goes east door.
+
+Northeast Corner Of Hospital
+The corridor makes a bend here, going west and south.  There are hospital rooms, apparently empty, to the east and north.
+
+Ava and Stacy trail along behind you. 
+
+>["The wandering orderly goes east door"? This bit clearly needs to bake some more.]
+That's not a verb I recognize.
+
+>n
+You quickly duck into the empty hospital room as an orderly comes out of the other room.  You wait until the footsteps fade away to the west before emerging again into the corridor.
+
+>e
+You quickly duck into the empty hospital room as an orderly approaches.  You wait until the footsteps fade away to the south before emerging again into the corridor.
+
+>s
+The wandering orderly goes east door.
+
+East T-Intersection
+You are in a featureless hospital corridor stretching north and south.  Another corridor goes off to the west.  A pair of elevator doors are set into the east wall.
+
+Ava and Stacy trail along behind you. 
+
+>ne
+There are exits north (to Northeast Corner of hospital), east door, south and west (to the main intersection) from here.
+
+>e
+You open the door and run right into an orderly who, though surprised, is not too surprised to immediately sound the alarm.  Within seconds, Ava and Stacy have been bundled out of the hospital and you're locked into your room.  It's a couple of hours before Dr Rose comes back, frowning in a very concerned manner.
+
+
+
+    *** The story is over. ***
+
+
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> undo
+east T-intersection
+[Previous turn undone.]
+
+>s
+
+Southeast Corner Of Hospital
+The corridor makes a bend here, going west and north.  There are hospital rooms, apparently empty, to the east and south.
+
+Ava and Stacy trail along behind you. 
+
+>e
+You quickly duck into the empty hospital room as an orderly approaches.  You wait until the footsteps fade away to the west before emerging again into the corridor.
+
+>s
+You quickly duck into the empty hospital room as an orderly approaches.  You wait until the footsteps fade away to the north before emerging again into the corridor.
+
+>n
+The wandering orderly goes west.
+
+East T-Intersection
+You are in a featureless hospital corridor stretching north and south.  Another corridor goes off to the west.  A pair of elevator doors are set into the east wall.
+
+Ava and Stacy trail along behind you. 
+
+>w
+
+Main Intersection
+This is the heart of this particular wing of the hospital, with corridors running off in all four cardinal directions.
+
+Ava and Stacy trail along behind you. 
+
+>e
+
+East T-Intersection
+You are in a featureless hospital corridor stretching north and south.  Another corridor goes off to the west.  A pair of elevator doors are set into the east wall.
+
+Ava and Stacy trail along behind you. 
+
+Looking through the window, you see a room equipped in much the same way your room was, complete with the silvery, high-tech coffin thing.  That's where the resemblance ends.  The lid of the coffin thing has been broken off and lies at the far end of the room, a huge crack down its middle, and smoke billows out from one broken monitor.  Aidan himself is lying near the coffin, unconscious, while a bunch of orderlies stand at a very safe distance away from him.
+
+Fear, shock, whatever, it's thick in the air and feels like you just snorted hot salsa up your nose.
+
+In the middle of all this is Dr Rose.  You can't hear what she's saying but ... oh, well, it looks like she's done lecturing the orderlies and now she's heading for the door.  You pull back before she sees you.  You've got to get back to your room before she notices you're gone, but you're in a corner and there's no way to know which way she'll turn when she comes out, and if you hide in the empty room to the west Dr Rose will almost certainly get to your room before you.
+
+"Go that way," Stacy whispers, shoving you eastwards.  "I'll distract them."  Before you can say anything, Stacy has run off to the south.
+
+>[huh? What triggered this?]
+That's not a verb I recognize.
+
+>s
+
+Southeast Corner Of Hospital
+The corridor makes a bend here, going west and north.  There are hospital rooms, apparently empty, to the east and south.
+
+Ava trails along behind you. 
+
+Ava and Stacy are here.
+
+"Daniel Wayne!" Dr Rose catches you by the collar and frowns, clearly disappointed.  "What are you doing out of your room?  Come on, back you go."  She marches you back to your room, where she proceeds to put you through a battery of seemingly unnecessary tests.  Pursing her lips as she reads the data scrolling by on the monitors, she says, 
+
+    *** The story is over. ***
+
+
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> [she says, the story is over?]
+Please give one of the answers above.
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> undo
+east T-intersection
+[Previous turn undone.]
+
+>w
+
+Main Intersection
+This is the heart of this particular wing of the hospital, with corridors running off in all four cardinal directions.
+
+Ava trails along behind you. 
+
+>s
+
+South T-Intersection
+You are in a featureless hospital corridor stretching from east to west.  Another corridor goes off to the north.  The door to your hospital room is to the south.
+
+Ava trails along behind you. 
+
+>s
+
+Your Hospital Room
+You are in a hospital room, equipped with a single bizarre-looking coffin-case thing attached to a bewildering wall of medical equipment.  The walls are painted a sterile white.  Huge windows look out to the south, while a pale green door, equipped with a small viewing window, is to the north.
+
+Ava trails along behind you. 
+
+And not a moment too soon.  When Dr Rose comes bustling in, you are back in the coffin thing and Ava is sitting beside you, looking as if you'd just spent the past half hour talking about the weather.  Dr Rose frowns a bit when she checks the readouts on the various monitors, but no-one can look as innocent as Ava when she has to, and in the end Dr Rose decides that nothing suspicious has been going on after all.
+
+Aidan, she says, is still undergoing observation of some kind, but you're free to go back to camp.  Brad picks you up after lunch (it turns out that the hospital food tastes just as nasty as the camp food) and you're back in time for your afternoon classes.  It's dinner time before Aidan is back at camp; and whatever it was that happened to him in the hospital, he either doesn't remember, or doesn't want to tell you.
+
+
+Please press SPACE to continue.
+
+Things settle down, more or less, over the next day or so.  People are trying very hard to not give you funny looks when they see you, which pretty much comes to the same thing, really.  Aidan's probably going through the same sort of thing too.  He's certainly rather a bit more moody than he used to be.
+
+LEAP, Day 6 (Friday) - Class Period 2
+
+Robotics class, the wave of the future, because everyone knows that some day we're going to have giant killer robots laying waste to downtown Tokyo or something like that, and it would be a good thing to know how to deal with them.  No-one's really capable of making a giant killer robot: right now, you're all just doing a basic project to program a robot to do a certain simple task.  Except Stacy, who seems to be dead set on making a midget killer robot she calls the "Stacy Alexander Robot Guy", or SARG for short.
+
+Robotics Class
+You sit at a table in a perfectly ordinary classroom, surrounded by electronic parts.  Antonia Long, your Robotics instructor, has been cornered elsewhere by students with issues, leaving you to your own electronic, robotic devices.  Stacy sits beside you with her own robot project, SARG, while Aidan is at another table with the older students.
+
+Stacy is sitting beside you, completely absorbed in her project.
+
+On your workbench are some programming logic blocks, all different colors: forest green, baby blue, magenta, mint green, golden, saffron, scarlet, hot pink, royal purple and copper-colored, your robot, a metal bowl (empty) and a wicker basket (in which are seven marbles).
+
+>[Chapter 5 clearly has a ways to go]
+That's not a verb I recognize.
+
+>[Er, rather, chapter 4]
+You seem to want to talk to someone, but I can't see whom.
+
+>x marbles
+You can't see such a thing.
+
+>[missing object]
+That's not a verb I recognize.
+
+>x marble
+You see nothing special about the marble.
+
+>x basket
+In the wicker basket are seven marbles.
+
+>x bowl
+The metal bowl is empty.
+
+>x robot
+All the program slots are empty.  Your robot has no brain. 
+
+>x slots
+All the program slots are empty.  Your robot has no brain. 
+
+>x copper
+Copper-colored logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+                last_used = left;
+            }
+
+>x stacy
+You met Stacy last year, here at LEAP.  She's a skinny blonde girl with freckles and rather prominent front teeth.  She likes playing with gadgets, and is so full of nervous energy she could probably swallow an elephant and not gain an ounce of weight.  She's also wearing a deerstalker cap with a completely inappropriate daisy stuck into one flap.    
+
+
+>x sarg
+The sarg looks like every other sarg you've ever seen.
+
+>[Ha! That should probably say placeholder.]
+That's not a verb I recognize.
+
+>l
+Robotics Class
+You sit at a table in a perfectly ordinary classroom, surrounded by electronic parts.  Antonia Long, your Robotics instructor, has been cornered elsewhere by students with issues, leaving you to your own electronic, robotic devices.  Stacy sits beside you with her own robot project, SARG, while Aidan is at another table with the older students.
+
+Stacy is sitting beside you, completely absorbed in her project.
+
+On your workbench are some programming logic blocks, all different colors: forest green, baby blue, magenta, mint green, golden, saffron, scarlet, hot pink, royal purple and copper-colored, your robot, a metal bowl (empty) and a wicker basket (in which are seven marbles).
+
+>x aidan
+Aidan is your big brother.  He looks quite a lot like you, only taller and broader.  He's pretty cool; he just turned 15 a couple of months ago, but hasn't gotten too cool to be seen with you yet.  On the other hand, if your secret plot to grow up just like him works out, he'll never get too cool for you.
+
+>x antonia
+It's very antonia-like.
+
+>[No.]
+That's not a verb I recognize.
+
+>goals
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+
+>[The programming goal needs to be here. Otherwise the player will have no idea what he's supposed to be accomplishing. In general, the goal tracking seems wonky past the first couple of chapters.]
+That's not a verb I recognize.
+
+>x purple
+Royal purple logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+                pick_up_with_left;
+
+>x hot pink
+Hot pink logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+    }
+end loop
+
+>put hot pink in tenth slot
+You can't see any such thing.
+
+>get hot pink
+Taken.
+
+>put hot pink in slot
+Which do you mean, slot 1, slot 2, slot 3, slot 4, slot 5, slot 6, slot 7, slot 8, slot 9 or slot 10?
+
+>slot 10
+Ker-chunk! Hot pink logic block fills the slot snugly.
+
+>[aliases. "slot 10" should alias to "tenth slot", etc.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[Also, missing an article up there: "Hot pink logic block fills the slot snugly."]
+You seem to want to talk to someone, but I can't see whom.
+
+>x robot
+Going down the list of slots, your program reads as follows:
+
+Slot 1 is empty.
+Slot 2 is empty.
+Slot 3 is empty.
+Slot 4 is empty.
+Slot 5 is empty.
+Slot 6 is empty.
+Slot 7 is empty.
+Slot 8 is empty.
+Slot 9 is empty.
+In slot 10, hot pink logic block:
+    }
+end loop
+
+
+>turn on robot
+He's not something you can switch.
+
+>[There should be a way of running a test. The robot needs to have some kind of feature that lets it execute its code]
+That's not a verb I recognize.
+
+>l
+Robotics Class
+You sit at a table in a perfectly ordinary classroom, surrounded by electronic parts.  Antonia Long, your Robotics instructor, has been cornered elsewhere by students with issues, leaving you to your own electronic, robotic devices.  Stacy sits beside you with her own robot project, SARG, while Aidan is at another table with the older students.
+
+Stacy is sitting beside you, completely absorbed in her project.
+
+On your workbench are some programming logic blocks, all different colors: forest green, baby blue, magenta, mint green, golden, saffron, scarlet, royal purple and copper-colored, your robot, a metal bowl (empty) and a wicker basket (in which are seven marbles).
+
+>x scarlet
+Scarlet logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+        }
+    } else {
+
+>x saffron
+Saffron logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+            turn_to_destination_basket;
+        } else {
+            if (last_used == left) {
+                pick_up_with_right;
+
+>x golden
+Golden logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+        }
+        turn_to_source_basket;
+
+>x golden
+Golden logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+        }
+        turn_to_source_basket;
+
+>x green
+Which do you mean, forest green logic block or mint green logic block?
+
+>forest
+Forest green logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+                last_used = right;
+            } else {
+
+>[All of these seem to be missing articles, which is creating an unintentional tonto effect.]
+You seem to want to talk to someone, but I can't see whom.
+
+>l
+Robotics Class
+You sit at a table in a perfectly ordinary classroom, surrounded by electronic parts.  Antonia Long, your Robotics instructor, has been cornered elsewhere by students with issues, leaving you to your own electronic, robotic devices.  Stacy sits beside you with her own robot project, SARG, while Aidan is at another table with the older students.
+
+Stacy is sitting beside you, completely absorbed in her project.
+
+On your workbench are some programming logic blocks, all different colors: forest green, baby blue, magenta, mint green, golden, saffron, scarlet, royal purple and copper-colored, your robot, a metal bowl (empty) and a wicker basket (in which are seven marbles).
+
+>x mint 
+Mint green logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+begin loop
+    if (facing_source_basket) {
+        if (holding_marble) {
+
+>put mint in slot 1
+Ker-chunk. Another block fits neatly into place.
+
+>x magenta
+Magenta logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+        if (holding_marble) {
+            drop_marble_in_basket;
+
+>x baby
+Baby blue logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+            holding_marble = true;
+            turn_to_destination_basket;
+
+>x forest
+Forest green logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+                last_used = right;
+            } else {
+
+>put baby in slot 2
+Ker-chunk. You put baby blue logic block in the slot.
+
+>x robot
+Going down the list of slots, your program reads as follows:
+
+In slot 1, mint green logic block:
+begin loop
+    if (facing_source_basket) {
+        if (holding_marble) {
+In slot 2, baby blue logic block:
+            holding_marble = true;
+            turn_to_destination_basket;
+Slot 3 is empty.
+Slot 4 is empty.
+Slot 5 is empty.
+Slot 6 is empty.
+Slot 7 is empty.
+Slot 8 is empty.
+Slot 9 is empty.
+In slot 10, hot pink logic block:
+    }
+end loop
+
+
+>l
+Robotics Class
+You sit at a table in a perfectly ordinary classroom, surrounded by electronic parts.  Antonia Long, your Robotics instructor, has been cornered elsewhere by students with issues, leaving you to your own electronic, robotic devices.  Stacy sits beside you with her own robot project, SARG, while Aidan is at another table with the older students.
+
+Stacy is sitting beside you, completely absorbed in her project.
+
+On your workbench are some programming logic blocks, all different colors: forest green, magenta, golden, saffron, scarlet, royal purple and copper-colored, your robot, a metal bowl (empty) and a wicker basket (in which are seven marbles).
+
+>x copper
+Copper-colored logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+                last_used = left;
+            }
+
+>x purple
+Royal purple logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+                pick_up_with_left;
+
+>x scarlet
+Scarlet logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+        }
+    } else {
+
+>x saffron
+Saffron logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+            turn_to_destination_basket;
+        } else {
+            if (last_used == left) {
+                pick_up_with_right;
+
+>x golden
+Golden logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+        }
+        turn_to_source_basket;
+
+>x magentga
+You can't see such a thing.
+
+>x magenta
+Magenta logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+        if (holding_marble) {
+            drop_marble_in_basket;
+
+>put magenta in slot 3
+Ker-chunk.
+
+>x robot
+Going down the list of slots, your program reads as follows:
+
+In slot 1, mint green logic block:
+begin loop
+    if (facing_source_basket) {
+        if (holding_marble) {
+In slot 2, baby blue logic block:
+            holding_marble = true;
+            turn_to_destination_basket;
+In slot 3, magenta logic block:
+        if (holding_marble) {
+            drop_marble_in_basket;
+Slot 4 is empty.
+Slot 5 is empty.
+Slot 6 is empty.
+Slot 7 is empty.
+Slot 8 is empty.
+Slot 9 is empty.
+In slot 10, hot pink logic block:
+    }
+end loop
+
+
+>l
+Robotics Class
+You sit at a table in a perfectly ordinary classroom, surrounded by electronic parts.  Antonia Long, your Robotics instructor, has been cornered elsewhere by students with issues, leaving you to your own electronic, robotic devices.  Stacy sits beside you with her own robot project, SARG, while Aidan is at another table with the older students.
+
+Stacy is sitting beside you, completely absorbed in her project.
+
+On your workbench are some programming logic blocks, all different colors: forest green, golden, saffron, scarlet, royal purple and copper-colored, your robot, a metal bowl (empty) and a wicker basket (in which are seven marbles).
+
+>x forest
+Forest green logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+                last_used = right;
+            } else {
+
+>x golden
+Golden logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+        }
+        turn_to_source_basket;
+
+>x saffron
+Saffron logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+            turn_to_destination_basket;
+        } else {
+            if (last_used == left) {
+                pick_up_with_right;
+
+>x scarlet
+Scarlet logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+        }
+    } else {
+
+>x royal purple
+Royal purple logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+                pick_up_with_left;
+
+>x copper
+Copper-colored logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+                last_used = left;
+            }
+
+>[where's the drop command?]
+That's not a verb I recognize.
+
+>x magenta
+Magenta logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+        if (holding_marble) {
+            drop_marble_in_basket;
+
+>x robot
+Going down the list of slots, your program reads as follows:
+
+In slot 1, mint green logic block:
+begin loop
+    if (facing_source_basket) {
+        if (holding_marble) {
+In slot 2, baby blue logic block:
+            holding_marble = true;
+            turn_to_destination_basket;
+In slot 3, magenta logic block:
+        if (holding_marble) {
+            drop_marble_in_basket;
+Slot 4 is empty.
+Slot 5 is empty.
+Slot 6 is empty.
+Slot 7 is empty.
+Slot 8 is empty.
+Slot 9 is empty.
+In slot 10, hot pink logic block:
+    }
+end loop
+
+
+>get baby blue
+That seems to belong to your robot.
+
+>[uh oh. I should be able to remove blocks]
+That's not a verb I recognize.
+
+>pull baby blue
+Nothing obvious happens.
+
+>remove baby blue
+(from slot 2)
+That seems to belong to your robot.
+
+>[yikes. Is the game unwinnable now?]
+That's not a verb I recognize.
+
+>ask stacy for help
+You can't see any such thing.
+
+>ask stacy about robot
+She does not reply.[placeholder text: "That seems kind of rude and unfriendly. She should have a handful of default responses for topics she doesn't know."]
+
+
+
+>ask stacy about blocks
+Which do you mean, copper-colored logic block, royal purple logic block, hot pink logic block, scarlet logic block, saffron logic block, golden logic block, mint green logic block, magenta logic block, baby blue logic block or forest green logic block?
+
+>copper
+She does not reply.[placeholder text: "That seems kind of rude and unfriendly. She should have a handful of default responses for topics she doesn't know."]
+
+
+
+>[she should be available for conversation, and function as a hint system in this chapter.]
+You seem to want to talk to someone, but I can't see whom.
+
+>x robogt
+You can't see such a thing.
+
+>x robot
+Going down the list of slots, your program reads as follows:
+
+In slot 1, mint green logic block:
+begin loop
+    if (facing_source_basket) {
+        if (holding_marble) {
+In slot 2, baby blue logic block:
+            holding_marble = true;
+            turn_to_destination_basket;
+In slot 3, magenta logic block:
+        if (holding_marble) {
+            drop_marble_in_basket;
+Slot 4 is empty.
+Slot 5 is empty.
+Slot 6 is empty.
+Slot 7 is empty.
+Slot 8 is empty.
+Slot 9 is empty.
+In slot 10, hot pink logic block:
+    }
+end loop
+
+
+>l
+Robotics Class
+You sit at a table in a perfectly ordinary classroom, surrounded by electronic parts.  Antonia Long, your Robotics instructor, has been cornered elsewhere by students with issues, leaving you to your own electronic, robotic devices.  Stacy sits beside you with her own robot project, SARG, while Aidan is at another table with the older students.
+
+Stacy is sitting beside you, completely absorbed in her project.
+
+On your workbench are some programming logic blocks, all different colors: forest green, golden, saffron, scarlet, royal purple and copper-colored, your robot, a metal bowl (empty) and a wicker basket (in which are seven marbles).
+
+>x forest
+Forest green logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+                last_used = right;
+            } else {
+
+>x golden
+Golden logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+        }
+        turn_to_source_basket;
+
+>x saffron
+Saffron logic block is labeled with the program logic it contains, in pseudo-code form. This one reads:
+
+            turn_to_destination_basket;
+        } else {
+            if (last_used == left) {
+                pick_up_with_right;
+
+>put saffron in slot 2
+But that slot already has the baby blue logic block in it.
+
+>put blue in basket
+That seems to belong to your robot.
+Wait, where did baby blue logic block go?
+
+>[where did it go? It refuses to move!]
+That's not a verb I recognize.
+
+>l
+Robotics Class
+You sit at a table in a perfectly ordinary classroom, surrounded by electronic parts.  Antonia Long, your Robotics instructor, has been cornered elsewhere by students with issues, leaving you to your own electronic, robotic devices.  Stacy sits beside you with her own robot project, SARG, while Aidan is at another table with the older students.
+
+Stacy is sitting beside you, completely absorbed in her project.
+
+On your workbench are some programming logic blocks, all different colors: forest green, golden, scarlet, royal purple and copper-colored, your robot, a metal bowl (empty) and a wicker basket (in which are seven marbles).
+
+>x robot
+Going down the list of slots, your program reads as follows:
+
+In slot 1, mint green logic block:
+begin loop
+    if (facing_source_basket) {
+        if (holding_marble) {
+In slot 2, baby blue logic block:
+            holding_marble = true;
+            turn_to_destination_basket;
+In slot 3, magenta logic block:
+        if (holding_marble) {
+            drop_marble_in_basket;
+Slot 4 is empty.
+Slot 5 is empty.
+Slot 6 is empty.
+Slot 7 is empty.
+Slot 8 is empty.
+Slot 9 is empty.
+In slot 10, hot pink logic block:
+    }
+end loop
+
+
+>ask stacy about project
+There is no reply.
+
+>[she should want to tell me about sarg's robot boots.]
+That's not a verb I recognize.
+
+>[so anyway, I appear to be screwed. Bummer. I don't think I've saved yet this session. Like last time, I'm going to play through to this point and then call it a night.]
+You seem to want to talk to someone, but I can't see whom.
+
+>restore
+Ok.
+
+>l
+Darkness
+It is pitch dark, and you can't see a thing.
+
+>scream
+The darkness above you flies open, and you're momentarily blinded by a flood of bright light.  As you try to blink away the spots, a face swims into view -- it takes you a few moments to register the curly white hair, the rosy cheeks and the clear blue eyes, and the fact that said face is talking to you.
+
+"Hullo, Daniel.  My goodness, you gave us a scare.  How are you feeling?"
+
+1. "I'm alive, I think."
+2. "What just happened?"
+3. "What the hell just happened?"
+4. "I just woke up in a coffin!  I thought I was being buried alive!  How do you think I feel?"
+
+>1
+"I'm alive, I think."
+
+"That's the spirit!"  The face breaks into a smile, complete with dimples.
+
+"Here, sit up.  I'm Dr Claudia Rose, by the way, and you and your brother are very lucky that your particular condition happens to be a specialty of mine."
+
+1. "Condition?  What condition?"
+2. "What... has something happened to Aidan?"
+
+>1
+"Condition?  What condition?"
+
+"You're developing some rather unique abilities, Daniel.  As far as I can tell, based on what your friends have told me, you are gaining the ability to sense the emotions of the people around you.  At the moment, your brain is trying to cope with the influx of these new senses and trying to interpret them using the template of the other five; before long, you should start recognizing emotions for what they are, rather than sensing them as flavors or colours or smells."
+
+1. "So ... what, I'm going to be some sort of mind-reader?"
+2. "So what DID happen at dinner?"
+3. "So I've got to avoid people now or I'll wind up here again?"
+4. "That sounds kind of cool, actually...."
+
+>1
+"So ... what, I'm going to be some sort of mind-reader?"
+
+Dr Rose chuckles.  "If you want to put it that way.  You won't be reading minds, exactly, but otherwise it's not such a bad analogy."
+
+"Your friends tell me you've been able to track people using the emotional debris they leave in their wake.  That's really quite impressive.  You should also be able to get an idea of how a person feels by examining them, and possibly more if you focus on those emotions.  Eventually, I think you might even be able to amplify or muffle whatever emotion you find, though right now that ability may only manifest in times of extreme stress, as it was with the manifestation of Aidan's abilities."
+
+1. "Aidan's abilities?  What do you mean?"
+2. "Can I see Aidan?"
+3. "I guess that sort of went out of control at dinner...."
+
+>1
+"Aidan's abilities?  What do you mean?"
+
+"Your brother Aidan carried you here after you collapsed at dinner last night."  Dr Rose pauses.  "A distance of about a mile, running at thirty miles an hour, he was here before anyone at the camp could fully explain over the phone what had happened."
+
+1. "Where is he?  I want to see him."
+2. "So what DID happen?"
+
+>1
+"Where is he?  I want to see him."
+
+"Your conditions are quite delicate, Daniel, and I don't want you to experience a relapse or anything of the sort.  The exertion may be too much, and I don't want you to excite yourself.  So please stay in your room, refrain from exerting yourself, and wait until I'm sure that your condition is stable."
+
+"I have spoken to your parents, by the way, and explained everything to them.  As you know, they're overseas and cannot return at the moment, at least not on such short notice.  In the meantime, they've left me in charge of your health and welfare.  So, Daniel, if anything bothers you at all, I hope you will tell me about it.  I'll do anything I can to make sure you're safe."
+
+Dr Rose pats you on the shoulder and is about to say something more when there's a resounding crash from somewhere else in the hospital.  At the same time, the pager on Dr Rose's belt goes off.  You catch a glimpse of a number, R15, flashing on its face as Dr Rose looks down at it.  She frowns.  "I'm sorry to have to cut our little chat short, Daniel, but it seems I'm urgently needed elsewhere.  Remember, stay where you are, and don't exert yourself."  With that, she hurries out of the room, leaving a cloud of apprehension (or is it anxiety?) in her wake.
+
+As the door closes behind her, Ava and Stacy slip into the room.  "Daniel!" says Ava, "what happened?  Are you going to be okay?"
+
+"Ava, stop worrying and let him answer already."  Stacy's eye wanders over to the cranial crown contraption.  You don't need super emo-detector powers to see that her curiosity is piqued.
+
+>n
+
+South T-Intersection
+You are in a featureless hospital corridor stretching from east to west.  Another corridor goes off to the north.  The door to your hospital room is to the south.
+
+[You achieved a goal! (find out what's happened to you)]
+
+>n
+
+Main Intersection
+This is the heart of this particular wing of the hospital, with corridors running off in all four cardinal directions.
+
+>n
+The wandering orderly goes west.
+
+North T-Intersection
+You are in a featureless hospital corridor stretching north and south.  Another corridor goes off to the south.
+
+>w
+The wandering orderly goes west door.
+
+Northwest Corner Of Hospital
+The corridor makes a bend here, going east and south.  There are hospital rooms to the west and north, although the sounds coming from the north suggest that that particular hospital room is not quite as empty as all the others have been.
+
+You can see a door to R15 here.
+
+>n
+Looking through the window, you see a room equipped in much the same way your room was, complete with the silvery, high-tech coffin thing.  That's where the resemblance ends.  The lid of the coffin thing has been broken off and lies at the far end of the room, a huge crack down its middle, and smoke billows out from one broken monitor.  Aidan himself is lying near the coffin, unconscious, while a bunch of orderlies stand at a very safe distance away from him.
+
+Fear, shock, whatever, it's thick in the air and feels like you just snorted hot salsa up your nose.
+
+In the middle of all this is Dr Rose.  You can't hear what she's saying but ... oh, well, it looks like she's done lecturing the orderlies and now she's heading for the door.  You pull back before she sees you.  You've got to get back to your room before she notices you're gone, but you're in a corner and there's no way to know which way she'll turn when she comes out, and if you hide in the empty room to the west Dr Rose will almost certainly get to your room before you.
+
+"Go that way," Stacy whispers, shoving you eastwards.  "I'll distract them."  Before you can say anything, Stacy has run off to the south.
+
+>[they weren't following me. If I just walk out like that, they should follow, Ava protesting and Stacy encouraging.]
+You seem to want to talk to someone, but I can't see whom.
+
+>e
+
+North T-Intersection
+You are in a featureless hospital corridor stretching north and south.  Another corridor goes off to the south.
+
+>s
+
+Main Intersection
+This is the heart of this particular wing of the hospital, with corridors running off in all four cardinal directions.
+
+>s
+
+South T-Intersection
+You are in a featureless hospital corridor stretching from east to west.  Another corridor goes off to the north.  The door to your hospital room is to the south.
+
+>s
+
+Your Hospital Room
+You are in a hospital room, equipped with a single bizarre-looking coffin-case thing attached to a bewildering wall of medical equipment.  The walls are painted a sterile white.  Huge windows look out to the south, while a pale green door, equipped with a small viewing window, is to the north.
+
+Ava and Stacy are here.
+
+>l
+Your Hospital Room
+You are in a hospital room, equipped with a single bizarre-looking coffin-case thing attached to a bewildering wall of medical equipment.  The walls are painted a sterile white.  Huge windows look out to the south, while a pale green door, equipped with a small viewing window, is to the north.
+
+Ava and Stacy are here.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>zz
+That's not a verb I recognize.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>ask ava about aidan
+(Aidan)
+"Ava went to look in on him while we were waiting to see you," says Stacy.  "He's somewhere on this floor too, isn't he?"
+
+"They wouldn't let me in to see him, either," Ava says, "and it's not as if anything had happened to him or anything.  He's in room R15."
+
+1. "R15?  That's the number I saw flashing on Dr Rose's pager!"
+
+
+>1
+"R15?  That's the number I saw flashing on Dr Rose's pager!"
+
+"Something must have happened," you say, "I'll bet it has something to do with that crash I heard ... I've got to see what's going on!"
+
+"No, wait," Ava says, "you're supposed to be resting!"
+
+1. "I'll rest after I've checked in on Aidan!"
+2. "I feel fine!"
+3. "I suppose you're right.  Someone will tell me if it's something to do with Aidan."
+
+>1
+"I'll rest after I've checked in on Aidan!"
+
+Ava tries to stop you, but you push past her to the door.  You don't stop to look back as you slip out onto the corridor.
+
+For a moment, you feel a bit lost as you realize that you have no idea where room R15 might be, but then you sense Stacy and Ava joining you.  "Aidan's room is that way," Ava says quietly, pointing off to the northwest.
+
+South T-Intersection
+You are in a featureless hospital corridor stretching from east to west.  Another corridor goes off to the north.  The door to your hospital room is to the south.
+
+>nw
+There are exits north (to the main intersection), east, south (to your hospital room) and west from here.
+
+>w
+
+Southwest Corner Of Hospital
+The corridor makes a bend here, going east and north.  There are hospital rooms, apparently empty, to the west and south.
+
+Ava and Stacy trail along behind you. 
+
+>n
+
+West T-Intersection
+You are in a featureless hospital corridor stretching north and south.  Another corridor goes off to the east.  A door marked "EXIT" is to the west.
+
+Ava and Stacy trail along behind you. 
+
+Through a narrow window in the door, you can catch a glimpse of the fire escape stairs.
+
+>w
+There are exits north (to Northwest Corner of hospital), east (to the main intersection), south (to Southwest Corner of hospital) and west from here.
+
+>[Yes, I tried to go west]
+You seem to want to talk to someone, but I can't see whom.
+
+>w
+There are exits north (to Northwest Corner of hospital), east (to the main intersection), south (to Southwest Corner of hospital) and west from here.
+
+>n
+
+Northwest Corner Of Hospital
+The corridor makes a bend here, going east and south.  There are hospital rooms to the west and north, although the sounds coming from the north suggest that that particular hospital room is not quite as empty as all the others have been.
+
+Ava and Stacy trail along behind you. 
+
+You can also see a door to R15 here.
+
+>x door
+A glance through the viewing windows shows that the rooms beyond are quite unoccupied.
+
+>look through window
+A glance through the viewing windows shows that the rooms beyond are quite unoccupied.
+
+>[I meant the window into r15]
+That's not a verb I recognize.
+
+>look in r1r5
+You can't see any such thing.
+
+>x r15
+You see nothing special about the door to R15.
+
+>look through r15 window
+"Daniel Wayne!" Dr Rose catches you by the collar and frowns, clearly disappointed.  "What are you doing out of your room?  Come on, back you go."  She marches you back to your room, where she proceeds to put you through a battery of seemingly unnecessary tests.  Pursing her lips as she reads the data scrolling by on the monitors, she says, 
+
+    *** The story is over. ***
+
+
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> [????]
+Please give one of the answers above.
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> undo
+Northwest Corner of hospital
+[Previous turn undone.]
+
+>n
+"Daniel Wayne!" Dr Rose catches you by the collar and frowns, clearly disappointed.  "What are you doing out of your room?  Come on, back you go."  She marches you back to your room, where she proceeds to put you through a battery of seemingly unnecessary tests.  Pursing her lips as she reads the data scrolling by on the monitors, she says, 
+
+    *** The story is over. ***
+
+
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> undo
+Northwest Corner of hospital
+[Previous turn undone.]
+
+>s
+
+West T-Intersection
+You are in a featureless hospital corridor stretching north and south.  Another corridor goes off to the east.  A door marked "EXIT" is to the west.
+
+Ava and Stacy trail along behind you. 
+
+Through a narrow window in the door, you can catch a glimpse of the fire escape stairs.
+
+>n
+
+Northwest Corner Of Hospital
+The corridor makes a bend here, going east and south.  There are hospital rooms to the west and north, although the sounds coming from the north suggest that that particular hospital room is not quite as empty as all the others have been.
+
+Ava and Stacy trail along behind you. 
+
+You can also see a door to R15 here.
+
+>e
+
+North T-Intersection
+You are in a featureless hospital corridor stretching north and south.  Another corridor goes off to the south.
+
+Ava and Stacy trail along behind you. 
+
+>w
+
+Northwest Corner Of Hospital
+The corridor makes a bend here, going east and south.  There are hospital rooms to the west and north, although the sounds coming from the north suggest that that particular hospital room is not quite as empty as all the others have been.
+
+Ava and Stacy trail along behind you. 
+
+You can also see a door to R15 here.
+
+>ask ava about door
+(the door to R15)
+She does not reply.[placeholder text: "That seems kind of rude and unfriendly. She should have a handful of default responses for topics she doesn't know."]
+
+
+
+>look into r15
+"Daniel Wayne!" Dr Rose catches you by the collar and frowns, clearly disappointed.  "What are you doing out of your room?  Come on, back you go."  She marches you back to your room, where she proceeds to put you through a battery of seemingly unnecessary tests.  Pursing her lips as she reads the data scrolling by on the monitors, she says, 
+
+    *** The story is over. ***
+
+
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> [sheesh, maybe I won't even be able to get back to where I was!]
+Please give one of the answers above.
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> restore
+Ok.
+
+>scream
+The darkness above you flies open, and you're momentarily blinded by a flood of bright light.  As you try to blink away the spots, a face swims into view -- it takes you a few moments to register the curly white hair, the rosy cheeks and the clear blue eyes, and the fact that said face is talking to you.
+
+"Hullo, Daniel.  My goodness, you gave us a scare.  How are you feeling?"
+
+1. "I'm alive, I think."
+2. "What just happened?"
+3. "What the hell just happened?"
+4. "I just woke up in a coffin!  I thought I was being buried alive!  How do you think I feel?"
+
+>2
+"What just happened?"
+
+"Now, then, that's a rather complicated question.  Let's see if I can make the answer a little less complicated."  The face pauses thoughtfully before continuing.
+
+"Here, sit up.  I'm Dr Claudia Rose, by the way, and you and your brother are very lucky that your particular condition happens to be a specialty of mine."
+
+1. "Condition?  What condition?"
+2. "What... has something happened to Aidan?"
+
+>2
+"What... has something happened to Aidan?"
+
+"Your brother Aidan carried you here after you collapsed at dinner last night."  Dr Rose pauses.  "A distance of about a mile, running at thirty miles an hour, he was here before anyone at the camp could fully explain over the phone what had happened."
+
+1. "Where is he?  I want to see him."
+2. "So what DID happen?"
+
+>2
+"So what DID happen?"
+
+"What happened at dinner was a sensory overload.  Too many people, too many emotions, not enough experience.  You should develop the ability to handle this sort of thing, with time, but in the meantime it is absolutely vital that you come back here once a week for ... well, this device here."  Dr Rose waves a hand at what appears to be a steampunk salon hair dryer.  "This is a cranial crown that will flood your brain with an electromagnetic frequency that should dampen the new sensory stimulus going to your brain -- giving it a rest, as it were -- and prevent it from going out of control again."
+
+1. "It's not going to also give me a hair helmet, is it?"
+2. "Well, that's a drag.  I suppose there's nothing I can do about it, is there?"
+3. "But I don't understand.  What's happening to me?"
+
+>2
+"Well, that's a drag.  I suppose there's nothing I can do about it, is there?"
+
+"Your friends tell me you've been able to track people using the emotional debris they leave in their wake.  That's really quite impressive.  You should also be able to get an idea of how a person feels by examining them, and possibly more if you focus on those emotions.  Eventually, I think you might even be able to amplify or muffle whatever emotion you find, though right now that ability may only manifest in times of extreme stress, as it was with the manifestation of Aidan's abilities."
+
+1. "Can I see Aidan?"
+2. "I guess that sort of went out of control at dinner...."
+
+>2
+"I guess that sort of went out of control at dinner...."
+
+Dr Rose nods.  "This sort of thing must be expected as you're first getting used to your new abilities, I suppose.  In the meantime, I've set up this device here to help you out."  She indicates what appears to be a steampunk salon hair dryer.  "This is a cranial crown.  It will flood your brain with an electromagnetic frequency that should dampen the new sensory stimulus going to your brain, giving it a rest and allowing it to recuperate enough so it doesn't go out of control again.  You'll have to undergo this treatment at least once a week, I'd say."
+
+"I have spoken to your parents, by the way, and explained everything to them.  As you know, they're overseas and cannot return at the moment, at least not on such short notice.  In the meantime, they've left me in charge of your health and welfare.  So, Daniel, if anything bothers you at all, I hope you will tell me about it.  I'll do anything I can to make sure you're safe."
+
+Dr Rose pats you on the shoulder and is about to say something more when there's a resounding crash from somewhere else in the hospital.  At the same time, the pager on Dr Rose's belt goes off.  You catch a glimpse of a number, R15, flashing on its face as Dr Rose looks down at it.  She frowns.  "I'm sorry to have to cut our little chat short, Daniel, but it seems I'm urgently needed elsewhere.  Remember, stay where you are, and don't exert yourself."  With that, she hurries out of the room, leaving a cloud of apprehension (or is it anxiety?) in her wake.
+
+As the door closes behind her, Ava and Stacy slip into the room.  "Daniel!" says Ava, "what happened?  Are you going to be okay?"
+
+"Ava, stop worrying and let him answer already."  Stacy's eye wanders over to the cranial crown contraption.  You don't need super emo-detector powers to see that her curiosity is piqued.
+
+>tell ava about powers
+"I don't know what to say, Daniel."  Ava shifts uncomfortably.  "It's like something out of a comic book."
+
+[You achieved a goal! (find out what's happened to you)]
+
+>tell stacy about powerse
+There is no reply.
+
+>tell stacy about powers
+"So you've got these super emo-powers now?  I think I'm jealous."  She isn't really, you know, but you somehow know that she finds the idea absolutely fascinating.
+
+>save
+Ok.
+
+>ask stacy about aidan
+(Aidan)
+"Ava went to look in on him while we were waiting to see you," says Stacy.  "He's somewhere on this floor too, isn't he?"
+
+"They wouldn't let me in to see him, either," Ava says, "and it's not as if anything had happened to him or anything.  He's in room R15."
+
+1. "R15?  That's the number I saw flashing on Dr Rose's pager!"
+
+
+>1
+"R15?  That's the number I saw flashing on Dr Rose's pager!"
+
+"Something must have happened," you say, "I'll bet it has something to do with that crash I heard ... I've got to see what's going on!"
+
+"No, wait," Ava says, "you're supposed to be resting!"
+
+1. "I'll rest after I've checked in on Aidan!"
+2. "I feel fine!"
+3. "I suppose you're right.  Someone will tell me if it's something to do with Aidan."
+
+>2
+"I feel fine!"
+
+"Well you don't know that you actually are fine!"  Ava moves to block your way.
+
+"I'd like to know what that noise was, too," Stacy says, "and, come on, aren't you the least bit concerned?  It might have something to do with Aidan!"
+
+Ava looks anxious and uncertain, then finally backs down.  "Okay, fine, but we better not get caught."
+
+Stacy opens the door, and you all slip out into the corridor.  Ava points off to the northwest.  "Aidan's room is that way."
+
+South T-Intersection
+You are in a featureless hospital corridor stretching from east to west.  Another corridor goes off to the north.  The door to your hospital room is to the south.
+
+[That command asks to do something outside of play, so it can only make sense from you to me. The wandering orderly cannot be asked to do this.]
+
+>n
+
+Main Intersection
+This is the heart of this particular wing of the hospital, with corridors running off in all four cardinal directions.
+
+Ava and Stacy trail along behind you. 
+
+>n
+
+North T-Intersection
+You are in a featureless hospital corridor stretching north and south.  Another corridor goes off to the south.
+
+Ava and Stacy trail along behind you. 
+
+>w
+
+Northwest Corner Of Hospital
+The corridor makes a bend here, going east and south.  There are hospital rooms to the west and north, although the sounds coming from the north suggest that that particular hospital room is not quite as empty as all the others have been.
+
+Ava and Stacy trail along behind you. 
+
+You can also see a door to R15 here.
+
+"Here we are," whispers Ava, pointing to a door to the north.  "That's room R15.  Aidan's in there."
+
+>n
+Looking through the window, you see a room equipped in much the same way your room was, complete with the silvery, high-tech coffin thing.  That's where the resemblance ends.  The lid of the coffin thing has been broken off and lies at the far end of the room, a huge crack down its middle, and smoke billows out from one broken monitor.  Aidan himself is lying near the coffin, unconscious, while a bunch of orderlies stand at a very safe distance away from him.
+
+Fear, shock, whatever, it's thick in the air and feels like you just snorted hot salsa up your nose.
+
+In the middle of all this is Dr Rose.  You can't hear what she's saying but ... oh, well, it looks like she's done lecturing the orderlies and now she's heading for the door.  You pull back before she sees you.  You've got to get back to your room before she notices you're gone, but you're in a corner and there's no way to know which way she'll turn when she comes out, and if you hide in the empty room to the west Dr Rose will almost certainly get to your room before you.
+
+"Go that way," Stacy whispers, shoving you eastwards.  "I'll distract them."  Before you can say anything, Stacy has run off to the south.
+
+>e
+
+North T-Intersection
+You are in a featureless hospital corridor stretching north and south.  Another corridor goes off to the south.
+
+Ava trails along behind you. 
+
+>s
+
+Main Intersection
+This is the heart of this particular wing of the hospital, with corridors running off in all four cardinal directions.
+
+Ava trails along behind you. 
+
+>s
+
+South T-Intersection
+You are in a featureless hospital corridor stretching from east to west.  Another corridor goes off to the north.  The door to your hospital room is to the south.
+
+Ava trails along behind you. 
+
+>s
+
+Your Hospital Room
+You are in a hospital room, equipped with a single bizarre-looking coffin-case thing attached to a bewildering wall of medical equipment.  The walls are painted a sterile white.  Huge windows look out to the south, while a pale green door, equipped with a small viewing window, is to the north.
+
+Ava trails along behind you. 
+
+And not a moment too soon.  When Dr Rose comes bustling in, you are back in the coffin thing and Ava is sitting beside you, looking as if you'd just spent the past half hour talking about the weather.  Dr Rose frowns a bit when she checks the readouts on the various monitors, but no-one can look as innocent as Ava when she has to, and in the end Dr Rose decides that nothing suspicious has been going on after all.
+
+Aidan, she says, is still undergoing observation of some kind, but you're free to go back to camp.  Brad picks you up after lunch (it turns out that the hospital food tastes just as nasty as the camp food) and you're back in time for your afternoon classes.  It's dinner time before Aidan is back at camp; and whatever it was that happened to him in the hospital, he either doesn't remember, or doesn't want to tell you.
+
+
+Please press SPACE to continue.
+
+Things settle down, more or less, over the next day or so.  People are trying very hard to not give you funny looks when they see you, which pretty much comes to the same thing, really.  Aidan's probably going through the same sort of thing too.  He's certainly rather a bit more moody than he used to be.
+
+LEAP, Day 6 (Friday) - Class Period 2
+
+Robotics class, the wave of the future, because everyone knows that some day we're going to have giant killer robots laying waste to downtown Tokyo or something like that, and it would be a good thing to know how to deal with them.  No-one's really capable of making a giant killer robot: right now, you're all just doing a basic project to program a robot to do a certain simple task.  Except Stacy, who seems to be dead set on making a midget killer robot she calls the "Stacy Alexander Robot Guy", or SARG for short.
+
+Robotics Class
+You sit at a table in a perfectly ordinary classroom, surrounded by electronic parts.  Antonia Long, your Robotics instructor, has been cornered elsewhere by students with issues, leaving you to your own electronic, robotic devices.  Stacy sits beside you with her own robot project, SARG, while Aidan is at another table with the older students.
+
+Stacy is sitting beside you, completely absorbed in her project.
+
+On your workbench are some programming logic blocks, all different colors: forest green, baby blue, magenta, mint green, golden, saffron, scarlet, hot pink, royal purple and copper-colored, your robot, a metal bowl (empty) and a wicker basket (in which are seven marbles).
+
+>[okay, there we go]
+You seem to want to talk to someone, but I can't see whom.
+
+>save
+Ok.
+
+>quit
+Are you sure you want to quit? yes

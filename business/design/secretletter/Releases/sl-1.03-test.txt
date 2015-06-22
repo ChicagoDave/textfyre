@@ -1,0 +1,1949 @@
+Start of a transcript of
+
+Jack Toresal and The Secret Letter
+Jack Toresal and The Secret Letter by Textfyre, Inc
+Copyright &#169; 2009 by Textfyre, Inc
+Designed and Written by Michael Gentry
+Game Engine (FyreVM) by Jesse McGrew
+Inform 7 Story Programming by Graeme Jefferis
+Testing by Jacqueline Ashwell, Peter Berman,
+Eric Eve, Jim Aikin, and Paul O'Brian
+User Interface Programming by Thomas Lynge
+ of Tenteo (www.tenteo.com)
+Sketches by Erika Swanson (www.simplyerika.com).
+Special thanks to Graham Nelson and Emily Short
+for Inform 7 (www.inform7.com)
+All rights reserved
+Identification number: //1E802B58-F1C0-465D-8597-27451EC837E6//
+Interpreter version 0.4.2 / VM 3.1.0 / Library serial number 080126
+Standard Rules version 2/090402 by Graham Nelson
+
+>test walkthrough
+(Testing.)
+
+>[1] test walk1
+(Testing.)
+
+>[2] test intro
+(Testing.)
+
+>[3] u
+You nimbly hop up on top of the crates; from there, it's only a short scramble to the roof of the market.
+
+Outer Market Roof
+You're perched atop the red tile roof of the storehouse. From here you have a good view of the market's northwest junction and Lord's Road leading out of town to the north.
+
+A group of tough-looking mercenaries has gathered at the Northwest Junction. One of them is barking orders at the others in an angry voice.
+
+"...we know he skulks Grubber's most mornings, so spread out quick, cover all streets from the square," growls one of them, evidently the group's leader.
+
+[IMAGE: GrubbersChase]
+
+>[4] z
+Time passes.
+
+The leader spits on the dusty ground. "Keep your eyes open and don't take guff. But for the love of Brigid, keep your tempers and your swords sheathed unless you really need 'em. Ain't bein' paid to toss the locals."
+
+[IMAGE: GrubbersChase]
+
+>[5] z
+Time passes.
+
+"And keep sharp!" the leader snaps. "Remember this is a kid we're lookin' for. Kids move fast, stay out of sight, slip through crowds easy. I find out later he got away under your nose, I'll have it off!"
+
+Suddenly, that bit of apple you swallowed a minute ago turns into a cold, hard chunk in your belly.
+
+[IMAGE: GrubbersChase]
+
+>[6] z
+Time passes.
+
+"Now, everyone memorize the description." The leader pulls a dirty, folded bit of parchment from his belt and squints at it. "Shoulder-length brown hair," he reads, haltingly. "Green eyes. Slight of build. Ten, maybe twelve spans high." He holds his hand out flat, at what happens to be exactly your height. "Usually wears a hat and a gray cloak."
+
+He refolds the parchment and jams it back into his belt. "You dims got all that?"
+
+The others nod.
+
+[IMAGE: GrubbersChase]
+
+>[7] z
+Time passes.
+
+"Okay, go!" barks the leader, and the mercenaries set out in several directions, moving at a brisk walk. Two men go to the north gates and start shoving them closed; the others enter the crowded market and start shoving their way through the suddenly flabbergasted crowds.
+
+Your heart sinks. This is definitely not good.
+
+[IMAGE: GrubbersChase]
+
+>[8] d
+As you climb back down the crates, one of them wobbles and your foot slips. You tumble loudly to the cobblestones. "Stupid! Clumsy!" you mutter, scrambling to your feet.
+
+From the street, you hear, "What was that? Check the alley!"
+
+Two mercenaries rush in and spot you immediately. They approach warily, their arms spread wide.
+
+You're in trouble now...
+
+[IMAGE: GrubbersChase]
+
+>[9] se
+You dash away into the crowd, weaving between customers and pushing your way through the thickest knots of people. The mercenaries pound after you, yelling and shoving people out of their way, but they're too big and too slow, and you quickly manage to lose them.
+
+Northwest Junction
+This is the northwest corner of Grubber's Market. You can skirt around the edge of the market to the northeast or south, or head into the thick of it to the east or southeast. A wide, paved road leads north. You can also duck back into the alley to the northwest.
+
+The north gates leading to Lord's Road are closed.
+
+[IMAGE: GrubbersChase]
+
+>[10] s
+
+Herb Stall
+The herb stall is usually a quiet place. Customers here like to browse, poke their noses into the various jars, and judge the potency of a potential purchase at their leisure. Other stalls are to the south, and east, and the market opens out a little to the north.
+
+[IMAGE: GrubbersChase]
+
+>[11] s
+
+Exotic Gems Stall
+Dozens of jewels in exotic colors and cuts are spread out on display here, glittering in the dusty sunlight. Some of them are loose stones, others are set in finely wrought rings and necklaces. Most of them were probably smuggled in from over the western mountains, which is why they're cheap enough to be affordable to anyone in Grubber's Market. Still, they're far, far out of your price range. Other stalls lie to the north, northeast, east, and southeast.
+
+Suddenly you hear a commotion from the back of the stall: the crash of a display case hitting the ground; shouts and curses from the stallkeeper; and a horrific, gibbering shriek.
+
+"Come back here, you flea-bitten thief!" yells the stallkeeper, and for a panicked moment you think he means you. Then you see something small and gray dart up to the roof of the stall...it's just a forest monkey, probably someone's pet running loose. And it's clutching one of the stallkeeper's necklaces in its tiny black fist.
+
+The monkey turns and screeches back at the stallkeeper, dodges a clumsily thrown dirt clod, and scampers away.
+
+[IMAGE: GrubbersChase]
+
+>[12] ne
+
+Rope Stall
+One thing you can say about the rope stall: you'll never spend a moment wondering what's for sale. It's all rope, and lots of it: thick and thin, knotted and loose, in heaps and in coils, stacked on the ground and dangling in loops. More stalls are to the northeast, southeast, west, and southwest, and the market opens out a bit to the northwest.
+
+You see a tall wooden post rising up behind the stall.
+
+The stallkeeper haggles with a customer over the price of rope.
+
+[IMAGE: GrubbersChase]
+
+>[13] ne
+
+Candlemaker's Stall
+The heat and fumes from the candlemaker's tallow pots make this stall an unpleasant place to loiter. Still, people need candles, and customers seem to be buying them as fast as the stallkeeper can dip them. Most of the candles are tallow, fast-burning and cheap, but there are also a number of premade wax candles in different colors. Other stalls are to the north, east, west, southeast, and southwest.
+
+A tall wooden post is visible behind the stall.
+
+[IMAGE: GrubbersChase]
+
+>[14] test market
+(Testing.)
+
+>[15] xyzzy
+A hollow voice whispers "groo."
+
+>[16] e
+
+Fruit Stall
+Bins heaped high with brightly colored fruit lend a pleasant fragrance to this end of the market (though by afternoon it will have become a cloying reek that attracts more flies than customers). They have apples and pears from the city orchards, and brambleberries from the northern counties. Oranges, limes, kello fruit - even a bushel of bananas from the Kozar Delta. Aisles between the stalls lead northwest, west, southwest, and south.
+
+[IMAGE: GrubbersChase]
+
+>[17] steal banana
+Ah, this is something you know how to do, at least. You sidle up casually to the stall, wait until the stallkeeper seems preoccupied, then reach out and pluck the banana from the shelf.
+
+Suddenly the stallkeeper jabs his finger at you and screams, "Stop, thief!"
+
+One of the mercenaries happens to be wandering by at that moment. He hears the stallkeeper's shouts and comes running straight for you!
+
+Then there is a loud screech, and something gray and hairy scampers out from under the mercenary's feet. He stumbles, trips, and pitches headlong into the fruit stall. Fruit scatters everywhere. The stallkeeper is wailing and berating the mercenary, who is covered with juice and slimy pulp.
+
+In the general chaos, you slip away easily, stuffing the banana into your satchel. Fortunately, no one managed to get a very good look at you, and the stallkeeper will be too busy cleaning up his wares to keep an eye out for you. You shouldn't have any trouble coming back here if you need to.
+
+Candlemaker's Stall
+The heat and fumes from the candlemaker's tallow pots make this stall an unpleasant place to loiter. Still, people need candles, and customers seem to be buying them as fast as the stallkeeper can dip them. Most of the candles are tallow, fast-burning and cheap, but there are also a number of premade wax candles in different colors. Other stalls are to the north, east, west, southeast, and southwest.
+
+Rising up behind the stall is a tall wooden post.
+
+The stallkeeper carefully straightens his display of tallow candles.
+
+[IMAGE: GrubbersChase]
+
+>[18] unxyzzy
+A hollow voice whispers "oorg."
+
+>[19] sw
+
+Rope Stall
+One thing you can say about the rope stall: you'll never spend a moment wondering what's for sale. It's all rope, and lots of it: thick and thin, knotted and loose, in heaps and in coils, stacked on the ground and dangling in loops. More stalls are to the northeast, southeast, west, and southwest, and the market opens out a bit to the northwest.
+
+A tall wooden post is visible behind the stall.
+
+[IMAGE: GrubbersChase]
+
+>[20] se
+
+Outside the Silk Tent
+Teisha has done well enough for herself that her "stall" is actually a full-on tent. You can enter the tent to the north, or move on to one of the many other stalls to the east, west, northeast, northwest, southeast, or southwest.
+
+Behind the tent is a tall wooden post.
+
+[IMAGE: GrubbersChase]
+
+>[21] n
+
+Inside the Silk Tent
+The walls of the tent provide a bit of quiet and privacy from the crowds outside (in addition to keeping dust off the merchandise). Beautiful silk garments hang on either side. Gowns, robes, capes, cloaks, and shawls, the fabric rippling with the slightest movement of air, shimmering with that soft, liquid glow that only silk has. The main market lies to the south. A narrow gap to the north leads behind the tent.
+
+Teisha sits on a stool in back, smiling distractedly.
+
+"Hello, Jack," says Teisha. "Change your mind about that cloak?" Then she gets a look at your face and frowns. "Something the matter, sweetie? You look spooked."
+
+"There are big guys with swords chasing me."
+"Actually, I'd like to look at that cloak again."
+"No, everything's fine."
+
+[IMAGE: GrubbersChase]
+
+>[22] n
+Teisha holds the back flap back as you duck through. "Be careful now..." she says, "...Jacqueline."
+
+Behind the Silk Tent
+This is a cramped little square formed by the backs of three stalls and Teisha's tent. It's barely big enough to stretch your arms out in. Right in the middle is the base of the huge central support post. You can duck back into Teisha's tent to the south.
+
+[IMAGE: GrubbersChase]
+
+>[23] u
+You're totally hidden back here, so there's no one to stop you from climbing. By the time you're high enough for people to see you, you're also high enough that no one will notice anyway; no one ever bothers to look up in Grubber's Market. After a minute or so of grunting and sweating, you reach the top.
+
+Top of the Post
+Perched atop the high central post, you can look out over the whole market square. To the north, Lord's Road heads out of the city towards Lord's Keep. Commerce Street and the rest of the city beckon to the east. In every other direction the city is surrounded by rolling meadows and farmlands.
+
+Four anchor cables stretch away in four directions: northwest, northeast, southwest, and southeast.
+
+Balancing on the southeast cable is that monkey.
+
+[IMAGE: GrubbersChase]
+
+>[24] give banana to monkey
+(first taking the banana)
+You hold out the banana and wiggle it enticingly. "Here, monkey. C'mon, little monkey," you whisper, trying to ignore how stupid it sounds.
+
+The monkey creeps closer, eyes locked on the yellow fruit. It's only about a foot away from your out-stretched hand now. Its little face contorts into bizarre expressions as it wrestles with the conflicting desires to grab the tasty treat, hold onto the shiny trinket, and stay out of your reach, all at the same time.
+
+Suddenly the monkey lunges. You make a grab with your free hand. The monkey grabs the banana just as your fingers hook around the necklace's chain. The monkey screams, jumps six feet straight up, lands on your head, and scampers off down the wire behind you. Your heart leaps into your throat as you lose your balance on top of the pole. You totter, pinwheel your arms... and stay on.
+
+You're breathing hard, but you're safe. And you have the necklace.
+
+Somewhere far below you, a stallkeeper is cursing and wiping smushed banana off his face.
+
+[IMAGE: GrubbersChase]
+
+>[25] d
+You take a deep breath, lower yourself carefully until you're hugging the side of the pole, and let yourself slide down.
+
+Behind the Silk Tent
+This is a cramped little square formed by the backs of three stalls and Teisha's tent. It's barely big enough to stretch your arms out in. Right in the middle is the base of the huge central support post. You can duck back into Teisha's tent to the south.
+
+[IMAGE: GrubbersChase]
+
+>[26] s
+
+Inside the Silk Tent
+The walls of the tent provide a bit of quiet and privacy from the crowds outside (in addition to keeping dust off the merchandise). Beautiful silk garments hang on either side. Gowns, robes, capes, cloaks, and shawls, the fabric rippling with the slightest movement of air, shimmering with that soft, liquid glow that only silk has. The main market lies to the south. A narrow gap to the north leads behind the tent.
+
+Teisha sits on a stool in back, smiling distractedly.
+
+[IMAGE: GrubbersChase]
+
+>[27] give necklace to teisha
+You hold out the necklace, dangling it by its chain. "Have a look at this, Teisha," you say. "You think this is worth one of your cloaks?"
+
+Teisha's eyebrow shoots up, but she manages to hide her excitement with the coolness of a professional haggler. "That's not bad," she mutters. "Most of Hathid's wares are just pretty glass, but this..." She gives you a look. "Now, tell me the truth, Jack, you didn't just steal this from somewhere, did you?"
+
+You shake your head proudly. It's not exactly a lie.
+
+"Well, not that it matters." The necklace disappears into one of Teisha's pockets. "Let's see..." she starts searching through the clothes, looking for something in your size. "This should fit. I think it suits you, too." She holds out a light green cloak. "What do you think?"
+
+It takes your breath away, but you try to hide your eagerness just as Teisha hid hers. "It's tricky," you say, nodding casually.
+
+Teisha laughs. "Then it's yours."
+
+Suddenly you hear someone shouting just outside: "Hey, any of you dims check inside this tent yet?"
+
+Teisha's face turns white. "Hurry, Jack!" she hisses, "Out the back way!"
+
+[IMAGE: GrubbersChase]
+
+>[28] n
+Without pausing to think, you dive through the back flap.
+
+Behind the Silk Tent
+This is a cramped little square formed by the backs of three stalls and Teisha's tent. It's barely big enough to stretch your arms out in. Right in the middle is the base of the huge central support post. You can duck back into Teisha's tent to the south.
+
+[IMAGE: GrubbersChase]
+
+You can hear Teisha yelling shrilly at the mercenaries behind you - then her tirade is cut off abruptly amidst grunted curses. Someone is fumbling with the back flap of the tent!
+
+>[29] u
+With speed borne of panic, you scamper up the wooden post.
+
+Top of the Post
+Perched atop the high central post, you can look out over the whole market square. To the north, Lord's Road heads out of the city towards Lord's Keep. Commerce Street and the rest of the city beckon to the east. In every other direction the city is surrounded by rolling meadows and farmlands.
+
+Four anchor cables stretch away in four directions: northwest, northeast, southwest, and southeast.
+
+[IMAGE: GrubbersChase]
+
+One of the mercenaries tries to climb after you, but can't get more than a few feet up before sliding back. Looks like you're safe for the time being - but they're already heatedly discussing how to get you down, and there are only so many ways you can go from here.
+
+>[30] slide down northeast cable with gray cloak
+You wrap one end of your old gray cloak around your hand, then squat down and sling the other end around the anchor cable. You give it a good, hard yank to test your grip. You take a deep breath. You try to convince your heartbeat to slow down, or at least continue its dreadful hammering in some part of your body other than your throat. You fail. Then, finally, you swing down under the wire and kick off into space.
+
+The wind is exhilarating as you zip down the line. The ground rushes up at you with terrifying speed. your old gray cloak whizzes hotly against the rough wire, and you vaguely smell smoke, but your impromptu harness holds. Shouts ring out and fingers point as the mercenaries spot you and race to where they think you will land. Suddenly your feet hit dirt. You let go of your old gray cloak and tumble to the hard ground, knocking over a couple of shoppers before you roll to a stop. The next moment you are back on your feet, bruised and breathless.
+
+Fruit Stall
+The fruit stall is still a complete mess, with most of the merchandise scattered all over the ground. The stallkeeper is practically tearing his beard out with frustration.
+
+You can see your old gray cloak here.
+
+You hear shouting coming from all quarters of the market. If the mercenaries saw where you landed, they'll be after you in no time.
+
+[IMAGE: GrubbersChase]
+
+>[31] get cloak
+(your old gray cloak)
+Taken.
+
+The shouts are getting closer.
+
+[IMAGE: GrubbersChase]
+
+>[32] wear silk cloak
+You slip the silk cloak over your shoulders and pull the hood up. The fabric feels smooth and cool on your skin, but you don't have time to admire it now - you've got to run!
+
+You hear curses and yells of pain as the mercenaries shove their way through the crowds of shoppers. They're closing in!
+
+[IMAGE: GrubbersChase]
+
+>[33] s
+You weave through the crowd.
+
+Eastern Junction
+You're near the eastern edge of Grubber's Market. Commerce Street lies to the east. You can travel along the outer ring of stalls to the north or south, or head towards the market's central hub to the west.
+
+Someone yells, "There! I see him!"
+
+[IMAGE: GrubbersChase]
+
+>[34] e
+You reach the edge of the market just ahead of your pursuers and see the mercenary captain standing there. He hasn't seen the commotion yet; he's still casually scanning faces.
+
+You skid to a halt. Everything depends on you looking like you're not in a hurry.
+
+You force yourself to walk slowly. Underneath the hood, sweat is pouring down your cheeks, and you can barely control your breathing. The shouts behind you are getting nearer. The captain is not looking at you, he's looking at the mercenaries pounding up behind you. Does he understand what they're shouting? Just a few more steps...
+
+A bead of sweat rolls off the tip of your nose and drops to the ground, leaving a little dark spot in the dust. Did the captain notice?
+
+Five steps... four steps... three steps...
+
+You hear a confused babble of voices behind you as the captain orders his men to halt and explain what's going on.
+
+You slip through the crowds into Commerce Street...
+
+
+Please press SPACE to continue.
+Chapter 2 - Bobby 
+
+You made it.
+
+You let out a long, shaky breath. You're safe now. Commerce Street is home to a slightly more upscale class of merchant, and business here is not quite as frantic as in Grubber's Market. Transactions tend to be calmer and more deliberate, and involve significantly more money. The Lord's Guard will be far less tolerant of a pack of armed bullies menacing the citizens of the upper class, so it's unlikely that the mercenaries will follow you here. And even if they did, there are too many streets and side alleys for them to block off your escape.
+
+Gratefully, you remove the cloak, which was beginning to stick to your skin with all the sweat. Now it's time to pause, catch your breath, and try to figure out why they were after you in the first place.
+
+Commerce Street
+Commerce Street runs east to west, between Grubber's Market and Lord's Market. Raised sidewalks allow pedestrians to avoid the mud, horse dung, and occasional teamster's cart rumbling by. The shops here are actual buildings, spaced evenly along the avenue. Storefronts for a bakery, a butcher's shop, and an armory line the north side of the street from west to east. 
+
+[IMAGE: JackInDisguise]
+
+>[35] test meeting
+(Testing.)
+
+>[36] e
+
+East Commerce Street
+The east end of Commerce Street winds through an upper-class residential neighborhood before ending up at Lord's Market. Behind spiked, iron fences stand the "city cottages" of Toresal's wealthy merchants and nobility, built tall and narrow to make the best use of limited real estate.
+
+Three stately houses are built close together on the north side of the road: Black Gate Estate to the northwest; Red Gate Estate to the north; and the Jacobs family mansion to the northeast. The street itself continues east and west, and the City Park lies to the south.
+
+[IMAGE: JackInDisguise]
+
+>[37] e
+
+Lord's Market
+Lord's Market is the high-class mirror to Grubber's Market: a wide, cobbled square, uncrowded and clean, shaded by tall buildings on either side. Here Toresal's upper crust can hunt for bargains inaccessible to the ordinary rabble. Antiques, custom jewelry, and similarly high-priced goods are available behind the tasteful shopfronts. A fine clothier's, a jewelry store, and a moneylender's shop lie northeast, east, and southeast, respectively; you can return to Commerce Street to the west; an alley leads south. 
+
+As you are standing there getting your bearings, the door to the moneylender's shop suddenly slams open. A tall, dark-cloaked figure storms out, shouting over his shoulder, "...regret refusing my business! I know import-OOF!" -and before you have a chance to react, he crashes into you. You both hit the cobbles in a tangle of limbs.
+
+Muttering apologies, you try to disentangle yourself, but the man is on his feet in an instant, dragging you up by your elbow. "Why you insolent little cutpurse-"
+
+A woman standing next to him places her hand on his shoulder. "Calm yourself, Fossville," she says. Only her chin is visible beneath the shadow of her hood, but the woman's voice is cool and commanding. "It's only a foolish street boy. You've already terrified him."
+
+The man - you realize now that he must be Baron Fossville, Lord of the city since the old Duke died, and one of the most powerful nobles in Toresal - eyes you suspiciously. Even flustered, his sharp features are intense, handsome, and dangerously intelligent. His lips twitch slightly beneath his trim moustache. Finally, he releases you.
+
+"Off with you then, urchin," he growls, flicking his fingers as though he had just touched something filthy. "Take your begging elsewhere, and learn to stay out from under the feet of your betters."
+
+Fossville strides off towards Commerce Street, followed closely by his hooded companion. As she brushes past you, you can hear her talking in a low voice, "...have the money you need, but we must be subtle about it. The Queen can not appear to play favorites..."
+
+And then they are gone.
+
+[IMAGE: JackInDisguise]
+
+>[38] s
+
+Back Alley
+A little-known shortcut between Lord's Market and the less affluent neighborhoods of the city's south end. A narrow street to the southwest leads to Maiden House, or you can return to the market square to the north.
+
+At the end of the alley, a group of young urchins - none older than their eighth year - are clustered around something. As you draw closer, you see Bobby crouched in the midst of them. He's holding his arm out, his fist loosely clenched in front of a dirty-cheeked child of six.
+
+"Go on," says Bobby. "Go on, take a look."
+
+The little boy, his eyes wide and solemn, reaches out and pries Bobby's fingers open. His hand is empty. The little boy looks dismayed.
+
+"Ah, but what's this?" asks Bobby. And he reaches forward and draws a copper coin from behind the boy's grimy ear. There is a collective gasp and squeals of delight from the rest of the children. The little boy's eyes look ready to fall out of his head.
+
+Bobby presses the coin into the little boy's hand, then passes out more coins to the others. "Here," he says, "keep it safe in your pocket. Spend it on bread, not candy." The children take their prizes and scatter.
+
+Bobby stands and stretches, then sees you. The corner of his mouth goes up in that lop-sided grin you know so well. "'Lo, Jack," he says. "Been looking for you. What's happening?"
+
+"Nothing much."
+"I was chased by some mercenaries."
+
+[IMAGE: MeetingBobby]
+
+>[39] 1
+"Oh, nothing much," you say. "Just, you know... doing stuff. Around the city. Staying tricky."
+
+"Huh," says Bobby, nodding vaguely.
+
+Goddesses, you think to yourself, I am such a dim!
+
+Bobby rakes his fingers back through his tangled hair.
+
+"What did you want to see me for?"
+"Can I ask you a question?"
+
+[IMAGE: MeetingBobby]
+
+>[40] 1
+"So, I heard you were looking for me," you say. "What'd you want to tell me?"
+
+Bobby grins.
+
+He makes a show of looking carefully over one shoulder, then the other, then leans close to whisper. "I found this new place, right? It's a big secret, extra tricky. I was thinking of doing a bit of exploring there later tonight. You want to come with?" He smiles that knowing half-smile of his, the one that always means he's about to do something that will be very fun, or land you both in a pile of trouble, or - the usual case - both.
+
+You realize you're staring, and quickly find something else to look at. Goddesses, but he's handsome.
+
+"Where is this place?"
+"I'm in."
+
+[IMAGE: MeetingBobby]
+
+>[41] 2
+Could you even consider saying no? "Okay, let's do it," you say, your heart thumping hard. "I'm in."
+
+"You're a good bloke, Jack," says Bobby. "Now, you don't want the Widows worrying about you, so head on home for now. Once it gets dark, sneak back out and meet me in the Grubber's Market. Right? Good. See you later, Jack." He claps his hand on your shoulder, then turns and strides, all grace and overconfidence, out of the alley.
+
+[IMAGE: MeetingBobby]
+
+>[42] sw
+
+Entrance to Maiden House
+The alley dead-ends in a small courtyard surrounded by old, run-down buildings. You can return to the main part of the city to the northeast.
+
+A battered wooden door provides entrance into the southern building. There's no sign, but you know it well nonetheless - this is the door to Maiden House, your "home".
+
+[IMAGE: MeetingBobby]
+
+>[43] s
+You slip quietly through the front door, into the familiar smells of cooking grease and laundry soap; the familiar sight of shabby, warped floorboards lit by dim, flickering tallow lamps. It's nothing fancy, but it's home, and you're familiar enough with the plight of most of Toresal's orphans to know that you're lucky to have it.
+
+Hallway
+The main hallway runs through the center of Maiden House, with several doorways leading to rooms on either side. To the southeast and southwest are the laundry and privy, respectively; to the northeast lies the kitchen; and to the northwest is the dormitory where you and the other orphans sleep.
+
+The front door is open.
+
+Widow Theresa, who probably has been lurking here all day, just waiting for you to return, springs out from her corner and slams the front door shut. "The evening churchbells are ringing, Jacqueline," she tells you, her mouth set in a satisfied little line. "Well past the time when any respectable young lady should be out on the streets." She locks the door with a long brass key that she wears on a ribbon around her neck.
+
+Widow Theresa turns to you. "You're filthy," she says, "though no more than usual. I realize it's too much to ask you to actually do any of your chores, but you might at least like to wash yourself, if only in consideration for the next poor girl who has to wash your sheets."
+
+"And how are you this evening?"
+"You can't lock me in!"
+"Give me a break, I was chased by mercenaries this morning."
+
+[IMAGE: MaidenHouse]
+
+>[44] nw
+
+Dormitory
+A long room lined with rough bunks, where the children sleep and, if they are too young to run about the city on their own, play. The main hallway lies southeast.
+
+Most of the other orphans are in here, playing and talking before bedtime.
+
+[IMAGE: MaidenHouse]
+
+>[45] sleep
+Grumbling, you climb into your bunk and make yourself as comfortable as you can on the lumpy mattress. The other children eventually lie down and fall quiet, and Widow Fiona stops in to blow out the light. Soon all you can hear are the soft snores of children and the occasional creaking of a floorboard. You are determined to keep your eyes open until you are sure Theresa has left the hallway, but soon your muscles, tense from the day's chase, are unknotting... your breath is coming slower, heavier...
+
+You snap awake, heart pounding. How long were you asleep? It seems like it couldn't have been that long, but the thought of missing your rendez-vous with Bobby is agonizing.
+
+As quietly as you can, you slip out of bed.
+
+[IMAGE: MaidenHouse]
+
+>[46] se
+You tiptoe out into the hallway. Widow Theresa is nowhere in sight.
+
+Hallway
+The main hallway runs through the center of Maiden House, with several doorways leading to rooms on either side. To the southeast and southwest are the laundry and privy, respectively; to the northeast lies the kitchen; and to the northwest is the dormitory where you and the other orphans sleep.
+
+The front door is closed.
+
+[IMAGE: MaidenHouse]
+
+>[47] sw
+
+Privy
+Not much more than a narrow closet, with a hole in the floor and a bench over it. At least it's more private than an alley.
+
+A narrow window over the bench provides some ventilation.
+
+[IMAGE: MaidenHouse]
+
+>[48] climb through window
+You sneak a furtive glance back at the hallway, then step up onto the bench. It wobbles under your feet, and you grab the window sill to steady yourself.
+
+Then, holding your breath to keep from making a sound, you pull yourself up and through. The window is at ground level outside, and you wriggle out onto the slick cobblestones.
+
+You're free! Of course, the widows will find out you're gone soon enough - Maiden House is not a very big place, after all. But you've snuck out before, and they know you can take care of yourself. At worst, you'll pull extra laundry duty for a few days.
+
+Behind Maiden House
+This tiny spur of an alleyway runs between the back of Maiden House and the high stone wall surrounding the park. You can make your way around to the Maiden House Entrance to the northeast.
+
+[IMAGE: MaidenHouse]
+
+>[49] ne
+
+Entrance to Maiden House
+The alley dead-ends in a small courtyard surrounded by old, run-down buildings. You can return to the main part of the city to the northeast.
+
+The door to Maiden House is closed.
+
+[IMAGE: JackInDisguise]
+
+>[50] ne
+
+Back Alley
+A little-known shortcut between Lord's Market and the less affluent neighborhoods of the city's south end. A narrow street to the southwest leads to Maiden House, or you can return to the market square to the north.
+
+[IMAGE: JackInDisguise]
+
+>[51] n
+
+Lord's Market
+At night, lanterns hung from ornate posts light the empty square of Lord's Market. Their warm yellow glow seems to make the shadows in the alleys that much darker. 
+
+[IMAGE: JackInDisguise]
+
+>[52] w
+
+East Commerce Street
+The east end of Commerce Street winds through an upper-class residential neighborhood before ending up at Lord's Market. Behind spiked, iron fences stand the "city cottages" of Toresal's wealthy merchants and nobility, built tall and narrow to make the best use of limited real estate.
+
+Three stately houses are built close together on the north side of the road: Black Gate Estate to the northwest; Red Gate Estate to the north; and the Jacobs family mansion to the northeast. The street itself continues east and west, and the City Park lies to the south.
+
+[IMAGE: JackInDisguise]
+
+>[53] w
+
+Commerce Street
+Commerce Street at night is eerily quiet and empty. Your footsteps seem to echo on the cobbles as you walk past the shuttered shopfronts. 
+
+[IMAGE: JackInDisguise]
+
+>[54] w
+
+Grubber's Market
+At night, the normally crowded marketplace is an empty maze of shadows, abandoned stalls and rolled-up canvas. The Lord's Road lies north, and Commerce Street lies back east.
+
+Bobby is standing in the middle of Grubber's Market, under the shadow of the center post. 
+
+When you get closer, he walks over and claps you on the shoulder. "Had a spot of trouble getting away from the Widows, eh, Jack?" he whispers.
+
+"Not really."
+"I had to sneak out."
+
+[IMAGE: JackInDisguise]
+
+>[55] test adventure
+(Testing.)
+
+>[56] n
+You're too filled with nervous excitement to chit-chat; you want to get on with the adventure! With a grin, you walk right past Bobby without answering towards the gate out of town.
+
+Bobby cocks an eyebrow at you. "Well, okay then," he mutters, and hurries to catch up. 
+
+Lord's Road
+The wide and well-paved Lord's Road runs from Grubber's Market straight north to Lord's Keep, a mile or so from the city. To the east are rolling pastures; to the west, broken ground and scrub.
+
+Bobby jerks his thumb down the road, to the north. "This road leads straight to the front gate of Lord's Keep; we want to stay away from there. I know a better way," he says with a knowing smile, and strikes off towards the open field to the east.
+
+[IMAGE: JackInDisguise]
+
+>[57] e
+
+Pasture
+This wide, open field is used by the city for tourneys and other holiday events, or by cattle-sellers driving their livestock to market. Tonight it is empty except for the occasional cow pie. To the north you can see the dark, rough edge of a forest.
+
+You feel nervous and exposed out here in all this empty space; you're more used to the narrow alleys and enclosing walls of the city. The urge to hunch over and make yourself small is near-irresistible.
+
+Bobby, meanwhile, strides out into the middle of the moonlit field, standing straight and swinging his arms wide. "Fresh air, Jack!" he calls out, laughing. "Enjoy it! Take a deep breath!" He heads north, still laughing.
+
+[IMAGE: JackInDisguise]
+
+>[58] n
+
+Stream Crossing
+A small stream bubbles out of the woods and cuts through the pasture's north end. The edge of the forest lies to the north, just across the water. The city is far away to the south.
+
+Bobby hops nimbly across, bouncing from rock to rock as though he were playing a game of Circles-and-Stones in the park. He doesn't get so much as the hem of his cloak damp. When he gets to the opposite bank, he turns and beckons you to follow before disappearing into the shadowy woods.
+
+[IMAGE: JackInDisguise]
+
+>[59] xyzzy
+A hollow voice whispers "groo."
+
+>[60] n
+The first couple of rocks are easy enough, but the third one wobbles when you put your weight on it. You end up pinwheeling your arms desperately, contorting yourself in every direction to avoid a tumble and a thorough soaking. Finally, with arms outstretched and lower lip clamped between your teeth, you pick your way across the remainder of the stream with all the grace of a drunkard on a greased tightrope.
+
+At the edge of the woods, Bobby is nearly doubled over with silent laughter. He claps you on the back. "You're a good sport, Jack," he says. "C'mon, we're nearly there."
+
+
+Woods
+You are in the woodlands just southeast of Lord's Keep, following the game trails that wind their way through strands of pale birch and black spruce. There is just enough moonlight trickling through the upper branches to see your way by.
+
+Bobby motions you over to where he's standing, pushing back the underbrush. "Look here, Jack," he says. "These trails go every which way, and it's easy to get lost. But if you keep an eye out for this one sapling," - he points to a small tree split halfway down its length - "...you'll find the right trail." He heads off through the trees to the north.
+
+[IMAGE: JackInDisguise]
+
+>[61] unxyzzy
+A hollow voice whispers "oorg."
+
+>[62] n
+Clearing
+The woods open out here in a small, moonlit clearing. The ruins of an old pavilion lie here, pale pavestones poking up like bones from the grass.
+
+In the center of the clearing stands a crumbling fountain, topped by a cracked statue of the Goddess Brigid.
+
+"Here we are." Bobby jumps up into the bowl of the fountain, dried leaves crackling beneath his boots. Then he reaches around the statue of Brigid as though trying to embrace her. His hands fumble at something on the underside of the urn.
+
+Suddenly there is a deep, solid thunk and a scraping sound, and part of the base of the statue moves.
+
+Bobby hops down and pushes against the statue's base. A rectangle of stone about two feet square swings inward. The space behind it is utterly black, and a cold draft of damp-smelling air rises out of it.
+
+"It runs all the way to Lord's Keep," says Bobby as he brushes off his hands. "I don't think anyone knows about it. Maybe Lord Toresal did, but now that he's dead it's basically unknown. It's not been used for decades, I'd guess. Well anyway, until now."
+
+He holds out his hand. His lop-sided smile is absolutely charming. "After you, kind sir."
+
+[IMAGE: JackInDisguise]
+
+>[63] d
+You grope your way down into the tunnel, carefully sliding your feet over steps you cannot see. Echoes fill the darkness: the scrape of your shoes on stone, the drip of water, your own loud breathing.
+
+Behind you, you hear Bobby fumbling with something under his cloak; the click of stone on metal; and then a sickly orange glow spreads across the walls of the tunnel. Your own shadow wobbles hugely in front of you.
+
+You turn around and see Bobby holding a torch. He grins at you. "Tricky, isn't it?"
+
+Underneath The Fountain
+The walls and floor are old, damp, and spotted with some sort of whitish fungus, and the air has a wet, sour smell to it. Steps lead up to the fountain above you. To the north, a long, low-ceilinged tunnel leads into the gloom.
+
+[IMAGE: JackInDisguise]
+
+>[64] n
+Ducking your head to avoid the low ceiling, you follow the tunnel for some distance.
+
+
+Tunnel End
+The tunnel ends here at a blank, stone wall.
+
+Bobby steps past you and brushes his fingertips across the stonework, holding the torch close. Eventually he finds a loose brick and pulls it free, revealing a rough, rectangular hole.
+
+You wonder how many times Bobby has been down here. He exudes such easy confidence as he reaches into the hole, as though he has done this many times before.
+
+There is a click. Bobby looks over his shoulder at you and winks. And then the north wall swings away, revealing shadowed spaces beyond.
+
+[IMAGE: JackInDisguise]
+
+>[65] n
+Bobby jams his torch into a rusted bracket on the tunnel wall and steps through the secret door, gesturing you to follow. A prickle runs down your back as you step through after him. Are you really sneaking into the Lord's Keep? You're not even sure what the punishment for that is... something a lot worse than a few days in jail, certainly.
+
+Chapel
+The chapel of the Goddesses is a spacious, octagonal room, empty of furniture. The wood-paneled walls glow warmly, reflecting the light from dozens of devotional candles; the high ceiling disappears in the shadows overhead. A corridor leads southwest, and a secret passage in the south wall leads into subterranean gloom.
+
+[IMAGE: JackInDisguise]
+
+>[66] sw
+
+Lower Bailey
+A thick wedge of shadow falls across the courtyard at the base of the Keep's outer wall, providing a relatively safe place to hide. The rest of the courtyard is flooded with moonlight, and bored-looking guards stroll back and forth over the gravel. You can enter another part of the castle to the northeast.
+
+Bobby moves up quietly behind you. He puts his mouth very, very close to your ear and whispers, "Up there," pointing to the steps leading up to the top of the wall.
+
+[IMAGE: JackInDisguise]
+
+>[67] u
+You wait, watching the nearest guard until he turns and begins walking away, then sprint lightly up the steps.
+
+
+Upper Bailey
+At the top of the wall you can lean out over the parapets and take in all the lands surrounding Toresal. It's a nice view, but torches set every few yards along the wall make this a dangerous spot to linger in. Stairs lead down into the courtyard below, and a dark archway opens to the north.
+
+Bobby comes up the steps right behind you and crouches against the wall. After a quick look around to make sure the coast is clear, he nods towards the archway to the north.
+
+[IMAGE: JackInDisguise]
+
+>[68] n
+
+Guardhouse
+A narrow antechamber, with an open archway to the south and an iron-reinforced door to the north. Arrow slits to either side lend the door an important and dangerous air.
+
+Bobby creeps forward and presses himself against the wall next to one of the arrow slits. He hunches closer, peering around the slit's edge. Then he looks up at you and smiles. He points at you, points at the arrow slit, then taps his ear. Listen, he's telling you.
+
+[IMAGE: JackInDisguise]
+
+>[69] listen at slit
+You can hear several voices coming from the room on the other side of the arrow slit - guards relaxing on break, probably.
+
+"...and I says, I don't care who hired you, people are tryin' to do honest business here, and you're steppin' on toes. Take yer men and hit the road, or else you can continue searchin' for yer urchin boy in the city jail. And this tough fellow, him so hard with his sword and his scars and all, he just starts to cry, blubberin' like a frightened scullery maid!"
+
+"Haw! Yer lyin', so you are!"
+
+"Goddesses witness it, 'tis the truth! I could hardly credit it meself, and I weren't that impressed with the man to begin with. Go on, I says, and gave him a boot to the fundament to send him on his way."
+
+There is general laughter. You glance at Bobby, but he motions you to keep listening.
+
+[IMAGE: JackInDisguise]
+
+>[70] listen to slit
+"You seen tomorrow's detail yet?"
+
+"Yeah, dress-up duty. Polishing helmets so we can look all pretty for the lords and ladies coming down to Baron Fussypants' ball."
+
+"Not just lords and ladies, I heard. Word has it the Queen herself is on the guest list."
+
+"Oh, pull the other one."
+
+"Goddesses witness it. They say she's comin' down with her daughter in tow, that's why Fossville's hostin' the ball in the first place. He's tryin' to get in the Queen's good graces, so's he can marry the girl."
+
+"What, the Queen?"
+
+"No, you dim. He wants to marry the Princess. Our Lord Fussypants is trying to position himself for the throne."
+
+"Well, he's welcome to it, long as I'm paid at week's end. Of course, I'm not looking forward to spending a night standing at attention for a horde of fancy, feathered fops to goggle and gaggle at, but I guess it's better than latrine duty..."
+
+Bobby pulls you away. He's grinning, his eyes wide and his eyebrows cocked. Isn't it great?
+
+But you're too nervous to care. There are who knows how many men of the Lord's Guard right on the other side of that door. Someone could walk out at any second. You grab Bobby's arm and give it a firm yank - It's time to go.
+
+[IMAGE: JackInDisguise]
+
+>[71] s
+
+Upper Bailey
+At the top of the wall you can lean out over the parapets and take in all the lands surrounding Toresal. It's a nice view, but torches set every few yards along the wall make this a dangerous spot to linger in. Stairs lead down into the courtyard below, and a dark archway opens to the north.
+
+[IMAGE: JackInDisguise]
+
+>[72] d
+
+Lower Bailey
+A thick wedge of shadow falls across the courtyard at the base of the Keep's outer wall, providing a relatively safe place to hide. The rest of the courtyard is flooded with moonlight, and bored-looking guards stroll back and forth over the gravel. You can enter another part of the castle to the northeast.
+
+[IMAGE: JackInDisguise]
+
+>[73] ne
+
+Chapel
+The chapel of the Goddesses is a spacious, octagonal room, empty of furniture. The wood-paneled walls glow warmly, reflecting the light from dozens of devotional candles; the high ceiling disappears in the shadows overhead. A corridor leads southwest, and a secret passage in the south wall leads into subterranean gloom.
+
+[IMAGE: JackInDisguise]
+
+>[74] s
+
+Tunnel End
+The wall at the north end of the tunnel has swung open, revealing a secret entrance to the castle.
+
+Bobby reaches back and pulls the secret door shut, carefully easing it the last few inches so that it doesn't slam. He puts the loose brick back in its place, just as before, and tugs his torch free of the bracket where he'd left it.
+
+We're out, you realize with a sense of overwhelming relief. We made it. It's like we were never here.
+
+"Some adventure, eh, Jack?" laughs Bobby. His voice is disturbingly loud after the long minutes of terrified silence in the keep. "Eavesdropping on the Lord's own guardsmen! That's a story that'll have the little ones wide-eyed at the Maiden House, eh?" He claps you on the back, and you manage a smile. It was fun, and you want Bobby to think you had fun, but it will be a while before you feel up to something that dangerous again.
+
+[IMAGE: JackInDisguise]
+
+>[75] s
+Stealthily, you creep back up the long tunnel to the stone steps under the fountain. "I'll go up first," whispers Bobby, "to make sure the coast is clear." He dunks his torch in a puddle of mud and bounds lightly up the steps. For a moment you can see him silhouetted against the starlight; then he moves away from the opening and disappears from view.
+
+You wait for ten heartbeats. Behind you, you hear the distant plip of dripping moisture, far back in the dark tunnel. Above you, you can hear crickets chirping in the nearby forest.
+
+Ten more heartbeats. "Bobby?" you call out in a hoarse whisper. Maybe he can't hear you, but you're too nervous to raise your voice. "Bobby? Are you up there?"
+
+There is no answer.
+
+[IMAGE: JackInDisguise]
+
+>[76] u
+You crawl out of the hole in the base of the statue, into the dirt and leaves littering the bottom of the fountain. Apart from your scrabbling, it's quiet out here. Even the crickets have stopped. Finally, you get to your feet and look around.
+
+Bobby is lying face-down in the grass, just a few yards away. One of the mercenaries from Grubber's Market is kneeling with his knee in the small of Bobby's back, binding his wrists together with twine. Standing around the outside of the fountain are several more mercenaries, looking relaxed and smug. Some of them are chuckling to themselves.
+
+A gaunt man wearing red robes walks up to you. His mouth is half-hidden by long, drooping, black moustaches, but underneath them he is smiling like a snake. "Well now, young...sir? Or is it 'miss'? So much confusion, all to catch one little mouse. You led us a merry chase this morning, little mouse, but I think you will not scurry away from us again."
+
+Leaves crunch behind you. You jump for it, but too slow - rough hands haul you back, and a sack of coarse, black cloth is pulled over your head.
+
+"Good night, little mouse."
+
+Something hard and heavy strikes the back of your head, and the night turns black as pitch.
+
+
+Please press SPACE to continue.
+Chapter 3 - Jail 
+
+Slowly the world comes back to you. You feel something cold and hard against your cheek; something gritty and scratchy under your hand. You hear footsteps on stone, muttering voices that fade in and out. Someone laughs, a raw, cruel sound. A loud squeak, and an echoing, metallic crash. The footsteps fade away.
+
+You open your eyes. It's still dark.
+
+No, it's just dim. Dim light trickles in from somewhere above you.
+
+You sit up, and a tender spot on the back of your head throbs. Red and purple splotches bloom in front of your eyes, then fade away. After a moment or two, your head clears, and you can see where you are.
+
+Holding Cell
+A dank, cramped, foul-smelling cell. A pair of ragged burlap blankets and a few lumps of filthy straw litter the floor. The door is to the north. 
+
+A hulking shape squats in the corner, staring at you with bloodshot eyes. 
+
+[IMAGE: InJail]
+
+>[77] test jail
+(Testing.)
+
+>[78] z
+Time passes.
+
+[IMAGE: InJail]
+
+>[79] z
+Time passes.
+
+[IMAGE: InJail]
+
+Suddenly you hear a voice whisper your name. "Jack..."
+
+At first you think it's the creepy guy in the corner, but he hasn't moved. You're still staring at him when the whisper comes again, louder this time: "Jack..." It's coming from somewhere outside the cell.
+
+"Bobby? Is that you?"
+
+>[80] 1
+You rush up and press your face against the viewing window, but you can't see anything out there except an empty room. "Bobby?" you call, trying to keep the fear out of your voice. "Bobby, is that you? I'm locked in here, Bobby, help me!"
+
+The voice chuckles, then coughs weakly. "I'm in the cell next to yours, Jack. I'm locked in, too. Sorry."
+
+Your heart sinks a little at that, but at least being trapped in a cell with Bobby nearby is a little bit better than being trapped in a cell with no one around to help you at all... right?
+
+"Jack, listen," Bobby says. His voice is ragged and hoarse; you're worried that the mercenaries might have hurt him badly. "I'm going to get us out of this mess, don't worry. But in case I'm not able to meet up with you after, you need to listen carefully."
+
+"What do you mean?"
+
+[IMAGE: InJail]
+
+>[81] 1
+"Not able to meet up with me?" you whisper, dismayed. "What do you mean? What-" but Bobby cuts you off.
+
+"Jack, listen to me. Go to Fossville's estate in the city. Use the rooftops. There's an alley behind the shops on Commerce Street where you can climb up."
+
+"You want me to break into Baron Fossville's house?" you whisper back, incredulously. "Bobby, I don't understand-"
+
+"He has secrets," Bobby goes on, "that you need to know. Secrets about your father."
+
+You pause, stunned.
+
+"Look for a letter-" says Bobby, but he is cut off by a door slamming open elsewhere in the room. Guards move past your cell door; one of them slams a wooden cudgel against the bars right in front of your face, and you stagger back.
+
+"Bobby, what's happening?"
+
+[IMAGE: InJail]
+
+>[82] 1
+"Bobby?" you cry, "Bobby? What's happening? What letter?"
+
+You hear a metallic rattling, the squeak of hinges. Then several meaty thuds, mixed with grunts and cries of pain. The guards reappear, this time dragging Bobby with them. He looks up as he passes the viewing window, and you get a brief glimpse of his face - bruised, bloody, but still smiling. You'd swear he was trying to wink at you, except that his eye is swollen shut.
+
+"Fossville, Jack!" he yells as they bundle him off. "The rooftops! Look for the letter!"
+
+Somewhere a door slams one final time... and then everything is silent.
+
+[IMAGE: InJail]
+
+>[83] z
+Time passes.
+
+[IMAGE: InJail]
+
+Suddenly the shadowy man in the corner puts his huge, thick-fingered hands on his knees and pushes himself up. "Well," he grunts in a thick, rough voice, "now that the guards are busy takin' care of him..." the man stretches, glances at you, and smiles. It is not a friendly smile.
+
+"Hi, kid. Name's Jacobs."
+
+"My name's Jack."
+"Stay away from me!"
+"Do you know any way to get out of here?"
+
+>[84] 3
+"Do you, uh...," you clear your throat, "...do you know some way we could get out of this place?"
+
+Jacobs raises an eyebrow. "Well now, little runt. I suppose I do."
+
+The hulking man walks over to the cell door and squints at it for a while, standing with his hands on his hips. "My father'll have me out of here by tomorrow, of course," he mutters, "but I don't like to wait that long." He barely looks at you - in fact, you're not sure that he's talking to you at all. It's more like he's just muttering to himself.
+
+He bends over and digs something out of the side of his boot, then stands up and thrusts his hand through the viewing window. He curses and strains to push his arm through, but the bars are too narrowly spaced - he can't reach out past his elbow. "Damn," he mutters, "didn't expect this..."
+
+[IMAGE: InJail]
+
+>[85] z
+Time passes.
+
+Jacobs' face reddens with effort. "C'mon... c'mon..." he mutters.
+
+[IMAGE: InJail]
+
+>[86] z
+Time passes.
+
+"Aaah! Goddesses curse it!" Jacobs jerks his hand back, rubbing his wrist.
+
+"Well, you gonna help me, runt, or not?" he asks, and holds out a short, stiff piece of wire, pinched between his thumb and forefinger.
+
+"What is that thing?"
+"I'd rather not."
+"Okay."
+
+[IMAGE: InJail]
+
+>[87] z
+Time passes.
+
+[IMAGE: InJail]
+
+>[88] 3
+"Um, okay," you say, and pluck the wire from his thick, calloused fingers.
+
+"That's the spirit, runt!" Jacobs says. Suddenly he comes over and puts his huge hands around your waist, hoisting you up as though you weighed no more than a sack of feathers. He feels strong enough to snap you in half.
+
+"You ever pick a lock before, runt?"
+
+"Yes."
+"No."
+
+[IMAGE: InJail]
+
+>[89] 1
+You manage a nod. It's sort of true... Bobby showed you a few tricks once, and you've practiced on the front door of Maiden House a couple of times. You've never had to do it when your life depended on it, reaching through a tiny, barred window, with a giant, crazy-eyed brute breathing down your neck. But perhaps it's best not to get hung up on details.
+
+"Good," Jacob says, pushing you up against the viewing window. "This one should be easy, long as you can reach it."
+
+[IMAGE: InJail]
+
+>[90] unlock door with wire
+You slip your arm through the bars and reach down for the lock. It's a stretch - Jacobs has to lift you higher and press your shoulder painfully against the bars - but soon you feel the metal of the lockplate, and your fingers find the tiny, sharp-edged hole in the middle.
+
+You jam the end of the lockpick in and start wiggling it around. Almost immediately, you realize that this is not going to work. The angle is too awkward, and you can't see what you're doing, and you can't feel the tumblers the way Bobby showed you when you practiced on the front door of Maiden House...
+
+Then you feel the wire bump against something inside the lock. You manage to lever the end of the wire under something and push... you feel it start to give... you push a little harder, and it starts to pivot... you push harder, and it starts to slip off the end of your pick...
+
+And then there is a snap, and the pick jumps out of your fingers and tumbles to the ground outside the cell door.
+
+Jacobs puts you down. He puts his hand on the door... and pushes it open.
+
+"Well," he says, looking you over with a sly expression, "you are a valuable runt, after all."
+
+[IMAGE: InJail]
+
+>[91] n
+
+Jailhouse
+The jailhouse is hardly more comfortable than the cells themselves, just a crude, small room of unfinished stone, with a wooden bench and table for the guards. Cells are south, west, and north. A foul smell comes from a tiny alcove to the southwest, and a passageway to the east leads out.
+
+You can see a lockpick here.
+
+[IMAGE: InJail]
+
+Jacobs arrives from the south.
+
+Jacobs turns to you. "I heard what your friend in the other cell said, before they dragged him out," he says. "Sounds like Fossville's taken quite an interest in you."
+
+"Yes, he has."
+"I don't know what you're talking about."
+
+>[92] get wire
+Taken.
+
+[IMAGE: InJail]
+
+>[93] unlock north door with wire
+"Fine, then," Jacobs snarls, "good luck getting past the guards, runt." He turns on his heel and stalks out, leaving you alone with the other prisoners.
+
+Picking a lock is much easier when you're standing on the ground and can see what you're doing. Twenty seconds, and you have the cell door open.
+
+"Oh, thank you, miss, thank you kindly. Goddesses' blessings upon you. Allow me to make introductions," the man wheezes. "I am called Olmer, and this is my associate, Darrens." The skinny man standing behind him smiles and nods enthusiastically.
+
+"Now," says Olmer, "if you will follow us, we will make our escape."
+
+Olmer and Darrens go southwest.
+
+[IMAGE: InJail]
+
+>[94] sw
+
+Drain Room
+This tiny alcove reeks worse than the privy back at Maiden House, and that's saying something. The main room is back to the northeast.
+
+Set into the stone floor is a metal grate.
+
+You can also see Olmer and Darrens here.
+
+"The guards use this place to relieve themselves," Olmer explains, "and sometimes for beatin' prisoners when they don't feel like moppin' the cells after. My back's not much for physical labor, but a spry one like yourself should have little trouble." He motions for you to lift up the grate.
+
+[IMAGE: InJail]
+
+>[95] lift grate
+It's a strain, but you're just barely able to lift the heavy grate and drop it to the side with a dull clang. Olmer smiles and gestures towards the foul-smelling hole. "After you," he wheezes.
+
+[IMAGE: InJail]
+
+>[96] test sewers
+(Testing.)
+
+>[97] xyzzy
+A hollow voice whispers "groo."
+
+>[98] down
+Well, it can't be that much worse than rotting in prison, you think. You sit down and dangle your feet over the edge of the hole. You can hear the sound of running water, and smell the sharp stink of sewage. You offer a quick prayer to Brigid - Please give me a chance to clean up before seeing Bobby again - take a deep breath, and drop down into darkness.
+Chapter 4 - Sewer 
+
+Sewer
+The tunnels down here are made of ancient, unmortared brick, slimy with centuries of filth and mold. Dim light trickles down through narrow vents in the ceiling. Side tunnels split off in numerous directions, twisting away into darkness.
+
+Painted on the walls are a number of odd symbols.
+
+Olmer drops down into the muck next to you, followed by Darrens. "Now then, miss, cast your eye at these glyphs here," whispers Olmer. His voice echoes off into the blackness as he brushes the rough stone with his fingertips. "These are marked down by such poor blokes as have to take refuge down here on a more regular basis. They tells you where the tunnels lead, if you but know their language." Darrens nods in solemn agreement.
+
+"To get back to your neighborhood, you'll want to follow the red, see?" Olmer points off down the south tunnel. "Darrens and I, we must be off elsewhere, so we'll take our leave of you now. But follow the red and you can't go wrong."
+
+"It was very kind of you to set us free, young lady." He shakes your hand. (His hands are slimy with filth, but then so are yours.) "We've only our meagre gratitude with which to repay you, but we won't forget your generosity." Darrens nods vigorously and shakes as well.
+
+And then the two of them slosh off, leaving you alone.
+
+[IMAGE: JackInDisguise]
+
+>[99] s
+Sewer
+The tunnels down here are made of ancient, unmortared brick, slimy with centuries of filth and mold. Dim light trickles down through narrow vents in the ceiling. Side tunnels split off in numerous directions, twisting away into darkness.
+
+Painted on the walls are a number of odd symbols.
+
+[IMAGE: JackInDisguise]
+
+>[100] s
+Access Tunnel
+The tunnels down here are made of ancient, unmortared brick, slimy with centuries of filth and mold. Dim light trickles down through narrow vents in the ceiling. Side tunnels split off in numerous directions, twisting away into darkness.
+
+A ladder is bolted to the wall here.
+
+[IMAGE: JackInDisguise]
+
+>[101] u
+You eagerly pull yourself up the rungs and shove open the hatch. Daylight! You've never been so glad to see it. 
+
+From the look of the sky, it's early morning. You're standing in an empty alleyway, pretty close to Maiden House if you have your landmarks right. After a couple of turns, you figure out where you are, and soon find yourself back in familiar environs.
+Chapter 5 - Black Gate Estate 
+
+Commerce Street
+Commerce Street runs east to west, between Grubber's Market and Lord's Market. Raised sidewalks allow pedestrians to avoid the mud, horse dung, and occasional teamster's cart rumbling by. The shops here are actual buildings, spaced evenly along the avenue. Storefronts for a bakery, a butcher's shop, and an armory line the north side of the street from west to east. 
+
+[IMAGE: JackInDisguise]
+
+>[102] unxyzzy
+A hollow voice whispers "oorg."
+
+>[103] test walk2
+(Testing.)
+
+>[104] test rooftops
+(Testing.)
+
+>[105] n
+
+Butcher's Shop
+Chains of linked sausages and thick, red cuts of meat dangle from hooks in the ceiling, and trays of less identifiable bits sit out on the counters. It's better than some butcheries you've seen, but it's still not your favorite place in the city. You can leave to the south.
+
+Old Man Holstenoffer is leaning over his huge, bloodstained butcher block behind the counter, hacking up some carcass.
+
+Holstenoffer looks up as you enter his shop, and his eyes widen. "Goddesses, Jack," he says, "you look like you've had the worse of it. Widow Fiona was just in this morning, lookin' for yeh. Is everything all right?"
+
+"Have you seen Bobby?"
+"Is there a back door here?"
+
+[IMAGE: JackInDisguise]
+
+>[106] 1
+"Have you seen Bobby since last night?" you ask desperately. "Or heard anything?"
+
+"Well, no," Holstenoffer says. His wide brow creases in concern. "What's wrong, Jack? Is Bobby in some kind of trouble?"
+
+"No, I'm just looking for him."
+"Yes, he's been captured by Fossville's men."
+
+[IMAGE: JackInDisguise]
+
+>[107] 1
+You want to tell Holstenoffer, but the words catch in your throat. Who can you trust, really? "Um, no, no trouble," you say. "I'm just looking for him, is all."
+
+Holstenoffer sets his mouth in a grim line. It's clear he doesn't believe you, but Holstenoffer's never been one to pry. "All right, then," he says.
+
+"Is there a back door here?"
+
+[IMAGE: JackInDisguise]
+
+>[108] 1
+"Listen, is there a back door in your shop?" you ask, craning to see around Holstenoffer's huge frame.
+
+"Yeah..." he says slowly, giving you an odd look. "Don't lead to nothin' but a closed-off alley, though. What do yeh want back there for?"
+
+"Just let me back there."
+"It's to help Bobby."
+
+[IMAGE: JackInDisguise]
+
+>[109] 2
+You take a deep breath. "I need to get up onto the rooftops, so I can get to... a place." You're not sure if Holstenoffer would actually disapprove of breaking into Fossville's house, in principle, but he probably wouldn't approve of you doing it yourself. "Please, Holstenoffer. I need to get up there to help Bobby."
+
+Holstenoffer looks at you for a few moments, then nods his head. "All right then. Come around the counter here."
+
+You follow the burly butcher to the back of his shop, where he unlocks and opens a small metal door. "Be safe now, Jack," he says, laying a thick hand on your shoulder. "Do what yeh have to do."
+
+A twinge of guilt nags at you. Technically, you don't have any idea whether this letter will help Bobby or not, although you certainly hope it does. But what else can you do? "Thanks," you whisper, and step through the door.
+
+Closed Alleyway
+The walls of the alley are so close together you can barely squeeze your shoulders through; the rough brick and mortar catches at your clothes. The ends of the alley are walled off. There's no way out except back through the little door you came in.
+
+A rusted rain gutter clings to the wall.
+
+[IMAGE: JackInDisguise]
+
+>[110] climb gutter
+You give the pipe a few experimental tugs, then take a deep breath and start shimmying up. The rain gutter squeaks and groans in protest. Your fingers cramp and your toes scrabble to find purchase on the rough bricks. Finally, three stories up, you grab the edge of the rooftop and haul yourself over.
+
+Rooftop
+The rooftops are like a miniature mountain range up here, with peaks and valleys sloping away into the distance. Chimneys and stovepipes stand sentry like the keeps and towers of castles. Bobby has exclaimed the virtues of rooftop travel before, and finally you see what he was going on about. It feels like you could explore forever up here.
+
+[IMAGE: JackInDisguise]
+
+>[111] e
+
+Rooftop Edge
+The rooftop landscape ends here at a wide street dividing Commerce Street from the more affluent residential district that borders it. Far, far below, you can see all the little people going about their business.
+
+To the east, across the gap, you spy a balcony.
+
+[IMAGE: JackInDisguise]
+
+>[112] e
+You peer across the gap at the balcony, judging the distance. About ten feet. Maybe a little bit more than ten feet. And it's slightly below you, which is a plus.
+
+Still, it's a really far jump.
+
+This is where Bobby told you to go. A letter... secrets about your father, he said. The thought of facing Bobby when he gets out, after they beat him up so bad, and telling him you were too scared to do what he asked you to do...
+
+You take a few steps back, run... and jump.
+
+The railing slams into your chest, knocking the breath out of you. Your feet pedal madly in empty air. You wrap your arms around the railing, trying to grab on, but you're slipping...
+
+Then your foot finds the edge of the balcony, and you push yourself up and over.
+
+Balcony
+You're standing on a balcony, complete with ornate railing, that runs along the roof's western edge. To the northeast is a garden; to the southeast, a patio.
+
+[IMAGE: JackInDisguise]
+
+>[113] se
+
+Patio
+The patio is an area of elegant paving stones surrounding a small fountain. Cushioned divans and low marble tables allow guests to enjoy refreshment while reclining under the open air. The garden is north of here, and the balcony is northwest.
+
+[IMAGE: JackInDisguise]
+
+>[114] n
+
+Rooftop Garden
+The garden is an impressive piece of greenery in a city otherwise dominated by stone. Most of the flowers are not in bloom this late in the season, but there are autumn roses, and some nice hanging lilies climbing up a lattice. The patio is south, and the balcony lies to the southwest. Nearby, a flight of steps leads down into the lower floors of the house.
+
+[IMAGE: JackInDisguise]
+
+>[115] test blackgate
+(Testing.)
+
+>[116] d
+Holding your breath, you tiptoe quietly down the stairs. A prickle runs up your spine; you are now an intruder. If the Baron catches you here, he'll have you tossed back into a jail cell - and that's the best case scenario. If what Bobby told you is true, and Fossville knows secrets about you that he's trying to hide, it's more likely he'll just slit your throat.
+
+Have to move quickly, then - search the house, find this letter, and get out.
+
+Third Floor Landing
+This is the main stairway that winds up and down the back of Black Gate Estate. A hallway leads south.
+
+[IMAGE: JackInDisguise]
+
+>[117] d
+
+Second Floor Landing
+This is the main stairway that winds up and down the back of Black Gate Estate. A hallway leads south.
+
+You can hear people moving around below.
+
+You hear a door slam open somewhere on the floor below.
+
+"Blast it all!" someone yells. You recognize Baron Fossville's voice from running into him yesterday. "Servants! Bring me spiced wine - hot - and something to eat. No, you dim fool, down here - I'll be leaving again within an hour. Bring it now, unless you'd rather be whipped!"
+
+The sounds of sudden, frantic activity drift up the stairs: footsteps, chairs scraping on wooden floors, glasses and dishes clinking.
+
+[IMAGE: JackInDisguise]
+
+>[118] s
+
+Living Room
+This is a wealthy bachelor's parlor, furnished with comfortable chairs and portraits of Fossville's illustrious ancestors hanging from the walls. A hallway leads north, and sliding doors lead south.
+
+[IMAGE: JackInDisguise]
+
+>[119] open doors
+The doors rattle slightly in their tracks - not very loud, but enough to make you cringe.
+
+[IMAGE: JackInDisguise]
+
+>[120] s
+
+Master Bedroom
+The bedroom, as you might have expected, is dominated by an enormous bed and not much else. Sliding doors lead north, back to the parlor, and another doorway leads south.
+
+[IMAGE: JackInDisguise]
+
+>[121] s
+
+Library
+Tall bookshelves line all four walls, and a stately writing desk sits like an altar in the center of the dimly lit room. A doorway leads north to the bedroom.
+
+[IMAGE: JackInDisguise]
+
+>[122] search books
+(the bookshelves)
+The shelves reach almost to the ceiling, each row sagging beneath the weight of dozens of heavy books. Most of them look new and unread. One shelf, however, is loaded with old, well-worn tomes. 
+
+[IMAGE: JackInDisguise]
+
+>[123] get old book
+On a sudden impulse, you pick a random book from the shelf of older books. A folded sheet of parchment slips out from the pages and see-saws to the floor.
+
+[IMAGE: JackInDisguise]
+
+>[124] get letter
+Taken.
+
+The parchment is thin and the ink faded, but the writing is still quite legible, a strong, graceful script that flows down the page.
+
+Your Royal Highness, it begins,
+
+It is with a sad but hopeful heart that I write to you, for I must reveal deeds that I am not proud of, and yet perhaps I may thereby put an end to an injustice that has gone on far too long.
+
+My lawful marriage was determined by political expediency rather than by the urgings of my own heart, as you well know. My wife was ever a dutiful companion, but never truly happy. I do not blame her. For my part, I did my best to ensure that she lived a lifestyle fitting for a Duchess, and that she wanted for nothing save my love.
+
+Were this the full extent of my shame, I would have no need to write to you, for a loveless marriage is hardly a rare thing in our kingdom. However, it is to confess yet a further disgrace that I must pen this letter. I was not merely cool in my affections, but an unfaithful husband as well. I took a mistress, a woman on whom I bestowed all the tenderness I was unable to give my wife. And with this mistress, I had a child.
+
+I kept the child's existence a secret, as much to spare my wife the ignominy as to avoid the political complications that would otherwise have ensued. From my private finances I established an orphanage here in the city, and paid a tutor from the Royal College to pose as one of the headmistresses, to raise and educate the child properly. In secret I have sponsored this child for ten years.
+
+I feel it is past time for this secrecy to end. I have grown ill with a mysterious sickness these past months, and I fear that my life will soon come to a close. My wife was never able to provide me with a lawful heir, and yet I would not see my family name extinguished merely because I had not the courage to face up to my failings as a husband.
+
+Therefore it is my wish that the crown recognize this child, who bears no fault for the circumstances of her birth, as my sole and lawful beneficiary, to inherit my title and estate in full upon my death, or upon her sixteenth birthday should I die before she reaches the age of majority. I hereby, by my will and by royal law, and in full possession of my faculties, declare my heir:
+
+           Jacqueline Toresal
+
+Signed and witnessed therewith,
+
+Lord William, Duke of Toresal
+
+ 
+
+[IMAGE: JackInDisguise]
+
+Your hand is trembling as you refold the letter. You tell yourself that it's a coincidence, just someone who happens to have the same first name as you - but in your heart you know it must be true.
+
+And yet... it poses so many more questions than it answers. The letter is addressed to the queen, and dated three years ago, just a few months before the Duke's death. Why was it never posted? And what is it doing in Baron Fossville's library?
+
+A noise from the bedroom startles you out of your puzzling. Now that you have what you came for, you need to get out of here - fast.
+
+[IMAGE: JackInDisguise]
+
+>[125] n
+You leave the library in a rush - and run smack into someone coming the other way.
+
+It's all you can do to bite back a scream. You try to duck around the person and run, but he grabs your arm and pulls you back. "Little thief!" a voice hisses, "What are you doing here? What do you have?"
+
+He turns you around to face him. He's an older man, wearing a servant's uniform - Fossville's butler.
+
+Master Bedroom
+The bedroom, as you might have expected, is dominated by an enormous bed and not much else. Sliding doors lead north, back to the parlor, and another doorway leads south.
+
+A butler is standing here, eyeing you suspiciously.
+
+[IMAGE: JackInDisguise]
+
+>[126] z
+Time passes.
+
+[IMAGE: JackInDisguise]
+
+The butler drags you into the stairwell, then stops, his thin, bald head cocked, listening. From downstairs you hear more voices.
+
+"...difficult is it to keep one half-witted street urchin locked in a cage for a single night?" That's the Baron again, you realize. "Because it is evidently far more difficult than I imagined. Perhaps I am not paying you enough for your heroic efforts so far?"
+
+You hear a low, mumbled response.
+
+"No, I daresay you don't," snaps the Baron, his voice acid with sarcasm. "I cannot express how galling it is that I still require your services; were it otherwise, I would sooner turn you all over to the Lord's Guards and let them deal with you like the useless curs you are."
+
+The butler glances at you, one bushy eyebrow raised. You're beginning to suspect that Baron Fossville is not particularly well liked by his servants.
+
+>[127] z
+Time passes.
+
+[IMAGE: JackInDisguise]
+
+"Gather your men at Lord's Market," says Fossville. "We'll deal with the spy first. Once that business is finished, we pay a visit to the Widows. Though I suppose I should warn you - you may encounter several unarmed, elderly women there. Let us hope they pose no greater challenge to your mercenaries than a fourteen-year-old girl."
+
+The second voice mumbles another response.
+
+"See that you do. I will be there shortly."
+
+You hear footsteps, and then a heavy door slamming.
+
+The butler holds his hand up, palm out. Wait.
+
+>[128] z
+Time passes.
+
+[IMAGE: JackInDisguise]
+
+Several agonizing minutes later, you hear the door slam a second time. The butler waits a few minutes more, then drags you downstairs. He takes you through the kitchens to a side door, and shoves you unceremoniously out onto the street.
+
+"Go now, and don't come back," he says. "Next time, it won't be me that catches you. And if it is me, it'll go that much worse for you. A bit of advice, girl," he adds, just before turning away. "Keep yourself out of the Baron's way. He's not one to let a trifling of blood get in between him and his ambitions."
+
+He slams the door.
+Chapter 6 - Gallows 
+
+East Commerce Street
+The east end of Commerce Street winds through an upper-class residential neighborhood before ending up at Lord's Market. Behind spiked, iron fences stand the "city cottages" of Toresal's wealthy merchants and nobility, built tall and narrow to make the best use of limited real estate.
+
+Three stately houses are built close together on the north side of the road: Black Gate Estate to the northwest; Red Gate Estate to the north; and the Jacobs family mansion to the northeast. The street itself continues east and west, and the City Park lies to the south.
+
+There seems to be some sort of spectacle going on in Lord's Market; pedestrians are crowding the streets, pressing east.
+
+>[129] test hanging
+(Testing.)
+
+>[130] e
+
+Lord's Market
+Lord's Market is packed with people from every part of the city, all of them pressing in, blocking the streets. You've never seen it this crowded before. 
+
+There is some sort of wooden structure erected in the center of the square.
+
+[IMAGE: Gallows]
+
+>[131] x structure
+It's a raised platform, with some sort of scaffolding built over it, and a rope dangling from...
+
+Suddenly your mouth goes dry. It's a gallows.
+
+[IMAGE: Gallows]
+
+>[132] z
+Time passes.
+
+A man steps up onto the wooden platform. By squeezing between two spectators and craning your neck, you can just make out that it is Baron Fossville addressing the crowd.
+
+"Citizens of Toresal," he shouts, "as Lord of this City, it is my duty to administer justice within its gates, and punish those who transgress against the Queen's Law. More often than not, this duty is a heavy burden. Though I may wish to be lenient, consideration for the sanctity of the law and the safety of the Queen's subjects must always outweigh my softer instincts. Today, this burden weighs particularly upon me, for today I must administer the most stringent punishment allowed by the law."
+
+Soldiers prod a second man up onto the platform. The black bag covers his face, but you recognize him by the clothes he's wearing - it's Bobby!
+
+[IMAGE: Gallows]
+
+>[133] z
+Time passes.
+
+"This man before you stands accused of plotting high treason against the city of Toresal," shouts the Baron. "The evidence against him has been weighed, and he has been found guilty by the Honorable Magistrate Hester Rudup."
+
+Fossville gestures to a third man standing on his other side, a gaunt man wearing crimson robes - the man who captured you last night at the fountain.
+
+[IMAGE: Gallows]
+
+>[134] z
+Time passes.
+
+"Despite the grief it causes me, the penalty for this most heinous crime is clear." Fossville pauses; the crowd is hanging on his every word. "By the power vested in me and in accordance with the Queen's Law... I hereby sentence this man to hang by the neck until dead."
+
+The Baron turns to one of his soldiers at the platform's base and nods his head.
+
+Later, you cannot remember whether you really heard the clunk of the trapdoor falling open, the rope snapping taut, or whether you only imagined it. You remember screaming, clawing at the spectators in front of you, and being pushed back by rough, angry hands. You stumbled and fell onto the cobblestones. You never saw his body drop.
+
+Everything goes black.
+
+[IMAGE: Gallows]
+
+
+
+Please press SPACE to continue.
+Chapter 7 - Mercenaries Again 
+
+You are lying on something soft. Blankets, a thin mattress - you're back in Maiden House, lying in your own bunk. Fiona is sitting on the edge of the bed, watching you with a tender expression. Her eyes are red and raw, though, like she's been crying. For a moment, you feel strange, disconnected. You wonder what's wrong.
+
+And then it comes back to you. It's Bobby. Bobby is dead.
+
+[IMAGE: MaidenHouse]
+
+You feel like there's something important you should say to Fiona, but you can't think of what it is.
+
+"How did I get here?"
+"I'm sorry I snuck out."
+"Bobby is dead. They killed Bobby."
+
+>[135] test maidens
+(Testing.)
+
+>[136] 3
+"Bobby..." you manage to say, but then your throat closes up around the words, and it hurts. It's like choking on something that's swelling, getting bigger and bigger inside you...
+
+...and then something breaks inside, and it all comes gushing out. Fiona's arms are around you, and your tears are soaking into her blouse as the sobs rack their way up from the deepest part of your gut, and she is whispering, "Oh child... oh my dear child..."
+
+"Buh-buh-Bobby..." you wail, feeling stupid and weak and scared and guilty and oh, so alone. How did this happen? You were talking to him just yesterday. You snuck out for a lark, and now he's... he's...
+
+"Hush," Fiona says softly, stroking your hair. "I know, child. I know."
+
+I never told him my name! you want to scream. You never told him your real name, and you never told him how you felt about him, and now he's dead, and he never really knew you at all.
+
+But then you remember the letter, and all the things Bobby told you in the Jail... what if he did know you? What if he knew you even better than you knew yourself?
+
+Suddenly, someone pounds on the front door. The sobs freeze in your throat as a voice outside shouts, "Open in the name of Baron Fossville!"
+
+Fiona looks horrified. "It's the Baron!" she whispers. "I didn't think he'd come here so soon... quick, Jacqueline! Go to the laundry room!"
+
+[IMAGE: MaidenHouse]
+
+>[137] se
+
+Hallway
+The main hallway runs through the center of Maiden House, with several doorways leading to rooms on either side. To the southeast and southwest are the laundry and privy, respectively; to the northeast lies the kitchen; and to the northwest is the dormitory where you and the other orphans sleep.
+
+The front door is closed.
+
+Widow Fiona arrives from the northwest.
+
+The pounding continues.
+
+[IMAGE: MaidenHouse]
+
+>[138] se
+Laundry
+The air in here is filled with steam and the sharp stink of lye soap. Moisture trickles down the walls, and puddles of water splash underfoot. The main hallway lies northwest.
+
+As you enter the room, Widow Shannon rushes over and pushes against one of the boards in the northern wall. It moves aside, revealing a narrow, dark opening.
+
+"Quick, Jacqueline," she whispers, "in here!"
+
+The pounding continues. "Open up!"
+
+[IMAGE: MaidenHouse]
+
+>[139] n
+You squeeze in, and Shannon pulls the board back into place, shutting you into darkness.
+
+Secret Closet
+It is pitch black. The walls press close to either side; you can barely breathe.
+
+The pounding continues. "Open this door, widow, before we break it down!"
+
+[IMAGE: MaidenHouse]
+
+>[140] z
+Time passes.
+
+The pounding suddenly stops. Heavy footsteps tromp into the building, making the floorboards shudder beneath your feet.
+
+"Where is she?" growls a rough voice. It's hard to tell from two rooms away, but it sounds very similar to the mercenary captain you heard yesterday morning, at the Grubber's Market.
+
+[IMAGE: MaidenHouse]
+
+>[141] z
+Time passes.
+
+"Where is who, sir?" That must be Fiona.
+
+"Don't play games with me, woman," snaps the first voice. "I've had my fill of it. The old Duke isn't here to protect you anymore, and if one of my men were to be careless and injure someone, it would rest but lightly on the Baron's conscience. Now, we know she came here after the hanging. Where is she?"
+
+"I can tell you, good sir," says a third voice.
+
+Bitter anger wells up in your throat, even as fear turns your stomach cold. That was Theresa!
+
+[IMAGE: MaidenHouse]
+
+>[142] z
+Time passes.
+
+"Widow Theresa-" Fiona begins, in a strangled voice, but Theresa interrupts her.
+
+"Oh, do spare us your indignation, Fiona," she snaps. "I've stood by for years while you protected and coddled that child, and I tell you I've had my fill of it. Now she has done something unconscionable - obviously, or else the good Baron would not be looking for her - and I for one will not stand in the way of the law merely so that you can continue to bestow favoritism on one ungrateful little brat."
+
+There is a long silence. You can feel your cheeks burning. Theresa has always disliked you, but you never thought she would be so treacherous as to turn you over to the Baron's men.
+
+[IMAGE: MaidenHouse]
+
+>[143] z
+Time passes.
+
+Finally, Theresa speaks: "If you look in the laundry room, you will find a hidden closet in the north wall. The child is hiding there."
+
+"My thanks, madam," grunts the mercenary captain. "I'll make sure the Baron hears of your cooperation when we-"
+
+Suddenly Shannon is screaming, "Jacqueline! Jacqueline, wait!" Shouts. Running footsteps. What is going on? You hear footsteps coming down the hall, towards the laundry room... closer, closer... but then they suddenly turn away from the laundry room, towards... the privy?
+
+"Jacqueline... oh, Goddesses." That's Shannon's voice.
+
+"What is it?" yells the mercenary captain. "Where did the girl go?"
+
+"She... she got away from me, Miss Fiona," wails Shannon. "I was trying to get her into the hiding place, just like you said, but she slipped past me and wriggled out the privy window. You know how fast she can get through that window, Miss Fiona. She could be anywhere in the city by now. I'm so sorry, Miss Fiona, so sorry."
+
+You can't help but grin. You've always thought of Shannon as being a trifle dim-witted, and now you'll have to revise your opinion.
+
+[IMAGE: MaidenHouse]
+
+>[144] z
+Time passes.
+
+The mercenary captain utters a curse so foul that you actually wince. "Don't just stand there, you bleeding dims," he yells, "get out there and find her! You two, keep an eye on the alley in case she comes back. Go! Go! Find her or I'll have your hides!" The footsteps run back up the hall, growing fainter this time, then vanishing altogether as they cross the threshold and exit Maiden House.
+
+You let out a long, shaky breath.
+
+[IMAGE: MaidenHouse]
+
+>[145] z
+Time passes.
+
+The door opens, and Shannon takes your hand as you stumble out of the stifling darkness.
+
+"That was too close," she says.
+
+[IMAGE: MaidenHouse]
+
+Laundry
+The air in here is filled with steam and the sharp stink of lye soap. Moisture trickles down the walls, and puddles of water splash underfoot. The main hallway lies northwest.
+
+A gap between boards in the northern wall leads into a tiny, dark closet.
+
+Widow Shannon is here, looking scared but determined.
+
+>[146] nw
+
+Hallway
+The main hallway runs through the center of Maiden House, with several doorways leading to rooms on either side. To the southeast and southwest are the laundry and privy, respectively; to the northeast lies the kitchen; and to the northwest is the dormitory where you and the other orphans sleep.
+
+The front door is open.
+
+Widow Fiona and Widow Theresa are standing in the middle of the hallway, staring each other down. Theresa looks sullen but defiant; Fiona is livid with rage.
+
+They are silent for a long, tense moment. Then Widow Theresa looks away.
+
+"Get out," chokes Fiona. Her arm is extended, one pale finger pointing at the front door. "Get out and never set foot in this orphanage again. Perhaps when the nights grow cold you may rely on the charity of your precious Baron."
+
+Theresa looks at you once - a bitter, helpless glare - and then turns on her heel and walks out, slamming the door behind her.
+
+Widow Fiona takes a deep breath, then turns to you and smiles weakly. "Now, then. We don't have much time before the Baron's men come back, and I'm sure you have questions."
+
+"You're the tutor, aren't you?"
+"Tell me about my father."
+"What will happen to Widow Theresa?"
+"What do I do now?"
+
+[IMAGE: MaidenHouse]
+
+>[147] 4
+You take a deep breath. "What am I supposed to do now?" you ask.
+
+"First, you must leave this place. The Baron's men will be back, and they won't be fooled so easily again. You'll need to go quickly, out the privy window." Although her manner is urgent, Fiona smiles a bit at that. "It's a route you're accustomed to, to be sure."
+
+She takes a large brass key from her pocket and presses it into your hand. "It's time you learned something of your past, Jacqueline. This is yours by right. It is the key to Red Gate Manor, and it opens the way to your history. Once you are away and safe, go there and find the answers that I can't give you now."
+
+"Finally, when all that is done, go and speak to Dame Sandler in Lord's Market. She is a friend, and more importantly her allegiances are not known to Baron Fossville. She will set you on the road to reclaiming your birthright."
+
+Fiona pulls you close and hugs you tight. "Oh child," she whispers, "I have loved you like a daughter for so long. Go now, and quickly. Be safe."
+
+[IMAGE: MaidenHouse]
+
+>[148] sw
+
+Privy
+Not much more than a narrow closet, with a hole in the floor and a bench over it. At least it's more private than an alley.
+
+A narrow window over the bench provides some ventilation.
+
+[IMAGE: MaidenHouse]
+
+>[149] enter window
+Chapter 8 - Red Gate Estate 
+
+You pull yourself through the window and once again clamber up into the alley. You can hear a commotion from the direction of Lord's Market; it looks as though the Baron's mercenaries are still out searching the streets for you, but they'll double back and put a watch on Maiden House soon enough.
+
+There is a scrabbling, grunting sound behind you, and you turn to see Shannon trying to push her way through the window. Confused but not wanting to just stand there and watch her struggle, you give her a hand up.
+
+"Fiona thought I should maybe come with you," she says, after she's finished smoothing her skirts and catching her breath. "In case you needed any help."
+
+Behind Maiden House
+This tiny spur of an alleyway runs between the back of Maiden House and the high stone wall surrounding the park. You can make your way around to the Maiden House Entrance to the northeast.
+
+Widow Shannon is here, looking scared but determined.
+
+[IMAGE: MaidenHouse]
+
+>[150] test walk3
+(Testing.)
+
+>[151] test redgate
+(Testing.)
+
+>[152] ne
+Shannon lays a hand on your elbow. "Wait, Jacqueline," she whispers. "The mercenaries will be watching the entrance. We'd best cut through the park. I'll help you climb the wall."
+
+[IMAGE: MaidenHouse]
+
+>[153] climb wall
+Shannon laces her fingers together and gives you a boost up to the top of the wall; then you reach down and help pull her up. You both drop down onto the grass on the other side, and then it's a quick sprint across the open space of the park. Fortunately, no one is about after the awful spectacle in Lord's Market, and you make it to the relative safety of East Commerce Street without anyone spotting you.
+
+East Commerce Street
+The east end of Commerce Street winds through an upper-class residential neighborhood before ending up at Lord's Market. Behind spiked, iron fences stand the "city cottages" of Toresal's wealthy merchants and nobility, built tall and narrow to make the best use of limited real estate.
+
+Three stately houses are built close together on the north side of the road: Black Gate Estate to the northwest; Red Gate Estate to the north; and the Jacobs family mansion to the northeast. The street itself continues east and west, and the City Park lies to the south.
+
+Widow Shannon is here, looking scared but determined.
+
+[IMAGE: JackInDisguise]
+
+>[154] unlock red gate estate with key
+The lock is rusty and stiff from long disuse, but the key turns... and the door unlocks with a grinding clunk.
+
+You pause for one last glance over your shoulder at the streets of Toresal, so familiar from your years of skulking, scrounging, and sometimes even sleeping on them. Then you pass over the threshold, into Red Gate Estate.
+
+Entrance Hall
+The entrance hall is large, high-ceilinged, and empty but for a few chairs. Your footsteps echo on the marble floor. A doorway leads north to further rooms, and the street lies south.
+
+The house is eerie in its stillness. The walls are bare; and all the furniture is draped in white sheets.
+
+[IMAGE: JackInDisguise]
+
+>[155] n
+Shannon follows silently.
+
+Dining Hall
+The long table in the center of the hall is covered in sheets, as are the rows of chairs to either side. Doorways lead north and south.
+
+[IMAGE: JackInDisguise]
+
+>[156] n
+Shannon follows close by.
+
+Kitchen
+The kitchen seems particularly barren, empty of its usual clutter of pots and pans and utensils. The firepit in the southwestern corner is cold and dark. The dining room lies south, and a wide staircase in the back of the room leads up to the second floor.
+
+[IMAGE: JackInDisguise]
+
+>[157] n
+You can't go that way. 
+
+[IMAGE: JackInDisguise]
+
+>[158] u
+Shannon follows silently.
+
+Second Floor Landing
+The shadowed stairway leads up and down. A doorway leads south.
+
+[IMAGE: JackInDisguise]
+
+>[159] u
+Shannon follows silently.
+
+Third Floor Landing
+The stairs end here at the third floor. A doorway leads south.
+
+[IMAGE: JackInDisguise]
+
+>[160] s
+Shannon follows silently.
+
+Master Bedroom
+Most of the furniture from this room has been carted off. Only the bed remains, just a bare mattress covered with yet another plain, dusty sheet. Doorways lead north and south.
+
+[IMAGE: JackInDisguise]
+
+>[161] s
+Shannon follows close by.
+
+Bathroom
+The walls of this small room are cold, bare marble. The only exit is to the north.
+
+A pair of strange-looking devices protrudes from the south wall, hanging over the lip of a huge stone basin.
+
+[IMAGE: JackInDisguise]
+
+>[162] take bath
+You plug the drain and begin filling the enormous tub with water.
+
+Shannon nods with approval but says nothing; somehow she seems to know what you were thinking. By the time you've gotten out of your sodden clothes and into the water, she's managed to scare up a cake of soap from somewhere. She smiles as she hands it to you.
+
+The water is scalding hot and exquisite. You rub the soap into your reddening skin, feeling everything wash clean away. Not just the dirt and the sweat, but everything: the fear and confusion of being hunted for two days straight; the moldy tunnel under Lord's Keep; the prison; the sewers. Even your grief and guilt over Bobby's death - it doesn't go away completely, not all of it, but it's not so raw any more, not so sharp.
+
+You dry off with a sheet pulled from the furniture. As you reach for your old clothes, Shannon stops you and holds out a dress.
+
+"Where in the world-?" you ask.
+
+"The Duke's wife was a little lady, just about your size, really," Shannon says. "Not beautiful, but handsome in her way. And good taste in clothes." She puts the dress into your hands.
+
+[IMAGE: JackInDisguise]
+
+>[163] wear dress
+You slip the dress over your head, and Shannon helps you with the laces. The linen feels soft and light on your skin. She was right about the size, too; it fits fine.
+
+Finally, you look in the mirror. A complete stranger looks back at you: fair of skin, with dark eyes and high cheekbones. She wears fine clothes, and the tangles have been brushed out of her hair. She looks, you realize, quite pretty.
+
+This isn't Jack anymore, you think to yourself. This is Jacqueline.
+
+[IMAGE: JackInSimpleDress]
+
+>[164] n
+Shannon follows close by.
+
+Master Bedroom
+Most of the furniture from this room has been carted off. Only the bed remains, just a bare mattress covered with yet another plain, dusty sheet. Doorways lead north and south.
+
+[IMAGE: JackInSimpleDress]
+
+>[165] n
+Shannon follows close by.
+
+Third Floor Landing
+The stairs end here at the third floor. A doorway leads south.
+
+[IMAGE: JackInSimpleDress]
+
+>[166] d
+Shannon follows close by.
+
+Second Floor Landing
+The shadowed stairway leads up and down. A doorway leads south.
+
+[IMAGE: JackInSimpleDress]
+
+>[167] d
+Shannon follows close by.
+
+Kitchen
+The kitchen seems particularly barren, empty of its usual clutter of pots and pans and utensils. The firepit in the southwestern corner is cold and dark. The dining room lies south, and a wide staircase in the back of the room leads up to the second floor.
+
+[IMAGE: JackInSimpleDress]
+
+>[168] s
+Shannon follows close by.
+
+Dining Hall
+The long table in the center of the hall is covered in sheets, as are the rows of chairs to either side. Doorways lead north and south.
+
+[IMAGE: JackInSimpleDress]
+
+>[169] s
+Shannon follows close by.
+
+Entrance Hall
+The entrance hall is large, high-ceilinged, and empty but for a few chairs. Your footsteps echo on the marble floor. A doorway leads north to further rooms, and the street lies south.
+
+[IMAGE: JackInSimpleDress]
+
+>[170] s
+
+
+East Commerce Street
+The east end of Commerce Street winds through an upper-class residential neighborhood before ending up at Lord's Market. Behind spiked, iron fences stand the "city cottages" of Toresal's wealthy merchants and nobility, built tall and narrow to make the best use of limited real estate.
+
+Three stately houses are built close together on the north side of the road: Black Gate Estate to the northwest; Red Gate Estate to the north; and the Jacobs family mansion to the northeast. The street itself continues east and west, and the City Park lies to the south.
+
+"I suppose we should go see Mrs. Sandler now," Shannon says.
+
+[IMAGE: JackInSimpleDress]
+
+>[171] test sandler
+(Testing.)
+
+>[172] e
+Shannon follows silently.
+
+Lord's Market
+Lord's Market is the high-class mirror to Grubber's Market: a wide, cobbled square, uncrowded and clean, shaded by tall buildings on either side. Here Toresal's upper crust can hunt for bargains inaccessible to the ordinary rabble. Antiques, custom jewelry, and similarly high-priced goods are available behind the tasteful shopfronts. A fine clothier's, a jewelry store, and a moneylender's shop lie northeast, east, and southeast, respectively; you can return to Commerce Street to the west; an alley leads south. 
+
+"Well," says Shannon, "I've seen you safely to Dame Sandler. I'd better get back to Maiden House; the Baron's men might get suspicious if I'm gone too long. Take care, Jacqueline." She hugs you tightly, sniffling a little, and then hurries off to the south.
+
+[IMAGE: JackInSimpleDress]
+
+>[173] e
+Chapter 9 - Preparations 
+
+Dame Sandler looks you over and smiles.
+
+"Lady Jacqueline," she says, inclining her head, "how nice to see you. Come, child, let me get a look at you." She takes your chin gently between finger and thumb and tilts your face back and forth. "Hmm. You've simply destroyed your hair, of course, but there's nothing to be done now. It will grow out eventually."
+
+"You know who I am?"
+"Widow Fiona sent me."
+
+[IMAGE: JackInSimpleDress]
+
+>[174] 1
+Dame Sandler laughs, not unkindly. "It's not that great a secret, you know; more people have had their eye on you than you realize. We've all been waiting for the Duke's daughter to finally make herself known, and now here you are."
+
+"Who's had their eye on me?"
+"Widow Fiona sent me."
+
+[IMAGE: JackInSimpleDress]
+
+>[175] 1
+"What do you mean, 'had their eye on me'?" you say, all your old suspicions returning. "Who else knew? Who's been watching me?"
+
+Dame Sandler sighs and her expression turns serious. "What you must realize, Jacqueline, is that you represent a threat to certain people with ambitions toward the throne. The laws of ascension in our land are quite clear: in the absence of a named successor, the ruler is determined by the will of the people."
+
+She gives you a long, significant look. "The Duke - your father - was very popular with the common people. Baron Fossville... is not."
+
+Your mouth goes dry, and the floor seems to tilt beneath your feet for a moment. "Are you saying..."
+
+"Yes," says Dame Sandler. "I am saying that you have a credible claim to the throne."
+
+"That's ridiculous."
+"Is that the only reason Fossville hates me?"
+"How would I take the throne?"
+
+[IMAGE: JackInSimpleDress]
+
+>[176] 1
+You try to catch your breath, but it's all you can do to keep from bursting out into hysterical giggles. "But that's just... ridiculous," you say. "Completely ridiculous. I can't take the throne, I'm just an orphan, a street girl, a nobody..."
+
+"You are the daughter of one of the most loved and respected noblemen in living memory," Dame Sandler says quietly. "If the Duke were alive today there is no question that he would take the Ascension if he so desired it. As his heir - even as his illegitimate heir - much of that esteem would fall to you. Many would think you worthy."
+
+"Is that the only reason Fossville hates me?"
+"How would I take the throne?"
+
+[IMAGE: JackInSimpleDress]
+
+>[177] 1
+"So that's it? That's why Fossville hates me and wants to lock me away?" you ask. "Because he thinks I'll get the throne instead of him?"
+
+Dame Sandler looks down at her hands for a long time. "There may be one other reason," she says. "Many suspect this, but few will speak of it." When she looks up at you again, you are shocked to see tears in her eyes. "Fossville may have murdered your father."
+
+Your stomach feels as though you are falling down a deep hole, but on the outside, you are still and calm. You think you should be surprised, but somehow, you know you had been expecting this all along.
+
+"How did he do it?" you whisper.
+
+"Poison seems most obvious," Dame Sandler says, regaining a measure of control. "But no one really knows. There's never been any proof."
+
+You nod. You feel anger, but it's a smoldering, far-away anger. It is something you will have to deal with later. Right now, there are too many other things you need to know.
+
+"How would I take the throne?"
+
+[IMAGE: JackInSimpleDress]
+
+>[178] 1
+"Even if I do have a... a credible claim to the throne," you ask, "what would I do with it? How am I supposed to take the Ascension? I can't just walk around Grubber's Market shouting, I'm the Duke's daughter, vote for me!" You think about it for a moment, then add, "Can I?"
+
+Dame Sandler smiles. "Well, the other thing you must realize is that there are also a number of people who are interested in seeing you succeed, and who can help you press your claim. Some of them may believe that you are the better candidate; more of them simply want to spite Fossville; all of them will expect you to be appropriately grateful for their aid should you actually succeed. It is a very valuable commodity, the gratitude of a queen."
+
+"I can't do this."
+"What do I have to do?"
+
+[IMAGE: JackInSimpleDress]
+
+>[179] 2
+You take a long, deep breath. Part of you still can't believe this is even happening. But you hear yourself saying, "All right. What do I have to do?"
+
+"Before you can enlist anyone's aid," says Dame Sandler, "you must let it be known that you are in the game, and that you are a player worth backing. You must announce yourself. And to do that, you must attend Fossville's ball tonight."
+
+In spite of everything that's happened, you find yourself smiling at the idea of attending a royal ball.
+
+"Of course, you cannot attend the ball looking like this," Dame Sandler says, her tone becoming brisk and businesslike again. "You will need three things: a dress, some jewelry... and a weapon."
+
+"What's wrong with the dress I have on?"
+"Why do I need a weapon?"
+"Where can I get some jewelry?"
+
+[IMAGE: JackInSimpleDress]
+
+>[180] 3
+"Where am I going to get some jewelry?" you ask. It occurs to you that you had a very nice necklace, but then you traded it for a cloak...
+
+"Let me take care of that," Dame Sandler says. She unlocks the display case with a tiny silver key, lifts up the lid, and gestures to the sparkling jewels within. "Take any one you like, child. I'm one of those who would see you succeed; this is my gift to you."
+
+"How am I going to pay for this?"
+"What's wrong with the dress I have on?"
+"Why do I need a weapon?"
+
+[IMAGE: JackInSimpleDress]
+
+>[181] 3
+"A weapon?" you ask. "Why do I need a weapon at a fancy ball?"
+
+"I admit it's unlikely that Fossville would try to kill you in front of a hundred guests," Dame Sandler says drily, "but you can never be too careful. There's a weapons dealer on Commerce Street who should have what you need."
+
+"How am I going to pay for this?"
+"What's wrong with the dress I have on?"
+
+[IMAGE: JackInSimpleDress]
+
+>[182] 2
+You look down at the dress you're wearing, the one Shannon found in Red Gate Estate.
+
+"You mean this dress isn't good enough?" you ask, a bit hurt. "Where can I get a better one?"
+
+Dame Sandler smiles sympathetically. "It's very nice, Jacqueline, but I'm afraid it's just a little bit out of fashion. The clothier right next door should be able to fit you with something more appropriate."
+
+"How am I going to pay for this?"
+
+[IMAGE: JackInSimpleDress]
+
+>[183] 1
+"I appreciate your advice, Dame Sandler," you say, "but how am I going to pay for all this? I don't have any money."
+
+"Ah, but you have something even better than money, Jacqueline," Dame Sandler says. "You have credibility. Go to the Chorus Brothers here in Lord's Market. Show them proof of your heritage, and they should be more than willing to help you with money."
+
+[IMAGE: JackInSimpleDress]
+
+>[184] 1
+I didn't understand that sentence.
+
+>[185] take brooch

@@ -1,0 +1,437 @@
+Start of a transcript of
+
+The Empath's Gift
+The Empath's Gift by Textfyre
+Copyright 2010 by Textfyre
+Designed by Paul O'Brian
+Written by Christopher Huang
+Game Engine (FyreVM) by Jesse McGrew
+Inform 7 Programming by Ron Newcomb and Graeme Jefferis
+Testing by Paul O'Brian, Christopher Huang, and Eric Eve
+Special thanks to Graham Nelson and Emily Short
+for all of their hard work on Inform 7.
+All rights reserved.
+Identification number: //C746C678-3CEA-4998-A60D-448CD90B7AE2//
+Interpreter version 1.2.8 / VM 3.1.2 / Library serial number 080126
+Standard Rules version 2/090402 by Graham Nelson
+Textfyre Standard Backdrops by Textfyre
+Basic Followers by Textfyre
+Goals by Textfyre
+Test Suite by Textfyre
+Smarter Parser version 6 by Aaron Reed
+Small Kindnesses version 5 by Aaron Reed
+Extended Grammar version 3 by Aaron Reed
+
+>restore
+Ok.
+
+>[okay, a bit more before i knock off for the night]
+You seem to want to talk to someone, but I can't see whom.
+
+>n
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+>x cutouts
+(the images of winter sports)
+You see far too many of those here.
+
+>get cutouts
+(the images of winter sports)
+You take a cutout picture of Stephan Eberharter.
+
+>goals
+Goals Accomplished: 
+  finding a newspaper
+  finding a hat
+
+Goals Remaining: 
+  find a feather
+  find a flag
+  find a star
+  find a dinosaur
+  find something that was once alive
+
+>u
+
+Second Floor Lobby
+Hooray for Hollywood!  The words are emblazoned right across the wall, over a cutout of Audrey Hepburn holding a pouch full of smaller cutouts of other Hollywood stars.  The glamour continues east and west, to where the younger girl campers are roomed, while the stairs go up and down.
+
+A few tables have been set up here for the RPG option, and the campers involved seem thoroughly absorbed in the unfolding story.
+
+>x rpg
+You've not had much exposure to roleplaying games in the past, but this looks quite interesting.  You'd have signed up for this option this evening if it hadn't filled up within seconds of being offered.  You'll get another chance some time later, though, never fear.  At any rate, this time round they're playing something called Seventh Sea, which seems to be all about swashbuckly goodness, arrr.
+
+>x cutouts
+(the images of Hollywood stars)
+You see nothing special about the images of Hollywood stars.
+
+>[we might say "Hollywood celebrities" so as not to completely telegraph the "star" thing. Better to let the player feel a bit clever, especially since we've got another pouch of literal stars on the 3rd floor.]
+You typed a rather long command and I didn't understand it. It's better to stick to simpler things like TAKE FLOWER, for example.
+
+>get star
+(the images of Hollywood stars)
+You take a cutout picture of Charlie Chaplin.
+
+[You achieved a goal! (finding a star)]
+
+>u
+
+Third Floor Lobby
+This is where the older girls have their rooms.  The walls are painted a very dark blue, and there are planets, stars and all things space-age stuck all over the place.  A cutout of an astronaut holds out a pouch full of astronomical bits; the corridor itself extends east and west, and the stairs continue down to the rest of the dorms and up to the roof.
+
+Under a particularly starry patch of ceiling, a group of campers, including your brother Aidan, are engaged in some freeform improvised poetry.  This is the Rap Session option, you think.
+
+As you enter the area, you experience a momentary headache and the urge to sneeze.  The feeling disappears quickly, but evidently not quickly enough because Aidan clearly seems to have noticed something wrong.  He breaks away from the rest of his option and comes up to you. 
+
+"Hey, Daniel, you okay?"
+
+1. "Yeah, I'm fine."
+2. "No, I'm getting these dizzy spells and headaches."
+
+>1
+"Yeah, I'm fine."
+
+"You sure?  You looked a bit green for a moment there."
+
+1. "Really, I'll be fine."
+2. "Well, I felt a bit funny for a moment, but I'm better now."
+
+>2
+"Well, I felt a bit funny for a moment, but I'm better now."
+
+Aidan frowns.  "Could be something you ate.  Brad Kramer's your counselor, isn't he?  Want me to go get him?"
+
+1. "Thanks, but I think I'll be able to find him myself."
+2. "No, I'll be fine.  It's nothing, really."
+3. "Uh, no, thanks.  (Aidan, you're embarrassing me!)"
+
+>1
+"Thanks, but I think I'll be able to find him myself."
+
+"Whatever you say, tough guy."  Aidan ruffles your hair, and for a moment, but only a moment, something buzzes in your ears.  Aidan resumes his seat with the other rappers.
+
+>l
+Third Floor Lobby
+This is where the older girls have their rooms.  The walls are painted a very dark blue, and there are planets, stars and all things space-age stuck all over the place.  A cutout of an astronaut holds out a pouch full of astronomical bits; the corridor itself extends east and west, and the stairs continue down to the rest of the dorms and up to the roof.
+
+Under a particularly starry patch of ceiling, a group of campers, including your brother Aidan, are engaged in some freeform improvised poetry.  This is the Rap Session option, you think.
+
+Your brother Aidan is here, having signed up for the Rap Session option.
+
+>x pouch
+A bag full of constellations.
+
+>get constellation
+You take a five-pointed star cutout.
+
+>i
+You are carrying:
+  a five-pointed star cutout
+  a cutout picture of Charlie Chaplin
+  a cutout picture of Stephan Eberharter
+  a paper hat
+  a newspaper
+  a list of items for the Scavenger Hunt
+  a few dollars
+
+Goals Accomplished: 
+  finding a newspaper
+  finding a hat
+  finding a star
+
+Goals Remaining: 
+  find a feather
+  find a flag
+  find a dinosaur
+  find something that was once alive
+
+>l
+Third Floor Lobby
+This is where the older girls have their rooms.  The walls are painted a very dark blue, and there are planets, stars and all things space-age stuck all over the place.  A cutout of an astronaut holds out a pouch full of astronomical bits; the corridor itself extends east and west, and the stairs continue down to the rest of the dorms and up to the roof.
+
+Under a particularly starry patch of ceiling, a group of campers, including your brother Aidan, are engaged in some freeform improvised poetry.  This is the Rap Session option, you think.
+
+Your brother Aidan is here, having signed up for the Rap Session option.
+
+>u
+You step out into the bright sunshine.
+
+Rooftop
+The rooftop is only accessible when there's an activity or option that uses it.  Otherwise, it's off-limits, not that you can really imagine why anyone would want to come up here.  It's all black gravel and tar.  The courtyard downstairs is way more pleasant.
+
+The Eggdrop option is busy tossing boxes of eggs over the parapet: a table has been set up as well, and is covered with artsy-craftsy materials with which a number of campers are building egg-preservation containers.
+
+As you emerge into the sunlight, you feel a momentary dizziness that makes you almost want to hurl.  The feeling is gone very quickly, but your heart is left pumping as though you'd just run a couple of miles.
+
+>[Time is still slipping by a bit too quickly, given that this is the introductory chapter to what will be many people's first game. Maybe two or three moves per minute would be a more reasonable pace. I'd like to give people at least a fighting chance at
+You seem to want to talk to someone, but I can't see whom.
+
+>[winning the hunt the first time out. Having a time limit at all still makes it somewhat of an optimization puzzle, and I still think that's a good hook, but I want to strike a balance with making it somewhat reasonable too.]
+You typed a rather long command and I didn't understand it. It's better to stick to simpler things like TAKE FLOWER, for example.
+
+>[Reasonably reasonable. :)]
+That's not a verb I recognize.
+
+>x materials
+The table is covered with artsy-craftsy materials: cardboard boxes, egg cartons, feathers, bits of cloth, sticks, rubber bands, glue, and so on.  There are also several cartons of eggs.
+
+>get feather
+You take a feather.
+
+[You achieved a goal! (finding a feather)]
+
+>x cloth
+There must have been a sale on green cloth somewhere in town this last week.  There's enough cloth here to make a dozen wedding dresses.  Green wedding dresses, admittedly, but you get the picture.
+
+>cut cloth
+You don't know kung fu!
+
+>[???]
+That's not a verb I recognize.
+
+>get cloth
+You take a small square of green fabric.
+
+>glue cloth to stick
+(the small square of green fabric to the shish-kebab skewers)
+You would achieve nothing by this.
+
+>[actually, I would achieve making a flag by this. The game should parse this correctly]
+You seem to want to talk to someone, but I can't see whom.
+
+>get stick
+You take a wooden stick.
+
+>glue cloth to stick
+(the small square of green fabric to the wooden stick)
+You stick the cloth to the short skewer with the glue. It makes a pretty nifty flag!
+[You achieved a goal! (finding a flag)]
+
+>[So apparently the problem was I hadn't picked up the stick yet?]
+You typed a rather long command and I didn't understand it. It's better to stick to simpler things like TAKE FLOWER, for example.
+
+>i
+You are carrying:
+  a green flag
+  a feather
+  a five-pointed star cutout
+  a cutout picture of Charlie Chaplin
+  a cutout picture of Stephan Eberharter
+  a paper hat
+  a newspaper
+  a list of items for the Scavenger Hunt
+  a few dollars
+
+Goals Accomplished: 
+  finding a newspaper
+  finding a hat
+  finding a star
+  finding a feather
+  finding a flag
+
+Goals Remaining: 
+  find a dinosaur
+  find something that was once alive
+
+>get egg
+After they've been out in this heat? Eww.
+
+>l
+Rooftop
+The rooftop is only accessible when there's an activity or option that uses it.  Otherwise, it's off-limits, not that you can really imagine why anyone would want to come up here.  It's all black gravel and tar.  The courtyard downstairs is way more pleasant.
+
+The Eggdrop option is busy tossing boxes of eggs over the parapet: a table has been set up as well, and is covered with artsy-craftsy materials with which a number of campers are building egg-preservation containers.
+
+>x tar
+The tar doesn't look very interesting.
+
+>x tar
+You don't find the tar all that interesting, really.
+
+>d
+You leave behind the bright sunshine.
+
+Third Floor Lobby
+This is where the older girls have their rooms.  The walls are painted a very dark blue, and there are planets, stars and all things space-age stuck all over the place.  A cutout of an astronaut holds out a pouch full of astronomical bits; the corridor itself extends east and west, and the stairs continue down to the rest of the dorms and up to the roof.
+
+Under a particularly starry patch of ceiling, a group of campers, including your brother Aidan, are engaged in some freeform improvised poetry.  This is the Rap Session option, you think.
+
+Your brother Aidan is here, having signed up for the Rap Session option.
+
+There it is, that funny throbbing feeling in the back of your head.  And there, it's gone again.
+
+>d
+
+Second Floor Lobby
+Hooray for Hollywood!  The words are emblazoned right across the wall, over a cutout of Audrey Hepburn holding a pouch full of smaller cutouts of other Hollywood stars.  The glamour continues east and west, to where the younger girl campers are roomed, while the stairs go up and down.
+
+A few tables have been set up here for the RPG option, and the campers involved seem thoroughly absorbed in the unfolding story.
+
+>d
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+>s
+
+Info Desk
+The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.
+
+Michelle Close leans against the side of the desk, chewing on a pencil.
+
+>s
+
+First Floor Lobby, West
+This used to be the living room, back when Alexander Quaverley Jacobs, the eccentric old coot who donated this place to the university was still alive and the university was just starting up.  It's got a huge fireplace, and a big bay window looking out onto the front lawn.  It's also been painted completely white from floor to ceiling, so thickly that you're not sure if some of the molding is not actually just bubbles under the paint.  The info desk is back through the arch to the north, and the lobby continues, through another arch, to the west.
+
+A large brass plaque has been fixed into the space over the fireplace.
+
+>x plaque
+It's shaped like a shield, and commemorates the memory of Damon Rose, one of the founders of LEAP.  You remember him quite well from last year.  It was quite a shock to hear about the accident, and there was some question as to whether LEAP could go on without him.  His sister, Claudia Rose, is in charge of LEAP now, and making sure that the good work goes on.  She seems like a nice lady, but she's just not quite as present as old Damon Rose used to be.
+
+>e
+
+First Floor Lobby, East
+This used to be a rather large dining room, once upon a time, and it still has a low-hanging chandelier right in the middle of the ceiling.  A piano's been pushed under the chandelier so that nobody accidentally gets a head full of crystal walking blindly around, and the place is generally used as a kind of music room now.  The info desk is back to the northwest, and to the west is the rest of the first floor lobby.  Wide picture windows look out on the front lawn and on the southern part of Calvin Field. The School of Rock option is in progress here, jamming away in the upper decibels.
+
+>listen
+Hey, they're not bad.  A bit too loud, but not bad at all.  At least, the loudness covers up any mistakes they may be making.
+
+>x piano
+Ava says it's a baby grand, and she knows more about this sort of thing.  All grand pianos seem more or less alike to you.  The pile of plastic dinosaurs under the piano probably makes it unique, however.
+
+>get dinosaur
+You take a plastic dinosaur.
+
+[You achieved a goal! (finding a dinosaur)]
+
+>w
+
+First Floor Lobby, West
+This used to be the living room, back when old AQJ was still alive and the university was just starting up.  It's got a huge fireplace, and a big bay window looking out onto the front lawn.  It's also been painted completely white from floor to ceiling, so thickly that you're not sure if some of the molding is not actually just bubbles under the paint.  The info desk is back through the arch to the north, and the lobby continues, through another arch, to the west.
+
+A large brass plaque has been fixed into the space over the fireplace.
+
+>n
+
+Info Desk
+The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.
+
+Michelle Close leans against the side of the desk, chewing on a pencil.
+
+8:25!  Time's up!  You hurry back to the starting point with your list and everything you've found so far....
+
+First Floor Lobby, West
+This used to be the living room, back when old AQJ was still alive and the university was just starting up.  It's got a huge fireplace, and a big bay window looking out onto the front lawn.  It's also been painted completely white from floor to ceiling, so thickly that you're not sure if some of the molding is not actually just bubbles under the paint.  The info desk is back through the arch to the north, and the lobby continues, through another arch, to the west.
+
+A large brass plaque has been fixed into the space over the fireplace.
+
+Michelle scans your list, looks over your findings, and shakes her head.  "Well, it was an excellent effort, Daniel, but I'm afraid you haven't quite found everything.  Better luck next time!"
+
+It takes you a few moments to realize that "the bitter taste of defeat" is, in this case, not a figure of speech: the air literally does taste bitter.
+
+
+Please press SPACE to continue.
+
+Well, that was odd.
+
+Those sudden flashes of sensory hallucination (what else would you call them?) seem to die down over the course of the next day.  The headaches and dizzy spells are so mild now as to be practically gone, but on the other hand, the frequency seems to be increasing.  It's all somewhere in the back of your head: if you focus, you can almost always find... something.  A smell, or a sound that isn't there.  A peculiar flavor hanging in the air.
+
+Even so, you're not entirely sure you want to speak to a doctor.  I mean, it's not as if it's laying you flat on your back on anything like that.  You could talk to Aidan, but he'd probably just march you straight up to the hospital.  He'd even carry you there if he had to.  So where does that leave you?
+
+
+
+Please press SPACE to continue.
+
+
+LEAP, Day 3 (Tuesday) - Dorm Time
+
+Your roommate, Jeremy, went off with some friends after dinner, which leaves you alone for now.  It's dorm time, which means you have maybe a couple of hours or so before lights-out, all to yourself.  Some people spend the time reading, or listening to music, or visiting friends.  Which reminds you, maybe talking to Stacy and Ava about this would be the best thing to do.  Maybe they'll tell you it's all part of being eleven years old, or something.
+
+Yeah.  You can hope.
+
+[A new goal was added: visit Ava & Stacy]
+
+Your Room
+You share this room with first-year camper Jeremy Dolan, who hates werewolves for some inexplicable reason.  He let you put the werewolf cutout on the outside of the door only because you let him put up a vampire cutout on the inside.  Jeremy's not around right now, though, so you'll have to wait before continuing your ongoing discussion as to whether vampires or werewolves are cooler.  In the meantime, there's your bed and your desk, and the door back to the north.
+
+>x door
+You see nothing special about your door.
+
+>x desk
+A standard, regulation LEAP desk, with a built-in electrical outlet for your laptop if you have one.  The actual outlet is probably in some inconvenient place behind the desk, but why they couldn't just supply you with a power bar, you don't know.  Well, you suppose desks with built-in outlets are pretty cool.  Just... not as cool as werewolves.
+
+>x bed
+A standard, regulation LEAP bed, with nothing under it but dust.  You've looked several times, especially in the mornings when you can't find your keys.
+
+>look under bed
+Oh hey, someone's gone and swept under the bed.  And it seems Jeremy left a camp flyer under here.
+
+>get flyer
+You take a LEAP camp flyer.
+
+>read it
+One leap flyer.
+
+>[???]
+That's not a verb I recognize.
+
+>[Clearly there is some missing text there.]
+You typed a rather long command and I didn't understand it. It's better to stick to simpler things like TAKE FLOWER, for example.
+
+>x floyer
+You can't see such a thing.
+
+>oops flyer
+Sorry, that can't be corrected.
+
+>x flyer
+One leap flyer.
+
+>i
+You are carrying:
+  a LEAP camp flyer
+  a cutout picture of Stephan Eberharter
+  a few dollars
+
+Goals Accomplished: 
+  runner up in the scavenger hunt
+
+Goals Remaining: 
+  visit Ava & Stacy
+
+>[I'm not sure how I feel about goals from previous chapters sticking around. Seems kind of cluttered.]
+You typed a rather long command and I didn't understand it. It's better to stick to simpler things like TAKE FLOWER, for example.
+
+>[also, it doesn't make a great deal of sense that I'd still be carrying around the skier cutout.]
+You seem to want to talk to someone, but I can't see whom.
+
+>goals
+Goals Accomplished: 
+  runner up in the scavenger hunt
+
+Goals Remaining: 
+  visit Ava & Stacy
+
+>story
+the story thus far
+
+>[another placeholder, not marked as such. ]
+You seem to want to talk to someone, but I can't see whom.
+
+>[Seems like it would be a good idea to have a standard searchable string indicating all places that need to be finished before released.]
+You typed a rather long command and I didn't understand it. It's better to stick to simpler things like TAKE FLOWER, for example.
+
+>[For all I know that's somewhere in the code comments but of course I can't see that.]
+You typed a rather long command and I didn't understand it. It's better to stick to simpler things like TAKE FLOWER, for example.
+
+>[okay, that's really all for me tonight.]
+You seem to want to talk to someone, but I can't see whom.
+
+>save
+Ok.
+
+>quit
+Are you sure you want to quit? yes

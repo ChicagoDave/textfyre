@@ -1,0 +1,47 @@
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreUI\bin\Debug\TextfyreUI.exe
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreUI\bin\Debug\TextfyreUI.pdb
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreUI\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreUI\obj\Debug\App.g.cs
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreUI\obj\Debug\TextfyreUI_MarkupCompile.cache
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreUI\obj\Debug\TextfyreUI.Properties.Resources.resources
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreUI\obj\Debug\TextfyreUI.csproj.GenerateResource.Cache
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreUI\obj\Debug\TextfyreUI.exe
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreUI\obj\Debug\TextfyreUI.pdb
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreUI\obj\Debug\TFMain.g.cs
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreUI\obj\Debug\TextfyreUI_MarkupCompile.lref
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreUI\bin\Debug\TextfyreControls.dll
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreUI\bin\Debug\TextfyreControls.pdb
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreUI\obj\Debug\TFMain.baml
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreUI\obj\Debug\TextfyreUI.g.resources
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreUI\obj\Debug\TextfyreUI.exe
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreUI\obj\Debug\TextfyreUI.pdb
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreUI\bin\Debug\TextfyreUI.exe
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreUI\bin\Debug\TextfyreUI.pdb
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreUI\bin\Debug\TextfyreControls.dll
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreUI\bin\Debug\TextfyreControls.pdb
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreUI\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreUI\obj\Debug\TFMain.g.cs
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreUI\obj\Debug\App.g.cs
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreUI\obj\Debug\TextfyreUI_MarkupCompile.cache
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreUI\obj\Debug\TextfyreUI_MarkupCompile.lref
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreUI\obj\Debug\TFMain.baml
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreUI\obj\Debug\TextfyreUI.g.resources
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreUI\obj\Debug\TextfyreUI.Properties.Resources.resources
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreUI\obj\Debug\TextfyreUI.csproj.GenerateResource.Cache
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreUI\obj\Debug\FDTest.baml
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreUI\obj\Debug\FDTest.g.cs
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreUI\obj\Debug\TextfyreUI.exe
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreUI\obj\Debug\TextfyreUI.pdb
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreUI\bin\Debug\TextfyreUI.exe
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreUI\bin\Debug\TextfyreUI.pdb
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreUI\bin\Debug\TextfyreControls.dll
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreUI\bin\Debug\TextfyreControls.pdb
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreUI\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreUI\obj\Debug\TFMain.g.cs
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreUI\obj\Debug\App.g.cs
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreUI\obj\Debug\TextfyreUI_MarkupCompile.cache
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreUI\obj\Debug\TextfyreUI_MarkupCompile.lref
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreUI\obj\Debug\TFMain.baml
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreUI\obj\Debug\TextfyreUI.g.resources
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreUI\obj\Debug\TextfyreUI.Properties.Resources.resources
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreUI\obj\Debug\TextfyreUI.csproj.GenerateResource.Cache

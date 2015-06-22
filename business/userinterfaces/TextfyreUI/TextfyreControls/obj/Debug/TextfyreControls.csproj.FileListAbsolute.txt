@@ -1,0 +1,33 @@
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreControls\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreControls\obj\Debug\TextfyreControls.Properties.Resources.resources
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreControls\obj\Debug\TextfyreControls.csproj.GenerateResource.Cache
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreControls\bin\Debug\TextfyreControls.dll
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreControls\bin\Debug\TextfyreControls.pdb
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreControls\obj\Debug\TextfyreControls.dll
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreControls\obj\Debug\TextfyreControls.pdb
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreControls\obj\Debug\BookControl.baml
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreControls\obj\Debug\BookControl.g.cs
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreControls\obj\Debug\TextfyreControls_MarkupCompile.cache
+C:\Users\David\Documents\Visual Studio 2008\Projects\TextfyreUI\TextfyreControls\obj\Debug\TextfyreControls.g.resources
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreControls\bin\Debug\TextfyreControls.dll
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreControls\bin\Debug\TextfyreControls.pdb
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreControls\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreControls\obj\Debug\BookControl.baml
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreControls\obj\Debug\BookControl.g.cs
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreControls\obj\Debug\TextfyreControls_MarkupCompile.cache
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreControls\obj\Debug\TextfyreControls.g.resources
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreControls\obj\Debug\TextfyreControls.Properties.Resources.resources
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreControls\obj\Debug\TextfyreControls.csproj.GenerateResource.Cache
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreControls\obj\Debug\TextfyreControls.dll
+C:\Documents and Settings\Jesse\Desktop\working-textfyre\TextfyreControls\obj\Debug\TextfyreControls.pdb
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreControls\bin\Debug\TextfyreControls.dll
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreControls\bin\Debug\TextfyreControls.pdb
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreControls\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreControls\obj\Debug\BookControl.baml
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreControls\obj\Debug\BookControl.g.cs
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreControls\obj\Debug\TextfyreControls_MarkupCompile.cache
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreControls\obj\Debug\TextfyreControls.g.resources
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreControls\obj\Debug\TextfyreControls.Properties.Resources.resources
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreControls\obj\Debug\TextfyreControls.csproj.GenerateResource.Cache
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreControls\obj\Debug\TextfyreControls.dll
+C:\Users\David\Documents\Textfyre\User Interface\TextfyreUI\TextfyreControls\obj\Debug\TextfyreControls.pdb

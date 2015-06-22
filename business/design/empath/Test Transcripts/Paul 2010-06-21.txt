@@ -1,0 +1,826 @@
+Start of a transcript of
+
+The Empath's Gift
+The Empath's Gift by Textfyre
+Copyright 2010 by Textfyre
+Designed by Paul O'Brian
+Written by Christopher Huang
+Game Engine (FyreVM) by Jesse McGrew
+Inform 7 Programming by Ron Newcomb
+ and Graeme Jefferis
+Testing by ____
+Special thanks to Graham Nelson and Emily Short
+for all of their hard work on Inform 7.
+All rights reserved.
+Identification number: //88E48DB3-8DB5-4468-9F2A-8D30D3E09EFA//
+Interpreter version 1.2.6 / VM 3.1.1 / Library serial number 080126
+Standard Rules version 2/090402 by Graham Nelson
+Textfyre Standard Backdrops by Textfyre
+Basic Followers by Textfyre
+Goals by Textfyre
+Test Suite by Textfyre
+
+>restore
+Ok.
+
+>l
+Your Room
+You share this room with first-year camper Jeremy Dolan, who hates werewolves for some inexplicable reason.  He let you put the werewolf cutout on the outside of the door only because you let him put up a vampire cutout on the inside.  Jeremy's not around right now, though, so you'll have to wait before continuing your ongoing discussion as to whether vampires or werewolves are cooler.  In the meantime, there's your bed and your desk, and the door back to the north.
+
+Aidan is here, swaying a little and looking like an enraged bull with a killer headache.
+
+>n
+
+Pits, East
+Your room is at this end of the Pits hallway, just to the south of here.  You've elected to cover your door with the biggest cutout of a werewolf that you can find, because werewolves are cool.  The hallway continues west, and a high window on the east wall looks out across Calvin Field North.  Right beside your room door is the fire stair leading back upstairs.
+
+>w
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Aidan's heavy footsteps come from the east.
+
+>[Oh right, I left off last night saying I needed to look at a test script. Let me just go do that now...]
+You seem to want to talk to someone, but I can't see whom.
+
+>[Ah, I see. So I can calm Aidan after showing the photo. Presumably I would be well-cued into this if I weren't seeing placeholder text reading DO YOU REMEMBER?]
+You seem to want to talk to someone, but I can't see whom.
+
+>w
+As you run into this part of the hallway, one of the doors opens a crack.  Lucian pops his head out just long enough to see Aidan roaring up after you, and then he slams the door shut again.
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+Aidan's heavy footsteps come from the east.
+
+>w
+There are exits east (to the pits stairwell), south (to Lucian's room) and up (to the first floor rooms) from here.
+
+Aidan's heavy footsteps come from the east.
+
+>e
+You hear Lucian's door open again, and Lucian himself running off in another direction.  You hope he's gone to get help.
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Aidan is here, swaying a little and looking like an enraged bull with a killer headache.
+
+Familiar surroundings momentarily confuse him.
+>[For some reason I find it really easy to miss those bits of Lucian text. I think they might be better at the bottom of the description rather than the top.]
+That's not a verb I recognize.
+
+>u
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Aidan's heavy footsteps come from the stairs.
+
+>e
+
+First Floor Rooms, East
+This is the east end of the first floor dorm area.  Through the window at the end of the hall, you can see Calvin Field North and a bunch of campers running about in the summer sunshine.  In here, you are surrounded by images of people having snowball fights.  The fire stairs at this end of the hall go up and down.
+
+Aidan's heavy footsteps come from the west.
+
+>s
+It seems to be locked.
+
+Aidan's heavy footsteps come from the west.
+
+>d
+
+Pits, East
+Your room is at this end of the Pits hallway, just to the south of here.  You've elected to cover your door with the biggest cutout of a werewolf that you can find, because werewolves are cool.  The hallway continues west, and a high window on the east wall looks out across Calvin Field North.  Right beside your room door is the fire stair leading back upstairs.
+
+Aidan's heavy footsteps come from the stairs.
+
+"Hey!"  It's Brad, your counselor, minus the gum and the baseball cap.  He gets in between you and Aidan, shouting for Aidan to settle down.  Aidan has no intention of doing any such thing, and swings out at Brad instead.  He's slow, though, Brad ducks easily -- but then Aidan opens his hand and sweeps it back, catching Brad right in the chest.  WHAM!  Brad goes flying against the wall and slides unconscious to the floor.  You hear doors opening all up and down the hallway, and closing again, as Aidan turns his attention back to you....
+
+>get key
+Taken.
+
+Still unsteady on his feet, Aidan prowls into the room after you.
+
+>w
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Aidan's heavy footsteps come from the east.
+
+>u
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Aidan's heavy footsteps come from the stairs.
+
+>w
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+Aidan's heavy footsteps come from the east.
+
+>n
+
+Aidan's Room
+Aidan shares this room with some guy whose name you never caught and whom you almost never see.  Aidan keeps his half of the room neat and spartan, almost as if he were expecting a military inspection at any moment.  The bedclothes look to be pulled tight enough to bounce a penny to the ceiling, and the desk is practically bare but for a few neatly regulationed necessities.  The door to the dorm corridor is back to the south.
+
+Aidan is just beyond the door.
+
+>[Maybe that should say something like (unlocking the door with Aidan's key)]
+That's not a verb I recognize.
+
+>get photo
+
+Still unsteady on his feet, Aidan prowls into the room after you.
+
+>get photograph
+[placeholder text: "DO YOU REMEMBER?"]
+
+
+
+>[synonym trouble there, I think]
+You seem to want to talk to someone, but I can't see whom.
+
+>show photo to aidan
+>show photo
+(to Aidan)
+>[And again we are whacked out.]
+That's not a verb I recognize.
+
+>focus
+Aidan's mind is blurred by many warring emotions, none strong enough to win on its own.
+
+>calm aidan
+You try your best, but those feelings of anger and aggression seem to be pouring out of Aidan's psyche in never-ending waves.  The best you can do is to keep them from overwhelming that one bright spark of brotherly feeling....
+
+
+Please press SPACE to continue.
+But maybe that's all you need.
+
+You hear the sirens a minute later, and then there's a police SWAT team swarming about.  You learn later that if Aidan had so much as taken a step towards you, he'd have been plugged full of lead from three different directions.  As it is, Dr Rose and her crack team of hospital orderlies eventually manage to push their way through the police red tape while you've got Aidan under control; he is given enough sedative to knock out an elephant, and taken back to the hospital.
+
+From what you overhear from the orderlies, it looks like Aidan is building up a tolerance to the drugs that they've been using to keep him under: that's why he managed to escape from the hospital tonight.  It's only a matter of time before those drugs either stop working at all, or kill him without knocking him out.
+
+"Have a sandwich," says Dr Rose.  "And some tea, perhaps?"
+
+You help yourself to the first thing you've had in almost two weeks that doesn't taste of reverse-engineered sugar substitute.  As you nibble on the sandwich, Dr Rose pours out a cup of tea for herself and for you.  "I spoke with Ava," she says, looking serious, "and she tells me that you said something about having entered your brother's mind at one point.  Now, that is an aspect of your power that I had not anticipated, and I must say I find it quite fascinating.  It might, I suspect it might be of great use to Aidan right now.  Poor boy, I'm afraid there's no other way of dealing with the side effects of his emerging powers, as there was with you.  You're his last hope, Daniel."
+University Hospital, Day 12 (Thursday) - Late afternoon
+
+You're back in the same hospital room you woke up in last week, after you blacked out in the dining hall.  This time it's Aidan who's in the coffin-thing, pumped full of sedatives and tied down with so many heavy-duty cables that he looks like a mummy.  A small table and a couple of comfy chairs have been set up; Dr Rose is sitting in one chair, sipping at her tea.
+
+Your Hospital Room
+The room is, if anything, even more full of medical equipment than the last time you were here.  Aidan has been strapped into that coffin-thing that you woke up in back then, and trussed up so securely that it's a wonder they found anywhere to stick the wires monitoring his condition.  The door is back to the north.
+
+A pair of comfortable chairs have been wheeled in, along with a small table.  Dr Rose sits in one chair, watching you with concern.
+
+>[So clearly ch. 8 needs to bake further.]
+That's not a verb I recognize.
+
+>[Also, it seems like there should be one of those "press SPACE" screen-clearing events after "You're his last hope."]
+You seem to want to talk to someone, but I can't see whom.
+
+>x rose
+You see nothing special about Dr Rose.
+
+>[A description would be good.]
+That's not a verb I recognize.
+
+>ask rose about aidan
+(Aidan)
+"You will give it a try, won't you, Daniel?"
+
+>ask rose about me
+You are already talking to Dr Rose.
+
+>[??? That is not a valid response to that command.]
+That's not a verb I recognize.
+
+>ask rose about empathy
+There is no reply.
+
+>[She should be able to describe my powers, and aidan's]
+You seem to want to talk to someone, but I can't see whom.
+
+>ask rose about strength
+There is no reply.
+
+>ask rose about herself
+You are already talking to Dr Rose.
+
+>ask rose aobut rose
+I didn't understand that sentence.
+
+>[she should also be able to answer a question about herself.]
+That's not a verb I recognize.
+
+>l
+Your Hospital Room
+The room is, if anything, even more full of medical equipment than the last time you were here.  Aidan has been strapped into that coffin-thing that you woke up in back then, and trussed up so securely that it's a wonder they found anywhere to stick the wires monitoring his condition.  The door is back to the north.
+
+A pair of comfortable chairs have been wheeled in, along with a small table.  Dr Rose sits in one chair, watching you with concern.
+
+>x chairs
+The chair looks like every other chair you've ever seen.
+
+>x aidan
+He doesn't look very happy to be here.  Then again, who would?  Fortunately for everyone, he's also unconscious and drooling slightly.  He's being kept sedated, but goodness only knows how long that will last.
+
+>x wires
+The wir doesn't look very interesting.
+
+>["The wir"?]
+That's not a verb I recognize.
+
+>x coffin
+It's shiny and silver and futuristic-looking, but still looks like a coffin.  Or an Egyptian sarcophagus.  Or an iron maiden.  You'd have to be out cold before you'd let anyone put you into that thing.
+
+>ask rose about coffin
+You are already talking to Dr Rose.
+
+>[something is clearly wrong there.]
+That's not a verb I recognize.
+
+>focus on rose
+You sense nothing untoward or out of the ordinary here.
+
+>[I wonder if there should be a nonstandard response for that -- perhaps an impressive placidity or something. In my ideal world, people would come back to this game after others have been released revealing Dr. Rose as more of a villain, and people would 
+That's not a verb I recognize.
+
+>[be able to find subtle clues about her in this one. Very subtle.]
+That's not a verb I recognize.
+
+>l
+Your Hospital Room
+The room is, if anything, even more full of medical equipment than the last time you were here.  Aidan has been strapped into that coffin-thing that you woke up in back then, and trussed up so securely that it's a wonder they found anywhere to stick the wires monitoring his condition.  The door is back to the north.
+
+A pair of comfortable chairs have been wheeled in, along with a small table.  Dr Rose sits in one chair, watching you with concern.
+
+>x table
+The table looks like every other table you've ever seen.
+
+>sit in chair
+You can't see any such thing.
+
+>[I think I do.][
+That's not a verb I recognize.
+
+>save
+Ok.
+
+>focus
+You can sense raw, directionless rage and aggression, mixed with a large dose of confusion, all of it fortunately damped down by the sedatives.  Now that you're aware of it, it becomes rather hard to ignore.  Dr Rose, watching you intently, encourages you to go on.  "You can do it, Daniel.  I know you can."
+
+>focus on aidain
+It's just like the last time, only the aggressive emotions seem much more muted.  There is confusion and fear as well.  As you focus, Aidan's emotions become the only ones you are aware of, and then you're somewhere else...
+
+
+Please press SPACE to continue.
+
+Living Room
+You are standing in your living room.  At least, it looks just like your living room back home, except for the large oriental rug sitting right where the stairs used to be.  The kitchen is off to the east, just as you remember it.  And Dad's trophy case, there in the corner, seems a little larger and more imposing than you remember, come to think of it.
+
+
+  
+[A new goal was added: Revive Aidan]
+
+>[Hey, the goals are back! Hoo-rah!]
+You seem to want to talk to someone, but I can't see whom.
+
+>goal
+That's not a verb I recognize.
+
+>goals
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+
+Goals Remaining: 
+  Revive Aidan
+
+>x rug
+It's slightly dusty, but clearly a high-quality Persian, worth at least 20% of what the carpet seller was originally asking.  It lies flat on the floor, its geometric pattern somehow creating an illusion of depth.
+
+>[Oh YAY Spellbreaker ref for the faithful. Nice one, Chris.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[Man, that makes me want to go play Spellbreaker now.]
+You seem to want to talk to someone, but I can't see whom.
+
+>get rug
+That's hardly portable.
+
+>mvoe rug
+That's not a verb I recognize.
+
+>move rug
+Rolling up the large rug, you reveal a trap door underneath.
+
+>x trap door
+The trap door is an over-engineered affair of heavy oak and ironwork, not the sort of thing one expects to find in a modern suburban house.
+
+>l
+Living Room
+You are standing in your living room.  At least, it looks just like your living room back home, except for the trap door in the floor where the stairs used to be.  The kitchen is off to the east, just as you remember it.  And Dad's trophy case, there in the corner, seems a little larger and more imposing than you remember, come to think of it.
+
+>[nice job adjusting the desc]
+That's not a verb I recognize.
+
+>x case
+It's stuffed full of old report cards and the like; Dad's souvenirs and memorabilia are barely visible.
+
+>x report cards
+You can't see such a thing.
+
+>x souvenirs
+You don't remember half of this stuff.  No wait, you do: you just never bother to think about it much.
+
+>x memorabilia
+You don't remember half of this stuff.  No wait, you do: you just never bother to think about it much.
+
+>open case
+That's not something you can open.
+
+>[This could be implemented a bit more fully.]
+That's not a verb I recognize.
+
+>n
+There are exits east and down from here.
+
+>e
+
+Kitchen
+This looks almost exactly like your kitchen back home, except that the door to the basement is missing.  Also, there's a blank wall where the entrance to the dining room used to be.  The kitchen table is pushed up under a window, just as it has always been, but the chairs are missing.
+
+On the kitchen table are some binoculars.
+
+>x binocs
+You can't see such a thing.
+
+>[shortened synonym would be good]
+That's not a verb I recognize.
+
+>x binoculars
+You see nothing special about the binoculars.
+
+>get them
+Taken.
+
+>x them
+You see nothing special about the binoculars.
+
+>[I think that all 1st-level nouns (i.e. nouns appearing in room descriptions, or implemented objects) should be described.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[It really helps a lot with immersion, IMO]
+You seem to want to talk to someone, but I can't see whom.
+
+>look through binoculars
+The binoculars don't seem to be very useful indoors.
+
+>x wall
+Which do you mean, the walls or the blank wall?
+
+>blank
+Why would anyone leave this wall intentionally blank?
+
+>[HA HA]
+That's not a verb I recognize.
+
+>l
+Kitchen
+This looks almost exactly like your kitchen back home, except that the door to the basement is missing.  Also, there's a blank wall where the entrance to the dining room used to be.  The kitchen table is pushed up under a window, just as it has always been, but the chairs are missing.
+
+>x table
+It's just a cheap work table that Mom has had since college.  It's very battered, but also very sturdy.
+
+>move table
+It is fixed in place.
+
+>look under table
+You find nothing of interest.
+
+>n
+There are exits east and west (to the living room) from here.
+
+>e
+
+Mountain View
+The ground just drops away a short distance away from the house, descending straight down into the clouds miles below.  The only solid object you can see beyond the clouds is a mountain far off into the distance.  The only way back into the house is through the kitchen window.
+
+>x mountain
+The mountain rises straight up from the clouds.  An amorphous black mass, a blot on the otherwise serene landscape, covers its peak.
+
+>x mass
+It shifts slightly, enough so you can tell that it's not a single, solid entity.
+
+>look through bincoulars
+You can't see any such thing.
+
+>[I can't?]
+That's not a verb I recognize.
+
+>i
+You are carrying:
+  some binoculars
+  Aidan's photograph
+  Aidan's room key
+  some readings for your Satirical Writing class
+
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+
+Goals Remaining: 
+  Revive Aidan
+
+>x binoculars
+You see nothing special about the binoculars.
+
+>use binoculars
+What do you want to use the binoculars to look inside?
+
+>[Inside?]
+You can't see any such thing.
+
+>mountain
+You can only do that to something animate.
+
+>x mass
+It shifts slightly, enough so you can tell that it's not a single, solid entity.
+
+>x mass through binoculars
+You can't see such a thing.
+
+>look through binoculars
+Birds!  Through the binoculars, you can see that the shifting cloud of blackness is made up of thousands of inky-black birds!
+>[So why didn't that work last time?]
+That's not a verb I recognize.
+
+>[Oh ah -- scrollback says: misspelling! Hence the need for a helpful abbreviation.]
+That's not a verb I recognize.
+
+>[Also, missing linefeed after the "Birds!" text.]
+You seem to want to talk to someone, but I can't see whom.
+
+>x birds
+You can't see such a thing.
+
+>x birds through binoculars
+You can't see such a thing.
+
+>look through binoculars
+Birds!  Through the binoculars, you can see that the shifting cloud of blackness is made up of thousands of inky-black birds!
+>l
+Mountain View
+The ground just drops away a short distance away from the house, descending straight down into the clouds miles below.  The only solid object you can see beyond the clouds is a mountain far off into the distance.  The only way back into the house is through the kitchen window.
+
+>i
+You are carrying:
+  some binoculars
+  Aidan's photograph
+  Aidan's room key
+  some readings for your Satirical Writing class
+
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+
+Goals Remaining: 
+  Revive Aidan
+
+>[I shouldn't be carrying anything heading into this chapter. In general, it'd be good to clear inventory from one chapter to the next.]
+You seem to want to talk to someone, but I can't see whom.
+
+>l
+Mountain View
+The ground just drops away a short distance away from the house, descending straight down into the clouds miles below.  The only solid object you can see beyond the clouds is a mountain far off into the distance.  The only way back into the house is through the kitchen window.
+
+>w
+
+Kitchen
+This looks almost exactly like your kitchen back home, except that the door to the basement is missing.  Also, there's a blank wall where the entrance to the dining room used to be.  The kitchen table is pushed up under a window, just as it has always been, but the chairs are missing.
+
+>e
+
+Mountain View
+The ground just drops away a short distance away from the house, descending straight down into the clouds miles below.  The only solid object you can see beyond the clouds is a mountain far off into the distance.  The only way back into the house is through the kitchen window.
+
+>n
+There is an exit west (to the kitchen) from here.
+
+>w
+
+Kitchen
+This looks almost exactly like your kitchen back home, except that the door to the basement is missing.  Also, there's a blank wall where the entrance to the dining room used to be.  The kitchen table is pushed up under a window, just as it has always been, but the chairs are missing.
+
+>w
+
+Living Room
+You are standing in your living room.  At least, it looks just like your living room back home, except for the trap door in the floor where the stairs used to be.  The kitchen is off to the east, just as you remember it.  And Dad's trophy case, there in the corner, seems a little larger and more imposing than you remember, come to think of it.
+
+>w
+There are exits east (to the kitchen) and down from here.
+
+>open door
+The trap door pulls open with surprising ease, almost as if it were weightless.
+
+>d
+
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, south, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+Without warning, the thief darts forward and expertly rummages through all your pockets without you feeling a thing.  Disappointed at not finding anything worth taking, he kicks you in the shins and dashes away again.
+
+[A new goal was added: Defeat the Thief]
+
+>[Okay, good writing, but the game is acting like I know who the thief is at this point. We need to track the player's knowledge of this. The first time we encounter the thief, the text should treat it as such.]
+You seem to want to talk to someone, but I can't see whom.
+
+>get lamp
+The lamp looks like every other lamp you've ever seen.
+
+>[I didn't ask to examine it, I asked to take it.]
+You seem to want to talk to someone, but I can't see whom.
+
+>x lamp
+It's very lamp-like.
+
+>g
+The lamp doesn't look very interesting.
+
+>g
+You don't find the lamp all that interesting, really.
+
+>[Also, it should be described if I do want to examine it.]
+You seem to want to talk to someone, but I can't see whom.
+
+>read signs
+You can't see any such thing.
+
+>read signpost
+ West: Death and Maintenance
+ East: Art, Enlightenment and Soul
+ North: Knowledge
+ South: Alph
+
+
+>l
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, south, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+>read sign
+You can't see any such thing.
+
+>["signs" and "sign" should be synonyms for "signpost"]
+That's not a verb I recognize.
+
+>[As a side note, I really like having some variety in the "nothing special" default message. (Is that an Inform 7 library thing?) But I would like it even better if we only rarely gave the player occasion to see those messages.]
+You seem to want to talk to someone, but I can't see whom.
+
+>listen
+You hear nothing unexpected.
+
+>[I'm hearing music, aren't I?]
+You seem to want to talk to someone, but I can't see whom.
+
+>focus
+You sense nothing untoward or out of the ordinary here.
+
+>n
+
+Darkness
+It is pitch dark, and you can't see a thing.
+
+[A new goal was added: Bring Light to the Darkness]
+
+>n
+There is an exit south (to the crossroads) from here.
+
+>[It might be good to add a slightly Zorky feel to the response about stumbling through the darkness. "You have the feeling that trying to stumble through the pitch blackness can only lead to a gruesome fate." Or some such.]
+That's not a verb I recognize.
+
+>[Maybe omit "You have the feeling that"]
+That's not a verb I recognize.
+
+>s
+
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, south, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+>ne
+You hesitantly walk off into the shadows, but turn back when it becomes clear that the lamplight from the signpost isn't going to penetrate far enough into the darkness to allow you to find anything.
+
+>e
+
+Xroads
+You are standing at an Xroads, which differ from a mere crossroads in that the roads go off diagonally, that is, to the northeast, southeast, southwest, and northwest.  Another narrow path goes back west to the crossroads.
+
+>n
+There are exits northeast, southeast, southwest, west (to the crossroads) and northwest from here.
+
+>ne
+
+Curtain Room
+You are in a perfectly cubical room, with wall-to-wall carpeting and wood-paneled walls.  An archway at the southwest corner leads back towards the Xroads.  The entire east wall is taken up by a red curtain that wafts and rustles in the nonexistent breeze.
+
+>x curtain
+It stretches from ceiling to floor, and from wall to wall.  You can't see anything through it, but there is no way any curtain could move like that unless there were a window or something on the other side, with a wind blowing against it.
+
+>draw curtain
+That's not a verb I recognize.
+
+>open curtain
+That's not something you can open.
+
+>[Those both should have more productive responses.]
+That's not a verb I recognize.
+
+>e
+There is an exit southwest (to the Xroads) from here.
+
+>[We definitely need to respond to the player's very rational attempts to go e.]
+That's not a verb I recognize.
+
+>n
+There is an exit southwest (to the Xroads) from here.
+
+>pull curtain
+It is fixed in place.
+
+>move curtain
+It is fixed in place.
+
+>l
+Curtain Room
+You are in a perfectly cubical room, with wall-to-wall carpeting and wood-paneled walls.  An archway at the southwest corner leads back towards the Xroads.  The entire east wall is taken up by a red curtain that wafts and rustles in the nonexistent breeze.
+
+>ne
+There is an exit southwest (to the Xroads) from here.
+
+>e
+There is an exit southwest (to the Xroads) from here.
+
+>sw
+
+Xroads
+You are standing at an Xroads, which differ from a mere crossroads in that the roads go off diagonally, that is, to the northeast, southeast, southwest, and northwest.  Another narrow path goes back west to the crossroads.
+
+[A new goal was added: Pierce the Veil]
+
+>[And the time to add that goal would be after the first denial message.]
+That's not a verb I recognize.
+
+>e
+There are exits northeast (to the curtain room), southeast, southwest, west (to the crossroads) and northwest from here.
+
+>se
+
+Darkness
+It is pitch dark, and you can't see a thing.
+
+>n
+There is an exit northwest (to the Xroads) from here.
+
+>nw
+
+Xroads
+You are standing at an Xroads, which differ from a mere crossroads in that the roads go off diagonally, that is, to the northeast, southeast, southwest, and northwest.  Another narrow path goes back west to the crossroads.
+
+>s
+There are exits northeast (to the curtain room), southeast, southwest, west (to the crossroads) and northwest from here.
+
+>sw
+
+Obtuse Corner
+You are in a passageway that goes west and northeast.  It seems absolutely ordinary in every way.
+
+>w
+
+Right Corner
+You are in a passageway that goes east and north.  It seems absolutely ordinary in every way.
+
+>n
+
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, south, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+>e
+
+Xroads
+You are standing at an Xroads, which differ from a mere crossroads in that the roads go off diagonally, that is, to the northeast, southeast, southwest, and northwest.  Another narrow path goes back west to the crossroads.
+
+>nw
+
+Tree
+You are standing in the middle of a forest, which is interesting because you cannot for the life of you remember the point at which the underground passageway, which you recall as being to the southeast, suddenly turned into a forest path.  Just as interesting is the gigantic tree here, towering high above all the other trees and penetrating the cloud cover far above.  Lifeless and hollow, it's only a matter of time before it collapses and buries half the forest beneath it.
+
+>x tree
+It's amazing that it's still standing at all.  It's so hollow that you could almost swear that it's all bark and nothing else.  Actually, looking into the hollow, you can see a ladder descending down into the tree's roots.
+
+>d
+
+Dark Spot
+[placeholder text: "dark spot"]
+
+.
+
+[placeholder text: "brass lantern"]
+
+.
+
+>get lantern
+Taken.
+
+>x lamp
+You can't see such a thing.
+
+>[that should be a synonym]
+That's not a verb I recognize.
+
+>x lantern
+The brass lantern is currently switched off.
+
+>[Is that description entirely library-generated? I think objects should be described. We don't need to evoke Zork THAT closely.]
+That's not a verb I recognize.
+
+>turn on lantern
+You switch the brass lantern on.
+
+>l
+Dark Spot
+[placeholder text: "dark spot"]
+
+.
+
+>u
+
+Tree
+You are standing in the middle of a forest, which is interesting because you cannot for the life of you remember the point at which the underground passageway, which you recall as being to the southeast, suddenly turned into a forest path.  Just as interesting is the gigantic tree here, towering high above all the other trees and penetrating the cloud cover far above.  Lifeless and hollow, it's only a matter of time before it collapses and buries half the forest beneath it.
+
+>n
+There are exits southeast (to the Xroads) and down (to the dark spot) from here.
+
+>x tree
+It's amazing that it's still standing at all.  It's so hollow that you could almost swear that it's all bark and nothing else.  Actually, looking into the hollow, you can see a ladder descending down into the tree's roots.
+
+>x forest
+The forest looks like every other forest you've ever seen.
+
+>se
+
+Xroads
+You are standing at an Xroads, which differ from a mere crossroads in that the roads go off diagonally, that is, to the northeast, southeast, southwest, and northwest.  Another narrow path goes back west to the crossroads.
+
+>sw
+
+Obtuse Corner
+You are in a passageway that goes west and northeast.  It seems absolutely ordinary in every way.
+
+>ne
+
+Xroads
+You are standing at an Xroads, which differ from a mere crossroads in that the roads go off diagonally, that is, to the northeast, southeast, southwest, and northwest.  Another narrow path goes back west to the crossroads.
+
+>w
+
+Crossroads
+You are standing at a crossroads.  A signpost indicates exits to the north, south, east, and west; the lamp perched on the top of the signpost does not illuminate enough of the area that you can actually see these exits, so having these indicators is a great help.  A spiral staircase leads back upwards.  You can faintly hear someone playing the blues on an alto sax.
+
+>n
+
+Classroom
+Looks like you're back in school again.  There's the old chalkboard, and all the familiar desks and chairs, all looking a little smaller than you remember.  By contrast, the teacher's desk looms menacingly at one shadowy end of the room.  There is an exit to the south.
+
+A folded-up piece of paper
+
+For a brief moment, you thought you heard the distant cawing of birds.
+
+[You achieved a goal! (Bring Light to the Darkness)]
+
+>[Seems like the paper's description abruptly stops.]
+That's not a verb I recognize.
+
+>[Okay, bedtime]
+You seem to want to talk to someone, but I can't see whom.
+
+>save
+Ok.
+
+>quit
+Are you sure you want to quit? yes

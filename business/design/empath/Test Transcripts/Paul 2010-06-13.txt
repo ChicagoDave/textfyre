@@ -1,0 +1,452 @@
+Start of a transcript of
+
+The Empath's Gift
+The Empath's Gift by Textfyre
+Copyright 2010 by Textfyre
+Designed by Paul O'Brian
+Written by Christopher Huang
+Game Engine (FyreVM) by Jesse McGrew
+Inform 7 Programming by Ron Newcomb
+ and Graeme Jefferis
+Testing by ____
+Special thanks to Graham Nelson and Emily Short
+for all of their hard work on Inform 7.
+All rights reserved.
+Identification number: //88E48DB3-8DB5-4468-9F2A-8D30D3E09EFA//
+Interpreter version 1.2.6 / VM 3.1.1 / Library serial number 080126
+Standard Rules version 2/090402 by Graham Nelson
+Textfyre Standard Backdrops by Textfyre
+Basic Followers by Textfyre
+Goals by Textfyre
+Test Suite by Textfyre
+
+>restore
+Ok.
+
+>[okay, so because behaving like a player here leads to game-killing bugs, I'm just going to refer to the design doc and walk through it. We'll circle back later for more testing.]
+You seem to want to talk to someone, but I can't see whom.
+
+>get mint
+Taken.
+
+>put mint in slot 1
+Ker-chunk! Mint green logic block fills the slot snugly.
+
+>get saffron
+Taken.
+
+>put saffron in slot 2
+Ker-chunk. Another block fits neatly into place.
+
+>get forest
+Taken.
+
+>put forest in slot 3
+Ker-chunk. You put forest green logic block in the slot.
+
+>get royal
+Taken.
+
+>put royal in slot 4
+Ker-chunk.
+
+>get copper
+Taken.
+
+>put copper in slot 5
+Ker-chunk.
+
+>get baby
+Taken.
+
+>put baby in slot 6
+Ker-chunk - isn't this fun?
+
+>get scarlet
+Taken.
+
+>put scarlet in slot 7
+Ker-chunk.
+
+>get magenta
+Taken.
+
+>put magenta in slot 8
+Ker-chunk.
+
+>get golden
+Taken.
+
+>put golden in slot 9
+Ker-chunk.
+
+>l
+Robotics Class
+You sit at a table in a perfectly ordinary classroom, surrounded by electronic parts.  Antonia Long, your Robotics instructor, has been cornered elsewhere by students with issues, leaving you to your own electronic, robotic devices.  Stacy sits beside you with her own robot project, SARG, while Aidan is at another table with the older students.
+
+Stacy is sitting beside you, completely absorbed in her project.
+
+On your workbench are hot pink logic block, your robot, a metal bowl (empty) and a wicker basket (in which are seven marbles).
+
+>get hot
+Taken.
+
+>put hot in slot 10
+Ker-chunk.
+
+>x robot
+Going down the list of slots, your program reads as follows:
+
+In slot 1, mint green logic block:
+begin loop
+    if (facing_source_basket) {
+        if (holding_marble) {
+In slot 2, saffron logic block:
+            turn_to_destination_basket;
+        } else {
+            if (last_used == left) {
+                pick_up_with_right;
+In slot 3, forest green logic block:
+                last_used = right;
+            } else {
+In slot 4, royal purple logic block:
+                pick_up_with_left;
+In slot 5, copper-colored logic block:
+                last_used = left;
+            }
+In slot 6, baby blue logic block:
+            holding_marble = true;
+            turn_to_destination_basket;
+In slot 7, scarlet logic block:
+        }
+    } else {
+In slot 8, magenta logic block:
+        if (holding_marble) {
+            drop_marble_in_basket;
+In slot 9, golden logic block:
+        }
+        turn_to_source_basket;
+In slot 10, hot pink logic block:
+    }
+end loop
+
+
+>start robot
+That's not a verb I recognize.
+
+>put robot on table
+You can't see any such thing.
+
+>l
+Robotics Class
+You sit at a table in a perfectly ordinary classroom, surrounded by electronic parts.  Antonia Long, your Robotics instructor, has been cornered elsewhere by students with issues, leaving you to your own electronic, robotic devices.  Stacy sits beside you with her own robot project, SARG, while Aidan is at another table with the older students.
+
+Stacy is sitting beside you, completely absorbed in her project.
+
+On your workbench are your robot, a metal bowl (empty) and a wicker basket (in which are seven marbles).
+
+>put robot on workbench
+(first taking your robot)
+
+I don't suppose your robot would care for that.
+You need to be holding your robot before you can put him on top of something else.
+
+>[hmmm]
+That's not a verb I recognize.
+
+>get robot
+I don't suppose your robot would care for that.
+
+>[I don't think the robot gets a vote]
+That's not a verb I recognize.
+
+>x robot
+Going down the list of slots, your program reads as follows:
+
+In slot 1, mint green logic block:
+begin loop
+    if (facing_source_basket) {
+        if (holding_marble) {
+In slot 2, saffron logic block:
+            turn_to_destination_basket;
+        } else {
+            if (last_used == left) {
+                pick_up_with_right;
+In slot 3, forest green logic block:
+                last_used = right;
+            } else {
+In slot 4, royal purple logic block:
+                pick_up_with_left;
+In slot 5, copper-colored logic block:
+                last_used = left;
+            }
+In slot 6, baby blue logic block:
+            holding_marble = true;
+            turn_to_destination_basket;
+In slot 7, scarlet logic block:
+        }
+    } else {
+In slot 8, magenta logic block:
+        if (holding_marble) {
+            drop_marble_in_basket;
+In slot 9, golden logic block:
+        }
+        turn_to_source_basket;
+In slot 10, hot pink logic block:
+    }
+end loop
+
+
+>ask stacy about robot
+She does not reply.[placeholder text: "That seems kind of rude and unfriendly. She should have a handful of default responses for topics she doesn't know."]
+
+
+
+>l
+Robotics Class
+You sit at a table in a perfectly ordinary classroom, surrounded by electronic parts.  Antonia Long, your Robotics instructor, has been cornered elsewhere by students with issues, leaving you to your own electronic, robotic devices.  Stacy sits beside you with her own robot project, SARG, while Aidan is at another table with the older students.
+
+Stacy is sitting beside you, completely absorbed in her project.
+
+On your workbench are your robot, a metal bowl (empty) and a wicker basket (in which are seven marbles).
+
+>[this seems like kind of a guess-the-verb here[
+That's not a verb I recognize.
+
+>put robot by basket
+You can't see any such thing.
+
+>robot, go
+You must supply a noun.
+
+>[hmm.]
+That's not a verb I recognize.
+
+>start program
+That's not a verb I recognize.
+
+>l
+Robotics Class
+You sit at a table in a perfectly ordinary classroom, surrounded by electronic parts.  Antonia Long, your Robotics instructor, has been cornered elsewhere by students with issues, leaving you to your own electronic, robotic devices.  Stacy sits beside you with her own robot project, SARG, while Aidan is at another table with the older students.
+
+Stacy is sitting beside you, completely absorbed in her project.
+
+On your workbench are your robot, a metal bowl (empty) and a wicker basket (in which are seven marbles).
+
+>turn on robot
+He's not something you can switch.
+
+>ask antonia about robot
+You can't see any such thing.
+
+>ask long about robit
+You can't see any such thing.
+
+>ask long about robot
+You can't see any such thing.
+
+>ask aidan about robot
+Aidan's too far away to speak to, at the moment.  You'll have to wait until later this evening.
+
+>x marbles
+You can't see such a thing.
+
+>robot, pick up marbles
+marble: Your robot has better things to do.
+marble: Your robot has better things to do.
+marble: Your robot has better things to do.
+marble: Your robot has better things to do.
+marble: Your robot has better things to do.
+marble: Your robot has better things to do.
+marble: Your robot has better things to do.
+
+>[HA]
+That's not a verb I recognize.
+
+>run program
+[mint green] The robot does an exaggerated sigh, and looks down at the metal bowl.  [saffron] The robot turns to face the metal bowl.  It tilts its head to the left.  And to the right. It then grabs thin air, as there aren't any marbles in the metal bowl.  [forest green] The robot deliberately nods to itself, as if to say, "ok."  It then tilts its head to the left.  [royal purple] The robot's left hand grabs thin air, as there aren't any marbles in the metal bowl.  [copper-colored] The robot nods to itself, as if it just told itself something it needs to remember.  [baby blue] The robot deliberately nods, as if to reaffirm something in its mind.  It then turns toward the metal bowl.  [scarlet] The robot tilts its head to the left.  [magenta] The robot tilts its head back, as if trying to remember something.  It opens its hand, to no effect.  [golden] The robot turns to face the wicker basket.  [hot pink] The robot seems to sigh, as if its doing something its getting bored of.  
+
+Daniel's robot does all the marbles, then messes with SARG (Stacy's robot), whose "jet boots" fly it around uncontrollably.  Aidan smashes it angrily.  Instructor Antonia tsks Aidan for method and Stacy for lacking "safety features". Aidan apologizes to Antonia, shoots a dark look at Stacy, and leaves.  Stacy is upset, and Daniel wonders what's wrong with his brother.
+
+Please press SPACE to continue.
+
+Things are a little tense Friday evening, and through most of Saturday.  Stacy is angry with Aidan for what he did to SARG, Aidan is being all sulky and broody and unsociable, and Ava seems to have had an argument with Stacy over who was right or wrong in the Great Robotics Class Incident.  You, meanwhile, have simply been watching the ebb and flow of everybody's emotional states.
+
+You're getting better at this.  Some things don't even register as smells or sounds or colours any more, but as recognizable emotions.  So of course, since you're the one who can see the best time to approach people, you're the one to go gather everyone together for Sunday's event.
+
+
+Please press SPACE to continue.
+LEAP, Day 8 (Sunday) - Mid-afternoon
+
+Everyone looks forward to Sim Sunday!  That's when people get to go into the Simulation Room and play through the scenario that some of the counselors have spent the whole year putting together.  It is quite literally THE great virtual reality event of the entire camp.
+
+The Simulation Room functions as a sort of giant virtual reality suit, recreating a whole other world that you and a few other campers can enter and interact with.  There's always a scenario of some sort involved: a few campers are let in to run through it, some playing principal speaking parts while others play less important roles or even just stand around as non-speaking extras.  Everybody wants to get in on this, of course, so as soon as one group has played through the scenario, they're moved out while another group starts over again.
+
+This year, they're doing Robin Hood And The Monk.  You went through this as a non-speaking extra (Random Church-Goer #5) this morning, but this time around you've snagged a major speaking role: you're Little John.  Or rather, thou art Little John.  'Tis of great importance that thou immerseth thyself in thy part, is't not?
+
+Under The Greenwood Tree
+Thou art in the company of thy master's men, the merry men of Sherwood Forest.  "Tis a sunny morning in May, and the merry birds doth sing in the trees above.
+
+Much, the Miller's Son, as played by thy friend Stacy, loiters.
+
+Robin Hood, thy brother-in-arms, standeth before thee.
+
+>[that's all placeholder text, right? It's not marked as such but most of it reads that way.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[I'm referring to the text at the end of the robot chapter -- this robin hood text seems fine, as did the connective text that preceded it.]
+You seem to want to talk to someone, but I can't see whom.
+
+>i
+You are carrying:
+  some readings for your Satirical Writing class
+  a plastic dinosaur
+  a few dollars
+
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+
+>[okay, so I see this is only partially implemented. Daniel should be carrying a scroll and silver arrow as per page 30 of the design doc. That doc explains what the scroll and arrow should do. Ron, I think this addresses your question about where the
+You seem to want to talk to someone, but I can't see whom.
+
+>[background info goes. It appears on the screen when Daniel points the arrow at something.]
+That's not a verb I recognize.
+
+>goals
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+
+>[also, the game's goals interface should help manage the player's goals, in addition to them appearing on the screen. This is kind of a meta-heavy chapter -- Daniel is playing through an IF-ish scenario.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[I'm not sure if the whole goals thing has gone off the rails at this point -- last chapter's goal never seemed to show up at all.]
+That's not a verb I recognize.
+
+>[there are other inventory items mentioned on that same page of the design doc.]
+That's not a verb I recognize.
+
+>l
+Under The Greenwood Tree
+Thou art in the company of thy master's men, the merry men of Sherwood Forest.  "Tis a sunny morning in May, and the merry birds doth sing in the trees above.
+
+Much, the Miller's Son, as played by thy friend Stacy, loiters.
+
+Robin Hood, thy brother-in-arms, standeth before thee.
+
+>x merry men
+"I dunno, John, it's just that every Sunday we're here in the woods, it's like there's no difference from day to day, you know?  And today is White Sunday, too.  I really should be in church.  It's been two weeks since I've been to Mass."
+
+"Then let us go, for if that is what ailest thee, then we shouldst find both salve and salvation at Nottingham church."
+
+Robin fixeth upon thee a look of no small wonderment.  "You've been double-dipping into the Shakespeare, haven't you?  Well, I think it's a good idea, anyway.  To Nottingham!"
+
+>[wow, that just totally ignored me. I know this is on rails, but it should at least acknowledge the player's input.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[Also, dialogue tags would be helpful. Also also, I think Daniel should get a little time to explore the scene before Aidan engages him. (Maybe I've been taking all that time with these notes, but I wouldn't think these would take game time.)]
+You seem to want to talk to someone, but I can't see whom.
+
+>[The design doc says Daniel engages Aidan in conversation. It's fine if Aidan takes the initiative, but that should probably only happen after Daniel has had a few minutes to do things like read the info scroll, check out the surroundings, etc. The player 
+You seem to want to talk to someone, but I can't see whom.
+
+>[can of course short-circuit this waiting period with something like TALK TO AIDAN (I can't remember, is TALK TO  part of our conversation system?) or ASK AIDAN ABOUT MOOD or ASK ROBIN ABOUT NOTTINGHAM.]
+You seem to want to talk to someone, but I can't see whom.
+
+>x forest
+"Wait," quoth Much, the miller's son, "aren't you wanted in Nottingham for highway robbery?  You should take some men with you.  Twelve guys, maybe, to watch your back."
+
+"No way, I'm not taking anyone except Little John, to carry my bow.  Everything will be fine."
+
+>[ouch that ignoring thing is painful. It feels like I'm playing ROBIN HOOD: A MOMENT OF HOPE.]
+That's not a verb I recognize.
+
+>[The juxtaposition of Elizabethan and modern english is cracking me up.]
+That's not a verb I recognize.
+
+>x much
+Much, a fine fellow, is played this day by thy friend Stacy.  She -- or he -- has been pleased to take but a small speaking role, that she might explore the simulation at her leisure when thou and thy brother art gone to the next scene.
+
+>l
+Under The Greenwood Tree
+Thou art in the company of thy master's men, the merry men of Sherwood Forest.  "Tis a sunny morning in May, and the merry birds doth sing in the trees above.
+
+Much, the Miller's Son, as played by thy friend Stacy, loiters.
+
+Robin Hood, thy brother-in-arms, standeth before thee.
+
+>listen
+Er, according to the poem, this is the part where thou art supposed to tell Robin to carry his own bow, as thou shalt be carrying thine own, but Robin seemeth not to heed the script, and fixeth Much with a stern and a terrible eye.  "Are you trying to tell me I can't take care of myself?"
+
+"Do whatever you want," quoth Much, who sulketh and looketh away all too quickly.  Methinks the lad be not comfortable arguing with Robin.
+
+"Fine." Robin taketh up his bow, and bids thee take thine own.  "Let's get moving."
+
+>get bow
+You can't see such a thing.
+
+>[If I have the bow in my inventory, Robin shouldn't tell me to take it. If he does tell me to take it, I should be able to take it.]
+You seem to want to talk to someone, but I can't see whom.
+
+>focus
+You sense nothing untoward or out of the ordinary here.
+
+>focus on aidan
+Thy brother is in a temper, and thou shouldst tread carefully about him.
+
+>focus on stacy
+Stacy seems hurt and confused, especially with regard to Aidan.  She must still be thinking about what happened at the robotics class.
+
+>focus on me
+Snark.
+>[placeholder, I take it. I think it's dangerous to leave those unmarked -- some could sneak into the final build if we don't keep close track of what still needs to be replaced.]
+You seem to want to talk to someone, but I can't see whom.
+
+>save
+Ok.
+
+>l
+Under The Greenwood Tree
+Thou art in the company of thy master's men, the merry men of Sherwood Forest.  "Tis a sunny morning in May, and the merry birds doth sing in the trees above.
+
+Much, the Miller's Son, as played by thy friend Stacy, loiters.
+
+Robin Hood, thy brother-in-arms, standeth before thee.
+
+>x robin
+Robin Hood is thy brother in arms -- and indeed, thy brother Aidan.  There is not a nobler fellow in all of merry old England..
+
+>n
+Nottingham lies to the east.
+
+>[Also, looking at the design doc, I think "thy brother is in a temper" doesn't sufficiently convey the conflicting emotions happening in Aidan.]
+You seem to want to talk to someone, but I can't see whom.
+
+>ne
+Nottingham lies to the east.
+
+>e
+
+Old Archery Range
+Though all of Sherwood be thy range, this sunny glen doth lend itself best to thy sport.  A stump by thy feet doth provide adequate place for thy wager, and targets lean upon the trees at the opposite side of the glen.
+
+Robin Hood, thy brother-in-arms, standeth before thee.
+
+"Ah, the old archery range.  Good times, eh?  I think we've got some time before Mass, so how about a bit of archery practice?  I'll give you 3 to 1 odds: three pennies to you for every target you hit, if you'll give me one for every target I hit."
+
+"Thou shalt be the poorer man for this, I'll wager!"
+
+"Yeah, yeah, notch up and shoot the targets already."
+
+>save
+Ok.
+
+>quit
+Are you sure you want to quit? yes

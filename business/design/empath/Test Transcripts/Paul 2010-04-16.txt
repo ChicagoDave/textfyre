@@ -1,0 +1,1677 @@
+Start of a transcript of
+
+Empath
+Empath by Textfyre
+Copyright 2010 by Textfyre
+Designed by Paul O'Brian
+Written by Christopher Huang
+Game Engine (FyreVM) by Jesse McGrew
+Inform 7 Programming by Graeme Jefferis
+  and Ron Newcomb
+Testing by ____
+Special thanks to Graham Nelson and Emily Short
+for all of their hard work on Inform 7.
+All rights reserved
+Identification number: //416F4705-CDFA-4F6A-8383-CB5D7C2B1FA4//
+Interpreter version 1.2.6 / VM 3.1.1 / Library serial number 080126
+Standard Rules version 2/090402 by Graham Nelson
+Textfyre Standard Backdrops by Textfyre
+Basic Followers by Textfyre
+Goals by Textfyre
+Test Suite by Textfyre
+Parse List by Textfyre
+
+>restore
+Restore failed.
+
+>[d'oh]
+I didn't understand that sentence.
+
+>restore
+Ok.
+
+>l
+First Floor Lobby, East
+This used to be a rather large dining room, once upon a time, and it still has a low-hanging chandelier right in the middle of the ceiling.  A piano's been pushed under the chandelier so that nobody accidentally gets a head full of crystal walking blindly around, and the place is generally used as a kind of music room now.  The info desk is back to the northwest, and to the west is the rest of the first floor lobby.  Wide picture windows look out on the front lawn and on the southern part of Calvin Field. The School of Rock option is in progress here, jamming away in the upper decibels.
+
+>[oh, huh. That's right -- I must have restarted. Somehow I thought I was in chapter 2]
+You seem to want to talk to someone, but I can't see whom.
+
+>get dinosaur
+You take a plastic dinosaur.
+
+[You achieved a goal! (finding a dinosaur)]
+
+>x it
+They seem pretty absorbed in what they're doing.
+
+>[pronoun problem there]
+I didn't understand that sentence.
+
+>[okay, I guess I'll poke around in chapter 1 some more.]
+You seem to want to talk to someone, but I can't see whom.
+
+>w
+
+First Floor Lobby, West
+This used to be the living room, back when Alexander Quaverley Jacobs, the eccentric old coot who donated this place to the university was still alive and the university was just starting up.  It's got a huge fireplace, and a big bay window looking out onto the front lawn.  It's also been painted completely white from floor to ceiling, so thickly that you're not sure if some of the molding is not actually just bubbles under the paint.  The info desk is back through the arch to the north, and the lobby continues, through another arch, to the west.
+
+A large brass plaque has been fixed into the space over the fireplace.
+
+>n
+
+Info Desk
+The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.
+
+Michelle Close leans against the side of the desk, chewing on a pencil.
+
+>ask michelle about hat
+(the little straw hat)
+"There's bound to be someone who can help you out on this one."  She looks down at her clipboard.  "Someone or something, somewhere."
+
+>[okay, two thoughts. First: that little parser message should not be there -- we're giving away information that we shouldn't.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[Second: perhaps michelle could serve as a built-in hint system for this chapter. I would like the experience of playing chapter 1 to be as silky-smooth as possible, in order to allow players unfamiliar with IF to ease into the game as much as possible.]
+I didn't understand that sentence.
+
+>n
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+>u
+
+Second Floor Lobby
+Hooray for Hollywood!  The words are emblazoned right across the wall, over a cutout of Audrey Hepburn holding a pouch full of smaller cutouts of other Hollywood stars.  The glamour continues east and west, to where the younger girl campers are roomed, while the stairs go up and down.
+
+A few tables have been set up here for the RPG option, and the campers involved seem thoroughly absorbed in the unfolding story.
+
+>get sar
+You can't see any such thing.
+
+>get star
+You can't see any such thing.
+
+>[hmm. I kind of think that command should work here.]
+I didn't understand that sentence.
+
+>look in pouch
+It's full of big-name, A-list actors and actresses, past and present.
+
+>get star
+You can't see any such thing.
+
+>get stars
+(the images of Hollywood stars)
+You take a cutout picture of Charlie Chaplin.
+
+[You achieved a goal! (finding a star)]
+
+>[oh right, I think I found that already this game
+You seem to want to talk to someone, but I can't see whom.
+
+>u
+Third Floor Lobby
+This is where the older girls have their rooms.  The walls are painted a very dark blue, and there are planets, stars and all things space-age stuck all over the place.  A cutout of an astronaut holds out a pouch full of astronomical bits; the corridor itself extends east and west, and the stairs continue down to the rest of the dorms and up to the roof.
+
+Under a particularly starry patch of ceiling, a group of campers, including your brother Aidan, are engaged in some freeform improvised poetry.  This is the Rap Session option, you think.
+
+As you enter the area, you experience a momentary headache and the urge to sneeze.  The feeling disappears quickly, but evidently not quickly enough because Aidan clearly seems to have noticed something wrong.  He breaks away from the rest of his option and comes up to you. 
+
+"Hey, Daniel, you okay?"
+
+1. "Yeah, I'm fine."
+2. "No, I'm getting these dizzy spells and headaches."
+
+>1
+"Yeah, I'm fine."
+
+"You sure?  You looked a bit green for a moment there."
+
+1. "Really, I'll be fine."
+2. "Well, I felt a bit funny for a moment, but I'm better now."
+
+>1
+"Really, I'll be fine."
+
+"Whatever you say, tough guy."  Aidan ruffles your hair, and for a moment, but only a moment, something buzzes in your ears.  Aidan resumes his seat with the other rappers.
+
+>u
+You step out into the bright sunshine.
+
+Rooftop
+The rooftop is only accessible when there's an activity or option that uses it.  Otherwise, it's off-limits, not that you can really imagine why anyone would want to come up here.  It's all black gravel and tar.  The courtyard downstairs is way more pleasant.  
+
+The Eggdrop option is busy tossing boxes of eggs over the parapet: a table has been set up as well, and is covered with artsy-craftsy materials with which a number of campers are building egg-preservation containers.  
+
+
+On the eggdrop option table are some shish-kebab skewers.
+
+As you emerge into the sunlight, you feel a momentary dizziness that makes you almost want to hurl.  The feeling is gone very quickly, but your heart is left pumping as though you'd just run a couple of miles.
+
+>get skewer
+You take a wooden stick.
+
+>get cloth
+You take a small square of green fabric.
+
+>glue cloth to skewer
+(the small square of green fabric to the wooden stick)
+You stick the cloth to the short skewer with the glue. It makes a pretty nifty flag!
+[You achieved a goal! (finding a flag)]
+
+>i
+You are carrying:
+  a green flag
+  a cutout picture of Charlie Chaplin
+  a plastic dinosaur
+  an unread list of items for the Scavenger Hunt
+  a few dollars
+
+>x list
+A newspaper
+A feather
+A flag
+A star
+A dinosaur
+A hat
+Something that was once alive
+
+>goals
+Goals Accomplished: 
+  finding a dinosaur
+  finding a star
+  finding a flag
+
+Goals Remaining: 
+  find a newspaper
+  find a feather
+  find a hat
+  find something that was once alive
+
+>d
+You leave behind the bright sunshine.
+
+Third Floor Lobby
+This is where the older girls have their rooms.  The walls are painted a very dark blue, and there are planets, stars and all things space-age stuck all over the place.  A cutout of an astronaut holds out a pouch full of astronomical bits; the corridor itself extends east and west, and the stairs continue down to the rest of the dorms and up to the roof.
+
+Under a particularly starry patch of ceiling, a group of campers, including your brother Aidan, are engaged in some freeform improvised poetry.  This is the Rap Session option, you think.
+
+Your brother Aidan is here, having signed up for the Rap Session option.
+
+There it is, that funny throbbing feeling in the back of your head.  And there, it's gone again.
+
+>d
+
+Second Floor Lobby
+Hooray for Hollywood!  The words are emblazoned right across the wall, over a cutout of Audrey Hepburn holding a pouch full of smaller cutouts of other Hollywood stars.  The glamour continues east and west, to where the younger girl campers are roomed, while the stairs go up and down.
+
+A few tables have been set up here for the RPG option, and the campers involved seem thoroughly absorbed in the unfolding story.
+
+>d
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+>u
+
+Second Floor Lobby
+Hooray for Hollywood!  The words are emblazoned right across the wall, over a cutout of Audrey Hepburn holding a pouch full of smaller cutouts of other Hollywood stars.  The glamour continues east and west, to where the younger girl campers are roomed, while the stairs go up and down.
+
+A few tables have been set up here for the RPG option, and the campers involved seem thoroughly absorbed in the unfolding story.
+
+>u
+Third Floor Lobby
+This is where the older girls have their rooms.  The walls are painted a very dark blue, and there are planets, stars and all things space-age stuck all over the place.  A cutout of an astronaut holds out a pouch full of astronomical bits; the corridor itself extends east and west, and the stairs continue down to the rest of the dorms and up to the roof.
+
+Under a particularly starry patch of ceiling, a group of campers, including your brother Aidan, are engaged in some freeform improvised poetry.  This is the Rap Session option, you think.
+
+Your brother Aidan is here, having signed up for the Rap Session option.
+
+There it is, that funny throbbing feeling in the back of your head.  And there, it's gone again.
+
+>u
+You step out into the bright sunshine.
+
+Rooftop
+The rooftop is only accessible when there's an activity or option that uses it.  Otherwise, it's off-limits, not that you can really imagine why anyone would want to come up here.  It's all black gravel and tar.  The courtyard downstairs is way more pleasant.  
+
+The Eggdrop option is busy tossing boxes of eggs over the parapet: a table has been set up as well, and is covered with artsy-craftsy materials with which a number of campers are building egg-preservation containers.  
+
+
+On the eggdrop option table are some shish-kebab skewers.
+
+There's that dizzy feeling again; this time you're ready for it.  As it fades away, you almost swear you taste something vaguely sour in the air.
+
+>x feather
+Someone's gone and raided the theatrical costumes and dragged up a few multi-colored feather boas for the option.  Every now and then, someone wrenches a bunch of feathers from a boa to stick into their egg boxes.
+
+>get feather
+You take a feather.
+
+[You achieved a goal! (finding a feather)]
+
+>goal
+I didn't understand that sentence.
+
+>goals
+Goals Accomplished: 
+  finding a dinosaur
+  finding a star
+  finding a flag
+  finding a feather
+
+Goals Remaining: 
+  find a newspaper
+  find a hat
+  find something that was once alive
+
+>[hmm. I wonder if we should alias "goal" to "goals". Probably wouldn't hurt.]
+I didn't understand that sentence.
+
+>d
+You leave behind the bright sunshine.
+
+Third Floor Lobby
+This is where the older girls have their rooms.  The walls are painted a very dark blue, and there are planets, stars and all things space-age stuck all over the place.  A cutout of an astronaut holds out a pouch full of astronomical bits; the corridor itself extends east and west, and the stairs continue down to the rest of the dorms and up to the roof.
+
+Under a particularly starry patch of ceiling, a group of campers, including your brother Aidan, are engaged in some freeform improvised poetry.  This is the Rap Session option, you think.
+
+Your brother Aidan is here, having signed up for the Rap Session option.
+
+There it is, that funny throbbing feeling in the back of your head.  And there, it's gone again.
+
+>d
+
+Second Floor Lobby
+Hooray for Hollywood!  The words are emblazoned right across the wall, over a cutout of Audrey Hepburn holding a pouch full of smaller cutouts of other Hollywood stars.  The glamour continues east and west, to where the younger girl campers are roomed, while the stairs go up and down.
+
+A few tables have been set up here for the RPG option, and the campers involved seem thoroughly absorbed in the unfolding story.
+
+>d
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+>d
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+>w
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+>e
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+>u
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+>e
+
+First Floor Rooms, East
+This is the east end of the first floor dorm area.  Through the window at the end of the hall, you can see Calvin Field North and a bunch of campers running about in the summer sunshine.  In here, you are surrounded by images of people having snowball fights.  The fire stairs at this end of the hall go up and down.
+
+>e
+There are exits south, west (to the first floor midpoint), up and down from here.
+
+>s
+Michelle had said the dorm rooms were off-limits for the hunt.
+
+>u
+
+Second Floor Rooms, East
+The girls at this end of the corridor seem to prefer movie posters to cutouts of actors.  The only cutout here is a lifesize Humphrey Bogart, on the door to the fire stairs.  Opposite Bogey, to the north, is Ava and Stacy's room, while behind Bogey are stairs going up and down.  And at the end of the corridor is, of course, the window overlooking Calvin Field, and stardom continues back to the west.
+
+>n
+Michelle had said the dorm rooms were off-limits for the hunt.
+
+>e
+There are exits north, west (to the second floor lobby), up and down (to first floor rooms) from here.
+
+>w
+
+Second Floor Lobby
+Hooray for Hollywood!  The words are emblazoned right across the wall, over a cutout of Audrey Hepburn holding a pouch full of smaller cutouts of other Hollywood stars.  The glamour continues east and west, to where the younger girl campers are roomed, while the stairs go up and down.
+
+A few tables have been set up here for the RPG option, and the campers involved seem thoroughly absorbed in the unfolding story.
+
+>w
+
+Second Floor Rooms, West
+The large window at this end of the corridor would normally look out over Second Avenue, but someone's gone and plastered it over with cutouts of every actor who's ever played James Bond.  There's definitely a spy thriller motif going on here: the only surfaces not covered with more of the same are the doors to the rooms and the door to the fire stairs, which continue up and down from here.  The way back to the east looks significantly less cloak-and-dagger.
+
+>u
+
+Third Floor Rooms, West
+In defiance of the prescribed decoration scheme, someone has stuck a large poster of one of Van Gogh's "Starry Night" paintings on the wall here.  The scattering of constellations around seem small and weak by comparison.  There is also the window overlooking Second Avenue, surrounded by a thicket of stars; meanwhile, the fire stairs only go down from here, and the corridor continues back to the east.
+
+>e
+Third Floor Lobby
+This is where the older girls have their rooms.  The walls are painted a very dark blue, and there are planets, stars and all things space-age stuck all over the place.  A cutout of an astronaut holds out a pouch full of astronomical bits; the corridor itself extends east and west, and the stairs continue down to the rest of the dorms and up to the roof.
+
+Under a particularly starry patch of ceiling, a group of campers, including your brother Aidan, are engaged in some freeform improvised poetry.  This is the Rap Session option, you think.
+
+Your brother Aidan is here, having signed up for the Rap Session option.
+
+There it is, that funny throbbing feeling in the back of your head.  And there, it's gone again.
+
+>e
+
+Third Floor Rooms, East
+This end of the corridor looks like the inside of a space shuttle.  Someone's gone to great care to create window-like frames for the stars and planets and whatnot; even the window overlooking Calvin Field has been made to look like a space shuttle viewport.  Outer Space is back to the west; presumably the planet Earth is down the stairs.
+
+>w
+Third Floor Lobby
+This is where the older girls have their rooms.  The walls are painted a very dark blue, and there are planets, stars and all things space-age stuck all over the place.  A cutout of an astronaut holds out a pouch full of astronomical bits; the corridor itself extends east and west, and the stairs continue down to the rest of the dorms and up to the roof.
+
+Under a particularly starry patch of ceiling, a group of campers, including your brother Aidan, are engaged in some freeform improvised poetry.  This is the Rap Session option, you think.
+
+Your brother Aidan is here, having signed up for the Rap Session option.
+
+There it is, that funny throbbing feeling in the back of your head.  And there, it's gone again.
+
+>w
+
+Third Floor Rooms, West
+In defiance of the prescribed decoration scheme, someone has stuck a large poster of one of Van Gogh's "Starry Night" paintings on the wall here.  The scattering of constellations around seem small and weak by comparison.  There is also the window overlooking Second Avenue, surrounded by a thicket of stars; meanwhile, the fire stairs only go down from here, and the corridor continues back to the east.
+
+>d
+
+Second Floor Rooms, West
+The large window at this end of the corridor would normally look out over Second Avenue, but someone's gone and plastered it over with cutouts of every actor who's ever played James Bond.  There's definitely a spy thriller motif going on here: the only surfaces not covered with more of the same are the doors to the rooms and the door to the fire stairs, which continue up and down from here.  The way back to the east looks significantly less cloak-and-dagger.
+
+>e
+
+Second Floor Lobby
+Hooray for Hollywood!  The words are emblazoned right across the wall, over a cutout of Audrey Hepburn holding a pouch full of smaller cutouts of other Hollywood stars.  The glamour continues east and west, to where the younger girl campers are roomed, while the stairs go up and down.
+
+A few tables have been set up here for the RPG option, and the campers involved seem thoroughly absorbed in the unfolding story.
+
+>d
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+>w
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+>d
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+>x shrubbery
+It feels almost indecent, looking at everything from between their roots like this.
+
+>n
+There are exits east (to the pits stairwell), south and up (to first floor rooms) from here.
+
+>x
+What do you want to examine?
+
+>z
+Time passes.
+
+>s
+Michelle had said the dorm rooms were off-limits for the hunt.
+
+>n
+There are exits east (to the pits stairwell), south and up (to first floor rooms) from here.
+
+>e
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+>n
+There are exits east, south, west (to pits) and up (to the first floor midpoint) from here.
+
+>x monster
+You see nothing special about the life-sized cardboard cutout of Frankenstein's Monster.
+
+>x pouch
+It's full of pictures calculated to keep you awake all night.
+
+>get picture
+You already have that.
+
+>get pictures
+(the images of classic horror)
+You take a cutout picture of Frankenstein's Monster.
+
+>[hmm. okay!]
+I didn't understand that sentence.
+
+>x monster
+He's holding a pouch full of scary monster cutouts.  "Go on, be an evil scientist," he seems to be saying, "go make more monsters.  Mwahahaha."
+
+>n
+There are exits east, south, west (to pits) and up (to the first floor midpoint) from here.
+
+>e
+
+Pits, East
+Your room is at this end of the Pits hallway, just to the south of here.  You've elected to cover your door with the biggest cutout of a werewolf that you can find, because werewolves are cool.  The hallway continues west, and a high window on the east wall looks out across Calvin Field North.  Right beside your room door is the fire stair leading back upstairs.
+
+>n
+There are exits south (to your room), west (to the pits stairwell) and up (to first floor rooms) from here.
+
+>w
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+>s
+
+Pits Lobby Central
+This section of the Pits is part of the older part of Jacobs Hall, and therefore cut up into more interesting shapes.  There are a bunch of storerooms, all of them locked, and then two very large halls to the east and west.  A passage to the north leads back to the main stairwell.  Apparently there used to be another staircase here going up, but it was ripped out to give this place a little more elbow room.
+
+>e
+
+Pits Lobby, East
+This part of the Pits used to be the kitchen, once upon a time.  Imagine, having the kitchen in the basement, downstairs from the dining room!  All the kitchen equipment's been removed now, though, and the place is used as a sort of recreation room.  There are several ping pong tables here, and a tournament going in full swing.  The central lobby is back to the west.
+
+Ava and Stacy have both taken this option and are waiting for their turn at the ping pong tables.
+
+>x ava
+You met Ava last year, here at LEAP.  She's a rosy-cheeked girl with long, brown pigtails; since last year, she's also acquired a pair of glasses that, she claims, make her look like a young Nana Mouskouri.
+
+>ask ava about nana
+"She's my favorite singer!  She's got a fantastic voice!"  Ava begins to sing something about how only love can make a memory, before you stop her.
+
+>x stacy
+You met Stacy last year, here at LEAP.  She's a skinny blonde girl with freckles and rather prominent front teeth.  She likes playing with gadgets, and is so full of nervous energy she could probably swallow an elephant and not gain an ounce of weight.  She's also wearing a neat little straw hat with a pink ribbon trailing behind.    
+
+
+>x hat
+You see nothing special about the little straw hat.
+
+>ask stacy about hta
+There is no reply.
+
+>ask stacy about hat
+(the little straw hat)
+"Hey, Stacy," you say, "I don't suppose I could borrow your hat for a bit, could I?"
+
+"What?  What am I supposed to wear, then?"
+
+1. "Please?"
+2. "I know you've got a bunch of other hats you could wear."
+3. "Come on, it's for the scavenger hunt.  Please?"
+
+
+>3
+"Come on, it's for the scavenger hunt.  Please?"
+
+Stacy hesitates a little, then sweeps the hat off her head.  "Okay, fine.  But if you ruin it, I'll kill you with a screwdriver."
+
+[You achieved a goal! (finding a hat)]
+
+>wear hat
+But it's a girl's hat!
+
+>[aww.]
+I didn't understand that sentence.
+
+>i
+You are carrying:
+  a little straw hat (not worn)
+  a cutout picture of Frankenstein's Monster
+  a feather
+  a green flag
+  a cutout picture of Charlie Chaplin
+  a plastic dinosaur
+  a list of items for the Scavenger Hunt
+  a few dollars
+
+Goals Accomplished: 
+  finding a dinosaur
+  finding a star
+  finding a flag
+  finding a feather
+  finding a hat
+
+Goals Remaining: 
+  find a newspaper
+  find something that was once alive
+
+>ask stacy about newspaper
+She does not reply.
+
+>[that seems kind of rude and unfriendly. She should have a handful of default responses for topics she doesn't know.]
+I didn't understand that sentence.
+
+>ask stacy about nana
+There is no reply.
+
+>ask stacy about ava
+"Ava worries too much about everything," Stacy says.  "I tell her to stop, but she just won't listen."
+
+>l
+Pits Lobby, East
+This part of the Pits used to be the kitchen, once upon a time.  Imagine, having the kitchen in the basement, downstairs from the dining room!  All the kitchen equipment's been removed now, though, and the place is used as a sort of recreation room.  There are several ping pong tables here, and a tournament going in full swing.  The central lobby is back to the west.
+
+Ava and Stacy have both taken this option and are waiting for their turn at the ping pong tables.
+
+>x ping pong
+Regulation ping pong tables.  You could call them table tennis tables, but that sounds a little redundant.
+
+>play ping pong
+The tournament is using all of the tables right now.
+
+8:25!  Time's up!  You hurry back to the starting point with your list and everything you've found so far....
+
+First Floor Lobby, West
+This used to be the living room, back when old AQJ was still alive and the university was just starting up.  It's got a huge fireplace, and a big bay window looking out onto the front lawn.  It's also been painted completely white from floor to ceiling, so thickly that you're not sure if some of the molding is not actually just bubbles under the paint.  The info desk is back through the arch to the north, and the lobby continues, through another arch, to the west.
+
+A large brass plaque has been fixed into the space over the fireplace.
+
+Michelle scans your list, looks over your findings, and shakes her head.  "Well, it was an excellent effort, Daniel, but I'm afraid you haven't quite found everything.  Better luck next time!"
+
+It takes you a few moments to realize that "the bitter taste of defeat" is, in this case, not a figure of speech: the air literally does taste bitter.
+
+
+Please press SPACE to continue.
+
+Well, that was odd.
+
+Those sudden flashes of sensory hallucination (what else would you call them?) seem to die down over the course of the next day.  The headaches and dizzy spells are so mild now as to be practically gone, but on the other hand, the frequency seems to be increasing.  It's all somewhere in the back of your head: if you focus, you can almost always find... something.  A smell, or a sound that isn't there.  A peculiar flavour hanging in the air.
+
+Even so, you're not entirely sure you want to speak to a doctor.  I mean, it's not as if it's laying you flat on your back on anything like that.  You could talk to Aidan, but he'd probably just march you straight up to the hospital.  He'd even carry you there if he had to.  So where does that leave you?
+
+
+
+Please press SPACE to continue.
+
+
+LEAP, Day 3 (Tuesday) - Dorm Time
+
+Your roommate, Jeremy, went off with some friends after dinner, which leaves you alone for now.  It's dorm time, which means you have maybe a couple of hours or so before lights-out, all to yourself.  Some people spend the time reading, or listening to music, or visiting friends.  Which reminds you, maybe talking to Stacy and Ava about this would be the best thing to do.  Maybe they'll tell you it's all part of being eleven years old, or something.
+
+Yeah.  You can hope.
+
+[A new goal was added: visit Ava & Stacy]
+
+Your Room
+You share this room with first-year camper Jeremy Dolan, who hates werewolves for some inexplicable reason.  He let you put the werewolf cutout on the outside of the door only because you let him put up a vampire cutout on the inside.  Jeremy's not around right now, though, so you'll have to wait before continuing your ongoing discussion as to whether vampires or werewolves are cooler.  In the meantime, there's your bed and your desk, and the door back to the north.
+
+>goals
+Goals Accomplished: 
+  runner up in the scavenger hunt
+
+Goals Remaining: 
+  visit Ava & Stacy
+
+>[oh hey, does the accomplished goal for the scavenger hunt change text depending on how much the player has found? If so, bravo.]
+You seem to want to talk to someone, but I can't see whom.
+
+>n
+You step out of the room, locking it behind you.
+
+Pits, East
+Your room is at this end of the Pits hallway, just to the south of here.  You've elected to cover your door with the biggest cutout of a werewolf that you can find, because werewolves are cool.  The hallway continues west, and a high window on the east wall looks out across Calvin Field North.  Right beside your room door is the fire stair leading back upstairs.
+
+>save
+Ok.
+
+>[NOW we're in chapter two! :)]
+I didn't understand that sentence.
+
+>l
+Pits, East
+Your room is at this end of the Pits hallway, just to the south of here.  You've elected to cover your door with the biggest cutout of a werewolf that you can find, because werewolves are cool.  The hallway continues west, and a high window on the east wall looks out across Calvin Field North.  Right beside your room door is the fire stair leading back upstairs.
+
+>n
+There are exits south (to your room), west (to the pits stairwell) and up (to first floor rooms) from here.
+
+>w
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+>n
+There are exits east (to pits), south (to the pits lobby central), west (to pits) and up (to the first floor midpoint) from here.
+
+>s
+
+Pits Lobby Central
+This section of the Pits is part of the older part of Jacobs Hall, and therefore cut up into more interesting shapes.  There are a bunch of storerooms, all of them locked, and then two very large halls to the east and west.  A passage to the north leads back to the main stairwell.  Apparently there used to be another staircase here going up, but it was ripped out to give this place a little more elbow room.
+
+>e
+
+Pits Lobby, East
+This part of the Pits used to be the kitchen, once upon a time.  Imagine, having the kitchen in the basement, downstairs from the dining room!  All the kitchen equipment's been removed now, though, and the place is used as a sort of recreation room.  There are several ping pong tables here, and a tournament going in full swing.  The central lobby is back to the west.
+
+Ava and Stacy have both taken this option and are waiting for their turn at the ping pong tables.
+
+>[nope, that's wrong. They shouldn't still be here in this chapter.]
+You seem to want to talk to someone, but I can't see whom.
+
+>x ava
+The ava looks like every other ava you've ever seen.
+
+>[yikes!]
+I didn't understand that sentence.
+
+>[also, the desc should change -- option time is over, so the ping pong option text should go away.]
+You seem to want to talk to someone, but I can't see whom.
+
+>n
+There is an exit west (to the pits lobby central) from here.
+
+>w
+
+Pits Lobby Central
+This section of the Pits is part of the older part of Jacobs Hall, and therefore cut up into more interesting shapes.  There are a bunch of storerooms, all of them locked, and then two very large halls to the east and west.  A passage to the north leads back to the main stairwell.  Apparently there used to be another staircase here going up, but it was ripped out to give this place a little more elbow room.
+
+>w
+
+Pits Lobby, West
+This windowless area used to be a wine cellar, but today it's like something out of science-fiction.  It's being used for the Virtuality option, and there are cables and computers and virtual reality equipment all over the place.  It's a little alarming, in fact, knowing that many of these campers -- the ones wearing the goggles, anyway -- can't actually see you.  The central lobby is back to the east.
+
+>[more option text. Anything option-related should just be in chapter 2.]
+I didn't understand that sentence.
+
+>n
+There is an exit east (to the pits lobby central) from here.
+
+>e
+
+Pits Lobby Central
+This section of the Pits is part of the older part of Jacobs Hall, and therefore cut up into more interesting shapes.  There are a bunch of storerooms, all of them locked, and then two very large halls to the east and west.  A passage to the north leads back to the main stairwell.  Apparently there used to be another staircase here going up, but it was ripped out to give this place a little more elbow room.
+
+>n
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+>u
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+>[I may have mentioned this when I was playing the last build, but during dorm time there should be a fair amount of atmospheric text. People hanging out in the halls, reading, playing cards, eating pizza, chatting, working on class projects, etc etc.]
+You seem to want to talk to someone, but I can't see whom.
+
+>n
+There are exits east (to first floor rooms), south (to the info desk), west (to first floor rooms), up (to the second floor lobby) and down (to the pits stairwell) from here.
+
+>e
+
+First Floor Rooms, East
+This is the east end of the first floor dorm area.  Through the window at the end of the hall, you can see Calvin Field North and a bunch of campers running about in the summer sunshine.  In here, you are surrounded by images of people having snowball fights.  The fire stairs at this end of the hall go up and down.
+
+>[it's night time -- no messages about sunshine]
+I didn't understand that sentence.
+
+>n
+There are exits south, west (to the first floor midpoint), up (to second floor rooms) and down (to pits) from here.
+
+>s
+It seems to be locked.
+
+>x door
+No name tags, but each door has been decorated with cutouts of various sorts.
+
+>d
+
+Pits, East
+Your room is at this end of the Pits hallway, just to the south of here.  You've elected to cover your door with the biggest cutout of a werewolf that you can find, because werewolves are cool.  The hallway continues west, and a high window on the east wall looks out across Calvin Field North.  Right beside your room door is the fire stair leading back upstairs.
+
+>u
+
+First Floor Rooms, East
+This is the east end of the first floor dorm area.  Through the window at the end of the hall, you can see Calvin Field North and a bunch of campers running about in the summer sunshine.  In here, you are surrounded by images of people having snowball fights.  The fire stairs at this end of the hall go up and down.
+
+>u
+
+Second Floor Rooms, East
+The girls at this end of the corridor seem to prefer movie posters to cutouts of actors.  The only cutout here is a lifesize Humphrey Bogart, on the door to the fire stairs.  Opposite Bogey, to the north, is Ava and Stacy's room, while behind Bogey are stairs going up and down.  And at the end of the corridor is, of course, the window overlooking Calvin Field, and stardom continues back to the west.
+
+>n
+You don't think either of the girls would appreciate you just barging in on them like that.
+
+>knock on door
+Ava peeks out and breaks into a smile when she sees you.  "Hey, Daniel!"  She pulls you inside.  "What's up?"
+
+Ava And Stacy's Room
+Ava and Stacy both keep their respective sides of the room perfectly tidy; it's rather intimidating, actually.  You can tell whose side is whose by the stuff they keep on their desks: Ava has a CD player, an assortment of CDs, and a few books; Stacy has a few broken gadgets that she's fixing, probably because she broke them to begin with.  One of them has taped a poster for "Casablanca" on the door to the south.
+
+Stacy looks up from her desk, where a few hundred tiny electronic parts are scattered.  "We were just talking about how lately you seem distracted all the time.  Is something wrong?"
+
+Ava looks a little embarrassed.  "We're just concerned.  You know."
+
+1. "I don't know what's happening...."
+2. "Well, I'm getting these headaches...."
+3. "There's nothing wrong.  Can't a guy visit his friends every now and then?"
+
+[You achieved a goal! (visit Ava & Stacy)]
+
+>1
+"I don't know what's happening...."
+
+You tell Ava and Stacy about the headaches, the dizzy spells, and the hallucinations.  Only of course you don't call them hallucinations, because they'd think you're going nuts for sure.  Ava says, "that sounds serious.  Maybe you should see a doctor."
+
+1. "Over my dead body."
+2. "I'm not that sick."
+
+>2
+"I'm not that sick."
+
+"That's what they all say," says Stacy, "right before they keel over dead."
+
+"I don't know," says Ava, "it sounds pretty serious to me.  And we've noticed you sometimes stopping in the hallway with your eyes sort of glazed over."
+
+1. "Is it that obvious?"
+2. "Have you two been spying on me?"
+
+>1
+"Is it that obvious?"
+
+"Mostly to Ava, says Stacy, "because Ava notices these things.  I would have totally missed it if she hadn't pointed it out as we were coming back from dinner earlier."  You remember feeling a little nauseous as you walked by the info desk.  You thought it might have been something you ate.  "Personally," Stacy continues, "I'm kind of wondering if maybe it could be real.  The sounds and stuff you told us about, I mean."
+
+Ava frowns.  "Stacy, how can it possibly be real?  Nobody else noticed anything."
+
+"Nobody else noticed Daniel getting all glassy-eyed and green either.  Look, Daniel, there's a very easy way to find out.  If there's something at the info desk that's making you sick, then going there again will bring back the same feeling, right?  So we could just go there and see how consistent these feelings are."
+
+1. "They're pretty consistent, now I think about it.  Always at the same place... sort of.  I mean, unless something's changed about the place since."
+2. "Consistent? They're just random.  I never know when I'm going to suddenly get this feeling, whatever it is."
+
+>2
+"Consistent? They're just random.  I never know when I'm going to suddenly get this feeling, whatever it is."
+
+Ava looks doubtful.  "Are you sure?  I mean, it's not like you're taking notes, is it?  I think Stacy has a point.  If we can find out what's causing this, we can fix it."
+
+"Okay, then!"  Stacy grins cheerfully as she pulls a deerstalker cap out of her dresser.  "I'd say we have a mystery to solve."
+
+Ava gets out a notebook and pen.  "Just try to focus, Daniel.  We'll get to the bottom of this."
+
+[A new goal was added: investigate odd sensations]
+
+>
+I beg your pardon?
+
+>ask stacy abou that
+I didn't understand that sentence.
+
+>ask stacy about hta
+There is no reply.
+
+>[argh]
+I didn't understand that sentence.
+
+>ask stacy about hat
+(the deerstalker cap)
+Everything's better with hats!
+
+>[that message should come from stacy, not the parser]
+You seem to want to talk to someone, but I can't see whom.
+
+>ask stacy about bogey
+"Humphrey Bogart's okay, I guess.  But Ava's, like, in love with him or something."
+
+>ask ava about bogey
+Those old black-and-white movies are quite nice, I'll agree, but I think Stacy's just a little obsessed with Humphrey Bogart's stuff.
+
+>[again missing quotes.]
+I didn't understand that sentence.
+
+>x cd
+It also plays MP3s.  Ava loves her music.
+
+>x cds
+Ava's on a folksong kick right now.  It's only a matter of time before she turns country-and-western, you think.
+
+>ask ava about cds
+She does not reply.
+
+>[topic missing there. I guess the "not reply" mesage is a good search token when trawling transcripts for missing conversation topics.]
+I didn't understand that sentence.
+
+>ask ava about player
+(Ava's CD player)
+She does not reply.
+
+>l
+Ava And Stacy's Room
+Ava and Stacy both keep their respective sides of the room perfectly tidy; it's rather intimidating, actually.  You can tell whose side is whose by the stuff they keep on their desks: Ava has a CD player, an assortment of CDs, and a few books; Stacy has a few broken gadgets that she's fixing, probably because she broke them to begin with.  One of them has taped a poster for "Casablanca" on the door to the south.
+
+Stacy is here.
+
+Ava is here.
+
+>x books
+A little light reading, mostly cosy little mysteries set in small New England towns.
+
+>ask ava about books
+She does not reply.
+
+>ask stacy about gadgets
+"Oh, I'm in the middle of a bunch of stuff.  Some of these ex-gadgets look like they could be great add-ons for SARG."
+
+>ask stacy about sarg
+"The Stacy Alexander Robot Guy!  Remember, he was my project from last year, for robotics class?  This year, I'm going to work on making him even better than before."
+
+>x desks
+You don't find the desk all that interesting, really.
+
+>x desk
+Which do you mean, Ava's desk or Stacy's desk?
+
+>ava
+You can't see such a thing.
+
+>x ava's
+Which do you mean, Ava and Stacy's door, Ava's pigtails, Ava's glasses, Ava's desk, Ava's CD player, Ava's CDs or the few of Ava's books?
+
+>[hee!]
+You can't see such a thing.
+
+>x door
+You see nothing special about Ava and Stacy's door.
+
+>[Fun to know that's all implemented]
+I didn't understand that sentence.
+
+>x pigtails
+Ava has her hair done in two fat pigtails hanging down her back.  You've never seen her with her hair loose.
+
+>ask ava about pigtails
+She does not reply.
+
+>[I'm not going to note every time a topic needs to be added. In general, just consider each failure to respond a request for that topic, if that makes any sense.]
+You seem to want to talk to someone, but I can't see whom.
+
+>x glasses
+They're very rectangular, with black plastic rims.  Not the sort of glasses you'd pick out if you had to wear them, which you don't.  But Ava seems to like the effect.
+
+>ask ava about glasses
+She does not reply.
+
+>ask ava about desk
+Which do you mean, the information desk, your desk, Aidan's desk, Lucian's desk, Ava's desk or Stacy's desk?
+
+>[whoa. Some of that is reasonable disambiguation and some is not. We've never seen Aidan's desk, and never even met Lucian. In general, the game shouldn't disambiguate on items the PC has never seen, even in conversation. It's a tricky scoping thing, but I
+There is no reply.
+
+>[think it really breaks the spell when the game throws in unfamiliar stuff like that.]
+I didn't understand that sentence.
+
+>ask ava about info desk
+There is no reply.
+
+>x stacy's
+Which do you mean, Ava and Stacy's door, Stacy's tools or Stacy's desk?
+
+>x tooks
+You can't see such a thing.
+
+>ask ava about tools
+She does not reply.
+
+>ask stacy about tools
+My dad's co-worker, Dr Hu, gave me this nifty new screwdriver for Christmas.  It's made out of a special space-age metal alloy, and the handle is specially molded to fit in my hand.  And it lights up if it touches something with an electrical current in it.  It's totally the awesomest screwdriver ever.
+
+>[quotes]
+I didn't understand that sentence.
+
+>l
+Ava And Stacy's Room
+Ava and Stacy both keep their respective sides of the room perfectly tidy; it's rather intimidating, actually.  You can tell whose side is whose by the stuff they keep on their desks: Ava has a CD player, an assortment of CDs, and a few books; Stacy has a few broken gadgets that she's fixing, probably because she broke them to begin with.  One of them has taped a poster for "Casablanca" on the door to the south.
+
+Stacy is here.
+
+Ava is here.
+
+>x gadgets
+Stacy's very fond of taking things apart and putting them back together again.  She's going to become a mad scientist and take over the world one day, if you and Ava don't watch her.
+
+>l
+Ava And Stacy's Room
+Ava and Stacy both keep their respective sides of the room perfectly tidy; it's rather intimidating, actually.  You can tell whose side is whose by the stuff they keep on their desks: Ava has a CD player, an assortment of CDs, and a few books; Stacy has a few broken gadgets that she's fixing, probably because she broke them to begin with.  One of them has taped a poster for "Casablanca" on the door to the south.
+
+Stacy is here.
+
+Ava is here.
+
+>s
+
+Second Floor Rooms, East
+The girls at this end of the corridor seem to prefer movie posters to cutouts of actors.  The only cutout here is a lifesize Humphrey Bogart, on the door to the fire stairs.  Opposite Bogey, to the north, is Ava and Stacy's room, while behind Bogey are stairs going up and down.  And at the end of the corridor is, of course, the window overlooking Calvin Field, and stardom continues back to the west.
+
+Ava is here.
+
+Stacy is here.
+
+>[those "is here" messages could use some flavor.]
+I didn't understand that sentence.
+
+>goals
+Goals Accomplished: 
+  runner up in the scavenger hunt
+  visit Ava & Stacy
+
+Goals Remaining: 
+  investigate odd sensations
+
+>ask stacy about sensations
+She does not reply.
+
+>[this answer should remind me where I'm supposed to go, in case I've been distracted by something shiny.]
+You seem to want to talk to someone, but I can't see whom.
+
+>ne
+There are exits north (to Ava and Stacy's room), west (to the second floor lobby), up (to third floor rooms) and down (to first floor rooms) from here.
+
+>w
+
+Second Floor Lobby
+Hooray for Hollywood!  The words are emblazoned right across the wall, over a cutout of Audrey Hepburn holding a pouch full of smaller cutouts of other Hollywood stars.  The glamour continues east and west, to where the younger girl campers are roomed, while the stairs go up and down.
+
+It looks like yesterday's RPG option is still going strong here.
+
+Ava is here.
+
+Stacy is here.
+
+>[I see what the RPG message is going for, but it needs to be rephrased in order to avoid confusion. Options really do end at their end times. However, what could happen is that some or all of the kids who took the option could get back together during dorm
+You seem to want to talk to someone, but I can't see whom.
+
+>[time to continue doing whatever the option was. So the message could say something like, "Looks like some of the kids who were RPG-ing it yesterday are back at it tonight." Avoid saying the option has continued -- option implies counselor involvement.]
+You seem to want to talk to someone, but I can't see whom.
+
+>n
+There are exits east (to second floor rooms), west (to second floor rooms), up (to the third floor lobby) and down (to the first floor midpoint) from here.
+
+>w
+
+Second Floor Rooms, West
+The large window at this end of the corridor would normally look out over Second Avenue, but someone's gone and plastered it over with cutouts of every actor who's ever played James Bond.  There's definitely a spy thriller motif going on here: the only surfaces not covered with more of the same are the doors to the rooms and the door to the fire stairs, which continue up and down from here.  The way back to the east looks significantly less cloak-and-dagger.
+
+Ava is here.
+
+Stacy is here.
+
+>n
+There are exits east (to the second floor lobby), up (to the third floor rooms) and down (to first floor rooms) from here.
+
+>u
+
+Third Floor Rooms, West
+In defiance of the prescribed decoration scheme, someone has stuck a large poster of one of Van Gogh's "Starry Night" paintings on the wall here.  The scattering of constellations around seem small and weak by comparison.  There is also the window overlooking Second Avenue, surrounded by a thicket of stars; meanwhile, the fire stairs only go down from here, and the corridor continues back to the east.
+
+Ava is here.
+
+Stacy is here.
+
+>n
+There are exits east (to the third floor lobby) and down (to second floor rooms) from here.
+
+>e
+
+Third Floor Lobby
+This is where the older girls have their rooms.  The walls are painted a very dark blue, and there are planets, stars and all things space-age stuck all over the place.  A cutout of an astronaut holds out a pouch full of astronomical bits; the corridor itself extends east and west, and the stairs continue down to the rest of the dorms and up to the roof.
+
+Under a particularly starry patch of ceiling, a group of campers, including your brother Aidan, are engaged in some freeform improvised poetry.  This is the Rap Session option, you think.
+
+Ava is here.
+
+Stacy is here.
+
+>[no option text]
+I didn't understand that sentence.
+
+>n
+There are exits east (to third floor rooms), west (to the third floor rooms), up (to the rooftop) and down (to the second floor lobby) from here.
+
+>u
+It's against the rules to leave the building during dorm time.
+
+>[good]
+I didn't understand that sentence.
+
+>s
+There are exits east (to third floor rooms), west (to the third floor rooms), up (to the rooftop) and down (to the second floor lobby) from here.
+
+>e
+
+Third Floor Rooms, East
+This end of the corridor looks like the inside of a space shuttle.  Someone's gone to great care to create window-like frames for the stars and planets and whatnot; even the window overlooking Calvin Field has been made to look like a space shuttle viewport.  Outer Space is back to the west; presumably the planet Earth is down the stairs.
+
+Ava is here.
+
+Stacy is here.
+
+>n
+There are exits west (to the third floor lobby) and down (to second floor rooms) from here.
+
+>w
+
+Third Floor Lobby
+This is where the older girls have their rooms.  The walls are painted a very dark blue, and there are planets, stars and all things space-age stuck all over the place.  A cutout of an astronaut holds out a pouch full of astronomical bits; the corridor itself extends east and west, and the stairs continue down to the rest of the dorms and up to the roof.
+
+Under a particularly starry patch of ceiling, a group of campers, including your brother Aidan, are engaged in some freeform improvised poetry.  This is the Rap Session option, you think.
+
+Ava is here.
+
+Stacy is here.
+
+>w
+
+Third Floor Rooms, West
+In defiance of the prescribed decoration scheme, someone has stuck a large poster of one of Van Gogh's "Starry Night" paintings on the wall here.  The scattering of constellations around seem small and weak by comparison.  There is also the window overlooking Second Avenue, surrounded by a thicket of stars; meanwhile, the fire stairs only go down from here, and the corridor continues back to the east.
+
+Ava is here.
+
+Stacy is here.
+
+>d
+
+Second Floor Rooms, West
+The large window at this end of the corridor would normally look out over Second Avenue, but someone's gone and plastered it over with cutouts of every actor who's ever played James Bond.  There's definitely a spy thriller motif going on here: the only surfaces not covered with more of the same are the doors to the rooms and the door to the fire stairs, which continue up and down from here.  The way back to the east looks significantly less cloak-and-dagger.
+
+Ava is here.
+
+Stacy is here.
+
+>e
+
+Second Floor Lobby
+Hooray for Hollywood!  The words are emblazoned right across the wall, over a cutout of Audrey Hepburn holding a pouch full of smaller cutouts of other Hollywood stars.  The glamour continues east and west, to where the younger girl campers are roomed, while the stairs go up and down.
+
+It looks like yesterday's RPG option is still going strong here.
+
+Ava is here.
+
+Stacy is here.
+
+>d
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+There is a sour, vaguely nauseating taste in the air. 
+
+"Daniel," says Ava, "Daniel, you're getting that funny look again.  Is whatever-it-is somewhere around here?"
+
+"Try to focus," says Stacy. 
+
+Ava is here.
+
+Stacy is here.
+
+>x taste
+You can't see such a thing.
+
+>[that should give me a cue towards the FOCUS verb. E.g. "It's here, but elusive. There are lots of distractions, and it would take some focus to pinpoint the taste."]
+You seem to want to talk to someone, but I can't see whom.
+
+>focus
+Concentrating on the flavour, you sense an undercurrent of salt tears.  Both sour and salt seem to form a line between the info desk and the stairs going down. 
+
+"It's a trail," you say.  "It goes down the stairs and back to the info desk."
+
+"I know we said we'd go look around the info desk," says Stacy, "but if this is a trail of some sort, I wonder where it leads."
+
+Ava shrugs.  "Up to you, Daniel.  Off to the info desk, or down the stairs?"
+
+[You achieved a goal! (investigate odd sensations)]
+
+>e
+
+First Floor Rooms, East
+This is the east end of the first floor dorm area.  Through the window at the end of the hall, you can see Calvin Field North and a bunch of campers running about in the summer sunshine.  In here, you are surrounded by images of people having snowball fights.  The fire stairs at this end of the hall go up and down.
+
+Ava is here.
+
+Stacy is here.
+
+>w
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+There is a sour, vaguely nauseating taste in the air. 
+
+"Daniel," says Ava, "Daniel, you're getting that funny look again.  Is whatever-it-is somewhere around here?"
+
+"Try to focus," says Stacy. 
+
+Ava is here.
+
+Stacy is here.
+
+>[Once I've focused, that text shouldn't be repeated. (In general, dialogue shouldn't be repeated verbatim.)]
+You seem to want to talk to someone, but I can't see whom.
+
+>focus
+Concentrating on the flavour, you sense an undercurrent of salt tears.  Both sour and salt seem to form a line between the info desk and the stairs going down. 
+
+>e
+
+First Floor Rooms, East
+This is the east end of the first floor dorm area.  Through the window at the end of the hall, you can see Calvin Field North and a bunch of campers running about in the summer sunshine.  In here, you are surrounded by images of people having snowball fights.  The fire stairs at this end of the hall go up and down.
+
+Ava is here.
+
+Stacy is here.
+
+>focus
+You sense nothing untoward or out of the ordinary here.
+
+>w
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+There is a sour, vaguely nauseating taste in the air. 
+
+"Daniel," says Ava, "Daniel, you're getting that funny look again.  Is whatever-it-is somewhere around here?"
+
+"Try to focus," says Stacy. 
+
+Ava is here.
+
+Stacy is here.
+
+>sense
+Concentrating on the flavour, you sense an undercurrent of salt tears.  Both sour and salt seem to form a line between the info desk and the stairs going down. 
+
+>concentrate
+I didn't understand that sentence.
+
+>[that'd probably be a good synonym[
+I didn't understand that sentence.
+
+>w
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+Ava is here.
+
+Stacy is here.
+
+>focus
+You sense nothing untoward or out of the ordinary here.
+
+>d
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+There is a sour, vaguely nauseating taste in the air. 
+
+"Daniel," says Ava, "Daniel, you're getting that funny look again.  Is whatever-it-is somewhere around here?"
+
+"Try to focus," says Stacy. 
+
+Ava is here.
+
+Stacy is here.
+
+>[Instead of the dialogue, Daniel should just sense the trail.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[Once focusing has occurred, I mean]
+You seem to want to talk to someone, but I can't see whom.
+
+>focus
+Concentrating on the flavour, you sense an undercurrent of salt tears.  They trail off to the east, but seem strongest around one of the doors to the south. 
+
+"Whatever it is, it's strongest around that door."
+
+Ava and Stacy exchange glances, and before you can stop her, Stacy is knocking on the door.  "We've come this far.  I want to know what's at the end of --"
+
+Stacy quickly shuts up when the door opens a crack, and a rather timid little guy peeks out at you.  He fairly reeks of that mysterious sour-salty air.  And now you think you can hear some sort of twittering in the background, too.  It occurs to you that you remember seeing him up at the egg-drop option yesterday, though he certainly wasn't giving off this... whatever it is... back then.
+
+"Hi," says Ava, who seems to recognise the guy.  "Lucian, isn't it?  We met yesterday at the sign-ups.  Anyway, these are my friends Daniel and Stacy.  May we come in for a moment?"
+
+Lucian lets the door swing half-open and sighs resignedly.  "Sure, if you want," he says, retreating back into the room.  The three of you follow him inside.
+
+Lucian's Room
+It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing [SONG] over and over, sits on his desk beside a couple of framed photographs.
+
+Room description text about Lucian.
+[A new goal was added: find out what happened to Lucian]
+
+>[obviously some placeholder-y action here]
+I didn't understand that sentence.
+
+>[by the way, Chris, I love the way you're writing Ava and Stacy. It's just right.]
+You seem to want to talk to someone, but I can't see whom.
+
+>x lucian
+Lucian's a little shrimp of a newbie.  He looks rather pale and colorless, with thin white-blonde hair plastered close to his scalp.  In short, he's rather typical bully-bait.
+
+>talk to lucian
+There is no reply.
+
+>ask lucian about his emotions
+There is no reply.
+
+>ask lucian about sadness
+There is no reply.
+
+>ask lucian about feelings
+There is no reply.
+
+>[all of those should work]
+I didn't understand that sentence.
+
+>talk to ava
+You can't see any such thing.
+
+>[what?]
+I didn't understand that sentence.
+
+>;
+I didn't understand that sentence.
+
+>l
+Lucian's Room
+It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing [SONG] over and over, sits on his desk beside a couple of framed photographs.
+
+Room description text about Lucian.
+>[what happened to ava and stacy?]
+I didn't understand that sentence.
+
+>ask lucian about himself
+There is no reply.
+
+>ask lucian about lucian
+There is no reply.
+
+>x desk
+Standard, regulation LEAP desks, littered with the odd personal items that save them from complete anonymity.
+
+>x bed
+Standard, regulation LEAP beds.
+
+>x plahyer
+You can't see such a thing.
+
+>x player
+How many times can one person listen to [SONG] at one go?
+
+>x photographs
+There are two of them.  One appears to be a class photograph taken a year or two ago: there's an older man, maybe in his fifties, surrounded by a bunch of kids, in front of a blackboard.  The other is much older, judging by the clothes and hair, and shows a cheerful little old lady sitting on a bench in a colorful flower garden.
+
+You look at the two photographs.  There's one of a little old lady in a garden.  The other is a class photograph.
+
+1. "Is that your class picture?  What was your teacher like?"
+2. "Who's the lady in that picture?  Is she your grandmother?"
+
+>2
+"Who's the lady in that picture?  Is she your grandmother?"
+
+"Yeah.  She died."  The sour taste in the air is almost overwhelmed by a different, marshy sort of smell, yet you somehow know that the two sensations are somehow related.  Ava is instantly consoling Lucian, and finding all the right words that you can't think of.
+
+"Was she a gardener?" asks Ava.  "That's a beautiful garden she's in."
+
+"Yeah, yeah she was.  She was an environmentalist.  That's why she...."  Lucian stops.  "Never mind."
+
+1. "Why what?"
+
+>1
+"Why what?"
+
+Lucian shakes his head.  Stacy looks a little annoyed and says, "you know, if you don't tell us what's upsetting you, we can't help you.  So why don't you just spit it out and get it over with?"
+
+Lucian looks a little angry and says, "stop picking on me!  You're just like those bullies at dinner!  They made me give them my grandmother's earth crystal and I bet you want me to pay some sort of fine for being a loser.  Well I've had it.  Just go away and leave me alone!"
+
+>[Capitalization at the beginning of quotes.]
+I didn't understand that sentence.
+
+>ask lucian about bullies
+Lucian shakes his head.  Stacy looks a little annoyed and says, "you know, if you don't tell us what's upsetting you, we can't help you.  So why don't you just spit it out and get it over with?"
+
+Lucian looks a little angry and says, "stop picking on me!  You're just like those bullies at dinner!  They made me give them my grandmother's earth crystal and I bet you want me to pay some sort of fine for being a loser.  Well I've had it.  Just go away and leave me alone!"
+
+>[that shouldn't repeat, especially such an emotional moment.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[I guess I should clarify my earlier statement about dialogue not repeating. I meant spontaneous, unprompted dialogue. It's also true for long, specific exchanges, or emotional beats like the one above. Standard responses can of course repeat.
+You seem to want to talk to someone, but I can't see whom.
+
+>ask lucian about class
+There is no reply.
+
+>[I should be able to ask him]
+I didn't understand that sentence.
+
+>x pictures
+You can't see such a thing.
+
+>[alias]
+I didn't understand that sentence.
+
+>x photos
+You can't see such a thing.
+
+>l
+Lucian's Room
+It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing [SONG] over and over, sits on his desk beside a couple of framed photographs.
+
+Room description text about Lucian.
+>[alias]
+I didn't understand that sentence.
+
+>x frames
+You can't see such a thing.
+
+>x framed
+The framed looks like every other framed you've ever seen.
+
+>[uh... ]
+I didn't understand that sentence.
+
+>x photographs
+There are two of them.  One appears to be a class photograph taken a year or two ago: there's an older man, maybe in his fifties, surrounded by a bunch of kids, in front of a blackboard.  The other is much older, judging by the clothes and hair, and shows a cheerful little old lady sitting on a bench in a colorful flower garden.
+
+You look at the two photographs.  There's one of a little old lady in a garden.  The other is a class photograph.
+
+1. "Is that your class picture?  What was your teacher like?"
+2. "Who's the lady in that picture?  Is she your grandmother?"
+
+>1
+"Is that your class picture?  What was your teacher like?"
+
+Lucian picks up the class photo.  "That's Peter," he says, pointing to the teacher smiling up from one side of the group.  For a moment, the sour taste in the air disappears.  "He lets us call him by his first name, and he's the most awesome teacher ever."  Then Lucian looks sad again.  "He's the one who said I was smart enough to come here, and he went and pulled all sorts of strings.  I should be grateful, I suppose."
+
+1. "But you're not?  Why?"
+
+>1
+"But you're not?  Why?"
+
+"I don't know anybody here and I'm all alone.  Why shouldn't I be unhappy?  Let's talk about something else."
+
+>ask lucian about crystal
+The bullies snatch the crystal out of your reach, laugh in your face, and hustle you out of the room.
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+There is a sour, vaguely nauseating taste in the air. 
+
+Ava is here.
+
+Stacy is here.
+
+>[???]
+I didn't understand that sentence.
+
+>[That is really wrong.]
+I didn't understand that sentence.
+
+>s
+Most of the rooms are locked.  And the ones that aren't, are occupied by people you do not know.
+
+>knock on door
+You get no reply.
+
+>[Did that just put me in an unwinnable state?]
+I didn't understand that sentence.
+
+>e
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+There is a sour, vaguely nauseating taste in the air. 
+
+>u
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+There is a sour, vaguely nauseating taste in the air. 
+
+>x trail
+You can't see such a thing.
+
+>[I should see it.]
+I didn't understand that sentence.
+
+>[Also, I seem to have lost Ava and Stacy.]
+You seem to want to talk to someone, but I can't see whom.
+
+>d
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+There is a sour, vaguely nauseating taste in the air. 
+
+>focus
+Concentrating on the flavour, you sense an undercurrent of salt tears.  Both sour and salt seem to trail off to the west and to the stairs going up. 
+
+>[Oh right, X TRAIL should probably prompt me to focus]
+You seem to want to talk to someone, but I can't see whom.
+
+>focus
+Concentrating on the flavour, you sense an undercurrent of salt tears.  Both sour and salt seem to trail off to the west and to the stairs going up. 
+
+>w
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+There is a sour, vaguely nauseating taste in the air. 
+
+Ava is here.
+
+Stacy is here.
+
+>focus
+Concentrating on the flavour, you sense an undercurrent of salt tears.  They trail off to the east, but seem strongest around one of the doors to the south. 
+
+"Whatever it is, it's strongest around that door."
+
+Ava and Stacy exchange glances, and before you can stop her, Stacy is knocking on the door.  "We've come this far.  I want to know what's at the end of --"
+
+Stacy quickly shuts up when the door opens a crack, and a rather timid little guy peeks out at you.  He fairly reeks of that mysterious sour-salty air.  And now you think you can hear some sort of twittering in the background, too.  It occurs to you that you remember seeing him up at the egg-drop option yesterday, though he certainly wasn't giving off this... whatever it is... back then.
+
+"Hi," says Ava, who seems to recognise the guy.  "Lucian, isn't it?  We met yesterday at the sign-ups.  Anyway, these are my friends Daniel and Stacy.  May we come in for a moment?"
+
+Lucian lets the door swing half-open and sighs resignedly.  "Sure, if you want," he says, retreating back into the room.  The three of you follow him inside.
+
+Lucian's Room
+It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing [SONG] over and over, sits on his desk beside a couple of framed photographs.
+
+Room description text about Lucian.
+>ask lucian about crystal
+The bullies snatch the crystal out of your reach, laugh in your face, and hustle you out of the room.
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+There is a sour, vaguely nauseating taste in the air. 
+
+Ava is here.
+
+Stacy is here.
+
+>focus
+Concentrating on the flavour, you sense an undercurrent of salt tears.  They trail off to the east, but seem strongest around one of the doors to the south. 
+
+"Whatever it is, it's strongest around that door."
+
+Ava and Stacy exchange glances, and before you can stop her, Stacy is knocking on the door.  "We've come this far.  I want to know what's at the end of --"
+
+Stacy quickly shuts up when the door opens a crack, and a rather timid little guy peeks out at you.  He fairly reeks of that mysterious sour-salty air.  And now you think you can hear some sort of twittering in the background, too.  It occurs to you that you remember seeing him up at the egg-drop option yesterday, though he certainly wasn't giving off this... whatever it is... back then.
+
+"Hi," says Ava, who seems to recognise the guy.  "Lucian, isn't it?  We met yesterday at the sign-ups.  Anyway, these are my friends Daniel and Stacy.  May we come in for a moment?"
+
+Lucian lets the door swing half-open and sighs resignedly.  "Sure, if you want," he says, retreating back into the room.  The three of you follow him inside.
+
+Lucian's Room
+It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing [SONG] over and over, sits on his desk beside a couple of framed photographs.
+
+Room description text about Lucian.
+>[dear me]
+I didn't understand that sentence.
+
+>ask lucian about song
+Which do you mean, songbirds or drunken singing?
+
+>[?????]
+Lucian shrugs.  "I just like the song.  It makes me feel better when I'm feeling unhappy."
+
+1. "Are you feeling very unhappy?"
+2. "It's a nice song...."
+
+>[oh, and suddenly the conversation can start?]
+You seem to want to talk to someone, but I can't see whom.
+
+>1
+"Are you feeling very unhappy?"
+
+"I don't know anybody here and I'm all alone.  Why shouldn't I be unhappy?  Let's talk about something else."
+
+>ask lucian about song
+Which do you mean, songbirds or drunken singing?
+
+>
+I beg your pardon?
+
+>
+I beg your pardon?
+
+>neither
+Lucian shrugs.  "I just like the song.  It makes me feel better when I'm feeling unhappy."
+
+1. "Are you feeling very unhappy?"
+2. "It's a nice song...."
+
+>1
+"Are you feeling very unhappy?"
+
+"I don't know anybody here and I'm all alone.  Why shouldn't I be unhappy?  Let's talk about something else."
+
+>[d'oh]
+I didn't understand that sentence.
+
+>ask lucian about song
+Which do you mean, songbirds or drunken singing?
+
+>no
+That was a rhetorical question.
+
+>ask lucian about song
+Which do you mean, songbirds or drunken singing?
+
+>b
+Lucian shrugs.  "I just like the song.  It makes me feel better when I'm feeling unhappy."
+
+1. "Are you feeling very unhappy?"
+2. "It's a nice song...."
+
+>2
+"It's a nice song...."
+
+"It was my grandmother's favourite song.  She used to sing it to me when I was little."  Lucian's glance strays to one of the photographs on his desk, of an old lady in her garden.
+
+>l
+Lucian's Room
+It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing [SONG] over and over, sits on his desk beside a couple of framed photographs.
+
+Room description text about Lucian.
+>tell lucian about trail
+There is no reply.
+
+>ask lucian about bullies
+"I don't want to talk about that any more."
+
+>focus
+You sense nothing untoward or out of the ordinary here.
+
+>[I really should -- this is the epicenter of that emotional event.]
+I didn't understand that sentence.
+
+>[okay, this is buggy enough that I'm inclined to stop going through it now.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[but I'll check the design doc to see if I can remember how to trigger the next part.]
+I didn't understand that sentence.
+
+>ask ava about lucian
+You can't see any such thing.
+
+>[oh, I think it should already have triggered.]
+You seem to want to talk to someone, but I can't see whom.
+
+>l
+Lucian's Room
+It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing [SONG] over and over, sits on his desk beside a couple of framed photographs.
+
+Room description text about Lucian.
+>x photographs
+There are two of them.  One appears to be a class photograph taken a year or two ago: there's an older man, maybe in his fifties, surrounded by a bunch of kids, in front of a blackboard.  The other is much older, judging by the clothes and hair, and shows a cheerful little old lady sitting on a bench in a colorful flower garden.
+
+You look at the two photographs.  There's one of a little old lady in a garden.  The other is a class photograph.
+
+1. "Is that your class picture?  What was your teacher like?"
+2. "Who's the lady in that picture?  Is she your grandmother?"
+
+>2
+"Who's the lady in that picture?  Is she your grandmother?"
+
+"Yeah.  She died."  The sour taste in the air is almost overwhelmed by a different, marshy sort of smell, yet you somehow know that the two sensations are somehow related.  Ava is instantly consoling Lucian, and finding all the right words that you can't think of.
+
+"Was she a gardener?" asks Ava.  "That's a beautiful garden she's in."
+
+"Yeah, yeah she was.  She was an environmentalist.  That's why she...."  Lucian stops.  "Never mind."
+
+1. "Why what?"
+
+>1
+"Why what?"
+
+Lucian shakes his head.  Stacy looks a little annoyed and says, "you know, if you don't tell us what's upsetting you, we can't help you.  So why don't you just spit it out and get it over with?"
+
+Lucian looks a little angry and says, "stop picking on me!  You're just like those bullies at dinner!  They made me give them my grandmother's earth crystal and I bet you want me to pay some sort of fine for being a loser.  Well I've had it.  Just go away and leave me alone!"
+
+>ask lucian about grandmother
+"Yeah.  She died."  The sour taste in the air is almost overwhelmed by a different, marshy sort of smell, yet you somehow know that the two sensations are somehow related.  Ava is instantly consoling Lucian, and finding all the right words that you can't think of.
+
+"Was she a gardener?" asks Ava.  "That's a beautiful garden she's in."
+
+"Yeah, yeah she was.  She was an environmentalist.  That's why she...."  Lucian stops.  "Never mind."
+
+1. "Why what?"
+
+>1
+"Why what?"
+
+Lucian shakes his head.  Stacy looks a little annoyed and says, "you know, if you don't tell us what's upsetting you, we can't help you.  So why don't you just spit it out and get it over with?"
+
+Lucian looks a little angry and says, "stop picking on me!  You're just like those bullies at dinner!  They made me give them my grandmother's earth crystal and I bet you want me to pay some sort of fine for being a loser.  Well I've had it.  Just go away and leave me alone!"
+
+>ask lucian about crystal
+The bullies snatch the crystal out of your reach, laugh in your face, and hustle you out of the room.
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+There is a sour, vaguely nauseating taste in the air. 
+
+Ava is here.
+
+Stacy is here.
+
+>[okay, that's it for me.]
+You seem to want to talk to someone, but I can't see whom.
+
+>quit
+Are you sure you want to quit? yes

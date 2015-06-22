@@ -1,0 +1,2346 @@
+Start of a transcript of
+
+The Empath's Gift
+The Empath's Gift by Textfyre
+Copyright 2010 by Textfyre
+Designed by Paul O'Brian
+Written by Christopher Huang
+Game Engine (FyreVM) by Jesse McGrew
+Inform 7 Programming by Ron Newcomb
+ and Graeme Jefferis
+Testing by ____
+Special thanks to Graham Nelson and Emily Short
+for all of their hard work on Inform 7.
+All rights reserved.
+Identification number: //88E48DB3-8DB5-4468-9F2A-8D30D3E09EFA//
+Interpreter version 1.2.6 / VM 3.1.1 / Library serial number 080126
+Standard Rules version 2/090402 by Graham Nelson
+Textfyre Standard Backdrops by Textfyre
+Basic Followers by Textfyre
+Goals by Textfyre
+Test Suite by Textfyre
+
+>restore
+Ok.
+
+>l
+Info Desk
+The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.
+
+There is a sour, vaguely nauseating taste in the air.  
+
+Ava and Stacy trail along behind you. 
+
+>x taste
+[placeholder text: "It's here, but you'll really need to focus on it."]
+
+
+
+>focus on taste
+You sense nothing untoward or out of the ordinary here.
+
+>[whoops! That really needs to work -- false negatives around the game's primary nonstandard verb are a definite danger zone, as they discourage players from the main leap they need to make.]
+That's not a verb I recognize.
+
+>focus
+Concentrating on the flavor, you sense an undercurrent of something salty as well, like tears.  You can also tell that this is all definitely part of a trail of some sort, going off to the east and the north. 
+
+>n
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+There is a sour, vaguely nauseating taste in the air.  
+
+Ava and Stacy trail along behind you. 
+
+>focus
+Concentrating on the flavor, you sense an undercurrent of salt tears.  Both sour and salt seem to form a line between the info desk and the stairs going down. 
+
+>s
+
+Info Desk
+The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.
+
+There is a sour, vaguely nauseating taste in the air.  
+
+Ava and Stacy trail along behind you. 
+
+>follow trail
+That's not a verb I recognize.
+
+>[that should at least have a better failure message. Ideally, we'd respond with something like, "Which direction do you want to follow, north or down?" Unless we're at the end of a trail, in which case it should just take the available direction.]
+You seem to want to talk to someone, but I can't see whom.
+
+>ne
+There are exits north (to the first floor midpoint), east (to calvin field), southeast, south (to the first floor lobby) and west from here.
+
+>e
+It's against the rules to leave the building during dorm time.
+
+>se
+
+First Floor Lobby, East
+This used to be a rather large dining room, once upon a time, and it still has a low-hanging chandelier right in the middle of the ceiling.  A piano's been pushed under the chandelier so that nobody accidentally gets a head full of crystal walking blindly around, and the place is generally used as a kind of music room now.  The info desk is back to the northwest, and to the west is the rest of the first floor lobby.  Wide picture windows look out on the front lawn and on the southern part of Calvin Field. A group of older kids seem to be discussing the psychology of cats in one corner.
+
+Ava and Stacy trail along behind you. 
+
+>[hee hee psychology of cats]
+That's not a verb I recognize.
+
+>listen
+You hear nothing unexpected.
+
+>focus
+You sense nothing untoward or out of the ordinary here.
+
+>x windows
+All you can see outside is darkness.
+
+>x field
+Which do you mean, calvin field north or calvin field south?
+
+>south
+You've never been to calvin field south so you can't recall.
+
+>[whoa, nifty knowledge modeling]
+You seem to want to talk to someone, but I can't see whom.
+
+>x lobby
+First Floor Lobby, East
+This used to be a rather large dining room, once upon a time, and it still has a low-hanging chandelier right in the middle of the ceiling.  A piano's been pushed under the chandelier so that nobody accidentally gets a head full of crystal walking blindly around, and the place is generally used as a kind of music room now.  The info desk is back to the northwest, and to the west is the rest of the first floor lobby.  Wide picture windows look out on the front lawn and on the southern part of Calvin Field. A group of older kids seem to be discussing the psychology of cats in one corner.
+
+Ava and Stacy trail along behind you. 
+
+>x piano
+Ava says it's a baby grand, and she knows more about this sort of thing.  All grand pianos seem more or less alike to you.  The pile of plastic dinosaurs under the piano probably makes it unique, however.
+
+>x dinosaurs
+Rarrr.  They're all very lifelike, despite being small, plastic, and a variety of colors unlikely to be found in nature.
+
+>get dinosaurs
+You take a plastic dinosaur.
+
+>x it
+Ava says it's a baby grand, and she knows more about this sort of thing.  All grand pianos seem more or less alike to you.  The pile of plastic dinosaurs under the piano probably makes it unique, however.
+
+>[pronoun tracking]
+That's not a verb I recognize.
+
+>x dinosaur
+You can't really get more generic, as far as dinosaurs go, as a diplodocus.  Never mind that there were thousands of other species of giant lizards roaming the earth once upon a time.  The purple color of this little plastic diplodocus is probably an example of artistic license, however.
+
+>ask ava about piano
+She does not reply.[placeholder text: "That seems kind of rude and unfriendly. She should have a handful of default responses for topics she doesn't know."]
+
+
+
+>[she should certainly have a reply about that.]
+That's not a verb I recognize.
+
+>ava, play piano
+Ava has better things to do.
+
+>[I would envision a response along the lines of "Ava gazes wistfully at the piano and says, 'Another time, definitely. Right now we have work to do.'"]
+You seem to want to talk to someone, but I can't see whom.
+
+>l
+First Floor Lobby, East
+This used to be a rather large dining room, once upon a time, and it still has a low-hanging chandelier right in the middle of the ceiling.  A piano's been pushed under the chandelier so that nobody accidentally gets a head full of crystal walking blindly around, and the place is generally used as a kind of music room now.  The info desk is back to the northwest, and to the west is the rest of the first floor lobby.  Wide picture windows look out on the front lawn and on the southern part of Calvin Field. A group of older kids seem to be discussing the psychology of cats in one corner.
+
+Ava and Stacy trail along behind you. 
+
+>ne
+There are exits west (to the first floor lobby) and northwest (to the info desk) from here.
+
+>w
+
+First Floor Lobby, West
+This used to be the living room, back when old AQJ was still alive and the university was just starting up.  It's got a huge fireplace, and a big bay window looking out onto the front lawn.  It's also been painted completely white from floor to ceiling, so thickly that you're not sure if some of the molding is not actually just bubbles under the paint.  The info desk is back through the arch to the north, and the lobby continues, through another arch, to the west.
+
+A large brass plaque has been fixed into the space over the fireplace.
+
+Ava and Stacy trail along behind you. 
+
+>x plaque
+It's shaped like a shield, and commemorates the memory of Damon Rose, one of the founders of LEAP.  You remember him quite well from last year.  It was quite a shock to hear about the accident, and there was some question as to whether LEAP could go on without him.  His sister, Claudia Rose, is in charge of LEAP now, and making sure that the good work goes on.  She seems like a nice lady, but she's just not quite as present as old Damon Rose used to be.
+
+>ask ava about plaque
+She does not reply.[placeholder text: "That seems kind of rude and unfriendly. She should have a handful of default responses for topics she doesn't know."]
+
+
+
+>ask stacy about aqj
+There is no reply.
+
+>n
+
+Info Desk
+The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.
+
+There is a sour, vaguely nauseating taste in the air.  
+
+Ava and Stacy trail along behind you. 
+
+>s
+
+First Floor Lobby, West
+This used to be the living room, back when old AQJ was still alive and the university was just starting up.  It's got a huge fireplace, and a big bay window looking out onto the front lawn.  It's also been painted completely white from floor to ceiling, so thickly that you're not sure if some of the molding is not actually just bubbles under the paint.  The info desk is back through the arch to the north, and the lobby continues, through another arch, to the west.
+
+A large brass plaque has been fixed into the space over the fireplace.
+
+Ava and Stacy trail along behind you. 
+
+>ne
+There are exits north (to the info desk) and east (to the first floor lobby) from here.
+
+>s
+There are exits north (to the info desk) and east (to the first floor lobby) from here.
+
+>n
+
+Info Desk
+The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.
+
+There is a sour, vaguely nauseating taste in the air.  
+
+Ava and Stacy trail along behind you. 
+
+>focus
+Concentrating on the flavor, you sense an undercurrent of something salty as well, like tears.  You can also tell that this is all definitely part of a trail of some sort, going off to the east and the north. 
+
+>e
+It's against the rules to leave the building during dorm time.
+
+>w
+It's against the rules to leave the building during dorm time.
+
+>nw
+There are exits north (to the first floor midpoint), east (to calvin field), southeast (to the first floor lobby), south (to the first floor lobby) and west from here.
+
+>n
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+There is a sour, vaguely nauseating taste in the air.  
+
+Ava and Stacy trail along behind you. 
+
+>focus
+Concentrating on the flavor, you sense an undercurrent of salt tears.  Both sour and salt seem to form a line between the info desk and the stairs going down. 
+
+>d
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+There is a sour, vaguely nauseating taste in the air.  
+
+Ava and Stacy trail along behind you. 
+
+>ask ava about taste
+She does not reply.[placeholder text: "That seems kind of rude and unfriendly. She should have a handful of default responses for topics she doesn't know."]
+
+
+
+>n
+There are exits east (to pits), south (to pits lobby central), west (to pits) and up (to the first floor midpoint) from here.
+
+>e
+
+Pits, East
+Your room is at this end of the Pits hallway, just to the south of here.  You've elected to cover your door with the biggest cutout of a werewolf that you can find, because werewolves are cool.  The hallway continues west, and a high window on the east wall looks out across Calvin Field North.  Right beside your room door is the fire stair leading back upstairs.
+
+Ava and Stacy trail along behind you. 
+
+>[this whole area should be bustling.]
+That's not a verb I recognize.
+
+>n
+There are exits south (to your room), west (to the pits stairwell) and up (to the first floor rooms) from here.
+
+>w
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+There is a sour, vaguely nauseating taste in the air.  
+
+Ava and Stacy trail along behind you. 
+
+>s
+
+Pits Lobby Central
+This section of the Pits is part of the older part of Jacobs Hall, and therefore cut up into more interesting shapes.  There are a bunch of storerooms, all of them locked, and then two very large halls to the east and west.  A passage to the north leads back to the main stairwell.  Apparently there used to be another staircase here going up, but it was ripped out to give this place a little more elbow room.
+
+Ava and Stacy trail along behind you. 
+
+>n
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+There is a sour, vaguely nauseating taste in the air.  
+
+Ava and Stacy trail along behind you. 
+
+>w
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+There is a sour, vaguely nauseating taste in the air.  
+
+Ava and Stacy trail along behind you. 
+
+>focus
+Concentrating on the flavor, you sense an undercurrent of salt tears.  They trail off to the east, but seem strongest around one of the doors to the south. 
+
+"Whatever it is, it's strongest around that door."
+
+Ava and Stacy exchange glances, and before you can stop her, Stacy is knocking on the door.  "We've come this far.  I want to know what's at the end of --"
+
+Stacy quickly shuts up when the door opens a crack, and a rather timid little guy peeks out at you.  He fairly reeks of that mysterious sour-salty air.  And now you think you can hear some sort of twittering in the background, too.  It occurs to you that you remember seeing him up at the egg-drop option yesterday, though he certainly wasn't giving off this... whatever it is... back then.
+
+"Hi," says Ava, who seems to recognize the guy.  "Lucian, isn't it?  We met yesterday at the sign-ups.  Anyway, these are my friends Daniel and Stacy.  May we come in for a moment?"
+
+Lucian lets the door swing half-open and sighs resignedly.  "Sure, if you want," he says, retreating back into the room.  The three of you follow him inside.
+
+Lucian's Room
+It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing Bill Withers' "Lean On Me" over and over, sits on his desk beside a couple of framed photographs.
+
+There is a sour, vaguely nauseating taste in the air.  
+
+[placeholder text: "Room description text about Lucian"]
+
+.
+
+>ask lucian about sadness
+There is no reply.
+
+[A new goal was added: find out what happened to Lucian]
+
+>[we should cover these things that the player might try, generally asking about the thing that brought him here.]
+You seem to want to talk to someone, but I can't see whom.
+
+>focus
+>[and that should work]
+That's not a verb I recognize.
+
+>x photographs
+There are two of them.  One appears to be a class photograph taken a year or two ago: there's an older man, maybe in his fifties, surrounded by a bunch of kids, in front of a blackboard.  The other is much older, judging by the clothes and hair, and shows a cheerful little old lady sitting on a bench in a colorful flower garden.
+
+There is no reply.
+
+>[eh? I didn't ask him anything]
+That's not a verb I recognize.
+
+>x garden
+You can't see such a thing.
+
+>x bench
+You can't see such a thing.
+
+>x lady
+You can't see such a thing.
+
+>[second-level detail would be good in these photos]
+That's not a verb I recognize.
+
+>x blackboard
+You can't see such a thing.
+
+>x kids
+You can't see such a thing.
+
+>x older man
+You can't see such a thing.
+
+>ask lucian about lady
+There is no reply.
+
+>ask lucian about man
+There is no reply.
+
+>ask lucian about photos
+(Lucian's photographs)
+You look at the two photographs.  There's one of a little old lady in a garden.  The other is a class photograph.
+
+1. "Is that your class picture?  What was your teacher like?"
+2. "Who's the lady in that picture?  Is she your grandmother?"
+
+
+>2
+"Who's the lady in that picture?  Is she your grandmother?"
+
+"Yeah.  She died."  The sour taste in the air is almost overwhelmed by a different, marshy sort of smell, yet you somehow know that the two sensations are somehow related.  Ava is instantly consoling Lucian, and finding all the right words that you can't think of.
+
+"Was she a gardener?" asks Ava.  "That's a beautiful garden she's in."
+
+"Yeah, yeah she was.  She was an environmentalist.  That's why she...."  Lucian stops.  "Never mind."
+
+1. "Why what?"
+
+>1
+"Why what?"
+
+Lucian shakes his head.  Stacy looks a little annoyed and says, "you know, if you don't tell us what's upsetting you, we can't help you.  So why don't you just spit it out and get it over with?"
+
+Lucian looks a little angry and says, "Stop picking on me!  You're just like those bullies at dinner!  They made me give them my grandmother's earth crystal and I bet you want me to pay some sort of fine for being a loser.  Well I've had it.  Just go away and leave me alone!"
+
+>ask lucian about crystal
+"It's a crystal cube with a 3-D image of the earth etched inside it.  My grandmother gave it to me just before she died, so it means a lot to me.  Those bullies didn't care, though, they just took it.  I don't know how to get it back, I mean, I don't want to go crying to the camp counselors like a little crybaby."  Lucian sniffles and wipes his sleeve across his nose, then reaches over to the CD player to turn the volume up.
+
+"Isn't it loud enough for you already?" asks Stacy pointedly.  "It's not even a very good song!  Ava says it makes her sick."
+
+Ava turns bright red.  "Only because I had to sing it in my voice lessons over and over again," she says quickly.
+
+Lucian shrugs.  "I just like the song.  It makes me feel better when I'm feeling unhappy."
+
+1. "Are you feeling very unhappy?"
+2. "It's a nice song...."
+
+
+[A new goal was added: retrieve Lucian's crystal]
+
+>2
+That's not a verb I recognize.
+
+>[eh?]
+That's not a verb I recognize.
+
+>ask lucian about crystal
+"It's a crystal cube with a 3-D image of the earth etched inside it.  My grandmother gave it to me just before she died, so it means a lot to me.  Those bullies didn't care, though, they just took it.  I don't know how to get it back, I mean, I don't want to go crying to the camp counselors like a little crybaby."  Lucian sniffles and wipes his sleeve across his nose, then reaches over to the CD player to turn the volume up.
+
+
+
+[You achieved a goal! (find out what happened to Lucian)]
+
+>[hmmm. This conversation still seems broken to me.]
+That's not a verb I recognize.
+
+>focus
+Now that you think about it, there are so many alien sensations swirling around, most of them so faint you're not sure if you're just imagining them.  You really don't know which sensation you really want.
+
+Stacy pulls you and Ava aside.  "Okay," she says, "I think I know how to fix this.  We've got to get that earth crystal away from the bullies and give it back to Lucian here.  Daniel, I think we should let you handle this part.  You can track them from the info desk the same way you tracked Lucian."
+
+>l
+Lucian's Room
+It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing Bill Withers' "Lean On Me" over and over, sits on his desk beside a couple of framed photographs.
+
+Ava and Stacy are here.
+
+[placeholder text: "Room description text about Lucian"]
+
+.
+
+>ask lucian about photos
+(Lucian's photographs)
+You look at the two photographs.  There's one of a little old lady in a garden.  The other is a class photograph.
+
+1. "Is that your class picture?  What was your teacher like?"
+2. "Who's the lady in that picture?  Is she your grandmother?"
+
+
+>2
+"Who's the lady in that picture?  Is she your grandmother?"
+
+"Yeah.  She died."  The sour taste in the air is almost overwhelmed by a different, marshy sort of smell, yet you somehow know that the two sensations are somehow related.  Ava is instantly consoling Lucian, and finding all the right words that you can't think of.
+
+"Was she a gardener?" asks Ava.  "That's a beautiful garden she's in."
+
+"Yeah, yeah she was.  She was an environmentalist.  That's why she...."  Lucian stops.  "Never mind."
+
+1. "Why what?"
+
+>1
+"Why what?"
+
+Lucian shakes his head.  Stacy looks a little annoyed and says, "you know, if you don't tell us what's upsetting you, we can't help you.  So why don't you just spit it out and get it over with?"
+
+Lucian looks a little angry and says, "Stop picking on me!  You're just like those bullies at dinner!  They made me give them my grandmother's earth crystal and I bet you want me to pay some sort of fine for being a loser.  Well I've had it.  Just go away and leave me alone!"
+
+>ask lucian about crystal
+"It's a crystal cube with a 3-D image of the earth etched inside it.  My grandmother gave it to me just before she died, so it means a lot to me.  Those bullies didn't care, though, they just took it.  I don't know how to get it back, I mean, I don't want to go crying to the camp counselors like a little crybaby."  Lucian sniffles and wipes his sleeve across his nose, then reaches over to the CD player to turn the volume up.
+
+
+
+>ask lucian about bullies
+Lucian shakes his head.  Stacy looks a little annoyed and says, "you know, if you don't tell us what's upsetting you, we can't help you.  So why don't you just spit it out and get it over with?"
+
+Lucian looks a little angry and says, "Stop picking on me!  You're just like those bullies at dinner!  They made me give them my grandmother's earth crystal and I bet you want me to pay some sort of fine for being a loser.  Well I've had it.  Just go away and leave me alone!"
+
+>[This reveal shouldn't be repeatable.]
+That's not a verb I recognize.
+
+>l
+Lucian's Room
+It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing Bill Withers' "Lean On Me" over and over, sits on his desk beside a couple of framed photographs.
+
+Ava and Stacy are here.
+
+[placeholder text: "Room description text about Lucian"]
+
+.
+
+>ask lucian about photos
+(Lucian's photographs)
+You look at the two photographs.  There's one of a little old lady in a garden.  The other is a class photograph.
+
+1. "Is that your class picture?  What was your teacher like?"
+2. "Who's the lady in that picture?  Is she your grandmother?"
+
+
+>1
+"Is that your class picture?  What was your teacher like?"
+
+Lucian picks up the class photo.  "That's Peter," he says, pointing to the teacher smiling up from one side of the group.  For a moment, the sour taste in the air disappears.  "He lets us call him by his first name, and he's the most awesome teacher ever."  Then Lucian looks sad again.  "He's the one who said I was smart enough to come here, and he went and pulled all sorts of strings.  I should be grateful, I suppose."
+
+1. "But you're not?  Why?"
+
+>1
+"But you're not?  Why?"
+
+"I don't know anybody here and I'm all alone.  Why shouldn't I be unhappy?  Let's talk about something else."
+
+>l
+Lucian's Room
+It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing Bill Withers' "Lean On Me" over and over, sits on his desk beside a couple of framed photographs.
+
+Ava and Stacy are here.
+
+[placeholder text: "Room description text about Lucian"]
+
+.
+
+>x player
+How many times can one person listen to "Lean On Me" at one go?
+
+>ask lucian about song
+Lucian shrugs.  "I just like the song.  It makes me feel better when I'm feeling unhappy."
+
+1. "Are you feeling very unhappy?"
+2. "It's a nice song...."
+
+
+>2
+"It's a nice song...."
+
+"It was my grandmother's favorite song.  She used to sing it to me when I was little."  Lucian's glance strays to one of the photographs on his desk, of an old lady in her garden.
+
+>[nice cueing]
+That's not a verb I recognize.
+
+>l
+Lucian's Room
+It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing Bill Withers' "Lean On Me" over and over, sits on his desk beside a couple of framed photographs.
+
+Ava and Stacy are here.
+
+[placeholder text: "Room description text about Lucian"]
+
+.
+
+>ask ava about bullies
+"I've heard people talk about being bullied, but no-one's tried to push me around so far."
+
+>ask stacy about bullies
+"Those boys need to be taught a lesson," Stacy mutters darkly.
+
+>[I'm really enjoying the characterization on these two]
+That's not a verb I recognize.
+
+>n
+"You guys go ahead," says Ava as you make for the door, "I'd better stay here with Lucian.  He looks like he needs someone to talk to."
+
+"Fine, whatever," says Stacy, rolling her eyes.
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+Stacy trails along behind you. 
+
+>ask stacy about ava
+"Ava worries too much about everything," Stacy says.  "I tell her to stop, but she just won't listen."
+
+>ask stacy about lucian
+"He seems like a bit of a whiner, if you ask me.  But if he needs help, I guess we'd better do something."
+
+>e
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Stacy trails along behind you. 
+
+>u
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Stacy trails along behind you. 
+
+>s
+
+Info Desk
+The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.
+
+Stacy trails along behind you. 
+
+>focus
+You close your eyes and stand near the door to Calvin Field.  You know Lucian's trail begins just outside this door.  Concentrating on the area in question, you sense the beginning of another trail, one that smells of burnt engine oil and sounds like a monkey's chatter dropped several octaves and sped up.  It traces the same path back towards the dorms to the north. 
+
+>["back towards the dorms to the north?" This description seems slightly off. We're inside the dorm, facing east.]
+You seem to want to talk to someone, but I can't see whom.
+
+>e
+It's against the rules to leave the building during dorm time.
+
+>focus
+You sense the beginning of another trail, one that smells of burnt engine oil and sounds like a monkey's chatter dropped several octaves and sped up.  It traces the same path back towards the dorms to the north. 
+
+>[Maybe something like "past the info desk to the north."]
+That's not a verb I recognize.
+
+>n
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Some sort of oily, burnt stench seems to coil about your legs here, and you think you can hear some sort of low-pitched chatter.
+
+Stacy trails along behind you. 
+
+>focus
+That unpleasant smell, and its accompanying sound, seems to trace a path from the info desk to the eastern end of the hallway. 
+
+>e
+
+First Floor Rooms, East
+This is the east end of the first floor dorm area.  Through the window at the end of the hall, you can see Calvin Field North and a bunch of campers running about in the summer sunshine.  In here, you are surrounded by images of people having snowball fights.  The fire stairs at this end of the hall go up and down.
+
+Some sort of oily, burnt stench seems to coil about your legs here, and you think you can hear some sort of low-pitched chatter.
+
+Stacy trails along behind you. 
+
+>focus
+You can trace that unpleasant smell, and its accompanying sound, to one of the rooms to the south.  The door is open on an already messy room, and with a shock you realize that you are not sensing that burnt-oil smell with your nose at all: it's just registering in your mind as a smell.  Same goes for the sound of low-pitched chattering. 
+
+One of the boys inside the room notices you gawking outside the door, and comes out.  "Yeah, what do you want?"
+
+1. "Uh.  Nothing in particular...."
+2. "I was following this, uh, smell, and I was wondering...."
+3. "Um, Have you seen an earth crystal -- sort of like a glass cube, about so big, with the earth etched inside...?"
+
+>2
+"I was following this, uh, smell, and I was wondering...."
+
+"Shove off before I dunk you in the toilet, loser-boy."  The boy retreats into the room to resume his conversation with his roommate.
+
+>x boy
+You can't see such a thing.
+
+>[he should be examinable]
+That's not a verb I recognize.
+
+>x joe
+You can't see such a thing.
+
+>x hank
+You can't see such a thing.
+
+>x roommate
+You can't see such a thing.
+
+>x bullies
+You can't see such a thing.
+
+>ask stacy about bullies
+"Those boys need to be taught a lesson," Stacy mutters darkly.
+
+>talk to bullies
+You can't see any such thing.
+
+>ask boy about cube
+You can't see any such thing.
+
+>[this is thin]
+That's not a verb I recognize.
+
+>l
+First Floor Rooms, East
+This is the east end of the first floor dorm area.  Through the window at the end of the hall, you can see Calvin Field North and a bunch of campers running about in the summer sunshine.  In here, you are surrounded by images of people having snowball fights.  The fire stairs at this end of the hall go up and down.
+
+Some sort of oily, burnt stench seems to coil about your legs here, and you think you can hear some sort of low-pitched chatter.
+
+Stacy trails along behind you. 
+
+>s
+"Hey, Joe, did we give loser-boy permission to enter our room?"
+
+"Why no, Hank, I don't believe we did.  Maybe we'll have to make him pay a fine."
+
+"Aw, but that would be mean!  We shouldn't make little loser-boys give us stuff for trespassing.  I think we should punish them instead."
+
+1. "Um, about that earth crystal...."
+2. "What, a fine?"
+3. "What do you mean, 'punish them'?"
+
+Joe And Hank's Room
+The less said about the mess in this room, the better.  The exit is back to the north.
+
+[placeholder text: "Room description text about Joe"]
+
+.
+
+Stacy trails along behind you. 
+
+[placeholder text: "Room description text about Hank"]
+
+.
+
+>2
+"What, a fine?"
+
+"Yeah.  You came here uninvited, so now you got to give us something.  To compensate us for the distress of having to breathe the same air as you."  Joe looks at Hank.  "What d'you think?"
+
+"I think I could use a nice laptop computer."
+
+"Sounds about right.  So what're you waiting for, loser-boy?  Scram!"
+
+First Floor Rooms, East
+This is the east end of the first floor dorm area.  Through the window at the end of the hall, you can see Calvin Field North and a bunch of campers running about in the summer sunshine.  In here, you are surrounded by images of people having snowball fights.  The fire stairs at this end of the hall go up and down.
+
+Some sort of oily, burnt stench seems to coil about your legs here, and you think you can hear some sort of low-pitched chatter.
+
+Stacy trails along behind you. 
+
+>s
+Stacy frowns and shakes her head.  "I think we need help, Daniel.  Should we call a counselor?"
+
+You shake your head.  "No way.  We'll be called snitches and rats until the day we die."
+
+Joe And Hank's Room
+The less said about the mess in this room, the better.  The exit is back to the north.
+
+Stacy trails along behind you. 
+
+[placeholder text: "Room description text about Joe"]
+
+.
+
+[placeholder text: "Room description text about Hank"]
+
+.
+
+>[I like the text with Stacy, but it should prevent me from entering the room]
+You seem to want to talk to someone, but I can't see whom.
+
+>x joe
+You see nothing special about Joe.
+
+"Are you still here?" Joe says.  "Get out and go bother somebody else!"  The two bullies hustle you to the door and send you sprawling in the hallway outside.
+
+First Floor Rooms, East
+This is the east end of the first floor dorm area.  Through the window at the end of the hall, you can see Calvin Field North and a bunch of campers running about in the summer sunshine.  In here, you are surrounded by images of people having snowball fights.  The fire stairs at this end of the hall go up and down.
+
+Some sort of oily, burnt stench seems to coil about your legs here, and you think you can hear some sort of low-pitched chatter.
+
+Stacy trails along behind you. 
+
+
+>ask stacy about joe
+"Those boys need to be taught a lesson," Stacy mutters darkly.
+
+
+>ask stacy about hank
+"Those boys need to be taught a lesson," Stacy mutters darkly.
+
+
+>w
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Some sort of oily, burnt stench seems to coil about your legs here, and you think you can hear some sort of low-pitched chatter.
+
+Stacy trails along behind you. 
+
+>w
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+Stacy trails along behind you. 
+
+>n
+Aidan isn't in right now, and you shouldn't be poking around in his room while he's gone.  Even if he is your brother.  Especially if he's your brother.  And anyway, the door is locked.
+
+>knock on door
+Aidan opens the door.  "Hey, Daniel!  What's up?"  He ushers you into the room and sits down at his desk.  "Sorry if I'm a little distracted.  We just had our first class on old-school text adventures today, and I'm kind of caught up in the homework.  Seriously, this is kind of cool."  Turning back to his laptop, he begins typing away.
+
+Aidan's Room
+Aidan shares this room with some guy whose name you never caught and whom you almost never see.  Aidan keeps his half of the room neat and spartan, almost as if he were expecting a military inspection at any moment.  The bedclothes look to be pulled tight enough to bounce a penny to the ceiling, and the desk is practically bare but for a few neatly regulationed necessities.  The door to the dorm corridor is back to the south.
+
+Aidan is sitting at his desk, clearly in the middle of a computer game of some sort.
+
+>[okay, if he's in, I shouldn't get a message saying he isn't in. Instead, I'd recommend something like, "Aidan's door is open a crack, and you can see him working at a computer inside. It'd probably be a good idea to knock first."]
+You seem to want to talk to someone, but I can't see whom.
+
+>x game
+You can't see such a thing.
+
+>[definitely need a desc there]
+That's not a verb I recognize.
+
+>ask aidan about game
+Which do you mean, the RPG option, the regulation ping pong tables or the view of Calvin Field?
+
+>[None of those!]
+There is no reply.
+
+>ask aidan about computer game
+There is no reply.
+
+>ask aidan about zork
+"Check it out, this is what adventure games on the computer looked like way back before they figured out how to get pictures in.  This one here is Zork; you're this nameless adventurer dude on a treasure hunt in this great network of caves, and there's this thief who keeps popping up and stealing your stuff ... I bet you've got to defeat him somehow, but I haven't gotten that far yet."
+
+>[Also, "neatly regulationed" is a bit shaky grammatically, I think. "Neatly regulated" is probably the right phrase.]
+You seem to want to talk to someone, but I can't see whom.
+
+>ask aidan about bullies
+"Hank and Joe up to their old tricks again, huh?  I'll deal with them."  Aidan gets up from his desk (he doesn't even hit "pause"!  What kind of game doesn't need to be paused when you leave it?) and sets off down the hallway.
+
+
+>follow aidan
+That's not a verb I recognize.
+
+>[we should implement "follow"]
+That's not a verb I recognize.
+
+>[That's the marital "we" at work there.]
+That's not a verb I recognize.
+
+>s
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+Stacy trails along behind you. 
+
+Aidan goes east.
+
+>e
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Some sort of oily, burnt stench seems to coil about your legs here, and you think you can hear some sort of low-pitched chatter.
+
+Stacy trails along behind you. 
+
+Aidan goes east.
+
+>e
+
+First Floor Rooms, East
+This is the east end of the first floor dorm area.  Through the window at the end of the hall, you can see Calvin Field North and a bunch of campers running about in the summer sunshine.  In here, you are surrounded by images of people having snowball fights.  The fire stairs at this end of the hall go up and down.
+
+Some sort of oily, burnt stench seems to coil about your legs here, and you think you can hear some sort of low-pitched chatter.
+
+Stacy trails along behind you. 
+
+Aidan goes south.
+
+"Yo, Hank!  Joe!"  Aidan strides into the bullies' room as if he owned the place and perches on the edge of a desk.  "I hear you've been bothering the younger campers again."
+
+Hank looks out the door, sees you, and gives you the evil eye.  "So?"
+
+"So I figure you gotta either pay a fine or get yourselves ratted out to the counselors.  Me, I don't like ratting on people, so I figure it's gonna be the fine for you guys."  He picks up the earth crystal.  "This will do nicely, especially since I gather you took it from one of the younger campers to begin with."
+
+"Shove off, Aidan.  Unless you want a mouthful of knuckles."
+
+Aidan gives a short bark of laughter.  "Dude.  My dad chews out Navy SEALs for a living, remember?  They taught me how to kill jerks like you with a pencil when I was five."  Catching Hank glaring out the door at you, he adds, "That's my little brother, in case you're wondering.  Only reason he hasn't whooped your sorry asses to hell and back is because he takes the whole 'only pick on people who can fight back' thing a lot more seriously than I do."
+
+Joe looks like he's about to call Aidan's bluff, but Aidan stares him down.  The two bullies finally look away, muttering something rude.  Aidan swaggers out of the room and pulls the door shut behind him.  He grins and passes the earth crystal to you.  "There you go.  Problem solved.  Now, I better get back to Zork."  He musses up your hair and strolls back to his room.
+
+>thank aidan
+That's not a verb I recognize.
+
+>l
+First Floor Rooms, East
+This is the east end of the first floor dorm area.  Through the window at the end of the hall, you can see Calvin Field North and a bunch of campers running about in the summer sunshine.  In here, you are surrounded by images of people having snowball fights.  The fire stairs at this end of the hall go up and down.
+
+Some sort of oily, burnt stench seems to coil about your legs here, and you think you can hear some sort of low-pitched chatter.
+
+Stacy trails along behind you. 
+
+>w
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Some sort of oily, burnt stench seems to coil about your legs here, and you think you can hear some sort of low-pitched chatter.
+
+Stacy trails along behind you. 
+
+>w
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+Stacy trails along behind you. 
+
+>n
+
+Aidan's Room
+Aidan shares this room with some guy whose name you never caught and whom you almost never see.  Aidan keeps his half of the room neat and spartan, almost as if he were expecting a military inspection at any moment.  The bedclothes look to be pulled tight enough to bounce a penny to the ceiling, and the desk is practically bare but for a few neatly regulationed necessities.  The door to the dorm corridor is back to the south.
+
+Stacy trails along behind you. 
+
+Aidan is sitting at his desk, clearly in the middle of a computer game of some sort.
+
+>aidan, thanks
+There is no reply.
+
+>ask aidan about game
+Which do you mean, the RPG option, the regulation ping pong tables or the view of Calvin Field?
+
+>zork
+There is no reply.
+
+>ask aidan about zork
+"Check it out, this is what adventure games on the computer looked like way back before they figured out how to get pictures in.  This one here is Zork; you're this nameless adventurer dude on a treasure hunt in this great network of caves, and there's this thief who keeps popping up and stealing your stuff ... I bet you've got to defeat him somehow, but I haven't gotten that far yet."
+
+>[it'd be nifty to have a few different replies which could foreshadow the zork chapter -- brass lantern, trapdoor, land of the dead, thief, etc.]
+You seem to want to talk to someone, but I can't see whom.
+
+>x necessities
+Aidan's toiletries are so neatly laid out that you wonder if he ever actually uses them.
+
+>x bedclothes
+It's very bedcloth-like.
+
+>x desk
+[placeholder text: "Aidan's desk"]
+
+
+
+>[Also, the photo should get prominent mention here, to help foreshadow chapter 8]
+You seem to want to talk to someone, but I can't see whom.
+
+>[Speaking of chapters, I would still like to see some kind of introductory screen for each chapter, including the title. It'd be a good opportunity to insert an illustration in the full FyreVM version. It may be that it doesn't make sense to implement that
+You seem to want to talk to someone, but I can't see whom.
+
+>[in the plain vanilla glulx version, but I'd like to see something that at least allows players of this version to see the chapter titles.]
+You seem to want to talk to someone, but I can't see whom.
+
+>x crystal
+This is a rather heavy cube of pure crystal, with an image of the earth etched into its interior.  Though it appears clear when you look down at it, it seems to glow slightly violet when you hold it up to the light.
+
+>[very nice slightly mystical desc]
+That's not a verb I recognize.
+
+>l
+Aidan's Room
+Aidan shares this room with some guy whose name you never caught and whom you almost never see.  Aidan keeps his half of the room neat and spartan, almost as if he were expecting a military inspection at any moment.  The bedclothes look to be pulled tight enough to bounce a penny to the ceiling, and the desk is practically bare but for a few neatly regulationed necessities.  The door to the dorm corridor is back to the south.
+
+Stacy trails along behind you. 
+
+Aidan is sitting at his desk, clearly in the middle of a computer game of some sort.
+
+>ask aidan about bullies
+"Hank and Joe up to their old tricks again, huh?  I'll deal with them."  Aidan gets up from his desk (he doesn't even hit "pause"!  What kind of game doesn't need to be paused when you leave it?) and sets off down the hallway.
+
+
+>[again, shouldn't be repeatable.]
+You seem to want to talk to someone, but I can't see whom.
+
+>play with game
+You can't see any such thing.
+
+>play with computer
+You can't see any such thing.
+
+>x computer
+You can't see such a thing.
+
+>[missing objects]
+That's not a verb I recognize.
+
+>l
+Aidan's Room
+Aidan shares this room with some guy whose name you never caught and whom you almost never see.  Aidan keeps his half of the room neat and spartan, almost as if he were expecting a military inspection at any moment.  The bedclothes look to be pulled tight enough to bounce a penny to the ceiling, and the desk is practically bare but for a few neatly regulationed necessities.  The door to the dorm corridor is back to the south.
+
+Stacy trails along behind you. 
+
+Aidan is sitting at his desk, clearly in the middle of a computer game of some sort.
+
+>[also, if aidan has gotten up he shouldn't still be sitting here. I didn't check that the first time round]
+You seem to want to talk to someone, but I can't see whom.
+
+>l
+Aidan's Room
+Aidan shares this room with some guy whose name you never caught and whom you almost never see.  Aidan keeps his half of the room neat and spartan, almost as if he were expecting a military inspection at any moment.  The bedclothes look to be pulled tight enough to bounce a penny to the ceiling, and the desk is practically bare but for a few neatly regulationed necessities.  The door to the dorm corridor is back to the south.
+
+Stacy trails along behind you. 
+
+Aidan is sitting at his desk, clearly in the middle of a computer game of some sort.
+
+>s
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+Stacy trails along behind you. 
+
+>ask stacy about aidan
+(Aidan)
+"He's pretty good with electrical gadgets and that sort of thing.  We've got that robotics class coming up on Friday, and I'd really like to see what he comes up with."
+
+>n
+
+Aidan's Room
+Aidan shares this room with some guy whose name you never caught and whom you almost never see.  Aidan keeps his half of the room neat and spartan, almost as if he were expecting a military inspection at any moment.  The bedclothes look to be pulled tight enough to bounce a penny to the ceiling, and the desk is practically bare but for a few neatly regulationed necessities.  The door to the dorm corridor is back to the south.
+
+Stacy trails along behind you. 
+
+Aidan is sitting at his desk, clearly in the middle of a computer game of some sort.
+
+>ask aidan about crystal
+He does not reply.
+
+>s
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+Stacy trails along behind you. 
+
+>ask stacy about crystal
+She does not reply.[placeholder text: "That seems kind of rude and unfriendly. She should have a handful of default responses for topics she doesn't know."]
+
+
+
+>n
+
+Aidan's Room
+Aidan shares this room with some guy whose name you never caught and whom you almost never see.  Aidan keeps his half of the room neat and spartan, almost as if he were expecting a military inspection at any moment.  The bedclothes look to be pulled tight enough to bounce a penny to the ceiling, and the desk is practically bare but for a few neatly regulationed necessities.  The door to the dorm corridor is back to the south.
+
+Stacy trails along behind you. 
+
+Aidan is sitting at his desk, clearly in the middle of a computer game of some sort.
+
+>ask aidan about lucian
+"Hank and Joe up to their old tricks again, huh?  I'll deal with them."  Aidan gets up from his desk (he doesn't even hit "pause"!  What kind of game doesn't need to be paused when you leave it?) and sets off down the hallway.
+
+
+
+>ask aidan about stacy
+It wouldn't be polite to talk about her while she's standing right there.  Anyway, Aidan's probably going to give you the ribbing of your life later about how all the girls just fawn over you, bleagh.
+
+
+>ask aidan about ava
+It wouldn't be polite to talk about her while she's standing right there.  Anyway, Aidan's probably going to give you the ribbing of your life later about how all the girls just fawn over you, bleagh.
+
+
+>[she's not standing right here.]
+That's not a verb I recognize.
+
+>ask aidan about mom
+"I wonder how Mom is enjoying things in Djibouti.  I know Dad's going to be there for however long the Navy wants him there, but Mom should be back before camp's out."
+
+>ask aidan about dad
+"I wonder how Mom is enjoying things in Djibouti.  I know Dad's going to be there for however long the Navy wants him there, but Mom should be back before camp's out."
+
+>ask aidan about bed
+(Aidan's bed)
+He does not reply.
+
+>[Perhaps a message to the effect that he's too absorbed in the game to engage in much conversation.]
+That's not a verb I recognize.
+
+>s
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+Stacy trails along behind you. 
+
+>save
+Ok.
+
+>d
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+Stacy trails along behind you. 
+
+>focus
+Now that you think about it, there are so many alien sensations swirling around, most of them so faint you're not sure if you're just imagining them.  You really don't know which sensation you really want.
+
+>focus on stacy
+You seem to hear crickets chirping.
+
+>u
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+Stacy trails along behind you. 
+
+>n
+
+Aidan's Room
+Aidan shares this room with some guy whose name you never caught and whom you almost never see.  Aidan keeps his half of the room neat and spartan, almost as if he were expecting a military inspection at any moment.  The bedclothes look to be pulled tight enough to bounce a penny to the ceiling, and the desk is practically bare but for a few neatly regulationed necessities.  The door to the dorm corridor is back to the south.
+
+Stacy trails along behind you. 
+
+Aidan is sitting at his desk, clearly in the middle of a computer game of some sort.
+
+>focus on aidan
+You think you can hear someone playing an oboe.  Somewhere.
+
+>s
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+Stacy trails along behind you. 
+
+>d
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+Stacy trails along behind you. 
+
+>s
+
+Lucian's Room
+It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing Bill Withers' "Lean On Me" over and over, sits on his desk beside a couple of framed photographs.
+
+Stacy trails along behind you. 
+
+Ava and Stacy are here.
+
+[placeholder text: "Room description text about Lucian"]
+
+.
+
+[You achieved a goal! (give Lucian back his crystal)]
+
+Lucian looks up from his desk as you enter the room, and his mouth drops open when he sees the earth crystal in your hands.  "You did it!  You got it back!"  He leaps from his chair and throws his arms around you -- the room glows mauve for an instant, and something stabs in the back of your eye.  You vaguely hear Stacy telling Lucian to take it easy, and you feel Ava's arms catching you as you stumble back, off-balance, from Lucian.
+
+"I don't know if we're any closer to figuring out what's going on," you say to the girls as you leave Lucian's room.  "I mean, so now I'm some sort of psychic bloodhound?  Why me?"
+
+"It could turn out useful," says Stacy.  "Just think of the things you could do now!"
+
+Ava doesn't say anything.  She just looks worried.
+
+
+
+Please press SPACE to continue.
+
+The headaches are now nothing more than a faint but constant pressure in the back of your skull.  The dizzy spells are gone, and in their place is a vague sense of unease.  The last time you felt perfectly normal would have to be shortly before falling asleep last night.
+
+If you concentrate even a little bit, you can conjure up those unreal sensations around everybody you meet.  And you're beginning to notice a definite relationship between what you sense and how everybody feels.  This is definitely some sort of empathic thing that's waking up inside you.  You'll have to discuss this with Ava and Stacy and Aidan later tonight.
+
+
+Please press SPACE to continue.
+LEAP, Day 4 (Wednesday) - Dinner
+
+You usually have your meals with Ava and Stacy, but they're in a different time slot for dinner today.  Aidan's with his own friends at the other end of the dining hall, which leaves you alone with your readings for your class on satirical writing.  Hopefully Aristophanes and Moliere will be enough to distract you from the rather unpleasant substances on your plate pretending to be meat and potatoes.
+
+Dining Hall
+You are alone at the southeast corner of the room, with a few readings for your satirical writing class.  You can see Aidan somewhere off to the west, eating with his friends.
+
+[A new goal was added: eat dinner in peace]
+
+>goals
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+
+Goals Remaining: 
+  eat dinner in peace
+
+>[whoops, "satirical writing" should be "satirical drama" -- my error in this section of the design doc. Sorry.]
+You seem to want to talk to someone, but I can't see whom.
+
+>x aidan
+He's sitting with a crowd of older campers, at the other side of the hall.  You're not so insecure that you absolutely have to sit beside him at every meal.  Not now that you're a mature second-year camper, anyway..
+
+>[double period.]
+That's not a verb I recognize.
+
+>x food
+You can't see such a thing.
+
+"Hi, Daniel!"  It's Lucian, looking a lot more chipper than he did yesterday.  "Hey, where are Ava and Stacy?  Are you sitting alone?  Can I sit with you?"
+
+1. "Sure...."
+2. "No."
+3. "Uh...."
+
+>[kind of funny that my food was with me during the first two chapters and now it's nowhere to be found.]
+That's not a verb I recognize.
+
+>3
+"Uh...."
+
+"Really?  You're so cool!  Hey, I don't know what you said to those bullies yesterday, but you have to tell me how you did it!  Is there a special class for dealing with bullies?  They have all sorts of classes here... hey, maybe you could teach me!"
+
+1. "Uh...."
+2. "Actually, I asked my brother Aidan...."
+3. "You really need to settle down."
+4. "There's nothing to teach."
+
+>1
+"Uh...."
+
+"See, you're just that awesome.  Hey, we should hang out!  We can play checkers.  Do you play checkers?  I bet you're really good at it.  We can play tonight, during dorm time!  How about it, Daniel?  Will you come play checkers with me?"
+
+1. "I'm sorta busy tonight...."
+2. "For goodness' sakes, settle down!"
+3. "No, you're really creeping me out here."
+4. "Uh, sure, why not...."
+5. "I love checkers!"
+
+>4
+"Uh, sure, why not...."
+
+Lucian's eyes light up.  "I knew you were different from the others!"  He goes on about his delight at making a friend, but you can't hear him: you've been nearly bowled out of your seat by a wall of fluttering mauve butterfly wings exploding from Lucian.  You fight to regain your balance, but the explosion of color drives you reeling away from the table.  All around you, colors and sounds and smells and flavors and disconcerting sensations thrilling along your skin all erupt into being, leaving you unable to see what's actually there.  You are vaguely aware of Aidan, somewhere off to the west, getting to his feet before you lose him to a complicated flurry of woodwinds.
+
+Maelstrom
+You are lost in a swirl of sensory stimuli. The west feels electrically charged, you can almost hear the buzz. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>[LOVE that desc]
+That's not a verb I recognize.
+
+>n
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north is a whirl of blues and greens, and you think you hear drunken singing there as well. The west smells like a swamp, all sulphur and mud and wet. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>n
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+[A new goal was added: escape from Lucian's emotions]
+
+[You achieved a goal! (escape from Lucian's emotions)]
+
+>[timing is off there. The new goal should happen right after the first maelstrom desc[
+That's not a verb I recognize.
+
+>goals
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+
+Goals Remaining: 
+  find your way to Aidan
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+[A new goal was added: find your way to Aidan]
+
+>[again, the new goal should be added at the same time as the old one is achieved]
+You seem to want to talk to someone, but I can't see whom.
+
+>n
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>s
+Maelstrom
+You are lost in a swirl of sensory stimuli. The west seems to be a wall of excitedly jangling doorbells. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>nw
+There are no obvious exits from this place.
+
+>s
+There's a wall in that direction, isn't there?  You stop before you hurt yourself; there is a brief burst of low-pitched woodwinds nearby, which is quickly lost in the maelstrom.
+
+>n
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north feels inexplicably, well, prickly. The south smells like a swamp, all sulphur and mud and wet. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>e
+There's a wall in that direction, isn't there?  You stop before you hurt yourself; there is a brief burst of songbird chatter nearby, which is quickly lost in the maelstrom.
+
+>n
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>w
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north feels inexplicably, well, prickly. The east seems to taste sour and bitter and spicy all at once. The west has an uncomfortably too-sweet taste in the air. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>s
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north sounds like a crowd of chattering songbirds. The east has an uncomfortably too-sweet taste in the air. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north has an uncomfortably too-sweet taste in the air. The east seems to taste sour and bitter and spicy all at once. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+Maelstrom
+
+
+>[missing desc?]
+That's not a verb I recognize.
+
+>w
+There's a wall in that direction, isn't there?  You stop before you hurt yourself; there is a brief burst of songbird chatter nearby, which is quickly lost in the maelstrom.
+
+You finally stumble into the edge of what looks like a long, sustained note played on an oboe and sounds like a cone of bright, white light.  It leaps about you, and you feel someone catch hold of you -- it takes you a moment to realize that this is real, and not a product of your out-of-control senses.  It's Aidan, you can hear his voice over the buzzing of all the other sounds that aren't really there.  The relief is overwhelming, and you finally allow yourself to collapse.
+
+[You achieved a goal! (find your way to Aidan)]
+
+Just as you lose consciousness, you are startled by the appearance of something ominously black and alien, spinning about in the centre of the whiteness surrounding you....
+
+
+Please press SPACE to continue.
+
+The first thing you try to do when you regain consciousness is open your eyes.  This fails because they're already open.  You're in absolute darkness, and there's this smell -- not that you can really trust your senses anymore -- like disinfectant.
+
+Rather more alarmingly, for some odd reason, is the fact that you feel perfectly fine.  When was the last time you felt that way?
+
+
+Please press SPACE to continue.
+
+
+Location unknown, Day unknown - Time un-- you know it's entirely possible that you're dead, right?
+
+You are in darkness.
+
+[A new goal was added: find out what's happened to you]
+
+>goals
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+
+Goals Remaining: 
+  find out what's happened to you
+
+>["It's Aidan, you can hear his voice over the buzzing" -- that's a comma splice. Replace with a period, or maybe a colon or em-dash.]
+You seem to want to talk to someone, but I can't see whom.
+
+>wake up
+The dreadful truth is, this is not a dream.
+
+>x me
+It is pitch dark, and you can't see a thing.
+
+>i
+You are carrying:
+  some readings for your Satirical Writing class
+  a plastic dinosaur
+  a few dollars
+
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+
+Goals Remaining: 
+  find out what's happened to you
+
+>[I shouldn't be carrying anything at this point.]
+That's not a verb I recognize.
+
+>l
+Darkness
+It is pitch dark, and you can't see a thing.
+
+>say "hello"
+(to yourself)
+There is no reply.
+
+>[attempts to talk in here should either result in the chapter moving forward, or a cueing message along the lines of, "You speak a few timid words, but something in front of you is bouncing the sounds back at you."]
+You seem to want to talk to someone, but I can't see whom.
+
+>push
+What do you want to push?
+
+>darkness
+You can't see any such thing.
+
+>[that should probably have the same effect as knocking on the walls]
+That's not a verb I recognize.
+
+>knock
+The coffin case isn't open.
+
+>[how do I know i'm in a coffin case?]
+That's not a verb I recognize.
+
+>bang
+That's not a verb I recognize.
+
+>knock on darkness
+You can't see any such thing.
+
+>[and when I say the same effect, I mean it should get the attention of dr. rose, per the design doc]
+You seem to want to talk to someone, but I can't see whom.
+
+>yell
+The darkness above you flies open, and you're momentarily blinded by a flood of bright light.  As you try to blink away the spots, a face swims into view -- it takes you a few moments to register the curly white hair, the rosy cheeks and the clear blue eyes, and the fact that said face is talking to you.
+
+"Hullo, Daniel.  My goodness, you gave us a scare.  How are you feeling?"
+
+1. "I'm alive, I think."
+2. "What just happened?"
+3. "What the hell just happened?"
+4. "I just woke up in a coffin!  I thought I was being buried alive!  How do you think I feel?"
+
+>3
+"What the hell just happened?"
+
+"Tsk tsk, I do know you're upset, but I do think it best if you try to calm down and consider that this sort of stress might be what put you here in the first place."
+
+1. "Where am I?"
+2. "Okay, fine, I'll calm down.  See?  All calmed down.  Now this had better be good."
+
+>1
+"Where am I?"
+
+"You're in the university hospital, dear, and I'm Dr Claudia Rose.  We've had you and your brother under observation all night, and I really hope you'll both be well enough to return to the camp today.  You should be, if nothing goes wrong."
+
+1. "Aidan's under observation?  Whatever for?"
+2. "What do you mean, 'if nothing goes wrong'?  What's happening?"
+
+>["
+That's not a verb I recognize.
+
+>["Whatever for?" is kind of breezy diction for what should be an anxious statement. I think maybe just "What for?"]
+That's not a verb I recognize.
+
+>1
+"Aidan's under observation?  Whatever for?"
+
+"Your brother Aidan carried you here after you collapsed at dinner last night."  Dr Rose pauses.  "A distance of about a mile, running at thirty miles an hour, he was here before anyone at the camp could fully explain over the phone what had happened."
+
+1. "Where is he?  I want to see him."
+2. "So what DID happen?"
+
+>2
+"So what DID happen?"
+
+"What happened at dinner was a sensory overload.  Too many people, too many emotions, not enough experience.  You should develop the ability to handle this sort of thing, with time, but in the meantime it is absolutely vital that you come back here once a week for ... well, this device here."  Dr Rose waves a hand at what appears to be a steampunk salon hair dryer.  "This is a cranial crown that will flood your brain with an electromagnetic frequency that should dampen the new sensory stimulus going to your brain -- giving it a rest, as it were -- and prevent it from going out of control again."
+
+1. "It's not going to also give me a hair helmet, is it?"
+2. "Well, that's a drag.  I suppose there's nothing I can do about it, is there?"
+3. "But I don't understand.  What's happening to me?"
+
+>3
+"But I don't understand.  What's happening to me?"
+
+
+*** Run-time problem P10: Since Q_DOC_ROSE_06 is not allowed the property "fired", it is against the rules to try to use it.
+
+
+>[whoops!]
+That's not a verb I recognize.
+
+>1
+That's not a verb I recognize.
+
+>l
+Your Hospital Room
+You are in a hospital room, equipped with a single bizarre-looking coffin-case thing attached to a bewildering wall of medical equipment.  The walls are painted a sterile white.  Huge windows look out to the south, while a pale green door, equipped with a small viewing window, is to the north.
+
+[placeholder text: "Room description text about Dr Rose"]
+
+.
+
+>x me
+[placeholder text: "A description of the player"]
+
+.
+
+>get up
+But you aren't in anything at the moment.
+
+>[I think I am! Or did I miss the desc of me getting out?]
+That's not a verb I recognize.
+
+>x rose
+You see nothing special about Dr Rose.
+
+>ask rose about powers
+There is no reply.
+
+>ask rose about empathuy
+There is no reply.
+
+>ask rose about empathy
+There is no reply.
+
+>ask rose about me
+"You will give it a try, won't you, Daniel?"
+
+>[Huh? Give what a try?]
+That's not a verb I recognize.
+
+>l
+Your Hospital Room
+You are in a hospital room, equipped with a single bizarre-looking coffin-case thing attached to a bewildering wall of medical equipment.  The walls are painted a sterile white.  Huge windows look out to the south, while a pale green door, equipped with a small viewing window, is to the north.
+
+[placeholder text: "Room description text about Dr Rose"]
+
+.
+
+>x walls
+You see nothing special about the walls.
+
+>[The cranial crown should merit a mention in the room description.]
+That's not a verb I recognize.
+
+>x crown
+It's shiny and silver and futuristic-looking, but still looks like a coffin.  Or an Egyptian sarcophagus.  Or an iron maiden.  You'd have to be out cold before you'd let anyone put you into that thing.
+
+>sit in crown
+No.
+
+>[HA]
+That's not a verb I recognize.
+
+>l
+Your Hospital Room
+You are in a hospital room, equipped with a single bizarre-looking coffin-case thing attached to a bewildering wall of medical equipment.  The walls are painted a sterile white.  Huge windows look out to the south, while a pale green door, equipped with a small viewing window, is to the north.
+
+[placeholder text: "Room description text about Dr Rose"]
+
+.
+
+>get up
+But you aren't in anything at the moment.
+
+>n
+
+South T-Intersection
+You are in a featureless hospital corridor stretching from east to west.  Another corridor goes off to the north.  The door to your hospital room is to the south.
+
+>e
+
+Southeast Corner Of Hospital
+The corridor makes a bend here, going west and north.  There are hospital rooms, apparently empty, to the east and south.
+
+>n
+
+East T-Intersection
+You are in a featureless hospital corridor stretching north and south.  Another corridor goes off to the west.  A pair of elevator doors are set into the east wall.
+
+>n
+
+Northeast Corner Of Hospital
+The corridor makes a bend here, going west and south.  There are hospital rooms, apparently empty, to the east and north.
+
+>w
+The wandering orderly goes west.
+
+North T-Intersection
+You are in a featureless hospital corridor stretching north and south.  Another corridor goes off to the south.
+
+>n
+You quickly duck into the empty hospital room as an orderly approaches.  You wait until the footsteps fade away to the east before emerging again into the corridor.
+
+>n
+You quickly duck into the empty hospital room as an orderly approaches.  You wait until the footsteps fade away to the south before emerging again into the corridor.
+
+>w
+
+Northwest Corner Of Hospital
+The corridor makes a bend here, going east and south.  There are hospital rooms to the west and north, although the sounds coming from the north suggest that that particular hospital room is not quite as empty as all the others have been.
+
+You can see a door to R15 here.
+
+>n
+Looking through the window, you see a room equipped in much the same way your room was, complete with the silvery, high-tech coffin thing.  That's where the resemblance ends.  The lid of the coffin thing has been broken off and lies at the far end of the room, a huge crack down its middle, and smoke billows out from one broken monitor.  Aidan himself is lying near the coffin, unconscious, while a bunch of orderlies stand at a very safe distance away from him.
+
+Fear, shock, whatever, it's thick in the air and feels like you just snorted hot salsa up your nose.
+
+In the middle of all this is Dr Rose.  You can't hear what she's saying but ... oh, well, it looks like she's done lecturing the orderlies and now she's heading for the door.  You pull back before she sees you.  You've got to get back to your room before she notices you're gone, but you're in a corner and there's no way to know which way she'll turn when she comes out, and if you hide in the empty room to the west Dr Rose will almost certainly get to your room before you.
+
+"Go that way," Stacy whispers, shoving you eastwards.  "I'll distract them."  Before you can say anything, Stacy has run off to the south.
+
+>[okay, clearly this chapter just flat-out broke when that bug showed up. And I don't think I've saved for a while. I'll get myself back to this point and call it a night.]
+You seem to want to talk to someone, but I can't see whom.
+
+>restore
+Ok.
+
+>l
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+Stacy trails along behind you. 
+
+>d
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+Stacy trails along behind you. 
+
+>s
+
+Lucian's Room
+It's another dorm room, not much different from your own.  Lucian's desk and bed are on one side; a CD player, playing Bill Withers' "Lean On Me" over and over, sits on his desk beside a couple of framed photographs.
+
+Stacy trails along behind you. 
+
+Ava and Stacy are here.
+
+[placeholder text: "Room description text about Lucian"]
+
+.
+
+[You achieved a goal! (give Lucian back his crystal)]
+
+Lucian looks up from his desk as you enter the room, and his mouth drops open when he sees the earth crystal in your hands.  "You did it!  You got it back!"  He leaps from his chair and throws his arms around you -- the room glows mauve for an instant, and something stabs in the back of your eye.  You vaguely hear Stacy telling Lucian to take it easy, and you feel Ava's arms catching you as you stumble back, off-balance, from Lucian.
+
+"I don't know if we're any closer to figuring out what's going on," you say to the girls as you leave Lucian's room.  "I mean, so now I'm some sort of psychic bloodhound?  Why me?"
+
+"It could turn out useful," says Stacy.  "Just think of the things you could do now!"
+
+Ava doesn't say anything.  She just looks worried.
+
+
+
+Please press SPACE to continue.
+
+The headaches are now nothing more than a faint but constant pressure in the back of your skull.  The dizzy spells are gone, and in their place is a vague sense of unease.  The last time you felt perfectly normal would have to be shortly before falling asleep last night.
+
+If you concentrate even a little bit, you can conjure up those unreal sensations around everybody you meet.  And you're beginning to notice a definite relationship between what you sense and how everybody feels.  This is definitely some sort of empathic thing that's waking up inside you.  You'll have to discuss this with Ava and Stacy and Aidan later tonight.
+
+
+Please press SPACE to continue.
+LEAP, Day 4 (Wednesday) - Dinner
+
+You usually have your meals with Ava and Stacy, but they're in a different time slot for dinner today.  Aidan's with his own friends at the other end of the dining hall, which leaves you alone with your readings for your class on satirical writing.  Hopefully Aristophanes and Moliere will be enough to distract you from the rather unpleasant substances on your plate pretending to be meat and potatoes.
+
+Dining Hall
+You are alone at the southeast corner of the room, with a few readings for your satirical writing class.  You can see Aidan somewhere off to the west, eating with his friends.
+
+[A new goal was added: eat dinner in peace]
+
+>eat dinner
+You shovel another forkful of your dinner into your mouth and swallow it as quickly as you can.  Unfortunately, you still don't quite manage to escape the aftertaste.
+
+>x dinner
+Seriously, the food's about the only downside to the LEAP camp.  It looks okay, but there's this sickly sweet aftertaste, like they used fake sugar in everything.
+
+"Hi, Daniel!"  It's Lucian, looking a lot more chipper than he did yesterday.  "Hey, where are Ava and Stacy?  Are you sitting alone?  Can I sit with you?"
+
+1. "Sure...."
+2. "No."
+3. "Uh...."
+
+>1
+"Sure...."
+
+"Really?  You're so cool!  Hey, I don't know what you said to those bullies yesterday, but you have to tell me how you did it!  Is there a special class for dealing with bullies?  They have all sorts of classes here... hey, maybe you could teach me!"
+
+1. "Uh...."
+2. "Actually, I asked my brother Aidan...."
+3. "You really need to settle down."
+4. "There's nothing to teach."
+
+>2
+"Actually, I asked my brother Aidan...."
+
+"Oh?  Who's he?  Nah, I still think you're the coolest.  Hey, we should hang out!  We can play checkers.  Do you play checkers?  I bet you're really good at it.  We can play tonight, during dorm time!  How about it, Daniel?  Will you come play checkers with me?"
+
+1. "I'm sorta busy tonight...."
+2. "For goodness' sakes, settle down!"
+3. "No, you're really creeping me out here."
+4. "Uh, sure, why not...."
+5. "I love checkers!"
+
+>2
+"For goodness' sakes, settle down!"
+
+"Peter, my teacher back in school, used to say the same thing.  I'm just happy to have made friends!  You ARE going to be my friend, right?"
+
+1. "Are you out of your mind?"
+2. "Friends ... uh, sure...."
+
+>1
+"Are you out of your mind?"
+
+Lucian's eyes nearly fall out of their sockets.  "But... but... I thought we were going to be friends!"  You try to respond but at that moment you hear a little snicker from somewhere -- no doubt one of the other first-years of Lucian's acquaintance -- and Lucian, absolutely mortified, leaves his tray on the table and makes a break for the dining hall doors.  You try to stand but are knocked back into your seat by a wave of bitterness and a strange, slick feeling that makes your skin crawl.  The headache, which you thought was all but gone, throbs to life and the room seems to whirl into a maelstrom of sound and color and smell and flavor and touch.  You're vaguely aware of Aidan, somewhere off to the west, getting to his feet before he disappears into a complicated flurry of woodwinds.
+
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north feels inexplicably, well, prickly. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>[Chris these descripts are just awesome]
+That's not a verb I recognize.
+
+>s
+There's a wall in that direction, isn't there?  You stop before you hurt yourself; there is a brief burst of low-pitched woodwinds nearby, which is quickly lost in the maelstrom.
+
+[A new goal was added: escape from Lucian's emotions]
+
+>n
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>w
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north feels inexplicably, well, prickly. The west is a blaze of dazzling, gaily swirling oranges and reds. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>n
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+[You achieved a goal! (escape from Lucian's emotions)]
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+[A new goal was added: find your way to Aidan]
+
+>e
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north smells too strongly of burnt engine oil for anyone's tastes. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>n
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>w
+Maelstrom
+You are lost in a swirl of sensory stimuli. The east feels inexplicably, well, prickly. The west smells too strongly of burnt engine oil for anyone's tastes. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>n
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north has an uncomfortably too-sweet taste in the air. The east seems to taste sour and bitter and spicy all at once. The west sounds like a crowd of chattering songbirds. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>n
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>e
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>s
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north smells too strongly of burnt engine oil for anyone's tastes. The east smells like a swamp, all sulphur and mud and wet. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north feels inexplicably, well, prickly. The west is a whirl of blues and greens, and you think you hear drunken singing there as well. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>n
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>s
+There's a wall in that direction, isn't there?  You stop before you hurt yourself; there is a brief burst of songbird chatter nearby, which is quickly lost in the maelstrom.
+
+>e
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north smells too strongly of burnt engine oil for anyone's tastes. The east feels inexplicably, well, prickly. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>e
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>n
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>w
+Maelstrom
+You are lost in a swirl of sensory stimuli. The east feels inexplicably, well, prickly. The west seems to be a wall of excitedly jangling doorbells. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>n
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north sounds like a crowd of chattering songbirds. The east is a whirl of blues and greens, and you think you hear drunken singing there as well. The west is a blaze of dazzling, gaily swirling oranges and reds. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>n
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>s
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north seems to be a wall of excitedly jangling doorbells. The west smells too strongly of burnt engine oil for anyone's tastes. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>s
+There's a wall in that direction, isn't there?  You stop before you hurt yourself; there is a brief burst of low-pitched woodwinds nearby, which is quickly lost in the maelstrom.
+
+>n
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>e
+Maelstrom
+You are lost in a swirl of sensory stimuli. The east is a blaze of dazzling, gaily swirling oranges and reds. The west sounds like a crowd of chattering songbirds. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>n
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north smells too strongly of burnt engine oil for anyone's tastes. The south feels inexplicably, well, prickly. The west smells like a swamp, all sulphur and mud and wet. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>n
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>e
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north smells like a swamp, all sulphur and mud and wet. The west feels inexplicably, well, prickly. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>n
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>n
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>s
+Maelstrom
+You are lost in a swirl of sensory stimuli. The west has an uncomfortably too-sweet taste in the air. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>[This may need to be tweaked. I'm getting blocked a little too often here.]
+That's not a verb I recognize.
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>s
+There's a wall in that direction, isn't there?  You stop before you hurt yourself; there is a brief burst of songbird chatter nearby, which is quickly lost in the maelstrom.
+
+>e
+There's a wall in that direction, isn't there?  You stop before you hurt yourself; there is a brief burst of songbird chatter nearby, which is quickly lost in the maelstrom.
+
+>n
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north seems to taste sour and bitter and spicy all at once. The west seems to be a wall of excitedly jangling doorbells. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>n
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>nw
+There are no obvious exits from this place.
+
+>sw
+There are no obvious exits from this place.
+
+>[that message is also a little off. Maybe something like "You only have the most minimal grasp on your bearings at the moment. Complicated directions are beyond you.]
+That's not a verb I recognize.
+
+>n
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>s
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north smells like a swamp, all sulphur and mud and wet. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+Maelstrom
+You are lost in a swirl of sensory stimuli. The east sounds like a crowd of chattering songbirds. The west smells like a swamp, all sulphur and mud and wet. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>n
+Maelstrom
+You are lost in a swirl of sensory stimuli. The south sounds like a crowd of chattering songbirds. The east smells like a swamp, all sulphur and mud and wet. The west smells too strongly of burnt engine oil for anyone's tastes. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>n
+Maelstrom
+You are lost in a swirl of sensory stimuli. The south is a whirl of blues and greens, and you think you hear drunken singing there as well. The east feels inexplicably, well, prickly. The west feels electrically charged, you can almost hear the buzz. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>n
+Maelstrom
+You are lost in a swirl of sensory stimuli. The south sounds like a crowd of chattering songbirds. The west is a whirl of blues and greens, and you think you hear drunken singing there as well. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>n
+There's a wall in that direction, isn't there?  You stop before you hurt yourself; there is a brief burst of songbird chatter nearby, which is quickly lost in the maelstrom.
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>s
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>s
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>e
+Maelstrom
+You are lost in a swirl of sensory stimuli. The west has an uncomfortably too-sweet taste in the air. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>s
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north is a blaze of dazzling, gaily swirling oranges and reds. The south seems to taste sour and bitter and spicy all at once. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+Maelstrom
+You are lost in a swirl of sensory stimuli. The south is a blaze of dazzling, gaily swirling oranges and reds. The east seems to be a wall of excitedly jangling doorbells. The west has an uncomfortably too-sweet taste in the air. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>n
+Maelstrom
+You are lost in a swirl of sensory stimuli. The south sounds like a crowd of chattering songbirds. The east has an uncomfortably too-sweet taste in the air. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+Maelstrom
+You are lost in a swirl of sensory stimuli. The south smells like a swamp, all sulphur and mud and wet. The west sounds like a crowd of chattering songbirds. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>n
+There's a wall in that direction, isn't there?  You stop before you hurt yourself; there is a brief burst of low-pitched woodwinds nearby, which is quickly lost in the maelstrom.
+
+>l
+Maelstrom
+You are lost in a swirl of sensory stimuli. The east has an uncomfortably too-sweet taste in the air. The west sounds like a crowd of chattering songbirds. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>l
+Maelstrom
+You are lost in a swirl of sensory stimuli. The east has an uncomfortably too-sweet taste in the air. The west sounds like a crowd of chattering songbirds. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>z
+Time passes.
+
+>l
+Maelstrom
+You are lost in a swirl of sensory stimuli. The east has an uncomfortably too-sweet taste in the air. The west sounds like a crowd of chattering songbirds. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>n
+There's a wall in that direction, isn't there?  You stop before you hurt yourself; there is a brief burst of low-pitched woodwinds nearby, which is quickly lost in the maelstrom.
+
+>s
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north seems to be a wall of excitedly jangling doorbells. The south sounds like a crowd of chattering songbirds. The west seems to taste sour and bitter and spicy all at once. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>l
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north seems to be a wall of excitedly jangling doorbells. The south sounds like a crowd of chattering songbirds. The west seems to taste sour and bitter and spicy all at once. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>z
+Time passes.
+
+>l
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north seems to be a wall of excitedly jangling doorbells. The east has an uncomfortably too-sweet taste in the air. The west seems to taste sour and bitter and spicy all at once. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>s
+Maelstrom
+You are lost in a swirl of sensory stimuli. The south smells too strongly of burnt engine oil for anyone's tastes. The east seems to taste sour and bitter and spicy all at once. The west has an uncomfortably too-sweet taste in the air. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>z
+Time passes.
+
+>l
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north is a whirl of blues and greens, and you think you hear drunken singing there as well. The south smells too strongly of burnt engine oil for anyone's tastes. The west has an uncomfortably too-sweet taste in the air. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>z
+Time passes.
+
+>l
+Maelstrom
+You are lost in a swirl of sensory stimuli. The south smells too strongly of burnt engine oil for anyone's tastes. The east seems to taste sour and bitter and spicy all at once. The west has an uncomfortably too-sweet taste in the air. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>z
+Time passes.
+
+>l
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north is a whirl of blues and greens, and you think you hear drunken singing there as well. The east seems to taste sour and bitter and spicy all at once. The west has an uncomfortably too-sweet taste in the air. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>z
+Time passes.
+
+>l
+Maelstrom
+You are lost in a swirl of sensory stimuli. The south smells too strongly of burnt engine oil for anyone's tastes. The east seems to taste sour and bitter and spicy all at once. The west has an uncomfortably too-sweet taste in the air. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>n
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north smells too strongly of burnt engine oil for anyone's tastes. The south seems to be a wall of excitedly jangling doorbells. The west seems to taste sour and bitter and spicy all at once. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>n
+You take a step in that direction but are almost overwhelmed by the sensations.
+
+>e
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north smells like a swamp, all sulphur and mud and wet. The east feels inexplicably, well, prickly. The west is a whirl of blues and greens, and you think you hear drunken singing there as well. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>s
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north is a whirl of blues and greens, and you think you hear drunken singing there as well. The south seems to taste sour and bitter and spicy all at once. The west has an uncomfortably too-sweet taste in the air. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>e
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north sounds like a crowd of chattering songbirds. The west is a blaze of dazzling, gaily swirling oranges and reds. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>s
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north smells like a swamp, all sulphur and mud and wet. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+Maelstrom
+You are lost in a swirl of sensory stimuli. The east has an uncomfortably too-sweet taste in the air. The west feels electrically charged, you can almost hear the buzz. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>n
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north seems to be a wall of excitedly jangling doorbells. The east is a whirl of blues and greens, and you think you hear drunken singing there as well. The west smells too strongly of burnt engine oil for anyone's tastes. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>s
+Maelstrom
+You are lost in a swirl of sensory stimuli. The east is a blaze of dazzling, gaily swirling oranges and reds. The west is a whirl of blues and greens, and you think you hear drunken singing there as well. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>s
+There's a wall in that direction, isn't there?  You stop before you hurt yourself; there is a brief burst of low-pitched woodwinds nearby, which is quickly lost in the maelstrom.
+
+>n
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north feels electrically charged, you can almost hear the buzz. The south smells like a swamp, all sulphur and mud and wet. The east seems to taste sour and bitter and spicy all at once. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>[I think part of the problem I'm having is that on some turns there is no valid direction available. There should always be one. Meaning that if Daniel is in the southeast corner of the grid, north or west should always be open.]
+That's not a verb I recognize.
+
+>w
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north seems to taste sour and bitter and spicy all at once. The south has an uncomfortably too-sweet taste in the air. The west seems to be a wall of excitedly jangling doorbells. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>e
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north is a blaze of dazzling, gaily swirling oranges and reds. The south seems to be a wall of excitedly jangling doorbells. The east sounds like a crowd of chattering songbirds. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north feels electrically charged, you can almost hear the buzz. The east smells too strongly of burnt engine oil for anyone's tastes. The west seems to be a wall of excitedly jangling doorbells. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>s
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north seems to taste sour and bitter and spicy all at once. The west seems to be a wall of excitedly jangling doorbells. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>s
+There's a wall in that direction, isn't there?  You stop before you hurt yourself; there is a brief burst of songbird chatter nearby, which is quickly lost in the maelstrom.
+
+>e
+Maelstrom
+You are lost in a swirl of sensory stimuli. The east feels electrically charged, you can almost hear the buzz. The west smells like a swamp, all sulphur and mud and wet. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>[Also, we should probably give "west" a little bit of an edge in the randomness algorithm, so that Daniel can make consistent progress. Either that or hint a little more strongly that the sensations keep moving around him, so that players might figure out 
+You seem to want to talk to someone, but I can't see whom.
+
+>[to just wait for the direction to open up.]
+That's not a verb I recognize.
+
+>l
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north smells too strongly of burnt engine oil for anyone's tastes. The west smells like a swamp, all sulphur and mud and wet. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>z
+Time passes.
+
+>l
+Maelstrom
+You are lost in a swirl of sensory stimuli. The east feels electrically charged, you can almost hear the buzz. The west smells like a swamp, all sulphur and mud and wet. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>z
+Time passes.
+
+>l
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north smells too strongly of burnt engine oil for anyone's tastes. The east feels electrically charged, you can almost hear the buzz. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+Maelstrom
+You are lost in a swirl of sensory stimuli. The north has an uncomfortably too-sweet taste in the air. The east feels inexplicably, well, prickly. 
+
+Somewhere off to the west, above the noise and color and inexplicable smells, you think you hear something -- a low-pitched reed instrument of some kind, possibly an oboe -- calling out to you.
+
+
+>w
+Maelstrom
+
+
+>w
+There's a wall in that direction, isn't there?  You stop before you hurt yourself; there is a brief burst of songbird chatter nearby, which is quickly lost in the maelstrom.
+
+You finally stumble into the edge of what looks like a long, sustained note played on an oboe and sounds like a cone of bright, white light.  It leaps about you, and you feel someone catch hold of you -- it takes you a moment to realize that this is real, and not a product of your out-of-control senses.  It's Aidan, you can hear his voice over the buzzing of all the other sounds that aren't really there.  The relief is overwhelming, and you finally allow yourself to collapse.
+
+[You achieved a goal! (find your way to Aidan)]
+
+Just as you lose consciousness, you are startled by the appearance of something ominously black and alien, spinning about in the centre of the whiteness surrounding you....
+
+
+Please press SPACE to continue.
+
+The first thing you try to do when you regain consciousness is open your eyes.  This fails because they're already open.  You're in absolute darkness, and there's this smell -- not that you can really trust your senses anymore -- like disinfectant.
+
+Rather more alarmingly, for some odd reason, is the fact that you feel perfectly fine.  When was the last time you felt that way?
+
+
+Please press SPACE to continue.
+
+
+Location unknown, Day unknown - Time un-- you know it's entirely possible that you're dead, right?
+
+You are in darkness.
+
+[A new goal was added: find out what's happened to you]
+
+>save
+Ok.
+
+>quit
+Are you sure you want to quit? yes

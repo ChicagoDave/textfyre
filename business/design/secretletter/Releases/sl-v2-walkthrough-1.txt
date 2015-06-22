@@ -1,0 +1,765 @@
+Start of a transcript of
+
+Jack Toresal and The Secret Letter - v2.0.20091119
+Jack Toresal and The Secret Letter by Textfyre, Inc
+Copyright @ 2009 by Textfyre, Inc
+Story by David Cornelson
+Written by Michael Gentry
+Game Engine (FyreVM) by Jesse McGrew
+Inform 7 Story Programming by Graeme Jefferis
+Testing by Jacqueline Ashwell, Peter Berman,
+Eric Eve, Jim Aikin, and Paul O'Brian
+Deluxe Edition UI by Thomas Lynge
+ of Tenteo (www.tenteo.com)
+Sketches by Erika Swanson (www.simplyerika.com).
+Special thanks to Graham Nelson and Emily Short
+for Inform 7 (www.inform7.com)
+All rights reserved
+Identification number: //1E802B58-F1C0-465D-8597-27451EC837E6//
+Interpreter version 1.2.4 / VM 3.1.1 / Library serial number 080126
+Standard Rules version 2/090402 by Graham Nelson
+Test Suite by Textfyre
+Basic Help version 1 by David Cornelson
+
+>test walkthrough
+(Testing.)
+
+>[1] test walk1
+(Testing.)
+
+>[2] test intro
+(Testing.)
+
+>[3] u
+You nimbly hop up on top of the crates; from there, it's only a short scramble to the roof of the market.
+
+Outer Market Roof
+You're perched atop the red tile roof of the storehouse. From here you have a good view of the market's northwest junction and Lord's Road leading out of town to the north.
+
+A group of tough-looking mercenaries has gathered at the Northwest Junction. One of them is barking orders at the others in an angry voice.
+
+"...we know he skulks Grubber's most mornings, so spread out quick, cover all streets from the square," growls one of them, evidently the group's leader.
+
+(Remember, you can type "help" if you need assistance.)
+
+>[4] z
+Time passes.
+
+The leader spits on the dusty ground. "Keep your eyes open and don't take guff. But for the love of Brigid, keep your tempers and your swords sheathed unless you really need 'em. Ain't bein' paid to toss the locals."
+
+(Remember, you can type "help" if you need assistance.)
+
+>[5] z
+Time passes.
+
+"And keep sharp!" the leader snaps. "Remember this is a kid we're lookin' for. Kids move fast, stay out of sight, slip through crowds easy. I find out later he got away under your nose, I'll have it off!"
+
+Suddenly, that bit of apple you swallowed a minute ago turns into a cold, hard chunk in your belly.
+
+(The help system will now turn off its reminder, but you can always type "help" at any time.)
+
+>[6] z
+Time passes.
+
+"Now, everyone memorize the description." The leader pulls a dirty, folded bit of parchment from his belt and squints at it. "Shoulder-length brown hair," he reads, haltingly. "Green eyes. Slight of build. Ten, maybe twelve spans high." He holds his hand out flat, at what happens to be exactly your height. "Usually wears a hat and a gray cloak."
+
+He refolds the parchment and jams it back into his belt. "You dims got all that?"
+
+The others nod.
+
+>[7] z
+Time passes.
+
+"Okay, go!" barks the leader, and the mercenaries set out in several directions, moving at a brisk walk. Two men go to the north gates and start shoving them closed; the others enter the crowded market and start shoving their way through the suddenly flabbergasted crowds.
+
+Your heart sinks. This is definitely not good.
+
+>[8] d
+As you climb back down the crates, one of them wobbles and your foot slips. You tumble loudly to the cobblestones. "Stupid! Clumsy!" you mutter, scrambling to your feet.
+
+From the street, you hear, "What was that? Check the alley!"
+
+Two mercenaries rush in and spot you immediately. They approach warily, their arms spread wide.
+
+You're in trouble now...
+
+>[9] se
+You dash away into the crowd, weaving between customers and pushing your way through the thickest knots of people. The mercenaries pound after you, yelling and shoving people out of their way, but they're too big and too slow, and you quickly manage to lose them.
+
+Northwest Junction
+This is the northwest corner of Grubber's Market. You can skirt around the edge of the market to the northeast or south, or head into the thick of it to the east or southeast. A wide, paved road leads north. You can also duck back into the alley to the northwest.
+
+The north gates leading to Lord's Road are closed.
+
+>[10] s
+
+Herb Stall
+The herb stall is usually a quiet place. Customers here like to browse, poke their noses into the various jars, and judge the potency of a potential purchase at their leisure. Other stalls are to the south, and east, and the market opens out a little to the north.
+
+>[11] s
+
+Exotic Gems Stall
+Dozens of jewels in exotic colors and cuts are spread out on display here, glittering in the dusty sunlight. Some of them are loose stones, others are set in finely wrought rings and necklaces. Most of them were probably smuggled in from over the western mountains, which is why they're cheap enough to be affordable to anyone in Grubber's Market. Still, they're far, far out of your price range. Other stalls lie to the north, northeast, east, and southeast.
+
+Suddenly you hear a commotion from the back of the stall: the crash of a display case hitting the ground; shouts and curses from the stallkeeper; and a horrific, gibbering shriek.
+
+"Come back here, you flea-bitten thief!" yells the stallkeeper, and for a panicked moment you think he means you. Then you see something small and gray dart up to the roof of the stall...it's just a forest monkey, probably someone's pet running loose. And it's clutching one of the stallkeeper's necklaces in its tiny black fist.
+
+The monkey turns and screeches back at the stallkeeper, dodges a clumsily thrown dirt clod, and scampers away.
+
+>[12] ne
+
+Rope Stall
+One thing you can say about the rope stall: you'll never spend a moment wondering what's for sale. It's all rope, and lots of it: thick and thin, knotted and loose, in heaps and in coils, stacked on the ground and dangling in loops. More stalls are to the northeast, southeast, west, and southwest, and the market opens out a bit to the northwest.
+
+A tall wooden post is visible behind the stall.
+
+The stallkeeper haggles with a customer over the price of rope.
+
+>[13] ne
+
+Candlemaker's Stall
+The heat and fumes from the candlemaker's tallow pots make this stall an unpleasant place to loiter. Still, people need candles, and customers seem to be buying them as fast as the stallkeeper can dip them. Most of the candles are tallow, fast-burning and cheap, but there are also a number of premade wax candles in different colors. Other stalls are to the north, east, west, southeast, and southwest.
+
+Behind the stall is a tall wooden post.
+
+An ugly shopper shoves you out of the way, muttering something about "street trash".
+
+>[14] test market
+(Testing.)
+
+>[15] xyzzy
+A hollow voice whispers "groo."
+
+>[16] e
+
+Fruit Stall
+Bins heaped high with brightly colored fruit lend a pleasant fragrance to this end of the market (though by afternoon it will have become a cloying reek that attracts more flies than customers). They have apples and pears from the city orchards, and brambleberries from the northern counties. Oranges, limes, kello fruit - even a bushel of bananas from the Kozar Delta. Aisles between the stalls lead northwest, west, southwest, and south.
+
+"You'll not find better apples in all of Toresal!" calls the stallkeeper.
+
+>[17] steal banana
+Ah, this is something you know how to do, at least. You sidle up casually to the stall, wait until the stallkeeper seems preoccupied, then reach out and pluck the banana from the shelf.
+
+Suddenly the stallkeeper jabs his finger at you and screams, "Stop, thief!"
+
+One of the mercenaries happens to be wandering by at that moment. He hears the stallkeeper's shouts and comes running straight for you!
+
+Then there is a loud screech, and something gray and hairy scampers out from under the mercenary's feet. He stumbles, trips, and pitches headlong into the fruit stall. Fruit scatters everywhere. The stallkeeper is wailing and berating the mercenary, who is covered with juice and slimy pulp.
+
+In the general chaos, you slip away easily, stuffing the banana into your satchel. Fortunately, no one managed to get a very good look at you, and the stallkeeper will be too busy cleaning up his wares to keep an eye out for you. You shouldn't have any trouble coming back here if you need to.
+
+Eastern Junction
+You're near the eastern edge of Grubber's Market. Commerce Street lies to the east. You can travel along the outer ring of stalls to the north or south, or head towards the market's central hub to the west.
+
+>[18] unxyzzy
+A hollow voice whispers "oorg."
+
+>[19] sw
+There's nothing in that direction except the wall that surrounds the market square.
+
+>[20] se
+There's nothing in that direction except the wall that surrounds the market square.
+
+You notice a couple of the mercenaries pushing through the crowd, heading your way. They haven't seen you yet, but they're getting close.
+
+>[21] n
+
+Fruit Stall
+The fruit stall is still a complete mess, with most of the merchandise scattered all over the ground. The stallkeeper is practically tearing his beard out with frustration.
+
+>[22] n
+There's nothing in that direction except the wall that surrounds the market square.
+
+>[23] u
+Flight eludes you. 
+
+>[24] give banana to monkey
+You can't see any such thing.
+
+>[25] d
+You can't go that way. 
+
+You notice a couple of the mercenaries pushing through the crowd, heading your way. They haven't seen you yet, but they're getting close.
+
+>[26] s
+
+Eastern Junction
+You're near the eastern edge of Grubber's Market. Commerce Street lies to the east. You can travel along the outer ring of stalls to the north or south, or head towards the market's central hub to the west.
+
+>[27] give necklace to teisha
+You can't see any such thing.
+
+>[28] n
+
+Fruit Stall
+The fruit stall is still a complete mess, with most of the merchandise scattered all over the ground. The stallkeeper is practically tearing his beard out with frustration.
+
+The stallkeeper haggles with a customer over the price of brambleberries.
+
+>[29] u
+Flight eludes you. 
+
+You notice a couple of the mercenaries pushing through the crowd, heading your way. They haven't seen you yet, but they're getting close.
+
+>[30] slide down northeast cable with gray cloak
+You can't see any such thing.
+
+>[31] get cloak
+You already have that.
+
+>[32] wear silk cloak
+You can't see any such thing.
+
+>[33] s
+
+Eastern Junction
+You're near the eastern edge of Grubber's Market. Commerce Street lies to the east. You can travel along the outer ring of stalls to the north or south, or head towards the market's central hub to the west.
+
+>[34] e
+Just as you reach the edge of the market square, you notice the mercenary captain standing watch at the entrance to Commerce Street. His eyes fall on you before you can duck out of the way, and the next moment you are sprinting back into the market with the captain hot on your heels. You manage to lose him in the crowd... barely.
+
+Pottery Stall
+The wares at the pottery stall are spread out on the ground, forcing browsers and passers-by to step carefully around them. The urns, jars, and bowls are each uniquely shaped, yet they all share a common, graceful curve. Most of them are made of fired clay from the Westlands, decorated with colorful glazes. There are more stalls to the northwest, northeast, southeast, and southwest, or you can head out to the market's edge to the east.
+
+A tall wooden post is visible behind the stall.
+
+>[35] test meeting
+(Testing.)
+
+>[36] e
+
+Eastern Junction
+You're near the eastern edge of Grubber's Market. Commerce Street lies to the east. You can travel along the outer ring of stalls to the north or south, or head towards the market's central hub to the west.
+
+>[37] e
+The mercenary captain is too sharp; you'll need a disguise if you're to have any chance of sneaking past him.
+
+>[38] s
+
+Hat Stall
+Hats of all styles and sizes hang from scores of wooden pegs, a forest of varied headgear. They have big, flop-brimmed traveling hats; small, leather workman's caps; wide sappans of woven straw from the Kozar delta; fancy, feathered hats for courtly balls; and even a few ordinary bonnets. More stalls lie to the north, northwest, west, and southwest.
+
+>[39] 1
+I didn't understand that sentence.
+
+>[40] 1
+I didn't understand that sentence.
+
+>[41] 2
+I didn't understand that sentence.
+
+>[42] sw
+
+Leather Stall
+You pause here for a few deep breaths - you've always enjoyed the smell around the leather merchant's stall. This merchant mostly deals in riding equipment - reins, harnesses, stirrups, and the like. A full riding saddle sits on proud display near the back. There are a few scabbards and belts for sale, as well. More stalls lie to the west, northwest, and northeast.
+
+>[43] s
+There's nothing in that direction except the wall that surrounds the market square.
+
+You notice a couple of the mercenaries pushing through the crowd, heading your way. They haven't seen you yet, but they're getting close.
+
+>[44] nw
+
+Outside the Silk Tent
+Teisha has done well enough for herself that her "stall" is actually a full-on tent. You can enter the tent to the north, or move on to one of the many other stalls to the east, west, northeast, northwest, southeast, or southwest.
+
+Rising up behind the tent is a tall wooden post.
+
+A red-faced matron squeezes past you.
+
+>[45] sleep
+You aren't feeling especially drowsy.
+
+You notice a couple of the mercenaries pushing through the crowd, heading your way. They haven't seen you yet, but they're getting close.
+
+>[46] se
+
+Leather Stall
+This merchant mostly deals in riding equipment - reins, harnesses, stirrups, and the like. A full riding saddle sits on proud display near the back. There are a few scabbards and belts for sale, as well. More stalls lie to the west, northwest, and northeast.
+
+The stallkeeper carefully straightens his display of scabbards.
+
+>[47] sw
+There's nothing in that direction except the wall that surrounds the market square.
+
+>[48] climb through window
+You can't see any such thing.
+
+>[49] ne
+
+Hat Stall
+Hats of all styles and sizes hang from scores of wooden pegs, a forest of varied headgear. They have big, flop-brimmed traveling hats; small, leather workman's caps; wide sappans of woven straw from the Kozar delta; fancy, feathered hats for courtly balls; and even a few ordinary bonnets. More stalls lie to the north, northwest, west, and southwest.
+
+"I have fancy hats for sale!" calls the stallkeeper.
+
+>[50] ne
+There's nothing in that direction except the wall that surrounds the market square.
+
+>[51] n
+
+Eastern Junction
+You're near the eastern edge of Grubber's Market. Commerce Street lies to the east. You can travel along the outer ring of stalls to the north or south, or head towards the market's central hub to the west.
+
+>[52] w
+
+Pottery Stall
+The wares at the pottery stall are spread out on the ground, forcing browsers and passers-by to step carefully around them. The urns, jars, and bowls are each uniquely shaped, yet they all share a common, graceful curve. Most of them are made of fired clay from the Westlands, decorated with colorful glazes. There are more stalls to the northwest, northeast, southeast, and southwest, or you can head out to the market's edge to the east.
+
+A tall wooden post is visible behind the stall.
+
+The stallkeeper carefully straightens his display of urns.
+
+>[53] w
+The stalls are too close together in that direction; you can't squeeze through.
+
+A fat farmer with near-paralyzing halitosis pauses to inspect the merchandise, then moves on.
+
+>[54] w
+The stalls are too close together in that direction; you can't squeeze through.
+
+"Fine quality urns for sale!" calls the stallkeeper.
+
+>[55] test adventure
+(Testing.)
+
+>[56] n
+The stalls are too close together in that direction; you can't squeeze through.
+
+You notice a couple of the mercenaries pushing through the crowd, heading your way. They haven't seen you yet, but they're getting close.
+
+>[57] e
+
+Eastern Junction
+You're near the eastern edge of Grubber's Market. Commerce Street lies to the east. You can travel along the outer ring of stalls to the north or south, or head towards the market's central hub to the west.
+
+>[58] n
+
+Fruit Stall
+The fruit stall is still a complete mess, with most of the merchandise scattered all over the ground. The stallkeeper is practically tearing his beard out with frustration.
+
+The stallkeeper carefully straightens his display of brambleberries.
+
+>[59] xyzzy
+A hollow voice whispers "groo."
+
+>[60] n
+There's nothing in that direction except the wall that surrounds the market square.
+
+>[61] unxyzzy
+A hollow voice whispers "oorg."
+
+>[62] n
+There's nothing in that direction except the wall that surrounds the market square.
+
+You notice a couple of the mercenaries pushing through the crowd, heading your way. They haven't seen you yet, but they're getting close.
+
+>[63] d
+You can't go that way. 
+
+The stallkeeper haggles with a customer over the price of limes.
+
+>[64] n
+There's nothing in that direction except the wall that surrounds the market square.
+
+Those mercenaries are getting uncomfortably close. You'd better get going before they notice you!
+
+>[65] n
+There's nothing in that direction except the wall that surrounds the market square.
+
+Suddenly one of the mercenaries does a double-take and sees you. "There he is!" he yells, pointing, and both of them start shoving through the crowd towards you.
+
+>[66] sw
+You dash away into the crowd, weaving between customers and pushing your way through the thickest knots of people. The mercenaries pound after you, yelling and shoving people out of their way, but they're too big and too slow, and you quickly manage to lose them.
+
+Pottery Stall
+The wares at the pottery stall are spread out on the ground, forcing browsers and passers-by to step carefully around them. The urns, jars, and bowls are each uniquely shaped, yet they all share a common, graceful curve. Most of them are made of fired clay from the Westlands, decorated with colorful glazes. There are more stalls to the northwest, northeast, southeast, and southwest, or you can head out to the market's edge to the east.
+
+You see a tall wooden post rising up behind the stall.
+
+>[67] u
+Flight eludes you. 
+
+You notice a couple of the mercenaries pushing through the crowd, heading your way. They haven't seen you yet, but they're getting close.
+
+>[68] n
+The stalls are too close together in that direction; you can't squeeze through.
+
+"Fine quality bowls!" calls the stallkeeper.
+
+>[69] listen at slit
+You can't see any such thing.
+
+>[70] listen to slit
+I can't see any such thing.
+
+>[71] s
+The stalls are too close together in that direction; you can't squeeze through.
+
+Those mercenaries are getting uncomfortably close. You'd better get going before they notice you!
+
+>[72] d
+You can't go that way. 
+
+Suddenly one of the mercenaries does a double-take and sees you. "There he is!" he yells, pointing, and both of them start shoving through the crowd towards you.
+
+>[73] ne
+You dash away into the crowd, weaving between customers and pushing your way through the thickest knots of people. The mercenaries pound after you, yelling and shoving people out of their way, but they're too big and too slow, and you quickly manage to lose them.
+
+Fruit Stall
+The fruit stall is still a complete mess, with most of the merchandise scattered all over the ground. The stallkeeper is practically tearing his beard out with frustration.
+
+>[74] s
+
+Eastern Junction
+You're near the eastern edge of Grubber's Market. Commerce Street lies to the east. You can travel along the outer ring of stalls to the north or south, or head towards the market's central hub to the west.
+
+>[75] s
+
+Hat Stall
+Hats of all styles and sizes hang from scores of wooden pegs, a forest of varied headgear. They have big, flop-brimmed traveling hats; small, leather workman's caps; wide sappans of woven straw from the Kozar delta; fancy, feathered hats for courtly balls; and even a few ordinary bonnets. More stalls lie to the north, northwest, west, and southwest.
+
+An ugly bumpkin hurries through the crowd, muttering something about "bloodthirsty hooligans" invading the market.
+
+>[76] u
+Flight eludes you. 
+
+The stallkeeper carefully straightens his display of bonnets.
+
+>[77] test jail
+(Testing.)
+
+>[78] z
+Time passes.
+
+The stallkeeper haggles with a customer over the price of traveling hats.
+
+>[79] z
+Time passes.
+
+You notice a couple of the mercenaries pushing through the crowd, heading your way. They haven't seen you yet, but they're getting close.
+
+>[80] 1
+I didn't understand that sentence.
+
+>[81] 1
+I didn't understand that sentence.
+
+>[82] 1
+I didn't understand that sentence.
+
+>[83] z
+Time passes.
+
+The stallkeeper carefully straightens his display of sappans.
+
+>[84] 3
+I didn't understand that sentence.
+
+>[85] z
+Time passes.
+
+Those mercenaries are getting uncomfortably close. You'd better get going before they notice you!
+
+>[86] z
+Time passes.
+
+Suddenly one of the mercenaries does a double-take and sees you. "There he is!" he yells, pointing, and both of them start shoving through the crowd towards you.
+
+>[87] search straw
+"Hey!" the stallkeeper glares at you. "Keep your sticky fingers away from the goods."
+
+>[88] unlock door with wire
+I can't see any such thing.
+
+>[89] n
+You dash away into the crowd, weaving between customers and pushing your way through the thickest knots of people. The mercenaries pound after you, yelling and shoving people out of their way, but they're too big and too slow, and you quickly manage to lose them.
+
+Eastern Junction
+You're near the eastern edge of Grubber's Market. Commerce Street lies to the east. You can travel along the outer ring of stalls to the north or south, or head towards the market's central hub to the west.
+
+>[90] get wire
+The wires are too high up for you to reach, and you can't get to where they are attached on the ground.
+
+>[91] unlock north door with wire
+I can't see any such thing.
+
+>[92] sw
+There's nothing in that direction except the wall that surrounds the market square.
+
+You notice a couple of the mercenaries pushing through the crowd, heading your way. They haven't seen you yet, but they're getting close.
+
+>[93] lift grate
+You can't see any such thing.
+
+>[94] test sewers
+(Testing.)
+
+>[95] xyzzy
+A hollow voice whispers "groo."
+
+>[96] down
+You can't go that way. 
+
+>[97] s
+
+Hat Stall
+Hats of all styles and sizes hang from scores of wooden pegs, a forest of varied headgear. They have big, flop-brimmed traveling hats; small, leather workman's caps; wide sappans of woven straw from the Kozar delta; fancy, feathered hats for courtly balls; and even a few ordinary bonnets. More stalls lie to the north, northwest, west, and southwest.
+
+>[98] s
+There's nothing in that direction except the wall that surrounds the market square.
+
+The stallkeeper haggles with a customer over the price of bonnets.
+
+>[99] u
+Flight eludes you. 
+
+You notice a couple of the mercenaries pushing through the crowd, heading your way. They haven't seen you yet, but they're getting close.
+
+>[100] unxyzzy
+A hollow voice whispers "oorg."
+
+>[101] test walk2
+(Testing.)
+
+>[102] test rooftops
+(Testing.)
+
+>[103] n
+
+Eastern Junction
+You're near the eastern edge of Grubber's Market. Commerce Street lies to the east. You can travel along the outer ring of stalls to the north or south, or head towards the market's central hub to the west.
+
+>[104] 1
+I didn't understand that sentence.
+
+>[105] 1
+I didn't understand that sentence.
+
+>[106] 1
+I didn't understand that sentence.
+
+>[107] 2
+I didn't understand that sentence.
+
+>[108] climb gutter
+You can't see any such thing.
+
+>[109] e
+The mercenary captain is too sharp; you'll need a disguise if you're to have any chance of sneaking past him.
+
+>[110] e
+The mercenary captain is too sharp; you'll need a disguise if you're to have any chance of sneaking past him.
+
+You notice a couple of the mercenaries pushing through the crowd, heading your way. They haven't seen you yet, but they're getting close.
+
+>[111] se
+There's nothing in that direction except the wall that surrounds the market square.
+
+The mercenaries glare at a passing shopper.
+
+>[112] n
+
+Fruit Stall
+The fruit stall is still a complete mess, with most of the merchandise scattered all over the ground. The stallkeeper is practically tearing his beard out with frustration.
+
+>[113] test blackgate
+(Testing.)
+
+>[114] d
+You can't go that way. 
+
+>[115] s
+
+Eastern Junction
+You're near the eastern edge of Grubber's Market. Commerce Street lies to the east. You can travel along the outer ring of stalls to the north or south, or head towards the market's central hub to the west.
+
+>[116] s
+
+Hat Stall
+Hats of all styles and sizes hang from scores of wooden pegs, a forest of varied headgear. They have big, flop-brimmed traveling hats; small, leather workman's caps; wide sappans of woven straw from the Kozar delta; fancy, feathered hats for courtly balls; and even a few ordinary bonnets. More stalls lie to the north, northwest, west, and southwest.
+
+"You'll not find better sappans in all of Toresal!" calls the stallkeeper.
+
+>[117] s
+There's nothing in that direction except the wall that surrounds the market square.
+
+>[118] turn winch
+You can't see any such thing.
+
+>[119] n
+
+Eastern Junction
+You're near the eastern edge of Grubber's Market. Commerce Street lies to the east. You can travel along the outer ring of stalls to the north or south, or head towards the market's central hub to the west.
+
+>[120] n
+
+Fruit Stall
+The fruit stall is still a complete mess, with most of the merchandise scattered all over the ground. The stallkeeper is practically tearing his beard out with frustration.
+
+The stallkeeper haggles with a customer over the price of brambleberries.
+
+>[121] n
+There's nothing in that direction except the wall that surrounds the market square.
+
+The stallkeeper carefully straightens his display of limes.
+
+>[122] d
+You can't go that way. 
+
+>[123] s
+
+Eastern Junction
+You're near the eastern edge of Grubber's Market. Commerce Street lies to the east. You can travel along the outer ring of stalls to the north or south, or head towards the market's central hub to the west.
+
+A red-faced servant shoves you out of the way, muttering something about "street trash".
+
+>[124] open doors
+I can't see any such thing.
+
+>[125] s
+
+Hat Stall
+Hats of all styles and sizes hang from scores of wooden pegs, a forest of varied headgear. They have big, flop-brimmed traveling hats; small, leather workman's caps; wide sappans of woven straw from the Kozar delta; fancy, feathered hats for courtly balls; and even a few ordinary bonnets. More stalls lie to the north, northwest, west, and southwest.
+
+The stallkeeper haggles with a customer over the price of traveling hats.
+
+>[126] s
+There's nothing in that direction except the wall that surrounds the market square.
+
+You notice a couple of the mercenaries pushing through the crowd, heading your way. They haven't seen you yet, but they're getting close.
+
+>[127] x chandelier
+I can't see any such thing.
+
+>[128] get letter
+You can't see any such thing.
+
+>[129] n
+
+Eastern Junction
+You're near the eastern edge of Grubber's Market. Commerce Street lies to the east. You can travel along the outer ring of stalls to the north or south, or head towards the market's central hub to the west.
+
+>[130] z
+Time passes.
+
+You notice a couple of the mercenaries pushing through the crowd, heading your way. They haven't seen you yet, but they're getting close.
+
+>[131] z
+Time passes.
+
+>[132] z
+Time passes.
+
+Those mercenaries are getting uncomfortably close. You'd better get going before they notice you!
+
+>[133] test hanging
+(Testing.)
+
+>[134] e
+The mercenary captain is too sharp; you'll need a disguise if you're to have any chance of sneaking past him.
+
+Suddenly one of the mercenaries does a double-take and sees you. "There he is!" he yells, pointing, and both of them start shoving through the crowd towards you.
+
+>[135] x structure
+I can't see any such thing.
+
+>[136] z
+Time passes.
+
+>[137] z
+Time passes.
+
+A rock-hard fist closes around your upper arm. "Gotcha!" the mercenary yells. The other one starts hollering for his companions.
+
+>[138] z
+Time passes.
+
+>[139] test maidens
+(Testing.)
+
+>[140] 3
+I didn't understand that sentence.
+
+>[141] se
+You beat on the mercenary's arms with your fists, but the man is just too strong.
+
+The captain soon arrives, followed by two more of his men. One of them grabs your other arm as their leader smiles. "Good work, dims. Got ourselves a nice little commission with this one." And before you can react, he takes a sack of black cloth from his belt and jerks it down over your head.
+
+Everything goes dark. You can't breathe. You struggle, but you can no more break the iron grip on your arms than you could uproot a tree. The men holding you curse. Dimly, you hear shouts from the crowd - someone protesting this rough treatment of a child.
+
+"Don't worry, m'lady," laughs the mercenary leader. "We'll treat the little rat nice an' gentle. Like this, see?"
+
+Something huge and heavy crashes into your head, and the rest of your senses are yanked away. Why they wanted you, you never awake to find out.
+
+    *** Your adventure is over ***
+
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> [142] se
+Please give one of the answers above.
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> [143] n
+Please give one of the answers above.
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> [144] z
+Please give one of the answers above.
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> [145] z
+Please give one of the answers above.
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> [146] z
+Please give one of the answers above.
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> [147] z
+Please give one of the answers above.
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> [148] z
+Please give one of the answers above.
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> [149] z
+Please give one of the answers above.
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> [150] nw
+Please give one of the answers above.
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> [151] 4
+Please give one of the answers above.
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> [152] sw
+Please give one of the answers above.
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> [153] enter window
+Please give one of the answers above.
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> [154] test walk3
+Please give one of the answers above.
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> 

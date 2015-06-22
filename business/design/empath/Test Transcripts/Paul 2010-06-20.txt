@@ -1,0 +1,1611 @@
+Start of a transcript of
+
+The Empath's Gift
+The Empath's Gift by Textfyre
+Copyright 2010 by Textfyre
+Designed by Paul O'Brian
+Written by Christopher Huang
+Game Engine (FyreVM) by Jesse McGrew
+Inform 7 Programming by Ron Newcomb
+ and Graeme Jefferis
+Testing by ____
+Special thanks to Graham Nelson and Emily Short
+for all of their hard work on Inform 7.
+All rights reserved.
+Identification number: //88E48DB3-8DB5-4468-9F2A-8D30D3E09EFA//
+Interpreter version 1.2.6 / VM 3.1.1 / Library serial number 080126
+Standard Rules version 2/090402 by Graham Nelson
+Textfyre Standard Backdrops by Textfyre
+Basic Followers by Textfyre
+Goals by Textfyre
+Test Suite by Textfyre
+
+>restore
+Restore failed.
+
+>restore
+Ok.
+
+>focus
+You sense a confusion of trails, all of them scented with fear.  More than one of them seem strong enough to be Lucian's, assuming he's as terrified as you think he is, though none are precisely alike.
+
+>[Okay, between having read Ron's email and having reviewed the testing transcript for this chapter, I see that in order to find the trail, Daniel must FOCUS in Fim Studio South, since that's where the emotional explosion occurred. This is a fine choice,
+You seem to want to talk to someone, but I can't see whom.
+
+>[but needs to be better cued. I think at the end of the response above to "focus", we need to append a sentence along the lines of "If only you could find where Lucian's trail began, you feel sure that you could distinguish it from the others."]
+You seem to want to talk to someone, but I can't see whom.
+
+>s
+(first getting off the circulation desk)
+
+Northern Hallway
+You are at a T-junction.  The hallway goes east and west, and another hallway joins it from the south.  To the north, wide double doors open into the library.
+
+Ava trails along behind you. 
+
+>e
+
+Northeast Corner Of Claremont
+The hallway makes an elbow here, heading off to the south and the west.  To the east is the film studio.  You can tell because the door has been torn off its hinges, giving you a perfectly unimpeded view of the studio within.  Another set of doors, to the north, leads out of the building, but those are intact.
+
+Ava trails along behind you. 
+
+>s
+
+Eastern Hallway
+A utilitarian, academic hallway, stretching north and south.  Two empty classrooms are on the west side.  On the east side, the door to the backstage areas of the auditorium is to the southeast, while half of the film studio lies northeast.
+
+Ava trails along behind you. 
+
+>e
+There are exits north (to the northeast corner of Claremont), northeast (to the film studio), southeast (to Backstage) and south (to the southeast corner of Claremont) from here.
+
+>se
+
+Backstage
+Backstage is cramped, cluttered and chaotic, and it's not even in use yet.  It also smells of old costumes, which is hardly surprising, given the racks of costumes mouldering in one airless cubbyhole.  The stage and the auditorium are to the south, and a door out into the hallway is to the west.
+
+Ava trails along behind you. 
+
+>n
+There are exits south (to the auditorium) and northwest (to the eastern hallway) from here.
+
+>w
+There are exits south (to the auditorium) and northwest (to the eastern hallway) from here.
+
+>nw
+
+Eastern Hallway
+A utilitarian, academic hallway, stretching north and south.  Two empty classrooms are on the west side.  On the east side, the door to the backstage areas of the auditorium is to the southeast, while half of the film studio lies northeast.
+
+Ava trails along behind you. 
+
+>ne
+
+Film Studio, South
+This end of the film studio looks like the aftermath of a particularly exuberant action flick.  Tables, chairs and assorted props have been hurled about, some of it even broken in the process, and a fist-sized hole has been punched into one wall.  It's a little less untidy to the north, and the door to the hallway is to the west.
+
+Ava trails along behind you. 
+
+>focus
+Here's where it all began.  You can sense the explosion of rage and the responding burst of fear, right in the middle of what seems to be an actual physical explosion.  Both rage and fear race off towards the north end of the room.
+
+>n
+
+Film Studio, North
+The film studio has been deserted, and in a hurry, too.  Notebooks and papers and pens have been dropped or left behind, and chairs have been overturned.  It is quiet, the only sounds being the hum of warm air being pushed into the room through the vent high up in the wall.  The studio continues off to the south, and the exit to the hallway is to the west.
+
+Ava trails along behind you. 
+
+>focus
+You trace Lucian's terror to the bookshelves, and then into the depths of the open vent.  You point out the trail to Ava, who looks at the damaged wall around the vent and says, "I suppose Aidan must have tried to force his own way into the vent after Lucian.  Is Lucian in there still?"  She tries shouting into the vent, but receives no response.  It's clear that Lucian must have crawled some distance through the vents already.
+
+>w
+
+Northeast Corner Of Claremont
+The hallway makes an elbow here, heading off to the south and the west.  To the east is the film studio.  You can tell because the door has been torn off its hinges, giving you a perfectly unimpeded view of the studio within.  Another set of doors, to the north, leads out of the building, but those are intact.
+
+Ava trails along behind you. 
+
+>focus
+ Standing on tiptoe and craning your neck towards the ceiling, you can sense Lucian's trail tracing a path through the HVAC system from east to west.
+
+>w
+
+Northern Hallway
+You are at a T-junction.  The hallway goes east and west, and another hallway joins it from the south.  To the north, wide double doors open into the library.
+
+Ava trails along behind you. 
+
+>focus
+Standing on tiptoe and craning your neck towards the ceiling, you can sense Lucian's trail tracing a path through the HVAC system from east to north.
+
+>n
+
+Claremont Library
+The Education And Fine Arts Library, as befits the University of Colorado at Valmont, is a labyrinth stacked high with books and simply lousy with hidden corners and dead ends.  Thankfully, most of it is also sealed away beyond a security barrier, and as far as you can tell, no-one is likely to have slipped through to the stacks beyond.  The only part of the library you can really access from here is the circulation desk, which has been positioned directly under an air vent to allow the librarians the full benefit of the heating system during the cold winter semester.  And also to blow papers off the desk, but none of the librarians have complained about that one little detail, oddly enough.
+
+Ava trails along behind you. 
+
+>focus
+You can sense abject terror pooling about the air vent over the circulation desk, practically dripping onto the papers below.
+
+"There," you say, pointing to the vent.  "He's in there."  You sense the terror leaking out of the vent suddenly grow more pungent.
+
+Ava gets up onto the desk and calls into the vent, "Lucian!  Are you there?  You have to come out.  We'll get you somewhere safe."
+
+Lucian's response is barely audible.  "No.  Shan't.  Go away."
+
+>talk to lucian
+You get no response, though you can easily tell that he's there; and, by the fluctuating emotions around the vent, that he can hear you.
+
+>ask lucian about aidan
+(Aidan)
+You get no response, though you can easily tell that he's there; and, by the fluctuating emotions around the vent, that he can hear you.
+
+>[weird disambiguation]
+That's not a verb I recognize.
+
+>calm lucian
+Trying to muffle Lucian's fear is like trying to bail out a sinking ship with a teaspoon.  You can't do it, not without some sense of calm to take the place of the fear.
+
+>[VERY nice parsing.]
+That's not a verb I recognize.
+
+>ask ava about lucian
+Ava tries her best to talk to Lucian, once even managing to elicit a stifled sob, but to no avail.  She shrugs helplessly.
+
+>sing to lucian
+You hum a few bars, but it seems this isn't your strong suit.
+
+>[I quite like the solution to this one, but I think it will be a difficult leap for some players to make. I'm pondering how we could cue this. Maybe some kind of reference to "Have you ever seen Lucian calm before?" Maybe Ava hums absently to herself, and 
+You seem to want to talk to someone, but I can't see whom.
+
+>[if asked about it, says that it helps calm her down when she's tense.]
+You seem to want to talk to someone, but I can't see whom.
+
+>ava, sing to lucian
+Ava sings to lucian a bit, to little effect.
+
+>[And that (aside from failing to capitalize Lucian) definitely needs to be changed. When a player gets that close to the right answer, the game needs to provide feedback letting her know she's on the right track. Maybe when Ava sings to Lucian, Daniel
+That's not a verb I recognize.
+
+>[might feel a ripple of expectation with a hint of calm inside, but one that quickly dissipates into dissapointment once it becomes clear what Ava is singing. Or something.]
+You seem to want to talk to someone, but I can't see whom.
+
+>ask ava about lean on me
+"But I hate that song!" Ava glances back at the vent.  "Okay, you're right, if that's the only way to get him calm enough to listen to reason, I'll do it.Ava takes her place on the circulation desk and begins singing softly into the vent.  You can sense curiosity blossoming in the middle of all the fear, and then ... there it is, a kernel of calm! 
+  
+
+>[extra linefeed]
+That's not a verb I recognize.
+
+>calm lucian
+You're not sure how you're doing this, but the adrenaline pumping in your veins gives you enough of a boost to grab that tiny kernel of a sense of well-being and magnify it.  At the same time, the fear and the anxiety seems to damp down a bit: a person can only feel so much emotion at a time, after all.  
+
+Slowly, Lucian's head appears in the open mouth of the ventilation shaft.  The fear spikes for a moment as he looks around, but when he sees no-one but you and Ava, he calms down enough to emerge further.  Finally, he comes out enough for you to grab him and carefully help him down onto the desk and then down to the floor.
+
+Ava stops singing.  "Good.  Now, we'd better get out of here before--"
+
+You don't need to turn around.  The heat of the burning rage behind you is enough to tell you that Aidan has just chosen the worst possible moment to check in on the library.  Ava, turning white as a sheet, tries to shield Lucian, who meanwhile has made a mad scramble for the barrier to the main part of the library.
+
+Aidan burns right past you to get at Lucian, pushing Ava aside as she tries to pull him back.  Lucian manages to duck just in time, and the barrier reverberates from the force of Aidan's fist hitting it.
+
+>tackle aidan
+That's not a verb I recognize.
+
+>hit aidan
+Aidan barely notices your futile attempts to stop him.
+
+Aidan lunges for Lucian, who twists away just in time.  There is a sharp cracking sound from the barrier as Aidan slams into it.
+
+>aidan, stop
+Aidan does not appear to be in any mood to listen to you.  He probably can't even hear you over the pounding blood in his ears.
+
+Lucian tries to make a break for the exit, but Aidan, moving faster than you though possible, vaults over the circulation desk and into Lucian's escape path.  Lucian squeaks in terror and scrambles back to the barrier.
+
+>["faster than you though possible"]
+That's not a verb I recognize.
+
+>get paperweight
+There's enough chaos going on without taking a paperweight and letting all those papers blow about the place.
+
+Aidan makes a grab for Lucian, and gets a fistful of his shirt.  The fabric rips, and Lucian goes sprawling across the floor.
+
+>[I should be able to try to crack him over the head with a paperweight, especially if we stick with that being the way Ava defeats him. Of course, I'd fail because he can easily dodge my lunges.]
+You seem to want to talk to someone, but I can't see whom.
+
+>focus
+You sense rage and anger and frustration and hatred and more rage, so much so that you almost feel the same emotions yourself.  Just when you think you're going to fall into the same emotional whirlpool as Aidan has, you become aware that Aidan has paused in his assault on Lucian, and instead is swaying a little, a confused look on his face.  As you register this, Aidan shakes his head and returns his attention to Lucian.
+
+Ava looks from you to Aidan and back.  "What did you just do?"
+
+Aidan pounces on Lucian, this time getting his right hand on Lucian's throat.  He lifts Lucian, kicking and coughing into the air.
+
+>focus
+Rage and anger and hatred and rage and nothing else and suddenly you find yourself somewhere else entirely....
+
+Battlefield
+Everything is black and white, and grainy as an old photograph.  The ground is barren and scored with trenches; the sky is filled with stormclouds.  A fierce wind threatens to knock you off your feet, as bombshells rain about you.
+
+>x bombshells
+You're not quite crazy enough to get close enough to one of the shells to examine it.  They fall, they explode, they send bits and pieces of themselves flying through the air, and it's a miracle you haven't been sliced to ribbons by the flying shrapnel already.
+
+>x stormclouds
+The stormclouds race across the sky, driven by the mad winds.
+
+>n
+The wind drives you back.
+
+A shadow falls upon you.  Looking up, you see a massive shell headed directly towards you!  You try to run, but, as if in a dream, you feel like you're running through molasses ... there's a sharp crack as something strikes you in the back of your head and you think for a moment that you're dead, but....
+
+
+Please press SPACE to continue.
+You blink.  You're lying on the floor, staring up at the ceiling of the Fine Arts Library, and it is singularly free of the panic and rage that saturated the air the last time you were here.  Instead, there's a sort of hysterical worrying that you quickly trace to Ava ... who is standing over the unconscious form of your brother Aidan, a large granite paperweight clutched in her hands.
+
+"What happened?" she says, staring at you.  "What did you do?  One moment Aidan's trying to kill Lucian, next minute you're both as still as statues and I knew I had to grab the chance and oh I hit Aidan with a paperweight and you both fell over ... Daniel, what on earth just happened?"
+
+You sit up and rub the back of your head where it still feels as though you'd been hit with a paperweight ... though there's certainly no evidence of anything ever having struck you there at all.  "I'm not sure.  I think ... I think I was actually inside Aidan's head there.  It's...."  You shake your head.  "We should get Aidan and Lucian back to the counselors."
+
+Something is terribly wrong with Aidan, and that has got to be the understatement of the year.
+
+Aidan is sedated and taken to the hospital "for further observation".  It's all very dramatic, but not in a good way.  Dr Rose thanks you and Ava personally for your help, and then things go back to normal.  Sort of.
+
+Aidan didn't come back that day, or the day after.  Nobody knows anything.  Ava tends to babble when you try to talk to her about it, and Stacy seems to prefer to not talk about it at all.  Heaven knows, you're probably in too much shock to make much sense, anyway.  So all you can do is try to force yourself back into the normal routine to take your mind off of things.  Thank goodness for the normal camp routine.  If you didn't have that, you'd need to be under "further observation" too.
+
+
+Please press SPACE to continue.
+LEAP, Day 10 (Tuesday) - Late at night
+
+Thump.
+
+Snore.
+
+Thump!
+
+You wake up suddenly to the sound of someone or something hitting your dorm room door.  Jeremy is already up, and has turned on the lights.  He's just about to say something to you when the door smashes open and Aidan, of all people, comes stumbling in.  He's clearly been pumped full of sedatives, but that's not stopping him from glaring around the room like some sort of mad, enraged bull.  Jeremy, terrified, cowers in his bed as Aidan advances on you.
+
+"You ... die...."  His speech is slurred and he's been slowed down significantly by the sedatives.  That doesn't mean you can get away from him just like that, the room's too small for you to get out past him.
+
+A high-pitched beep draws your attention to SARG, whom Stacy must have left hidden in here somewhere.  The little guy activates and flies straight at Aidan, who roars angrily and is momentarily distracted -- just long enough for you to slip out into the hallway!
+
+You can feel Aidan's mad rage burning at your back as he lumbers out behind you.
+
+Your Room
+You share this room with first-year camper Jeremy Dolan, who hates werewolves for some inexplicable reason.  He let you put the werewolf cutout on the outside of the door only because you let him put up a vampire cutout on the inside.  Jeremy's not around right now, though, so you'll have to wait before continuing your ongoing discussion as to whether vampires or werewolves are cooler.  In the meantime, there's your bed and your desk, and the door back to the north.
+
+>[wonderful writing at the climax of chapter 7, Chris.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[The tone of the room description is too casual for this scene. Also, Jeremy is around. Sorry to pile on work, but I think the jaunty and casual room descriptions don't fit this tense chapter.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[On the plus side, I think it's a great IF trick to change room descriptions to match the PC's state of mind, so having had the casual ones will make the tense ones that much more effective.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[Finally, aren't I in the hallway? The description suggests I'm still in my room.]
+You seem to want to talk to someone, but I can't see whom.
+
+>n
+
+Pits, East
+Your room is at this end of the Pits hallway, just to the south of here.  You've elected to cover your door with the biggest cutout of a werewolf that you can find, because werewolves are cool.  The hallway continues west, and a high window on the east wall looks out across Calvin Field North.  Right beside your room door is the fire stair leading back upstairs.
+
+>[Oh, I see -- "just long enough for you to slip out into the hallway!" doesn't mean I've actually done so. It might be worth omitting. Just noting that Aidan is distracted should be sufficient cue, I'd think.]
+You seem to want to talk to someone, but I can't see whom.
+
+>scream
+Must you draw attention to yourself?
+
+>[YES of course I must. My first instinct is to bring a counselor running]
+That's not a verb I recognize.
+
+>knock on doors
+You can't see any such thing.
+
+>[I should be able to try to rouse people, get some help. Also, Aidan is taking his sweet time following me.]
+You seem to want to talk to someone, but I can't see whom.
+
+>l
+Pits, East
+Your room is at this end of the Pits hallway, just to the south of here.  You've elected to cover your door with the biggest cutout of a werewolf that you can find, because werewolves are cool.  The hallway continues west, and a high window on the east wall looks out across Calvin Field North.  Right beside your room door is the fire stair leading back upstairs.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+Aidan stumbles into the room, and launches himself at you.
+
+>[I could really have gotten a long way in that time, I'd think.]
+You seem to want to talk to someone, but I can't see whom.
+
+>w
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Aidan's heavy footsteps come from the east.
+
+>n
+There are exits east (to pits), south (to pits lobby central), west (to pits) and up (to the first floor midpoint) from here.
+
+Aidan's heavy footsteps come from the east.
+
+>w
+As you run into this part of the hallway, one of the doors opens a crack.  Lucian pops his head out just long enough to see Aidan roaring up after you, and then he slams the door shut again.
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+Aidan's heavy footsteps come from the east.
+
+>u
+You hear Lucian's door open again, and Lucian himself running off in another direction.  You hope he's gone to get help.
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+Aidan's heavy footsteps come from the stairs.
+
+>n
+You jiggle the handle, but Aidan's door is locked!
+
+Aidan's heavy footsteps come from the stairs.
+
+>i
+You are carrying:
+  some readings for your Satirical Writing class
+
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+
+>[I just got out of bed. No need to be carrying that stuff.]
+That's not a verb I recognize.
+
+>e
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Aidan's heavy footsteps come from the west.
+
+>e
+
+First Floor Rooms, East
+This is the east end of the first floor dorm area.  Through the window at the end of the hall, you can see Calvin Field North and a bunch of campers running about in the summer sunshine.  In here, you are surrounded by images of people having snowball fights.  The fire stairs at this end of the hall go up and down.
+
+Aidan's heavy footsteps come from the west.
+
+>e
+There are exits south (to Joe and Hank's room), west (to the first floor midpoint), up (to the second floor rooms) and down (to pits) from here.
+
+Aidan's heavy footsteps come from the west.
+
+"Hey!"  It's Brad, your counselor, minus the gum and the baseball cap.  He gets in between you and Aidan, shouting for Aidan to settle down.  Aidan has no intention of doing any such thing, and swings out at Brad instead.  He's slow, though, Brad ducks easily -- but then Aidan opens his hand and sweeps it back, catching Brad right in the chest.  WHAM!  Brad goes flying against the wall and slides unconscious to the floor.  You hear doors opening all up and down the hallway, and closing again, as Aidan turns his attention back to you....
+
+>x aidan
+You can't see such a thing.
+
+Still unsteady on his feet, Aidan prowls into the room after you.
+
+>["into the room"? I'm in a hallway.]
+That's not a verb I recognize.
+
+>u
+No, after lights out, the fire doors on the second and third floors are locked so that you can get onto the fire stairs from those floors but not onto those floors from the fire stairs.  You'd be trapping yourself at the top of the stairs if you went that way.  Better go down instead: the pits and the first floor are still accessible because there's supposed to be direct escape routes onto the grounds from those floors.
+
+Familiar surroundings momentarily confuse him.
+>d
+
+Pits, East
+Your room is at this end of the Pits hallway, just to the south of here.  You've elected to cover your door with the biggest cutout of a werewolf that you can find, because werewolves are cool.  The hallway continues west, and a high window on the east wall looks out across Calvin Field North.  Right beside your room door is the fire stair leading back upstairs.
+
+Aidan's heavy footsteps come from the stairs.
+
+>w
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Aidan's heavy footsteps come from the east.
+
+>s
+
+Pits Lobby Central
+This section of the Pits is part of the older part of Jacobs Hall, and therefore cut up into more interesting shapes.  There are a bunch of storerooms, all of them locked, and then two very large halls to the east and west.  A passage to the north leads back to the main stairwell.  Apparently there used to be another staircase here going up, but it was ripped out to give this place a little more elbow room.
+
+Aidan's heavy footsteps come from the north.
+
+>u
+There USED TO BE a staircase here.  Unless you have a time machine, going up from here is not going to get you anywhere.
+
+Aidan's heavy footsteps come from the north.
+
+>n
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Aidan is here, swaying a little and looking like an enraged bull with a killer headache.
+
+Familiar surroundings momentarily confuse him.
+>u
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Aidan's heavy footsteps come from the stairs.
+
+>s
+
+Info Desk
+The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.
+
+Aidan's heavy footsteps come from the north.
+
+>[I think we need to dial up the threat here. Having Aidan wreck Brad is good, but I don't think the player should get all the time in the world here. Aidan should be able to catch up with him and end the game.]
+You seem to want to talk to someone, but I can't see whom.
+
+>s
+
+First Floor Lobby, West
+This used to be the living room, back when old AQJ was still alive and the university was just starting up.  It's got a huge fireplace, and a big bay window looking out onto the front lawn.  It's also been painted completely white from floor to ceiling, so thickly that you're not sure if some of the molding is not actually just bubbles under the paint.  The info desk is back through the arch to the north, and the lobby continues, through another arch, to the west.
+
+A large brass plaque has been fixed into the space over the fireplace.
+
+Aidan's heavy footsteps come from the north.
+
+>get plaque
+That's hardly portable.
+
+Still unsteady on his feet, Aidan prowls into the room after you.
+
+>e
+
+First Floor Lobby, East
+This used to be a rather large dining room, once upon a time, and it still has a low-hanging chandelier right in the middle of the ceiling.  A piano's been pushed under the chandelier so that nobody accidentally gets a head full of crystal walking blindly around, and the place is generally used as a kind of music room now.  The info desk is back to the northwest, and to the west is the rest of the first floor lobby.  Wide picture windows look out on the front lawn and on the southern part of Calvin Field.
+
+Aidan's heavy footsteps come from the west.
+
+>focus
+You sense nothing untoward or out of the ordinary here.
+
+Aidan stumbles into the room, and launches himself at you.
+
+>focus
+You sense nothing untoward or out of the ordinary here.
+
+Familiar surroundings momentarily confuse him.
+>[FOCUSing is what solved the Aidan problem last time, so it's a natural for players to try. It should get a useful response here.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[Also, if he just launched himself at me, and all I did was stand there and FOCUS, why didn't something result from that?]
+You seem to want to talk to someone, but I can't see whom.
+
+>hide under piano
+You must supply a second noun.
+
+Familiar surroundings momentarily confuse him.
+>hide under piano... bench?
+You must supply a second noun.
+
+Familiar surroundings momentarily confuse him.
+That's not a verb I recognize.
+
+>hide under piano bench
+You can't see any such thing.
+
+>[why must I supply a second noun?]
+That's not a verb I recognize.
+
+>swing chandelier
+There's nothing sensible to swing here.
+
+Familiar surroundings momentarily confuse him.
+>[Seems like I could try to swing the chandelier and crack him one in the head.]
+That's not a verb I recognize.
+
+>w
+
+First Floor Lobby, West
+This used to be the living room, back when old AQJ was still alive and the university was just starting up.  It's got a huge fireplace, and a big bay window looking out onto the front lawn.  It's also been painted completely white from floor to ceiling, so thickly that you're not sure if some of the molding is not actually just bubbles under the paint.  The info desk is back through the arch to the north, and the lobby continues, through another arch, to the west.
+
+A large brass plaque has been fixed into the space over the fireplace.
+
+Aidan's heavy footsteps come from the east.
+
+>n
+
+Info Desk
+The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.
+
+Aidan's heavy footsteps come from the south.
+
+>e
+A still-fresh image of Aidan shooting down the long, straight corridors of Claremont, still gaining speed as he came to a corner, flashes through your mind when you glimpse the wide open expanse of Calvin Field ahead of you, and you instantly know that going outside would be suicide.
+
+Aidan's heavy footsteps come from the south.
+
+>[I dunno, it's not like he's setting any speed records here. And another message suggested escaping out to the grounds.]
+You seem to want to talk to someone, but I can't see whom.
+
+>w
+A still-fresh image of Aidan shooting down the long, straight corridors of Claremont, still gaining speed as he came to a corner, flashes through your mind when you glimpse the wide open expanse of the front lawn ahead of you, and you instantly know that going outside would be suicide.
+
+Aidan's heavy footsteps come from the south.
+
+Sirens!
+
+Someone's gone and called the police, and it sounds like they've sent in a SWAT team.  You are momentarily distracted by the commotion, and that moment's distraction is all Aidan needs to catch up with you.  For a moment, you are lifted off the ground, and then three sniper bullets cut into Aidan in important places.  He collapses right on top of you, and this time it's your own horrified reaction that knocks you out.
+
+It's probably best to not think about what happens afterwards.
+
+
+
+    *** You lose your brother and your sanity ***
+
+
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> [Okay, excellent. I'm glad to know that's there.]
+Please give one of the answers above.
+
+Would you like to RESTART, RESTORE a saved game or QUIT?
+
+> restore
+Ok.
+
+>[Oh bother, I haven't saved lately.]
+You seem to want to talk to someone, but I can't see whom.
+
+>l
+Claremont Library (on the circulation desk)
+The Education And Fine Arts Library, as befits the University of Colorado at Valmont, is a labyrinth stacked high with books and simply lousy with hidden corners and dead ends.  Thankfully, most of it is also sealed away beyond a security barrier, and as far as you can tell, no-one is likely to have slipped through to the stacks beyond.  The only part of the library you can really access from here is the circulation desk, which has been positioned directly under an air vent to allow the librarians the full benefit of the heating system during the cold winter semester.  And also to blow papers off the desk, but none of the librarians have complained about that one little detail, oddly enough.
+
+Ava trails along behind you. 
+
+>s
+(first getting off the circulation desk)
+
+Northern Hallway
+You are at a T-junction.  The hallway goes east and west, and another hallway joins it from the south.  To the north, wide double doors open into the library.
+
+Ava trails along behind you. 
+
+>e
+
+Northeast Corner Of Claremont
+The hallway makes an elbow here, heading off to the south and the west.  To the east is the film studio.  You can tell because the door has been torn off its hinges, giving you a perfectly unimpeded view of the studio within.  Another set of doors, to the north, leads out of the building, but those are intact.
+
+Ava trails along behind you. 
+
+>se
+There are exits east (to the film studio), south (to the eastern hallway) and west (to the northern hallway) from here.
+
+>s
+
+Eastern Hallway
+A utilitarian, academic hallway, stretching north and south.  Two empty classrooms are on the west side.  On the east side, the door to the backstage areas of the auditorium is to the southeast, while half of the film studio lies northeast.
+
+Ava trails along behind you. 
+
+>se
+
+Backstage
+Backstage is cramped, cluttered and chaotic, and it's not even in use yet.  It also smells of old costumes, which is hardly surprising, given the racks of costumes mouldering in one airless cubbyhole.  The stage and the auditorium are to the south, and a door out into the hallway is to the west.
+
+Ava trails along behind you. 
+
+>n
+There are exits south (to the auditorium) and northwest (to the eastern hallway) from here.
+
+>w
+There are exits south (to the auditorium) and northwest (to the eastern hallway) from here.
+
+>nw
+
+Eastern Hallway
+A utilitarian, academic hallway, stretching north and south.  Two empty classrooms are on the west side.  On the east side, the door to the backstage areas of the auditorium is to the southeast, while half of the film studio lies northeast.
+
+Ava trails along behind you. 
+
+>n
+
+Northeast Corner Of Claremont
+The hallway makes an elbow here, heading off to the south and the west.  To the east is the film studio.  You can tell because the door has been torn off its hinges, giving you a perfectly unimpeded view of the studio within.  Another set of doors, to the north, leads out of the building, but those are intact.
+
+Ava trails along behind you. 
+
+>e
+
+Film Studio, North
+The film studio has been deserted, and in a hurry, too.  Notebooks and papers and pens have been dropped or left behind, and chairs have been overturned.  It is quiet, the only sounds being the hum of warm air being pushed into the room through the vent high up in the wall.  The studio continues off to the south, and the exit to the hallway is to the west.
+
+Ava trails along behind you. 
+
+>s
+
+Film Studio, South
+This end of the film studio looks like the aftermath of a particularly exuberant action flick.  Tables, chairs and assorted props have been hurled about, some of it even broken in the process, and a fist-sized hole has been punched into one wall.  It's a little less untidy to the north, and the door to the hallway is to the west.
+
+Ava trails along behind you. 
+
+>focus
+Here's where it all began.  You can sense the explosion of rage and the responding burst of fear, right in the middle of what seems to be an actual physical explosion.  Both rage and fear race off towards the north end of the room.
+
+>n
+
+Film Studio, North
+The film studio has been deserted, and in a hurry, too.  Notebooks and papers and pens have been dropped or left behind, and chairs have been overturned.  It is quiet, the only sounds being the hum of warm air being pushed into the room through the vent high up in the wall.  The studio continues off to the south, and the exit to the hallway is to the west.
+
+Ava trails along behind you. 
+
+>w
+
+Northeast Corner Of Claremont
+The hallway makes an elbow here, heading off to the south and the west.  To the east is the film studio.  You can tell because the door has been torn off its hinges, giving you a perfectly unimpeded view of the studio within.  Another set of doors, to the north, leads out of the building, but those are intact.
+
+Ava trails along behind you. 
+
+>w
+
+Northern Hallway
+You are at a T-junction.  The hallway goes east and west, and another hallway joins it from the south.  To the north, wide double doors open into the library.
+
+Ava trails along behind you. 
+
+>n
+
+Claremont Library
+The Education And Fine Arts Library, as befits the University of Colorado at Valmont, is a labyrinth stacked high with books and simply lousy with hidden corners and dead ends.  Thankfully, most of it is also sealed away beyond a security barrier, and as far as you can tell, no-one is likely to have slipped through to the stacks beyond.  The only part of the library you can really access from here is the circulation desk, which has been positioned directly under an air vent to allow the librarians the full benefit of the heating system during the cold winter semester.  And also to blow papers off the desk, but none of the librarians have complained about that one little detail, oddly enough.
+
+Ava trails along behind you. 
+
+>focus
+You can sense abject terror pooling about the air vent over the circulation desk, practically dripping onto the papers below.
+
+"There," you say, pointing to the vent.  "He's in there."  You sense the terror leaking out of the vent suddenly grow more pungent.
+
+Ava gets up onto the desk and calls into the vent, "Lucian!  Are you there?  You have to come out.  We'll get you somewhere safe."
+
+Lucian's response is barely audible.  "No.  Shan't.  Go away."
+
+>ava, sing lean on me
+"Oh no," Ava winces, "I spent way too much time practicing with that song after I started with the voice lessons.  It's kind of a silly song, anyway."
+
+"Anyway, aren't you his hero?  Try calming him down, or something."
+
+>[I should be able to short-circuit this if I figure it out quickly, or if (in this case) I'm replaying. I see the idea of cueing the CALM verb, but I think there are other routes to that if the game can detect that that's where the player is getting stuck.
+You seem to want to talk to someone, but I can't see whom.
+
+>calm lucian
+Trying to muffle Lucian's fear is like trying to bail out a sinking ship with a teaspoon.  You can't do it, not without some sense of calm to take the place of the fear.
+
+>ava, sing lean on me
+"But I hate that song!" Ava glances back at the vent.  "Okay, you're right, if that's the only way to get him calm enough to listen to reason, I'll do it.Ava takes her place on the circulation desk and begins singing softly into the vent.  You can sense curiosity blossoming in the middle of all the fear, and then ... there it is, a kernel of calm! 
+  
+
+>calm lucian
+You're not sure how you're doing this, but the adrenaline pumping in your veins gives you enough of a boost to grab that tiny kernel of a sense of well-being and magnify it.  At the same time, the fear and the anxiety seems to damp down a bit: a person can only feel so much emotion at a time, after all.  
+
+Slowly, Lucian's head appears in the open mouth of the ventilation shaft.  The fear spikes for a moment as he looks around, but when he sees no-one but you and Ava, he calms down enough to emerge further.  Finally, he comes out enough for you to grab him and carefully help him down onto the desk and then down to the floor.
+
+Ava stops singing.  "Good.  Now, we'd better get out of here before--"
+
+You don't need to turn around.  The heat of the burning rage behind you is enough to tell you that Aidan has just chosen the worst possible moment to check in on the library.  Ava, turning white as a sheet, tries to shield Lucian, who meanwhile has made a mad scramble for the barrier to the main part of the library.
+
+Aidan burns right past you to get at Lucian, pushing Ava aside as she tries to pull him back.  Lucian manages to duck just in time, and the barrier reverberates from the force of Aidan's fist hitting it.
+
+>focus
+You sense rage and anger and frustration and hatred and more rage, so much so that you almost feel the same emotions yourself.  Just when you think you're going to fall into the same emotional whirlpool as Aidan has, you become aware that Aidan has paused in his assault on Lucian, and instead is swaying a little, a confused look on his face.  As you register this, Aidan shakes his head and returns his attention to Lucian.
+
+Ava looks from you to Aidan and back.  "What did you just do?"
+
+Aidan lunges for Lucian, who twists away just in time.  There is a sharp cracking sound from the barrier as Aidan slams into it.
+
+>focus
+Rage and anger and hatred and rage and nothing else and suddenly you find yourself somewhere else entirely....
+
+Battlefield
+Everything is black and white, and grainy as an old photograph.  The ground is barren and scored with trenches; the sky is filled with stormclouds.  A fierce wind threatens to knock you off your feet, as bombshells rain about you.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+>z
+Time passes.
+
+A shadow falls upon you.  Looking up, you see a massive shell headed directly towards you!  You try to run, but, as if in a dream, you feel like you're running through molasses ... there's a sharp crack as something strikes you in the back of your head and you think for a moment that you're dead, but....
+
+
+Please press SPACE to continue.
+You blink.  You're lying on the floor, staring up at the ceiling of the Fine Arts Library, and it is singularly free of the panic and rage that saturated the air the last time you were here.  Instead, there's a sort of hysterical worrying that you quickly trace to Ava ... who is standing over the unconscious form of your brother Aidan, a large granite paperweight clutched in her hands.
+
+"What happened?" she says, staring at you.  "What did you do?  One moment Aidan's trying to kill Lucian, next minute you're both as still as statues and I knew I had to grab the chance and oh I hit Aidan with a paperweight and you both fell over ... Daniel, what on earth just happened?"
+
+You sit up and rub the back of your head where it still feels as though you'd been hit with a paperweight ... though there's certainly no evidence of anything ever having struck you there at all.  "I'm not sure.  I think ... I think I was actually inside Aidan's head there.  It's...."  You shake your head.  "We should get Aidan and Lucian back to the counselors."
+
+Something is terribly wrong with Aidan, and that has got to be the understatement of the year.
+
+Aidan is sedated and taken to the hospital "for further observation".  It's all very dramatic, but not in a good way.  Dr Rose thanks you and Ava personally for your help, and then things go back to normal.  Sort of.
+
+Aidan didn't come back that day, or the day after.  Nobody knows anything.  Ava tends to babble when you try to talk to her about it, and Stacy seems to prefer to not talk about it at all.  Heaven knows, you're probably in too much shock to make much sense, anyway.  So all you can do is try to force yourself back into the normal routine to take your mind off of things.  Thank goodness for the normal camp routine.  If you didn't have that, you'd need to be under "further observation" too.
+
+
+Please press SPACE to continue.
+LEAP, Day 10 (Tuesday) - Late at night
+
+Thump.
+
+Snore.
+
+Thump!
+
+You wake up suddenly to the sound of someone or something hitting your dorm room door.  Jeremy is already up, and has turned on the lights.  He's just about to say something to you when the door smashes open and Aidan, of all people, comes stumbling in.  He's clearly been pumped full of sedatives, but that's not stopping him from glaring around the room like some sort of mad, enraged bull.  Jeremy, terrified, cowers in his bed as Aidan advances on you.
+
+"You ... die...."  His speech is slurred and he's been slowed down significantly by the sedatives.  That doesn't mean you can get away from him just like that, the room's too small for you to get out past him.
+
+A high-pitched beep draws your attention to SARG, whom Stacy must have left hidden in here somewhere.  The little guy activates and flies straight at Aidan, who roars angrily and is momentarily distracted -- just long enough for you to slip out into the hallway!
+
+You can feel Aidan's mad rage burning at your back as he lumbers out behind you.
+
+Your Room
+You share this room with first-year camper Jeremy Dolan, who hates werewolves for some inexplicable reason.  He let you put the werewolf cutout on the outside of the door only because you let him put up a vampire cutout on the inside.  Jeremy's not around right now, though, so you'll have to wait before continuing your ongoing discussion as to whether vampires or werewolves are cooler.  In the meantime, there's your bed and your desk, and the door back to the north.
+
+>save
+Ok.
+
+>n
+
+Pits, East
+Your room is at this end of the Pits hallway, just to the south of here.  You've elected to cover your door with the biggest cutout of a werewolf that you can find, because werewolves are cool.  The hallway continues west, and a high window on the east wall looks out across Calvin Field North.  Right beside your room door is the fire stair leading back upstairs.
+
+>w
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Aidan's heavy footsteps come from the east.
+
+>u
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Aidan's heavy footsteps come from the stairs.
+
+>e
+
+First Floor Rooms, East
+This is the east end of the first floor dorm area.  Through the window at the end of the hall, you can see Calvin Field North and a bunch of campers running about in the summer sunshine.  In here, you are surrounded by images of people having snowball fights.  The fire stairs at this end of the hall go up and down.
+
+Aidan's heavy footsteps come from the west.
+
+>w
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Aidan is here, swaying a little and looking like an enraged bull with a killer headache.
+
+Familiar surroundings momentarily confuse him.
+>w
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+Aidan's heavy footsteps come from the east.
+
+>s
+That would put you in a dead end!  And by dead end, I mean DEAD end!  Also, all the doors there are locked.
+
+Aidan's heavy footsteps come from the east.
+
+>n
+You jiggle the handle, but Aidan's door is locked!
+
+Aidan's heavy footsteps come from the east.
+
+>tell aidan about me
+You can't see any such thing.
+
+>[Oh, just his heavy footsteps.]
+You seem to want to talk to someone, but I can't see whom.
+
+>e
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Aidan is here, swaying a little and looking like an enraged bull with a killer headache.
+
+Familiar surroundings momentarily confuse him.
+>x aidan
+Aidan looks a bit drugged out, but no less dangerous.  His right hand is clenched in a fist around his room keys, which he seems intent on sending to the back of your skull.
+
+Familiar surroundings momentarily confuse him.
+>ask aidan about keys
+Aidan does not appear to be in any mood to listen to you.  He probably can't even hear you over the pounding blood in his ears.
+
+Familiar surroundings momentarily confuse him.
+>get kehys
+You can't see such a thing.
+
+Familiar surroundings momentarily confuse him.
+>get keys
+You can't see such a thing.
+
+Familiar surroundings momentarily confuse him.
+>push aidan
+Are you out of your mind?
+
+Familiar surroundings momentarily confuse him.
+>[This just needs to be tightened up a bit. The design I gave is quite a bit less forgiving.]
+That's not a verb I recognize.
+
+>d
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Aidan's heavy footsteps come from the stairs.
+
+>w
+As you run into this part of the hallway, one of the doors opens a crack.  Lucian pops his head out just long enough to see Aidan roaring up after you, and then he slams the door shut again.
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+Aidan's heavy footsteps come from the east.
+
+>s
+That would put you in a dead end!  And by dead end, I mean DEAD end!  Also, all the doors there are locked.
+
+Aidan's heavy footsteps come from the east.
+
+>u
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+Aidan's heavy footsteps come from the stairs.
+
+>[We need to see Lucian waking up and running for Brad]
+That's not a verb I recognize.
+
+>e
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Aidan's heavy footsteps come from the west.
+
+>e
+
+First Floor Rooms, East
+This is the east end of the first floor dorm area.  Through the window at the end of the hall, you can see Calvin Field North and a bunch of campers running about in the summer sunshine.  In here, you are surrounded by images of people having snowball fights.  The fire stairs at this end of the hall go up and down.
+
+Aidan's heavy footsteps come from the west.
+
+>s
+It seems to be locked.
+
+Aidan's heavy footsteps come from the west.
+
+>d
+
+Pits, East
+Your room is at this end of the Pits hallway, just to the south of here.  You've elected to cover your door with the biggest cutout of a werewolf that you can find, because werewolves are cool.  The hallway continues west, and a high window on the east wall looks out across Calvin Field North.  Right beside your room door is the fire stair leading back upstairs.
+
+Aidan's heavy footsteps come from the stairs.
+
+>w
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Aidan's heavy footsteps come from the east.
+
+>[Yeah, it's a looooooong wait for Brad to show up, especially since the chapter just can't continue until that happens.]
+You seem to want to talk to someone, but I can't see whom.
+
+>s
+
+Pits Lobby Central
+This section of the Pits is part of the older part of Jacobs Hall, and therefore cut up into more interesting shapes.  There are a bunch of storerooms, all of them locked, and then two very large halls to the east and west.  A passage to the north leads back to the main stairwell.  Apparently there used to be another staircase here going up, but it was ripped out to give this place a little more elbow room.
+
+Aidan's heavy footsteps come from the north.
+
+>e
+
+Pits Lobby, East
+This part of the Pits used to be the kitchen, once upon a time.  Imagine, having the kitchen in the basement, downstairs from the dining room!  All the kitchen equipment's been removed now, though, and the place is used as a sort of recreation room.  There are several ping pong tables here, and a tournament going in full swing.  The central lobby is back to the west.
+
+Aidan's heavy footsteps come from the west.
+
+>w
+
+Pits Lobby Central
+This section of the Pits is part of the older part of Jacobs Hall, and therefore cut up into more interesting shapes.  There are a bunch of storerooms, all of them locked, and then two very large halls to the east and west.  A passage to the north leads back to the main stairwell.  Apparently there used to be another staircase here going up, but it was ripped out to give this place a little more elbow room.
+
+Aidan is here, swaying a little and looking like an enraged bull with a killer headache.
+
+Familiar surroundings momentarily confuse him.
+>w
+
+Pits Lobby, West
+This windowless area used to be a wine cellar full of dusty old wine bottles, but these days it's full of shiny new virtual reality equipment.  All of it is kept locked up after hours, though; only the computers themselves are available, though all are currently in use.  The central lobby is back to the east.
+
+Aidan's heavy footsteps come from the east.
+
+>e
+
+Pits Lobby Central
+This section of the Pits is part of the older part of Jacobs Hall, and therefore cut up into more interesting shapes.  There are a bunch of storerooms, all of them locked, and then two very large halls to the east and west.  A passage to the north leads back to the main stairwell.  Apparently there used to be another staircase here going up, but it was ripped out to give this place a little more elbow room.
+
+Aidan is here, swaying a little and looking like an enraged bull with a killer headache.
+
+Familiar surroundings momentarily confuse him.
+>n
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Aidan's heavy footsteps come from the south.
+
+>u
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Aidan's heavy footsteps come from the stairs.
+
+>w
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+Aidan's heavy footsteps come from the east.
+
+>s
+That would put you in a dead end!  And by dead end, I mean DEAD end!  Also, all the doors there are locked.
+
+Aidan's heavy footsteps come from the east.
+
+>d
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+Aidan's heavy footsteps come from the stairs.
+
+>knock on lucian's door
+You get no reply.
+
+Aidan stumbles into the room, and launches himself at you.
+
+>s
+That would put you in a dead end!  And by dead end, I mean DEAD end!  Also, all the doors there are locked.
+
+Familiar surroundings momentarily confuse him.
+>e
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Aidan's heavy footsteps come from the west.
+
+>e
+
+Pits, East
+Your room is at this end of the Pits hallway, just to the south of here.  You've elected to cover your door with the biggest cutout of a werewolf that you can find, because werewolves are cool.  The hallway continues west, and a high window on the east wall looks out across Calvin Field North.  Right beside your room door is the fire stair leading back upstairs.
+
+Aidan's heavy footsteps come from the west.
+
+>u
+
+First Floor Rooms, East
+This is the east end of the first floor dorm area.  Through the window at the end of the hall, you can see Calvin Field North and a bunch of campers running about in the summer sunshine.  In here, you are surrounded by images of people having snowball fights.  The fire stairs at this end of the hall go up and down.
+
+Aidan's heavy footsteps come from the stairs.
+
+>w
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Aidan's heavy footsteps come from the east.
+
+>x aidan
+The aidan looks like every other aidan you've ever seen.
+
+Still unsteady on his feet, Aidan prowls into the room after you.
+
+>[no no]
+That's not a verb I recognize.
+
+>x aidan
+Aidan looks a bit drugged out, but no less dangerous.  His right hand is clenched in a fist around his room keys, which he seems intent on sending to the back of your skull.
+
+Familiar surroundings momentarily confuse him.
+>[what did I do last time to trigger Brad?]
+That's not a verb I recognize.
+
+>i
+You are carrying:
+  some readings for your Satirical Writing class
+
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+
+>e
+
+First Floor Rooms, East
+This is the east end of the first floor dorm area.  Through the window at the end of the hall, you can see Calvin Field North and a bunch of campers running about in the summer sunshine.  In here, you are surrounded by images of people having snowball fights.  The fire stairs at this end of the hall go up and down.
+
+Aidan's heavy footsteps come from the west.
+
+>w
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Aidan is here, swaying a little and looking like an enraged bull with a killer headache.
+
+Familiar surroundings momentarily confuse him.
+>w
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+Aidan's heavy footsteps come from the east.
+
+>e
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Aidan is here, swaying a little and looking like an enraged bull with a killer headache.
+
+Familiar surroundings momentarily confuse him.
+>d
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Aidan's heavy footsteps come from the stairs.
+
+>call for hel[p
+(to yourself)
+There is no reply.
+
+Aidan stumbles into the room, and launches himself at you.
+
+>call for help
+(to Aidan)
+Aidan does not appear to be in any mood to listen to you.  He probably can't even hear you over the pounding blood in his ears.
+
+Familiar surroundings momentarily confuse him.
+>e
+
+Pits, East
+Your room is at this end of the Pits hallway, just to the south of here.  You've elected to cover your door with the biggest cutout of a werewolf that you can find, because werewolves are cool.  The hallway continues west, and a high window on the east wall looks out across Calvin Field North.  Right beside your room door is the fire stair leading back upstairs.
+
+Aidan's heavy footsteps come from the west.
+
+>s
+That would put you in a dead end!  And by dead end, I mean DEAD end!  Also, all the doors there are locked.
+
+Aidan's heavy footsteps come from the west.
+
+>[My door has been smashed in, hasn't it?]
+You seem to want to talk to someone, but I can't see whom.
+
+>w
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Aidan is here, swaying a little and looking like an enraged bull with a killer headache.
+
+Familiar surroundings momentarily confuse him.
+>w
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+Aidan's heavy footsteps come from the east.
+
+>e
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Aidan is here, swaying a little and looking like an enraged bull with a killer headache.
+
+Familiar surroundings momentarily confuse him.
+>focus
+You sense nothing untoward or out of the ordinary here.
+
+Familiar surroundings momentarily confuse him.
+>focus on aidan
+So much anger!  But ... there, underneath it all, is that a hint of that brotherly love and concern that made him carry you all the way to the hospital last week?
+  
+
+Familiar surroundings momentarily confuse him.
+>calm aidan
+There's too much of it!  No matter how much you try, Aidan's rage just keeps pouring from him in never-ending supplies!
+
+Familiar surroundings momentarily confuse him.
+>u
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Aidan's heavy footsteps come from the stairs.
+
+>u
+With a running leap, Aidan crashes onto the stairs in front of you, narrowly missing your head en-route.
+
+Aidan's heavy footsteps come from the stairs.
+
+>u
+With a running leap, Aidan crashes onto the stairs in front of you, narrowly missing your head en-route.
+
+Aidan's heavy footsteps come from the stairs.
+
+>[He's not even here, is he?]
+You seem to want to talk to someone, but I can't see whom.
+
+>l
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+>u
+With a running leap, Aidan crashes onto the stairs in front of you, narrowly missing your head en-route.
+
+Aidan's heavy footsteps come from the stairs.
+
+>w
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+Aidan's heavy footsteps come from the east.
+
+>u
+No, after lights out, the fire doors on the second and third floors are locked so that you can get onto the fire stairs from those floors but not onto those floors from the fire stairs.  You'd be trapping yourself at the top of the stairs if you went that way.  Better go down instead: the pits and the first floor are still accessible because there's supposed to be direct escape routes onto the grounds from those floors.
+
+Aidan's heavy footsteps come from the east.
+
+>e
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Aidan is here, swaying a little and looking like an enraged bull with a killer headache.
+
+Familiar surroundings momentarily confuse him.
+>s
+
+Info Desk
+The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.
+
+Aidan's heavy footsteps come from the north.
+
+>s
+
+First Floor Lobby, West
+This used to be the living room, back when old AQJ was still alive and the university was just starting up.  It's got a huge fireplace, and a big bay window looking out onto the front lawn.  It's also been painted completely white from floor to ceiling, so thickly that you're not sure if some of the molding is not actually just bubbles under the paint.  The info desk is back through the arch to the north, and the lobby continues, through another arch, to the west.
+
+A large brass plaque has been fixed into the space over the fireplace.
+
+Aidan's heavy footsteps come from the north.
+
+>e
+
+First Floor Lobby, East
+This used to be a rather large dining room, once upon a time, and it still has a low-hanging chandelier right in the middle of the ceiling.  A piano's been pushed under the chandelier so that nobody accidentally gets a head full of crystal walking blindly around, and the place is generally used as a kind of music room now.  The info desk is back to the northwest, and to the west is the rest of the first floor lobby.  Wide picture windows look out on the front lawn and on the southern part of Calvin Field.
+
+Aidan's heavy footsteps come from the west.
+
+>n
+There are exits west (to the first floor lobby) and northwest (to the info desk) from here.
+
+Aidan's heavy footsteps come from the west.
+
+>ne
+There are exits west (to the first floor lobby) and northwest (to the info desk) from here.
+
+Aidan's heavy footsteps come from the west.
+
+>x info desk
+You can't see the info desk because you're not there.  You think you can get there by going northwest.
+
+Still unsteady on his feet, Aidan prowls into the room after you.
+
+>ne
+There are exits west (to the first floor lobby) and northwest (to the info desk) from here.
+
+Familiar surroundings momentarily confuse him.
+>nw
+
+Info Desk
+The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.
+
+Aidan's heavy footsteps come from the southeast.
+
+>x info desk
+Info Desk
+The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.
+
+Still unsteady on his feet, Aidan prowls into the room after you.
+
+>s
+
+First Floor Lobby, West
+This used to be the living room, back when old AQJ was still alive and the university was just starting up.  It's got a huge fireplace, and a big bay window looking out onto the front lawn.  It's also been painted completely white from floor to ceiling, so thickly that you're not sure if some of the molding is not actually just bubbles under the paint.  The info desk is back through the arch to the north, and the lobby continues, through another arch, to the west.
+
+A large brass plaque has been fixed into the space over the fireplace.
+
+Aidan's heavy footsteps come from the north.
+
+>w
+There are exits north (to the info desk) and east (to the first floor lobby) from here.
+
+Aidan's heavy footsteps come from the north.
+
+>n
+
+Info Desk
+The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.
+
+Aidan is here, swaying a little and looking like an enraged bull with a killer headache.
+
+Familiar surroundings momentarily confuse him.
+>w
+A still-fresh image of Aidan shooting down the long, straight corridors of Claremont, still gaining speed as he came to a corner, flashes through your mind when you glimpse the wide open expanse of the front lawn ahead of you, and you instantly know that going outside would be suicide.
+
+Familiar surroundings momentarily confuse him.
+>n
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Aidan's heavy footsteps come from the south.
+
+>e
+
+First Floor Rooms, East
+This is the east end of the first floor dorm area.  Through the window at the end of the hall, you can see Calvin Field North and a bunch of campers running about in the summer sunshine.  In here, you are surrounded by images of people having snowball fights.  The fire stairs at this end of the hall go up and down.
+
+Aidan's heavy footsteps come from the west.
+
+>e
+There are exits south (to Joe and Hank's room), west (to the first floor midpoint), up (to the second floor rooms) and down (to pits) from here.
+
+Aidan's heavy footsteps come from the west.
+
+>s
+It seems to be locked.
+
+Aidan's heavy footsteps come from the west.
+
+>[this is weird. Why am I not getting the brad scene]
+That's not a verb I recognize.
+
+>w
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Aidan is here, swaying a little and looking like an enraged bull with a killer headache.
+
+Familiar surroundings momentarily confuse him.
+>w
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+Aidan's heavy footsteps come from the east.
+
+>w
+There are exits north (to Aidan's room), east (to the first floor midpoint), up (to the second floor rooms) and down (to pits) from here.
+
+Aidan's heavy footsteps come from the east.
+
+>s
+That would put you in a dead end!  And by dead end, I mean DEAD end!  Also, all the doors there are locked.
+
+Aidan's heavy footsteps come from the east.
+
+>d
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+Aidan's heavy footsteps come from the stairs.
+
+>e
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Aidan's heavy footsteps come from the west.
+
+>e
+
+Pits, East
+Your room is at this end of the Pits hallway, just to the south of here.  You've elected to cover your door with the biggest cutout of a werewolf that you can find, because werewolves are cool.  The hallway continues west, and a high window on the east wall looks out across Calvin Field North.  Right beside your room door is the fire stair leading back upstairs.
+
+Aidan's heavy footsteps come from the west.
+
+>[it did happen last time.]
+That's not a verb I recognize.
+
+>[hmm, looking at the scrollback, I see the lucian scene too. Did I just confuse the game by going a different route? Whatever's triggering the Lucian scene needs to be looked at.]
+You seem to want to talk to someone, but I can't see whom.
+
+>s
+That would put you in a dead end!  And by dead end, I mean DEAD end!  Also, all the doors there are locked.
+
+Aidan's heavy footsteps come from the west.
+
+>d
+There are exits south (to your room), west (to the pits stairwell) and up (to the first floor rooms) from here.
+
+Aidan's heavy footsteps come from the west.
+
+>w
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Aidan is here, swaying a little and looking like an enraged bull with a killer headache.
+
+Familiar surroundings momentarily confuse him.
+>w
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+Aidan's heavy footsteps come from the east.
+
+>u
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+Aidan's heavy footsteps come from the stairs.
+
+>e
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Aidan's heavy footsteps come from the west.
+
+>restore
+Ok.
+
+>n
+
+Pits, East
+Your room is at this end of the Pits hallway, just to the south of here.  You've elected to cover your door with the biggest cutout of a werewolf that you can find, because werewolves are cool.  The hallway continues west, and a high window on the east wall looks out across Calvin Field North.  Right beside your room door is the fire stair leading back upstairs.
+
+>w
+
+Pits Stairwell
+This is the Pits, and evidently someone thought it would be a good idea to decorate the area dedicated to housing newbies with images taken from classic horror movies.  Frankenstein's monster looms over the doorway to the south, as if standing guard outside the Pits lobby, while werewolves and vampires romp away to the east and west.  The stairs themselves lead back upstairs to the wintery delights of the first floor.
+
+Aidan's heavy footsteps come from the east.
+
+>w
+As you run into this part of the hallway, one of the doors opens a crack.  Lucian pops his head out just long enough to see Aidan roaring up after you, and then he slams the door shut again.
+
+Pits, West
+This end of the Pits hallway is somewhat less spooky than the rest: the paper skeletons dancing across the walls all seem quite cheerful and not at all threatening.  Dim light filters in through a high window, through which you can see the bushes and assorted shrubbery growing up against the building.  From here, you could also go back east to the main stairwell, or take the fire stairs upstairs.
+
+Aidan's heavy footsteps come from the east.
+
+>[yeah, there it is.]
+You seem to want to talk to someone, but I can't see whom.
+
+>n
+That would put you in a dead end!  And by dead end, I mean DEAD end!  Also, all the doors there are locked.
+
+Aidan's heavy footsteps come from the east.
+
+>u
+You hear Lucian's door open again, and Lucian himself running off in another direction.  You hope he's gone to get help.
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+Aidan's heavy footsteps come from the stairs.
+
+>e
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Aidan's heavy footsteps come from the west.
+
+>s
+
+Info Desk
+The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.
+
+Aidan's heavy footsteps come from the north.
+
+>s
+
+First Floor Lobby, West
+This used to be the living room, back when old AQJ was still alive and the university was just starting up.  It's got a huge fireplace, and a big bay window looking out onto the front lawn.  It's also been painted completely white from floor to ceiling, so thickly that you're not sure if some of the molding is not actually just bubbles under the paint.  The info desk is back through the arch to the north, and the lobby continues, through another arch, to the west.
+
+A large brass plaque has been fixed into the space over the fireplace.
+
+Aidan's heavy footsteps come from the north.
+
+>e
+
+First Floor Lobby, East
+This used to be a rather large dining room, once upon a time, and it still has a low-hanging chandelier right in the middle of the ceiling.  A piano's been pushed under the chandelier so that nobody accidentally gets a head full of crystal walking blindly around, and the place is generally used as a kind of music room now.  The info desk is back to the northwest, and to the west is the rest of the first floor lobby.  Wide picture windows look out on the front lawn and on the southern part of Calvin Field.
+
+Aidan's heavy footsteps come from the west.
+
+"Hey!"  It's Brad, your counselor, minus the gum and the baseball cap.  He gets in between you and Aidan, shouting for Aidan to settle down.  Aidan has no intention of doing any such thing, and swings out at Brad instead.  He's slow, though, Brad ducks easily -- but then Aidan opens his hand and sweeps it back, catching Brad right in the chest.  WHAM!  Brad goes flying against the wall and slides unconscious to the floor.  You hear doors opening all up and down the hallway, and closing again, as Aidan turns his attention back to you....
+
+>[1) We need to be able to grok that it was Lucian who grabbed Brad. Maybe he's trailing Brad in this scene? 2) The writing is assuming I'm in a hallway, but as shown here, it ain't necessarily so.]
+That's not a verb I recognize.
+
+>w
+
+First Floor Lobby, West
+This used to be the living room, back when old AQJ was still alive and the university was just starting up.  It's got a huge fireplace, and a big bay window looking out onto the front lawn.  It's also been painted completely white from floor to ceiling, so thickly that you're not sure if some of the molding is not actually just bubbles under the paint.  The info desk is back through the arch to the north, and the lobby continues, through another arch, to the west.
+
+A large brass plaque has been fixed into the space over the fireplace.
+
+Aidan is here, swaying a little and looking like an enraged bull with a killer headache.
+
+Familiar surroundings momentarily confuse him.
+>e
+
+First Floor Lobby, East
+This used to be a rather large dining room, once upon a time, and it still has a low-hanging chandelier right in the middle of the ceiling.  A piano's been pushed under the chandelier so that nobody accidentally gets a head full of crystal walking blindly around, and the place is generally used as a kind of music room now.  The info desk is back to the northwest, and to the west is the rest of the first floor lobby.  Wide picture windows look out on the front lawn and on the southern part of Calvin Field.
+
+[placeholder text: "Brad's beat up"]
+
+.
+
+You can also see Aidan's room key here.
+
+Aidan's heavy footsteps come from the west.
+
+>get key
+Taken.
+
+Aidan stumbles into the room, and launches himself at you.
+
+>nw
+
+Info Desk
+The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.
+
+Aidan's heavy footsteps come from the southeast.
+
+>n
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+Aidan's heavy footsteps come from the south.
+
+>w
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+Aidan's heavy footsteps come from the east.
+
+>unlock door
+Your room key won't unlock this door.
+
+>[oh dear.]
+That's not a verb I recognize.
+
+>i
+You are carrying:
+  Aidan's room key
+  some readings for your Satirical Writing class
+
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+
+>[if I'm carrying Aidan's key, the game shouldn't require me to say UNLOCK AIDAN'S DOOR WITH AIDAN'S KEY.]
+You seem to want to talk to someone, but I can't see whom.
+
+>n
+
+Aidan's Room
+Aidan shares this room with some guy whose name you never caught and whom you almost never see.  Aidan keeps his half of the room neat and spartan, almost as if he were expecting a military inspection at any moment.  The bedclothes look to be pulled tight enough to bounce a penny to the ceiling, and the desk is practically bare but for a few neatly regulationed necessities.  The door to the dorm corridor is back to the south.
+
+Aidan is just beyond the door.
+
+>x desk
+[placeholder text: "Aidan's desk"]
+
+
+
+Aidan stumbles into the room, and launches himself at you.
+
+>[where are the pics described? They should stand out more when I enter this room. Now is not the time for subtle brainteasers.]
+That's not a verb I recognize.
+
+>get picture
+[placeholder text: "DO YOU REMEMBER?"]
+
+
+
+>[Eh?]
+That's not a verb I recognize.
+
+>l
+Aidan's Room
+Aidan shares this room with some guy whose name you never caught and whom you almost never see.  Aidan keeps his half of the room neat and spartan, almost as if he were expecting a military inspection at any moment.  The bedclothes look to be pulled tight enough to bounce a penny to the ceiling, and the desk is practically bare but for a few neatly regulationed necessities.  The door to the dorm corridor is back to the south.
+
+Aidan is here, swaying a little and looking like an enraged bull with a killer headache.
+
+>show picture to aidan
+>[gee, this seems broken]
+You seem to want to talk to someone, but I can't see whom.
+
+>tell aidan about picture
+Aidan does not appear to be in any mood to listen to you.  He probably can't even hear you over the pounding blood in his ears.
+
+>get picture
+>[I seem to have fallen into a code chasm here.]
+That's not a verb I recognize.
+
+>give picture to aidan
+>i
+You are carrying:
+  Aidan's photograph
+  Aidan's room key
+  some readings for your Satirical Writing class
+
+Goals Accomplished: 
+  doing well in the scavenger hunt
+  helping Lucian retrieve his crystal
+  escape from Lucian's emotions
+  find your way to Aidan
+  find out what's happened to you
+
+>x photograph
+[placeholder text: "A photograph of Aidan and yourself (during a warm, fuzzy moment)"]
+
+.
+
+>[well clearly I just need a walkthrough here. I'm going to bail for tonight and look later at the test script.]
+That's not a verb I recognize.
+
+>quit
+Are you sure you want to quit? y

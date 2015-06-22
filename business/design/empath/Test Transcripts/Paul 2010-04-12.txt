@@ -1,0 +1,896 @@
+Start of a transcript of
+
+Empath
+Empath by Textfyre
+Copyright 2010 by Textfyre
+Designed by Paul O'Brian
+Written by Christopher Huang
+Game Engine (FyreVM) by Jesse McGrew
+Inform 7 Programming by Graeme Jefferis
+  and Ron Newcomb
+Testing by ____
+Special thanks to Graham Nelson and Emily Short
+for all of their hard work on Inform 7.
+All rights reserved
+Identification number: //416F4705-CDFA-4F6A-8383-CB5D7C2B1FA4//
+Interpreter version 1.2.6 / VM 3.1.1 / Library serial number 080126
+Standard Rules version 2/090402 by Graham Nelson
+Textfyre Standard Backdrops by Textfyre
+Basic Followers by Textfyre
+Goals by Textfyre
+Test Suite by Textfyre
+Parse List by Textfyre
+
+>restart
+Are you sure you want to restart? yes
+
+
+
+
+It's your second year at the LEAP summer camp, and so far it's been as great as you remember last year to have been.  Ava Winters and Stacy Alexander, whom you met last year (and whom your brother Aidan calls "your girlfriends", much to your embarrassment) are here again.  You spent yesterday catching up on the news in between options and classes, and now you're settling in with the smug sensation of not being a raw newbie any more.
+
+The LEAP summer camp isn't quite the same as most summer camps.  LEAP is an acronym for "Learning Enrichment Activity Program"; the brainchild of world-renowned educator Professor Damon Rose, it is housed on the campus of the University of Colorado at Valmont, and was created for Gifted and Talented Kids (gosh, that sounds impressive) to expand their horizons and encourage them to stretch their mental capabilities.
+
+Whatever. That's all in the promotional flyers. You just know that you're in for two weeks of the sort of interesting classes you don't get in school, and a bunch of fun options with which to fill up the free time after classes.  This evening, for instance, you've signed up for a scavenger hunt....
+
+
+Please press SPACE to continue.
+LEAP, Day 2.  Evening.
+
+"Okay, kids!" Michelle, the counselor in charge of the scavenger hunt option waves her hands to settle the crowd around you, before finally remembering her whistle.  A brief fweep sweeps through the room.  "Okay, does everyone have their list?  Everyone good?  Okay!  You have until 8:25 pm to find everything on your lists, return here, and show me your lists so I can check them.  So synchronise your watches... are we all in sync?  Good!  Your time starts... now!"
+
+Michelle's whistle gives another sharp fweep, and the room practically empties as everyone else runs off to begin their hunt.
+
+Empath
+Empath by Textfyre
+Copyright 2010 by Textfyre
+Designed by Paul O'Brian
+Written by Christopher Huang
+Game Engine (FyreVM) by Jesse McGrew
+Inform 7 Programming by Graeme Jefferis
+  and Ron Newcomb
+Testing by ____
+Special thanks to Graham Nelson and Emily Short
+for all of their hard work on Inform 7.
+All rights reserved
+
+Info Desk
+The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.
+
+Michelle Close leans against the side of the desk, chewing on a pencil.
+
+>[NB I'm playing the release version, not the output.ulx. I don't really want to use the debugging stuff, and I'd prefer to see text effects, etc. For instance, in the debugging version, that screen clear before "LEAP, Day 2" does not occur.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[The title should be The Empath's Gift, not Empath. (A Gift Of Empathy was an earlier working title.) "Empath" sounds both too flat and more science-fictiony than I intend. Also, if this gets the chance to evolve into a series, the "gift" thing is a hook
+You seem to want to talk to someone, but I can't see whom.
+
+>[upon which the other titles can hang -- "The Songbird's Gift", "The Tinkerer's Gift", etc. ]
+You seem to want to talk to someone, but I can't see whom.
+
+>l
+Info Desk
+The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.
+
+Michelle Close leans against the side of the desk, chewing on a pencil.
+
+>[I don't think "Look" should take game time either. Basically I'd like to be very forgiving in this first chapter. It's set up to move the story along but also encourage optimizing replay later; I don't want to create further unnecessary frustration.]
+I didn't understand that sentence.
+
+>[Speaking of which, are we implementing any kind of friendly tutorial mode in Textfyre games? I don't remember any such thing being present in Secret Letter or Shadow, but after the outreach discussion at PAX, it's seeming like a really good idea.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[Probably a topic best left to email...]
+I didn't understand that sentence.
+
+>[I'm just all stream-of-consciousness when I do this.]
+I didn't understand that sentence.
+
+>x michelle
+Michelle Close is one of the counselors.  She's slightly untidy-looking, with a big explosion of curly black hair and a pencil tucked behind one ear.
+
+>i
+You are carrying:
+  an unread list of items for the Scavenger Hunt
+  a few dollars
+
+>read list
+A newspaper
+A feather
+A flag
+A star
+A dinosaur
+A hat
+Something that was once alive
+
+>ask michelle about hunt
+"You've got until 8:25 to find the things on your list, Daniel.  So if you haven't found everything yet, you'd better hurry.  And don't worry, we checked the lists beforehand and we know that everything is available one way or another around here."
+
+>x me
+A description of the player.
+>[that needs to be written]
+I didn't understand that sentence.
+
+>l
+Info Desk
+The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.
+
+Michelle Close leans against the side of the desk, chewing on a pencil.
+
+>x porrait
+You can't see such a thing.
+
+>x portrait
+Old AQJ, who left his mansion to the university, stares down benevolently from his portrait.  You never cease to be amazed at his enormous sidewhiskers.
+
+>x sidewhiskers
+They're called Dundrearies, though you can't see anything remotely dreary about them.  Maybe one day you'll grow something like that, if Mom doesn't attack you with sheepshearing equipment first.
+
+>n
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+>x pouch
+It's full of cutouts of snowboards, skis, hockey sticks, skates, sleds and other things that make you want to put on your scarf and your warm, woolly mittens.
+
+>get pouch
+No need.
+
+>get cutouts
+(the images of winter sports)
+No need.
+
+>s
+
+Info Desk
+The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.
+
+Michelle Close leans against the side of the desk, chewing on a pencil.
+
+>x desk
+It's very sleek and modern-looking, which means it's oddly shaped and doesn't fit anywhere.  A never-ending supply of LEAP flyers are stacked in a corner.  Tucked away into a corner is a small saucer for loose change.  (The receptionist usually keeps this in a corner of the desk where only she can see it, but apparently it's been moved.  She's only here during the school year, anyway.)
+
+>get flyers
+They're hardly portable.
+
+>[that ought to just take one]
+I didn't understand that sentence.
+
+>get flyer
+They're hardly portable.
+
+>[that's definitely wrong]
+I didn't understand that sentence.
+
+>x saucer
+Sitting in the saucer are a few random coins.  Funny, wasn't this dish empty when you passed by the desk this morning?
+
+>[Ha. Oh, very nice.]
+You seem to want to talk to someone, but I can't see whom.
+
+>n
+
+First Floor Midpoint
+The first floor is where the older boys, including your brother Aidan, are housed.  The walls are plastered with images of winter sports, which makes perfect sense given that it's the middle of summer.  Between the skiers and the snowboarders, the hallway continues east and west, while the main stairs go up to the girls' dorms and down to the younger boys' dorms; and of course there's the info desk back to the south.  A friendly-looking cardboard cutout of Olympic ski champion Stephan Eberharter holds a pouch full of cutouts of all things winter-sporty, practically begging you to stick more of them up on the walls.
+
+>n
+There are exits east, south (to the info desk), west, up and down from here.
+
+>e
+
+First Floor Rooms, East
+This is the east end of the first floor dorm area.  Through the window at the end of the hall, you can see Calvin Field North and a bunch of campers running about in the summer sunshine.  In here, you are surrounded by images of people having snowball fights.  The fire stairs at this end of the hall go up and down.
+
+>[Didn't we decide to cordon off the room corridors for this chapter?]
+I didn't understand that sentence.
+
+>n
+There are exits south, west (to the first floor midpoint), up and down from here.
+
+>[I love that exits list]
+I didn't understand that sentence.
+
+>s
+Michelle had said the dorm rooms were off-limits for the hunt.
+
+>[Yeah, I kind of think we don't need the hallways right now either. I don't think [too much of] the writing work will go to waste -- there are other chapters set in this location. Sorry for any that does. I failed to recognize the need for paring the rooms
+You seem to want to talk to someone, but I can't see whom.
+
+>[in this first chapter.]
+I didn't understand that sentence.
+
+>u
+
+Second Floor Rooms, East
+The girls at this end of the corridor seem to prefer movie posters to cutouts of actors.  The only cutout here is a lifesize Humphrey Bogart, on the door to the fire stairs.  Opposite Bogey, to the north, is Ava and Stacy's room, while behind Bogey are stairs going up and down.  And at the end of the corridor is, of course, the window overlooking Calvin Field, and stardom continues back to the west.
+
+>d
+
+First Floor Rooms, East
+This is the east end of the first floor dorm area.  Through the window at the end of the hall, you can see Calvin Field North and a bunch of campers running about in the summer sunshine.  In here, you are surrounded by images of people having snowball fights.  The fire stairs at this end of the hall go up and down.
+
+>x campers
+There seems to be an awful lot of running around over Calvin Field today.
+
+>x snowball
+The snowball looks like every other snowball you've ever seen.
+
+>get snowball
+You can't see any such thing.
+
+>[hmm. That seems wrong.]
+I didn't understand that sentence.
+
+>u
+
+Second Floor Rooms, East
+The girls at this end of the corridor seem to prefer movie posters to cutouts of actors.  The only cutout here is a lifesize Humphrey Bogart, on the door to the fire stairs.  Opposite Bogey, to the north, is Ava and Stacy's room, while behind Bogey are stairs going up and down.  And at the end of the corridor is, of course, the window overlooking Calvin Field, and stardom continues back to the west.
+
+>x bogey
+Humphrey Bogart as Sam Spade in "The Maltese Falcon": trenchcoat, fedora, world-weary expression, and a general air of noir-ness.  Apparently he's guarding the stairs.
+
+>x window
+From here, you can see people running around on Calvin Field below.  The window itself is locked, of course.
+
+>open window
+That's not something you can open.
+
+>break window
+Violence isn't the answer to this one.
+
+>n
+Michelle had said the dorm rooms were off-limits for the hunt.
+
+>ne
+There are exits north, west, up and down (to first floor rooms) from here.
+
+>n
+Michelle had said the dorm rooms were off-limits for the hunt.
+
+>w
+
+Second Floor Lobby
+Hooray for Hollywood!  The words are emblazoned right across the wall, over a cutout of Audrey Hepburn holding a pouch full of smaller cutouts of other Hollywood stars.  The glamour continues east and west, to where the younger girl campers are roomed, while the stairs go up and down.
+
+A few tables have been set up here for the RPG option, and the campers involved seem thoroughly absorbed in the unfolding story.
+
+>x rpg
+You've not had much exposure to roleplaying games in the past, but they look quite interesting.  You'd have signed up for this option this evening if it hadn't filled up within seconds of being offered.  You'll get another chance some time later, though, never fear.  At any rate, this time round they're playing something called Seventh Sea, which seems to be all about swashbuckly goodness, arrr.
+
+>x audrey
+It's Audrey Hepburn in her role as Holly Golightly in "Breakfast at Tiffany's."  You haven't seen that movie, but somehow you suspect that Holly Golightly never, at any point in the story, dangled a pouch of any sort from the end of her cigarette holder.
+
+>x pouch
+It's full of big-name, A-list actors and actresses, past and present.
+
+>get actor
+You can't see any such thing.
+
+>get actress
+You can't see any such thing.
+
+>get a-list
+(the images of Hollywood stars)
+You take a cutout picture of Charlie Chaplin.
+
+[You achieved a goal! (finding a star)]
+
+>[aliases needed]
+I didn't understand that sentence.
+
+>goals
+Goals Accomplished: 
+  finding a star
+
+Goals Remaining: 
+  find a newspaper
+  find a feather
+  find a flag
+  find a dinosaur
+  find a hat
+  find something that was once alive
+
+>i
+You are carrying:
+  a cutout picture of Charlie Chaplin
+  a list of items for the Scavenger Hunt
+  a few dollars
+
+Goals Accomplished: 
+  finding a star
+
+Goals Remaining: 
+  find a newspaper
+  find a feather
+  find a flag
+  find a dinosaur
+  find a hat
+  find something that was once alive
+
+>[inventory also shouldn't take game time]
+I didn't understand that sentence.
+
+>story
+I didn't understand that sentence.
+
+>l
+Second Floor Lobby
+Hooray for Hollywood!  The words are emblazoned right across the wall, over a cutout of Audrey Hepburn holding a pouch full of smaller cutouts of other Hollywood stars.  The glamour continues east and west, to where the younger girl campers are roomed, while the stairs go up and down.
+
+A few tables have been set up here for the RPG option, and the campers involved seem thoroughly absorbed in the unfolding story.
+
+>n
+There are exits east (to second floor rooms), west, up and down (to the first floor midpoint) from here.
+
+>[oh cool, the exits list is even smarter than i thought. Hooray!]
+You seem to want to talk to someone, but I can't see whom.
+
+>w
+
+Second Floor Rooms, West
+The large window at this end of the corridor would normally look out over Second Avenue, but someone's gone and plastered it over with cutouts of every actor who's ever played James Bond.  There's definitely a spy thriller motif going on here: the only surfaces not covered with more of the same are the doors to the rooms and the door to the fire stairs, which continue up and down from here.  The way back to the east looks significantly less cloak-and-dagger.
+
+>x actors
+You see nothing special about the images of Hollywood stars.
+
+>[there should be a description of the Bond actors there.]
+I didn't understand that sentence.
+
+>n
+There are exits east (to the second floor lobby), up and down from here.
+
+>u
+
+Third Floor Rooms, West
+In defiance of the prescribed decoration scheme, someone has stuck a large poster of one of Van Gogh's "Starry Night" paintings on the wall here.  The scattering of constellations around seem small and weak by comparison.  There is also the window overlooking Second Avenue, surrounded by a thicket of stars; meanwhile, the fire stairs only go down from here, and the corridor continues back to the east.
+
+>[I wouldn't know what the prescribed decoration scheme is if this was my first exposure to the third floor.]
+I didn't understand that sentence.
+
+>get painting
+That's hardly portable.
+
+>get poster
+That's hardly portable.
+
+>[okay, a player might very well try to snag this poster to fulfill the "star" goal, so there should be a better denial message there.]
+You seem to want to talk to someone, but I can't see whom.
+
+>x stars
+You see nothing special about the images of stellar bodies.
+
+>get stars
+That's hardly portable.
+
+>[again, need a better denial message. Otherwise a player might reasonably expect to peel one off the wall.]
+You seem to want to talk to someone, but I can't see whom.
+
+>n
+There are exits east and down (to second floor rooms) from here.
+
+>e
+Third Floor Lobby
+This is where the older girls have their rooms.  The walls are painted a very dark blue, and there are planets, stars and all things space-age stuck all over the place.  A cutout of an astronaut holds out a pouch full of astronomical bits; the corridor itself extends east and west, and the stairs continue down to the rest of the dorms and up to the roof.
+
+Under a particularly starry patch of ceiling, a group of campers, including your brother Aidan, are engaged in some freeform improvised poetry.  This is the Rap Session option, you think.
+
+As you enter the area, you experience a momentary headache and the urge to sneeze.  The feeling disappears quickly, but evidently not quickly enough because Aidan clearly seems to have noticed something wrong.  He breaks away from the rest of his option and comes up to you. 
+
+"Hey, Daniel, you okay?"
+
+1. "Yeah, I'm fine."
+2. "No, I'm getting these dizzy spells and headaches."
+
+>[I don't think #2 should be an option if the player hasn't yet had a dizzy spell. Perhaps one of them should be a part of the very first scene, an overwhelmed feeling as all the hyped-up campers rush off with their scavenger lists.]
+I didn't understand that sentence.
+
+>[Oh, I just noticed that the momentary headache happened upon entering the room. So, two things there. First, I don't think "As you enter the area" should be buried after the room description and the option description. Second, I still think we need one
+You seem to want to talk to someone, but I can't see whom.
+
+>[more instance in order for Daniel to refer to them in the plural. So let's move the headache description to just after the movement command, before the room name prints, but keep Aidan's approach where it is. I'd rewrite to something like this:
+I didn't understand that sentence.
+
+>["As you enter the area, you experience a momentary headache and the urge to sneeze. The feeling disappears quickly, but leaves you disoriented for a few moments." {Room name} {Room desc} {Option desc} "Aidan clearly seems to have noticed your
+You seem to want to talk to someone, but I can't see whom.
+
+>[odd behavior, brief though it was. He breaks away from the rest of his option..." etc.]
+You seem to want to talk to someone, but I can't see whom.
+
+>1
+"Yeah, I'm fine."
+
+"You sure?  You looked a bit green for a moment there."
+
+1. "Really, I'll be fine."
+2. "Well, I felt a bit funny for a moment, but I'm better now."
+
+>2
+"Well, I felt a bit funny for a moment, but I'm better now."
+
+Aidan frowns.  "Could be something you ate.  Brad Kramer's your counselor, isn't he?  Want me to go get him?"
+
+1. "Thanks, but I think I'll be able to find him myself."
+2. "No, I'll be fine.  It's nothing, really."
+3. "Uh, no, thanks.  (Aidan, you're embarrassing me!)"
+
+>3
+"Uh, no, thanks.  (Aidan, you're embarrassing me!)"
+
+"Whatever you say, tough guy."  Aidan ruffles your hair, and for a moment, but only a moment, something buzzes in your ears.  Aidan resumes his seat with the other rappers.
+
+>[I have probably said this before, but Chris, I really love what you've done with these sensory clues.]
+You seem to want to talk to someone, but I can't see whom.
+
+>l
+Third Floor Lobby
+This is where the older girls have their rooms.  The walls are painted a very dark blue, and there are planets, stars and all things space-age stuck all over the place.  A cutout of an astronaut holds out a pouch full of astronomical bits; the corridor itself extends east and west, and the stairs continue down to the rest of the dorms and up to the roof.
+
+Under a particularly starry patch of ceiling, a group of campers, including your brother Aidan, are engaged in some freeform improvised poetry.  This is the Rap Session option, you think.
+
+Your brother Aidan is here, having signed up for the Rap Session option.
+
+>x pouch
+A bag full of constellations.
+
+>get constellation
+You can't see any such thing.
+
+>[aliasing again]
+I didn't understand that sentence.
+
+>get constellations
+(the images of stellar bodies)
+You take a five-pointed star cutout.
+
+>l
+Third Floor Lobby
+This is where the older girls have their rooms.  The walls are painted a very dark blue, and there are planets, stars and all things space-age stuck all over the place.  A cutout of an astronaut holds out a pouch full of astronomical bits; the corridor itself extends east and west, and the stairs continue down to the rest of the dorms and up to the roof.
+
+Under a particularly starry patch of ceiling, a group of campers, including your brother Aidan, are engaged in some freeform improvised poetry.  This is the Rap Session option, you think.
+
+Your brother Aidan is here, having signed up for the Rap Session option.
+
+>n
+There are exits east, west (to the third floor rooms), up and down (to the second floor lobby) from here.
+
+>e
+
+Third Floor Rooms, East
+This end of the corridor looks like the inside of a space shuttle.  Someone's gone to great care to create window-like frames for the stars and planets and whatnot; even the window overlooking Calvin Field has been made to look like a space shuttle viewport.  Outer Space is back to the west; presumably the planet Earth is down the stairs.
+
+>x window
+Through the constellation of Orion, you can see Calvin Field below and the people running around on it.
+
+>x frames
+You have to wonder what the Powers That Be think of people actually applying paint to the walls.  I mean, there's a reason they provided cutouts to paste onto the walls, and that you can take off again.  Then again, well, there's no way anyone could have done all this in the short time you've been here, so quite probably it was done by the college kids during the semester and the Powers That Be decided to just go with the theme rather than call in the graffiti removal squad.
+
+>u
+There are exits west (to the third floor lobby) and down (to second floor rooms) from here.
+
+>w
+Third Floor Lobby
+This is where the older girls have their rooms.  The walls are painted a very dark blue, and there are planets, stars and all things space-age stuck all over the place.  A cutout of an astronaut holds out a pouch full of astronomical bits; the corridor itself extends east and west, and the stairs continue down to the rest of the dorms and up to the roof.
+
+Under a particularly starry patch of ceiling, a group of campers, including your brother Aidan, are engaged in some freeform improvised poetry.  This is the Rap Session option, you think.
+
+Your brother Aidan is here, having signed up for the Rap Session option.
+
+There it is, that funny throbbing feeling in the back of your head.  And there, it's gone again.
+
+>[nice]
+I didn't understand that sentence.
+
+>n
+There are exits east (to third floor rooms), west (to the third floor rooms), up and down (to the second floor lobby) from here.
+
+>u
+You step out into the bright sunshine.
+
+Rooftop
+The rooftop is only accessible when there's an activity or option that uses it.  Otherwise, it's off-limits, not that you can really imagine why anyone would want to come up here.  It's all black gravel and tar.  The courtyard downstairs is way more pleasant.  
+
+The Eggdrop option is busy tossing boxes of eggs over the parapet: a table has been set up as well, and is covered with artsy-craftsy materials with which a number of campers are building egg-preservation containers.  
+
+
+On the eggdrop option table are some shish-kebab skewers.
+
+As you emerge into the sunlight, you feel a momentary dizziness that makes you almost want to hurl.  The feeling is gone very quickly, but your heart is left pumping as though you'd just run a couple of miles.
+
+>[strange extra carriage return there]
+I didn't understand that sentence.
+
+>[newline I mean]
+I didn't understand that sentence.
+
+>x skewers
+You see nothing special about the shish-kebab skewers.
+
+>x table
+It's covered with artsy-craftsy materials: cardboard boxes, egg cartons, feathery boas, bits of cloth, sticks, rubber bands, Elmer's glue, and so on.  There are also several cartons of eggs.
+
+>[Not sure why we're calling out the skewers specifically]
+I didn't understand that sentence.
+
+>goals
+Goals Accomplished: 
+  finding a star
+
+Goals Remaining: 
+  find a newspaper
+  find a feather
+  find a flag
+  find a dinosaur
+  find a hat
+  find something that was once alive
+
+>get skewer
+You take a wooden stick.
+
+>attach cloth to skewer
+You would achieve nothing by this.
+
+>[Whoa, wrong response. Anytime the player does something that could reasonably be construed as a legitimate step toward solving a puzzle, we should not give a "that's not worthwhile" message.
+You seem to want to talk to someone, but I can't see whom.
+
+>get glue
+You can use some glue while you're here, but there's no need in taking a whole bottle.
+
+>glue cloth to skewer
+You would achieve nothing by this.
+
+>[again, wrong. I'm trying to make a flag here.]
+You seem to want to talk to someone, but I can't see whom.
+
+>get cloth
+You take a small square of green fabric.
+
+>glue cloth to skewer
+(the small square of green fabric to the wooden stick)
+You stick the cloth to the short skewer with the glue. It makes a pretty nifty flag!
+[You achieved a goal! (finding a flag)]
+
+>undo
+rooftop
+[Previous turn undone.]
+
+>attach cloth to skewer
+(the small square of green fabric to the wooden stick)
+You stick the cloth to the short skewer with the glue. It makes a pretty nifty flag!
+[You achieved a goal! (finding a flag)]
+
+>[okay, apparently the failure happens when the player isn't holding the cloth. That needs to be fixed.]
+You seem to want to talk to someone, but I can't see whom.
+
+>l
+Rooftop
+The rooftop is only accessible when there's an activity or option that uses it.  Otherwise, it's off-limits, not that you can really imagine why anyone would want to come up here.  It's all black gravel and tar.  The courtyard downstairs is way more pleasant.  
+
+The Eggdrop option is busy tossing boxes of eggs over the parapet: a table has been set up as well, and is covered with artsy-craftsy materials with which a number of campers are building egg-preservation containers.  
+
+
+On the eggdrop option table are some shish-kebab skewers.
+
+>[Okay, two things here. First, if I'm spending this much time here, I should definitely get to see Lucian getting bullied by Hank & Joe.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[Second, everywhere an option is happening needs more atmospheric text. There should be bits of stage business happening that give a flavor of what the option is like.]
+You seem to want to talk to someone, but I can't see whom.
+
+>x table
+It's covered with artsy-craftsy materials: cardboard boxes, egg cartons, feathery boas, bits of cloth, sticks, rubber bands, Elmer's glue, and so on.  There are also several cartons of eggs.
+
+>n
+There is an exit down (to the third floor lobby) from here.
+
+>jump
+You execute a few freestyle steps, much to the amusement of the musicians.
+
+>[musicians?]
+I didn't understand that sentence.
+
+>dance
+You execute a few freestyle steps, much to the amusement of the musicians.
+
+>[Methinks that message is not applicable everywhere.]
+I didn't understand that sentence.
+
+>jump off roof
+I only understood you as far as wanting to jump.
+
+>[need a response there]
+I didn't understand that sentence.
+
+>d
+You leave behind the bright sunshine.
+
+Third Floor Lobby
+This is where the older girls have their rooms.  The walls are painted a very dark blue, and there are planets, stars and all things space-age stuck all over the place.  A cutout of an astronaut holds out a pouch full of astronomical bits; the corridor itself extends east and west, and the stairs continue down to the rest of the dorms and up to the roof.
+
+Under a particularly starry patch of ceiling, a group of campers, including your brother Aidan, are engaged in some freeform improvised poetry.  This is the Rap Session option, you think.
+
+Your brother Aidan is here, having signed up for the Rap Session option.
+
+There it is, that funny throbbing feeling in the back of your head.  And there, it's gone again.
+
+>u
+You step out into the bright sunshine.
+
+Rooftop
+The rooftop is only accessible when there's an activity or option that uses it.  Otherwise, it's off-limits, not that you can really imagine why anyone would want to come up here.  It's all black gravel and tar.  The courtyard downstairs is way more pleasant.  
+
+The Eggdrop option is busy tossing boxes of eggs over the parapet: a table has been set up as well, and is covered with artsy-craftsy materials with which a number of campers are building egg-preservation containers.  
+
+
+On the eggdrop option table are some shish-kebab skewers.
+
+There's that dizzy feeling again; this time you're ready for it.  As it fades away, you almost swear you taste something vaguely sour in the air.
+
+>n
+There is an exit down (to the third floor lobby) from here.
+
+>d
+You leave behind the bright sunshine.
+
+Third Floor Lobby
+This is where the older girls have their rooms.  The walls are painted a very dark blue, and there are planets, stars and all things space-age stuck all over the place.  A cutout of an astronaut holds out a pouch full of astronomical bits; the corridor itself extends east and west, and the stairs continue down to the rest of the dorms and up to the roof.
+
+Under a particularly starry patch of ceiling, a group of campers, including your brother Aidan, are engaged in some freeform improvised poetry.  This is the Rap Session option, you think.
+
+Your brother Aidan is here, having signed up for the Rap Session option.
+
+There it is, that funny throbbing feeling in the back of your head.  And there, it's gone again.
+
+>n
+There are exits east (to third floor rooms), west (to the third floor rooms), up (to the rooftop) and down (to the second floor lobby) from here.
+
+>w
+
+Third Floor Rooms, West
+In defiance of the prescribed decoration scheme, someone has stuck a large poster of one of Van Gogh's "Starry Night" paintings on the wall here.  The scattering of constellations around seem small and weak by comparison.  There is also the window overlooking Second Avenue, surrounded by a thicket of stars; meanwhile, the fire stairs only go down from here, and the corridor continues back to the east.
+
+>d
+
+Second Floor Rooms, West
+The large window at this end of the corridor would normally look out over Second Avenue, but someone's gone and plastered it over with cutouts of every actor who's ever played James Bond.  There's definitely a spy thriller motif going on here: the only surfaces not covered with more of the same are the doors to the rooms and the door to the fire stairs, which continue up and down from here.  The way back to the east looks significantly less cloak-and-dagger.
+
+>u
+
+Third Floor Rooms, West
+In defiance of the prescribed decoration scheme, someone has stuck a large poster of one of Van Gogh's "Starry Night" paintings on the wall here.  The scattering of constellations around seem small and weak by comparison.  There is also the window overlooking Second Avenue, surrounded by a thicket of stars; meanwhile, the fire stairs only go down from here, and the corridor continues back to the east.
+
+>n
+There are exits east (to the third floor lobby) and down (to second floor rooms) from here.
+
+>d
+
+Second Floor Rooms, West
+The large window at this end of the corridor would normally look out over Second Avenue, but someone's gone and plastered it over with cutouts of every actor who's ever played James Bond.  There's definitely a spy thriller motif going on here: the only surfaces not covered with more of the same are the doors to the rooms and the door to the fire stairs, which continue up and down from here.  The way back to the east looks significantly less cloak-and-dagger.
+
+>n
+There are exits east (to the second floor lobby), up (to the third floor rooms) and down from here.
+
+>exits
+There are exits east (to the second floor lobby), up (to the third floor rooms) and down from here.
+
+>exits
+There are exits east (to the second floor lobby), up (to the third floor rooms) and down from here.
+
+>d
+
+First Floor Rooms, West
+You're at the west end of the first floor dorm area.  The winter sports theme continues on in spite of the summer sunshine streaming in through the window.  Aidan's room is to the north, flanked by a pair of matching hockey sticks, and you could take the fire stairs up or down.
+
+8:25!  Time's up!  You hurry back to the starting point with your list and everything you've found so far....
+
+First Floor Lobby, West
+This used to be the living room, back when Alexander Quaverley Jacobs, the eccentric old coot who donated this place to the university was still alive and the university was just starting up.  It's got a huge fireplace, and a big bay window looking out onto the front lawn.  It's also been painted completely white from floor to ceiling, so thickly that you're not sure if some of the molding is not actually just bubbles under the paint.  The info desk is back through the arch to the north, and the lobby continues, through another arch, to the west.
+
+A large brass plaque has been fixed into the space over the fireplace.
+
+Michelle scans your list, looks over your findings, and shakes her head.  "Well, it was a good try, Daniel, but I'm afraid you haven't found everything.  Better luck next time!"
+
+It takes you a few moments to realize that "the bitter taste of defeat" is, in this case, not a figure of speech: the air literally does taste bitter.
+
+
+Please press SPACE to continue.
+
+Well, that was odd.
+
+Those sudden flashes of sensory hallucination (what else would you call them?) seem to die down over the course of the next day.  The headaches and dizzy spells are so mild now as to be practically gone, but on the other hand, the frequency seems to be increasing.  It's all somewhere in the back of your head: if you focus, you can almost always find... something.  A smell, or a sound that isn't there.  A peculiar flavour hanging in the air.
+
+Even so, you're not entirely sure you want to speak to a doctor.  I mean, it's not as if it's laying you flat on your back on anything like that.  You could talk to Aidan, but he'd probably just march you straight up to the hospital.  He'd even carry you there if he had to.  So where does that leave you?
+
+
+
+Please press SPACE to continue.
+
+
+LEAP, Day 3 (Tuesday) - Dorm Time
+
+Your roommate, Jeremy, went off with some friends after dinner, which leaves you alone for now.  It's dorm time, which means you have maybe a couple of hours or so before lights-out, all to yourself.  Some people spend the time reading, or listening to music, or visiting friends.  Which reminds you, maybe talking to Stacy and Ava about this would be the best thing to do.  Maybe they'll tell you it's all part of being eleven years old, or something.
+
+Yeah.  You can hope.
+
+[A new goal was added: visit Ava & Stacy]
+
+Your Room
+You share this room with first-year camper Jeremy Dolan, who hates werewolves for some inexplicable reason.  He let you put the werewolf cutout on the outside of the door only because you let him put up a vampire cutout on the inside.  Jeremy's not around right now, though, so you'll have to wait before continuing your ongoing discussion as to whether vampires or werewolves are cooler.  In the meantime, there's your bed and your desk, and the door back to the north.
+
+>["flavour"]
+I didn't understand that sentence.
+
+>[Very nice removal of the timer]
+I didn't understand that sentence.
+
+>[I'm not seeing chapter titles, and I think I should be.]
+You seem to want to talk to someone, but I can't see whom.
+
+>x desk
+A standard, regulation LEAP desk, with a built-in electrical outlet for your laptop if you have one.  The actual outlet is probably in some inconvenient place behind the desk, but why they couldn't just supply you with a power bar, you don't know.  Well, you suppose desks with built-in outlets are pretty cool.  Just... not as cool as werewolves.
+
+>look under desk
+You find nothing of interest.
+
+>look behind desk
+You can't see any such thing.
+
+>i
+You are carrying:
+  a few dollars
+
+Goals Accomplished: 
+  participating in the scavenger hunt
+
+Goals Remaining: 
+  visit Ava & Stacy
+
+>[I didn't envision the goals from previous chapters carrying over. It works okay here, but seems like it could get weird the further the story progresses. That's another reason that clearer chapter breaks would be useful.]
+You seem to want to talk to someone, but I can't see whom.
+
+>l
+Your Room
+You share this room with first-year camper Jeremy Dolan, who hates werewolves for some inexplicable reason.  He let you put the werewolf cutout on the outside of the door only because you let him put up a vampire cutout on the inside.  Jeremy's not around right now, though, so you'll have to wait before continuing your ongoing discussion as to whether vampires or werewolves are cooler.  In the meantime, there's your bed and your desk, and the door back to the north.
+
+>x bed
+A standard, regulation LEAP bed, with nothing under it but dust.  You've looked several times, especially in the mornings when you can't find your slippers.
+
+>look under bed
+Oh hey, someone's gone and swept under the bed.
+
+>[heh]
+I didn't understand that sentence.
+
+>[I think there's supposed to be a flyer in here, isn't there?]
+You seem to want to talk to someone, but I can't see whom.
+
+>x desk
+A standard, regulation LEAP desk, with a built-in electrical outlet for your laptop if you have one.  The actual outlet is probably in some inconvenient place behind the desk, but why they couldn't just supply you with a power bar, you don't know.  Well, you suppose desks with built-in outlets are pretty cool.  Just... not as cool as werewolves.
+
+>get flyer
+You can't see any such thing.
+
+>l
+Your Room
+You share this room with first-year camper Jeremy Dolan, who hates werewolves for some inexplicable reason.  He let you put the werewolf cutout on the outside of the door only because you let him put up a vampire cutout on the inside.  Jeremy's not around right now, though, so you'll have to wait before continuing your ongoing discussion as to whether vampires or werewolves are cooler.  In the meantime, there's your bed and your desk, and the door back to the north.
+
+>n
+You step out of the room, locking it behind you.
+
+Pits, East
+Your room is at this end of the Pits hallway, just to the south of here.  You've elected to cover your door with the biggest cutout of a werewolf that you can find, because werewolves are cool.  The hallway continues west, and a high window on the east wall looks out across Calvin Field North.  Right beside your room door is the fire stair leading back upstairs.
+
+>x werewolf
+Rowrr.  Sure, werewolves are supposed to be scary, but you can't help but think they're too cool to be lumped together with all the zombies and vampires and assorted creeps that make up the standard classic horror fare.  This particular one has huge whiskers that somehow make you think of the portrait of AQJ up by the info desk.
+
+>s
+Most of the rooms are locked.  And the ones that aren't, are occupied by people you do not know.
+
+>[I should be able to get back into my own room!]
+I didn't understand that sentence.
+
+>n
+There are exits south (to your room), west and up (to first floor rooms) from here.
+
+>s
+Most of the rooms are locked.  And the ones that aren't, are occupied by people you do not know.
+
+>unlock room
+You can't see any such thing.
+
+>unlock door
+You must supply a second noun.
+
+>unlock door with key
+You can't see any such thing.
+
+>[The key thing should happen automagically. Otherwise, as a player, I'm worried about leaving my room unlocked. So when I go north, the game should tell me that I lock the door behind me. Similarly, when I go south from here, I should get a 
+You seem to want to talk to someone, but I can't see whom.
+
+>["(first unlocking the door)" message.[
+I didn't understand that sentence.
+
+>[okay, i need to wind this up and send it off, but a few minutes meditation has revealed the following things about the opening scene:]
+You seem to want to talk to someone, but I can't see whom.
+
+>[1. No need to worry about the Van Gogh poster. It'll be obviated when we block off the hallways.]
+I didn't understand that sentence.
+
+>[2. It'd be nice to have the music from Lobby East drift into Lobby West. They're the same room, and sound should travel. This can also serve to draw the player into that room, where a relatively easy goal achievement is available wiht the dinosaurs.]
+I didn't understand that sentence.
+
+>[In fact, let me check that out.]
+You seem to want to talk to someone, but I can't see whom.
+
+>restart
+Are you sure you want to restart? yes
+
+
+
+
+It's your second year at the LEAP summer camp, and so far it's been as great as you remember last year to have been.  Ava Winters and Stacy Alexander, whom you met last year (and whom your brother Aidan calls "your girlfriends", much to your embarrassment) are here again.  You spent yesterday catching up on the news in between options and classes, and now you're settling in with the smug sensation of not being a raw newbie any more.
+
+The LEAP summer camp isn't quite the same as most summer camps.  LEAP is an acronym for "Learning Enrichment Activity Program"; the brainchild of world-renowned educator Professor Damon Rose, it is housed on the campus of the University of Colorado at Valmont, and was created for Gifted and Talented Kids (gosh, that sounds impressive) to expand their horizons and encourage them to stretch their mental capabilities.
+
+Whatever. That's all in the promotional flyers. You just know that you're in for two weeks of the sort of interesting classes you don't get in school, and a bunch of fun options with which to fill up the free time after classes.  This evening, for instance, you've signed up for a scavenger hunt....
+
+
+Please press SPACE to continue.
+LEAP, Day 2.  Evening.
+
+"Okay, kids!" Michelle, the counselor in charge of the scavenger hunt option waves her hands to settle the crowd around you, before finally remembering her whistle.  A brief fweep sweeps through the room.  "Okay, does everyone have their list?  Everyone good?  Okay!  You have until 8:25 pm to find everything on your lists, return here, and show me your lists so I can check them.  So synchronise your watches... are we all in sync?  Good!  Your time starts... now!"
+
+Michelle's whistle gives another sharp fweep, and the room practically empties as everyone else runs off to begin their hunt.
+
+Empath
+Empath by Textfyre
+Copyright 2010 by Textfyre
+Designed by Paul O'Brian
+Written by Christopher Huang
+Game Engine (FyreVM) by Jesse McGrew
+Inform 7 Programming by Graeme Jefferis
+  and Ron Newcomb
+Testing by ____
+Special thanks to Graham Nelson and Emily Short
+for all of their hard work on Inform 7.
+All rights reserved
+
+Info Desk
+The main foyer of Jacobs Hall still looks a bit like the inside of a hundred-year-old mansion, though it's been a little bit beat up by the passing generations of students.  The information desk, an anomaly in glass and polished steel, sits beneath a portrait of Alexander Quaverley Jacobs, facing the main entrance to the west.  To the east, wide double doors open onto Calvin Field, while arches go south and southeast to the rest of the lobby area.  Much of the north wall has been chewed through to make a connection to the newer part of Jacobs Hall.
+
+Michelle Close leans against the side of the desk, chewing on a pencil.
+
+>e
+You step out into the bright sunshine.
+
+Calvin Field, North
+Claremont Hall, to the north, looms over the entire length of Calvin Field, which continues to the south.  Jacobs Hall is back to the west, and the dining hall is to the east.  A fountain takes up space right where all the paths meet, so there usually aren't that many people running around and tearing up the grass.  Right now, though, there are several people running around, playing Myth Tag, and there's nothing the fountain can do about it.
+
+>undo
+info desk
+[Previous turn undone.]
+
+>[oh right, we start at the info desk. Well, music could still travel through the arch. I like the idea of strongly cueing the player in the first few moves in order to provide an early taste of victory.]
+You seem to want to talk to someone, but I can't see whom.
+
+>se
+First Floor Lobby, East
+This used to be a rather large dining room, once upon a time, and it still has a low-hanging chandelier right in the middle of the ceiling.  A piano's been pushed under the chandelier so that nobody accidentally gets a head full of crystal walking blindly around, and the place is generally used as a kind of music room now.  The info desk is back to the northwest, and to the west is the rest of the first floor lobby.  Wide picture windows look out on the front lawn and on the southern part of Calvin Field. The School of Rock option is in progress here, jamming away in the upper decibels.
+
+>x piano
+Ava says it's a baby grand, and she knows more about this sort of thing.  All grand pianos seem more or less alike to you.  The pile of plastic dinosaurs under the piano probably makes it unique, however.
+
+>[yeah, good easy win, as long as examining discipline is in place. A tutorial to instill that discipline would be good.]
+You seem to want to talk to someone, but I can't see whom.
+
+>[3. Now I can't remember the third thing. Oh well. I guess it's just to say that I know there's a bunch of stuff in that first chapter I haven't tested yet. I was just letting myself get swept along. I'll return to cover it.]
+I didn't understand that sentence.
+
+>[okay, enough of this for now.]
+You seem to want to talk to someone, but I can't see whom.
+
+>save
+Ok.
+
+>quit
+Are you sure you want to quit? yes

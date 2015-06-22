@@ -1,0 +1,32 @@
+Version 1 of XML Output Toggling by Textfyre begins here.
+
+Use authorial modesty;
+
+Part 1 - For release
+
+XML Output is a truth state which varies. XML Output is true.
+
+Part 2 - Not for release
+
+XML Toggling is an action out of world applying to nothing.
+Understand "xml" as xml toggling.
+
+When play begins:
+	change XML Output to false.
+
+Carry out xml toggling:
+	if XML Output is false begin;
+		change XML output to true;
+	otherwise;
+		change XML output to false;
+	end if;
+
+Report xml toggling:
+	say "XML is now turned ";
+	if XML Output is false begin;
+		say "off.";
+	otherwise;
+		say "on.";
+	end if;
+
+XML Output Toggling ends here.
