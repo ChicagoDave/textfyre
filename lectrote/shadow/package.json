@@ -1,0 +1,51 @@
+{
+  "name": "shadow",
+  "productName": "shadow",
+  "version": "2.1.0",
+  "lectroteVersion": "2.8.1",
+  "description": "The Shadow in the Cathedral",
+  "author": "Ian Finely, Jon Ingold",
+  "lectrotePackagedGame": "shadow-2.1.ulx",
+  "lectroteSoleInterpreter": "glulx",
+  "lectroteExtraFiles": ["shadow-2.1.ulx", "shadowhints.html", "checkmark.png", "gearclock.jpg", "parchment.jpg", "question.jpg",
+                          "chapter-1.png", "chapter-2.png", "chapter-3.png", "chapter-4.png", "chapter-5.png", "chapter-6.png",
+                          "chapter-7.png", "chapter-8.png", "chapter-9.png", "chapter-10.png", "chapter-11.png" ],
+  "lectroteCopyright": "Copyright 2017 by Ian Finley & Jon Ingold",
+  "main": "main.js",
+  "bin": {
+    "lectrote": "./cli.sh"
+  },
+  "scripts": {
+    "start": "electron .",
+    "preinstall": "run-script-os",
+    "preinstall:macos": "if [ -f quixe/LICENSE ]; then echo Quixe already installed; elif [ -d .git ]; then git submodule init; git submodule update; else git clone https://github.com/erkyrath/quixe.git; fi",
+    "preinstall:linux": "if [ -f quixe/LICENSE ]; then echo Quixe already installed; elif [ -d .git ]; then git submodule init; git submodule update; else git clone https://github.com/erkyrath/quixe.git; fi",
+    "preinstall:win32": "if EXISTS quixe/LICENSE ( echo Quixe already installed) else (if EXISTS .git ( git submodule init; git submodule update; ) else (git clone https://github.com/erkyrath/quixe.git; fi)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erkyrath/lectrote.git"
+  },
+  "keywords": [
+    "interactive fiction",
+    "interpreter",
+    "quixe",
+    "glkote",
+    "glulx",
+    "parchment",
+    "zcode",
+    "zmachine",
+    "ink"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "electron": "1.6.11"
+  },
+  "devDependencies": {
+    "electron-packager": "^8.0.0",
+    "run-script-os": "^1.0.2"
+  },
+  "optionalDependencies": {
+    "appdmg": "^0.4.0"
+  }
+}

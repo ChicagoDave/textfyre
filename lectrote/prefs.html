@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lectrote Preferences</title>
+
+<link rel="stylesheet" href="./fonts.css" type="text/css">
+
+<style id="bodycss" type="text/css">
+
+body {
+  background: #EEE;
+  font-family: "Lora", Georgia, serif;
+  margin: 20px;
+  font-size: 1.0em;
+}
+
+#content {
+  max-width: 550px;
+  margin: auto;
+}
+
+h2 {
+  font-size: 1.0em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: #AAA;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.FormSection {
+  margin-left: 2em;
+  margin-bottom: 1em;
+}
+
+.FormSection select {
+  -webkit-appearance: menulist-button;
+  font-size: 1.0em;
+}
+
+#input-font {
+  width: 12em;
+  display: none;
+}
+
+input[type=text] {
+  font-size: 1.0em;
+}
+
+input[type=range] {
+  width: 50%;
+  -webkit-appearance: none;
+  background: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  border-radius: 6px;
+  height: 12px;
+  background: #F0F0F0;
+  -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.8);
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #DDD;
+  border: 1px solid #666;
+  border-radius: 9px;
+  margin-top: -3px;
+  -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+}
+
+.Sample {
+  max-height: 140px;
+  overflow: auto;
+  font-size: 0.95em;
+  padding: 1em;
+  background: white;
+}
+
+.Sample.SepiaTheme {
+  background: #F4EDE1;
+  color: black;
+}
+.Sample.SlateTheme {
+  background: #4D4D4F;
+  color: white;
+}
+.Sample.DarkTheme {
+  background: black;
+  color: #FFF4EE;
+}
+
+.SampleText {
+  line-height: 1.4em;
+}
+
+</style>
+
+<script type="text/javascript">
+window.$ = window.jQuery = require('./quixe/lib/jquery-1.12.4.min.js');
+require('./prefs.js');
+</script>
+
+</head>
+
+<body>
+<div id="content">
+
+<h2>Story Font</h2>
+
+<div class="FormSection">
+
+<select disabled id="sel-font" name="font">
+<option>&nbsp;--&nbsp;</option>
+</select>
+&nbsp;
+<input id="input-font" type="text">
+
+</div>
+
+<h2>Zoom Level</h2>
+
+<div class="FormSection">
+
+<input id="range-zoom" name="zoom" type="range">
+&nbsp;
+<span id="display-zoom">--</span>
+
+</div>
+
+<h2>Color Theme</h2>
+
+<div class="FormSection">
+
+<select disabled id="sel-color-theme" name="color-theme">
+<option>&nbsp;--&nbsp;</option>
+</select>
+
+</div>
+
+<h2>Margins</h2>
+
+<div class="FormSection">
+
+<input id="range-margin" name="margin" type="range">
+&nbsp;
+<span id="display-margin">--</span>
+
+</div>
+
+<hr>
+
+<div class="Sample">
+<div class="SampleText">
+<b>At End Of Road</b><br>
+You are standing at the end of a road before a small brick building. 
+Around you is a forest. A small stream flows out of the building and 
+down a gully.
+<i>(From Colossal Cave, Crowther & Woods)</i>
+</div>
+</div>
+
+</div>
+</body>
+
+</html>

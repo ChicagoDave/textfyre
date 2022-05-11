@@ -1,0 +1,148 @@
+/* Gentium Book Basic by Victor Gaultney et al
+   http://software.sil.org/gentium/
+   SIL Open Font License 1.1   
+*/
+
+@font-face {
+  font-family: "Gentium Book Basic";
+  font-style: normal;
+  src: url("./font/GenBkBasR.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Gentium Book Basic";
+  font-style: italic;
+  src: url("./font/GenBkBasI.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Gentium Book Basic";
+  font-weight: bold;
+  font-style: normal;
+  src: url("./font/GenBkBasB.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Gentium Book Basic";
+  font-weight: bold;
+  font-style: italic;
+  src: url("./font/GenBkBasBI.ttf") format("truetype");
+}
+
+/* Lora by Olga Karpushina and Alexei Vanyashin
+   http://www.cyreal.org/2012/07/lora/
+   SIL Open Font License 1.1   
+*/
+
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  src: url("./font/Lora-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Lora";
+  font-style: italic;
+  src: url("./font/Lora-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Lora";
+  font-weight: bold;
+  font-style: normal;
+  src: url("./font/Lora-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Lora";
+  font-weight: bold;
+  font-style: italic;
+  src: url("./font/Lora-BoldItalic.ttf") format("truetype");
+}
+
+/* Libre Baskerville by Pablo Impallari and Rodrigo Fuenzalida
+   http://www.impallari.com/projects/overview/libre-baskerville
+   SIL Open Font License 1.1
+*/
+
+@font-face {
+  font-family: "Libre Baskerville";
+  font-style: normal;
+  src: url("./font/LibreBaskerville-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Libre Baskerville";
+  font-style: italic;
+  src: url("./font/LibreBaskerville-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Libre Baskerville";
+  font-weight: bold;
+  font-style: normal;
+  src: url("./font/LibreBaskerville-Bold.ttf") format("truetype");
+}
+
+/* Source Sans Pro by Paul D. Hunt
+   http://www.adobe.com/products/type/font-information/source-sans-pro-readme.html
+   SIL Open Font License 1.1
+*/
+
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  src: url("./font/SourceSansPro-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: italic;
+  src: url("./font/SourceSansPro-It.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  font-weight: bold;
+  font-style: normal;
+  src: url("./font/SourceSansPro-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  font-weight: bold;
+  font-style: italic;
+  src: url("./font/SourceSansPro-BoldIt.ttf") format("truetype");
+}
+
+/* Source Code Pro by Paul D. Hunt
+   http://www.adobe.com/products/type/font-information/source-code-pro-readme.html
+   SIL Open Font License 1.1
+*/
+
+@font-face {
+  font-family: "Source Code Pro";
+  font-style: normal;
+  src: url("./font/SourceCodePro-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Source Code Pro";
+  font-style: italic;
+  src: url("./font/SourceCodePro-It.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Source Code Pro";
+  font-weight: bold;
+  font-style: normal;
+  src: url("./font/SourceCodePro-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Source Code Pro";
+  font-weight: bold;
+  font-style: italic;
+  src: url("./font/SourceCodePro-BoldIt.ttf") format("truetype");
+}
+

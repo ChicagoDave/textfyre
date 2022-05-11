@@ -1,0 +1,418 @@
+FONTLOG
+Gentium Basic and Gentium Book Basic  v1.102
+==========================================================
+
+
+This file provides detailed information on the Gentium Basic and Gentium Book Basic font families. This information should be distributed along with the Gentium Basic and Gentium Book Basic fonts and any derivative works.
+
+
+Basic Font Information
+----------------------
+
+Gentium ("belonging to the nations" in Latin) is a Unicode typeface family designed to enable the many diverse ethnic groups around the world who use the Latin script to produce readable, high-quality publications. The design is intended to be highly readable, reasonably compact, and visually attractive. Gentium has won a "Certificate of Excellence in Typeface Design" in two major international typeface design competitions: bukva:raz! (2001), TDC2003 (2003).
+
+The Gentium Basic and Gentium Book Basic font famililes are based on the original design, but with additional weights. The "Book" family is slightly heavier. Both families come with a complete regular, bold, italic and bold italic set of fonts.
+
+The supported character set, however, is much smaller than for the main Gentium fonts. These "Basic" fonts support only the Basic Latin and Latin-1 Supplement Unicode ranges, plus a selection of the more commonly used extended Latin characters, with miscellaneous diacritical marks, symbols and punctuation. For a complete list of supported characters see the list at the end of this document. 
+
+In particular, these fonts do not support:
+
+- Full extended Latin IPA
+- Complete support for Central European languages
+- Greek
+- Cyrillic
+
+A much more complete character set will be supported in a future version of the complete Gentium fonts. These "Basic" fonts are intended as a way to provide additional weights for basic font users without waiting until the complete Gentium character set is finished. So please don't request additional glyphs or characters to be supported in the Basic fonts - such support will become available in the main Gentium family in the future.
+
+There are also some other limitations of the Basic fonts:
+
+- They are not completely metric-compatible with the full Gentium family
+    (some glyphs may have different widths, although changes have been minimal)
+- There is no kerning
+- There are no "Alt" versions, or ones with low-profile diacritics
+- The default stacking style for some diacritic combinations does not match Vietnamese-style conventions (although this is available through a OpenType/Graphite feature)
+- No support for TypeTuner
+
+There are, however, some wonderful new features that are still missing from the main Gentium family:
+
+- Bold!
+- Bold Italic!
+- The slightly-heavier Book family!
+- OpenType and Graphite smart code for diacritic placement!
+- A few useful OpenType and Graphite features
+- Support for a few more recent additions to Unicode and the SIL PUA (http://scripts.sil.org/UnicodePUA)
+- Character assignments are updated to conform to Unicode 5.1
+
+In particular, the Basic fonts support a subset of the smart font features that the Doulos SIL font supports. Those features are:
+
+- Capital Eng alternates
+- Literacy alternates
+- Capital Y-hook alternate
+- Capital N-left-hook alternate
+- Modifier apostrophe alternate
+- Modifier colon alternate
+- Open o alternate
+- Vietnamese-style diacritics
+
+More detail on the features can be seen in the Doulos SIL Technical Documentation (http://scripts.sil.org/DoulosSIL_Technical).
+
+
+Known Problems
+--------------
+
+We know of the following problems. Please report any other problems you encounter.
+
+- logicalnot (U+00AC) appears distorted in Bold Italic and Book Italic.
+- Opening the fonts with FontLab 5.0.x, then closing them, crashes FontLab. We are working to get this bug fixed in the next version of FontLab. A workaround is to open the font, save as a .vfb file, close (which still causes a crash). Then restart FontLab and open the .vfb file.
+
+
+ChangeLog
+---------
+(This should list both major and minor changes, most recent first.)
+
+28 Nov 2013 (Victor Gaultney)  Gentium Basic/Gentium Book Basic version 1.102
+- Minor bug fix to OpenType coverage tables - no other changes
+
+4 Apr 2008 (Victor Gaultney)  Gentium Basic/Gentium Book Basic version 1.1
+- Final release
+
+12 Nov 2007 (Victor Gaultney)  Gentium Basic/Gentium Book Basic version 1.1b1
+- trimmed character set down to Basic
+- added additional weights
+- no FontLab source files
+
+28 Nov 2005 (Victor Gaultney)  Gentium version 1.02
+- Changed licensing to the SIL Open Font License
+- Included FontLab source files
+- Fixed some duplicate PostScript glyphs names
+- Fixed italic angle
+
+19 Sep 2003 (Victor Gaultney)  Gentium version 1.01 
+- Maintenance release focused on changing internal font
+- Information to reflect the changeover to an SIL project
+- There is only one bug fix - the Greek mu PS name was changed to try and fix a display/printing problem. There is still no manual hinting
+
+16 Sep 2002 (Victor Gaultney)  Gentium version 1.00
+- First public release
+- No manual hinting is included in this version. Some has been done - with good results - but is not yet complete enough.
+
+
+Information for Developers/Contributors
+---------------------------------------
+
+The source release contains FontLab source files for the eight fonts, but those files do not include the OpenType and Graphite code, as those are inserted after the fonts are generated from FontLab. The files are included as a source for the PostScript-style cubic curves. You are welcome, however, to open the font files themselves to gain access to the smart font code, although most editors will not let you edit that code directly. We will provide a richer set of sources for the full Gentium fonts at a later time.
+
+SIL will remain as maintainers of this font project, but we do not intend any further major releases. Our primary efforts will be going into the full Gentium package. Any contributions should be directed toward that project.
+
+
+Acknowledgements
+----------------
+(Here is where contributors can be acknowledged. If you make modifications be sure to add your name (N), email (E), web-address (W) and description (D). This list is sorted by last name in alphabetical order.)
+
+N: Victor Gaultney
+E: victor_gaultney@sil.org
+W: http://www.sil.org/~gaultney/
+D: Original Designer
+
+N: Annie Olsen
+E: nrsi@sil.org
+W: http://scripts.sil.org/
+D: Contributed some extended Latin glyphs
+
+N: SIL font engineers
+E: nrsi@sil.org
+W: http://scripts.sil.org/
+D: OpenType code and build support
+
+The Gentium project, and the Gentium Basic and Gentium Book Basic fonts, are maintained by SIL International.
+
+For more information please visit the Gentium page on SIL International's Computers and Writing systems website:
+http://scripts.sil.org/gentium
+
+Or send an email to <gentium AT sil DOT org>
+
+
+Character Range Coverage
+------------------------
+
+C0 Controls and Basic Latin (U+0020..U+007E)
+C1 Controls and Latin-1 Supplement (U+00A0..U+00FF)
+Latin Extended-A (U+0100..U+0103, U+0106..U+010E, U+011A..U+0121, U+0124..U+0125, U+0128..U+012D, U+0130..U+0133, U+0139..U+013A, U+0141..U+0144, U+0147..U+0148, U+014A..U+0155, U+0158..U+015D, U+0160..U+0161, U+0164, U+0168..U+0171, U+00174..U+017E)
+Latin Extended-B (U+0181, U+0186, U+0189..U+018A, U+018E, U+0190, U+0192, U+0197..U+019A, U+019D, U+019F..U+01A1, U+01A9..U+01AA, U+01AF..U+01B0, U+01B3..U+01B4, U+01B7, U+01CD..U+01E3, U+01E6..U+01E9, U+01EE..U+01EF, U+01F4..U+01F5, U+01F8..U+01FF, U+021E..U+021F, U+0226..U+0233, U+0237, U+023D, U+0241..U+0242, U+0244..U+0245, U+024A..U+024B)
+IPA Extensions (U+0251, U+0253..U+0254, U+0256..U+0257, U+0259, U+025B, U+0263, U+0268..U+0269, U+026B, U+0272, U+0275, U+0283, U+0289..U+028A, U+028C, U+0292, U+0294, U+02A0)
+Spacing Modifier Letters (U+02BC, U+02C0, U+02C6..U+02C7, U+02C9..U+02CB, U+02CD, U+02D7..U+02DD)
+Combining Diacritical Marks (U+0300..U+0304,U+0306..U+030C, U+031B, U+0323, U+0327..U+0328, U+0331, U+033F, U+035F)
+Greek and Coptic (U+03A0, U+03A9, U+03C0)
+Latin Extended Additional (U+1E02..U+1E0F, U+1E14..U+1E17, U+1E1C..U+1E27, U+1E2E..U+1E3B, U+1E3E..U+1E49, U+1E4C..U+1E6F, U+1E78..U+1E99, U+1EA0..U+1EF9)
+General Punctuation (U+2011, U+2013..U+2014, U+2018..U+201A, U+201C..U+201E, U+2020..U+2022, U+2026, U+2030, U+2039..U+203A, U+2044)
+Currency Symbols (U+20AC)
+Letterlike Symbols (U+2122..U+2123, U+2126)
+Mathematical Operators (U+2202, U+2205..U+2206, U+220F, U+2211..U+2212, U+2219..U+221A, U+221E, U+222B, U+2248, U+2260, U+2264..U+2265)
+Geometric Shapes (U+25CA, U+25CC)
+Latin Extended-C (U+2C60..U+2C62)
+Modifier Tone Letters (U+A700..U+A71A)
+Latin Extended-D (U+A789..U+A78C)
+Alphabetic Presentation Forms (U+FB01..U+FB02)
+SIL PUA (U+F130..U+F131, U+F195, U+F197, U+F1C8, U+F1E9..U+F1EA, U+F20E..U+F20F, U+F211..U+F212, U+F218..U+F219, U+F21D..U+F21F, U+F242, U+F26A)
+
+--------------------------------------------------------
+
+FONTLOG for the Lora font
+
+This file provides detailed information on the Lora 
+font Software.
+
+This information should be distributed along with the 
+Lora fonts and any derivative works.
+
+Basic Font Information
+
+Lora is a well-balanced contemporary serif with roots in calligraphy. It is a text typeface with moderate contrast well suited for body text.
+A paragraph set in Lora will make a memorable appearance because of its brushed curves in contrast with driving serifs. The overall typographic voice of Lora perfectly conveys the mood of a modern-day story, or an art essay.
+
+Technically Lora is optimised for screen appearance, and works equally well in print.
+
+Designed by Olga Karpushina, and Alexei Vanyashin for Cyreal.
+
+Lora is a Unicode typeface family that supports 
+languages that use the Latin script and its variants, and 
+could be expanded to support other scripts.
+
+More specifically, this release supports the following Unicode
+ranges: Latin-1, Adobe Latin-3, GWF Standard Cyrillic
+
+To contribute to the project contact Alexei Vanyashin at 
+a@cyreal.org
+
+.VBF Source files:
+Lora-[stylename]-OTF.vbf (Merged and optimized file, Postscript contours)
+Lora-[stylename]-TTF.vbf (Merged and optimized file, Truetype contours, Latin-1 range is manually hinted, 
+all other characters autohinted)
+[stylename] is the name of the style, i.e. Regular, Bold, RegularItalic, BoldItalic
+
+ChangeLog
+
+20 July 2011 (Olga Karpushina) Lora v. 1.000
+— Completed initial design
+
+30 May 2013 (Alexei Vanyashin) Lora v. 1.011
+— Extended character set in all four fonts to include
+Adobe Latin-3, and GWF Standard Cyrillic encodings.
+— Equalized vertical metrics across the styles
+
+19 June 2013 (Alexei Vanyashin) Lora v. 1012
+— Merged previous hinted version v. 1.000 with
+additional autohinted glyphs.
+— Improved kerning
+— Adjusted glyphs with caron accent
+
+26 June 2013 (Alexei Vanyashin) Lora v. 1013
+— Fixed hinting issue
+— Minor design fixes
+
+12 August 2013 (Alexei Vanyashin) Lora v. 1014
+— equalised nbsp, sp, noBreak, nonmarkingreturn advance widths 
+
+If you make modifications be sure to add your name (N), 
+email (E), web-address (if you have one) (W) and description (D). 
+This list is in alphabetical order.
+
+N: Olga Karpushina
+E: okarpush@gmail.com
+W: www.cyreal.org
+D: Designer
+
+N: Alexei Vanyashin
+E: a@cyreal.org
+W: www.cyreal.org
+D: Designer and Mastering
+
+--------------------------------------------------------
+
+FONTLOG for the Libre Baskerville fonts
+
+This file provides detailed information on the Libre Baskerville Font Software.
+
+This information should be distributed along with the Libre Baskerville fonts and any derivative works.
+
+Basic Font Information:
+Libre Baskerville is a webfont family optimized for body text. Based on 1941 ATF Baskerville Specimens, it has a taller x height, wider counters and minor contrast that allow it to work on small sizes in any screen.
+
+Libre Baskerville characters set covers 103 Latin languages:
+Afar, Afrikaans, Albanian, Azerbaijani, Basque, Belarusian, Bislama, Bosnian, Breton, Catalan, Chamorro, Chichewa, Comorian, Czech, Danish, Dutch, English, Esperanto, Estonian, Faroese, Fijian, Filipino/Tagalog, Finnish, Flemish, French, Gaelic (Irish / Manx / Scottish), Gagauz, German, Gikuyu, Gilbertese/Kiribati, Greenlandic, Guarani, Haitian_Creole, Hawaiian, Hungarian, Icelandic, Igo/Igbo, Indonesian, Irish, Italian, Javanese, Kashubian, Kinyarwanda, Kirundi, Latin, Latvian, Lithuanian, Luba/Ciluba/Kasai, Luxembourgish, Malagasy, Malay, Maltese, Maori, Marquesan, Marshallese, Moldovan/Moldovian/Romanian, Montenegrin, Nauruan, Ndebele, Norwegian, Oromo, Palauan/Belauan, Polish, Portuguese, Quechua, Romanian, Romansh, Sami, Samoan, Sango, Serbian, Sesotho, Setswana/Sitswana/Tswana, Seychellois_Creole, SiSwati/Swati/Swazi, Silesian, Slovak, Slovenian, Somali, Sorbian, Sotho, Spanish, Swahili, Swedish, Tahitian, Tetum, Tok_Pisin, Tongan, Tsonga, Tswana, Tuareg/Berber, Turkish, Turkmen, Tuvaluan, Uzbek/Usbek, Wallisian, Walloon, Welsh, Xhosa, Yoruba, Zulu.
+
+Join the project at:
+http://www.impallari.com/projects/overview/libre-baskerville
+
+Documentation can be found at www.impallari.com
+
+To contribute to the project contact Pablo Impallari at impallari@gmail.com
+
+ChangeLog
+
+29 Nov 2012 (Pablo Impallari, Rodrigo Fuenzalida) Libre Baskerville v1.0
+- Regular, Italic and Bold styles
+- All ikerned
+- Initial v1.0 release
+
+24 Sep 2012 (Pablo Impallari, Rodrigo Fuenzalida) Libre Baskerville v0.16
+- Initial public Beta release
+- First draft for caps and lowercase.
+
+Acknowledgements
+
+If you make modifications be sure to add your name (N), 
+email (E), web-address (if you have one) (W) and 
+description (D). This list is in alphabetical order.
+
+N: Pablo Impallari
+E: impallari@gmail.com
+W: http://www.impallari.com
+D: Designer
+
+N: Rodrigo Fuenzalida
+E: hello@rfuenzalida.com
+W: http://www.rfuenzalida.com
+D: Designer
+
+
+
+Copyright (c) 2012, Pablo Impallari (www.impallari.com|impallari@gmail.com), 
+Copyright (c) 2012, Rodrigo Fuenzalida (www.rfuenzalida.com|hello@rfuenzalida.com), with Reserved Font Name Libre Baskerville.
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+http://scripts.sil.org/OFL
+
+--------------------------------------------------------
+
+# Source Sans Pro
+
+Source Sans Pro is a set of OpenType fonts that have been designed to work well
+in user interface (UI) environments. In addition to a functional OpenType font, this open
+source project provides all of the source files that were used to build this OpenType font
+by using the AFDKO makeotf tool.
+
+## Font installation instructions
+
+* [Mac OS X](http://support.apple.com/kb/HT2509)
+* [Windows](http://windows.microsoft.com/en-us/windows-vista/install-or-uninstall-fonts)
+* [Linux/Unix-based systems](https://github.com/adobe-fonts/source-code-pro/issues/17#issuecomment-8967116)
+
+## Getting Involved
+
+Send suggestions for changes to the Source Sans OpenType font project maintainer, [Paul D. Hunt](mailto:opensourcefonts@adobe.com?subject=[GitHub] Source Sans Pro), for consideration.
+
+## Further information
+
+For information about the design and background of Source Sans, please refer to the [official font readme file](http://www.adobe.com/products/type/font-information/source-sans-pro-readme.html).
+
+--------------------------------------------------------
+
+# Source Code Pro
+
+Source Code Pro is a set of OpenType fonts that have been designed to work well
+in user interface (UI) environments. In addition to a functional OpenType font, this open
+source project provides all of the source files that were used to build this OpenType font
+by using the AFDKO makeotf tool.
+
+## Font installation instructions
+
+* [Mac OS X](http://support.apple.com/kb/HT2509)
+* [Windows](http://windows.microsoft.com/en-us/windows-vista/install-or-uninstall-fonts)
+* [Linux/Unix-based systems](https://github.com/adobe-fonts/source-code-pro/issues/17#issuecomment-8967116)
+
+## Getting Involved
+
+Send suggestions for changes to the Source Code OpenType font project maintainer, [Paul D. Hunt](mailto:opensourcefonts@adobe.com?subject=[GitHub] Source Code Pro), for consideration.
+
+## Further information
+
+For information about the design and background of Source Code, please refer to the [official font readme file](http://www.adobe.com/products/type/font-information/source-code-pro-readme.html).
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.

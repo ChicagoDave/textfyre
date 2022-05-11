@@ -1,0 +1,140 @@
+/*
+
+ZVM - the ifvms.js Z-Machine
+============================
+
+Copyright (c) 2017 The ifvms.js team
+MIT licenced
+https://github.com/curiousdannii/ifvms.js
+
+*/
+
+/*
+
+Try to support as many of the Z-Machine's formatting combinations as possible.
+There are not enough styles to support them all, so sometimes bold formatting
+misses out.
+
+This spreadsheet shows how the Z-Machine formatting is mapped to Glk styles:
+
+http://docs.google.com/spreadsheets/d/1Nvwyb_twC3_fPYDrjQu86b3KRAmLFDllIUvPUpMz108
+
+*/
+
+/* CSS variables. These let us define customizations without repeating
+   each one four times (for the themes).
+
+   These duplicate the default colors and values from el-glkote.css.
+   (One day I will refactor all of glkote/quote/lectrote to use CSS
+   variables, but right now they're only used here.)
+*/
+:root {
+	--mono-font: "Source Code Pro", Monaco, Courier, monospace;
+	--base-line-height: 1.4;
+
+	--main-bg-color: white;
+	--main-fg-color: black;
+	--grid-bg-color: #EEEBDD;
+	--grid-fg-color: #864;
+	--reverse-bg-color: #665;
+	--reverse-fg-color: white;
+	--grid-pad-color: #FFFCEE;
+}
+.SepiaTheme {
+	--main-bg-color: #F4EDE1;
+	--main-fg-color: black;
+	--grid-bg-color: #FFFFF4;
+	--grid-fg-color: #864;
+	--reverse-bg-color: #887;
+	--reverse-fg-color: white;
+	--grid-pad-color: #F4F0E4;
+}
+.SlateTheme {
+	--main-bg-color: #4D4D4F;
+	--main-fg-color: white;
+	--grid-bg-color: #333333;
+	--grid-fg-color: #DDDDEE;
+	--reverse-bg-color: #AAA;
+	--reverse-fg-color: black;
+	--grid-pad-color: #424244;
+}
+.DarkTheme {
+	--main-bg-color: black;
+	--main-fg-color: #FFF4EE;
+	--grid-bg-color: #432;
+	--grid-fg-color: #DDDACC;
+	--reverse-bg-color: #AA9;
+	--reverse-fg-color: black;
+	--grid-pad-color: #282018;
+}
+
+/* Clear some default GlkOte styles */
+.BufferWindow .Style_header, .BufferWindow .Style_preformatted
+{
+	font-size: inherit;
+	font-weight: normal;
+}
+
+.Style_blockquote
+{
+	background: inherit;
+}
+
+/* Monospaced styles */
+.BufferWindow .Style_header,
+.BufferWindow .Style_blockquote,
+.Style_user2
+{
+	font-family: var(--mono-font);
+}
+
+/* Remove the standard line-height for the buffer preformatted styles.
+   (This prevents ugly stripes when a blockquote or ASCII-art figure
+   uses reverse colors, which is common -- e.g., Jigsaw.) */
+.BufferWindow .BufferLine
+{
+	line-height: normal;
+}
+.BufferWindow .BufferLine span:not(.Style_preformatted):not(.Style_header):not(.Style_blockquote):not(.Style_user2)
+{
+	line-height: var(--base-line-height);
+}
+
+/* Italic styles */
+.BufferWindow .Style_header,
+.Style_alert,
+.Style_blockquote
+{
+	font-style: italic;
+}
+
+/* Bold styles */
+.GridWindow .Style_blockquote
+{
+	font-weight: bold;
+}
+
+/* Reverse */
+
+.BufferWindow .Style_header,
+.BufferWindow .Style_note,
+.BufferWindow .Style_user1,
+.BufferWindow .Style_user2
+{
+	background: var(--reverse-bg-color);
+	color: var(--reverse-fg-color);
+}
+
+.GridWindow .Style_normal
+{
+	background: var(--grid-pad-color);
+}
+
+.GridWindow .Style_header,
+.GridWindow .Style_note,
+.GridWindow .Style_blockquote,
+.GridWindow .Style_user1
+{
+	background: var(--grid-bg-color);
+	color: var(--grid-fg-color);
+}

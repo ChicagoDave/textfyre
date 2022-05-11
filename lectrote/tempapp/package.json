@@ -1,0 +1,50 @@
+{
+  "name": "shadow",
+  "productName": "shadow",
+  "version": "1.0.0",
+  "lectroteVersion": "1.0.0",
+  "description": "The Shadow in the Cathedral",
+  "author": "Ian Finely, Jon Ingold",
+  "lectrotePackagedGame": ".\\files\\shadow-2.1.ulx",
+  "lectroteSoleInterpreter": "glulx",
+  "lectroteExtraFiles": ["files\\shadow-2.1.ulx", "files\\shadowhints.html", "files\\GameFiles\\checkmark.png",
+    "files\\GameFiles\\gearclock.jpg", "files\\GameFiles\\parchment.jpg", "files\\GameFiles\\question.jpg"],
+  "lectroteCopyright": "Copyright Ian Finley & Jon Ingold 2017",
+  "main": "main.js",
+  "bin": {
+    "lectrote": "./cli.sh"
+  },
+  "scripts": {
+    "start": "electron .",
+    "preinstall": "run-script-os",
+    "preinstall:macos": "if [ -f quixe/LICENSE ]; then echo Quixe already installed; elif [ -d .git ]; then git submodule init; git submodule update; else git clone https://github.com/erkyrath/quixe.git; fi",
+    "preinstall:linux": "if [ -f quixe/LICENSE ]; then echo Quixe already installed; elif [ -d .git ]; then git submodule init; git submodule update; else git clone https://github.com/erkyrath/quixe.git; fi",
+    "preinstall:win32": "if EXISTS quixe/LICENSE ( echo Quixe already installed) else (if EXISTS .git ( git submodule init; git submodule update; ) else (git clone https://github.com/erkyrath/quixe.git; fi)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erkyrath/lectrote.git"
+  },
+  "keywords": [
+    "interactive fiction",
+    "interpreter",
+    "quixe",
+    "glkote",
+    "glulx",
+    "parchment",
+    "zcode",
+    "zmachine",
+    "ink"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "electron": "1.6.11"
+  },
+  "devDependencies": {
+    "electron-packager": "^8.0.0",
+    "run-script-os": "^1.0.2"
+  },
+  "optionalDependencies": {
+    "appdmg": "^0.4.0"
+  }
+}
